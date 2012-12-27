@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // La información general sobre un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos atributos para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("Orbita.Controles.Shared")]
+[assembly: AssemblyTitle("Orbita.Controles.Contenedores")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("Orbita.Controles.Shared")]
+[assembly: AssemblyProduct("Orbita.Controles.Contenedores")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -23,7 +23,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como identificador de typelib si este proyecto se expone a COM
-[assembly: Guid("255a351e-8d00-4f8e-8c73-e5b817b5e58d")]
+[assembly: Guid("582f473d-8c91-43f2-bd9c-347a661433e9")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //
