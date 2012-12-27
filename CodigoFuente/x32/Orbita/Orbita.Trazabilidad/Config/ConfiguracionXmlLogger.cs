@@ -209,7 +209,10 @@ namespace Orbita.Trazabilidad
                                 // Asignar atributo SizeBackup del objeto DebugLogger.
                                 ConfigureLoggerFiltersFromXmlElement(debug, nodo);
                                 long sizeBackup = debug.SizeBackup;
-                                debug.SetFileSystemWatcher(sizeBackup);
+                                if (sizeBackup > 0)
+                                {
+                                    debug.SetFileSystemWatcher(sizeBackup);
+                                }
                             }
                             else if (0 == string.Compare(elementoXml.LocalName, "timer", System.StringComparison.CurrentCulture))
                             {
