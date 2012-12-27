@@ -1,4 +1,4 @@
-﻿//***********************************************************************
+﻿
 using System;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
@@ -115,7 +115,7 @@ namespace Orbita.Comunicaciones
             this.Direccion = dispositivo.Direccion;
             this.Local = dispositivo.Local;
 
-            LogManager.GetLogger("wrapper").Info("Creando OPC");
+            wrapper.Info("Creando OPC");
             //Inicio datos de dispositivo
             this.Identificador = dispositivo.Identificador;
             this.Nombre = dispositivo.Nombre;
@@ -191,23 +191,23 @@ namespace Orbita.Comunicaciones
         {
             // Inicializar grupo de datos.
             InicGrupoDatosOPC();
-            LogManager.GetLogger("wrapper").Info("Grupo de datos iniciado");
+            wrapper.Info("Grupo de datos iniciado");
             // Inicializar grupo de lecturas.
             InicGrupoLecturasOPC();
-            LogManager.GetLogger("wrapper").Info("Grupo de lecturas iniciado");
+            wrapper.Info("Grupo de lecturas iniciado");
             // Inicializar grupo de alarmas.
             InicGrupoAlarmasOPC();
-            LogManager.GetLogger("wrapper").Info("Grupo de alarmas iniciado");
+            wrapper.Info("Grupo de alarmas iniciado");
 
             // Inicializar punteros de datos.
             InicReqIOInterfacesDatos();
-            LogManager.GetLogger("wrapper").Info("Puntero de datos iniciado");
+            wrapper.Info("Puntero de datos iniciado");
             // Inicializar punteros de lecturas.
             InicReqIOInterfacesLecturas();
-            LogManager.GetLogger("wrapper").Info("Puntero de lecturas iniciado");
+            wrapper.Info("Puntero de lecturas iniciado");
             // Inicializar punteros de alarmas.
             InicReqIOInterfacesAlarmas();
-            LogManager.GetLogger("wrapper").Info("Puntero de alarmas iniciado");
+            wrapper.Info("Puntero de alarmas iniciado");
 
             this.SetItems();
             this.InicHiloVida();
@@ -275,7 +275,7 @@ namespace Orbita.Comunicaciones
                 catch (Exception ex)
                 {
                     this.ActualizarCalidadVariables();
-                    LogManager.GetLogger("wrapper").Error("Leer string: " + ex.ToString());
+                    wrapper.Error("Leer string: " + ex.ToString());
                 }
             }
             return resultado;
@@ -334,7 +334,7 @@ namespace Orbita.Comunicaciones
                 }
                 catch (Exception ex)
                 {
-                    LogManager.GetLogger("wrapper").Error("Escribir: " + ex.ToString());
+                    wrapper.Error("Escribir: " + ex.ToString());
                 }
             }
             return resultado;
@@ -439,7 +439,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Error("InicGrupoDatosOPC " + ex.ToString());
+                wrapper.Error("InicGrupoDatosOPC " + ex.ToString());
             }
         }
         /// <summary>
@@ -529,13 +529,13 @@ namespace Orbita.Comunicaciones
         {
             // Crear items de datos.
             SetItemsDatos();
-            LogManager.GetLogger("wrapper").Info("Items de datos iniciado");
+            wrapper.Info("Items de datos iniciado");
             // Crear items de lecturas.
             SetItemsLecturas();
-            LogManager.GetLogger("wrapper").Info("Items de lecturas iniciado");
+            wrapper.Info("Items de lecturas iniciado");
             // Crear items de alarmas.
             SetItemsAlarmas();
-            LogManager.GetLogger("wrapper").Info("Items de alarmas iniciado");
+            wrapper.Info("Items de alarmas iniciado");
         }
         /// <summary>
         /// Asignar items de datos al grupo de datos OPC.
@@ -795,7 +795,6 @@ namespace Orbita.Comunicaciones
             //OInfoOPCvida infoVida = (OInfoOPCvida)this._tags.HtVida;
             while (true)
             {
-                ////LogManager.GetLogger("wrapper").Info("Lectura variables");
                 this._tags.HtVida.Valores = this.Leer(this._tags.HtVida.Variables);
                 Thread.Sleep(this._config.TiempoVida);
             }
@@ -1012,7 +1011,7 @@ namespace Orbita.Comunicaciones
                 catch (Exception ex)
                 {
                     this.ActualizarCalidadVariables();
-                    LogManager.GetLogger("wrapper").Error("Leer int:" + ex.ToString());
+                    wrapper.Error("Leer int:" + ex.ToString());
                 }
             }
             return resultado;
@@ -1191,7 +1190,7 @@ namespace Orbita.Comunicaciones
                             }
                             catch (Exception ex)
                             {
-                                LogManager.GetLogger("wrapper").Error("Error en cambio dato:" + ex.ToString());
+                                wrapper.Error("Error en cambio dato:" + ex.ToString());
                             }
                         }
                         break;
@@ -1212,7 +1211,7 @@ namespace Orbita.Comunicaciones
                             }
                             catch (Exception ex)
                             {
-                                LogManager.GetLogger("wrapper").Error("Error en alarma:" + ex.ToString());
+                                wrapper.Error("Error en alarma:" + ex.ToString());
                             }
                         }
                         break;
@@ -1245,7 +1244,7 @@ namespace Orbita.Comunicaciones
                     else
                     {
 
-                        LogManager.GetLogger("wrapper").Error("Error de lectura en la variable:" + InfoDato.Conexion);
+                        wrapper.Error("Error de lectura en la variable:" + InfoDato.Conexion);
                         // Se ha producido un error en la lectura del dato.                        
                         InfoDato.Calidad = this.GetQuality(0);
                     }

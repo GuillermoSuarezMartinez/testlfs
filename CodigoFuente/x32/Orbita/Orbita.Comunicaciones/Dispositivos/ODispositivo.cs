@@ -3,6 +3,7 @@ using System;
 using Orbita.Utiles;
 using System.Data;
 using System.Collections;
+using Orbita.Trazabilidad;
 
 namespace Orbita.Comunicaciones
 {
@@ -45,7 +46,14 @@ namespace Orbita.Comunicaciones
         /// Variable para el cierre de todos los objetos
         /// </summary>
         public bool disposed = false;
-
+        /// <summary>
+        /// Salidas del dispositivo
+        /// </summary>
+        public byte[] Salidas;
+        /// <summary>
+        /// Logger de la clase
+        /// </summary>
+        public static ILogger wrapper;
         #region Evento(s)
 
         /// <summary>
@@ -60,14 +68,6 @@ namespace Orbita.Comunicaciones
         /// Evento de comunicaciones correctas.
         /// </summary>
         public event OManejadorEventoComm OrbitaComm;
-        ///// <summary>
-        ///// Evento de inicialización.
-        ///// </summary>
-        //public event ManejadorEventoComm OrbitaInicializar;
-        ///// <summary>
-        ///// Evento de asignación de items.
-        ///// </summary>
-        //public event ManejadorEventoComm OrbitaSetItems;
 
         #endregion
 
@@ -80,7 +80,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public ODispositivo()
         {
-            
+            wrapper = LogManager.GetLogger("wrapper"); 
         }
         /// <summary>
         /// Destruye el objeto

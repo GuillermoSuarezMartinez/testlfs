@@ -53,7 +53,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public ODispositivoTCP(OTags tags,OHilos hilos, ODispositivo dispositivo)
         {
-            LogManager.GetLogger("wrapper").Info("Creando dispositivo ODispositivoTCP");
+            wrapper.Info("Creando dispositivo ODispositivoTCP");
 
             try
             {
@@ -72,7 +72,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Error("Error en ODispositivoTCP. ",ex);
+                wrapper.Error("Error en ODispositivoTCP. ",ex);
                 throw ex;
             }            
 
@@ -150,7 +150,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Fatal("OrbitaTCP Error al leer. ", ex);
+                wrapper.Fatal("OrbitaTCP Error al leer. ", ex);
                 throw ex;
             }            
             
@@ -211,7 +211,7 @@ namespace Orbita.Comunicaciones
                             }
                             catch (Exception ex)
                             {
-                                LogManager.GetLogger("wrapper").Fatal("OrbitaTCP Error al escribir la alarma: ", ex);
+                                wrapper.Fatal("OrbitaTCP Error al escribir la alarma: ", ex);
                             }
                         }
                     }
@@ -220,7 +220,7 @@ namespace Orbita.Comunicaciones
             catch (Exception ex)
             {
                 resultado = false;
-                LogManager.GetLogger("wrapper").Fatal("OrbitaTCP Error al escribir: ", ex);
+                wrapper.Fatal("OrbitaTCP Error al escribir: ", ex);
             }
            
             return resultado;

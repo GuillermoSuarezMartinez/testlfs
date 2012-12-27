@@ -31,7 +31,7 @@ namespace Orbita.Comunicaciones
     //    /// </summary>
     //    public PDiso16(OTags tags, OHilos hilos, ODispositivo dispositivo)
     //    {
-    //        LogManager.GetLogger("wrapper").Info("Creando dispositivo PDISO16");
+    //        wrapper.Info("Creando dispositivo PDISO16");
     //        //Inicio datos de dispositivo
     //        this._dispositivo = dispositivo;
     //        this._config = tags.Config;
@@ -57,7 +57,7 @@ namespace Orbita.Comunicaciones
 
     //        this.ConfigurarES();
 
-    //        LogManager.GetLogger("wrapper").Info("PDISO16 iniciando hilo de lectura");
+    //        wrapper.Info("PDISO16 iniciando hilo de lectura");
     //        this.InicHiloLectura("LecturaMdaq");
     //    }
     //    /// <summary>
@@ -93,7 +93,7 @@ namespace Orbita.Comunicaciones
     //        catch (Exception ex)
     //        {
     //            resultado = false;
-    //            LogManager.GetLogger("wrapper").Fatal("PDISO16 Error en la escritura: " + ex.ToString());
+    //            wrapper.Fatal("PDISO16 Error en la escritura: " + ex.ToString());
     //        }
     //        return resultado;
     //    }
@@ -132,7 +132,7 @@ namespace Orbita.Comunicaciones
     //        catch (Exception ex)
     //        {
     //            resultado = null;
-    //            LogManager.GetLogger("wrapper").Fatal("PDISO16 Error en la lectura: " + ex.ToString());
+    //            wrapper.Fatal("PDISO16 Error en la lectura: " + ex.ToString());
     //        }
     //        return resultado;
     //    }
@@ -181,10 +181,10 @@ namespace Orbita.Comunicaciones
     //    void ProcesarHiloVida()
     //    {
     //        int valorEntradas = 0;
-    //        LogManager.GetLogger("wrapper").Info("PDISO16 hilo de lectura iniciado");
+    //        wrapper.Info("PDISO16 hilo de lectura iniciado");
     //        while (true)
     //        {
-    //            //LogManager.GetLogger("wrapper").Info("Lectura variables");
+    //            //wrapper.Info("Lectura variables");
 
     //            try
     //            {
@@ -217,7 +217,7 @@ namespace Orbita.Comunicaciones
     //                        catch (Exception ex)
     //                        {
     //                            Console.WriteLine(ex.ToString());
-    //                            LogManager.GetLogger("wrapper").Fatal("PDISO16 Error procesando entradas: " + ex.ToString());
+    //                            wrapper.Fatal("PDISO16 Error procesando entradas: " + ex.ToString());
     //                        }
     //                    }
     //                    valorEntradas = lectura;
@@ -226,7 +226,7 @@ namespace Orbita.Comunicaciones
     //            }
     //            catch (Exception ex)
     //            {
-    //                LogManager.GetLogger("wrapper").Fatal("Error generel en ProcesarHiloVida: " + ex.ToString());
+    //                wrapper.Fatal("Error generel en ProcesarHiloVida: " + ex.ToString());
     //                Thread.Sleep(100);
     //            }
     //        }
@@ -243,7 +243,7 @@ namespace Orbita.Comunicaciones
     //        }
     //        catch (Exception ex)
     //        {
-    //            LogManager.GetLogger("wrapper").Fatal("PDISO16 Error lectura daqBoard: " + ex.ToString());
+    //            wrapper.Fatal("PDISO16 Error lectura daqBoard: " + ex.ToString());
     //        }
     //        return resultado;
     //    }

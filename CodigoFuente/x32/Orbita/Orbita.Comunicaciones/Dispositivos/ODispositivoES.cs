@@ -47,10 +47,7 @@ namespace Orbita.Comunicaciones
         /// Valor devuelto para las entradas
         /// </summary>
         public byte[] Entradas;
-        /// <summary>
-        /// Valor devuelto para las salidas
-        /// </summary>
-        public byte[] Salidas;
+        
         #endregion
 
         #region Constructores
@@ -59,7 +56,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public ODispositivoES(OTags tags, OHilos hilos, ODispositivo dispositivo)
         {
-            LogManager.GetLogger("wrapper").Info("Creando dispositivo ODispositivoES");
+            wrapper.Info("Creando dispositivo ODispositivoES");
 
             try
             {
@@ -67,6 +64,7 @@ namespace Orbita.Comunicaciones
                 this.Tags = tags;
                 this.Config = tags.Config;
                 this.OEventargs = new OEventArgs();
+
                 //Actualizando las variables de dispositivo
                 this.Identificador = dispositivo.Identificador;
                 this.Nombre = dispositivo.Nombre;
@@ -79,7 +77,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Error("Error en ODispositivoTCP. ", ex);
+                wrapper.Error("Error en ODispositivoTCP. ", ex);
                 throw ex;
             }
 

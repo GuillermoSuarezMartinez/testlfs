@@ -82,11 +82,8 @@ namespace Orbita.Comunicaciones
         /// Valor devuelto tras la escritura del PLC
         /// </summary>
         private byte[] _valorEscritura;
-
-        //DateTime dtinilec;
-        //DateTime dtfinlec;
-        //DateTime dtiniproc;
-        //DateTime dtfinproc;
+        
+        
         #endregion
 
         #region Constructor
@@ -98,7 +95,8 @@ namespace Orbita.Comunicaciones
         {
             //Inicialización de objetos
             this.IniciarObjetos();
-            LogManager.GetLogger("wrapper").Debug("Objetos del dispositivo de ES Siemens creados.");
+            
+            wrapper.Debug("Objetos del dispositivo de ES Siemens creados.");
             //Inicio de los parámetros TCP
             try
             {
@@ -107,10 +105,10 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Error("No se pudo crear la conexión TCP con el dispositivo de ES Siemens." + ex.ToString());
+                wrapper.Error("No se pudo crear la conexión TCP con el dispositivo de ES Siemens." + ex.ToString());
             }
 
-            LogManager.GetLogger("wrapper").Debug("Comunicaciones TCP del dispositivo de ES Siemens arrancadas correctamente.");
+            wrapper.Debug("Comunicaciones TCP del dispositivo de ES Siemens arrancadas correctamente.");
         }
 
         #endregion
@@ -145,7 +143,7 @@ namespace Orbita.Comunicaciones
                     }
                     catch (Exception ex)
                     {
-                        LogManager.GetLogger("wrapper").Error("Error al conectar con dispositivo de ES Siemens para keep alive: ", ex);
+                        wrapper.Error("Error al conectar con dispositivo de ES Siemens para keep alive: ", ex);
                     }
                 }
                 else
@@ -172,7 +170,7 @@ namespace Orbita.Comunicaciones
                                     estado.Estado = "NOK";
                                 }                                
                                 // Trazar recepción errónea.
-                                LogManager.GetLogger("wrapper").Warn("Timeout en el keep alive del dispositivo de ES Siemens.");
+                                wrapper.Warn("Timeout en el keep alive del dispositivo de ES Siemens.");
                             }
 
                             // Resetear el evento.
@@ -183,7 +181,7 @@ namespace Orbita.Comunicaciones
                             {
                                 //this.dtfinlec = DateTime.Now;
                                 //TimeSpan ts = this.dtfinlec.Subtract(dtinilec);
-                                //LogManager.GetLogger("wrapper").Info("tiempo de lectura " + ts.TotalMilliseconds.ToString());
+                                //wrapper.Info("tiempo de lectura " + ts.TotalMilliseconds.ToString());
                                 estado.Estado = "OK";
                                 reintento = 0;
                                 Thread.Sleep(this.Config.TiempoEsperaLectura);
@@ -200,7 +198,7 @@ namespace Orbita.Comunicaciones
                     catch (Exception ex)
                     {
                         estado.Estado = "NOK";
-                        LogManager.GetLogger("wrapper").Error("Error en keep alive del dispositivo de ES Siemens: ", ex);
+                        wrapper.Error("Error en keep alive del dispositivo de ES Siemens: ", ex);
                     }
                 }
 
@@ -211,7 +209,7 @@ namespace Orbita.Comunicaciones
                 }
                 catch (Exception ex)
                 {
-                    LogManager.GetLogger("wrapper").Error("Error en envío de evento de comunicaciones en dispositivo de ES Siemens: ", ex);
+                    wrapper.Error("Error en envío de evento de comunicaciones en dispositivo de ES Siemens: ", ex);
                 }
             }
         }
@@ -246,7 +244,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Fatal("Error al leer en el dispositivo de ES Siemens. ", ex);
+                wrapper.Fatal("Error al leer en el dispositivo de ES Siemens. ", ex);
                 throw ex;
             }
 
@@ -285,7 +283,7 @@ namespace Orbita.Comunicaciones
                     }
                     catch (Exception ex)
                     {
-                        LogManager.GetLogger("wrapper").Error("Error al conectar con dispositivo de ES Siemens para escribir: ", ex);
+                        wrapper.Error("Error al conectar con dispositivo de ES Siemens para escribir: ", ex);
                     }
                 }
                 else
@@ -304,7 +302,7 @@ namespace Orbita.Comunicaciones
                                 if (!this._eReset.Dormir(2, TimeSpan.FromSeconds(this.Config.TiempoEsperaEscritura / 1000)))
                                 {
                                     // Trazar recepción errónea.
-                                    LogManager.GetLogger("wrapper").Warn("Timeout en la escritura de variables en el dispositivo de ES Siemens");
+                                    wrapper.Warn("Timeout en la escritura de variables en el dispositivo de ES Siemens");
                                 }
                                 else
                                 {
@@ -319,14 +317,14 @@ namespace Orbita.Comunicaciones
                         }
                         catch (Exception ex)
                         {
-                            LogManager.GetLogger("wrapper").Error("Error en la escritura de variables en el dispositivo de ES Siemens " + ex.ToString());
+                            wrapper.Error("Error en la escritura de variables en el dispositivo de ES Siemens " + ex.ToString());
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Fatal("Error en la escritura de variables en el dispositivo de ES Siemens " + ex.ToString());
+                wrapper.Fatal("Error en la escritura de variables en el dispositivo de ES Siemens " + ex.ToString());
             }
 
             return resultado;
@@ -354,7 +352,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Fatal("Error al crear la conexión TCP con el dispositivo de ES Siemens. " + ex.ToString());
+                wrapper.Fatal("Error al crear la conexión TCP con el dispositivo de ES Siemens. " + ex.ToString());
                 throw ex;
             }
 
@@ -479,7 +477,7 @@ namespace Orbita.Comunicaciones
             catch (Exception ex)
             {
                 string error = "Error en ProcesarMensajeRecibido en el dispositivo de ES Siemens: " + ex.ToString();
-                LogManager.GetLogger("wrapper").Error(error);
+                wrapper.Error(error);
             }
             
         }
@@ -579,11 +577,11 @@ namespace Orbita.Comunicaciones
                         this.ESProcesar(entradas, salidas);
                         //this.dtfinproc = DateTime.Now;
                         //TimeSpan ts = dtfinproc.Subtract(dtiniproc);
-                        //LogManager.GetLogger("wrapper").Info("tiempo de proceso " + ts.TotalMilliseconds.ToString());
+                        //wrapper.Info("tiempo de proceso " + ts.TotalMilliseconds.ToString());
                     }
                     catch (Exception ex)
                     {
-                        LogManager.GetLogger("wrapper").Fatal("Error al procesar las ES en el dispositivo de ES Siemens. " + ex.ToString());
+                        wrapper.Fatal("Error al procesar las ES en el dispositivo de ES Siemens. " + ex.ToString());
                     }
                     Thread.Sleep(10);
                 }
@@ -621,7 +619,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Fatal("Error al procesar las ES en el dispositivo de ES Siemens en ESProcesar. " + ex.ToString());
+                wrapper.Fatal("Error al procesar las ES en el dispositivo de ES Siemens en ESProcesar. " + ex.ToString());
                 throw ex;
             }
         }
@@ -680,7 +678,7 @@ namespace Orbita.Comunicaciones
                             }
                             else
                             {
-                                LogManager.GetLogger("wrapper").Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+                                wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
                                     " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
                             }
                     
@@ -701,14 +699,14 @@ namespace Orbita.Comunicaciones
                     }
                     else
                     {
-                        LogManager.GetLogger("wrapper").Warn("No se puede encontrar la dupla " + posicion.ToString() + "-0" +
+                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-0" +
                             " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
                     }
                 }
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Error("Error no controlado al procesar las entradas en el dispositivo de ES Siemens" + ex.ToString());
+                wrapper.Error("Error no controlado al procesar las entradas en el dispositivo de ES Siemens" + ex.ToString());
             }
         }
         /// <summary>
@@ -764,14 +762,14 @@ namespace Orbita.Comunicaciones
                     }
                     else
                     {
-                        LogManager.GetLogger("wrapper").Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
                             " al actualizar las variables de salida en el dispositivo de ES Siemens.");
                     }
 
                 }
                 catch (Exception ex)
                 {
-                    LogManager.GetLogger("wrapper").Error("Error no controlado al procesar las salidas en el dispositivo de ES Siemens " + ex.ToString());
+                    wrapper.Error("Error no controlado al procesar las salidas en el dispositivo de ES Siemens " + ex.ToString());
                 }
 
             }
@@ -809,12 +807,12 @@ namespace Orbita.Comunicaciones
                 }
 
                 this.ProcesarMensajeRecibido(recibido);
-                LogManager.GetLogger("wrapper").Info("Data Arrival en el dispositivo de ES Siemens: " + ret);
+                wrapper.Info("Data Arrival en el dispositivo de ES Siemens: " + ret);
             }
             catch (Exception ex)
             {
                 string error = "Error Data Arrival en el dispositivo de ES Siemens: " + ex.ToString();
-                LogManager.GetLogger("wrapper").Error(error);
+                wrapper.Error(error);
             }
         }
         /// <summary>
@@ -836,13 +834,13 @@ namespace Orbita.Comunicaciones
                     }
                 }
 
-                LogManager.GetLogger("wrapper").Info("Send Complete en el dispositivo de ES Siemens: " + enviado);
+                wrapper.Info("Send Complete en el dispositivo de ES Siemens: " + enviado);
 
             }
             catch (Exception ex)
             {
                 string error = "Error Send Complete en el dispositivo de ES Siemens: " + ex.ToString();
-                LogManager.GetLogger("wrapper").Error(error);
+                wrapper.Error(error);
             }
         }
         /// <summary>
@@ -855,12 +853,12 @@ namespace Orbita.Comunicaciones
             try
             {
                 string estado = "State Changed en el dispositivo de ES Siemens. Cambia de " + e.Old_State.ToString() + " a " + e.New_State.ToString();
-                LogManager.GetLogger("wrapper").Info(estado);
+                wrapper.Info(estado);
             }
             catch (Exception ex)
             {
                 string error = "Error State Changed en el dispositivo de ES Siemens: " + ex.ToString();
-                LogManager.GetLogger("wrapper").Error(error);
+                wrapper.Error(error);
             }
         }
         /// <summary>
@@ -873,12 +871,12 @@ namespace Orbita.Comunicaciones
             try
             {
                 string error = "Error Received en el dispositivo de ES Siemens: " + e.Message;
-                LogManager.GetLogger("wrapper").Info(error);
+                wrapper.Info(error);
             }
             catch (Exception ex)
             {
                 string error = "Error Received en el dispositivo de ES Siemens: " + ex.ToString();
-                LogManager.GetLogger("wrapper").Error(error);
+                wrapper.Error(error);
             }
         }
 

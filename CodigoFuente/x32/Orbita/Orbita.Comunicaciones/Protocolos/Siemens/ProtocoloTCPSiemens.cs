@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Orbita.Trazabilidad;
 
 namespace Orbita.Comunicaciones
 {
@@ -14,6 +15,21 @@ namespace Orbita.Comunicaciones
         /// Variable para la llamada al método dispose
         /// </summary>
         public bool disposed = false;
+        ///// <summary>
+        ///// Logger de la clase
+        ///// </summary>
+        //public static ILogger wrapper;
+        #endregion
+
+        #region Constructor
+        /// <summary>
+        /// Protocolo TCP de Siemens
+        /// </summary>
+        public ProtocoloTCPSiemens()
+        {
+            //wrapper = LogManager.GetLogger("wrapper"); 
+        }
+
         #endregion
 
         #region Metodos

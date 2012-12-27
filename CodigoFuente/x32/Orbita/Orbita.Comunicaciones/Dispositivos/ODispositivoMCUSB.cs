@@ -10,6 +10,9 @@ using MccDaq;
 
 namespace Orbita.Comunicaciones
 {
+    /// <summary>
+    /// Dispositivo de ES de MCC
+    /// </summary>
     public class ODispositivoMCUSB : ODispositivoES
     {
         #region Atributos
@@ -26,11 +29,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Colección para la búsqueda de lecturas. La clave es la dupla "dirección-bit"
         /// </summary>
-        private OHashtable _almacenLecturas;
-        /// <summary>
-        /// Colección para la búsqueda de escrituras. La clave es la dupla "dirección-bit"
-        /// </summary>
-        //private OHashtable _almacenEscrituras;        
+        private OHashtable _almacenLecturas;             
         /// <summary>
         /// Número de lecturas a realizar
         /// </summary>
@@ -52,10 +51,6 @@ namespace Orbita.Comunicaciones
         /// </summary>
         private byte[] LecturasContinuas;
         /// <summary>
-        /// Valor inicial del registro de lecturas
-        /// </summary>
-        private int _registroInicialEntradas;
-        /// <summary>
         /// Valor inicial del registro de escrituras
         /// </summary>
         private int _registroInicialSalidas;
@@ -74,7 +69,7 @@ namespace Orbita.Comunicaciones
         {
             //Inicialización de objetos
             this.IniciarObjetos();
-            LogManager.GetLogger("wrapper").Debug("Objetos del dispositivo de ES MCC creados.");
+            wrapper.Debug("Objetos del dispositivo de ES MCC creados.");
             
             try
             {
@@ -82,10 +77,10 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Error("No se pudo crear la conexión TCP con el dispositivo de ES MCC." + ex.ToString());
+                wrapper.Error("No se pudo crear la conexión TCP con el dispositivo de ES MCC." + ex.ToString());
             }
 
-            LogManager.GetLogger("wrapper").Debug("Comunicaciones TCP del dispositivo de ES MCC arrancadas correctamente.");
+            wrapper.Debug("Comunicaciones TCP del dispositivo de ES MCC arrancadas correctamente.");
         }
 
         #endregion
@@ -119,28 +114,28 @@ namespace Orbita.Comunicaciones
                     if (info.Value!= ErrorInfo.ErrorCode.NoErrors)
                     {
                         responde = false;
-                        LogManager.GetLogger("wrapper").Error("Error en keep alive del dispositivo de ES MCC canal A: " + info.Value.ToString());
+                        wrapper.Error("Error en keep alive del dispositivo de ES MCC canal A: " + info.Value.ToString());
                     }
                     info = _daqBoard.DIn(DigitalPortType.FirstPortB, out data);
                     this._lecturas[1] = (byte)data;
                     if (info.Value != ErrorInfo.ErrorCode.NoErrors)
                     {
                         responde = false;
-                        LogManager.GetLogger("wrapper").Error("Error en keep alive del dispositivo de ES MCC canal B: " + info.Value.ToString());
+                        wrapper.Error("Error en keep alive del dispositivo de ES MCC canal B: " + info.Value.ToString());
                     }
                     info = _daqBoard.DIn(DigitalPortType.FirstPortCL, out data);
                     this._lecturas[2] = (byte)data;
                     if (info.Value != ErrorInfo.ErrorCode.NoErrors)
                     {
                         responde = false;
-                        LogManager.GetLogger("wrapper").Error("Error en keep alive del dispositivo de ES MCC canal CL: " + info.Value.ToString());
+                        wrapper.Error("Error en keep alive del dispositivo de ES MCC canal CL: " + info.Value.ToString());
                     }
                     info = _daqBoard.DIn(DigitalPortType.FirstPortCH, out data);
                     this._lecturas[3] = (byte)data;
                     if (info.Value != ErrorInfo.ErrorCode.NoErrors)
                     {
                         responde = false;
-                        LogManager.GetLogger("wrapper").Error("Error en keep alive del dispositivo de ES MCC canal CH: " + info.Value.ToString());
+                        wrapper.Error("Error en keep alive del dispositivo de ES MCC canal CH: " + info.Value.ToString());
                     }
 
                     this.ESEncolar(this._lecturas);
@@ -166,7 +161,7 @@ namespace Orbita.Comunicaciones
                 catch (Exception ex)
                 {
                     estado.Estado = "NOK";
-                    LogManager.GetLogger("wrapper").Error("Error en keep alive del dispositivo de ES MCC: ", ex);
+                    wrapper.Error("Error en keep alive del dispositivo de ES MCC: ", ex);
                 }
                 
                 try
@@ -176,7 +171,7 @@ namespace Orbita.Comunicaciones
                 }
                 catch (Exception ex)
                 {
-                    LogManager.GetLogger("wrapper").Error("Error en envío de evento de comunicaciones en dispositivo de ES MCC: ", ex);
+                    wrapper.Error("Error en envío de evento de comunicaciones en dispositivo de ES MCC: ", ex);
                 }
                 Thread.Sleep(this.Config.TiempoEsperaLectura);
             }
@@ -212,7 +207,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Fatal("Error al leer en el dispositivo de ES MCC. ", ex);
+                wrapper.Fatal("Error al leer en el dispositivo de ES MCC. ", ex);
                 throw ex;
             }     
 
@@ -270,7 +265,7 @@ namespace Orbita.Comunicaciones
                             if (info.Value != ErrorInfo.ErrorCode.NoErrors)
                             {
                                 resultado = false;
-                                LogManager.GetLogger("wrapper").Error("Error al escribir en el dispositivo de ES MCC canal A: " + info.Value.ToString());
+                                wrapper.Error("Error al escribir en el dispositivo de ES MCC canal A: " + info.Value.ToString());
                             }
                             break;
                         case 1:
@@ -278,7 +273,7 @@ namespace Orbita.Comunicaciones
                             if (info.Value != ErrorInfo.ErrorCode.NoErrors)
                             {
                                 resultado = false;
-                                LogManager.GetLogger("wrapper").Error("Error al escribir en el dispositivo de ES MCC canal B: " + info.Value.ToString());
+                                wrapper.Error("Error al escribir en el dispositivo de ES MCC canal B: " + info.Value.ToString());
                             }
                             break;
                         case 2:
@@ -286,7 +281,7 @@ namespace Orbita.Comunicaciones
                             if (info.Value != ErrorInfo.ErrorCode.NoErrors)
                             {
                                 resultado = false;
-                                LogManager.GetLogger("wrapper").Error("Error al escribir en el dispositivo de ES MCC canal CL: " + info.Value.ToString());
+                                wrapper.Error("Error al escribir en el dispositivo de ES MCC canal CL: " + info.Value.ToString());
                             }
                             break;
                         case 3:
@@ -294,7 +289,7 @@ namespace Orbita.Comunicaciones
                             if (info.Value != ErrorInfo.ErrorCode.NoErrors)
                             {
                                 resultado = false;
-                                LogManager.GetLogger("wrapper").Error("Error al escribir en el dispositivo de ES MCC canal CH: " + info.Value.ToString());
+                                wrapper.Error("Error al escribir en el dispositivo de ES MCC canal CH: " + info.Value.ToString());
                             }
                             break;
                         default:
@@ -304,7 +299,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Fatal("Error en la escritura de variables en el dispositivo de ES MCC " + ex.ToString());
+                wrapper.Fatal("Error en la escritura de variables en el dispositivo de ES MCC " + ex.ToString());
             }
 
             return resultado;
@@ -364,7 +359,6 @@ namespace Orbita.Comunicaciones
             this._numLecturas = listEntradas.Count + listSalidas.Count;
             this._numeroBytesEntradas = listEntradas.Count;
             this._numeroBytesSalidas = listSalidas.Count;
-            this._registroInicialEntradas = 0;
             this._registroInicialSalidas = 0;
 
             this.Entradas = new byte[this._numeroBytesEntradas];
@@ -529,7 +523,7 @@ namespace Orbita.Comunicaciones
                     }
                     catch (Exception ex)
                     {
-                        LogManager.GetLogger("wrapper").Fatal("Error al procesar las ES en el dispositivo de ES MCC. " + ex.ToString());
+                        wrapper.Fatal("Error al procesar las ES en el dispositivo de ES MCC. " + ex.ToString());
                     }
                     Thread.Sleep(10);
                 }
@@ -558,7 +552,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Fatal("Error al procesar las ES en el dispositivo de ES MCC en ESProcesar. " + ex.ToString());
+                wrapper.Fatal("Error al procesar las ES en el dispositivo de ES MCC en ESProcesar. " + ex.ToString());
                 throw ex;
             }
         }
@@ -633,14 +627,14 @@ namespace Orbita.Comunicaciones
                     }
                     else
                     {
-                        LogManager.GetLogger("wrapper").Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
                             " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
                     }
 
                 }
                 catch (Exception ex)
                 {
-                    LogManager.GetLogger("wrapper").Error("Error no controlado al procesar las entradas en el dispositivo de ES Siemens" + ex.ToString());
+                    wrapper.Error("Error no controlado al procesar las entradas en el dispositivo de ES Siemens" + ex.ToString());
                 }
 
             }

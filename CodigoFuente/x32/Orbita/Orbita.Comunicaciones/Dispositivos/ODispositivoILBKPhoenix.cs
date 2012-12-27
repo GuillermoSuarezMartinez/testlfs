@@ -69,7 +69,7 @@ namespace Orbita.Comunicaciones
         {
             //Inicialización de objetos
             this.IniciarObjetos();
-            LogManager.GetLogger("wrapper").Debug("Objetos del dispositivo de ES Phoenix creados.");
+            wrapper.Debug("Objetos del dispositivo de ES Phoenix creados.");
             //Inicio de los parámetros TCP
             try
             {
@@ -78,10 +78,10 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Error("No se pudo crear la conexión TCP con el dispositivo de ES Phoenix." + ex.ToString());
+                wrapper.Error("No se pudo crear la conexión TCP con el dispositivo de ES Phoenix." + ex.ToString());
             }
 
-            LogManager.GetLogger("wrapper").Debug("Comunicaciones TCP del dispositivo de ES Phoenix arrancadas correctamente.");
+            wrapper.Debug("Comunicaciones TCP del dispositivo de ES Phoenix arrancadas correctamente.");
         }
 
         #endregion
@@ -116,7 +116,7 @@ namespace Orbita.Comunicaciones
                     }
                     catch (Exception ex)
                     {
-                        LogManager.GetLogger("wrapper").Error("Error al conectar con dispositivo de ES Phoenix para keep alive: ", ex);
+                        wrapper.Error("Error al conectar con dispositivo de ES Phoenix para keep alive: ", ex);
                     }
                 }
                 else
@@ -143,7 +143,7 @@ namespace Orbita.Comunicaciones
                                     estado.Estado = "NOK";
                                 }
                                 // Trazar recepción errónea.
-                                LogManager.GetLogger("wrapper").Warn("Timeout en el keep alive del dispositivo de ES Phoenix.");
+                                wrapper.Warn("Timeout en el keep alive del dispositivo de ES Phoenix.");
                             }
 
                             // Resetear el evento.
@@ -169,7 +169,7 @@ namespace Orbita.Comunicaciones
                     catch (Exception ex)
                     {
                         estado.Estado = "NOK";
-                        LogManager.GetLogger("wrapper").Error("Error en keep alive del dispositivo de ES Phoenix: ", ex);
+                        wrapper.Error("Error en keep alive del dispositivo de ES Phoenix: ", ex);
                     }
                 }
 
@@ -180,7 +180,7 @@ namespace Orbita.Comunicaciones
                 }
                 catch (Exception ex)
                 {
-                    LogManager.GetLogger("wrapper").Error("Error en envío de evento de comunicaciones en dispositivo de ES Phoenix: ", ex);
+                    wrapper.Error("Error en envío de evento de comunicaciones en dispositivo de ES Phoenix: ", ex);
                 }
 
             }
@@ -216,7 +216,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Fatal("Error al leer en el dispositivo de ES Phoenix. ", ex);
+                wrapper.Fatal("Error al leer en el dispositivo de ES Phoenix. ", ex);
                 throw ex;
             }
 
@@ -252,7 +252,7 @@ namespace Orbita.Comunicaciones
                     }
                     catch (Exception ex)
                     {
-                        LogManager.GetLogger("wrapper").Error("Error al conectar con dispositivo de ES Phoenix para escribir: ", ex);
+                        wrapper.Error("Error al conectar con dispositivo de ES Phoenix para escribir: ", ex);
                     }
                 }
                 else
@@ -271,7 +271,7 @@ namespace Orbita.Comunicaciones
                             {
 
                                 // Trazar recepción errónea.
-                                LogManager.GetLogger("wrapper").Warn("Timeout en la escritura de variables en el dispositivo de ES Phoenix");
+                                wrapper.Warn("Timeout en la escritura de variables en el dispositivo de ES Phoenix");
                             }
                             else
                             {
@@ -283,14 +283,14 @@ namespace Orbita.Comunicaciones
                         }
                         catch (Exception ex)
                         {
-                            LogManager.GetLogger("wrapper").Error("Error en la escritura de variables en el dispositivo de ES Phoenix " + ex.ToString());
+                            wrapper.Error("Error en la escritura de variables en el dispositivo de ES Phoenix " + ex.ToString());
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Fatal("Error en la escritura de variables en el dispositivo de ES Phoenix " + ex.ToString());
+                wrapper.Fatal("Error en la escritura de variables en el dispositivo de ES Phoenix " + ex.ToString());
             }
 
             return resultado;
@@ -318,7 +318,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Fatal("Error al crear la conexión TCP con el dispositivo de ES Phoenix. " + ex.ToString());
+                wrapper.Fatal("Error al crear la conexión TCP con el dispositivo de ES Phoenix. " + ex.ToString());
                 throw ex;
             }
 
@@ -519,7 +519,7 @@ namespace Orbita.Comunicaciones
                     }
                     catch (Exception ex)
                     {
-                        LogManager.GetLogger("wrapper").Fatal("Error al procesar las ES en el dispositivo de ES Phoenix. " + ex.ToString());
+                        wrapper.Fatal("Error al procesar las ES en el dispositivo de ES Phoenix. " + ex.ToString());
                     }
                     Thread.Sleep(10);
                 }
@@ -554,7 +554,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                LogManager.GetLogger("wrapper").Fatal("Error al procesar las ES en el dispositivo de ES Siemens en ESProcesar. " + ex.ToString());
+                wrapper.Fatal("Error al procesar las ES en el dispositivo de ES Siemens en ESProcesar. " + ex.ToString());
                 throw ex;
             }
         }
@@ -614,14 +614,14 @@ namespace Orbita.Comunicaciones
                     }
                     else
                     {
-                        LogManager.GetLogger("wrapper").Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
                             " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
                     }
 
                 }
                 catch (Exception ex)
                 {
-                    LogManager.GetLogger("wrapper").Error("Error no controlado al procesar las entradas en el dispositivo de ES Siemens" + ex.ToString());
+                    wrapper.Error("Error no controlado al procesar las entradas en el dispositivo de ES Siemens" + ex.ToString());
                 }
 
             }
@@ -680,14 +680,14 @@ namespace Orbita.Comunicaciones
                     }
                     else
                     {
-                        LogManager.GetLogger("wrapper").Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
                             " al actualizar las variables de salida en el dispositivo de ES Phoenix.");
                     }
 
                 }
                 catch (Exception ex)
                 {
-                    LogManager.GetLogger("wrapper").Error("Error no controlado al procesar las salidas en el dispositivo de ES Phoenix " + ex.ToString());
+                    wrapper.Error("Error no controlado al procesar las salidas en el dispositivo de ES Phoenix " + ex.ToString());
                 }
 
             }
@@ -725,12 +725,12 @@ namespace Orbita.Comunicaciones
                 }
 
                 this.ProcesarMensajeRecibido(recibido);
-                LogManager.GetLogger("wrapper").Info("Data Arrival en el dispositivo de ES Phoenix: " + ret);
+                wrapper.Info("Data Arrival en el dispositivo de ES Phoenix: " + ret);
             }
             catch (Exception ex)
             {
                 string error = "Error Data Arrival en el dispositivo de ES Phoenix: " + ex.ToString();
-                LogManager.GetLogger("wrapper").Error(error);
+                wrapper.Error(error);
             }
         }
         /// <summary>
@@ -752,13 +752,13 @@ namespace Orbita.Comunicaciones
                     }
                 }
 
-                LogManager.GetLogger("wrapper").Info("Send Complete en el dispositivo de ES Phoenix: " + enviado);
+                wrapper.Info("Send Complete en el dispositivo de ES Phoenix: " + enviado);
 
             }
             catch (Exception ex)
             {
                 string error = "Error Send Complete en el dispositivo de ES Phoenix: " + ex.ToString();
-                LogManager.GetLogger("wrapper").Error(error);
+                wrapper.Error(error);
             }
         }
         /// <summary>
@@ -771,12 +771,12 @@ namespace Orbita.Comunicaciones
             try
             {
                 string estado = "State Changed en el dispositivo de ES Phoenix. Cambia de " + e.Old_State.ToString() + " a " + e.New_State.ToString();
-                LogManager.GetLogger("wrapper").Info(estado);
+                wrapper.Info(estado);
             }
             catch (Exception ex)
             {
                 string error = "Error State Changed en el dispositivo de ES Phoenix: " + ex.ToString();
-                LogManager.GetLogger("wrapper").Error(error);
+                wrapper.Error(error);
             }
         }
         /// <summary>
@@ -789,12 +789,12 @@ namespace Orbita.Comunicaciones
             try
             {
                 string error = "Error Received en el dispositivo de ES Phoenix: " + e.Message;
-                LogManager.GetLogger("wrapper").Info(error);
+                wrapper.Info(error);
             }
             catch (Exception ex)
             {
                 string error = "Error Received en el dispositivo de ES Phoenix: " + ex.ToString();
-                LogManager.GetLogger("wrapper").Error(error);
+                wrapper.Error(error);
             }
         }
 
