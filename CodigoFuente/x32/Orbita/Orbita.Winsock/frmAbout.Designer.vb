@@ -23,28 +23,16 @@ Partial Class frmAbout
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmAbout))
-        Me.pctLogo = New System.Windows.Forms.PictureBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.txtAbout = New System.Windows.Forms.TextBox()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.txtHistory = New System.Windows.Forms.TextBox()
         Me.cmdClose = New System.Windows.Forms.Button()
-        CType(Me.pctLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'pctLogo
-        '
-        Me.pctLogo.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.pctLogo.Image = My.Resources.Resources.k_koding
-        Me.pctLogo.Location = New System.Drawing.Point(169, 12)
-        Me.pctLogo.Name = "pctLogo"
-        Me.pctLogo.Size = New System.Drawing.Size(121, 120)
-        Me.pctLogo.TabIndex = 0
-        Me.pctLogo.TabStop = False
         '
         'TabControl1
         '
@@ -120,14 +108,12 @@ Partial Class frmAbout
         Me.ClientSize = New System.Drawing.Size(458, 432)
         Me.Controls.Add(Me.cmdClose)
         Me.Controls.Add(Me.TabControl1)
-        Me.Controls.Add(Me.pctLogo)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmAbout"
         Me.Text = "About OrbitaWinsock"
-        CType(Me.pctLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
@@ -136,7 +122,6 @@ Partial Class frmAbout
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents pctLogo As System.Windows.Forms.PictureBox
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
