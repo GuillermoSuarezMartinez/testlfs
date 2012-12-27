@@ -29,7 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controles", "Controles", "{
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 7
+		SccNumberOfProjects = 11
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://01x0019:8080/tfs/orbitasoftware
 		SccLocalPath0 = .
@@ -57,6 +57,22 @@ Global
 		SccProjectTopLevelParentUniqueName6 = Orbita.Controles.sln
 		SccProjectName6 = Orbita.Controles.Gantt
 		SccLocalPath6 = Orbita.Controles.Gantt
+		SccProjectUniqueName7 = Orbita.Controles.Combo\\Orbita.Controles.Combo.csproj
+		SccProjectTopLevelParentUniqueName7 = Orbita.Controles.sln
+		SccProjectName7 = Orbita.Controles.Combo
+		SccLocalPath7 = Orbita.Controles.Combo
+		SccProjectUniqueName8 = Orbita.Controles.Estilos\\Orbita.Controles.Estilos.csproj
+		SccProjectTopLevelParentUniqueName8 = Orbita.Controles.sln
+		SccProjectName8 = Orbita.Controles.Estilos
+		SccLocalPath8 = Orbita.Controles.Estilos
+		SccProjectUniqueName9 = Orbita.Controles.Menu\\Orbita.Controles.Menu.csproj
+		SccProjectTopLevelParentUniqueName9 = Orbita.Controles.sln
+		SccProjectName9 = Orbita.Controles.Menu
+		SccLocalPath9 = Orbita.Controles.Menu
+		SccProjectUniqueName10 = Orbita.Controles.Shared\\Orbita.Controles.Shared.csproj
+		SccProjectTopLevelParentUniqueName10 = Orbita.Controles.sln
+		SccProjectName10 = Orbita.Controles.Shared
+		SccLocalPath10 = Orbita.Controles.Shared
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
