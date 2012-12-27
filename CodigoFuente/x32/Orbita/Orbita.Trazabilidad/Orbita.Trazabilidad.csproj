@@ -207,6 +207,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config\Ejemplos\Wrapper.config.xml" />
     <Content Include="Config\Ejemplos\Debug.config.xml" />
   </ItemGroup>
   <ItemGroup>
