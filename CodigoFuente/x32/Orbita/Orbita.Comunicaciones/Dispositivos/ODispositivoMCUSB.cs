@@ -542,8 +542,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Procesa los bytes de entradas y salidas para actualizar los valores de las variables
         /// </summary>
-        /// <param name="entradas">byte de entradas recibido</param>
-        /// <param name="salidas">byte de salidas recibido</param>
+        /// <param name="mensaje">byte de entradas recibido</param>
         private void ESProcesar(byte[] mensaje)
         {
             try
