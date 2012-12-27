@@ -81,6 +81,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Orbita.Controles.Menu\Orbita.Controles.Menu.csproj">
+      <Project>{3FC7CCF4-13B4-4B2B-95A9-CC178C85C343}</Project>
+      <Name>Orbita.Controles.Menu</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orbita.Controles.Shared\Orbita.Controles.Shared.csproj">
       <Project>{66683373-9DC9-4104-B542-44D2DFBCC674}</Project>
       <Name>Orbita.Controles.Shared</Name>
