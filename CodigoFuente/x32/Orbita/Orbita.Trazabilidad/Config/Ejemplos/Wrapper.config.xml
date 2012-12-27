@@ -1,15 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <otrazabilidad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <loggers>
-    <logger nombre="infowrapper" xsi:type="Wrapper">
-      <logger nombre="infowrapperdebug" xsi:type="Debug" />
-      <logger nombre="infowrapperremoting" xsi:type="Remoting" />
+    <logger nombre="owrapper" xsi:type="Wrapper" nivel="debug" >
+      <logger nombre="owrapperdebug" xsi:type="Debug" nivel="debug" />
+      <logger nombre="owrapperremoting" xsi:type="Remoting" nivel="debug" />
     </logger>
   </loggers>
   <propiedades>
-    <path logger="infowrapperdebug" ruta="C:\prueba" fichero="debug" extension="log" />
-    <backup logger="infowrapperdebug" ruta="C:\prueba\blog" subruta="Mes" bytes="1000000" />
-    <timer logger="infowrapperdebug" hora="18:12:00" periodo="12h:0m:0s" />
-    <remoting logger="infowrapperremoting" maquina="localhost" puerto="9999" alias="logger" />
+    <path logger="owrapperdebug" ruta="C:\prueba" fichero="debug" extension="log" />
+    <backup logger="owrapperdebug" ruta="C:\prueba\blog" subruta="Mes" bytes="1000000" />
+    <timer logger="owrapperdebug" hora="18:12:00" periodo="12h:0m:0s" />
+    <remoting logger="owrapperremoting" maquina="localhost" puerto="9999" alias="logger" />
+  </propiedades>
+  <!--Si se va a utilizar las propiedades por defecto debemos configurar la propiedad vacía-->
+  <propiedades>
+    <!--Referencia a la propiedad de path usando los defectos-->
+    <!--ruta = <propia ruta del ejecutable o servicio>-->
+    <!--fichero = debug-->
+    <!--extension = log-->
+    <path logger="owrapperdebug" />
+    <!--Referencia a la propiedad backup usando los defectos-->
+    <!--ruta = <propia ruta del ejecutable o servicio>\blog-->
+    <!--subruta = Año/Mes/MesDia/AñoMes/AñoMesDia-->
+    <!--bytes = número máximo de bytes que alcanza el fichero de logger hasta realizar el backup-->
+    <backup logger="owrapperdebug" />
+    <!--Referencia a la propiedad timer backup usando los defectos-->
+    <timer logger="owrapperdebug" />
+    <!--Referencia a la propiedad remoting usando los defectos-->
+    <remoting logger="owrapperremoting" />
   </propiedades>
 </otrazabilidad>

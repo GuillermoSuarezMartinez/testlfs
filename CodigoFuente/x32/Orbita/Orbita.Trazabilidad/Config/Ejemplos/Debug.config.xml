@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <otrazabilidad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <loggers>
-    <logger nombre="infodebug" xsi:type="Debug" />
+    <logger nombre="odebug" xsi:type="Debug" />
   </loggers>
   <propiedades>
-    <path logger="infodebug" ruta="C:\prueba" fichero="debug" extension="log" />
-    <backup logger="infodebug" ruta="C:\prueba\blog" subruta="Mes" bytes="999999999" />
-    <timer logger="infodebug" hora="18:12:00" periodo="24h:0m:00s" />
+    <path logger="odebug" ruta="C:\prueba" fichero="debug" extension="log" />
+    <backup logger="odebug" ruta="C:\prueba\blog" subruta="Mes" bytes="999999999" />
+    <timer logger="odebug" hora="18:12:00" periodo="24h:0m:00s" />
   </propiedades>
 </otrazabilidad>

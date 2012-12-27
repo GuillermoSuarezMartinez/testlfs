@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <otrazabilidad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <loggers>
-      <logger nombre="inforemoting" xsi:type="Remoting" />
+      <logger nombre="oremoting" xsi:type="Remoting" />
   </loggers>
   <propiedades>
-    <remoting logger="inforemoting" maquina="localhost" puerto="9999" alias="logger" />
+    <remoting logger="oremoting" maquina="localhost" puerto="9999" alias="logger" />
   </propiedades>
 </otrazabilidad>
