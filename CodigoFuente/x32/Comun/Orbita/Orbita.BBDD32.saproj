@@ -16,11 +16,11 @@
                 <Merging />
                 <Embedding />
             </Assembly>
-            <Assembly AssemblyName="Npgsql, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7">
+            <Assembly AssemblyName="Npgsql, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7" HintPath="..\BBDD\Npgsql.dll">
                 <Merging />
                 <Embedding />
             </Assembly>
-            <Assembly AssemblyName="Mono.Security, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+            <Assembly AssemblyName="Mono.Security, Culture=neutral, PublicKeyToken=0738eb9f132ed756" HintPath="..\BBDD\Mono.Security.dll">
                 <Merging />
                 <Embedding />
             </Assembly>
