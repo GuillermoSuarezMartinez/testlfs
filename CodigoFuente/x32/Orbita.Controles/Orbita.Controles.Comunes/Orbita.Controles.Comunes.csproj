@@ -39,31 +39,31 @@
   <ItemGroup>
     <Reference Include="Infragistics2.Shared.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Shared.v11.2.dll</HintPath>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Shared.v11.2.dll</HintPath>
     </Reference>
     <Reference Include="Infragistics2.Win.Misc.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Win.Misc.v11.2.dll</HintPath>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.Misc.v11.2.dll</HintPath>
     </Reference>
     <Reference Include="Infragistics2.Win.UltraWinDock.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Win.UltraWinDock.v11.2.dll</HintPath>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinDock.v11.2.dll</HintPath>
     </Reference>
     <Reference Include="Infragistics2.Win.UltraWinEditors.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Win.UltraWinEditors.v11.2.dll</HintPath>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinEditors.v11.2.dll</HintPath>
     </Reference>
     <Reference Include="Infragistics2.Win.UltraWinMaskedEdit.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Win.UltraWinMaskedEdit.v11.2.dll</HintPath>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinMaskedEdit.v11.2.dll</HintPath>
     </Reference>
     <Reference Include="Infragistics2.Win.UltraWinStatusBar.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Win.UltraWinStatusBar.v11.2.dll</HintPath>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinStatusBar.v11.2.dll</HintPath>
     </Reference>
     <Reference Include="Infragistics2.Win.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Win.v11.2.dll</HintPath>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.v11.2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -209,12 +209,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Orbita.Controles.Shared\Orbita.Controles.Shared.csproj">
-      <Project>{66683373-9DC9-4104-B542-44D2DFBCC674}</Project>
-      <Name>Orbita.Controles.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Custom\OrbitaBarraProgreso.resx">
       <DependentUpon>OrbitaBarraProgreso.cs</DependentUpon>
     </EmbeddedResource>
@@ -245,7 +239,12 @@
   <ItemGroup>
     <None Include="Resources\btnGuardarEstandar24.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Orbita.Controles.Shared\Orbita.Controles.Shared.csproj">
+      <Project>{D104B7D1-93CB-46AE-8F84-AA68BB3B2C5E}</Project>
+      <Name>Orbita.Controles.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
