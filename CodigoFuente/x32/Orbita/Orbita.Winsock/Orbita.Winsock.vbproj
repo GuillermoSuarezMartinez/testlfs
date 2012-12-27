@@ -187,9 +187,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\k-koding.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="About.txt" />
     <EmbeddedResource Include="History.txt" />
   </ItemGroup>
