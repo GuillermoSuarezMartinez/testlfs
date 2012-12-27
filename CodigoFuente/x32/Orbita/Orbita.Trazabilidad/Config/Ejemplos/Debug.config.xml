@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<otrazabilidad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <loggers>
+    <logger nombre="infodebug" xsi:type="Debug" />
+    <logger nombre="inforemoting" xsi:type="Remoting" />
+  </loggers>
+  <propiedades>
+    <path logger="infodebug" ruta="C:\prueba" fichero="pp" extension="log" />
+    <backup logger="infodebug" ruta="C:\prueba\blog" subruta="Mes" bytes="" />
+    <timer logger="infodebug" hora="18:12:00" periodo="0h:0m:30s" />
+    <remoting logger="inforemoting" maquina="" puerto="" alias="" />
+  </propiedades>
+</otrazabilidad>
