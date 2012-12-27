@@ -5,14 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D0FAAE85-5DA2-4044-908A-587B33DD5B7D}</ProjectGuid>
+    <ProjectGuid>{34B632DA-E0C4-4F27-AAFD-AFAD64604BFA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Orbita.Controles.Grid</RootNamespace>
     <AssemblyName>Orbita.Controles.Grid</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
@@ -27,6 +25,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,19 +37,150 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Infragistics2.Documents.Excel.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Documents.Excel.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Shared.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Shared.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.Misc.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Win.Misc.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinEditors.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Win.UltraWinEditors.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinGrid.ExcelExport.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Win.UltraWinGrid.ExcelExport.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinGrid.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Win.UltraWinGrid.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinPrintPreviewDialog.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Win.UltraWinPrintPreviewDialog.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinTabControl.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Win.UltraWinTabControl.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinToolbars.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Win.UltraWinToolbars.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Proyectos\Orbita\Librerias\CodigoFuente\x32\Comun\Controles\Infragistics2.Win.v11.2.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\OColoresCorporativos.cs" />
+    <Compile Include="Clases\OColumnaCalculada.cs" />
+    <Compile Include="Clases\OEstiloColumna.cs" />
+    <Compile Include="Clases\OMascara.cs" />
+    <Compile Include="Clases\ONoFocusRectDrawFilter.cs" />
+    <Compile Include="Clases\OColumnaInfo.cs" />
+    <Compile Include="Clases\OConfiguracion.cs" />
+    <Compile Include="Clases\OEstilo.cs" />
+    <Compile Include="Clases\OGetStyleLibrary.cs" />
+    <Compile Include="Clases\OPersistencia.cs" />
+    <Compile Include="Clases\OProvider.cs" />
+    <Compile Include="Clases\OSumario.cs" />
+    <Compile Include="Dialogos\FrmGuardarArchivo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogos\FrmGuardarArchivo.designer.cs">
+      <DependentUpon>FrmGuardarArchivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogos\FrmListadoPlantillasBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogos\FrmListadoPlantillasBase.designer.cs">
+      <DependentUpon>FrmListadoPlantillasBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogos\FrmListadoPlantillas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogos\FrmListadoPlantillas.designer.cs">
+      <DependentUpon>FrmListadoPlantillas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogos\FrmListadoPlantillasPublicas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogos\FrmListadoPlantillasPublicas.designer.cs">
+      <DependentUpon>FrmListadoPlantillasPublicas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogos\FrmPersonalizar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogos\FrmPersonalizar.Designer.cs">
+      <DependentUpon>FrmPersonalizar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\OPlantilla.cs" />
+    <Compile Include="Enumerados\Alineacion.cs" />
+    <Compile Include="Enumerados\EstiloColumna.cs" />
+    <Compile Include="Enumerados\Tools.cs" />
+    <Compile Include="Interfaces\IPersistencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+    <Compile Include="Custom\OrbitaGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaGrid.Designer.cs">
+      <DependentUpon>OrbitaGrid.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Dialogos\FrmGuardarArchivo.resx">
+      <DependentUpon>FrmGuardarArchivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogos\FrmListadoPlantillasBase.resx">
+      <DependentUpon>FrmListadoPlantillasBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogos\FrmListadoPlantillas.resx">
+      <DependentUpon>FrmListadoPlantillas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogos\FrmListadoPlantillasPublicas.resx">
+      <DependentUpon>FrmListadoPlantillasPublicas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogos\FrmPersonalizar.resx">
+      <DependentUpon>FrmPersonalizar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Custom\OrbitaGrid.resx">
+      <DependentUpon>OrbitaGrid.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Orbita.Controles.Comunes\Orbita.Controles.Comunes.csproj">
+      <Project>{D66C367A-47B7-4464-93D6-92794E4A57C8}</Project>
+      <Name>Orbita.Controles.Comunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Contenedores\Orbita.Controles.Contenedores.csproj">
+      <Project>{B953E685-3E2D-4F93-BB80-805427BBB8A2}</Project>
+      <Name>Orbita.Controles.Contenedores</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Menu\Orbita.Controles.Menu.csproj">
+      <Project>{3FC7CCF4-13B4-4B2B-95A9-CC178C85C343}</Project>
+      <Name>Orbita.Controles.Menu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Shared\Orbita.Controles.Shared.csproj">
+      <Project>{66683373-9DC9-4104-B542-44D2DFBCC674}</Project>
+      <Name>Orbita.Controles.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UC\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
