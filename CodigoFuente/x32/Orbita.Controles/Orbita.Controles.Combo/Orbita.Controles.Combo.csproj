@@ -75,6 +75,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Orbita.Controles.Grid\Orbita.Controles.Grid.csproj">
+      <Project>{34B632DA-E0C4-4F27-AAFD-AFAD64604BFA}</Project>
+      <Name>Orbita.Controles.Grid</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orbita.Controles.Shared\Orbita.Controles.Shared.csproj">
       <Project>{66683373-9DC9-4104-B542-44D2DFBCC674}</Project>
       <Name>Orbita.Controles.Shared</Name>
