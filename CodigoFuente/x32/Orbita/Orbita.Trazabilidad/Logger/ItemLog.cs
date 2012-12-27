@@ -214,9 +214,9 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Asignar argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
         /// </summary>
-        public void SetArgumentos(object[] args)
+        public void SetArgumentos(object[] argumentos)
         {
-            this.args = args;
+            this.args = argumentos;
         }
         #endregion
     }

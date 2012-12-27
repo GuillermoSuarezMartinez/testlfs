@@ -85,7 +85,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Sobreescritura del método ToString().
         /// </summary>
-        /// <returns>String.</returns>
+        /// <returns>string.</returns>
         public override string ToString()
         {
             return string.Format(CultureInfo.CurrentCulture, @"{0}\{1}.{2}", this.Path, this.Fichero, this.Extension);

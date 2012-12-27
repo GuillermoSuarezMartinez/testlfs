@@ -16,11 +16,13 @@ using System.Net;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Threading;
+using System.Security.Permissions;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
     /// Remoting Logger.
     /// </summary>
+    [Target("Remoting")]
     public class RemotingLogger : BaseLogger
     {
         #region Atributos privados
@@ -36,14 +38,38 @@ namespace Orbita.Trazabilidad
         /// Colección de items.
         /// </summary>
         List<ItemLog> lista;
+        /// <summary>
+        /// Alias del canal de conexión.
+        /// </summary>
+        string alias;
+        /// <summary>
+        /// Máquina del canal de conexión.
+        /// </summary>
+        string maquina;
+        /// <summary>
+        /// Puerto del canal de conexión.
+        /// </summary>
+        int puerto;
+        #endregion
+
+        #region Delegados públicos
+        /// <summary>
+        /// Evento que se ejecuta tras escribir logger vía remoting.
+        /// </summary>
+        event EventHandler OnDespuesEscribirRemotingLogger;
         #endregion
 
         #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.RemotingLogger.
+        /// </summary>
+        public RemotingLogger() { }
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.RemotingLogger.
         /// Por defecto, <c>NivelLog=Debug</c>, <c>Alias=logger</c>, <c>Puerto=1440</c>, <c>Máquina=localhost</c>.
         /// </summary>
         /// <param name="identificador">Identificador del logger.</param>
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
         public RemotingLogger(string identificador)
             : this(identificador, NivelLog.Debug) { }
         /// <summary>
@@ -52,6 +78,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="identificador">Identificador del logger.</param>
         /// <param name="nivelLog">Nivel de logger.</param>
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
         public RemotingLogger(string identificador, NivelLog nivelLog)
             : this(identificador, nivelLog, Orbita.Trazabilidad.Logger.Alias) { }
         /// <summary>
@@ -60,6 +87,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="identificador">Identificador del logger.</param>
         /// <param name="puerto">Puerto del URI de conexión .NET remoting.</param>
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
         public RemotingLogger(string identificador, int puerto)
             : this(identificador, NivelLog.Debug, puerto) { }
         /// <summary>
@@ -69,6 +97,7 @@ namespace Orbita.Trazabilidad
         /// <param name="identificador">Identificador del logger.</param>
         /// <param name="nivelLog">Nivel de logger.</param>
         /// <param name="puerto">Puerto del URI de conexión .NET remoting.</param>
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
         public RemotingLogger(string identificador, NivelLog nivelLog, int puerto)
             : this(identificador, nivelLog, Orbita.Trazabilidad.Logger.Alias, puerto) { }
         /// <summary>
@@ -78,6 +107,7 @@ namespace Orbita.Trazabilidad
         /// <param name="identificador">Identificador del logger.</param>
         /// <param name="puerto">Puerto del URI de conexión .NET remoting.</param>
         /// <param name="maquina">Host de la máquina cliente de conexión .NET remoting.</param>
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
         public RemotingLogger(string identificador, int puerto, string maquina)
             : this(identificador, NivelLog.Debug, puerto, maquina) { }
         /// <summary>
@@ -88,6 +118,7 @@ namespace Orbita.Trazabilidad
         /// <param name="nivelLog">Nivel de logger.</param>
         /// <param name="puerto">Puerto del URI de conexión .NET remoting.</param>
         /// <param name="maquina">Host de la máquina cliente de conexión .NET remoting.</param>
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
         public RemotingLogger(string identificador, NivelLog nivelLog, int puerto, string maquina)
             : this(identificador, nivelLog, Orbita.Trazabilidad.Logger.Alias, puerto, maquina) { }
         /// <summary>
@@ -96,6 +127,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="identificador">Identificador del logger.</param>
         /// <param name="alias">Alias del URI de conexión .NET remoting.</param>
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
         public RemotingLogger(string identificador, string alias)
             : this(identificador, NivelLog.Debug, alias) { }
         /// <summary>
@@ -105,6 +137,7 @@ namespace Orbita.Trazabilidad
         /// <param name="identificador">Identificador del logger.</param>
         /// <param name="nivelLog">Nivel de logger.</param>
         /// <param name="alias">Alias del URI de conexión .NET remoting.</param>
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
         public RemotingLogger(string identificador, NivelLog nivelLog, string alias)
             : this(identificador, nivelLog, alias, Orbita.Trazabilidad.Logger.Puerto) { }
         /// <summary>
@@ -114,6 +147,7 @@ namespace Orbita.Trazabilidad
         /// <param name="identificador">Identificador del logger.</param>
         /// <param name="alias">Alias del URI de conexión .NET remoting.</param>
         /// <param name="puerto">Puerto del URI de conexión .NET remoting.</param>
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
         public RemotingLogger(string identificador, string alias, int puerto)
             : this(identificador, NivelLog.Debug, alias, puerto) { }
         /// <summary>
@@ -124,6 +158,7 @@ namespace Orbita.Trazabilidad
         /// <param name="nivelLog">Nivel de logger.</param>
         /// <param name="alias">Alias del URI de conexión .NET remoting.</param>
         /// <param name="puerto">Puerto del URI de conexión .NET remoting.</param>
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
         public RemotingLogger(string identificador, NivelLog nivelLog, string alias, int puerto)
             : this(identificador, nivelLog, alias, puerto, Dns.GetHostName()) { }
         /// <summary>
@@ -134,6 +169,7 @@ namespace Orbita.Trazabilidad
         /// <param name="alias">Alias del URI de conexión .NET remoting.</param>
         /// <param name="puerto">Puerto del URI de conexión .NET remoting.</param>
         /// <param name="maquina">Host de la máquina cliente de conexión .NET remoting.</param>
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
         public RemotingLogger(string identificador, string alias, int puerto, string maquina)
             : this(identificador, NivelLog.Debug, alias, puerto, maquina) { }
         /// <summary>
@@ -144,25 +180,62 @@ namespace Orbita.Trazabilidad
         /// <param name="alias">Alias del URI de conexión .NET remoting.</param>
         /// <param name="puerto">Puerto del URI de conexión .NET remoting.</param>
         /// <param name="maquina">Host de la máquina cliente de conexión .NET remoting.</param>
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
         public RemotingLogger(string identificador, NivelLog nivelLog, string alias, int puerto, string maquina)
             : base(identificador, nivelLog)
         {
-            // Crear la cadena URL de conexión.
-            string url = string.Format(CultureInfo.CurrentCulture, @"tcp://{0}:{1}/{2}", maquina, puerto, alias);
-            // Registrar el canal de conexión con los servicios de canal.
-            ChannelServices.RegisterChannel(new TcpClientChannel(alias, null), false);
-            // Crea un proxy para el objeto conocido indicado por el tipo y dirección URL especificados.
-            this.cliente = (IRemotingLogger)Activator.GetObject(typeof(IRemotingLogger), url);
-            // Crear la colección de items.
-            this.lista = new List<ItemLog>();
-            // Inicializar e iniciar el hilo de proceso de copias backup.
-            this.hilo = new Thread(new ThreadStart(Procesar));
-            this.hilo.IsBackground = true;
-            this.hilo.Start();
+            this.SetTcpClientChannel(alias, puerto, maquina);
+        }
+        #endregion
+
+        #region Propiedades
+        /// <summary>
+        /// Alias del canal de conexión.
+        /// </summary>
+        public string Alias
+        {
+            get { return this.alias; }
+            set { this.alias = value; }
+        }
+        /// <summary>
+        /// Máquina del canal de conexión.
+        /// </summary>
+        public string Maquina
+        {
+            get { return this.maquina; }
+            set { this.maquina = value; }
+        }
+        /// <summary>
+        /// Puerto del canal de conexión.
+        /// </summary>
+        public int Puerto
+        {
+            get { return this.puerto; }
+            set { this.puerto = value; }
         }
         #endregion
 
         #region Métodos públicos
+        /// <summary>
+        /// Asignar el canal de conexión con los servicios de canal.
+        /// </summary>
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        public void SetTcpClientChannel()
+        {
+            if (string.IsNullOrEmpty(this.alias))
+            {
+                this.alias = Orbita.Trazabilidad.Logger.Alias;
+            }
+            if (string.IsNullOrEmpty(this.maquina))
+            {
+                this.maquina = Dns.GetHostName();
+            }
+            if (this.puerto == 0)
+            {
+                this.puerto = Orbita.Trazabilidad.Logger.Puerto;
+            }
+            this.SetTcpClientChannel(this.alias, this.puerto, this.maquina);
+        }
         /// <summary>
         /// Registra un elemento determinado.
         /// </summary>
@@ -175,6 +248,13 @@ namespace Orbita.Trazabilidad
                 this.lista.Add(item);
                 // Activar la sincronización mediante un monitor.
                 Monitor.Pulse(this);
+                // En C# debemos comprobar que el evento no sea null.
+                if (this.OnDespuesEscribirRemotingLogger != null)
+                {
+                    RemotingEventArgs e = new RemotingEventArgs(item);
+                    // El evento se lanza como cualquier delegado.
+                    this.OnDespuesEscribirRemotingLogger(this, e);
+                }
             }
         }
         /// <summary>
@@ -189,6 +269,32 @@ namespace Orbita.Trazabilidad
         #endregion
 
         #region Métodos privados
+        /// <summary>
+        /// Asignar el canal de conexión con los servicios de canal.
+        /// </summary>
+        /// <param name="alias">Alias.</param>
+        /// <param name="puerto">Puerto.</param>
+        /// <param name="maquina">Máquina.</param>
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        void SetTcpClientChannel(string alias, int puerto, string maquina)
+        {
+            // Crear la cadena URL de conexión.
+            string url = string.Format(CultureInfo.CurrentCulture, @"tcp://{0}:{1}/{2}", maquina, puerto, alias);
+            IChannel canal = ChannelServices.GetChannel(alias);
+            if (canal == null)
+            {
+                // Registrar el canal de conexión con los servicios de canal.
+                ChannelServices.RegisterChannel(new TcpClientChannel(alias, null), false);
+                // Crea un proxy para el objeto conocido indicado por el tipo y dirección URL especificados.
+                this.cliente = (IRemotingLogger)Activator.GetObject(typeof(IRemotingLogger), url);
+                // Crear la colección de items.
+                this.lista = new List<ItemLog>();
+                // Inicializar e iniciar el hilo de proceso de copias backup.
+                this.hilo = new Thread(new ThreadStart(Procesar));
+                this.hilo.IsBackground = true;
+                this.hilo.Start();
+            }
+        }
         /// <summary>
         /// Añade a la colección de remoting el item (mensaje).
         /// </summary>

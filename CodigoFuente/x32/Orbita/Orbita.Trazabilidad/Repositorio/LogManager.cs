@@ -26,7 +26,18 @@ namespace Orbita.Trazabilidad
         #endregion
 
         #region Métodos públicos estáticos
-
+        /// <summary>
+        /// Configurar logger vía Xml.
+        /// </summary>
+        /// <param name="fichero">Fichero Xml de configuración.</param>
+        public static void ConfiguracionLogger(string fichero)
+        {
+            DictionaryLogger loggers = new ConfiguracionXmlLogger(fichero).loggers;
+            foreach (ILogger logger in loggers.Values)
+            {
+                SetLogger(logger);
+            }
+        }
         /// <summary>
         /// Obtener logger por nombre.
         /// </summary>

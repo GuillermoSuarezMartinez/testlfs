@@ -9,22 +9,27 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.Collections.Generic;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
     /// Wrapper Logger.
     /// </summary>
+    [Target("Wrapper", ESWrapper = true)]
     public class WrapperLogger : BaseLogger
     {
         #region Atributos privados
         /// <summary>
         /// Colección de loggers.
         /// </summary>
-        List<ILogger> loggers;
+        System.Collections.Generic.List<ILogger> loggers;
         #endregion
 
         #region Constructores
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.WrapperLogger.
+        /// Por defecto, <c>NivelLog=Debug</c>, <c>Puerto=1440</c>.
+        /// </summary>
+        public WrapperLogger() : this(string.Empty) { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.WrapperLogger.
         /// Por defecto, <c>NivelLog=Debug</c>, <c>Puerto=1440</c>.
@@ -44,7 +49,18 @@ namespace Orbita.Trazabilidad
             : base(identificador, nivelLog)
         {
             // Crear la colección de loggers.
-            this.loggers = new List<ILogger>(loggers);
+            this.loggers = new System.Collections.Generic.List<ILogger>(loggers);
+        }
+        #endregion
+
+        #region Propiedades
+        /// <summary>
+        /// Colección de loggers.
+        /// </summary>
+        public System.Collections.Generic.List<ILogger> Loggers
+        {
+            get { return this.loggers; }
+            set { this.loggers = value; }
         }
         #endregion
 

@@ -22,7 +22,18 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Identificador de logger.
         /// </summary>
-        string Identificador { get; }
+        string Identificador { get; set; }
+        #endregion
+
+        #region Eventos
+        /// <summary>
+        /// Evento que se ejecuta tras escribir en el fichero de logger.
+        /// </summary>
+        event System.EventHandler<LoggerEventArgs> DespuesEscribirLogger;
+        /// <summary>
+        /// Evento que se ejecuta tras producirse un error en la escritura en el fichero de logger.
+        /// </summary>
+        event System.EventHandler<LoggerEventArgs> ErrorLogger;
         #endregion
 
         #region Métodos privados

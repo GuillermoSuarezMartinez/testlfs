@@ -25,7 +25,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Información de la conexión.
         /// La inclusión del atributo es necesaria para poder obtener las propiedades de  la
-        /// clase InfoConexion a través del objeto de base de datos que se cree en cada caso.
+        /// clase OInfoConexion a través del objeto de base de datos que se cree en cada caso.
         /// </summary>
         OInfoConexion infoConexion;
         /// <summary>
@@ -89,28 +89,28 @@ namespace Orbita.Trazabilidad
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
         /// </summary>
         /// <param name="identificador">Identificador de logger.</param>
-        /// <param name="infoConexion">Información de la conexión actual.</param>
-        public TrazaLogger(string identificador, OInfoConexion infoConexion)
-            : this(identificador, infoConexion, null) { }
+        /// <param name="OInfoConexion">Información de la conexión actual.</param>
+        public TrazaLogger(string identificador, OInfoConexion OInfoConexion)
+            : this(identificador, OInfoConexion, null) { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
         /// </summary>
         /// <param name="identificador">Identificador de logger.</param>
-        /// <param name="infoConexion">Información de la conexión actual.</param>
+        /// <param name="OInfoConexion">Información de la conexión actual.</param>
         /// <param name="logger">DebugLogger de registro que chequea errores de inserción en base de datos.</param>
-        public TrazaLogger(string identificador, OInfoConexion infoConexion, ILogger logger)
+        public TrazaLogger(string identificador, OInfoConexion OInfoConexion, ILogger logger)
             : this(identificador)
         {
-            this.infoConexion = infoConexion;
+            this.infoConexion = OInfoConexion;
             this.logger = logger;
         }
         #endregion
 
         #region Propiedades públicas
         /// <summary>
-        /// InfoConexion de base de datos.
+        /// OInfoConexion de base de datos.
         /// </summary>
-        public OInfoConexion InfoConexion
+        public OInfoConexion OInfoConexion
         {
             get { return this.infoConexion; }
             set { this.infoConexion = value; }

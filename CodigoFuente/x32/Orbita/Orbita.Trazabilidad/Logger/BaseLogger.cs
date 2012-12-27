@@ -29,6 +29,17 @@ namespace Orbita.Trazabilidad
         NivelLog nivelLog;
         #endregion
 
+        #region Eventos
+        /// <summary>
+        /// Evento que se ejecuta tras escribir en el fichero de logger.
+        /// </summary>
+        public event EventHandler<LoggerEventArgs> DespuesEscribirLogger;
+        /// <summary>
+        /// Evento que se ejecuta tras producirse un error en la escritura en el fichero de logger.
+        /// </summary>
+        public event EventHandler<LoggerEventArgs> ErrorLogger;
+        #endregion
+
         #region Constructores protegidos
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.BaseLogger.
@@ -530,6 +541,30 @@ namespace Orbita.Trazabilidad
         protected virtual bool ESNivelLogEnabled(NivelLog nivel)
         {
             return nivel >= this.NivelLog;
+        }
+        /// <summary>
+        /// Evento que se ejecuta tras escribir en el fichero de logger.
+        /// </summary>
+        /// <param name="sender">Objeto que lanza el evento.</param>
+        /// <param name="e">Orbita.Trazabilidad.LoggerEventArgs es la clase base para las clases que contienen datos de eventos.</param>
+        protected virtual void OnDespuesEscribirLogger(object sender, LoggerEventArgs e)
+        {
+            if (DespuesEscribirLogger != null)
+            {
+                DespuesEscribirLogger(this, e);
+            }
+        }
+        /// <summary>
+        /// Evento que se ejecuta tras producirse un error en la escritura en el fichero de logger.
+        /// </summary>
+        /// <param name="sender">Objeto que lanza el evento.</param>
+        /// <param name="e">Orbita.Trazabilidad.LoggerEventArgs es la clase base para las clases que contienen datos de eventos.</param>
+        protected virtual void OnErrorLogger(object sender, LoggerEventArgs e)
+        {
+            if (ErrorLogger != null)
+            {
+                ErrorLogger(this, e);
+            }
         }
         #endregion
     }
