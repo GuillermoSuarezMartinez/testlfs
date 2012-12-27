@@ -8,8 +8,8 @@
     <ProjectGuid>{1A2EEC44-A494-4BA6-A591-267B73A55CD1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OrbitaTrazabilidad</RootNamespace>
-    <AssemblyName>OrbitaTrazabilidad</AssemblyName>
+    <RootNamespace>Orbita.Trazabilidad</RootNamespace>
+    <AssemblyName>Orbita.Trazabilidad</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -45,7 +45,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\Debug\OrbitaTrazabilidad.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Orbita.Trazabilidad.xml</DocumentationFile>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
     <PlatformTarget>x86</PlatformTarget>
@@ -58,7 +58,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\Release\OrbitaTrazabilidad.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Orbita.Trazabilidad.xml</DocumentationFile>
     <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
@@ -103,7 +103,7 @@
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;CODE_ANALYSIS;TRACE</DefineConstants>
-    <DocumentationFile>bin\Debug\OrbitaTrazabilidad.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Orbita.Trazabilidad.xml</DocumentationFile>
     <Optimize>false</Optimize>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
@@ -207,15 +207,18 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config\Ejemplos\Debug.config.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Orbita.BBDD\Orbita.BBDD.csproj">
       <Project>{CF7F04AE-7DA5-48C5-BB08-DC57D3192A2D}</Project>
       <Name>Orbita.BBDD</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Config\Ejemplos\Debug.config.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)Orbita.Trazabilidad.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

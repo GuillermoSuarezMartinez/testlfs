@@ -33,18 +33,18 @@ Global
 		SccProjectTopLevelParentUniqueName2 = Orbita.sln
 		SccProjectName2 = Orbita.Comunicaciones
 		SccLocalPath2 = Orbita.Comunicaciones
-		SccProjectUniqueName3 = Orbita.Trazabilidad\\Orbita.Trazabilidad.csproj
+		SccProjectUniqueName3 = Orbita.Utiles\\Orbita.Utiles.csproj
 		SccProjectTopLevelParentUniqueName3 = Orbita.sln
-		SccProjectName3 = Orbita.Trazabilidad
-		SccLocalPath3 = Orbita.Trazabilidad
-		SccProjectUniqueName4 = Orbita.Utiles\\Orbita.Utiles.csproj
+		SccProjectName3 = Orbita.Utiles
+		SccLocalPath3 = Orbita.Utiles
+		SccProjectUniqueName4 = Orbita.Winsock\\Orbita.Winsock.vbproj
 		SccProjectTopLevelParentUniqueName4 = Orbita.sln
-		SccProjectName4 = Orbita.Utiles
-		SccLocalPath4 = Orbita.Utiles
-		SccProjectUniqueName5 = Orbita.Winsock\\Orbita.Winsock.vbproj
+		SccProjectName4 = Orbita.Winsock
+		SccLocalPath4 = Orbita.Winsock
+		SccProjectUniqueName5 = Orbita.Trazabilidad\\Orbita.Trazabilidad.csproj
 		SccProjectTopLevelParentUniqueName5 = Orbita.sln
-		SccProjectName5 = Orbita.Winsock
-		SccLocalPath5 = Orbita.Winsock
+		SccProjectName5 = Orbita.Trazabilidad
+		SccLocalPath5 = Orbita.Trazabilidad
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
