@@ -207,10 +207,12 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Config\Ejemplos\Wrapper.config.xml" />
     <Content Include="Config\Ejemplos\Remoting.config.xml" />
-    <Content Include="Config\Ejemplos\Wrapper.full.config.xml" />
     <Content Include="Config\Ejemplos\Debug.config.xml" />
+    <Content Include="Config\Ejemplos\Wrapper.config.xml" />
+    <Content Include="Config\Ejemplos\Remoting.full.config.xml" />
+    <Content Include="Config\Ejemplos\Wrapper.full.config.xml" />
+    <Content Include="Config\Ejemplos\Debug.full.config.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Orbita.BBDD\Orbita.BBDD.csproj">

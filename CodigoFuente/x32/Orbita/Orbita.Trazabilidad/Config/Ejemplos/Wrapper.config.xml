@@ -3,6 +3,8 @@
   <loggers>
     <!--nombre = nombre del logger, necesario para hacer referencia al mismo desde la API-->
     <!--nivel = nivel de logger-->
+    <!--niveles = debug/info/warn/error/fatal, por defecto debug sin referencia-->
+    <!--nivel = nivel de logger, por defecto debug-->
     <!--niveles = debug/info/warn/error/fatal-->
     <logger nombre="owrapper" xsi:type="Wrapper" nivel="debug" >
       <logger nombre="owrapperdebug" xsi:type="Debug" nivel="debug" />
