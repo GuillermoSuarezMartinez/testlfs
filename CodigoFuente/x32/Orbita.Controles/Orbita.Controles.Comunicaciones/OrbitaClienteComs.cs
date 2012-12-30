@@ -437,7 +437,6 @@ namespace Orbita.Controles.Comunicaciones
             this.configurarDataGridEscrituras();
         }
 
-        #endregion   
-                
+        #endregion                   
     }
 }
