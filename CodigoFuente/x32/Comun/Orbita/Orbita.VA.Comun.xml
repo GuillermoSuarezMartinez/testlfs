@@ -1,0 +1,3853 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orbita.VA.Comun</name>
+    </assembly>
+    <members>
+        <member name="T:Orbita.VA.Comun.OMultimedia">
+            <summary>
+            Métodos genéricos para el trabajo con ficheros multimedia   
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OMultimedia.ConversionFicheroImagen(System.String,System.String,System.Drawing.Imaging.ImageFormat,System.Int64)">
+            <summary>
+            Copia una carpeta
+            </summary>
+            <param name="sourceFileName">Ruta origen</param>
+            <param name="destFileName">Ruta destino</param>
+            <param name="ImageFormat">Formato de la imagen</param>
+            <param name="quality">calidad</param>
+        </member>
+        <member name="T:Orbita.VA.Comun.OGestionMemoriaManager">
+            <summary>
+            Clase estática encargada de monitorizar la creación y destrucción de objetos de origen propio que ocupan gran cantidad de memoria y de creación frecuente.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OGestionMemoriaManager.ListaObjetos">
+            <summary>
+            Diccionario de objetos grandes. Clave: Código Hash del objeto. Valor: Triplete de Tipo y código inerno
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OGestionMemoriaManager.BlockObject">
+            <summary>
+            Objeto de bloqueo. Utilizado para el bloqueo multihilo
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGestionMemoriaManager.Constructor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGestionMemoriaManager.Destructor">
+            <summary>
+            Destructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGestionMemoriaManager.Inicializar">
+            <summary>
+            Inicializa las variables necesarias para el funcionamiento de los cronómetros
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGestionMemoriaManager.Finalizar">
+            <summary>
+            Finaliza la ejecución
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGestionMemoriaManager.GetListaObjetos">
+            <summary>
+            Consulta la información de la lista
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGestionMemoriaManager.Resumen(System.String)">
+            <summary>
+            Devuelve el estado de la lista de objetos
+            </summary>
+            <param name="textoFormateado">Texto válido para utilizar en la función string.Format.
+            Debe contener {0}, {1}, {2} para ser válido</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGestionMemoriaManager.RegistraEnLog(System.String)">
+            <summary>
+            Registra en el log el estado de la lista de objetos
+            </summary>
+            <param name="textoFormateado">Texto válido para utilizar en la función string.Format.
+            Debe contener {0}, {1}, {2} para ser válido</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGestionMemoriaManager.Add(Orbita.VA.Comun.OLargeObjectBase)">
+            <summary>
+            Añade al registro de objetos
+            </summary>
+            <param name="baseObject"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGestionMemoriaManager.Remove(Orbita.VA.Comun.OLargeObjectBase)">
+            <summary>
+            Elimina del registro de objetos
+            </summary>
+            <param name="baseObject"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGestionMemoriaManager.ColectorBasura(System.Boolean)">
+            <summary>
+            Llamada al colector de basura para que llame a destructores y libere la memoria no usada.
+            Cuando realizar la llamada:
+              - Es recomendable hacer una llamada a este método una vez por ciclo de la máquina de estados con el parámetro esperaFinalizacion a true (.
+              - También se debe llamar cuando terminamos el proceso de parada de la clase sistema con el parámetro esperaFinalizacion a true.
+              - Si 
+              - En caso de necesidad de llamarse más veces debería de ser después de una asignación a null con el parámetro esepraFinalización a false.
+            </summary>
+            <param name="esperaFinalizacion">Si verdadero espera a que finalice el proceso de liberación de memoria.
+            Este proceso puede ser costoso, por lo que se recomienda utilizarlo en momentos de latencia</param>
+        </member>
+        <member name="P:Orbita.VA.Comun.OGestionMemoriaManager.Count">
+            <summary>
+            Devuelve el número de objetos residentes en memoria
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.Comun.OLargeObjectBase">
+            <summary>
+            Patrón de diseño para una clase propia de creación frecuente y gran tamaño
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OLargeObjectBase._Disposed">
+            <summary>
+            Indica que se ha llamado al método dispose
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OLargeObjectBase._Codigo">
+            <summary>
+            Texto identificativo del objeto
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OLargeObjectBase.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigo"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OLargeObjectBase.Finalize">
+            <summary>
+            Destructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OLargeObjectBase.Dispose">
+            <summary>
+            Implementa IDisposable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OLargeObjectBase.Dispose(System.Boolean)">
+            <summary>
+            Método a implementar por las clases heredadas.
+            Se utiliza para liberar recursos cuando el objeto va a ser destruido.
+            This.Disposed es utilizado para saber si los recursos ya han sido liberados, 
+             por lo tanto ha de consultarse antes de realizar las instrucciones de liberación de recursos y
+             ha de actualizarse tras la finalización de la liberación de recursos o bien llamar al método base para que lo actualize él.
+             Ejemplo:
+                if (!Disposed)
+                {
+                    if (disposing) // Llamada desde Dispose() --> Llamada explicita o mediante la utilización de la instrucción using
+                    {
+                        // Poner aquí llamadas a Dispose() de objetos propios
+                    }
+                    else // Llamada desde destructor
+                    {
+                    }
+                    // Poner referencias a null
+                    base.Dispose(disposing);
+                }
+            </summary>
+            <param name="disposing">Indica si la llamada proviene del méotod dispose (true) o del destructor de la clase(false)</param>
+        </member>
+        <member name="P:Orbita.VA.Comun.OLargeObjectBase.Disposed">
+            <summary>
+            Indica que se ha llamado al método dispose
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OLargeObjectBase.Codigo">
+            <summary>
+            Texto identificativo del objeto
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OBinario">
+            <summary>
+            Trabajo con números binarios
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBinario.GetBit(System.Byte,System.Int32)">
+            <summary>
+            Extrae un bit en la posición indicada
+            </summary>
+            <param name="numero">Valor al cual queremos extraer el bit</param>
+            <param name="posicion">Posición del bit a extraer</param>
+            <returns>Booleano con el valor del bit extraido</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBinario.GetBit(System.UInt16,System.Int32)">
+            <summary>
+            Extrae un bit en la posición indicada
+            </summary>
+            <param name="numero">Valor al cual queremos extraer el bit</param>
+            <param name="posicion">Posición del bit a extraer</param>
+            <returns>Booleano con el valor del bit extraido</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBinario.GetBit(System.UInt32,System.Int32)">
+            <summary>
+            Extrae un bit en la posición indicada
+            </summary>
+            <param name="numero">Valor al cual queremos extraer el bit</param>
+            <param name="posicion">Posición del bit a extraer</param>
+            <returns>Booleano con el valor del bit extraido</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBinario.SetBit(System.Byte@,System.Int32,System.Boolean)">
+            <summary>
+            Establece un bit en la posición indicada
+            </summary>
+            <param name="numero">Valor al cual queremos establecer el bit</param>
+            <param name="posicion">Posición del bit a establecer</param>
+            <param name="valor">Booleano con el valor del bit a establecer</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBinario.SetBit(System.UInt16@,System.Int32,System.Boolean)">
+            <summary>
+            Establece un bit en la posición indicada
+            </summary>
+            <param name="numero">Valor al cual queremos establecer el bit</param>
+            <param name="posicion">Posición del bit a establecer</param>
+            <param name="valor">Booleano con el valor del bit a establecer</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBinario.SetBit(System.UInt32@,System.Int32,System.Boolean)">
+            <summary>
+            Establece un bit en la posición indicada
+            </summary>
+            <param name="numero">Valor al cual queremos establecer el bit</param>
+            <param name="posicion">Posición del bit a establecer</param>
+            <param name="valor">Booleano con el valor del bit a establecer</param>
+        </member>
+        <member name="T:Orbita.VA.Comun.OScript">
+            <summary>
+            Clase que implementa la ejecución de un script (fichero .cs externo a la aplicación)
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OScript.NombreClase">
+            <summary>
+            Nombre de la clase del script
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OScript.EspacioNombres">
+            <summary>
+            Espacio de nombres del script (namespace)
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OScript.RutaScript">
+            <summary>
+            Ruta del código a compilar
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OScript.RutaEnsamblado">
+            <summary>
+            Ruta del ensamablado compilado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OScript.Referencias">
+            <summary>
+            Referencias a incluir en el ensamblado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OScript.Compilado">
+            <summary>
+            Indica si el script ha sido compilado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OScript._Codigo">
+            <summary>
+            Código identificativo de la clase.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OScript.#ctor(System.String,System.String,System.String,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Constructor de la calse
+            </summary>
+            <param name="codigoScript">Código identificativo del script (tando del espacio de nombres como de la clase)</param>
+            <param name="rutaScript">Ruta del código a compilar</param>
+            <param name="rutaEnsamblado">Ruta del ensamablado compilado</param>
+            <param name="referencias">Referencias a incluir en el ensamblado</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OScript.Compilar">
+            <summary>
+            Compila el script creando un nuevo ensamblado .dll
+            </summary>
+            <returns>Verdadero si el método ha funcionado con éxito</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OScript.CrearInstancia``1(``0@)">
+            <summary>
+            Crea una instancia del objeto del script
+            </summary>
+            <typeparam name="ClasePadre">Clase padre del objeto creado</typeparam>
+            <returns>Retorna una instancia de la clase padre del objeto</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OScript.Validar">
+            <summary>
+            Se valida que los parámetros de ejecución del script son correctos.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.VA.Comun.OScript.Codigo">
+            <summary>
+            Código identificativo de la clase.
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.ODebug">
+            <summary>
+            Incluye métodos utilizados en la depuración de la aplicación
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.ODebug.WaitRemoteDebug">
+            <summary>
+            Permite la depuración del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.ODebug.GetCallingMethod(System.Int32,System.String@,System.String@,System.String@,System.String@,System.Int32@,System.String@)">
+            <summary>
+            Devuelve información sobre el método que efectua la llamada
+            </summary>
+            <param name="ordenLlamada">0 es la información del método GetCallingMethod, 1 la del método que ha llamado, 2 la del metodo que ha llamado al que ha llamado al actual, etc....</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.ODebug.GetExceptionInfo(System.Exception,System.String@,System.String@,System.String@,System.String@,System.Int32@,System.String@)">
+            <summary>
+            Extrae la información de la excepción
+            </summary>
+            <param name="exception"></param>
+            <param name="assembly"></param>
+            <param name="file"></param>
+            <param name="className"></param>
+            <param name="methode"></param>
+            <param name="line"></param>
+            <param name="pilaLlamadas"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.ODebug.IsConsole">
+            <summary>
+            Determina si la aplicación es de tipo consola
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.ODebug.IsWinForms">
+            <summary>
+            Determina si la aplicación es de tipo Windows Forms
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.Comun.OUsuariosManager">
+            <summary>
+            Proporciona información sobre los usuarios del sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OUsuariosManager.ListaUsuarios">
+            <summary>
+            Lista de los usuarios del sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OUsuariosManager.PermisoActual">
+            <summary>
+            Indica el permiso del usuario registrado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OUsuariosManager.UsuarioActual">
+            <summary>
+            Indica usuario registrado
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OUsuariosManager.Constructor">
+            <summary>
+            Construye los objetos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OUsuariosManager.Destructor">
+            <summary>
+            Destruye los objetos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OUsuariosManager.Inicializar">
+            <summary>
+            Carga las propiedades de la base de datos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OUsuariosManager.Finalizar">
+            <summary>
+            Finaliza la ejecución
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OUsuariosManager.Registrar(System.String,System.String)">
+            <summary>
+            Registra a un usuario en el sistema
+            </summary>
+            <param name="codUsuario">Codigo identificativo del usuario</param>
+            <param name="contraseña">Contraseña del usuario</param>
+            <returns>Verdadero si el usuario se ha registrado con éxito</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OUsuariosManager.SuscribirAlRegistrarUsuario(Orbita.VA.Comun.OSimpleMethod)">
+            <summary>
+            Crea una suscripción para recibir un evento cada vez que se registra un usuario
+            </summary>
+            <param name="onRegistroUsuario"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OUsuariosManager.DesSuscribirAlRegistrarUsuario(Orbita.VA.Comun.OSimpleMethod)">
+            <summary>
+            Elimina la suscripción para recibir un evento cada vez que se registra un usuario
+            </summary>
+            <param name="onRegistroUsuario"></param>
+        </member>
+        <member name="F:Orbita.VA.Comun.OUsuariosManager.OnRegistroUsuario">
+            <summary>
+            Evento de registro de usuario
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OUsuario">
+            <summary>
+            Usuario del sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OUsuario.Codigo">
+            <summary>
+            Identificador del usuario
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OUsuario.Contraseña">
+            <summary>
+            Contraseña del usuario
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OUsuario.Permisos">
+            <summary>
+            Permisos del usuario
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OUsuario.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OPermisos">
+            <summary>
+            Lista de permisos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OPermisos.Operador">
+            <summary>
+            Permisos de operador
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OPermisos.Administrador">
+            <summary>
+            Permisos de administrador
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OMonitorizacionSistemaManager">
+            <summary>
+            Clase utilizada para la monitorización del estado del PC
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OMonitorizacionSistemaManager.ListaMonitorizaciones">
+            <summary>
+            Listado de las monitorizaciones
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OMonitorizacionSistemaManager.Constructor">
+            <summary>
+            Construye los objetos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OMonitorizacionSistemaManager.Destructor">
+            <summary>
+            Destruye los objetos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OMonitorizacionSistemaManager.Inicializar">
+            <summary>
+            Se cargan los valores de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OMonitorizacionSistemaManager.Finalizar">
+            <summary>
+            Se finaliza la ejecución
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OMonitorizacionSistemaManager.NuevaMonitorizacion(Orbita.VA.Comun.TipoMonitorizacion)">
+            <summary>
+            Añade una nueva monitorización al runtime
+            </summary>
+            <param name="tipoMonitorizacion">Tipo de Monitorización a cargar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OMonitorizacionSistemaManager.SiguienteMonitorizacion">
+            <summary>
+            Ejecución de la monitorización del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OMonitorizacionSistemaManager.Log">
+            <summary>
+            Añade nuevas trazas al registro del sistema
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OMonitorizacionSistemaBase">
+            <summary>
+            Clase padre para la monitorización del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OMonitorizacionSistemaBase.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OMonitorizacionSistemaBase.Inicializar">
+            <summary>
+            Inicialización de la monitorización del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OMonitorizacionSistemaBase.SiguienteMonitorizacion">
+            <summary>
+            Ejecución de la monitorización del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OMonitorizacionSistemaBase.Resumen">
+            <summary>
+            Resumen de la monitorización
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.MonitorizacionProcesos">
+            <summary>
+            Clase utilizada para monitorizar los procesos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionProcesos.ListaProcesos">
+            <summary>
+            Lista de procesos (clave = IdProceso, valor = InformacionProceso)
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionProcesos.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionProcesos.Inicializar">
+            <summary>
+            Inicialización de la monitorización del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionProcesos.SiguienteMonitorizacion">
+            <summary>
+            Ejecución de la monitorización del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionProcesos.Resumen">
+            <summary>
+            Resumen de la monitorización
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.MonitorizacionProcesos.InformacionProceso">
+            <summary>
+            Estructura que guarda información de cada proceso
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionProcesos.InformacionProceso.Id">
+            <summary>
+            Id del proceso
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionProcesos.InformacionProceso.ProcessName">
+            <summary>
+            Nombre del proceso
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionProcesos.InformacionProceso.FileName">
+            <summary>
+            Ejecutable del proceso
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionProcesos.InformacionProceso.VirtualMemorySize64">
+            <summary>
+            Memoria virtual del proceso
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionProcesos.InformacionProceso.PrivateMemorySize64">
+            <summary>
+            Memoria privada del proceso
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionProcesos.InformacionProceso.StartTime">
+            <summary>
+            Fecha de inicio del proceso
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionProcesos.InformacionProceso.TotalProcessorTime">
+            <summary>
+            Tiempo total del proceso
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionProcesos.InformacionProceso.MomentoConsulta">
+            <summary>
+            Momento de la monitorización
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionProcesos.InformacionProceso.CPUUsage">
+            <summary>
+            % de uso de CPU del proceso durante el tiempo de monitorización
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionProcesos.InformacionProceso.#ctor(System.Diagnostics.Process)">
+            <summary>
+            Constructor de la estructura
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionProcesos.InformacionProceso.ActualizarProceso(Orbita.VA.Comun.MonitorizacionProcesos.InformacionProceso)">
+            <summary>
+            Actualización del proceso
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.MonitorizacionCpuRam">
+            <summary>
+            Clase utilizada para monitorizar la CPU y la RAM
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionCpuRam.cpuCounter">
+            <summary>
+            Contador de CPU
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionCpuRam.ramCounter">
+            <summary>
+            Contador de RAM libre
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionCpuRam.CPU">
+            <summary>
+            Porcentaje total de CPU utilizada
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionCpuRam.RAM">
+            <summary>
+            Cantidad total de memoria RAM libre en MB
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionCpuRam.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionCpuRam.Inicializar">
+            <summary>
+            Inicialización de la monitorización del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionCpuRam.SiguienteMonitorizacion">
+            <summary>
+            Ejecución de la monitorización del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionCpuRam.Resumen">
+            <summary>
+            Resumen de la monitorización
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.MonitorizacionDiscos">
+            <summary>
+            Clase utilizada para monitorizar los discos duros
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionDiscos.ListaInfoDisco">
+            <summary>
+            Lista de la información de los discos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionDiscos.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionDiscos.Inicializar">
+            <summary>
+            Inicialización de la monitorización del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionDiscos.SiguienteMonitorizacion">
+            <summary>
+            Ejecución de la monitorización del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionDiscos.Resumen">
+            <summary>
+            Resumen de la monitorización
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.MonitorizacionDiscos.InfoDisco">
+            <summary>
+            Estructura que almacena la información de espacio libre de cada disco
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionDiscos.InfoDisco.VolumeLabel">
+            <summary>
+            Etiqueta del volumen
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionDiscos.InfoDisco.AvailableFreeSpace">
+            <summary>
+            Espacio libre
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionDiscos.InfoDisco.#ctor(System.IO.DriveInfo)">
+            <summary>
+            Constructor de la estructura
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.MonitorizacionConexiones">
+            <summary>
+            Clase utilizada para monitorizar las conexiones TCP/IP
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.MonitorizacionConexiones.ListaInfoConexiones">
+            <summary>
+            Lista de la información de los discos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionConexiones.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionConexiones.Inicializar">
+            <summary>
+            Inicialización de la monitorización del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionConexiones.SiguienteMonitorizacion">
+            <summary>
+            Ejecución de la monitorización del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionConexiones.Resumen">
+            <summary>
+            Resumen de la monitorización
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.MonitorizacionObjetosMemoria">
+            <summary>
+            Monitorización de los objetos en memoria
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionObjetosMemoria.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionObjetosMemoria.Inicializar">
+            <summary>
+            Inicialización de la monitorización del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionObjetosMemoria.SiguienteMonitorizacion">
+            <summary>
+            Ejecución de la monitorización del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionObjetosMemoria.Resumen">
+            <summary>
+            Resumen de la monitorización
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.TipoMonitorizacion">
+            <summary>
+            Enumerado que describe el tiepo de monitorización
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.TipoMonitorizacion.MonitorizacionProcesos">
+            <summary>
+            Monitorización de procesos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.TipoMonitorizacion.MonitorizacionCpuRam">
+            <summary>
+            Monitorización de CPU y RAM
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.TipoMonitorizacion.MonitorizacionDiscos">
+            <summary>
+            Monitorización del espacio libre de discos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.TipoMonitorizacion.MonitorizacionConexiones">
+            <summary>
+            Monitorización de conexiones TCP/IP
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.TipoMonitorizacion.MonitorizacionObjetosMemoria">
+            <summary>
+            Monitorización de los objetos en memoria
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.ConnectionsInfo">
+            <summary>
+            This is a class for disconnecting TCP connections.
+            You can get a list of all connections and close by a connection, localIP, 
+            remoteIP, localPort and remotePort.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.ConnectionsInfo.GetTcpTable(System.IntPtr,System.Int32@,System.Boolean)">
+            <summary>
+            API to get list of connections 
+            </summary>
+            <param name="pTcpTable"></param>
+            <param name="pdwSize"></param>
+            <param name="bOrder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.ConnectionsInfo.SetTcpEntry(System.IntPtr)">
+            <summary>
+            API to change status of connection 
+            </summary>
+            <param name="pTcprow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.ConnectionsInfo.ntohs(System.Int32)">
+            <summary>
+            Convert 16-bit value from network to host byte order 
+            </summary>
+            <param name="netshort"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.ConnectionsInfo.htons(System.Int32)">
+            <summary>
+            Convert 16-bit value back again 
+            </summary>
+            <param name="netshort"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.ConnectionsInfo.CloseRemoteIP(System.String)">
+            <summary>
+            Close all connection to the remote IP 
+            </summary>
+            <param name="IP"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.ConnectionsInfo.CloseLocalIP(System.String)">
+            <summary>
+            Close all connections at current local IP 
+            </summary>
+            <param name="IP"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.ConnectionsInfo.CloseRemotePort(System.Int32)">
+            <summary>
+            Closes all connections to the remote port 
+            </summary>
+            <param name="port"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.ConnectionsInfo.CloseLocalPort(System.Int32)">
+            <summary>
+            Closes all connections to the local port 
+            </summary>
+            <param name="port"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.ConnectionsInfo.CloseConnection(System.String)">
+            <summary>
+            Close a connection by returning the connectionstring 
+            </summary>
+            <param name="connectionstring"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.ConnectionsInfo.Connections">
+            <summary>
+            Gets all connections 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.ConnectionsInfo.Connections(Orbita.VA.Comun.ConnectionsInfo.State)">
+            <summary>
+            Gets a connection list of connections with a defined state 
+            </summary>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.ConnectionsInfo.getTcpTable">
+            <summary>
+            The function that fills the MIB_TCPROW array with connectioninfos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.ConnectionsInfo.IPStringToInt(System.String)">
+            <summary>
+            Convert an IP string to the INT value 
+            </summary>
+            <param name="IP"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.ConnectionsInfo.IPIntToString(System.Int32)">
+            <summary>
+            Convert an IP integer to IP string 
+            </summary>
+            <param name="IP"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.Comun.ConnectionsInfo.MIB_TCPROW">
+            <summary>
+            Connection info 
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.ConnectionsInfo.State">
+            <summary>
+            Enumeration of the states 
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OImagenBitmap">
+            <summary>
+            Imagen de tipo Bitmap de windows
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OImage">
+            <summary>
+            Clase genérica de imagen. Independiente del formato de almacenamiento y del formato de adquisición
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OImage._Image">
+            <summary>
+            Campo donde se guarda la imagen
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OImage._TipoImagen">
+            <summary>
+            Tipo de imagen que almacena
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OImage._MomentoCreacion">
+            <summary>
+            Informa del momento de la creación de la imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.#ctor(System.Object)">
+            <summary>
+            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+            </summary>
+            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.#ctor(System.String,System.Object)">
+            <summary>
+            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+            </summary>
+            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.GuardarAsincrono(System.String)">
+            <summary>
+            Guarda la imagen asincronamente en un fichero de disco
+            </summary>
+            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.Clone">
+            <summary>
+            Clonado de la imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.EsValida">
+            <summary>
+            Método a implementar en las clases hijas que indica que la imagen es válida
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.Guardar(System.String)">
+            <summary>
+            Método a implementar en las clases hijas para guardar la imagen en un fichero de disco
+            </summary>
+            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
+            <returns>Verdadero si la ruta donde se ha de guardar el fichero es válida</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.Cargar(System.String)">
+            <summary>
+            Método a implementar en las clases hijas para cargar la imagen de un fichero de disco
+            </summary>
+            <param name="ruta">Ruta de donde se ha de cargar la imagen</param>
+            <returns>Verdadero si el fichero que se ha de cargar existe</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.ConvertFromBitmap(System.Drawing.Bitmap)">
+            <summary>
+            Convierte la imagen de tipo bitmap al tipo actual
+            </summary>
+            <param name="imagenBitmap">Imagen de tipo bitmap desde el cual se va a importar la imagen</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.ConvertToBitmap">
+            <summary>
+            Convierte la imagen actual al tipo genérico de imagen de tipo bitmap
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.Convert``1(``0@)">
+            <summary>
+            Conversión del tipo de imagen 
+            </summary>
+            <typeparam name="ClaseImagen">Tipo de imagen a devolver</typeparam>
+            <param name="imagen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.EscalarImagen(Orbita.VA.Comun.OImage,System.Int32,System.Int32)">
+            <summary>
+            Sirve para reducir o ampliar la imagen 
+            </summary>
+            <param name="img">Imagen a reducir o ampliar</param>
+            <param name="width">Ancho de la imagen resultado</param>
+            <param name="height">Alto de la imagen resultado</param>
+            <returns>Imagen reducida</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.ToArray(System.Drawing.Imaging.ImageFormat,System.Double)">
+            <summary>
+            Método que realiza el empaquetado de un objeto para ser enviado por remoting
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.FromArray(System.Byte[])">
+            <summary>
+            Método que realiza el desempaquetado de un objeto recibido por remoting
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.Nueva">
+            <summary>
+            Crea una nueva imagen de la misma clase
+            </summary>
+            <returns>Nueva instancia de la misma clase de imagen</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.Dispose(System.Boolean)">
+            <summary>
+            Método a implementar en las clases hijas. Elimina la memoria asignada por el objeto.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.EscalarImagen(Orbita.VA.Comun.OImage,Orbita.VA.Comun.ResolucionesImagenEstandar)">
+            <summary>
+            Sirve para reducir o ampliar la imagen 
+            </summary>
+            <param name="img">Imagen a reduciro ampliar </param>
+            <param name="width">Ancho de la imagen resultado</param>
+            <param name="height">Alto de la imagen resultado</param>
+            <returns>Imagen reducida</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImage.EscalarImagen(Orbita.VA.Comun.OImage,System.Double)">
+            <summary>
+            Sirve para reducir o ampliar la imagen 
+            </summary>
+            <param name="img">Imagen a reduciro ampliar </param>
+            <param name="escalado">Escalado</param>
+            <returns>Imagen reducida</returns>
+        </member>
+        <member name="P:Orbita.VA.Comun.OImage.Image">
+            <summary>
+            Propieadad a heredar donde se accede a la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OImage.TipoImagen">
+            <summary>
+            Tipo de imagen que almacena
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OImage.Width">
+            <summary>
+            Tamaño en X de la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OImage.Height">
+            <summary>
+            Tamaño en Y de la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OImage.MomentoCreacion">
+            <summary>
+            Informa del momento de la creación de la imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenBitmap.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenBitmap.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenBitmap.#ctor(System.Object)">
+            <summary>
+            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+            </summary>
+            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenBitmap.#ctor(System.String,System.Object)">
+            <summary>
+            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+            </summary>
+            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenBitmap.Dispose(System.Boolean)">
+            <summary>
+            Método a implementar en las clases hijas. Elimina la memoria asignada por el objeto.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenBitmap.Clone">
+            <summary>
+            Clonado de la imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenBitmap.EsValida">
+            <summary>
+            Método a implementar en las clases hijas que indica que la imagen es válida
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenBitmap.Guardar(System.String)">
+            <summary>
+            Método a implementar en las clases hijas para guardar la imagen en un fichero de disco
+            </summary>
+            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
+            <returns>Verdadero si la ruta donde se ha de guardar el fichero es válida</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenBitmap.Cargar(System.String)">
+            <summary>
+            Método a implementar en las clases hijas para cargar la imagen de un fichero de disco
+            </summary>
+            <param name="ruta">Ruta de donde se ha de cargar la imagen</param>
+            <returns>Verdadero si el fichero que se ha de cargar existe</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenBitmap.ConvertFromBitmap(System.Drawing.Bitmap)">
+            <summary>
+            Convierte la imagen de tipo bitmap al tipo actual
+            </summary>
+            <param name="imagenBitmap">Imagen de tipo bitmap desde el cual se va a importar la imagen</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenBitmap.ConvertToBitmap">
+            <summary>
+            Convierte la imagen actual al tipo genérico de imagen de tipo bitmap
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenBitmap.EscalarImagen(Orbita.VA.Comun.OImage,System.Int32,System.Int32)">
+            <summary>
+            Sirve para reducir la imagen 
+            </summary>
+            <param name="img">Imagen a reducir</param>
+            <param name="width">Ancho de la imagen resultado</param>
+            <param name="height">Alto de la imagen resultado</param>
+            <returns>Imagen reducida</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenBitmap.ToArray(System.Drawing.Imaging.ImageFormat,System.Double)">
+            <summary>
+            Método que realiza el empaquetado de un objeto para ser enviado por remoting
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenBitmap.FromArray(System.Byte[])">
+            <summary>
+            Método que realiza el desempaquetado de un objeto recibido por remoting
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenBitmap.Nueva">
+            <summary>
+            Crea una nueva imagen de la misma clase
+            </summary>
+            <returns>Nueva instancia de la misma clase de imagen</returns>
+        </member>
+        <member name="P:Orbita.VA.Comun.OImagenBitmap.Image">
+            <summary>
+            Propieadad a heredar donde se accede a la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OImagenBitmap.Width">
+            <summary>
+            Tamaño en X de la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OImagenBitmap.Height">
+            <summary>
+            Tamaño en Y de la imagen
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.AppBD">
+            <summary>
+            Clase estática que contiene llamadas a los procedimiento almacenados en la base de datos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.AppBD.DataFile">
+            <summary>
+            Ruta por defecto del fichero xml de configuración
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.AppBD.XmlSchemaFile">
+            <summary>
+            Ruta por defecto del fichero xml de configuración
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.AppBD.CreateXMLDataBase(System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+            <summary>
+            Exporta la base de datos SQL a ficheros XML
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.AppBD.ExtraerEsquemaBBDD(Orbita.VA.Comun.EnumOrigenBaseDatos,System.Data.DataSet@)">
+            <summary>
+            Extrae un dataset con el esquema de la base de datos seleccionada. Tablas y procedimientos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.AppBD.CompararEsquemaBBDD(System.Collections.Generic.List{Orbita.VA.Comun.EnumOrigenBaseDatos},System.String@)">
+            <summary>
+            Compara los esquemas de las bases de datos seleccionadas. Tanto los campos de las tablas como los procedimientos almacenados
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.AppBD.GetParametrosAplicacion">
+            <summary>
+            Consulta los parámetros básicos de la aplicación
+            </summary>
+            <returns>DataTable con los parámetros básicos de la aplicación</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.AppBD.GetVistas">
+            <summary>
+            Consulta todas vistas existentes en el sistema
+            </summary>
+            <returns>DataTable con los códigos de las variables existentes en el sistema</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.AppBD.GetVista(System.String)">
+            <summary>
+            Consulta una vista existente en el sistema
+            </summary>
+            <returns>DataTable con los códigos de las vistas existentes en el sistema</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.AppBD.GetUsuarios">
+            <summary>
+            Consulta un usuario existente en el sistema
+            </summary>
+            <returns>DataTable con los la información del usuario</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.AppBD.GetUsuario(System.String)">
+            <summary>
+            Consulta un usuario existente en el sistema
+            </summary>
+            <returns>DataTable con los la información del usuario</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.AppBD.AddHistoricoSerie(System.Boolean,System.DateTime,System.Boolean,System.String,System.Boolean,System.TimeSpan,System.Int32,Orbita.Utiles.OXml,Orbita.Utiles.OXml)">
+            <summary>
+            Añade el historico de la inspección de la pieza
+            </summary>
+            <returns></returns>        
+        </member>
+        <member name="M:Orbita.VA.Comun.AppBD.AddHistoricoSubInspeccionSerie(System.Int32,System.Boolean,System.Boolean,System.String,System.TimeSpan,Orbita.Utiles.OXml)">
+            <summary>
+            Añade el historico de la inspección de la pieza
+            </summary>
+            <returns></returns>        
+        </member>
+        <member name="M:Orbita.VA.Comun.AppBD.AddHistoricoParalelo(System.Int32,Orbita.Utiles.OXml,Orbita.Utiles.OXml,Orbita.Utiles.OXml)">
+            <summary>
+            Añade el historico de la inspección de la pieza
+            </summary>
+            <returns></returns>        
+        </member>
+        <member name="T:Orbita.VA.Comun.OAlmacenImagenesManager">
+            <summary>
+            Clase que guarda imagenes en un thread separado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OAlmacenImagenesManager.AlmacenObjetosVisuales">
+            <summary>
+             Clase que guarda imagenes en un thread separado
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OAlmacenImagenesManager.Constructor">
+            <summary>
+            Construye los objetos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OAlmacenImagenesManager.Destructor">
+            <summary>
+            Destruye los campos de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OAlmacenImagenesManager.Inicializar">
+            <summary>
+            Se cargan los valores de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OAlmacenImagenesManager.Finalizar">
+            <summary>
+            Se realizan las acciones de finalización
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OAlmacenImagenesManager.GuardarImagen(System.String,Orbita.VA.Comun.OImage)">
+            <summary>
+            Método que añade una determinada imagen a la cola de imagenes a ser guardadas
+            </summary>
+            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
+            <param name="imagen">Imagen a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OAlmacenImagenesManager.GuardarGrafico(System.String,Orbita.VA.Comun.OGrafico)">
+            <summary>
+            Método que añade un determinado gráfico a la cola de graficos a ser guardados
+            </summary>
+            <param name="ruta">Ruta donde se ha de guardar el gráfico</param>
+            <param name="grafico">Grafico a guardar</param>
+        </member>
+        <member name="T:Orbita.VA.Comun.AlmacenImagenes">
+            <summary>
+            Clase que guarda imagenes en un thread separado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.AlmacenImagenes.MaxCapacidadCola">
+            <summary>
+            Capacidad máxima de la cola
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.AlmacenImagenes.ColaImagenes">
+            <summary>
+            Campo donde se guarda la cola de imágenes a guardar
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.AlmacenImagenes.ColaGraficos">
+            <summary>
+            Campo donde se guarda la cola de gráficos a guardar
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.AlmacenImagenes.Thread">
+            <summary>
+            Thread donde se ejecutará el guardado de imágenes o gráficos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.AlmacenImagenes.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.AlmacenImagenes.Inicializar">
+            <summary>
+            Inicialización de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.AlmacenImagenes.Finalizar">
+            <summary>
+            Finalización de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.AlmacenImagenes.Dispose">
+            <summary>
+            Elimina la memoria asignada por el objeto.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.AlmacenImagenes.GuardarImagen(System.String,Orbita.VA.Comun.OImage)">
+            <summary>
+            Método que añade una determinada imagen a la cola de imagenes a ser guardadas
+            </summary>
+            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
+            <param name="imagen">Imagen a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.AlmacenImagenes.GuardarGrafico(System.String,Orbita.VA.Comun.OGrafico)">
+            <summary>
+            Método que añade un determinado gráfico a la cola de graficos a ser guardados
+            </summary>
+            <param name="ruta">Ruta donde se ha de guardar el gráfico</param>
+            <param name="grafico">Grafico a guardar</param>
+        </member>
+        <member name="T:Orbita.VA.Comun.OFicheros">
+            <summary>
+            Métodos genéricos para el trabajo con ficheros y carpetas
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OFicheros.CreacionDirectorio(System.String)">
+            <summary>
+            Se comprueba la existencia del directorio y si no existe se intenta crear
+            </summary>
+            <param name="ruta"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OFicheros.GetDirectorySize(System.String,System.IO.SearchOption)">
+            <summary>
+            Calcula el tamaño de un directorio
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OFicheros.DirectoryCopy(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Copia una carpeta
+            </summary>
+            <param name="sourceDirName">Ruta origen</param>
+            <param name="destDirName">Ruta destino</param>
+            <param name="copySubDirs">Opciones de la copi</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OFicheros.DirectoryMove(System.String,System.String,System.Boolean)">
+            <summary>
+            Mueve una carpeta
+            </summary>
+            <param name="sourceDirName">Ruta origen</param>
+            <param name="destDirName">Ruta destino</param>
+            <param name="copySubDirs">Opciones de la copi</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OFicheros.Ruta2Uri(System.String,System.Boolean@,System.Uri@)">
+            <summary>
+            Indica si la ruta es local o remota
+            </summary>
+            <param name="ruta">Cadena de texto indicativa de la ruta</param>
+            <param name="esLocal">Indica si la ruta es local o remota</param>
+            <returns>Verdadero si se trata de una ruta válida</returns>
+        </member>
+        <member name="T:Orbita.VA.Comun.ORutaParametrizable">
+            <summary>
+            Clase utilizada para componer la ruta de almacenamiento de las imágenes
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORutaParametrizable.RutaApp">
+            <summary>
+            Ruta de la aplicación
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORutaParametrizable.Fecha">
+            <summary>
+            Fecha actual
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORutaParametrizable.FechaHora">
+            <summary>
+            Fecha y hora actual
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORutaParametrizable.Año">
+            <summary>
+            Año actual
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORutaParametrizable.Mes">
+            <summary>
+            Mes actual
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORutaParametrizable.Dia">
+            <summary>
+            Día actual
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORutaParametrizable.DiaJuliano">
+            <summary>
+            Día juliano actual
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORutaParametrizable.Hora">
+            <summary>
+            Hora actual
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORutaParametrizable.Minuto">
+            <summary>
+            Minuto actual
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORutaParametrizable.Segundo">
+            <summary>
+            Segundo actual
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORutaParametrizable.Milisegundo">
+            <summary>
+            Milisegundo actual
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.ORutaParametrizable.DateString(System.DateTime)">
+            <summary>
+            Devuelve una cadena de texto identificativa del día actual (utilizada para indexar ficheros)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.ORutaParametrizable.DateTimeString(System.DateTime)">
+            <summary>
+            Devuelve una cadena de texto identificativa del momento actual (utilizada para indexar ficheros)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.ORutaParametrizable.ComponerRuta(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Composición de rutas a partir de parámetros
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.ORutaParametrizable.ComponerRuta(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.DateTime)">
+            <summary>
+            Composición de rutas a partir de parámetros
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.VA.Comun.ORutaParametrizable.AppPath">
+            <summary>
+            Devuelve la ruta de la aplicación
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.ORutaParametrizable.AppFolder">
+            <summary>
+            Devuelve la carpeta de la aplicación
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OSistemaManager">
+            <summary>
+            Clase estática encargada de dar acceso a toda la aplicación al control del inicio y la detención de los módulos instalados en el sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OSistemaManager.ListaParametrosEntradaAplicacion">
+            <summary>
+            Lista de parámetros de entrada de la aplicación
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OSistemaManager._Sistema">
+            <summary>
+            Campo del sistema que se ha arrancado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OSistemaManager._ModoInicio">
+            <summary>
+            Modo de inicio del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistemaManager.Constructor(Orbita.VA.Comun.OSistema,System.Windows.Forms.Form,System.Boolean)">
+            <summary>
+            Constructor de los campos estáticos de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistemaManager.IniciarAplicacion(Orbita.VA.Comun.ModoInicio,System.String[])">
+            <summary>
+            Inicia el sistema de inspección en tiempo real
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistemaManager.PararAplicacion">
+            <summary>
+            Detiene el funcionamiento del inspección en tiempo real
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistemaManager.ReiniciarAplicacion">
+            <summary>
+            Reinicia el sistema de control en tiempo real
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistemaManager.MensajeInfoArranqueAplicacion(System.String,System.Boolean,Orbita.Utiles.OTipoMensaje)">
+            <summary>
+            Se muestra un mensaje en el splash screen de la evolución de arranque del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistemaManager.Parametro(System.String)">
+            <summary>
+            Conslta de un parámetro de la aplicación
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistemaManager.ObtenerVersion(System.Reflection.Assembly)">
+            <summary>
+            Obtiene la version del ensamblado actual
+            </summary>
+            <param name="asm">Ensamblado del cual se quiere conocer la versión</param>
+            <returns>Versión del ensamblado</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistemaManager.AvailableFreeSpace(System.String)">
+            <summary>
+            Devuelve el espacio libre la unidad que contiene la ruta especificada en bytes , aunque sea de RED
+            </summary>
+            <param name="ruta"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistemaManager.CapturaPantalla">
+            <summary>
+            Captura de toda la pantalla
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OSistemaManager.Sistema">
+            <summary>
+            Campo del sistema que se ha arrancado
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OSistemaManager.EstadoSistema">
+            <summary>
+            Enumerado que describe el estado del sistema
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OSistemaManager.Configuracion">
+            <summary>
+            Parámetros de la aplicación
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OSistemaManager.ModoInicio">
+            <summary>
+            Modo de inicio del sistema
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OSistema">
+            <summary>
+            Clase que controla el inicio y la detención del resto de módulos instalados en el sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OSistema.Configuracion">
+            <summary>
+            Parámetros de la aplicación
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OSistema.OnCambioEstado">
+            <summary>
+            Evento de referesco de visualización
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OSistema._EstadoSistema">
+            <summary>
+            Enumerado que describe el estado del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistema.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistema.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistema.IniciarAplicacion(System.Boolean)">
+            <summary>
+            Inicia el sistema de inspección en tiempo real
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistema.PararAplicacion">
+            <summary>
+            Detiene el sistema de inspección en tiempo real
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistema.MensajeInfoArranqueAplicacion(System.String,System.Boolean,Orbita.Utiles.OTipoMensaje)">
+            <summary>
+            Se muestra un mensaje en el splash screen de la evolución de arranque del sistema
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OSistema.EstadoSistema">
+            <summary>
+            Enumerado que describe el estado del sistema
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.EstadoSistema">
+            <summary>
+            Enumerado que describe el estado del sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.EstadoSistema.Detenido">
+            <summary>
+            El sistema se encuentra detenido
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.EstadoSistema.Arrancando">
+            <summary>
+            El sistema se encuentra en transición de parado a iniciado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.EstadoSistema.Deteniendo">
+            <summary>
+            El sistema se encuentra en transición de iniciado a parado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.EstadoSistema.Iniciado">
+            <summary>
+            El sistema se encuentra iniciado
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.ConfiguracionSistema">
+            <summary>
+            Parámetros de la aplicación
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ConfiguracionSistema.ConfFile">
+            <summary>
+            Ruta por defecto del fichero xml de configuración
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ConfiguracionSistema.CadenciaMonitorizacion">
+            <summary>
+            Tiempo entre refresco de monitorización
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ConfiguracionSistema.UtilizaBaseDeDatos">
+            <summary>
+            Indica si el sistema utiliza o no base de datos SQLServer o por el contrario ataca a ficheros XML
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ConfiguracionSistema.ListaInformacionBasesDatos">
+            <summary>
+            Lista de informaciones de las bases de datos existentes en el sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ConfiguracionSistema.OpcionesLogs">
+            <summary>
+            Opciones de configuración del registro de eventos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.ConfiguracionSistema.#ctor">
+            <summary>
+            Contructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.ConfiguracionSistema.#ctor(System.String)">
+            <summary>
+            Contructor de la clase
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.ConfiguracionSistema.CadenciaMonitorizacionMilisegundos">
+            <summary>
+            Tiempo entre refresco de monitorización
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OrigenDatos">
+            <summary>
+            Informa del origen de los datos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OrigenDatos.OrigenBBDD">
+            <summary>
+            Los datos perteneces a una base de datos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OrigenDatos.OrigenXML">
+            <summary>
+            Los datos pertenecen a un archivo xml
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.ModoInicio">
+            <summary>
+            Indica el modo de inicio de la aplicación
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ModoInicio.Defecto">
+            <summary>
+            Modo de inicio normal
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ModoInicio.Normal">
+            <summary>
+            Modo de inicio normal
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ModoInicio.APruebaFallos">
+            <summary>
+            Modo de inicio a prueba de fallos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ModoInicio.Simulacion">
+            <summary>
+            Modo de inicio de simulación
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OProductorConsumidorThread`1">
+            <summary>
+            Clase que implementa un consumidor en thread
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OProductorConsumidorThread`1.Cola">
+            <summary>
+            Cola del consumidor
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OProductorConsumidorThread`1.CapacidadMaxima">
+            <summary>
+            Capacidad máxima de la cola
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OProductorConsumidorThread`1.LockObject">
+            <summary>
+            Objeto bloqueante
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OProductorConsumidorThread`1.Thread">
+            <summary>
+            Thread de ejecución
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OProductorConsumidorThread`1.EjecutarConsumidorEnThread">
+            <summary>
+            Indica si la ejecución del consumidor se ha de realizar en el thread o fuera de él
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OProductorConsumidorThread`1.EjecutarProductorEnThread">
+            <summary>
+            Indica si la ejecución del productor se ha de realizar en el thread o fuera de él
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OProductorConsumidorThread`1.EjecutarMonitorizacionEnThread">
+            <summary>
+            Indica si la ejecución de la monitorización se ha de realizar en el thread o fuera de él
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OProductorConsumidorThread`1._Codigo">
+            <summary>
+            Código identificativo de la clase.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OProductorConsumidorThread`1._Estado">
+            <summary>
+            Posibles estados del productor / consumidor
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OProductorConsumidorThread`1._Total">
+            <summary>
+            Número de instancias totales añadidas a la cola
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.#ctor(System.String,System.UInt32,System.Int32,System.Threading.ThreadPriority,System.Int32)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.LanzarEventoConsumidor(`0)">
+            <summary>
+            Lanza la ejecución del thread de consumición
+            </summary>
+            <param name="valor">Valor a consumir</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.LanzarEventoProductor(System.Boolean@,`0@)">
+            <summary>
+            Lanza la ejecución del thread de producción
+            </summary>
+            <param name="encolar">Indica que se ha de encolar un elemento</param>
+            <param name="valor">Valor producido</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.LanzarEventoMonitorizacion(System.Boolean@)">
+            <summary>
+            Lanza la ejecución del thread de monitorizacion
+            </summary>
+            <param name="finalize">Indica la finalización del thread</param>
+            <param name="valor">Valor producido</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.Encolar(`0)">
+            <summary>
+            Añade el valor a encolar
+            </summary>
+            <param name="valor"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.Encolar(`0,System.Int32)">
+            <summary>
+            Añade el valor a encolar
+            </summary>
+            <param name="valor"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.Desencolar(`0@)">
+            <summary>
+            Devuelve el valor desencolado
+            </summary>
+            <param name="valor"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.Start">
+            <summary>
+            Inicio del thread
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.Stop">
+            <summary>
+            Fin del thread
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.Dispose">
+            <summary>
+            Elimina la memoria asignada por el objeto.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.Clear">
+            <summary>
+            Borra la cola
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.Dispose(System.Int32)">
+            <summary>
+            Elimina la memoria asignada por el objeto.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.CrearSuscripcionConsumidor(Orbita.VA.Comun.OProductorConsumidorThread{`0}.ConsumidorRun,System.Boolean)">
+            <summary>
+            Creación de la suscripción al evento de ejecución del consumidor
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.CrearSuscripcionProductor(Orbita.VA.Comun.OProductorConsumidorThread{`0}.ProductorRun,System.Boolean)">
+            <summary>
+            Creación de la suscripción al evento de ejecución del productor
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.CrearSuscripcionMonitorizacion(Orbita.VA.Comun.ThreadRun,System.Boolean)">
+            <summary>
+            Creación de la suscripción al evento de monitorización del productor / consumidor
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.CrearSuscripcionFin(Orbita.VA.Comun.OSimpleMethod,System.Boolean)">
+            <summary>
+            Creación de la suscripción al evento de finalización del productor / consumidor
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.EjecucionConsumidor(`0)">
+            <summary>
+            Método que ejecuta la acción del consumidor.
+            </summary>
+            <param name="valor"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.EjecucionProductor(System.Boolean@,`0@)">
+            <summary>
+            Método que ejecuta la acción del productor.
+            </summary>
+            <param name="valor"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.Monitorizacion(System.Boolean@)">
+            <summary>
+            Ejecución de la monitorización del productor / consumidor
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.FinEjecucion">
+            <summary>
+            Fin de la ejecución del thread
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.Ejecucion(System.Boolean@)">
+            <summary>
+            Ejecución del thread
+            </summary>
+            <param name="finalize"></param>
+        </member>
+        <member name="F:Orbita.VA.Comun.OProductorConsumidorThread`1.OnEjecucionConsumidor">
+            <summary>
+            Delegado que de la ejecución del consumidor
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OProductorConsumidorThread`1.OnEjecucionProductor">
+            <summary>
+            Delegado que de la ejecución del consumidor
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OProductorConsumidorThread`1.OnMonitorizacion">
+            <summary>
+            Delegado que de la ejecución del monitor del productor / consumidor
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OProductorConsumidorThread`1.Codigo">
+            <summary>
+            Código identificativo de la clase.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OProductorConsumidorThread`1.Estado">
+            <summary>
+            Posibles estados del productor / consumidor
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OProductorConsumidorThread`1.Count">
+            <summary>
+            Número de elementos en la cola
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OProductorConsumidorThread`1.Total">
+            <summary>
+            Número de instancias totales añadidas a la cola
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OProductorConsumidorThread`1.ConsumidorRun">
+            <summary>
+            Delegado que de la ejecución del consumidor
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OProductorConsumidorThread`1.ProductorRun">
+            <summary>
+            Delegado que de la ejecución del consumidor
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.EstadoProductorConsumidor">
+            <summary>
+            Enumerado de los posibles estados del productor / consumidor
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.EstadoProductorConsumidor.Detenido">
+            <summary>
+            Estado inicial del thread
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.EstadoProductorConsumidor.EnEjecucion">
+            <summary>
+            En ejecución
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.EstadoProductorConsumidor.Deteniendo">
+            <summary>
+            En proceso de parada. La parada definitiva se realizará cuando se vacie la cola
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.App">
+            <summary>
+            Clase estática con funciones de uso general
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.App.FormularioPrincipal">
+            <summary>
+            Guarda el vínculo con el formulario principal de la aplicación
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.App.Colection2String(System.Collections.ICollection,System.Char)">
+            <summary>
+            Convierte una colección en una cadena de texto
+            </summary>
+            <param name="coleccion">Colección que se desea convertir en texto</param>
+            <param name="separador">Caracter separador de cada uno de los valores de la colección</param>
+            <returns>Cadena de texto con todos los valores de la colección separados por el carácter separador</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.App.String2Collection``1(System.String,System.Char,Orbita.VA.Comun.App.ConvertFromString{``0})">
+            <summary>
+            Convierte una cadena de texto en una colección
+            </summary>
+            <typeparam name="T">Tipo de colección que se desea devolver</typeparam>
+            <param name="texto">Texto que se convertira en colección</param>
+            <param name="separador">Caracter separador de cada uno de los valores de la colección</param>
+            <returns>Objeto de tipo colección con todos los valores que contiene el texto separados por el carácter separador</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.App.aRedimensionar(System.Array,System.Int32)">
+            <summary>
+            Función para redimiendionar un Array
+            </summary>
+            <param name="orgArray">Array</param>
+            <param name="tamaño">Tamaño</param>
+            <returns>Array redimensionado</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.App.GetPtrToNewObject(System.Object)">
+            <summary>
+            Obtiene el puntero a partir del objeto
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.App.ConstruirClase(System.String,System.String,System.Object@,System.Object[])">
+            <summary>
+            Función capaz de construir una clase dinámicamente
+            </summary>
+            <param name="ensamblado">Nombre del ensamblado al que pertenece la clase</param>
+            <param name="claseImplementadora">Nombre de la clase a construir</param>
+            <param name="objetoImplementado">Objeto resultado de la implementación</param>
+            <param name="args">Argumentos</param>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.Comun.App.ConvertFromString`1">
+            <summary>
+            Delegado para la conversión del tipo string a cualquier tipo
+            </summary>
+            <typeparam name="T">Tipo que se desea devolver</typeparam>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.Comun.OEnumTipoDato">
+            <summary>
+            Enumerado que implementa el enumerado de los módulos del sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OEnumTipoDato.SinDefinir">
+            <summary>
+            Tipo no definido
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OEnumTipoDato.Bit">
+            <summary>
+            Tipo booleano o bit
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OEnumTipoDato.Entero">
+            <summary>
+            Tipo entero
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OEnumTipoDato.Texto">
+            <summary>
+            Tipo texto
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OEnumTipoDato.Decimal">
+            <summary>
+            Tipo decimal
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OEnumTipoDato.Fecha">
+            <summary>
+            Tipo fecha
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OEnumTipoDato.Imagen">
+            <summary>
+            Tipo imagen
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OEnumTipoDato.Grafico">
+            <summary>
+            Tipo gráfico
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OEnumTipoDato.Flag">
+            <summary>
+            Tipo Evento
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OTipoDato">
+            <summary>
+            Clase estática encargada de devolver el valor por defecto de un determinado tipo de dato
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OTipoDato.DevaultValue(Orbita.VA.Comun.OEnumTipoDato)">
+            <summary>
+            Valor por defecto de un determinado tipo de datos
+            </summary>
+            <param name="tipoDato"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.Comun.OCapitalizacionTexto">
+            <summary>
+            Modifica la capitalización de un texto
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OCapitalizacionTexto.Nada">
+            <summary>
+            No realiza ninguna acción
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OCapitalizacionTexto.Mayusculas">
+            <summary>
+            Convierte el texto a mayusculas
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OCapitalizacionTexto.Minusculas">
+            <summary>
+            Convierte el texto a minusculas
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OSimpleMethod">
+            <summary>
+            Delegado de método simple
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OSimpleReturnMethod">
+            <summary>
+            Delegado de método simple con devolución de booleano
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OMessageDelegate">
+            <summary>
+            Delegado utilizado para devolver mensajes
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Orbita.VA.Comun.OMessageDelegateAdv">
+            <summary>
+            Delegado utilizado para devolver mensajes
+            </summary>
+            <param name="codigo"></param>
+            <param name="message"></param>
+        </member>
+        <member name="T:Orbita.VA.Comun.OExceptionDelegate">
+            <summary>
+            Delegado utilizado para devolver una excepción
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Orbita.VA.Comun.OExceptionDelegateAdv">
+            <summary>
+            Delegado utilizado para devolver una excepción
+            </summary>
+            <param name="codigo"></param>
+            <param name="message"></param>
+        </member>
+        <member name="T:Orbita.VA.Comun.OClaves">
+            <summary>
+            Clase que agrupa un conjunto de claves
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OClaves.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OClaves.#ctor(Orbita.VA.Comun.OClaves)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="claves"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OClaves.Add(Orbita.VA.Comun.OClave)">
+            <summary>
+            Añade una clave
+            </summary>
+            <param name="clave"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OClaves.ModificaValorClave(System.String,System.Object)">
+            <summary>
+            Modifica el valor de una clave
+            </summary>
+            <param name="codigo"></param>
+            <param name="valor"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OClaves.CompararValorClave(System.String,System.Object)">
+            <summary>
+            Compara el valor de una clave
+            </summary>
+            <param name="codigo"></param>
+            <param name="valor"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OClaves.CompararClaves(Orbita.VA.Comun.OClaves)">
+            <summary>
+            Realiza una comparación de las claves actuales con las que se pasan por parametro
+            </summary>
+            <param name="claves"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OClaves.ToDictionary">
+            <summary>
+            Devuelve las claves en un diccionario de string a objetos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.Comun.OClave">
+            <summary>
+            Clase que contiene un valor clave
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OClave._Codigo">
+            <summary>
+            Código identificativo de la clave.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OClave._Nombre">
+            <summary>
+            Nombre de la clave.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OClave._Descripcion">
+            <summary>
+            Texto descriptivo.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OClave._Tipo">
+            <summary>
+            Tipo de dato
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OClave._Valor">
+            <summary>
+            Valor de la clave
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OClave._ValorDefinido">
+            <summary>
+            Indica si la clave tiene un valor definido
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OClave.#ctor(System.String,System.String,System.String,Orbita.VA.Comun.OEnumTipoDato,System.Object,System.Boolean)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigo">Código identificativo de la clave.</param>
+            <param name="nombre">Nombre de la clave</param>
+            <param name="descripcion">Texto descriptivo</param>
+            <param name="valor">Valor de la clave</param>
+            <param name="valorDefinido">Indica si la clave tiene un valor definido</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OClave.#ctor(System.Data.DataRow)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigo">Código identificativo de la clave.</param>
+            <param name="nombre">Nombre de la clave</param>
+            <param name="descripcion">Texto descriptivo</param>
+            <param name="valor">Valor de la clave</param>
+            <param name="valorDefinido">Indica si la clave tiene un valor definido</param>
+        </member>
+        <member name="P:Orbita.VA.Comun.OClave.Codigo">
+            <summary>
+            Código identificativo de la clave.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OClave.Nombre">
+            <summary>
+            Nombre de la clave.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OClave.Descripcion">
+            <summary>
+            Texto descriptivo.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OClave.Tipo">
+            <summary>
+            Tipo de dato
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OClave.Valor">
+            <summary>
+            Valor de la clave
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OClave.ValorDefinido">
+            <summary>
+            Indica si la clave tiene un valor definido
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OPriorityQueue`1">
+            <summary>
+            Implementación de una cola con prioridad de encolamiento.
+            La prioridad está definida mediante un número entero.
+            Cuanto más bajo sea el valor más prioridad tendrá.
+            </summary>
+            <typeparam name="TValue">Tipos de valores a almacenar en la cola</typeparam>
+        </member>
+        <member name="T:Orbita.VA.Comun.OPriorityQueue`2">
+            <summary>
+            Implementación de una cola con prioridad de encolamiento.
+            Cuanto más bajo sea el valor de prioridad más prioridad tendrá.
+            </summary>
+            <typeparam name="TValue">Tipos de valores a almacenar en la cola</typeparam>
+            <typeparam name="TPriority">Tipo de dato de la prioridad</typeparam>
+        </member>
+        <member name="F:Orbita.VA.Comun.OPriorityQueue`2.storage">
+            <summary>
+            Diccionario ordenado de colas interno
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OPriorityQueue`2.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OPriorityQueue`2.Dequeue">
+            <summary>
+            Desencolar
+            </summary>
+            <returns>Valor desencolado</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OPriorityQueue`2.Peek">
+            <summary>
+            Obtener el primer valor de la cola sin desencolar
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OPriorityQueue`2.Enqueue(`0)">
+            <summary>
+            Encolar con prioridad
+            </summary>
+            <param name="item">Valor a encolar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OPriorityQueue`2.Enqueue(`0,`1)">
+            <summary>
+            Encolar con prioridad
+            </summary>
+            <param name="item">Valor a encolar</param>
+            <param name="priority">prioridad de encolamiento</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OPriorityQueue`2.Clear">
+            <summary>
+            Quita todos los objetos de la colección.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OPriorityQueue`2.Count">
+            <summary>
+            Número de elementos de la cola
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OPriorityQueue`2.Empty">
+            <summary>
+            Indica que la cola está vacía
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OGrafico">
+            <summary>
+            Clase genérica de gráfico asociado a imagenes. Independiente del formato de almacenamiento y del formato de adquisición
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OGrafico._Grafico">
+            <summary>
+            Campo donde se guarda la imagen
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OGrafico._TipoGrafico">
+            <summary>
+            Tipo de imagen que almacena
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGrafico.#ctor(System.Object)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGrafico.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGrafico.#ctor(Orbita.VA.Comun.OImage)">
+            <summary>
+            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+            </summary>
+            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGrafico.GuardarAsincrono(System.String)">
+            <summary>
+            Guarda el gráfico asincronamente en un fichero de disco
+            </summary>
+            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGrafico.Dispose">
+            <summary>
+            Método a implementar en las clases hijas. Elimina la memoria asignada por el objeto.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGrafico.Clone">
+            <summary>
+            Clonado de la imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGrafico.EsValida">
+            <summary>
+            Método a implementar en las clases hijas que indica que la imagen es válida
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGrafico.Guardar(System.String)">
+            <summary>
+            Método a implementar en las clases hijas para guardar la imagen en un fichero de disco
+            </summary>
+            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
+            <returns>Verdadero si la ruta donde se ha de guardar el fichero es válida</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OGrafico.Cargar(System.String)">
+            <summary>
+            Método a implementar en las clases hijas para cargar la imagen de un fichero de disco
+            </summary>
+            <param name="ruta">Ruta de donde se ha de cargar la imagen</param>
+            <returns>Verdadero si el fichero que se ha de cargar existe</returns>
+        </member>
+        <member name="P:Orbita.VA.Comun.OGrafico.Grafico">
+            <summary>
+            Propieadad a heredar donde se accede a la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OGrafico.TipoGrafico">
+            <summary>
+            Tipo de imagen que almacena
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OConjuntoImagenGrafico">
+            <summary>
+            Agrupación de imágen con su gráfico asociado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OConjuntoImagenGrafico.Codigo">
+            <summary>
+            Código identificativo
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OConjuntoImagenGrafico.Imagen">
+            <summary>
+            Imagen
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OConjuntoImagenGrafico.Grafico">
+            <summary>
+            Gráfico
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OConjuntoImagenGrafico.#ctor(System.String,Orbita.VA.Comun.OImage,Orbita.VA.Comun.OGrafico)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigo">Código identificativo</param>
+            <param name="imagen">Imagen</param>
+            <param name="grafico">Gráfico asociado a la imagen</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OConjuntoImagenGrafico.#ctor(System.String,Orbita.VA.Comun.OImage)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigo">Código identificativo</param>
+            <param name="imagen">Imagen</param>
+            <param name="grafico">Gráfico asociado a la imagen</param>
+        </member>
+        <member name="T:Orbita.VA.Comun.TipoImagen">
+            <summary>
+            Enumerado de los formatos de imagen soportados por el sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.TipoImagen.Bitmap">
+            <summary>
+            Bitmap de Windows
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.TipoImagen.VisionPro">
+            <summary>
+            CogImage de VisionPro
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.ResolucionesImagenEstandar">
+            <summary>
+            Resoluciones frecuentes de imagenes
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ResolucionesImagenEstandar.VGA">
+            <summary>
+            VGA
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ResolucionesImagenEstandar.SVGA">
+            <summary>
+            SVGA
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ResolucionesImagenEstandar.Mpx1">
+            <summary>
+            1 Mpx
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ResolucionesImagenEstandar.Mpx1_3">
+            <summary>
+            1,3 Mpx
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ResolucionesImagenEstandar.Mpx2">
+            <summary>
+            2 Mpx
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ResolucionesImagenEstandar.Mpx3">
+            <summary>
+            3 Mpx
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ResolucionesImagenEstandar.Mpx4">
+            <summary>
+            4 Mpx
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ResolucionesImagenEstandar.Mpx5">
+            <summary>
+            5 Mpx
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.Properties.Resources">
+            <summary>
+              Clase de recurso con establecimiento inflexible de tipos, para buscar cadenas traducidas, etc.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.Properties.Resources.ResourceManager">
+            <summary>
+              Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.Properties.Resources.Culture">
+            <summary>
+              Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
+              búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OVALogsManager">
+            <summary>
+            Clase estática para acceder a las funciones de los registros
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OVALogsManager.LogDefecto">
+            <summary>
+            Log por defecto
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OVALogsManager.LogExcepcion">
+            <summary>
+            Log de excepciones
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OVALogsManager.IniciandoSistema">
+            <summary>
+            Se está iniciando el sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OVALogsManager.Loggers">
+            <summary>
+            Logger de tipo backup
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OVALogsManager.ShowMessageDelegate">
+            <summary>
+            Delegado utilizado para lanzar mensajes 
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OVALogsManager.ShowExceptionDelegate">
+            <summary>
+            Delegado utilizado para lanzar mensajes 
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Constructor(Orbita.VA.Comun.OMessageDelegate,Orbita.VA.Comun.OExceptionDelegate)">
+            <summary>
+            Construye los objetos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Destructor">
+            <summary>
+            Destruye los campos de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Inicializar">
+            <summary>
+            Se cargan los valores de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.FinInicializacion">
+            <summary>
+            Se desactiva el modo inicialización (trabaja de un modo distinto)
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Finalizar">
+            <summary>
+            Se realizan las acciones de finalización
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Debug(Orbita.VA.Comun.EnumModulosSistema,System.String,System.String)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Debug(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Exception)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="excepcion">Excepción a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Debug(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Object)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="objeto">Objeto a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Debug(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Exception,System.String)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="excepcion">Excepción a guardar</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Debug(Orbita.VA.Comun.EnumModulosSistema,System.String,System.String,System.Object[])">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="args">Argumento(s) a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Debug(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Exception,System.String,System.Object[])">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="excepcion">Excepción a guardar</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="args">Argumento(s) a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Info(Orbita.VA.Comun.EnumModulosSistema,System.String,System.String)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Info(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Exception)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="excepcion">Excepción a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Info(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Object)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="objeto">Objeto a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Info(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Exception,System.String)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="excepcion">Excepción a guardar</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Info(Orbita.VA.Comun.EnumModulosSistema,System.String,System.String,System.Object[])">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="args">Argumento(s) a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Info(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Exception,System.String,System.Object[])">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="excepcion">Excepción a guardar</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="args">Argumento(s) a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Warning(Orbita.VA.Comun.EnumModulosSistema,System.String,System.String)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Warning(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Exception)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="excepcion">Excepción a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Warning(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Object)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="objeto">Objeto a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Warning(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Exception,System.String)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="excepcion">Excepción a guardar</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Warning(Orbita.VA.Comun.EnumModulosSistema,System.String,System.String,System.Object[])">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="args">Argumento(s) a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Warning(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Exception,System.String,System.Object[])">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="excepcion">Excepción a guardar</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="args">Argumento(s) a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Error(Orbita.VA.Comun.EnumModulosSistema,System.String,System.String)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Error(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Exception)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="excepcion">Excepción a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Error(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Object)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="objeto">Objeto a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Error(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Exception,System.String)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="excepcion">Excepción a guardar</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Error(Orbita.VA.Comun.EnumModulosSistema,System.String,System.String,System.Object[])">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="args">Argumento(s) a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Error(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Exception,System.String,System.Object[])">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="excepcion">Excepción a guardar</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="args">Argumento(s) a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Fatal(Orbita.VA.Comun.EnumModulosSistema,System.String,System.String)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Fatal(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Exception)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="excepcion">Excepción a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Fatal(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Object)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="objeto">Objeto a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Fatal(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Exception,System.String)">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="excepcion">Excepción a guardar</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Fatal(Orbita.VA.Comun.EnumModulosSistema,System.String,System.String,System.Object[])">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="args">Argumento(s) a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.Fatal(Orbita.VA.Comun.EnumModulosSistema,System.String,System.Exception,System.String,System.Object[])">
+            <summary>
+            Añade el registro log
+            </summary>
+            <param name="modulo">Código del módulo desde donde se realiza la llamada</param>
+            <param name="remitente">Código del objeto que realiza la llamada</param>
+            <param name="excepcion">Excepción a guardar</param>
+            <param name="mensaje">Mensaje a guardar</param>
+            <param name="args">Argumento(s) a guardar</param>
+            <param name="NivelLog">Nivel del registro a guardar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.GetLog(System.String)">
+            <summary>
+            Busca el log con determinado nombre
+            </summary>
+            <param name="nombre">Nombre del log</param>
+            <returns>ILogger seleccionado</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.MensajeError(System.Exception)">
+            <summary>
+            Muestra un mensaje de información
+            </summary>
+            <param name="excepcion">Información a mostrar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.MensajeError(System.String)">
+            <summary>
+            Muestra un mensaje de información
+            </summary>
+            <param name="informacion">Información a mostrar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.MensajeFatal(System.Exception)">
+            <summary>
+            Muestra un mensaje de información
+            </summary>
+            <param name="excepcion">Información a mostrar</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVALogsManager.MensajeFatal(System.String)">
+            <summary>
+            Muestra un mensaje de información
+            </summary>
+            <param name="informacion">Información a mostrar</param>
+        </member>
+        <member name="T:Orbita.VA.Comun.ModulosSistema">
+            <summary>
+            Define el conjunto de módulos del sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ModulosSistema.Comun">
+            <summary>
+            Módulo de funciones comunes del sistema. 
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ModulosSistema.Sistema">
+            <summary>
+            Módulo de funciones propias del inicio y la finalización del sistema. 
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ModulosSistema.BBDD">
+            <summary>
+            Módulo de funciones accesos a bases de datos. 
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ModulosSistema.Cronometros">
+            <summary>
+            Módulo de cronómetros del sistema. 
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ModulosSistema.Threads">
+            <summary>
+            Módulo de Threads del sistema. 
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ModulosSistema.Monitorizacion">
+            <summary>
+            Módulo de monitorización del sistema. 
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ModulosSistema.Proteccion">
+            <summary>
+            Módulo de protección del código. 
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ModulosSistema.Escritorios">
+            <summary>
+            Módulo de gestión de formularios. 
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ModulosSistema.ImagenGraficos">
+            <summary>
+            Módulo de funciones base para las imagenes y gráficos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ModulosSistema.AlmacenInformacion">
+            <summary>
+            Módulo de funciones base para el almacenamientod de información
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ModulosSistema.GestionMemoria">
+            <summary>
+            Módulo de funciones encargadas de monitorizar la creación y destrucción de objetos de origen propio que ocupan gran cantidad de memoria y de creación frecuente, así como la gestión del colector de basura de .net
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.EnumModulosSistema">
+            <summary>
+            Clase que implementa el enumerado de los módulos del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.EnumModulosSistema.#ctor(System.String,System.String,System.Int32)">
+            <summary>
+            Constuctor de la clase
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OpcionesLogs">
+            <summary>
+            Opciones de configuración del registro de eventos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OpcionesLogs.Path">
+            <summary>
+            Ruta de registro de eventos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OpcionesLogs.Fichero">
+            <summary>
+            Fichero de registro de eventos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OpcionesLogs.Extension">
+            <summary>
+            Extensión de registro de eventos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OpcionesLogs.Separador">
+            <summary>
+            Separador de los campos del registro de eventos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OpcionesLogs.Inicio">
+            <summary>
+            Cadencia de backup
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OpcionesLogs.Retardo">
+            <summary>
+            Cadencia de backup
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OpcionesLogs.PathBackup">
+            <summary>
+            Ruta de las copias de seguridad del registro de eventos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OpcionesLogs.MascaraSubPathBackup">
+            <summary>
+            Subruta de las copias de seguridad del registro de eventos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OpcionesLogs.OpcionesLog">
+            <summary>
+            Lista de los logs del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OpcionesLogs.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OpcionesLogs.InicioEnMinutos">
+            <summary>
+            Cadencia de backup
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OpcionesLogs.RetardoEnMinutos">
+            <summary>
+            Cadencia de backup
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OpcionesLog">
+            <summary>
+            Opciones de configuración del registro de eventos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OpcionesLog.Identificador">
+            <summary>
+            Identificador del log
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OpcionesLog.NivelLog">
+            <summary>
+            Nivel a partir del cual se guardan los logs
+            </summary>        
+        </member>
+        <member name="T:Orbita.VA.Comun.OThreadManager">
+            <summary>
+            Clase estática para el control de la ejecución de threads
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadManager.ListaThreadsLoop">
+            <summary>
+            Listado de los threads de tipo loop del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.Constructor">
+            <summary>
+            Constructor de los campos de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.Destructor">
+            <summary>
+            Destruye los campos de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.Inicializar">
+            <summary>
+            Inicializa las variables necesarias para el funcionamiento de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.Finalizar">
+            <summary>
+            Finaliza la ejecución
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.EsperarSemaforo">
+            <summary>
+            Detiene la ejecución hasta que el semaforo se pone en verde
+            Debe de ser llamada desde el propio thread!!
+            </summary>
+            <returns>Falso si el semaforo no existe</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.SemaforoRojo(System.String)">
+            <summary>
+            Pone el semaforo en rojo
+            Debe de ser llamaeda desde fuera del thread!!!
+            </summary>
+            <param name="codigo">Identificador del objeto</param>
+            <returns>Falso si el semaforo no existe</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.SemaforoVerde(System.String)">
+            <summary>
+            Pone el semaforo en verde
+            Debe de ser llamaeda desde fuera del thread!!!
+            </summary>
+            <param name="codigo">Identificador del objeto</param>
+            <returns>Falso si el semaforo no existe</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.EjecucionEnTrheadPrincipal">
+            <summary>
+            Informa si se está ejecutando desde el mismo hilo de ejecución que la aplicación principal o desde otro distinto
+            </summary>
+            <returns>Verdadero si se está ejecutando desde el mismo hilo de ejecución que la aplicación principal</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.SincronizarConThreadPrincipal(System.Delegate,System.Object[])">
+            <summary>
+            Ejecuta el método pasado como parámetro en el hilo principal de la aplicación
+            </summary>
+            <param name="metodo">Método que se desea ejecutar en el hilo principal</param>
+            <param name="parametros">Parámetros del métodos que se desea ejecutar en el hilo principal</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.Espera(System.Int32)">
+            <summary>
+            Método que realiza una espera (sin parar la ejecución del sistema) de cierto tiempo en milisegundos
+            </summary>
+            <param name="timeOut">Tiempo de espera en milisegundos</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.Espera(Orbita.VA.Comun.OThreadManager.DelegadoEspera,System.Int32)">
+            <summary>
+            Método que realiza una espera hasta que cierto valor sea verdadero durante un máximo de tiempo
+            </summary>
+            <param name="valor">Valor al cual se espera que su estado sea verdadero o falso</param>
+            <param name="valorEsperado">Valor de comparación</param>
+            <param name="timeOut">Tiempo máximo de la espera en milisegundos</param>
+            <returns>Verdadero si el valor a cambiado a verdadero antes de que finalizase el TimeOut</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.Espera(System.Boolean@,System.Boolean,System.Int32)">
+            <summary>
+            Método que realiza una espera hasta que cierto valor sea verdadero durante un máximo de tiempo
+            </summary>
+            <param name="valor">Valor al cual se espera que su estado sea verdadero o falso</param>
+            <param name="valorEsperado">Valor de comparación</param>
+            <param name="timeOut">Tiempo máximo de la espera en milisegundos</param>
+            <returns>Verdadero si el valor a cambiado a verdadero antes de que finalizase el TimeOut</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.Espera(System.Object@,System.Object,System.Int32)">
+            <summary>
+            Método que realiza una espera hasta que cierto valor sea verdadero durante un máximo de tiempo
+            </summary>
+            <param name="valor">Valor al cual se espera que su estado sea verdadero o falso</param>
+            <param name="valorEsperado">Valor de comparación</param>
+            <param name="timeOut">Tiempo máximo de la espera en milisegundos</param>
+            <returns>Verdadero si el valor a cambiado a verdadero antes de que finalizase el TimeOut</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.Count">
+            <summary>
+            Devuelve el número total de threads en ejecución
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.NuevoThread(Orbita.VA.Comun.OThreadLoop)">
+            <summary>
+            Añade un nuevo Thread al sistema
+            </summary>
+            <param name="threadOrbita">Thread a añadir</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.EliminarThread(Orbita.VA.Comun.OThreadLoop)">
+            <summary>
+            Añade un nuevo Thread al sistema
+            </summary>
+            <param name="threadOrbita">Thread a eliminar</param>
+        </member>
+        <member name="T:Orbita.VA.Comun.OThreadManager.DelegadoEspera">
+            <summary>
+            Delegado de la espera
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.Comun.OThreadLoop">
+            <summary>
+            Thread donde se ha implementado el evento OnFinalize
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadLoop.ThreadEjecucion">
+            <summary>
+            Thread de ejecución de la tarea
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadLoop.Priority">
+            <summary>
+            Prioridad del thread
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadLoop.Estado">
+            <summary>
+            Estado de funcionamiento del thread
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadLoop.FinSuspensionEvent">
+            <summary>
+            Evento de reanudación de la suspensión
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadLoop.FlagFinalizacion">
+            <summary>
+            Indica que se ha de salir del bucle de ejecución
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadLoop.EjecutarRunEnThread">
+            <summary>
+            Indica si la ejecución del evento Run se ha de realizar en el thread o fuera de él
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadLoop.EjecutarFinEnThread">
+            <summary>
+            Indica si la ejecución del evento Fin se ha de realizar en el thread o fuera de él
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadLoop._Codigo">
+            <summary>
+            Código identificativo de la clase.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadLoop._TiempoSleep">
+            <summary>
+            Tiempo de descanso entre bucles del thread
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.#ctor(System.String,System.Int32,System.Threading.ThreadPriority)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.LanzarEventoEjecucion(System.Boolean@)">
+            <summary>
+            Lanza la ejecución del thread
+            </summary>
+            <param name="finalize">Indica la finalización del thread</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.LanzarEventoFinEjecucion">
+            <summary>
+            Lanza la el final de ejecución del thread
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.Start">
+            <summary>
+            Inicio del thread
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.StartPaused">
+            <summary>
+            Inicio del thread
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.Stop">
+            <summary>
+            Fin del trehad
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.Stop(System.Int32)">
+            <summary>
+            Fin del trehad
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.Pause">
+            <summary>
+            Pasua de la ejecución del thread. Este método no debe ser llamado desde el propio thread
+            </summary>
+            <returns>Verdadero si la acción ha resultado exitosa</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.Resume">
+            <summary>
+            Continua la ejecución del thread. Este método no debe ser llamado desde el propio thread
+            </summary>
+            <returns>Verdadero si la acción ha resultado exitosa</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.Wait">
+            <summary>
+            Detiene la ejecución hasta que el semaforo se pone en verde
+            </summary>
+            <returns>Verdadero si la acción ha resultado exitosa</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.Dispose">
+            <summary>
+            Elimina la memoria asignada por el objeto.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.Dispose(System.Int32)">
+            <summary>
+            Elimina la memoria asignada por el objeto.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.ChangePriority(System.Threading.ThreadPriority)">
+            <summary>
+            Cambia la prioridad al thread
+            </summary>
+            <param name="threadPriority">Prioridad a establecer</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.CrearSuscripcionRun(Orbita.VA.Comun.ThreadRun,System.Boolean)">
+            <summary>
+            Creación de la suscripción al evento de ejecución
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.CrearSuscripcionFin(Orbita.VA.Comun.OSimpleMethod,System.Boolean)">
+            <summary>
+            Creación de la suscripción al evento de finalización de la ejecución
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.CrearThread">
+            <summary>
+            Inicio del thread
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.DestruirThread">
+            <summary>
+            Fin del thread
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.Ejecucion(System.Boolean@)">
+            <summary>
+            Método a heredar para implementar la ejecución del thread.
+            Este método se está ejecutando en un bucle. Para salir del bucle hay que devolver finalize a true.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.FinEjecucion">
+            <summary>
+            Método a heredar para implementar la ejecución del thread.
+            Este método se está ejecutando en un bucle. Para salir del bucle hay que devolver finalize a true.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadLoop.EjecucionInterna">
+            <summary>
+            Método donde realmente se ejecuta el thread.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadLoop.OnEjecucion">
+            <summary>
+            Delegado que de la ejecución del thread
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadLoop.OnFinEjecucion">
+            <summary>
+            Delegado que de la ejecución del fin del thread
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OThreadLoop.ThreadState">
+            <summary>
+            Estado del thread
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OThreadLoop.Codigo">
+            <summary>
+            Código identificativo de la clase.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OThreadLoop.TiempoSleep">
+            <summary>
+            Tiempo de descanso entre bucles del thread
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OThreadLoop.EstadoThread">
+            <summary>
+            Estado del thread
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadLoop.EstadoThread.ThreadInitial">
+            <summary>
+            El thread ha sido creado pero no está en funcionamiento
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadLoop.EstadoThread.ThreadRunning">
+            <summary>
+            El thread está ejecutandose
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadLoop.EstadoThread.ThreadSuspending">
+            <summary>
+            El thread se está suspendiendo
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadLoop.EstadoThread.ThreadSuspended">
+            <summary>
+            El thread está suspendido
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadLoop.EstadoThread.ThreadEnded">
+            <summary>
+            El thread se ha detenido
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadsLoop.ListaThreads">
+            <summary>
+            Lista de thrads de tipo loop
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadsLoop.#ctor(System.String,System.UInt32)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadsLoop.#ctor(System.String,System.UInt32,System.Int32,System.Threading.ThreadPriority)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadsLoop.Start">
+            <summary>
+            Inicio del thread
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadsLoop.StartPaused">
+            <summary>
+            Inicio del thread
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadsLoop.Stop">
+            <summary>
+            Fin del trehad
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadsLoop.Stop(System.Int32)">
+            <summary>
+            Fin del trehad
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadsLoop.Pause">
+            <summary>
+            Pasua de la ejecución del thread. Este método no debe ser llamado desde el propio thread
+            </summary>
+            <returns>Verdadero si la acción ha resultado exitosa</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadsLoop.Resume">
+            <summary>
+            Continua la ejecución del thread. Este método no debe ser llamado desde el propio thread
+            </summary>
+            <returns>Verdadero si la acción ha resultado exitosa</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadsLoop.Wait">
+            <summary>
+            Detiene la ejecución hasta que el semaforo se pone en verde
+            </summary>
+            <returns>Verdadero si la acción ha resultado exitosa</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadsLoop.Dispose">
+            <summary>
+            Elimina la memoria asignada por el objeto.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadsLoop.Dispose(System.Int32)">
+            <summary>
+            Elimina la memoria asignada por el objeto.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadsLoop.ChangePriority(System.Threading.ThreadPriority)">
+            <summary>
+            Cambia la prioridad al thread
+            </summary>
+            <param name="threadPriority">Prioridad a establecer</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadsLoop.CrearSuscripcionRun(Orbita.VA.Comun.ThreadRun,System.Boolean)">
+            <summary>
+            Creación de la suscripción al evento de ejecución
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadsLoop.CrearSuscripcionFin(Orbita.VA.Comun.OSimpleMethod,System.Boolean)">
+            <summary>
+            Creación de la suscripción al evento de finalización de la ejecución
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.ThreadRun">
+            <summary>
+            Delegado que de la ejecución del thread
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OBaseDatosParam">
+            <summary>
+            Clase estática que configura el acceso a la bases de datos de SQL Server de parametrización.
+            Utiliza BaseDatosRuntime especificando como origen la base datos de parametrización
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBaseDatosParam.Conectar">
+            <summary>
+            Extrae la información de conexión con la base de datos y comprueba que existe comunicación
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBaseDatosParam.ObtenerConnectionString">
+            <summary>
+            Obtiene la cadena de conexión a la base de datos
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OBaseDatosParam.SQLServer">
+            <summary>
+             Acceso a la base de datos SQL Server
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OBaseDatosAlmacen">
+            <summary>
+            Clase estática que configura el acceso a la bases de datos de SQL Server de almacenamiento.
+            Utiliza BaseDatosRuntime especificando como origen la base datos de parametrización
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBaseDatosAlmacen.Conectar">
+            <summary>
+            Extrae la información de conexión con la base de datos y comprueba que existe comunicación
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBaseDatosAlmacen.ObtenerConnectionString">
+            <summary>
+            Obtiene la cadena de conexión a la base de datos
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OBaseDatosAlmacen.SQLServer">
+            <summary>
+             Acceso a la base de datos SQL Server
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OBaseDatosManager">
+            <summary>
+            Clase estática que configura el acceso a todas las bases de datos de SQL Server.
+            Contiene una lista con todas las bases de datos del sitema
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OBaseDatosManager.ListaBaseDatos">
+            <summary>
+            Lista de las bases de datos existentes en el sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBaseDatosManager.Constructor">
+            <summary>
+            Constructor de los campos de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBaseDatosManager.Destructor">
+            <summary>
+            Destruye los campos de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBaseDatosManager.Inicializar">
+            <summary>
+            Inicializa las variables necesarias para el funcionamiento de los cronómetros
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBaseDatosManager.Finalizar">
+            <summary>
+            Finaliza la ejecución
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBaseDatosManager.NuevaBaseDatos(Orbita.VA.Comun.EnumOrigenBaseDatos)">
+            <summary>
+            Extrae la información de conexión con la base de datos y comprueba que existe comunicación
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBaseDatosManager.SQLServer(Orbita.VA.Comun.EnumOrigenBaseDatos)">
+            <summary>
+             Acceso a la base de datos SQL Server
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBaseDatosManager.ObtenerConnectionString(Orbita.VA.Comun.EnumOrigenBaseDatos)">
+            <summary>
+            Obtiene la cadena de conexión a la base de datos
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OBaseDatos">
+            <summary>
+            Clase que configura el acceso a las bases de datos de SQL Server y Access
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OBaseDatos.Origen">
+            <summary>
+            Origen de la base de datos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OBaseDatos.InformacionBasesDatos">
+            <summary>
+            Información de la configuración de la base de datos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBaseDatos.#ctor(Orbita.VA.Comun.EnumOrigenBaseDatos)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="origen"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBaseDatos.CrearInformacionSQL">
+            <summary>
+            Crea la información de conexión a una base de datos SQL Server
+            </summary>
+            <param name="baseDatos">Base de datos SQL Server a la que se desa conectar</param>
+            <returns>Un objeto InfoConexionSQLServer con la información necesaria para conectarse a la base de datos SQL Server</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBaseDatos.CompruebaAccesoBasesDatos">
+            <summary>
+            Comprueba el acceso a la base de datos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OBaseDatos.ObtenerConnectionString">
+            <summary>
+            Obtiene la cadena de conexión a la base de datos
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OBaseDatos.SQLServer">
+            <summary>
+             Acceso a la base de datos SQL Server
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.InformacionBasesDatos">
+            <summary>
+            Clase que contiene toda la información necesaria para establecer las conexiones a las bases de datos.
+            Esta clase es recuperada del archivo XML de configuración de la aplicación
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.InformacionBasesDatos.Origen">
+            <summary>
+            Nombre identificador de la base de datos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.InformacionBasesDatos.Instancia">
+            <summary>
+            Nombre de la máquina donde se encuentra la base de datos SQL Server
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.InformacionBasesDatos.BaseDatos">
+            <summary>
+            Nombre de la base de datos SQL Server
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.InformacionBasesDatos.Usuario">
+            <summary>
+            Nombre de usuario de la base de datos SQL Server
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.InformacionBasesDatos.Password">
+            <summary>
+            Contraseña de usuario de la base de datos SQL Server
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OrigenBaseDatos">
+            <summary>
+            Define el origen de la base de datos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OrigenBaseDatos.Parametrizacion">
+            <summary>
+            Base de datos de parametrización del sistema. 
+            En esta BBDD está definida toda la información necesaria para la ejecución del sistema.
+            Se trata de una base de datos de acceso normal a lectura.
+            El tamaño de esta base de datos es bajo y su velocidad de acceso alta.
+            El mantenimiento de esta BBDD se basa en realizar copias de seguridad.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OrigenBaseDatos.Almacen">
+            <summary>
+            Base de datos de almacenamiento del histórico de inspecciones. 
+            En esta BBDD está definida toda la información que genera la ejecución del sistema.
+            Se trata de una base de datos de acceso normal a escritura.
+            El tamaño de esta base de datos es alto y su velocidad de acceso baja.
+            El mantenimiento de esta BBDD se basa en elimnar registros antiguos.
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.EnumOrigenBaseDatos">
+            <summary>
+            Clase que implementa el enumerado del origen de la base de datos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.EnumOrigenBaseDatos.#ctor(System.String,System.String,System.Int32)">
+            <summary>
+            Constuctor de la clase
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OInstanciaUnicaAplicacion.MutexJustOne">
+            <summary>
+            Mutex utilizado por el JustOne
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OInstanciaUnicaAplicacion.Execute">
+            <summary>
+            Funcion que nos indica si ya se esta iniciando una instancia del programa
+            </summary>
+            <returns>true si ya esta iniciada y false si no es asi</returns>
+        </member>
+        <member name="T:Orbita.VA.Comun.OComunicacionCGI">
+            <summary>
+            Comunicación con aplicaciones CGI
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OComunicacionCGI._Codigo">
+            <summary>
+            Código identificativo de la conexión
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OComunicacionCGI._Url">
+            <summary>
+            Url de la conexión CGI
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OComunicacionCGI._Usuario">
+            <summary>
+            Usuario de la conexión
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OComunicacionCGI._Contraseña">
+            <summary>
+            Contraseña de la conexión
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OComunicacionCGI._UsaGrupoConexionSeparado">
+            <summary>
+            Indica si se usa un grupo de conexión separado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OComunicacionCGI._TimeOut">
+            <summary>
+            Tiempo máximo de la duración de la lectura del CGI
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OComunicacionCGI._Conectado">
+            <summary>
+            Indica que se realizado la conexión con el CGI
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OComunicacionCGI.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OComunicacionCGI.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Int32)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OComunicacionCGI.Start">
+            <summary>
+            Inicia la conexión con el CGI
+            </summary>
+            <returns>Verdadero si la conexión se ha establecido con éxito</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OComunicacionCGI.Stop">
+            <summary>
+            Finaliza la conexión con el CGI
+            </summary>
+            <returns>Verdadero si la conexión se ha finalizado con éxito</returns>
+        </member>
+        <member name="P:Orbita.VA.Comun.OComunicacionCGI.Codigo">
+            <summary>
+            Código identificativo de la conexión
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OComunicacionCGI.Url">
+            <summary>
+            Url de la conexión CGI
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OComunicacionCGI.Usuario">
+            <summary>
+            Usuario de la conexión
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OComunicacionCGI.Contraseña">
+            <summary>
+            Contraseña de la conexión
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OComunicacionCGI.UsaGrupoConexionSeparado">
+            <summary>
+            Indica si se usa un grupo de conexión separado
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OComunicacionCGI.TimeOut">
+            <summary>
+            Tiempo máximo de la duración de la lectura del CGI
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OComunicacionCGI.Conectado">
+            <summary>
+            Indica que se realizado la conexión con el CGI
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OComunicacionCGI.TipoContenido">
+            <summary>
+            Extrae tidpo del contenido de la respuesta
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OComunicacionCGI.TipoContenidoRespuestaCGI">
+            <summary>
+            Indica el tipo de contenido de una consulta CGI
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OComunicacionCGI.TipoContenidoRespuestaCGI.Desconocido">
+            <summary>
+            Desconocido
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OComunicacionCGI.TipoContenidoRespuestaCGI.TextPlain">
+            <summary>
+            Texto
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OComunicacionCGI.TipoContenidoRespuestaCGI.ImageJpeg">
+            <summary>
+            Imagen  JPG
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OComunicacionCGI.TipoContenidoRespuestaCGI.MultipartXMixedReplace">
+            <summary>
+            Envio continuo de bytes
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OComunicacionCGITexto">
+            <summary>
+            Comunicación con aplicaciones CGI con respuesta de texto
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OComunicacionCGITexto.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OComunicacionCGITexto.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Int32)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OComunicacionCGITexto.Ejecuta(System.String@)">
+            <summary>
+            Envio de comando CGI para información de texto
+            </summary>
+            <returns>Verdadero si la ejecución se ha realizado con éxito</returns>
+        </member>
+    </members>
+</doc>
