@@ -133,13 +133,14 @@ namespace Orbita.Comunicaciones
                             // el eventReset del evento 'wsk_DataArrival'.
                             if (!this._eReset.Dormir(0, TimeSpan.FromSeconds(this.Config.TiempoVida / 1000)))
                             {
+                                responde = false;
+                                    
                                 if (reintento < maxReintentos)
                                 {
                                     reintento++;
                                 }
                                 else
                                 {
-                                    responde = false;
                                     estado.Estado = "NOK";
                                 }
                                 // Trazar recepción errónea.
@@ -230,8 +231,7 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public override bool Escribir(string[] variables, object[] valores)
         {
-            bool resultado = false;
-
+            bool resultado = false;            
             byte[] salidas = new byte[_numeroBytesSalidas];
 
             try

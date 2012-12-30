@@ -160,13 +160,14 @@ namespace Orbita.Comunicaciones
                             // el eventReset del evento 'wsk_DataArrival'.
                             if (!this._eReset.Dormir(0, TimeSpan.FromSeconds(this.Config.TiempoVida / 1000)))
                             {
+                                responde = false;
+
                                 if (reintento<maxReintentos)
                                 {
                                     reintento++;
                                 }
                                 else
                                 {
-                                    responde = false;
                                     estado.Estado = "NOK";
                                 }                                
                                 // Trazar recepción errónea.
@@ -259,8 +260,8 @@ namespace Orbita.Comunicaciones
         public override bool Escribir(string[] variables, object[] valores)
         {
             bool resultado = false;
-
             byte[] salidas = new byte[_numeroBytesSalidas];
+
             for (int i = 0; i < this.Salidas.Length; i++)
             {
                 salidas[i] = this.Salidas[i];
@@ -294,7 +295,7 @@ namespace Orbita.Comunicaciones
                         {
                             //Configuramos las salidas en dos bytes
                             byte[] byteSalidas = protocoloEscritura.SalidasEnviar(salidas[0], this.IdMensaje);
-
+                            
                             if (byteSalidas != null)
                             {
                                 this.Winsock.Send(byteSalidas);
