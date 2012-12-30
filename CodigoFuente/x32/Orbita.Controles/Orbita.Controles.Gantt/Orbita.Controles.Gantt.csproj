@@ -81,9 +81,7 @@
     <Compile Include="UC\OrbitaUltraGanttView.Designer.cs">
       <DependentUpon>OrbitaUltraGanttView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaGantt.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="Custom\OrbitaGantt.cs" />
     <Compile Include="Custom\OrbitaGantt.Designer.cs">
       <DependentUpon>OrbitaGantt.cs</DependentUpon>
     </Compile>
@@ -99,7 +97,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Orbita.Controles.OrbitaGridPro\Orbita.Controles.Grid.csproj">
+    <ProjectReference Include="..\Orbita.Controles.Grid\Orbita.Controles.Grid.csproj">
       <Project>{34B632DA-E0C4-4F27-AAFD-AFAD64604BFA}</Project>
       <Name>Orbita.Controles.Grid</Name>
     </ProjectReference>

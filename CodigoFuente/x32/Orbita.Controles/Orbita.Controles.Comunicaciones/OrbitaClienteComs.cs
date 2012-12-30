@@ -292,7 +292,7 @@ namespace Orbita.Controles.Comunicaciones
                 DateTime dtini = DateTime.Now;
                 object[] valor = this._servidor.OrbitaLeer(this._idDispositivo, lectura, true);
                 TimeSpan ts = DateTime.Now.Subtract(dtini);
-                //this.lblTpoLect.Text = ts.TotalMilliseconds.ToString() + " ms.";
+                this.lblTpoLect.Text = ts.TotalMilliseconds.ToString() + " ms.";
                 string svalor = valor[0].ToString();
                 this.txtValLeer.Text = svalor;
             }
@@ -323,7 +323,7 @@ namespace Orbita.Controles.Comunicaciones
                 DateTime dtini = DateTime.Now;
                 bool resp = this._servidor.OrbitaEscribir(this._idDispositivo, variable, valor);
                 TimeSpan ts = DateTime.Now.Subtract(dtini);
-                //this.lblTpoEsc.Text = ts.TotalMilliseconds.ToString() + " ms.";
+                this.lblTpoEsc.Text = ts.TotalMilliseconds.ToString() + " ms.";
             }
             catch (System.Exception ex)
             {
@@ -337,55 +337,7 @@ namespace Orbita.Controles.Comunicaciones
         /// <param name="e"></param>
         private void btnLeerVariables_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string[] variables = new string[this._servidor.OrbitaGetDatos(this._idDispositivo).Count];
-                int i = 0;
-                foreach (DictionaryEntry item in this._servidor.OrbitaGetDatos(this._idDispositivo))
-                {
-                    OInfoDato dato = (OInfoDato)item.Value;
 
-                    variables[i] = dato.Texto;
-                    i++;
-                }
-
-                object[] resultado = this._servidor.OrbitaLeer(this._idDispositivo, variables, true);
-
-                DataTable dt = new DataTable();
-
-                DataColumn column = new DataColumn();
-                column.DataType = System.Type.GetType("System.String");
-                column.ColumnName = "Variable";
-                dt.Columns.Add(column);
-
-                DataColumn column2 = new DataColumn();
-                column2.DataType = System.Type.GetType("System.String");
-                column2.ColumnName = "Valor";
-                dt.Columns.Add(column2);
-
-                for (int j = 0; j < variables.Length; j++)
-                {
-                    DataRow dr = dt.NewRow();
-                    dr["Variable"] = variables[j];
-                    try
-                    {
-                        dr["Valor"] = resultado[j];
-                    }
-                    catch (Exception)
-                    {
-                        dr["Valor"] = "";
-                    }
-
-                    dt.Rows.Add(dr);
-                }
-
-                this.dataGridViewLecturas.DataSource = dt;
-            }
-            catch (Exception)
-            {                
-               
-            }
-            
         }
         /// <summary>
         /// Lee las alarmas activas

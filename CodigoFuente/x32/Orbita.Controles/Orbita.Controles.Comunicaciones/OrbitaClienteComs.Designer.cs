@@ -57,6 +57,8 @@
             this.btnLeerAlarmas = new System.Windows.Forms.Button();
             this.gbCDato = new System.Windows.Forms.GroupBox();
             this.listViewCDato = new System.Windows.Forms.ListView();
+            this.lblTpoLect = new System.Windows.Forms.Label();
+            this.lblTpoEsc = new System.Windows.Forms.Label();
             this.gbConfig.SuspendLayout();
             this.SContMain.Panel1.SuspendLayout();
             this.SContMain.Panel2.SuspendLayout();
@@ -129,7 +131,7 @@
             // 
             // btnConectar
             // 
-            this.btnConectar.Location = new System.Drawing.Point(668, 23);
+            this.btnConectar.Location = new System.Drawing.Point(711, 23);
             this.btnConectar.Name = "btnConectar";
             this.btnConectar.Size = new System.Drawing.Size(75, 23);
             this.btnConectar.TabIndex = 19;
@@ -200,6 +202,8 @@
             // 
             // pnlComs
             // 
+            this.pnlComs.Controls.Add(this.lblTpoEsc);
+            this.pnlComs.Controls.Add(this.lblTpoLect);
             this.pnlComs.Controls.Add(this.lblCom);
             this.pnlComs.Controls.Add(this.txtVarLeer);
             this.pnlComs.Controls.Add(this.txtValLeer);
@@ -216,7 +220,7 @@
             // lblCom
             // 
             this.lblCom.AutoSize = true;
-            this.lblCom.Location = new System.Drawing.Point(12, 17);
+            this.lblCom.Location = new System.Drawing.Point(23, 17);
             this.lblCom.Name = "lblCom";
             this.lblCom.Size = new System.Drawing.Size(88, 13);
             this.lblCom.TabIndex = 16;
@@ -224,39 +228,41 @@
             // 
             // txtVarLeer
             // 
-            this.txtVarLeer.Location = new System.Drawing.Point(309, 14);
+            this.txtVarLeer.Location = new System.Drawing.Point(319, 13);
             this.txtVarLeer.Name = "txtVarLeer";
             this.txtVarLeer.Size = new System.Drawing.Size(100, 20);
             this.txtVarLeer.TabIndex = 1;
             // 
             // txtValLeer
             // 
-            this.txtValLeer.Location = new System.Drawing.Point(511, 13);
+            this.txtValLeer.Location = new System.Drawing.Point(521, 13);
             this.txtValLeer.Name = "txtValLeer";
             this.txtValLeer.Size = new System.Drawing.Size(100, 20);
             this.txtValLeer.TabIndex = 2;
             // 
             // btnLectura
             // 
-            this.btnLectura.Location = new System.Drawing.Point(429, 12);
+            this.btnLectura.Location = new System.Drawing.Point(440, 12);
             this.btnLectura.Name = "btnLectura";
             this.btnLectura.Size = new System.Drawing.Size(75, 23);
             this.btnLectura.TabIndex = 0;
             this.btnLectura.Text = "leer";
             this.btnLectura.UseVisualStyleBackColor = true;
+            this.btnLectura.Click += new System.EventHandler(this.btnLectura_Click);
             // 
             // btnEscritura
             // 
-            this.btnEscritura.Location = new System.Drawing.Point(658, 10);
+            this.btnEscritura.Location = new System.Drawing.Point(711, 12);
             this.btnEscritura.Name = "btnEscritura";
             this.btnEscritura.Size = new System.Drawing.Size(75, 23);
             this.btnEscritura.TabIndex = 3;
             this.btnEscritura.Text = "escribir";
             this.btnEscritura.UseVisualStyleBackColor = true;
+            this.btnEscritura.Click += new System.EventHandler(this.btnEscritura_Click);
             // 
             // txtCom
             // 
-            this.txtCom.Location = new System.Drawing.Point(106, 14);
+            this.txtCom.Location = new System.Drawing.Point(116, 13);
             this.txtCom.Name = "txtCom";
             this.txtCom.Size = new System.Drawing.Size(100, 20);
             this.txtCom.TabIndex = 15;
@@ -264,7 +270,7 @@
             // lblVarLectura
             // 
             this.lblVarLectura.AutoSize = true;
-            this.lblVarLectura.Location = new System.Drawing.Point(219, 17);
+            this.lblVarLectura.Location = new System.Drawing.Point(226, 17);
             this.lblVarLectura.Name = "lblVarLectura";
             this.lblVarLectura.Size = new System.Drawing.Size(87, 13);
             this.lblVarLectura.TabIndex = 10;
@@ -348,6 +354,7 @@
             this.btnLeerVariables.TabIndex = 14;
             this.btnLeerVariables.Text = "Leer Variables";
             this.btnLeerVariables.UseVisualStyleBackColor = true;
+            this.btnLeerVariables.Click += new System.EventHandler(this.btnLeerVariables_Click);
             // 
             // btnLeerAlarmas
             // 
@@ -357,6 +364,7 @@
             this.btnLeerAlarmas.TabIndex = 25;
             this.btnLeerAlarmas.Text = "Leer Alarmas";
             this.btnLeerAlarmas.UseVisualStyleBackColor = true;
+            this.btnLeerAlarmas.Click += new System.EventHandler(this.btnLeerAlarmas_Click);
             // 
             // gbCDato
             // 
@@ -382,14 +390,30 @@
             this.listViewCDato.UseCompatibleStateImageBehavior = false;
             this.listViewCDato.View = System.Windows.Forms.View.List;
             // 
-            // OClienteComs
+            // lblTpoLect
+            // 
+            this.lblTpoLect.AutoSize = true;
+            this.lblTpoLect.Location = new System.Drawing.Point(627, 17);
+            this.lblTpoLect.Name = "lblTpoLect";
+            this.lblTpoLect.Size = new System.Drawing.Size(0, 13);
+            this.lblTpoLect.TabIndex = 17;
+            // 
+            // lblTpoEsc
+            // 
+            this.lblTpoEsc.AutoSize = true;
+            this.lblTpoEsc.Location = new System.Drawing.Point(794, 17);
+            this.lblTpoEsc.Name = "lblTpoEsc";
+            this.lblTpoEsc.Size = new System.Drawing.Size(0, 13);
+            this.lblTpoEsc.TabIndex = 18;
+            // 
+            // OrbitaClienteComs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.SContMain);
             this.Controls.Add(this.gbConfig);
             this.Controls.Add(this.pnlInf);
-            this.Name = "OClienteComs";
+            this.Name = "OrbitaClienteComs";
             this.Size = new System.Drawing.Size(1020, 543);
             this.Load += new System.EventHandler(this.OClienteComs_Load);
             this.gbConfig.ResumeLayout(false);
@@ -446,5 +470,7 @@
         private System.Windows.Forms.Button btnLeerAlarmas;
         public System.Windows.Forms.GroupBox gbCDato;
         private System.Windows.Forms.ListView listViewCDato;
+        private System.Windows.Forms.Label lblTpoLect;
+        private System.Windows.Forms.Label lblTpoEsc;
     }
 }
