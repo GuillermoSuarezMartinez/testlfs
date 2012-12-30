@@ -1,14 +1,4 @@
-﻿//***********************************************************************
-// Assembly         : OrbitaComunicaciones
-// Author           : crodriguez
-// Created          : 03-11-2011
-//
-// Last Modified By : crodriguez
-// Last Modified On : 03-15-2011
-// Description      : 
-//
-// Copyright        : (c) Orbita Ingenieria. All rights reserved.
-//***********************************************************************
+﻿
 using System;
 
 namespace Orbita.Comunicaciones
