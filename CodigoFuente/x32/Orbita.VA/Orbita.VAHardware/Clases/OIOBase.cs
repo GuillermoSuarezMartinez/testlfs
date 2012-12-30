@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -12,10 +12,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
-using Orbita.VAComun;
-using Orbita.VAControl;
+using Orbita.VA.Comun;
+using Orbita.VA.MaquinasEstados;
+using Orbita.Utiles;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// Clase de acceso estático que contiene la lista de hardware de Entradas Salidas
@@ -316,7 +317,7 @@ namespace Orbita.VAHardware
                 this._Fabricante = dtTarjetaIO.Rows[0]["Fabricante"].ToString();
                 this._Modelo = dtTarjetaIO.Rows[0]["Modelo"].ToString();
 
-                this.TipoTarjetaIO = OEnumRobusto<OTipoTarjetaIO>.Validar(dtTarjetaIO.Rows[0]["CodTipoHardware"].ToString(), OTipoTarjetaIO.USB_1024HLS);
+                this.TipoTarjetaIO = OEnumerado<OTipoTarjetaIO>.Validar(dtTarjetaIO.Rows[0]["CodTipoHardware"].ToString(), OTipoTarjetaIO.USB_1024HLS);
                 //this.TipoTarjetaIO = (OTipoTarjetaIO)App.EnumParse(typeof(OTipoTarjetaIO), dtTarjetaIO.Rows[0]["CodTipoHardware"].ToString(), OTipoTarjetaIO.USB_1024HLS);
             }
         }
@@ -518,15 +519,15 @@ namespace Orbita.VAHardware
                 this._Descripcion = dtTerminalIO.Rows[0]["DescTerminalIO"].ToString();
                 this._Habilitado = (bool)dtTerminalIO.Rows[0]["HabilitadoTerminalIO"];
 
-                int intTipoTerminalIO = OEnteroRobusto.Validar(dtTerminalIO.Rows[0]["IdTipoTerminalIO"], 1, 4, 1);
+                int intTipoTerminalIO = OEntero.Validar(dtTerminalIO.Rows[0]["IdTipoTerminalIO"], 1, 4, 1);
                 this._TipoTerminalIO = (OTipoTerminalIO)intTipoTerminalIO;
 
                 this._CodVariable = dtTerminalIO.Rows[0]["CodVariable"].ToString();
                 this._Numero = (int)dtTerminalIO.Rows[0]["Numero"];
 
-                this._TipoDato = (OEnumTipoDato)OEnteroRobusto.Validar(dtTerminalIO.Rows[0]["IdTipoVariable"], 0, 99, 0);
+                this._TipoDato = (OEnumTipoDato)OEntero.Validar(dtTerminalIO.Rows[0]["IdTipoVariable"], 0, 99, 0);
 
-                this._Valor = Orbita.VAComun.OTipoDato.DevaultValue(this._TipoDato);
+                this._Valor = Orbita.VA.Comun.OTipoDato.DevaultValue(this._TipoDato);
             }
         }
         #endregion
@@ -602,7 +603,7 @@ namespace Orbita.VAHardware
         public virtual void LeerEntrada()
         {
             // Información extra
-            OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, string.Format("Lectura de entrada del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, ORobusto.ToString(this.Valor)));
+            OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, string.Format("Lectura de entrada del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(this.Valor)));
         }
 
         /// <summary>
@@ -611,7 +612,7 @@ namespace Orbita.VAHardware
         public virtual void EscribirEntrada(string codigoVariable, object valor)
         {
             // Información extra
-            OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, string.Format("Escritura de entrada del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, ORobusto.ToString(this.Valor)));
+            OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, string.Format("Escritura de entrada del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(this.Valor)));
         }
 
         /// <summary>
@@ -620,7 +621,7 @@ namespace Orbita.VAHardware
         public virtual void EscribirSalida(string codigoVariable, object valor)
         {
             // Información extra
-            OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, string.Format("Escritura de salida del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, ORobusto.ToString(this.Valor)));
+            OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, string.Format("Escritura de salida del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(this.Valor)));
         }
 
         /// <summary>
@@ -629,7 +630,7 @@ namespace Orbita.VAHardware
         public virtual void LeerSalida()
         {
             // Información extra
-            OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, string.Format("Lectura de salida del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, ORobusto.ToString(this.Valor)));
+            OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, string.Format("Lectura de salida del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(this.Valor)));
         }
         #endregion
     }
@@ -661,25 +662,25 @@ namespace Orbita.VAHardware
         /// <summary>
         /// Entrada digital
         /// </summary>
-        [OStringValue("Entrada digital")]
+        [OAtributoEnumerado("Entrada digital")]
         EntradaDigital = 1,
 
         /// <summary>
         /// Salida digital
         /// </summary>
-        [OStringValue("Salida digital")]
+        [OAtributoEnumerado("Salida digital")]
         SalidaDigital = 2,
 
         /// <summary>
         /// Comando de Entrada
         /// </summary>
-        [OStringValue("Comando de entrada")]
+        [OAtributoEnumerado("Comando de entrada")]
         EntradaComando = 3,
 
         /// <summary>
         /// Comando de Entrada
         /// </summary>
-        [OStringValue("Comando de salida")]
+        [OAtributoEnumerado("Comando de salida")]
         SalidaComando = 4
     }
 }

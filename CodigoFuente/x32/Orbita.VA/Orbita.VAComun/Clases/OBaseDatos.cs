@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.VAComun
+// Assembly         : Orbita.VA.Comun
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -13,8 +13,9 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using Orbita.BBDD;
+using Orbita.Utiles;
 
-namespace Orbita.VAComun
+namespace Orbita.VA.Comun
 {
     /// <summary>
     /// Clase estática que configura el acceso a la bases de datos de SQL Server de parametrización.
@@ -111,6 +112,7 @@ namespace Orbita.VAComun
         /// </summary>
         public static void Constructor()
         {
+            OSistemaManager.MensajeInfoArranqueAplicacion("Conectando con las bases de datos", false, OTipoMensaje.Info);
             ListaBaseDatos = new List<OBaseDatos>();
         }
 
@@ -127,6 +129,25 @@ namespace Orbita.VAComun
         /// </summary>
         public static void Inicializar()
         {
+            if (OSistemaManager.ModoInicio == ModoInicio.APruebaFallos)
+            {
+                OSistemaManager.MensajeInfoArranqueAplicacion("Comprobando la estructura de las bases de datos", true, OTipoMensaje.Info);
+
+                List<EnumOrigenBaseDatos> listaOrigenBasesDatos = new List<EnumOrigenBaseDatos>();
+                ListaBaseDatos.ForEach(delegate(OBaseDatos bd) { listaOrigenBasesDatos.Add(bd.Origen); });
+                    
+                string explicacion;
+                bool ok = AppBD.CompararEsquemaBBDD(listaOrigenBasesDatos, out explicacion);
+
+                if (ok)
+                {
+                    OSistemaManager.MensajeInfoArranqueAplicacion("Bases de datos con estructuras correctas", true, OTipoMensaje.Info);
+                }
+                else
+                {
+                    OSistemaManager.MensajeInfoArranqueAplicacion(explicacion, true, OTipoMensaje.Error);
+                }
+            }
         }
 
         /// <summary>
@@ -141,10 +162,14 @@ namespace Orbita.VAComun
         /// </summary>
         public static void NuevaBaseDatos(EnumOrigenBaseDatos enumOrigenBaseDatos)
         {
+            OSistemaManager.MensajeInfoArranqueAplicacion("Conectando con la base de datos de " + enumOrigenBaseDatos.Nombre, true, OTipoMensaje.Info);
+
             OBaseDatos baseDatos = new OBaseDatos(enumOrigenBaseDatos);
             baseDatos.CompruebaAccesoBasesDatos();
 
             ListaBaseDatos.Add(baseDatos);
+
+            OSistemaManager.MensajeInfoArranqueAplicacion("Conexión establecida con la base de datos de " + enumOrigenBaseDatos.Nombre, true, OTipoMensaje.Info);
         }
 
         /// <summary>

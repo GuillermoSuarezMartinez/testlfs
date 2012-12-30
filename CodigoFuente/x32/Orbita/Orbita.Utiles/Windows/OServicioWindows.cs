@@ -1,5 +1,9 @@
 using System;
 using System.ServiceProcess;
+using System.Runtime.InteropServices;
+using System.IO;
+using System.Diagnostics;
+
 namespace Orbita.Utiles
 {
     /// <summary>
@@ -9,68 +13,104 @@ namespace Orbita.Utiles
     {
         #region Atributo(s)
         /// <summary>
-        /// Nombre del servicio Windows.
+        /// Nombre del servicio
         /// </summary>
-        string _nombre;
+        string Nombre;
+        /// <summary>
+        /// Ruta del ejecutable
+        /// </summary>
+        string Ruta;
         /// <summary>
         /// Máquina donde se encuentra el servicio Windows.
         /// </summary>
-        string _maquina;
+        string Maquina = ".";
         /// <summary>
         /// TimeOut de espera hasta el inicio/paro
         /// del servicio Windows.
         /// </summary>
-        int _timeOutMilisegundos;
+        int TimeOutMilisegundos = 10000;
+        /// <summary>
+        /// Controlador del servicio instalado
+        /// </summary>
+        private ServiceController Controlador;
         #endregion
 
-        #region Constructor(es)
+        #region Propiedad(es)
         /// <summary>
-        /// Inicializar una nueva instancia de la clase OServicioWindows.
+        /// Informa si existe algún servicio con el nombre especificado, en caso contrario se supone que el servicio no está instalado
         /// </summary>
-        public OServicioWindows() { }
-        /// <summary>
-        /// Inicializar una nueva instancia de la clase OServicioWindows.
-        /// </summary>
-        /// <param name="nombre">Nombre del servicio Windows.</param>
-        public OServicioWindows(string nombre)
+        public bool Instalado
         {
-            this._nombre = nombre;
+            get
+            {
+                return this.IsInstalled();
+            }
+            set
+            {
+                this.Instalar(value);
+            }
         }
+
         /// <summary>
-        /// Inicializar una nueva instancia de la clase OServicioWindows.
+        /// Estado del servicio
         /// </summary>
-        /// <param name="nombre">Nombre del servicio Windows.</param>
-        /// <param name="maquina">Máquina donde se encuentra el 
-        /// servicio Windows.</param>
-        public OServicioWindows(string nombre, string maquina)
+        public ServiceControllerStatus Estado
         {
-            this._nombre = nombre;
-            this._maquina = maquina;
+            get { return this.Controlador.Status; }
         }
+        #endregion
+
+        #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase OServicioWindows.
+        /// Constructor de la clase
         /// </summary>
-        /// <param name="nombre">Nombre del servicio Windows.</param>
-        /// <param name="timeOutMilisegundos">Tiempo de espera hasta que el
-        /// servicio alcanza el estado especificado.</param>
-        public OServicioWindows(string nombre, int timeOutMilisegundos)
+        /// <param name="nombre">Nombre del servicio</param>
+        public OServicioWindows(string nombre, string ruta)
         {
-            this._nombre = nombre;
-            this._timeOutMilisegundos = timeOutMilisegundos;
+            this.Nombre = nombre;
+            this.Ruta = ruta;
+
+            this.Controlador = new ServiceController(this.Nombre, this.Maquina);
         }
+
         /// <summary>
-        /// Inicializar una nueva instancia de la clase OServicioWindows.
+        /// Constructor de la clase
         /// </summary>
-        /// <param name="nombre">Nombre del servicio Windows.</param>
-        /// <param name="maquina">Máquina donde se encuentra el 
-        /// servicio Windows.</param>
-        /// <param name="timeOutMilisegundos">Tiempo de espera hasta que el
-        /// servicio alcanza el estado especificado.</param>
-        public OServicioWindows(string nombre, string maquina, int timeOutMilisegundos)
+        /// <param name="nombre">Nombre del servicio</param>
+        public OServicioWindows(string nombre, string ruta, string maquina)
         {
-            this._nombre = nombre;
-            this._maquina = maquina;
-            this._timeOutMilisegundos = timeOutMilisegundos;
+            this.Nombre = nombre;
+            this.Ruta = ruta;
+            this.Maquina = maquina;
+
+            this.Controlador = new ServiceController(this.Nombre, this.Maquina);
+        }
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        /// <param name="nombre">Nombre del servicio</param>
+        public OServicioWindows(string nombre, string ruta, int timeOutMilisegundos)
+        {
+            this.Nombre = nombre;
+            this.Ruta = ruta;
+            this.TimeOutMilisegundos = timeOutMilisegundos;
+
+            this.Controlador = new ServiceController(this.Nombre, this.Maquina);
+        }
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        /// <param name="nombre">Nombre del servicio</param>
+        public OServicioWindows(string nombre, string ruta, string maquina, int timeOutMilisegundos)
+        {
+            this.Nombre = nombre;
+            this.Ruta = ruta;
+            this.Maquina = maquina;
+            this.TimeOutMilisegundos = timeOutMilisegundos;
+
+            this.Controlador = new ServiceController(this.Nombre, this.Maquina);
         }
         #endregion
 
@@ -107,8 +147,8 @@ namespace Orbita.Utiles
             if (!this.disposed)
             {
                 // Finalizar correctamente los recursos no manejados.
-                this._nombre = null;
-                this._maquina = null;
+                this.Nombre = null;
+                this.Maquina = null;
 
                 // Marcar como desechada ó desechandose,
                 // de forma que no se puede ejecutar el
@@ -130,21 +170,104 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) público(s)
+        #region Método(s) público
         /// <summary>
-        /// Método que inicia el servicio Windows.
+        /// Instala el servicio
         /// </summary>
-        public void Iniciar()
+        /// <returns>Verdadero si el proceso ha finalizado con éxito</returns>
+        public bool Instalar()
         {
-            using (ServiceController servicio = new ServiceController(this._nombre))
+            return this.Instalar(true);
+        }
+        /// <summary>
+        /// Desinstala el servicio
+        /// </summary>
+        /// <returns>Verdadero si el proceso ha finalizado con éxito</returns>
+        public bool Desinstalar()
+        {
+            return this.Instalar(false);
+        }
+        /// <summary>
+        /// Inicia el servicio
+        /// </summary>
+        /// <returns>Verdadero si se ha iniciado con éxtio</returns>
+        public bool Iniciar()
+        {
+            if (this.Controlador is ServiceController)
             {
-                TimeSpan timeOut = TimeSpan.FromMilliseconds(this._timeOutMilisegundos);
+                if ((this.Controlador.Status == ServiceControllerStatus.Stopped) || (this.Controlador.Status == ServiceControllerStatus.Paused))
+                {
+                    this.Controlador.Start();
+                    this.Controlador.WaitForStatus(ServiceControllerStatus.Running, TimeSpan.FromMilliseconds(this.TimeOutMilisegundos));
+                }
 
-                servicio.Start();
-                servicio.WaitForStatus(ServiceControllerStatus.Running, timeOut);
             }
+            return this.Controlador.Status == ServiceControllerStatus.Running;
+        }
+        /// <summary>
+        /// Inicia el servicio
+        /// </summary>
+        /// <returns>Verdadero si se ha iniciado con éxtio</returns>
+        public bool Detener()
+        {
+            if (this.Controlador is ServiceController)
+            {
+                if ((this.Controlador.Status == ServiceControllerStatus.Running) || (this.Controlador.Status == ServiceControllerStatus.Paused))
+                {
+                    this.Controlador.Stop();
+                    this.Controlador.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromMilliseconds(this.TimeOutMilisegundos));
+                }
+            }
+            return this.Controlador.Status == ServiceControllerStatus.Stopped;
+        }
+        #endregion
+
+        #region Método(s) privado(s)
+        /// <summary>
+        /// Instala o desinstala el servicio
+        /// </summary>
+        /// <returns>Verdadero si el proceso ha finalizado con éxito</returns>
+        private bool Instalar(bool valor)
+        {
+            Process proceso = new Process();
+            string netFolder = RuntimeEnvironment.GetRuntimeDirectory();
+            string rutaInstalador = Path.Combine(netFolder, "installutil.exe");
+            if (File.Exists(rutaInstalador))
+            {
+                proceso.StartInfo.FileName = Path.Combine(netFolder, "installutil.exe");
+                proceso.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                if (valor)
+                {
+                    proceso.StartInfo.Arguments = this.Ruta;
+                }
+                else
+                {
+                    proceso.StartInfo.Arguments = "-u " + this.Ruta;
+                }
+                proceso.Start();
+                proceso.WaitForExit();
+                return this.IsInstalled();
+            }
+            return false;
+        }
+        /// <summary>
+        /// Consulta si el servicio está instalado
+        /// </summary>
+        /// <returns></returns>
+        private bool IsInstalled()
+        {
+            this.Controlador = null;
+            ServiceController[] listaServicios = ServiceController.GetServices();
+            foreach (ServiceController servicio in listaServicios)
+            {
+                if ((servicio.ServiceName == this.Nombre) && (servicio.MachineName == this.Maquina))
+                {
+                    this.Controlador = servicio;
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
     }
-
 }

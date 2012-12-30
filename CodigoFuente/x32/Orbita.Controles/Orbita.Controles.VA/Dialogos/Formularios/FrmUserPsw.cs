@@ -14,7 +14,7 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System.Collections.Generic;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
 namespace Orbita.Controles.VA
 {

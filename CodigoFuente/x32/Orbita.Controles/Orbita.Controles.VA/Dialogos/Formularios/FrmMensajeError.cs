@@ -15,7 +15,7 @@
 //***********************************************************************
 using System;
 using System.Windows.Forms;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
 namespace Orbita.Controles.VA
 {
@@ -105,7 +105,7 @@ namespace Orbita.Controles.VA
         {
             this.Mensaje = excepcion.Message;
             this.Excepcion = excepcion.GetType().FullName;
-            App.GetExceptionInfo(excepcion, out this.Assembly, out this.File, out this.ClassName, out this.Methode, out this.Line, out this.PilaLlamadas);
+            ODebug.GetExceptionInfo(excepcion, out this.Assembly, out this.File, out this.ClassName, out this.Methode, out this.Line, out this.PilaLlamadas);
 
             this.Mostrar(dialogo);
         }
@@ -118,7 +118,7 @@ namespace Orbita.Controles.VA
         {
                 this.Mensaje = informacion;
                 this.Excepcion = "";
-                App.GetCallingMethod(6, out this.Assembly, out this.File, out this.ClassName, out this.Methode, out this.Line, out this.PilaLlamadas);
+                ODebug.GetCallingMethod(6, out this.Assembly, out this.File, out this.ClassName, out this.Methode, out this.Line, out this.PilaLlamadas);
 
                 this.Mostrar(dialogo);
         }

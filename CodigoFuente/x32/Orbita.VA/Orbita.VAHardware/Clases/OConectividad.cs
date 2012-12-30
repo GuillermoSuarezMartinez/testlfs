@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 13-12-2012
 //
@@ -9,9 +9,9 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// Clase encargada de comprobar la conectividad con un dispositivo TCP/IP

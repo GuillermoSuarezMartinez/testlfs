@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 05-11-2012
 //
@@ -11,7 +11,7 @@
 //***********************************************************************
 using System;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// Some array utilities

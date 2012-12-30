@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAComun
+// Assembly         : Orbita.VA.Comun
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -19,7 +19,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 
-namespace Orbita.VAComun
+namespace Orbita.VA.Comun
 {
     /// <summary>
     /// Imagen de tipo Bitmap de windows

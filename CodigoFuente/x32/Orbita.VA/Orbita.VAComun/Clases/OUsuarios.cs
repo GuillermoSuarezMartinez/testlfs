@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAComun
+// Assembly         : Orbita.VA.Comun
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -12,8 +12,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using Orbita.Utiles;
 
-namespace Orbita.VAComun
+namespace Orbita.VA.Comun
 {
     /// <summary>
     /// Proporciona información sobre los usuarios del sistema
@@ -175,7 +176,7 @@ namespace Orbita.VAComun
             if (dtFuncionVision.Rows.Count == 1)
             {
                 this.Contraseña = dtFuncionVision.Rows[0]["Contraseña"].ToString();
-                this.Permisos = (OPermisos)OEnumRobusto<OPermisos>.EnumParse(typeof(OPermisos), dtFuncionVision.Rows[0]["Permiso"].ToString(), OPermisos.Operador);
+                this.Permisos = (OPermisos)OEnumerado<OPermisos>.EnumParse(typeof(OPermisos), dtFuncionVision.Rows[0]["Permiso"].ToString(), OPermisos.Operador);
             }            
         }
         #endregion

@@ -1,4 +1,4 @@
-﻿using Orbita.VAControl;
+﻿using Orbita.VA.MaquinasEstados;
 namespace Orbita.Controles.VA
 {
 	partial class FrmMonitorizacionMaquinaEstados

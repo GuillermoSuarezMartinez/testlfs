@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.VAFunciones
+// Assembly         : Orbita.VA.Funciones
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -12,9 +12,9 @@
 using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
-namespace Orbita.VAFunciones
+namespace Orbita.VA.Funciones
 {
 	public static class AppBD
 	{

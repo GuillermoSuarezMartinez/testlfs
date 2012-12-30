@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.VAControl
+// Assembly         : Orbita.VA.MaquinasEstados
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -12,9 +12,10 @@
 using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
+using Orbita.Utiles;
 
-namespace Orbita.VAControl
+namespace Orbita.VA.MaquinasEstados
 {
 	/// <summary>
 	/// Clase estática que contiene llamadas a los procedimiento almacenados en la base de datos
@@ -203,11 +204,11 @@ namespace Orbita.VAControl
 		/// </summary>
 		/// <param name="datosTrazas">Objeto CXML con los datos de las trazas</param>
 		/// <returns>Menor que 0 si ha habido algún error (devuleve un código de errores ente -1 y -7 en función de donde se ha producido)</returns>
-		public static int AddTrazas(OCXML datosTrazas)
+		public static int AddTrazas(OXml datosTrazas)
 		{
 			ArrayList list = new ArrayList();
 
-			list.Add(new SqlParameter("@DATOS_TRAZAS_ADD", (datosTrazas == null) ? null : datosTrazas.SW_XML.ToString()));
+			list.Add(new SqlParameter("@DATOS_TRAZAS_ADD", (datosTrazas == null) ? null : datosTrazas.SWXml.ToString()));
 
 			return OBaseDatosAlmacen.SQLServer.EjecutarProcedimientoAlmacenado("VAR_ADD_TRAZAS_XML", list);
 		}

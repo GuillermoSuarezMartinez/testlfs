@@ -6,9 +6,12 @@ using System.Windows.Forms;
 using System.Collections;
 using System.Data;
 using System.Reflection;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
+using Infragistics.UltraChart.Core.Primitives;
+using System.IO;
+using Orbita.Utiles;
 
 namespace Orbita.Controles.VA
 {
@@ -24,8 +27,8 @@ namespace Orbita.Controles.VA
         /// </summary>
         public static OrbitaForm FormularioPrincipalMDI
         {
-            get { return (OrbitaForm)OTrabajoControles.FormularioPrincipalMDI; }
-            set { OTrabajoControles.FormularioPrincipalMDI = value; }
+            get { return (OrbitaForm)App.FormularioPrincipal; }
+            set { App.FormularioPrincipal = value; }
         }
 
         /// <summary>
@@ -143,7 +146,7 @@ namespace Orbita.Controles.VA
             {
                 row = table.NewRow();
                 row["Indice"] = value;
-                row["Descripcion"] = OStringValueAttribute.GetStringValue((Enum)value);
+                row["Descripcion"] = OAtributoEnumerado.GetStringValue((Enum)value);
                 table.Rows.Add(row);
             }
 
@@ -155,7 +158,7 @@ namespace Orbita.Controles.VA
             combo.OrbFormatear(table, cols, "Descripcion", "Descripcion");
 
             // Se establece el valor actual
-            combo.OrbCombo.Value = OStringValueAttribute.GetStringValue((Enum)valorDefecto);
+            combo.OrbCombo.Value = OAtributoEnumerado.GetStringValue((Enum)valorDefecto);
         }
         /// <summary>
         /// Carga el combo con la lista de módulos de la aplicación
@@ -297,6 +300,147 @@ namespace Orbita.Controles.VA
             box.AppendText(text);
             box.SelectionColor = colorAnterior;
             box.SelectionFont = fuenteAnterior;
+        }
+        /// <summary>
+        /// Muestra el formulario para la selección de un archivo
+        /// </summary>
+        /// <param name="p"></param>
+        public static bool FormularioSeleccionArchivo(OpenFileDialog openFileDialog, ref string rutaArchivo)
+        {
+            bool resultado = false;
+            bool existeRuta = false;
+
+            if (System.IO.Path.IsPathRooted(rutaArchivo)) // Si la ruta del archivo es válida
+            {
+                existeRuta = true;
+                string rutaCarpeta = System.IO.Path.GetDirectoryName(rutaArchivo);
+                if (File.Exists(rutaArchivo)) // Si el archivo existe se selecciona por defecto
+                {
+                    openFileDialog.FileName = rutaArchivo;
+                    openFileDialog.InitialDirectory = rutaCarpeta;
+                }
+                else // si el archivo no existe pero si su carpeta, esta será la carpeta inicial del formulario
+                {
+                    if (Directory.Exists(rutaCarpeta))
+                    {
+                        openFileDialog.FileName = string.Empty;
+                        openFileDialog.InitialDirectory = rutaCarpeta;
+                    }
+                    else
+                    {
+                        existeRuta = false;
+                    }
+                }
+            }
+
+            if (!existeRuta)
+            {
+                openFileDialog.FileName = string.Empty;
+                openFileDialog.InitialDirectory = ORutaParametrizable.AppFolder;
+            }
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (File.Exists(openFileDialog.FileName))
+                {
+                    rutaArchivo = openFileDialog.FileName;
+                    resultado = true;
+                }
+            }
+
+            return resultado;
+        }
+        /// <summary>
+        /// Muestra el formulario para guardar un archivo
+        /// </summary>
+        /// <param name="p"></param>
+        public static bool FormularioGuardarArchivo(SaveFileDialog saveFileDialog, ref string rutaArchivo)
+        {
+            bool resultado = false;
+            bool existeRuta = false;
+
+            if (System.IO.Path.IsPathRooted(rutaArchivo)) // Si la ruta del archivo es válida
+            {
+                existeRuta = true;
+                string rutaCarpeta = System.IO.Path.GetDirectoryName(rutaArchivo);
+                if (File.Exists(rutaArchivo)) // Si el archivo existe se selecciona por defecto
+                {
+                    saveFileDialog.FileName = rutaArchivo;
+                    saveFileDialog.InitialDirectory = rutaCarpeta;
+                }
+                else // si el archivo no existe pero si su carpeta, esta será la carpeta inicial del formulario
+                {
+                    if (Directory.Exists(rutaCarpeta))
+                    {
+                        saveFileDialog.FileName = string.Empty;
+                        saveFileDialog.InitialDirectory = rutaCarpeta;
+                    }
+                    else
+                    {
+                        existeRuta = false;
+                    }
+                }
+            }
+
+            if (!existeRuta)
+            {
+                saveFileDialog.FileName = string.Empty;
+                saveFileDialog.InitialDirectory = ORutaParametrizable.AppFolder;
+            }
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                rutaArchivo = saveFileDialog.FileName;
+                resultado = true;
+            }
+
+            return resultado;
+        }
+        /// <summary>
+        /// Muestra el formulario para la selección de una carpeta
+        /// </summary>
+        /// <param name="p"></param>
+        public static bool FormularioSeleccionCarpeta(FolderBrowserDialog folderBrowserDialog, ref string rutaCarpeta)
+        {
+            bool resultado = false;
+            bool existeRuta = false;
+
+            if (System.IO.Path.IsPathRooted(rutaCarpeta)) // Si la ruta de la carpeta es válida
+            {
+                existeRuta = true;
+                string rutaCarpetaAnterior = System.IO.Path.GetDirectoryName(rutaCarpeta);
+                if (Directory.Exists(rutaCarpeta)) // Si la carpeta existe se selecciona por defecto
+                {
+                    folderBrowserDialog.SelectedPath = rutaCarpeta;
+                }
+                else // si el archivo no existe pero si su carpeta, esta será la carpeta inicial del formulario
+                {
+                    if (Directory.Exists(rutaCarpetaAnterior))
+                    {
+                        folderBrowserDialog.SelectedPath = rutaCarpetaAnterior;
+                    }
+                    else
+                    {
+                        existeRuta = false;
+                    }
+                }
+            }
+
+            if (!existeRuta)
+            {
+                folderBrowserDialog.SelectedPath = ORutaParametrizable.AppFolder;
+            }
+
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (Directory.Exists(folderBrowserDialog.SelectedPath))
+                {
+                    rutaCarpeta = folderBrowserDialog.SelectedPath;
+                    resultado = true;
+                }
+            }
+
+            return resultado;
         }
         #endregion
     } 

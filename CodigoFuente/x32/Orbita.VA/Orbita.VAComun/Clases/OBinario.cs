@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Orbita.VAComun
+namespace Orbita.VA.Comun
 {
     /// <summary>
     /// Trabajo con números binarios

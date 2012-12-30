@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 10-12-2012
 //
@@ -10,9 +10,9 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System.Drawing;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// Clase base que implementa las funciones de trabajo sobre bitmaps
@@ -42,7 +42,15 @@ namespace Orbita.VAHardware
         /// Constructor de la clase
         /// </summary>       
         public OCamaraBitmap(string codigo)
-            : base(codigo)
+            : this(codigo, string.Empty, OrigenDatos.OrigenBBDD)
+        {
+        }
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>       
+        public OCamaraBitmap(string codigo, string xmlFile, OrigenDatos origenDatos)
+            : base(codigo, xmlFile, origenDatos)
         {
             // No hay ninguna imagen adquirida
             this.HayNuevaImagen = false;

@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 15-11-2012
 //
@@ -12,7 +12,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
 	// IMediaSeeking interface
 	//

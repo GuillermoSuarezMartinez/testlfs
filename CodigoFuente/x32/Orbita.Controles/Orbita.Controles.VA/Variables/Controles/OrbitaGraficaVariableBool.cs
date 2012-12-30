@@ -11,8 +11,8 @@
 //***********************************************************************
 using System;
 using Infragistics.Win.UltraWinDataSource;
-using Orbita.VAComun;
-using Orbita.VAControl;
+using Orbita.VA.Comun;
+using Orbita.VA.MaquinasEstados;
 
 namespace Orbita.Controles.VA
 {

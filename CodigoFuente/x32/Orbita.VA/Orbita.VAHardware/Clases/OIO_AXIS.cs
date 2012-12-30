@@ -1,5 +1,5 @@
 ﻿////***********************************************************************
-//// Assembly         : Orbita.VAHardware
+//// Assembly         : Orbita.VA.Hardware
 //// Author           : aibañez
 //// Created          : 06-09-2012
 ////
@@ -13,9 +13,9 @@
 //using System.Data;
 //using System.Net;
 //using System.Windows.Forms;
-//using Orbita.VAComun;
+//using Orbita.VA.Comun;
 
-//namespace Orbita.VAHardware
+//namespace Orbita.VA.Hardware
 //{
 //    /// <summary>
 //    /// Clase que implementa las funciones para el control del módulo de Entradas/Salidas integrado en la cámara AXIS 223M

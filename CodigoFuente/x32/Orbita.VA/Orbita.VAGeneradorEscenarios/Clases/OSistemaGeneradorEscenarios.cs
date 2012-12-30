@@ -1,5 +1,6 @@
 ﻿using System;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
+using Orbita.Utiles;
 
 namespace Orbita.VAGeneradorEscenarios
 {
@@ -40,7 +41,7 @@ namespace Orbita.VAGeneradorEscenarios
                     try
                     {
                         // Creación del log de eventos
-                        MensajeInfoArranqueSistema("Creando log de eventos");
+                        MensajeInfoArranqueAplicacion("Creando log de eventos", false, OTipoMensaje.Info);
                         OVALogsManager.Constructor(this.OnShowLogMessage, this.OnShowLogException);
                         OVALogsManager.Inicializar();
                         OVALogsManager.Info(ModulosSistema.Sistema, "IniciarSistema", "Inicio del sistema");
@@ -48,7 +49,7 @@ namespace Orbita.VAGeneradorEscenarios
                         // Conexión con la base de datos
                         if (this.Configuracion.UtilizaBaseDeDatos)
                         {
-                            MensajeInfoArranqueSistema("Conectando con las bases de datos");
+                            MensajeInfoArranqueAplicacion("Conectando con las bases de datos", false, OTipoMensaje.Info);
                             OBaseDatosManager.Constructor();
                             OBaseDatosManager.Inicializar();
                             OBaseDatosParam.Conectar();
@@ -78,7 +79,7 @@ namespace Orbita.VAGeneradorEscenarios
                     OVALogsManager.FinInicializacion();
 
                     // Ocultamos el formulario Splash
-                    MensajeInfoArranqueSistema("Inicio finalizado con éxito");
+                    MensajeInfoArranqueAplicacion("Inicio finalizado con éxito", false, OTipoMensaje.Info);
                     OVALogsManager.Info(ModulosSistema.Sistema, "IniciarSistema", "Inicio finalizado con éxito");
                 }
                 catch (Exception exception)
@@ -155,7 +156,7 @@ namespace Orbita.VAGeneradorEscenarios
         /// <summary>
         /// Inicia el sistema de inspección en tiempo real
         /// </summary>
-        public override bool IniciarSistema(bool incial)
+        public override bool IniciarAplicacion(bool incial)
         {
             bool resultado;
 
@@ -167,7 +168,7 @@ namespace Orbita.VAGeneradorEscenarios
         /// <summary>
         /// Detiene el sistema de inspección en tiempo real
         /// </summary>
-        public override bool PararSistema()
+        public override bool PararAplicacion()
         {
             bool resultado;
 
@@ -179,9 +180,14 @@ namespace Orbita.VAGeneradorEscenarios
         /// <summary>
         /// Se muestra un mensaje en el splash screen de la evolución de arranque del sistema
         /// </summary>
-        protected override void MensajeInfoArranqueSistema(string mensaje)
+        public override void MensajeInfoArranqueAplicacion(string mensaje, bool soloEnModoAPruebaFallos, OTipoMensaje tipoMensaje)
         {
-            Console.WriteLine(mensaje);
+            base.MensajeInfoArranqueAplicacion(mensaje, soloEnModoAPruebaFallos, tipoMensaje);
+
+            if (this.EstadoSistema == EstadoSistema.Arrancando)
+            {
+                Console.WriteLine(mensaje);
+            }
         }
         #endregion
 

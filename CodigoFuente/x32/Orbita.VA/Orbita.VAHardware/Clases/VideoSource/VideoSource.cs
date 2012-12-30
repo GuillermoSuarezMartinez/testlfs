@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 05-11-2012
 //
@@ -10,9 +10,10 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
+using Orbita.Utiles;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// IVideoSource interface
@@ -109,13 +110,13 @@ namespace Orbita.VAHardware
         /// <summary>
         /// Video con formato Motion JPEG
         /// </summary>
-        [OStringValue("Motion JPEG")]
+        [OAtributoEnumerado("Motion JPEG")]
         MJPG = 1,
 
         /// <summary>
         /// Secuencia de JPEG
         /// </summary>
-        [OStringValue("JPEG")]
+        [OAtributoEnumerado("JPEG")]
         JPG = 2
     }
 }

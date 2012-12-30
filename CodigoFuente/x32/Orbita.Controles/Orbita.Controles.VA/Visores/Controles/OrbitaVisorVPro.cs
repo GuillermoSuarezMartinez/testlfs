@@ -17,8 +17,8 @@ using System;
 using Cognex.VisionPro;
 using System.Windows.Forms;
 using System.ComponentModel;
-using Orbita.VAComun;
-using Orbita.VAHardware;
+using Orbita.VA.Comun;
+using Orbita.VA.Hardware;
 
 namespace Orbita.Controles.VA
 {

@@ -16,7 +16,7 @@ using System.IO;
 using System.Reflection;
 using Infragistics.Win.UltraWinDock;
 using Orbita.Utiles;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
 namespace Orbita.Controles.VA
 {
@@ -69,7 +69,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         public static void Constructor()
         {
-            if (App.IsWinForms())
+            if (ODebug.IsWinForms())
             {
                 // Consulta de la configuración
                 OpcionesEscritorios = null;
@@ -104,7 +104,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         public static void Inicializar()
         {
-            if (App.IsWinForms() && ManejoAvanzadoEscritorio)
+            if (ODebug.IsWinForms() && ManejoAvanzadoEscritorio)
             {
                 Situar();
             }
@@ -131,7 +131,7 @@ namespace Orbita.Controles.VA
         /// <param name="nombre">Nombre del escritorio</param>
         public static void Guardar(string codigo)
         {
-            if (App.IsWinForms())
+            if (ODebug.IsWinForms())
             {
                 OEscritorio infoEscritorio = null;
 
@@ -166,7 +166,7 @@ namespace Orbita.Controles.VA
         /// <param name="nombre">Nombre del escritorio</param>
         public static void Eliminar(string codigo)
         {
-            if (App.IsWinForms())
+            if (ODebug.IsWinForms())
             {
                 // Busco si el escritorio ya existe!
                 foreach (OEscritorio escritorio in ListaEscritorios)
@@ -187,7 +187,7 @@ namespace Orbita.Controles.VA
         /// <param name="nombre">Nombre del escritorio a cargar</param>
         public static void Situar(string codigo)
         {
-            if (App.IsWinForms())
+            if (ODebug.IsWinForms())
             {
                 foreach (OEscritorio escritorio in ListaEscritorios)
                 {
@@ -218,7 +218,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         public static void SituarFormulario(ref IOrbitaForm frmBase)
         {
-            if (App.IsWinForms())
+            if (ODebug.IsWinForms())
             {
                 foreach (OEscritorio escritorio in ListaEscritorios)
                 {

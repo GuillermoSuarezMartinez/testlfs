@@ -13,7 +13,7 @@ using System;
 using System.Collections;
 using System.Windows.Forms;
 using Orbita.Utiles;
-using Orbita.VAControl;
+using Orbita.VA.MaquinasEstados;
 
 namespace Orbita.Controles.VA
 {
@@ -34,11 +34,6 @@ namespace Orbita.Controles.VA
         /// Indica si se ha guardado
         /// </summary>
         private bool Guardado;
-
-        /// <summary>
-        /// Indica si el usuario ha interactuado con algún elemento del formulario
-        /// </summary>
-        private bool AlgoModificado;
 
         /// <summary>
         /// Indica el ID de la variable modificada

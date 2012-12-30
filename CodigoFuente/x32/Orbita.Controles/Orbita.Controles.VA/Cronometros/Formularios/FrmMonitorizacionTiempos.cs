@@ -12,7 +12,8 @@
 using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
+using Orbita.Utiles;
 
 namespace Orbita.Controles.VA
 {

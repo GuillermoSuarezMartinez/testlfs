@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.VAFunciones
+// Assembly         : Orbita.VA.Funciones
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -12,10 +12,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using Orbita.VAComun;
-using Orbita.VAControl;
+using Orbita.VA.Comun;
+using Orbita.VA.MaquinasEstados;
+using Orbita.Utiles;
 
-namespace Orbita.VAFunciones
+namespace Orbita.VA.Funciones
 {
     /// <summary>
     /// Clase de acceso estático que contiene la lista de funciones de visión
@@ -417,10 +418,10 @@ namespace Orbita.VAFunciones
                 this._Descripcion = dtFuncionVision.Rows[0]["DescFuncionVision"].ToString();
                 this._RutaFichero = dtFuncionVision.Rows[0]["RutaFichero"].ToString();
 
-                int intTipoFuncion = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["IdTipoFuncionVision"], 1, 3, 1);
+                int intTipoFuncion = OEntero.Validar(dtFuncionVision.Rows[0]["IdTipoFuncionVision"], 1, 3, 1);
                 this._TipoFuncionVision = (TipoFuncionVision)intTipoFuncion;
 
-                this._TipoEjecucionFuncionVision = OEnumRobusto<TipoEjecucionFuncionVision>.Validar(dtFuncionVision.Rows[0]["TipoEjecucion"].ToString(), TipoEjecucionFuncionVision.EjecucionSincrona);
+                this._TipoEjecucionFuncionVision = OEnumerado<TipoEjecucionFuncionVision>.Validar(dtFuncionVision.Rows[0]["TipoEjecucion"].ToString(), TipoEjecucionFuncionVision.EjecucionSincrona);
                 //this._TipoEjecucionFuncionVision = (OTipoEjecucionFuncionVision)App.EnumParse(typeof(OTipoEjecucionFuncionVision), dtFuncionVision.Rows[0]["TipoEjecucion"].ToString(), OTipoEjecucionFuncionVision.EjecucionSincrona);
 
                 this._CodVariableEnEjecucion = dtFuncionVision.Rows[0]["CodVariable"].ToString();
@@ -1048,25 +1049,25 @@ namespace Orbita.VAFunciones
                 this._Descripcion = dtParametro.Rows[0]["DescParametroFuncionVision"].ToString();
                 this._CodVariable = dtParametro.Rows[0]["CodVariable"].ToString();
                 this._EsEntrada = (bool)dtParametro.Rows[0]["EsEntrada"];
-                this._OrigenValorParametro = OEnumRobusto<OrigenValorParametro>.Validar(dtParametro.Rows[0]["OrigenValorParametro"].ToString(), OrigenValorParametro.ValorPorCodigo);
+                this._OrigenValorParametro = OEnumerado<OrigenValorParametro>.Validar(dtParametro.Rows[0]["OrigenValorParametro"].ToString(), OrigenValorParametro.ValorPorCodigo);
                 //this._OrigenValorParametro = (OOrigenValorParametro)App.EnumParse(typeof(OOrigenValorParametro), dtParametro.Rows[0]["OrigenValorParametro"].ToString(), OOrigenValorParametro.ValorPorCodigo);
-                this._Tipo = (OEnumTipoDato)OEnteroRobusto.Validar(dtParametro.Rows[0]["IdTipoParametroFuncionVision"], 0, 99, 0);
+                this._Tipo = (OEnumTipoDato)OEntero.Validar(dtParametro.Rows[0]["IdTipoParametroFuncionVision"], 0, 99, 0);
 
                 if (this._OrigenValorParametro == OrigenValorParametro.ValorFijo)
                 {
                     switch (this._Tipo)
                     {
                         case OEnumTipoDato.Bit:
-                            this._Valor = OBoolRobusto.Validar(dtParametro.Rows[0]["ValorBit"], false);
+                            this._Valor = OBooleano.Validar(dtParametro.Rows[0]["ValorBit"], false);
                             break;
                         case OEnumTipoDato.Entero:
-                            this._Valor = OEnteroRobusto.Validar(dtParametro.Rows[0]["ValorEntero"], int.MinValue, int.MaxValue, 0);
+                            this._Valor = OEntero.Validar(dtParametro.Rows[0]["ValorEntero"], int.MinValue, int.MaxValue, 0);
                             break;
                         case OEnumTipoDato.Texto:
                             this._Valor = dtParametro.Rows[0]["ValorTexto"].ToString();
                             break;
                         case OEnumTipoDato.Decimal:
-                            this._Valor = ODecimalRobusto.Validar(dtParametro.Rows[0]["ValorDecimal"], double.MinValue, double.MaxValue, 0);
+                            this._Valor = ODecimal.Validar(dtParametro.Rows[0]["ValorDecimal"], double.MinValue, double.MaxValue, 0);
                             break;
                     }
                 }

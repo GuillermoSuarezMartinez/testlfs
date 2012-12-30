@@ -13,8 +13,9 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Data;
-using Orbita.VAComun;
-using Orbita.VAControl;
+using Orbita.VA.Comun;
+using Orbita.VA.MaquinasEstados;
+using Orbita.Utiles;
 
 namespace Orbita.VAGeneradorEscenarios
 {
@@ -45,29 +46,29 @@ namespace Orbita.VAGeneradorEscenarios
             if (args.Length >= 5)
             {
                 // Inicializar acceso a la base de datos
-                OSistemaManager.Constructor(new OSistemaGeneradorEscenarios(args[1]));
-                OSistemaManager.IniciarSistema();
+                OSistemaManager.Constructor(new OSistemaGeneradorEscenarios(args[1]), null, false);
+                OSistemaManager.IniciarAplicacion(ModoInicio.Normal, args);
 
                 // Generación de la unidad
                 OGeneradorAccesoRapido generador = new OGeneradorAccesoRapido();
-                List<string> listaUsing = new List<string>() { "System", "Orbita.VAComun" };
+                List<string> listaUsing = new List<string>() { "System", "Orbita.VA.Comun" };
 
                 HabilitadoVariables = string.Equals(args[3], "Vars", StringComparison.InvariantCultureIgnoreCase);
                 if (HabilitadoVariables)
                 {
-                    listaUsing.Add("Orbita.VAControl");
+                    listaUsing.Add("Orbita.VA.MaquinasEstados");
                 }
 
                 HabilitadoHardware = string.Equals(args[4], "Hard", StringComparison.InvariantCultureIgnoreCase);
                 if (HabilitadoHardware)
                 {
-                    listaUsing.Add("Orbita.VAHardware");
+                    listaUsing.Add("Orbita.VA.Hardware");
                 }
 
                 generador.GenerarUnit(args[0], listaUsing.ToArray());
 
                 // Lectura de la base de datos
-                DataTable dtME = Orbita.VAControl.AppBD.GetMaquinasEstados();
+                DataTable dtME = Orbita.VA.MaquinasEstados.AppBD.GetMaquinasEstados();
 
                 // Para cada escenario se crea su clase
                 foreach (DataRow drME in dtME.Rows)
@@ -236,7 +237,7 @@ namespace Orbita.VAGeneradorEscenarios
                 new CodeStatement[] { asignacionCodigoVariables });
 
             // Lectura de los alias de la base de datos
-            DataTable dtAliasVariables = Orbita.VAControl.AppBD.GetAliasVistaVariables(codVista);
+            DataTable dtAliasVariables = Orbita.VA.MaquinasEstados.AppBD.GetAliasVistaVariables(codVista);
             foreach (DataRow drAlias in dtAliasVariables.Rows)
             {
                 // Creamos una propiedad con cada uno de los alias
@@ -271,7 +272,7 @@ namespace Orbita.VAGeneradorEscenarios
                 new CodeStatement[] { asignacionCodigoHardware });
 
             // Lectura de los alias de la base de datos
-            DataTable dtAliasHardware = Orbita.VAHardware.AppBD.GetAliasVistaHardware(codVista);
+            DataTable dtAliasHardware = Orbita.VA.Hardware.AppBD.GetAliasVistaHardware(codVista);
             foreach (DataRow drAlias in dtAliasHardware.Rows)
             {
                 // Creamos una propiedad con cada uno de los alias
@@ -292,7 +293,7 @@ namespace Orbita.VAGeneradorEscenarios
         private static bool GenerarEstados(OGeneradorAccesoRapido generador, string codMaquinaEstados, string claseImplementadoraEscenarioAsociado)
         {
             // Lectura de la base de datos
-            DataTable dtEstados = Orbita.VAControl.AppBD.GetEstados(codMaquinaEstados);
+            DataTable dtEstados = Orbita.VA.MaquinasEstados.AppBD.GetEstados(codMaquinaEstados);
 
             // Para cada estado se crea su clase
             foreach (DataRow drEstado in dtEstados.Rows)
@@ -300,7 +301,7 @@ namespace Orbita.VAGeneradorEscenarios
                 string codEstado = drEstado["CodEstado"].ToString();
                 string descEstado = "Estado: " + drEstado["DescEstado"].ToString();
                 string claseImplementadora = drEstado["ClaseImplementadora"].ToString();
-                TipoEstado tipoEstado = OEnumRobusto<OTipoEstado>.Validar(drEstado["Tipo"].ToString(), TipoEstado.EstadoSimple);
+                TipoEstado tipoEstado = OEnumerado<TipoEstado>.Validar(drEstado["Tipo"].ToString(), TipoEstado.EstadoSimple);
                 //OTipoEstado tipoEstado = (OTipoEstado)App.EnumParse(typeof(OTipoEstado), drEstado["Tipo"].ToString(), OTipoEstado.EstadoSimple);
 
                 // Generación de la clase parcial del estado
@@ -354,7 +355,7 @@ namespace Orbita.VAGeneradorEscenarios
             ultimaTransicion = null;
 
             // Lectura de la base de datos
-            DataTable dtTransiciones = Orbita.VAControl.AppBD.GetTransiciones(codMaquinaEstados);
+            DataTable dtTransiciones = Orbita.VA.MaquinasEstados.AppBD.GetTransiciones(codMaquinaEstados);
 
             // Para cada transición se crea su clase
             foreach (DataRow drTransicion in dtTransiciones.Rows)
@@ -362,8 +363,8 @@ namespace Orbita.VAGeneradorEscenarios
                 string codTransicion = drTransicion["CodTransicion"].ToString();
                 string descTransicion = "Transición: " + drTransicion["ExplicacionCondicionEsperada"].ToString();
                 string claseImplementadora = drTransicion["ClaseImplementadora"].ToString();
-                TipoTransicion tipoTransicion = OEnumRobusto<OTipoTransicion>.Validar(drTransicion["Tipo"].ToString(), TipoTransicion.TransicionSimple);
-                //OTipoTransicion tipoTransicion = (OTipoTransicion)App.EnumParse(typeof(OTipoTransicion), drTransicion["Tipo"].ToString(), OTipoTransicion.TransicionSimple);
+                TipoTransicion tipoTransicion = OEnumerado<TipoTransicion>.Validar(drTransicion["Tipo"].ToString(), TipoTransicion.TransicionSimple);
+                //OTipoTransicion tipoTransicion = (TipoTransicion)App.EnumParse(typeof(TipoTransicion), drTransicion["Tipo"].ToString(), TipoTransicion.TransicionSimple);
 
                 // Generación de la clase parcial del transicion
                 string claseTransicionPadre;
@@ -402,13 +403,13 @@ namespace Orbita.VAGeneradorEscenarios
                 // Se genera la propiedad Escenarios
                 generador.GenerarPropiedadRuntime(ref claseTransicion, "Escenario", claseImplementadoraEscenarioAsociado, "Escenario de la transición", MemberAttributes.Public | MemberAttributes.New, claseImplementadoraEscenarioAsociado, "_Escenario");
 
-                DataTable dtTransicion = Orbita.VAControl.AppBD.GetTransicion(codMaquinaEstados, codTransicion);
+                DataTable dtTransicion = Orbita.VA.MaquinasEstados.AppBD.GetTransicion(codMaquinaEstados, codTransicion);
                 if (dtTransicion.Rows.Count == 1)
                 {
                     string codEstadoOrigen = dtTransicion.Rows[0]["CodigoEstadoOrigen"].ToString();
                     string codEstadoDestino = dtTransicion.Rows[0]["CodigoEstadoDestino"].ToString();
 
-                    DataTable dtEstadoOrigen = Orbita.VAControl.AppBD.GetEstado(codMaquinaEstados, codEstadoOrigen);
+                    DataTable dtEstadoOrigen = Orbita.VA.MaquinasEstados.AppBD.GetEstado(codMaquinaEstados, codEstadoOrigen);
                     if (dtEstadoOrigen.Rows.Count == 1)
                     {
                         // Se genera la propiedad Estado Origen
@@ -416,7 +417,7 @@ namespace Orbita.VAGeneradorEscenarios
                         generador.GenerarPropiedadRuntime(ref claseTransicion, "EstadoOrigen", claseImplementadoraEstado, "Estado origen", MemberAttributes.Public | MemberAttributes.New, claseImplementadoraEstado, "_EstadoOrigen");
                     }                                                                                                                                                                                                   
 
-                    DataTable dtEstadoDestino = Orbita.VAControl.AppBD.GetEstado(codMaquinaEstados, codEstadoDestino);
+                    DataTable dtEstadoDestino = Orbita.VA.MaquinasEstados.AppBD.GetEstado(codMaquinaEstados, codEstadoDestino);
                     if (dtEstadoDestino.Rows.Count == 1)
                     {
                         // Se genera la propiedad Estado Origen

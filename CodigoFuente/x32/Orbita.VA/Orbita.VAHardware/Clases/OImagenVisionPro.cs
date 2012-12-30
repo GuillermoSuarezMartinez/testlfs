@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -16,9 +16,9 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Cognex.VisionPro;
 using Cognex.VisionPro.ImageFile;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// Imagen de tipo VisionPro de Cognex

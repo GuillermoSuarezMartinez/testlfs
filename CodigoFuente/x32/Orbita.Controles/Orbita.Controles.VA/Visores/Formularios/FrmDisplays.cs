@@ -21,10 +21,11 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 using System.Data;
-using Orbita.VAHardware;
+using Orbita.VA.Hardware;
 using System.ComponentModel;
+using Orbita.Utiles;
 
 namespace Orbita.Controles.VA
 {
@@ -238,14 +239,14 @@ namespace Orbita.Controles.VA
                         case EventDeviceViewerChangedArgs.DeviceViewerChangeOrder.next:
                         default:
                             indiceSiguiente = indiceActual + 1;
-                            if (!OEnteroRobusto.InRange(indiceSiguiente, 0, this.ListaDisplays.Count - 1))
+                            if (!OEntero.InRange(indiceSiguiente, 0, this.ListaDisplays.Count - 1))
                             {
                                 indiceSiguiente = 0;
                             }
                             break;
                         case EventDeviceViewerChangedArgs.DeviceViewerChangeOrder.previous:
                             indiceSiguiente = indiceActual - 1;
-                            if (!OEnteroRobusto.InRange(indiceSiguiente, 0, this.ListaDisplays.Count - 1))
+                            if (!OEntero.InRange(indiceSiguiente, 0, this.ListaDisplays.Count - 1))
                             {
                                 indiceSiguiente = this.ListaDisplays.Count - 1;
                             }
@@ -276,7 +277,7 @@ namespace Orbita.Controles.VA
             {
                 foreach (OCamaraBase camara in OCamaraManager.ListaCamaras)
                 {
-                    if (camara.Habilitado)
+                    //if (camara.Habilitado)
                     {
                         string titulo = camara.Nombre + " [" + camara.Fabricante + "]";
                         object objetoImplementado;
@@ -309,7 +310,7 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Funciones al salir del formulario
         /// </summary>
-        protected virtual void AccionesSalir()
+        protected override void AccionesSalir()
         {
             foreach (OrbitaVisorBase display in this.ListaDisplays)
             {

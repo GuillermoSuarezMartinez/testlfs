@@ -1,13 +1,20 @@
-
+//***********************************************************************
+// Assembly         : OrbitaUtiles
+// Author           : crodriguez
+// Created          : 03-03-2011
+//
+// Last Modified By : crodriguez
+// Last Modified On : 03-03-2011
+// Description      : 
+//
+// Copyright        : (c) Orbita Ingenieria. All rights reserved.
+//***********************************************************************
 using System;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 namespace Orbita.Utiles
 {
-    /// <summary>
-    /// Clase de gestión de ficheros
-    /// </summary>
     public class OFichero : IDisposable
     {
         #region Atributo(s)
@@ -48,7 +55,7 @@ namespace Orbita.Utiles
         /// </summary>
         /// <param name="identificador">Identificador del fichero.</param>
         /// <param name="extension">Extensión del fichero.</param>
-        /// <param name="copiarENdisco">Determinar si copiar dicho fichero en disco.</param>
+        /// <param name="copiarEnDisco">Determinar si copiar dicho fichero en disco.</param>
         /// <param name="copiarENbd">Determinar si copiar dicho fichero en base de datos.</param>
         public OFichero(string identificador, Extension extension, bool copiarENdisco, bool copiarENbd)
         {

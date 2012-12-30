@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.VAFunciones
+// Assembly         : Orbita.VA.Funciones
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -15,10 +15,11 @@ using System.ComponentModel;
 using System.IO;
 using Cognex.VisionPro;
 using Cognex.VisionPro.ToolBlock;
-using Orbita.VAComun;
-using Orbita.VAHardware;
+using Orbita.VA.Comun;
+using Orbita.VA.Hardware;
+using Orbita.Utiles;
 
-namespace Orbita.VAFunciones
+namespace Orbita.VA.Funciones
 {
     /// <summary>
     /// Función de visión de VisionPro
@@ -70,7 +71,7 @@ namespace Orbita.VAFunciones
                     //Encriptado con extensión vpe
                     if (this.RutaFichero.Contains(".vpe"))
                     {
-                        Stream streamVPE = new MemoryStream(App.DecryptFile(this.RutaFichero, "OrbitaIng06"));
+                        Stream streamVPE = new MemoryStream(OEncriptacion.DecryptFileToBytes(this.RutaFichero, "OrbitaIng06"));
                         vppFile = CogSerializer.LoadObjectFromStream(streamVPE);
                     }
                     else

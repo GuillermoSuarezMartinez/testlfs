@@ -1,5 +1,5 @@
-﻿using Orbita.VAComun;
-using Orbita.VAHardware;
+﻿using Orbita.VA.Comun;
+using Orbita.VA.Hardware;
 namespace Orbita.Controles.VA
 {
     partial class FrmGestionSimulacion

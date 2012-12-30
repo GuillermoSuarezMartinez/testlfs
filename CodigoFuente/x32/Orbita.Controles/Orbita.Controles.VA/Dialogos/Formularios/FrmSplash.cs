@@ -13,7 +13,7 @@ using System;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
 namespace Orbita.Controles.VA
 {
@@ -91,7 +91,7 @@ namespace Orbita.Controles.VA
             this.lblUsuario.Text = "Nombre del equipo: " + Environment.MachineName.ToString();
             this.lblMaquina.Text = "Nombre del usuario: " + Environment.UserName.ToString();
             this.lblIdioma.Text = "Idioma : " + Application.CurrentCulture.ToString();
-            this.lblVersion.Text = "Versión " + App.ObtenerVersion(System.Reflection.Assembly.GetExecutingAssembly());
+            this.lblVersion.Text = "Versión " + OSistemaManager.ObtenerVersion(System.Reflection.Assembly.GetExecutingAssembly());
             this.lblProducto.Text = "Producto: " + Application.ProductName;
             this.lblCompañia.Text = "Compañía: " + Application.CompanyName;
         }
@@ -186,19 +186,19 @@ namespace Orbita.Controles.VA
         /// </summary>
         public static void Contructor()
         {
-            if (App.IsWinForms())
+            if (ODebug.IsWinForms())
             {
                 // Deshabilito el formulario principal
                 Application.UseWaitCursor = true;
-                OTrabajoControles.FormularioPrincipalMDI.UseWaitCursor = true;
-                OTrabajoControles.FormularioPrincipalMDI.Enabled = false;
+                //OTrabajoControles.FormularioPrincipalMDI.UseWaitCursor = true;
+                //OTrabajoControles.FormularioPrincipalMDI.Enabled = false;
 
                 // Mostramos el formulario Splash en un hilo
                 Thread tSplash = new Thread(new ThreadStart(IniciarSplash));
                 tSplash.Start();
 
                 // Espero el incio
-                OThread.Espera(ref MostrandoSplash, true, 10000);
+                OThreadManager.Espera(ref MostrandoSplash, true, 10000);
             }
         }
 
@@ -207,18 +207,18 @@ namespace Orbita.Controles.VA
         /// </summary>
         public static void Destructor()
         {
-            if (App.IsWinForms() && MostrandoSplash)
+            if (ODebug.IsWinForms() && MostrandoSplash)
             {
                 Splash.Cerrar = true;
 
                 // Espero la finalización
-                OThread.Espera(ref MostrandoSplash, false, 10000);
+                OThreadManager.Espera(ref MostrandoSplash, false, 10000);
 
                 // Habilito el formulario principal
                 Application.UseWaitCursor = false;
-                OTrabajoControles.FormularioPrincipalMDI.UseWaitCursor = false;
-                OTrabajoControles.FormularioPrincipalMDI.Enabled = true;
-                OTrabajoControles.FormularioPrincipalMDI.BringToFront();
+                //OTrabajoControles.FormularioPrincipalMDI.UseWaitCursor = false;
+                //OTrabajoControles.FormularioPrincipalMDI.Enabled = true;
+                //OTrabajoControles.FormularioPrincipalMDI.BringToFront();
             }
         }
 
@@ -228,7 +228,7 @@ namespace Orbita.Controles.VA
         /// <param name="mensaje"></param>
         public static void Mensaje(string mensaje)
         {
-            if (App.IsWinForms() && MostrandoSplash)
+            if (ODebug.IsWinForms() && MostrandoSplash)
             {
                 Splash.Mensaje = mensaje;
             }

@@ -18,7 +18,7 @@ using Infragistics.Win;
 using Infragistics.Win.UltraWinDock;
 using Infragistics.Win.UltraWinGrid;
 using Orbita.Utiles;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
 namespace Orbita.Controles.VA
 {

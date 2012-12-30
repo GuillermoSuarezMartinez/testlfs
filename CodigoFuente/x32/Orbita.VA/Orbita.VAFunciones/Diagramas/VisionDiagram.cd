@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Font Name="Segoe UI" Size="9" />
-  <Class Name="Orbita.VAFunciones.VisionRuntime">
+  <Class Name="Orbita.VA.Funciones.VisionRuntime">
     <Position X="0.75" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <FileName>VisionFunction.cs</FileName>
@@ -12,7 +12,7 @@
       <Field Name="ListaFuncionesVision" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="Orbita.VAFunciones.VisionFunctionBase">
+  <Class Name="Orbita.VA.Funciones.VisionFunctionBase">
     <Position X="3.25" Y="0.5" Width="2" />
     <TypeIdentifier>
       <FileName>VisionFunction.cs</FileName>
@@ -37,7 +37,7 @@
       <Method Name="VisionFunctionBase" Hidden="true" />
     </Members>
   </Class>
-  <Class Name="Orbita.VAFunciones.VisionProFunction">
+  <Class Name="Orbita.VA.Funciones.VisionProFunction">
     <Position X="6.25" Y="1.25" Width="2" />
     <TypeIdentifier>
       <FileName>VisionProFunction.cs</FileName>
@@ -47,21 +47,21 @@
       <Field Name="ToolBlock" Hidden="true" />
       <Method Name="VisionProFunction" Hidden="true" />
     </Members>
-    <InheritanceLine Type="Orbita.VAFunciones.VisionFunctionBase" FixedToPoint="true">
+    <InheritanceLine Type="Orbita.VA.Funciones.VisionFunctionBase" FixedToPoint="true">
       <Path>
         <Point X="5.25" Y="1.975" />
         <Point X="6.25" Y="1.975" />
       </Path>
     </InheritanceLine>
   </Class>
-  <Class Name="Orbita.VAFunciones.CidarFunction">
+  <Class Name="Orbita.VA.Funciones.CidarFunction">
     <Position X="6.25" Y="3.75" Width="2" />
     <TypeIdentifier>
       <FileName>CidarFunction.cs</FileName>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Enum Name="Orbita.VAFunciones.TipoFuncionVision" Collapsed="true">
+  <Enum Name="Orbita.VA.Funciones.TipoFuncionVision" Collapsed="true">
     <Position X="6.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>VisionFunction.cs</FileName>

@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -19,9 +19,9 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Orbita.Comunicaciones;
 using Orbita.Utiles;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// Clase que implementa las funciones para el control de Entradas/Salidas del SCED
@@ -80,7 +80,7 @@ namespace Orbita.VAHardware
             if (dtTarjetaIO.Rows.Count == 1)
             {
                 this._ServidorSced = dtTarjetaIO.Rows[0]["SCED_Server"].ToString();
-                this._PuertoRemoto = OEnteroRobusto.Validar(dtTarjetaIO.Rows[0]["SCED_Puerto"], 0, int.MaxValue, 1851);
+                this._PuertoRemoto = OEntero.Validar(dtTarjetaIO.Rows[0]["SCED_Puerto"], 0, int.MaxValue, 1851);
             }
 
             // Cargamos valores de la base de datos buscamos terminales IO
@@ -94,8 +94,8 @@ namespace Orbita.VAHardware
                     {
                         OTerminalIOSCED terminal;
 
-                        OEnumTipoDispositivoSCED tipoDispositivo = (OEnumTipoDispositivoSCED)OStringValueAttribute.FindStringValue(typeof(OEnumTipoDispositivoSCED), dr["SCED_TipoDispositivo"].ToString(), OEnumTipoDispositivoSCED.OPC_SimaticNET);
-                        int intTipoTerminalIO = OEnteroRobusto.Validar(dr["IdTipoTerminalIO"], 1, 4, 1);
+                        OEnumTipoDispositivoSCED tipoDispositivo = (OEnumTipoDispositivoSCED)OAtributoEnumerado.FindStringValue(typeof(OEnumTipoDispositivoSCED), dr["SCED_TipoDispositivo"].ToString(), OEnumTipoDispositivoSCED.OPC_SimaticNET);
+                        int intTipoTerminalIO = OEntero.Validar(dr["IdTipoTerminalIO"], 1, 4, 1);
 
                         OTipoTerminalIO tipoTerminalIO = (OTipoTerminalIO)intTipoTerminalIO;
 
@@ -335,8 +335,8 @@ namespace Orbita.VAHardware
             DataTable dtTerminalIO = AppBD.GetTerminalIO(codTarjetaIO, codTerminalIO);
             if (dtTerminalIO.Rows.Count == 1)
             {
-                this.IdDispositivo = OEnteroRobusto.Validar(dtTerminalIO.Rows[0]["SCED_ID"], 0, 999, 0);
-                this.EscrituraInmediata = OBoolRobusto.Validar(dtTerminalIO.Rows[0]["SCED_EscrituraInmediata"], true);
+                this.IdDispositivo = OEntero.Validar(dtTerminalIO.Rows[0]["SCED_ID"], 0, 999, 0);
+                this.EscrituraInmediata = OBooleano.Validar(dtTerminalIO.Rows[0]["SCED_EscrituraInmediata"], true);
                 this.CodigoVariableSCED = dtTerminalIO.Rows[0]["SCED_CodVariable"].ToString();
             }
             this.TipoDispositivo = tipoDispositivoSCED;
@@ -456,7 +456,7 @@ namespace Orbita.VAHardware
                 // Se devuelve el objeto tal cual
                 object valorSCED = ((OInfoDato)eventArgs.Argumento).Valor;
 
-                if (!ORobusto.CompararObjetos(this.Valor, valorSCED))
+                if (!OObjeto.CompararObjetos(this.Valor, valorSCED))
                 {
                     // Conversión
                     this.Valor = SCEDAFormatoCorrecto(valorSCED, this.TipoDato);
@@ -569,7 +569,7 @@ namespace Orbita.VAHardware
                     {
                         object valorSCED = infoDato[0];
 
-                        if (!ORobusto.CompararObjetos(this.Valor, valorSCED))
+                        if (!OObjeto.CompararObjetos(this.Valor, valorSCED))
                         {
                             // Conversión
                             this.Valor = SCEDAFormatoCorrecto(valorSCED, this.TipoDato);
@@ -692,19 +692,19 @@ namespace Orbita.VAHardware
         /// <summary>
         /// Servidor OPC de Siemens
         /// </summary>
-        [OStringValue("OPC.SimaticNET")]
+        [OAtributoEnumerado("OPC.SimaticNET")]
         OPC_SimaticNET = 1,
 
         /// <summary>
         /// Tarjeta Ethernet E/S
         /// </summary>
-        [OStringValue("MCC.EPDISO16")]
+        [OAtributoEnumerado("MCC.EPDISO16")]
         MCC_EPDISO16 = 2,
 
         /// <summary>
         /// Dispositivo para variables internas
         /// </summary>
-        [OStringValue("Orbita")]
+        [OAtributoEnumerado("Orbita")]
         Orbita = 3
     }
 }

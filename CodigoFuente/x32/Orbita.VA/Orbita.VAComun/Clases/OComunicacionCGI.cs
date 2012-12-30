@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAComun
+// Assembly         : Orbita.VA.Comun
 // Author           : aibañez
 // Created          : 13-12-2012
 //
@@ -14,7 +14,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 
-namespace Orbita.VAComun
+namespace Orbita.VA.Comun
 {
     /// <summary>
     /// Comunicación con aplicaciones CGI

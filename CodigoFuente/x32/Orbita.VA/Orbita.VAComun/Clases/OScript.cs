@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAComun
+// Assembly         : Orbita.VA.Comun
 // Author           : aibañez
 // Created          : 13-12-2012
 //
@@ -16,7 +16,7 @@ using System.IO;
 using System.Reflection;
 using Microsoft.CSharp;
 
-namespace Orbita.VAComun
+namespace Orbita.VA.Comun
 {
     /// <summary>
     /// Clase que implementa la ejecución de un script (fichero .cs externo a la aplicación)

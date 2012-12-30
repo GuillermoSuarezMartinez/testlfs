@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : sfenollosa
 // Created          : 31-10-2012
 //
@@ -10,9 +10,9 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// Clase que implementa las funciones de manejo de la cámara IP

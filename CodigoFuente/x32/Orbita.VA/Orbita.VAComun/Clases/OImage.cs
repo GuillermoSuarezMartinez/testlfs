@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAComun
+// Assembly         : Orbita.VA.Comun
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -26,8 +26,9 @@ using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using Orbita.VA.Comun;
 
-namespace Orbita.VAComun
+namespace Orbita.VA.Comun
 {
     /// <summary>
     /// Clase genérica de imagen. Independiente del formato de almacenamiento y del formato de adquisición
@@ -172,7 +173,7 @@ namespace Orbita.VAComun
         {
             if (this.EsValida())
             {
-                if (App.CreacionDirectorio(Path.GetDirectoryName(ruta)))
+                if (OFicheros.CreacionDirectorio(System.IO.Path.GetDirectoryName(ruta)))
                 {
                     return true;
                 }
@@ -491,7 +492,7 @@ namespace Orbita.VAComun
         {
             if (this.EsValida())
             {
-                if (App.CreacionDirectorio(Path.GetDirectoryName(ruta)))
+                if (OFicheros.CreacionDirectorio(Path.GetDirectoryName(ruta)))
                 {
                     return true;
                 }

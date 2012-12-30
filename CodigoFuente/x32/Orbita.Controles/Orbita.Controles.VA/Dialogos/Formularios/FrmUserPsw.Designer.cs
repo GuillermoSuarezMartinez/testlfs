@@ -97,7 +97,7 @@
             this.ComboUsuario.OrbTexto = "";
             this.ComboUsuario.OrbValor = null;
             this.ComboUsuario.Size = new System.Drawing.Size(224, 21);
-            this.ComboUsuario.TabIndex = 2;
+            this.ComboUsuario.TabIndex = 1;
             // 
             // LblContraseña
             // 
@@ -126,7 +126,7 @@
             this.LblUsuario.Name = "LblUsuario";
             this.LblUsuario.Size = new System.Drawing.Size(75, 18);
             this.LblUsuario.TabIndex = 1;
-            this.LblUsuario.Text = "OUsuario";
+            this.LblUsuario.Text = "Usuario";
             this.LblUsuario.UseMnemonic = false;
             // 
             // TxtContraseña
@@ -141,7 +141,7 @@
             this.TxtContraseña.Name = "TxtContraseña";
             this.TxtContraseña.PasswordChar = '*';
             this.TxtContraseña.Size = new System.Drawing.Size(224, 21);
-            this.TxtContraseña.TabIndex = 0;
+            this.TxtContraseña.TabIndex = 2;
             // 
             // LblErrorContraseña
             // 

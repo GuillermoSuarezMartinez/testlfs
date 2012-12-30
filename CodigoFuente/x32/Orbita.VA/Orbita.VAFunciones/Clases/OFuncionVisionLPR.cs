@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.VAFunciones
+// Assembly         : Orbita.VA.Funciones
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -15,10 +15,10 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using Orbita.Utiles;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 using VPARMTWrapper;
 
-namespace Orbita.VAFunciones
+namespace Orbita.VA.Funciones
 {
     /// <summary>
     /// Clase que ejecuta continuamente el
@@ -166,7 +166,7 @@ namespace Orbita.VAFunciones
     /// <summary>
     /// Clase que ejecuta el reconocimiento de las matrículas en un thread
     /// </summary>
-    internal class ThreadEjecucionLPR : OThread
+    internal class ThreadEjecucionLPR : OThreadLoop
     {
         #region Atributo(s)
         /// <summary>
@@ -338,23 +338,23 @@ namespace Orbita.VAFunciones
                 DataTable dtFuncionVision = AppBD.GetFuncionVision(this.Codigo);
                 if (dtFuncionVision.Rows.Count == 1)
                 {
-                    this.ParametrosLPR.Altura = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_Altura"], -1, 10000, -1);
-                    this.ParametrosLPR.ActivadoRangoAlturas = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_ActivadoRangoAlturas"], 0, 1, 0);
-                    this.ParametrosLPR.AlturaMin = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_AlturaMin"], 1, 10000, 30);
-                    this.ParametrosLPR.AlturaMax = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_AlturaMax"], 1, 10000, 60);
+                    this.ParametrosLPR.Altura = OEntero.Validar(dtFuncionVision.Rows[0]["NL_Altura"], -1, 10000, -1);
+                    this.ParametrosLPR.ActivadoRangoAlturas = OEntero.Validar(dtFuncionVision.Rows[0]["NL_ActivadoRangoAlturas"], 0, 1, 0);
+                    this.ParametrosLPR.AlturaMin = OEntero.Validar(dtFuncionVision.Rows[0]["NL_AlturaMin"], 1, 10000, 30);
+                    this.ParametrosLPR.AlturaMax = OEntero.Validar(dtFuncionVision.Rows[0]["NL_AlturaMax"], 1, 10000, 60);
                     this.ParametrosLPR.VectorAlturas = new int[2] { this.ParametrosLPR.AlturaMin, this.ParametrosLPR.AlturaMax };
-                    this.ParametrosLPR.TimeOut = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_TimeOut"], 0, 1000000, 0);
-                    this.ParametrosLPR.ActivadaAjusteCorreccion = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_ActivadaAjusteCorrecion"], 0, 1, 0);
-                    this.ParametrosLPR.CoeficienteHorizontal = (float)ODecimalRobusto.Validar(dtFuncionVision.Rows[0]["NL_CoeficienteHorizontal"], -100000, +100000, 0);
-                    this.ParametrosLPR.CoeficienteVertical = (float)ODecimalRobusto.Validar(dtFuncionVision.Rows[0]["NL_CoeficienteVertical"], -100000, +100000, 0);
-                    this.ParametrosLPR.CoeficienteRadial = (float)ODecimalRobusto.Validar(dtFuncionVision.Rows[0]["NL_CoeficienteRadial"], -100000, +100000, 0);
-                    this.ParametrosLPR.AnguloRotacion = (float)ODecimalRobusto.Validar(dtFuncionVision.Rows[0]["NL_AnguloRotacion"], -100000, +100000, 0);
-                    this.ParametrosLPR.Distancia = (float)ODecimalRobusto.Validar(dtFuncionVision.Rows[0]["NL_Distancia"], 0, +100000, 0);
-                    this.ParametrosLPR.CoordIzq = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_CoordIzq"], 0, 10000, 0);
-                    this.ParametrosLPR.CoordArriba = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_CoordArriba"], 0, 10000, 0);
-                    this.ParametrosLPR.AlturaVentanaBusqueda = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_AlturaVentanaBusqueda"], 0, 10000, 0);
-                    this.ParametrosLPR.AnchuraVentanaBusqueda = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_AnchuraVentanaBusqueda"], 0, 10000, 0);
-                    this.ParametrosLPR.ActivadaMasInformacion = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_ActivadaMasInformacion"], 0, 10000, 1);
+                    this.ParametrosLPR.TimeOut = OEntero.Validar(dtFuncionVision.Rows[0]["NL_TimeOut"], 0, 1000000, 0);
+                    this.ParametrosLPR.ActivadaAjusteCorreccion = OEntero.Validar(dtFuncionVision.Rows[0]["NL_ActivadaAjusteCorrecion"], 0, 1, 0);
+                    this.ParametrosLPR.CoeficienteHorizontal = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_CoeficienteHorizontal"], -100000, +100000, 0);
+                    this.ParametrosLPR.CoeficienteVertical = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_CoeficienteVertical"], -100000, +100000, 0);
+                    this.ParametrosLPR.CoeficienteRadial = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_CoeficienteRadial"], -100000, +100000, 0);
+                    this.ParametrosLPR.AnguloRotacion = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_AnguloRotacion"], -100000, +100000, 0);
+                    this.ParametrosLPR.Distancia = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_Distancia"], 0, +100000, 0);
+                    this.ParametrosLPR.CoordIzq = OEntero.Validar(dtFuncionVision.Rows[0]["NL_CoordIzq"], 0, 10000, 0);
+                    this.ParametrosLPR.CoordArriba = OEntero.Validar(dtFuncionVision.Rows[0]["NL_CoordArriba"], 0, 10000, 0);
+                    this.ParametrosLPR.AlturaVentanaBusqueda = OEntero.Validar(dtFuncionVision.Rows[0]["NL_AlturaVentanaBusqueda"], 0, 10000, 0);
+                    this.ParametrosLPR.AnchuraVentanaBusqueda = OEntero.Validar(dtFuncionVision.Rows[0]["NL_AnchuraVentanaBusqueda"], 0, 10000, 0);
+                    this.ParametrosLPR.ActivadaMasInformacion = OEntero.Validar(dtFuncionVision.Rows[0]["NL_ActivadaMasInformacion"], 0, 10000, 1);
                 }
             }
             catch (Exception exception)

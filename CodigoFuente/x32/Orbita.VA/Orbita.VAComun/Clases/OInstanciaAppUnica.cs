@@ -6,7 +6,7 @@ using Orbita.Utiles;
 using System.Threading;
 using System.IO;
 
-namespace Orbita.VAComun
+namespace Orbita.VA.Comun
 {
     public static class OInstanciaUnicaAplicacion
     {
@@ -29,7 +29,7 @@ namespace Orbita.VAComun
             {
                 if (Environment.UserInteractive)
                 {
-                    OMensajes.MostrarError("La aplicación ya esta en ejecución");
+                    OMensajes.MostrarError("No se permite abrir varias instancias de la aplicación.");
                 }
                 MutexJustOne.Close();
                 MutexJustOne = null;

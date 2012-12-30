@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAControl
+// Assembly         : Orbita.VA.MaquinasEstados
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -25,9 +25,10 @@ using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization.Formatters;
 using System.Security.Permissions;
 using System.Threading;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
+using Orbita.Utiles;
 
-namespace Orbita.VAControl
+namespace Orbita.VA.MaquinasEstados
 {
     /// <summary>
     /// Clase estática para acceder a las variables desde cualquier lugar de la aplicacion
@@ -95,13 +96,13 @@ namespace Orbita.VAControl
             PuertoRemoto = 8085;
 
             // Consulta a la base de datos
-            DataTable dtSistema = Orbita.VAComun.AppBD.GetParametrosAplicacion();
+            DataTable dtSistema = Orbita.VA.Comun.AppBD.GetParametrosAplicacion();
             if (dtSistema.Rows.Count > 0)
             {
                 object objTiempoPermanenciaTrazasEnMemoria = dtSistema.Rows[0]["VarsPermanenciaTrazaMemoria"];
-                TiempoPermanenciaTrazasEnMemoria = TimeSpan.FromMilliseconds(OEnteroRobusto.Validar(objTiempoPermanenciaTrazasEnMemoria, 1, 86400000, 60000));
+                TiempoPermanenciaTrazasEnMemoria = TimeSpan.FromMilliseconds(OEntero.Validar(objTiempoPermanenciaTrazasEnMemoria, 1, 86400000, 60000));
 
-                PuertoRemoto = (int)OEnteroRobusto.Validar(dtSistema.Rows[0]["VarsPuertoRemoting"], 1, 65535, 8085);
+                PuertoRemoto = (int)OEntero.Validar(dtSistema.Rows[0]["VarsPuertoRemoting"], 1, 65535, 8085);
             }
             else
             {
@@ -109,7 +110,7 @@ namespace Orbita.VAControl
             }
 
             // Registro del canal de servidor
-            //ORemoting.InicConfiguracionServidor("Orbita.VAControl", "GetRemoteVariableCore", PuertoRemoto, "VarsServidor");
+            //ORemoting.InicConfiguracionServidor("Orbita.VA.MaquinasEstados", "GetRemoteVariableCore", PuertoRemoto, "VarsServidor");
 
             BinaryClientFormatterSinkProvider clientProvider = null;
             BinaryServerFormatterSinkProvider serverProvider = new BinaryServerFormatterSinkProvider();
@@ -138,7 +139,7 @@ namespace Orbita.VAControl
             }
 
             // Consulta de todas las vistas existentes en el sistema
-            DataTable dtVista = Orbita.VAComun.AppBD.GetVistas();
+            DataTable dtVista = Orbita.VA.Comun.AppBD.GetVistas();
             if (dtVista.Rows.Count > 0)
             {
                 // Cargamos todas las vistas existentes en el sistema
@@ -923,13 +924,13 @@ namespace Orbita.VAControl
                 this._Nombre = dtVariable.Rows[0]["NombreVariable"].ToString();
                 this._Descripcion = dtVariable.Rows[0]["DescVariable"].ToString();
                 this._Grupo = dtVariable.Rows[0]["Grupo"].ToString();
-                this._Remoto = OBoolRobusto.Validar(dtVariable.Rows[0]["Remoto"], false);
+                this._Remoto = OBooleano.Validar(dtVariable.Rows[0]["Remoto"], false);
                 this._ServidorRemoto = dtVariable.Rows[0]["ServidorRemoto"].ToString();
                 this._CodigoRemoto = dtVariable.Rows[0]["CodigoRemoto"].ToString();
-                this._PuertoRemoto = (int)OEnteroRobusto.Validar(dtVariable.Rows[0]["PuertoRemoto"], 1, 65535, 8085);
+                this._PuertoRemoto = (int)OEntero.Validar(dtVariable.Rows[0]["PuertoRemoto"], 1, 65535, 8085);
 
                 bool habilitado = (bool)dtVariable.Rows[0]["HabilitadoVariable"];
-                OEnumTipoDato tipo = (OEnumTipoDato)OEnteroRobusto.Validar(dtVariable.Rows[0]["IdTipoVariable"], 0, 99, 0);
+                OEnumTipoDato tipo = (OEnumTipoDato)OEntero.Validar(dtVariable.Rows[0]["IdTipoVariable"], 0, 99, 0);
 
                 bool guardarTrazabilidad = (bool)dtVariable.Rows[0]["GuardarTrazabilidad"];
 
@@ -1459,7 +1460,7 @@ namespace Orbita.VAControl
             this.HiloEjecucionDelegadoRemoto.IsBackground = true;
             this.HiloEjecucionDelegadoRemoto.Start();
 
-            this.Valor = Orbita.VAComun.OTipoDato.DevaultValue(this.Tipo);
+            this.Valor = Orbita.VA.Comun.OTipoDato.DevaultValue(this.Tipo);
         }
 
         #endregion
@@ -1623,7 +1624,7 @@ namespace Orbita.VAControl
             {
                 // Insertamos la traza
                 this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.CambioValor);
-                OVALogsManager.Debug(OModulosControl.Variables, "SetValor", "La variable " + this.Codigo + " cambia su valor a " + ORobusto.ToString(valor));
+                OVALogsManager.Debug(OModulosControl.Variables, "SetValor", "La variable " + this.Codigo + " cambia su valor a " + OObjeto.ToString(valor));
 
                 // Establecimiento del valor
                 this.Valor = valor;
@@ -1748,7 +1749,7 @@ namespace Orbita.VAControl
             {
                 // Insertamos la traza
                 this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.ForzarValor);
-                OVALogsManager.Info(OModulosControl.Variables, "SetValor", "La variable " + this.Codigo + " cambia su valor a " + ORobusto.ToString(valor));
+                OVALogsManager.Info(OModulosControl.Variables, "SetValor", "La variable " + this.Codigo + " cambia su valor a " + OObjeto.ToString(valor));
 
                 // Establecimiento del valor
                 this.Valor = valor;
@@ -1973,7 +1974,7 @@ namespace Orbita.VAControl
         /// <summary>
         /// Thread de ejecución
         /// </summary>
-        OThread ThreadEjecucion;
+        OThreadLoop ThreadEjecucion;
 
         /// <summary>
         /// Momento en el que se inicia la ejecución de la secuencia
@@ -2017,7 +2018,7 @@ namespace Orbita.VAControl
 
             this.DuracionEjecucion = new Stopwatch();
 
-            this.ThreadEjecucion = new OThread("Secuencia_" + this.Codigo, 10, this.ThreadPriority);
+            this.ThreadEjecucion = new OThreadLoop("Secuencia_" + this.Codigo, 10, this.ThreadPriority);
         }
         #endregion
 
@@ -2390,7 +2391,7 @@ namespace Orbita.VAControl
             }
             if (traza.Valor != null)
             {
-                info += "Valor: " + ORobusto.ToString(traza.Valor) + "; ";
+                info += "Valor: " + OObjeto.ToString(traza.Valor) + "; ";
             }
             else
             {
@@ -2445,9 +2446,9 @@ namespace Orbita.VAControl
         /// Formatea las trazas que necesiten ser guardadas en un XML
         /// </summary>
         /// <returns>Objeto de la clase CXML con los datos formateados.</returns>
-        private OCXML ConvertirTrazasXML(Queue<OTrazaVariable> colaTrazas)
+        private OXml ConvertirTrazasXML(Queue<OTrazaVariable> colaTrazas)
         {
-            OCXML oXML = new OCXML();
+            OXml oXML = new OXml();
             while (colaTrazas.Count > 0)
             {
                 OTrazaVariable traza = colaTrazas.Dequeue();
@@ -2458,7 +2459,7 @@ namespace Orbita.VAControl
                 oXML.Add("Descripcion", traza.DescripcionLlamada);
                 if (traza.TipoTraza == TipoTraza.CambioValor)
                 {
-                    oXML.Add("Valor", ORobusto.ToString(traza.Valor));
+                    oXML.Add("Valor", OObjeto.ToString(traza.Valor));
                 }
                 else
                 {
@@ -2493,7 +2494,7 @@ namespace Orbita.VAControl
 
                     if (colaTrazas.Count > 0)
                     {
-                        OCXML oXML = this.ConvertirTrazasXML(colaTrazas);
+                        OXml oXML = this.ConvertirTrazasXML(colaTrazas);
 
                         int ret = AppBD.AddTrazas(oXML);
 

@@ -11,8 +11,9 @@
 //***********************************************************************
 using System;
 using System.Windows.Forms;
-using Orbita.VAComun;
-using Orbita.VAHardware;
+using Orbita.VA.Comun;
+using Orbita.VA.Hardware;
+using Orbita.Utiles;
 
 namespace Orbita.Controles.VA
 {
@@ -106,7 +107,7 @@ namespace Orbita.Controles.VA
             string codigo = terminalIO.Codigo.ToString();
             string descripcion = terminalIO.Descripcion.ToString();
             string habilitado = terminalIO.Habilitado.ToString();
-            string tipo = OStringValueAttribute.GetStringValue(terminalIO.TipoTerminalIO);
+            string tipo = OAtributoEnumerado.GetStringValue(terminalIO.TipoTerminalIO);
 
             ListViewItem item = new ListViewItem();
 

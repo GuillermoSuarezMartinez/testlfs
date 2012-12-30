@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinGrid;
 using Orbita.Utiles;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
 namespace Orbita.Controles.VA
 {
@@ -106,7 +106,7 @@ namespace Orbita.Controles.VA
                     OpcionesEscritorio opcionesEscritorio = (OpcionesEscritorio)row.Cells["Valor"].Value;
                     if (resultado)
                     {
-                        OTextoRobusto textoRobusto = new OTextoRobusto("Lista Escritorios", 50, false, false, string.Empty, true);
+                        OTexto textoRobusto = new OTexto("Lista Escritorios", 50, false, false, string.Empty, true);
                         textoRobusto.ValorGenerico = opcionesEscritorio.Nombre;
                         resultado = textoRobusto.Valido;
                     }
@@ -120,7 +120,7 @@ namespace Orbita.Controles.VA
                         resultado = false;
                         throw new Exception("El campo Escritorio Predefinido no es válido");
                     }
-                    resultado &= OTextoRobusto.Validar(this.cboEscritorios.OrbCombo.ActiveRow.Cells["Indice"].Value, "Escritorio Predefinido", 50, false, false, string.Empty, true) == EnumEstadoObjetoRobusto.ResultadoCorrecto;
+                    resultado &= OTexto.Validar(this.cboEscritorios.OrbCombo.ActiveRow.Cells["Indice"].Value, "Escritorio Predefinido", 50, false, false, string.Empty, true) == EnumEstadoObjetoRobusto.ResultadoCorrecto;
                     string nombreEscritorioPredefinido = (string)this.cboEscritorios.OrbCombo.ActiveRow.Cells["Indice"].Value;
 
                     // Escritorios

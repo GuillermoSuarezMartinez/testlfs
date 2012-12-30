@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 05-11-2012
 //
@@ -14,9 +14,10 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Net;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
+using Orbita.Utiles;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// Clase que implementa las funciones de manejo de la cámara IP
@@ -63,7 +64,15 @@ namespace Orbita.VAHardware
         /// Constructor de la clase
         /// </summary>       
         public OCamaraIP(string codigo)
-            : base(codigo)
+            : this(codigo, string.Empty, OrigenDatos.OrigenBBDD)
+        {
+        }
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>       
+        public OCamaraIP(string codigo, string xmlFile, OrigenDatos origenDatos)
+            : base(codigo, xmlFile, origenDatos)
         {
             try
             {
@@ -71,32 +80,32 @@ namespace Orbita.VAHardware
                 this.HayNuevaImagen = false;
 
                 // Cargamos valores de la base de datos
-                DataTable dt = AppBD.GetCamara(codigo);
+                DataTable dt = AppBD.GetCamara(codigo, xmlFile, origenDatos);
                 if (dt.Rows.Count == 1)
                 {
                     this.IP = IPAddress.Parse(dt.Rows[0]["IPCam_IP"].ToString());
-                    this.Puerto = OEnteroRobusto.Validar(dt.Rows[0]["IPCam_Puerto"], 0, int.MaxValue, 80);
+                    this.Puerto = OEntero.Validar(dt.Rows[0]["IPCam_Puerto"], 0, int.MaxValue, 80);
                     this.Usuario = dt.Rows[0]["IPCam_Usuario"].ToString();
                     this.Contraseña = dt.Rows[0]["IPCam_Contraseña"].ToString();
                     this.URLOriginal = dt.Rows[0]["IPCam_URL"].ToString();
-                    this.IntervaloComprobacionConectividadMS = OEnteroRobusto.Validar(dt.Rows[0]["IPCam_IntervaloComprobacionConectividadMS"], 1, int.MaxValue, 100);
+                    this.IntervaloComprobacionConectividadMS = OEntero.Validar(dt.Rows[0]["IPCam_IntervaloComprobacionConectividadMS"], 1, int.MaxValue, 100);
 
                     // Construcción de la url
                     string url = this.URLOriginal;
-                    url = App.StringReplace(url, @"%IPCam_IP%", this.IP.ToString(), StringComparison.OrdinalIgnoreCase);
-                    url = App.StringReplace(url, @"%IPCam_Puerto%", this.Puerto.ToString(), StringComparison.OrdinalIgnoreCase);
-                    url = App.StringReplace(url, @"%IPCam_Usuario%", this.Usuario, StringComparison.OrdinalIgnoreCase);
-                    url = App.StringReplace(url, @"%IPCam_Contraseña%", this.Contraseña, StringComparison.OrdinalIgnoreCase);
-                    url = App.StringReplace(url, @"%ResolucionX%", this.Resolucion.Width.ToString(), StringComparison.OrdinalIgnoreCase);
-                    url = App.StringReplace(url, @"%ResolucionY%", this.Resolucion.Height.ToString(), StringComparison.OrdinalIgnoreCase);
+                    url = OTexto.StringReplace(url, @"%IPCam_IP%", this.IP.ToString(), StringComparison.OrdinalIgnoreCase);
+                    url = OTexto.StringReplace(url, @"%IPCam_Puerto%", this.Puerto.ToString(), StringComparison.OrdinalIgnoreCase);
+                    url = OTexto.StringReplace(url, @"%IPCam_Usuario%", this.Usuario, StringComparison.OrdinalIgnoreCase);
+                    url = OTexto.StringReplace(url, @"%IPCam_Contraseña%", this.Contraseña, StringComparison.OrdinalIgnoreCase);
+                    url = OTexto.StringReplace(url, @"%ResolucionX%", this.Resolucion.Width.ToString(), StringComparison.OrdinalIgnoreCase);
+                    url = OTexto.StringReplace(url, @"%ResolucionY%", this.Resolucion.Height.ToString(), StringComparison.OrdinalIgnoreCase);
                     int fps = (int)Math.Ceiling(this.ExpectedFrameRate);
-                    url = App.StringReplace(url, @"%FrameIntervalMs%", fps.ToString(), StringComparison.OrdinalIgnoreCase);
-                    url = App.StringReplace(url, @"%fps%", fps.ToString(), StringComparison.OrdinalIgnoreCase);
+                    url = OTexto.StringReplace(url, @"%FrameIntervalMs%", fps.ToString(), StringComparison.OrdinalIgnoreCase);
+                    url = OTexto.StringReplace(url, @"%fps%", fps.ToString(), StringComparison.OrdinalIgnoreCase);
                     this.URL = url;
 
                     // Creación del vido source
                     string strVideoSource = dt.Rows[0]["IPCam_OrigenVideo"].ToString();
-                    TipoOrigenVideo tipoOrigenVideo = OEnumRobusto<TipoOrigenVideo>.Validar(strVideoSource, TipoOrigenVideo.JPG);
+                    TipoOrigenVideo tipoOrigenVideo = OEnumerado<TipoOrigenVideo>.Validar(strVideoSource, TipoOrigenVideo.JPG);
                     //TipoOrigenVideo tipoOrigenVideo = (TipoOrigenVideo)App.EnumParse(typeof(TipoOrigenVideo), strVideoSource, TipoOrigenVideo.JPG);
                     switch (tipoOrigenVideo)
                     {
@@ -137,7 +146,7 @@ namespace Orbita.VAHardware
 
                 // Detengo videosource actual
                 this.VideoSource.SignalToStop();
-                OThread.Espera(delegate() { return !this.VideoSource.Running; }, 1000);
+                OThreadManager.Espera(delegate() { return !this.VideoSource.Running; }, 1000);
                 this.VideoSource.Stop();
 
                 // Nos suscribimos a la recepción de imágenes de la cámara
@@ -170,7 +179,7 @@ namespace Orbita.VAHardware
 
                 // Detengo videosource actual
                 this.VideoSource.SignalToStop();
-                OThread.Espera(delegate() { return !this.VideoSource.Running; }, 1000);
+                OThreadManager.Espera(delegate() { return !this.VideoSource.Running; }, 1000);
                 this.VideoSource.Stop();
 
                 resultado = true;
@@ -225,7 +234,7 @@ namespace Orbita.VAHardware
                 {
                     // Detengo videosource actual
                     this.VideoSource.SignalToStop();
-                    OThread.Espera(delegate() { return !this.VideoSource.Running; }, 1000);
+                    OThreadManager.Espera(delegate() { return !this.VideoSource.Running; }, 1000);
                     this.VideoSource.Stop();
 
                     base.StopInterno();

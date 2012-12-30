@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 18-12-2012
 //
@@ -18,11 +18,11 @@ using System.Runtime.InteropServices;
 using Orbita.Trazabilidad;
 using System.Windows.Forms;
 using Orbita.Utiles;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 using PylonC.NET;
 using PylonC.NETSupportLibrary;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// Clase que implementa las funciones de manejo de la cámara BaslerVPro
@@ -121,7 +121,15 @@ namespace Orbita.VAHardware
         /// Constructor de la clase
         /// </summary>
         public OCamaraBaslerPylon(string codigo)
-            : base(codigo)
+            : this(codigo, string.Empty, OrigenDatos.OrigenBBDD)
+        {
+        }
+        
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OCamaraBaslerPylon(string codigo, string xmlFile, OrigenDatos origenDatos)
+            : base(codigo, xmlFile, origenDatos)
         {
             try
             {
@@ -144,7 +152,7 @@ namespace Orbita.VAHardware
 
 
                 // Cargamos valores de la base de datos
-                DataTable dt = AppBD.GetCamara(codigo);
+                DataTable dt = AppBD.GetCamara(codigo, xmlFile, origenDatos);
                 if (dt.Rows.Count == 1)
                 {
                     // Rellenamos la información propia de la cámara

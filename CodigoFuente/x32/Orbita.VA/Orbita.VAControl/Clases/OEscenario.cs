@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAControl
+// Assembly         : Orbita.VA.MaquinasEstados
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -10,9 +10,9 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System.Data;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
-namespace Orbita.VAControl
+namespace Orbita.VA.MaquinasEstados
 {
     /// <summary>
     /// Escenario Base.

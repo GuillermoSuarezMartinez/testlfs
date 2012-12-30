@@ -137,6 +137,7 @@
   <ItemGroup>
     <Compile Include="Colecciones\OCola.cs" />
     <Compile Include="Colecciones\OColaSincronizada.cs" />
+    <Compile Include="Colecciones\OColecciones.cs" />
     <Compile Include="Colecciones\OHashtable.cs" />
     <Compile Include="Compresion\BZip2\BZip2.cs" />
     <Compile Include="Compresion\BZip2\BZip2Constants.cs" />
@@ -208,24 +209,28 @@
     <Compile Include="Delegados\OManejadores.cs" />
     <Compile Include="Enumerados\Enumerados.cs" />
     <Compile Include="Enumerados\ODataTableEnumerado.cs" />
+    <Compile Include="Enumerados\OEnumeradoHeredable.cs" />
     <Compile Include="Enumerados\OStringEnumerado.cs" />
     <Compile Include="Enumerados\OAtributoEnumerado.cs" />
+    <Compile Include="Estructuras\OCronometros.cs" />
     <Compile Include="Estructuras\OFichero.cs" />
+    <Compile Include="Estructuras\OObjetos.cs" />
     <Compile Include="Excepciones\OExcepcion.cs" />
     <Compile Include="Hasp\OHaspSN.cs" />
     <Compile Include="Interfaces\ICola.cs" />
+    <Compile Include="Matematicas\OMath.cs" />
     <Compile Include="Mensajes\OMensajes.cs" />
     <Compile Include="Mensajes\OMensajesDetalle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seguridad\OCifrado.cs" />
     <Compile Include="Seguridad\OEncriptacion.cs" />
     <Compile Include="Seguridad\OSeguridad.cs" />
-    <Compile Include="Estructuras\OTiempo.cs" />
     <Compile Include="Threads\OHilo.cs" />
     <Compile Include="Threads\OHilos.cs" />
     <Compile Include="Threads\OResetManual.cs" />
     <Compile Include="Threads\OTimer.cs" />
     <Compile Include="Threads\ORepositorio.cs" />
+    <Compile Include="Windows\OProcesos.cs" />
     <Compile Include="Windows\OServicioWindows.cs" />
     <Compile Include="XML\OAlmacenXML.cs" />
     <Compile Include="XML\OXml.cs" />
@@ -253,6 +258,7 @@
       <Name>Orbita.Trazabilidad</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)Orbita.Utiles.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>

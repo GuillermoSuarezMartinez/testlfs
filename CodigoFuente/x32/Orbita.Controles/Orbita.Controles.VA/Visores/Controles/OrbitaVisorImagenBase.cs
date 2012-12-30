@@ -22,8 +22,9 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using Orbita.VAComun;
-using Orbita.VAHardware;
+using Orbita.VA.Comun;
+using Orbita.VA.Hardware;
+using Orbita.Utiles;
 
 namespace Orbita.Controles.VA
 {
@@ -87,9 +88,6 @@ namespace Orbita.Controles.VA
         Category("Orbita"),
         Description("Indica si se ha de mostrar la barra superior de botones"),
         DefaultValue(true)]
-        /// <summary>
-        /// Muestra la barra superior de botones
-        /// </summary>
         public virtual bool MostrarToolStrip
         {
             get { return _MostrarToolStrip; }
@@ -104,9 +102,6 @@ namespace Orbita.Controles.VA
         Category("Orbita"),
         Description("Indica si se ha de mostrar la barra inferior de estado"),
         DefaultValue(true)]
-        /// <summary>
-        /// Muestra la barra inferior de estado
-        /// </summary>
         public virtual bool MostrarStatusBar
         {
             get { return _MostrarStatusBar; }
@@ -367,7 +362,7 @@ namespace Orbita.Controles.VA
 
             // Creamos el timer de retraso de visualización
             this.FrameRateVisualizacionLimitado = maxFrameIntervalVisualizacion > 0;
-            this.TimerRetrasoVisualizacionUltimaImagen.Interval = OEnteroRobusto.Validar((int)Math.Truncate(maxFrameIntervalVisualizacion), 1, 1000000, 100);
+            this.TimerRetrasoVisualizacionUltimaImagen.Interval = OEntero.Validar((int)Math.Truncate(maxFrameIntervalVisualizacion), 1, 1000000, 100);
         }
         #endregion
 
@@ -378,7 +373,7 @@ namespace Orbita.Controles.VA
         protected void CargarImagenDialogo()
         {
             string rutaArchivo = ORutaParametrizable.AppFolder;
-            bool archivoSeleccionadoOK = App.FormularioSeleccionArchivo(this.openFileDialog, ref rutaArchivo);
+            bool archivoSeleccionadoOK = OTrabajoControles.FormularioSeleccionArchivo(this.openFileDialog, ref rutaArchivo);
             if (archivoSeleccionadoOK)
             {
                 this.CargarImagenDeDisco(rutaArchivo);
@@ -393,7 +388,7 @@ namespace Orbita.Controles.VA
         protected void GuardarImagenDialogo()
         {
             string rutaArchivo = ORutaParametrizable.AppFolder;
-            bool archivoSeleccionadoOK = App.FormularioGuardarArchivo(this.saveFileDialog, ref rutaArchivo);
+            bool archivoSeleccionadoOK = OTrabajoControles.FormularioGuardarArchivo(this.saveFileDialog, ref rutaArchivo);
             if (archivoSeleccionadoOK)
             {
                 this.GuardarImagenADisco(rutaArchivo);

@@ -14,8 +14,8 @@ using System.Collections;
 using System.Data;
 using System.Windows.Forms;
 using Orbita.Utiles;
-using Orbita.VAComun;
-using Orbita.VAControl;
+using Orbita.VA.Comun;
+using Orbita.VA.MaquinasEstados;
 
 namespace Orbita.Controles.VA
 {
@@ -84,7 +84,7 @@ namespace Orbita.Controles.VA
                     int indice = this.gridVariables.OrbFilaActiva.VisibleIndex;
 
                     //LLamada a la funcion que llama al procedimiento SQL
-                    Orbita.VAControl.AppBD.EliminaVariable((int)gridVariables.OrbFilaActiva.Cells["IdVariable"].Value);
+                    Orbita.VA.MaquinasEstados.AppBD.EliminaVariable((int)gridVariables.OrbFilaActiva.Cells["IdVariable"].Value);
 
                     //Refrescamos la lista
                     this.CargarVariables();
@@ -151,7 +151,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         private void CargarVariables()
         {
-            DataTable dt = Orbita.VAControl.AppBD.GetListaVariables();
+            DataTable dt = Orbita.VA.MaquinasEstados.AppBD.GetListaVariables();
             if (dt != null)
             {
                 //Formateamos y cargamos el grid

@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -15,9 +15,9 @@ using System.Data;
 using System.Windows.Forms;
 using MccDaq;
 using Orbita.Utiles;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// Clase que implementa las funciones para el control del módulo de Entradas/Salidas USB-1024HLS de Measurement Computing
@@ -69,7 +69,7 @@ namespace Orbita.VAHardware
             DataTable dtTarjetaIO = AppBD.GetTarjetaIO(this.Codigo);
             if (dtTarjetaIO.Rows.Count == 1)
             {
-                this._BoardNum = OEnteroRobusto.Validar(dtTarjetaIO.Rows[0]["DAQ_NumBoard"], 0, 1000, 0);
+                this._BoardNum = OEntero.Validar(dtTarjetaIO.Rows[0]["DAQ_NumBoard"], 0, 1000, 0);
 
                 this.CrearTerminales();
             }
@@ -494,12 +494,12 @@ namespace Orbita.VAHardware
 
             // Se comprueba que el valor sea correcto
             bool valorOK = false;
-            if (OEnteroRobusto.IsNumericInt(valor))
+            if (OEntero.IsNumericInt(valor))
             {
                 int intValor = Convert.ToInt32(valor);
                 int maxvalor = (int)Math.Pow(2, this.NumBits) - 1;
 
-                if (OEnteroRobusto.InRange(intValor, 0x00, maxvalor))
+                if (OEntero.InRange(intValor, 0x00, maxvalor))
                 {
                     ushortValor = (ushort)intValor;
                     valorOK = true;

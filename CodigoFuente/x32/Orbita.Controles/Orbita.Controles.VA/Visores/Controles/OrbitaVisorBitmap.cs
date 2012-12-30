@@ -14,8 +14,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.ComponentModel;
 using System.Drawing.Drawing2D;
-using Orbita.VAComun;
-using Orbita.VAHardware;
+using Orbita.VA.Comun;
+using Orbita.VA.Hardware;
 
 namespace Orbita.Controles.VA
 {

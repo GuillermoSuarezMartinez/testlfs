@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAComun
+// Assembly         : Orbita.VA.Comun
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -17,7 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Orbita.VAComun
+namespace Orbita.VA.Comun
 {
     /// <summary>
     /// Clase que guarda imagenes en un thread separado
@@ -114,7 +114,7 @@ namespace Orbita.VAComun
         /// <summary>
         /// Thread donde se ejecutará el guardado de imágenes o gráficos
         /// </summary>
-        private OThread Thread;
+        private OThreadLoop Thread;
 
         #endregion
 
@@ -126,7 +126,7 @@ namespace Orbita.VAComun
         {
             this.ColaImagenes = new Queue<KeyValuePair<string, OImage>>();
             this.ColaGraficos = new Queue<KeyValuePair<string, OGrafico>>();
-            this.Thread = new OThread("AlmacenObjetosVisuales", 50, ThreadPriority.Lowest);
+            this.Thread = new OThreadLoop("AlmacenObjetosVisuales", 50, ThreadPriority.Lowest);
             //this.Thread.OnEjecucion = Ejecutar;
             this.Thread.CrearSuscripcionRun(Ejecutar, true);
         }

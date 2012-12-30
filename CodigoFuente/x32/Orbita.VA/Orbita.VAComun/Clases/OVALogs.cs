@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAComun
+// Assembly         : Orbita.VA.Comun
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -20,8 +20,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 using Orbita.Trazabilidad;
+using Orbita.Utiles;
 
-namespace Orbita.VAComun
+namespace Orbita.VA.Comun
 {
     /// <summary>
     /// Clase estática para acceder a las funciones de los registros
@@ -403,7 +404,7 @@ namespace Orbita.VAComun
             logger.Error("Dato", objeto, (modulo.Nombre == logger.Identificador ? modulo.Nombre : string.Format("{0}({1})", logger.Identificador, modulo.Nombre)), remitente);
             LogExcepcion.Error("Dato", objeto, (modulo.Nombre == logger.Identificador ? modulo.Nombre : string.Format("{0}({1})", logger.Identificador, modulo.Nombre)), remitente);
 
-            MensajeError(ORobusto.ToString(objeto));
+            MensajeError(OObjeto.ToString(objeto));
         }
         /// <summary>
         /// Añade el registro log
@@ -492,7 +493,7 @@ namespace Orbita.VAComun
             ILogger logger = GetLog(modulo.Nombre);
             logger.Fatal("Dato", objeto, (modulo.Nombre == logger.Identificador ? modulo.Nombre : string.Format("{0}({1})", logger.Identificador, modulo.Nombre)), remitente);
             LogExcepcion.Fatal("Dato", objeto, (modulo.Nombre == logger.Identificador ? modulo.Nombre : string.Format("{0}({1})", logger.Identificador, modulo.Nombre)), remitente);
-            MensajeFatal(ORobusto.ToString(objeto));
+            MensajeFatal(OObjeto.ToString(objeto));
         }
         /// <summary>
         /// Añade el registro log

@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAControl
+// Assembly         : Orbita.VA.MaquinasEstados
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -18,9 +18,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
+using Orbita.Utiles;
 
-namespace Orbita.VAControl
+namespace Orbita.VA.MaquinasEstados
 {
     /// <summary>
     /// Clase de acceso estático que contiene la lista de máquina de estados
@@ -35,7 +36,6 @@ namespace Orbita.VAControl
         #endregion
 
         #region Método(s) público(s)
-
         /// <summary>
         /// Construye los objetos
         /// </summary>
@@ -276,7 +276,6 @@ namespace Orbita.VAControl
         #endregion
 
         #region Propiedad(es)
-
         /// <summary>
         /// Código del estado. Texto que lo identifica inequívocamente.
         /// </summary>
@@ -331,6 +330,20 @@ namespace Orbita.VAControl
         }
 
         /// <summary>
+        /// Máquina de estados destinada a la simulación del sistema
+        /// </summary>
+        private bool _MaquinaEstadosSimulacion;
+        /// <summary>
+        /// Máquina de estados destinada a la simulación del sistema
+        /// </summary>
+        public bool MaquinaEstadosSimulacion
+        {
+            get { return _MaquinaEstadosSimulacion; }
+            set { _MaquinaEstadosSimulacion = value; }
+        }
+
+
+        /// <summary>
         /// Tiempo entre comprobaciones de condiciones
         /// </summary>
         private TimeSpan _Cadencia;
@@ -380,11 +393,9 @@ namespace Orbita.VAControl
             get { return _Escenario; }
             set { _Escenario = value; }
         }
-
         #endregion
 
         #region Constructor(es)
-
         /// <summary>
         /// Constructor de la clase
         /// </summary>
@@ -411,12 +422,10 @@ namespace Orbita.VAControl
                     this.Habilitado = (bool)dtMaquinaEstados.Rows[0]["HabilitadoMaquinaEstados"];
                     this.VariableEstadoActual = dtMaquinaEstados.Rows[0]["CodVariableEstadoActual"].ToString();
                     this.CodVista = dtMaquinaEstados.Rows[0]["CodVista"].ToString();
-                    this._ForzarColectorBasura = OBoolRobusto.Validar(dtMaquinaEstados.Rows[0]["ForzarColectorBasura"], true);
+                    this._ForzarColectorBasura = OBooleano.Validar(dtMaquinaEstados.Rows[0]["ForzarColectorBasura"], true);
+                    this._MaquinaEstadosSimulacion = OBooleano.Validar(dtMaquinaEstados.Rows[0]["MaquinaEstadosSimulacion"], false);
 
-                    if (OEnteroRobusto.IsNumericInt(dtMaquinaEstados.Rows[0]["CadenciaEjecucion"]))
-                    {
-                        this.Cadencia = TimeSpan.FromMilliseconds((int)dtMaquinaEstados.Rows[0]["CadenciaEjecucion"]);
-                    }
+                    this.Cadencia = TimeSpan.FromMilliseconds(OEntero.Validar(dtMaquinaEstados.Rows[0]["CadenciaEjecucion"], 1, 10000, 1));
 
                     // Creación de los cronómetros
                     OCronometrosManager.NuevoCronometro(this._Codigo, "Duración Transito " + this.Nombre, "Duración del transito " + this.Nombre);
@@ -490,7 +499,6 @@ namespace Orbita.VAControl
                 throw new Exception("Imposible iniciar la máquina de estados " + this.Codigo);
             }
         }
-
         #endregion
 
         #region Método(s) privado(s)
@@ -813,7 +821,6 @@ namespace Orbita.VAControl
         #endregion
 
         #region Método(s) público(s)
-
         /// <summary>
         /// Inicio de la máquina de estados
         /// </summary>
@@ -821,14 +828,17 @@ namespace Orbita.VAControl
         {
             if (this._Habilitado && this._Valido)
             {
-                // Iniciamos la ejecución del estado incicial
-                this.EjecutarNuevoEstado(EstadoInicial);
+                if (!this._MaquinaEstadosSimulacion || (OSistemaManager.ModoInicio == ModoInicio.Simulacion))
+                {
+                    // Iniciamos la ejecución del estado incicial
+                    this.EjecutarNuevoEstado(EstadoInicial);
 
-                // Se ejecutan las transiciones
-                this.EjecutarTransiciones();
+                    // Se ejecutan las transiciones
+                    this.EjecutarTransiciones();
 
-                // Se ejecuta el timer
-                this.TimerEjecucion.Start();
+                    // Se ejecuta el timer
+                    this.TimerEjecucion.Start();
+                }
             }
         }
 
@@ -839,11 +849,14 @@ namespace Orbita.VAControl
         {
             if (this._Habilitado && this._Valido)
             {
-                // Se detiene el timer
-                this.TimerEjecucion.Stop();
+                if (!this._MaquinaEstadosSimulacion || (OSistemaManager.ModoInicio == ModoInicio.Simulacion))
+                {
+                    // Se detiene el timer
+                    this.TimerEjecucion.Stop();
 
-                // Se eliminan las suscripciones a las variables
-                this.EliminarSuscripcionVariables(this.EstadoActual);
+                    // Se eliminan las suscripciones a las variables
+                    this.EliminarSuscripcionVariables(this.EstadoActual);
+                }
             }
         }
 
@@ -896,11 +909,9 @@ namespace Orbita.VAControl
             }
             return null;
         }
-
         #endregion
 
         #region Método(s) virtual(es)
-
         /// <summary>
         /// Método donde se rellenará toda la información de la máquina de estados
         /// </summary>
@@ -974,7 +985,6 @@ namespace Orbita.VAControl
         {
             // Implementado en heredados
         }
-
         #endregion
 
         #region Eventos
@@ -1226,13 +1236,13 @@ namespace Orbita.VAControl
                     this.Habilitado = (bool)dtEstado.Rows[0]["HabilitadoEstado"];
                     this.Monitorizado = (bool)dtEstado.Rows[0]["Monitorizado"];
                     this.EsEstadoInicial = (bool)dtEstado.Rows[0]["EsEstadoInicial"];
-                    if (OEnteroRobusto.IsNumericInt(dtEstado.Rows[0]["TimeOut"]))
+                    if (OEntero.IsNumericInt(dtEstado.Rows[0]["TimeOut"]))
                     {
                         this.TimeOut = TimeSpan.FromMilliseconds((int)dtEstado.Rows[0]["TimeOut"]);
                     }
 
-                    this.TipoEstado = OEnumRobusto<OTipoEstado>.Validar(dtEstado.Rows[0]["Tipo"].ToString(), TipoEstado.EstadoSimple);
-                    //this.TipoEstado = (OTipoEstado)App.EnumParse(TipoEstado.GetType(), dtEstado.Rows[0]["Tipo"].ToString(), OTipoEstado.EstadoSimple);
+                    this.TipoEstado = OEnumerado<TipoEstado>.Validar(dtEstado.Rows[0]["Tipo"].ToString(), TipoEstado.EstadoSimple);
+                    //this.TipoEstado = (TipoEstado)App.EnumParse(TipoEstado.GetType(), dtEstado.Rows[0]["Tipo"].ToString(), TipoEstado.EstadoSimple);
 
                     // Creación de los cronómetros
                     this.CodCronometroAsociadoActivacion = this.CodigoMaquinaEstados + "." + this.Codigo + ".Activacion";
@@ -1271,7 +1281,7 @@ namespace Orbita.VAControl
         /// </summary>
         public virtual void Finalizar()
         {
-            OThread.Espera(ref this._EnEjecucion, false, 1000);
+            OThreadManager.Espera(ref this._EnEjecucion, false, 1000);
         }
 
         /// <summary>
@@ -1705,7 +1715,7 @@ namespace Orbita.VAControl
                     this.CodigoEstadoOrigen = dtTransicion.Rows[0]["CodigoEstadoOrigen"].ToString();
                     this.CodigoEstadoDestino = dtTransicion.Rows[0]["CodigoEstadoDestino"].ToString();
 
-                    this.TipoTransicion = OEnumRobusto<OTipoTransicion>.Validar(dtTransicion.Rows[0]["Tipo"].ToString(), TipoTransicion.TransicionSimple);
+                    this.TipoTransicion = OEnumerado<TipoTransicion>.Validar(dtTransicion.Rows[0]["Tipo"].ToString(), TipoTransicion.TransicionSimple);
                     //this.TipoTransicion = (OTipoTransicion)App.EnumParse(TipoTransicion.GetType(), dtTransicion.Rows[0]["Tipo"].ToString(), OTipoTransicion.TransicionSimple);
 
                     // Cargamos el código de las variables que se utilizan en la transición

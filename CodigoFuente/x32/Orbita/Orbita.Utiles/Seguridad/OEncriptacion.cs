@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+using System.IO;
 namespace Orbita.Utiles
 {
     /// <summary>
@@ -472,6 +473,97 @@ namespace Orbita.Utiles
                 return cipherTextBytes;
             }
         }
+        /// <summary>
+        /// Encripta el fichero pasado
+        /// </summary>
+        /// <param name="inputFile"></param>
+        /// <param name="outputFile"></param>
+        /// <param name="key"></param>
+        public void EncryptFile(string inputFile, string outputFile)
+        {
+            // Input File
+            FileStream inputFileStream = new FileStream(inputFile, FileMode.Open, FileAccess.Read);
+            byte[] inputFileData = new byte[(int)inputFileStream.Length];
+            inputFileStream.Read(inputFileData, 0, (int)inputFileStream.Length);
+
+            // Output File
+            FileStream outputFileStream = new FileStream(outputFile, FileMode.Create, FileAccess.Write);
+
+            // Encriptación
+            byte[] encriptedData = this.EncryptToBytes(inputFileData);
+
+            // Escritura de fichero
+            outputFileStream.Write(encriptedData, 0, (int)encriptedData.Length);
+
+            // Cierre de fichero
+            inputFileStream.Close();
+            outputFileStream.Close();
+        }
+
+        /// <summary>
+        /// Encrypts a string value generating a base64-encoded string.
+        /// </summary>
+        /// <param name="plainText">
+        /// Plain text string to be encrypted.
+        /// </param>
+        /// <returns>
+        /// Cipher text formatted as a base64-encoded string.
+        /// </returns>
+        public static string Encrypt(string plainText, string passPhrase)
+        {
+            return Encrypt(Encoding.UTF8.GetBytes(plainText), passPhrase);
+        }
+        /// <summary>
+        /// Encrypts a byte array generating a base64-encoded string.
+        /// </summary>
+        /// <param name="plainTextBytes">
+        /// Plain text bytes to be encrypted.
+        /// </param>
+        /// <returns>
+        /// Cipher text formatted as a base64-encoded string.
+        /// </returns>
+        public static string Encrypt(byte[] plainTextBytes, string passPhrase)
+        {
+            return Convert.ToBase64String(EncryptToBytes(plainTextBytes, passPhrase));
+        }
+        /// <summary>
+        /// Encrypts a string value generating a byte array of cipher text.
+        /// </summary>
+        /// <param name="plainText">
+        /// Plain text string to be encrypted.
+        /// </param>
+        /// <returns>
+        /// Cipher text formatted as a byte array.
+        /// </returns>
+        public static byte[] EncryptToBytes(string plainText, string passPhrase)
+        {
+            return EncryptToBytes(Encoding.UTF8.GetBytes(plainText), passPhrase);
+        }
+        /// <summary>
+        /// Encrypts a byte array generating a byte array of cipher text.
+        /// </summary>
+        /// <param name="plainTextBytes">
+        /// Plain text bytes to be encrypted.
+        /// </param>
+        /// <returns>
+        /// Cipher text formatted as a byte array.
+        /// </returns>
+        public static byte[] EncryptToBytes(byte[] plainTextBytes, string passPhrase)
+        {
+            OEncriptacion enc = new OEncriptacion(passPhrase);
+            return enc.EncryptToBytes(plainTextBytes);
+        }
+        /// <summary>
+        /// Encripta el fichero pasado
+        /// </summary>
+        /// <param name="inputFile"></param>
+        /// <param name="outputFile"></param>
+        /// <param name="key"></param>
+        public static void EncryptFile(string inputFile, string outputFile, string passPhrase)
+        {
+            OEncriptacion enc = new OEncriptacion(passPhrase);
+            enc.EncryptFile(inputFile, outputFile);
+        }
         #endregion
 
         #region Decryption routines
@@ -578,6 +670,127 @@ namespace Orbita.Utiles
 
             // Return original plain text value.
             return plainTextBytes;
+        }
+        /// <summary>
+        /// Encripta el fichero pasado
+        /// </summary>
+        /// <param name="inputFile"></param>
+        /// <param name="outputFile"></param>
+        /// <param name="key"></param>
+        public void DecryptFile(string inputFile, string outputFile)
+        {
+            // Input File
+            FileStream inputFileStream = new FileStream(inputFile, FileMode.Open, FileAccess.Read);
+            byte[] inputFileData = new byte[(int)inputFileStream.Length];
+            inputFileStream.Read(inputFileData, 0, (int)inputFileStream.Length);
+
+            // Output File
+            FileStream outputFileStream = new FileStream(outputFile, FileMode.Create, FileAccess.Write);
+
+            // Desencriptación
+            byte[] decryptedData = this.DecryptToBytes(inputFileData);
+
+            // Escritura de fichero
+            outputFileStream.Write(decryptedData, 0, (int)decryptedData.Length);
+
+            // Cierre de fichero
+            inputFileStream.Close();
+            outputFileStream.Close();
+        }
+        /// <summary>
+        /// Desencripta el fichero pasado
+        /// </summary>
+        /// <param name="inputFile"></param>
+        /// <param name="outputFile"></param>
+        /// <param name="key"></param>
+        public byte[] DecryptFileToBytes(string inputFile)
+        {
+            // Input File
+            FileStream inputFileStream = new FileStream(inputFile, FileMode.Open, FileAccess.Read);
+            byte[] inputFileData = new byte[(int)inputFileStream.Length];
+            inputFileStream.Read(inputFileData, 0, (int)inputFileStream.Length);
+
+            // Desencriptación
+            return this.DecryptToBytes(inputFileData);
+        }
+
+        /// <summary>
+        /// Decrypts a base64-encoded cipher text value generating a string result.
+        /// </summary>
+        /// <param name="cipherText">
+        /// Base64-encoded cipher text string to be decrypted.
+        /// </param>
+        /// <returns>
+        /// Decrypted string value.
+        /// </returns>
+        public static string Decrypt(string cipherText, string passPhrase)
+        {
+            return Decrypt(Convert.FromBase64String(cipherText), passPhrase);
+        }
+        /// <summary>
+        /// Decrypts a byte array containing cipher text value and generates a
+        /// string result.
+        /// </summary>
+        /// <param name="cipherTextBytes">
+        /// Byte array containing encrypted data.
+        /// </param>
+        /// <returns>
+        /// Decrypted string value.
+        /// </returns>
+        public static string Decrypt(byte[] cipherTextBytes, string passPhrase)
+        {
+            return Encoding.UTF8.GetString(DecryptToBytes(cipherTextBytes, passPhrase));
+        }
+        /// <summary>
+        /// Decrypts a base64-encoded cipher text value and generates a byte array
+        /// of plain text data.
+        /// </summary>
+        /// <param name="cipherText">
+        /// Base64-encoded cipher text string to be decrypted.
+        /// </param>
+        /// <returns>
+        /// Byte array containing decrypted value.
+        /// </returns>
+        public static byte[] DecryptToBytes(string cipherText, string passPhrase)
+        {
+            return DecryptToBytes(Convert.FromBase64String(cipherText), passPhrase);
+        }
+        /// <summary>
+        /// Decrypts a base64-encoded cipher text value and generates a byte array
+        /// of plain text data.
+        /// </summary>
+        /// <param name="cipherTextBytes">
+        /// Byte array containing encrypted data.
+        /// </param>
+        /// <returns>
+        /// Byte array containing decrypted value.
+        /// </returns>
+        public static byte[] DecryptToBytes(byte[] cipherTextBytes, string passPhrase)
+        {
+            OEncriptacion dec = new OEncriptacion(passPhrase);
+            return dec.DecryptToBytes(cipherTextBytes);
+        }
+        /// <summary>
+        /// Encripta el fichero pasado
+        /// </summary>
+        /// <param name="inputFile"></param>
+        /// <param name="outputFile"></param>
+        /// <param name="key"></param>
+        public static void DecryptFile(string inputFile, string outputFile, string passPhrase)
+        {
+            OEncriptacion dec = new OEncriptacion(passPhrase);
+            dec.DecryptFile(inputFile, outputFile);
+        }
+        /// <summary>
+        /// Desencripta el fichero pasado
+        /// </summary>
+        /// <param name="inputFile"></param>
+        /// <param name="outputFile"></param>
+        /// <param name="key"></param>
+        public static byte[] DecryptFileToBytes(string inputFile, string passPhrase)
+        {
+            OEncriptacion dec = new OEncriptacion(passPhrase);
+            return dec.DecryptFileToBytes(inputFile);
         }
         #endregion
 

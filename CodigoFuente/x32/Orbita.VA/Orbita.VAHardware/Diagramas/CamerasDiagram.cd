@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Font Name="Segoe UI" Size="9" />
-  <Class Name="Orbita.VAHardware.FrmMonitorizacionCamaras" Collapsed="true">
+  <Class Name="Orbita.VA.Hardware.FrmMonitorizacionCamaras" Collapsed="true">
     <Position X="0.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <FileName>FrmMonitorizacionCamaras.cs</FileName>
@@ -15,7 +15,7 @@
       <Field Name="NumeroCamaras" Hidden="true" />
     </Members>
   </Class>
-  <Class Name="Orbita.VAHardware.CameraRuntime" Collapsed="true">
+  <Class Name="Orbita.VA.Hardware.CameraRuntime" Collapsed="true">
     <Position X="4.25" Y="0.5" Width="2.75" />
     <TypeIdentifier>
       <FileName>FrmMonitorizacionCamaras.cs</FileName>
@@ -27,7 +27,7 @@
     <ShowAsCollectionAssociation>
       <Field Name="ListaCamaras" />
     </ShowAsCollectionAssociation>
-    <AssociationLine Name="ListaCamaras" Type="Orbita.VAHardware.CtrlCamera" FixedToPoint="true">
+    <AssociationLine Name="ListaCamaras" Type="Orbita.VA.Hardware.CtrlCamera" FixedToPoint="true">
       <Path>
         <Point X="5.625" Y="1.062" />
         <Point X="5.625" Y="3.5" />
@@ -37,7 +37,7 @@
       </MemberNameLabel>
     </AssociationLine>
   </Class>
-  <Class Name="Orbita.VAHardware.CtrlCamera" Collapsed="true">
+  <Class Name="Orbita.VA.Hardware.CtrlCamera" Collapsed="true">
     <Position X="4.25" Y="3.5" Width="2.75" />
     <TypeIdentifier>
       <FileName>CtrlCamera.cs</FileName>
@@ -86,21 +86,21 @@
     <Compartments>
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
-    <AssociationLine Name="TipoCamara" Type="Orbita.VAHardware.TipoCamara" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="TipoCamara" Type="Orbita.VA.Hardware.TipoCamara" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="5.125" Y="3.5" />
         <Point X="5.125" Y="1.75" />
         <Point X="4.25" Y="1.75" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="Color" Type="Orbita.VAHardware.TipoColorPixel" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="Color" Type="Orbita.VA.Hardware.TipoColorPixel" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="4.812" Y="3.5" />
         <Point X="4.812" Y="2.5" />
         <Point X="4.25" Y="2.5" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="SimulacionCamara" Type="Orbita.VAHardware.SimulacionCamara" FixedFromPoint="true" FixedToPoint="true">
+    <AssociationLine Name="SimulacionCamara" Type="Orbita.VA.Hardware.SimulacionCamara" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="6.062" Y="3.5" />
         <Point X="6.062" Y="2.563" />
@@ -108,7 +108,7 @@
       </Path>
     </AssociationLine>
   </Class>
-  <Class Name="Orbita.VAHardware.CrtlCameraBaslerVPro" Collapsed="true">
+  <Class Name="Orbita.VA.Hardware.CrtlCameraBaslerVPro" Collapsed="true">
     <Position X="4.25" Y="4.75" Width="2.75" />
     <TypeIdentifier>
       <FileName>CrtlCameraBaslerVPro.cs</FileName>
@@ -190,7 +190,7 @@
       <Field Name="WhiteBalanceRed" Hidden="true" />
     </Members>
   </Class>
-  <Class Name="Orbita.VAHardware.OrbitaImage" Collapsed="true">
+  <Class Name="Orbita.VA.Hardware.OrbitaImage" Collapsed="true">
     <Position X="8.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>OrbitaImage.cs</FileName>
@@ -205,7 +205,7 @@
     </Members>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Orbita.VAHardware.VisionProImage" Collapsed="true">
+  <Class Name="Orbita.VA.Hardware.VisionProImage" Collapsed="true">
     <Position X="8.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <FileName>VisionProImage.cs</FileName>
@@ -216,7 +216,7 @@
       <Method Name="VisionProImage" Hidden="true" />
     </Members>
   </Class>
-  <Class Name="Orbita.VAHardware.SimulacionCamara" Collapsed="true">
+  <Class Name="Orbita.VA.Hardware.SimulacionCamara" Collapsed="true">
     <Position X="8.25" Y="2.25" Width="1.75" />
     <TypeIdentifier>
       <FileName>CtrlCamera.cs</FileName>
@@ -238,21 +238,21 @@
       <Field Name="TimerSimulacionGrab" Hidden="true" />
     </Members>
   </Class>
-  <Class Name="Orbita.VAHardware.TerminalIOBase" Collapsed="true">
+  <Class Name="Orbita.VA.Hardware.TerminalIOBase" Collapsed="true">
     <Position X="1" Y="3.5" Width="2" />
     <TypeIdentifier>
       <FileName>IOBase.cs</FileName>
       <HashCode>BgAAEAIAAQAAAAAAAAIAwABFAAAAABEFAQAAAgAJAAA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="Orbita.VAHardware.TerminalIOBaslerVproBit" Collapsed="true">
+  <Class Name="Orbita.VA.Hardware.TerminalIOBaslerVproBit" Collapsed="true">
     <Position X="1" Y="4.75" Width="2" />
     <TypeIdentifier>
       <FileName>CrtlCameraBaslerVPro.cs</FileName>
       <HashCode>AgAAAAAAAAAAAAAAAgABQAAEAAAAAAAAAAAAAgAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="Orbita.VAHardware.FrmGestionSimulacion" Collapsed="true">
+  <Class Name="Orbita.VA.Hardware.FrmGestionSimulacion" Collapsed="true">
     <Position X="8" Y="0.5" Width="2" />
     <TypeIdentifier>
       <FileName>FrmGestionSimulacion.cs</FileName>
@@ -304,41 +304,41 @@
       <Field Name="ultraTabPageControl2" Hidden="true" />
       <Field Name="ultraTabSharedControlsPage1" Hidden="true" />
     </Members>
-    <AssociationLine Name="SimulacionCamara" Type="Orbita.VAHardware.SimulacionCamara">
+    <AssociationLine Name="SimulacionCamara" Type="Orbita.VA.Hardware.SimulacionCamara">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.098" Y="0.779" />
       </MemberNameLabel>
     </AssociationLine>
   </Class>
-  <Enum Name="Orbita.VAHardware.TipoCamara" Collapsed="true">
+  <Enum Name="Orbita.VA.Hardware.TipoCamara" Collapsed="true">
     <Position X="2.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>CtrlCamera.cs</FileName>
       <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Orbita.VAHardware.TipoColorPixel" Collapsed="true">
+  <Enum Name="Orbita.VA.Hardware.TipoColorPixel" Collapsed="true">
     <Position X="2.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <FileName>CtrlCamera.cs</FileName>
       <HashCode>AAAAAAIAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Orbita.VAHardware.TipoSimulacionCamara" Collapsed="true">
+  <Enum Name="Orbita.VA.Hardware.TipoSimulacionCamara" Collapsed="true">
     <Position X="11.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <FileName>CtrlCamera.cs</FileName>
       <HashCode>AAAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Orbita.VAHardware.ModoAdquisicion" Collapsed="true">
+  <Enum Name="Orbita.VA.Hardware.ModoAdquisicion" Collapsed="true">
     <Position X="4.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <FileName>CrtlCameraBaslerVPro.cs</FileName>
       <HashCode>AAAAAAAAAgAIAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Orbita.VAHardware.TipoImagen" Collapsed="true">
+  <Enum Name="Orbita.VA.Hardware.TipoImagen" Collapsed="true">
     <Position X="11.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>OrbitaImage.cs</FileName>

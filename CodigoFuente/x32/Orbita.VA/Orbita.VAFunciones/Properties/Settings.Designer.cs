@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Orbita.VAFunciones.Properties {
+namespace Orbita.VA.Funciones.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

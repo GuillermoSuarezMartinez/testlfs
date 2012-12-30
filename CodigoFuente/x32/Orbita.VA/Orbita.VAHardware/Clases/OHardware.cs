@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -12,7 +12,7 @@
 using System.Collections.Generic;
 using System.Data;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// Clase estática para el acceso al hardware
@@ -47,7 +47,7 @@ namespace Orbita.VAHardware
             OCamaraManager.Constructor();
 
             // Consulta de todas las vistas existentes en el sistema
-            DataTable dtVista = Orbita.VAComun.AppBD.GetVistas();
+            DataTable dtVista = Orbita.VA.Comun.AppBD.GetVistas();
             if (dtVista.Rows.Count > 0)
             {
                 // Cargamos todas las vistas existentes en el sistema

@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -32,10 +32,11 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using AForge.Video.FFMPEG;
-using Orbita.VAComun;
-using Orbita.VAControl;
+using Orbita.VA.Comun;
+using Orbita.VA.MaquinasEstados;
+using Orbita.Utiles;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
 	/// <summary>
 	/// Clase estática para el acceso a las cámaras
@@ -951,11 +952,19 @@ namespace Orbita.VAHardware
 		/// <summary>
 		/// Constructor de la clase
 		/// </summary>
-		public OCamaraBase(string codigo)
+        public OCamaraBase(string codigo):
+            this(codigo, string.Empty, OrigenDatos.OrigenBBDD)
+        {
+        }
+
+		/// <summary>
+		/// Constructor de la clase
+		/// </summary>
+		public OCamaraBase(string codigo, string xmlFile, OrigenDatos origenDatos)
 		{
 			try
 			{
-				//Inicializamos los valores por defecto
+                //Inicializamos los valores por defecto
 				this._Codigo = codigo;
 				this._ListaTerminales = new List<OTerminalIOBase>();
 				this._Existe = false;
@@ -965,34 +974,34 @@ namespace Orbita.VAHardware
 				//this.Recording = false;
 				this.MedidorVelocidadAdquisicion = new OMedidorVelocidadAdquisicion();
 
-				DataTable dt = AppBD.GetCamara(codigo);
+                DataTable dt = AppBD.GetCamara(codigo, xmlFile, origenDatos);
 				if (dt.Rows.Count == 1)
 				{
 					this._Nombre = dt.Rows[0]["NombreHardware"].ToString();
 					this._Descripcion = dt.Rows[0]["DescHardware"].ToString();
 					this._Habilitado = (bool)dt.Rows[0]["HabilitadoHardware"];
-                    this._TipoCamara = OEnumRobusto<OTipoCamara>.Validar(dt.Rows[0]["CodTipoHardware"].ToString(), TipoCamara.VProBasler);
+                    this._TipoCamara = OEnumerado<TipoCamara>.Validar(dt.Rows[0]["CodTipoHardware"].ToString(), TipoCamara.VProBasler);
                     //this._TipoCamara = (OTipoCamara)App.EnumParse(typeof(OTipoCamara), dt.Rows[0]["CodTipoHardware"].ToString(), OTipoCamara.VProBasler);
 					this._CodigoTipoCamara = dt.Rows[0]["CodTipoHardware"].ToString();
 					this._Fabricante = dt.Rows[0]["Fabricante"].ToString();
 					this._Modelo = dt.Rows[0]["Modelo"].ToString();
 					this._DescripcionTipoCamara = dt.Rows[0]["DescTipoHardware"].ToString();
 					this._CodVariableImagen = dt.Rows[0]["CodVariableImagen"].ToString();
-					this._LanzarEventoAlSnap = OBoolRobusto.Validar(dt.Rows[0]["LanzarEventoAlSnap"], false);
+					this._LanzarEventoAlSnap = OBooleano.Validar(dt.Rows[0]["LanzarEventoAlSnap"], false);
 					this._CodVariableSnap = dt.Rows[0]["CodVariableSnap"].ToString();
-					this._Resolucion.Width = OEnteroRobusto.Validar(dt.Rows[0]["ResolucionX"], 1, 100000, 1024);
-					this._Resolucion.Height = OEnteroRobusto.Validar(dt.Rows[0]["ResolucionY"], 1, 100000, 768);
-					this._Color = (TipoColorPixel)OEnteroRobusto.Validar(dt.Rows[0]["Color"], 0, 1, 0);
-                    this._ExpectedFrameInterval = ODecimalRobusto.Validar(dt.Rows[0]["FrameIntervalMs"], 0.0, 1000.0, 1.0);
+					this._Resolucion.Width = OEntero.Validar(dt.Rows[0]["ResolucionX"], 1, 100000, 1024);
+					this._Resolucion.Height = OEntero.Validar(dt.Rows[0]["ResolucionY"], 1, 100000, 768);
+					this._Color = (TipoColorPixel)OEntero.Validar(dt.Rows[0]["Color"], 0, 1, 0);
+                    this._ExpectedFrameInterval = ODecimal.Validar(dt.Rows[0]["FrameIntervalMs"], 0.0, 1000.0, 1.0);
                     this._ExpectedFrameRate = this._ExpectedFrameInterval > 0 ? 1000 / this._ExpectedFrameInterval : 25;
-                    this._MaxFrameIntervalVisualizacion = ODecimalRobusto.Validar(dt.Rows[0]["MaxFrameIntervalMsVisualizacion"], 0.0, 1000.0, 0.0);
+                    this._MaxFrameIntervalVisualizacion = ODecimal.Validar(dt.Rows[0]["MaxFrameIntervalMsVisualizacion"], 0.0, 1000.0, 0.0);
                     this._EnsambladoClaseImplementadoraDisplay = dt.Rows[0]["EnsambladoClaseImplementadoraDisplay"].ToString();
                     this._ClaseImplementadoraDisplay = string.Format("{0}.{1}", this._EnsambladoClaseImplementadoraDisplay, dt.Rows[0]["ClaseImplementadoraDisplay"].ToString());
-                    this._AutoStart = OBoolRobusto.Validar(dt.Rows[0]["AutoStart"], false);
+                    this._AutoStart = OBooleano.Validar(dt.Rows[0]["AutoStart"], false);
 
                     // Construcción del PTZ
-                    this._EnsambladoClaseImplementadoraPTZ = OTextoRobusto.Validar(dt.Rows[0]["EnsambladoClaseImplementadoraPTZ"], 100, false, false, Assembly.GetExecutingAssembly().GetName().Name);
-                    this._ClaseImplementadoraPTZ = string.Format("{0}.{1}", this._EnsambladoClaseImplementadoraPTZ, OTextoRobusto.Validar(dt.Rows[0]["ClaseImplementadoraPTZ"], 100, false, false, typeof(OPTZBase).Name));
+                    this._EnsambladoClaseImplementadoraPTZ = OTexto.Validar(dt.Rows[0]["EnsambladoClaseImplementadoraPTZ"], 100, false, false, Assembly.GetExecutingAssembly().GetName().Name);
+                    this._ClaseImplementadoraPTZ = string.Format("{0}.{1}", this._EnsambladoClaseImplementadoraPTZ, OTexto.Validar(dt.Rows[0]["ClaseImplementadoraPTZ"], 100, false, false, typeof(OPTZBase).Name));
                     object objetoImplementado;
                     if (App.ConstruirClase(this._EnsambladoClaseImplementadoraPTZ, this._ClaseImplementadoraPTZ, out objetoImplementado, this._Codigo))
                     {
@@ -1004,14 +1013,14 @@ namespace Orbita.VAHardware
                     }
 
                     // Construcción del Grabador de videos
-                    TimeSpan tiempoMaxGrabacion = TimeSpan.FromMilliseconds(OEnteroRobusto.Validar(dt.Rows[0]["GrabacionTiempoMaxMs"], 1, int.MaxValue, 60));
+                    TimeSpan tiempoMaxGrabacion = TimeSpan.FromMilliseconds(OEntero.Validar(dt.Rows[0]["GrabacionTiempoMaxMs"], 1, int.MaxValue, 60));
                     Size resolucionGrabacion = new Size();
-                    resolucionGrabacion.Width = OEnteroRobusto.Validar(dt.Rows[0]["GrabacionResolucionX"], 1, 100000, 1024);
-                    resolucionGrabacion.Height = OEnteroRobusto.Validar(dt.Rows[0]["GrabacionResolucionY"], 1, 100000, 768);
-                    VideoCodec codecGrabacion = OEnumRobusto<VideoCodec>.Validar(dt.Rows[0]["GrabacionCodec"].ToString(), VideoCodec.MPEG4);
+                    resolucionGrabacion.Width = OEntero.Validar(dt.Rows[0]["GrabacionResolucionX"], 1, 100000, 1024);
+                    resolucionGrabacion.Height = OEntero.Validar(dt.Rows[0]["GrabacionResolucionY"], 1, 100000, 768);
+                    VideoCodec codecGrabacion = OEnumerado<VideoCodec>.Validar(dt.Rows[0]["GrabacionCodec"].ToString(), VideoCodec.MPEG4);
                     //VideoCodec codecGrabacion = (VideoCodec)App.EnumParse(typeof(VideoCodec), dt.Rows[0]["GrabacionCodec"].ToString(), VideoCodec.MPEG4);
-                    int bitRateGrabacion = OEnteroRobusto.Validar(dt.Rows[0]["GrabacionBitRate"], 1, int.MaxValue, 1000);
-                    double grabacionFrameIntervalMs = ODecimalRobusto.Validar(dt.Rows[0]["GrabacionFrameIntervalMs"], 0.0, 1000.0, 1.0);
+                    int bitRateGrabacion = OEntero.Validar(dt.Rows[0]["GrabacionBitRate"], 1, int.MaxValue, 1000);
+                    double grabacionFrameIntervalMs = ODecimal.Validar(dt.Rows[0]["GrabacionFrameIntervalMs"], 0.0, 1000.0, 1.0);
                     this.VideoFile = new OVideoFile(this.Codigo, resolucionGrabacion, tiempoMaxGrabacion, grabacionFrameIntervalMs, bitRateGrabacion, codecGrabacion);
 				}
 				else
@@ -1025,7 +1034,7 @@ namespace Orbita.VAHardware
 				throw new Exception("Imposible iniciar la cámara " + this.Codigo);
 			}
 		}
-		#endregion
+        #endregion
 
         #region Método(s) privados(s)
         /// <summary>
@@ -1225,7 +1234,7 @@ namespace Orbita.VAHardware
 		public bool Start()
 		{
             bool resultado = false;
-            if (this.Habilitado && (this.EstadoConexion == VAHardware.EstadoConexion.Conectado))
+            if (this.Habilitado && (this.EstadoConexion == EstadoConexion.Conectado))
             {
                 // Información extra
                 OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, "Start de la cámara: " + this.Codigo);
@@ -1300,7 +1309,7 @@ namespace Orbita.VAHardware
 		{
 			bool resultado = false;
 
-            if (this.Habilitado && (this.EstadoConexion == VAHardware.EstadoConexion.Conectado))
+            if (this.Habilitado && (this.EstadoConexion == EstadoConexion.Conectado))
             {
                 if (!this.SimulacionCamara.Simulacion)
                 { // Modo de funcionamiento normal
@@ -1353,7 +1362,7 @@ namespace Orbita.VAHardware
 		public bool StartREC(string fichero)
 		{
             bool resultado = false;
-            if (this.Habilitado && (this.EstadoConexion == VAHardware.EstadoConexion.Conectado))
+            if (this.Habilitado && (this.EstadoConexion == EstadoConexion.Conectado))
             {
                 // Información extra
                 OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, "REC de la cámara: " + this.Codigo);
@@ -1374,7 +1383,7 @@ namespace Orbita.VAHardware
         public bool StopREC()
         {
             bool resultado = false;
-            if (this.Habilitado && (this.EstadoConexion == VAHardware.EstadoConexion.Conectado))
+            if (this.Habilitado && (this.EstadoConexion == EstadoConexion.Conectado))
             {
                 // Información extra
                 OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, "StopREC de la cámara: " + this.Codigo);
@@ -2108,7 +2117,7 @@ namespace Orbita.VAHardware
 							if (this.ListaRutaFotografias.Count > 0)
 							{
 								this.IndiceFotografia++;
-                                resultado = OEnteroRobusto.InRange(this.IndiceFotografia, 0, this.ListaRutaFotografias.Count - 1);
+                                resultado = OEntero.InRange(this.IndiceFotografia, 0, this.ListaRutaFotografias.Count - 1);
 								if (resultado)
 								{
 									rutaFotografiaActual = this.ListaRutaFotografias[this.IndiceFotografia];

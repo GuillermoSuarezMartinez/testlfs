@@ -13,8 +13,8 @@ using System;
 using System.Data;
 using Orbita.Controles;
 using System.IO;
-using Orbita.VAHardware;
-using Orbita.VAComun;
+using Orbita.VA.Hardware;
+using Orbita.VA.Comun;
 
 namespace Orbita.Controles.VA
 {
@@ -29,7 +29,12 @@ namespace Orbita.Controles.VA
         /// </summary>
         /// <param name="codigoCamara"></param>
         public FrmDetalleCamara(string codigoCamara):
-            base(codigoCamara)
+            this(codigoCamara, string.Empty, OrigenDatos.OrigenBBDD)
+        {
+        }
+
+        public FrmDetalleCamara(string codigoCamara, string xmlFile, OrigenDatos origenDatos):
+            base(codigoCamara, xmlFile, origenDatos)
         {
             InitializeComponent();
         }
@@ -43,7 +48,7 @@ namespace Orbita.Controles.VA
         {
             try
             {
-                DataTable dt = Orbita.VAHardware.AppBD.GetCamara(this.Codigo);
+                DataTable dt = Orbita.VA.Hardware.AppBD.GetCamara(this.Codigo, this.XmlFile, this.OrigenDatos);
                 this.lblCodigoModelo.Text = dt.Rows[0]["CodTipoHardware"].ToString();
                 this.lblFabricante.Text = "Fabricante: " + dt.Rows[0]["Fabricante"].ToString();
                 this.lblModelo.Text = "Modelo: " + dt.Rows[0]["Modelo"].ToString();

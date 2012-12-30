@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -36,9 +36,9 @@ using Cognex.VisionPro.FGGigE;
 using Cognex.VisionPro.FGGigE.Implementation.Internal;
 using Orbita.Trazabilidad;
 using Orbita.Utiles;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// Clase que implementa las funciones de manejo de la cámara BaslerVPro
@@ -115,7 +115,15 @@ namespace Orbita.VAHardware
         /// Constructor de la clase
         /// </summary>
         public OCamaraBaslerVPro(string codigo)
-            : base(codigo)
+            : this(codigo, string.Empty, OrigenDatos.OrigenBBDD)
+        {
+        }
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OCamaraBaslerVPro(string codigo, string xmlFile, OrigenDatos origenDatos)
+            : base(codigo, xmlFile, origenDatos)
         {
             try
             {
@@ -123,10 +131,10 @@ namespace Orbita.VAHardware
                 this.AdquisicionEnProceso = false;
 
                 // Creación de los parámetros internos de las cámaras
-                this.Ajustes = new OGigEFeatures(this.Codigo);
+                this.Ajustes = new OGigEFeatures(this.Codigo, xmlFile, origenDatos);
 
                 // Cargamos valores de la base de datos
-                DataTable dt = AppBD.GetCamara(codigo);
+                DataTable dt = AppBD.GetCamara(codigo, xmlFile, origenDatos);
                 if (dt.Rows.Count == 1)
                 {
                     // Rellenamos la información propia de la cámara
@@ -152,7 +160,7 @@ namespace Orbita.VAHardware
                     this.TimerScan.Tick += new EventHandler(EventoScan);
 
                     // Creación de la comprobación de la conexión con la cámara IP
-                    this.IntervaloComprobacionConectividadMS = OEnteroRobusto.Validar(dt.Rows[0]["IPCam_IntervaloComprobacionConectividadMS"], 1, int.MaxValue, 100);
+                    this.IntervaloComprobacionConectividadMS = OEntero.Validar(dt.Rows[0]["IPCam_IntervaloComprobacionConectividadMS"], 1, int.MaxValue, 100);
 
                     // Se construye la lista de cámaras GigE
                     if (PrimeraInstancia)
@@ -675,10 +683,10 @@ namespace Orbita.VAHardware
     {
         #region Atributo(s)
         //public GigEDoubleFeature FeatureExposureTimeAbs = new GigEDoubleFeature("ExposureTimeAbs", 80, 81900, 20000, 20000); //uS // Cambio Shutter
-        public ODecimalRobusto FeatureExposureTimeAbs = new ODecimalRobusto("ExposureTimeAbs", 0.04, 81.9, 0.1, false); //ms // Cambio Shutter
+        public ODecimal FeatureExposureTimeAbs = new ODecimal("ExposureTimeAbs", 0.04, 81.9, 0.1, false); //ms // Cambio Shutter
         public OGigEEnumFeature FeatureGainAuto = new OGigEEnumFeature("GainAuto", new string[] { "Off", "Once", "Continuous" }, "Off", 100);
         //public GigEIntFeature FeatureGainRaw = new GigEIntFeature("GainRaw", 0, 500, 116, 100); // Cambio Gain
-        public ODecimalRobusto FeatureGainRaw = new ODecimalRobusto("GainRaw", 0, 500, 0, false); // Cambio Gain
+        public ODecimal FeatureGainRaw = new ODecimal("GainRaw", 0, 500, 0, false); // Cambio Gain
         public OGigEIntFeature FeatureBlackLevelRaw = new OGigEIntFeature("BlackLevelRaw", 0, 600, 32, 100);
         public OGigEEnumFeature FeatureBalanceRatioSelector = new OGigEEnumFeature("BalanceRatioSelector", new string[] { "Red", "Green", "Blue" }, "Red", 100);
         public OGigEIntFeature FeatureBalanceRatioRed = new OGigEIntFeature("BalanceRatioRaw", 0, 255, 50, 100);
@@ -686,20 +694,20 @@ namespace Orbita.VAHardware
         public OGigEIntFeature FeatureBalanceRatioBlue = new OGigEIntFeature("BalanceRatioRaw", 0, 255, 50, 100);
         public OGigEBoolFeature FeatureGammaEnable = new OGigEBoolFeature("GammaEnable", false, 100);
         public OGigEDoubleFeature FeatureGamma = new OGigEDoubleFeature("Gamma", 0, 3.999023, 1, 100);
-        public OStringEnumRobusto FeatureAcquisitionFormat = new OStringEnumRobusto("AcquisitionFormat", new string[] { "Generic GigEVision (Bayer Color)", "Generic GigEVision (Mono)" }, "Generic GigEVision (Mono)", false);
+        public OEnumeradoTexto FeatureAcquisitionFormat = new OEnumeradoTexto("AcquisitionFormat", new string[] { "Generic GigEVision (Bayer Color)", "Generic GigEVision (Mono)" }, "Generic GigEVision (Mono)", false);
         public OGigEEnumFeature FeatureTransferFormat = new OGigEEnumFeature("PixelFormat", new string[] { "Mono8", "BayerBG8", "YUV422Packed", "YUV422_YUYV_Packed", "BayerBG12Packed", "BayerBG16" }, "Mono8", 100);
         public OGigEEnumFeature FeatureTriggerSource = new OGigEEnumFeature("TriggerSource", new string[] { "Line1", "Line2", "Software" }, "Line1", 100);
         public OGigEEnumFeature FeatureTriggerMode = new OGigEEnumFeature("TriggerMode", new string[] { "Off", "On" }, "Off", 100);
         public OGigEIntFeature FeaturePacketSize = new OGigEIntFeature("GevSCPSPacketSize", 220, 16404, 1024, 100);
         public OGigEIntFeature FeaturePacketDelay = new OGigEIntFeature("GevSCPD", 0, 950, 0, 100);
-        public OEnumRobusto<ModoAdquisicion> FeatureAcquisitionMode = new OEnumRobusto<ModoAdquisicion>("AcquisitionMode", ModoAdquisicion.DisparoSoftware, false);
-        public OEnumRobusto<CogAcqFifoPixelFormatConstants> FeatureImageFormat = new OEnumRobusto<CogAcqFifoPixelFormatConstants>("ImageFormat", CogAcqFifoPixelFormatConstants.Format8Grey, false);
-        public OBoolRobusto FeatureTriggerOnRisingEdge = new OBoolRobusto("TriggerOnRisingEdge", true, false);
-        public OEnteroRobusto FeatureAOIX = new OEnteroRobusto("AOIX", 0, 10000, 2454, false);
-        public OEnteroRobusto FeatureAOIY = new OEnteroRobusto("AOIY", 0, 10000, 2454, false);
-        public OEnteroRobusto FeatureAOIWidth = new OEnteroRobusto("AOIWidth", 0, 10000, 2454, false);
-        public OEnteroRobusto FeatureAOIHeight = new OEnteroRobusto("AOIHeight", 0, 10000, 2056, false);
-        public ODecimalRobusto FeatureBandwidth = new ODecimalRobusto("Bandwidth", 1, 100, 90, false);
+        public OEnumerado<ModoAdquisicion> FeatureAcquisitionMode = new OEnumerado<ModoAdquisicion>("AcquisitionMode", ModoAdquisicion.DisparoSoftware, false);
+        public OEnumerado<CogAcqFifoPixelFormatConstants> FeatureImageFormat = new OEnumerado<CogAcqFifoPixelFormatConstants>("ImageFormat", CogAcqFifoPixelFormatConstants.Format8Grey, false);
+        public OBooleano FeatureTriggerOnRisingEdge = new OBooleano("TriggerOnRisingEdge", true, false);
+        public OEntero FeatureAOIX = new OEntero("AOIX", 0, 10000, 2454, false);
+        public OEntero FeatureAOIY = new OEntero("AOIY", 0, 10000, 2454, false);
+        public OEntero FeatureAOIWidth = new OEntero("AOIWidth", 0, 10000, 2454, false);
+        public OEntero FeatureAOIHeight = new OEntero("AOIHeight", 0, 10000, 2056, false);
+        public ODecimal FeatureBandwidth = new ODecimal("Bandwidth", 1, 100, 90, false);
         public OGigEEnumFeature FeatureLineSelector = new OGigEEnumFeature("LineSelector", new string[] { "Line1", "Line2", "Out1", "Out2", "Out3", "Out4", "Out1", "Out2" }, "Line1", 100);
         public OGigEEnumFeature FeatureLineSource = new OGigEEnumFeature("LineSource", new string[] { "UserOutput" }, "UserOutput", 100);
         public OGigEIntFeature FeatureLineStatusAll = new OGigEIntFeature("LineStatusAll", 0, int.MaxValue, 0, 100);
@@ -734,14 +742,22 @@ namespace Orbita.VAHardware
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OGigEFeatures(string codigo)
+        public OGigEFeatures(string codigo):
+            this(codigo, string.Empty, OrigenDatos.OrigenBBDD)
+        {
+        }
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OGigEFeatures(string codigo, string xmlFile, OrigenDatos origenDatos)
         {
             this.CodCamara = codigo;
 
             try
             {
                 // Cargamos valores de la base de datos
-                DataTable dt = AppBD.GetCamara(this.CodCamara);
+                DataTable dt = AppBD.GetCamara(this.CodCamara, xmlFile, origenDatos);
                 if (dt.Rows.Count == 1)
                 {
                     this.FeatureExposureTimeAbs.ValorGenerico = dt.Rows[0]["Basler_Pilot_Shutter"];
@@ -1496,7 +1512,7 @@ namespace Orbita.VAHardware
     /// <summary>
     /// Acceso a una característica de la cámara de tipo string
     /// </summary>
-    public class OGigEStringFeature : OTextoRobusto, ICamFeature
+    public class OGigEStringFeature : OTexto, ICamFeature
     {
         #region Atributo(s)
         /// <summary>
@@ -1587,7 +1603,7 @@ namespace Orbita.VAHardware
     /// <summary>
     /// Acceso a una característica de la cámara de tipo enumerado (aunque internamente trabaja como un string)
     /// </summary>
-    public class OGigEEnumFeature : OStringEnumRobusto, ICamFeature
+    public class OGigEEnumFeature : OEnumeradoTexto, ICamFeature
     {
         #region Atributo(s)
         /// <summary>
@@ -1644,7 +1660,7 @@ namespace Orbita.VAHardware
                         ok = (strValue == strOutValue);
                         if (!ok)
                         {
-                            OThread.Espera(10);
+                            OThreadManager.Espera(10);
                         }
                     }
 
@@ -1694,7 +1710,7 @@ namespace Orbita.VAHardware
     /// <summary>
     /// Acceso a una característica de la cámara de tipo entero
     /// </summary>
-    public class OGigEIntFeature : OEnteroRobusto, ICamFeature
+    public class OGigEIntFeature : OEntero, ICamFeature
     {
         #region Atributo(s)
         /// <summary>
@@ -1751,7 +1767,7 @@ namespace Orbita.VAHardware
                         ok = (intValue == intOutValue);
                         if (!ok)
                         {
-                            OThread.Espera(10);
+                            OThreadManager.Espera(10);
                         }
                     }
 
@@ -1801,7 +1817,7 @@ namespace Orbita.VAHardware
     /// <summary>
     /// Acceso a una característica de la cámara de tipo entero
     /// </summary>
-    public class OGigEDoubleFeature : ODecimalRobusto, ICamFeature
+    public class OGigEDoubleFeature : ODecimal, ICamFeature
     {
         #region Atributo(s)
         /// <summary>
@@ -1858,7 +1874,7 @@ namespace Orbita.VAHardware
                         ok = (Math.Round(doubleValue, 2) == Math.Round(doubleOutValue, 2));
                         if (!ok)
                         {
-                            OThread.Espera(10);
+                            OThreadManager.Espera(10);
                         }
                     }
 
@@ -1908,7 +1924,7 @@ namespace Orbita.VAHardware
     /// <summary>
     /// Acceso a una característica de la cámara de tipo entero
     /// </summary>
-    public class OGigEBoolFeature : OBoolRobusto, ICamFeature
+    public class OGigEBoolFeature : OBooleano, ICamFeature
     {
         #region Atributo(s)
         /// <summary>
@@ -1975,7 +1991,7 @@ namespace Orbita.VAHardware
                         ok = (boolValue == boolOutValue);
                         if (!ok)
                         {
-                            OThread.Espera(10);
+                            OThreadManager.Espera(10);
                         }
                     }
 

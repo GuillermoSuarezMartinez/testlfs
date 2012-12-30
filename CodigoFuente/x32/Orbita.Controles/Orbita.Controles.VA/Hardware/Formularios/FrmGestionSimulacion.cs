@@ -13,8 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Orbita.Utiles;
-using Orbita.VAComun;
-using Orbita.VAHardware;
+using Orbita.VA.Comun;
+using Orbita.VA.Hardware;
 
 //TODO! Que no modifique los objetos simulación hasta que no se acepte el formulario.
 namespace Orbita.Controles.VA
@@ -146,7 +146,7 @@ namespace Orbita.Controles.VA
                     case TipoSimulacionCamara.DirectorioFotografias:
                         int valor;
                         resultado &= int.TryParse(this.txtIntervaloEntreSnaps.Text, out valor);
-                        resultado &= OEnteroRobusto.InRange(valor, 1, 100000);
+                        resultado &= OEntero.InRange(valor, 1, 100000);
                         if (!resultado)
                         {
                             OMensajes.MostrarAviso("El intervalo de tiempo entre fotografías no es correcto.");
@@ -193,7 +193,7 @@ namespace Orbita.Controles.VA
                 {
                     case TipoSimulacionCamara.FotografiaSimple:
                         string rutaArchivo = this.txtRutaFotografias.Text;
-                        bool archivoSeleccionadoOK = App.FormularioSeleccionArchivo(this.openFileDialog, ref rutaArchivo);
+                        bool archivoSeleccionadoOK = OTrabajoControles.FormularioSeleccionArchivo(this.openFileDialog, ref rutaArchivo);
                         if (archivoSeleccionadoOK)
                         {
                             this.txtRutaFotografias.Text = rutaArchivo;
@@ -203,7 +203,7 @@ namespace Orbita.Controles.VA
                         break;
                     case TipoSimulacionCamara.DirectorioFotografias:
                         string rutaCarpeta = this.txtRutaFotografias.Text;
-                        bool carpetaSeleccionadaOK = App.FormularioSeleccionCarpeta(this.folderBrowserDialog, ref rutaCarpeta);
+                        bool carpetaSeleccionadaOK = OTrabajoControles.FormularioSeleccionCarpeta(this.folderBrowserDialog, ref rutaCarpeta);
                         if (carpetaSeleccionadaOK)
                         {
                             this.txtRutaFotografias.Text = rutaCarpeta;

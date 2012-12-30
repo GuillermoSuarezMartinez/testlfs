@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 03-02-2012
 //
@@ -10,14 +10,14 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System.Threading;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 using System;
 using System.IO;
 using System.Diagnostics;
 using System.Drawing;
 using AForge.Video.FFMPEG;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// Clase utilizada para cargar y guardar videos de disco
@@ -209,7 +209,7 @@ namespace Orbita.VAHardware
             this.AVIWriter = new VideoFileWriter();
 
             int tiempoSleep = (int)Math.Ceiling(frameIntervalMs / 2);
-            this.ThreadConsumidor = new OProductorConsumidorThread<OImage>(codigo, tiempoSleep, ThreadPriority.Lowest, 20);
+            this.ThreadConsumidor = new OProductorConsumidorThread<OImage>(codigo, 1, tiempoSleep, ThreadPriority.Lowest, 20);
             this.ThreadConsumidor.CrearSuscripcionConsumidor(this.ConsumidorRun, true);
             this.ThreadConsumidor.CrearSuscripcionMonitorizacion(this.Monitorizacion, true);
             this.ThreadConsumidor.CrearSuscripcionFin(this.FinEjecucion, true);

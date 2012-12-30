@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -12,9 +12,9 @@
 using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// Clase estática que contiene llamadas a los procedimiento almacenados en la base de datos
@@ -30,16 +30,46 @@ namespace Orbita.VAHardware
         {
             return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("CAM_GET_CAMARAS");
         }
+
         /// <summary>
         /// Consulta la información de una determinada cámara
         /// </summary>
         /// <returns>DataTable con toda la información de una determinada cámara</returns>
-        public static DataTable GetCamara(string codCamara)
+        public static DataTable GetCamara(string codCamara, string xmlFile, OrigenDatos origenDatos)
+        {
+            DataTable resultado = new DataTable();
+            switch (origenDatos)
+            {
+                case OrigenDatos.OrigenBBDD:
+                default:
+                    resultado = GetCamaraBBDD(codCamara);
+                    break;
+                case OrigenDatos.OrigenXML:
+                    resultado = GetCamaraBBDD(xmlFile);
+                    break;
+            }
+            return resultado;
+        }
+        /// <summary>
+        /// Consulta la información de una determinada cámara
+        /// </summary>
+        /// <returns>DataTable con toda la información de una determinada cámara</returns>
+        public static DataTable GetCamaraBBDD(string codCamara)
         {
             ArrayList list = new ArrayList();
             list.Add(new SqlParameter("@CodCamara", codCamara));
 
             return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("CAM_GET_CAMARA", list);
+        }
+        /// <summary>
+        /// Consulta la información de una determinada cámara
+        /// </summary>
+        /// <returns>DataTable con toda la información de una determinada cámara</returns>
+        public static DataTable GetCamaraXML(string xmlFile)
+        {
+            DataTable resultado = new DataTable();
+            resultado.ReadXml(xmlFile);
+            return resultado;
         }
 
         /// <summary>

@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.VAFunciones
+// Assembly         : Orbita.VA.Funciones
 // Author           : aibañez
 // Created          : 06-09-2012
 //
@@ -18,9 +18,9 @@ using System.Threading;
 using System.Windows.Forms;
 using CIDARMTWrapper;
 using Orbita.Utiles;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
-namespace Orbita.VAFunciones
+namespace Orbita.VA.Funciones
 {
     /// <summary>
     /// Clase que ejecuta continuamente el
@@ -185,7 +185,7 @@ namespace Orbita.VAFunciones
     /// <summary>
     /// Clase que ejecuta el reconocimiento de los codigos en un thread
     /// </summary>
-    internal class ThreadEjecucionCCR : OThread
+    internal class ThreadEjecucionCCR : OThreadLoop
     {
         #region Atributo(s)
         /// <summary>
@@ -361,29 +361,29 @@ namespace Orbita.VAFunciones
                 DataTable dtFuncionVision = AppBD.GetFuncionVision(this.Codigo);
                 if (dtFuncionVision.Rows.Count == 1)
                 {
-                    this.ParametrosCCR.Altura = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_Altura"], -1, 10000, -1);
-                    this.ParametrosCCR.ActivadoRangoAlturas = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_ActivadoRangoAlturas"], 0, 1, 0);
-                    this.ParametrosCCR.AlturaMin = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_AlturaMin"], 1, 10000, 30);
-                    this.ParametrosCCR.AlturaMax = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_AlturaMax"], 1, 10000, 60);
+                    this.ParametrosCCR.Altura = OEntero.Validar(dtFuncionVision.Rows[0]["NL_Altura"], -1, 10000, -1);
+                    this.ParametrosCCR.ActivadoRangoAlturas = OEntero.Validar(dtFuncionVision.Rows[0]["NL_ActivadoRangoAlturas"], 0, 1, 0);
+                    this.ParametrosCCR.AlturaMin = OEntero.Validar(dtFuncionVision.Rows[0]["NL_AlturaMin"], 1, 10000, 30);
+                    this.ParametrosCCR.AlturaMax = OEntero.Validar(dtFuncionVision.Rows[0]["NL_AlturaMax"], 1, 10000, 60);
                     this.ParametrosCCR.VectorAlturas = new int[2] { this.ParametrosCCR.AlturaMin, this.ParametrosCCR.AlturaMax };
-                    this.ParametrosCCR.TimeOut = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_TimeOut"], 0, 1000000, 0);
-                    this.ParametrosCCR.ActivadaAjusteCorreccion = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_ActivadaAjusteCorrecion"], 0, 1, 0);
-                    this.ParametrosCCR.CoeficienteHorizontal = (float)ODecimalRobusto.Validar(dtFuncionVision.Rows[0]["NL_CoeficienteHorizontal"], -100000, +100000, 0);
-                    this.ParametrosCCR.CoeficienteVertical = (float)ODecimalRobusto.Validar(dtFuncionVision.Rows[0]["NL_CoeficienteVertical"], -100000, +100000, 0);
-                    this.ParametrosCCR.CoeficienteRadial = (float)ODecimalRobusto.Validar(dtFuncionVision.Rows[0]["NL_CoeficienteRadial"], -100000, +100000, 0);
-                    this.ParametrosCCR.AnguloRotacion = (float)ODecimalRobusto.Validar(dtFuncionVision.Rows[0]["NL_AnguloRotacion"], -100000, +100000, 0);
-                    this.ParametrosCCR.Distancia = (float)ODecimalRobusto.Validar(dtFuncionVision.Rows[0]["NL_Distancia"], 0, +100000, 0);
-                    this.ParametrosCCR.CoordIzq = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_CoordIzq"], 0, 10000, 0);
-                    this.ParametrosCCR.CoordArriba = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_CoordArriba"], 0, 10000, 0);
-                    this.ParametrosCCR.AlturaVentanaBusqueda = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_AlturaVentanaBusqueda"], 0, 10000, 0);
-                    this.ParametrosCCR.AnchuraVentanaBusqueda = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_AnchuraVentanaBusqueda"], 0, 10000, 0);
-                    this.ParametrosCCR.ActivadaMasInformacion = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_ActivadaMasInformacion"], 0, 10000, 1);
+                    this.ParametrosCCR.TimeOut = OEntero.Validar(dtFuncionVision.Rows[0]["NL_TimeOut"], 0, 1000000, 0);
+                    this.ParametrosCCR.ActivadaAjusteCorreccion = OEntero.Validar(dtFuncionVision.Rows[0]["NL_ActivadaAjusteCorrecion"], 0, 1, 0);
+                    this.ParametrosCCR.CoeficienteHorizontal = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_CoeficienteHorizontal"], -100000, +100000, 0);
+                    this.ParametrosCCR.CoeficienteVertical = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_CoeficienteVertical"], -100000, +100000, 0);
+                    this.ParametrosCCR.CoeficienteRadial = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_CoeficienteRadial"], -100000, +100000, 0);
+                    this.ParametrosCCR.AnguloRotacion = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_AnguloRotacion"], -100000, +100000, 0);
+                    this.ParametrosCCR.Distancia = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_Distancia"], 0, +100000, 0);
+                    this.ParametrosCCR.CoordIzq = OEntero.Validar(dtFuncionVision.Rows[0]["NL_CoordIzq"], 0, 10000, 0);
+                    this.ParametrosCCR.CoordArriba = OEntero.Validar(dtFuncionVision.Rows[0]["NL_CoordArriba"], 0, 10000, 0);
+                    this.ParametrosCCR.AlturaVentanaBusqueda = OEntero.Validar(dtFuncionVision.Rows[0]["NL_AlturaVentanaBusqueda"], 0, 10000, 0);
+                    this.ParametrosCCR.AnchuraVentanaBusqueda = OEntero.Validar(dtFuncionVision.Rows[0]["NL_AnchuraVentanaBusqueda"], 0, 10000, 0);
+                    this.ParametrosCCR.ActivadaMasInformacion = OEntero.Validar(dtFuncionVision.Rows[0]["NL_ActivadaMasInformacion"], 0, 10000, 1);
                     // Columnas añadidas posteriormente
                     try
                     {
-                        this.ParametrosCCR.Escala = (float)ODecimalRobusto.Validar(dtFuncionVision.Rows[0]["NL_Escala"], 0, +100000, 0);
-                        this.ParametrosCCR.Param1 = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_Param1"], 0, 10000, 1);
-                        this.ParametrosCCR.Param2 = OEnteroRobusto.Validar(dtFuncionVision.Rows[0]["NL_Param2"], 0, 10000, 1);
+                        this.ParametrosCCR.Escala = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_Escala"], 0, +100000, 0);
+                        this.ParametrosCCR.Param1 = OEntero.Validar(dtFuncionVision.Rows[0]["NL_Param1"], 0, 10000, 1);
+                        this.ParametrosCCR.Param2 = OEntero.Validar(dtFuncionVision.Rows[0]["NL_Param2"], 0, 10000, 1);
                     }
                     catch (Exception ex)
                     {

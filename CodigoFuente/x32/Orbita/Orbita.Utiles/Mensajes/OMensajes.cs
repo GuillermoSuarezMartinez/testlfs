@@ -91,6 +91,27 @@ namespace Orbita.Utiles
             MessageBox.Show(mensaje, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         /// <summary>
+        /// Mostrar mensaje genérico
+        /// </summary>
+        /// <param name="mensaje">Texto del mensaje.</param>
+        /// <param name="tipoMensaje">Tipo de mensaje a mostrar.</param>
+        public static void Mostrar(string mensaje, OTipoMensaje tipoMensaje)
+        {
+            switch (tipoMensaje)
+            {
+                case OTipoMensaje.Info:
+                default:
+                    MostrarInfo(mensaje);
+                    break;
+                case OTipoMensaje.Aviso:
+                    MostrarAviso(mensaje);
+                    break;
+                case OTipoMensaje.Error:
+                    MostrarError(mensaje);
+                    break;
+            }
+        }
+        /// <summary>
         /// Mostrar pregunta.
         /// </summary>
         /// <param name="mensaje">Texto del mensaje.</param>
@@ -149,5 +170,15 @@ namespace Orbita.Utiles
         }
         #endregion
         #endregion
+    }
+
+    /// <summary>
+    /// Enumerado que describe el tipo de mensaje a mostrar
+    /// </summary>
+    public enum OTipoMensaje
+    {
+        Info = 0,
+        Aviso = 1,
+        Error = 2
     }
 }

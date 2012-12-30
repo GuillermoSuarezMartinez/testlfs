@@ -16,8 +16,9 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using Orbita.VAComun;
-using Orbita.VAControl;
+using Orbita.VA.Comun;
+using Orbita.VA.MaquinasEstados;
+using Orbita.Utiles;
 
 namespace Orbita.Controles.VA
 {
@@ -570,7 +571,7 @@ namespace Orbita.Controles.VA
                 }
                 
                 // Cargamos los valores de los estados
-                DataTable dtEstados = Orbita.VAControl.AppBD.GetEstados(this.Codigo);
+                DataTable dtEstados = Orbita.VA.MaquinasEstados.AppBD.GetEstados(this.Codigo);
                 if (dtEstados.Rows.Count > 0)
                 {
                     foreach (DataRow dr in dtEstados.Rows)
@@ -587,7 +588,7 @@ namespace Orbita.Controles.VA
                 }
 
                 // Cargamos los valores de las transiciones
-                DataTable dtTransiciones = Orbita.VAControl.AppBD.GetTransiciones(this.Codigo);
+                DataTable dtTransiciones = Orbita.VA.MaquinasEstados.AppBD.GetTransiciones(this.Codigo);
                 if (dtTransiciones.Rows.Count > 0)
                 {
                     foreach (DataRow dr in dtTransiciones.Rows)
@@ -897,16 +898,16 @@ namespace Orbita.Controles.VA
             this.EstadoAsociado = estadoAsociado;
 
             // Cargamos valores de la base de datos
-            DataTable dtEstado = Orbita.VAControl.AppBD.GetEstado(this.CodigoMaquinaEstados, this.Codigo);
+            DataTable dtEstado = Orbita.VA.MaquinasEstados.AppBD.GetEstado(this.CodigoMaquinaEstados, this.Codigo);
             if (dtEstado.Rows.Count == 1)
             {
                 this.Nombre = dtEstado.Rows[0]["NombreEstado"].ToString();
 
-                if (OEnteroRobusto.IsNumericInt(dtEstado.Rows[0]["PosX"]))
+                if (OEntero.IsNumericInt(dtEstado.Rows[0]["PosX"]))
                 {
                     this.Localizacion.X = (int)dtEstado.Rows[0]["PosX"];
                 }
-                if (OEnteroRobusto.IsNumericInt(dtEstado.Rows[0]["PosY"]))
+                if (OEntero.IsNumericInt(dtEstado.Rows[0]["PosY"]))
                 {
                     this.Localizacion.Y = (int)dtEstado.Rows[0]["PosY"];
                 }
@@ -1097,13 +1098,13 @@ namespace Orbita.Controles.VA
             this.TransicionAsociada = transicionAsociada;
 
             // Cargamos valores de la base de datos
-            DataTable dtTransicion = Orbita.VAControl.AppBD.GetTransicion(this.CodigoMaquinaEstados, this.Codigo);
+            DataTable dtTransicion = Orbita.VA.MaquinasEstados.AppBD.GetTransicion(this.CodigoMaquinaEstados, this.Codigo);
             if (dtTransicion.Rows.Count == 1)
             {
                 this.Nombre = dtTransicion.Rows[0]["NombreTransicion"].ToString();
                 
-                if (OEnteroRobusto.IsNumericInt(dtTransicion.Rows[0]["PosicionFlechaEstadoOrigen"]) && 
-                   (OEnteroRobusto.IsNumericInt(dtTransicion.Rows[0]["PosicionFlechaEstadoDestino"])))
+                if (OEntero.IsNumericInt(dtTransicion.Rows[0]["PosicionFlechaEstadoOrigen"]) && 
+                   (OEntero.IsNumericInt(dtTransicion.Rows[0]["PosicionFlechaEstadoDestino"])))
                 {
                     // Se busca la posición origen
                     string codigoEstadoOrigen = dtTransicion.Rows[0]["CodigoEstadoOrigen"].ToString();

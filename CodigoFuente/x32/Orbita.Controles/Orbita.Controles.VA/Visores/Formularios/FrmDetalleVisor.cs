@@ -12,6 +12,7 @@
 using System;
 using System.Data;
 using Orbita.Controles;
+using Orbita.VA.Comun;
 
 namespace Orbita.Controles.VA
 {
@@ -25,6 +26,16 @@ namespace Orbita.Controles.VA
         /// Codigo identificativo de la camara
         /// </summary>
         protected string Codigo;
+
+        /// <summary>
+        /// Fichero XML de carga de datos
+        /// </summary>
+        protected string XmlFile;
+
+        /// <summary>
+        /// Origen de los datos
+        /// </summary>
+        protected OrigenDatos OrigenDatos;
         #endregion
 
         #region Constructor
@@ -41,10 +52,21 @@ namespace Orbita.Controles.VA
         /// Constructor de la clase
         /// </summary>
         /// <param name="codigoCamara"></param>
-        public FrmDetalleVisor(string codigoCamara)
+        public FrmDetalleVisor(string codigoCamara):
+            this(codigoCamara, string.Empty, OrigenDatos.OrigenBBDD)
+        {
+        }
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        /// <param name="codigoCamara"></param>
+        public FrmDetalleVisor(string codigoCamara, string xmlFile, OrigenDatos origenDatos)
         {
             InitializeComponent();
             this.Codigo = codigoCamara;
+            this.XmlFile = xmlFile;
+            this.OrigenDatos = origenDatos;
         }
         #endregion
 

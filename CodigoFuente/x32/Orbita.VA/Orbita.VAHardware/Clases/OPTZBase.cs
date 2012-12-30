@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
+using Orbita.Utiles;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// Clase base para todos los controladores ptz
@@ -73,16 +74,24 @@ namespace Orbita.VAHardware
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OPTZBase(string codigo)
+        public OPTZBase(string codigo):
+            this(codigo, string.Empty, OrigenDatos.OrigenBBDD)
+        {
+        }
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OPTZBase(string codigo, string xmlFile, OrigenDatos origenDatos)
         {
 			try
 			{
                 this.Codigo = codigo;
 
-			    DataTable dt = AppBD.GetCamara(codigo);
+                DataTable dt = AppBD.GetCamara(codigo, xmlFile, origenDatos);
                 if (dt.Rows.Count == 1)
                 {
-                    this.Habilitado = OBoolRobusto.Validar(dt.Rows[0]["PTZ_Habilitado"], false);
+                    this.Habilitado = OBooleano.Validar(dt.Rows[0]["PTZ_Habilitado"], false);
                 }
 
                 this._Posicion = new OPosicionesPTZ();

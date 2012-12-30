@@ -15,8 +15,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinToolbars;
-using Orbita.VAComun;
-using Orbita.VAControl;
+using Orbita.VA.Comun;
+using Orbita.VA.MaquinasEstados;
+using Orbita.Utiles;
 
 namespace Orbita.Controles.VA
 {
@@ -88,7 +89,7 @@ namespace Orbita.Controles.VA
             menuEscenarios.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] { btnVistaTodos });
 
             // Menu de cada escenario
-            DataTable dt = Orbita.VAComun.AppBD.GetVistas();
+            DataTable dt = Orbita.VA.Comun.AppBD.GetVistas();
             foreach (DataRow dr in dt.Rows)
             {
                 string codVista = dr["CodVista"].ToString();
@@ -368,7 +369,7 @@ namespace Orbita.Controles.VA
                     case OEnumTipoDato.Entero:
                         break;
                     case OEnumTipoDato.Texto:
-                        InputTextBox.Show(variable.Codigo, "Forzado de valor", "Escriba el nuevo valor de la variable " + variable.Codigo, ORobusto.ToString(objValor), this.TextoImputadoPorUsuario);
+                        InputTextBox.Show(variable.Codigo, "Forzado de valor", "Escriba el nuevo valor de la variable " + variable.Codigo, OObjeto.ToString(objValor), this.TextoImputadoPorUsuario);
                         break;
                     case OEnumTipoDato.Decimal:
                         break;
@@ -870,7 +871,7 @@ namespace Orbita.Controles.VA
                     {
                         string codigo = this.ListVariables.FocusedItem.Text;
                         string rutaArchivo = ORutaParametrizable.AppFolder;
-                        bool archivoSeleccionadoOK = App.FormularioSeleccionArchivo(this.openFileDialog, ref rutaArchivo);
+                        bool archivoSeleccionadoOK = OTrabajoControles.FormularioSeleccionArchivo(this.openFileDialog, ref rutaArchivo);
                         if (archivoSeleccionadoOK)
                         {
                             OImage imagen;

@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VAHardware
+// Assembly         : Orbita.VA.Hardware
 // Author           : aibañez
 // Created          : 15-11-2012
 //
@@ -12,9 +12,9 @@
 using System;
 using System.Data;
 using System.Drawing;
-using Orbita.VAComun;
+using Orbita.VA.Comun;
 
-namespace Orbita.VAHardware
+namespace Orbita.VA.Hardware
 {
     /// <summary>
     /// Clase que implementa las funciones de manejo de la dispositivo capturador genérico
@@ -40,8 +40,16 @@ namespace Orbita.VAHardware
         /// <summary>
         /// Constructor de la clase
         /// </summary>       
-        public OCamaraWDM(string codigo)
-            : base(codigo)
+        public OCamaraWDM(string codigo):
+            this(codigo, string.Empty, OrigenDatos.OrigenBBDD)
+        {
+        } 
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>       
+        public OCamaraWDM(string codigo, string xmlFile, OrigenDatos origenDatos)
+            : base(codigo, xmlFile, origenDatos)
         {
             try
             {
@@ -49,7 +57,7 @@ namespace Orbita.VAHardware
                 this.HayNuevaImagen = false;
 
                 // Cargamos valores de la base de datos
-                DataTable dt = AppBD.GetCamara(codigo);
+                DataTable dt = AppBD.GetCamara(codigo, xmlFile, origenDatos);
                 if (dt.Rows.Count == 1)
                 {
                     this.Dispostivo = dt.Rows[0]["WDM_NombreDispositivo"].ToString();
@@ -82,7 +90,7 @@ namespace Orbita.VAHardware
 
                 // Detengo videosource actual
                 this.VideoSource.SignalToStop();
-                OThread.Espera(delegate() { return !this.VideoSource.Running; }, 1000);
+                OThreadManager.Espera(delegate() { return !this.VideoSource.Running; }, 1000);
                 this.VideoSource.Stop();
 
                 // Nos suscribimos a la recepción de imágenes de la cámara
@@ -115,7 +123,7 @@ namespace Orbita.VAHardware
 
                 // Detengo videosource actual
                 this.VideoSource.SignalToStop();
-                OThread.Espera(delegate() { return !this.VideoSource.Running; }, 1000);
+                OThreadManager.Espera(delegate() { return !this.VideoSource.Running; }, 1000);
                 this.VideoSource.Stop();
 
                 resultado = true;
@@ -170,7 +178,7 @@ namespace Orbita.VAHardware
                 {
                     // Detengo videosource actual
                     this.VideoSource.SignalToStop();
-                    OThread.Espera(delegate() { return !this.VideoSource.Running; }, 1000);
+                    OThreadManager.Espera(delegate() { return !this.VideoSource.Running; }, 1000);
                     this.VideoSource.Stop();
 
                     base.StopInterno();
@@ -284,7 +292,7 @@ namespace Orbita.VAHardware
                     return;
                 }
 
-                this.EstadoConexion = VAHardware.EstadoConexion.ErrorConexion;
+                this.EstadoConexion = EstadoConexion.ErrorConexion;
             }
             catch (Exception exception)
             {
