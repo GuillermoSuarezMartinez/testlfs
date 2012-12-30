@@ -50,63 +50,63 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OClienteComs.cs">
+    <Compile Include="OrbitaClienteComs.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OClienteComs.Designer.cs">
-      <DependentUpon>OClienteComs.cs</DependentUpon>
+    <Compile Include="OrbitaClienteComs.Designer.cs">
+      <DependentUpon>OrbitaClienteComs.cs</DependentUpon>
     </Compile>
-    <Compile Include="OClienteComsOPC.cs">
+    <Compile Include="OrbitaClienteComsOPC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OClienteComsOPC.Designer.cs">
-      <DependentUpon>OClienteComsOPC.cs</DependentUpon>
+    <Compile Include="OrbitaClienteComsOPC.Designer.cs">
+      <DependentUpon>OrbitaClienteComsOPC.cs</DependentUpon>
     </Compile>
-    <Compile Include="OClienteESPhoenixILBK48.cs">
+    <Compile Include="OrbitaClienteComsESPhoenixILBK48.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OClienteESPhoenixILBK48.Designer.cs">
-      <DependentUpon>OClienteESPhoenixILBK48.cs</DependentUpon>
+    <Compile Include="OrbitaClienteComsESPhoenixILBK48.Designer.cs">
+      <DependentUpon>OrbitaClienteComsESPhoenixILBK48.cs</DependentUpon>
     </Compile>
-    <Compile Include="OClienteESSiemens.cs">
+    <Compile Include="OrbitaClienteComsESSiemens.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OClienteESSiemens.Designer.cs">
-      <DependentUpon>OClienteESSiemens.cs</DependentUpon>
+    <Compile Include="OrbitaClienteComsESSiemens.Designer.cs">
+      <DependentUpon>OrbitaClienteComsESSiemens.cs</DependentUpon>
     </Compile>
-    <Compile Include="OClienteMCUSB.cs">
+    <Compile Include="OrbitaClienteComsMCUSB.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OClienteMCUSB.Designer.cs">
-      <DependentUpon>OClienteMCUSB.cs</DependentUpon>
+    <Compile Include="OrbitaClienteComsMCUSB.Designer.cs">
+      <DependentUpon>OrbitaClienteComsMCUSB.cs</DependentUpon>
     </Compile>
-    <Compile Include="OClienteOrbita.cs">
+    <Compile Include="OrbitaClienteRemoting.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="OClienteOrbita.Designer.cs">
-      <DependentUpon>OClienteOrbita.cs</DependentUpon>
+    <Compile Include="OrbitaClienteRemoting.Designer.cs">
+      <DependentUpon>OrbitaClienteRemoting.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="OClienteComs.resx">
-      <DependentUpon>OClienteComs.cs</DependentUpon>
+    <EmbeddedResource Include="OrbitaClienteComs.resx">
+      <DependentUpon>OrbitaClienteComs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OClienteComsOPC.resx">
-      <DependentUpon>OClienteComsOPC.cs</DependentUpon>
+    <EmbeddedResource Include="OrbitaClienteComsOPC.resx">
+      <DependentUpon>OrbitaClienteComsOPC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OClienteESPhoenixILBK48.resx">
-      <DependentUpon>OClienteESPhoenixILBK48.cs</DependentUpon>
+    <EmbeddedResource Include="OrbitaClienteComsESPhoenixILBK48.resx">
+      <DependentUpon>OrbitaClienteComsESPhoenixILBK48.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OClienteESSiemens.resx">
-      <DependentUpon>OClienteESSiemens.cs</DependentUpon>
+    <EmbeddedResource Include="OrbitaClienteComsESSiemens.resx">
+      <DependentUpon>OrbitaClienteComsESSiemens.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OClienteMCUSB.resx">
-      <DependentUpon>OClienteMCUSB.cs</DependentUpon>
+    <EmbeddedResource Include="OrbitaClienteComsMCUSB.resx">
+      <DependentUpon>OrbitaClienteComsMCUSB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OClienteOrbita.resx">
-      <DependentUpon>OClienteOrbita.cs</DependentUpon>
+    <EmbeddedResource Include="OrbitaClienteRemoting.resx">
+      <DependentUpon>OrbitaClienteRemoting.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
