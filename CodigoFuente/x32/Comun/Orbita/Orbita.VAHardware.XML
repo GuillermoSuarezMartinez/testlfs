@@ -9,6 +9,1031 @@
             Summary description for Filter.
             </summary>
         </member>
+        <member name="T:Orbita.VAHardware.OCamaraBaslerPylon">
+            <summary>
+            Clase que implementa las funciones de manejo de la cámara BaslerVPro
+            </summary>
+        </member>
+        <member name="T:Orbita.VAHardware.OCamaraBitmap">
+            <summary>
+            Clase base que implementa las funciones de trabajo sobre bitmaps
+            </summary>
+        </member>
+        <member name="T:Orbita.VAHardware.OCamaraBase">
+            <summary>
+            Clase base para todas las cámaras
+            </summary>
+        </member>
+        <member name="T:Orbita.VAHardware.IHardware">
+            <summary>
+            Interfaz para el acceso a las caracerísticas comunes de todos los dispositivos hardware
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.IHardware.Inicializar">
+            <summary>
+            Carga los valores del hardware
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.IHardware.Finalizar">
+            <summary>
+            Finaliza el hardware
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.IHardware.Start">
+            <summary>
+            Comienza el hardware
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.IHardware.Stop">
+            <summary>
+            Para el hardware
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.VAHardware.IHardware.Codigo">
+            <summary>
+            Código identificador de la cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.IHardware.Nombre">
+            <summary>
+            Nombre identificativo de la cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.IHardware.Descripcion">
+            <summary>
+            Descripción de la cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.IHardware.Habilitado">
+            <summary>
+            Habilita o deshabilita el funcionamiento
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.IHardware.Fabricante">
+            <summary>
+            Fabricante del tipo de cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.IHardware.Modelo">
+            <summary>
+            Modelo del tipo de cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.IHardware.TipoHardware">
+            <summary>
+            Tipo de hardware
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.IHardware.ListaTerminales">
+            <summary>
+            Lista de todos los terminales de la tarjeta de IO
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase.SimulacionCamara">
+            <summary>
+            Objeto de simulación de la cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase.MedidorVelocidadAdquisicion">
+            <summary>
+            Proporciona herramientas para medir la velocidad de adquisición de la cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase.VideoFile">
+            <summary>
+            Guardado de Fichero de video
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._Codigo">
+            <summary>
+            Código identificador de la cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._Nombre">
+            <summary>
+            Nombre identificativo de la cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._Descripcion">
+            <summary>
+            Descripción de la cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._Habilitado">
+            <summary>
+            Habilita o deshabilita el funcionamiento
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._TipoCamara">
+            <summary>
+            Tipo de cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._CodigoTipoCamara">
+            <summary>
+            Código del tipo de cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._Fabricante">
+            <summary>
+            Fabricante del tipo de cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._Modelo">
+            <summary>
+            Modelo del tipo de cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._DescripcionTipoCamara">
+            <summary>
+            Descripcion del tipo de cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._Grab">
+            <summary>
+            Comienza o termina una reproducción de la cámara (sin guardar grabación)
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._AutoStart">
+            <summary>
+            Indica que la reproducción continua se ha de ejecutar en el momento de conexión
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._CodVariableImagen">
+            <summary>
+            Código de la variable que guarda la imagen
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._CodVariableSnap">
+            <summary>
+            Código de la variable que fuerza el snap
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._Resolucion">
+            <summary>
+            Resolución de la cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._Color">
+            <summary>
+            Tipo de cámara dependiendo de si sus imágenes son a color o monocromáticas
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._Existe">
+            <summary>
+            Indica que se ha podido acceder a la cámara con éxito
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._VisualizacionEnVivo">
+            <summary>
+            Indica que el control ha de visualizar automáticamente la imagen que devuelve la cámara,
+            de lo contrario se deberá de especificar el momento de la visualización por código.
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._ListaTerminales">
+            <summary>
+            Lista de todos los terminales de la tarjeta de IO
+            </summary>              
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._LanzarEventoAlSnap">
+            <summary>
+            Indica que se ha de cambiar la variable asociada cada vez que se recibe una fotografía
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._ExpectedFrameInterval">
+            <summary>
+            Indica el intervalo de tiempo en ms. de adquisición de imagenes
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._ExpectedFrameRate">
+            <summary>
+            Indica la tasa de adquisición esperada
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._MaxFrameIntervalVisualizacion">
+            <summary>
+            Indica el límite máximo de visualización de imagenes y que por lo tanto se ha de visualizar de forma retrasada con un timer
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._EnsambladoClaseImplementadoraDisplay">
+            <summary>
+            Nombre del ensamblado de la clase que implementa el display asociado a este tipo de cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._ClaseImplementadoraDisplay">
+            <summary>
+            Nombre de la clase que implementa el display asociado a este tipo de cámara
+            </summary>                                        
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._EnsambladoClaseImplementadoraPTZ">
+            <summary>
+            Nombre del ensamblado de la clase que implementa el display asociado a este tipo de cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._ClaseImplementadoraPTZ">
+            <summary>
+            Nombre de la clase que implementa el display asociado a este tipo de cámara
+            </summary>                                        
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._Conectividad">
+            <summary>
+            Clase encargada de comprobar la conectividad con un dispositivo
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._PTZ">
+            <summary>
+            Control PTZ
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase._ImagenActual">
+            <summary>
+            Última imagen capturada
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase.OnNuevaFotografiaCamara">
+            <summary>
+            Delegado de nueva fotografía
+            </summary>
+            <param name="estadoConexion"></param>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase.OnNuevaFotografiaCamaraAdv">
+            <summary>
+            Delegado de nueva fotografía
+            </summary>
+            <param name="estadoConexion"></param>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase.OnCambioEstadoConexionCamara">
+            <summary>
+            Delegado de cambio de estaco de conexión de la cámara
+            </summary>
+            <param name="estadoConexion"></param>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase.OnCambioEstadoConexionCamaraAdv">
+            <summary>
+            Delegado de cambio de estaco de conexión de la cámara
+            </summary>
+            <param name="estadoConexion"></param>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase.OnMensajeCamara">
+            <summary>
+            Delegado de mensaje de la cámara
+            </summary>
+            <param name="estadoConexion"></param>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase.OnMensajeCamaraAdv">
+            <summary>
+            Delegado de mensaje de la cámara
+            </summary>
+            <param name="estadoConexion"></param>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase.OnCambioReproduccionCamara">
+            <summary>
+            Delegado de mensaje de cambio de estado de reproducción
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBase.OnCambioReproduccionCamaraAdv">
+            <summary>
+            Delegado de mensaje de cambio de estado de reproducción
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.Conectar(System.Boolean)">
+            <summary>
+            Se conecta a la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.Desconectar(System.Boolean)">
+            <summary>
+            Se desconecta a la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.AdquisicionCompletada(Orbita.VAComun.OImage)">
+            <summary>
+            Se ejecuta cuando se ha completado la adquisición de una imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.EstablecerVariableAsociada(Orbita.VAComun.OImage)">
+            <summary>
+            Establece el valor de la imagen a la variable asociada
+            </summary>
+            <param name="imagen">Imagen a establecer en la variable</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.SnapSimulado(System.String)">
+            <summary>
+            Simulación de la realización de un snap
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.Conectar">
+            <summary>
+            Se conecta a la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.Desconectar">
+            <summary>
+            Se desconecta a la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.ConfigurarModoSimulacionFotografia(System.String)">
+            <summary>
+            Establece la cámara en modo simulación
+            </summary>
+            <param name="rutaFotografias">Indica la ruta de la fotografía o de la carpeta de fotografías donde están las imágenes a simular</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.ConfigurarModoSimulacionDirectorio(System.String,System.String,System.Int32)">
+            <summary>
+            Establece la cámara en modo simulación
+            </summary>
+            <param name="rutaFotografias">Indica la ruta de la fotografía o de la carpeta de fotografías donde están las imágenes a simular</param>
+            <param name="filtro">Cadena de filtrado de las fotografías situadas en la caperta establecida</param>
+            <param name="cadenciaSimulacionEnGrabacionMs">Intervalo en milisegundos utilizado para simular la grabación. Se realiza una fotografía según el tiempo indicado.</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.PararModoSimulacion">
+            <summary>
+            Para el modo simulación de la cámara, restableciendo su funcionamiento normal
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.Start">
+            <summary>
+            Comienza una reproducción continua de la cámara
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.Stop">
+            <summary>
+            Termina una reproducción continua de la cámara
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.Snap">
+            <summary>
+            Realiza una fotografía de forma sincrona
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.VisualizarImagen(Orbita.VAComun.OImage)">
+            <summary>
+            Visualiza una imagen en el display
+            </summary>
+            <param name="imagen">Imagen a visualizar</param>        
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.VisualizarUltimaImagen">
+            <summary>
+            Visualiza la última imagen capturada por la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.VisualizarUltimaImagen(Orbita.VAComun.OGrafico)">
+            <summary>
+            Visualiza la última imagen capturada por la cámara
+            </summary>
+            <param name="graficos">Objeto que contiene los gráficos a visualizar (letras, rectas, circulos, etc)</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.StartREC(System.String)">
+            <summary>
+            Comienza una grabación continua de la cámara
+            </summary>
+            <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.StopREC">
+            <summary>
+            Termina una grabación continua de la cámara
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.CrearSuscripcionNuevaFotografia(Orbita.VAHardware.ODelegadoNuevaFotografiaCamara)">
+            <summary>
+            Suscribe el cambio de fotografía de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.CrearSuscripcionNuevaFotografia(Orbita.VAHardware.ODelegadoNuevaFotografiaCamaraAdv)">
+            <summary>
+            Suscribe el cambio de fotografía de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.EliminarSuscripcionNuevaFotografia(Orbita.VAHardware.ODelegadoNuevaFotografiaCamara)">
+            <summary>
+            Elimina la suscripción del cambio de fotografía de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.EliminarSuscripcionNuevaFotografia(Orbita.VAHardware.ODelegadoNuevaFotografiaCamaraAdv)">
+            <summary>
+            Elimina la suscripción del cambio de fotografía de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.CrearSuscripcionCambioEstado(Orbita.VAHardware.ODelegadoCambioEstadoConexionCamara)">
+            <summary>
+            Suscribe el cambio de estado de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.CrearSuscripcionCambioEstado(Orbita.VAHardware.ODelegadoCambioEstadoConexionCamaraAdv)">
+            <summary>
+            Suscribe el cambio de estado de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.EliminarSuscripcionCambioEstado(Orbita.VAHardware.ODelegadoCambioEstadoConexionCamara)">
+            <summary>
+            Elimina la suscripción del cambio de estado de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.EliminarSuscripcionCambioEstado(Orbita.VAHardware.ODelegadoCambioEstadoConexionCamaraAdv)">
+            <summary>
+            Elimina la suscripción del cambio de estado de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.CrearSuscripcionMensajes(Orbita.VAComun.OMessageDelegate)">
+            <summary>
+            Suscribe la recepción de mensajes de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.CrearSuscripcionMensajes(Orbita.VAComun.OMessageDelegateAdv)">
+            <summary>
+            Suscribe la recepción de mensajes de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.EliminarSuscripcionMensajes(Orbita.VAComun.OMessageDelegate)">
+            <summary>
+            Elimina la suscripción de mensajes de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.EliminarSuscripcionMensajes(Orbita.VAComun.OMessageDelegateAdv)">
+            <summary>
+            Elimina la suscripción de mensajes de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.Inicializar">
+            <summary>
+            Carga los valores de la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.Finalizar">
+            <summary>
+            Finaliza la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.CargarImagenDeDisco(Orbita.VAComun.OImage@,System.String)">
+            <summary>
+            Carga una imagen de disco
+            </summary>
+            <param name="ruta">Indica la ruta donde se encuentra la fotografía</param>
+            <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.GuardarImagenADisco(System.String)">
+            <summary>
+            Guarda una imagen en disco
+            </summary>
+            <param name="ruta">Indica la ruta donde se ha de guardar la fotografía</param>
+            <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.CargarGraficoDeDisco(Orbita.VAComun.OGrafico@,System.String)">
+            <summary>
+            Carga un grafico de disco
+            </summary>
+            <param name="ruta">Indica la ruta donde se encuentra el grafico</param>
+            <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.GuardarGraficoADisco(Orbita.VAComun.OGrafico,System.String)">
+            <summary>
+            Guarda un objeto gráfico en disco
+            </summary>
+            <param name="ruta">Indica la ruta donde se ha de guardar el objeto gráfico</param>
+            <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.NuevaImagen">
+            <summary>
+            Devuelve una nueva imagen del tipo adecuado al trabajo con la cámara
+            </summary>
+            <returns>Imagen del tipo adecuado al trabajo con la cámara</returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.NuevoGrafico">
+            <summary>
+            Devuelve un nuevo gráfico del tipo adecuado al trabajo con el display
+            </summary>
+            <returns>Grafico del tipo adecuado al trabajo con el display</returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.VisualizarImagen(Orbita.VAComun.OImage,Orbita.VAComun.OGrafico)">
+            <summary>
+            Visualiza una imagen en el display
+            </summary>
+            <param name="imagen">Imagen a visualizar</param>
+            <param name="graficos">Objeto que contiene los gráficos a visualizar (letras, rectas, circulos, etc)</param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.ConectarInterno(System.Boolean)">
+            <summary>
+            Se toma el control de la cámara
+            </summary>
+            <returns>Verdadero si la operación ha funcionado correctamente</returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.DesconectarInterno(System.Boolean)">
+            <summary>
+            Se deja el control de la cámara
+            </summary>
+            <returns>Verdadero si la operación ha funcionado correctamente</returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.StartInterno">
+            <summary>
+            Comienza una reproducción continua de la cámara
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.StopInterno">
+            <summary>
+            Termina una reproducción continua de la cámara
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.SnapInterno">
+            <summary>
+            Realiza una fotografía de forma sincrona
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.StartRECInterno(System.String)">
+            <summary>
+            Comienza una grabacion continua de la cámara
+            </summary>
+            <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.StopRECInterno">
+            <summary>
+            Termina una grabación continua de la cámara
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.CrearConectividad">
+            <summary>
+            Crea el objeto de conectividad adecuado para la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.ComandoSnapPorVariable">
+            <summary>
+            Evento de snap realizado por una variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBase.OnCambioEstadoConectividadCamara(System.String,Orbita.VAHardware.OEstadoConexion,Orbita.VAHardware.OEstadoConexion)">
+            <summary>
+            Evento de cambio en la conexión con la cámara
+            </summary>
+            <param name="estadoConexion"></param>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.Recording">
+            <summary>
+            Indica si esta grabando
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.Codigo">
+            <summary>
+            Código identificador de la cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.Nombre">
+            <summary>
+            Nombre identificativo de la cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.Descripcion">
+            <summary>
+            Descripción de la cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.Habilitado">
+            <summary>
+            Habilita o deshabilita el funcionamiento
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.TipoHardware">
+            <summary>
+            Tipo de hardware
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.TipoCamara">
+            <summary>
+            Tipo de cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.CodigoTipoCamara">
+            <summary>
+            Código del tipo de cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.Fabricante">
+            <summary>
+            Fabricante del tipo de cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.Modelo">
+            <summary>
+            Modelo del tipo de cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.DescripcionTipoCamara">
+            <summary>
+            Descripcion del tipo de cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.Grab">
+            <summary>
+            Comienza o termina una reproducción de la cámara (sin guardar grabación)
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.AutoStart">
+            <summary>
+            Indica que la reproducción continua se ha de ejecutar en el momento de conexión
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.CodVariableImagen">
+            <summary>
+            Código de la variable que guarda la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.CodVariableSnap">
+            <summary>
+            Código de la variable que fuerza el snap
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.Resolucion">
+            <summary>
+            Resolución de la cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.Color">
+            <summary>
+            Tipo de cámara dependiendo de si sus imágenes son a color o monocromáticas
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.Existe">
+            <summary>
+            Indica que se ha podido acceder a la cámara con éxito
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.VisualizacionEnVivo">
+            <summary>
+            Indica que el control ha de visualizar automáticamente la imagen que devuelve la cámara,
+            de lo contrario se deberá de especificar el momento de la visualización por código.
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.ListaTerminales">
+            <summary>
+            Lista de todos los terminales de la tarjeta de IO
+            </summary>              
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.LanzarEventoAlSnap">
+            <summary>
+            Indica que se ha de cambiar la variable asociada cada vez que se recibe una fotografía
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.ExpectedFrameInterval">
+            <summary>
+            Indica el intervalo de tiempo en ms. de adquisición de imagenes
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.ExpectedFrameRate">
+            <summary>
+            Indica la tasa de adquisición esperada
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.MaxFrameIntervalVisualizacion">
+            <summary>
+            Indica el límite máximo de visualización de imagenes y que por lo tanto se ha de visualizar de forma retrasada con un timer
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.EnsambladoClaseImplementadoraDisplay">
+            <summary>
+            Nombre del ensamblado de la clase que implementa el display asociado a este tipo de cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.ClaseImplementadoraDisplay">
+            <summary>
+            Nombre de la clase que implementa el display asociado a este tipo de cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.EnsambladoClaseImplementadoraPTZ">
+            <summary>
+            Nombre del ensamblado de la clase que implementa el display asociado a este tipo de cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.ClaseImplementadoraPTZ">
+            <summary>
+            Nombre de la clase que implementa el display asociado a este tipo de cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.Conectividad">
+            <summary>
+            Clase encargada de comprobar la conectividad con un dispositivo
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.PTZ">
+            <summary>
+            Control PTZ
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.ResolucionGrabacion">
+            <summary>
+            Porcentaje de la reducción de imagenes en el video grabado: 100 => Tamaño original, 50 => Reducción a la mitad...
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.FrameRateGrabacion">
+            <summary>
+            Tasa de captura
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.FrameIntervalGrabacion">
+            <summary>
+            Indica el intervalo de tiempo en ms. de grabación de imagenes
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.BitRateGrabacion">
+            <summary>
+            Tasa de transferencia
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.CodecGarbacion">
+            <summary>
+            Códec de grabación
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.TiempoMaxGrabacion">
+            <summary>
+            Tiempo máximo de duración de la grabación
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.ImagenActual">
+            <summary>
+            Propieadad a heredar donde se accede a la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBase.EstadoConexion">
+            <summary>
+            Estado de la conexión
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBitmap.HayNuevaImagen">
+            <summary>
+            Informa si hay adquirida una nueva imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBitmap.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>       
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBitmap.GetCurrentImage(Orbita.VAComun.OImagenBitmap@)">
+            <summary>
+            Se extrae la imagen actual de la cámara
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBitmap.SetCurrentImage(Orbita.VAComun.OImagenBitmap)">
+            <summary>
+            Se importa una imagen a la cámara
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBitmap.Inicializar">
+            <summary>
+            Carga los valores de la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBitmap.Finalizar">
+            <summary>
+            Finaliza la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBitmap.CargarImagenDeDisco(Orbita.VAComun.OImage@,System.String)">
+            <summary>
+            Carga una imagen de disco
+            </summary>
+            <param name="ruta">Indica la ruta donde se encuentra la fotografía</param>
+            <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBitmap.GuardarImagenADisco(System.String)">
+            <summary>
+            Guarda una imagen en disco
+            </summary>
+            <param name="ruta">Indica la ruta donde se ha de guardar la fotografía</param>
+            <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBitmap.NuevaImagen">
+            <summary>
+            Devuelve una nueva imagen del tipo adecuado al trabajo con la cámara
+            </summary>
+            <returns>Imagen del tipo adecuado al trabajo con la cámara</returns>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBitmap.ImagenActual">
+            <summary>
+            Propieadad a heredar donde se accede a la imagen
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon.PrimeraInstancia">
+            <summary>
+            Booleano que evita que se construya varias veces el listado de cámaras de tipo GigE
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon.ImageProvider">
+            <summary>
+            Proveedor de imagenes
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon.TempBitmap">
+            <summary>
+            Bitmap temporal de guardado de imágenes
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon.Name">
+            <summary>
+            The friendly name of the device.
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon.Index">
+            <summary>
+            The index of the device.
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon.Serial">
+            <summary>
+            The serial of the device.
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon.DeviceClass">
+            <summary>
+            The type of device of the device.
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon.DeviceFactory">
+            <summary>
+            The factory number of the device.
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon.DeviceVersion">
+            <summary>
+            The version number of the device.
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon.FullName">
+            <summary>
+            The full name of the device.
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon.ModelName">
+            <summary>
+            The model name of the device.
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon.UserDefinedName">
+            <summary>
+            The user defined name of the device.
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon.VendorName">
+            <summary>
+            The vendor name of the device.
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon.TimerScan">
+            <summary>
+            Timer de escaneo de las entradas
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon.IntervaloComprobacionConectividadMS">
+            <summary>
+            Inervalo entre comprobaciones de conectividad con la cámara IP
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon.AdquisicionEnProceso">
+            <summary>
+            Indica que la adquisición está siendo procesada en el momento actual
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OCamaraBaslerPylon._DeviceId">
+            <summary>
+            Identificador interno de la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerPylon.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerPylon.BuscarCamaraPorNumeroSerie">
+            <summary>
+            Busca la frame grabber cuyo número de serie coincide con el indicado
+            </summary>
+            <param name="numeroDeSerie">Número de serie de la cámara a buscar</param>
+            <param name="frameGrabber">FrameGrabber encontrado</param>
+            <returns>Veradero si se ha encontrado el número de serie</returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerPylon.Finalizar">
+            <summary>
+            Finaliza la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerPylon.ConectarInterno(System.Boolean)">
+            <summary>
+            Se toma el control de la cámara
+            </summary>
+            <returns>Verdadero si la operación ha funcionado correctamente</returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerPylon.DesconectarInterno(System.Boolean)">
+            <summary>
+            Se deja el control de la cámara
+            </summary>
+            <returns>Verdadero si la operación ha funcionado correctamente</returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerPylon.StartInterno">
+            <summary>
+            Comienza una reproducción continua de la cámara
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerPylon.StopInterno">
+            <summary>
+            Termina una reproducción continua de la cámara
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerPylon.SnapInterno">
+            <summary>
+            Realiza una fotografía de forma sincrona
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerPylon.CrearConectividad">
+            <summary>
+            Crea el objeto de conectividad adecuado para la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerPylon.OnGrabErrorEventCallback(System.Exception,System.String)">
+            <summary>
+            Handles the event related to the occurrence of an error while grabbing proceeds.
+            </summary>
+            <param name="grabException"></param>
+            <param name="additionalErrorMessage"></param>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerPylon.OnDeviceRemovedEventCallback">
+            <summary>
+            Handles the event related to the removal of a currently open device.
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerPylon.OnDeviceOpenedEventCallback">
+            <summary>
+            Handles the event related to a device being open.
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerPylon.OnDeviceClosedEventCallback">
+            <summary>
+            Handles the event related to a device being closed.
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerPylon.OnGrabbingStartedEventCallback">
+            <summary>
+            Handles the event related to the image provider executing grabbing.
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerPylon.OnImageReadyEventCallback">
+            <summary>
+            Handles the event related to an image having been taken and waiting for processing.
+            </summary>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerPylon.OnGrabbingStoppedEventCallback">
+            <summary>
+            Handles the event related to the image provider having stopped grabbing.
+            </summary>
+        </member>
+        <member name="P:Orbita.VAHardware.OCamaraBaslerPylon.DeviceId">
+            <summary>
+            Identificador interno de la cámara
+            </summary>
+        </member>
         <member name="T:Orbita.VAHardware.MJPEGSource">
             <summary>
             MJPEGSource - MJPEG stream support
@@ -260,821 +1285,6 @@
             Clase que implementa las funciones de manejo de la dispositivo capturador genérico
             </summary>
         </member>
-        <member name="T:Orbita.VAHardware.OCamaraBitmap">
-            <summary>
-            Clase base que implementa las funciones de trabajo sobre bitmaps
-            </summary>
-        </member>
-        <member name="T:Orbita.VAHardware.OCamaraBase">
-            <summary>
-            Clase base para todas las cámaras
-            </summary>
-        </member>
-        <member name="T:Orbita.VAHardware.IHardware">
-            <summary>
-            Interfaz para el acceso a las caracerísticas comunes de todos los dispositivos hardware
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.IHardware.Inicializar">
-            <summary>
-            Carga los valores del hardware
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.IHardware.Finalizar">
-            <summary>
-            Finaliza el hardware
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.IHardware.Start">
-            <summary>
-            Comienza el hardware
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAHardware.IHardware.Stop">
-            <summary>
-            Para el hardware
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:Orbita.VAHardware.IHardware.Codigo">
-            <summary>
-            Código identificador de la cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.IHardware.Nombre">
-            <summary>
-            Nombre identificativo de la cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.IHardware.Descripcion">
-            <summary>
-            Descripción de la cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.IHardware.Habilitado">
-            <summary>
-            Habilita o deshabilita el funcionamiento
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.IHardware.Fabricante">
-            <summary>
-            Fabricante del tipo de cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.IHardware.Modelo">
-            <summary>
-            Modelo del tipo de cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.IHardware.TipoHardware">
-            <summary>
-            Tipo de hardware
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.IHardware.ListaTerminales">
-            <summary>
-            Lista de todos los terminales de la tarjeta de IO
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase.SimulacionCamara">
-            <summary>
-            Objeto de simulación de la cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase.MedidorVelocidadAdquisicion">
-            <summary>
-            Proporciona herramientas para medir la velocidad de adquisición de la cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase.VideoFile">
-            <summary>
-            Guardado de Fichero de video
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._Codigo">
-            <summary>
-            Código identificador de la cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._Nombre">
-            <summary>
-            Nombre identificativo de la cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._Descripcion">
-            <summary>
-            Descripción de la cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._Habilitado">
-            <summary>
-            Habilita o deshabilita el funcionamiento
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._TipoCamara">
-            <summary>
-            Tipo de cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._CodigoTipoCamara">
-            <summary>
-            Código del tipo de cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._Fabricante">
-            <summary>
-            Fabricante del tipo de cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._Modelo">
-            <summary>
-            Modelo del tipo de cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._DescripcionTipoCamara">
-            <summary>
-            Descripcion del tipo de cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._Grab">
-            <summary>
-            Comienza o termina una reproducción de la cámara (sin guardar grabación)
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._CodVariableImagen">
-            <summary>
-            Código de la variable que guarda la imagen
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._CodVariableSnap">
-            <summary>
-            Código de la variable que fuerza el snap
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._Resolucion">
-            <summary>
-            Resolución de la cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._Color">
-            <summary>
-            Tipo de cámara dependiendo de si sus imágenes son a color o monocromáticas
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._Existe">
-            <summary>
-            Indica que se ha podido acceder a la cámara con éxito
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._VisualizacionEnVivo">
-            <summary>
-            Indica que el control ha de visualizar automáticamente la imagen que devuelve la cámara,
-            de lo contrario se deberá de especificar el momento de la visualización por código.
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._ListaTerminales">
-            <summary>
-            Lista de todos los terminales de la tarjeta de IO
-            </summary>              
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._LanzarEventoAlSnap">
-            <summary>
-            Indica que se ha de cambiar la variable asociada cada vez que se recibe una fotografía
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._ExpectedFrameInterval">
-            <summary>
-            Indica el intervalo de tiempo en ms. de adquisición de imagenes
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._ExpectedFrameRate">
-            <summary>
-            Indica la tasa de adquisición esperada
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._MaxFrameIntervalVisualizacion">
-            <summary>
-            Indica el límite máximo de visualización de imagenes y que por lo tanto se ha de visualizar de forma retrasada con un timer
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._EnsambladoClaseImplementadoraDisplay">
-            <summary>
-            Nombre del ensamblado de la clase que implementa el display asociado a este tipo de cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._ClaseImplementadoraDisplay">
-            <summary>
-            Nombre de la clase que implementa el display asociado a este tipo de cámara
-            </summary>                                        
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._EnsambladoClaseImplementadoraPTZ">
-            <summary>
-            Nombre del ensamblado de la clase que implementa el display asociado a este tipo de cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._ClaseImplementadoraPTZ">
-            <summary>
-            Nombre de la clase que implementa el display asociado a este tipo de cámara
-            </summary>                                        
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._Conectividad">
-            <summary>
-            Clase encargada de comprobar la conectividad con un dispositivo
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._PTZ">
-            <summary>
-            Control PTZ
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase._ImagenActual">
-            <summary>
-            Última imagen capturada
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase.OnNuevaFotografiaCamara">
-            <summary>
-            Delegado de nueva fotografía
-            </summary>
-            <param name="estadoConexion"></param>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase.OnNuevaFotografiaCamaraAdv">
-            <summary>
-            Delegado de nueva fotografía
-            </summary>
-            <param name="estadoConexion"></param>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase.OnCambioEstadoConexionCamara">
-            <summary>
-            Delegado de cambio de estaco de conexión de la cámara
-            </summary>
-            <param name="estadoConexion"></param>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase.OnCambioEstadoConexionCamaraAdv">
-            <summary>
-            Delegado de cambio de estaco de conexión de la cámara
-            </summary>
-            <param name="estadoConexion"></param>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase.OnMensajeCamara">
-            <summary>
-            Delegado de mensaje de la cámara
-            </summary>
-            <param name="estadoConexion"></param>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase.OnMensajeCamaraAdv">
-            <summary>
-            Delegado de mensaje de la cámara
-            </summary>
-            <param name="estadoConexion"></param>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase.OnCambioReproduccionCamara">
-            <summary>
-            Delegado de mensaje de cambio de estado de reproducción
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBase.OnCambioReproduccionCamaraAdv">
-            <summary>
-            Delegado de mensaje de cambio de estado de reproducción
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.#ctor(System.String)">
-            <summary>
-            Constructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.Conectar">
-            <summary>
-            Se conecta a la cámara
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.Desconectar">
-            <summary>
-            Se desconecta a la cámara
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.ConfigurarModoSimulacionFotografia(System.String)">
-            <summary>
-            Establece la cámara en modo simulación
-            </summary>
-            <param name="rutaFotografias">Indica la ruta de la fotografía o de la carpeta de fotografías donde están las imágenes a simular</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.ConfigurarModoSimulacionDirectorio(System.String,System.String,System.Int32)">
-            <summary>
-            Establece la cámara en modo simulación
-            </summary>
-            <param name="rutaFotografias">Indica la ruta de la fotografía o de la carpeta de fotografías donde están las imágenes a simular</param>
-            <param name="filtro">Cadena de filtrado de las fotografías situadas en la caperta establecida</param>
-            <param name="cadenciaSimulacionEnGrabacionMs">Intervalo en milisegundos utilizado para simular la grabación. Se realiza una fotografía según el tiempo indicado.</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.PararModoSimulacion">
-            <summary>
-            Para el modo simulación de la cámara, restableciendo su funcionamiento normal
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.Start">
-            <summary>
-            Comienza una reproducción continua de la cámara
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.Stop">
-            <summary>
-            Termina una reproducción continua de la cámara
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.Snap">
-            <summary>
-            Realiza una fotografía de forma sincrona
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.VisualizarImagen(Orbita.VAComun.OImage)">
-            <summary>
-            Visualiza una imagen en el display
-            </summary>
-            <param name="imagen">Imagen a visualizar</param>        
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.VisualizarUltimaImagen">
-            <summary>
-            Visualiza la última imagen capturada por la cámara
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.VisualizarUltimaImagen(Orbita.VAComun.OGrafico)">
-            <summary>
-            Visualiza la última imagen capturada por la cámara
-            </summary>
-            <param name="graficos">Objeto que contiene los gráficos a visualizar (letras, rectas, circulos, etc)</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.REC(System.String)">
-            <summary>
-            Comienza una grabación continua de la cámara
-            </summary>
-            <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.StopREC">
-            <summary>
-            Termina una grabación continua de la cámara
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.CrearSuscripcionNuevaFotografia(Orbita.VAHardware.ODelegadoNuevaFotografiaCamara)">
-            <summary>
-            Suscribe el cambio de fotografía de una determinada cámara
-            </summary>
-            <param name="codigo">Código de la cámara</param>
-            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.CrearSuscripcionNuevaFotografia(Orbita.VAHardware.ODelegadoNuevaFotografiaCamaraAdv)">
-            <summary>
-            Suscribe el cambio de fotografía de una determinada cámara
-            </summary>
-            <param name="codigo">Código de la cámara</param>
-            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.EliminarSuscripcionNuevaFotografia(Orbita.VAHardware.ODelegadoNuevaFotografiaCamara)">
-            <summary>
-            Elimina la suscripción del cambio de fotografía de una determinada cámara
-            </summary>
-            <param name="codigo">Código de la cámara</param>
-            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.EliminarSuscripcionNuevaFotografia(Orbita.VAHardware.ODelegadoNuevaFotografiaCamaraAdv)">
-            <summary>
-            Elimina la suscripción del cambio de fotografía de una determinada cámara
-            </summary>
-            <param name="codigo">Código de la cámara</param>
-            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.CrearSuscripcionCambioEstado(Orbita.VAHardware.ODelegadoCambioEstadoConexionCamara)">
-            <summary>
-            Suscribe el cambio de estado de una determinada cámara
-            </summary>
-            <param name="codigo">Código de la cámara</param>
-            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.CrearSuscripcionCambioEstado(Orbita.VAHardware.ODelegadoCambioEstadoConexionCamaraAdv)">
-            <summary>
-            Suscribe el cambio de estado de una determinada cámara
-            </summary>
-            <param name="codigo">Código de la cámara</param>
-            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.EliminarSuscripcionCambioEstado(Orbita.VAHardware.ODelegadoCambioEstadoConexionCamara)">
-            <summary>
-            Elimina la suscripción del cambio de estado de una determinada cámara
-            </summary>
-            <param name="codigo">Código de la cámara</param>
-            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.EliminarSuscripcionCambioEstado(Orbita.VAHardware.ODelegadoCambioEstadoConexionCamaraAdv)">
-            <summary>
-            Elimina la suscripción del cambio de estado de una determinada cámara
-            </summary>
-            <param name="codigo">Código de la cámara</param>
-            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.CrearSuscripcionMensajes(Orbita.VAComun.OMessageDelegate)">
-            <summary>
-            Suscribe la recepción de mensajes de una determinada cámara
-            </summary>
-            <param name="codigo">Código de la cámara</param>
-            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.CrearSuscripcionMensajes(Orbita.VAComun.OMessageDelegateAdv)">
-            <summary>
-            Suscribe la recepción de mensajes de una determinada cámara
-            </summary>
-            <param name="codigo">Código de la cámara</param>
-            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.EliminarSuscripcionMensajes(Orbita.VAComun.OMessageDelegate)">
-            <summary>
-            Elimina la suscripción de mensajes de una determinada cámara
-            </summary>
-            <param name="codigo">Código de la cámara</param>
-            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.EliminarSuscripcionMensajes(Orbita.VAComun.OMessageDelegateAdv)">
-            <summary>
-            Elimina la suscripción de mensajes de una determinada cámara
-            </summary>
-            <param name="codigo">Código de la cámara</param>
-            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.AdquisicionCompletada(Orbita.VAComun.OImage)">
-            <summary>
-            Se ejecuta cuando se ha completado la adquisición de una imagen
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.EstablecerVariableAsociada(Orbita.VAComun.OImage)">
-            <summary>
-            Establece el valor de la imagen a la variable asociada
-            </summary>
-            <param name="imagen">Imagen a establecer en la variable</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.SnapSimulado(System.String)">
-            <summary>
-            Simulación de la realización de un snap
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.Inicializar">
-            <summary>
-            Carga los valores de la cámara
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.Finalizar">
-            <summary>
-            Finaliza la cámara
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.Conectar(System.Boolean)">
-            <summary>
-            Se toma el control de la cámara
-            </summary>
-            <returns>Verdadero si la operación ha funcionado correctamente</returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.Desconectar(System.Boolean)">
-            <summary>
-            Se deja el control de la cámara
-            </summary>
-            <returns>Verdadero si la operación ha funcionado correctamente</returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.InternalStart">
-            <summary>
-            Comienza una reproducción continua de la cámara
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.InternalStop">
-            <summary>
-            Termina una reproducción continua de la cámara
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.InternalSnap">
-            <summary>
-            Realiza una fotografía de forma sincrona
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.CargarImagenDeDisco(Orbita.VAComun.OImage@,System.String)">
-            <summary>
-            Carga una imagen de disco
-            </summary>
-            <param name="ruta">Indica la ruta donde se encuentra la fotografía</param>
-            <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.GuardarImagenADisco(System.String)">
-            <summary>
-            Guarda una imagen en disco
-            </summary>
-            <param name="ruta">Indica la ruta donde se ha de guardar la fotografía</param>
-            <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.CargarGraficoDeDisco(Orbita.VAComun.OGrafico@,System.String)">
-            <summary>
-            Carga un grafico de disco
-            </summary>
-            <param name="ruta">Indica la ruta donde se encuentra el grafico</param>
-            <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.GuardarGraficoADisco(Orbita.VAComun.OGrafico,System.String)">
-            <summary>
-            Guarda un objeto gráfico en disco
-            </summary>
-            <param name="ruta">Indica la ruta donde se ha de guardar el objeto gráfico</param>
-            <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.NuevaImagen">
-            <summary>
-            Devuelve una nueva imagen del tipo adecuado al trabajo con la cámara
-            </summary>
-            <returns>Imagen del tipo adecuado al trabajo con la cámara</returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.NuevoGrafico">
-            <summary>
-            Devuelve un nuevo gráfico del tipo adecuado al trabajo con el display
-            </summary>
-            <returns>Grafico del tipo adecuado al trabajo con el display</returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.VisualizarImagen(Orbita.VAComun.OImage,Orbita.VAComun.OGrafico)">
-            <summary>
-            Visualiza una imagen en el display
-            </summary>
-            <param name="imagen">Imagen a visualizar</param>
-            <param name="graficos">Objeto que contiene los gráficos a visualizar (letras, rectas, circulos, etc)</param>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.InternalREC(System.String)">
-            <summary>
-            Comienza una grabacion continua de la cámara
-            </summary>
-            <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.InternalStopREC">
-            <summary>
-            Termina una grabación continua de la cámara
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.ComandoSnapPorVariable">
-            <summary>
-            Evento de snap realizado por una variable
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBase.OnCambioEstadoConectividadCamara(System.String,Orbita.VAHardware.OEstadoConexion,Orbita.VAHardware.OEstadoConexion)">
-            <summary>
-            Evento de cambio en la conexión con la cámara
-            </summary>
-            <param name="estadoConexion"></param>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.Recording">
-            <summary>
-            Indica si esta grabando
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.Codigo">
-            <summary>
-            Código identificador de la cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.Nombre">
-            <summary>
-            Nombre identificativo de la cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.Descripcion">
-            <summary>
-            Descripción de la cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.Habilitado">
-            <summary>
-            Habilita o deshabilita el funcionamiento
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.TipoHardware">
-            <summary>
-            Tipo de hardware
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.TipoCamara">
-            <summary>
-            Tipo de cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.CodigoTipoCamara">
-            <summary>
-            Código del tipo de cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.Fabricante">
-            <summary>
-            Fabricante del tipo de cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.Modelo">
-            <summary>
-            Modelo del tipo de cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.DescripcionTipoCamara">
-            <summary>
-            Descripcion del tipo de cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.Grab">
-            <summary>
-            Comienza o termina una reproducción de la cámara (sin guardar grabación)
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.CodVariableImagen">
-            <summary>
-            Código de la variable que guarda la imagen
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.CodVariableSnap">
-            <summary>
-            Código de la variable que fuerza el snap
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.Resolucion">
-            <summary>
-            Resolución de la cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.Color">
-            <summary>
-            Tipo de cámara dependiendo de si sus imágenes son a color o monocromáticas
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.Existe">
-            <summary>
-            Indica que se ha podido acceder a la cámara con éxito
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.VisualizacionEnVivo">
-            <summary>
-            Indica que el control ha de visualizar automáticamente la imagen que devuelve la cámara,
-            de lo contrario se deberá de especificar el momento de la visualización por código.
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.ListaTerminales">
-            <summary>
-            Lista de todos los terminales de la tarjeta de IO
-            </summary>              
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.LanzarEventoAlSnap">
-            <summary>
-            Indica que se ha de cambiar la variable asociada cada vez que se recibe una fotografía
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.ExpectedFrameInterval">
-            <summary>
-            Indica el intervalo de tiempo en ms. de adquisición de imagenes
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.ExpectedFrameRate">
-            <summary>
-            Indica la tasa de adquisición esperada
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.MaxFrameIntervalVisualizacion">
-            <summary>
-            Indica el límite máximo de visualización de imagenes y que por lo tanto se ha de visualizar de forma retrasada con un timer
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.EnsambladoClaseImplementadoraDisplay">
-            <summary>
-            Nombre del ensamblado de la clase que implementa el display asociado a este tipo de cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.ClaseImplementadoraDisplay">
-            <summary>
-            Nombre de la clase que implementa el display asociado a este tipo de cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.EnsambladoClaseImplementadoraPTZ">
-            <summary>
-            Nombre del ensamblado de la clase que implementa el display asociado a este tipo de cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.ClaseImplementadoraPTZ">
-            <summary>
-            Nombre de la clase que implementa el display asociado a este tipo de cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.Conectividad">
-            <summary>
-            Clase encargada de comprobar la conectividad con un dispositivo
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.PTZ">
-            <summary>
-            Control PTZ
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.ResolucionGrabacion">
-            <summary>
-            Porcentaje de la reducción de imagenes en el video grabado: 100 => Tamaño original, 50 => Reducción a la mitad...
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.FrameRateGrabacion">
-            <summary>
-            Tasa de captura
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.FrameIntervalGrabacion">
-            <summary>
-            Indica el intervalo de tiempo en ms. de grabación de imagenes
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.BitRateGrabacion">
-            <summary>
-            Tasa de transferencia
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.CodecGarbacion">
-            <summary>
-            Códec de grabación
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.TiempoMaxGrabacion">
-            <summary>
-            Tiempo máximo de duración de la grabación
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.ImagenActual">
-            <summary>
-            Propieadad a heredar donde se accede a la imagen
-            </summary>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBase.EstadoConexion">
-            <summary>
-            Estado de la conexión
-            </summary>
-        </member>
-        <member name="F:Orbita.VAHardware.OCamaraBitmap.HayNuevaImagen">
-            <summary>
-            Informa si hay adquirida una nueva imagen
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBitmap.#ctor(System.String)">
-            <summary>
-            Constructor de la clase
-            </summary>       
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBitmap.GetCurrentImage(Orbita.VAComun.OBitmapImage@)">
-            <summary>
-            Se extrae la imagen actual de la cámara
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBitmap.SetCurrentImage(Orbita.VAComun.OBitmapImage)">
-            <summary>
-            Se importa una imagen a la cámara
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBitmap.Inicializar">
-            <summary>
-            Carga los valores de la cámara
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBitmap.Finalizar">
-            <summary>
-            Finaliza la cámara
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBitmap.CargarImagenDeDisco(Orbita.VAComun.OImage@,System.String)">
-            <summary>
-            Carga una imagen de disco
-            </summary>
-            <param name="ruta">Indica la ruta donde se encuentra la fotografía</param>
-            <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBitmap.GuardarImagenADisco(System.String)">
-            <summary>
-            Guarda una imagen en disco
-            </summary>
-            <param name="ruta">Indica la ruta donde se ha de guardar la fotografía</param>
-            <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraBitmap.NuevaImagen">
-            <summary>
-            Devuelve una nueva imagen del tipo adecuado al trabajo con la cámara
-            </summary>
-            <returns>Imagen del tipo adecuado al trabajo con la cámara</returns>
-        </member>
-        <member name="P:Orbita.VAHardware.OCamaraBitmap.ImagenActual">
-            <summary>
-            Propieadad a heredar donde se accede a la imagen
-            </summary>
-        </member>
         <member name="F:Orbita.VAHardware.OCamaraWDM.Dispostivo">
             <summary>
             Dirección URL original
@@ -1090,41 +1300,31 @@
             Constructor de la clase
             </summary>       
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraWDM.Inicializar">
-            <summary>
-            Carga los valores de la cámara
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraWDM.Finalizar">
-            <summary>
-            Finaliza la cámara
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraWDM.Conectar(System.Boolean)">
+        <member name="M:Orbita.VAHardware.OCamaraWDM.ConectarInterno(System.Boolean)">
             <summary>
             Se toma el control de la cámara
             </summary>
             <returns>Verdadero si la operación ha funcionado correctamente</returns>
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraWDM.Desconectar(System.Boolean)">
+        <member name="M:Orbita.VAHardware.OCamaraWDM.DesconectarInterno(System.Boolean)">
             <summary>
             Se deja el control de la cámara
             </summary>
             <returns>Verdadero si la operación ha funcionado correctamente</returns>
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraWDM.InternalStart">
+        <member name="M:Orbita.VAHardware.OCamaraWDM.StartInterno">
             <summary>
             Comienza una reproducción continua de la cámara
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraWDM.InternalStop">
+        <member name="M:Orbita.VAHardware.OCamaraWDM.StopInterno">
             <summary>
             Termina una reproducción continua de la cámara
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraWDM.InternalSnap">
+        <member name="M:Orbita.VAHardware.OCamaraWDM.SnapInterno">
             <summary>
             Realiza una fotografía de forma sincrona
             </summary>
@@ -2804,6 +3004,11 @@
             Módulo de funcionamiento de los PTZs
             </summary>
         </member>
+        <member name="F:Orbita.VAHardware.OModulosHardware.CamaraBalserPylon">
+            <summary>
+            Módulo de funcionamiento de las cámaras Basler mediante el driver propio de Pylon
+            </summary>
+        </member>
         <member name="T:Orbita.VAHardware.OPTZAxis">
             <summary>
             Clase base para todos los controladores ptz
@@ -3004,6 +3209,34 @@
         <member name="P:Orbita.VAHardware.OConectividadGigE.EstadoConexion">
             <summary>
             Estado de la conexión
+            </summary>
+        </member>
+        <member name="T:PylonC.NETSupportLibrary.ImagePylon">
+            <summary>
+            Imagen de tipo Pylon
+            </summary>
+        </member>
+        <member name="M:PylonC.NETSupportLibrary.ImagePylon.#ctor(System.Int32,System.Int32,System.Byte[],System.Boolean)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="newWidth"></param>
+            <param name="newHeight"></param>
+            <param name="newBuffer"></param>
+            <param name="color"></param>
+        </member>
+        <member name="T:PylonC.NETSupportLibrary.GrabResultPylon">
+            <summary>
+            The class GrabResult is used internally to queue grab results.
+            </summary>
+        </member>
+        <member name="T:PylonC.NETSupportLibrary.ImageProvider">
+            <summary>
+            The ImageProvider is responsible for opening and closing a device, it takes care of the grabbing and buffer handling, 
+            it notifies the user via events about state changes, and provides access to GenICam parameter nodes of the device. 
+            The grabbing is done in an internal thread. After an image is grabbed the image ready event is fired by the grab 
+            thread. The image can be acquired using GetCurrentImage(). After processing of the image it can be released via ReleaseImage.
+            The image is then queued for the next grab.
             </summary>
         </member>
         <member name="T:Orbita.VAHardware.OIO_MeasurementComputingUniversal">
@@ -3537,45 +3770,40 @@
             Constructor de la clase
             </summary>       
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraIP.Inicializar">
-            <summary>
-            Carga los valores de la cámara
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraIP.Finalizar">
-            <summary>
-            Finaliza la cámara
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraIP.Conectar(System.Boolean)">
+        <member name="M:Orbita.VAHardware.OCamaraIP.ConectarInterno(System.Boolean)">
             <summary>
             Se toma el control de la cámara
             </summary>
             <returns>Verdadero si la operación ha funcionado correctamente</returns>
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraIP.Desconectar(System.Boolean)">
+        <member name="M:Orbita.VAHardware.OCamaraIP.DesconectarInterno(System.Boolean)">
             <summary>
             Se deja el control de la cámara
             </summary>
             <returns>Verdadero si la operación ha funcionado correctamente</returns>
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraIP.InternalStart">
+        <member name="M:Orbita.VAHardware.OCamaraIP.StartInterno">
             <summary>
             Comienza una reproducción continua de la cámara
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraIP.InternalStop">
+        <member name="M:Orbita.VAHardware.OCamaraIP.StopInterno">
             <summary>
             Termina una reproducción continua de la cámara
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraIP.InternalSnap">
+        <member name="M:Orbita.VAHardware.OCamaraIP.SnapInterno">
             <summary>
             Realiza una fotografía de forma sincrona
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraIP.CrearConectividad">
+            <summary>
+            Crea el objeto de conectividad adecuado para la cámara
+            </summary>
         </member>
         <member name="M:Orbita.VAHardware.OCamaraIP.ImagenAdquirida(System.Object,Orbita.VAHardware.CameraEventArgs)">
             <summary>
@@ -3603,41 +3831,19 @@
             Constructor de la clase
             </summary>       
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraAxisCGI.Inicializar">
-            <summary>
-            Carga los valores de la cámara
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraAxisCGI.Finalizar">
-            <summary>
-            Finaliza la cámara
-            </summary>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraAxisCGI.Conectar(System.Boolean)">
-            <summary>
-            Se toma el control de la cámara
-            </summary>
-            <returns>Verdadero si la operación ha funcionado correctamente</returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraAxisCGI.Desconectar(System.Boolean)">
-            <summary>
-            Se deja el control de la cámara
-            </summary>
-            <returns>Verdadero si la operación ha funcionado correctamente</returns>
-        </member>
-        <member name="M:Orbita.VAHardware.OCamaraAxisCGI.InternalStart">
+        <member name="M:Orbita.VAHardware.OCamaraAxisCGI.StartInterno">
             <summary>
             Comienza una reproducción continua de la cámara
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraAxisCGI.InternalStop">
+        <member name="M:Orbita.VAHardware.OCamaraAxisCGI.StopInterno">
             <summary>
             Termina una reproducción continua de la cámara
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraAxisCGI.InternalSnap">
+        <member name="M:Orbita.VAHardware.OCamaraAxisCGI.SnapInterno">
             <summary>
             Realiza una fotografía de forma sincrona
             </summary>
@@ -4001,41 +4207,36 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraBaslerVPro.Inicializar">
-            <summary>
-            Carga los valores de la cámara
-            </summary>
-        </member>
         <member name="M:Orbita.VAHardware.OCamaraBaslerVPro.Finalizar">
             <summary>
             Finaliza la cámara
             </summary>
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraBaslerVPro.Conectar(System.Boolean)">
+        <member name="M:Orbita.VAHardware.OCamaraBaslerVPro.ConectarInterno(System.Boolean)">
             <summary>
             Se toma el control de la cámara
             </summary>
             <returns>Verdadero si la operación ha funcionado correctamente</returns>
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraBaslerVPro.Desconectar(System.Boolean)">
+        <member name="M:Orbita.VAHardware.OCamaraBaslerVPro.DesconectarInterno(System.Boolean)">
             <summary>
             Se deja el control de la cámara
             </summary>
             <returns>Verdadero si la operación ha funcionado correctamente</returns>
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraBaslerVPro.InternalStart">
+        <member name="M:Orbita.VAHardware.OCamaraBaslerVPro.StartInterno">
             <summary>
             Comienza una reproducción continua de la cámara
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraBaslerVPro.InternalStop">
+        <member name="M:Orbita.VAHardware.OCamaraBaslerVPro.StopInterno">
             <summary>
             Termina una reproducción continua de la cámara
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VAHardware.OCamaraBaslerVPro.InternalSnap">
+        <member name="M:Orbita.VAHardware.OCamaraBaslerVPro.SnapInterno">
             <summary>
             Realiza una fotografía de forma sincrona
             </summary>
@@ -4067,6 +4268,11 @@
             Devuelve una nueva imagen del tipo adecuado al trabajo con la cámara
             </summary>
             <returns>Imagen del tipo adecuado al trabajo con la cámara</returns>
+        </member>
+        <member name="M:Orbita.VAHardware.OCamaraBaslerVPro.CrearConectividad">
+            <summary>
+            Crea el objeto de conectividad adecuado para la cámara
+            </summary>
         </member>
         <member name="M:Orbita.VAHardware.OCamaraBaslerVPro.CompleteAcquisition(System.Object,Cognex.VisionPro.CogCompleteEventArgs)">
             <summary>
@@ -5060,6 +5266,11 @@
         <member name="F:Orbita.VAHardware.OEstadoConexion.Reconectando">
             <summary>
             La cámara tiene un error de conexión y está intentando reconectarse
+            </summary>
+        </member>
+        <member name="F:Orbita.VAHardware.OEstadoConexion.Reconectado">
+            <summary>
+            La cámara ha logrado reconectarse
             </summary>
         </member>
         <member name="T:Orbita.VAHardware.ODelegadoNuevaFotografiaCamara">

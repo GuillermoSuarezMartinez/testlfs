@@ -218,6 +218,59 @@
             Texto identificativo del objeto
             </summary>
         </member>
+        <member name="T:Orbita.VAComun.Clases.OBinario">
+            <summary>
+            Trabajo con números binarios
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.Clases.OBinario.GetBit(System.Byte,System.Int32)">
+            <summary>
+            Extrae un bit en la posición indicada
+            </summary>
+            <param name="numero">Valor al cual queremos extraer el bit</param>
+            <param name="posicion">Posición del bit a extraer</param>
+            <returns>Booleano con el valor del bit extraido</returns>
+        </member>
+        <member name="M:Orbita.VAComun.Clases.OBinario.GetBit(System.UInt16,System.Int32)">
+            <summary>
+            Extrae un bit en la posición indicada
+            </summary>
+            <param name="numero">Valor al cual queremos extraer el bit</param>
+            <param name="posicion">Posición del bit a extraer</param>
+            <returns>Booleano con el valor del bit extraido</returns>
+        </member>
+        <member name="M:Orbita.VAComun.Clases.OBinario.GetBit(System.UInt32,System.Int32)">
+            <summary>
+            Extrae un bit en la posición indicada
+            </summary>
+            <param name="numero">Valor al cual queremos extraer el bit</param>
+            <param name="posicion">Posición del bit a extraer</param>
+            <returns>Booleano con el valor del bit extraido</returns>
+        </member>
+        <member name="M:Orbita.VAComun.Clases.OBinario.SetBit(System.Byte@,System.Int32,System.Boolean)">
+            <summary>
+            Establece un bit en la posición indicada
+            </summary>
+            <param name="numero">Valor al cual queremos establecer el bit</param>
+            <param name="posicion">Posición del bit a establecer</param>
+            <param name="valor">Booleano con el valor del bit a establecer</param>
+        </member>
+        <member name="M:Orbita.VAComun.Clases.OBinario.SetBit(System.UInt16@,System.Int32,System.Boolean)">
+            <summary>
+            Establece un bit en la posición indicada
+            </summary>
+            <param name="numero">Valor al cual queremos establecer el bit</param>
+            <param name="posicion">Posición del bit a establecer</param>
+            <param name="valor">Booleano con el valor del bit a establecer</param>
+        </member>
+        <member name="M:Orbita.VAComun.Clases.OBinario.SetBit(System.UInt32@,System.Int32,System.Boolean)">
+            <summary>
+            Establece un bit en la posición indicada
+            </summary>
+            <param name="numero">Valor al cual queremos establecer el bit</param>
+            <param name="posicion">Posición del bit a establecer</param>
+            <param name="valor">Booleano con el valor del bit a establecer</param>
+        </member>
         <member name="T:Orbita.VAComun.OEnumeradosHeredable">
             <summary>
             Clase que agrupa a un conjunto de enumerados
@@ -903,6 +956,282 @@
             Enumeration of the states 
             </summary>
         </member>
+        <member name="T:Orbita.VAComun.OImagenBitmap">
+            <summary>
+            Imagen de tipo Bitmap de windows
+            </summary>
+        </member>
+        <member name="T:Orbita.VAComun.OImage">
+            <summary>
+            Clase genérica de imagen. Independiente del formato de almacenamiento y del formato de adquisición
+            </summary>
+        </member>
+        <member name="F:Orbita.VAComun.OImage._Image">
+            <summary>
+            Campo donde se guarda la imagen
+            </summary>
+        </member>
+        <member name="F:Orbita.VAComun.OImage._TipoImagen">
+            <summary>
+            Tipo de imagen que almacena
+            </summary>
+        </member>
+        <member name="F:Orbita.VAComun.OImage._MomentoCreacion">
+            <summary>
+            Informa del momento de la creación de la imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.#ctor(System.Object)">
+            <summary>
+            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+            </summary>
+            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.#ctor(System.String,System.Object)">
+            <summary>
+            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+            </summary>
+            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.GuardarAsincrono(System.String)">
+            <summary>
+            Guarda la imagen asincronamente en un fichero de disco
+            </summary>
+            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.Clone">
+            <summary>
+            Clonado de la imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.EsValida">
+            <summary>
+            Método a implementar en las clases hijas que indica que la imagen es válida
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.Guardar(System.String)">
+            <summary>
+            Método a implementar en las clases hijas para guardar la imagen en un fichero de disco
+            </summary>
+            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
+            <returns>Verdadero si la ruta donde se ha de guardar el fichero es válida</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.Cargar(System.String)">
+            <summary>
+            Método a implementar en las clases hijas para cargar la imagen de un fichero de disco
+            </summary>
+            <param name="ruta">Ruta de donde se ha de cargar la imagen</param>
+            <returns>Verdadero si el fichero que se ha de cargar existe</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.ConvertFromBitmap(System.Drawing.Bitmap)">
+            <summary>
+            Convierte la imagen de tipo bitmap al tipo actual
+            </summary>
+            <param name="imagenBitmap">Imagen de tipo bitmap desde el cual se va a importar la imagen</param>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.ConvertToBitmap">
+            <summary>
+            Convierte la imagen actual al tipo genérico de imagen de tipo bitmap
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.Convert``1(``0@)">
+            <summary>
+            Conversión del tipo de imagen 
+            </summary>
+            <typeparam name="ClaseImagen">Tipo de imagen a devolver</typeparam>
+            <param name="imagen"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.EscalarImagen(Orbita.VAComun.OImage,System.Int32,System.Int32)">
+            <summary>
+            Sirve para reducir o ampliar la imagen 
+            </summary>
+            <param name="img">Imagen a reducir o ampliar</param>
+            <param name="width">Ancho de la imagen resultado</param>
+            <param name="height">Alto de la imagen resultado</param>
+            <returns>Imagen reducida</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.ToArray(System.Drawing.Imaging.ImageFormat,System.Double)">
+            <summary>
+            Método que realiza el empaquetado de un objeto para ser enviado por remoting
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.FromArray(System.Byte[])">
+            <summary>
+            Método que realiza el desempaquetado de un objeto recibido por remoting
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.Nueva">
+            <summary>
+            Crea una nueva imagen de la misma clase
+            </summary>
+            <returns>Nueva instancia de la misma clase de imagen</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.Dispose(System.Boolean)">
+            <summary>
+            Método a implementar en las clases hijas. Elimina la memoria asignada por el objeto.
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.EscalarImagen(Orbita.VAComun.OImage,Orbita.VAComun.OResolucionesImagenEstandar)">
+            <summary>
+            Sirve para reducir o ampliar la imagen 
+            </summary>
+            <param name="img">Imagen a reduciro ampliar </param>
+            <param name="width">Ancho de la imagen resultado</param>
+            <param name="height">Alto de la imagen resultado</param>
+            <returns>Imagen reducida</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OImage.EscalarImagen(Orbita.VAComun.OImage,System.Double)">
+            <summary>
+            Sirve para reducir o ampliar la imagen 
+            </summary>
+            <param name="img">Imagen a reduciro ampliar </param>
+            <param name="escalado">Escalado</param>
+            <returns>Imagen reducida</returns>
+        </member>
+        <member name="P:Orbita.VAComun.OImage.Image">
+            <summary>
+            Propieadad a heredar donde se accede a la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VAComun.OImage.TipoImagen">
+            <summary>
+            Tipo de imagen que almacena
+            </summary>
+        </member>
+        <member name="P:Orbita.VAComun.OImage.Width">
+            <summary>
+            Tamaño en X de la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VAComun.OImage.Height">
+            <summary>
+            Tamaño en Y de la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VAComun.OImage.MomentoCreacion">
+            <summary>
+            Informa del momento de la creación de la imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OImagenBitmap.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OImagenBitmap.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OImagenBitmap.#ctor(System.Object)">
+            <summary>
+            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+            </summary>
+            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        </member>
+        <member name="M:Orbita.VAComun.OImagenBitmap.#ctor(System.String,System.Object)">
+            <summary>
+            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+            </summary>
+            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        </member>
+        <member name="M:Orbita.VAComun.OImagenBitmap.Dispose(System.Boolean)">
+            <summary>
+            Método a implementar en las clases hijas. Elimina la memoria asignada por el objeto.
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OImagenBitmap.Clone">
+            <summary>
+            Clonado de la imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OImagenBitmap.EsValida">
+            <summary>
+            Método a implementar en las clases hijas que indica que la imagen es válida
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAComun.OImagenBitmap.Guardar(System.String)">
+            <summary>
+            Método a implementar en las clases hijas para guardar la imagen en un fichero de disco
+            </summary>
+            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
+            <returns>Verdadero si la ruta donde se ha de guardar el fichero es válida</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OImagenBitmap.Cargar(System.String)">
+            <summary>
+            Método a implementar en las clases hijas para cargar la imagen de un fichero de disco
+            </summary>
+            <param name="ruta">Ruta de donde se ha de cargar la imagen</param>
+            <returns>Verdadero si el fichero que se ha de cargar existe</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OImagenBitmap.ConvertFromBitmap(System.Drawing.Bitmap)">
+            <summary>
+            Convierte la imagen de tipo bitmap al tipo actual
+            </summary>
+            <param name="imagenBitmap">Imagen de tipo bitmap desde el cual se va a importar la imagen</param>
+        </member>
+        <member name="M:Orbita.VAComun.OImagenBitmap.ConvertToBitmap">
+            <summary>
+            Convierte la imagen actual al tipo genérico de imagen de tipo bitmap
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OImagenBitmap.EscalarImagen(Orbita.VAComun.OImage,System.Int32,System.Int32)">
+            <summary>
+            Sirve para reducir la imagen 
+            </summary>
+            <param name="img">Imagen a reducir</param>
+            <param name="width">Ancho de la imagen resultado</param>
+            <param name="height">Alto de la imagen resultado</param>
+            <returns>Imagen reducida</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OImagenBitmap.ToArray(System.Drawing.Imaging.ImageFormat,System.Double)">
+            <summary>
+            Método que realiza el empaquetado de un objeto para ser enviado por remoting
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAComun.OImagenBitmap.FromArray(System.Byte[])">
+            <summary>
+            Método que realiza el desempaquetado de un objeto recibido por remoting
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAComun.OImagenBitmap.Nueva">
+            <summary>
+            Crea una nueva imagen de la misma clase
+            </summary>
+            <returns>Nueva instancia de la misma clase de imagen</returns>
+        </member>
+        <member name="P:Orbita.VAComun.OImagenBitmap.Image">
+            <summary>
+            Propieadad a heredar donde se accede a la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VAComun.OImagenBitmap.Width">
+            <summary>
+            Tamaño en X de la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VAComun.OImagenBitmap.Height">
+            <summary>
+            Tamaño en Y de la imagen
+            </summary>
+        </member>
         <member name="T:Orbita.VAComun.AppBD">
             <summary>
             Clase estática que contiene llamadas a los procedimiento almacenados en la base de datos
@@ -1408,50 +1737,85 @@
             El sistema se encuentra iniciado
             </summary>
         </member>
-        <member name="T:Orbita.VAComun.OConfiguracionSistema">
+        <member name="T:Orbita.VAComun.ConfiguracionSistema">
             <summary>
             Parámetros de la aplicación
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OConfiguracionSistema.ConfFile">
+        <member name="F:Orbita.VAComun.ConfiguracionSistema.ConfFile">
             <summary>
             Ruta por defecto del fichero xml de configuración
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OConfiguracionSistema.CadenciaMonitorizacion">
+        <member name="F:Orbita.VAComun.ConfiguracionSistema.CadenciaMonitorizacion">
             <summary>
             Tiempo entre refresco de monitorización
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OConfiguracionSistema.UtilizaBaseDeDatos">
+        <member name="F:Orbita.VAComun.ConfiguracionSistema.UtilizaBaseDeDatos">
             <summary>
             Indica si el sistema utiliza o no base de datos SQLServer o por el contrario ataca a ficheros XML
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OConfiguracionSistema.ListaInformacionBasesDatos">
+        <member name="F:Orbita.VAComun.ConfiguracionSistema.ListaInformacionBasesDatos">
             <summary>
             Lista de informaciones de las bases de datos existentes en el sistema
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OConfiguracionSistema.OpcionesLogs">
+        <member name="F:Orbita.VAComun.ConfiguracionSistema.OpcionesLogs">
             <summary>
             Opciones de configuración del registro de eventos
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OConfiguracionSistema.#ctor">
+        <member name="M:Orbita.VAComun.ConfiguracionSistema.#ctor">
             <summary>
             Contructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OConfiguracionSistema.#ctor(System.String)">
+        <member name="M:Orbita.VAComun.ConfiguracionSistema.#ctor(System.String)">
             <summary>
             Contructor de la clase
             </summary>
         </member>
-        <member name="P:Orbita.VAComun.OConfiguracionSistema.CadenciaMonitorizacionMilisegundos">
+        <member name="P:Orbita.VAComun.ConfiguracionSistema.CadenciaMonitorizacionMilisegundos">
             <summary>
             Tiempo entre refresco de monitorización
             </summary>
+        </member>
+        <member name="T:Orbita.VAComun.ORobusto">
+            <summary>
+            Clase estática destinada a alojar métodos genéricos para el manejo de objetos de forma segura
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.ORobusto.IsTypeOf(System.Object,System.Type[])">
+            <summary>
+            Función que devuelve si el objeto pertenece a alguno de los tipos listados
+            </summary>
+            <param name="o">Objeto que se quiere conocer el tipo</param>
+            <param name="types">Vector de tipos con lo que se ha de comparar el tipo del objeto</param>
+            <returns>Verdadero si el tipo del objeto está dentro de la lista de tipos pasados como parámetros</returns>
+        </member>
+        <member name="M:Orbita.VAComun.ORobusto.IsNumeric(System.Object)">
+            <summary>
+            Indica si el objeto pasado es de tipo numérico
+            </summary>
+            <param name="o">Objeto que se quiere conocer si es de tipo numérico</param>
+            <returns>Verdadero si el tipo del objeto es numérico</returns>
+        </member>
+        <member name="M:Orbita.VAComun.ORobusto.ToString(System.Object)">
+            <summary>
+            Convierte un objeto a string
+            </summary>
+            <param name="valor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAComun.ORobusto.CompararObjetos(System.Object,System.Object)">
+            <summary>
+            Realiza una comparación entre dos objetos
+            </summary>
+            <param name="valor1">Primer objeto a comparar</param>
+            <param name="valor2">Segundo objeto a comparar</param>
+            <returns></returns>
         </member>
         <member name="T:Orbita.VAComun.OObjetoRobusto`2">
             <summary>
@@ -1488,7 +1852,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OObjetoRobusto`2.Validar(System.Object,System.Boolean)">
+        <member name="M:Orbita.VAComun.OObjetoRobusto`2.Validar(System.Object@,System.Boolean)">
             <summary>
             Comprueba que el valor del objeto es correcto
             </summary>
@@ -1551,12 +1915,17 @@
             Indica que es admitido como válido la cadena vacia
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OTextoRobusto.#ctor(System.String,System.Int32,System.Boolean,System.String,System.Boolean)">
+        <member name="F:Orbita.VAComun.OTextoRobusto.LlimitarLongitud">
+            <summary>
+            Corta el texto en caso de sobreparsar la longitud máxima
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OTextoRobusto.#ctor(System.String,System.Int32,System.Boolean,System.Boolean,System.String,System.Boolean)">
             <summary>
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OTextoRobusto.Validar(System.Object,System.Boolean)">
+        <member name="M:Orbita.VAComun.OTextoRobusto.Validar(System.Object@,System.Boolean)">
             <summary>
             Comprueba que el valor del objeto es correcto
             </summary>
@@ -1568,6 +1937,16 @@
             Lanza una exepción por no estár permitido el valor especificado
             </summary>
             <param name="resultado">valor no permitido</param>
+        </member>
+        <member name="M:Orbita.VAComun.OTextoRobusto.Evalua(System.Object,Orbita.VAComun.EnumEstadoTextoSeguro@,System.Int32,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Evalua si el parámetro es texto
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OTextoRobusto.Evalua(System.Object,System.Int32,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Evalua si el parámetro es texto
+            </summary>
         </member>
         <member name="T:Orbita.VAComun.OEstadoTextoRobusto">
             <summary>
@@ -1584,7 +1963,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OEstadoTextoRobusto.#ctor(Orbita.VAComun.OEstadoTextoRobusto.EnumEstadoTextoSeguro)">
+        <member name="M:Orbita.VAComun.OEstadoTextoRobusto.#ctor(Orbita.VAComun.EnumEstadoTextoSeguro)">
             <summary>
             Constructor de la clase
             </summary>
@@ -1594,27 +1973,27 @@
             Valor del estado
             </summary>
         </member>
-        <member name="T:Orbita.VAComun.OEstadoTextoRobusto.EnumEstadoTextoSeguro">
+        <member name="T:Orbita.VAComun.EnumEstadoTextoSeguro">
             <summary>
             Resultado de la validación del SafeBool
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoTextoRobusto.EnumEstadoTextoSeguro.ResultadoCorrecto">
+        <member name="F:Orbita.VAComun.EnumEstadoTextoSeguro.ResultadoCorrecto">
             <summary>
             Resultado correcto
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoTextoRobusto.EnumEstadoTextoSeguro.ValorNoString">
+        <member name="F:Orbita.VAComun.EnumEstadoTextoSeguro.ValorNoString">
             <summary>
             El valor a asignar no es string
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoTextoRobusto.EnumEstadoTextoSeguro.LongitudSobrepasada">
+        <member name="F:Orbita.VAComun.EnumEstadoTextoSeguro.LongitudSobrepasada">
             <summary>
             La longitud del texto es demasiado larga
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoTextoRobusto.EnumEstadoTextoSeguro.CadenaVacia">
+        <member name="F:Orbita.VAComun.EnumEstadoTextoSeguro.CadenaVacia">
             <summary>
             El texto no contiene ningun caracter
             </summary>
@@ -1634,7 +2013,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OStringEnumRobusto.Validar(System.Object,System.Boolean)">
+        <member name="M:Orbita.VAComun.OStringEnumRobusto.Validar(System.Object@,System.Boolean)">
             <summary>
             Comprueba que el valor del objeto es correcto
             </summary>
@@ -1647,6 +2026,16 @@
             </summary>
             <param name="value">valor no permitido</param>
         </member>
+        <member name="M:Orbita.VAComun.OStringEnumRobusto.Evalua(System.Object,Orbita.VAComun.EnumEstadoEnumRobusto@,System.String[],System.String)">
+            <summary>
+            Evalua si el parámetro es texto
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OStringEnumRobusto.Evalua(System.Object,System.String[],System.String)">
+            <summary>
+            Evalua si el parámetro es texto
+            </summary>
+        </member>
         <member name="T:Orbita.VAComun.OEnumRobusto`1">
             <summary>
             Asignación de una variable a un campo de tipo enumerado (aunque internamente trabaja como un string)
@@ -1657,7 +2046,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OEnumRobusto`1.Validar(System.Object,System.Boolean)">
+        <member name="M:Orbita.VAComun.OEnumRobusto`1.Validar(System.Object@,System.Boolean)">
             <summary>
             Comprueba que el valor del objeto es correcto
             </summary>
@@ -1670,10 +2059,32 @@
             </summary>
             <param name="value">valor no permitido</param>
         </member>
-        <member name="P:Orbita.VAComun.OEnumRobusto`1.ValorGenerico">
+        <member name="M:Orbita.VAComun.OEnumRobusto`1.Evalua(System.Object,Orbita.VAComun.EnumEstadoEnumRobusto@,`0)">
             <summary>
-            Valor del objeto
+            Evalua si el parámetro es texto
             </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OEnumRobusto`1.Evalua(System.Object,`0)">
+            <summary>
+            Evalua si el parámetro es texto
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OEnumRobusto`1.EnumContains(System.Int32,System.Int32[])">
+            <summary>
+            Se utiliza con enumerados y devuelve verdadero si el enumerado está contenido en el valor
+            </summary>
+            <param name="value">Valor del cual se quiere saber si contiene cieto enumerado</param>
+            <param name="enumerate">Enumerado que deseamos comparar con el valor</param>
+            <returns>Devuelve verdadero si el enumerado está contenido en el valor</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OEnumRobusto`1.EnumParse(System.Type,System.String,System.Object)">
+            <summary>
+            Se utiliza con enumerados para convertir un valor de texto en un enumerado del tipo indicado
+            </summary>
+            <param name="enumType">Tipo del enumerado al que deseamos convertir</param>
+            <param name="value">Texto que queremos convertir a enumerado</param>
+            <param name="defaultValue">Valor por defecto en el caso que el texto no coincida con ningun elemento del enumerado</param>
+            <returns>Devuelve el enumerado correspondiente con el texto</returns>
         </member>
         <member name="T:Orbita.VAComun.OEstadoEnumRobusto">
             <summary>
@@ -1690,7 +2101,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OEstadoEnumRobusto.#ctor(Orbita.VAComun.OEstadoEnumRobusto.EnumEstadoEnumRobusto)">
+        <member name="M:Orbita.VAComun.OEstadoEnumRobusto.#ctor(Orbita.VAComun.EnumEstadoEnumRobusto)">
             <summary>
             Constructor de la clase
             </summary>
@@ -1700,22 +2111,22 @@
             Valor del estado
             </summary>
         </member>
-        <member name="T:Orbita.VAComun.OEstadoEnumRobusto.EnumEstadoEnumRobusto">
+        <member name="T:Orbita.VAComun.EnumEstadoEnumRobusto">
             <summary>
             Resultado de la validación del SafeBool
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoEnumRobusto.EnumEstadoEnumRobusto.ResultadoCorrecto">
+        <member name="F:Orbita.VAComun.EnumEstadoEnumRobusto.ResultadoCorrecto">
             <summary>
             Resultado correcto
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoEnumRobusto.EnumEstadoEnumRobusto.ValorNoEnumerado">
+        <member name="F:Orbita.VAComun.EnumEstadoEnumRobusto.ValorNoEnumerado">
             <summary>
             El valor a asignar no es enumerado
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoEnumRobusto.EnumEstadoEnumRobusto.ValorNoPermitido">
+        <member name="F:Orbita.VAComun.EnumEstadoEnumRobusto.ValorNoPermitido">
             <summary>
             El valor a asignar no está permitido
             </summary>
@@ -1740,7 +2151,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OEnteroRobusto.Validar(System.Object,System.Boolean)">
+        <member name="M:Orbita.VAComun.OEnteroRobusto.Validar(System.Object@,System.Boolean)">
             <summary>
             Comprueba que el valor del objeto es correcto
             </summary>
@@ -1753,10 +2164,36 @@
             </summary>
             <param name="value">valor no permitido</param>
         </member>
-        <member name="P:Orbita.VAComun.OEnteroRobusto.ValorGenerico">
+        <member name="M:Orbita.VAComun.OEnteroRobusto.Evalua(System.Object,Orbita.VAComun.EnumEstadoEnteroRobusto@,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Valor del objeto
+            Evalúa si el parámetro está dentro del rango determinado
             </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OEnteroRobusto.Evalua(System.Object,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OEnteroRobusto.IsNumericInt(System.Object)">
+            <summary>
+            Indica si el objeto pasado es de tipo entero
+            </summary>
+            <param name="o">Objeto que se quiere conocer si es de tipo entero</param>
+            <returns>Verdadero si el tipo del objeto es entero</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OEnteroRobusto.InRange(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OEnteroRobusto.EnsureRange(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+            </summary>
+            <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
         </member>
         <member name="T:Orbita.VAComun.OEstadoEnteroRobusto">
             <summary>
@@ -1773,7 +2210,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OEstadoEnteroRobusto.#ctor(Orbita.VAComun.OEstadoEnteroRobusto.EnumEstadoEnteroRobusto)">
+        <member name="M:Orbita.VAComun.OEstadoEnteroRobusto.#ctor(Orbita.VAComun.EnumEstadoEnteroRobusto)">
             <summary>
             Constructor de la clase
             </summary>
@@ -1783,27 +2220,27 @@
             Valor del estado
             </summary>
         </member>
-        <member name="T:Orbita.VAComun.OEstadoEnteroRobusto.EnumEstadoEnteroRobusto">
+        <member name="T:Orbita.VAComun.EnumEstadoEnteroRobusto">
             <summary>
             Resultado de la validación del SafeBool
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoEnteroRobusto.EnumEstadoEnteroRobusto.ResultadoCorrecto">
+        <member name="F:Orbita.VAComun.EnumEstadoEnteroRobusto.ResultadoCorrecto">
             <summary>
             Resultado correcto
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoEnteroRobusto.EnumEstadoEnteroRobusto.ValorNoEntero">
+        <member name="F:Orbita.VAComun.EnumEstadoEnteroRobusto.ValorNoEntero">
             <summary>
             El valor a asignar no es entero
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoEnteroRobusto.EnumEstadoEnteroRobusto.ValorSuperiorMaximo">
+        <member name="F:Orbita.VAComun.EnumEstadoEnteroRobusto.ValorSuperiorMaximo">
             <summary>
             El valor a asignar es sueprior al máximo permitido
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoEnteroRobusto.EnumEstadoEnteroRobusto.ValorInferiorMinimo">
+        <member name="F:Orbita.VAComun.EnumEstadoEnteroRobusto.ValorInferiorMinimo">
             <summary>
             El valor a asignar es inferior al mínimo permitido
             </summary>
@@ -1828,7 +2265,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.ODecimalRobusto.Validar(System.Object,System.Boolean)">
+        <member name="M:Orbita.VAComun.ODecimalRobusto.Validar(System.Object@,System.Boolean)">
             <summary>
             Comprueba que el valor del objeto es correcto
             </summary>
@@ -1841,10 +2278,36 @@
             </summary>
             <param name="value">valor no permitido</param>
         </member>
-        <member name="P:Orbita.VAComun.ODecimalRobusto.ValorGenerico">
+        <member name="M:Orbita.VAComun.ODecimalRobusto.Evalua(System.Object,Orbita.VAComun.EnumEstadoDecimalRobusto@,System.Double,System.Double,System.Double)">
             <summary>
-            Valor del objeto
+            Evalúa si el parámetro está dentro del rango determinado
             </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.VAComun.ODecimalRobusto.Evalua(System.Object,System.Double,System.Double,System.Double)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.VAComun.ODecimalRobusto.IsNumericFloat(System.Object)">
+            <summary>
+            Indica si el objeto pasado es de tipo decimal
+            </summary>
+            <param name="o">Objeto que se quiere conocer si es de tipo decimal</param>
+            <returns>Verdadero si el tipo del objeto es decimal</returns>
+        </member>
+        <member name="M:Orbita.VAComun.ODecimalRobusto.InRange(System.Double,System.Double,System.Double)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.VAComun.ODecimalRobusto.EnsureRange(System.Double,System.Double,System.Double)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+            </summary>
+            <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
         </member>
         <member name="T:Orbita.VAComun.OEstadoDecimalRobusto">
             <summary>
@@ -1861,7 +2324,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OEstadoDecimalRobusto.#ctor(Orbita.VAComun.OEstadoDecimalRobusto.EnumEstadoDecimalRobusto)">
+        <member name="M:Orbita.VAComun.OEstadoDecimalRobusto.#ctor(Orbita.VAComun.EnumEstadoDecimalRobusto)">
             <summary>
             Constructor de la clase
             </summary>
@@ -1871,27 +2334,27 @@
             Valor del estado
             </summary>
         </member>
-        <member name="T:Orbita.VAComun.OEstadoDecimalRobusto.EnumEstadoDecimalRobusto">
+        <member name="T:Orbita.VAComun.EnumEstadoDecimalRobusto">
             <summary>
             Resultado de la validación del SafeBool
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoDecimalRobusto.EnumEstadoDecimalRobusto.ResultadoCorrecto">
+        <member name="F:Orbita.VAComun.EnumEstadoDecimalRobusto.ResultadoCorrecto">
             <summary>
             Resultado correcto
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoDecimalRobusto.EnumEstadoDecimalRobusto.ValorNoDoble">
+        <member name="F:Orbita.VAComun.EnumEstadoDecimalRobusto.ValorNoDecimal">
             <summary>
             El valor a asignar no es decimal
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoDecimalRobusto.EnumEstadoDecimalRobusto.ValorSuperiorMaximo">
+        <member name="F:Orbita.VAComun.EnumEstadoDecimalRobusto.ValorSuperiorMaximo">
             <summary>
             El valor a asignar es sueprior al máximo permitido
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoDecimalRobusto.EnumEstadoDecimalRobusto.ValorInferiorMinimo">
+        <member name="F:Orbita.VAComun.EnumEstadoDecimalRobusto.ValorInferiorMinimo">
             <summary>
             El valor a asignar es inferior al mínimo permitido
             </summary>
@@ -1906,7 +2369,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OBoolRobusto.Validar(System.Object,System.Boolean)">
+        <member name="M:Orbita.VAComun.OBoolRobusto.Validar(System.Object@,System.Boolean)">
             <summary>
             Comprueba que el valor del objeto es correcto
             </summary>
@@ -1918,6 +2381,17 @@
             Lanza una exepción por no estár permitido el valor especificado
             </summary>
             <param name="value">valor no permitido</param>
+        </member>
+        <member name="M:Orbita.VAComun.OBoolRobusto.Evalua(System.Object,Orbita.VAComun.EnumEstadoBoolRobusto@,System.Boolean)">
+            <summary>
+            Evalúa si el parámetro es booleano
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OBoolRobusto.Evalua(System.Object,System.Boolean)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
         <member name="T:Orbita.VAComun.OEstadoBoolRobusto">
             <summary>
@@ -1934,7 +2408,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OEstadoBoolRobusto.#ctor(Orbita.VAComun.OEstadoBoolRobusto.EnumEstadoBoolRobusto)">
+        <member name="M:Orbita.VAComun.OEstadoBoolRobusto.#ctor(Orbita.VAComun.EnumEstadoBoolRobusto)">
             <summary>
             Constructor de la clase
             </summary>
@@ -1944,17 +2418,17 @@
             Valor del estado
             </summary>
         </member>
-        <member name="T:Orbita.VAComun.OEstadoBoolRobusto.EnumEstadoBoolRobusto">
+        <member name="T:Orbita.VAComun.EnumEstadoBoolRobusto">
             <summary>
             Resultado de la validación del SafeBool
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoBoolRobusto.EnumEstadoBoolRobusto.ResultadoCorrecto">
+        <member name="F:Orbita.VAComun.EnumEstadoBoolRobusto.ResultadoCorrecto">
             <summary>
             Resultado correcto
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoBoolRobusto.EnumEstadoBoolRobusto.ValorNoBooleano">
+        <member name="F:Orbita.VAComun.EnumEstadoBoolRobusto.ValorNoBooleano">
             <summary>
             El valor a asignar no es booleano
             </summary>
@@ -1979,7 +2453,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OIntervaloTiempoRobusto.Validar(System.Object,System.Boolean)">
+        <member name="M:Orbita.VAComun.OIntervaloTiempoRobusto.Validar(System.Object@,System.Boolean)">
             <summary>
             Comprueba que el valor del objeto es correcto
             </summary>
@@ -1991,6 +2465,24 @@
             Lanza una exepción por no estár permitido el valor especificado
             </summary>
             <param name="value">valor no permitido</param>
+        </member>
+        <member name="M:Orbita.VAComun.OIntervaloTiempoRobusto.Evalua(System.Object,Orbita.VAComun.EnumEstadoIntervaloTiempoRobusto@,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OIntervaloTiempoRobusto.Evalua(System.Object,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OIntervaloTiempoRobusto.Evalua(System.Object,System.TimeSpan)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
         <member name="T:Orbita.VAComun.OEstadoIntervaloTiempoRobusto">
             <summary>
@@ -2007,7 +2499,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OEstadoIntervaloTiempoRobusto.#ctor(Orbita.VAComun.OEstadoIntervaloTiempoRobusto.EnumEstadoIntervaloTiempoRobusto)">
+        <member name="M:Orbita.VAComun.OEstadoIntervaloTiempoRobusto.#ctor(Orbita.VAComun.EnumEstadoIntervaloTiempoRobusto)">
             <summary>
             Constructor de la clase
             </summary>
@@ -2017,27 +2509,27 @@
             Valor del estado
             </summary>
         </member>
-        <member name="T:Orbita.VAComun.OEstadoIntervaloTiempoRobusto.EnumEstadoIntervaloTiempoRobusto">
+        <member name="T:Orbita.VAComun.EnumEstadoIntervaloTiempoRobusto">
             <summary>
             Resultado de la validación del SafeBool
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoIntervaloTiempoRobusto.EnumEstadoIntervaloTiempoRobusto.ResultadoCorrecto">
+        <member name="F:Orbita.VAComun.EnumEstadoIntervaloTiempoRobusto.ResultadoCorrecto">
             <summary>
             Resultado correcto
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoIntervaloTiempoRobusto.EnumEstadoIntervaloTiempoRobusto.ValorNoIntervaloTiempo">
+        <member name="F:Orbita.VAComun.EnumEstadoIntervaloTiempoRobusto.ValorNoIntervaloTiempo">
             <summary>
             El valor a asignar no es entero
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoIntervaloTiempoRobusto.EnumEstadoIntervaloTiempoRobusto.ValorSuperiorMaximo">
+        <member name="F:Orbita.VAComun.EnumEstadoIntervaloTiempoRobusto.ValorSuperiorMaximo">
             <summary>
             El valor a asignar es sueprior al máximo permitido
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoIntervaloTiempoRobusto.EnumEstadoIntervaloTiempoRobusto.ValorInferiorMinimo">
+        <member name="F:Orbita.VAComun.EnumEstadoIntervaloTiempoRobusto.ValorInferiorMinimo">
             <summary>
             El valor a asignar es inferior al mínimo permitido
             </summary>
@@ -2062,7 +2554,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OFechaHoraRobusta.Validar(System.Object,System.Boolean)">
+        <member name="M:Orbita.VAComun.OFechaHoraRobusta.Validar(System.Object@,System.Boolean)">
             <summary>
             Comprueba que el valor del objeto es correcto
             </summary>
@@ -2074,6 +2566,23 @@
             Lanza una exepción por no estár permitido el valor especificado
             </summary>
             <param name="value">valor no permitido</param>
+        </member>
+        <member name="M:Orbita.VAComun.OFechaHoraRobusta.Evalua(System.Object,Orbita.VAComun.EnumEstadoFechaHoraRobusta@,System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Evalúa si el parámetro es booleano
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.OFechaHoraRobusta.Evalua(System.Object,System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OFechaHoraRobusta.Evalua(System.Object,System.DateTime)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
         <member name="T:Orbita.VAComun.OEstadoFechaHoraRobusta">
             <summary>
@@ -2090,7 +2599,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OEstadoFechaHoraRobusta.#ctor(Orbita.VAComun.OEstadoFechaHoraRobusta.EnumEstadoFechaHoraRobusta)">
+        <member name="M:Orbita.VAComun.OEstadoFechaHoraRobusta.#ctor(Orbita.VAComun.EnumEstadoFechaHoraRobusta)">
             <summary>
             Constructor de la clase
             </summary>
@@ -2100,30 +2609,51 @@
             Valor del estado
             </summary>
         </member>
-        <member name="T:Orbita.VAComun.OEstadoFechaHoraRobusta.EnumEstadoFechaHoraRobusta">
+        <member name="T:Orbita.VAComun.EnumEstadoFechaHoraRobusta">
             <summary>
             Resultado de la validación del SafeBool
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoFechaHoraRobusta.EnumEstadoFechaHoraRobusta.ResultadoCorrecto">
+        <member name="F:Orbita.VAComun.EnumEstadoFechaHoraRobusta.ResultadoCorrecto">
             <summary>
             Resultado correcto
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoFechaHoraRobusta.EnumEstadoFechaHoraRobusta.ValorNoFecha">
+        <member name="F:Orbita.VAComun.EnumEstadoFechaHoraRobusta.ValorNoFecha">
             <summary>
             El valor a asignar no es entero
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoFechaHoraRobusta.EnumEstadoFechaHoraRobusta.ValorSuperiorMaximo">
+        <member name="F:Orbita.VAComun.EnumEstadoFechaHoraRobusta.ValorSuperiorMaximo">
             <summary>
             El valor a asignar es sueprior al máximo permitido
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OEstadoFechaHoraRobusta.EnumEstadoFechaHoraRobusta.ValorInferiorMinimo">
+        <member name="F:Orbita.VAComun.EnumEstadoFechaHoraRobusta.ValorInferiorMinimo">
             <summary>
             El valor a asignar es inferior al mínimo permitido
             </summary>
+        </member>
+        <member name="M:Orbita.VAComun.Clases.OProcesos.EncontrarProceso(System.String,System.String)">
+            <summary>
+            Mata determinado proceso
+            </summary>
+            <param name="nombre">Nombre del proceso</param>
+            <returns>Verdadero si el proceso ha sido matado</returns>
+        </member>
+        <member name="M:Orbita.VAComun.Clases.OProcesos.MatarProceso(System.String,System.String)">
+            <summary>
+            Mata determinado proceso
+            </summary>
+            <param name="nombre">Nombre del proceso</param>
+            <returns>Verdadero si el proceso ha sido matado</returns>
+        </member>
+        <member name="M:Orbita.VAComun.Clases.OProcesos.IniciarProceso(System.String)">
+            <summary>
+            Inicia una aplicación
+            </summary>
+            <param name="ruta">Ruta del ejecutable</param>
+            <returns>Verdadero si la aplicación se ha ejecutado con éxito</returns>
         </member>
         <member name="T:Orbita.VAComun.OCXML">
             <summary>
@@ -2290,177 +2820,10 @@
             Guarda el vínculo con el formulario principal de la aplicación
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.App.DockManager">
-            <summary>
-            Gestor de anclas de los formularios
-            </summary>
-        </member>
         <member name="F:Orbita.VAComun.App.ListaParametrosEntradaAplicacion">
             <summary>
             Lista de parámetros de entrada de la aplicación
             </summary>
-        </member>
-        <member name="M:Orbita.VAComun.App.HayFormulariosMDIHijosMaximizados">
-            <summary>
-            Indica si existe algún formulario MDI hijo que este maximizado
-            </summary>
-            <returns>Ture si existe algún formulario MDI hijo que este maximizado; false en caso contrario</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.AjustarFondoAplicacion(System.Drawing.Size,System.Drawing.Image)">
-            <summary>
-            Ajusta el tamaño y posición de la imagen del fondo en función del tamaño y posición del área de cliente del formulario
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.App.InRange(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Evalúa si el parámetro está dentro del rango determinado
-            </summary>
-            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.InRange(System.Double,System.Double,System.Double)">
-            <summary>
-            Evalúa si el parámetro está dentro del rango determinado
-            </summary>
-            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.EnsureRange(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
-            </summary>
-            <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.EnsureRange(System.Double,System.Double,System.Double)">
-            <summary>
-            Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
-            </summary>
-            <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.EvaluaNumero(System.Object,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Evalúa si el parámetro está dentro del rango determinado
-            </summary>
-            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.EvaluaDecimal(System.Object,System.Double,System.Double,System.Double)">
-            <summary>
-            Evalúa si el parámetro está dentro del rango determinado
-            </summary>
-            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.EvaluaNumero(System.Object,System.Double,System.Double,System.Double)">
-            <summary>
-            Evalúa si el parámetro está dentro del rango determinado
-            </summary>
-            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.EvaluaBooleano(System.Object,System.Boolean)">
-            <summary>
-            Evalúa si el parámetro es booleano
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.App.EvaluaFecha(System.Object,System.DateTime)">
-            <summary>
-            Evalúa si el parámetro es booleano
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.App.IsTypeOf(System.Object,System.Type[])">
-            <summary>
-            Función que devuelve si el objeto pertenece a alguno de los tipos listados
-            </summary>
-            <param name="o">Objeto que se quiere conocer el tipo</param>
-            <param name="types">Vector de tipos con lo que se ha de comparar el tipo del objeto</param>
-            <returns>Verdadero si el tipo del objeto está dentro de la lista de tipos pasados como parámetros</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.IsNumeric(System.Object)">
-            <summary>
-            Indica si el objeto pasado es de tipo numérico
-            </summary>
-            <param name="o">Objeto que se quiere conocer si es de tipo numérico</param>
-            <returns>Verdadero si el tipo del objeto es numérico</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.IsNumericInt(System.Object)">
-            <summary>
-            Indica si el objeto pasado es de tipo entero
-            </summary>
-            <param name="o">Objeto que se quiere conocer si es de tipo entero</param>
-            <returns>Verdadero si el tipo del objeto es entero</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.IsNumericFloat(System.Object)">
-            <summary>
-            Indica si el objeto pasado es de tipo decimal
-            </summary>
-            <param name="o">Objeto que se quiere conocer si es de tipo decimal</param>
-            <returns>Verdadero si el tipo del objeto es decimal</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.EvaluaTexto(System.Object,System.Int32,System.Boolean,System.String)">
-            <summary>
-            Evalua si el parámetro es texto
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.App.EnumContains(System.Int32,System.Int32[])">
-            <summary>
-            Se utiliza con enumerados y devuelve verdadero si el enumerado está contenido en el valor
-            </summary>
-            <param name="value">Valor del cual se quiere saber si contiene cieto enumerado</param>
-            <param name="enumerate">Enumerado que deseamos comparar con el valor</param>
-            <returns>Devuelve verdadero si el enumerado está contenido en el valor</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.EnumParse(System.Type,System.String,System.Object)">
-            <summary>
-            Se utiliza con enumerados para convertir un valor de texto en un enumerado del tipo indicado
-            </summary>
-            <param name="enumType">Tipo del enumerado al que deseamos convertir</param>
-            <param name="value">Texto que queremos convertir a enumerado</param>
-            <param name="defaultValue">Valor por defecto en el caso que el texto no coincida con ningun elemento del enumerado</param>
-            <returns>Devuelve el enumerado correspondiente con el texto</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.GetBit(System.Byte,System.Int32)">
-            <summary>
-            Extrae un bit en la posición indicada
-            </summary>
-            <param name="numero">Valor al cual queremos extraer el bit</param>
-            <param name="posicion">Posición del bit a extraer</param>
-            <returns>Booleano con el valor del bit extraido</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.GetBit(System.UInt16,System.Int32)">
-            <summary>
-            Extrae un bit en la posición indicada
-            </summary>
-            <param name="numero">Valor al cual queremos extraer el bit</param>
-            <param name="posicion">Posición del bit a extraer</param>
-            <returns>Booleano con el valor del bit extraido</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.GetBit(System.UInt32,System.Int32)">
-            <summary>
-            Extrae un bit en la posición indicada
-            </summary>
-            <param name="numero">Valor al cual queremos extraer el bit</param>
-            <param name="posicion">Posición del bit a extraer</param>
-            <returns>Booleano con el valor del bit extraido</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.SetBit(System.Byte@,System.Int32,System.Boolean)">
-            <summary>
-            Establece un bit en la posición indicada
-            </summary>
-            <param name="numero">Valor al cual queremos establecer el bit</param>
-            <param name="posicion">Posición del bit a establecer</param>
-            <param name="valor">Booleano con el valor del bit a establecer</param>
-        </member>
-        <member name="M:Orbita.VAComun.App.SetBit(System.UInt16@,System.Int32,System.Boolean)">
-            <summary>
-            Establece un bit en la posición indicada
-            </summary>
-            <param name="numero">Valor al cual queremos establecer el bit</param>
-            <param name="posicion">Posición del bit a establecer</param>
-            <param name="valor">Booleano con el valor del bit a establecer</param>
-        </member>
-        <member name="M:Orbita.VAComun.App.SetBit(System.UInt32@,System.Int32,System.Boolean)">
-            <summary>
-            Establece un bit en la posición indicada
-            </summary>
-            <param name="numero">Valor al cual queremos establecer el bit</param>
-            <param name="posicion">Posición del bit a establecer</param>
-            <param name="valor">Booleano con el valor del bit a establecer</param>
         </member>
         <member name="M:Orbita.VAComun.App.CreacionDirectorio(System.String)">
             <summary>
@@ -2521,86 +2884,6 @@
             <param name="esLocal">Indica si la ruta es local o remota</param>
             <returns>Verdadero si se trata de una ruta válida</returns>
         </member>
-        <member name="M:Orbita.VAComun.App.ValidarTexto(System.Object,System.String,System.Int32,System.Boolean,System.Boolean)">
-            <summary>
-            Comprueba que el valor del objeto es correcto
-            </summary>
-            <param name="valor">Valor del objeto a comprobar</param>
-            <returns>Verdadero si el valor es correcto</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.LanzarExcepcionTexto(Orbita.VAComun.App.EstadoTexto,System.String)">
-            <summary>
-            Lanza una exepción por no estár permitido el valor especificado
-            </summary>
-            <param name="value">valor no permitido</param>
-        </member>
-        <member name="M:Orbita.VAComun.App.ValidarEntero(System.Object,System.String,System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Comprueba que el valor del objeto es correcto
-            </summary>
-            <param name="valor">Valor del objeto a comprobar</param>
-            <returns>Verdadero si el valor es correcto</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.LanzarExcepcionEntero(Orbita.VAComun.App.EstadoEntero,System.String,System.Int32,System.Int32)">
-            <summary>
-            Lanza una exepción por no estár permitido el valor especificado
-            </summary>
-            <param name="value">valor no permitido</param>
-        </member>
-        <member name="M:Orbita.VAComun.App.ValidarDecimal(System.Object,System.String,System.Double,System.Double,System.Boolean)">
-            <summary>
-            Comprueba que el valor del objeto es correcto
-            </summary>
-            <param name="valor">Valor del objeto a comprobar</param>
-            <returns>Verdadero si el valor es correcto</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.LanzarExcepcionDecimal(Orbita.VAComun.App.EstadoDecimal,System.String,System.Double,System.Double)">
-            <summary>
-            Lanza una exepción por no estár permitido el valor especificado
-            </summary>
-            <param name="value">valor no permitido</param>
-        </member>
-        <member name="M:Orbita.VAComun.App.ValidarEnum``1(System.Object,System.String,System.Boolean)">
-            <summary>
-            Comprueba que el valor del objeto es correcto
-            </summary>
-            <param name="value">Valor del objeto a comprobar</param>
-            <returns>Verdadero si el valor es correcto</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.LanzarExcepcionEnum(Orbita.VAComun.App.EstadoEnum,System.String)">
-            <summary>
-            Lanza una exepción por no estár permitido el valor especificado
-            </summary>
-            <param name="value">valor no permitido</param>
-        </member>
-        <member name="M:Orbita.VAComun.App.ValidarFechaHora(System.Object,System.String,System.DateTime,System.DateTime,System.Boolean)">
-            <summary>
-            Comprueba que el valor del objeto es correcto
-            </summary>
-            <param name="value">Valor del objeto a comprobar</param>
-            <returns>Verdadero si el valor es correcto</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.LanzarExcepcionFechaHora(Orbita.VAComun.App.EstadoFechaHora,System.String,System.DateTime,System.DateTime)">
-            <summary>
-            Lanza una exepción por no estár permitido el valor especificado
-            </summary>
-            <param name="value">valor no permitido</param>
-        </member>
-        <member name="M:Orbita.VAComun.App.ToString(System.Object)">
-            <summary>
-            Convierte un objeto a string
-            </summary>
-            <param name="valor"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.CompararObjetos(System.Object,System.Object)">
-            <summary>
-            Realiza una comparación entre dos objetos
-            </summary>
-            <param name="valor1">Primer objeto a comparar</param>
-            <param name="valor2">Segundo objeto a comparar</param>
-            <returns></returns>
-        </member>
         <member name="M:Orbita.VAComun.App.StringReplace(System.String,System.String,System.String,System.StringComparison)">
             <summary>
             Case insensitive version of String.Replace().
@@ -2610,50 +2893,6 @@
             <param name="newValue">New pattern to replaces old</param>
             <param name="comparisonType">String comparison type</param>
             <returns></returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.Espera(System.Int32)">
-            <summary>
-            Método que realiza una espera (sin parar la ejecución del sistema) de cierto tiempo en milisegundos
-            </summary>
-            <param name="timeOut">Tiempo de espera en milisegundos</param>
-        </member>
-        <member name="M:Orbita.VAComun.App.Espera(Orbita.VAComun.App.DelegadoEspera,System.Int32)">
-            <summary>
-            Método que realiza una espera hasta que cierto valor sea verdadero durante un máximo de tiempo
-            </summary>
-            <param name="valor">Valor al cual se espera que su estado sea verdadero o falso</param>
-            <param name="valorEsperado">Valor de comparación</param>
-            <param name="timeOut">Tiempo máximo de la espera en milisegundos</param>
-            <returns>Verdadero si el valor a cambiado a verdadero antes de que finalizase el TimeOut</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.Espera(System.Boolean@,System.Boolean,System.Int32)">
-            <summary>
-            Método que realiza una espera hasta que cierto valor sea verdadero durante un máximo de tiempo
-            </summary>
-            <param name="valor">Valor al cual se espera que su estado sea verdadero o falso</param>
-            <param name="valorEsperado">Valor de comparación</param>
-            <param name="timeOut">Tiempo máximo de la espera en milisegundos</param>
-            <returns>Verdadero si el valor a cambiado a verdadero antes de que finalizase el TimeOut</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.Espera(System.Object@,System.Object,System.Int32)">
-            <summary>
-            Método que realiza una espera hasta que cierto valor sea verdadero durante un máximo de tiempo
-            </summary>
-            <param name="valor">Valor al cual se espera que su estado sea verdadero o falso</param>
-            <param name="valorEsperado">Valor de comparación</param>
-            <param name="timeOut">Tiempo máximo de la espera en milisegundos</param>
-            <returns>Verdadero si el valor a cambiado a verdadero antes de que finalizase el TimeOut</returns>
-        </member>
-        <member name="F:Orbita.VAComun.App.MutexJustOne">
-            <summary>
-            Mutex utilizado por el JustOne
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.App.JustOne">
-            <summary>
-            Funcion que nos indica si ya se esta iniciando una instancia del programa
-            </summary>
-            <returns>true si ya esta iniciada y false si no es asi</returns>
         </member>
         <member name="M:Orbita.VAComun.App.ObtenerVersion(System.Reflection.Assembly)">
             <summary>
@@ -2668,27 +2907,6 @@
             </summary>
             <param name="ruta"></param>
             <returns></returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.EncontrarProceso(System.String,System.String)">
-            <summary>
-            Mata determinado proceso
-            </summary>
-            <param name="nombre">Nombre del proceso</param>
-            <returns>Verdadero si el proceso ha sido matado</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.MatarProceso(System.String,System.String)">
-            <summary>
-            Mata determinado proceso
-            </summary>
-            <param name="nombre">Nombre del proceso</param>
-            <returns>Verdadero si el proceso ha sido matado</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.IniciarProceso(System.String)">
-            <summary>
-            Inicia una aplicación
-            </summary>
-            <param name="ruta">Ruta del ejecutable</param>
-            <returns>Verdadero si la aplicación se ha ejecutado con éxito</returns>
         </member>
         <member name="M:Orbita.VAComun.App.Colection2String(System.Collections.ICollection,System.Char)">
             <summary>
@@ -2758,68 +2976,6 @@
             </summary>
             <param name="obj"></param>
             <returns></returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.ComprobarGrid(Orbita.Controles.OrbitaGridPro)">
-            <summary>
-            Comprueba que hay una fila correctamente activada para lanzar un nuevo formulario
-            </summary>
-            <param name="grid">OrbitaGridPro que se desea comprobar</param>
-            <returns>True si se puede lanzar un nuevo formulario basado en la selección; false en caso contrario</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.ComprobarFila(Infragistics.Win.UltraWinGrid.UltraGridRow)">
-            <summary>
-            Comprueba que la fila cumple todos los requisitos para trabajar con los campos de la misma
-            </summary>
-            <param name="fila">Fila que se desea comprobar</param>
-            <returns>True si se puede lanzar un nuevo formulario basado en la selección; false en caso contrario</returns>
-        </member>
-        <member name="M:Orbita.VAComun.App.CargarCombo(Orbita.Controles.OrbitaComboPro,System.Type,System.Object)">
-            <summary>
-            Carga el combo con la lista de módulos de la aplicación
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.App.CargarCombo(Orbita.Controles.OrbitaComboPro,System.Collections.Generic.Dictionary{System.Object,System.String},System.Type,System.Object)">
-            <summary>
-            Carga el combo con la lista de módulos de la aplicación
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.App.CargarGridSimple(Orbita.Controles.OrbitaGridPro,System.Collections.Generic.List{System.Object},System.Type,Orbita.Controles.Estilos.EstiloColumna,Orbita.Controles.Estilos.Alineacion,Orbita.Controles.Estilos.Mascara,System.Int32,System.Windows.Forms.Control)">
-            <summary>
-            Carga de un grid de un único campo
-            </summary>
-            <param name="grid">Componente sobre el cual se va a trabajar</param>
-            <param name="valores">Lista de valores a incluir en el grid</param>
-            <param name="tipo">Tipo de datos de los valores</param>
-            <param name="estilo">Estilo de la columna</param>
-            <param name="alinear">Alineación del campo (celdas)</param>
-            <param name="mascara">Máscara aplicada</param>
-            <param name="ancho">Ancho de la columna</param>
-            <param name="editorControl">Control con el cual se modificarán los valores</param>
-        </member>
-        <member name="M:Orbita.VAComun.App.RichTextBoxAppendText(System.Windows.Forms.RichTextBox,System.String,System.Drawing.Color)">
-            <summary>
-            Añade texto a un RichTextBox
-            </summary>
-            <param name="box"></param>
-            <param name="text"></param>
-            <param name="color"></param>
-        </member>
-        <member name="M:Orbita.VAComun.App.RichTextBoxAppendText(System.Windows.Forms.RichTextBox,System.String,System.Drawing.Font)">
-            <summary>
-            Añade texto a un RichTextBox
-            </summary>
-            <param name="box"></param>
-            <param name="text"></param>
-            <param name="font"></param>
-        </member>
-        <member name="M:Orbita.VAComun.App.RichTextBoxAppendText(System.Windows.Forms.RichTextBox,System.String,System.Drawing.Color,System.Drawing.Font)">
-            <summary>
-            Añade texto a un RichTextBox
-            </summary>
-            <param name="box"></param>
-            <param name="text"></param>
-            <param name="color"></param>
-            <param name="font"></param>
         </member>
         <member name="M:Orbita.VAComun.App.DebugMode">
             <summary>
@@ -2900,132 +3056,6 @@
             <param name="outputFile"></param>
             <param name="key"></param>
         </member>
-        <member name="T:Orbita.VAComun.App.EstadoTexto">
-            <summary>
-            Resultado de la validación del texto
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoTexto.ResultadoCorrecto">
-            <summary>
-            Resultado correcto
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoTexto.ValorNoString">
-            <summary>
-            El valor a asignar no es string
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoTexto.LongitudSobrepasada">
-            <summary>
-            La longitud del texto es demasiado larga
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoTexto.CadenaVacia">
-            <summary>
-            El texto no contiene ningun caracter
-            </summary>
-        </member>
-        <member name="T:Orbita.VAComun.App.EstadoEntero">
-            <summary>
-            Resultado de la validación del Entero
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoEntero.ResultadoCorrecto">
-            <summary>
-            Resultado correcto
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoEntero.ValorNoEntero">
-            <summary>
-            El valor a asignar no es entero
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoEntero.ValorSuperiorMaximo">
-            <summary>
-            El valor a asignar es sueprior al máximo permitido
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoEntero.ValorInferiorMinimo">
-            <summary>
-            El valor a asignar es inferior al mínimo permitido
-            </summary>
-        </member>
-        <member name="T:Orbita.VAComun.App.EstadoDecimal">
-            <summary>
-            Resultado de la validación del Decimal
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoDecimal.ResultadoCorrecto">
-            <summary>
-            Resultado correcto
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoDecimal.ValorNoDecimal">
-            <summary>
-            El valor a asignar no es entero
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoDecimal.ValorSuperiorMaximo">
-            <summary>
-            El valor a asignar es sueprior al máximo permitido
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoDecimal.ValorInferiorMinimo">
-            <summary>
-            El valor a asignar es inferior al mínimo permitido
-            </summary>
-        </member>
-        <member name="T:Orbita.VAComun.App.EstadoEnum">
-            <summary>
-            Resultado de la validación del enumerado
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoEnum.ResultadoCorrecto">
-            <summary>
-            Resultado correcto
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoEnum.ValorNoEnumerado">
-            <summary>
-            El valor a asignar no es enumerado
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoEnum.ValorNoPermitido">
-            <summary>
-            El valor a asignar no está permitido
-            </summary>
-        </member>
-        <member name="T:Orbita.VAComun.App.EstadoFechaHora">
-            <summary>
-            Resultado de la validación del DateTimne
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoFechaHora.ResultadoCorrecto">
-            <summary>
-            Resultado correcto
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoFechaHora.ValorNoFecha">
-            <summary>
-            El valor a asignar no es entero
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoFechaHora.ValorSuperiorMaximo">
-            <summary>
-            El valor a asignar es sueprior al máximo permitido
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.App.EstadoFechaHora.ValorInferiorMinimo">
-            <summary>
-            El valor a asignar es inferior al mínimo permitido
-            </summary>
-        </member>
-        <member name="T:Orbita.VAComun.App.DelegadoEspera">
-            <summary>
-            Delegado de la espera
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:Orbita.VAComun.App.ConvertFromString`1">
             <summary>
             Delegado para la conversión del tipo string a cualquier tipo
@@ -3033,38 +3063,6 @@
             <typeparam name="T">Tipo que se desea devolver</typeparam>
             <param name="text"></param>
             <returns></returns>
-        </member>
-        <member name="T:Orbita.VAComun.OEnumeracionCombo">
-            <summary>
-            Clase destinada a los combos de los formularios databinding que representan un enumerado
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.OEnumeracionCombo._Enumerado">
-            <summary>
-            Enumerado a elegir en el comobo box
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.OEnumeracionCombo._Descripcion">
-            <summary>
-            Descripción a mostrar en el combo box
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.OEnumeracionCombo.#ctor(System.Object,System.String)">
-            <summary>
-            Constructor de la clase
-            </summary>
-            <param name="enumerado">Enumerado a elegir en el comobo box</param>
-            <param name="descripcion">Descripción a mostrar en el combo box</param>
-        </member>
-        <member name="P:Orbita.VAComun.OEnumeracionCombo.Enumerado">
-            <summary>
-            Enumerado a elegir en el comobo box
-            </summary>
-        </member>
-        <member name="P:Orbita.VAComun.OEnumeracionCombo.Descripcion">
-            <summary>
-            Descripción a mostrar en el combo box
-            </summary>
         </member>
         <member name="T:Orbita.VAComun.OStringValueAttribute">
             <summary>
@@ -3690,6 +3688,39 @@
             Este método se está ejecutando en un bucle. Para salir del bucle hay que devolver finalize a true.
             </summary>
         </member>
+        <member name="M:Orbita.VAComun.OThread.Espera(System.Int32)">
+            <summary>
+            Método que realiza una espera (sin parar la ejecución del sistema) de cierto tiempo en milisegundos
+            </summary>
+            <param name="timeOut">Tiempo de espera en milisegundos</param>
+        </member>
+        <member name="M:Orbita.VAComun.OThread.Espera(Orbita.VAComun.OThread.DelegadoEspera,System.Int32)">
+            <summary>
+            Método que realiza una espera hasta que cierto valor sea verdadero durante un máximo de tiempo
+            </summary>
+            <param name="valor">Valor al cual se espera que su estado sea verdadero o falso</param>
+            <param name="valorEsperado">Valor de comparación</param>
+            <param name="timeOut">Tiempo máximo de la espera en milisegundos</param>
+            <returns>Verdadero si el valor a cambiado a verdadero antes de que finalizase el TimeOut</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OThread.Espera(System.Boolean@,System.Boolean,System.Int32)">
+            <summary>
+            Método que realiza una espera hasta que cierto valor sea verdadero durante un máximo de tiempo
+            </summary>
+            <param name="valor">Valor al cual se espera que su estado sea verdadero o falso</param>
+            <param name="valorEsperado">Valor de comparación</param>
+            <param name="timeOut">Tiempo máximo de la espera en milisegundos</param>
+            <returns>Verdadero si el valor a cambiado a verdadero antes de que finalizase el TimeOut</returns>
+        </member>
+        <member name="M:Orbita.VAComun.OThread.Espera(System.Object@,System.Object,System.Int32)">
+            <summary>
+            Método que realiza una espera hasta que cierto valor sea verdadero durante un máximo de tiempo
+            </summary>
+            <param name="valor">Valor al cual se espera que su estado sea verdadero o falso</param>
+            <param name="valorEsperado">Valor de comparación</param>
+            <param name="timeOut">Tiempo máximo de la espera en milisegundos</param>
+            <returns>Verdadero si el valor a cambiado a verdadero antes de que finalizase el TimeOut</returns>
+        </member>
         <member name="M:Orbita.VAComun.OThread.EjecucionInterna">
             <summary>
             Método donde realmente se ejecuta el thread.
@@ -3719,6 +3750,12 @@
             <summary>
             Tiempo de descanso entre bucles del thread
             </summary>
+        </member>
+        <member name="T:Orbita.VAComun.OThread.DelegadoEspera">
+            <summary>
+            Delegado de la espera
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Orbita.VAComun.OThread.EstadoThread">
             <summary>
@@ -3988,172 +4025,6 @@
         <member name="F:Orbita.VAComun.OEstadoProductorConsumidor.Deteniendo">
             <summary>
             En proceso de parada. La parada definitiva se realizará cuando se vacie la cola
-            </summary>
-        </member>
-        <member name="T:Orbita.VAComun.OImage">
-            <summary>
-            Clase genérica de imagen. Independiente del formato de almacenamiento y del formato de adquisición
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.OImage._Image">
-            <summary>
-            Campo donde se guarda la imagen
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.OImage._TipoImagen">
-            <summary>
-            Tipo de imagen que almacena
-            </summary>
-        </member>
-        <member name="F:Orbita.VAComun.OImage._MomentoCreacion">
-            <summary>
-            Informa del momento de la creación de la imagen
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.#ctor">
-            <summary>
-            Constructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.#ctor(System.String)">
-            <summary>
-            Constructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.#ctor(System.Object)">
-            <summary>
-            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
-            </summary>
-            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.#ctor(System.String,System.Object)">
-            <summary>
-            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
-            </summary>
-            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.GuardarAsincrono(System.String)">
-            <summary>
-            Guarda la imagen asincronamente en un fichero de disco
-            </summary>
-            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.Clone">
-            <summary>
-            Clonado de la imagen
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.EsValida">
-            <summary>
-            Método a implementar en las clases hijas que indica que la imagen es válida
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.Guardar(System.String)">
-            <summary>
-            Método a implementar en las clases hijas para guardar la imagen en un fichero de disco
-            </summary>
-            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
-            <returns>Verdadero si la ruta donde se ha de guardar el fichero es válida</returns>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.Cargar(System.String)">
-            <summary>
-            Método a implementar en las clases hijas para cargar la imagen de un fichero de disco
-            </summary>
-            <param name="ruta">Ruta de donde se ha de cargar la imagen</param>
-            <returns>Verdadero si el fichero que se ha de cargar existe</returns>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.ConvertFromBitmap(System.Drawing.Bitmap)">
-            <summary>
-            Convierte la imagen de tipo bitmap al tipo actual
-            </summary>
-            <param name="imagenBitmap">Imagen de tipo bitmap desde el cual se va a importar la imagen</param>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.ConvertToBitmap">
-            <summary>
-            Convierte la imagen actual al tipo genérico de imagen de tipo bitmap
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.Convert``1(``0@)">
-            <summary>
-            Conversión del tipo de imagen 
-            </summary>
-            <typeparam name="ClaseImagen">Tipo de imagen a devolver</typeparam>
-            <param name="imagen"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.EscalarImagen(Orbita.VAComun.OImage,System.Int32,System.Int32)">
-            <summary>
-            Sirve para reducir o ampliar la imagen 
-            </summary>
-            <param name="img">Imagen a reducir o ampliar</param>
-            <param name="width">Ancho de la imagen resultado</param>
-            <param name="height">Alto de la imagen resultado</param>
-            <returns>Imagen reducida</returns>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.ToArray(System.Drawing.Imaging.ImageFormat,System.Double)">
-            <summary>
-            Método que realiza el empaquetado de un objeto para ser enviado por remoting
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.FromArray(System.Byte[])">
-            <summary>
-            Método que realiza el desempaquetado de un objeto recibido por remoting
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.Nueva">
-            <summary>
-            Crea una nueva imagen de la misma clase
-            </summary>
-            <returns>Nueva instancia de la misma clase de imagen</returns>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.Dispose(System.Boolean)">
-            <summary>
-            Método a implementar en las clases hijas. Elimina la memoria asignada por el objeto.
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.EscalarImagen(Orbita.VAComun.OImage,Orbita.VAComun.OResolucionesImagenEstandar)">
-            <summary>
-            Sirve para reducir o ampliar la imagen 
-            </summary>
-            <param name="img">Imagen a reduciro ampliar </param>
-            <param name="width">Ancho de la imagen resultado</param>
-            <param name="height">Alto de la imagen resultado</param>
-            <returns>Imagen reducida</returns>
-        </member>
-        <member name="M:Orbita.VAComun.OImage.EscalarImagen(Orbita.VAComun.OImage,System.Double)">
-            <summary>
-            Sirve para reducir o ampliar la imagen 
-            </summary>
-            <param name="img">Imagen a reduciro ampliar </param>
-            <param name="escalado">Escalado</param>
-            <returns>Imagen reducida</returns>
-        </member>
-        <member name="P:Orbita.VAComun.OImage.Image">
-            <summary>
-            Propieadad a heredar donde se accede a la imagen
-            </summary>
-        </member>
-        <member name="P:Orbita.VAComun.OImage.TipoImagen">
-            <summary>
-            Tipo de imagen que almacena
-            </summary>
-        </member>
-        <member name="P:Orbita.VAComun.OImage.Width">
-            <summary>
-            Tamaño en X de la imagen
-            </summary>
-        </member>
-        <member name="P:Orbita.VAComun.OImage.Height">
-            <summary>
-            Tamaño en Y de la imagen
-            </summary>
-        </member>
-        <member name="P:Orbita.VAComun.OImage.MomentoCreacion">
-            <summary>
-            Informa del momento de la creación de la imagen
             </summary>
         </member>
         <member name="T:Orbita.VAComun.OGrafico">
@@ -4796,82 +4667,82 @@
             Constuctor de la clase
             </summary>
         </member>
-        <member name="T:Orbita.VAComun.OOpcionesLogs">
+        <member name="T:Orbita.VAComun.OpcionesLogs">
             <summary>
             Opciones de configuración del registro de eventos
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OOpcionesLogs.Path">
+        <member name="F:Orbita.VAComun.OpcionesLogs.Path">
             <summary>
             Ruta de registro de eventos
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OOpcionesLogs.Fichero">
+        <member name="F:Orbita.VAComun.OpcionesLogs.Fichero">
             <summary>
             Fichero de registro de eventos
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OOpcionesLogs.Extension">
+        <member name="F:Orbita.VAComun.OpcionesLogs.Extension">
             <summary>
             Extensión de registro de eventos
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OOpcionesLogs.Separador">
+        <member name="F:Orbita.VAComun.OpcionesLogs.Separador">
             <summary>
             Separador de los campos del registro de eventos
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OOpcionesLogs.Inicio">
+        <member name="F:Orbita.VAComun.OpcionesLogs.Inicio">
             <summary>
             Cadencia de backup
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OOpcionesLogs.Retardo">
+        <member name="F:Orbita.VAComun.OpcionesLogs.Retardo">
             <summary>
             Cadencia de backup
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OOpcionesLogs.PathBackup">
+        <member name="F:Orbita.VAComun.OpcionesLogs.PathBackup">
             <summary>
             Ruta de las copias de seguridad del registro de eventos
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OOpcionesLogs.MascaraSubPathBackup">
+        <member name="F:Orbita.VAComun.OpcionesLogs.MascaraSubPathBackup">
             <summary>
             Subruta de las copias de seguridad del registro de eventos
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OOpcionesLogs.OpcionesLog">
+        <member name="F:Orbita.VAComun.OpcionesLogs.OpcionesLog">
             <summary>
             Lista de los logs del sistema
             </summary>
         </member>
-        <member name="M:Orbita.VAComun.OOpcionesLogs.#ctor">
+        <member name="M:Orbita.VAComun.OpcionesLogs.#ctor">
             <summary>
             Constructor de la clase
             </summary>
         </member>
-        <member name="P:Orbita.VAComun.OOpcionesLogs.InicioEnMinutos">
+        <member name="P:Orbita.VAComun.OpcionesLogs.InicioEnMinutos">
             <summary>
             Cadencia de backup
             </summary>
         </member>
-        <member name="P:Orbita.VAComun.OOpcionesLogs.RetardoEnMinutos">
+        <member name="P:Orbita.VAComun.OpcionesLogs.RetardoEnMinutos">
             <summary>
             Cadencia de backup
             </summary>
         </member>
-        <member name="T:Orbita.VAComun.OOpcionesLog">
+        <member name="T:Orbita.VAComun.OpcionesLog">
             <summary>
             Opciones de configuración del registro de eventos
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OOpcionesLog.Identificador">
+        <member name="F:Orbita.VAComun.OpcionesLog.Identificador">
             <summary>
             Identificador del log
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OOpcionesLog.NivelLog">
+        <member name="F:Orbita.VAComun.OpcionesLog.NivelLog">
             <summary>
             Nivel a partir del cual se guardan los logs
             </summary>        
@@ -5007,33 +4878,33 @@
              Acceso a la base de datos SQL Server
             </summary>
         </member>
-        <member name="T:Orbita.VAComun.OInformacionBasesDatos">
+        <member name="T:Orbita.VAComun.InformacionBasesDatos">
             <summary>
             Clase que contiene toda la información necesaria para establecer las conexiones a las bases de datos.
             Esta clase es recuperada del archivo XML de configuración de la aplicación
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OInformacionBasesDatos.Origen">
+        <member name="F:Orbita.VAComun.InformacionBasesDatos.Origen">
             <summary>
             Nombre identificador de la base de datos
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OInformacionBasesDatos.Instancia">
+        <member name="F:Orbita.VAComun.InformacionBasesDatos.Instancia">
             <summary>
             Nombre de la máquina donde se encuentra la base de datos SQL Server
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OInformacionBasesDatos.BaseDatos">
+        <member name="F:Orbita.VAComun.InformacionBasesDatos.BaseDatos">
             <summary>
             Nombre de la base de datos SQL Server
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OInformacionBasesDatos.Usuario">
+        <member name="F:Orbita.VAComun.InformacionBasesDatos.Usuario">
             <summary>
             Nombre de usuario de la base de datos SQL Server
             </summary>
         </member>
-        <member name="F:Orbita.VAComun.OInformacionBasesDatos.Password">
+        <member name="F:Orbita.VAComun.InformacionBasesDatos.Password">
             <summary>
             Contraseña de usuario de la base de datos SQL Server
             </summary>
@@ -5070,6 +4941,17 @@
             <summary>
             Constuctor de la clase
             </summary>
+        </member>
+        <member name="F:Orbita.VAComun.Clases.OInstanciaUnicaAplicacion.MutexJustOne">
+            <summary>
+            Mutex utilizado por el JustOne
+            </summary>
+        </member>
+        <member name="M:Orbita.VAComun.Clases.OInstanciaUnicaAplicacion.Execute">
+            <summary>
+            Funcion que nos indica si ya se esta iniciando una instancia del programa
+            </summary>
+            <returns>true si ya esta iniciada y false si no es asi</returns>
         </member>
         <member name="T:Orbita.VAComun.OComunicacionCGI">
             <summary>
@@ -5361,116 +5243,6 @@
         <member name="M:Orbita.VAComun.OQuintet`5.#ctor(`0,`1,`2,`3,`4)">
             <summary>
             Constructor de la clase
-            </summary>
-        </member>
-        <member name="T:Orbita.VAComun.OBitmapImage">
-            <summary>
-            Imagen de tipo Bitmap de windows
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.OBitmapImage.#ctor">
-            <summary>
-            Constructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.OBitmapImage.#ctor(System.String)">
-            <summary>
-            Constructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.OBitmapImage.#ctor(System.Object)">
-            <summary>
-            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
-            </summary>
-            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
-        </member>
-        <member name="M:Orbita.VAComun.OBitmapImage.#ctor(System.String,System.Object)">
-            <summary>
-            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
-            </summary>
-            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
-        </member>
-        <member name="M:Orbita.VAComun.OBitmapImage.Dispose(System.Boolean)">
-            <summary>
-            Método a implementar en las clases hijas. Elimina la memoria asignada por el objeto.
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.OBitmapImage.Clone">
-            <summary>
-            Clonado de la imagen
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.OBitmapImage.EsValida">
-            <summary>
-            Método a implementar en las clases hijas que indica que la imagen es válida
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAComun.OBitmapImage.Guardar(System.String)">
-            <summary>
-            Método a implementar en las clases hijas para guardar la imagen en un fichero de disco
-            </summary>
-            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
-            <returns>Verdadero si la ruta donde se ha de guardar el fichero es válida</returns>
-        </member>
-        <member name="M:Orbita.VAComun.OBitmapImage.Cargar(System.String)">
-            <summary>
-            Método a implementar en las clases hijas para cargar la imagen de un fichero de disco
-            </summary>
-            <param name="ruta">Ruta de donde se ha de cargar la imagen</param>
-            <returns>Verdadero si el fichero que se ha de cargar existe</returns>
-        </member>
-        <member name="M:Orbita.VAComun.OBitmapImage.ConvertFromBitmap(System.Drawing.Bitmap)">
-            <summary>
-            Convierte la imagen de tipo bitmap al tipo actual
-            </summary>
-            <param name="imagenBitmap">Imagen de tipo bitmap desde el cual se va a importar la imagen</param>
-        </member>
-        <member name="M:Orbita.VAComun.OBitmapImage.ConvertToBitmap">
-            <summary>
-            Convierte la imagen actual al tipo genérico de imagen de tipo bitmap
-            </summary>
-        </member>
-        <member name="M:Orbita.VAComun.OBitmapImage.EscalarImagen(Orbita.VAComun.OImage,System.Int32,System.Int32)">
-            <summary>
-            Sirve para reducir la imagen 
-            </summary>
-            <param name="img">Imagen a reducir</param>
-            <param name="width">Ancho de la imagen resultado</param>
-            <param name="height">Alto de la imagen resultado</param>
-            <returns>Imagen reducida</returns>
-        </member>
-        <member name="M:Orbita.VAComun.OBitmapImage.ToArray(System.Drawing.Imaging.ImageFormat,System.Double)">
-            <summary>
-            Método que realiza el empaquetado de un objeto para ser enviado por remoting
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAComun.OBitmapImage.FromArray(System.Byte[])">
-            <summary>
-            Método que realiza el desempaquetado de un objeto recibido por remoting
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAComun.OBitmapImage.Nueva">
-            <summary>
-            Crea una nueva imagen de la misma clase
-            </summary>
-            <returns>Nueva instancia de la misma clase de imagen</returns>
-        </member>
-        <member name="P:Orbita.VAComun.OBitmapImage.Image">
-            <summary>
-            Propieadad a heredar donde se accede a la imagen
-            </summary>
-        </member>
-        <member name="P:Orbita.VAComun.OBitmapImage.Width">
-            <summary>
-            Tamaño en X de la imagen
-            </summary>
-        </member>
-        <member name="P:Orbita.VAComun.OBitmapImage.Height">
-            <summary>
-            Tamaño en Y de la imagen
             </summary>
         </member>
     </members>

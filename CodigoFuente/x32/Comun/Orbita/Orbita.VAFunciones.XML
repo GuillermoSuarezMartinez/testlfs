@@ -652,7 +652,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAFunciones.OInfoInspeccionCCR.#ctor(Orbita.VAComun.OBitmapImage,Orbita.VAFunciones.OInfoImagenCCR,Orbita.VAFunciones.OParametrosCCR,Orbita.VAFunciones.OResultadoCCR)">
+        <member name="M:Orbita.VAFunciones.OInfoInspeccionCCR.#ctor(Orbita.VAComun.OImagenBitmap,Orbita.VAFunciones.OInfoImagenCCR,Orbita.VAFunciones.OParametrosCCR,Orbita.VAFunciones.OResultadoCCR)">
             <summary>
             Constructor de la clase
             </summary>
@@ -871,52 +871,52 @@
             Constructor con parametros
             </summary>
         </member>
-        <member name="T:Orbita.VAFunciones.OConfiguracionCCR">
+        <member name="T:Orbita.VAFunciones.ConfiguracionCCR">
             <summary>
             Parámetros de la aplicación
             </summary>
         </member>
-        <member name="F:Orbita.VAFunciones.OConfiguracionCCR.ConfFile">
+        <member name="F:Orbita.VAFunciones.ConfiguracionCCR.ConfFile">
             <summary>
             Ruta por defecto del fichero xml de configuración
             </summary>
         </member>
-        <member name="F:Orbita.VAFunciones.OConfiguracionCCR.TraceWrapper">
+        <member name="F:Orbita.VAFunciones.ConfiguracionCCR.TraceWrapper">
             <summary>
             Constante que indica si se ha de realizar una traza del CCR
             </summary>
         </member>
-        <member name="F:Orbita.VAFunciones.OConfiguracionCCR.LimitCores">
+        <member name="F:Orbita.VAFunciones.ConfiguracionCCR.LimitCores">
             <summary>
             Constante que indica si se limitan los núcleos a utilizar
             </summary>
         </member>
-        <member name="F:Orbita.VAFunciones.OConfiguracionCCR.Cores">
+        <member name="F:Orbita.VAFunciones.ConfiguracionCCR.Cores">
             <summary>
             Constante que indica el número máximo de núcleos a utilizar
             </summary>
         </member>
-        <member name="F:Orbita.VAFunciones.OConfiguracionCCR.AvCharHeight">
+        <member name="F:Orbita.VAFunciones.ConfiguracionCCR.AvCharHeight">
             <summary>
             Constante de altura del caracter
             </summary>
         </member>
-        <member name="F:Orbita.VAFunciones.OConfiguracionCCR.DuplicateLines">
+        <member name="F:Orbita.VAFunciones.ConfiguracionCCR.DuplicateLines">
             <summary>
             Parámetro de cidar
             </summary>
         </member>
-        <member name="F:Orbita.VAFunciones.OConfiguracionCCR.Trace">
+        <member name="F:Orbita.VAFunciones.ConfiguracionCCR.Trace">
             <summary>
             Trazabilidad
             </summary>
         </member>
-        <member name="M:Orbita.VAFunciones.OConfiguracionCCR.#ctor">
+        <member name="M:Orbita.VAFunciones.ConfiguracionCCR.#ctor">
             <summary>
             Contructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAFunciones.OConfiguracionCCR.#ctor(System.String)">
+        <member name="M:Orbita.VAFunciones.ConfiguracionCCR.#ctor(System.String)">
             <summary>
             Contructor de la clase
             </summary>
@@ -1371,7 +1371,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAFunciones.OInfoInspeccionLPR.#ctor(Orbita.VAComun.OBitmapImage,Orbita.VAFunciones.OInfoImagenLPR,Orbita.VAFunciones.OParametrosLPR,Orbita.VAFunciones.OResultadoLPR)">
+        <member name="M:Orbita.VAFunciones.OInfoInspeccionLPR.#ctor(Orbita.VAComun.OImagenBitmap,Orbita.VAFunciones.OInfoImagenLPR,Orbita.VAFunciones.OParametrosLPR,Orbita.VAFunciones.OResultadoLPR)">
             <summary>
             Constructor de la clase
             </summary>
@@ -1582,57 +1582,57 @@
             Constructor con parametros
             </summary>
         </member>
-        <member name="T:Orbita.VAFunciones.OConfiguracionLPR">
+        <member name="T:Orbita.VAFunciones.ConfiguracionLPR">
             <summary>
             Parámetros de la aplicación
             </summary>
         </member>
-        <member name="F:Orbita.VAFunciones.OConfiguracionLPR.ConfFile">
+        <member name="F:Orbita.VAFunciones.ConfiguracionLPR.ConfFile">
             <summary>
             Ruta por defecto del fichero xml de configuración
             </summary>
         </member>
-        <member name="F:Orbita.VAFunciones.OConfiguracionLPR.CountryCode">
+        <member name="F:Orbita.VAFunciones.ConfiguracionLPR.CountryCode">
             <summary>
             Constante que indica el pais o paises a identificar la matricula
             </summary>
         </member>
-        <member name="F:Orbita.VAFunciones.OConfiguracionLPR.AvCharHeight">
+        <member name="F:Orbita.VAFunciones.ConfiguracionLPR.AvCharHeight">
             <summary>
             Constante de altura del caracter
             </summary>
         </member>
-        <member name="F:Orbita.VAFunciones.OConfiguracionLPR.DuplicateLines">
+        <member name="F:Orbita.VAFunciones.ConfiguracionLPR.DuplicateLines">
             <summary>
             Parámetro de Vpar
             </summary>
         </member>
-        <member name="F:Orbita.VAFunciones.OConfiguracionLPR.Reordenar">
+        <member name="F:Orbita.VAFunciones.ConfiguracionLPR.Reordenar">
             <summary>
             Parametro de Vpar
             </summary>
         </member>
-        <member name="F:Orbita.VAFunciones.OConfiguracionLPR.filterColor">
+        <member name="F:Orbita.VAFunciones.ConfiguracionLPR.filterColor">
             <summary>
             Parametro de Vpar
             </summary>
         </member>
-        <member name="F:Orbita.VAFunciones.OConfiguracionLPR.TraceVpar">
+        <member name="F:Orbita.VAFunciones.ConfiguracionLPR.TraceVpar">
             <summary>
             Trazabilidad
             </summary>
         </member>
-        <member name="F:Orbita.VAFunciones.OConfiguracionLPR.TraceWrapper">
+        <member name="F:Orbita.VAFunciones.ConfiguracionLPR.TraceWrapper">
             <summary>
             Indica si se ha de realizar una traza del LPR
             </summary>
         </member>
-        <member name="M:Orbita.VAFunciones.OConfiguracionLPR.#ctor">
+        <member name="M:Orbita.VAFunciones.ConfiguracionLPR.#ctor">
             <summary>
             Contructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VAFunciones.OConfiguracionLPR.#ctor(System.String)">
+        <member name="M:Orbita.VAFunciones.ConfiguracionLPR.#ctor(System.String)">
             <summary>
             Contructor de la clase
             </summary>
