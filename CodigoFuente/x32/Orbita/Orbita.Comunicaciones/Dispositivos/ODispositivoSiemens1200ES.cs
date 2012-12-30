@@ -739,27 +739,27 @@ namespace Orbita.Comunicaciones
                             infodato.Valor = resultado;
                             ev.Argumento = infodato;
                             this.OnCambioDato(ev);
-                        }
 
-                        if (this.Tags.GetAlarmas(infodato.Identificador) != null)
-                        {
-                            if (Convert.ToInt32(infodato.Valor) == 1)
+                            if (this.Tags.GetAlarmas(infodato.Identificador) != null)
                             {
-                                if (!AlarmasActivas.Contains(infodato.Texto))
+                                if (Convert.ToInt32(infodato.Valor) == 1)
                                 {
-                                    this.AlarmasActivas.Add(infodato.Texto);
+                                    if (!AlarmasActivas.Contains(infodato.Texto))
+                                    {
+                                        this.AlarmasActivas.Add(infodato.Texto);
+                                    }
                                 }
-                            }
-                            else
-                            {
-                                if (AlarmasActivas.Contains(infodato.Texto))
+                                else
                                 {
-                                    this.AlarmasActivas.Remove(infodato.Texto);
+                                    if (AlarmasActivas.Contains(infodato.Texto))
+                                    {
+                                        this.AlarmasActivas.Remove(infodato.Texto);
+                                    }
                                 }
-                            }
 
-                            this.OnAlarma(ev);
-                        }
+                                this.OnAlarma(ev);
+                            }
+                        }                        
                     }
                     else
                     {
