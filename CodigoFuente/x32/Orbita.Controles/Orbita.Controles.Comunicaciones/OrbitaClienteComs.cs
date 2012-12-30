@@ -337,7 +337,49 @@ namespace Orbita.Controles.Comunicaciones
         /// <param name="e"></param>
         private void btnLeerVariables_Click(object sender, EventArgs e)
         {
+            OHashtable datos = this._servidor.OrbitaGetDatos(this._idDispositivo);
+            string[] variables = new string[datos.Count];
+            int i = 0;
+            foreach (DictionaryEntry item in datos)
+            {
+                OInfoDato dato = (OInfoDato)item.Value;
 
+                variables[i] = dato.Texto;
+                i++;
+            }
+
+            object[] resultado =this._servidor.OrbitaLeer(this._idDispositivo, variables, true);
+
+            DataTable dt = new DataTable();
+
+            DataColumn column = new DataColumn();
+            column.DataType = System.Type.GetType("System.String");
+            column.ColumnName = "Variable";
+            dt.Columns.Add(column);
+
+            DataColumn column2 = new DataColumn();
+            column2.DataType = System.Type.GetType("System.String");
+            column2.ColumnName = "Valor";
+            dt.Columns.Add(column2);
+
+            for (int j = 0; j < variables.Length; j++)
+            {
+                DataRow dr = dt.NewRow();
+                dr["Variable"] = variables[j];
+                try
+                {
+                    dr["Valor"] = resultado[j];
+                }
+                catch (Exception)
+                {
+                    dr["Valor"] = "";
+                }
+
+                dt.Rows.Add(dr);
+            }
+
+            this.dataGridViewLecturas.DataSource = dt;
+            
         }
         /// <summary>
         /// Lee las alarmas activas
