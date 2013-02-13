@@ -109,6 +109,13 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
+        internal static System.Drawing.Icon icono {
+            get {
+                object obj = ResourceManager.GetObject("icono", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap ImgChat16 {
             get {
                 object obj = ResourceManager.GetObject("ImgChat16", resourceCulture);

@@ -27,7 +27,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSplash));
             this.TimerRefresco = new System.Windows.Forms.Timer(this.components);
             this.lblUsuario = new System.Windows.Forms.Label();
@@ -80,14 +80,16 @@
             // 
             // lblMensaje
             // 
-            appearance1.BackColor = System.Drawing.Color.Transparent;
-            appearance1.ForeColor = System.Drawing.Color.Black;
-            appearance1.TextHAlignAsString = "Center";
-            appearance1.TextVAlignAsString = "Middle";
-            this.lblMensaje.Appearance = appearance1;
+            appearance2.BackColor = System.Drawing.Color.Transparent;
+            appearance2.ForeColor = System.Drawing.Color.Black;
+            appearance2.TextHAlignAsString = "Center";
+            appearance2.TextVAlignAsString = "Middle";
+            this.lblMensaje.Appearance = appearance2;
             this.lblMensaje.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblMensaje.Location = new System.Drawing.Point(0, 235);
             this.lblMensaje.Name = "lblMensaje";
+            this.lblMensaje.OrbColorFondo = System.Drawing.Color.Transparent;
+            this.lblMensaje.OrbColorFuente = System.Drawing.Color.Black;
             this.lblMensaje.Size = new System.Drawing.Size(244, 23);
             this.lblMensaje.TabIndex = 5;
             this.lblMensaje.UseMnemonic = false;
@@ -148,10 +150,10 @@
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.pbLogo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmSplash";
-            this.Text = "";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmSplash_FormClosing);
             this.Load += new System.EventHandler(this.FrmSplash_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
