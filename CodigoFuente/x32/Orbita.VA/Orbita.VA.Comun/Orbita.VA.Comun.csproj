@@ -190,7 +190,6 @@
     <Compile Include="Clases\Utiles\OMonitorizacionSistema.cs" />
     <Compile Include="Clases\Imagen\OImagen.cs" />
     <Compile Include="Clases\Utiles\OMultimedia.cs" />
-    <Compile Include="Clases\Utiles\OPriorityQueue.cs" />
     <Compile Include="Clases\Thread\OProductorConsumidorThread.cs" />
     <Compile Include="Clases\Utiles\OScript.cs" />
     <Compile Include="Clases\Thread\OThreadLoop.cs" />
