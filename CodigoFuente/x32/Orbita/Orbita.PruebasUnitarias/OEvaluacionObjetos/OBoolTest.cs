@@ -1,9 +1,19 @@
-﻿using Orbita.VA.Comun;
+﻿//***********************************************************************
+// Assembly         : Orbita.PruebasUnitarias
+// Author           : aibañez
+// Created          : 13-02-2013
+//
+// Last Modified By : 
+// Last Modified On : 
+// Description      : 
+//
+// Copyright        : (c) Orbita Ingenieria. All rights reserved.
+//***********************************************************************
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Orbita.Utiles;
 
-namespace Orbita.VA.PruebasUnitarias
+namespace Orbita.PruebasUnitarias
 {
     /// <summary>
     ///Se trata de una clase de prueba para OBoolTest y se pretende que

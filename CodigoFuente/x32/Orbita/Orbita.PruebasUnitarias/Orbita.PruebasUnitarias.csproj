@@ -77,28 +77,6 @@
     <Compile Include="OPriorityQueue\OPriorityQueueTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Librerias\CodigoFuente\x32\Orbita.Controles\Orbita.Controles.VA\Orbita.Controles.VA.csproj">
-      <Project>{8E66FB77-D4ED-483B-8481-A9B2C7317192}</Project>
-      <Name>Orbita.Controles.VA</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Librerias\CodigoFuente\x32\Orbita.VA\Orbita.VA.Comun\Orbita.VA.Comun.csproj">
-      <Project>{CC36FE63-3F16-4355-A11D-F0926DFBC977}</Project>
-      <Name>Orbita.VA.Comun</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Librerias\CodigoFuente\x32\Orbita.VA\Orbita.VA.Funciones\Orbita.VA.Funciones.csproj">
-      <Project>{80C544D1-CA4E-4836-84DD-EB90E7042B5B}</Project>
-      <Name>Orbita.VA.Funciones</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Librerias\CodigoFuente\x32\Orbita.VA\Orbita.VA.Hardware\Orbita.VA.Hardware.csproj">
-      <Project>{B336255B-92F8-4DAE-9051-C930269AA460}</Project>
-      <Name>Orbita.VA.Hardware</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Librerias\CodigoFuente\x32\Orbita.VA\Orbita.VA.MaquinasEstados\Orbita.VA.MaquinasEstados.csproj">
-      <Project>{1CA30AAB-0DA9-4947-B5C5-E81E9A2D9C18}</Project>
-      <Name>Orbita.VA.MaquinasEstados</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
