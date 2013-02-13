@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B7CBB04D-04AF-432C-BE3F-37B02570F03F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Orbita.VA.PruebasUnitarias</RootNamespace>
+    <AssemblyName>Orbita.VA.PruebasUnitarias</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Bin\Orbita.VA.PruebasUnitarias.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Bin\Orbita.VA.PruebasUnitarias.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Orbita.BBDD">
+      <HintPath>..\..\..\..\Librerias\CodigoFuente\x32\Comun\Orbita\Orbita.BBDD.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Trazabilidad">
+      <HintPath>..\..\..\..\Librerias\CodigoFuente\x32\Comun\Orbita\Orbita.Trazabilidad.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Utiles, Version=13.11.8.1, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\..\..\..\Librerias\CodigoFuente\x32\Comun\Orbita\Orbita.Utiles.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="OCronometros\OCronometrosManagerTest.cs" />
+    <Compile Include="OEvaluacionObjetos\OEnumeradoTest.cs" />
+    <Compile Include="OEvaluacionObjetos\OBoolTest.cs" />
+    <Compile Include="OEvaluacionObjetos\ODecimalTest.cs" />
+    <Compile Include="OEvaluacionObjetos\OEnteroTest.cs" />
+    <Compile Include="OEvaluacionObjetos\OTextoTest.cs" />
+    <Compile Include="OEvaluacionObjetos\OFechaHoraTest.cs" />
+    <Compile Include="OEvaluacionObjetos\OIntervaloTiempoTest.cs" />
+    <Compile Include="OEvaluacionObjetos\OStringEnumTest.cs" />
+    <Compile Include="OPriorityQueue\OPriorityQueueTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Librerias\CodigoFuente\x32\Orbita.Controles\Orbita.Controles.VA\Orbita.Controles.VA.csproj">
+      <Project>{8E66FB77-D4ED-483B-8481-A9B2C7317192}</Project>
+      <Name>Orbita.Controles.VA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Librerias\CodigoFuente\x32\Orbita.VA\Orbita.VA.Comun\Orbita.VA.Comun.csproj">
+      <Project>{CC36FE63-3F16-4355-A11D-F0926DFBC977}</Project>
+      <Name>Orbita.VA.Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Librerias\CodigoFuente\x32\Orbita.VA\Orbita.VA.Funciones\Orbita.VA.Funciones.csproj">
+      <Project>{80C544D1-CA4E-4836-84DD-EB90E7042B5B}</Project>
+      <Name>Orbita.VA.Funciones</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Librerias\CodigoFuente\x32\Orbita.VA\Orbita.VA.Hardware\Orbita.VA.Hardware.csproj">
+      <Project>{B336255B-92F8-4DAE-9051-C930269AA460}</Project>
+      <Name>Orbita.VA.Hardware</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Librerias\CodigoFuente\x32\Orbita.VA\Orbita.VA.MaquinasEstados\Orbita.VA.MaquinasEstados.csproj">
+      <Project>{1CA30AAB-0DA9-4947-B5C5-E81E9A2D9C18}</Project>
+      <Name>Orbita.VA.MaquinasEstados</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
