@@ -141,6 +141,7 @@
     <Compile Include="Colecciones\OColaSincronizada.cs" />
     <Compile Include="Colecciones\OColecciones.cs" />
     <Compile Include="Colecciones\OHashtable.cs" />
+    <Compile Include="Colecciones\OPriorityQueue.cs" />
     <Compile Include="Compresion\BZip2\BZip2.cs" />
     <Compile Include="Compresion\BZip2\BZip2Constants.cs" />
     <Compile Include="Compresion\BZip2\BZip2Exception.cs" />
