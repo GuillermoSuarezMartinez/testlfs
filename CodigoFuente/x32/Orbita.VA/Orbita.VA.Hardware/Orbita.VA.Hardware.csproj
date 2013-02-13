@@ -166,55 +166,56 @@
       <HintPath>..\..\Comun\Comunicaciones\MccDaq.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Orbita.BBDD, Version=12.361.3.1, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="Orbita.BBDD, Version=13.32.3.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.BBDD.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Orbita.Comunicaciones, Version=12.365.3.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.Comunicaciones.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Orbita.Controles.Combo">
+    <Reference Include="Orbita.Controles.Combo, Version=12.365.5.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Controles.Combo.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Orbita.Controles.Comunes">
+    <Reference Include="Orbita.Controles.Comunes, Version=12.365.5.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Controles.Comunes.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Orbita.Controles.Contenedores">
+    <Reference Include="Orbita.Controles.Contenedores, Version=12.365.5.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Controles.Contenedores.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Orbita.Controles.Editor">
+    <Reference Include="Orbita.Controles.Editor, Version=12.365.5.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Controles.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Orbita.Controles.Grid">
+    <Reference Include="Orbita.Controles.Grid, Version=12.365.5.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Controles.Grid.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Orbita.Controles.Menu">
+    <Reference Include="Orbita.Controles.Menu, Version=12.365.5.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Controles.Menu.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Orbita.Controles.Shared">
+    <Reference Include="Orbita.Controles.Shared, Version=12.365.5.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Controles.Shared.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Orbita.Controles.VA">
+    <Reference Include="Orbita.Controles.VA, Version=13.1.8.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Controles.VA.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Orbita.Trazabilidad, Version=12.361.5.1, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="Orbita.Trazabilidad, Version=13.32.3.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.Trazabilidad.dll</HintPath>
-      <Private>False</Private>
+    </Reference>
+    <Reference Include="Orbita.Utiles, Version=13.43.8.1, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
     </Reference>
     <Reference Include="Orbita.VA.Funciones">
       <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.VA.Funciones.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Orbita.Winsock">
+    <Reference Include="Orbita.Winsock, Version=12.220.3.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Winsock.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -236,7 +237,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Core" />
-</ItemGroup>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\BaseDatos\AppBD.cs" />
     <Compile Include="Clases\CamaraBaslerPylon\OConectividadBaslerPylon.cs" />
@@ -290,10 +291,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Orbita\Orbita.Utiles\Orbita.Utiles.csproj">
-      <Project>{DAD5D2A3-9C23-4C22-ABEB-4DF8258170AD}</Project>
-      <Name>Orbita.Utiles</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Orbita.VA.Comun\Orbita.VA.Comun.csproj">
       <Project>{CC36FE63-3F16-4355-A11D-F0926DFBC977}</Project>
       <Name>Orbita.VA.Comun</Name>

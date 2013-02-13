@@ -82,9 +82,8 @@
     <NoWarn>1591,1592,1573,1571,1570,1572</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Orbita.Utiles, Version=13.11.8.1, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="Orbita.Utiles, Version=13.43.8.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

@@ -158,13 +158,11 @@
       <HintPath>..\..\Comun\VA\Cognex\Cognex.VisionPro.ToolGroup.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Orbita.BBDD, Version=12.361.3.1, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="Orbita.BBDD, Version=13.32.3.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.BBDD.dll</HintPath>
-      <Private>False</Private>
     </Reference>
-    <Reference Include="Orbita.Utiles, Version=13.11.8.1, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="Orbita.Utiles, Version=13.43.8.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
