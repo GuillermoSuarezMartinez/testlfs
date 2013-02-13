@@ -1,8 +1,19 @@
-﻿using System;
+﻿//***********************************************************************
+// Assembly         : Orbita.Utiles
+// Author           : aibañez
+// Created          : 13-02-2013
+//
+// Last Modified By : 
+// Last Modified On : 
+// Description      : 
+//
+// Copyright        : (c) Orbita Ingenieria. All rights reserved.
+//***********************************************************************
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Orbita.VA.Comun
+namespace Orbita.Utiles
 {
     /// <summary>
     /// Implementación de una cola con prioridad de encolamiento.
