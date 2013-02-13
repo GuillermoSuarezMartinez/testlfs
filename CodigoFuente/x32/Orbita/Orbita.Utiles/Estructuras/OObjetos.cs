@@ -196,6 +196,10 @@ namespace Orbita.Utiles
         /// </summary>
         public object ValorGenerico
         {
+            get
+            {
+                return this.Valor;
+            }
             set
             {
                 // Validación
@@ -208,13 +212,10 @@ namespace Orbita.Utiles
                     this.LanzarExcepcion();
                 }
 
-                // Asignación
-                this._Valor = (ClaseTipo)refObj;
-
-                if (!this.Valido)
+                if (this.Valido)
                 {
-                    // Registro
-                    //OVALogsManager.Debug(ModulosSistema.Comun, "Obtener Valor de forma segura", "No admite el valor " + OObjeto.ToString(value));
+                    // Asignación
+                    this._Valor = (ClaseTipo)refObj;
                 }
             }
         }
@@ -245,21 +246,15 @@ namespace Orbita.Utiles
             // Inicialización de resultados
             EnumEstadoRobusto validacion = EnumEstadoTextoRobusto.ValorTipoIncorrecto;
             bool correcto = false;
-            ClaseTipo outValor = this.ValorPorDefecto;
 
             // Validación
-            if (correcto)
+            if (valor is ClaseTipo)
             {
-                if (valor is ClaseTipo)
-                {
-                    outValor = (ClaseTipo)valor;
-                    validacion = EnumEstadoTextoRobusto.ResultadoCorrecto;
-                    correcto = true;
-                }
+                validacion = EnumEstadoTextoRobusto.ResultadoCorrecto;
+                correcto = true;
             }
 
             // Devolución de resultados
-            valor = outValor;
             return validacion;
         }
 
@@ -271,6 +266,42 @@ namespace Orbita.Utiles
         {
             // Implementado en heredados
         }
+        #endregion
+    }
+
+    public interface IObjetoBase
+    {
+        #region Propiedad(es)
+        /// <summary>
+        /// Código identificativo de la clase.
+        /// </summary>
+        string Codigo { get; set; }
+        /// <summary>
+        /// Indica que el valor asignado es válido
+        /// </summary>
+        bool Valido { get; }
+        /// <summary>
+        /// Estado del valor actual
+        /// </summary>
+        EnumEstadoRobusto Estado { get; set; }
+        /// <summary>
+        /// Valor del objeto
+        /// </summary>
+        object ValorGenerico { get; set; }
+        #endregion
+
+        #region Método(s) público(s)
+        /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="valor">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        EnumEstadoRobusto Validar(ref object valor);
+        /// <summary>
+        /// Lanza una exepción por no estár permitido el valor especificado
+        /// </summary>
+        /// <param name="valor">valor no permitido</param>
+        void LanzarExcepcion();
         #endregion
     }
 
@@ -439,6 +470,14 @@ namespace Orbita.Utiles
             OTexto robusto = new OTexto(string.Empty, maxLength, admiteVacio, limitarLongitud, defecto, false);
             robusto.ValorGenerico = valor;
             return robusto.Valor;
+        }
+
+        /// <summary>
+        /// Evalua si el parámetro es texto
+        /// </summary>
+        public static string Validar(object valor)
+        {
+            return Validar(valor, int.MaxValue, true, false, string.Empty);
         }
 
         /// <summary>
@@ -989,6 +1028,15 @@ namespace Orbita.Utiles
         }
 
         /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static int Validar(object valor)
+        {
+            return Validar(valor, int.MinValue, int.MaxValue, default(int));
+        }
+
+        /// <summary>
         /// Comprueba que el valor del objeto es correcto
         /// </summary>
         /// <param name="value">Valor del objeto a comprobar</param>
@@ -1214,6 +1262,15 @@ namespace Orbita.Utiles
         }
 
         /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static double Validar(object valor)
+        {
+            return Validar(valor, double.MinValue, double.MaxValue, default(double));
+        }
+
+        /// <summary>
         /// Comprueba que el valor del objeto es correcto
         /// </summary>
         /// <param name="value">Valor del objeto a comprobar</param>
@@ -1263,6 +1320,19 @@ namespace Orbita.Utiles
             }
 
             return resultado;
+        }
+
+        /// <summary>
+        /// Compara dos valores decimales para definir si son similares, con una diferencia menor que sigma
+        /// </summary>
+        /// <param name="valor1">Primer valor a comparar</param>
+        /// <param name="valor2">Segundo valor a comparar</param>
+        /// <param name="sigma">Diferencia máxima entre ambos valores</param>
+        /// <returns>Verdadero si los valores son menores que sigma</returns>
+        public static bool Similar(double valor1, double valor2, double sigma)
+        {
+            double diff = Math.Abs(valor1 - valor2);
+            return diff <= sigma;
         }
         #endregion
     }
@@ -1407,6 +1477,15 @@ namespace Orbita.Utiles
             OBooleano robusto = new OBooleano(string.Empty, defecto, false);
             robusto.ValorGenerico = valor;
             return robusto.Valor;
+        }
+
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static bool Validar(object valor)
+        {
+            return Validar(valor, default(bool));
         }
 
         /// <summary>
@@ -1595,6 +1674,15 @@ namespace Orbita.Utiles
             OIntervaloTiempo robusto = new OIntervaloTiempo(string.Empty, TimeSpan.MinValue, TimeSpan.MaxValue, defecto, false);
             robusto.ValorGenerico = valor;
             return robusto.Valor;
+        }
+
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static TimeSpan Validar(object valor)
+        {
+            return Validar(valor, default(TimeSpan));
         }
 
         /// <summary>
@@ -1808,6 +1896,15 @@ namespace Orbita.Utiles
         }
 
         /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static DateTime Validar(object valor)
+        {
+            return Validar(valor, default(DateTime));
+        }
+
+        /// <summary>
         /// Comprueba que el valor del objeto es correcto
         /// </summary>
         /// <param name="valor">Valor del objeto a comprobar</param>
@@ -1965,5 +2062,106 @@ namespace Orbita.Utiles
         public static EnumEstadoRobusto ValorInferiorMinimo = new EnumEstadoRobusto("ValorInferiorMinimo", "ValorInferiorMinimo", 63);
         #endregion
     }
+    #endregion
+
+    #region Binarios
+    /// <summary>
+    /// Trabajo con números binarios
+    /// </summary>
+    public static class OBinario
+    {
+        /// <summary>
+        /// Extrae un bit en la posición indicada
+        /// </summary>
+        /// <param name="numero">Valor al cual queremos extraer el bit</param>
+        /// <param name="posicion">Posición del bit a extraer</param>
+        /// <returns>Booleano con el valor del bit extraido</returns>
+        public static bool GetBit(byte numero, int posicion)
+        {
+            byte mascara = Convert.ToByte(Math.Pow(2, posicion));
+            return (numero & mascara) != 0;
+        }
+
+        /// <summary>
+        /// Extrae un bit en la posición indicada
+        /// </summary>
+        /// <param name="numero">Valor al cual queremos extraer el bit</param>
+        /// <param name="posicion">Posición del bit a extraer</param>
+        /// <returns>Booleano con el valor del bit extraido</returns>
+        public static bool GetBit(ushort numero, int posicion)
+        {
+            UInt16 mascara = Convert.ToUInt16(Math.Pow(2, posicion));
+            return (numero & mascara) != 0;
+        }
+
+        /// <summary>
+        /// Extrae un bit en la posición indicada
+        /// </summary>
+        /// <param name="numero">Valor al cual queremos extraer el bit</param>
+        /// <param name="posicion">Posición del bit a extraer</param>
+        /// <returns>Booleano con el valor del bit extraido</returns>
+        public static bool GetBit(uint numero, int posicion)
+        {
+            uint mascara = Convert.ToUInt32(Math.Pow(2, posicion));
+            return (numero & mascara) != 0;
+        }
+
+        /// <summary>
+        /// Establece un bit en la posición indicada
+        /// </summary>
+        /// <param name="numero">Valor al cual queremos establecer el bit</param>
+        /// <param name="posicion">Posición del bit a establecer</param>
+        /// <param name="valor">Booleano con el valor del bit a establecer</param>
+        public static void SetBit(ref byte numero, int posicion, bool valor)
+        {
+            byte mascara = Convert.ToByte(Math.Pow(2, posicion));
+            if (valor)
+            {
+                numero = (byte)(numero | mascara);
+            }
+            else
+            {
+                numero = (byte)(numero & ~mascara);
+            }
+        }
+
+        /// <summary>
+        /// Establece un bit en la posición indicada
+        /// </summary>
+        /// <param name="numero">Valor al cual queremos establecer el bit</param>
+        /// <param name="posicion">Posición del bit a establecer</param>
+        /// <param name="valor">Booleano con el valor del bit a establecer</param>
+        public static void SetBit(ref ushort numero, int posicion, bool valor)
+        {
+            ushort mascara = Convert.ToUInt16(Math.Pow(2, posicion));
+            if (valor)
+            {
+                numero = (ushort)(numero | mascara);
+            }
+            else
+            {
+                numero = (ushort)(numero & ~mascara);
+            }
+        }
+
+        /// <summary>
+        /// Establece un bit en la posición indicada
+        /// </summary>
+        /// <param name="numero">Valor al cual queremos establecer el bit</param>
+        /// <param name="posicion">Posición del bit a establecer</param>
+        /// <param name="valor">Booleano con el valor del bit a establecer</param>
+        public static void SetBit(ref uint numero, int posicion, bool valor)
+        {
+            uint mascara = Convert.ToUInt32(Math.Pow(2, posicion));
+            if (valor)
+            {
+                numero = (uint)(numero | mascara);
+            }
+            else
+            {
+                numero = (uint)(numero & ~mascara);
+            }
+        }
+    } 
     #endregion
 }
