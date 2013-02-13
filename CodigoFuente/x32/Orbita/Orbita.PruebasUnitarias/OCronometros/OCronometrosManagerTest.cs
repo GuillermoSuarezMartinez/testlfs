@@ -49,9 +49,9 @@ namespace Orbita.PruebasUnitarias
         [ClassInitialize()]
         public static void MyClassInitialize(TestContext testContext)
         {
-            OSistemaManager.Constructor(new OSistema(@"C:\PROYECTOS\OrbitaSoftware\OrbitaAplicacionDemo\Codigo Fuente\x32\Bin\ConfiguracionOrbitaVA.xml"), null, false);
-            OVALogsManager.Constructor(null, null);
-            OVALogsManager.Inicializar();
+            //OSistemaManager.Constructor(new OSistema(@"C:\PROYECTOS\OrbitaSoftware\OrbitaAplicacionDemo\Codigo Fuente\x32\Bin\ConfiguracionOrbitaVA.xml"), null, false);
+            //OVALogsManager.Constructor(null, null);
+            //OVALogsManager.Inicializar();
             OCronometrosManager.Constructor();
             OCronometrosManager.Inicializar();
         }
@@ -60,8 +60,8 @@ namespace Orbita.PruebasUnitarias
         [ClassCleanup()]
         public static void MyClassCleanup()
         {
-            OVALogsManager.Finalizar();
-            OVALogsManager.Destructor();
+            //OVALogsManager.Finalizar();
+            //OVALogsManager.Destructor();
             OCronometrosManager.Finalizar();
             OCronometrosManager.Destructor();
         }

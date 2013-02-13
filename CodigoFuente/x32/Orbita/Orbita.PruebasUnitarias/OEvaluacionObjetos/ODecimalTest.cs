@@ -48,17 +48,17 @@ namespace Orbita.PruebasUnitarias
         [ClassInitialize()]
         public static void MyClassInitialize(TestContext testContext)
         {
-            OSistemaManager.Constructor(new OSistema(@"C:\PROYECTOS\OrbitaSoftware\OrbitaAplicacionDemo\Codigo Fuente\x32\Bin\ConfiguracionOrbitaVA.xml"), null, false);
-            OVALogsManager.Constructor(null, null);
-            OVALogsManager.Inicializar();
+            //OSistemaManager.Constructor(new OSistema(@"C:\PROYECTOS\OrbitaSoftware\OrbitaAplicacionDemo\Codigo Fuente\x32\Bin\ConfiguracionOrbitaVA.xml"), null, false);
+            //OVALogsManager.Constructor(null, null);
+            //OVALogsManager.Inicializar();
         }
         //
         //Use ClassCleanup para ejecutar código después de haber ejecutado todas las pruebas en una clase
         [ClassCleanup()]
         public static void MyClassCleanup()
         {
-            OVALogsManager.Finalizar();
-            OVALogsManager.Destructor();
+            //OVALogsManager.Finalizar();
+            //OVALogsManager.Destructor();
         }
         //
         //Use TestInitialize para ejecutar código antes de ejecutar cada prueba
