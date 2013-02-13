@@ -15,6 +15,7 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using Infragistics.Win.UltraWinDock;
+using Orbita.Controles.Contenedores;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
 

@@ -30,10 +30,10 @@ namespace Orbita.Controles.VA
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            this.splitPrincipal = new Orbita.Controles.OrbitaSplitContainer();
+            this.splitPrincipal = new Orbita.Controles.Contenedores.OrbitaSplitContainer();
             this.ctrlStateMachineDisplay = new Orbita.Controles.VA.OrbitaVisorMaquinaEstados();
-            this.picMaquinaEstados = new Orbita.Controles.OrbitaPictureBox(this.components);
-            this.ListMensajes = new Orbita.Controles.OrbitaListView(this.components);
+            this.picMaquinaEstados = new Orbita.Controles.Comunes.OrbitaPictureBox();
+            this.ListMensajes = new Orbita.Controles.Comunes.OrbitaListView();
             this.Tipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Descripcion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Hora = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -161,13 +161,13 @@ namespace Orbita.Controles.VA
 
 		#endregion
 
-        private Orbita.Controles.OrbitaSplitContainer splitPrincipal;
-        private Orbita.Controles.OrbitaListView ListMensajes;
+        private Orbita.Controles.Contenedores.OrbitaSplitContainer splitPrincipal;
+        private Orbita.Controles.Comunes.OrbitaListView ListMensajes;
         private System.Windows.Forms.ColumnHeader Tipo;
         private System.Windows.Forms.ColumnHeader Descripcion;
         private System.Windows.Forms.ColumnHeader Hora;
         private Orbita.Controles.VA.OrbitaVisorMaquinaEstados ctrlStateMachineDisplay;
-        private Orbita.Controles.OrbitaPictureBox picMaquinaEstados;
+        private Orbita.Controles.Comunes.OrbitaPictureBox picMaquinaEstados;
         private System.Windows.Forms.ImageList ImageList;
 
 

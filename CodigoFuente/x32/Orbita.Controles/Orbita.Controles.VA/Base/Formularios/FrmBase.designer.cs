@@ -34,13 +34,13 @@ namespace Orbita.Controles.VA
             Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBase));
-            this.pnlInferiorPadre = new Orbita.Controles.OrbitaPanel();
-            this.ChkToolTip = new Orbita.Controles.OrbitaCheckBox();
-            this.pnlBotonesPadre = new Orbita.Controles.OrbitaPanel();
-            this.btnGuardar = new Orbita.Controles.OrbitaButton(this.components);
-            this.btnCancelar = new Orbita.Controles.OrbitaButton(this.components);
-            this.pnlPanelPrincipalPadre = new Orbita.Controles.OrbitaPanel();
-            this.ChkDock = new Orbita.Controles.OrbitaCheckBox();
+            this.pnlInferiorPadre = new Orbita.Controles.Contenedores.OrbitaPanel();
+            this.ChkToolTip = new Orbita.Controles.Comunes.OrbitaUltraCheckEditor();
+            this.pnlBotonesPadre = new Orbita.Controles.Contenedores.OrbitaPanel();
+            this.btnGuardar = new Orbita.Controles.Comunes.OrbitaUltraButton();
+            this.btnCancelar = new Orbita.Controles.Comunes.OrbitaUltraButton();
+            this.pnlPanelPrincipalPadre = new Orbita.Controles.Contenedores.OrbitaPanel();
+            this.ChkDock = new Orbita.Controles.Comunes.OrbitaUltraCheckEditor();
             this.pnlInferiorPadre.SuspendLayout();
             this.pnlBotonesPadre.SuspendLayout();
             this.SuspendLayout();
@@ -148,12 +148,12 @@ namespace Orbita.Controles.VA
 
         #endregion
 
-        protected Orbita.Controles.OrbitaPanel pnlInferiorPadre;
-        protected Orbita.Controles.OrbitaButton btnCancelar;
-        protected Orbita.Controles.OrbitaButton btnGuardar;
-        private Orbita.Controles.OrbitaPanel pnlBotonesPadre;
-        public Orbita.Controles.OrbitaPanel pnlPanelPrincipalPadre;
-        private Orbita.Controles.OrbitaCheckBox ChkToolTip;
-        private Orbita.Controles.OrbitaCheckBox ChkDock;
+        protected Orbita.Controles.Contenedores.OrbitaPanel pnlInferiorPadre;
+        protected Orbita.Controles.Comunes.OrbitaUltraButton btnCancelar;
+        protected Orbita.Controles.Comunes.OrbitaUltraButton btnGuardar;
+        private Orbita.Controles.Contenedores.OrbitaPanel pnlBotonesPadre;
+        public Orbita.Controles.Contenedores.OrbitaPanel pnlPanelPrincipalPadre;
+        private Orbita.Controles.Comunes.OrbitaUltraCheckEditor ChkToolTip;
+        private Orbita.Controles.Comunes.OrbitaUltraCheckEditor ChkDock;
     }
 }

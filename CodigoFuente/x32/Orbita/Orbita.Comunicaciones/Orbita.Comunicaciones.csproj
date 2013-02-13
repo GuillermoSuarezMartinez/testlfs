@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Orbita.Comunicaciones</RootNamespace>
     <AssemblyName>Orbita.Comunicaciones</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -138,7 +138,7 @@
     </Reference>
     <Reference Include="opcrcw.da, Version=3.0.3.0, Culture=neutral, PublicKeyToken=9a40e993cbface53, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
       <HintPath>..\..\Comun\Comunicaciones\opcrcw.da.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -160,6 +160,7 @@
     <Compile Include="Protocolos\Siemens\ProtocoloTCPSiemens.cs" />
     <Compile Include="Protocolos\Siemens\ProtocoloTCPSiemensGateOCRES.cs" />
     <Compile Include="Protocolos\Siemens\ProtocoloTCPSiemensGateOSES.cs" />
+    <Compile Include="Protocolos\Siemens\ProtocoloTCPSiemensGateTrafficES.cs" />
     <Compile Include="Protocolos\WinCC\OWinCCDataManager.cs" />
     <Compile Include="Puertos\OConfiguracionPuerto.cs" />
     <Compile Include="Puertos\OInformacionPuerto.cs" />
@@ -218,7 +219,6 @@
       <Name>Orbita.Winsock</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)Orbita.Comunicaciones.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>

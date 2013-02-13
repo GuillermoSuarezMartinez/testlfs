@@ -80,7 +80,15 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public ODispositivo()
         {
-            wrapper = LogManager.GetLogger("wrapper"); 
+            try
+            {
+                wrapper = LogManager.GetLogger("wrapper"); 
+            }
+            catch (Exception e)
+            {
+                OExcepcion ex = new OExcepcion("No se ha definido el objeto logger (nombre wrapper) desde la aplicación.",e);
+            }
+            
         }
         /// <summary>
         /// Destruye el objeto

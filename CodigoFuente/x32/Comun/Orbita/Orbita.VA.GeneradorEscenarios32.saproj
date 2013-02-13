@@ -1,8 +1,8 @@
 <SmartAssemblyProject ProjectId="{21e26212-21c6-4c2e-bc66-b25ccfa5e41a}" Version="2.0">
-    <MainAssemblyFileName>.\Orbita.VAGeneradorEscenarios.exe</MainAssemblyFileName>
+    <MainAssemblyFileName>.\Orbita.VA.GeneradorEscenarios.exe</MainAssemblyFileName>
     <Configuration Name="Release">
         <ApplicationName />
-        <Destination DestinationFileName="..\..\..\..\..\General\Dlls\x32\Orbita\Orbita.VAGeneradorEscenarios.exe" />
+        <Destination DestinationFileName="..\..\..\..\..\..\Orbita\General\Dlls\x32\Orbita\Orbita.VA.GeneradorEscenarios.exe" />
         <Assemblies>
             <Assembly AssemblyName="OrbitaControles, Culture=neutral, PublicKeyToken=null">
                 <Merging />
@@ -565,6 +565,36 @@
                 </Merging>
                 <Embedding />
             </Assembly>
+            <Assembly AssemblyName="Orbita.VA.Comun, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Mono.Security, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.VA.MaquinasEstados, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.VA.Hardware, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="PylonC.NET, Culture=neutral, PublicKeyToken=a77e8471c5919d5a">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.VA.GeneradorEscenarios, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <MemberRefsProxy />
+                    <Pruning />
+                    <Obfuscation Obfuscate="0">
+                        <Exclusion />
+                    </Obfuscation>
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="3" />
+                </Merging>
+            </Assembly>
         </Assemblies>
         <Options>
             <Obfuscation FieldsNameMangling="3" NameMangling="3" />
@@ -572,9 +602,10 @@
             <StrongNameSigning KeyFileName=".\CommonLibrary.snk" Sign="0" />
             <OtherProtections AddMetadataStream="1" SuppressIldasm="1" />
             <StringsEncoding />
-            <OtherOptimizations SealClasses="1" />
+            <OtherOptimizations SealClasses="0" />
             <Debugging />
             <FeatureUsageReporting Template="res:SmartUsageWithUIConsentFirstRun1033.dll" />
+            <Troubleshooting SelfDiagnostic="0" />
         </Options>
     </Configuration>
 </SmartAssemblyProject>

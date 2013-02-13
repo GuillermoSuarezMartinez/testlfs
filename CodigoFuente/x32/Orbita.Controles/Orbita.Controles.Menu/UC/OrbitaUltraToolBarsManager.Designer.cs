@@ -1,6 +1,6 @@
 namespace Orbita.Controles.Menu
 {
-    partial class OrbitaUltraToolBarsManager
+    partial class OrbitaUltraToolbarsManager
     {
         /// <summary>
         /// Variable del diseñador requerida.

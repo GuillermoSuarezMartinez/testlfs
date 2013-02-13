@@ -257,33 +257,33 @@ namespace Orbita.Controles.Grid
         /// Obtiene el sumario predefinido de tipo entero.
         /// </summary>
         /// <returns>El sumario predefinido de tipo entero.</returns>
-        public static OSumario SumarioEntero()
+        public static OColumnaSumario SumarioEntero()
         {
-            return new OSumario("{0:###,##0}");
+            return new OColumnaSumario("{0:###,##0}");
         }
         /// <summary>
         /// Obtiene el sumario predefinido de tipo moneda.
         /// </summary>
         /// <returns>El sumario predefinido de tipo moneda.</returns>
-        public static OSumario SumarioMoneda()
+        public static OColumnaSumario SumarioMoneda()
         {
-            return new OSumario("{0:###,###,###,###,##0.00}");
+            return new OColumnaSumario("{0:###,###,###,###,##0.00}");
         }
         /// <summary>
         /// Obtiene el sumario predefinido de jornadas.
         /// </summary>
         /// <returns>El sumario predefinido de jornadas.</returns>
-        public static OSumario SumarioJornadas()
+        public static OColumnaSumario SumarioJornadas()
         {
-            return new OSumario("{0:##,##0.00}");
+            return new OColumnaSumario("{0:##,##0.00}");
         }
         /// <summary>
         /// Obtiene el sumario predefinido de horas.
         /// </summary>
         /// <returns>El sumario predefinido de horas.</returns>
-        public static OSumario SumarioHoras()
+        public static OColumnaSumario SumarioHoras()
         {
-            return new OSumario("{0:##,##0.00}");
+            return new OColumnaSumario("{0:##,##0.00}");
         }
         /// <summary>
         /// Obtiene la línea a mostrar en las excepciones.

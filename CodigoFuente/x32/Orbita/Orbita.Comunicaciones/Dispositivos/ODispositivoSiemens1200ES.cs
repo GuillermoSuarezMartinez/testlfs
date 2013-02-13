@@ -32,7 +32,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Colección para la búsqueda de escrituras. La clave es la dupla "dirección-bit"
         /// </summary>
-        private OHashtable _almacenEscrituras;       
+        private OHashtable _almacenEscrituras;
         /// <summary>
         /// Número de lecturas a realizar
         /// </summary>
@@ -82,8 +82,8 @@ namespace Orbita.Comunicaciones
         /// Valor devuelto tras la escritura del PLC
         /// </summary>
         private byte[] _valorEscritura;
-        
-        
+
+
         #endregion
 
         #region Constructor
@@ -95,7 +95,7 @@ namespace Orbita.Comunicaciones
         {
             //Inicialización de objetos
             this.IniciarObjetos();
-            
+
             wrapper.Debug("Objetos del dispositivo de ES Siemens creados.");
             //Inicio de los parámetros TCP
             try
@@ -162,14 +162,14 @@ namespace Orbita.Comunicaciones
                             {
                                 responde = false;
 
-                                if (reintento<maxReintentos)
+                                if (reintento < maxReintentos)
                                 {
                                     reintento++;
                                 }
                                 else
                                 {
                                     estado.Estado = "NOK";
-                                }                                
+                                }
                                 // Trazar recepción errónea.
                                 wrapper.Warn("Timeout en el keep alive del dispositivo de ES Siemens.");
                             }
@@ -294,8 +294,8 @@ namespace Orbita.Comunicaciones
                         try
                         {
                             //Configuramos las salidas en dos bytes
-                            byte[] byteSalidas = protocoloEscritura.SalidasEnviar(salidas[0], this.IdMensaje);
-                            
+                            byte[] byteSalidas = protocoloEscritura.SalidasEnviar(salidas, this.IdMensaje);
+
                             if (byteSalidas != null)
                             {
                                 this.Winsock.Send(byteSalidas);
@@ -313,8 +313,8 @@ namespace Orbita.Comunicaciones
                                     }
                                 }
                                 // Resetear el evento.
-                                this._eReset.Resetear(2); 
-                            }                            
+                                this._eReset.Resetear(2);
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -388,12 +388,19 @@ namespace Orbita.Comunicaciones
                 this.protocoloProcesoMensaje = new ProtocoloTCPSiemensGateOCRES();
                 this.protocoloProcesoHilo = new ProtocoloTCPSiemensGateOCRES();
             }
-            else if(this.Protocolo == "OS")
+            else if (this.Protocolo == "OS")
             {
                 this.protocoloHiloVida = new ProtocoloTCPSiemensGateOSES();
                 this.protocoloEscritura = new ProtocoloTCPSiemensGateOSES();
                 this.protocoloProcesoMensaje = new ProtocoloTCPSiemensGateOSES();
-                this.protocoloProcesoHilo = new ProtocoloTCPSiemensGateOSES();                
+                this.protocoloProcesoHilo = new ProtocoloTCPSiemensGateOSES();
+            }
+            else if (this.Protocolo == "TRA")
+            {
+                this.protocoloHiloVida = new ProtocoloTCPSiemensGateTrafficES();
+                this.protocoloEscritura = new ProtocoloTCPSiemensGateTrafficES();
+                this.protocoloProcesoMensaje = new ProtocoloTCPSiemensGateTrafficES();
+                this.protocoloProcesoHilo = new ProtocoloTCPSiemensGateTrafficES();
             }
 
             foreach (DictionaryEntry item in this.Tags.GetDatos())
@@ -442,13 +449,13 @@ namespace Orbita.Comunicaciones
             try
             {
                 byte[] bmensaje = new byte[13];
-                Array.Copy(mensaje,1,bmensaje,0,13);
+                Array.Copy(mensaje, 1, bmensaje, 0, 13);
                 string smensaje = ASCIIEncoding.ASCII.GetString(bmensaje);
                 using (protocoloProcesoMensaje)
                 {
                     if (smensaje.Contains("OCRDATA") || smensaje.Contains("OS_DATA"))//respuesta para la lectura
                     {
-                        if (mensaje[15]==0)
+                        if (mensaje[15] == 0)
                         {
                             byte[] lecturas;
                             if (protocoloProcesoMensaje.KeepAliveProcesar(mensaje, out lecturas))
@@ -471,7 +478,34 @@ namespace Orbita.Comunicaciones
                         {
                             this._valorEscritura = mensaje;
                             this._eReset.Despertar(2);
-                        }                        
+                        }
+                    }
+                    if (smensaje.Contains("TRADATA"))//respuesta para la lectura
+                    {
+                        if (mensaje[15] == 0)
+                        {
+                            byte[] lecturas;
+                            if (protocoloProcesoMensaje.KeepAliveProcesar(mensaje, out lecturas))
+                            {
+                                for (int i = 0; i < this._numLecturas; i++)
+                                {
+                                    if (this._lecturas[i] != lecturas[i])
+                                    {
+                                        this.ESEncolar(lecturas);
+                                        break;
+                                    }
+                                }
+                                this._lecturas = lecturas;
+                                // Despertar el hilo en la línea:
+                                // this._eReset.Dormir de ProcesarHiloKeepAlive.                        
+                                this._eReset.Despertar(0);
+                            }
+                        }
+                        else//respuesta para la escritura
+                        {
+                            this._valorEscritura = mensaje;
+                            this._eReset.Despertar(2);
+                        }
                     }
                 }
             }
@@ -480,7 +514,7 @@ namespace Orbita.Comunicaciones
                 string error = "Error en ProcesarMensajeRecibido en el dispositivo de ES Siemens: " + ex.ToString();
                 wrapper.Error(error);
             }
-            
+
         }
         /// <summary>
         /// Procesa los bits poniendo a 1 o 0 el bit correspondiente
@@ -569,11 +603,27 @@ namespace Orbita.Comunicaciones
                 {
                     try
                     {
-                        byte[] entradas = new byte[4];
-                        byte[] salidas = new byte[1];
+                        byte[] entradas = null, salidas = null;
+                        switch (this.Protocolo)
+                        {
+                            case "OCR":
+                            case "OS":
+                                entradas = new byte[4];
+                                salidas = new byte[1];
+                                Array.Copy(mensaje, 0, entradas, 0, 4);
+                                Array.Copy(mensaje, 4, salidas, 0, 1);
+                                break;
 
-                        Array.Copy(mensaje, 0, entradas, 0, 4);
-                        Array.Copy(mensaje, 4, salidas, 0, 1);
+                            case "TRA":
+                                entradas = new byte[7];
+                                salidas = new byte[2];
+                                Array.Copy(mensaje, 0, entradas, 0, 7);
+                                Array.Copy(mensaje, 7, salidas, 0, 2);
+                                break;
+
+                        }
+
+
 
                         this.ESProcesar(entradas, salidas);
                         //this.dtfinproc = DateTime.Now;
@@ -603,17 +653,37 @@ namespace Orbita.Comunicaciones
             {
                 for (int i = 0; i < entradas.Length; i++)
                 {
-                    if (entradas[i] != this.Entradas[i])
+                    switch (this.Protocolo)
                     {
-                        this.ESActualizarVariablesEntradas(entradas[i], i + this._registroInicialEntradas);
+                        case "OCR":
+                        case "OS":
+                            if (entradas[i] != this.Entradas[i])
+                            {
+                                this.ESActualizarVariablesEntradasOCR(entradas[i], i + this._registroInicialEntradas);
+                            }
+                            if (i == 0)
+                            {
+                                if (salidas[i] != this.Salidas[i])
+                                {
+                                    this.ESActualizarVariablesSalidasOCR(salidas[i], i + this._registroInicialSalidas);
+                                }
+                            }
+                            break;
+                        case "TRA":
+                            if (entradas[i] != this.Entradas[i])
+                            {
+                                this.ESActualizarVariablesEntradasTRA(entradas[i], i + this._registroInicialEntradas);
+                            }
+                            if (i == 0 || i == 1)
+                            {
+                                if (salidas[i] != this.Salidas[i])
+                                {
+                                    this.ESActualizarVariablesSalidasTRA(salidas[i], i + this._registroInicialSalidas);
+                                }
+                            }
+                            break;
                     }
-                    if (i==0)
-                    {
-                        if (salidas[i] != this.Salidas[i])
-                        {
-                            this.ESActualizarVariablesSalidas(salidas[i], i + this._registroInicialSalidas);
-                        }
-                    }                    
+
                 }
                 this.Entradas = entradas;
                 this.Salidas = salidas;
@@ -629,60 +699,60 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="valor">valor del byte</param>
         /// <param name="posicion">posición del byte</param>
-        private void ESActualizarVariablesEntradas(byte valor, int posicion)
+        private void ESActualizarVariablesEntradasOCR(byte valor, int posicion)
         {
             OInfoDato infodato = null;
             OEventArgs ev = new OEventArgs();
             try
             {
-                if (posicion<2)//datos de bits
+                if (posicion < 2)//datos de bits
                 {
                     for (int i = 0; i < 8; i++)
                     {
-                    
-                            infodato = (OInfoDato)this._almacenLecturas[posicion.ToString() + "-" + i.ToString()];
-                            //Comprobamos el valor nuevo 
-                            if (infodato != null)
+
+                        infodato = (OInfoDato)this._almacenLecturas[posicion.ToString() + "-" + i.ToString()];
+                        //Comprobamos el valor nuevo 
+                        if (infodato != null)
+                        {
+                            int resultado = 0;
+                            if ((valor & (1 << i)) != 0)
                             {
-                                int resultado = 0;
-                                if ((valor & (1 << i)) != 0)
-                                {
-                                    resultado = 1;
-                                }
+                                resultado = 1;
+                            }
 
-                                if (resultado != Convert.ToInt32(infodato.Valor))
-                                {
-                                    infodato.Valor = resultado;
-                                    ev.Argumento = infodato;
-                                    this.OnCambioDato(ev);
+                            if (resultado != Convert.ToInt32(infodato.Valor))
+                            {
+                                infodato.Valor = resultado;
+                                ev.Argumento = infodato;
+                                this.OnCambioDato(ev);
 
-                                    if (this.Tags.GetAlarmas(infodato.Identificador) != null)
+                                if (this.Tags.GetAlarmas(infodato.Identificador) != null)
+                                {
+                                    if (Convert.ToInt32(infodato.Valor) == 1)
                                     {
-                                        if (Convert.ToInt32(infodato.Valor) == 1)
+                                        if (!AlarmasActivas.Contains(infodato.Texto))
                                         {
-                                            if (!AlarmasActivas.Contains(infodato.Texto))
-                                            {
-                                                this.AlarmasActivas.Add(infodato.Texto);
-                                            }
+                                            this.AlarmasActivas.Add(infodato.Texto);
                                         }
-                                        else
-                                        {
-                                            if (AlarmasActivas.Contains(infodato.Texto))
-                                            {
-                                                this.AlarmasActivas.Remove(infodato.Texto);
-                                            }
-                                        }
-
-                                        this.OnAlarma(ev);
                                     }
+                                    else
+                                    {
+                                        if (AlarmasActivas.Contains(infodato.Texto))
+                                        {
+                                            this.AlarmasActivas.Remove(infodato.Texto);
+                                        }
+                                    }
+
+                                    this.OnAlarma(ev);
                                 }
                             }
-                            else
-                            {
-                                wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
-                                    " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
-                            }
-                    
+                        }
+                        else
+                        {
+                            wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+                                " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
+                        }
+
                     }
                 }
                 else//posiciones de bytes
@@ -695,7 +765,7 @@ namespace Orbita.Comunicaciones
                         {
                             infodato.Valor = valor;
                             ev.Argumento = infodato;
-                            this.OnCambioDato(ev);                            
+                            this.OnCambioDato(ev);
                         }
                     }
                     else
@@ -715,7 +785,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="valor">valor del byte</param>
         /// <param name="posicion">posición del byte</param>
-        private void ESActualizarVariablesSalidas(byte valor, int posicion)
+        private void ESActualizarVariablesSalidasOCR(byte valor, int posicion)
         {
             OInfoDato infodato = null;
             OEventArgs ev = new OEventArgs();
@@ -759,7 +829,7 @@ namespace Orbita.Comunicaciones
 
                                 this.OnAlarma(ev);
                             }
-                        }                        
+                        }
                     }
                     else
                     {
@@ -775,7 +845,134 @@ namespace Orbita.Comunicaciones
 
             }
         }
+        /// <summary>
+        /// Actualiza los valores de las entradas y genera los eventos de cambio de dato y alarma
+        /// </summary>
+        /// <param name="valor">valor del byte</param>
+        /// <param name="posicion">posición del byte</param>
+        private void ESActualizarVariablesEntradasTRA(byte valor, int posicion)
+        {
+            OInfoDato infodato = null;
+            OEventArgs ev = new OEventArgs();
+            try
+            {
+                for (int i = 0; i < 8; i++)
+                {
 
+                    infodato = (OInfoDato)this._almacenLecturas[posicion.ToString() + "-" + i.ToString()];
+                    //Comprobamos el valor nuevo 
+                    if (infodato != null)
+                    {
+                        int resultado = 0;
+                        if ((valor & (1 << i)) != 0)
+                        {
+                            resultado = 1;
+                        }
+
+                        if (resultado != Convert.ToInt32(infodato.Valor))
+                        {
+                            infodato.Valor = resultado;
+                            ev.Argumento = infodato;
+                            this.OnCambioDato(ev);
+
+                            if (this.Tags.GetAlarmas(infodato.Identificador) != null)
+                            {
+                                if (Convert.ToInt32(infodato.Valor) == 1)
+                                {
+                                    if (!AlarmasActivas.Contains(infodato.Texto))
+                                    {
+                                        this.AlarmasActivas.Add(infodato.Texto);
+                                    }
+                                }
+                                else
+                                {
+                                    if (AlarmasActivas.Contains(infodato.Texto))
+                                    {
+                                        this.AlarmasActivas.Remove(infodato.Texto);
+                                    }
+                                }
+
+                                this.OnAlarma(ev);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+                            " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                wrapper.Error("Error no controlado al procesar las entradas en el dispositivo de ES Siemens" + ex.ToString());
+            }
+        }
+        /// <summary>
+        /// Actualiza los valores de las salidas y genera los eventos de cambio de dato y alarma
+        /// </summary>
+        /// <param name="valor">valor del byte</param>
+        /// <param name="posicion">posición del byte</param>
+        private void ESActualizarVariablesSalidasTRA(byte valor, int posicion)
+        {
+            OInfoDato infodato = null;
+            OEventArgs ev = new OEventArgs();
+
+            for (int i = 0; i < 8; i++)
+            {
+                try
+                {
+                    infodato = (OInfoDato)this._almacenEscrituras[posicion.ToString() + "-" + i.ToString()];
+                    //Comprobamos el valor nuevo 
+                    if (infodato != null)
+                    {
+                        int resultado = 0;
+                        if ((valor & (1 << i)) != 0)
+                        {
+                            resultado = 1;
+                        }
+
+                        if (resultado != Convert.ToInt32(infodato.Valor))
+                        {
+                            infodato.Valor = resultado;
+                            ev.Argumento = infodato;
+                            this.OnCambioDato(ev);
+
+                            if (this.Tags.GetAlarmas(infodato.Identificador) != null)
+                            {
+                                if (Convert.ToInt32(infodato.Valor) == 1)
+                                {
+                                    if (!AlarmasActivas.Contains(infodato.Texto))
+                                    {
+                                        this.AlarmasActivas.Add(infodato.Texto);
+                                    }
+                                }
+                                else
+                                {
+                                    if (AlarmasActivas.Contains(infodato.Texto))
+                                    {
+                                        this.AlarmasActivas.Remove(infodato.Texto);
+                                    }
+                                }
+
+                                this.OnAlarma(ev);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+                            " al actualizar las variables de salida en el dispositivo de ES Siemens.");
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    wrapper.Error("Error no controlado al procesar las salidas en el dispositivo de ES Siemens " + ex.ToString());
+                }
+
+            }
+        }
         #endregion
 
         #endregion
@@ -889,17 +1086,18 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public byte IdMensaje
         {
-            get {
-                    if (this.idMensaje>255)
-                    {
-                        idMensaje = 0;
-                    }
-                    else
-                    {
-                        idMensaje++;
-                    }
-                    return idMensaje; 
+            get
+            {
+                if (this.idMensaje > 255)
+                {
+                    idMensaje = 0;
                 }
+                else
+                {
+                    idMensaje++;
+                }
+                return idMensaje;
+            }
         }
 
         #endregion

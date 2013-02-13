@@ -28,7 +28,7 @@
         bool visible;
         #endregion
 
-        #region Constructores
+        #region Constructor
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Columna.
         /// </summary>

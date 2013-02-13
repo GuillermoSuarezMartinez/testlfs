@@ -22,7 +22,7 @@ namespace Orbita.Controles.Grid
         /// </summary>
         int identificador;
         /// <summary>
-        /// Control.
+        /// this.Control.
         /// </summary>
         string control;
         /// <summary>
@@ -75,7 +75,7 @@ namespace Orbita.Controles.Grid
             get { return this.identificador.ToString(System.Globalization.CultureInfo.CurrentCulture); }
         }
         /// <summary>
-        /// Control.
+        /// this.Control.
         /// </summary>
         public string Control
         {

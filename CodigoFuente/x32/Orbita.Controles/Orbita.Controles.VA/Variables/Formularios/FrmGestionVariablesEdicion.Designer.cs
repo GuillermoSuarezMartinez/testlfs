@@ -1,4 +1,6 @@
-﻿namespace Orbita.Controles.VA
+﻿using Orbita.Controles.Shared;
+using System;
+namespace Orbita.Controles.VA
 {
     partial class FrmGestionVariablesEdicion
     {
@@ -37,20 +39,20 @@
             Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGestionVariablesEdicion));
             Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
-            this.cboTipo = new Orbita.Controles.OrbitaComboPro();
-            this.lblCodigo = new Orbita.Controles.OrbitaLabel(this.components);
-            this.txtCodigo = new Orbita.Controles.OrbitaTextBox(this.components);
-            this.checkTrazabilidad = new Orbita.Controles.OrbitaCheckBox();
-            this.txtNombre = new Orbita.Controles.OrbitaTextBox(this.components);
-            this.lblTipo = new Orbita.Controles.OrbitaLabel(this.components);
-            this.lblNombre = new Orbita.Controles.OrbitaLabel(this.components);
-            this.lblGrupo = new Orbita.Controles.OrbitaLabel(this.components);
-            this.txtDescripcion = new Orbita.Controles.OrbitaTextBox(this.components);
-            this.txtGrupo = new Orbita.Controles.OrbitaTextBox(this.components);
-            this.lblDescripcion = new Orbita.Controles.OrbitaLabel(this.components);
-            this.checkHabilitado = new Orbita.Controles.OrbitaCheckBox();
-            this.btnAceptar = new Orbita.Controles.OrbitaButton(this.components);
-            this.btnCancelar = new Orbita.Controles.OrbitaButton(this.components);
+            this.cboTipo = new Orbita.Controles.Combo.OrbitaUltraCombo();
+            this.lblCodigo = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.txtCodigo = new Orbita.Controles.Comunes.OrbitaTextBox();
+            this.checkTrazabilidad = new Orbita.Controles.Comunes.OrbitaUltraCheckEditor();
+            this.txtNombre = new Orbita.Controles.Comunes.OrbitaTextBox();
+            this.lblTipo = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblNombre = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblGrupo = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.txtDescripcion = new Orbita.Controles.Comunes.OrbitaTextBox();
+            this.txtGrupo = new Orbita.Controles.Comunes.OrbitaTextBox();
+            this.lblDescripcion = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.checkHabilitado = new Orbita.Controles.Comunes.OrbitaUltraCheckEditor();
+            this.btnAceptar = new Orbita.Controles.Comunes.OrbitaUltraButton();
+            this.btnCancelar = new Orbita.Controles.Comunes.OrbitaUltraButton();
             this.pnlInferiorPadre.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodigo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNombre)).BeginInit();
@@ -77,7 +79,7 @@
             this.cboTipo.OrbValor = null;
             this.cboTipo.Size = new System.Drawing.Size(164, 21);
             this.cboTipo.TabIndex = 37;
-            this.cboTipo.OrbCambiaValor += new Orbita.Controles.OrbitaComboPro.ValueChangeHandler(this.EventoValorCambiado);
+            this.cboTipo.OrbCambiaValor += new EventHandler<System.EventArgs>(this.EventoValorCambiado);
             // 
             // lblCodigo
             // 
@@ -95,7 +97,6 @@
             // 
             // txtCodigo
             // 
-            this.txtCodigo.Appearance = null;
             this.txtCodigo.Font = new System.Drawing.Font("Franklin Gothic Book", 9F);
             this.txtCodigo.Location = new System.Drawing.Point(90, 12);
             this.txtCodigo.Multiline = false;
@@ -114,7 +115,6 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Appearance = null;
             this.txtNombre.Font = new System.Drawing.Font("Franklin Gothic Book", 9F);
             this.txtNombre.Location = new System.Drawing.Point(90, 39);
             this.txtNombre.Multiline = false;
@@ -166,7 +166,6 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Appearance = null;
             this.txtDescripcion.Font = new System.Drawing.Font("Franklin Gothic Book", 9F);
             this.txtDescripcion.Location = new System.Drawing.Point(90, 66);
             this.txtDescripcion.Name = "txtDescripcion";
@@ -176,7 +175,6 @@
             // 
             // txtGrupo
             // 
-            this.txtGrupo.Appearance = null;
             this.txtGrupo.Font = new System.Drawing.Font("Franklin Gothic Book", 9F);
             this.txtGrupo.Location = new System.Drawing.Point(90, 173);
             this.txtGrupo.Multiline = false;
@@ -215,7 +213,7 @@
             this.btnAceptar.ImageSize = new System.Drawing.Size(24, 24);
             this.btnAceptar.Location = new System.Drawing.Point(304, 270);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.OrbTipoBoton = Orbita.Controles.TipoBoton.Aceptar;
+            this.btnAceptar.OrbTipo = TipoBoton.Aceptar;
             this.btnAceptar.Size = new System.Drawing.Size(98, 33);
             this.btnAceptar.TabIndex = 38;
             this.btnAceptar.Text = "Aceptar";
@@ -229,7 +227,7 @@
             this.btnCancelar.ImageSize = new System.Drawing.Size(24, 24);
             this.btnCancelar.Location = new System.Drawing.Point(408, 270);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.OrbTipoBoton = Orbita.Controles.TipoBoton.Cancelar;
+            this.btnCancelar.OrbTipo = Orbita.Controles.Shared.TipoBoton.Cancelar;
             this.btnCancelar.Size = new System.Drawing.Size(98, 33);
             this.btnCancelar.TabIndex = 39;
             this.btnCancelar.Text = "Cancelar";
@@ -286,19 +284,19 @@
 
         #endregion
 
-        private Orbita.Controles.OrbitaComboPro cboTipo;
-        private Orbita.Controles.OrbitaLabel lblCodigo;
-        private Orbita.Controles.OrbitaTextBox txtCodigo;
-        private Orbita.Controles.OrbitaCheckBox checkTrazabilidad;
-        private Orbita.Controles.OrbitaTextBox txtNombre;
-        private Orbita.Controles.OrbitaLabel lblTipo;
-        private Orbita.Controles.OrbitaLabel lblNombre;
-        private Orbita.Controles.OrbitaLabel lblGrupo;
-        private Orbita.Controles.OrbitaTextBox txtDescripcion;
-        private Orbita.Controles.OrbitaTextBox txtGrupo;
-        private Orbita.Controles.OrbitaLabel lblDescripcion;
-        private Orbita.Controles.OrbitaCheckBox checkHabilitado;
-        private Orbita.Controles.OrbitaButton btnAceptar;
-        private Orbita.Controles.OrbitaButton btnCancelar;
+        private Orbita.Controles.Combo.OrbitaUltraCombo cboTipo;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblCodigo;
+        private Orbita.Controles.Comunes.OrbitaTextBox txtCodigo;
+        private Orbita.Controles.Comunes.OrbitaUltraCheckEditor checkTrazabilidad;
+        private Orbita.Controles.Comunes.OrbitaTextBox txtNombre;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblTipo;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblNombre;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblGrupo;
+        private Orbita.Controles.Comunes.OrbitaTextBox txtDescripcion;
+        private Orbita.Controles.Comunes.OrbitaTextBox txtGrupo;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblDescripcion;
+        private Orbita.Controles.Comunes.OrbitaUltraCheckEditor checkHabilitado;
+        private Orbita.Controles.Comunes.OrbitaUltraButton btnAceptar;
+        private Orbita.Controles.Comunes.OrbitaUltraButton btnCancelar;
     }
 }

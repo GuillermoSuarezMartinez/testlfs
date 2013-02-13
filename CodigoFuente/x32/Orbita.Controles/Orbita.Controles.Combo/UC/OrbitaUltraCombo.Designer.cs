@@ -13,8 +13,7 @@
         /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
         protected override void Dispose(bool disposing)
         {
-            this.InitializeLayout -= new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.OrbitaUltraCombo_InitializeLayout);
-            this.ValueChanged -= new System.EventHandler(this.OrbitaUltraCombo_ValueChanged);
+            this.BeforeCustomRowFilterDialog -= new Infragistics.Win.UltraWinGrid.BeforeCustomRowFilterDialogEventHandler(OrbitaUltraCombo_BeforeCustomRowFilterDialog);
             this.AfterSortChange -= new Infragistics.Win.UltraWinGrid.BandEventHandler(this.OrbitaUltraCombo_AfterSortChange);
             this.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.OrbitaUltraCombo_KeyDown);
             this.Validating -= new System.ComponentModel.CancelEventHandler(this.OrbitaUltraCombo_Validating);
@@ -39,8 +38,7 @@
             // 
             // OrbitaUltraCombo
             // 
-            this.InitializeLayout += new Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler(this.OrbitaUltraCombo_InitializeLayout);
-            this.ValueChanged += new System.EventHandler(this.OrbitaUltraCombo_ValueChanged);
+            this.BeforeCustomRowFilterDialog += new Infragistics.Win.UltraWinGrid.BeforeCustomRowFilterDialogEventHandler(OrbitaUltraCombo_BeforeCustomRowFilterDialog);
             this.AfterSortChange += new Infragistics.Win.UltraWinGrid.BandEventHandler(this.OrbitaUltraCombo_AfterSortChange);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OrbitaUltraCombo_KeyDown);
             this.Validating += new System.ComponentModel.CancelEventHandler(this.OrbitaUltraCombo_Validating);

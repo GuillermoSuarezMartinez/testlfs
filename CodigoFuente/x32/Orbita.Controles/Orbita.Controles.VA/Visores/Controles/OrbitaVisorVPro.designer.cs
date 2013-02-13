@@ -53,7 +53,7 @@
             this.lblMensaje = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblFps = new System.Windows.Forms.ToolStripStatusLabel();
-            this.PnlStatusVPro = new Orbita.Controles.OrbitaPanel();
+            this.PnlStatusVPro = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.DisplayStatusBar = new Cognex.VisionPro.CogDisplayStatusBarV2();
             this.TimerUpdateFps = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Display)).BeginInit();
@@ -366,7 +366,7 @@
         private System.Windows.Forms.ToolStripButton btnMaximize;
         private System.Windows.Forms.ToolStripButton btnInfo;
         private System.Windows.Forms.Panel PnlStatusBottom;
-        private Controles.OrbitaPanel PnlStatusVPro;
+        private Orbita.Controles.Contenedores.OrbitaPanel PnlStatusVPro;
         private Cognex.VisionPro.CogDisplayStatusBarV2 DisplayStatusBar;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel lblMensaje;

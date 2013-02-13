@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.gridVariables = new Orbita.Controles.OrbitaGridPro();
+            this.gridVariables = new Orbita.Controles.Grid.OrbitaGrid();
             this.pnlPanelPrincipalPadre.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.SuspendLayout();
@@ -72,10 +72,10 @@
             this.gridVariables.OrbToolBarMostrarToolRefrescar = true;
             this.gridVariables.Size = new System.Drawing.Size(970, 415);
             this.gridVariables.TabIndex = 3;
-            this.gridVariables.OrbBotonRefrescarClick += new Orbita.Controles.OrbitaGridPro.OrbDelegadoRefrescar(this.gridVariables_OrbBotonRefrescarClick);
-            this.gridVariables.OrbBotonEliminarFilaClick += new Orbita.Controles.OrbitaGridPro.OrbDelegadoEliminarFila(this.gridVariables_OrbBotonEliminarFilaClick);
-            this.gridVariables.OrbBotonModificarClick += new Orbita.Controles.OrbitaGridPro.OrbDelegadoModificar(this.gridVariables_OrbBotonModificarClick);
-            this.gridVariables.OrbBotonAñadirClick += new Orbita.Controles.OrbitaGridPro.OrbDelegadoAñadir(this.gridVariables_OrbBotonAñadirClick);
+            this.gridVariables.OrbBotonRefrescarClick += new Orbita.Controles.Grid.OrbitaGrid.OrbDelegadoRefrescar(this.gridVariables_OrbBotonRefrescarClick);
+            this.gridVariables.OrbBotonEliminarFilaClick += new Orbita.Controles.Grid.OrbitaGrid.OrbDelegadoEliminarFila(this.gridVariables_OrbBotonEliminarFilaClick);
+            this.gridVariables.OrbBotonModificarClick += new Orbita.Controles.Grid.OrbitaGrid.OrbDelegadoModificar(this.gridVariables_OrbBotonModificarClick);
+            this.gridVariables.OrbBotonAñadirClick += new Orbita.Controles.Grid.OrbitaGrid.OrbDelegadoAñadir(this.gridVariables_OrbBotonAñadirClick);
             // 
             // FrmGestionVariables
             // 
@@ -106,6 +106,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn grupoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn guardarTrazabilidadDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descVariableDataGridViewTextBoxColumn;
-        private Orbita.Controles.OrbitaGridPro gridVariables;
+        private Orbita.Controles.Grid.OrbitaGrid gridVariables;
     }
 }

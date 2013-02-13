@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Orbita.Controles.VA</RootNamespace>
     <AssemblyName>Orbita.Controles.VA</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -23,21 +23,56 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Comun\Orbita\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\Comun\Orbita\Orbita.Controles.VA.XML</DocumentationFile>
+    <DocumentationFile>bin\Orbita.Controles.VA.XML</DocumentationFile>
     <NoWarn>1591,1592,1573,1571,1570,1572</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Bin\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\Bin\Orbita.Controles.VA.XML</DocumentationFile>
+    <DocumentationFile>bin\Orbita.Controles.VA.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Orbita.Controles.VA.XML</DocumentationFile>
+    <NoWarn>1591,1592,1573,1571,1570,1572</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Orbita.Controles.VA.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Orbita.Controles.VA.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Orbita.Controles.VA.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cognex.VisionPro, Version=45.0.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=MSIL">
@@ -83,11 +118,20 @@
     <Reference Include="Infragistics2.Win.v11.2">
       <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.v11.2.dll</HintPath>
     </Reference>
-    <Reference Include="Orbita.Controles">
-      <HintPath>..\..\Comun\Orbita\Orbita.Controles.dll</HintPath>
+    <Reference Include="Orbita.VA.Comun, Version=13.1.8.1, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Orbita\Orbita.VA.Comun.dll</HintPath>
     </Reference>
-    <Reference Include="Orbita.Utiles, Version=12.226.3.1, Culture=neutral, processorArchitecture=x86">
-      <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
+    <Reference Include="Orbita.VA.Funciones">
+      <HintPath>..\..\Comun\Orbita\Orbita.VA.Funciones.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.VA.Hardware, Version=13.1.8.1, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Orbita\Orbita.VA.Hardware.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.VA.MaquinasEstados, Version=13.1.8.1, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Orbita\Orbita.VA.MaquinasEstados.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -97,27 +141,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\Clases\OTrabajoControles.cs" />
-    <Compile Include="Base\Controles\OrbitaCtrlBase.cs">
+    <Compile Include="Base\Custom\OrbitaCtrlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Base\Controles\OrbitaCtrlBase.Designer.cs">
+    <Compile Include="Base\Custom\OrbitaCtrlBase.Designer.cs">
       <DependentUpon>OrbitaCtrlBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Base\Formularios\FrmBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Base\Formularios\FrmBase.cs" />
     <Compile Include="Base\Formularios\FrmBase.designer.cs">
       <DependentUpon>FrmBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Base\Formularios\FrmDialogoBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Base\Formularios\FrmDialogoBase.cs" />
     <Compile Include="Base\Formularios\FrmDialogoBase.designer.cs">
       <DependentUpon>FrmDialogoBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogos\Formularios\FrmInputTextBox.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialogos\Formularios\FrmInputTextBox.cs" />
     <Compile Include="Dialogos\Formularios\FrmInputTextBox.Designer.cs">
       <DependentUpon>FrmInputTextBox.cs</DependentUpon>
     </Compile>
@@ -127,61 +165,42 @@
     <Compile Include="Dialogos\Formularios\FrmMensajeError.Designer.cs">
       <DependentUpon>FrmMensajeError.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogos\Formularios\FrmSplash.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialogos\Formularios\FrmSplash.cs" />
     <Compile Include="Dialogos\Formularios\FrmSplash.Designer.cs">
       <DependentUpon>FrmSplash.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogos\Formularios\FrmUserPsw.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Dialogos\Formularios\FrmUserPsw.cs" />
     <Compile Include="Dialogos\Formularios\FrmUserPsw.Designer.cs">
       <DependentUpon>FrmUserPsw.cs</DependentUpon>
     </Compile>
     <Compile Include="Escritorios\Clases\OEscritorios.cs" />
-    <Compile Include="Hardware\Formularios\FrmGestionCamaraAxis.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Hardware\Formularios\FrmGestionCamaraAxis.cs" />
     <Compile Include="Hardware\Formularios\FrmGestionCamaraAxis.Designer.cs">
       <DependentUpon>FrmGestionCamaraAxis.cs</DependentUpon>
     </Compile>
-    <Compile Include="Hardware\Formularios\FrmGestionSimulacion.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Hardware\Formularios\FrmGestionSimulacion.cs" />
     <Compile Include="Hardware\Formularios\FrmGestionSimulacion.designer.cs">
       <DependentUpon>FrmGestionSimulacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Hardware\Formularios\FrmMonitorizacionIO.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Hardware\Formularios\FrmMonitorizacionIO.cs" />
     <Compile Include="Hardware\Formularios\FrmMonitorizacionIO.Designer.cs">
       <DependentUpon>FrmMonitorizacionIO.cs</DependentUpon>
     </Compile>
-    <Compile Include="Label\OAntialiasingLabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="MaquinasEstados\Controles\OrbitaVisorMaquinaEstados.cs">
+    <Compile Include="MaquinasEstados\Custom\OrbitaVisorMaquinaEstados.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MaquinasEstados\Controles\OrbitaVisorMaquinaEstados.Designer.cs">
+    <Compile Include="MaquinasEstados\Custom\OrbitaVisorMaquinaEstados.Designer.cs">
       <DependentUpon>OrbitaVisorMaquinaEstados.cs</DependentUpon>
     </Compile>
-    <Compile Include="MaquinasEstados\Formularios\FrmMonitorizacionMaquinaEstados.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="MaquinasEstados\Formularios\FrmMonitorizacionMaquinaEstados.cs" />
     <Compile Include="MaquinasEstados\Formularios\FrmMonitorizacionMaquinaEstados.designer.cs">
       <DependentUpon>FrmMonitorizacionMaquinaEstados.cs</DependentUpon>
     </Compile>
-    <Compile Include="Escritorios\Formularios\FrmGestionEscritorios.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Escritorios\Formularios\FrmGestionEscritorios.cs" />
     <Compile Include="Escritorios\Formularios\FrmGestionEscritorios.Designer.cs">
       <DependentUpon>FrmGestionEscritorios.cs</DependentUpon>
     </Compile>
-    <Compile Include="Cronometros\Formularios\FrmMonitorizacionTiempos.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Cronometros\Formularios\FrmMonitorizacionTiempos.cs" />
     <Compile Include="Cronometros\Formularios\FrmMonitorizacionTiempos.designer.cs">
       <DependentUpon>FrmMonitorizacionTiempos.cs</DependentUpon>
     </Compile>
@@ -191,39 +210,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Variables\Controles\OrbitaGraficaVariableBase.cs">
+    <Compile Include="Variables\Custom\OrbitaGraficaVariableBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Variables\Controles\OrbitaGraficaVariableBase.Designer.cs">
+    <Compile Include="Variables\Custom\OrbitaGraficaVariableBase.Designer.cs">
       <DependentUpon>OrbitaGraficaVariableBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Variables\Controles\OrbitaGraficaVariableBool.cs">
+    <Compile Include="Variables\Custom\OrbitaGraficaVariableBool.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Variables\Controles\OrbitaGraficaVariableBool.Designer.cs">
+    <Compile Include="Variables\Custom\OrbitaGraficaVariableBool.Designer.cs">
       <DependentUpon>OrbitaGraficaVariableBool.cs</DependentUpon>
     </Compile>
-    <Compile Include="Variables\Formularios\FrmGestionVariables.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Variables\Formularios\FrmGestionVariables.cs" />
     <Compile Include="Variables\Formularios\FrmGestionVariables.Designer.cs">
       <DependentUpon>FrmGestionVariables.cs</DependentUpon>
     </Compile>
-    <Compile Include="Variables\Formularios\FrmGestionVariablesEdicion.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Variables\Formularios\FrmGestionVariablesEdicion.cs" />
     <Compile Include="Variables\Formularios\FrmGestionVariablesEdicion.Designer.cs">
       <DependentUpon>FrmGestionVariablesEdicion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Variables\Formularios\FrmMonitorizacionVariables.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Variables\Formularios\FrmMonitorizacionVariables.cs" />
     <Compile Include="Variables\Formularios\FrmMonitorizacionVariables.Designer.cs">
       <DependentUpon>FrmMonitorizacionVariables.cs</DependentUpon>
     </Compile>
-    <Compile Include="Variables\Formularios\FrmVariableChart.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Variables\Formularios\FrmVariableChart.cs" />
     <Compile Include="Variables\Formularios\FrmVariableChart.Designer.cs">
       <DependentUpon>FrmVariableChart.cs</DependentUpon>
     </Compile>
@@ -258,28 +269,22 @@
     <Compile Include="Visores\Controles\OrbitaVisorBitmap\Componentes\VisorImagenes.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Visores\Formularios\FrmDetalleCamara.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Visores\Formularios\FrmDetalleCamara.cs" />
     <Compile Include="Visores\Formularios\FrmDetalleCamara.Designer.cs">
       <DependentUpon>FrmDetalleCamara.cs</DependentUpon>
     </Compile>
-    <Compile Include="Visores\Formularios\FrmDetalleVisor.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Visores\Formularios\FrmDetalleVisor.cs" />
     <Compile Include="Visores\Formularios\FrmDetalleVisor.Designer.cs">
       <DependentUpon>FrmDetalleVisor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Visores\Formularios\FrmDisplays.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Visores\Formularios\FrmDisplays.cs" />
     <Compile Include="Visores\Formularios\FrmDisplays.Designer.cs">
       <DependentUpon>FrmDisplays.cs</DependentUpon>
     </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Base\Controles\OrbitaCtrlBase.resx">
+    <EmbeddedResource Include="Base\Custom\OrbitaCtrlBase.resx">
       <DependentUpon>OrbitaCtrlBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Base\Formularios\FrmBase.resx">
@@ -314,7 +319,7 @@
     <EmbeddedResource Include="Hardware\Formularios\FrmMonitorizacionIO.resx">
       <DependentUpon>FrmMonitorizacionIO.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MaquinasEstados\Controles\OrbitaVisorMaquinaEstados.resx">
+    <EmbeddedResource Include="MaquinasEstados\Custom\OrbitaVisorMaquinaEstados.resx">
       <DependentUpon>OrbitaVisorMaquinaEstados.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -328,15 +333,16 @@
     <EmbeddedResource Include="Cronometros\Formularios\FrmMonitorizacionTiempos.resx">
       <DependentUpon>FrmMonitorizacionTiempos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Variables\Controles\OrbitaGraficaVariableBase.resx">
+    <EmbeddedResource Include="Variables\Custom\OrbitaGraficaVariableBase.resx">
       <DependentUpon>OrbitaGraficaVariableBase.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Variables\Controles\OrbitaGraficaVariableBool.resx">
+    <EmbeddedResource Include="Variables\Custom\OrbitaGraficaVariableBool.resx">
       <DependentUpon>OrbitaGraficaVariableBool.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -381,66 +387,19 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Orbita.VA\Orbita.VAComun\Orbita.VA.Comun.csproj">
-      <Project>{CC36FE63-3F16-4355-A11D-F0926DFBC977}</Project>
-      <Name>Orbita.VA.Comun</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Orbita.VA\Orbita.VAControl\Orbita.VA.MaquinasEstados.csproj">
-      <Project>{1CA30AAB-0DA9-4947-B5C5-E81E9A2D9C18}</Project>
-      <Name>Orbita.VA.MaquinasEstados</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Orbita.VA\Orbita.VAHardware\Orbita.VA.Hardware.csproj">
-      <Project>{B336255B-92F8-4DAE-9051-C930269AA460}</Project>
-      <Name>Orbita.VA.Hardware</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnAdd16.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\btnAncla24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnAncla48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnCancelar24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnEliminar16.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\btnEstablecerEscritorio16.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\btnGuardar24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnModificar16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BtnNok16.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\BtnNok24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnOk16.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\btnOk24.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BtnToolTips24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\btnVer16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgBeginning24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgChat16.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imgContadorActivo24.png" />
@@ -453,9 +412,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imgContadorInactivo32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgDelete24.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imgDesktop48.png" />
@@ -476,16 +432,7 @@
     <None Include="Resources\imgInfo16.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\imgLast24.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\imgLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgNew24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgNext24.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ImgNextDoc16.png" />
@@ -509,9 +456,6 @@
     <None Include="Resources\ImgSeleccion16.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ImgSeleccionado16.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ImgTamaño16.png" />
   </ItemGroup>
   <ItemGroup>
@@ -522,9 +466,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imgWindows48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgZona16.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ImgZoom16.png" />
@@ -540,12 +481,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ImgEscenariosVariables.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgEstado16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgEstado24.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imgFoto24.png" />
@@ -564,12 +499,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imgMonitorizarVariable24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgNuevaTransicion24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgNuevoEstado24.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imgNumero24.png" />
@@ -597,12 +526,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imgTextoForzada32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgTransicion16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgTransicion24.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imgVariableActiva24.png" />
@@ -635,55 +558,13 @@
     <None Include="Resources\ImgWarning24.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\imgBuscar24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgBuscarFichero16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgBuscarFichero24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgFiltro24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgImportar24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgInspecciones24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgParametros24.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\imgQuickBuild24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgReset24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgRun24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Axis223M.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\AxisM1114.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CamaraConectada.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CamaraDesConectada.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgCamaraBasler.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgInfo12.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgInicio.bmp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ImgPlay16.png" />
@@ -694,7 +575,19 @@
   <ItemGroup>
     <None Include="Resources\ImgSnap16.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgNuevaTransicion24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgNuevoEstado24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgChat16.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)Orbita.Controles.VA.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

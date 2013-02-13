@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Resources;
+using System.Runtime.InteropServices;
 
 // La información general sobre un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos atributos para modificar la información
@@ -35,5 +35,5 @@ using System.Resources;
 // Puede especificar todos los valores o establecer como predeterminados los números de versión de compilación y de revisión 
 // mediante el asterisco ('*'), como se muestra a continuación:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("12.365.5.1")]
-[assembly: AssemblyFileVersion("12.365.5.1")]
+[assembly: AssemblyVersion("13.32.5.1")]
+[assembly: AssemblyFileVersion("13.32.5.1")]

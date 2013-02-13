@@ -40,8 +40,8 @@
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool7 = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyLista");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool8 = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyDetalles");
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
-            this.grbTerminales = new Orbita.Controles.OrbitaGroupBox(this.components);
-            this.ListTerminales = new Orbita.Controles.OrbitaListView(this.components);
+            this.grbTerminales = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
+            this.ListTerminales = new Orbita.Controles.Comunes.OrbitaListView();
             this.CodVariable = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Valor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DescVariable = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -49,11 +49,11 @@
             this.Tipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageListLarge = new System.Windows.Forms.ImageList(this.components);
             this.imageListSmall = new System.Windows.Forms.ImageList(this.components);
-            this.pnlBarraBotones = new Orbita.Controles.OrbitaPanel();
+            this.pnlBarraBotones = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.btnVistas = new Infragistics.Win.Misc.UltraDropDownButton();
             this.toolbarsManager = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
-            this.orbitaPanel1 = new Orbita.Controles.OrbitaPanel();
-            this.btnMonitorizar = new Orbita.Controles.OrbitaButton(this.components);
+            this.orbitaPanel1 = new Orbita.Controles.Contenedores.OrbitaPanel();
+            this.btnMonitorizar = new Orbita.Controles.Comunes.OrbitaUltraButton();
             this.menuTerminal = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuMonitorizar = new System.Windows.Forms.ToolStripMenuItem();
             this.timerRefresco = new System.Windows.Forms.Timer(this.components);
@@ -313,16 +313,16 @@
 
         #endregion
 
-        private Orbita.Controles.OrbitaGroupBox grbTerminales;
-        private Orbita.Controles.OrbitaListView ListTerminales;
+        private Orbita.Controles.Contenedores.OrbitaUltraGroupBox grbTerminales;
+        private Orbita.Controles.Comunes.OrbitaListView ListTerminales;
         private System.Windows.Forms.ColumnHeader CodVariable;
         private System.Windows.Forms.ColumnHeader Valor;
         private System.Windows.Forms.ColumnHeader DescVariable;
         private System.Windows.Forms.ColumnHeader HabilitadoVariable;
         private System.Windows.Forms.ColumnHeader Tipo;
-        private Orbita.Controles.OrbitaPanel pnlBarraBotones;
-        private Orbita.Controles.OrbitaPanel orbitaPanel1;
-        private Orbita.Controles.OrbitaButton btnMonitorizar;
+        private Orbita.Controles.Contenedores.OrbitaPanel pnlBarraBotones;
+        private Orbita.Controles.Contenedores.OrbitaPanel orbitaPanel1;
+        private Orbita.Controles.Comunes.OrbitaUltraButton btnMonitorizar;
         private Infragistics.Win.Misc.UltraDropDownButton btnVistas;
         private System.Windows.Forms.ContextMenuStrip menuTerminal;
         private System.Windows.Forms.ToolStripMenuItem menuMonitorizar;

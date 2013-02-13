@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinGrid;
+using Orbita.Controles.Grid;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
 
@@ -115,13 +116,13 @@ namespace Orbita.Controles.VA
 
                 if (resultado && this.checkHabilitado.Checked)
                 {
-                    if (!OTrabajoControles.ComprobarFila(this.cboEscritorios.OrbCombo.ActiveRow))
+                    if (!OTrabajoControles.ComprobarFila(this.cboEscritorios.UltraCombo.ActiveRow))
                     {
                         resultado = false;
                         throw new Exception("El campo Escritorio Predefinido no es válido");
                     }
-                    resultado &= OTexto.Validar(this.cboEscritorios.OrbCombo.ActiveRow.Cells["Indice"].Value, "Escritorio Predefinido", 50, false, false, string.Empty, true) == EnumEstadoObjetoRobusto.ResultadoCorrecto;
-                    string nombreEscritorioPredefinido = (string)this.cboEscritorios.OrbCombo.ActiveRow.Cells["Indice"].Value;
+                    resultado &= OTexto.Validar(this.cboEscritorios.UltraCombo.ActiveRow.Cells["Indice"].Value, "Escritorio Predefinido", 50, false, false, string.Empty, true) == EnumEstadoObjetoRobusto.ResultadoCorrecto;
+                    string nombreEscritorioPredefinido = (string)this.cboEscritorios.UltraCombo.ActiveRow.Cells["Indice"].Value;
 
                     // Escritorios
                     List<OpcionesEscritorio> listaOpcionesEscritorio = this.ObtenerListaOpcionesEscritoriosDeGrid();
@@ -209,7 +210,7 @@ namespace Orbita.Controles.VA
             {
                 valores.Add(opcionesEscritorio);
             }
-            OTrabajoControles.CargarGridSimple(this.GridEscritorios, valores, typeof(OpcionesEscritorio), Estilos.EstiloColumna.Texto, Estilos.Alineacion.Izquierda, null, 150, null);
+            OTrabajoControles.CargarGridSimple(this.GridEscritorios, valores, typeof(OpcionesEscritorio), EstiloColumna.Texto, Alineacion.Izquierda, null, 150, null);
 
             this.GridEscritorios.OrbToolBarAgregarBoton("Establecer", global::Orbita.Controles.VA.Properties.Resources.btnEstablecerEscritorio16, "Establecer", 2, true);
         }
@@ -228,9 +229,9 @@ namespace Orbita.Controles.VA
                 this.OpcionesEscritorios.PermiteAnclajes = this.checkAnclaje.Checked;
                 this.OpcionesEscritorios.PreferenciaMaximizado = this.checkPreferenciaMaximizado.Checked;
                 this.OpcionesEscritorios.NombreEscritorioActual = string.Empty;
-                if (this.cboEscritorios.OrbCombo.ActiveRow != null)
+                if (this.cboEscritorios.UltraCombo.ActiveRow != null)
                 {
-                    this.OpcionesEscritorios.NombreEscritorioActual = (string)this.cboEscritorios.OrbCombo.ActiveRow.Cells["Indice"].Value;
+                    this.OpcionesEscritorios.NombreEscritorioActual = (string)this.cboEscritorios.UltraCombo.ActiveRow.Cells["Indice"].Value;
                 }
 
                 // Escritorios
@@ -247,7 +248,7 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// añade una nueva fila a un grid simple (Una sóla columna)
         /// </summary>
-        private void NuevaFila(OrbitaGridPro grid, object valor)
+        private void NuevaFila(OrbitaGrid grid, object valor)
         {
             grid.OrbFilaActiva = grid.OrbGrid.DisplayLayout.Bands[0].AddNew();
             grid.OrbFilaActiva.Cells[0].Value = valor;

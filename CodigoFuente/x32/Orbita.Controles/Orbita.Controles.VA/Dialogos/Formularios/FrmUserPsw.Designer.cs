@@ -32,13 +32,13 @@
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
-            this.GrpFondo = new Orbita.Controles.OrbitaGroupBox(this.components);
-            this.orbitaPictureBox1 = new Orbita.Controles.OrbitaPictureBox(this.components);
-            this.ComboUsuario = new Orbita.Controles.OrbitaComboPro();
-            this.LblContraseña = new Orbita.Controles.OrbitaLabel(this.components);
-            this.LblUsuario = new Orbita.Controles.OrbitaLabel(this.components);
-            this.TxtContraseña = new Orbita.Controles.OrbitaTextBox(this.components);
-            this.LblErrorContraseña = new Orbita.Controles.OrbitaLabel(this.components);
+            this.GrpFondo = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
+            this.orbitaPictureBox1 = new Orbita.Controles.Comunes.OrbitaPictureBox();
+            this.ComboUsuario = new Orbita.Controles.Combo.OrbitaUltraCombo();
+            this.LblContraseña = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.LblUsuario = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.TxtContraseña = new Orbita.Controles.Comunes.OrbitaTextBox();
+            this.LblErrorContraseña = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.pnlInferiorPadre.SuspendLayout();
             this.pnlPanelPrincipalPadre.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GrpFondo)).BeginInit();
@@ -134,7 +134,6 @@
             this.TxtContraseña.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtContraseña.Appearance = null;
             this.TxtContraseña.Font = new System.Drawing.Font("Franklin Gothic Book", 9F);
             this.TxtContraseña.Location = new System.Drawing.Point(159, 60);
             this.TxtContraseña.Multiline = false;
@@ -185,12 +184,12 @@
 
         #endregion
 
-        private Orbita.Controles.OrbitaGroupBox GrpFondo;
-        private Orbita.Controles.OrbitaLabel LblContraseña;
-        private Orbita.Controles.OrbitaLabel LblUsuario;
-        private Orbita.Controles.OrbitaTextBox TxtContraseña;
-        private Orbita.Controles.OrbitaComboPro ComboUsuario;
-        private Orbita.Controles.OrbitaPictureBox orbitaPictureBox1;
-        private Controles.OrbitaLabel LblErrorContraseña;
+        private Orbita.Controles.Contenedores.OrbitaUltraGroupBox GrpFondo;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel LblContraseña;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel LblUsuario;
+        private Orbita.Controles.Comunes.OrbitaTextBox TxtContraseña;
+        private Orbita.Controles.Combo.OrbitaUltraCombo ComboUsuario;
+        private Orbita.Controles.Comunes.OrbitaPictureBox orbitaPictureBox1;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel LblErrorContraseña;
     }
 }

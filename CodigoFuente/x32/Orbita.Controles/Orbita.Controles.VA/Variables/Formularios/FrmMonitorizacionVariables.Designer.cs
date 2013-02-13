@@ -42,8 +42,8 @@
             Infragistics.Win.UltraWinToolbars.PopupMenuTool popupMenuTool2 = new Infragistics.Win.UltraWinToolbars.PopupMenuTool("Escenarios");
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
-            this.grbVariables = new Orbita.Controles.OrbitaGroupBox(this.components);
-            this.ListVariables = new Orbita.Controles.OrbitaListView(this.components);
+            this.grbVariables = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
+            this.ListVariables = new Orbita.Controles.Comunes.OrbitaListView();
             this.CodVariable = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Valor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DescVariable = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -62,12 +62,12 @@
             this.menuGuardarFoto = new System.Windows.Forms.ToolStripMenuItem();
             this.imageListLarge = new System.Windows.Forms.ImageList(this.components);
             this.imageListSmall = new System.Windows.Forms.ImageList(this.components);
-            this.pnlBarraBotones = new Orbita.Controles.OrbitaPanel();
-            this.orbitaPanel1 = new Orbita.Controles.OrbitaPanel();
+            this.pnlBarraBotones = new Orbita.Controles.Contenedores.OrbitaPanel();
+            this.orbitaPanel1 = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.DropDownEscenarios = new Infragistics.Win.Misc.UltraDropDownButton();
             this.toolbarsManager = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
             this.DropDownVistas = new Infragistics.Win.Misc.UltraDropDownButton();
-            this.btnMonitorizar = new Orbita.Controles.OrbitaButton(this.components);
+            this.btnMonitorizar = new Orbita.Controles.Comunes.OrbitaUltraButton();
             this.iconosGrandesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._Form1_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._Form1_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
@@ -109,6 +109,8 @@
             this.grbVariables.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grbVariables.Location = new System.Drawing.Point(0, 0);
             this.grbVariables.Name = "grbVariables";
+            this.grbVariables.OrbColorBorde = System.Drawing.Color.Empty;
+            this.grbVariables.OrbColorCabecera = System.Drawing.Color.Empty;
             this.grbVariables.Size = new System.Drawing.Size(763, 337);
             this.grbVariables.TabIndex = 15;
             this.grbVariables.Text = "Listado de variables del sistema";
@@ -297,19 +299,20 @@
             this.toolbarsManager.AlwaysShowMenusExpanded = Infragistics.Win.DefaultableBoolean.True;
             this.toolbarsManager.DesignerFlags = 1;
             this.toolbarsManager.DockWithinContainer = this;
+            this.toolbarsManager.DockWithinContainerBaseType = typeof(Orbita.Controles.VA.FrmBase);
             this.toolbarsManager.MenuAnimationStyle = Infragistics.Win.UltraWinToolbars.MenuAnimationStyle.Slide;
             this.toolbarsManager.ShowFullMenusDelay = 500;
-            popupMenuTool1.SharedProps.Caption = "Vistas";
+            popupMenuTool1.SharedPropsInternal.Caption = "Vistas";
             popupMenuTool1.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
             buttonTool1,
             buttonTool2,
             buttonTool3,
             buttonTool4});
-            buttonTool5.SharedProps.Caption = "Iconos grandes";
-            buttonTool6.SharedProps.Caption = "Iconos pequeños";
-            buttonTool7.SharedProps.Caption = "Lista";
-            buttonTool8.SharedProps.Caption = "Detalles";
-            popupMenuTool2.SharedProps.Caption = "Escenarios";
+            buttonTool5.SharedPropsInternal.Caption = "Iconos grandes";
+            buttonTool6.SharedPropsInternal.Caption = "Iconos pequeños";
+            buttonTool7.SharedPropsInternal.Caption = "Lista";
+            buttonTool8.SharedPropsInternal.Caption = "Detalles";
+            popupMenuTool2.SharedPropsInternal.Caption = "Escenarios";
             this.toolbarsManager.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
             popupMenuTool1,
             buttonTool5,
@@ -458,19 +461,19 @@
             this.Controls.Add(this._Form1_Toolbars_Dock_Area_Right);
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Left);
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Right);
-            this.Controls.Add(this._Form1_Toolbars_Dock_Area_Top);
             this.Controls.Add(this._Form1_Toolbars_Dock_Area_Bottom);
-            this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Top);
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Bottom);
+            this.Controls.Add(this._Form1_Toolbars_Dock_Area_Top);
+            this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Top);
             this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Monitorizacion;
             this.Name = "FrmMonitorizacionVariables";
             this.RecordarPosicion = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
             this.Text = "Monitorizacion de las variables del sistema";
-            this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Bottom, 0);
             this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Top, 0);
-            this.Controls.SetChildIndex(this._Form1_Toolbars_Dock_Area_Bottom, 0);
             this.Controls.SetChildIndex(this._Form1_Toolbars_Dock_Area_Top, 0);
+            this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Bottom, 0);
+            this.Controls.SetChildIndex(this._Form1_Toolbars_Dock_Area_Bottom, 0);
             this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Right, 0);
             this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Left, 0);
             this.Controls.SetChildIndex(this._Form1_Toolbars_Dock_Area_Right, 0);
@@ -490,15 +493,15 @@
 
         #endregion
 
-        private Orbita.Controles.OrbitaGroupBox grbVariables;
-        private Orbita.Controles.OrbitaListView ListVariables;
+        private Orbita.Controles.Contenedores.OrbitaUltraGroupBox grbVariables;
+        private Orbita.Controles.Comunes.OrbitaListView ListVariables;
         private System.Windows.Forms.ColumnHeader CodVariable;
         private System.Windows.Forms.ColumnHeader Valor;
         private System.Windows.Forms.ColumnHeader DescVariable;
         private System.Windows.Forms.ColumnHeader HabilitadoVariable;
         private System.Windows.Forms.ColumnHeader GuardarTrazabilidad;
         private System.Windows.Forms.ImageList imageListSmall;
-        private Orbita.Controles.OrbitaPanel pnlBarraBotones;
+        private Orbita.Controles.Contenedores.OrbitaPanel pnlBarraBotones;
         private System.Windows.Forms.ToolStripMenuItem iconosGrandesToolStripMenuItem;
         private System.Windows.Forms.ImageList imageListLarge;
         private System.Windows.Forms.ContextMenuStrip menuVariable;
@@ -521,8 +524,8 @@
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _Form1_Toolbars_Dock_Area_Bottom;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _FrmBase_Toolbars_Dock_Area_Top;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _FrmBase_Toolbars_Dock_Area_Bottom;
-        private Orbita.Controles.OrbitaPanel orbitaPanel1;
-        private Orbita.Controles.OrbitaButton btnMonitorizar;
+        private Orbita.Controles.Contenedores.OrbitaPanel orbitaPanel1;
+        private Orbita.Controles.Comunes.OrbitaUltraButton btnMonitorizar;
         private System.Windows.Forms.Timer timerRefresco;
         private Infragistics.Win.Misc.UltraDropDownButton DropDownEscenarios;
         private Infragistics.Win.Misc.UltraDropDownButton DropDownVistas;

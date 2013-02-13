@@ -1,4 +1,6 @@
-﻿namespace Orbita.Controles.Combo
+﻿using Orbita.Controles.Grid;
+using Orbita.Controles.Shared;
+namespace Orbita.Controles.Combo
 {
     public partial class OrbitaUltraDropDown : Infragistics.Win.UltraWinGrid.UltraDropDown
     {
@@ -52,7 +54,7 @@
                     {
                         return;
                     }
-                    foreach (Orbita.Controles.Grid.OEstiloColumna columna in columnas)
+                    foreach (OEstiloColumna columna in columnas)
                     {
                         if (this.DisplayLayout.Bands[0].Columns.Exists(columna.Campo))
                         {
@@ -69,7 +71,7 @@
                         else
                         {
                             // Si el campo que le hemos pasado como parametro no existe en el combo.
-                            throw new Orbita.Controles.Shared.OExcepcion("Error en FormatearDropDown. El campo " + columna.Campo + " no existe en el Grid.");
+                            throw new OExcepcion("Error en FormatearDropDown. El campo " + columna.Campo + " no existe en el Grid.");
                         }
                     }
                     if (dt.Rows.Count > 0)
@@ -79,18 +81,18 @@
                     if (columnas.Count == 1)
                     {
                         this.DisplayLayout.Bands[0].ColHeadersVisible = false;
-                        this.DisplayLayout.Bands[0].Columns[((Orbita.Controles.Grid.OEstiloColumna)columnas[0]).Campo].Width = this.Width - 2;
+                        this.DisplayLayout.Bands[0].Columns[((OEstiloColumna)columnas[0]).Campo].Width = this.Width - 2;
                     }
                 }
                 else
                 {
                     // Si la tabla es nula lanzamos excepcion.
-                    throw new Orbita.Controles.Shared.OExcepcion("Error en FormatearDropDown. La tabla es nula.");
+                    throw new OExcepcion("Error en FormatearDropDown. La tabla es nula.");
                 }
             }
-            catch (Orbita.Controles.Shared.OExcepcion ex)
+            catch (OExcepcion ex)
             {
-                throw new Orbita.Controles.Shared.OExcepcion("Error en FormatearDropDown.", ex);
+                throw new OExcepcion("Error en FormatearDropDown.", ex);
             }
         }
         #endregion

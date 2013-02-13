@@ -69,7 +69,7 @@ namespace Orbita.Comunicaciones
         /// <param name="salidas">salidas a procesar</param>
         /// <param name="idMensaje">identificador del mensaje</param>
         /// <returns></returns>
-        public virtual byte[] SalidasEnviar(byte salidas, byte idMensaje)
+        public virtual byte[] SalidasEnviar(byte[] salidas, byte idMensaje)
         {
             return null;
         }

@@ -39,19 +39,19 @@ namespace Orbita.Controles.VA
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab1 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab2 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             this.pageGestion = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.pnlFormulario = new Orbita.Controles.OrbitaPanel();
+            this.pnlFormulario = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.lblFiltro = new System.Windows.Forms.Label();
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.BindingOSimulacionCamara = new System.Windows.Forms.BindingSource(this.components);
-            this.lblIntervaloEntreSnaps = new Orbita.Controles.OrbitaLabel(this.components);
-            this.lblRutaFotografias = new Orbita.Controles.OrbitaLabel(this.components);
-            this.lblTipoSimulacion = new Orbita.Controles.OrbitaLabel(this.components);
-            this.lblMsIntervaloEntreSnaps = new Orbita.Controles.OrbitaLabel(this.components);
-            this.lblSimulacion = new Orbita.Controles.OrbitaLabel(this.components);
-            this.checkSimulacion = new Orbita.Controles.OrbitaCheckBox();
-            this.txtRutaFotografias = new Orbita.Controles.OrbitaTextBox(this.components);
-            this.txtIntervaloEntreSnaps = new Orbita.Controles.OrbitaTextBox(this.components);
-            this.btnDialogoRuta = new Orbita.Controles.OrbitaButton(this.components);
+            this.lblIntervaloEntreSnaps = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblRutaFotografias = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblTipoSimulacion = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblMsIntervaloEntreSnaps = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblSimulacion = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.checkSimulacion = new Orbita.Controles.Comunes.OrbitaUltraCheckEditor();
+            this.txtRutaFotografias = new Orbita.Controles.Comunes.OrbitaTextBox();
+            this.txtIntervaloEntreSnaps = new Orbita.Controles.Comunes.OrbitaTextBox();
+            this.btnDialogoRuta = new Orbita.Controles.Comunes.OrbitaUltraButton();
             this.cboTipoSimulacion = new System.Windows.Forms.ComboBox();
             this.bindingTipoSimulacion = new System.Windows.Forms.BindingSource(this.components);
             this.ultraTabPageControl2 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
@@ -61,7 +61,7 @@ namespace Orbita.Controles.VA
             this.tipoSimulacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.intervaloEntreSnapsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rutaFotografiasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabGestion = new Orbita.Controles.OrbitaTabControl();
+            this.tabGestion = new Orbita.Controles.Contenedores.OrbitaUltraTabControl();
             this.ultraTabSharedControlsPage1 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
@@ -222,7 +222,6 @@ namespace Orbita.Controles.VA
             // 
             // txtRutaFotografias
             // 
-            this.txtRutaFotografias.Appearance = null;
             this.txtRutaFotografias.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BindingOSimulacionCamara, "RutaFotografias", true));
             this.txtRutaFotografias.Font = new System.Drawing.Font("Franklin Gothic Book", 9F);
             this.txtRutaFotografias.Location = new System.Drawing.Point(144, 77);
@@ -234,7 +233,6 @@ namespace Orbita.Controles.VA
             // 
             // txtIntervaloEntreSnaps
             // 
-            this.txtIntervaloEntreSnaps.Appearance = null;
             this.txtIntervaloEntreSnaps.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.BindingOSimulacionCamara, "IntervaloEntreSnaps", true));
             this.txtIntervaloEntreSnaps.Font = new System.Drawing.Font("Franklin Gothic Book", 9F);
             this.txtIntervaloEntreSnaps.Location = new System.Drawing.Point(144, 146);
@@ -419,12 +417,12 @@ namespace Orbita.Controles.VA
 
         #endregion
 
-        private Orbita.Controles.OrbitaTabControl tabGestion;
+        private Orbita.Controles.Contenedores.OrbitaUltraTabControl tabGestion;
         private Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage ultraTabSharedControlsPage1;
         private Infragistics.Win.UltraWinTabControl.UltraTabPageControl pageGestion;
         private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl2;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
-        private Orbita.Controles.OrbitaPanel pnlFormulario;
+        private Orbita.Controles.Contenedores.OrbitaPanel pnlFormulario;
         private System.Windows.Forms.DataGridView gridMaster;
         private System.Windows.Forms.DataGridViewTextBoxColumn idVariableDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn codVariableDataGridViewTextBoxColumn;
@@ -435,18 +433,18 @@ namespace Orbita.Controles.VA
         private System.Windows.Forms.DataGridViewTextBoxColumn descVariableDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource BindingOSimulacionCamara;
         private System.Windows.Forms.ComboBox cboTipoSimulacion;
-        private Orbita.Controles.OrbitaButton btnDialogoRuta;
+        private Orbita.Controles.Comunes.OrbitaUltraButton btnDialogoRuta;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.BindingSource bindingTipoSimulacion;
-        private Orbita.Controles.OrbitaTextBox txtIntervaloEntreSnaps;
-        private Orbita.Controles.OrbitaTextBox txtRutaFotografias;
-        private Orbita.Controles.OrbitaCheckBox checkSimulacion;
-        private Orbita.Controles.OrbitaLabel lblSimulacion;
-        private Orbita.Controles.OrbitaLabel lblIntervaloEntreSnaps;
-        private Orbita.Controles.OrbitaLabel lblRutaFotografias;
-        private Orbita.Controles.OrbitaLabel lblTipoSimulacion;
-        private Orbita.Controles.OrbitaLabel lblMsIntervaloEntreSnaps;
+        private Orbita.Controles.Comunes.OrbitaTextBox txtIntervaloEntreSnaps;
+        private Orbita.Controles.Comunes.OrbitaTextBox txtRutaFotografias;
+        private Orbita.Controles.Comunes.OrbitaUltraCheckEditor checkSimulacion;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblSimulacion;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblIntervaloEntreSnaps;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblRutaFotografias;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblTipoSimulacion;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblMsIntervaloEntreSnaps;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn simulacionDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn tipoSimulacionDataGridViewTextBoxColumn;

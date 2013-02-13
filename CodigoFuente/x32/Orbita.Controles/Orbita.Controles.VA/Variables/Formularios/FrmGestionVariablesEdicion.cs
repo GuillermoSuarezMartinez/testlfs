@@ -14,6 +14,7 @@ using System.Collections;
 using System.Windows.Forms;
 using Orbita.Utiles;
 using Orbita.VA.MaquinasEstados;
+using Orbita.Controles.Grid;
 
 namespace Orbita.Controles.VA
 {
@@ -149,7 +150,7 @@ namespace Orbita.Controles.VA
 
             //Aplicamos el formato
             ArrayList cols = new ArrayList();
-            cols.Add(new Estilos.CamposEstilos("CodTipoVariable", "Codigo"));
+            cols.Add(new OEstiloColumna("CodTipoVariable", "Codigo"));
             this.cboTipo.OrbFormatear(AppBD.GetTiposVariables(), cols, "CodTipoVariable", "IdTipoVariable");
 
             if (!Nuevo)

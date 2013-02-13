@@ -14,13 +14,13 @@ namespace Orbita.Controles.Menu
     /// <summary>
     /// Orbita.Controles.Menu.OrbitaUltraToolBarsManager.
     /// </summary>
-    public partial class OrbitaUltraToolBarsManager : Infragistics.Win.UltraWinToolbars.UltraToolbarsManager
+    public partial class OrbitaUltraToolbarsManager : Infragistics.Win.UltraWinToolbars.UltraToolbarsManager
     {
         #region Constructor
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaUltraToolBarsManager.
         /// </summary>
-        public OrbitaUltraToolBarsManager()
+        public OrbitaUltraToolbarsManager()
             : base()
         {
             InitializeComponent();
@@ -31,7 +31,7 @@ namespace Orbita.Controles.Menu
         /// </summary>
         /// <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
         /// que contienen cero o más componentes de forma lógica.</param>
-        public OrbitaUltraToolBarsManager(System.ComponentModel.IContainer contenedor)
+        public OrbitaUltraToolbarsManager(System.ComponentModel.IContainer contenedor)
             : base(contenedor)
         {
             if (contenedor == null)

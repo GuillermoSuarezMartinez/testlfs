@@ -137,16 +137,16 @@ namespace Orbita.Comunicaciones
             }
 
             return ret;
-        }               
+        }
         /// <summary>
         /// Escritura de salidas
         /// </summary>
         /// <param name="salidas">salidas a escribir</param>
         /// <param name="idMensaje">identificador del mensaje</param>
         /// <returns></returns>
-        public override byte[] SalidasEnviar(byte salidas, byte idMensaje)
+        public override byte[] SalidasEnviar(byte[] salidas, byte idMensaje)
         {
-            byte[] ret = null;           
+            byte[] ret = null;
 
             return ret;
         }
@@ -158,7 +158,7 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public override bool SalidasProcesar(byte[] valor, byte id)
         {
-            bool ret = false;           
+            bool ret = false;
 
             return ret;
         }

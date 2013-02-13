@@ -1,17 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
-using System.Windows.Forms;
+﻿//***********************************************************************
+// Assembly         : Orbita.Controles.VA
+// Author           : aibañez
+// Created          : 02-01-2013
+//
+// Last Modified By : 
+// Last Modified On : 
+// Description      : 
+//
+// Copyright        : (c) Orbita Ingenieria. All rights reserved.
+//***********************************************************************
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
-using System.Reflection;
-using Orbita.VA.Comun;
-using System.Drawing.Imaging;
+using System.Drawing;
 using System.Drawing.Drawing2D;
-using Infragistics.UltraChart.Core.Primitives;
+using System.Drawing.Imaging;
 using System.IO;
+using System.Windows.Forms;
+using Orbita.Controles.Contenedores;
+using Orbita.Controles.Grid;
+using Orbita.Controles.Combo;
+using Orbita.Controles.Comunes;
 using Orbita.Utiles;
+using Orbita.VA.Comun;
 
 namespace Orbita.Controles.VA
 {
@@ -34,7 +46,7 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Gestor de anclas de los formularios
         /// </summary>
-        public static OrbitaDockManager DockManager; 
+        public static OrbitaUltraDockManager DockManager; 
         #endregion
 
         #region Método(s) estático(s)
@@ -107,9 +119,9 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Comprueba que hay una fila correctamente activada para lanzar un nuevo formulario
         /// </summary>
-        /// <param name="grid">OrbitaGridPro que se desea comprobar</param>
+        /// <param name="grid">OrbitaGrid que se desea comprobar</param>
         /// <returns>True si se puede lanzar un nuevo formulario basado en la selección; false en caso contrario</returns>
-        public static bool ComprobarGrid(OrbitaGridPro grid)
+        public static bool ComprobarGrid(OrbitaGrid grid)
         {
             return ((grid.OrbGrid.ActiveRow != null) &&
                     (grid.OrbGrid.ActiveRow.IsDataRow) &&
@@ -131,7 +143,7 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Carga el combo con la lista de módulos de la aplicación
         /// </summary>
-        public static void CargarCombo(OrbitaComboPro combo, Type enumType, object valorDefecto)
+        public static void CargarCombo(OrbitaUltraCombo combo, Type enumType, object valorDefecto)
         {
             // Creación de una nueva tabla.
             DataTable table = new DataTable("DesplegableCombo");
@@ -152,18 +164,18 @@ namespace Orbita.Controles.VA
 
             // Se diseña el grid
             ArrayList cols = new ArrayList();
-            cols.Add(new Orbita.Controles.Estilos.CamposEstilos("Descripcion", "Descripción"));
+            cols.Add(new OEstiloColumna("Descripcion", "Descripción"));
 
             // Se rellena el grid
             combo.OrbFormatear(table, cols, "Descripcion", "Descripcion");
 
             // Se establece el valor actual
-            combo.OrbCombo.Value = OAtributoEnumerado.GetStringValue((Enum)valorDefecto);
+            combo.UltraCombo.Value = OAtributoEnumerado.GetStringValue((Enum)valorDefecto);
         }
         /// <summary>
         /// Carga el combo con la lista de módulos de la aplicación
         /// </summary>
-        public static void CargarCombo(OrbitaComboPro combo, Dictionary<object, string> valores, Type tipo, object valorDefecto)
+        public static void CargarCombo(OrbitaUltraCombo combo, Dictionary<object, string> valores, Type tipo, object valorDefecto)
         {
             // Creación de una nueva tabla.
             DataTable table = new DataTable("DesplegableCombo");
@@ -184,19 +196,19 @@ namespace Orbita.Controles.VA
 
             // Se diseña el grid
             ArrayList cols = new ArrayList();
-            cols.Add(new Orbita.Controles.Estilos.CamposEstilos("Descripcion", "Descripción"));
-            cols.Add(new Orbita.Controles.Estilos.CamposEstilos("Indice", "Índice"));
+            cols.Add(new OEstiloColumna("Descripcion", "Descripción"));
+            cols.Add(new OEstiloColumna("Indice", "Índice"));
 
             // Se rellena el grid
             combo.OrbFormatear(table, cols, "Descripcion", "Indice");
 
             // Se establece el valor actual
-            combo.OrbCombo.Value = valorDefecto;
+            combo.UltraCombo.Value = valorDefecto;
 
             // Se oculta el índice
-            combo.OrbCombo.DisplayLayout.Bands[0].Columns["Indice"].Hidden = true;
-            combo.OrbCombo.DisplayLayout.Bands[0].ColHeadersVisible = false;
-            combo.OrbCombo.DisplayLayout.Bands[0].Columns["Descripcion"].AutoSizeMode = Infragistics.Win.UltraWinGrid.ColumnAutoSizeMode.VisibleRows;
+            combo.UltraCombo.DisplayLayout.Bands[0].Columns["Indice"].Hidden = true;
+            combo.UltraCombo.DisplayLayout.Bands[0].ColHeadersVisible = false;
+            combo.UltraCombo.DisplayLayout.Bands[0].Columns["Descripcion"].AutoSizeMode = Infragistics.Win.UltraWinGrid.ColumnAutoSizeMode.VisibleRows;
         }
         /// <summary>
         /// Carga de un grid de un único campo
@@ -209,7 +221,7 @@ namespace Orbita.Controles.VA
         /// <param name="mascara">Máscara aplicada</param>
         /// <param name="ancho">Ancho de la columna</param>
         /// <param name="editorControl">Control con el cual se modificarán los valores</param>
-        public static void CargarGridSimple(OrbitaGridPro grid, List<object> valores, Type tipo, Estilos.EstiloColumna estilo, Estilos.Alineacion alinear, Estilos.Mascara mascara, int ancho, Control editorControl)
+        public static void CargarGridSimple(OrbitaGrid grid, List<object> valores, Type tipo, EstiloColumna estilo, Alineacion alinear, OMascara mascara, int ancho, Control editorControl)
         {
             // Bloqueamos el grid
             grid.OrbGrid.BeginUpdate();
@@ -233,7 +245,7 @@ namespace Orbita.Controles.VA
 
             // Se carga el grid
             ArrayList list = new ArrayList();
-            list.Add(new Estilos.CamposEstilos("Valor", "Valor", estilo, alinear, mascara, ancho, false));
+            list.Add(new OEstiloColumna("Valor", "Valor", estilo, alinear, mascara, ancho, false));
 
             // Formateamos las columnas y las rellenamos de datos
             grid.OrbFormatear(table, list);
@@ -446,7 +458,7 @@ namespace Orbita.Controles.VA
     } 
     #endregion
 
-    #region Clase EnumeracionCombo: Utilizada para visualizar en el componente OrbitaComboPro enumerados
+    #region Clase EnumeracionCombo: Utilizada para visualizar en el componente OrbitaUltraCombo enumerados
     /// <summary>
     /// Clase destinada a los combos de los formularios databinding que representan un enumerado
     /// </summary>

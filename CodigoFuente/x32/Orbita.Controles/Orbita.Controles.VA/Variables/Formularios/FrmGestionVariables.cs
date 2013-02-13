@@ -16,6 +16,7 @@ using System.Windows.Forms;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
 using Orbita.VA.MaquinasEstados;
+using Orbita.Controles.Grid;
 
 namespace Orbita.Controles.VA
 {
@@ -156,13 +157,13 @@ namespace Orbita.Controles.VA
             {
                 //Formateamos y cargamos el grid
                 ArrayList cols = new ArrayList();
-                cols.Add(new Estilos.CamposEstilos("CodVariable", "Código",150));
-                cols.Add(new Estilos.CamposEstilos("NombreVariable", "Nombre",190));
-                cols.Add(new Estilos.CamposEstilos("DescVariable", "Descripción",270));
-                cols.Add(new Estilos.CamposEstilos("HabilitadoVariable", "Habilitado", Estilos.EstiloColumna.Check, Estilos.Alineacion.Centrado,80));
-                cols.Add(new Estilos.CamposEstilos("Grupo", "Grupo",114));
-                cols.Add(new Estilos.CamposEstilos("GuardarTrazabilidad", "Trazabilidad", Estilos.EstiloColumna.Check, Estilos.Alineacion.Centrado,80));
-                cols.Add(new Estilos.CamposEstilos("NombreTipoVariable", "Tipo",80));
+                cols.Add(new OEstiloColumna("CodVariable", "Código",150));
+                cols.Add(new OEstiloColumna("NombreVariable", "Nombre", 190));
+                cols.Add(new OEstiloColumna("DescVariable", "Descripción", 270));
+                cols.Add(new OEstiloColumna("HabilitadoVariable", "Habilitado", EstiloColumna.Check, Alineacion.Centrado, 80));
+                cols.Add(new OEstiloColumna("Grupo", "Grupo", 114));
+                cols.Add(new OEstiloColumna("GuardarTrazabilidad", "Trazabilidad", EstiloColumna.Check, Alineacion.Centrado, 80));
+                cols.Add(new OEstiloColumna("NombreTipoVariable", "Tipo", 80));
 
                 gridVariables.OrbFormatear(dt, cols);
             }

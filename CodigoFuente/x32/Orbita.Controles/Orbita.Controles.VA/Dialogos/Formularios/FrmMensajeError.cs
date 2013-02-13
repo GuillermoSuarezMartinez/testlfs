@@ -185,7 +185,6 @@ namespace Orbita.Controles.VA
         /// </summary>
         /// <param name="dialogo"></param>
         private delegate void DelegadoMostrar(bool dialogo);
-
         #endregion
     }
 }

@@ -6,9 +6,9 @@
     <!--niveles = debug/info/warn/error/fatal, por defecto debug sin referencia-->
     <!--nivel = nivel de logger, por defecto debug-->
     <!--niveles = debug/info/warn/error/fatal-->
-    <logger nombre="owrapper" xsi:type="Wrapper" nivel="debug" >
-      <logger nombre="owrapperdebug" xsi:type="Debug" nivel="debug" />
-      <logger nombre="owrapperremoting" xsi:type="Remoting" nivel="debug" />
+    <logger nombre="owrapper" xsi:type="Wrapper">
+      <logger nombre="owrapperdebug" xsi:type="Debug" nivel="error" />
+      <logger nombre="owrapperremoting" xsi:type="Remoting" />
     </logger>
   </loggers>
   <!--Si se va a utilizar las propiedades por defecto debemos configurar la propiedad vacía-->

@@ -22,7 +22,7 @@ namespace Orbita.Controles.Comunes.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Orbita.Controles.Comunes.Properties {
         ///   Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Orbita.Controles.Comunes.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Orbita.Controles.Comunes.Properties {
         ///   búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -60,28 +60,28 @@ namespace Orbita.Controles.Comunes.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap btnAceptarEstandar24 {
+        public static System.Drawing.Bitmap btnAceptarEstandar24 {
             get {
                 object obj = ResourceManager.GetObject("btnAceptarEstandar24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap btnCerrarEstandar24 {
+        public static System.Drawing.Bitmap btnCerrarEstandar24 {
             get {
                 object obj = ResourceManager.GetObject("btnCerrarEstandar24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap btnDescartarEstandar24 {
+        public static System.Drawing.Bitmap btnDescartarEstandar24 {
             get {
                 object obj = ResourceManager.GetObject("btnDescartarEstandar24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap btnGuardarEstandar24 {
+        public static System.Drawing.Bitmap btnGuardarEstandar24 {
             get {
                 object obj = ResourceManager.GetObject("btnGuardarEstandar24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.layFondoVisores = new Orbita.Controles.OrbitaTableLayoutPanel();
+            this.layFondoVisores = new Orbita.Controles.Contenedores.OrbitaTableLayoutPanel();
             this.pnlPanelPrincipalPadre.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,6 +72,6 @@
 
         #endregion
 
-        private Orbita.Controles.OrbitaTableLayoutPanel layFondoVisores;
+        private Orbita.Controles.Contenedores.OrbitaTableLayoutPanel layFondoVisores;
     }
 }

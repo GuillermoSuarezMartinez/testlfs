@@ -1,8 +1,8 @@
 <SmartAssemblyProject ProjectId="{21e26212-21c6-4c2e-bc66-b25ccfa5e41a}" Version="2.0">
-    <MainAssemblyFileName>.\Orbita.VAControl.dll</MainAssemblyFileName>
+    <MainAssemblyFileName>.\Orbita.VA.MaquinasEstados.dll</MainAssemblyFileName>
     <Configuration Name="Release">
         <ApplicationName />
-        <Destination DestinationFileName="..\..\..\..\..\General\Dlls\x32\Orbita\Orbita.VAControl.dll" />
+        <Destination DestinationFileName="..\..\..\..\..\..\Orbita\General\Dlls\x32\Orbita\Orbita.VA.MaquinasEstados.dll" />
         <Assemblies>
             <Assembly AssemblyName="OrbitaControles, Culture=neutral, PublicKeyToken=null">
                 <Merging />
@@ -530,6 +530,24 @@
             <Assembly AssemblyName="Infragistics2.Documents.Excel.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" NotAvailable="1">
                 <Merging />
             </Assembly>
+            <Assembly AssemblyName="Orbita.VA.Comun, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Mono.Security, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.VA.MaquinasEstados, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <MemberRefsProxy />
+                    <Pruning />
+                    <Obfuscation Obfuscate="0">
+                        <Exclusion />
+                    </Obfuscation>
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="3" />
+                </Merging>
+            </Assembly>
         </Assemblies>
         <Options>
             <Obfuscation FieldsNameMangling="3" NameMangling="3" />
@@ -537,7 +555,7 @@
             <StrongNameSigning KeyFileName=".\CommonLibrary.snk" Sign="0" />
             <OtherProtections AddMetadataStream="1" SuppressIldasm="1" />
             <StringsEncoding />
-            <OtherOptimizations SealClasses="1" />
+            <OtherOptimizations SealClasses="0" />
             <Debugging />
             <FeatureUsageReporting Template="res:SmartUsageWithUIConsentFirstRun1033.dll" />
         </Options>

@@ -1,8 +1,8 @@
 <SmartAssemblyProject ProjectId="{21e26212-21c6-4c2e-bc66-b25ccfa5e41a}" Version="2.0">
-    <MainAssemblyFileName>.\Orbita.VAFunciones.dll</MainAssemblyFileName>
+    <MainAssemblyFileName>.\Orbita.VA.Funciones.dll</MainAssemblyFileName>
     <Configuration Name="Release">
         <ApplicationName />
-        <Destination DestinationFileName="..\..\..\..\..\General\Dlls\x32\Orbita\Orbita.VAFunciones.dll" />
+        <Destination DestinationFileName="..\..\..\..\..\..\Orbita\General\Dlls\x32\Orbita\Orbita.VA.Funciones.dll" />
         <Assemblies>
             <Assembly AssemblyName="OrbitaControles, Culture=neutral, PublicKeyToken=null">
                 <Merging />
@@ -483,7 +483,7 @@
                 <Embedding />
                 <Merging />
             </Assembly>
-            <Assembly AssemblyName="AForge.Video.FFMPEG, Culture=neutral, PublicKeyToken=03563089b1be05dd">
+            <Assembly AssemblyName="AForge.Video.FFMPEG, Culture=neutral, PublicKeyToken=03563089b1be05dd" HintPath="..\VA\AForge\AForge.Video.FFMPEG.dll">
                 <Merging />
                 <Embedding />
             </Assembly>
@@ -539,6 +539,36 @@
             <Assembly AssemblyName="Infragistics2.Documents.Excel.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" NotAvailable="1">
                 <Merging />
             </Assembly>
+            <Assembly AssemblyName="Orbita.VA.Comun, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Mono.Security, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.VA.MaquinasEstados, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.VA.Hardware, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="PylonC.NET, Culture=neutral, PublicKeyToken=a77e8471c5919d5a">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.VA.Funciones, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <MemberRefsProxy />
+                    <Pruning />
+                    <Obfuscation Obfuscate="0">
+                        <Exclusion />
+                    </Obfuscation>
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="3" />
+                </Merging>
+            </Assembly>
         </Assemblies>
         <Options>
             <Obfuscation FieldsNameMangling="3" NameMangling="3" />
@@ -546,7 +576,7 @@
             <StrongNameSigning KeyFileName=".\CommonLibrary.snk" Sign="0" />
             <OtherProtections AddMetadataStream="1" SuppressIldasm="1" />
             <StringsEncoding />
-            <OtherOptimizations SealClasses="1" />
+            <OtherOptimizations SealClasses="0" />
             <Debugging />
             <FeatureUsageReporting Template="res:SmartUsageWithUIConsentFirstRun1033.dll" />
         </Options>

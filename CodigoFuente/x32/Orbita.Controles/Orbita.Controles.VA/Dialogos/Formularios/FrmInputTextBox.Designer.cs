@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
-            this.TxtInput = new Orbita.Controles.OrbitaTextBox(this.components);
-            this.LblExplicacion = new Orbita.Controles.OrbitaLabel(this.components);
-            this.GrpFondo = new Orbita.Controles.OrbitaGroupBox(this.components);
+            this.TxtInput = new Orbita.Controles.Comunes.OrbitaTextBox();
+            this.LblExplicacion = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.GrpFondo = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
             this.pnlInferiorPadre.SuspendLayout();
             this.pnlPanelPrincipalPadre.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TxtInput)).BeginInit();
@@ -59,7 +59,6 @@
             this.TxtInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtInput.Appearance = null;
             this.TxtInput.Font = new System.Drawing.Font("Franklin Gothic Book", 9F);
             this.TxtInput.Location = new System.Drawing.Point(25, 46);
             this.TxtInput.Multiline = false;
@@ -120,8 +119,8 @@
 
         #endregion
 
-        private Orbita.Controles.OrbitaGroupBox GrpFondo;
-        private Orbita.Controles.OrbitaLabel LblExplicacion;
-        private Orbita.Controles.OrbitaTextBox TxtInput;
+        private Orbita.Controles.Contenedores.OrbitaUltraGroupBox GrpFondo;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel LblExplicacion;
+        private Orbita.Controles.Comunes.OrbitaTextBox TxtInput;
     }
 }

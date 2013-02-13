@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.PopupMenuTool popupMenuTool1 = new Infragistics.Win.UltraWinToolbars.PopupMenuTool("Vistas");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool1 = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyIconosGrandes");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool2 = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyIconosPequeños");
@@ -38,8 +39,9 @@
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool6 = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyIconosPequeños");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool7 = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyLista");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool8 = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyDetalles");
-            this.grbCronometros = new Orbita.Controles.OrbitaGroupBox(this.components);
-            this.ListCronometros = new Orbita.Controles.OrbitaListView(this.components);
+            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
+            this.grbCronometros = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
+            this.ListCronometros = new Orbita.Controles.Comunes.OrbitaListView();
             this.Codigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Descripcion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Contador = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -50,11 +52,11 @@
             this.menuMonitorizar = new System.Windows.Forms.ToolStripMenuItem();
             this.imageListLarge = new System.Windows.Forms.ImageList(this.components);
             this.imageListSmall = new System.Windows.Forms.ImageList(this.components);
-            this.pnlBarraBotones = new Orbita.Controles.OrbitaPanel();
-            this.orbitaPanel1 = new Orbita.Controles.OrbitaPanel();
+            this.pnlBarraBotones = new Orbita.Controles.Contenedores.OrbitaPanel();
+            this.orbitaPanel1 = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.ultraDropDownButton1 = new Infragistics.Win.Misc.UltraDropDownButton();
             this.toolbarsManager = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
-            this.btnMonitorizar = new Orbita.Controles.OrbitaButton(this.components);
+            this.btnMonitorizar = new Orbita.Controles.Comunes.OrbitaUltraButton();
             this.btnVistas = new Infragistics.Win.Misc.UltraDropDownButton();
             this.iconosGrandesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._Form1_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
@@ -96,6 +98,8 @@
             this.grbCronometros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grbCronometros.Location = new System.Drawing.Point(0, 0);
             this.grbCronometros.Name = "grbCronometros";
+            this.grbCronometros.OrbColorBorde = System.Drawing.Color.Empty;
+            this.grbCronometros.OrbColorCabecera = System.Drawing.Color.Empty;
             this.grbCronometros.Size = new System.Drawing.Size(763, 337);
             this.grbCronometros.TabIndex = 15;
             this.grbCronometros.Text = "Listado de cronómetros del sistema";
@@ -205,6 +209,8 @@
             // 
             // ultraDropDownButton1
             // 
+            appearance1.Image = global::Orbita.Controles.VA.Properties.Resources.imgVistasVariables24;
+            this.ultraDropDownButton1.Appearance = appearance1;
             this.ultraDropDownButton1.Dock = System.Windows.Forms.DockStyle.Right;
             this.ultraDropDownButton1.Location = new System.Drawing.Point(651, 3);
             this.ultraDropDownButton1.Name = "ultraDropDownButton1";
@@ -220,17 +226,18 @@
             this.toolbarsManager.AlwaysShowMenusExpanded = Infragistics.Win.DefaultableBoolean.True;
             this.toolbarsManager.DesignerFlags = 1;
             this.toolbarsManager.DockWithinContainer = this;
+            this.toolbarsManager.DockWithinContainerBaseType = typeof(Orbita.Controles.VA.FrmBase);
             this.toolbarsManager.ShowFullMenusDelay = 500;
-            popupMenuTool1.SharedProps.Caption = "Vistas";
+            popupMenuTool1.SharedPropsInternal.Caption = "Vistas";
             popupMenuTool1.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
             buttonTool1,
             buttonTool2,
             buttonTool3,
             buttonTool4});
-            buttonTool5.SharedProps.Caption = "Iconos grandes";
-            buttonTool6.SharedProps.Caption = "Iconos pequeños";
-            buttonTool7.SharedProps.Caption = "Lista";
-            buttonTool8.SharedProps.Caption = "Detalles";
+            buttonTool5.SharedPropsInternal.Caption = "Iconos grandes";
+            buttonTool6.SharedPropsInternal.Caption = "Iconos pequeños";
+            buttonTool7.SharedPropsInternal.Caption = "Lista";
+            buttonTool8.SharedPropsInternal.Caption = "Detalles";
             this.toolbarsManager.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
             popupMenuTool1,
             buttonTool5,
@@ -241,6 +248,8 @@
             // 
             // btnMonitorizar
             // 
+            appearance2.Image = global::Orbita.Controles.VA.Properties.Resources.imgMonitorizarVariable24;
+            this.btnMonitorizar.Appearance = appearance2;
             this.btnMonitorizar.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnMonitorizar.ImageSize = new System.Drawing.Size(24, 24);
             this.btnMonitorizar.Location = new System.Drawing.Point(3, 3);
@@ -370,19 +379,19 @@
             this.Controls.Add(this._Form1_Toolbars_Dock_Area_Right);
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Left);
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Right);
-            this.Controls.Add(this._Form1_Toolbars_Dock_Area_Top);
             this.Controls.Add(this._Form1_Toolbars_Dock_Area_Bottom);
-            this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Top);
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Bottom);
+            this.Controls.Add(this._Form1_Toolbars_Dock_Area_Top);
+            this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Top);
             this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Monitorizacion;
             this.Name = "FrmMonitorizacionCronometros";
             this.RecordarPosicion = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
             this.Text = "Monitorización de los cronómetros del sistema";
-            this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Bottom, 0);
             this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Top, 0);
-            this.Controls.SetChildIndex(this._Form1_Toolbars_Dock_Area_Bottom, 0);
             this.Controls.SetChildIndex(this._Form1_Toolbars_Dock_Area_Top, 0);
+            this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Bottom, 0);
+            this.Controls.SetChildIndex(this._Form1_Toolbars_Dock_Area_Bottom, 0);
             this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Right, 0);
             this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Left, 0);
             this.Controls.SetChildIndex(this._Form1_Toolbars_Dock_Area_Right, 0);
@@ -402,15 +411,15 @@
 
         #endregion
 
-        private Orbita.Controles.OrbitaGroupBox grbCronometros;
-        private Orbita.Controles.OrbitaListView ListCronometros;
+        private Orbita.Controles.Contenedores.OrbitaUltraGroupBox grbCronometros;
+        private Orbita.Controles.Comunes.OrbitaListView ListCronometros;
         private System.Windows.Forms.ColumnHeader Codigo;
         private System.Windows.Forms.ColumnHeader Descripcion;
         private System.Windows.Forms.ColumnHeader Contador;
         private System.Windows.Forms.ColumnHeader UltimaEjecucion;
         private System.Windows.Forms.ColumnHeader Promedio;
         private System.Windows.Forms.ImageList imageListSmall;
-        private Orbita.Controles.OrbitaPanel pnlBarraBotones;
+        private Orbita.Controles.Contenedores.OrbitaPanel pnlBarraBotones;
         private System.Windows.Forms.ToolStripMenuItem iconosGrandesToolStripMenuItem;
         private System.Windows.Forms.ImageList imageListLarge;
         private System.Windows.Forms.ContextMenuStrip menuCronometro;
@@ -425,9 +434,9 @@
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _Form1_Toolbars_Dock_Area_Bottom;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _FrmBase_Toolbars_Dock_Area_Top;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _FrmBase_Toolbars_Dock_Area_Bottom;
-        private Orbita.Controles.OrbitaPanel orbitaPanel1;
+        private Orbita.Controles.Contenedores.OrbitaPanel orbitaPanel1;
         private Infragistics.Win.Misc.UltraDropDownButton ultraDropDownButton1;
-        private Orbita.Controles.OrbitaButton btnMonitorizar;
+        private Orbita.Controles.Comunes.OrbitaUltraButton btnMonitorizar;
         private System.Windows.Forms.Timer timerRefresco;
         private System.Windows.Forms.ColumnHeader Total;
 

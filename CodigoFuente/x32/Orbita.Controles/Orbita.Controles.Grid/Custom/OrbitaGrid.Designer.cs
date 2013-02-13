@@ -133,7 +133,7 @@
             this.grid = new Infragistics.Win.UltraWinGrid.UltraGrid();
             this.pnlIrA = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.lblIrA = new Orbita.Controles.Comunes.OrbitaUltraLabel();
-            this.nePosicion = new Orbita.Controles.Comunes.OrbitaUltraNumbericEditor();
+            this.nePosicion = new Orbita.Controles.Comunes.OrbitaUltraNumericEditor();
             this.btnAceptar = new Orbita.Controles.Comunes.OrbitaUltraButton();
             this._OrbitaGrid_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this.tlbGrid = new Orbita.Controles.Menu.OrbitaUltraToolBarsManager(this.components);
@@ -554,7 +554,7 @@
         Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _OrbitaGrid_Toolbars_Dock_Area_Right;
         Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _OrbitaGrid_Toolbars_Dock_Area_Bottom;
         Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _OrbitaGrid_Toolbars_Dock_Area_Top;
-        Orbita.Controles.Comunes.OrbitaUltraNumbericEditor nePosicion;
+        Orbita.Controles.Comunes.OrbitaUltraNumericEditor nePosicion;
         Orbita.Controles.Comunes.OrbitaUltraButton btnAceptar;
         Orbita.Controles.Comunes.OrbitaUltraLabel lblIrA;
         System.Windows.Forms.ImageList imageList;

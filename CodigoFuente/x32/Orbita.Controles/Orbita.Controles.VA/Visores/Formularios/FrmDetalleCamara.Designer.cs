@@ -29,7 +29,7 @@ namespace Orbita.Controles.VA
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDetalleCamara));
-            this.pnlPadre = new Orbita.Controles.OrbitaPanel();
+            this.pnlPadre = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.lblFirmware = new System.Windows.Forms.Label();
             this.lblIP = new System.Windows.Forms.Label();
             this.lblCodigoModelo = new System.Windows.Forms.Label();
@@ -171,7 +171,7 @@ namespace Orbita.Controles.VA
 
         #endregion
 
-        private Orbita.Controles.OrbitaPanel pnlPadre;
+        private Orbita.Controles.Contenedores.OrbitaPanel pnlPadre;
         private System.Windows.Forms.Label lblFirmware;
         private System.Windows.Forms.Label lblIP;
         private System.Windows.Forms.Label lblCodigoModelo;

@@ -33,7 +33,7 @@
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblMaquina = new System.Windows.Forms.Label();
             this.lblIdioma = new System.Windows.Forms.Label();
-            this.lblMensaje = new Orbita.Controles.OrbitaLabel(this.components);
+            this.lblMensaje = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblCompañia = new System.Windows.Forms.Label();
             this.lblProducto = new System.Windows.Forms.Label();
@@ -163,7 +163,7 @@
         private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label lblMaquina;
-        private Orbita.Controles.OrbitaLabel lblMensaje;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblMensaje;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label lblIdioma;
 

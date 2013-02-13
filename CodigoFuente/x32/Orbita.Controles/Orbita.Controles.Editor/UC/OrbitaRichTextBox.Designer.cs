@@ -27,6 +27,7 @@
         void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            this.Dock = System.Windows.Forms.DockStyle.Fill;
         }
         #endregion
     }

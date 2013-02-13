@@ -30,7 +30,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// byte separador
         /// </summary>
-        private byte[] _separador;        
+        private byte[] _separador;
         /// <summary>
         /// Fin de la trama de keepAlive envio
         /// </summary>
@@ -43,7 +43,7 @@ namespace Orbita.Comunicaciones
         /// Tamaño máximo de trama
         /// </summary>
         private int _tamanyoMensaje = 26;
-        
+
         #endregion
 
         #region Constructores
@@ -51,18 +51,18 @@ namespace Orbita.Comunicaciones
         /// Contructor de clase para GATE OCR
         /// </summary>
         public ProtocoloTCPSiemensGateOCRES()
-        { 
-        
+        {
+
         }
         /// <summary>
         /// Destructor de clase
         /// </summary>
         ~ProtocoloTCPSiemensGateOCRES()
         {
-             Dispose(false);
+            Dispose(false);
         }
 
-        #endregion  
+        #endregion
 
         #region Metodos
 
@@ -81,7 +81,7 @@ namespace Orbita.Comunicaciones
                 ret[0] = this.STX[0];
                 ret[this._finTramaKeepAliveEnvio] = this.CR[0];
 
-                Array.Copy(this.OCRData, 0, ret, 1, this.OCRData.Length);     
+                Array.Copy(this.OCRData, 0, ret, 1, this.OCRData.Length);
                 ret[8] = this.Separador[0];
                 ret[9] = 0;
                 ret[10] = this.Separador[0];
@@ -118,7 +118,7 @@ namespace Orbita.Comunicaciones
             {
                 //Comprobamos el inicio y fin de trama
                 if (valor[0] == this.STX[0] && valor[_finTramaKeepAliveRecepcion] == this.CR[0] && valor.Length == this._tamanyoMensaje)
-                { 
+                {
                     id = valor[15];
                     Array.Copy(valor, 17, lecturas, 0, 4);
                     Array.Copy(valor, 22, lecturas, 4, 1);
@@ -137,14 +137,14 @@ namespace Orbita.Comunicaciones
             }
 
             return ret;
-        }               
+        }
         /// <summary>
         /// Escritura de salidas
         /// </summary>
         /// <param name="salidas">salidas a procesar</param>
         /// <param name="idMensaje">identificador del mensaje</param>
         /// <returns></returns>
-        public override byte[] SalidasEnviar(byte salidas, byte idMensaje)
+        public override byte[] SalidasEnviar(byte[] salidas, byte idMensaje)
         {
             byte[] ret = null;
 
@@ -152,19 +152,19 @@ namespace Orbita.Comunicaciones
             {
                 ret = KeepAliveEnviar();
                 ret[9] = idMensaje;
-                ret[11] = salidas;
+                ret[11] = salidas[0];
 
                 byte[] BCC = new byte[2];
 
                 BCC[0] = idMensaje;
-                BCC[1] = salidas;
+                BCC[1] = salidas[0];
 
                 ret[13] = this.CalculoBCC(BCC)[0];
             }
             catch (Exception ex)
-            {                
+            {
                 throw ex;
-            }            
+            }
 
             return ret;
         }
@@ -184,12 +184,12 @@ namespace Orbita.Comunicaciones
             try
             {
                 //Comprobamos el inicio y fin de trama
-                if (valor[0] == this.STX[0] && valor[_finTramaKeepAliveRecepcion] == this.CR[0] && valor.Length==this._tamanyoMensaje)
+                if (valor[0] == this.STX[0] && valor[_finTramaKeepAliveRecepcion] == this.CR[0] && valor.Length == this._tamanyoMensaje)
                 {
                     Array.Copy(valor, 17, entradas, 0, 4);
                     Array.Copy(valor, 22, salidas, 0, 1);
 
-                    BCC[0] = (byte)(id-1);
+                    BCC[0] = (byte)(id - 1);
                     Array.Copy(entradas, 0, BCC, 1, 4);
                     Array.Copy(salidas, 0, BCC, 5, 1);
                     if (this.CalculoBCC(BCC)[0] == valor[24])
@@ -205,7 +205,7 @@ namespace Orbita.Comunicaciones
             }
 
             return ret;
-        }        
+        }
         /// <summary>
         /// Calculo BCC
         /// </summary>
@@ -230,14 +230,14 @@ namespace Orbita.Comunicaciones
                     }
 
                 }
-                
+
                 retorno[0] = (byte)resultado;
             }
             catch (Exception ex)
-            {                
+            {
                 throw ex;
             }
-            
+
             return retorno;
         }
         /// <summary>
@@ -301,10 +301,11 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public byte[] OCRData
         {
-            get {
+            get
+            {
                 this._ocrData = Encoding.ASCII.GetBytes("OCRDATA");
-                    return this._ocrData; 
-                }
+                return this._ocrData;
+            }
         }
         /// <summary>
         /// Identificador del mensaje ocr data result

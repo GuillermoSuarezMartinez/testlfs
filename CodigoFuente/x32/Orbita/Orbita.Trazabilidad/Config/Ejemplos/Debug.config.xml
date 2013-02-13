@@ -7,8 +7,9 @@
     <!--niveles = debug/info/warn/error/fatal, por defecto debug sin referencia-->
     <!--nivel = nivel de logger, por defecto debug-->
     <!--niveles = debug/info/warn/error/fatal-->
-    <logger nombre="odebug" xsi:type="Debug" />
+    <logger nombre="odebug" xsi:type="Debug" nivel="warn" />
   </loggers>
+  <!--Solo para defectos-->
   <propiedades>
     <path logger="odebug" />
     <backup logger="odebug" />

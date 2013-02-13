@@ -33,7 +33,7 @@
         /// <summary>
         /// Sumario de columna.
         /// </summary>
-        OSumario sumario = null;
+        OColumnaSumario sumario = null;
         /// <summary>
         /// Columna no accesible en edición.
         /// </summary>
@@ -193,7 +193,7 @@
         /// <param name="estilo">Estilo de la columna</param>
         /// <param name="mascara">Máscara aplicada</param>
         /// <param name="sumario">Sumario de columna</param>
-        public OEstiloColumna(string campo, string nombre, EstiloColumna estilo, OMascara mascara, OSumario sumario)
+        public OEstiloColumna(string campo, string nombre, EstiloColumna estilo, OMascara mascara, OColumnaSumario sumario)
             : this(campo, nombre, estilo, mascara)
         {
             this.sumario = sumario;
@@ -207,7 +207,7 @@
         /// <param name="mascara">Máscara aplicada</param>
         /// <param name="ancho">Ancho de la columna</param>
         /// <param name="sumario">Sumario de columna</param>
-        public OEstiloColumna(string campo, string nombre, EstiloColumna estilo, OMascara mascara, int ancho, OSumario sumario)
+        public OEstiloColumna(string campo, string nombre, EstiloColumna estilo, OMascara mascara, int ancho, OColumnaSumario sumario)
             : this(campo, nombre, estilo, mascara, ancho)
         {
             this.sumario = sumario;
@@ -221,7 +221,7 @@
         /// <param name="alinear">Alineación del campo (celdas)</param> 
         /// <param name="mascara">Máscara aplicada</param>
         /// <param name="sumario">Sumario de columna</param>
-        public OEstiloColumna(string campo, string nombre, EstiloColumna estilo, Alineacion alinear, OMascara mascara, OSumario sumario)
+        public OEstiloColumna(string campo, string nombre, EstiloColumna estilo, Alineacion alinear, OMascara mascara, OColumnaSumario sumario)
             : this(campo, nombre, estilo, alinear, mascara)
         {
             this.sumario = sumario;
@@ -236,7 +236,7 @@
         /// <param name="mascara">Máscara aplicada</param>
         /// <param name="ancho">Ancho de la columna</param>
         /// <param name="sumario">Sumario de columna</param>
-        public OEstiloColumna(string campo, string nombre, EstiloColumna estilo, Alineacion alinear, OMascara mascara, OSumario sumario, int ancho)
+        public OEstiloColumna(string campo, string nombre, EstiloColumna estilo, Alineacion alinear, OMascara mascara, OColumnaSumario sumario, int ancho)
             : this(campo, nombre, estilo, alinear, mascara, ancho)
         {
             this.sumario = sumario;
@@ -406,7 +406,7 @@
         /// <param name="mascara">Máscara aplicada</param>
         /// <param name="sumario">Sumario de columna</param>
         /// <param name="bloqueado">Columna no accesible en edición</param>
-        public OEstiloColumna(string campo, string nombre, EstiloColumna estilo, OMascara mascara, OSumario sumario, bool bloqueado)
+        public OEstiloColumna(string campo, string nombre, EstiloColumna estilo, OMascara mascara, OColumnaSumario sumario, bool bloqueado)
             : this(campo, nombre, estilo, mascara, sumario)
         {
             this.bloqueado = bloqueado;
@@ -421,7 +421,7 @@
         /// <param name="ancho">Ancho de la columna</param>
         /// <param name="sumario">Sumario de columna</param>
         /// <param name="bloqueado">Columna no accesible en edición</param>
-        public OEstiloColumna(string campo, string nombre, EstiloColumna estilo, OMascara mascara, int ancho, OSumario sumario, bool bloqueado)
+        public OEstiloColumna(string campo, string nombre, EstiloColumna estilo, OMascara mascara, int ancho, OColumnaSumario sumario, bool bloqueado)
             : this(campo, nombre, estilo, mascara, ancho, sumario)
         {
             this.bloqueado = bloqueado;
@@ -436,7 +436,7 @@
         /// <param name="mascara">Máscara aplicada</param>
         /// <param name="sumario">Sumario de columna</param>
         /// <param name="bloqueado">Columna no accesible en edición</param>
-        public OEstiloColumna(string campo, string nombre, EstiloColumna estilo, Alineacion alinear, OMascara mascara, OSumario sumario, bool bloqueado)
+        public OEstiloColumna(string campo, string nombre, EstiloColumna estilo, Alineacion alinear, OMascara mascara, OColumnaSumario sumario, bool bloqueado)
             : this(campo, nombre, estilo, alinear, mascara, sumario)
         {
             this.bloqueado = bloqueado;
@@ -452,7 +452,7 @@
         /// <param name="ancho">Ancho de la columna</param>
         /// <param name="sumario">Sumario de columna</param>
         /// <param name="bloqueado">Columna no accesible en edición</param>
-        public OEstiloColumna(string campo, string nombre, EstiloColumna estilo, Alineacion alinear, OMascara mascara, OSumario sumario, int ancho, bool bloqueado)
+        public OEstiloColumna(string campo, string nombre, EstiloColumna estilo, Alineacion alinear, OMascara mascara, OColumnaSumario sumario, int ancho, bool bloqueado)
             : this(campo, nombre, estilo, alinear, mascara, sumario, ancho)
         {
             this.bloqueado = bloqueado;
@@ -518,7 +518,7 @@
         /// <summary>
         /// Indica el sumario de la columna
         /// </summary>
-        public OSumario Sumario
+        public OColumnaSumario Sumario
         {
             get { return this.sumario; }
             set { this.sumario = value; }

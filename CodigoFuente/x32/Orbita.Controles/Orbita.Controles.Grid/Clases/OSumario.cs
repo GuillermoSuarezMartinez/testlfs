@@ -3,7 +3,7 @@
     /// <summary>
     /// Orbita.Controles.Sumario.
     /// </summary>
-    public class OSumario
+    public class OColumnaSumario
     {
         #region Atributos
         /// <summary>
@@ -21,7 +21,7 @@
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Sumario.
         /// </summary>
         /// <param name="mascara">Máscara de sumario.</param>
-        public OSumario(string mascara)
+        public OColumnaSumario(string mascara)
         {
             this.mascara = mascara;
         }
@@ -30,7 +30,7 @@
         /// </summary>
         /// <param name="mascara">Máscara de sumario.</param>
         /// <param name="operacion">Operación a aplicar.</param>
-        public OSumario(string mascara, Infragistics.Win.UltraWinGrid.SummaryType operacion)
+        public OColumnaSumario(string mascara, Infragistics.Win.UltraWinGrid.SummaryType operacion)
         {
             this.mascara = mascara;
             this.operacion = operacion;

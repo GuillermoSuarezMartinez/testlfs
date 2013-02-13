@@ -74,8 +74,11 @@ namespace Orbita.Trazabilidad
             // Recorrer la colección de loggers.
             foreach (BaseLogger logger in this.loggers)
             {
-                // Registrar cada item de la colección.
-                logger.Log(item);
+                if (item.NivelLog >= logger.NivelLog)
+                {
+                    // Registrar cada item de la colección.
+                    logger.Log(item);
+                }
             }
         }
         /// <summary>
@@ -88,8 +91,11 @@ namespace Orbita.Trazabilidad
             // Recorrer la colección de loggers.
             foreach (BaseLogger logger in this.loggers)
             {
-                // Registrar cada item de la colección.
-                logger.Log(item, args);
+                if (item.NivelLog >= logger.NivelLog)
+                {
+                    // Registrar cada item de la colección.
+                    logger.Log(item, args);
+                }
             }
         }
         #endregion

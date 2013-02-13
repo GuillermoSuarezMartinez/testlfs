@@ -45,7 +45,7 @@
             this.orbitaGantt1 = new Orbita.Controles.Gantt.OrbitaUltraGanttView();
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this._OrbitaGanttPro_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this.OrbitaUltraToolbarsManager1 = new Orbita.Controles.Menu.OrbitaUltraToolBarsManager(this.components);
+            this.OrbitaUltraToolbarsManager1 = new Orbita.Controles.Menu.OrbitaUltraToolbarsManager(this.components);
             this._OrbitaGanttPro_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._OrbitaGanttPro_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._OrbitaGanttPro_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
@@ -231,7 +231,7 @@
         #endregion
 
         OrbitaUltraGanttView orbitaGantt1;
-        Orbita.Controles.Menu.OrbitaUltraToolBarsManager OrbitaUltraToolbarsManager1;
+        Orbita.Controles.Menu.OrbitaUltraToolbarsManager OrbitaUltraToolbarsManager1;
         Infragistics.Win.Misc.UltraPanel OrbitaGanttPro_Fill_Panel;
         Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _OrbitaGanttPro_Toolbars_Dock_Area_Left;
         Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _OrbitaGanttPro_Toolbars_Dock_Area_Right;

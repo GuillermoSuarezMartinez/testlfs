@@ -54,7 +54,7 @@
         /// <param name="sumario">Sumario de columna</param>
         /// <param name="tipo">Tipo de campo</param>
         /// <param name="formula">Expresión que genera el cálculo</param>
-        public OColumnaCalculada(string campo, string nombre, EstiloColumna estilo, OMascara mascara, OSumario sumario, string tipo, string formula)
+        public OColumnaCalculada(string campo, string nombre, EstiloColumna estilo, OMascara mascara, OColumnaSumario sumario, string tipo, string formula)
             : base(campo, nombre, estilo, mascara, sumario, true)
         {
             this.columna.DataType = System.Type.GetType(tipo);
@@ -73,7 +73,7 @@
         /// <param name="ancho">Ancho de la columna</param>
         /// <param name="tipo">Tipo de campo</param>
         /// <param name="formula">Expresión que genera el cálculo</param>
-        public OColumnaCalculada(string campo, string nombre, EstiloColumna estilo, Alineacion alinear, OMascara mascara, OSumario sumario, int ancho, string tipo, string formula)
+        public OColumnaCalculada(string campo, string nombre, EstiloColumna estilo, Alineacion alinear, OMascara mascara, OColumnaSumario sumario, int ancho, string tipo, string formula)
             : base(campo, nombre, estilo, alinear, mascara, sumario, ancho, true)
         {
             this.columna.DataType = System.Type.GetType(tipo);
