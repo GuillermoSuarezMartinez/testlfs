@@ -275,7 +275,7 @@ namespace Orbita.Controles.VA
 
             if (this._EnlazarCamaras)
             {
-                foreach (OCamaraBase camara in OCamaraManager.ListaCamaras)
+                foreach (OCamaraBase camara in OCamaraManager.ListaCamaras.Values)
                 {
                     //if (camara.Habilitado)
                     {

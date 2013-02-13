@@ -309,12 +309,12 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Imagen actual visualizada
         /// </summary>
-        protected OImage _ImagenActual;
+        protected OImagen _ImagenActual;
         /// <summary>
         /// Imagen actual visualizada
         /// </summary>
         [Browsable(false)]
-        public virtual OImage ImagenActual
+        public virtual OImagen ImagenActual
         {
             get { return this._ImagenActual; }
             set { this._ImagenActual = value; }
@@ -415,7 +415,7 @@ namespace Orbita.Controles.VA
 	        {
                 if (this.CamaraAsociada.EstadoConexion == EstadoConexion.Conectado)
                 {
-                    this.CamaraAsociada.Grab = !this.CamaraAsociada.Grab;
+                    this.CamaraAsociada.Play = !this.CamaraAsociada.Play;
                 }
 	        }
         }
@@ -449,7 +449,7 @@ namespace Orbita.Controles.VA
         /// Visualiza una imagen en el display
         /// </summary>
         /// <param name="imagen">Imagen a visualizar</param>
-        public void Visualizar(OImage imagen)
+        public void Visualizar(OImagen imagen)
         {
             this.ImagenActual = imagen;
             if (this.FrameRateVisualizacionLimitado)
@@ -467,7 +467,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         /// <param name="imagen">Imagen a visualizar</param>
         /// <param name="graficos">Objeto que contiene los gráficos a visualizar (letras, rectas, circulos, etc)</param>
-        public void Visualizar(OImage imagen, OGrafico graficos)
+        public void Visualizar(OImagen imagen, OGrafico graficos)
         {
             this.ImagenActual = imagen;
             this.GraficoActual = graficos;
@@ -505,22 +505,22 @@ namespace Orbita.Controles.VA
         /// </summary>
         public virtual void Inicializar()
         {
-            //this.ImagenActual = new OImage();
+            //this.ImagenActual = new OImagen();
             //this.GraficoActual = new OGrafico();
 
             if (this.CamaraAsociada is OCamaraBase)
             {
-                this.CamaraAsociada.CrearSuscripcionMensajes(this.MostrarMensaje);
-                this.CamaraAsociada.CrearSuscripcionCambioEstado(this.OnCambioEstadoConexionCamara);
-                this.CamaraAsociada.OnCambioReproduccionCamara += this.CambioModoReproduccionCamara;
+                this.CamaraAsociada.OnMensaje += this.OnMensajeCamara;
+                this.CamaraAsociada.OnCambioEstadoConexionCamara += this.OnCambioEstadoConexionCamara;
+                this.CamaraAsociada.OnCambioEstadoReproduccionCamara += this.CambioModoReproduccionCamara;
                 if (this.VisualizarEnVivo)
                 {
-                    this.CamaraAsociada.CrearSuscripcionNuevaFotografia(this.OnNuevaFotografiaCamara);
+                    this.CamaraAsociada.OnNuevaFotografiaCamara += this.OnNuevaFotografiaCamara;
                 }
 
                 // Obtener las propiedades actuales de la cámara
-                this.OnCambioEstadoConexionCamara(this.CamaraAsociada.EstadoConexion);
-                this.CambioModoReproduccionCamara(this.CamaraAsociada.Grab);
+                this.OnCambioEstadoConexionCamara(new CambioEstadoConexionCamaraEventArgs(this.CamaraAsociada.Codigo, this.CamaraAsociada.EstadoConexion, this.CamaraAsociada.EstadoConexion));
+                this.CambioModoReproduccionCamara(new CambioEstadoReproduccionCamaraEventArgs(this.CamaraAsociada.Codigo, this.CamaraAsociada.Play));
             }
         }
 
@@ -531,12 +531,12 @@ namespace Orbita.Controles.VA
         {
             if (this.CamaraAsociada is OCamaraBase)
             {
-                this.CamaraAsociada.EliminarSuscripcionMensajes(this.MostrarMensaje);
-                this.CamaraAsociada.EliminarSuscripcionCambioEstado(this.OnCambioEstadoConexionCamara);
-                this.CamaraAsociada.OnCambioReproduccionCamara -= this.CambioModoReproduccionCamara;
+                this.CamaraAsociada.OnMensaje -= this.OnMensajeCamara;
+                this.CamaraAsociada.OnCambioEstadoConexionCamara -= this.OnCambioEstadoConexionCamara;
+                this.CamaraAsociada.OnCambioEstadoReproduccionCamara -= this.CambioModoReproduccionCamara;
                 if (this.VisualizarEnVivo)
                 {
-                    this.CamaraAsociada.EliminarSuscripcionNuevaFotografia(this.OnNuevaFotografiaCamara);
+                    this.CamaraAsociada.OnNuevaFotografiaCamara -= this.OnNuevaFotografiaCamara;
                 }
             }
 
@@ -598,7 +598,7 @@ namespace Orbita.Controles.VA
         /// Devuelve una nueva imagen del tipo adecuado al trabajo con el display
         /// </summary>
         /// <returns>Imagen del tipo adecuado al trabajo con el display</returns>
-        public virtual OImage NuevaImagen()
+        public virtual OImagen NuevaImagen()
         {
             return null;
         }
@@ -685,11 +685,10 @@ namespace Orbita.Controles.VA
         /// Método que indica que la cámara ha cambiado su modo de reproducción
         /// </summary>
         /// <param name="modoReproduccionContinua"></param>
-        protected virtual void CambioModoReproduccionCamara(bool modoReproduccionContinua)
+        protected virtual void CambioModoReproduccionCamara(CambioEstadoReproduccionCamaraEventArgs e)
         {
             // Implementado en heredados
         }
-
         #endregion
 
         #region Evento(s)
@@ -715,12 +714,12 @@ namespace Orbita.Controles.VA
         /// Delegado de nueva fotografía
         /// </summary>
         /// <param name="OEstadoConexion"></param>
-        public void OnNuevaFotografiaCamara(string codigo, OImage imagen, DateTime momentoAdquisicion, double velocidadAdquisicion)
+        public void OnNuevaFotografiaCamara(NuevaFotografiaCamaraEventArgs e)
         {
             try
             {
-                this.Visualizar(imagen);
-                this.MostrarFps(velocidadAdquisicion);
+                this.Visualizar(e.Imagen);
+                this.MostrarFps(e.VelocidadAdquisicion);
                 if (!this.PrimerFoto)
                 {
                     this.PrimerFoto = true;
@@ -733,6 +732,14 @@ namespace Orbita.Controles.VA
             }
         }
 
+        /// <summary>
+        /// Muestra un mensaje de información sobre el dispositivo origen
+        /// </summary>
+        public void OnMensajeCamara(OMessageEventArgs e)
+        {
+            this.MostrarMensaje(e.Mensaje);
+        }
+
         #endregion
 
         #region Evento(s) virtual(es)
@@ -740,11 +747,11 @@ namespace Orbita.Controles.VA
         /// Delegado de cambio de estaco de conexión de la cámara
         /// </summary>
         /// <param name="estadoConexion"></param>
-        public virtual void OnCambioEstadoConexionCamara(EstadoConexion estadoConexion)
+        public virtual void OnCambioEstadoConexionCamara(CambioEstadoConexionCamaraEventArgs e)
         {
             try
             {
-                switch (estadoConexion)
+                switch (e.EstadoConexionActual)
                 {
                     case EstadoConexion.Desconectado:
                     default:

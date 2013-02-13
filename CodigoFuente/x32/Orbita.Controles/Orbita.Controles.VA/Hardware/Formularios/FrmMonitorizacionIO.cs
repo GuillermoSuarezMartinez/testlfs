@@ -70,7 +70,7 @@ namespace Orbita.Controles.VA
                 // Inicializamos el timer de refresco
                 this.timerRefresco.Interval = OSistemaManager.Configuracion.CadenciaMonitorizacionMilisegundos;
 
-                foreach (OTerminalIOBase terminalIO in this.Hardware.ListaTerminales)
+                foreach (OTerminalIOBase terminalIO in this.Hardware.ListaTerminales.Values)
                 {
                     this.CrearItem(terminalIO);
                 }

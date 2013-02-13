@@ -50,7 +50,7 @@ namespace Orbita.Controles.VA
         bool _invertMouse;
         bool _isPanning;
         bool _isSelecting;
-        bool _limitSelectionToImage;
+        bool _limitSelectionTOImagen;
         Color _selectionColor;
         VisorImagenesSelectionMode _selectionMode;
         RectangleF _selectionRegion;
@@ -138,10 +138,10 @@ namespace Orbita.Controles.VA
         [Category("Property Changed")]
         public event EventHandler InvertMouseChanged;
         /// <summary>
-        /// Occurs when the LimitSelectionToImage property is changed.
+        /// Occurs when the LimitSelectionTOImagen property is changed.
         /// </summary>
         [Category("Property Changed")]
-        public event EventHandler LimitSelectionToImageChanged;
+        public event EventHandler LimitSelectionTOImagenChanged;
         /// <summary>
         /// Occurs when panning the control completes.
         /// </summary>
@@ -617,16 +617,16 @@ namespace Orbita.Controles.VA
         /// 	<c>true</c> if selection regions should be limited to image boundaries; otherwise, <c>false</c>.
         /// </value>
         [Category("Behavior"), DefaultValue(true)]
-        public virtual bool LimitSelectionToImage
+        public virtual bool LimitSelectionTOImagen
         {
-            get { return _limitSelectionToImage; }
+            get { return _limitSelectionTOImagen; }
             set
             {
-                if (this.LimitSelectionToImage != value)
+                if (this.LimitSelectionTOImagen != value)
                 {
-                    _limitSelectionToImage = value;
+                    _limitSelectionTOImagen = value;
 
-                    this.OnLimitSelectionToImageChanged(EventArgs.Empty);
+                    this.OnLimitSelectionTOImagenChanged(EventArgs.Empty);
                 }
             }
         }
@@ -822,7 +822,7 @@ namespace Orbita.Controles.VA
 
             this.WheelScrollsControl = false;
             this.AllowZoom = true;
-            this.LimitSelectionToImage = true;
+            this.LimitSelectionTOImagen = true;
             this.DropShadowSize = 3;
             this.ImageBorderStyle = VisorImagenesBorderStyle.None;
             this.BackColor = Color.White;
@@ -1335,7 +1335,7 @@ namespace Orbita.Controles.VA
         /// <param name="point">The source point.</param>
         /// <returns>Point.Empty is the point could not be matched to the source image, otherwise the new translated point</returns>
         /// <remarks>If a match is made, the return will be offset by 1</remarks>
-        public virtual Point PointToImage(Point point)
+        public virtual Point PointTOImagen(Point point)
         {
             Rectangle viewport;
             int x;
@@ -1867,14 +1867,14 @@ namespace Orbita.Controles.VA
                 handler(this, e);
         }
         /// <summary>
-        /// Raises the <see cref="E:LimitSelectionToImageChanged"/> event.
+        /// Raises the <see cref="E:LimitSelectionTOImagenChanged"/> event.
         /// </summary>
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        protected virtual void OnLimitSelectionToImageChanged(EventArgs e)
+        protected virtual void OnLimitSelectionTOImagenChanged(EventArgs e)
         {
             EventHandler handler;
 
-            handler = this.LimitSelectionToImageChanged;
+            handler = this.LimitSelectionTOImagenChanged;
 
             if (handler != null)
                 handler(this, e);
@@ -2082,7 +2082,7 @@ namespace Orbita.Controles.VA
             Point currentPixel;
             int currentZoom;
 
-            currentPixel = this.PointToImage(cursorPosition);
+            currentPixel = this.PointTOImagen(cursorPosition);
             currentZoom = this.Zoom;
 
             if (isZoomIn)
@@ -2211,7 +2211,7 @@ namespace Orbita.Controles.VA
                     h = h / (float)this.ZoomFactor;
 
                     selection = new RectangleF(x, y, w, h);
-                    if (this.LimitSelectionToImage)
+                    if (this.LimitSelectionTOImagen)
                         selection = this.FitRectangle(selection);
 
                     this.SelectionRegion = selection;

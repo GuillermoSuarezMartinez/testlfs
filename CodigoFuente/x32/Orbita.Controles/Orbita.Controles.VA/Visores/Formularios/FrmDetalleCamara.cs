@@ -48,7 +48,7 @@ namespace Orbita.Controles.VA
         {
             try
             {
-                DataTable dt = Orbita.VA.Hardware.AppBD.GetCamara(this.Codigo, this.XmlFile, this.OrigenDatos);
+                DataTable dt = Orbita.VA.Hardware.AppBD.GetCamara(this.Codigo);
                 this.lblCodigoModelo.Text = dt.Rows[0]["CodTipoHardware"].ToString();
                 this.lblFabricante.Text = "Fabricante: " + dt.Rows[0]["Fabricante"].ToString();
                 this.lblModelo.Text = "Modelo: " + dt.Rows[0]["Modelo"].ToString();

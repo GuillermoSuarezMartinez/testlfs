@@ -874,17 +874,17 @@ namespace Orbita.Controles.VA
                         bool archivoSeleccionadoOK = OTrabajoControles.FormularioSeleccionArchivo(this.openFileDialog, ref rutaArchivo);
                         if (archivoSeleccionadoOK)
                         {
-                            OImage imagen;
+                            OImagen imagen;
                             object objImagen = OVariablesManager.GetValue(codigo);
 
                             // Por defecto se crea una imagen de tipo BitmapImage
-                            if ((objImagen == null) || !(objImagen is OImage))
+                            if ((objImagen == null) || !(objImagen is OImagen))
                             {
                                 imagen = new OImagenBitmap();
                             }
                             else
                             {
-                                imagen = ((OImage)objImagen).Nueva();
+                                imagen = ((OImagen)objImagen).Nueva();
                             }
 
                             imagen.Cargar(rutaArchivo);

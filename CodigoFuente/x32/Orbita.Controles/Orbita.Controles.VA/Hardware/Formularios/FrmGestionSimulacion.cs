@@ -74,12 +74,11 @@ namespace Orbita.Controles.VA
 
             // Rellenamos el binding de las simulaciones
             this.SimulacionCamara = new OSimulacionCamara(this.Codigo);
-            foreach (OCamaraBase camara in OCamaraManager.ListaCamaras)
+
+            OCamaraBase camara;
+            if (OCamaraManager.ListaCamaras.TryGetValue(this.Codigo, out camara))
             {
-                if (this.Codigo == camara.Codigo)
-                {
-                    this.SimulacionCamara = camara.SimulacionCamara;
-                }
+                this.SimulacionCamara = camara.SimulacionCamara;
             }
             this.BindingOSimulacionCamara.DataSource = this.SimulacionCamara;
         }

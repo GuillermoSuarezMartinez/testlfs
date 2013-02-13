@@ -488,7 +488,7 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Propieadad a heredar donde se accede a la imagen
         /// </summary>
-        public override OImage ImagenActual
+        public override OImagen ImagenActual
         {
             get { return (OImagenBitmap)this._ImagenActual; }
             set 
@@ -497,7 +497,7 @@ namespace Orbita.Controles.VA
                 {
                     this._ImagenActual = value; 
                 }
-                else if (value is OImage)
+                else if (value is OImagen)
                 {
                     OImagenBitmap valueConverted;
                     if (value.Convert<OImagenBitmap>(out valueConverted))
@@ -882,7 +882,7 @@ namespace Orbita.Controles.VA
         /// Devuelve una nueva imagen del tipo adecuado al trabajo con el display
         /// </summary>
         /// <returns>Imagen del tipo adecuado al trabajo con el display</returns>
-        public override OImage NuevaImagen()
+        public override OImagen NuevaImagen()
         {
             return new OImagenBitmap();
         }
@@ -980,9 +980,9 @@ namespace Orbita.Controles.VA
         /// Método que indica que la cámara ha cambiado su modo de reproducción
         /// </summary>
         /// <param name="modoReproduccionContinua"></param>
-        protected override void CambioModoReproduccionCamara(bool modoReproduccionContinua)
+        protected override void CambioModoReproduccionCamara(CambioEstadoReproduccionCamaraEventArgs e)
         {
-            this.btnPlayStop.Image = modoReproduccionContinua ? Properties.Resources.ImgStop16 : Properties.Resources.ImgPlay16;
+            this.btnPlayStop.Image = e.ModoReproduccionContinua ? Properties.Resources.ImgStop16 : Properties.Resources.ImgPlay16;
         }
         #endregion
 
@@ -1427,13 +1427,13 @@ namespace Orbita.Controles.VA
         /// Delegado de cambio de estaco de conexión de la cámara
         /// </summary>
         /// <param name="estadoConexion"></param>
-        public override void OnCambioEstadoConexionCamara(EstadoConexion estadoConexion)
+        public override void OnCambioEstadoConexionCamara(CambioEstadoConexionCamaraEventArgs e)
         {
-            base.OnCambioEstadoConexionCamara(estadoConexion);
+            base.OnCambioEstadoConexionCamara(e);
 
             try
             {
-                switch (estadoConexion)
+                switch (e.EstadoConexionActual)
                 {
                     case EstadoConexion.Desconectado:
                     case EstadoConexion.ErrorConexion:

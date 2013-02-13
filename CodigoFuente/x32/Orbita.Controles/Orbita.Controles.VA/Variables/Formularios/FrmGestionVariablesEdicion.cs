@@ -13,7 +13,7 @@ using System;
 using System.Collections;
 using System.Windows.Forms;
 using Orbita.Utiles;
-using Orbita.VA.MaquinasEstados;
+using Orbita.VA.Comun;
 using Orbita.Controles.Grid;
 
 namespace Orbita.Controles.VA
