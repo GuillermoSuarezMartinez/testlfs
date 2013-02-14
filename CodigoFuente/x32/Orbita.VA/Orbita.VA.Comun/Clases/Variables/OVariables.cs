@@ -35,7 +35,6 @@ namespace Orbita.VA.Comun
     public static class OVariablesManager
     {
         #region Atributo(s)
-
         /// <summary>
         /// Indica si la clase estática está iniciada
         /// </summary>
@@ -76,17 +75,26 @@ namespace Orbita.VA.Comun
         /// </summary>
         internal static TcpChannel CanalServidor; //channel to communicate
 
+        /// <summary>
+        /// Informa de la posibilidad de acceder a las variables a través de vistas
+        /// </summary>
+        internal static bool UtilizaVistas;
         #endregion
 
         #region Método(s) público(s)
         /// <summary>
         /// Construye los objetos
         /// </summary>
-        public static void Constructor()
+        public static void Constructor(bool utilizaVistas)
         {
+            UtilizaVistas = utilizaVistas;
+
             // Creación de los objetos
             ListaVariables = new Dictionary<string, OVariable>();
-            Vistas = new Dictionary<string, OVistaVariable>();
+            if (utilizaVistas)
+            {
+                Vistas = new Dictionary<string, OVistaVariable>();
+            }
             Trazabilidad = new OTrazabilidadVariables();
 
             CadenciaMonitorizacion = OSistemaManager.Configuracion.CadenciaMonitorizacion;
@@ -135,17 +143,20 @@ namespace Orbita.VA.Comun
             }
 
             // Consulta de todas las vistas existentes en el sistema
-            DataTable dtVista = Orbita.VA.Comun.AppBD.GetVistas();
-            if (dtVista.Rows.Count > 0)
+            if (utilizaVistas)
             {
-                // Cargamos todas las vistas existentes en el sistema
-                OVistaVariable vista;
-                foreach (DataRow drVista in dtVista.Rows)
+                DataTable dtVista = Orbita.VA.Comun.AppBD.GetVistas();
+                if (dtVista.Rows.Count > 0)
                 {
-                    // Creamos cada una de las vistas del sistema
-                    string codVista = drVista["CodVista"].ToString();
-                    vista = new OVistaVariable(codVista);
-                    Vistas.Add(codVista, vista);
+                    // Cargamos todas las vistas existentes en el sistema
+                    OVistaVariable vista;
+                    foreach (DataRow drVista in dtVista.Rows)
+                    {
+                        // Creamos cada una de las vistas del sistema
+                        string codVista = drVista["CodVista"].ToString();
+                        vista = new OVistaVariable(codVista);
+                        Vistas.Add(codVista, vista);
+                    }
                 }
             }
         }
@@ -240,7 +251,6 @@ namespace Orbita.VA.Comun
 
             return TimeSpan.FromMilliseconds(0);
         }
-
 
         /// <summary>
         /// Método para comprobar si el valor de la variable ha cambiado
@@ -636,7 +646,6 @@ namespace Orbita.VA.Comun
         {
             Trazabilidad.NuevaTraza(traza);
         }
-
         #endregion
 
         #region Método(s) privado(s)
@@ -654,7 +663,7 @@ namespace Orbita.VA.Comun
             string alias = codAlias;
 
             // Cambio el alias al de la vista
-            if ((codVista != string.Empty) && (Vistas is Dictionary<string, OVistaVariable>))
+            if ((codVista != string.Empty) && (UtilizaVistas) && (Vistas is Dictionary<string, OVistaVariable>))
             {
                 // Cambio el alias
                 OVistaVariable vistaVariable;
@@ -709,7 +718,6 @@ namespace Orbita.VA.Comun
             this.ListaAlias = new Dictionary<string, string>();
             this.RellenarAlias(codVista);
         }
-
         #endregion
 
         #region Método(s) privado(s)
