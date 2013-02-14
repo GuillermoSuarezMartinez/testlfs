@@ -148,68 +148,45 @@
   <ItemGroup>
     <Reference Include="Cognex.VisionPro, Version=45.0.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=MSIL">
       <HintPath>..\..\Comun\VA\Cognex\Cognex.VisionPro.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="Cognex.VisionPro.Core, Version=45.0.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=x86">
       <HintPath>..\..\Comun\VA\Cognex\Cognex.VisionPro.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="Cognex.VisionPro.FGGigE, Version=45.0.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=x86">
       <HintPath>..\..\Comun\VA\Cognex\Cognex.VisionPro.FGGigE.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="Cognex.VisionPro.ImageFile, Version=45.0.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=x86">
       <HintPath>..\..\Comun\VA\Cognex\Cognex.VisionPro.ImageFile.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="MccDaq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a37eefcf5c6ca10a, processorArchitecture=MSIL">
       <HintPath>..\..\Comun\Comunicaciones\MccDaq.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="Orbita.BBDD, Version=13.32.3.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.BBDD.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Orbita.Comunicaciones, Version=12.365.3.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.Comunicaciones.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Orbita.Controles.Combo, Version=12.365.5.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Controles.Combo.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Orbita.Controles.Comunes, Version=12.365.5.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Controles.Comunes.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Orbita.Controles.Contenedores, Version=12.365.5.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Controles.Contenedores.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Orbita.Controles.Editor, Version=12.365.5.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Controles.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Orbita.Controles.Grid, Version=12.365.5.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Controles.Grid.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Orbita.Controles.Menu, Version=12.365.5.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Controles.Menu.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Orbita.Controles.Shared, Version=12.365.5.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Controles.Shared.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Orbita.Controles.VA, Version=13.1.8.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Controles.VA.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="Orbita.Trazabilidad, Version=13.32.3.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.Trazabilidad.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Orbita.Utiles, Version=13.43.8.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Orbita.VA.Funciones">
       <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.VA.Funciones.dll</HintPath>
@@ -217,10 +194,12 @@
     </Reference>
     <Reference Include="Orbita.Winsock, Version=12.220.3.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Winsock.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
     <Reference Include="PylonC.NET, Version=3.2.2.3032, Culture=neutral, PublicKeyToken=a77e8471c5919d5a, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\VA\Pylon\PylonC.NET.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data">
