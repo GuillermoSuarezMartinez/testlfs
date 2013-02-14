@@ -85,6 +85,14 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Construye los objetos
         /// </summary>
+        public static void Constructor()
+        {
+            Constructor(true);
+        }
+
+        /// <summary>
+        /// Construye los objetos
+        /// </summary>
         public static void Constructor(bool utilizaVistas)
         {
             UtilizaVistas = utilizaVistas;

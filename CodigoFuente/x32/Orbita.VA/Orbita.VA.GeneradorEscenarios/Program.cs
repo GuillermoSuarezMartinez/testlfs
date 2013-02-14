@@ -242,7 +242,7 @@ namespace Orbita.VAGeneradorEscenarios
                 // Creamos una propiedad con cada uno de los alias
                 string codAlias = drAlias["CodAlias"].ToString();
                 string descVariable = drAlias["DescVariable"].ToString();
-                generador.GenerarPropiedadReadOnlyRuntime(ref claseVariables, codAlias, string.Empty, descVariable, MemberAttributes.Public, "VariableItem", "VariableRuntime", "GetVariable", new CodeExpression[] { new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), "Codigo"), new CodePrimitiveExpression(codAlias) });
+                generador.GenerarPropiedadReadOnlyRuntime(ref claseVariables, codAlias, string.Empty, descVariable, MemberAttributes.Public, "OVariable", "OVariablesManager", "GetVariable", new CodeExpression[] { new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), "Codigo"), new CodePrimitiveExpression(codAlias) });
             }
 
             generador.Region("Variables del escenario", claseVariables);
@@ -278,7 +278,7 @@ namespace Orbita.VAGeneradorEscenarios
                 string codAlias = drAlias["CodAlias"].ToString();
                 string descHardware = drAlias["DescHardware"].ToString();
                 string claseImplementadoraHardware = drAlias["ClaseImplementadora"].ToString();
-                generador.GenerarPropiedadReadOnlyRuntime(ref claseHardware, codAlias, claseImplementadoraHardware, descHardware, MemberAttributes.Public, claseImplementadoraHardware, "HardwareRuntime", "GetHardware", new CodeExpression[] { new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), "Codigo"), new CodePrimitiveExpression(codAlias) });
+                generador.GenerarPropiedadReadOnlyRuntime(ref claseHardware, codAlias, claseImplementadoraHardware, descHardware, MemberAttributes.Public, claseImplementadoraHardware, "OHardwareManager", "GetHardware", new CodeExpression[] { new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), "Codigo"), new CodePrimitiveExpression(codAlias) });
             }
 
             generador.Region("Hardware del escenario", claseHardware);
