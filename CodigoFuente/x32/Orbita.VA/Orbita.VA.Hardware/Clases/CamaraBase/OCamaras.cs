@@ -309,6 +309,103 @@ namespace Orbita.VA.Hardware
         }
 
         /// <summary>
+        /// Ejecuta un movimiento simple de ptz
+        /// </summary>
+        /// <param name="tipo">Tipo de movimiento ptz a ejecutar</param>
+        /// <param name="modo">Modo de movimiento: Absoluto o relativo</param>
+        /// <param name="valor">valor a establecer</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public static bool EjecutaMovimientoPTZ(string codigo, OEnumTipoMovimientoPTZ tipo, OEnumModoMovimientoPTZ modo, double valor)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigo, out camara))
+            {
+                return camara.EjecutaMovimientoPTZ(tipo, modo, valor);
+            }
+
+            return false; 
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento simple de ptz
+        /// </summary>
+        /// <param name="movimiento">Tipo de movimiento ptz a ejecutar</param>
+        /// <param name="valor">valor a establecer</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public static bool EjecutaMovimientoPTZ(string codigo, OMovimientoPTZ movimiento, double valor)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigo, out camara))
+            {
+                return camara.EjecutaMovimientoPTZ(movimiento, valor);
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento simple de ptz
+        /// </summary>
+        /// <param name="comando">Comando del movimiento ptz a ejecutar</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public static bool EjecutaMovimientoPTZ(string codigo, OComandoPTZ comando)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigo, out camara))
+            {
+                return camara.EjecutaMovimientoPTZ(comando);
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento compuesto de ptz
+        /// </summary>
+        /// <param name="valores">Tipos de movimientos y valores</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public static bool EjecutaMovimientoPTZ(string codigo, OComandosPTZ valores)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigo, out camara))
+            {
+                return camara.EjecutaMovimientoPTZ(valores);
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Actualiza la posición actual del PTZ
+        /// </summary>
+        /// <returns></returns>
+        public static OPosicionesPTZ ConsultaPosicionPTZ(string codigo)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigo, out camara))
+            {
+                return camara.ConsultaPosicionPTZ();
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Actualiza la posición actual de un determinado movimiento PTZ
+        /// </summary>
+        /// <returns>Listado de posiciones actuales</returns>
+        public static OPosicionPTZ ConsultaPosicionPTZ(string codigo, OEnumTipoMovimientoPTZ movimiento)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigo, out camara))
+            {
+                return camara.ConsultaPosicionPTZ(movimiento);
+            }
+
+            return new OPosicionPTZ();
+        }
+
+        /// <summary>
         /// Devuelve el tipo de imagen con el que trabaja la cámara
         /// </summary>
         /// <returns></returns>
@@ -974,7 +1071,7 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Control PTZ
         /// </summary>
-        public OPTZBase PTZ
+        internal OPTZBase PTZ
         {
             get { return _PTZ; }
             set { _PTZ = value; }
@@ -1714,6 +1811,67 @@ namespace Orbita.VA.Hardware
         {
             valor = null;
             return false;
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento simple de ptz
+        /// </summary>
+        /// <param name="tipo">Tipo de movimiento ptz a ejecutar</param>
+        /// <param name="modo">Modo de movimiento: Absoluto o relativo</param>
+        /// <param name="valor">valor a establecer</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public virtual bool EjecutaMovimientoPTZ(OEnumTipoMovimientoPTZ tipo, OEnumModoMovimientoPTZ modo, double valor)
+        {
+            return this.PTZ.EjecutaMovimiento(tipo, modo, valor);
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento simple de ptz
+        /// </summary>
+        /// <param name="movimiento">Tipo de movimiento ptz a ejecutar</param>
+        /// <param name="valor">valor a establecer</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public virtual bool EjecutaMovimientoPTZ(OMovimientoPTZ movimiento, double valor)
+        {
+            return this.PTZ.EjecutaMovimiento(movimiento, valor);
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento simple de ptz
+        /// </summary>
+        /// <param name="comando">Comando del movimiento ptz a ejecutar</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public virtual bool EjecutaMovimientoPTZ(OComandoPTZ comando)
+        {
+            return this.PTZ.EjecutaMovimiento(comando);
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento compuesto de ptz
+        /// </summary>
+        /// <param name="valores">Tipos de movimientos y valores</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public virtual bool EjecutaMovimientoPTZ(OComandosPTZ valores)
+        {
+            return this.PTZ.EjecutaMovimiento(valores);
+        }
+
+        /// <summary>
+        /// Actualiza la posición actual del PTZ
+        /// </summary>
+        /// <returns></returns>
+        public virtual OPosicionesPTZ ConsultaPosicionPTZ()
+        {
+            return this.PTZ.ConsultaPosicion();
+        }
+
+        /// <summary>
+        /// Actualiza la posición actual de un determinado movimiento PTZ
+        /// </summary>
+        /// <returns>Listado de posiciones actuales</returns>
+        public virtual OPosicionPTZ ConsultaPosicionPTZ(OEnumTipoMovimientoPTZ movimiento)
+        {
+            return this.PTZ.ConsultaPosicion(movimiento);
         }
         #endregion
 

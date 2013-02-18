@@ -213,6 +213,7 @@ namespace Orbita.VA.Hardware
     /// <summary>
     /// Listado de parámetros PTZ
     /// </summary>
+    [Serializable]
     public class OComandosPTZ : List<OComandoPTZ>
     {
         #region Propiedad(es)
@@ -329,6 +330,7 @@ namespace Orbita.VA.Hardware
     /// <summary>
     /// Listado de parámetros PTZ
     /// </summary>
+    [Serializable]
     public class OPosicionesPTZ : List<OPosicionPTZ>
     {
         #region Propiedad(es)
@@ -433,6 +435,7 @@ namespace Orbita.VA.Hardware
     /// <summary>
     /// Listado de parámetros PTZ
     /// </summary>
+    [Serializable]
     public class OMovimientosPTZ : List<OMovimientoPTZ>
     {
         #region Constructor(es)
@@ -502,6 +505,7 @@ namespace Orbita.VA.Hardware
     /// <summary>
     /// Listado de parámetros PTZ
     /// </summary>
+    [Serializable]
     public class OTiposMovimientosPTZ : List<OEnumTipoMovimientoPTZ>
     {
         #region Constructor(es)
@@ -550,6 +554,7 @@ namespace Orbita.VA.Hardware
     /// <summary>
     /// Estructura que contiene un comando de movimiento PTZ
     /// </summary>
+    [Serializable]
     public struct OComandoPTZ
     {
         #region Atributo(s)
@@ -588,6 +593,7 @@ namespace Orbita.VA.Hardware
     /// <summary>
     /// Estructura que contiene una posicion PTZ
     /// </summary>
+    [Serializable]
     public struct OPosicionPTZ
     {
         #region Atributo(s)
@@ -616,6 +622,7 @@ namespace Orbita.VA.Hardware
     /// <summary>
     /// Estructura que contiene un movimiento PTZ
     /// </summary>
+    [Serializable]
     public struct OMovimientoPTZ
     {
         #region Atributo(s)

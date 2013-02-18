@@ -201,6 +201,67 @@ namespace Orbita.VA.Hardware
         }
 
         /// <summary>
+        /// Ejecuta un movimiento simple de ptz
+        /// </summary>
+        /// <param name="tipo">Tipo de movimiento ptz a ejecutar</param>
+        /// <param name="modo">Modo de movimiento: Absoluto o relativo</param>
+        /// <param name="valor">valor a establecer</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public bool EjecutaMovimientoPTZ(string codigo, OEnumTipoMovimientoPTZ tipo, OEnumModoMovimientoPTZ modo, double valor)
+        {
+            return OCamaraManager.EjecutaMovimientoPTZ(codigo, tipo, modo, valor);
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento simple de ptz
+        /// </summary>
+        /// <param name="movimiento">Tipo de movimiento ptz a ejecutar</param>
+        /// <param name="valor">valor a establecer</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public bool EjecutaMovimientoPTZ(string codigo, OMovimientoPTZ movimiento, double valor)
+        {
+            return OCamaraManager.EjecutaMovimientoPTZ(codigo, movimiento, valor);
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento simple de ptz
+        /// </summary>
+        /// <param name="comando">Comando del movimiento ptz a ejecutar</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public bool EjecutaMovimientoPTZ(string codigo, OComandoPTZ comando)
+        {
+            return OCamaraManager.EjecutaMovimientoPTZ(codigo, comando);
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento compuesto de ptz
+        /// </summary>
+        /// <param name="valores">Tipos de movimientos y valores</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public bool EjecutaMovimientoPTZ(string codigo, OComandosPTZ valores)
+        {
+            return OCamaraManager.EjecutaMovimientoPTZ(codigo, valores);
+        }
+
+        /// <summary>
+        /// Actualiza la posición actual del PTZ
+        /// </summary>
+        /// <returns></returns>
+        public OPosicionesPTZ ConsultaPosicionPTZ(string codigo)
+        {
+            return OCamaraManager.ConsultaPosicionPTZ(codigo);
+        }
+
+        /// <summary>
+        /// Actualiza la posición actual de un determinado movimiento PTZ
+        /// </summary>
+        /// <returns>Listado de posiciones actuales</returns>
+        public OPosicionPTZ ConsultaPosicionPTZ(string codigo, OEnumTipoMovimientoPTZ movimiento)
+        {
+            return OCamaraManager.ConsultaPosicionPTZ(codigo, movimiento);
+        }
+
+        /// <summary>
         /// Guarda una imagen en disco
         /// </summary>
         /// <param name="ruta">Indica la ruta donde se ha de guardar la fotografía</param>

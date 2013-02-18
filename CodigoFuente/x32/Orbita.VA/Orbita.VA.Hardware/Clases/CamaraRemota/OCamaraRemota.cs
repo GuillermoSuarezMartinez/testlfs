@@ -144,6 +144,91 @@ namespace Orbita.VA.Hardware
         }
 
         /// <summary>
+        /// Ejecuta un movimiento simple de ptz
+        /// </summary>
+        /// <param name="tipo">Tipo de movimiento ptz a ejecutar</param>
+        /// <param name="modo">Modo de movimiento: Absoluto o relativo</param>
+        /// <param name="valor">valor a establecer</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public bool EjecutaMovimientoPTZ(OEnumTipoMovimientoPTZ tipo, OEnumModoMovimientoPTZ modo, double valor)
+        {
+            if (this.EstadoConexion == EstadoConexion.Conectado)
+            {
+                return this.CamaraCliente.EjecutaMovimientoPTZ(tipo, modo, valor);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento simple de ptz
+        /// </summary>
+        /// <param name="movimiento">Tipo de movimiento ptz a ejecutar</param>
+        /// <param name="valor">valor a establecer</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public bool EjecutaMovimientoPTZ(OMovimientoPTZ movimiento, double valor)
+        {
+            if (this.EstadoConexion == EstadoConexion.Conectado)
+            {
+                return this.CamaraCliente.EjecutaMovimientoPTZ(movimiento, valor);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento simple de ptz
+        /// </summary>
+        /// <param name="comando">Comando del movimiento ptz a ejecutar</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public bool EjecutaMovimientoPTZ(OComandoPTZ comando)
+        {
+            if (this.EstadoConexion == EstadoConexion.Conectado)
+            {
+                return this.CamaraCliente.EjecutaMovimientoPTZ(comando);
+            }
+            return false; 
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento compuesto de ptz
+        /// </summary>
+        /// <param name="valores">Tipos de movimientos y valores</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public override bool EjecutaMovimientoPTZ(OComandosPTZ valores)
+        {
+            if (this.EstadoConexion == EstadoConexion.Conectado)
+            {
+                return this.CamaraCliente.EjecutaMovimientoPTZ(valores);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Actualiza la posición actual del PTZ
+        /// </summary>
+        /// <returns></returns>
+        public override OPosicionesPTZ ConsultaPosicionPTZ()
+        {
+            if (this.EstadoConexion == EstadoConexion.Conectado)
+            {
+                return this.CamaraCliente.ConsultaPosicionPTZ();
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Actualiza la posición actual de un determinado movimiento PTZ
+        /// </summary>
+        /// <returns>Listado de posiciones actuales</returns>
+        public override OPosicionPTZ ConsultaPosicionPTZ(OEnumTipoMovimientoPTZ movimiento)
+        {
+            if (this.EstadoConexion == EstadoConexion.Conectado)
+            {
+                return this.CamaraCliente.ConsultaPosicionPTZ(movimiento);
+            }
+            return new OPosicionPTZ(); 
+        }
+
+        /// <summary>
         /// Se toma el control de la cámara
         /// </summary>
         /// <returns>Verdadero si la operación ha funcionado correctamente</returns>
@@ -616,6 +701,67 @@ namespace Orbita.VA.Hardware
         public bool GetAjuste(string codAjuste, out object valor)
         {
             return this.ServidorCamaras.GetAjuste(this.CodigoRemoto, codAjuste, out valor);
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento simple de ptz
+        /// </summary>
+        /// <param name="tipo">Tipo de movimiento ptz a ejecutar</param>
+        /// <param name="modo">Modo de movimiento: Absoluto o relativo</param>
+        /// <param name="valor">valor a establecer</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public bool EjecutaMovimientoPTZ(OEnumTipoMovimientoPTZ tipo, OEnumModoMovimientoPTZ modo, double valor)
+        {
+            return this.ServidorCamaras.EjecutaMovimientoPTZ(this.CodigoRemoto, tipo, modo, valor);
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento simple de ptz
+        /// </summary>
+        /// <param name="movimiento">Tipo de movimiento ptz a ejecutar</param>
+        /// <param name="valor">valor a establecer</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public bool EjecutaMovimientoPTZ(OMovimientoPTZ movimiento, double valor)
+        {
+            return this.ServidorCamaras.EjecutaMovimientoPTZ(this.CodigoRemoto, movimiento, valor);
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento simple de ptz
+        /// </summary>
+        /// <param name="comando">Comando del movimiento ptz a ejecutar</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public bool EjecutaMovimientoPTZ(OComandoPTZ comando)
+        {
+            return this.ServidorCamaras.EjecutaMovimientoPTZ(this.CodigoRemoto, comando);
+        }
+
+        /// <summary>
+        /// Ejecuta un movimiento compuesto de ptz
+        /// </summary>
+        /// <param name="valores">Tipos de movimientos y valores</param>
+        /// <returns>Verdadero si se ha ejecutado correctamente</returns>
+        public bool EjecutaMovimientoPTZ(OComandosPTZ valores)
+        {
+            return this.ServidorCamaras.EjecutaMovimientoPTZ(this.CodigoRemoto, valores);
+        }
+
+        /// <summary>
+        /// Actualiza la posición actual del PTZ
+        /// </summary>
+        /// <returns></returns>
+        public OPosicionesPTZ ConsultaPosicionPTZ()
+        {
+            return this.ServidorCamaras.ConsultaPosicionPTZ(this.CodigoRemoto);
+        }
+
+        /// <summary>
+        /// Actualiza la posición actual de un determinado movimiento PTZ
+        /// </summary>
+        /// <returns>Listado de posiciones actuales</returns>
+        public OPosicionPTZ ConsultaPosicionPTZ(OEnumTipoMovimientoPTZ movimiento)
+        {
+            return this.ServidorCamaras.ConsultaPosicionPTZ(this.CodigoRemoto, movimiento);
         }
 
         /// <summary>
