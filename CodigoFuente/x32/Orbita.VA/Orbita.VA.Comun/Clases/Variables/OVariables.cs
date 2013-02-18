@@ -99,7 +99,7 @@ namespace Orbita.VA.Comun
 
             // Creación de los objetos
             ListaVariables = new Dictionary<string, OVariable>();
-            if (utilizaVistas)
+            if (UtilizaVistas)
             {
                 Vistas = new Dictionary<string, OVistaVariable>();
             }
@@ -151,7 +151,7 @@ namespace Orbita.VA.Comun
             }
 
             // Consulta de todas las vistas existentes en el sistema
-            if (utilizaVistas)
+            if (UtilizaVistas)
             {
                 DataTable dtVista = Orbita.VA.Comun.AppBD.GetVistas();
                 if (dtVista.Rows.Count > 0)

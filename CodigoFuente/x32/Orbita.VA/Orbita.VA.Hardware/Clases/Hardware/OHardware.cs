@@ -31,34 +31,53 @@ namespace Orbita.VA.Hardware
         /// Lista de todas las vistas de hardware del sistema
         /// </summary>
         public static Dictionary<string, OVistaHardware> Vistas;
-        
+
+        /// <summary>
+        /// Informa de la posibilidad de acceder a las variables a través de vistas
+        /// </summary>
+        internal static bool UtilizaVistas;
         #endregion
 
         #region Método(s) público(s)
-
         /// <summary>
         /// Construye los campos de la clase
         /// </summary>
         public static void Constructor()
         {
+            Constructor(true);
+        }
+
+        /// <summary>
+        /// Construye los campos de la clase
+        /// </summary>
+        public static void Constructor(bool utilizaVistas)
+        {
+            UtilizaVistas = utilizaVistas;
+
             ListaHardware = new Dictionary<string, IHardware>();
-            Vistas = new Dictionary<string, OVistaHardware>();
+            if (UtilizaVistas)
+            {
+                Vistas = new Dictionary<string, OVistaHardware>();
+            }
 
             OIOManager.Constructor();
             OCamaraManager.Constructor();
 
             // Consulta de todas las vistas existentes en el sistema
-            DataTable dtVista = Orbita.VA.Comun.AppBD.GetVistas();
-            if (dtVista.Rows.Count > 0)
+            if (UtilizaVistas)
             {
-                // Cargamos todas las vistas existentes en el sistema
-                OVistaHardware vista;
-                foreach (DataRow drVista in dtVista.Rows)
+                DataTable dtVista = Orbita.VA.Comun.AppBD.GetVistas();
+                if (dtVista.Rows.Count > 0)
                 {
-                    // Creamos cada una de las vistas del sistema
-                    string codVista = drVista["CodVista"].ToString();
-                    vista = new OVistaHardware(codVista);
-                    Vistas.Add(codVista, vista);
+                    // Cargamos todas las vistas existentes en el sistema
+                    OVistaHardware vista;
+                    foreach (DataRow drVista in dtVista.Rows)
+                    {
+                        // Creamos cada una de las vistas del sistema
+                        string codVista = drVista["CodVista"].ToString();
+                        vista = new OVistaHardware(codVista);
+                        Vistas.Add(codVista, vista);
+                    }
                 }
             }
         }
@@ -232,10 +251,12 @@ namespace Orbita.VA.Hardware
         private static bool TryGetHardware(string codVista, string codAlias, out IHardware hardware)
         {
             // Inicialización de resultados
+            bool resultado = false;
+            hardware = null;
             string alias = codAlias;
 
             // Cambio el alias al de la vista
-            if (codVista != string.Empty)
+            if ((codVista != string.Empty) && (UtilizaVistas) && (Vistas is Dictionary<string, OVistaHardware>))
             {
                 // Cambio el alias
                 OVistaHardware vistaHardware;
@@ -249,7 +270,12 @@ namespace Orbita.VA.Hardware
                 }
             }
 
-            return ListaHardware.TryGetValue(alias, out hardware);
+            if (ListaHardware is Dictionary<string, IHardware>)
+            {
+                resultado = ListaHardware.TryGetValue(alias, out hardware);
+            }
+
+            return resultado;
         }
         #endregion
     }
