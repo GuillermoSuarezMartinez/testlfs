@@ -181,8 +181,8 @@
     <Compile Include="Dispositivos\Remoting\IOCommRemoting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Dispositivos\Remoting\ORemoting.cs" />
-    <Compile Include="Puertos\RS232\OConfiguracionPuertoRS232.cs" />
-    <Compile Include="Puertos\RS232\OPuertoRS232.cs" />
+    <Compile Include="Puertos\RS232\OConfiguracionPuertoRS.cs" />
+    <Compile Include="Puertos\RS232\OPuertoRS.cs" />
     <Compile Include="Dispositivos\ODispositivoWinCC.cs" />
   </ItemGroup>
   <ItemGroup>
