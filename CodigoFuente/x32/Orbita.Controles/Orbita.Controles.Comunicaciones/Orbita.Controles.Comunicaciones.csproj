@@ -118,6 +118,12 @@
     <Compile Include="OrbitaClienteRemoting.Designer.cs">
       <DependentUpon>OrbitaClienteRemoting.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrbitaPuertoSerie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OrbitaPuertoSerie.Designer.cs">
+      <DependentUpon>OrbitaPuertoSerie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
@@ -139,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OrbitaClienteRemoting.resx">
       <DependentUpon>OrbitaClienteRemoting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrbitaPuertoSerie.resx">
+      <DependentUpon>OrbitaPuertoSerie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

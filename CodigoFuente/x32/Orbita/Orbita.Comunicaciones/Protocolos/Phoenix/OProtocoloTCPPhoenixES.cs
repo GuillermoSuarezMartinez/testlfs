@@ -28,11 +28,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Número de escrituras a realizar
         /// </summary>
-        private int _tamanyoSalidas;        
-        /// <summary>
-        /// Seguimiento del dispose
-        /// </summary>
-        private bool disposed = false;
+        private int _tamanyoSalidas;  
        
         #endregion
 
@@ -171,19 +167,6 @@ namespace Orbita.Comunicaciones
             }
 
             return ret;
-        }
-        /// <summary>
-        /// Destrucción del objeto
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            // This object will be cleaned up by the Dispose method.
-            // Therefore, you should call GC.SupressFinalize to
-            // take this object off the finalization queue
-            // and prevent finalization code for this object
-            // from executing a second time.
-            GC.SuppressFinalize(this);
         }
         /// <summary>
         /// Limpia objetos de memoria
