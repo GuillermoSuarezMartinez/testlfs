@@ -38,6 +38,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Orbita.Comunicaciones">
+      <HintPath>..\..\Comun\Orbita\Orbita.Comunicaciones.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Utiles">
+      <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -54,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -76,6 +85,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Orbita.Controles\Orbita.Controles.Comunicaciones\Orbita.Controles.Comunicaciones.csproj">
+      <Project>{7E7DAFD4-3823-46B8-917C-FCEA9431A1A9}</Project>
+      <Name>Orbita.Controles.Comunicaciones</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Orbita\Orbita.Trazabilidad\Orbita.Trazabilidad.csproj">
       <Project>{1A2EEC44-A494-4BA6-A591-267B73A55CD1}</Project>
       <Name>Orbita.Trazabilidad</Name>

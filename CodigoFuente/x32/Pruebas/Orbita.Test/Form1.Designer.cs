@@ -28,12 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.orbitaPuertoSerie1 = new Orbita.Controles.Comunicaciones.OrbitaPuertoSerie();
+            this.SuspendLayout();
+            // 
+            // orbitaPuertoSerie1
+            // 
+            this.orbitaPuertoSerie1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.orbitaPuertoSerie1.Location = new System.Drawing.Point(0, 0);
+            this.orbitaPuertoSerie1.Name = "orbitaPuertoSerie1";
+            this.orbitaPuertoSerie1.Padding = new System.Windows.Forms.Padding(5);
+            this.orbitaPuertoSerie1.Size = new System.Drawing.Size(563, 530);
+            this.orbitaPuertoSerie1.TabIndex = 0;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(563, 530);
+            this.Controls.Add(this.orbitaPuertoSerie1);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private Controles.Comunicaciones.OrbitaPuertoSerie orbitaPuertoSerie1;
     }
 }
 
