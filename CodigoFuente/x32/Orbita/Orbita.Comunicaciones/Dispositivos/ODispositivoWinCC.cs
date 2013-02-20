@@ -14,7 +14,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Objeto para comunicar con WinCC
         /// </summary>
-        private OWinCCDataManager oDataManager = null;
+        private OProtocoloWinCCDataManager oDataManager = null;
         /// <summary>
         /// Tipo de variable para escribir
         /// </summary>
@@ -34,7 +34,7 @@ namespace Orbita.Comunicaciones
         public ODispositivoWinCC(ILogger logger)
         {
             this.logger = logger;
-            oDataManager = new OWinCCDataManager();
+            oDataManager = new OProtocoloWinCCDataManager();
             oDataManager.Connect();
         }
 

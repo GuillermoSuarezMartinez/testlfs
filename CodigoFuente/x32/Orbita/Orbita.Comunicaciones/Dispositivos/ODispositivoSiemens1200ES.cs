@@ -65,19 +65,19 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Protocolo comunicación usado para el hilo vida
         /// </summary>
-        private ProtocoloTCPSiemens protocoloHiloVida;
+        private OProtocoloTCPSiemens protocoloHiloVida;
         /// <summary>
         /// Protocolo comunicación usado para la escritura
         /// </summary>
-        private ProtocoloTCPSiemens protocoloEscritura;
+        private OProtocoloTCPSiemens protocoloEscritura;
         /// <summary>
         /// Protocolo comunicación usado para el proceso del mensaje
         /// </summary>
-        private ProtocoloTCPSiemens protocoloProcesoMensaje;
+        private OProtocoloTCPSiemens protocoloProcesoMensaje;
         /// <summary>
         /// Protocolo de comunicación usado para el proceso del hilo
         /// </summary>
-        private ProtocoloTCPSiemens protocoloProcesoHilo;
+        private OProtocoloTCPSiemens protocoloProcesoHilo;
         /// <summary>
         /// Valor devuelto tras la escritura del PLC
         /// </summary>
@@ -383,24 +383,24 @@ namespace Orbita.Comunicaciones
 
             if (this.Protocolo == "OCR")
             {
-                this.protocoloHiloVida = new ProtocoloTCPSiemensGateOCRES();
-                this.protocoloEscritura = new ProtocoloTCPSiemensGateOCRES();
-                this.protocoloProcesoMensaje = new ProtocoloTCPSiemensGateOCRES();
-                this.protocoloProcesoHilo = new ProtocoloTCPSiemensGateOCRES();
+                this.protocoloHiloVida = new OProtocoloTCPSiemensGateOCRES();
+                this.protocoloEscritura = new OProtocoloTCPSiemensGateOCRES();
+                this.protocoloProcesoMensaje = new OProtocoloTCPSiemensGateOCRES();
+                this.protocoloProcesoHilo = new OProtocoloTCPSiemensGateOCRES();
             }
             else if (this.Protocolo == "OS")
             {
-                this.protocoloHiloVida = new ProtocoloTCPSiemensGateOSES();
-                this.protocoloEscritura = new ProtocoloTCPSiemensGateOSES();
-                this.protocoloProcesoMensaje = new ProtocoloTCPSiemensGateOSES();
-                this.protocoloProcesoHilo = new ProtocoloTCPSiemensGateOSES();
+                this.protocoloHiloVida = new OProtocoloTCPSiemensGateOSES();
+                this.protocoloEscritura = new OProtocoloTCPSiemensGateOSES();
+                this.protocoloProcesoMensaje = new OProtocoloTCPSiemensGateOSES();
+                this.protocoloProcesoHilo = new OProtocoloTCPSiemensGateOSES();
             }
             else if (this.Protocolo == "TRA")
             {
-                this.protocoloHiloVida = new ProtocoloTCPSiemensGateTrafficES();
-                this.protocoloEscritura = new ProtocoloTCPSiemensGateTrafficES();
-                this.protocoloProcesoMensaje = new ProtocoloTCPSiemensGateTrafficES();
-                this.protocoloProcesoHilo = new ProtocoloTCPSiemensGateTrafficES();
+                this.protocoloHiloVida = new OProtocoloTCPSiemensGateTrafficES();
+                this.protocoloEscritura = new OProtocoloTCPSiemensGateTrafficES();
+                this.protocoloProcesoMensaje = new OProtocoloTCPSiemensGateTrafficES();
+                this.protocoloProcesoHilo = new OProtocoloTCPSiemensGateTrafficES();
             }
 
             foreach (DictionaryEntry item in this.Tags.GetDatos())

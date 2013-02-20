@@ -123,7 +123,7 @@ namespace Orbita.Comunicaciones
                 {
                     try
                     {
-                        using (ProtocoloTCPPhoenixES phoenixTCP = new ProtocoloTCPPhoenixES(
+                        using (OProtocoloTCPPhoenixES phoenixTCP = new OProtocoloTCPPhoenixES(
                             this._registroInicialEntradas, this._numeroBytesEntradas, this._registroInicialSalidas, this._numeroBytesSalidas))
                         {
                             // Enviar un mensaje de KeepAlive.                            
@@ -257,7 +257,7 @@ namespace Orbita.Comunicaciones
                 }
                 else
                 {
-                    using (ProtocoloTCPPhoenixES phoenixTCP = new ProtocoloTCPPhoenixES(
+                    using (OProtocoloTCPPhoenixES phoenixTCP = new OProtocoloTCPPhoenixES(
                             this._registroInicialEntradas, this._numeroBytesEntradas, this._registroInicialSalidas, this._numeroBytesSalidas))
                     {
                         try
@@ -389,7 +389,7 @@ namespace Orbita.Comunicaciones
         /// <param name="mensaje"></param>
         private void ProcesarMensajeRecibido(byte[] mensaje)
         {
-            using (ProtocoloTCPPhoenixES phoenixTCP = new ProtocoloTCPPhoenixES(
+            using (OProtocoloTCPPhoenixES phoenixTCP = new OProtocoloTCPPhoenixES(
                             this._registroInicialEntradas, this._numeroBytesEntradas, this._registroInicialSalidas, this._numeroBytesSalidas))
             {
                 if (mensaje[7] == 3)//respuesta para la lectura
@@ -505,7 +505,7 @@ namespace Orbita.Comunicaciones
                 {
                     try
                     {
-                        using (ProtocoloTCPPhoenixES phoenixTCP = new ProtocoloTCPPhoenixES(
+                        using (OProtocoloTCPPhoenixES phoenixTCP = new OProtocoloTCPPhoenixES(
                             this._registroInicialEntradas, this._numeroBytesEntradas, this._registroInicialSalidas, this._numeroBytesSalidas))
                         {
                             byte[] entradas;
