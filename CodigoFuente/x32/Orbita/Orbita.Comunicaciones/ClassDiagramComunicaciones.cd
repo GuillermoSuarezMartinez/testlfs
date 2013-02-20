@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Orbita.Comunicaciones.OConfigDispositivo" Collapsed="true">
+    <Position X="25.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAABIAAAAAAAAAAAAAAAAAAIAoAAA=</HashCode>
+      <FileName>Dispositivos\Colecciones\OConfigDispositivo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.OEstadoComms" Collapsed="true">
+    <Position X="27" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECBAAAAAAAAAAAAABAgAAAAAAAAAAAAAAAAAICAAg=</HashCode>
+      <FileName>Dispositivos\Colecciones\OEstadoComms.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.OInfoDato" Collapsed="true">
+    <Position X="21.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAEMgQAgAgAAAQBECCoAAACFCQABoAQIADACBsAiABQ=</HashCode>
+      <FileName>Dispositivos\Colecciones\OInfoDato.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.OTags" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="23.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIYCAIAAiCAAgEAAAQAAigAgAAAIEBAEAAESAAAgAA=</HashCode>
+      <FileName>Dispositivos\Colecciones\OTags.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Orbita.Comunicaciones.ODispositivo" Collapsed="true">
+    <Position X="6.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgIAAAQAACCAAAACIDQAgghCAABBoAAIIBAAAEogAAQ=</HashCode>
+      <FileName>Dispositivos\ODispositivo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Orbita.Comunicaciones.ODispositivoClienteOPC" Collapsed="true">
+    <Position X="12.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EgJJYEAiB6iIAACCQmwEhgpowQSBBCCgJIBA0QEIHEA=</HashCode>
+      <FileName>Dispositivos\ODispositivoClienterOPC.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Orbita.Comunicaciones.ODispositivoES" Collapsed="true">
+    <Position X="3.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAiCIAAACAAQABggAAAAAAGAAAACAgAAABUA=</HashCode>
+      <FileName>Dispositivos\ODispositivoES.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.ODispositivoILBKPhoenix" Collapsed="true">
+    <Position X="1" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAAQAAIQIQAAAsAAAACBgAAAAQEAABQAKABIAAEMAEQ=</HashCode>
+      <FileName>Dispositivos\ODispositivoILBKPhoenix.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.ODispositivoMCUSB" Collapsed="true">
+    <Position X="3.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAQAAIAAAAAAMAgAAAAgAAAAAACABQAOABIAAEEAEQ=</HashCode>
+      <FileName>Dispositivos\ODispositivoMCUSB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.ODispositivoSiemens1200ES" Collapsed="true">
+    <Position X="5.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UEAVAAIQBQACAsAAAADBgAQBAQEAABSAKAFIAAEMAEQ=</HashCode>
+      <FileName>Dispositivos\ODispositivoSiemens1200ES.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.ODispositivoTCP" Collapsed="true">
+    <Position X="7.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAIAAAAASCIAAACAAQABggAAACAACAAIAAAgAAABEA=</HashCode>
+      <FileName>Dispositivos\ODispositivoTCP.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.ODispositivoWinCC" Collapsed="true">
+    <Position X="10" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAiAAAgACAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Dispositivos\ODispositivoWinCC.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.OBroadcastEventWrapper" Collapsed="true">
+    <Position X="21.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAACAABAAAAIABAAAAgAAAA=</HashCode>
+      <FileName>Dispositivos\Remoting\OBroadcastEventWrapper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.ORemoting" Collapsed="true">
+    <Position X="21.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAIAAAAAAEAEAAAAAAAAAAAAwABACAABA=</HashCode>
+      <FileName>Dispositivos\Remoting\ORemoting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.OFtp" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Protocolos\Ftp\OFtp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.OHttp" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAABACAAAAAAAAACggAAAoBBABIIACIAQAAAAAA=</HashCode>
+      <FileName>Protocolos\Http\OHttp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.OModbusTCP" Collapsed="true">
+    <Position X="10.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAACAAAAEIAAAAAAAAAAAAAAAAAQAAAAEBACA=</HashCode>
+      <FileName>Protocolos\ModBusTCP\OModbusTCP.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.ONTP" Collapsed="true">
+    <Position X="19.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Protocolos\NTP\ONTP.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.OComunicacionesConstantes" Collapsed="true">
+    <Position X="23.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Protocolos\OPC\Constantes\Constantes.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.OInfoOPCvida" Collapsed="true">
+    <Position X="23.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIIAAAAQAAAAAAAAAQAQAAAAAIAAIAAQAAgAAQAA=</HashCode>
+      <FileName>Protocolos\OPC\Info\InfoOPCvida.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.OOPCEnlaces" Collapsed="true">
+    <Position X="27" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAgAAQAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Protocolos\OPC\Info\OOPCEnlaces.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.ProtocoloTCPPhoenixES" Collapsed="true">
+    <Position X="5.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIQICAAACAAAIAQAAAAAAAAAQAAAAgAAAAAgAAAAAA=</HashCode>
+      <FileName>Protocolos\Phoenix\ProtocoloTCPPhoenixES.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.Protocolo" Collapsed="true">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Protocolos\Protocolo.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Orbita.Comunicaciones.ProtocoloTCPSiemens" Collapsed="true">
+    <Position X="14.75" Y="1.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAQAAAAAAAAAAAAAAgAAAAAgAAAAAA=</HashCode>
+      <FileName>Protocolos\Siemens\ProtocoloTCPSiemens.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.ProtocoloTCPSiemensGateOCRES" Collapsed="true">
+    <Position X="14.75" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAUAAAAAACAAAAkQAAACIAABAACAAQgAEAAEgQABIAA=</HashCode>
+      <FileName>Protocolos\Siemens\ProtocoloTCPSiemensGateOCRES.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.ProtocoloTCPSiemensGateOSES" Collapsed="true">
+    <Position X="17" Y="3.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAECAAAAkQCAQCAAABAACAAQgAEAAggQABIAA=</HashCode>
+      <FileName>Protocolos\Siemens\ProtocoloTCPSiemensGateOSES.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.ProtocoloTCPSiemensGateTrafficES" Collapsed="true">
+    <Position X="12.5" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAkYAAACAAABAECAAQgAEAAAgQABIAA=</HashCode>
+      <FileName>Protocolos\Siemens\ProtocoloTCPSiemensGateTrafficES.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.OWinCCDataManager" Collapsed="true">
+    <Position X="1.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EEACEABCACAUABAoACAEQolBCRQIAAkFEICmxIAHYQY=</HashCode>
+      <FileName>Protocolos\WinCC\OWinCCDataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.OConfiguracionPuerto" Collapsed="true">
+    <Position X="0.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Puertos\OConfiguracionPuerto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.OInformacionPuerto" Collapsed="true">
+    <Position X="25.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAABAAAAIAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Puertos\OInformacionPuerto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.OPuertoComunicaciones" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABRAAAQBACAggQAAAAAAAAAAAECAABAAAAAABAAACAA=</HashCode>
+      <FileName>Puertos\OPuertoComunicaciones.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Orbita.Comunicaciones.OConfiguracionPuertoRS232" Collapsed="true">
+    <Position X="0.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAABAAAAAAAAQAAAAAAAABQAAAAAgAAAA=</HashCode>
+      <FileName>Puertos\RS232\OConfiguracionPuertoRS232.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbita.Comunicaciones.OPuertoRS232" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABBAAQIBADAggQAAAAAAEQAAAECAAAAAAAAAgAAACAA=</HashCode>
+      <FileName>Puertos\RS232\OPuertoRS232.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Orbita.Comunicaciones.IOCommRemoting" Collapsed="true">
+    <Position X="21.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAgAAAAAAAIgAAAAAACAABAAEAICBAAAAAAAAA=</HashCode>
+      <FileName>Dispositivos\Remoting\IOCommRemoting.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Orbita.Comunicaciones.OVelocidad" Collapsed="true">
+    <Position X="21.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAQoCAAAAAABgAACAEAAAAABABAA=</HashCode>
+      <FileName>Puertos\RS232\OConfiguracionPuertoRS232.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Orbita.Comunicaciones.OBitsDatos" Collapsed="true">
+    <Position X="21.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAgIAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Puertos\RS232\OConfiguracionPuertoRS232.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Orbita.Comunicaciones.OParidades" Collapsed="true">
+    <Position X="27" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAgAAAIAAAAACAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Puertos\RS232\OConfiguracionPuertoRS232.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Orbita.Comunicaciones.OBitsStop" Collapsed="true">
+    <Position X="23.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Puertos\RS232\OConfiguracionPuertoRS232.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Orbita.Comunicaciones.OHandShakes" Collapsed="true">
+    <Position X="25.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAACAAAAAAAgAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Puertos\RS232\OConfiguracionPuertoRS232.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="Orbita.Comunicaciones.OManejadorEventoComm" Collapsed="true">
+    <Position X="21.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dispositivos\Manejadores\OManejadoresComm.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
