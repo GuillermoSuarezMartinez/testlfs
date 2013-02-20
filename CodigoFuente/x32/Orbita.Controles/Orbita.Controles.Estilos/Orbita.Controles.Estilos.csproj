@@ -86,23 +86,51 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Orbita2.isl" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Orbita.isl" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Default.isl" />
+    <EmbeddedResource Include="Resources\1.isl" />
+    <EmbeddedResource Include="Resources\3.isl" />
+    <EmbeddedResource Include="Resources\Aero.isl" />
+    <EmbeddedResource Include="Resources\AppStyle.isl" />
+    <EmbeddedResource Include="Resources\BlackStyleSet.isl" />
+    <EmbeddedResource Include="Resources\Claymation.isl" />
+    <EmbeddedResource Include="Resources\Exported Resources.isl" />
     <EmbeddedResource Include="Resources\FlatNature.isl" />
     <EmbeddedResource Include="Resources\IG.isl" />
+    <EmbeddedResource Include="Resources\LucidDream.isl" />
+    <EmbeddedResource Include="Resources\ModClay.isl" />
+    <EmbeddedResource Include="Resources\Nautilus.isl" />
+    <EmbeddedResource Include="Resources\NoirModerne.isl" />
     <EmbeddedResource Include="Resources\None.isl" />
+    <EmbeddedResource Include="Resources\Ocean_blue3_pill.isl" />
+    <EmbeddedResource Include="Resources\Office2010Black.isl" />
+    <EmbeddedResource Include="Resources\Office2010Blue.isl" />
+    <EmbeddedResource Include="Resources\Office2010Blue2.isl" />
+    <EmbeddedResource Include="Resources\Office2010Silver.isl" />
+    <EmbeddedResource Include="Resources\Orbita.isl" />
+    <EmbeddedResource Include="Resources\Orbita1.isl" />
+    <EmbeddedResource Include="Resources\Orbita2.isl" />
+    <EmbeddedResource Include="Resources\Orbita3.isl" />
+    <EmbeddedResource Include="Resources\Orbita4.isl" />
+    <EmbeddedResource Include="Resources\Orbita5.isl" />
+    <EmbeddedResource Include="Resources\Orbita6.isl" />
+    <EmbeddedResource Include="Resources\Orbita7.isl" />
+    <EmbeddedResource Include="Resources\RubberBlack.isl" />
+    <EmbeddedResource Include="Resources\Template_Cherry.isl" />
+    <EmbeddedResource Include="Resources\Template_Glassy.isl" />
+    <EmbeddedResource Include="Resources\Template_GrapeTomato.isl" />
+    <EmbeddedResource Include="Resources\Template_LucidDream.isl" />
+    <EmbeddedResource Include="Resources\Template_Nautilus.isl" />
+    <EmbeddedResource Include="Resources\Template_Office2007.isl" />
+    <EmbeddedResource Include="Resources\TheBlues.isl" />
+    <EmbeddedResource Include="Resources\Trendy.isl" />
+    <EmbeddedResource Include="Resources\VS2008.isl" />
+    <EmbeddedResource Include="Resources\VS2010.isl" />
+    <EmbeddedResource Include="Resources\VS20100.isl" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

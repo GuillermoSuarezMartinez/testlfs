@@ -115,14 +115,15 @@
     <Compile Include="UC\OrbitaUltraGanttView.Designer.cs">
       <DependentUpon>OrbitaUltraGanttView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaGantt.cs" />
+    <Compile Include="Custom\OrbitaGantt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Custom\OrbitaGantt.Designer.cs">
       <DependentUpon>OrbitaGantt.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="UC\OrbitaUltraGanttView.resx">
       <DependentUpon>OrbitaUltraGanttView.cs</DependentUpon>
     </EmbeddedResource>

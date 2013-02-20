@@ -155,6 +155,7 @@
     <EmbeddedResource Include="Custom\OrbitaForm.resx">
       <DependentUpon>OrbitaForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Orbita.Controles.Comunes\Orbita.Controles.Comunes.csproj">

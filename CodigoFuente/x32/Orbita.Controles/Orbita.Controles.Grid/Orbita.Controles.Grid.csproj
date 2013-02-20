@@ -119,6 +119,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\EventArgs\ORowEventArgs.cs" />
+    <Compile Include="Clases\EventArgs\OPropertyExtendedChangedEventArgs.cs" />
     <Compile Include="Clases\EventArgs\OToolClickEventArgs.cs" />
     <Compile Include="Clases\OColoresCorporativos.cs" />
     <Compile Include="Clases\OColumnaCalculada.cs" />
@@ -132,6 +134,18 @@
     <Compile Include="Clases\OPersistencia.cs" />
     <Compile Include="Clases\OProvider.cs" />
     <Compile Include="Clases\OSumario.cs" />
+    <Compile Include="Controles internos\Posicion.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles internos\Posicion.Designer.cs">
+      <DependentUpon>Posicion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogos\FrmBuscar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogos\FrmBuscar.Designer.cs">
+      <DependentUpon>FrmBuscar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogos\FrmGuardarArchivo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +228,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controles internos\Posicion.resx">
+      <DependentUpon>Posicion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogos\FrmBuscar.resx">
+      <DependentUpon>FrmBuscar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogos\FrmGuardarArchivo.resx">
       <DependentUpon>FrmGuardarArchivo.cs</DependentUpon>
     </EmbeddedResource>
