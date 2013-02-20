@@ -19,17 +19,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Utiles", "Orbita.Uti
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Orbita.Winsock", "Orbita.Winsock\Orbita.Winsock.vbproj", "{71BD7FF7-F873-49B9-8DC2-C41F909D7300}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PruebasUnitarias", "PruebasUnitarias", "{3EBBFAB3-D893-4C57-8A10-B9E6868EE29C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.PruebasUnitarias", "Orbita.PruebasUnitarias\Orbita.PruebasUnitarias.csproj", "{B7CBB04D-04AF-432C-BE3F-37B02570F03F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pruebas", "Pruebas", "{2AAE6DE9-9C66-4C87-A579-A40E6788A2F7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pruebas", "Pruebas\Pruebas.csproj", "{D6635CA2-4326-4CEB-BB27-03066E0C0BFB}"
-EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
+		SccNumberOfProjects = 6
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://01x0019:8080/tfs/orbitasoftware
 		SccLocalPath0 = .
@@ -53,14 +45,6 @@ Global
 		SccProjectTopLevelParentUniqueName5 = Orbita.sln
 		SccProjectName5 = Orbita.Trazabilidad
 		SccLocalPath5 = Orbita.Trazabilidad
-		SccProjectUniqueName6 = Orbita.PruebasUnitarias\\Orbita.PruebasUnitarias.csproj
-		SccProjectTopLevelParentUniqueName6 = Orbita.sln
-		SccProjectName6 = Orbita.PruebasUnitarias
-		SccLocalPath6 = Orbita.PruebasUnitarias
-		SccProjectUniqueName7 = Pruebas\\Pruebas.csproj
-		SccProjectTopLevelParentUniqueName7 = Orbita.sln
-		SccProjectName7 = Pruebas
-		SccLocalPath7 = Pruebas
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,26 +115,6 @@ Global
 		{71BD7FF7-F873-49B9-8DC2-C41F909D7300}.Release|Mixed Platforms.Build.0 = Release|x86
 		{71BD7FF7-F873-49B9-8DC2-C41F909D7300}.Release|x86.ActiveCfg = Release|x86
 		{71BD7FF7-F873-49B9-8DC2-C41F909D7300}.Release|x86.Build.0 = Release|x86
-		{B7CBB04D-04AF-432C-BE3F-37B02570F03F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7CBB04D-04AF-432C-BE3F-37B02570F03F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7CBB04D-04AF-432C-BE3F-37B02570F03F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{B7CBB04D-04AF-432C-BE3F-37B02570F03F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{B7CBB04D-04AF-432C-BE3F-37B02570F03F}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B7CBB04D-04AF-432C-BE3F-37B02570F03F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7CBB04D-04AF-432C-BE3F-37B02570F03F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B7CBB04D-04AF-432C-BE3F-37B02570F03F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{B7CBB04D-04AF-432C-BE3F-37B02570F03F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{B7CBB04D-04AF-432C-BE3F-37B02570F03F}.Release|x86.ActiveCfg = Release|Any CPU
-		{D6635CA2-4326-4CEB-BB27-03066E0C0BFB}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{D6635CA2-4326-4CEB-BB27-03066E0C0BFB}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{D6635CA2-4326-4CEB-BB27-03066E0C0BFB}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{D6635CA2-4326-4CEB-BB27-03066E0C0BFB}.Debug|x86.ActiveCfg = Debug|x86
-		{D6635CA2-4326-4CEB-BB27-03066E0C0BFB}.Debug|x86.Build.0 = Debug|x86
-		{D6635CA2-4326-4CEB-BB27-03066E0C0BFB}.Release|Any CPU.ActiveCfg = Release|x86
-		{D6635CA2-4326-4CEB-BB27-03066E0C0BFB}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{D6635CA2-4326-4CEB-BB27-03066E0C0BFB}.Release|Mixed Platforms.Build.0 = Release|x86
-		{D6635CA2-4326-4CEB-BB27-03066E0C0BFB}.Release|x86.ActiveCfg = Release|x86
-		{D6635CA2-4326-4CEB-BB27-03066E0C0BFB}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -161,7 +125,5 @@ Global
 		{71BD7FF7-F873-49B9-8DC2-C41F909D7300} = {EAC8843B-4275-49BD-83E8-B2A32F862A0B}
 		{1A2EEC44-A494-4BA6-A591-267B73A55CD1} = {9433FA4C-4056-4828-906B-20F7BF4FBED3}
 		{DAD5D2A3-9C23-4C22-ABEB-4DF8258170AD} = {42D7C7C7-2BDF-477E-9C0F-4DDAF7D867AC}
-		{B7CBB04D-04AF-432C-BE3F-37B02570F03F} = {3EBBFAB3-D893-4C57-8A10-B9E6868EE29C}
-		{D6635CA2-4326-4CEB-BB27-03066E0C0BFB} = {2AAE6DE9-9C66-4C87-A579-A40E6788A2F7}
 	EndGlobalSection
 EndGlobal
