@@ -7,7 +7,7 @@ namespace Orbita.Comunicaciones
     /// <summary>
     /// Protocolo de comunicación para modbus TCP
     /// </summary>
-    public class OModbusTCP
+    public class OModbusTCP : Protocolo
     {
         #region Variables
 
@@ -103,7 +103,23 @@ namespace Orbita.Comunicaciones
 
             return mensaje;
         }
-        
+        /// <summary>
+        /// Limpia objetos de memoria
+        /// </summary>
+        /// <param name="disposing"></param>
+        public override void Dispose(bool disposing)
+        {
+            // Preguntar si Dispose ya fue llamado.
+            if (!this.disposed)
+            {               
+
+                // Marcar como desechada ó desechandose,
+                // de forma que no se puede ejecutar el
+                // código dos veces.
+                disposed = true;
+            }
+        }
+
         private byte[] convertirArrayLectura(int valor)
         {
             byte[] retorno = null;

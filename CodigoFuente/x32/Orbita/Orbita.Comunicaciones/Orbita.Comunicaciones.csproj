@@ -157,6 +157,7 @@
     <Compile Include="Protocolos\OPC\Constantes\Constantes.cs" />
     <Compile Include="Protocolos\OPC\Info\OOPCEnlaces.cs" />
     <Compile Include="Protocolos\Phoenix\ProtocoloTCPPhoenixES.cs" />
+    <Compile Include="Protocolos\Protocolo.cs" />
     <Compile Include="Protocolos\Siemens\ProtocoloTCPSiemens.cs" />
     <Compile Include="Protocolos\Siemens\ProtocoloTCPSiemensGateOCRES.cs" />
     <Compile Include="Protocolos\Siemens\ProtocoloTCPSiemensGateOSES.cs" />
@@ -182,7 +183,7 @@
     <Compile Include="Dispositivos\Remoting\ORemoting.cs" />
     <Compile Include="Puertos\RS232\OConfiguracionPuertoRS232.cs" />
     <Compile Include="Puertos\RS232\OPuertoRS232.cs" />
-    <Compile Include="Dispositivos\OWinCC.cs" />
+    <Compile Include="Dispositivos\ODispositivoWinCC.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -218,6 +219,9 @@
       <Project>{71BD7FF7-F873-49B9-8DC2-C41F909D7300}</Project>
       <Name>Orbita.Winsock</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

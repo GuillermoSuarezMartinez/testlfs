@@ -8,7 +8,7 @@ namespace Orbita.Comunicaciones
     /// <summary>
     /// Protocolo para los dispositivos phoenix
     /// </summary>
-    public class ProtocoloTCPPhoenixES : IDisposable
+    public class ProtocoloTCPPhoenixES : Protocolo
     {
 
         #region Variables
@@ -186,21 +186,19 @@ namespace Orbita.Comunicaciones
             GC.SuppressFinalize(this);
         }
         /// <summary>
-        /// Destrucción del objeto
+        /// Limpia objetos de memoria
         /// </summary>
-        private void Dispose(bool disposing)
+        /// <param name="disposing"></param>
+        public override void Dispose(bool disposing)
         {
-            // Check to see if Dispose has already been called.
+            // Preguntar si Dispose ya fue llamado.
             if (!this.disposed)
             {
-                // If disposing equals true, dispose all managed
-                // and unmanaged resources.
-                if (disposing)
-                {
-                    // Dispose managed resources.
-                    
-                }                
 
+                // Marcar como desechada ó desechandose,
+                // de forma que no se puede ejecutar el
+                // código dos veces.
+                disposed = true;
             }
         }
 

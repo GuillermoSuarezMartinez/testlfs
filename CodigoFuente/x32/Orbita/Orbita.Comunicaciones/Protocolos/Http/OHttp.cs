@@ -21,7 +21,7 @@ namespace Orbita.Comunicaciones
     /// <summary>
     /// Clase para la comunicación HTTP
     /// </summary>
-    public class OHttp : IDisposable
+    public class OHttp : Protocolo
     {
         #region Atributos privados
         /// <summary>
@@ -66,25 +66,7 @@ namespace Orbita.Comunicaciones
         #endregion
 
         #region Destructores
-        /// <summary>
-        /// Indica si ya se llamo al método Dispose. (default = false)
-        /// </summary>
-        bool disposed = false;
-        /// <summary>
-        /// Implementa IDisposable.
-        /// No  hacer  este  método  virtual.
-        /// Una clase derivada no debería ser
-        /// capaz de  reemplazar este método.
-        /// </summary>
-        public void Dispose()
-        {
-            // Llamo al método que  contiene la lógica
-            // para liberar los recursos de esta clase.
-            Dispose(true);
-            // Este objeto será limpiado por el método Dispose.
-            // Llama al método del recolector de basura, GC.SuppressFinalize.
-            GC.SuppressFinalize(this);
-        }
+        
         /// <summary>
         /// Método  sobrecargado de  Dispose que será  el que
         /// libera los recursos. Controla que solo se ejecute
@@ -92,7 +74,7 @@ namespace Orbita.Comunicaciones
         /// llamar al destructor de clase.
         /// </summary>
         /// <param name="disposing">Indica si llama al método Dispose.</param>
-        protected virtual void Dispose(bool disposing)
+        public override void Dispose(bool disposing)
         {
             // Preguntar si Dispose ya fue llamado.
             if (!this.disposed)

@@ -8,7 +8,7 @@ namespace Orbita.Comunicaciones
     /// <summary>
     /// Protocolo de comunicación con WinCC
     /// </summary>
-    public class OWinCCDataManager
+    public class OWinCCDataManager:Protocolo
     {
         #region dm constants
         private const Int32 MAX_DM_VAR_NAME = 128;
@@ -292,6 +292,24 @@ namespace Orbita.Comunicaciones
 
             //Disconnect();
         }
+
+        /// <summary>
+        /// Limpia objetos de memoria
+        /// </summary>
+        /// <param name="disposing"></param>
+        public override void Dispose(bool disposing)
+        {
+            // Preguntar si Dispose ya fue llamado.
+            if (!this.disposed)
+            {
+
+                // Marcar como desechada ó desechandose,
+                // de forma que no se puede ejecutar el
+                // código dos veces.
+                disposed = true;
+            }
+        }
+
         #endregion  construction_Destruction
 
         #region StandardODKCalls

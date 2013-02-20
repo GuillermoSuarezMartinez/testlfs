@@ -7,7 +7,7 @@ namespace Orbita.Comunicaciones
     /// <summary>
     /// Clase para la sincronización NTP
     /// </summary>
-    public class ONTP
+    public class ONTP : Protocolo
     {
         /// <summary>
         /// Leap indicator field values
@@ -83,6 +83,24 @@ namespace Orbita.Comunicaciones
             /// </summary>
             Reserved				
         }
+
+        /// <summary>
+        /// Limpia objetos de memoria
+        /// </summary>
+        /// <param name="disposing"></param>
+        public override void Dispose(bool disposing)
+        {
+            // Preguntar si Dispose ya fue llamado.
+            if (!this.disposed)
+            {
+
+                // Marcar como desechada ó desechandose,
+                // de forma que no se puede ejecutar el
+                // código dos veces.
+                disposed = true;
+            }
+        }
+
         /// <summary>
         /// NTPClient is a C# class designed to connect to time servers on the Internet.
         /// The implementation of the protocol is based on the RFC 2030.
@@ -181,7 +199,7 @@ namespace Orbita.Comunicaciones
         /// +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
         /// 
         /// </summary>
-        public class NTPClient
+        public class NTPClient :Protocolo
         {
             // NTP Data Structure Length
             private const byte NTPDataLength = 48;
@@ -639,6 +657,23 @@ namespace Orbita.Comunicaciones
                 str += "\r\n";
 
                 return str;
+            }
+
+            /// <summary>
+            /// Limpia objetos de memoria
+            /// </summary>
+            /// <param name="disposing"></param>
+            public override void Dispose(bool disposing)
+            {
+                // Preguntar si Dispose ya fue llamado.
+                if (!this.disposed)
+                {
+
+                    // Marcar como desechada ó desechandose,
+                    // de forma que no se puede ejecutar el
+                    // código dos veces.
+                    disposed = true;
+                }
             }
 
             // SYSTEMTIME structure used by SetSystemTime

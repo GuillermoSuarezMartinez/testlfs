@@ -8,18 +8,9 @@ namespace Orbita.Comunicaciones
     /// <summary>
     /// Protocolo para los dispositivos TSP de siemens
     /// </summary>
-    public class ProtocoloTCPSiemens : IDisposable
+    public class ProtocoloTCPSiemens : Protocolo
     {
-        #region Variables
-        /// <summary>
-        /// Variable para la llamada al método dispose
-        /// </summary>
-        public bool disposed = false;
-        ///// <summary>
-        ///// Logger de la clase
-        ///// </summary>
-        //public static ILogger wrapper;
-        #endregion
+      
 
         #region Constructor
         /// <summary>
@@ -73,27 +64,24 @@ namespace Orbita.Comunicaciones
         {
             return null;
         }
+
         /// <summary>
-        /// Destrucción del objeto
-        /// </summary>
-        public void Dispose()
-        {
-            Dispose(true);
-            // This object will be cleaned up by the Dispose method.
-            // Therefore, you should call GC.SupressFinalize to
-            // take this object off the finalization queue
-            // and prevent finalization code for this object
-            // from executing a second time.
-            GC.SuppressFinalize(this);
-        }
-        /// <summary>
-        /// Destrucción del objeto
+        /// Limpia objetos de memoria
         /// </summary>
         /// <param name="disposing"></param>
-        public virtual void Dispose(bool disposing)
+        public override void Dispose(bool disposing)
         {
-           
+            // Preguntar si Dispose ya fue llamado.
+            if (!this.disposed)
+            {
+
+                // Marcar como desechada ó desechandose,
+                // de forma que no se puede ejecutar el
+                // código dos veces.
+                disposed = true;
+            }
         }
+        
         #endregion
     }
 }
