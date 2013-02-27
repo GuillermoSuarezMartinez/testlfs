@@ -230,6 +230,7 @@
     <Compile Include="Clases\CamaraBaslerVPro\OConectividadGigEVPro.cs" />
     <Compile Include="Clases\CamaraIP\OConectividadIP.cs" />
     <Compile Include="Clases\CamaraRemota\OCamaraRemota.cs" />
+    <Compile Include="Clases\CamaraVirtual\OCamaraVirtual.cs" />
     <Compile Include="Clases\PTZ\OPTZAxis.cs" />
     <Compile Include="Clases\PTZ\OPTZBase.cs" />
     <Compile Include="Clases\IO\OIO_MeasurementComputing.cs" />

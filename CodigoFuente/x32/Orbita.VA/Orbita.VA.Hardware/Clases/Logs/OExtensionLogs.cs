@@ -63,6 +63,10 @@ namespace Orbita.VA.Hardware
         /// Módulo de funcionamiento de las cámaras cliente del servidor de cámaras
         /// </summary>
         public static EnumModulosSistema CamaraRemota = new EnumModulosSistema("CamaraRemota", "Módulo de funcionamiento de las cámaras cliente del servidor de cámaras", 212);
+        /// <summary>
+        /// Módulo de funcionamiento de las cámaras virtuales
+        /// </summary>
+        public static EnumModulosSistema CamaraVirtual = new EnumModulosSistema("CamaraVirtual", "Módulo de funcionamiento de las cámaras virtuales", 213);
         #endregion
     }
 }

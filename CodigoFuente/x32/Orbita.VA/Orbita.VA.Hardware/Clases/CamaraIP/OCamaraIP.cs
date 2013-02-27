@@ -260,46 +260,6 @@ namespace Orbita.VA.Hardware
             return resultado;
         }
 
-        ///// <summary>
-        ///// Realiza una fotografía de forma sincrona
-        ///// </summary>
-        ///// <returns></returns>
-        //protected override bool SnapInterno()
-        //{
-        //    bool resultado = false;
-        //    try
-        //    {
-        //        if (this.EstadoConexion == EstadoConexion.Conectado)
-        //        {
-        //            resultado = base.SnapInterno();
-
-        //            // Verificamos que la cámara está preparada para adquirir la imagen
-        //            if (!this.VideoSource.Running)
-        //            {
-        //                OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, "La cámara no está preparada para adquirir imágenes");
-        //                return false;
-        //            }
-
-        //            // Se consulta la imágen de la cámara
-        //            OImagenBitmap bitmapImage;
-        //            resultado = this.GetCurrentImage(out bitmapImage);
-
-        //            // Se asigna el valor de la variable asociada
-        //            if (resultado)
-        //            {
-        //                this.EstablecerVariableAsociada(bitmapImage);
-        //            }
-        //        }
-
-        //        return resultado;
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        OVALogsManager.Error(ModulosHardware.Camaras, this.Codigo, exception);
-        //    }
-        //    return resultado;
-        //}
-
         /// <summary>
         /// Realiza una fotografía de forma sincrona
         /// </summary>

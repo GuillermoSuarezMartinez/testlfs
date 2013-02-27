@@ -434,44 +434,6 @@ namespace Orbita.VA.Hardware
             return false;
         }
 
-		/// <summary>
-		/// Establece la cámara en modo simulación de una fotografía
-		/// </summary>
-		/// <param name="rutaFotografias">Indica la ruta de la fotografía o de la carpeta de fotografías donde están las imágenes a simular</param>
-		public static void IniciarModoSimulacionFotografia(string codigo, string rutaFotografias)
-		{
-            OCamaraBase camara;
-            if (ListaCamaras.TryGetValue(codigo, out camara))
-            {
-                camara.ConfigurarModoSimulacionFotografia(rutaFotografias);
-            }
-		}
-
-		/// <summary>
-		/// Establece la cámara en modo simulación de una carpeta de fotografías
-		/// </summary>
-		/// <param name="rutaFotografias">Indica la ruta de la fotografía o de la carpeta de fotografías donde están las imágenes a simular</param>
-		public static void IniciarModoSimulacionFotografia(string codigo, string rutaFotografias, string filtro, int cadenciaSimulacionEnGrabacionMS)
-		{
-            OCamaraBase camara;
-            if (ListaCamaras.TryGetValue(codigo, out camara))
-            {
-                camara.ConfigurarModoSimulacionDirectorio(rutaFotografias, filtro, cadenciaSimulacionEnGrabacionMS);
-            } 
-		}
-
-		/// <summary>
-		/// Para el modo simulación de la cámara, restableciendo su funcionamiento normal
-		/// </summary>
-		public static void PararModoSimulacion(string codigo)
-		{
-            OCamaraBase camara;
-            if (ListaCamaras.TryGetValue(codigo, out camara))
-            {
-                camara.PararModoSimulacion();
-            } 
-		}
-
         /// <summary>
         /// Suscribe el cambio de fotografía de una determinada cámara
         /// </summary>
@@ -588,10 +550,6 @@ namespace Orbita.VA.Hardware
     public class OCamaraBase : IHardware
 	{
 		#region Atributo(s)
-		/// <summary>
-		/// Objeto de simulación de la cámara
-		/// </summary>
-		public OSimulacionCamara SimulacionCamara;
 		/// <summary>
 		/// Indica si esta grabando
 		/// </summary>
@@ -1203,8 +1161,6 @@ namespace Orbita.VA.Hardware
                 this._ListaTerminales = new Dictionary<string, OTerminalIOBase>();
 				this._Existe = false;
 				this._VisualizacionEnVivo = false;
-				this.SimulacionCamara = new OSimulacionCamara(codigo);
-				this.SimulacionCamara.OnSnapSimulado += new ODelegadoSnapSimulado(SnapSimulado);
 				//this.Recording = false;
 				this.MedidorVelocidadAdquisicion = new OMedidorVelocidadAdquisicion();
 
@@ -1390,26 +1346,6 @@ namespace Orbita.VA.Hardware
                 OVariablesManager.SetValue(this.CodVariableEstado, estado, "Camaras", this.Codigo);
             }
         }
-
-        /// <summary>
-        /// Simulación de la realización de un snap
-        /// </summary>
-        protected bool SnapSimulado(string rutaFotografia)
-        {
-            OImagen imagen;
-
-            // Se carga la fotografía de disco
-            bool resultado = this.CargarImagenDeDisco(out imagen, rutaFotografia);
-
-            // Se asigna el valor de la variable asociada
-            if (resultado)
-            {
-                this.AdquisicionCompletada(imagen);
-                //this.EstablecerVariableImagenAsociada(imagen);
-            }
-
-            return resultado;
-        }
         #endregion
 
         #region Método(s) público(s)
@@ -1430,37 +1366,6 @@ namespace Orbita.VA.Hardware
         }
 
 		/// <summary>
-		/// Establece la cámara en modo simulación
-		/// </summary>
-		/// <param name="rutaFotografias">Indica la ruta de la fotografía o de la carpeta de fotografías donde están las imágenes a simular</param>
-		public void ConfigurarModoSimulacionFotografia(string rutaFotografias)
-		{
-			this.SimulacionCamara.ConfigurarModoSimulacionFotografia(rutaFotografias);
-		}
-
-		/// <summary>
-		/// Establece la cámara en modo simulación
-		/// </summary>
-		/// <param name="rutaFotografias">Indica la ruta de la fotografía o de la carpeta de fotografías donde están las imágenes a simular</param>
-		/// <param name="filtro">Cadena de filtrado de las fotografías situadas en la caperta establecida</param>
-		/// <param name="cadenciaSimulacionEnGrabacionMs">Intervalo en milisegundos utilizado para simular la grabación. Se realiza una fotografía según el tiempo indicado.</param>
-		public void ConfigurarModoSimulacionDirectorio(string rutaFotografias, string filtro, int cadenciaSimulacionEnGrabacionMs)
-		{
-			this.SimulacionCamara.ConfigurarModoSimulacionDirectorio(rutaFotografias, filtro, cadenciaSimulacionEnGrabacionMs);
-		}
-
-		/// <summary>
-		/// Para el modo simulación de la cámara, restableciendo su funcionamiento normal
-		/// </summary>
-		public void PararModoSimulacion()
-		{
-			if (this.SimulacionCamara.ConfigurarModoReal())
-			{
-				this.Stop();
-			}
-		}
-
-		/// <summary>
 		/// Comienza una reproducción continua de la cámara
 		/// </summary>
 		/// <returns></returns>
@@ -1476,15 +1381,7 @@ namespace Orbita.VA.Hardware
                 OVariablesManager.CrearSuscripcion(this._CodVariableReproduccion, "Camaras", this.Codigo, ComandoReproduccionPorVariable);
 
                 this._Play = true;
-                if (!this.SimulacionCamara.Simulacion)
-                {
-                    resultado = this.StartInterno();
-                }
-                else
-                {
-                    this.SimulacionCamara.IniciarSimulacionGrabacion();
-                    resultado = true;
-                }
+                resultado = this.StartInterno();
 
                 this.LanzarEventoCambioReproduccionCamara(this.Codigo, this._Play);
             }
@@ -1507,15 +1404,7 @@ namespace Orbita.VA.Hardware
                 OVariablesManager.EliminarSuscripcion(this._CodVariableReproduccion, "Camaras", this.Codigo, ComandoReproduccionPorVariable);
 
                 this._Play = false;
-                if (!this.SimulacionCamara.Simulacion)
-                {
-                    resultado = this.StopInterno();
-                }
-                else
-                {
-                    this.SimulacionCamara.ParaSimulacionGrabacion();
-                    resultado = true;
-                }
+                resultado = this.StopInterno();
 
                 this.LanzarEventoCambioReproduccionCamara(this.Codigo, this._Play);
             }
@@ -1532,15 +1421,8 @@ namespace Orbita.VA.Hardware
 
             if (this.Habilitado && (this.EstadoConexion == EstadoConexion.Conectado))
             {
-                if (!this.SimulacionCamara.Simulacion)
-                { // Modo de funcionamiento normal
-                    resultado = this.SnapInterno();
-                }
-                else
-                { // Modo de funcionamiento en modo simulación (por ahora de 1 sola fotografía)
-                    this.SimulacionCamara.EjecutarSimulacion();
-                    resultado = true;
-                }
+                // Modo de funcionamiento normal
+                resultado = this.SnapInterno();
 
                 // Información extra
                 OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, "Snap de la cámara: " + this.Codigo + ". Resultado: " + resultado.ToString());
@@ -1588,10 +1470,7 @@ namespace Orbita.VA.Hardware
                 // Información extra
                 OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, "REC de la cámara: " + this.Codigo);
 
-                if (!this.SimulacionCamara.Simulacion)
-                {
-                    resultado = this.StartRECInterno(fichero);
-                }
+                resultado = this.StartRECInterno(fichero);
             }
             //this.Recording = resultado;
             return resultado;
@@ -1609,10 +1488,7 @@ namespace Orbita.VA.Hardware
                 // Información extra
                 OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, "StopREC de la cámara: " + this.Codigo);
 
-                if (!this.SimulacionCamara.Simulacion)
-                {
-                    resultado = this.StopRECInterno();
-                }
+                resultado = this.StopRECInterno();
             }
             //this.Recording = false;
             return resultado;
@@ -2239,360 +2115,6 @@ namespace Orbita.VA.Hardware
         Ejecucion = 4
     }
     #endregion
-
-    #region Clases para la simulación de las cámaras
-    /// <summary>
-	/// Clase que guarda las propiedades de la simulación de una cámara
-	/// </summary>
-	public class OSimulacionCamara
-	{
-		#region Atributo(s)
-		/// <summary>
-		/// Listado de las fotografías situadas en el directorio
-		/// </summary>
-		private List<string> ListaRutaFotografias;
-		/// <summary>
-		/// Indica la fotografía actual en la lista de fotografías
-		/// </summary>
-		private int IndiceFotografia;
-		/// <summary>
-		/// Timer que se utiliza para realizar la simulación de la grabación
-		/// </summary>
-		private Timer TimerSimulacionGrab;
-		#endregion
-
-		#region Propiedad(es)
-		/// <summary>
-		/// Código identificador de la cámara
-		/// </summary>
-		private string _Codigo;
-		/// <summary>
-		/// Código identificador de la cámara
-		/// </summary>
-		public string Codigo
-		{
-			get { return _Codigo; }
-			set { _Codigo = value; }
-		}
-
-		/// <summary>
-		/// Indica si la cámara está en modo simulación
-		/// </summary>
-		private bool _Simulacion;
-		/// <summary>
-		/// Indica si la cámara está en modo simulación
-		/// </summary>
-		public bool Simulacion
-		{
-			get { return _Simulacion; }
-			set { _Simulacion = value; }
-		}
-
-		/// <summary>
-		/// Indica el tipo de simulación que se realizará en la cámara (con una única foto o con toda una carpeta de fotos)
-		/// </summary>
-		private TipoSimulacionCamara _TipoSimulacion;
-		/// <summary>
-		/// Indica el tipo de simulación que se realizará en la cámara (con una única foto o con toda una carpeta de fotos)
-		/// </summary>
-		public TipoSimulacionCamara TipoSimulacion
-		{
-			get { return _TipoSimulacion; }
-			set { _TipoSimulacion = value; }
-		}
-
-		/// <summary>
-		/// Indica la ruta de la fotografía o de la carpeta de fotografías donde están las imágenes a simular
-		/// </summary>
-		private string _RutaFotografias;
-		/// <summary>
-		/// Indica la ruta de la fotografía o de la carpeta de fotografías donde están las imágenes a simular
-		/// </summary>
-		public string RutaFotografias
-		{
-			get { return _RutaFotografias; }
-			set { _RutaFotografias = value; }
-		}
-
-		/// <summary>
-		/// Intervalo de tiempo entre snaps de grabación
-		/// </summary>
-		private int _IntervaloEntreSnaps;
-		/// <summary>
-		/// Intervalo de tiempo entre snaps de grabación
-		/// </summary>
-		public int IntervaloEntreSnaps
-		{
-			get { return _IntervaloEntreSnaps; }
-			set { _IntervaloEntreSnaps = value; }
-		}
-
-		/// <summary>
-		/// Filtro de las imagenes a simular
-		/// </summary>
-		private string _Filtro;
-		/// <summary>
-		/// Filtro de las imagenes a simular
-		/// </summary>
-		public string Filtro
-		{
-			get { return _Filtro; }
-			set { _Filtro = value; }
-		}
-
-		/// <summary>
-		/// Evento de simluación de la grabación
-		/// </summary>
-		private ODelegadoSnapSimulado _OnSnapSimulado;
-		/// <summary>
-		/// Evento de simluación de la grabación
-		/// </summary>
-		internal ODelegadoSnapSimulado OnSnapSimulado
-		{
-			get { return _OnSnapSimulado; }
-			set { _OnSnapSimulado = value; }
-		}
-
-		#endregion
-
-		#region Constructor(es)
-		/// <summary>
-		/// Constructor de la clase
-		/// </summary>
-		public OSimulacionCamara(string codigo)
-		{
-			this._Codigo = codigo;
-			this._Simulacion = false;
-			this._TipoSimulacion = TipoSimulacionCamara.FotografiaSimple;
-			this._RutaFotografias = Path.GetDirectoryName(Application.ExecutablePath);
-			this._IntervaloEntreSnaps = 2000;
-			this._Filtro = "*.bmp";
-			this.IndiceFotografia = -1;
-			this.ListaRutaFotografias = new List<string>();
-
-			this.TimerSimulacionGrab = new Timer();
-			this.TimerSimulacionGrab.Interval = this._IntervaloEntreSnaps;
-			this.TimerSimulacionGrab.Enabled = false;
-			this.TimerSimulacionGrab.Tick += EventoGrabSimulado;
-		}
-		#endregion
-
-		#region Método(s) público(s)
-
-		/// <summary>
-		/// Verifica que el modo simulación es correcto
-		/// </summary>
-		public bool ConfigurarModoSimulacion()
-		{
-			if (this._Simulacion)
-			{
-				try
-				{
-					switch (this._TipoSimulacion)
-					{
-						case TipoSimulacionCamara.FotografiaSimple:
-							if (File.Exists(this.RutaFotografias))
-							{
-								this.Simulacion = true;
-							}
-							break;
-						case TipoSimulacionCamara.DirectorioFotografias:
-							this.ListaRutaFotografias = new List<string>();
-							this.IndiceFotografia = -1;
-
-							if (Path.IsPathRooted(this.RutaFotografias) && Directory.Exists(this.RutaFotografias))
-							{
-								string[] arrayFotografias = Directory.GetFiles(this.RutaFotografias, this.Filtro, SearchOption.TopDirectoryOnly);
-								this.ListaRutaFotografias.AddRange(arrayFotografias);
-
-								this.TimerSimulacionGrab.Interval = this._IntervaloEntreSnaps;
-
-								this.Simulacion = this.ListaRutaFotografias.Count > 0;
-							}
-							break;
-					}
-				}
-				catch (Exception exception)
-				{
-					OVALogsManager.Error(ModulosHardware.Camaras, this.Codigo, exception);
-				}
-			}
-
-			return this._Simulacion;
-		}
-
-		/// <summary>
-		/// Establece la cámara en modo simulación
-		/// </summary>
-		/// <param name="rutaFotografias">Indica la ruta de la fotografía o de la carpeta de fotografías donde están las imágenes a simular</param>
-		public void ConfigurarModoSimulacionFotografia(string rutaFotografias)
-		{
-			if (!this.Simulacion)
-			{
-				this.TipoSimulacion = TipoSimulacionCamara.FotografiaSimple;
-				this.RutaFotografias = rutaFotografias;
-				if (File.Exists(rutaFotografias))
-				{
-					this.Simulacion = true;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Establece la cámara en modo simulación
-		/// </summary>
-		/// <param name="rutaFotografias">Indica la ruta de la fotografía o de la carpeta de fotografías donde están las imágenes a simular</param>
-		/// <param name="filtro">Cadena de filtrado de las fotografías situadas en la caperta establecida</param>
-		/// <param name="cadenciaSimulacionEnGrabacionMs">Intervalo en milisegundos utilizado para simular la grabación. Se realiza una fotografía según el tiempo indicado.</param>
-		public void ConfigurarModoSimulacionDirectorio(string rutaFotografias, string filtro, int cadenciaSimulacionEnGrabacionMs)
-		{
-			if (!this.Simulacion)
-			{
-				this.TipoSimulacion = TipoSimulacionCamara.DirectorioFotografias;
-				this.RutaFotografias = rutaFotografias;
-				this.ListaRutaFotografias = new List<string>();
-				this.IndiceFotografia = -1;
-
-				if (Path.IsPathRooted(rutaFotografias) && Directory.Exists(rutaFotografias))
-				{
-					string[] arrayFotografias = Directory.GetFiles(rutaFotografias, filtro, SearchOption.TopDirectoryOnly);
-					this.ListaRutaFotografias.AddRange(arrayFotografias);
-
-					this.TimerSimulacionGrab.Interval = cadenciaSimulacionEnGrabacionMs;
-
-					this.Simulacion = this.ListaRutaFotografias.Count > 0;
-				}
-			}
-		}
-
-		/// <summary>
-		/// Para el modo simulación de la cámara, restableciendo su funcionamiento normal
-		/// </summary>
-		public bool ConfigurarModoReal()
-		{
-			if (this.Simulacion)
-			{
-				this.Simulacion = false;
-				return true;
-			}
-			return false;
-		}
-
-		/// <summary>
-		/// Inicia la simulación de la grabación
-		/// </summary>
-		internal void IniciarSimulacionGrabacion()
-		{
-			if (this.Simulacion)
-			{
-				this.TimerSimulacionGrab.Enabled = true;
-			}
-		}
-
-		/// <summary>
-		/// Inicia la simulación de la grabación
-		/// </summary>
-		internal void ParaSimulacionGrabacion()
-		{
-			if (this.Simulacion)
-			{
-				this.TimerSimulacionGrab.Enabled = false;
-			}
-		}
-		#endregion
-
-		#region Eventos
-
-		/// <summary>
-		/// Evento del timer de simulación de fotografía
-		/// </summary>
-		/// <param name="source"></param>
-		/// <param name="e"></param>
-		public void EventoGrabSimulado(object sender, EventArgs e)
-		{
-			try
-			{
-				this.EjecutarSimulacion();
-			}
-			catch (Exception exception)
-			{
-				OVALogsManager.Error(ModulosHardware.Camaras, this.Codigo, exception);
-			}
-		}
-
-		/// <summary>
-		/// Ejecuta la simulación de un snap
-		/// </summary>
-		/// <returns>Verdadero si la simulación se ha ejecutado con éxito</returns>
-		public bool EjecutarSimulacion()
-		{
-			bool resultado = false;
-
-			try
-			{
-				if (this.Simulacion)
-				{
-					string rutaFotografiaActual = "";
-
-					switch (this.TipoSimulacion)
-					{
-						case TipoSimulacionCamara.FotografiaSimple:
-							rutaFotografiaActual = this.RutaFotografias;
-							resultado = true;
-							break;
-						case TipoSimulacionCamara.DirectorioFotografias:
-							if (this.ListaRutaFotografias.Count > 0)
-							{
-								this.IndiceFotografia++;
-                                resultado = OEntero.InRange(this.IndiceFotografia, 0, this.ListaRutaFotografias.Count - 1);
-								if (resultado)
-								{
-									rutaFotografiaActual = this.ListaRutaFotografias[this.IndiceFotografia];
-								}
-							}
-							break;
-					}
-
-					if (resultado && (OnSnapSimulado != null))
-					{
-						resultado = this.OnSnapSimulado(rutaFotografiaActual);
-					}
-				}
-
-			}
-			catch (Exception exception)
-			{
-				OVALogsManager.Error(ModulosHardware.Camaras, this.Codigo, exception);
-			}
-
-			return resultado;
-		}
-		#endregion
-	}
-
-	/// <summary>
-	/// Enumerado que informa sobre el tipo de simulación que se está realizando en la cámara
-	/// </summary>
-	public enum TipoSimulacionCamara
-	{
-		/// <summary>
-		/// Se simula siempre con la misma fotografía
-		/// </summary>
-		FotografiaSimple,
-
-		/// <summary>
-		/// Se simula con todo un directorio de fotografías
-		/// </summary>
-		DirectorioFotografias
-	}
-
-	/// <summary>
-	/// Delegado que se dispara cuando se simula un snap
-	/// </summary>
-	/// <param name="rutaFotografia">Ruta de la fotografía de disco</param>
-	/// <returns>Devuelve verdadero si la simulación se ha ejecutado correctamente</returns>
-	internal delegate bool ODelegadoSnapSimulado(string rutaFotografia);
-	#endregion
 
 	#region Reconexión con las cámaras
 	/// <summary>
