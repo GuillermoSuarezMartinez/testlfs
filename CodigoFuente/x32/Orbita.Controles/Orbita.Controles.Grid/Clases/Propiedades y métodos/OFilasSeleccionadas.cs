@@ -12,7 +12,7 @@
 namespace Orbita.Controles.Grid
 {
     [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
-    public class OFilasActivas : OControlBase
+    public class OFilasSeleccionadas : OControlBase
     {
         #region Atributos
         bool confirmarBorrado;
@@ -20,21 +20,21 @@ namespace Orbita.Controles.Grid
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OFilaActiva.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OFilasSeleccionadas.
         /// </summary>
-        public OFilasActivas(object control)
+        public OFilasSeleccionadas(object control)
             : base(control) { }
         #endregion
 
         #region Propiedades
-        [System.ComponentModel.Description("Determina la apariencia de fila activa.")]
+        [System.ComponentModel.Description("Determina la apariencia de fila seleccionada.")]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public override OApariencia Apariencia
         {
             get { return base.Apariencia; }
             set { base.Apariencia = value; }
         }
-        [System.ComponentModel.Description("Confirmar borrado de fila.")]
+        [System.ComponentModel.Description("Confirmar borrado de fila seleccionada.")]
         public bool ConfirmarBorrado
         {
             get { return this.confirmarBorrado; }
@@ -58,28 +58,36 @@ namespace Orbita.Controles.Grid
         #region Métodos públicos
         public bool Eliminar()
         {
-            bool retorno = false;
-            if (this.Control.ActiveRow != null && this.Control.ActiveRow.IsDataRow && !this.Control.ActiveRow.IsFilteredOut && !this.Control.ActiveRow.IsAddRow)
+            bool res = false;
+            if (this.Control.Selected != null)
             {
                 int indiceFilaActiva = this.Control.ActiveRow.Index;
-                retorno = this.Control.ActiveRow.Delete(this.confirmarBorrado);
-                if (indiceFilaActiva > 0 || this.Control.Rows.Count > 0)
+                try
                 {
-                    if (indiceFilaActiva >= this.Control.Rows.Count)
+                    this.Control.DeleteSelectedRows(this.confirmarBorrado);
+                    if (indiceFilaActiva > 0 || this.Control.Rows.Count > 0)
                     {
-                        indiceFilaActiva -= 1;
-                    }
-                    for (int indice = indiceFilaActiva; indice > -1; indice--)
-                    {
-                        if (!this.Control.Rows[indice].IsFilteredOut)
+                        if (indiceFilaActiva >= this.Control.Rows.Count)
                         {
-                            this.Control.ActiveRow = this.Control.Rows[indice];
-                            break;
+                            indiceFilaActiva -= 1;
+                        }
+                        for (int indice = indiceFilaActiva; indice > -1; indice--)
+                        {
+                            if (!this.Control.Rows[indice].IsFilteredOut)
+                            {
+                                this.Control.ActiveRow = this.Control.Rows[indice];
+                                break;
+                            }
                         }
                     }
+                    res = true;
+                }
+                catch
+                {
+                    res = false;
                 }
             }
-            return retorno;
+            return res;
         }
         #endregion
     }

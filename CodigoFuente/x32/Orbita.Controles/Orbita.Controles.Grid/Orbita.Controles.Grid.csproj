@@ -136,6 +136,7 @@
     <Compile Include="Clases\OPersistencia.cs" />
     <Compile Include="Clases\OProvider.cs" />
     <Compile Include="Clases\OSumario.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OFilasSeleccionadas.cs" />
     <Compile Include="Controles internos\Posicion.cs">
       <SubType>UserControl</SubType>
     </Compile>

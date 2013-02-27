@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using Infragistics.Win.UltraWinGrid;
 using Infragistics.Win.UltraWinToolbars;
 using Orbita.Controles.Menu;
+using System.Collections.Generic;
 namespace Orbita.Controles.Grid
 {
     public partial class OrbitaUltraGridToolBar : UserControl
@@ -635,26 +636,71 @@ namespace Orbita.Controles.Grid
         {
             try
             {
-                UltraGridRow[] filasActivas = null;
-                int indice = 0;
-                foreach (UltraGridRow item in this.grid.Selected.Rows)
+                // Colección de filas que se van a eliminar y que se va a pasar como argumento del evento.
+                List<UltraGridRow> lista = null;
+                // Recorrer la colección de filas seleccionadas, que es diferente a la fila activa.
+                // Filas seleccionadas = Selected.Rows.
+                // Fila activa = ActiveRow.
+                if (this.grid.Selected.Rows.Count > 0)
                 {
-                    if (item.IsDataRow)
+                    foreach (UltraGridRow fila in this.grid.Selected.Rows)
                     {
-                        filasActivas[indice++] = item;
+                        if (fila.IsDataRow)
+                        {
+                            if (lista == null)
+                            {
+                                lista = new List<UltraGridRow>();
+                            }
+                            if (!lista.Contains(fila))
+                            {
+                                lista.Add(fila);
+                            }
+                        }
                     }
                 }
-                if (filasActivas == null)
-                { 
-                    return;
-                }
-                if (this.definicion.Filas.Eliminar())
+                // Añadir a la colección la fila activa.
+                UltraGridRow filaActiva = this.grid.ActiveRow;
+                if (filaActiva != null)
                 {
-                    if (this.ToolEliminarClick != null)
+                    if (fila.IsDataRow)
                     {
-                        OToolClickCollectionEventArgs nuevoEventArgs = new OToolClickCollectionEventArgs(e.Tool, e.ListToolItem);
-                        nuevoEventArgs.Filas = filasActivas;
-                        this.ToolEliminarClick(this, nuevoEventArgs);
+                        if (lista == null)
+                        {
+                            lista = new List<UltraGridRow>();
+                        }
+                        if (!lista.Contains(filaActiva))
+                        {
+                            lista.Add(filaActiva);
+                        }
+                    }
+                }
+                if (lista != null)
+                {
+                    // En función de las opciones de seleccionar y a partir del delegado dinámico se va a crear
+                    // el objeto con la llamada al método eliminar adecuado según el caso.
+                    if (this.grid.Selected.Rows.Count > 0 && this.grid.Selected.Rows.Count < lista.Count)
+                    {
+                        // Se ha seleccionado filas múltiples y deseleccionado la fila activa.
+                        this.definicion.Filas.TipoSeleccion = new OFilas.TipoSeleccionFila(this.definicion.Filas.Eliminar);
+                    }
+                    else if (this.grid.Selected.Rows.Count > 0 && this.grid.Selected.Rows.Count == lista.Count)
+                    {
+                        // Se ha seleccionado filas múltiples y la fila activa.
+                        this.definicion.Filas.TipoSeleccion = new OFilas.TipoSeleccionFila(this.definicion.Filas.Seleccionadas.Eliminar);
+                    }
+                    else if (this.grid.Selected.Rows.Count == 0 && this.grid.ActiveRow != null)
+                    {
+                        // No existe multiselección.
+                        this.definicion.Filas.TipoSeleccion = new OFilas.TipoSeleccionFila(this.definicion.Filas.Activas.Eliminar);
+                    }
+                    if (this.definicion.Filas.TipoSeleccion())
+                    {
+                        if (this.ToolEliminarClick != null)
+                        {
+                            OToolClickCollectionEventArgs nuevoEventArgs = new OToolClickCollectionEventArgs(e.Tool, e.ListToolItem);
+                            nuevoEventArgs.Filas = lista.ToArray();
+                            this.ToolEliminarClick(this, nuevoEventArgs);
+                        }
                     }
                 }
             }

@@ -169,8 +169,11 @@ namespace Orbita.Controles.Grid
                     this.filas.Activas.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaFilasActivasChanged);
                     this.filas.Alternas.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaFilasAlternasChanged);
                     this.filas.Nuevas.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaFilasNuevasChanged);
+                    this.filas.Seleccionadas.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaFilasSeleccionadasChanged);
                     this.filas.Alto = Configuracion.DefectoAlto;
                     this.filas.ConfirmarBorrado = Configuracion.DefectoConfirmarBorrado;
+                    this.filas.Activas.ConfirmarBorrado = Configuracion.DefectoConfirmarBorrado;
+                    this.filas.Seleccionadas.ConfirmarBorrado = Configuracion.DefectoConfirmarBorrado;
                     this.filas.MostrarIndicador = Configuracion.DefectoMostrarIndicador;
                     this.filas.Multiseleccion = Configuracion.DefectoMultiseleccion;
                     this.filas.PermitirBorrar = Configuracion.DefectoPermitirBorrar;
@@ -583,6 +586,15 @@ namespace Orbita.Controles.Grid
             this.Control.DisplayLayout.Override.TemplateAddRowAppearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.filas.Activas.Apariencia.AdornoTexto;
 
         }
+        protected virtual void AparienciaFilasSeleccionadasChanged(object sender, OPropiedadEventArgs e)
+        {
+            this.Control.DisplayLayout.Override.SelectedRowAppearance.BackColor = this.filas.Seleccionadas.Apariencia.ColorFondo;
+            this.Control.DisplayLayout.Override.SelectedRowAppearance.BorderColor = this.filas.Seleccionadas.Apariencia.ColorBorde;
+            this.Control.DisplayLayout.Override.SelectedRowAppearance.ForeColor = this.filas.Seleccionadas.Apariencia.ColorTexto;
+            this.Control.DisplayLayout.Override.SelectedRowAppearance.TextHAlign = (Infragistics.Win.HAlign)(int)this.filas.Seleccionadas.Apariencia.AlineacionTextoHorizontal;
+            this.Control.DisplayLayout.Override.SelectedRowAppearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.filas.Seleccionadas.Apariencia.AlineacionTextoVertical;
+            this.Control.DisplayLayout.Override.SelectedRowAppearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.filas.Seleccionadas.Apariencia.AdornoTexto;
+        }
         protected virtual void AparienciaFiltrosChanged(object sender, OPropiedadEventArgs e)
         {
             this.Control.DisplayLayout.Override.FilterCellAppearance.BackColor = this.filas.Activas.Apariencia.ColorFondo;
@@ -781,4 +793,3 @@ namespace Orbita.Controles.Grid
         #endregion
     }
 }
-

@@ -18,22 +18,39 @@ namespace Orbita.Controles.Grid
     {
         #region Atributos
         /// <summary>
-        /// Fila activa.
+        /// Filas activas.
         /// </summary>
         OFilasActivas activas;
         /// <summary>
-        /// Fila alterna.
+        /// Filas alternas.
         /// </summary>
         OFilasAlternas alternas;
         /// <summary>
-        /// Fila nueva.
+        /// Filas nuevas.
         /// </summary>
         OFilasNuevas nuevas;
+        /// <summary>
+        /// Filas seleccionadas.
+        /// </summary>
+        OFilasSeleccionadas seleccionadas;
         bool mostrarIndicador;
         bool multiseleccion;
         bool confirmarBorrado;
         int alto;
         bool permitirBorrar;
+        TipoSeleccionFila tipoSeleccion;
+        public TipoSeleccionFila TipoSeleccion
+        {
+            get { return this.tipoSeleccion; }
+            set { this.tipoSeleccion = value; }
+        }
+        #endregion
+
+        #region Delegado(s)
+        /// <summary>
+        /// Delegado útil para que el manejador de evento eliminar ejecute el método de clase adecuado.
+        /// </summary>
+        public delegate bool TipoSeleccionFila();
         #endregion
 
         #region Eventos
@@ -99,6 +116,20 @@ namespace Orbita.Controles.Grid
             }
             set { this.nuevas = value; }
         }
+        [System.ComponentModel.Description("Determina la configuración de la fila seleccionada.")]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content), System.ComponentModel.Category("Fila")]
+        public OFilasSeleccionadas Seleccionadas
+        {
+            get
+            {
+                if (this.seleccionadas == null)
+                {
+                    this.seleccionadas = new OFilasSeleccionadas(this.Control);
+                }
+                return this.seleccionadas;
+            }
+            set { this.seleccionadas = value; }
+        }
         [System.ComponentModel.Description("Muestra indicador de fila.")]
         public bool MostrarIndicador
         {
@@ -137,21 +168,7 @@ namespace Orbita.Controles.Grid
         public bool ConfirmarBorrado
         {
             get { return this.confirmarBorrado; }
-            set
-            {
-                if (this.confirmarBorrado != value)
-                {
-                    if (this.PropertyChanging != null)
-                    {
-                        this.PropertyChanging(this, new OPropiedadEventArgs("ConfirmarBorrado"));
-                    }
-                    this.confirmarBorrado = value;
-                    if (this.PropertyChanged != null)
-                    {
-                        this.PropertyChanged(this, new OPropiedadEventArgs("ConfirmarBorrado"));
-                    }
-                }
-            }
+            set { this.confirmarBorrado = value; }
         }
         [System.ComponentModel.Description("Alto de fila.")]
         public int Alto
@@ -291,31 +308,7 @@ namespace Orbita.Controles.Grid
                 fila.Update();
             }
         }
-        //public bool Eliminar()
-        //{
-        //    bool retorno = false;
-        //    if (this.Control.ActiveRow != null && this.Control.ActiveRow.IsDataRow && !this.Control.ActiveRow.IsFilteredOut && !this.Control.ActiveRow.IsAddRow)
-        //    {
-        //        int indiceFilaActiva = this.Control.ActiveRow.Index;
-        //        retorno = this.Control.ActiveRow.Delete(this.ConfirmarBorrado);
-        //        if (indiceFilaActiva > 0 || this.Control.Rows.Count > 0)
-        //        {
-        //            if (indiceFilaActiva >= this.Control.Rows.Count)
-        //            {
-        //                indiceFilaActiva = indiceFilaActiva - 1;
-        //            }
-        //            for (int indice = indiceFilaActiva; indice > -1; indice--)
-        //            {
-        //                if (!this.Control.Rows[indice].IsFilteredOut)
-        //                {
-        //                    this.Control.ActiveRow = this.Control.Rows[indice];
-        //                    break;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return retorno;
-        //}
+
         //public bool Eliminar(bool prompt)
         //{
         //    if (prompt)
@@ -331,38 +324,33 @@ namespace Orbita.Controles.Grid
         //        return res;
         //    }
         //}
+
         public bool Eliminar()
         {
-            bool res = false;
-            if (this.Control.Selected != null)
+            bool retorno = false;
+            if (this.Control.ActiveRow != null && this.Control.ActiveRow.IsDataRow && !this.Control.ActiveRow.IsFilteredOut && !this.Control.ActiveRow.IsAddRow)
             {
                 int indiceFilaActiva = this.Control.ActiveRow.Index;
-                try
+                this.Control.DeleteSelectedRows(false);
+                this.Control.ActiveRow.Delete(false);
+                retorno = true;
+                if (indiceFilaActiva > 0 || this.Control.Rows.Count > 0)
                 {
-                    this.Control.DeleteSelectedRows(this.ConfirmarBorrado);
-                    if (indiceFilaActiva > 0 || this.Control.Rows.Count > 0)
+                    if (indiceFilaActiva >= this.Control.Rows.Count)
                     {
-                        if (indiceFilaActiva >= this.Control.Rows.Count)
+                        indiceFilaActiva -= 1;
+                    }
+                    for (int indice = indiceFilaActiva; indice > -1; indice--)
+                    {
+                        if (!this.Control.Rows[indice].IsFilteredOut)
                         {
-                            indiceFilaActiva = indiceFilaActiva - 1;
-                        }
-                        for (int indice = indiceFilaActiva; indice > -1; indice--)
-                        {
-                            if (!this.Control.Rows[indice].IsFilteredOut)
-                            {
-                                this.Control.ActiveRow = this.Control.Rows[indice];
-                                break;
-                            }
+                            this.Control.ActiveRow = this.Control.Rows[indice];
+                            break;
                         }
                     }
-                    res = true;
-                }
-                catch
-                {
-                    res = false;
                 }
             }
-            return res;
+            return retorno;
         }
         #endregion
     }
