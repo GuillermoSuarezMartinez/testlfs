@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Comunes
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -11,9 +11,6 @@
 //***********************************************************************
 namespace Orbita.Controles.Comunes
 {
-    /// <summary>
-    /// Orbita.Controles.Comunes.OrbitaUltraMaskedEdit.
-    /// </summary>
     public partial class OrbitaUltraMaskedEdit : Infragistics.Win.UltraWinMaskedEdit.UltraMaskedEdit
     {
         #region Constructor

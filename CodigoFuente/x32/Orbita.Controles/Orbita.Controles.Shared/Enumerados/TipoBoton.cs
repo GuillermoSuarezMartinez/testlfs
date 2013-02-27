@@ -1,8 +1,5 @@
 ﻿namespace Orbita.Controles.Shared
 {
-    /// <summary>
-    /// Tipo de botón.
-    /// </summary>
     public enum TipoBoton
     {
         /// <summary>

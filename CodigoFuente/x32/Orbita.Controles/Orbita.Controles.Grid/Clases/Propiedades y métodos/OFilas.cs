@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Grid
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -10,6 +10,7 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
+using Infragistics.Win.UltraWinGrid;
 namespace Orbita.Controles.Grid
 {
     [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
@@ -32,7 +33,6 @@ namespace Orbita.Controles.Grid
         bool multiseleccion;
         bool confirmarBorrado;
         int alto;
-        int altoMinimo;
         bool permitirBorrar;
         #endregion
 
@@ -170,23 +170,6 @@ namespace Orbita.Controles.Grid
                 }
             }
         }
-        [System.ComponentModel.Description("Alto de fila mínimo.")]
-        public int AltoMinimo
-        {
-            get { return this.altoMinimo; }
-            set
-            {
-                if (this.PropertyChanging != null)
-                {
-                    this.PropertyChanging(this, new OPropiedadEventArgs("AltoMinimo"));
-                }
-                this.altoMinimo = value;
-                if (this.PropertyChanged != null)
-                {
-                    this.PropertyChanged(this, new OPropiedadEventArgs("AltoMinimo"));
-                }
-            }
-        }
         [System.ComponentModel.Description("Determina si se permite eliminar filas.")]
         public bool PermitirBorrar
         {
@@ -204,6 +187,7 @@ namespace Orbita.Controles.Grid
                 }
             }
         }
+        [System.ComponentModel.Description("Determina si se permite eliminar filas.")]
         #endregion
 
         #region Métodos protegidos
@@ -226,11 +210,6 @@ namespace Orbita.Controles.Grid
         protected void ResetAlto()
         {
             this.Alto = Configuracion.DefectoAlto;
-        }
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
-        protected void ResetAltoMinimo()
-        {
-            this.AltoMinimo = Configuracion.DefectoAltoMinimo;
         }
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetPermitirBorrar()
@@ -256,11 +235,6 @@ namespace Orbita.Controles.Grid
         protected bool ShouldSerializeAlto()
         {
             return (this.Alto != Configuracion.DefectoAlto);
-        }
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
-        protected bool ShouldSerializeAltoMinimo()
-        {
-            return (this.AltoMinimo != Configuracion.DefectoAltoMinimo);
         }
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializePermitirBorrar()
@@ -308,6 +282,87 @@ namespace Orbita.Controles.Grid
         public void Activar(int indiceVisible)
         {
             this.Control.ActiveRow = this.Control.Rows.GetRowAtVisibleIndex(indiceVisible);
+        }
+        public void Actualizar()
+        {
+            UltraGridRow fila = this.Control.ActiveRow;
+            if (fila != null && fila.IsDataRow && !fila.IsFilteredOut && fila.IsAddRow)
+            {
+                fila.Update();
+            }
+        }
+        //public bool Eliminar()
+        //{
+        //    bool retorno = false;
+        //    if (this.Control.ActiveRow != null && this.Control.ActiveRow.IsDataRow && !this.Control.ActiveRow.IsFilteredOut && !this.Control.ActiveRow.IsAddRow)
+        //    {
+        //        int indiceFilaActiva = this.Control.ActiveRow.Index;
+        //        retorno = this.Control.ActiveRow.Delete(this.ConfirmarBorrado);
+        //        if (indiceFilaActiva > 0 || this.Control.Rows.Count > 0)
+        //        {
+        //            if (indiceFilaActiva >= this.Control.Rows.Count)
+        //            {
+        //                indiceFilaActiva = indiceFilaActiva - 1;
+        //            }
+        //            for (int indice = indiceFilaActiva; indice > -1; indice--)
+        //            {
+        //                if (!this.Control.Rows[indice].IsFilteredOut)
+        //                {
+        //                    this.Control.ActiveRow = this.Control.Rows[indice];
+        //                    break;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return retorno;
+        //}
+        //public bool Eliminar(bool prompt)
+        //{
+        //    if (prompt)
+        //    {
+        //        return this.Eliminar();
+        //    }
+        //    else
+        //    {
+        //        bool tempConfirmarBorrado = this.ConfirmarBorrado;
+        //        this.ConfirmarBorrado = false;
+        //        bool res = this.Eliminar();
+        //        this.ConfirmarBorrado = tempConfirmarBorrado;
+        //        return res;
+        //    }
+        //}
+        public bool Eliminar()
+        {
+            bool res = false;
+            if (this.Control.Selected != null)
+            {
+                int indiceFilaActiva = this.Control.ActiveRow.Index;
+                try
+                {
+                    this.Control.DeleteSelectedRows(this.ConfirmarBorrado);
+                    if (indiceFilaActiva > 0 || this.Control.Rows.Count > 0)
+                    {
+                        if (indiceFilaActiva >= this.Control.Rows.Count)
+                        {
+                            indiceFilaActiva = indiceFilaActiva - 1;
+                        }
+                        for (int indice = indiceFilaActiva; indice > -1; indice--)
+                        {
+                            if (!this.Control.Rows[indice].IsFilteredOut)
+                            {
+                                this.Control.ActiveRow = this.Control.Rows[indice];
+                                break;
+                            }
+                        }
+                    }
+                    res = true;
+                }
+                catch
+                {
+                    res = false;
+                }
+            }
+            return res;
         }
         #endregion
     }

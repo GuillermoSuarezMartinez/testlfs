@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Grid
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -10,7 +10,6 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-using System.IO;
 namespace Orbita.Controles.Grid
 {
     [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]

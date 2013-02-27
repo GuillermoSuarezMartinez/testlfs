@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Comunes
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -11,9 +11,6 @@
 //***********************************************************************
 namespace Orbita.Controles.Comunes
 {
-    /// <summary>
-    /// Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorFilterCustom.
-    /// </summary>
     public partial class OrbitaUltraDateTimeEditorWithFilter : Orbita.Controles.Shared.OrbitaUserControl
     {
         #region Atributos

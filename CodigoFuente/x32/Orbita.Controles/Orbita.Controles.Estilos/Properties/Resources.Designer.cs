@@ -60,9 +60,51 @@ namespace Orbita.Controles.Estilos.Properties {
             }
         }
         
-        internal static byte[] Default {
+        internal static byte[] _1 {
             get {
-                object obj = ResourceManager.GetObject("Default", resourceCulture);
+                object obj = ResourceManager.GetObject("_1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] _3 {
+            get {
+                object obj = ResourceManager.GetObject("_3", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Aero {
+            get {
+                object obj = ResourceManager.GetObject("Aero", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] AppStyle {
+            get {
+                object obj = ResourceManager.GetObject("AppStyle", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] BlackStyleSet {
+            get {
+                object obj = ResourceManager.GetObject("BlackStyleSet", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Claymation {
+            get {
+                object obj = ResourceManager.GetObject("Claymation", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Exported_Resources {
+            get {
+                object obj = ResourceManager.GetObject("Exported_Resources", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -81,6 +123,34 @@ namespace Orbita.Controles.Estilos.Properties {
             }
         }
         
+        internal static byte[] LucidDream {
+            get {
+                object obj = ResourceManager.GetObject("LucidDream", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] ModClay {
+            get {
+                object obj = ResourceManager.GetObject("ModClay", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Nautilus {
+            get {
+                object obj = ResourceManager.GetObject("Nautilus", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] NoirModerne {
+            get {
+                object obj = ResourceManager.GetObject("NoirModerne", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static byte[] None {
             get {
                 object obj = ResourceManager.GetObject("None", resourceCulture);
@@ -88,9 +158,177 @@ namespace Orbita.Controles.Estilos.Properties {
             }
         }
         
+        internal static byte[] Ocean_blue3_pill {
+            get {
+                object obj = ResourceManager.GetObject("Ocean_blue3_pill", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Office2010Black {
+            get {
+                object obj = ResourceManager.GetObject("Office2010Black", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Office2010Blue {
+            get {
+                object obj = ResourceManager.GetObject("Office2010Blue", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Office2010Blue2 {
+            get {
+                object obj = ResourceManager.GetObject("Office2010Blue2", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Office2010Silver {
+            get {
+                object obj = ResourceManager.GetObject("Office2010Silver", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static byte[] Orbita {
             get {
                 object obj = ResourceManager.GetObject("Orbita", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Orbita1 {
+            get {
+                object obj = ResourceManager.GetObject("Orbita1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Orbita2 {
+            get {
+                object obj = ResourceManager.GetObject("Orbita2", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Orbita3 {
+            get {
+                object obj = ResourceManager.GetObject("Orbita3", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Orbita4 {
+            get {
+                object obj = ResourceManager.GetObject("Orbita4", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Orbita5 {
+            get {
+                object obj = ResourceManager.GetObject("Orbita5", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Orbita6 {
+            get {
+                object obj = ResourceManager.GetObject("Orbita6", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Orbita7 {
+            get {
+                object obj = ResourceManager.GetObject("Orbita7", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] RubberBlack {
+            get {
+                object obj = ResourceManager.GetObject("RubberBlack", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Template_Cherry {
+            get {
+                object obj = ResourceManager.GetObject("Template_Cherry", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Template_Glassy {
+            get {
+                object obj = ResourceManager.GetObject("Template_Glassy", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Template_GrapeTomato {
+            get {
+                object obj = ResourceManager.GetObject("Template_GrapeTomato", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Template_LucidDream {
+            get {
+                object obj = ResourceManager.GetObject("Template_LucidDream", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Template_Nautilus {
+            get {
+                object obj = ResourceManager.GetObject("Template_Nautilus", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Template_Office2007 {
+            get {
+                object obj = ResourceManager.GetObject("Template_Office2007", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] TheBlues {
+            get {
+                object obj = ResourceManager.GetObject("TheBlues", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] Trendy {
+            get {
+                object obj = ResourceManager.GetObject("Trendy", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] VS2008 {
+            get {
+                object obj = ResourceManager.GetObject("VS2008", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] VS2010 {
+            get {
+                object obj = ResourceManager.GetObject("VS2010", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] VS20100 {
+            get {
+                object obj = ResourceManager.GetObject("VS20100", resourceCulture);
                 return ((byte[])(obj));
             }
         }

@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Grid
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -32,6 +32,7 @@ namespace Orbita.Controles.Grid
         }
         #endregion
 
+        #region Métodos públicos
         public void AsignarEstilo(Infragistics.Win.UltraWinGrid.UltraGridBand banda, OEstiloColumna columna)
         {
             if (columna.Bloqueado)
@@ -50,5 +51,6 @@ namespace Orbita.Controles.Grid
                 banda.Columns[columna].FilterCellAppearance.BackColor = System.Drawing.Color.Transparent;
             }
         }
+        #endregion
     }
 }

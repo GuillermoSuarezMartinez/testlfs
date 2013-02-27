@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Grid
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -18,7 +18,7 @@ namespace Orbita.Controles.Grid
         #region Atributos
         EstiloCeldasAgrupadas estilo;
         #endregion
-        
+
         #region Eventos
         public event EventHandler<OPropiedadEventArgs> PropertyChanging;
         public event EventHandler<OPropiedadEventArgs> PropertyChanged;

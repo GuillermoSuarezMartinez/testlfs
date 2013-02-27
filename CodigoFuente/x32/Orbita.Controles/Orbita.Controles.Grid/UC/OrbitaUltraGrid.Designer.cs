@@ -13,6 +13,7 @@
         /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
         protected override void Dispose(bool disposing)
         {
+            this.AfterRowActivate -= new System.EventHandler(ControlAfterRowActivate);
             if (disposing && (components != null))
             {
                 components.Dispose();

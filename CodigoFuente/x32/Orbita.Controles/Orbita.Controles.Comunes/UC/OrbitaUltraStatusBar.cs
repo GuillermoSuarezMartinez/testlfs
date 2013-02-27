@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Comunes
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -11,9 +11,6 @@
 //***********************************************************************
 namespace Orbita.Controles.Comunes
 {
-    /// <summary>
-    /// Orbita.Controles.Comunes.OrbitaUltraStatusBar.
-    /// </summary>
     public partial class OrbitaUltraStatusBar : Infragistics.Win.UltraWinStatusBar.UltraStatusBar
     {
         #region Constructor

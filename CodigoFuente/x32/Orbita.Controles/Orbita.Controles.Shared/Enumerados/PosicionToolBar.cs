@@ -1,8 +1,5 @@
 ﻿namespace Orbita.Controles.Shared
 {
-    /// <summary>
-    /// Posición o número de ToolBar.
-    /// </summary>
     public enum PosicionToolBar
     {
         /// <summary>

@@ -1,6 +1,5 @@
-﻿using System;
-//***********************************************************************
-// Assembly         : Orbita.Controles
+﻿//***********************************************************************
+// Assembly         : Orbita.Controles.Grid
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -10,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System;
 using System.ComponentModel;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinGrid;
@@ -170,7 +170,6 @@ namespace Orbita.Controles.Grid
                     this.filas.Alternas.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaFilasAlternasChanged);
                     this.filas.Nuevas.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaFilasNuevasChanged);
                     this.filas.Alto = Configuracion.DefectoAlto;
-                    this.filas.AltoMinimo = Configuracion.DefectoAltoMinimo;
                     this.filas.ConfirmarBorrado = Configuracion.DefectoConfirmarBorrado;
                     this.filas.MostrarIndicador = Configuracion.DefectoMostrarIndicador;
                     this.filas.Multiseleccion = Configuracion.DefectoMultiseleccion;
@@ -228,7 +227,6 @@ namespace Orbita.Controles.Grid
                     this.columnas.PermitirOrdenar = Configuracion.DefectoPermitirOrdenar;
                     this.columnas.Estilo = Configuracion.DefectoAutoAjustarEstilo;
                     this.columnas.TipoSeleccion = Configuracion.DefectoTipoSeleccionColumna;
-                    this.columnas.Bloqueadas.Apariencia.ColorFondo = System.Drawing.ColorTranslator.FromHtml(Configuracion.DefectoColorFondoColumnasBloquedas);
                 }
                 return this.columnas;
             }
@@ -350,15 +348,10 @@ namespace Orbita.Controles.Grid
                         }
                         break;
                     case "Alto":
+                        int alto = this.Filas.Alto;
                         foreach (Infragistics.Win.UltraWinGrid.UltraGridBand ugb in this.Control.DisplayLayout.Bands)
                         {
-                            ugb.Override.DefaultRowHeight = this.Filas.Alto;
-                        }
-                        break;
-                    case "AltoMinimo":
-                        foreach (Infragistics.Win.UltraWinGrid.UltraGridBand ugb in this.Control.DisplayLayout.Bands)
-                        {
-                            ugb.Override.MinRowHeight = this.Filas.AltoMinimo;
+                            ugb.Override.DefaultRowHeight = alto;
                         }
                         break;
                     case "PermitirBorrar":
@@ -560,7 +553,7 @@ namespace Orbita.Controles.Grid
             this.Control.DisplayLayout.Override.RowAppearance.TextHAlign = (Infragistics.Win.HAlign)(int)this.filas.Apariencia.AlineacionTextoHorizontal;
             this.Control.DisplayLayout.Override.RowAppearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.filas.Apariencia.AlineacionTextoVertical;
             this.Control.DisplayLayout.Override.RowAppearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.filas.Apariencia.AdornoTexto;
-           // this.Control.DisplayLayout.Override.BorderStyleRow = (Infragistics.Win.UIElementBorderStyle)(int)this.filas.Apariencia.EstiloBorde;
+            // this.Control.DisplayLayout.Override.BorderStyleRow = (Infragistics.Win.UIElementBorderStyle)(int)this.filas.Apariencia.EstiloBorde;
         }
         protected virtual void AparienciaFilasActivasChanged(object sender, OPropiedadEventArgs e)
         {
@@ -651,7 +644,7 @@ namespace Orbita.Controles.Grid
                             }
                         }
                         // Llamar al método para mostrar el recuento de filas. Resumen del recuento.
-                        if (this.Control.Orbita.Sumario.MostrarRecuentoFilas)
+                        if (this.Sumario.MostrarRecuentoFilas)
                         {
                             if (dt != null && dt.Rows.Count > 0 && columnas.Count > 0)
                             {
@@ -666,7 +659,7 @@ namespace Orbita.Controles.Grid
             if (this.ActivarPrimeraFilaAlFormatear)
             {
                 // Seleccionar y activar la primera fila (ActiveRow).
-                this.Control.Orbita.Filas.Activar(1);
+                this.Filas.Activar(1);
             }
         }
         public void Limpiar()

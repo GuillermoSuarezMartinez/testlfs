@@ -11,9 +11,6 @@
 //***********************************************************************
 namespace Orbita.Controles.Shared
 {
-    /// <summary>
-    /// Orbita.Controles.Shared.OrbitaExcepcion.
-    /// </summary>
     [System.Serializable]
     public class OExcepcion : System.Exception
     {

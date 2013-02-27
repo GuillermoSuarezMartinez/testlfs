@@ -112,26 +112,127 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Default" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Default.isl;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Aero" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Aero.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="AppStyle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AppStyle.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BlackStyleSet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BlackStyleSet.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Claymation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Claymation.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Exported_Resources" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Exported Resources.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="FlatNature" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\FlatNature.isl;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\FlatNature.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="IG" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\IG.isl;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\IG.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LucidDream" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LucidDream.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ModClay" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ModClay.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Nautilus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Nautilus.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NoirModerne" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NoirModerne.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="None" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\None.isl;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\None.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Ocean_blue3_pill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Ocean_blue3_pill.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Office2010Black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Office2010Black.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Office2010Blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Office2010Blue.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Office2010Blue2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Office2010Blue2.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Office2010Silver" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Office2010Silver.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="Orbita" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Orbita.isl;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Resources\Orbita.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Orbita1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Orbita1.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Orbita2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Orbita2.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Orbita3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Orbita3.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Orbita4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Orbita4.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Orbita5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Orbita5.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Orbita6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Orbita6.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Orbita7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Orbita7.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="RubberBlack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RubberBlack.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Template_Cherry" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Template_Cherry.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Template_Glassy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Template_Glassy.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Template_GrapeTomato" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Template_GrapeTomato.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Template_LucidDream" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Template_LucidDream.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Template_Nautilus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Template_Nautilus.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Template_Office2007" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Template_Office2007.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="TheBlues" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TheBlues.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Trendy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Trendy.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VS2008" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VS2008.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VS2010" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VS2010.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="VS20100" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VS20100.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="_3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3.isl;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

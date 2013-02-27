@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Grid
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -33,7 +33,6 @@ namespace Orbita.Controles.Grid
         internal const bool DefectoConfirmarBorrado = true;
         internal const AreaSumario DefectoPosicionSumario = AreaSumario.AbajoFijo;
         internal const int DefectoAlto = -1;
-        internal const int DefectoAltoMinimo = -1;
         internal const bool DefectoPermitirBorrar = true;
         internal const bool DefectoOcultarAgrupadorFilas = false;
         internal const bool DefectoCancelarTeclaReturn = true;
@@ -44,7 +43,6 @@ namespace Orbita.Controles.Grid
         internal const ModoActualizacion DefectoModoActualizacion = ModoActualizacion.CambioDeCeldaOsinFoco;
         internal const bool DefectoMostrarTitulo = false;
         internal const string DefectoColorFondoColumnasBloquedas = "Control";
-
         internal const bool DefectoMostrarToolGestionar = false;
         internal const bool DefectoMostrarToolVer = false;
         internal const bool DefectoMostrarToolModificar = false;
@@ -55,7 +53,6 @@ namespace Orbita.Controles.Grid
         internal const bool DefectoMostrarToolImprimir = false;
         internal const bool DefectoMostrarToolEstilo = false;
         internal const bool DefectoMostrarToolRefrescar = true;
-        internal const bool DefectoMostrarToolBarNavegacion = false;
         #endregion
     }
 }

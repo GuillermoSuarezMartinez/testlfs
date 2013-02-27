@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Contenedores
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -11,9 +11,6 @@
 //***********************************************************************
 namespace Orbita.Controles.Contenedores
 {
-    /// <summary>
-    /// Orbita.Controles.OrbitaForm.
-    /// </summary>
     public partial class OrbitaForm : System.Windows.Forms.Form
     {
         #region Atributos
@@ -98,7 +95,7 @@ namespace Orbita.Controles.Contenedores
         /// </summary>
         void InitializeProperties()
         {
-            this.OrbToolTip.Active = OConfiguracion.OrbFormVerToolTips;
+            this.toolTip.Active = OConfiguracion.OrbFormVerToolTips;
         }
         /// <summary>
         /// Asignar formularios a la cola.

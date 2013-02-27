@@ -1,19 +1,30 @@
+//***********************************************************************
+// Assembly         : Orbita.Controles.Comunes
+// Author           : crodriguez
+// Created          : 19-01-2012
+//
+// Last Modified By : crodriguez
+// Last Modified On : 19-01-2012
+// Description      : 
+//
+// Copyright        : (c) Orbita Ingenieria. All rights reserved.
+//***********************************************************************
+using System.ComponentModel;
 namespace Orbita.Controles.Comunes
 {
-    /// <summary>
-    /// Orbita.Controles.Comunes.OrbitaUltraButton.
-    /// </summary>
     public partial class OrbitaUltraButton : Infragistics.Win.Misc.UltraButton
     {
+        public class ControlNuevaDefinicion : OUltraButton
+        {
+            public ControlNuevaDefinicion(OrbitaUltraButton sender)
+                : base(sender) { }
+        };
+
         #region Atributos
-        /// <summary>
-        /// Tipo de botón.
-        /// </summary>
-        Orbita.Controles.Shared.TipoBoton tipo;
         /// <summary>
         /// Proporciona un acceso a los recursos específicos de cada referencia cultural en tiempo de ejecución.
         /// </summary>
-        System.Resources.ResourceManager stringManager;
+        ControlNuevaDefinicion definicion;
         #endregion
 
         #region Constructor
@@ -29,58 +40,22 @@ namespace Orbita.Controles.Comunes
         #endregion
 
         #region Propiedades
-        /// <summary>
-        /// Tipo de botón.
-        /// </summary>
-        [System.ComponentModel.Category("Orbita")]
-        [System.ComponentModel.Description("Tipo de botón.")]
-        [System.ComponentModel.DefaultValue(typeof(Orbita.Controles.Shared.TipoBoton), "Normal")]
-        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
-        public Orbita.Controles.Shared.TipoBoton OrbTipo
+        [System.ComponentModel.Category("Gestión de controles")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public ControlNuevaDefinicion Orbita
         {
-            get { return this.tipo; }
-            set
-            {
-                this.ImageSize = new System.Drawing.Size(20, 20);
-                this.Size = new System.Drawing.Size(98, 26);
-                this.tipo = value;
-                switch (this.tipo)
-                {
-                    case Orbita.Controles.Shared.TipoBoton.Aceptar:
-                        this.Appearance.Image = Orbita.Controles.Comunes.Properties.Resources.btnAceptarEstandar24;
-                        this.Text = stringManager.GetString("Aceptar", System.Globalization.CultureInfo.CurrentUICulture);
-                        break;
-                    case Orbita.Controles.Shared.TipoBoton.Cancelar:
-                        this.Appearance.Image = Orbita.Controles.Comunes.Properties.Resources.btnCerrarEstandar24;
-                        this.Text = stringManager.GetString("Cancelar", System.Globalization.CultureInfo.CurrentUICulture);
-                        break;
-                    case Orbita.Controles.Shared.TipoBoton.Cerrar:
-                        this.Appearance.Image = Orbita.Controles.Comunes.Properties.Resources.btnCerrarEstandar24;
-                        this.Text = stringManager.GetString("Cerrar", System.Globalization.CultureInfo.CurrentUICulture);
-                        break;
-                    case Orbita.Controles.Shared.TipoBoton.Guardar:
-                        this.Appearance.Image = Orbita.Controles.Comunes.Properties.Resources.btnGuardarEstandar24;
-                        this.Text = stringManager.GetString("Guardar", System.Globalization.CultureInfo.CurrentUICulture); ;
-                        break;
-                    case Orbita.Controles.Shared.TipoBoton.Descartar:
-                        this.Appearance.Image = Orbita.Controles.Comunes.Properties.Resources.btnDescartarEstandar24;
-                        this.Text = stringManager.GetString("Descartar", System.Globalization.CultureInfo.CurrentUICulture); ;
-                        break;
-                    case Orbita.Controles.Shared.TipoBoton.Normal:
-                    default:
-                        break;
-                }
-            }
+            get { return this.definicion; }
+            set { this.definicion = value; }
         }
         #endregion
 
         #region Métodos privados
-        /// <summary>
-        /// Inicializar atributos.
-        /// </summary>
         void InitializeAttributes()
         {
-            this.stringManager = new System.Resources.ResourceManager("es-ES", System.Reflection.Assembly.GetExecutingAssembly());
+            if (this.definicion == null)
+            {
+                this.definicion = new ControlNuevaDefinicion(this);
+            }
         }
         #endregion
     }

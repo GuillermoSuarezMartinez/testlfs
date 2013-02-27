@@ -27,8 +27,8 @@ namespace Orbita.Controles.Comunes
         /// </summary>
         void InitializeComponent()
         {
-            this.neAnyoB = new Orbita.Controles.Comunes.OrbitaUltraNumbericEditor();
-            this.neAnyoA = new Orbita.Controles.Comunes.OrbitaUltraNumbericEditor();
+            this.neAnyoB = new Orbita.Controles.Comunes.OrbitaUltraNumericEditor();
+            this.neAnyoA = new Orbita.Controles.Comunes.OrbitaUltraNumericEditor();
             ((System.ComponentModel.ISupportInitialize)(this.neAnyoB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.neAnyoA)).BeginInit();
             this.SuspendLayout();
@@ -77,7 +77,7 @@ namespace Orbita.Controles.Comunes
         }
         #endregion
 
-        OrbitaUltraNumbericEditor neAnyoA;
-        OrbitaUltraNumbericEditor neAnyoB;
+        OrbitaUltraNumericEditor neAnyoA;
+        OrbitaUltraNumericEditor neAnyoB;
     }
 }

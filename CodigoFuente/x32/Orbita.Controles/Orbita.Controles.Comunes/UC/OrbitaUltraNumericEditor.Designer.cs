@@ -3,7 +3,7 @@
     /// <summary>
     /// OrbitaUltraNumbericEditor
     /// </summary>
-    partial class OrbitaUltraNumbericEditor
+    partial class OrbitaUltraNumericEditor
     {
         /// <summary> 
         /// Variable del diseñador requerida.

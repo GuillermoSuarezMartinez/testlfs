@@ -1,6 +1,5 @@
-﻿using System;
-//***********************************************************************
-// Assembly         : Orbita.Controles
+﻿//***********************************************************************
+// Assembly         : Orbita.Controles.Grid
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -15,24 +14,22 @@ namespace Orbita.Controles.Grid
     public abstract class OControlBase
     {
         #region Atributos
-        /// <summary>
-        /// Control (sender).
-        /// </summary>
         OrbitaUltraGrid control;
-        /// <summary>
-        /// Apariencia.
-        /// </summary>
         OApariencia apariencia;
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OControlBase.
+        /// </summary>
         protected OControlBase() { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OControlBase.
         /// </summary>
+        /// <param name="control"></param>
         protected OControlBase(object control)
         {
-           this.control = (OrbitaUltraGrid)control;
+            this.control = (OrbitaUltraGrid)control;
         }
         #endregion
 
@@ -73,10 +70,6 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Métodos públicos
-        /// <summary>
-        /// Determina el número de propiedades modificadas.
-        /// </summary>
-        /// <returns></returns>
         public override string ToString()
         {
             return null;

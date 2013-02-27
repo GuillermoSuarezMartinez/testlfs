@@ -27,14 +27,14 @@ namespace Orbita.Controles.Contenedores
         /// </summary>
         void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.OrbToolTip = new Orbita.Controles.Comunes.OrbitaToolTip(this.components);
+            this.components = new System.ComponentModel.Container();
+            this.toolTip = new Orbita.Controles.Comunes.OrbitaToolTip(this.components);
             this.SuspendLayout();
             // 
-            // OrbToolTip
+            // toolTip
             // 
-            this.OrbToolTip.AutomaticDelay = 1000;
-            this.OrbToolTip.ShowAlways = true;
+            this.toolTip.AutomaticDelay = 1000;
+            this.toolTip.ShowAlways = true;
             // 
             // OrbitaDialog
             // 
@@ -46,9 +46,10 @@ namespace Orbita.Controles.Contenedores
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKeyPress);
             this.ResumeLayout(false);
+
         }
         #endregion
 
-        Comunes.OrbitaToolTip OrbToolTip;
+        Comunes.OrbitaToolTip toolTip;
     }
 }

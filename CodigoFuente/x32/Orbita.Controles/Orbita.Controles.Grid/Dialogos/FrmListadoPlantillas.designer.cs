@@ -39,26 +39,26 @@
             // 
             // lblCabecera
             // 
-            this.lblCabecera.Size = new System.Drawing.Size(504, 21);
+            this.lblCabecera.Size = new System.Drawing.Size(504, 22);
             // 
             // lstView
             // 
             this.lstView.AllowColumnReorder = true;
             this.lstView.CheckBoxes = true;
-            this.lstView.Size = new System.Drawing.Size(432, 253);
+            this.lstView.Size = new System.Drawing.Size(432, 251);
             // 
             // pnlBotones
             // 
-            this.pnlBotones.Location = new System.Drawing.Point(439, 26);
-            this.pnlBotones.Size = new System.Drawing.Size(70, 268);
+            this.pnlBotones.Location = new System.Drawing.Point(439, 27);
+            this.pnlBotones.Size = new System.Drawing.Size(70, 267);
             // 
             // pnlContenedor
             // 
-            this.pnlContenedor.Size = new System.Drawing.Size(434, 268);
+            this.pnlContenedor.Size = new System.Drawing.Size(434, 267);
             // 
             // lblSinElementos
             // 
-            this.lblSinElementos.Size = new System.Drawing.Size(432, 13);
+            this.lblSinElementos.Size = new System.Drawing.Size(432, 14);
             // 
             // nombre
             // 
@@ -76,12 +76,12 @@
             this.identificador.Visible = true;
             this.identificador.Width = 0;
             // 
-            // ListadoPlantillas
+            // FrmListadoPlantillas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(514, 299);
-            this.Name = "ListadoPlantillas";
+            this.Name = "FrmListadoPlantillas";
             this.pnlContenedor.ResumeLayout(false);
             this.pnlContenedor.PerformLayout();
             this.ResumeLayout(false);

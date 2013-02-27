@@ -1,8 +1,16 @@
-﻿namespace Orbita.Controles.Gantt
+﻿//***********************************************************************
+// Assembly         : Orbita.Controles.Gantt
+// Author           : crodriguez
+// Created          : 19-01-2012
+//
+// Last Modified By : crodriguez
+// Last Modified On : 19-01-2012
+// Description      : 
+//
+// Copyright        : (c) Orbita Ingenieria. All rights reserved.
+//***********************************************************************
+namespace Orbita.Controles.Gantt
 {
-    /// <summary>
-    /// Extensión del control OrbitaGantt con una toolbar superior.
-    /// </summary>
     public partial class OrbitaGantt : Orbita.Controles.Shared.OrbitaUserControl
     {
         #region Atributos

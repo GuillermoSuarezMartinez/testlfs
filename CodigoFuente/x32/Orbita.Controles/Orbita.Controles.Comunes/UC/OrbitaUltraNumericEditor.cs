@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Comunes
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -9,32 +9,61 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System.ComponentModel;
 namespace Orbita.Controles.Comunes
 {
-    /// <summary>
-    /// Orbita.Controles.Comunes.OrbitaUltraNumbericEditor.
-    /// </summary>
-    public partial class OrbitaUltraNumbericEditor : Infragistics.Win.UltraWinEditors.UltraNumericEditor
+    public partial class OrbitaUltraNumericEditor : Infragistics.Win.UltraWinEditors.UltraNumericEditor
     {
-		#region Constructor
+        public class ControlNuevaDefinicion : OUltraNumericEditor
+        {
+            public ControlNuevaDefinicion(OrbitaUltraNumericEditor sender)
+                : base(sender) { }
+        };
+
+        #region Atributos
+        /// <summary>
+        /// Proporciona un acceso a los recursos específicos de cada referencia cultural en tiempo de ejecución.
+        /// </summary>
+        ControlNuevaDefinicion definicion;
+        #endregion
+
+        #region Constructor
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraNumbericEditor.
         /// </summary>
-		public OrbitaUltraNumbericEditor()
+        public OrbitaUltraNumericEditor()
             : base()
         {
             InitializeComponent();
+            InitializeAttributes();
             InicializeProperties();
         }
         #endregion
 
+        #region Propiedades
+        [System.ComponentModel.Category("Gestión de controles")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public ControlNuevaDefinicion Orbita
+        {
+            get { return this.definicion; }
+            set { this.definicion = value; }
+        }
+        #endregion
+
         #region Métodos privados
+        void InitializeAttributes()
+        {
+            if (this.definicion == null)
+            {
+                this.definicion = new ControlNuevaDefinicion(this);
+            }
+        }
         /// <summary>
         /// Inicializar propiedades.
         /// </summary>
         void InicializeProperties()
         {
-            this.MaskDisplayMode = Infragistics.Win.UltraWinMaskedEdit.MaskMode.Raw;
+            this.PromptChar = char.MinValue;
         }
         #endregion
     }

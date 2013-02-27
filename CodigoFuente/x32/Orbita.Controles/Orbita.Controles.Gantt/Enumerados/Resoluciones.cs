@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Gantt
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -11,9 +11,6 @@
 //***********************************************************************
 namespace Orbita.Controles.Gantt
 {
-    /// <summary>
-    /// Orbita.Controles.Gantt.
-    /// </summary>
     public enum Resoluciones
     {
         /// <summary>

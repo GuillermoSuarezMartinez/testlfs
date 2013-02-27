@@ -17,6 +17,8 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <TargetFrameworkProfile />
+    <EnableCodeInspectionOnBuild>false</EnableCodeInspectionOnBuild>
+    <EnableCodeAnalysisOnBuild>false</EnableCodeAnalysisOnBuild>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -113,12 +115,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\EventArgs\OToolClickCollectionEventArgs.cs" />
     <Compile Include="Clases\EventArgs\ORowEventArgs.cs" />
     <Compile Include="Clases\EventArgs\OPropertyExtendedChangedEventArgs.cs" />
     <Compile Include="Clases\EventArgs\OToolClickEventArgs.cs" />
@@ -267,17 +269,19 @@
       <Project>{3FC7CCF4-13B4-4B2B-95A9-CC178C85C343}</Project>
       <Name>Orbita.Controles.Menu</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Orbita.Controles.Shared\Orbita.Controles.Shared.csproj">
-      <Project>{66683373-9DC9-4104-B542-44D2DFBCC674}</Project>
-      <Name>Orbita.Controles.Shared</Name>
-    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <Import Project="$(PROGRAMFILES)\MSBuild\FxCop Integrator\FxCopIntegrator.targets" Condition="Exists('$(PROGRAMFILES)\MSBuild\FxCop Integrator\FxCopIntegrator.targets')" />
+  <Target Name="AfterBuild">
+    <Exec Condition="'$(BuildingInsideVisualStudio)' == 'true' And '$(EnableCodeAnalysisOnBuild)' == 'true' And Exists('$(TargetPath)') And Exists('$(APPDATA)\FxCop Integrator\CodeAnalysis.exe')" Command="&quot;$(APPDATA)\FxCop Integrator\CodeAnalysis.exe&quot; /f:&quot;$(TargetPath)&quot; /s:&quot;$(SolutionDir)\&quot; /p:&quot;$(ProjectDir)\&quot; " />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

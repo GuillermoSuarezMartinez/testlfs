@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Contenedores
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -11,9 +11,6 @@
 //***********************************************************************
 namespace Orbita.Controles.Contenedores
 {
-    /// <summary>
-    /// Orbita.Controles.Contenedores.SplitContainer.
-    /// </summary>
     public partial class OrbitaSplitContainer : System.Windows.Forms.SplitContainer
     {
         #region Constructor

@@ -41,8 +41,6 @@
             // 
             this.lblDesde.Location = new System.Drawing.Point(7, 8);
             this.lblDesde.Name = "lblDesde";
-            this.lblDesde.OrbColorFondo = System.Drawing.Color.Empty;
-            this.lblDesde.OrbColorFuente = System.Drawing.Color.Empty;
             this.lblDesde.Size = new System.Drawing.Size(41, 13);
             this.lblDesde.TabIndex = 2;
             this.lblDesde.Text = "Desde:";
@@ -61,8 +59,6 @@
             // 
             this.lblHasta.Location = new System.Drawing.Point(10, 31);
             this.lblHasta.Name = "lblHasta";
-            this.lblHasta.OrbColorFondo = System.Drawing.Color.Empty;
-            this.lblHasta.OrbColorFuente = System.Drawing.Color.Empty;
             this.lblHasta.Size = new System.Drawing.Size(38, 13);
             this.lblHasta.TabIndex = 3;
             this.lblHasta.Text = "Hasta:";

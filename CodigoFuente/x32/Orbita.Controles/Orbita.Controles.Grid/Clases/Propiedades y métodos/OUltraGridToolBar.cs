@@ -1,6 +1,5 @@
-﻿using System;
-//***********************************************************************
-// Assembly         : Orbita.Controles
+﻿//***********************************************************************
+// Assembly         : Orbita.Controles.Grid
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -10,10 +9,8 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System;
 using System.ComponentModel;
-using Infragistics.Win;
-using Infragistics.Win.UltraWinGrid;
-using Infragistics.Win.UltraWinToolbars;
 namespace Orbita.Controles.Grid
 {
     [TypeConverter(typeof(ExpandableObjectConverter))]
@@ -24,12 +21,17 @@ namespace Orbita.Controles.Grid
         string campoPosicionable;
         #endregion
 
+        #region Eventos
+        public event EventHandler<OPropertyExtendedChangedEventArgs> PropertyChanging;
+        public event EventHandler<OPropertyExtendedChangedEventArgs> PropertyChanged;
+        #endregion
+
         #region Constructor
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OUltraGrid.
         /// </summary>
         public OUltraGridToolBar(OrbitaUltraGridToolBar control)
-            : base(control.Grid) 
+            : base(control.Grid)
         {
             this.control = control;
         }
@@ -40,7 +42,19 @@ namespace Orbita.Controles.Grid
         public string CampoPosicionable
         {
             get { return this.campoPosicionable; }
-            set { this.campoPosicionable = value; }
+            set
+            {
+                if (this.PropertyChanging != null)
+                {
+                    this.PropertyChanging(this, new OPropertyExtendedChangedEventArgs("CampoPosicionable", value));
+                }
+                this.campoPosicionable = value;
+                if (this.PropertyChanged != null)
+                {
+                    this.PropertyChanged(this, new OPropertyExtendedChangedEventArgs("CampoPosicionable", value));
+                }
+                this.campoPosicionable = value;
+            }
         }
         [System.ComponentModel.Description("Determina si se permite editar el TextBox asociado a OrbitaUltraCombo.")]
         public new bool Editable
@@ -57,7 +71,6 @@ namespace Orbita.Controles.Grid
                 {
                     this.control.Toolbar.ToolClick -= new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.Toolbar_Click);
                 }
-                this.OnChanged(new OPropiedadEventArgs("Editable"));
             }
         }
         #endregion
@@ -129,15 +142,6 @@ namespace Orbita.Controles.Grid
             get { return this.control.Toolbar.Tools["Refrescar"].SharedProps.Visible; }
             set { this.control.Toolbar.Tools["Refrescar"].SharedProps.Visible = value; }
         }
-        [System.ComponentModel.Description("Determina la visibilidad del botón refrescar.")]
-        public bool MostrarToolBarNavegacion
-        {
-            get { return this.control.Toolbar.Toolbars[1].Visible; }
-            set { this.control.Toolbar.Toolbars[1].Visible = value; }
-        }
-        #endregion
-
-        #region Métodos privados
         #endregion
 
         #region Métodos protegidos
@@ -197,11 +201,6 @@ namespace Orbita.Controles.Grid
             this.MostrarToolRefrescar = Configuracion.DefectoMostrarToolRefrescar;
         }
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
-        protected void ResetMostrarToolBarNavegacion()
-        {
-            this.MostrarToolBarNavegacion = Configuracion.DefectoMostrarToolBarNavegacion;
-        }
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeMostrarToolGestionar()
         {
             return (this.MostrarToolGestionar != Configuracion.DefectoMostrarToolGestionar);
@@ -256,22 +255,17 @@ namespace Orbita.Controles.Grid
         {
             return (this.MostrarToolRefrescar != Configuracion.DefectoMostrarToolRefrescar);
         }
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
-        protected bool ShouldSerializeMostrarToolBarNavegacion()
-        {
-            return (this.MostrarToolBarNavegacion != Configuracion.DefectoMostrarToolBarNavegacion);
-        }
         #endregion
 
         #region Manejadores de eventos
-        protected void Toolbar_Click(object sender, ToolClickEventArgs e)
+        protected void Toolbar_Click(object sender, EventArgs e)
         {
             try
             {
                 // Ejecutar acción.
                 this.Control.PerformAction(Infragistics.Win.UltraWinGrid.UltraGridAction.ExitEditMode);
                 // Ejecutar eventos de actualización.
-                this.Filas.Activas.Actualizar();
+                this.Filas.Actualizar();
             }
             catch (Exception ex)
             {
@@ -280,4 +274,3 @@ namespace Orbita.Controles.Grid
         #endregion
     }
 }
-

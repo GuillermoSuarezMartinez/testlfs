@@ -41,6 +41,7 @@
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab4 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab5 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab6 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab1 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("General");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Filas");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Columnas");
@@ -51,6 +52,10 @@
             System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("General");
             System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Agregar o quitar columnas", new System.Windows.Forms.TreeNode[] {
             treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("General");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Columnas agrupadas", new System.Windows.Forms.TreeNode[] {
+            treeNode7});
+            Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
             this.orbitaTabPageControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.grpEntornoMostrar = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
             this.chbEntornoFilasVacias = new Orbita.Controles.Comunes.OrbitaUltraCheckEditor();
@@ -89,6 +94,10 @@
             this.trvOpciones = new System.Windows.Forms.TreeView();
             this.pnlBottomPersonalizar = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.btnCancelar = new Orbita.Controles.Comunes.OrbitaUltraButton();
+            this.orbitaTabPageControl5 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.orbitaPanel1 = new Orbita.Controles.Contenedores.OrbitaPanel();
+            this.lsvColumnasAgrupadas = new Orbita.Controles.Comunes.OrbitaListView();
+            this.orbitaUltraLabel2 = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.orbitaTabPageControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grpEntornoMostrar)).BeginInit();
             this.grpEntornoMostrar.SuspendLayout();
@@ -121,6 +130,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.OrbitaUltraTabControl)).BeginInit();
             this.OrbitaUltraTabControl.SuspendLayout();
             this.pnlBottomPersonalizar.SuspendLayout();
+            this.orbitaTabPageControl5.SuspendLayout();
+            this.orbitaPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // orbitaTabPageControl1
@@ -147,7 +158,7 @@
             this.chbEntornoFilasVacias.AutoSize = true;
             this.chbEntornoFilasVacias.Location = new System.Drawing.Point(16, 25);
             this.chbEntornoFilasVacias.Name = "chbEntornoFilasVacias";
-            this.chbEntornoFilasVacias.Size = new System.Drawing.Size(229, 17);
+            this.chbEntornoFilasVacias.Size = new System.Drawing.Size(237, 17);
             this.chbEntornoFilasVacias.TabIndex = 7;
             this.chbEntornoFilasVacias.Text = "Filas vacías que completan la visualización";
             // 
@@ -177,7 +188,7 @@
             this.chbFilasColorAlternas.AutoSize = true;
             this.chbFilasColorAlternas.Location = new System.Drawing.Point(16, 18);
             this.chbFilasColorAlternas.Name = "chbFilasColorAlternas";
-            this.chbFilasColorAlternas.Size = new System.Drawing.Size(176, 17);
+            this.chbFilasColorAlternas.Size = new System.Drawing.Size(185, 17);
             this.chbFilasColorAlternas.TabIndex = 4;
             this.chbFilasColorAlternas.Text = "Mostrar filas alternas coloreadas";
             // 
@@ -199,7 +210,7 @@
             this.chbFilasSelector.AutoSize = true;
             this.chbFilasSelector.Location = new System.Drawing.Point(16, 21);
             this.chbFilasSelector.Name = "chbFilasSelector";
-            this.chbFilasSelector.Size = new System.Drawing.Size(233, 17);
+            this.chbFilasSelector.Size = new System.Drawing.Size(245, 17);
             this.chbFilasSelector.TabIndex = 5;
             this.chbFilasSelector.Text = "Selector de filas que permiten multiselección";
             // 
@@ -208,7 +219,7 @@
             this.chbFilasFijas.AutoSize = true;
             this.chbFilasFijas.Location = new System.Drawing.Point(16, 39);
             this.chbFilasFijas.Name = "chbFilasFijas";
-            this.chbFilasFijas.Size = new System.Drawing.Size(126, 17);
+            this.chbFilasFijas.Size = new System.Drawing.Size(130, 17);
             this.chbFilasFijas.TabIndex = 6;
             this.chbFilasFijas.Text = "Indicador de filas fijas";
             // 
@@ -229,7 +240,7 @@
             this.chbFilasAutoajuste.AutoSize = true;
             this.chbFilasAutoajuste.Location = new System.Drawing.Point(16, 25);
             this.chbFilasAutoajuste.Name = "chbFilasAutoajuste";
-            this.chbFilasAutoajuste.Size = new System.Drawing.Size(215, 17);
+            this.chbFilasAutoajuste.Size = new System.Drawing.Size(224, 17);
             this.chbFilasAutoajuste.TabIndex = 3;
             this.chbFilasAutoajuste.Text = "Autoajustar filas al contenido de la celda";
             // 
@@ -243,7 +254,7 @@
             this.orbitaTabPageControl3.Controls.Add(this.grpColumnasMostrar);
             this.orbitaTabPageControl3.Location = new System.Drawing.Point(-10000, -10000);
             this.orbitaTabPageControl3.Name = "orbitaTabPageControl3";
-            this.orbitaTabPageControl3.Size = new System.Drawing.Size(396, 305);
+            this.orbitaTabPageControl3.Size = new System.Drawing.Size(375, 305);
             // 
             // lblColumnasOperadores
             // 
@@ -254,7 +265,7 @@
             this.lblColumnasOperadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.lblColumnasOperadores.Location = new System.Drawing.Point(9, 148);
             this.lblColumnasOperadores.Name = "lblColumnasOperadores";
-            this.lblColumnasOperadores.Size = new System.Drawing.Size(99, 13);
+            this.lblColumnasOperadores.Size = new System.Drawing.Size(104, 14);
             this.lblColumnasOperadores.TabIndex = 14;
             this.lblColumnasOperadores.Text = "Operadores de filtro";
             this.lblColumnasOperadores.UseMnemonic = false;
@@ -308,7 +319,7 @@
             this.lblColumnaAutoajustar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.lblColumnaAutoajustar.Location = new System.Drawing.Point(9, 5);
             this.lblColumnaAutoajustar.Name = "lblColumnaAutoajustar";
-            this.lblColumnaAutoajustar.Size = new System.Drawing.Size(115, 13);
+            this.lblColumnaAutoajustar.Size = new System.Drawing.Size(119, 14);
             this.lblColumnaAutoajustar.TabIndex = 3;
             this.lblColumnaAutoajustar.Text = "Autoajuste de columna";
             this.lblColumnaAutoajustar.UseMnemonic = false;
@@ -347,7 +358,7 @@
             this.lblColumnasMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.lblColumnasMostrar.Location = new System.Drawing.Point(9, 63);
             this.lblColumnasMostrar.Name = "lblColumnasMostrar";
-            this.lblColumnasMostrar.Size = new System.Drawing.Size(42, 13);
+            this.lblColumnasMostrar.Size = new System.Drawing.Size(43, 14);
             this.lblColumnasMostrar.TabIndex = 12;
             this.lblColumnasMostrar.Text = "Mostrar";
             this.lblColumnasMostrar.UseMnemonic = false;
@@ -371,7 +382,7 @@
             this.chbColumnasSumarios.AutoSize = true;
             this.chbColumnasSumarios.Location = new System.Drawing.Point(17, 30);
             this.chbColumnasSumarios.Name = "chbColumnasSumarios";
-            this.chbColumnasSumarios.Size = new System.Drawing.Size(121, 17);
+            this.chbColumnasSumarios.Size = new System.Drawing.Size(125, 17);
             this.chbColumnasSumarios.TabIndex = 1;
             this.chbColumnasSumarios.Text = "Sumario de columna";
             // 
@@ -380,7 +391,7 @@
             this.chbColumnasFijas.AutoSize = true;
             this.chbColumnasFijas.Location = new System.Drawing.Point(17, 13);
             this.chbColumnasFijas.Name = "chbColumnasFijas";
-            this.chbColumnasFijas.Size = new System.Drawing.Size(153, 17);
+            this.chbColumnasFijas.Size = new System.Drawing.Size(158, 17);
             this.chbColumnasFijas.TabIndex = 0;
             this.chbColumnasFijas.Text = "Indicador de columnas fijas";
             // 
@@ -389,16 +400,16 @@
             this.chbColumnasFiltros.AutoSize = true;
             this.chbColumnasFiltros.Location = new System.Drawing.Point(17, 47);
             this.chbColumnasFiltros.Name = "chbColumnasFiltros";
-            this.chbColumnasFiltros.Size = new System.Drawing.Size(126, 17);
+            this.chbColumnasFiltros.Size = new System.Drawing.Size(129, 17);
             this.chbColumnasFiltros.TabIndex = 2;
             this.chbColumnasFiltros.Text = "Filtros en la cabecera";
             // 
             // orbitaTabPageControl4
             // 
             this.orbitaTabPageControl4.Controls.Add(this.pnlListView);
-            this.orbitaTabPageControl4.Location = new System.Drawing.Point(0, 0);
+            this.orbitaTabPageControl4.Location = new System.Drawing.Point(-10000, -10000);
             this.orbitaTabPageControl4.Name = "orbitaTabPageControl4";
-            this.orbitaTabPageControl4.Size = new System.Drawing.Size(396, 305);
+            this.orbitaTabPageControl4.Size = new System.Drawing.Size(375, 305);
             // 
             // pnlListView
             // 
@@ -409,7 +420,7 @@
             this.pnlListView.Location = new System.Drawing.Point(0, 0);
             this.pnlListView.Name = "pnlListView";
             this.pnlListView.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
-            this.pnlListView.Size = new System.Drawing.Size(396, 305);
+            this.pnlListView.Size = new System.Drawing.Size(375, 305);
             this.pnlListView.TabIndex = 0;
             // 
             // lsvColumnas
@@ -423,7 +434,7 @@
             this.lsvColumnas.Location = new System.Drawing.Point(6, 19);
             this.lsvColumnas.MultiSelect = false;
             this.lsvColumnas.Name = "lsvColumnas";
-            this.lsvColumnas.Size = new System.Drawing.Size(358, 286);
+            this.lsvColumnas.Size = new System.Drawing.Size(337, 286);
             this.lsvColumnas.TabIndex = 15;
             this.lsvColumnas.UseCompatibleStateImageBehavior = false;
             this.lsvColumnas.View = System.Windows.Forms.View.Details;
@@ -434,7 +445,7 @@
             this.pnlMoverColumnas.Controls.Add(this.btnBajar);
             this.pnlMoverColumnas.Controls.Add(this.btnSubir);
             this.pnlMoverColumnas.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlMoverColumnas.Location = new System.Drawing.Point(364, 19);
+            this.pnlMoverColumnas.Location = new System.Drawing.Point(343, 19);
             this.pnlMoverColumnas.Name = "pnlMoverColumnas";
             this.pnlMoverColumnas.Size = new System.Drawing.Size(32, 286);
             this.pnlMoverColumnas.TabIndex = 17;
@@ -478,9 +489,7 @@
             this.lblColumnaAgregarQuitar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.lblColumnaAgregarQuitar.Location = new System.Drawing.Point(6, 0);
             this.lblColumnaAgregarQuitar.Name = "lblColumnaAgregarQuitar";
-            this.lblColumnaAgregarQuitar.OrbColorFondo = System.Drawing.Color.Empty;
-            this.lblColumnaAgregarQuitar.OrbColorFuente = System.Drawing.Color.Empty;
-            this.lblColumnaAgregarQuitar.Size = new System.Drawing.Size(390, 19);
+            this.lblColumnaAgregarQuitar.Size = new System.Drawing.Size(369, 19);
             this.lblColumnaAgregarQuitar.TabIndex = 16;
             this.lblColumnaAgregarQuitar.Text = "Columnas:";
             this.lblColumnaAgregarQuitar.UseMnemonic = false;
@@ -502,11 +511,12 @@
             this.OrbitaUltraTabControl.Controls.Add(this.orbitaTabPageControl2);
             this.OrbitaUltraTabControl.Controls.Add(this.orbitaTabPageControl3);
             this.OrbitaUltraTabControl.Controls.Add(this.orbitaTabPageControl4);
+            this.OrbitaUltraTabControl.Controls.Add(this.orbitaTabPageControl5);
             this.OrbitaUltraTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OrbitaUltraTabControl.Location = new System.Drawing.Point(158, 0);
+            this.OrbitaUltraTabControl.Location = new System.Drawing.Point(179, 0);
             this.OrbitaUltraTabControl.Name = "OrbitaUltraTabControl";
             this.OrbitaUltraTabControl.SharedControlsPage = this.ultraTabSharedControlsPage1;
-            this.OrbitaUltraTabControl.Size = new System.Drawing.Size(396, 305);
+            this.OrbitaUltraTabControl.Size = new System.Drawing.Size(375, 305);
             this.OrbitaUltraTabControl.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.Wizard;
             this.OrbitaUltraTabControl.TabIndex = 2;
             ultraTab3.TabPage = this.orbitaTabPageControl1;
@@ -517,17 +527,20 @@
             ultraTab5.Text = "tab3";
             ultraTab6.TabPage = this.orbitaTabPageControl4;
             ultraTab6.Text = "tab4";
+            ultraTab1.TabPage = this.orbitaTabPageControl5;
+            ultraTab1.Text = "tab5";
             this.OrbitaUltraTabControl.Tabs.AddRange(new Infragistics.Win.UltraWinTabControl.UltraTab[] {
             ultraTab3,
             ultraTab4,
             ultraTab5,
-            ultraTab6});
+            ultraTab6,
+            ultraTab1});
             // 
             // ultraTabSharedControlsPage1
             // 
             this.ultraTabSharedControlsPage1.Location = new System.Drawing.Point(-10000, -10000);
             this.ultraTabSharedControlsPage1.Name = "ultraTabSharedControlsPage1";
-            this.ultraTabSharedControlsPage1.Size = new System.Drawing.Size(396, 305);
+            this.ultraTabSharedControlsPage1.Size = new System.Drawing.Size(375, 305);
             // 
             // trvOpciones
             // 
@@ -554,10 +567,17 @@
             treeNode6.Name = "Agregar o quitar columnas";
             treeNode6.Tag = "4";
             treeNode6.Text = "Agregar o quitar columnas";
+            treeNode7.Name = "General";
+            treeNode7.Tag = "7";
+            treeNode7.Text = "General";
+            treeNode8.Name = "Columnas agrupadas";
+            treeNode8.Tag = "6";
+            treeNode8.Text = "Columnas agrupadas";
             this.trvOpciones.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode4,
-            treeNode6});
-            this.trvOpciones.Size = new System.Drawing.Size(158, 305);
+            treeNode6,
+            treeNode8});
+            this.trvOpciones.Size = new System.Drawing.Size(179, 305);
             this.trvOpciones.TabIndex = 1;
             this.trvOpciones.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvOpciones_AfterSelect);
             this.trvOpciones.MouseMove += new System.Windows.Forms.MouseEventHandler(this.trvOpciones_MouseMove);
@@ -582,7 +602,54 @@
             this.btnCancelar.TabIndex = 12;
             this.btnCancelar.Text = "&Cerrar";
             // 
-            // Personalizar
+            // orbitaTabPageControl5
+            // 
+            this.orbitaTabPageControl5.Controls.Add(this.orbitaPanel1);
+            this.orbitaTabPageControl5.Location = new System.Drawing.Point(0, 0);
+            this.orbitaTabPageControl5.Name = "orbitaTabPageControl5";
+            this.orbitaTabPageControl5.Size = new System.Drawing.Size(375, 305);
+            // 
+            // orbitaPanel1
+            // 
+            this.orbitaPanel1.Controls.Add(this.lsvColumnasAgrupadas);
+            this.orbitaPanel1.Controls.Add(this.orbitaUltraLabel2);
+            this.orbitaPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.orbitaPanel1.Location = new System.Drawing.Point(0, 0);
+            this.orbitaPanel1.Name = "orbitaPanel1";
+            this.orbitaPanel1.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
+            this.orbitaPanel1.Size = new System.Drawing.Size(375, 305);
+            this.orbitaPanel1.TabIndex = 18;
+            // 
+            // lsvColumnasAgrupadas
+            // 
+            this.lsvColumnasAgrupadas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lsvColumnasAgrupadas.CheckBoxes = true;
+            this.lsvColumnasAgrupadas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsvColumnasAgrupadas.FullRowSelect = true;
+            this.lsvColumnasAgrupadas.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lsvColumnasAgrupadas.HideSelection = false;
+            this.lsvColumnasAgrupadas.Location = new System.Drawing.Point(6, 19);
+            this.lsvColumnasAgrupadas.MultiSelect = false;
+            this.lsvColumnasAgrupadas.Name = "lsvColumnasAgrupadas";
+            this.lsvColumnasAgrupadas.Size = new System.Drawing.Size(369, 286);
+            this.lsvColumnasAgrupadas.TabIndex = 15;
+            this.lsvColumnasAgrupadas.UseCompatibleStateImageBehavior = false;
+            this.lsvColumnasAgrupadas.View = System.Windows.Forms.View.Details;
+            // 
+            // orbitaUltraLabel2
+            // 
+            appearance8.TextVAlignAsString = "Middle";
+            this.orbitaUltraLabel2.Appearance = appearance8;
+            this.orbitaUltraLabel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.orbitaUltraLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.orbitaUltraLabel2.Location = new System.Drawing.Point(6, 0);
+            this.orbitaUltraLabel2.Name = "orbitaUltraLabel2";
+            this.orbitaUltraLabel2.Size = new System.Drawing.Size(369, 19);
+            this.orbitaUltraLabel2.TabIndex = 16;
+            this.orbitaUltraLabel2.Text = "Columnas agrupadas:";
+            this.orbitaUltraLabel2.UseMnemonic = false;
+            // 
+            // FrmPersonalizar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -591,7 +658,7 @@
             this.Controls.Add(this.pnlBottomPersonalizar);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Personalizar";
+            this.Name = "FrmPersonalizar";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.Text = "Personalizar";
             this.Shown += new System.EventHandler(this.Personalizar_Shown);
@@ -633,6 +700,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.OrbitaUltraTabControl)).EndInit();
             this.OrbitaUltraTabControl.ResumeLayout(false);
             this.pnlBottomPersonalizar.ResumeLayout(false);
+            this.orbitaTabPageControl5.ResumeLayout(false);
+            this.orbitaPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -677,5 +746,9 @@
         Orbita.Controles.Contenedores.OrbitaUltraGroupBox grpEntornoMostrar;
         Orbita.Controles.Comunes.OrbitaUltraCheckEditor chbEntornoFilasVacias;
         System.Windows.Forms.ImageList imageList;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl orbitaTabPageControl5;
+        private Contenedores.OrbitaPanel orbitaPanel1;
+        private Comunes.OrbitaListView lsvColumnasAgrupadas;
+        private Comunes.OrbitaUltraLabel orbitaUltraLabel2;
     }
 }

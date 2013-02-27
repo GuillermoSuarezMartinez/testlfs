@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Menu
 // Author           : crodriguez
 // Created          : 19-01-2012
 //

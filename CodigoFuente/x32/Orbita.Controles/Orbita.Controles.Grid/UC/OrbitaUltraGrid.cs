@@ -1,5 +1,17 @@
-﻿using System.ComponentModel;
-using System.Windows.Forms.Design;
+﻿//***********************************************************************
+// Assembly         : Orbita.Controles.Grid
+// Author           : crodriguez
+// Created          : 19-01-2012
+//
+// Last Modified By : crodriguez
+// Last Modified On : 19-01-2012
+// Description      : 
+//
+// Copyright        : (c) Orbita Ingenieria. All rights reserved.
+//***********************************************************************
+using System;
+using System.ComponentModel;
+using Infragistics.Win.UltraWinGrid;
 namespace Orbita.Controles.Grid
 {
     public partial class OrbitaUltraGrid : Infragistics.Win.UltraWinGrid.UltraGrid
@@ -17,6 +29,13 @@ namespace Orbita.Controles.Grid
         ControlNuevaDefinicion definicion;
         #endregion
 
+        #region Eventos
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event RowEventHandler AfterDataRowActivate;
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event RowEventHandler AfterFilterRowActivate;
+        #endregion
+
         #region Constructor
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OrbitaUltraGrid.
@@ -28,6 +47,7 @@ namespace Orbita.Controles.Grid
             InitializeResourceStrings();
             InitializeAttributes();
             InitializeProperties();
+            InitializeEvents();
         }
         #endregion
 
@@ -59,6 +79,10 @@ namespace Orbita.Controles.Grid
             this.Orbita.CancelarTeclaReturn = Configuracion.DefectoCancelarTeclaReturn;
             this.Orbita.ModoActualizacion = Configuracion.DefectoModoActualizacion;
             this.Orbita.MostrarTitulo = Configuracion.DefectoMostrarTitulo;
+        }
+        void InitializeEvents()
+        {
+            this.AfterRowActivate += new System.EventHandler(ControlAfterRowActivate);
         }
         #endregion
 
@@ -157,6 +181,33 @@ namespace Orbita.Controles.Grid
             // Recursor de la ToolBar.
             Infragistics.Shared.ResourceCustomizer resCustomizerToolbar = Infragistics.Win.UltraWinToolbars.Resources.Customizer;
             resCustomizerToolbar.SetCustomizedString("QuickCustomizeToolTipXP", "Opciones de la barra de tareas");
+        }
+        #endregion
+
+        #region Manejadores de eventos
+        private void ControlAfterRowActivate(object sender, EventArgs e)
+        {
+            try
+            {
+                UltraGridRow fila = this.ActiveRow;
+                if (fila.IsDataRow)
+                {
+                    if (this.AfterDataRowActivate != null)
+                    {
+                        this.AfterDataRowActivate(sender, new RowEventArgs(fila));
+                    }
+                }
+                else if (fila.IsFilterRow)
+                {
+                    if (this.AfterFilterRowActivate != null)
+                    {
+                        this.AfterFilterRowActivate(sender, new RowEventArgs(fila));
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
         #endregion
     }

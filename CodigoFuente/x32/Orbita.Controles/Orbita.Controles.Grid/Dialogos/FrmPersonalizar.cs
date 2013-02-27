@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Grid
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -36,7 +36,7 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Delegados y eventos
-        public event System.EventHandler<System.EventArgs> OrbIndiceSeleccionado;
+        public event System.EventHandler<System.EventArgs> IndiceSeleccionado;
         #endregion
 
         #region Constructor
@@ -79,6 +79,7 @@ namespace Orbita.Controles.Grid
             this.btnSubir.Click += new System.EventHandler(btnSubir_Click);
             this.btnBajar.Click += new System.EventHandler(btnBajar_Click);
             this.lsvColumnas.ItemChecked += new ItemCheckedEventHandler(lsvColumnas_ItemChecked);
+            this.lsvColumnasAgrupadas.ItemChecked += new ItemCheckedEventHandler(lsvColumnasAgrupadas_ItemChecked);
 
             this.btnCancelar.Click += new System.EventHandler(btnCancelar_Click);
         }
@@ -94,7 +95,7 @@ namespace Orbita.Controles.Grid
             this.chbColumnasFijas.Checked = Grid.DisplayLayout.UseFixedHeaders;
             this.chbColumnasSumarios.Checked = Grid.DisplayLayout.Override.AllowRowSummaries == AllowRowSummaries.True;
             this.chbColumnasFiltros.Checked = Grid.DisplayLayout.Override.FilterUIType == Infragistics.Win.UltraWinGrid.FilterUIType.HeaderIcons;
-            int indice =  ((int)System.Enum.Parse(typeof(FilterOperatorLocation), Grid.DisplayLayout.Override.FilterOperatorLocation.ToString()));
+            int indice = ((int)System.Enum.Parse(typeof(FilterOperatorLocation), Grid.DisplayLayout.Override.FilterOperatorLocation.ToString()));
             if (indice == 0)
             {
                 indice++;
@@ -111,18 +112,20 @@ namespace Orbita.Controles.Grid
             {
                 columnas = new List<OColumnaInfo>(item.Columns.Count);
                 this.lsvColumnas.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Columna", 200, System.Windows.Forms.HorizontalAlignment.Left));
+                this.lsvColumnasAgrupadas.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Columna", 200, System.Windows.Forms.HorizontalAlignment.Left));
                 foreach (var columnaGrid in item.Columns)
                 {
-                    if (columnaGrid.Tag != null)
-                    {
-                        OColumnaInfo columna = new OColumnaInfo();
-                        columna.Identificador = columnaGrid.Key;
-                        columna.Nombre = columnaGrid.Header.Caption;
-                        columna.Posicion = columnaGrid.Header.VisiblePosition;
-                        columna.Banda = item.Index;
-                        columna.Visible = !columnaGrid.Hidden;
-                        columnas.Add(columna);
-                    }
+                    //if (columnaGrid.Tag != null)
+                    //{
+                    OColumnaInfo columna = new OColumnaInfo();
+                    columna.Identificador = columnaGrid.Key;
+                    columna.Nombre = columnaGrid.Header.Caption;
+                    columna.Posicion = columnaGrid.Header.VisiblePosition;
+                    columna.Banda = item.Index;
+                    columna.Visible = !columnaGrid.Hidden;
+                    columna.Agrupada = columnaGrid.MergedCellStyle == MergedCellStyle.Always;
+                    columnas.Add(columna);
+                    //  }
                 }
                 columnas.Sort();
                 foreach (OColumnaInfo columnaListView in columnas)
@@ -132,6 +135,12 @@ namespace Orbita.Controles.Grid
                     lvi.Text = columnaListView.Nombre;
                     lvi.Checked = columnaListView.Visible;
                     this.lsvColumnas.Items.Add(lvi);
+
+                    System.Windows.Forms.ListViewItem lviGroup = new System.Windows.Forms.ListViewItem();
+                    lviGroup.Name = lvi.Name;
+                    lviGroup.Text = lvi.Text;
+                    lviGroup.Checked = columnaListView.Agrupada;
+                    this.lsvColumnasAgrupadas.Items.Add(lviGroup);
                 }
             }
         }
@@ -200,17 +209,17 @@ namespace Orbita.Controles.Grid
                 Grid.DisplayLayout.Bands[columna.Banda].Columns[columna.Identificador].Header.VisiblePosition = columna.Posicion;
             }
         }
-        void FindNodeInHierarchy(TreeNodeCollection nodes, object strSearchValue)
+        void FindNodeInHierarchy(TreeNodeCollection nodos, object strSearchValue)
         {
-            for (int iCount = 0; iCount < nodes.Count; iCount++)
+            for (int iCount = 0; iCount < nodos.Count; iCount++)
             {
-                if (nodes[iCount].Tag.Equals(strSearchValue))
+                if (nodos[iCount].Tag.Equals(strSearchValue))
                 {
-                    this.trvOpciones.SelectedNode = nodes[iCount];
+                    this.trvOpciones.SelectedNode = nodos[iCount];
                     this.trvOpciones.Select();
                     return;
                 }
-                FindNodeInHierarchy(nodes[iCount].Nodes, strSearchValue);
+                FindNodeInHierarchy(nodos[iCount].Nodes, strSearchValue);
             }
         }
         #endregion
@@ -251,6 +260,10 @@ namespace Orbita.Controles.Grid
                     case "4":
                     case "5":
                         tabSeleccionado = this.orbitaTabPageControl4.Tab;
+                        break;
+                    case "6":
+                    case "7":
+                        tabSeleccionado = this.orbitaTabPageControl5.Tab;
                         break;
                 }
                 if (tabSeleccionado != null)
@@ -293,9 +306,9 @@ namespace Orbita.Controles.Grid
         {
             try
             {
-                if (OrbIndiceSeleccionado != null)
+                if (IndiceSeleccionado != null)
                 {
-                    OrbIndiceSeleccionado(this.trvOpciones, e);
+                    IndiceSeleccionado(this.trvOpciones, e);
                 }
             }
             catch
@@ -543,6 +556,30 @@ namespace Orbita.Controles.Grid
             {
                 columnas[e.Item.Index].Visible = e.Item.Checked;
                 Grid.DisplayLayout.Bands[columnas[e.Item.Index].Banda].Columns[columnas[e.Item.Index].Identificador].Hidden = e.Item.Checked == false;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        void lsvColumnasAgrupadas_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            try
+            {
+                columnas[e.Item.Index].Agrupada = e.Item.Checked;
+                UltraGridColumn columna = Grid.DisplayLayout.Bands[columnas[e.Item.Index].Banda].Columns[columnas[e.Item.Index].Identificador];
+                if (e.Item.Checked)
+                {
+                    columna.MergedCellStyle = MergedCellStyle.Always;
+                    columna.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.EditAndSelectText;
+                    columna.CellAppearance.TextVAlign = Infragistics.Win.VAlign.Top;
+                }
+                else
+                {
+                    columna.MergedCellStyle = MergedCellStyle.Never;
+                    columna.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.Default;
+                    columna.CellAppearance.TextVAlign = Infragistics.Win.VAlign.Default;
+                }
             }
             catch
             {

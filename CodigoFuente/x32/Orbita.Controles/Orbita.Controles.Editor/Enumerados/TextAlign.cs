@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Editor
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -11,9 +11,6 @@
 //***********************************************************************
 namespace Orbita.Controles.Editor
 {
-    /// <summary>
-    /// Orbita.Controles.Editor.TextAlign.
-    /// </summary>
     public enum TextAlign
     {
         /// <summary>

@@ -44,9 +44,9 @@
             this.pnlBotones.Controls.Add(this.btnCancelar);
             this.pnlBotones.Controls.Add(this.btnAceptar);
             this.pnlBotones.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlBotones.Location = new System.Drawing.Point(572, 26);
+            this.pnlBotones.Location = new System.Drawing.Point(572, 27);
             this.pnlBotones.Name = "pnlBotones";
-            this.pnlBotones.Size = new System.Drawing.Size(70, 320);
+            this.pnlBotones.Size = new System.Drawing.Size(70, 319);
             this.pnlBotones.TabIndex = 14;
             // 
             // btnCancelar
@@ -73,10 +73,10 @@
             // 
             this.lstView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lstView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstView.Location = new System.Drawing.Point(0, 13);
+            this.lstView.Location = new System.Drawing.Point(0, 14);
             this.lstView.MultiSelect = false;
             this.lstView.Name = "lstView";
-            this.lstView.Size = new System.Drawing.Size(565, 305);
+            this.lstView.Size = new System.Drawing.Size(565, 303);
             this.lstView.TabIndex = 13;
             this.lstView.UseCompatibleStateImageBehavior = false;
             this.lstView.View = System.Windows.Forms.View.Details;
@@ -89,10 +89,8 @@
             this.lblCabecera.ImageTransparentColor = System.Drawing.Color.Empty;
             this.lblCabecera.Location = new System.Drawing.Point(5, 5);
             this.lblCabecera.Name = "lblCabecera";
-            this.lblCabecera.OrbColorFondo = System.Drawing.Color.Empty;
-            this.lblCabecera.OrbColorFuente = System.Drawing.Color.Empty;
             this.lblCabecera.Padding = new System.Drawing.Size(0, 4);
-            this.lblCabecera.Size = new System.Drawing.Size(637, 21);
+            this.lblCabecera.Size = new System.Drawing.Size(637, 22);
             this.lblCabecera.TabIndex = 10;
             this.lblCabecera.Text = "cabecera";
             this.lblCabecera.UseMnemonic = false;
@@ -104,9 +102,9 @@
             this.pnlContenedor.Controls.Add(this.lstView);
             this.pnlContenedor.Controls.Add(this.lblSinElementos);
             this.pnlContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContenedor.Location = new System.Drawing.Point(5, 26);
+            this.pnlContenedor.Location = new System.Drawing.Point(5, 27);
             this.pnlContenedor.Name = "pnlContenedor";
-            this.pnlContenedor.Size = new System.Drawing.Size(567, 320);
+            this.pnlContenedor.Size = new System.Drawing.Size(567, 319);
             this.pnlContenedor.TabIndex = 15;
             // 
             // lblSinElementos
@@ -117,9 +115,7 @@
             this.lblSinElementos.ImageTransparentColor = System.Drawing.Color.Empty;
             this.lblSinElementos.Location = new System.Drawing.Point(0, 0);
             this.lblSinElementos.Name = "lblSinElementos";
-            this.lblSinElementos.OrbColorFondo = System.Drawing.Color.Empty;
-            this.lblSinElementos.OrbColorFuente = System.Drawing.Color.Empty;
-            this.lblSinElementos.Size = new System.Drawing.Size(565, 13);
+            this.lblSinElementos.Size = new System.Drawing.Size(565, 14);
             this.lblSinElementos.TabIndex = 14;
             this.lblSinElementos.Text = "No existen elementos";
             this.lblSinElementos.UseMnemonic = false;

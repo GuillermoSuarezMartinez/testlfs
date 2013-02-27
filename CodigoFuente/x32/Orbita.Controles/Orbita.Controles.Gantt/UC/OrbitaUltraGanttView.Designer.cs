@@ -197,6 +197,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtOrigen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         #endregion

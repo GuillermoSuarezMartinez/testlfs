@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Grid
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -11,9 +11,6 @@
 //***********************************************************************
 namespace Orbita.Controles.Grid
 {
-    /// <summary>
-    /// Orbita.Controles.DialogoListView.
-    /// </summary>
     public partial class FrmListadoPlantillasBase : Orbita.Controles.Contenedores.OrbitaDialog
     {
         #region Constructor

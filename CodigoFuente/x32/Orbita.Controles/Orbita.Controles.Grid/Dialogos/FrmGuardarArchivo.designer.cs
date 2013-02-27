@@ -80,8 +80,6 @@
             this.lblNombre.ImageTransparentColor = System.Drawing.Color.Empty;
             this.lblNombre.Location = new System.Drawing.Point(28, 15);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.OrbColorFondo = System.Drawing.Color.Empty;
-            this.lblNombre.OrbColorFuente = System.Drawing.Color.Empty;
             this.lblNombre.Size = new System.Drawing.Size(47, 13);
             this.lblNombre.TabIndex = 0;
             this.lblNombre.Text = "Nombre:";
@@ -116,8 +114,6 @@
             this.lblDescripcion.ImageTransparentColor = System.Drawing.Color.Empty;
             this.lblDescripcion.Location = new System.Drawing.Point(9, 43);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.OrbColorFondo = System.Drawing.Color.Empty;
-            this.lblDescripcion.OrbColorFuente = System.Drawing.Color.Empty;
             this.lblDescripcion.Size = new System.Drawing.Size(66, 13);
             this.lblDescripcion.TabIndex = 2;
             this.lblDescripcion.Text = "Descripción:";

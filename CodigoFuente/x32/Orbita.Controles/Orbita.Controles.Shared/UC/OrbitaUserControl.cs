@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Shared
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -11,9 +11,6 @@
 //***********************************************************************
 namespace Orbita.Controles.Shared
 {
-    /// <summary>
-    /// Orbita.Controles.Shared.OrbitaUserControl.
-    /// </summary>
     public partial class OrbitaUserControl : System.Windows.Forms.UserControl
     {
         #region Constructor

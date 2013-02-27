@@ -1,8 +1,16 @@
-﻿namespace Orbita.Controles.Gantt
+﻿//***********************************************************************
+// Assembly         : Orbita.Controles.Gantt
+// Author           : crodriguez
+// Created          : 19-01-2012
+//
+// Last Modified By : crodriguez
+// Last Modified On : 19-01-2012
+// Description      : 
+//
+// Copyright        : (c) Orbita Ingenieria. All rights reserved.
+//***********************************************************************
+namespace Orbita.Controles.Gantt
 {
-    /// <summary>
-    /// Diagrama de Gantt que representa un conjunto de tareas en una línea temporal.
-    /// </summary>
     public partial class OrbitaUltraGanttView : Infragistics.Win.UltraWinGanttView.UltraGanttView
     {
         #region Atributos públicos

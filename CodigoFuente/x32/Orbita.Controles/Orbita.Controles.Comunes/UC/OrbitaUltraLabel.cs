@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Comunes
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -9,13 +9,24 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System.ComponentModel;
 namespace Orbita.Controles.Comunes
 {
-    /// <summary>
-    /// Orbita.Controles.Comunes.OrbitaUltraLabel.
-    /// </summary>
     public partial class OrbitaUltraLabel : Infragistics.Win.Misc.UltraLabel
     {
+        public class ControlNuevaDefinicion : OUltraLabel
+        {
+            public ControlNuevaDefinicion(OrbitaUltraLabel sender)
+                : base(sender) { }
+        };
+
+        #region Atributos
+        /// <summary>
+        /// Proporciona un acceso a los recursos específicos de cada referencia cultural en tiempo de ejecución.
+        /// </summary>
+        ControlNuevaDefinicion definicion;
+        #endregion
+
         #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraLabel.
@@ -24,45 +35,34 @@ namespace Orbita.Controles.Comunes
             : base()
         {
             InitializeComponent();
+            InitializeAttributes();
             InitializeProperties();
         }
         #endregion
 
         #region Propiedades
-        /// <summary>
-        /// Color del fondo.
-        /// </summary>
-        [System.ComponentModel.Category("Orbita")]
-        [System.ComponentModel.Description("Color de fondo.")]
-        [System.ComponentModel.DefaultValue(typeof(System.Drawing.Color), "Empty")]
-        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
-        public System.Drawing.Color OrbColorFondo
+        [System.ComponentModel.Category("Gestión de controles")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public ControlNuevaDefinicion Orbita
         {
-            get { return this.Appearance.BackColor; }
-            set { this.Appearance.BackColor = value; }
-        }
-        /// <summary>
-        /// Color de la fuente.
-        /// </summary>
-        [System.ComponentModel.Category("Orbita")]
-        [System.ComponentModel.Description("Color de la fuente.")]
-        [System.ComponentModel.DefaultValue(typeof(System.Drawing.Color), "Empty")]
-        [System.ComponentModel.RefreshProperties(System.ComponentModel.RefreshProperties.Repaint)]
-        public System.Drawing.Color OrbColorFuente
-        {
-            get { return this.Appearance.ForeColor; }
-            set { this.Appearance.ForeColor = value; }
+            get { return this.definicion; }
+            set { this.definicion = value; }
         }
         #endregion
 
         #region Métodos privados
+        void InitializeAttributes()
+        {
+            if (this.definicion == null)
+            {
+                this.definicion = new ControlNuevaDefinicion(this);
+            }
+        }
         /// <summary>
         /// Inicializar propiedades.
         /// </summary>
         void InitializeProperties()
         {
-            this.OrbColorFondo = System.Drawing.Color.Empty;
-            this.OrbColorFuente = System.Drawing.Color.Empty;
             this.UseMnemonic = false;
         }        
         #endregion

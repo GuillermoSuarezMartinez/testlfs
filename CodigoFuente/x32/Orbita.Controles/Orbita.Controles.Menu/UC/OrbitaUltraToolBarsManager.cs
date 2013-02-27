@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Menu
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -11,14 +11,11 @@
 //***********************************************************************
 namespace Orbita.Controles.Menu
 {
-    /// <summary>
-    /// Orbita.Controles.Menu.OrbitaUltraToolBarsManager.
-    /// </summary>
     public partial class OrbitaUltraToolbarsManager : Infragistics.Win.UltraWinToolbars.UltraToolbarsManager
     {
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaUltraToolBarsManager.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaUltraToolbarsManager.
         /// </summary>
         public OrbitaUltraToolbarsManager()
             : base()
@@ -27,7 +24,7 @@ namespace Orbita.Controles.Menu
             InitializeResourceStrings();
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaUltraToolBarsManager.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaUltraToolbarsManager.
         /// </summary>
         /// <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
         /// que contienen cero o más componentes de forma lógica.</param>
@@ -46,7 +43,7 @@ namespace Orbita.Controles.Menu
 
         #region Métodos públicos
         /// <summary>
-        /// Hace visible o no un botón de la ToolBar.
+        /// Hace visible o no un botón de la Toolbar.
         /// </summary>
         /// <param name="clave">Clave del botón.</param>
         /// <param name="mostrar">Indica si se muestra o no el botón.</param>    
@@ -57,11 +54,11 @@ namespace Orbita.Controles.Menu
         /// <summary>
         /// Habilita o deshabilita un botón de la ToolBar.
         /// <param name="clave">Clave del botón.</param>
-        /// <param name="habilita">Indica si se habilita o no el botón.</param>     
+        /// <param name="habilitar">Indica si se habilita o no el botón.</param>     
         /// </summary> 
-        public void BotonEnabled(string clave, bool habilita)
+        public void BotonEnabled(string clave, bool habilitar)
         {
-            this.Toolbars[0].Tools[clave].SharedProps.Enabled = habilita;
+            this.Toolbars[0].Tools[clave].SharedProps.Enabled = habilitar;
         }
         /// <summary>
         /// Da valor al ToolTipText del botón.
@@ -75,11 +72,11 @@ namespace Orbita.Controles.Menu
         /// <summary>
         /// Agregar un botón a la ToolBar del tipo BotonesToolbar.TipoBoton.
         /// </summary>
-        /// <param name="posicionToolBar">ToolBar correspondiente a la Orbita.Controles.ToolBarManager.</param>
+        /// <param name="posicionToolbar">ToolBar correspondiente a la Orbita.Controles.ToolBarManager.</param>
         /// <param name="control">Control a añadir.</param>
         /// <param name="posicion">Posicion del control.</param>
         /// <param name="alFinal">Indicamos si lo ponemos al final.</param>       
-        public void AgregarControl(Orbita.Controles.Shared.PosicionToolBar posicionToolBar, System.Windows.Forms.Control control, int posicion, bool alFinal)
+        public void AgregarControl(Orbita.Controles.Shared.PosicionToolBar posicionToolbar, System.Windows.Forms.Control control, int posicion, bool alFinal)
         {
             if (control == null)
             {
@@ -89,19 +86,19 @@ namespace Orbita.Controles.Menu
             nuevoContainerTool.SharedProps.Visible = true;
             nuevoContainerTool.Control = control;
             this.Tools.Add(nuevoContainerTool);
-            if (alFinal || posicion > this.Toolbars[(int)posicionToolBar].Tools.Count - 1)
+            if (alFinal || posicion > this.Toolbars[(int)posicionToolbar].Tools.Count - 1)
             {
-                this.Toolbars[(int)posicionToolBar].Tools.AddTool(nuevoContainerTool.Key);
+                this.Toolbars[(int)posicionToolbar].Tools.AddTool(nuevoContainerTool.Key);
             }
             else
             {
                 if (posicion < 0)
                 {
-                    this.Toolbars[(int)posicionToolBar].Tools.InsertTool(0, nuevoContainerTool.Key);
+                    this.Toolbars[(int)posicionToolbar].Tools.InsertTool(0, nuevoContainerTool.Key);
                 }
                 else
                 {
-                    this.Toolbars[(int)posicionToolBar].Tools.InsertTool(posicion, nuevoContainerTool.Key);
+                    this.Toolbars[(int)posicionToolbar].Tools.InsertTool(posicion, nuevoContainerTool.Key);
                 }
             }
         }
@@ -191,14 +188,14 @@ namespace Orbita.Controles.Menu
         /// <summary>
         /// Agregar un botón a la ToolBar del tipo BotonesToolbar.Tipo.Boton.
         /// </summary>
-        /// <param name="posicionToolBar">La ToolBar en la que vamos a agregar el control.</param>
+        /// <param name="posicionToolbar">La ToolBar en la que vamos a agregar el control.</param>
         /// <param name="texto">Texto de la tool.</param>
         /// <param name="imagen">Imagen de la tool.</param>
         /// <param name="clave">Clave de la tool.</param>
         /// <param name="posicion">Posición en la ToolBar.</param>
         /// <param name="alFinal">Lo ponemos al final.</param>
         /// <param name="tipoTool">Tipo de tool.</param>
-        public void AgregarBoton(Orbita.Controles.Shared.PosicionToolBar posicionToolBar, string texto, System.Drawing.Bitmap imagen, string clave, int posicion, bool alFinal, Orbita.Controles.Shared.TipoTool tipoTool)
+        public void AgregarBoton(Orbita.Controles.Shared.PosicionToolBar posicionToolbar, string texto, System.Drawing.Bitmap imagen, string clave, int posicion, bool alFinal, Orbita.Controles.Shared.TipoTool tipoTool)
         {
             Infragistics.Win.UltraWinToolbars.ToolBase boton;
             switch (tipoTool)
@@ -218,31 +215,31 @@ namespace Orbita.Controles.Menu
             this.Tools.Add(boton);
             if (alFinal || posicion > this.Toolbars[0].Tools.Count - 1)
             {
-                this.Toolbars[(int)posicionToolBar].Tools.AddTool(clave);
+                this.Toolbars[(int)posicionToolbar].Tools.AddTool(clave);
             }
             else
             {
                 if (posicion < 0)
                 {
-                    this.Toolbars[(int)posicionToolBar].Tools.InsertTool(0, clave);
+                    this.Toolbars[(int)posicionToolbar].Tools.InsertTool(0, clave);
                 }
                 else
                 {
-                    this.Toolbars[(int)posicionToolBar].Tools.InsertTool(posicion, clave);
+                    this.Toolbars[(int)posicionToolbar].Tools.InsertTool(posicion, clave);
                 }
             }
         }
         /// <summary>
         /// Hace visible o no un control de la ToolBar.
         /// </summary>
-        /// <param name="posicionToolBar">ToolBar correspondiente a la Orbita.Controles.ToolBarManager.</param>
+        /// <param name="posicionToolbar">ToolBar correspondiente a la Orbita.Controles.ToolBarManager.</param>
         /// <param name="control">Control a añadir.</param>
         /// <param name="mostrar">Indica si se muestra o no el botón.</param>
-        public void ControlVisible(Orbita.Controles.Shared.PosicionToolBar posicionToolBar, System.Windows.Forms.Control control, bool mostrar)
+        public void ControlVisible(Orbita.Controles.Shared.PosicionToolBar posicionToolbar, System.Windows.Forms.Control control, bool mostrar)
         {
             if (control != null)
             {
-                this.Toolbars[(int)posicionToolBar].Tools[control.Name].SharedProps.Visible = mostrar;
+                this.Toolbars[(int)posicionToolbar].Tools[control.Name].SharedProps.Visible = mostrar;
             }
         }
         #endregion

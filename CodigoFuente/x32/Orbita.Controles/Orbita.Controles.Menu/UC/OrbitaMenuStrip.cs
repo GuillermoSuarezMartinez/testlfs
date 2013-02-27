@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Menu
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -11,9 +11,6 @@
 //***********************************************************************
 namespace Orbita.Controles.Menu
 {
-    /// <summary>
-    /// Orbita.Controles.Menu.OrbitaMenuStrip.
-    /// </summary>
     public partial class OrbitaMenuStrip : System.Windows.Forms.MenuStrip
     {
         #region Constructor
