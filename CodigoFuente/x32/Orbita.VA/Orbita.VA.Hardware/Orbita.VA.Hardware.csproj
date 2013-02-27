@@ -188,15 +188,6 @@
       <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Orbita.VA.Funciones">
-      <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.VA.Funciones.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Orbita.Winsock, Version=12.220.3.1, Culture=neutral, processorArchitecture=x86">
-      <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\Orbita\Orbita.Winsock.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="PylonC.NET, Version=3.2.2.3032, Culture=neutral, PublicKeyToken=a77e8471c5919d5a, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\VA\Pylon\PylonC.NET.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
