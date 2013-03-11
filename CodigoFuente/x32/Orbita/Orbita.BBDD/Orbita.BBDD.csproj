@@ -133,17 +133,11 @@
     <CodeAnalysisRuleSetDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisRuleDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <DocumentationFile>bin\Release\Orbita.BBDD.xml</DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="IBM.Data.DB2">
       <HintPath>..\..\Comun\BBDD\IBM.Data.DB2.dll</HintPath>
-    </Reference>
-    <Reference Include="IBM.Data.U2.Ucinet">
-      <HintPath>..\..\Comun\BBDD\IBM.Data.U2.Ucinet.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Comun\BBDD\Mono.Security.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=5.0.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -163,7 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\OAccess.cs" />
-    <Compile Include="Core\OBBDDCore.cs" />
+    <Compile Include="Core\OCore.cs" />
     <Compile Include="Core\ODB2.cs" />
     <Compile Include="Core\OMySql.cs" />
     <Compile Include="Core\OOracle.cs" />

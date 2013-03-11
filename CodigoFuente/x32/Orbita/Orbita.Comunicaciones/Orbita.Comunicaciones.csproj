@@ -126,6 +126,7 @@
     <CodeAnalysisRuleDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
     <DocumentationFile>bin\Release\Orbita.Comunicaciones.xml</DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MccDaq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a37eefcf5c6ca10a, processorArchitecture=MSIL">
@@ -204,10 +205,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Orbita.BBDD\Orbita.BBDD.csproj">
-      <Project>{CF7F04AE-7DA5-48C5-BB08-DC57D3192A2D}</Project>
-      <Name>Orbita.BBDD</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Orbita.Trazabilidad\Orbita.Trazabilidad.csproj">
       <Project>{1A2EEC44-A494-4BA6-A591-267B73A55CD1}</Project>
       <Name>Orbita.Trazabilidad</Name>

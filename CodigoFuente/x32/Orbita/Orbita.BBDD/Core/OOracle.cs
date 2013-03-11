@@ -12,7 +12,6 @@
 using System;
 using System.Collections;
 using System.Data;
-using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Oracle.DataAccess.Client;
@@ -21,7 +20,7 @@ namespace Orbita.BBDD
     /// <summary>
     /// Clase tipo para instanciar objetos de base de datos OOracle.
     /// </summary>
-    public class OOracle : OBBDDCore
+    public class OOracle : OCore
     {
         #region Constructores
         /// <summary>
@@ -33,7 +32,7 @@ namespace Orbita.BBDD
         {
             if (infoConexion != null)
             {
-                base.CadenaConexion = string.Format(CultureInfo.CurrentCulture, @"Data Source = (DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = {0})(PORT = {1}))(CONNECT_DATA = (SERVICE_NAME = {2}))); User Id = {3}; Password = {4}; Connection Timeout = {5};", 
+                base.CadenaConexion = string.Format(CultureInfo.CurrentCulture, @"Data Source = (DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = {0})(PORT = {1}))(CONNECT_DATA = (SERVICE_NAME = {2}))); User Id = {3}; Password = {4}; Connection Timeout = {5};",
                     infoConexion.Instancia, infoConexion.Puerto, infoConexion.BaseDatos, infoConexion.Usuario, infoConexion.Password, infoConexion.Timeout);
             }
         }
@@ -53,7 +52,7 @@ namespace Orbita.BBDD
             using (OracleConnection conexion = new OracleConnection(base.CadenaConexion))
             {
                 // Abrir conexión.
-                conexion.Open(); 
+                conexion.Open();
                 resultado = (conexion.State == ConnectionState.Open);
                 conexion.Close();
             }
@@ -91,7 +90,7 @@ namespace Orbita.BBDD
 
                     // Establecer timeout de ejecución.
                     command.CommandTimeout = timeout;
-            
+
                     //Establecer el tipo de comando
                     command.CommandType = CommandType.Text;
 
@@ -108,10 +107,10 @@ namespace Orbita.BBDD
 
                 return resultado;
             }
-            finally  
-            { 
-                if (resultado != null) 
-                { 
+            finally
+            {
+                if (resultado != null)
+                {
                     resultado.Dispose();
                 }
             }
@@ -483,16 +482,16 @@ namespace Orbita.BBDD
 
                 return resultado;
             }
-            finally 
-            { 
-                if (resultado != null) 
-                { 
-                    resultado = null; 
-                } 
+            finally
+            {
+                if (resultado != null)
+                {
+                    resultado = null;
+                }
             }
         }
         #endregion
 
-        #endregion       
+        #endregion
     }
 }

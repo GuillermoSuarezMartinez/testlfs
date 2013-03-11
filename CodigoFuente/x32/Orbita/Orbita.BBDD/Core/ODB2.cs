@@ -19,7 +19,7 @@ namespace Orbita.BBDD
     /// Clase tipo para instanciar objetos de base de datos ODB2.
     /// </summary>
     [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", Justification = "El origen del nombre abreviado.")]
-    public class ODB2 : OBBDDCore
+    public class ODB2 : OCore
     {
         #region Constructores
         /// <summary>
@@ -177,19 +177,19 @@ namespace Orbita.BBDD
             using (DB2Connection conexion = new DB2Connection(this.CadenaConexion))
             using (DB2BulkCopy bulk = new DB2BulkCopy(conexion, DB2BulkCopyOptions.Default))
             {
-                    // Abrir conexión.
-                    conexion.Open();
-                    // Asignar la tabla destino.
-                    bulk.DestinationTableName = tablaDestino;
-                    if (dt != null)
-                    {
-                        // Ejecutar query.
-                        bulk.WriteToServer(dt);
-                        // Asignar resultado correpondiente
-                        // al número de filas contenidas en
-                        // el Datatable.
-                        resultado = dt.Rows.Count;
-                    }
+                // Abrir conexión.
+                conexion.Open();
+                // Asignar la tabla destino.
+                bulk.DestinationTableName = tablaDestino;
+                if (dt != null)
+                {
+                    // Ejecutar query.
+                    bulk.WriteToServer(dt);
+                    // Asignar resultado correpondiente
+                    // al número de filas contenidas en
+                    // el Datatable.
+                    resultado = dt.Rows.Count;
+                }
             }
             return resultado;
         }

@@ -22,7 +22,7 @@ namespace Orbita.BBDD
     /// Clase tipo para instanciar objetos de base de datos SQLServer,
     /// asignadas a WinCC. Acceso a través de Connectivity Pack.
     /// </summary>
-    public class OWinCC : OBBDDCore
+    public class OWinCC : OCore
     {
         #region Enumerados
         /// <summary>
@@ -292,7 +292,7 @@ namespace Orbita.BBDD
                             object[] nuevaFila = { dr["ValueID"], ((DateTime)dr["Timestamp"]).ToLocalTime(), dr["RealValue"], dr["Quality"], dr["Flags"] };
                             ds.Tables[varID].Rows.Add(nuevaFila);
                         }
-                        catch (Exception)  { /* No insertamos ningun valor si es erróneo. */ }
+                        catch (Exception) { /* No insertamos ningun valor si es erróneo. */ }
                     }
                 }
             }

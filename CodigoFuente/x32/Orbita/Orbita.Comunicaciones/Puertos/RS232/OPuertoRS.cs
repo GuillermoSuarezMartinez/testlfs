@@ -3,9 +3,7 @@ using System.Collections;
 using System.Data;
 using System.IO.Ports;
 using System.Threading;
-using Orbita.Comunicaciones;
 using Orbita.Utiles;
-
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -420,5 +418,3 @@ namespace Orbita.Comunicaciones
         #endregion Manejador/es de evento/s
     }
 }
-
-

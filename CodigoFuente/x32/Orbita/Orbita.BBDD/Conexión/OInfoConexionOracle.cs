@@ -32,7 +32,7 @@ namespace Orbita.BBDD
         /// Inicializar una nueva instancia de la clase InfoConexion.
         /// </summary>
         public OInfoConexionOracle()
-            :base() 
+            : base()
         {
             this.puerto = DefaultPort;
         }
@@ -41,7 +41,7 @@ namespace Orbita.BBDD
         /// </summary>
         /// <param name="timeout">Timeout de conexión.</param>
         public OInfoConexionOracle(int timeout)
-            : base (timeout) 
+            : base(timeout)
         {
             this.puerto = DefaultPort;
         }
@@ -53,7 +53,7 @@ namespace Orbita.BBDD
         /// <param name="usuario">Usuario de las credenciales de base de datos.</param>
         /// <param name="password">Password de las credenciales de base de datos.</param>
         public OInfoConexionOracle(string instancia, string baseDatos, string usuario, string password)
-            : base(instancia, baseDatos, usuario, password) 
+            : base(instancia, baseDatos, usuario, password)
         {
             this.puerto = DefaultPort;
         }
@@ -66,7 +66,7 @@ namespace Orbita.BBDD
         /// <param name="usuario">Usuario de las credenciales de base de datos.</param>
         /// <param name="password">Password de las credenciales de base de datos.</param>
         public OInfoConexionOracle(string instancia, int puerto, string baseDatos, string usuario, string password)
-            : base(instancia, baseDatos, usuario, password) 
+            : base(instancia, baseDatos, usuario, password)
         {
             this.puerto = puerto;
         }
@@ -93,7 +93,7 @@ namespace Orbita.BBDD
         /// <param name="password">Password de las credenciales de base de datos.</param>
         /// <param name="timeout">Timeout de conexión.</param>
         public OInfoConexionOracle(string instancia, int puerto, string baseDatos, string usuario, string password, int timeout)
-            : base(instancia, baseDatos, usuario, password, timeout) 
+            : base(instancia, baseDatos, usuario, password, timeout)
         {
             this.puerto = puerto;
         }

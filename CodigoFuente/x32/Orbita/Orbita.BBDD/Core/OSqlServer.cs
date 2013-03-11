@@ -20,7 +20,7 @@ namespace Orbita.BBDD
     /// <summary>
     /// Clase tipo para instanciar objetos de base de datos OSQLServer.
     /// </summary>
-    public class OSqlServer : OBBDDCore
+    public class OSqlServer : OCore
     {
         #region Clases internas
         /// <summary>
@@ -406,7 +406,7 @@ namespace Orbita.BBDD
         {
             if (infoConexion != null)
             {
-                this.CadenaConexion = string.Format(CultureInfo.CurrentCulture, @"Data Source={0}; Initial Catalog={1}; User Id={2}; Password={3}; Connect Timeout={4}", 
+                this.CadenaConexion = string.Format(CultureInfo.CurrentCulture, @"Data Source={0}; Initial Catalog={1}; User Id={2}; Password={3}; Connect Timeout={4}",
                     infoConexion.Instancia, infoConexion.BaseDatos, infoConexion.Usuario, infoConexion.Password, infoConexion.Timeout);
             }
         }
@@ -425,7 +425,7 @@ namespace Orbita.BBDD
         {
             if (infoConexion != null)
             {
-                this.CadenaConexion = string.Format(CultureInfo.CurrentCulture, @"Data Source={0}; Failover Partner={1}; Initial Catalog={2}; User Id={3}; Password={4}; Connect Timeout={5}", 
+                this.CadenaConexion = string.Format(CultureInfo.CurrentCulture, @"Data Source={0}; Failover Partner={1}; Initial Catalog={2}; User Id={3}; Password={4}; Connect Timeout={5}",
                     infoConexion.Instancia, infoConexion.Mirror, infoConexion.BaseDatos, infoConexion.Usuario, infoConexion.Password, infoConexion.Timeout);
             }
         }
@@ -507,7 +507,7 @@ namespace Orbita.BBDD
                 // http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlconnection.close.aspx
                 return resultado;
             }
-            finally  { if (resultado != null) { resultado.Dispose(); } }
+            finally { if (resultado != null) { resultado.Dispose(); } }
         }
         #endregion
 
@@ -1304,6 +1304,6 @@ namespace Orbita.BBDD
         }
         #endregion
 
-        #endregion       
+        #endregion
     }
 }

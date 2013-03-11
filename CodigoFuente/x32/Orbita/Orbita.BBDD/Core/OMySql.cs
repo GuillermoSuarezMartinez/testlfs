@@ -18,7 +18,7 @@ namespace Orbita.BBDD
     /// <summary>
     /// Clase tipo para instanciar objetos de base de datos OMySQL.
     /// </summary>
-    public class OMySql : OBBDDCore
+    public class OMySql : OCore
     {
         #region Constructores
         /// <summary>
@@ -30,7 +30,7 @@ namespace Orbita.BBDD
         {
             if (infoConexion != null)
             {
-                this.CadenaConexion = string.Format(CultureInfo.CurrentCulture, @"SERVER={0}; DATABASE={1}; UID={2}; PASSWORD={3}", 
+                this.CadenaConexion = string.Format(CultureInfo.CurrentCulture, @"SERVER={0}; DATABASE={1}; UID={2}; PASSWORD={3}",
                     infoConexion.Instancia, infoConexion.BaseDatos, infoConexion.Usuario, infoConexion.Password);
             }
         }
