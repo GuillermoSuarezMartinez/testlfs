@@ -4,6 +4,77 @@
         <name>Orbita.VA.GeneradorEscenarios</name>
     </assembly>
     <members>
+        <member name="T:Orbita.VAGeneradorEscenarios.Program">
+            <summary>
+            Programa generador de código automático
+            </summary>
+        </member>
+        <member name="F:Orbita.VAGeneradorEscenarios.Program.HabilitadoVariables">
+            <summary>
+            Indica si se han de generar las variables
+            </summary>
+        </member>
+        <member name="F:Orbita.VAGeneradorEscenarios.Program.HabilitadoHardware">
+            <summary>
+            Indica si se han de generar el hardware
+            </summary>
+        </member>
+        <member name="M:Orbita.VAGeneradorEscenarios.Program.Main(System.String[])">
+            <summary>
+            Punto de entrada de la aplicación
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Orbita.VAGeneradorEscenarios.Program.GenerarMaquinaEstados(Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.String,System.CodeDom.CodeTypeDeclaration@)">
+            <summary>
+            Generación de la clase parcial de la máquina de estados
+            </summary>
+            <param name="generador"></param>
+            <param name="descripcionMaquinaEstados"></param>
+            <param name="claseImplementadora"></param>
+            <param name="claseMaquinaEstados"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAGeneradorEscenarios.Program.GenerarEscenario(Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.String,System.CodeDom.CodeTypeDeclaration@)">
+            <summary>
+            Generación de la clase parcial del escenario
+            </summary>
+            <param name="generador"></param>
+            <param name="descripcionMaquinaEstados"></param>
+            <param name="claseImplementadora"></param>
+            <param name="claseEscenario"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VAGeneradorEscenarios.Program.GenerarVariables(Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.CodeDom.CodeTypeDeclaration)">
+            <summary>
+            Generación de la clase interior al escenario que implementa las variables
+            </summary>
+            <param name="generador"></param>
+            <param name="codVista"></param>
+            <param name="claseEscenario"></param>
+        </member>
+        <member name="M:Orbita.VAGeneradorEscenarios.Program.GenerarHardware(Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.CodeDom.CodeTypeDeclaration)">
+            <summary>
+            Generación de la clase interior al escenario que implementa las variables
+            </summary>
+            <param name="generador"></param>
+            <param name="codVista"></param>
+            <param name="claseEscenario"></param>
+        </member>
+        <member name="M:Orbita.VAGeneradorEscenarios.Program.GenerarEstados(Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.String)">
+            <summary>
+            Generador de estados de una determinada máquina de estados
+            </summary>
+            <param name="generador"></param>
+            <param name="codMaquinaEstados"></param>
+        </member>
+        <member name="M:Orbita.VAGeneradorEscenarios.Program.GenerarTransiciones(Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.String,System.CodeDom.CodeTypeDeclaration@)">
+            <summary>
+            Generador de transiciones de una determinada máquina de estados
+            </summary>
+            <param name="generador"></param>
+            <param name="codMaquinaEstados"></param>
+        </member>
         <member name="T:Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido">
             <summary>
             Clase encargada de escribir el código C# para permitir el acceso rápido a variables.
@@ -106,77 +177,6 @@
             <param name="codeRegionMode"></param>
             <param name="regionName"></param>
             <param name="clase"></param>
-        </member>
-        <member name="T:Orbita.VAGeneradorEscenarios.Program">
-            <summary>
-            Programa generador de código automático
-            </summary>
-        </member>
-        <member name="F:Orbita.VAGeneradorEscenarios.Program.HabilitadoVariables">
-            <summary>
-            Indica si se han de generar las variables
-            </summary>
-        </member>
-        <member name="F:Orbita.VAGeneradorEscenarios.Program.HabilitadoHardware">
-            <summary>
-            Indica si se han de generar el hardware
-            </summary>
-        </member>
-        <member name="M:Orbita.VAGeneradorEscenarios.Program.Main(System.String[])">
-            <summary>
-            Punto de entrada de la aplicación
-            </summary>
-            <param name="args"></param>
-        </member>
-        <member name="M:Orbita.VAGeneradorEscenarios.Program.GenerarMaquinaEstados(Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.String,System.CodeDom.CodeTypeDeclaration@)">
-            <summary>
-            Generación de la clase parcial de la máquina de estados
-            </summary>
-            <param name="generador"></param>
-            <param name="descripcionMaquinaEstados"></param>
-            <param name="claseImplementadora"></param>
-            <param name="claseMaquinaEstados"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAGeneradorEscenarios.Program.GenerarEscenario(Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.String,System.CodeDom.CodeTypeDeclaration@)">
-            <summary>
-            Generación de la clase parcial del escenario
-            </summary>
-            <param name="generador"></param>
-            <param name="descripcionMaquinaEstados"></param>
-            <param name="claseImplementadora"></param>
-            <param name="claseEscenario"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VAGeneradorEscenarios.Program.GenerarVariables(Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.CodeDom.CodeTypeDeclaration)">
-            <summary>
-            Generación de la clase interior al escenario que implementa las variables
-            </summary>
-            <param name="generador"></param>
-            <param name="codVista"></param>
-            <param name="claseEscenario"></param>
-        </member>
-        <member name="M:Orbita.VAGeneradorEscenarios.Program.GenerarHardware(Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.CodeDom.CodeTypeDeclaration)">
-            <summary>
-            Generación de la clase interior al escenario que implementa las variables
-            </summary>
-            <param name="generador"></param>
-            <param name="codVista"></param>
-            <param name="claseEscenario"></param>
-        </member>
-        <member name="M:Orbita.VAGeneradorEscenarios.Program.GenerarEstados(Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.String)">
-            <summary>
-            Generador de estados de una determinada máquina de estados
-            </summary>
-            <param name="generador"></param>
-            <param name="codMaquinaEstados"></param>
-        </member>
-        <member name="M:Orbita.VAGeneradorEscenarios.Program.GenerarTransiciones(Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.String,System.CodeDom.CodeTypeDeclaration@)">
-            <summary>
-            Generador de transiciones de una determinada máquina de estados
-            </summary>
-            <param name="generador"></param>
-            <param name="codMaquinaEstados"></param>
         </member>
         <member name="T:Orbita.VAGeneradorEscenarios.OSistemaGeneradorEscenarios">
             <summary>

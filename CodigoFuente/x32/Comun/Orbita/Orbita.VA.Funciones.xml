@@ -4,9 +4,173 @@
         <name>Orbita.VA.Funciones</name>
     </assembly>
     <members>
-        <member name="T:Orbita.VA.Funciones.OFuncionVisionPro">
+        <member name="T:Orbita.VA.Funciones.ModulosFunciones">
             <summary>
-            Función de visión de VisionPro
+            Define el conjunto de módulos del sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ModulosFunciones.Vision">
+            <summary>
+            Módulo de las funciones de visión
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ModulosFunciones.VisionPro">
+            <summary>
+            Módulo de Vision Pro
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ModulosFunciones.CCRContainer">
+            <summary>
+            Módulo de CCR. Lectura de mátriculas de contenedores
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ModulosFunciones.LPR">
+            <summary>
+            Módulo de LPR de vehículos
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ModulosFunciones.Mantenimientos">
+            <summary>
+            Módulo de los mantenimientos de las funciones de visión
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ModulosFunciones.Inspeccion">
+            <summary>
+            Módulo de las inspecciones del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.AppBD.GetParametrosFuncionesVision(System.String,System.Boolean)">
+            <summary>
+            Consulta las parámetros de un determinada función de visión
+            </summary>
+            <returns>DataTable con la información de una determinada función de visión</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.AppBD.GetParametroFuncionVision(System.String,System.String)">
+            <summary>
+            Consulta toda la información de un determinado parámetro de una función de visión
+            </summary>
+            <returns>DataTable con la información de una determinada función de visión</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.AppBD.GetFuncionesVision">
+            <summary>
+            Consulta todas las funciones de vision existentes en el sistema
+            </summary>
+            <returns>DataTable con los códigos de las funciones de vision existentes en el sistema</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.AppBD.GetFuncionVision(System.String)">
+            <summary>
+            Consulta una función de visión
+            </summary>
+            <returns>DataTable con la información de la función de visión</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.AppBD.GetClavesDeFuncionVision(System.String)">
+            <summary>
+            Consulta las claves de una determinada vista
+            </summary>
+            <param name="codVista"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OCCRManager">
+            <summary>
+            Clase que ejecuta continuamente el
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCCRManager.ThreadEjecucionCCR">
+            <summary>
+            Thread de ejecución continua del módulo CCR
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCCRManager.UsoDemandado">
+            <summary>
+            Indica si alguna función de visión ha demandado el uso del CCR
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCCRManager.Configuracion">
+            <summary>
+            Parámetros de configuración del CCR
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OCCRManager.Constructor">
+            <summary>
+            Construye los objetos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OCCRManager.Destructor">
+            <summary>
+            Destruye los objetos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OCCRManager.Inicializar">
+            <summary>
+            Carga las propiedades de la base de datos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OCCRManager.Finalizar">
+            <summary>
+            Finaliza la ejecución
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OCCRManager.Reset">
+            <summary>
+            Resetea la función de visión CCR
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OCCRManager.DemandaUso">
+            <summary>
+            Se demanda el uso del CCR, por lo que se necesita iniciar las librerías correspondientes
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OCCRManager.FinDemandaUso">
+            <summary>
+            Se elimina la demanda el uso del CCR, por lo que se necesita finalizar las librerías correspondientes
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.ThreadEjecucionCCR">
+            <summary>
+            Clase que ejecuta el reconocimiento de los codigos en un thread
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ThreadEjecucionCCR.Finalizar">
+            <summary>
+            Indica si se ha de finalizar la ejecución del thread
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.ThreadEjecucionCCR.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.ThreadEjecucionCCR.#ctor(System.String,System.Threading.ThreadPriority)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.ThreadEjecucionCCR.CallBack(Orbita.VA.Funciones.CallBackResultadoParcial,Orbita.VA.Funciones.EventArgsResultadoParcial)">
+            <summary>
+            Ejecuta el callback en el mismo thread que la Applicación principal
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.ThreadEjecucionCCR.Ejecucion(System.Boolean@)">
+            <summary>
+            Método a heredar para implementar la ejecución del thread.
+            Este método se está ejecutando en un bucle. Para salir del bucle hay que devolver finalize a true.
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.ThreadEjecucionCCR.DelegadoCallBack">
+            <summary>
+            Delegado de ejecución del callback
+            </summary>
+            <param name="callBack"></param>
+            <param name="argumentoEvento"></param>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OFuncionVisionCCR">
+            <summary>
+            Clase que realizara la función de reconocimiento de CCR
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OFuncionVisionEncolada">
+            <summary>
+            Clase base para todas las funciones de visión
             </summary>
         </member>
         <member name="T:Orbita.VA.Funciones.OFuncionVisionBase">
@@ -153,7 +317,25 @@
             <returns></returns>
             <remarks></remarks>
         </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionBase.SetEntrada(Orbita.VA.Funciones.EnumEntradaFuncionVision,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
+            <summary>
+            Función para la actualización de parámetros de entrada
+            </summary>
+            <param name="entrada">Nombre identificador del parámetro</param>
+            <param name="ParamValue">Nuevo valor del parámetro</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
         <member name="M:Orbita.VA.Funciones.OFuncionVisionBase.GetSalida(System.String,System.Object@,Orbita.VA.Comun.OEnumTipoDato)">
+            <summary>
+            Función para la consulta de parámetros de salida
+            </summary>
+            <param name="ParamName">Nombre identificador del parámetro</param>
+            <param name="ParamValue">Nuevo valor del parámetro</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionBase.GetSalida(Orbita.VA.Funciones.EnumSalidaFuncionVision,System.Object@,Orbita.VA.Comun.OEnumTipoDato)">
             <summary>
             Función para la consulta de parámetros de salida
             </summary>
@@ -213,234 +395,6 @@
         <member name="P:Orbita.VA.Funciones.OFuncionVisionBase.CodVariableEnEjecucion">
             <summary>
             Código identificativo de la función
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OFuncionVisionPro.OptimizarVelocidad">
-            <summary>
-            Se optimizará la velocidad de la primera ejecución, realizando una ejecución al cargarse el archivo vpp
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OFuncionVisionPro.ToolBlock">
-            <summary>
-            Variable CogToolBlock que carga la aplicación
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OFuncionVisionPro.ThreadEjecucion">
-            <summary>
-            Trabajo en segundo plano
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.#ctor(System.String)">
-            <summary>
-            Contructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.EjecucionEnThread(System.Object,System.ComponentModel.DoWorkEventArgs)">
-            <summary>
-            Ejecución de la función a través de otro hilo de ejecución distinto al de la aplicación principal
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.FinEjecucionThread(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
-            <summary>
-            Final de la ejecución de la función
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.Inicializar">
-            <summary>
-            Carga el fichero de QuickBuild Application
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.Finalizar">
-            <summary>
-            Método a heredar donde se descarga el fichero de la función de visión
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.EjecucionSincrona">
-            <summary>
-            Ejecución de la función de Vision Pro de forma síncrona
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.EjecucionAsincrona">
-            <summary>
-            Ejecución de la función de Vision Pro de forma asíncrona
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.SetEntrada(System.String,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
-            <summary>
-            Función para la actualización de parámetros de entrada
-            </summary>
-            <param name="ParamName">Nombre identificador del parámetro</param>
-            <param name="ParamValue">Nuevo valor del parámetro</param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.GetSalida(System.String,System.Object@,Orbita.VA.Comun.OEnumTipoDato)">
-            <summary>
-            Función para la consulta de parámetros de salida
-            </summary>
-            <param name="ParamName">Nombre identificador del parámetro</param>
-            <param name="ParamValue">Nuevo valor del parámetro</param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="T:Orbita.VA.Funciones.Properties.Resources">
-            <summary>
-              Clase de recurso con establecimiento inflexible de tipos, para buscar cadenas traducidas, etc.
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Funciones.Properties.Resources.ResourceManager">
-            <summary>
-              Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Funciones.Properties.Resources.Culture">
-            <summary>
-              Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
-              búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
-            </summary>
-        </member>
-        <member name="T:Orbita.VA.Funciones.ModulosFunciones">
-            <summary>
-            Define el conjunto de módulos del sistema
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ModulosFunciones.Vision">
-            <summary>
-            Módulo de las funciones de visión
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ModulosFunciones.VisionPro">
-            <summary>
-            Módulo de Vision Pro
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ModulosFunciones.CCRContainer">
-            <summary>
-            Módulo de CCR. Lectura de mátriculas de contenedores
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ModulosFunciones.LPR">
-            <summary>
-            Módulo de LPR de vehículos
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ModulosFunciones.Mantenimientos">
-            <summary>
-            Módulo de los mantenimientos de las funciones de visión
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ModulosFunciones.Inspeccion">
-            <summary>
-            Módulo de las inspecciones del sistema
-            </summary>
-        </member>
-        <member name="T:Orbita.VA.Funciones.OCCRManager">
-            <summary>
-            Clase que ejecuta continuamente el
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OCCRManager.ThreadEjecucionCCR">
-            <summary>
-            Thread de ejecución continua del módulo CCR
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OCCRManager.UsoDemandado">
-            <summary>
-            Indica si alguna función de visión ha demandado el uso del CCR
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OCCRManager.Configuracion">
-            <summary>
-            Parámetros de configuración del CCR
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OCCRManager.Constructor">
-            <summary>
-            Construye los objetos
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OCCRManager.Destructor">
-            <summary>
-            Destruye los objetos
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OCCRManager.Inicializar">
-            <summary>
-            Carga las propiedades de la base de datos
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OCCRManager.Finalizar">
-            <summary>
-            Finaliza la ejecución
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OCCRManager.Reset">
-            <summary>
-            Resetea la función de visión CCR
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OCCRManager.DemandaUso">
-            <summary>
-            Se demanda el uso del CCR, por lo que se necesita iniciar las librerías correspondientes
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OCCRManager.FinDemandaUso">
-            <summary>
-            Se elimina la demanda el uso del CCR, por lo que se necesita finalizar las librerías correspondientes
-            </summary>
-        </member>
-        <member name="T:Orbita.VA.Funciones.ThreadEjecucionCCR">
-            <summary>
-            Clase que ejecuta el reconocimiento de los codigos en un thread
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ThreadEjecucionCCR.Finalizar">
-            <summary>
-            Indica si se ha de finalizar la ejecución del thread
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.ThreadEjecucionCCR.#ctor(System.String)">
-            <summary>
-            Constructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.ThreadEjecucionCCR.#ctor(System.String,System.Threading.ThreadPriority)">
-            <summary>
-            Constructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.ThreadEjecucionCCR.CallBack(Orbita.VA.Funciones.CallBackResultadoParcial,Orbita.VA.Funciones.EventArgsResultadoParcial)">
-            <summary>
-            Ejecuta el callback en el mismo thread que la Applicación principal
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.ThreadEjecucionCCR.Ejecucion(System.Boolean@)">
-            <summary>
-            Método a heredar para implementar la ejecución del thread.
-            Este método se está ejecutando en un bucle. Para salir del bucle hay que devolver finalize a true.
-            </summary>
-        </member>
-        <member name="T:Orbita.VA.Funciones.ThreadEjecucionCCR.DelegadoCallBack">
-            <summary>
-            Delegado de ejecución del callback
-            </summary>
-            <param name="callBack"></param>
-            <param name="argumentoEvento"></param>
-        </member>
-        <member name="T:Orbita.VA.Funciones.VisionCCRContainerFunction">
-            <summary>
-            Clase que realizara la función de reconocimiento de CCR
-            </summary>
-        </member>
-        <member name="T:Orbita.VA.Funciones.OFuncionVisionEncolada">
-            <summary>
-            Clase base para todas las funciones de visión
             </summary>
         </member>
         <member name="F:Orbita.VA.Funciones.OFuncionVisionEncolada.ResultadosParciales">
@@ -533,66 +487,80 @@
             Indica que la función ha de dejar de ejecutarse si se encuentra en ejecución continúa
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.VisionCCRContainerFunction.MaxInspeccionesEnCola">
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionCCR.MaxInspeccionesEnCola">
             <summary>
             Número máximo de inspecciones en la cola de ejecución
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.VisionCCRContainerFunction.ParametrosCCR">
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionCCR.ParametrosCCR">
             <summary>
             Siguiente parametros de entrada a procesar en el CCR
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.VisionCCRContainerFunction.ListaImagenesPendientes">
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionCCR.ListaImagenesPendientes">
             <summary>
             Lista de imagenes pendientes de ejecutar
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.VisionCCRContainerFunction.Imagen">
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionCCR.Imagen">
             <summary>
             Siguiente imágen a procesar en el CCR
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.VisionCCRContainerFunction.RutaImagen">
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionCCR.RutaImagen">
             <summary>
             Siguiente ruta de imágen a procesar en el CCR
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.VisionCCRContainerFunction.#ctor(System.String)">
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionCCR.InformacionAdicional">
+            <summary>
+            Lista de información adicional incorporada por el controlador externo
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionCCR.#ctor(System.String)">
             <summary>
             Contructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.VisionCCRContainerFunction.EstablecerConfiguracion(Orbita.VA.Funciones.OParametrosCCR)">
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionCCR.EstablecerConfiguracion(Orbita.VA.Funciones.OParametrosCCR)">
             <summary>
             Cargamos la configuracion de los parametros pasados por parámetro en caso de necesidad
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.VisionCCRContainerFunction.IsFileLocked(System.IO.FileInfo)">
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionCCR.IsFileLocked(System.IO.FileInfo)">
             <summary>
             Comprueba que el archivo no este en uso
             </summary>
             <param name="file"></param>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.VisionCCRContainerFunction.Reset">
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionCCR.Reset">
             <summary>
             Realiza un reset de la función de visión de CCR que esta en ejecución
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.VisionCCRContainerFunction.EjecucionEncolada">
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionCCR.EjecucionEncolada">
             <summary>
             Ejecución de la función de CCR de forma encolada
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.VisionCCRContainerFunction.HayInspeccionesPendientes">
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionCCR.HayInspeccionesPendientes">
             <summary>
             Indica que hay inspecciones pendientes de ejecución
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.VisionCCRContainerFunction.SetEntrada(System.String,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionCCR.SetEntrada(System.String,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
+            <summary>
+            Función para la actualización de parámetros de entrada
+            </summary>
+            <param name="ParamName">Nombre identificador del parámetro</param>
+            <param name="ParamValue">Nuevo valor del parámetro</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionCCR.SetEntrada(Orbita.VA.Funciones.EnumEntradaFuncionVision,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
             <summary>
             Función para la actualización de parámetros de entrada
             </summary>
@@ -637,12 +605,17 @@
             Resultados de la inspección
             </summary>
         </member>
+        <member name="F:Orbita.VA.Funciones.OInfoInspeccion`4.InformacionAdicional">
+            <summary>
+            Lista de información adicional incorporada por el controlador externo
+            </summary>
+        </member>
         <member name="M:Orbita.VA.Funciones.OInfoInspeccion`4.#ctor">
             <summary>
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.OInfoInspeccion`4.#ctor(`0,`1,`2,`3)">
+        <member name="M:Orbita.VA.Funciones.OInfoInspeccion`4.#ctor(`0,`1,`2,`3,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Constructor de la clase
             </summary>
@@ -652,7 +625,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.OInfoInspeccionCCR.#ctor(Orbita.VA.Comun.OImagenBitmap,Orbita.VA.Funciones.OInfoImagenCCR,Orbita.VA.Funciones.OParametrosCCR,Orbita.VA.Funciones.OResultadoCCR)">
+        <member name="M:Orbita.VA.Funciones.OInfoInspeccionCCR.#ctor(Orbita.VA.Comun.OImagenBitmap,Orbita.VA.Funciones.OInfoImagenCCR,Orbita.VA.Funciones.OParametrosCCR,Orbita.VA.Funciones.OResultadoCCR,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Constructor de la clase
             </summary>
@@ -759,6 +732,16 @@
         <member name="F:Orbita.VA.Funciones.OParametrosCCR.AnguloRotacion">
             <summary>
             Coeficiente de la corrección del ángulo de rotación
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosCCR.InclinacionVertical">
+            <summary>
+            Inclinación vertical
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosCCR.InclinacionHorizontal">
+            <summary>
+            Inclinación vertical
             </summary>
         </member>
         <member name="F:Orbita.VA.Funciones.OParametrosCCR.Distancia">
@@ -920,6 +903,593 @@
             <summary>
             Contructor de la clase
             </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.EntradasFuncionesVisionCCR">
+            <summary>
+            Define el conjunto de tipos de entradas de las funciones de visión CCR
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.EntradasFuncionesVision">
+            <summary>
+            Define el conjunto de tipos de entradas de las funciones de visión
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.EntradasFuncionesVision.Imagen">
+            <summary>
+            Imagen de entrada
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.EntradasFuncionesVisionCCR.ParametrosCCR">
+            <summary>
+            Parametros de configuración del CCR
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.EntradasFuncionesVisionCCR.RutaImagen">
+            <summary>
+            Ruta en disco de la imagen de entrada
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OLPRManager">
+            <summary>
+            Clase que ejecuta continuamente el
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OLPRManager.ThreadEjecucionLPR">
+            <summary>
+            Thread de ejecución continua del módulo LPR
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OLPRManager.UsoDemandado">
+            <summary>
+            Indica si alguna función de visión ha demandado el uso del LPR
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OLPRManager.Configuracion">
+            <summary>
+            Parámetros de configuración del LPR
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OLPRManager.Constructor">
+            <summary>
+            Construye los objetos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OLPRManager.Destructor">
+            <summary>
+            Destruye los objetos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OLPRManager.Inicializar">
+            <summary>
+            Carga las propiedades de la base de datos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OLPRManager.Finalizar">
+            <summary>
+            Finaliza la ejecución
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OLPRManager.Reset">
+            <summary>
+            Resetea la función de visión LPR
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OLPRManager.DemandaUso">
+            <summary>
+            Se demanda el uso del LPR, por lo que se necesita iniciar las librerías correspondientes
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OLPRManager.FinDemandaUso">
+            <summary>
+            Se elimina la demanda el uso del LPR, por lo que se necesita finalizar las librerías correspondientes
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.ThreadEjecucionLPR">
+            <summary>
+            Clase que ejecuta el reconocimiento de las matrículas en un thread
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ThreadEjecucionLPR.Finalizar">
+            <summary>
+            Indica si se ha de finalizar la ejecución del thread
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ThreadEjecucionLPR.QueueSize">
+            <summary>
+            Cola de elementos a procesar en MTInterface
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.ThreadEjecucionLPR.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.ThreadEjecucionLPR.#ctor(System.String,System.Threading.ThreadPriority)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.ThreadEjecucionLPR.CallBack(Orbita.VA.Funciones.OInfoInspeccionLPR)">
+            <summary>
+            Ejecuta el callback en el mismo thread que la Applicación principal
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.ThreadEjecucionLPR.DelegadoCallBack">
+            <summary>
+            Delegado de ejecución del callback
+            </summary>
+            <param name="callBack"></param>
+            <param name="argumentoEvento"></param>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OFuncionVisionLPR">
+            <summary>
+            Clase que realizara la función de reconocimiento de LPR
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionLPR.MaxInspeccionesEnCola">
+            <summary>
+            Número máximo de inspecciones en la cola de ejecución
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionLPR.ParametrosLPR">
+            <summary>
+            Siguiente parametros de entrada a procesar en el LPR
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionLPR.Imagen">
+            <summary>
+            Siguiente imágen a procesar en el LPR
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionLPR.RutaImagen">
+            <summary>
+            Siguiente ruta de imágen a procesar en el LPR
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionLPR.InformacionAdicional">
+            <summary>
+            Lista de información adicional incorporada por el controlador externo
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.#ctor(System.String)">
+            <summary>
+            Contructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.EstablecerConfiguracion(Orbita.VA.Funciones.OParametrosLPR)">
+            <summary>
+            Cargamos la configuracion de los parametros definidos como entrada, es más eficiente alternar con los de por defecto, para tener mejor tasa de acierto
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.IsFileLocked(System.IO.FileInfo)">
+            <summary>
+            Comprueba que el archivo no este en uso
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.Reset">
+            <summary>
+            Realiza un reset de la función de visión de LPR que esta en ejecución
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.EjecucionEncolada">
+            <summary>
+            Ejecución de la función de Vision Pro de forma síncrona
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.HayInspeccionesPendientes">
+            <summary>
+            Indica que hay inspecciones pendientes de ejecución
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.SetEntrada(System.String,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
+            <summary>
+            Función para la actualización de parámetros de entrada
+            </summary>
+            <param name="ParamName">Nombre identificador del parámetro</param>
+            <param name="ParamValue">Nuevo valor del parámetro</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.SetEntrada(Orbita.VA.Funciones.EnumEntradaFuncionVision,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
+            <summary>
+            Función para la actualización de parámetros de entrada
+            </summary>
+            <param name="ParamName">Nombre identificador del parámetro</param>
+            <param name="ParamValue">Nuevo valor del parámetro</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OInfoInspeccionLPR">
+            <summary>
+            Clase que contiene la información referente a la inspección
+            </summary>
+            <typeparam name="TInfo"></typeparam>
+            <typeparam name="TParametros"></typeparam>
+            <typeparam name="TResultados"></typeparam>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OInfoInspeccionLPR.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OInfoInspeccionLPR.#ctor(Orbita.VA.Comun.OImagenBitmap,Orbita.VA.Funciones.OInfoImagenLPR,Orbita.VA.Funciones.OParametrosLPR,Orbita.VA.Funciones.OResultadoLPR,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="info"></param>
+            <param name="parametros"></param>
+            <param name="resultados"></param>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OInfoImagenLPR">
+            <summary>
+            Esta clase contendra la información que queremos pasar con la imagen a la función LPR para recogerla cuando tengamos el resultado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR.IdEjecucionActual">
+            <summary>
+            Contiene la información de la identificacion a la que pertenece
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR.Codigo">
+            <summary>
+            Contiene la información de la cámara que se le pasa en la imagen
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR.IndiceImagen">
+            <summary>
+            Contiene el indice de la imagen añadida
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR.MomentoImagen">
+            <summary>
+            Contiene la fecha exacta en la que se adquirio la imagen
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR.CallBackResultadoParcial">
+            <summary>
+            CallBack donde mandar el resultado parcial
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OInfoImagenLPR.#ctor">
+            <summary>
+            Constructor sin parametros
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OInfoImagenLPR.#ctor(System.Int64,System.String,System.Int32,System.DateTime,Orbita.VA.Funciones.CallBackResultadoParcial)">
+            <summary>
+            Constructor con parametros
+            </summary>
+            <param name="codigo">camara que adquiere la imagen</param>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OParametrosLPR">
+            <summary>
+            Clase que contiene los parametros de configuracion del LPR
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.Altura">
+            <summary>
+            Altura del caracter
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.ActivadoRangoAlturas">
+            <summary>
+            Para tener en cuenta el rango de alturas
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.AlturaMin">
+            <summary>
+            Altura Minima
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.AlturaMax">
+            <summary>
+            Altura Máxima
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.VectorAlturas">
+            <summary>
+            Vector que contendra las alturas
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.TimeOut">
+            <summary>
+            timeout de ejecución
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.ActivadaAjusteCorreccion">
+            <summary>
+            activa el ajuste de la correcion
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.CoeficienteHorizontal">
+            <summary>
+            Coeficiente de Correccion de la perspectiva Horizontal
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.CoeficienteVertical">
+            <summary>
+            Coeficiente de Correccion de la perspectiva Vertical
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.CoeficienteRadial">
+            <summary>
+            Coeficiente para el ojo de pez
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.AnguloRotacion">
+            <summary>
+            Coeficiente de la corrección del ángulo de rotación
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.Distancia">
+            <summary>
+            Distancia al código desde la camara en metros
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.CoordIzq">
+            <summary>
+            Coordenada izquierda ventana
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.CoordArriba">
+            <summary>
+            Coordenada superior ventana
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.AlturaVentanaBusqueda">
+            <summary>
+            Altura de la ventana de búsqueda
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.AnchuraVentanaBusqueda">
+            <summary>
+            Anchura de la ventana de búsqueda
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.ActivadaMasInformacion">
+            <summary>
+            Se le indica si se desea buscar más información extra en la imagén
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.Modificado">
+            <summary>
+            Para saber si han habido modificaciones
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OParametrosLPR.#ctor">
+            <summary>
+            Constructor de la clase sin parámetros
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OResultadoLPR">
+            <summary>
+            Lista de resultados de todas las matriculas de una imagen
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OResultadoSimpleLPR">
+            <summary>
+            Clase que contiene los resultados que se reciben de la funcion LPR para una imagen pasada 
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.Matricula">
+            <summary>
+            Contiene la cadena la matrícula del vehículo
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.FiabilidadMatricula">
+            <summary>
+            Fiabilidad de la matrícula
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.AlturaLetrasMatricula">
+            <summary>
+            Altura letras
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.FechaEncolamiento">
+            <summary>
+            Fecha en la que se encolo a la cola de LPR (dada por él)
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.TiempoDeProceso">
+            <summary>
+            Tiempo de proceso
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.TopPosicionMatricula">
+            <summary>
+            Posicion Top matricula
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.BottomPosicionMatricula">
+            <summary>
+            Posicion Bottom matricula
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.RightPosicionMatricula">
+            <summary>
+            Posicion Right matricula
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.LeftPosicionMatricula">
+            <summary>
+            Posicion Left matricula
+            </summary>
+        </member>
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.VA.Funciones.OResultadoSimpleLPR.CodigoPais" -->
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.VA.Funciones.OResultadoSimpleLPR.PaisSintaxis" -->
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.NumCaracteres">
+            <summary>
+            Número de carácters de la matrícula
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.FiabilidadesLetras">
+            <summary>
+            Contiene las fiabilidades de cada letra individual
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OResultadoSimpleLPR.#ctor">
+            <summary>
+            Constructor sin parametros
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OResultadoSimpleLPR.#ctor(VPARMTWrapper.PlateInfo,System.DateTime)">
+            <summary>
+            Constructor con parametros
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.ConfiguracionLPR">
+            <summary>
+            Parámetros de la aplicación
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.ConfFile">
+            <summary>
+            Ruta por defecto del fichero xml de configuración
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.CountryCode">
+            <summary>
+            Constante que indica el pais o paises a identificar la matricula
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.AvCharHeight">
+            <summary>
+            Constante de altura del caracter
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.DuplicateLines">
+            <summary>
+            Parámetro de Vpar
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.Reordenar">
+            <summary>
+            Parametro de Vpar
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.filterColor">
+            <summary>
+            Parametro de Vpar
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.TraceVpar">
+            <summary>
+            Trazabilidad
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.TraceWrapper">
+            <summary>
+            Indica si se ha de realizar una traza del LPR
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.ConfiguracionLPR.#ctor">
+            <summary>
+            Contructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.ConfiguracionLPR.#ctor(System.String)">
+            <summary>
+            Contructor de la clase
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.EntradasFuncionesVisionLPR">
+            <summary>
+            Define el conjunto de tipos de entradas de las funciones de visión LPR
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.EntradasFuncionesVisionLPR.ParametrosLPR">
+            <summary>
+            Parametros de configuración del LPR
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.EntradasFuncionesVisionLPR.RutaImagen">
+            <summary>
+            Ruta en disco de la imagen de entrada
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OFuncionVisionPro">
+            <summary>
+            Función de visión de VisionPro
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionPro.OptimizarVelocidad">
+            <summary>
+            Se optimizará la velocidad de la primera ejecución, realizando una ejecución al cargarse el archivo vpp
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionPro.ToolBlock">
+            <summary>
+            Variable CogToolBlock que carga la aplicación
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionPro.ThreadEjecucion">
+            <summary>
+            Trabajo en segundo plano
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.#ctor(System.String)">
+            <summary>
+            Contructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.EjecucionEnThread(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Ejecución de la función a través de otro hilo de ejecución distinto al de la aplicación principal
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.FinEjecucionThread(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            Final de la ejecución de la función
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.Inicializar">
+            <summary>
+            Carga el fichero de QuickBuild Application
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.Finalizar">
+            <summary>
+            Método a heredar donde se descarga el fichero de la función de visión
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.EjecucionSincrona">
+            <summary>
+            Ejecución de la función de Vision Pro de forma síncrona
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.EjecucionAsincrona">
+            <summary>
+            Ejecución de la función de Vision Pro de forma asíncrona
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.SetEntrada(System.String,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
+            <summary>
+            Función para la actualización de parámetros de entrada
+            </summary>
+            <param name="ParamName">Nombre identificador del parámetro</param>
+            <param name="ParamValue">Nuevo valor del parámetro</param>
+            <returns></returns>
+            <remarks></remarks>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.GetSalida(System.String,System.Object@,Orbita.VA.Comun.OEnumTipoDato)">
+            <summary>
+            Función para la consulta de parámetros de salida
+            </summary>
+            <param name="ParamName">Nombre identificador del parámetro</param>
+            <param name="ParamValue">Nuevo valor del parámetro</param>
+            <returns></returns>
+            <remarks></remarks>
         </member>
         <member name="T:Orbita.VA.Funciones.OFuncionesVisionManager">
             <summary>
@@ -1193,480 +1763,35 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="T:Orbita.VA.Funciones.OLPRManager">
+        <member name="T:Orbita.VA.Funciones.EnumEntradaFuncionVision">
             <summary>
-            Clase que ejecuta continuamente el
+            Clase que implementa el enumerado de las entradas de las funciones de visión
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OLPRManager.ThreadEjecucionLPR">
+        <member name="M:Orbita.VA.Funciones.EnumEntradaFuncionVision.#ctor(System.String,System.String,System.Int32)">
             <summary>
-            Thread de ejecución continua del módulo LPR
+            Constuctor de la clase
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OLPRManager.UsoDemandado">
+        <member name="T:Orbita.VA.Funciones.SalidasFuncionesVision">
             <summary>
-            Indica si alguna función de visión ha demandado el uso del LPR
+            Define el conjunto de tipos de salidas de las funciones de visión
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OLPRManager.Configuracion">
+        <member name="F:Orbita.VA.Funciones.SalidasFuncionesVision.Imagen">
             <summary>
-            Parámetros de configuración del LPR
+            Imagen de salida
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.OLPRManager.Constructor">
+        <member name="T:Orbita.VA.Funciones.EnumSalidaFuncionVision">
             <summary>
-            Construye los objetos
+            Clase que implementa el enumerado de las salidas de las funciones de visión
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.OLPRManager.Destructor">
+        <member name="M:Orbita.VA.Funciones.EnumSalidaFuncionVision.#ctor(System.String,System.String,System.Int32)">
             <summary>
-            Destruye los objetos
+            Constuctor de la clase
             </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OLPRManager.Inicializar">
-            <summary>
-            Carga las propiedades de la base de datos
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OLPRManager.Finalizar">
-            <summary>
-            Finaliza la ejecución
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OLPRManager.Reset">
-            <summary>
-            Resetea la función de visión LPR
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OLPRManager.DemandaUso">
-            <summary>
-            Se demanda el uso del LPR, por lo que se necesita iniciar las librerías correspondientes
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OLPRManager.FinDemandaUso">
-            <summary>
-            Se elimina la demanda el uso del LPR, por lo que se necesita finalizar las librerías correspondientes
-            </summary>
-        </member>
-        <member name="T:Orbita.VA.Funciones.ThreadEjecucionLPR">
-            <summary>
-            Clase que ejecuta el reconocimiento de las matrículas en un thread
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ThreadEjecucionLPR.Finalizar">
-            <summary>
-            Indica si se ha de finalizar la ejecución del thread
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ThreadEjecucionLPR.QueueSize">
-            <summary>
-            Cola de elementos a procesar en MTInterface
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.ThreadEjecucionLPR.#ctor(System.String)">
-            <summary>
-            Constructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.ThreadEjecucionLPR.#ctor(System.String,System.Threading.ThreadPriority)">
-            <summary>
-            Constructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.ThreadEjecucionLPR.CallBack(VPARMTWrapper.NLInfo,VPARMTWrapper.PlateInfo)">
-            <summary>
-            Ejecuta el callback en el mismo thread que la Applicación principal
-            </summary>
-        </member>
-        <member name="T:Orbita.VA.Funciones.ThreadEjecucionLPR.DelegadoCallBack">
-            <summary>
-            Delegado de ejecución del callback
-            </summary>
-            <param name="callBack"></param>
-            <param name="argumentoEvento"></param>
-        </member>
-        <member name="T:Orbita.VA.Funciones.OFuncionVisionLPR">
-            <summary>
-            Clase que realizara la función de reconocimiento de LPR
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OFuncionVisionLPR.MaxInspeccionesEnCola">
-            <summary>
-            Número máximo de inspecciones en la cola de ejecución
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OFuncionVisionLPR.ParametrosLPR">
-            <summary>
-            Siguiente parametros de entrada a procesar en el LPR
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OFuncionVisionLPR.Imagen">
-            <summary>
-            Siguiente imágen a procesar en el LPR
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OFuncionVisionLPR.AlternarConfiguracion">
-            <summary>
-            Para ir alternando la configuración, si tiene distorisión tambien es útil combinarla con la configuración estandar
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OFuncionVisionLPR.RutaImagen">
-            <summary>
-            Siguiente ruta de imágen a procesar en el LPR
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.#ctor(System.String)">
-            <summary>
-            Contructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.EstablecerConfiguracion(Orbita.VA.Funciones.OParametrosLPR,System.Boolean)">
-            <summary>
-            Cargamos la configuracion de los parametros definidos como entrada, es más eficiente alternar con los de por defecto, para tener mejor tasa de acierto
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.IsFileLocked(System.IO.FileInfo)">
-            <summary>
-            Comprueba que el archivo no este en uso
-            </summary>
-            <param name="file"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.Reset">
-            <summary>
-            Realiza un reset de la función de visión de LPR que esta en ejecución
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.EjecucionEncolada">
-            <summary>
-            Ejecución de la función de Vision Pro de forma síncrona
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.HayInspeccionesPendientes">
-            <summary>
-            Indica que hay inspecciones pendientes de ejecución
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.SetEntrada(System.String,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
-            <summary>
-            Función para la actualización de parámetros de entrada
-            </summary>
-            <param name="ParamName">Nombre identificador del parámetro</param>
-            <param name="ParamValue">Nuevo valor del parámetro</param>
-            <returns></returns>
-            <remarks></remarks>
-        </member>
-        <member name="T:Orbita.VA.Funciones.OInfoInspeccionLPR">
-            <summary>
-            Clase que contiene la información referente a la inspección
-            </summary>
-            <typeparam name="TInfo"></typeparam>
-            <typeparam name="TParametros"></typeparam>
-            <typeparam name="TResultados"></typeparam>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OInfoInspeccionLPR.#ctor">
-            <summary>
-            Constructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OInfoInspeccionLPR.#ctor(Orbita.VA.Comun.OImagenBitmap,Orbita.VA.Funciones.OInfoImagenLPR,Orbita.VA.Funciones.OParametrosLPR,Orbita.VA.Funciones.OResultadoLPR)">
-            <summary>
-            Constructor de la clase
-            </summary>
-            <param name="info"></param>
-            <param name="parametros"></param>
-            <param name="resultados"></param>
-        </member>
-        <member name="T:Orbita.VA.Funciones.OInfoImagenLPR">
-            <summary>
-            Esta clase contendra la información que queremos pasar con la imagen a la función LPR para recogerla cuando tengamos el resultado
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR.IdEjecucionActual">
-            <summary>
-            Contiene la información de la identificacion a la que pertenece
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR.Codigo">
-            <summary>
-            Contiene la información de la cámara que se le pasa en la imagen
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR.IndiceImagen">
-            <summary>
-            Contiene el indice de la imagen añadida
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR.MomentoImagen">
-            <summary>
-            Contiene la fecha exacta en la que se adquirio la imagen
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR.CallBackResultadoParcial">
-            <summary>
-            CallBack donde mandar el resultado parcial
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OInfoImagenLPR.#ctor">
-            <summary>
-            Constructor sin parametros
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OInfoImagenLPR.#ctor(System.Int64,System.String,System.Int32,System.DateTime,Orbita.VA.Funciones.CallBackResultadoParcial)">
-            <summary>
-            Constructor con parametros
-            </summary>
-            <param name="codigo">camara que adquiere la imagen</param>
-        </member>
-        <member name="T:Orbita.VA.Funciones.OParametrosLPR">
-            <summary>
-            Clase que contiene los parametros de configuracion del LPR
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.Altura">
-            <summary>
-            Altura del caracter
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.ActivadoRangoAlturas">
-            <summary>
-            Para tener en cuenta el rango de alturas
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.AlturaMin">
-            <summary>
-            Altura Minima
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.AlturaMax">
-            <summary>
-            Altura Máxima
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.VectorAlturas">
-            <summary>
-            Vector que contendra las alturas
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.TimeOut">
-            <summary>
-            timeout de ejecución
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.ActivadaAjusteCorreccion">
-            <summary>
-            activa el ajuste de la correcion
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.CoeficienteHorizontal">
-            <summary>
-            Coeficiente de Correccion de la perspectiva Horizontal
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.CoeficienteVertical">
-            <summary>
-            Coeficiente de Correccion de la perspectiva Vertical
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.CoeficienteRadial">
-            <summary>
-            Coeficiente para el ojo de pez
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.AnguloRotacion">
-            <summary>
-            Coeficiente de la corrección del ángulo de rotación
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.Distancia">
-            <summary>
-            Distancia al código desde la camara en metros
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.CoordIzq">
-            <summary>
-            Coordenada izquierda ventana
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.CoordArriba">
-            <summary>
-            Coordenada superior ventana
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.AlturaVentanaBusqueda">
-            <summary>
-            Altura de la ventana de búsqueda
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.AnchuraVentanaBusqueda">
-            <summary>
-            Anchura de la ventana de búsqueda
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.ActivadaMasInformacion">
-            <summary>
-            Se le indica si se desea buscar más información extra en la imagén
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.Modificado">
-            <summary>
-            Para saber si han habido modificaciones
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OParametrosLPR.#ctor">
-            <summary>
-            Constructor de la clase sin parámetros
-            </summary>
-        </member>
-        <member name="T:Orbita.VA.Funciones.OResultadoLPR">
-            <summary>
-            Clase que contiene los resultados que se reciben de la funcion LPR para una imagen pasada 
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoLPR.Matricula">
-            <summary>
-            Contiene la cadena la matrícula del vehículo
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoLPR.FiabilidadMatricula">
-            <summary>
-            Fiabilidad de la matrícula
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoLPR.AlturaLetrasMatricula">
-            <summary>
-            Altura letras
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoLPR.FechaEncolamiento">
-            <summary>
-            Fecha en la que se encolo a la cola de LPR (dada por él)
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoLPR.TiempoDeProceso">
-            <summary>
-            Tiempo de proceso
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoLPR.TopPosicionMatricula">
-            <summary>
-            Posicion Top matricula
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoLPR.BottomPosicionMatricula">
-            <summary>
-            Posicion Bottom matricula
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoLPR.RightPosicionMatricula">
-            <summary>
-            Posicion Right matricula
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoLPR.LeftPosicionMatricula">
-            <summary>
-            Posicion Left matricula
-            </summary>
-        </member>
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.VA.Funciones.OResultadoLPR.CodigoPais" -->
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.VA.Funciones.OResultadoLPR.PaisSintaxis" -->
-        <member name="M:Orbita.VA.Funciones.OResultadoLPR.#ctor">
-            <summary>
-            Constructor sin parametros
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OResultadoLPR.#ctor(VPARMTWrapper.PlateInfo,System.DateTime)">
-            <summary>
-            Constructor con parametros
-            </summary>
-        </member>
-        <member name="T:Orbita.VA.Funciones.ConfiguracionLPR">
-            <summary>
-            Parámetros de la aplicación
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.ConfFile">
-            <summary>
-            Ruta por defecto del fichero xml de configuración
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.CountryCode">
-            <summary>
-            Constante que indica el pais o paises a identificar la matricula
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.AvCharHeight">
-            <summary>
-            Constante de altura del caracter
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.DuplicateLines">
-            <summary>
-            Parámetro de Vpar
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.Reordenar">
-            <summary>
-            Parametro de Vpar
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.filterColor">
-            <summary>
-            Parametro de Vpar
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.TraceVpar">
-            <summary>
-            Trazabilidad
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.TraceWrapper">
-            <summary>
-            Indica si se ha de realizar una traza del LPR
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.ConfiguracionLPR.#ctor">
-            <summary>
-            Contructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.ConfiguracionLPR.#ctor(System.String)">
-            <summary>
-            Contructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.AppBD.GetParametrosFuncionesVision(System.String,System.Boolean)">
-            <summary>
-            Consulta las parámetros de un determinada función de visión
-            </summary>
-            <returns>DataTable con la información de una determinada función de visión</returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.AppBD.GetParametroFuncionVision(System.String,System.String)">
-            <summary>
-            Consulta toda la información de un determinado parámetro de una función de visión
-            </summary>
-            <returns>DataTable con la información de una determinada función de visión</returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.AppBD.GetFuncionesVision">
-            <summary>
-            Consulta todas las funciones de vision existentes en el sistema
-            </summary>
-            <returns>DataTable con los códigos de las funciones de vision existentes en el sistema</returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.AppBD.GetFuncionVision(System.String)">
-            <summary>
-            Consulta una función de visión
-            </summary>
-            <returns>DataTable con la información de la función de visión</returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.AppBD.GetClavesDeFuncionVision(System.String)">
-            <summary>
-            Consulta las claves de una determinada vista
-            </summary>
-            <param name="codVista"></param>
-            <returns></returns>
         </member>
     </members>
 </doc>
