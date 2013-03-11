@@ -168,7 +168,7 @@ namespace Orbita.Controles.VA
             cols.Add(new OEstiloColumna("Descripcion", "Descripción"));
 
             // Se rellena el grid
-            //*//combo.Orbita.Formatear(table, cols, "Descripcion", "Descripcion");
+            //*//combo.OI.Formatear(table, cols, "Descripcion", "Descripcion");
 
             // Se establece el valor actual
             combo.OI.Valor = OAtributoEnumerado.GetStringValue((Enum)valorDefecto);
@@ -201,7 +201,7 @@ namespace Orbita.Controles.VA
             cols.Add(new OEstiloColumna("Indice", "Índice"));
 
             // Se rellena el grid
-            //*//combo.Orbita.Formatear(table, cols, "Descripcion", "Indice");
+            //*//combo.OI.Formatear(table, cols, "Descripcion", "Indice");
 
             // Se establece el valor actual
             combo.OI.Valor = valorDefecto;
@@ -249,7 +249,7 @@ namespace Orbita.Controles.VA
             list.Add(new OEstiloColumna("Valor", "Valor", estilo, alinear, mascara, ancho, false));
 
             // Formateamos las columnas y las rellenamos de datos
-            grid.Orbita.Formatear(table, list);
+            grid.OI.Formatear(table, list);
 
             // Formato
             grid.Grid.DisplayLayout.Bands[0].ColHeadersVisible = false;

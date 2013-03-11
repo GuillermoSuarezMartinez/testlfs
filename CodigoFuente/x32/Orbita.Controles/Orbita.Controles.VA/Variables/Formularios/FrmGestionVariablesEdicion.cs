@@ -153,7 +153,7 @@ namespace Orbita.Controles.VA
             ArrayList cols = new ArrayList();
             cols.Add(new OEstiloColumna("CodTipoVariable", "Codigo"));
 
-            //*//this.CboTipo.Orbita.Formatear(AppBD.GetTiposVariables(), cols, "CodTipoVariable", "IdTipoVariable");
+            //*//this.CboTipo.OI.Formatear(AppBD.GetTiposVariables(), cols, "CodTipoVariable", "IdTipoVariable");
 
             if (!Nuevo)
             {

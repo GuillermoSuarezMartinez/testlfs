@@ -616,11 +616,11 @@ namespace Orbita.Controles.VA
                 }
                 else if (controlInterno is OrbitaUltraGrid)
                 {
-                    ((OrbitaUltraGrid)controlInterno).Orbita.Editable = this.ModoAperturaFormulario != ModoAperturaFormulario.Visualizacion;
+                    ((OrbitaUltraGrid)controlInterno).OI.Editable = this.ModoAperturaFormulario != ModoAperturaFormulario.Visualizacion;
                 }
                 else if (controlInterno is OrbitaUltraGridToolBar)
                 {
-                    ((OrbitaUltraGridToolBar)controlInterno).Orbita.Editable = this.ModoAperturaFormulario != ModoAperturaFormulario.Visualizacion;
+                    ((OrbitaUltraGridToolBar)controlInterno).OI.Editable = this.ModoAperturaFormulario != ModoAperturaFormulario.Visualizacion;
                 }
                 else if (controlInterno is OrbitaUltraDateTimeEditor)
                 {

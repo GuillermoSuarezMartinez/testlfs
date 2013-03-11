@@ -90,7 +90,7 @@ namespace Orbita.Controles.VA
                     this.CargarVariables();
 
                     //Dejar seleccionada la fila con la entidad
-                    this.gridVariables.Orbita.Filas.Activar(indice);
+                    this.gridVariables.OI.Filas.Activar(indice);
                 }
             }
             catch (Exception exception)
@@ -140,7 +140,7 @@ namespace Orbita.Controles.VA
                 CargarVariables();
 
                 //Dejar seleccionada la fila con la entidad
-                this.gridVariables.Orbita.Filas.Activar(indice);
+                this.gridVariables.OI.Filas.Activar(indice);
             }
         }
         #endregion
@@ -164,7 +164,7 @@ namespace Orbita.Controles.VA
                 cols.Add(new OEstiloColumna("GuardarTrazabilidad", "Trazabilidad", EstiloColumna.Check, Alineacion.Centrado, 80));
                 cols.Add(new OEstiloColumna("NombreTipoVariable", "Tipo", 80));
 
-                gridVariables.Orbita.Formatear(dt, cols);
+                gridVariables.OI.Formatear(dt, cols);
             }
         }
         #endregion

@@ -100,7 +100,7 @@ namespace Orbita.Controles.VA
             this.CboTipo.Location = new System.Drawing.Point(90, 174);
             this.CboTipo.Margin = new System.Windows.Forms.Padding(0);
             this.CboTipo.Name = "CboTipo";
-            this.CboTipo.Orbita.Texto = "";
+            this.CboTipo.OI.Texto = "";
             this.CboTipo.OI.Valor = null;
             this.CboTipo.Size = new System.Drawing.Size(164, 21);
             this.CboTipo.TabIndex = 37;

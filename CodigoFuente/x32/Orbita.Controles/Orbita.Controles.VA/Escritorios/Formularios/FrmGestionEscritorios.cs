@@ -166,7 +166,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         private void CargarComboEscritorios()
         {
-            this.CboEscritorios.Orbita.ResetValor();
+            this.CboEscritorios.OI.ResetValor();
 
             List<OpcionesEscritorio> listaOpcionesEscritorio = this.ObtenerListaOpcionesEscritoriosDeGrid();
             if (listaOpcionesEscritorio.Count > 0)
@@ -186,10 +186,10 @@ namespace Orbita.Controles.VA
         private void RefrescarComboEscritorios()
         {
             //Obtenemos información sobre el registro está actualmente seleccionado
-            string nombreEscritorioSeleccionado = this.CboEscritorios.Orbita.Texto; // Nunca puede ser null
+            string nombreEscritorioSeleccionado = this.CboEscritorios.OI.Texto; // Nunca puede ser null
 
             // Limpiamos los valores del combo
-            this.CboEscritorios.Orbita.ResetValor();
+            this.CboEscritorios.OI.ResetValor();
 
             List<OpcionesEscritorio> listaOpcionesEscritorio = this.ObtenerListaOpcionesEscritoriosDeGrid();
             if (listaOpcionesEscritorio.Count > 0)
@@ -353,7 +353,7 @@ namespace Orbita.Controles.VA
                 //{
                 //    if (OMensajes.MostrarPreguntaSiNo("¿Desea eliminar el escritorio " + this.GridEscritorios_.Grid.ActiveRow.Cells["Valor"].Text + "?") == DialogResult.Yes)
                 //    {
-                //        this.GridEscritorios_.Orbita.Filas.Activas.Eliminar();
+                //        this.GridEscritorios_.OI.Filas.Activas.Eliminar();
                 //        this.RefrescarComboEscritorios();
                 //    }
                 //}

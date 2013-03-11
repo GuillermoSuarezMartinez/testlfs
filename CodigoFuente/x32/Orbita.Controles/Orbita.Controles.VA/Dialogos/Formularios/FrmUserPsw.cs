@@ -60,7 +60,7 @@ namespace Orbita.Controles.VA
         {
             bool resultado = base.GuardarDatosModoModificacion();
 
-            resultado &= OUsuariosManager.Registrar(this.ComboUsuario.Orbita.Texto, this.TxtContraseña.Text);
+            resultado &= OUsuariosManager.Registrar(this.ComboUsuario.OI.Texto, this.TxtContraseña.Text);
             if (!resultado)
             {
                 this.LblErrorContraseña.Visible = true;
