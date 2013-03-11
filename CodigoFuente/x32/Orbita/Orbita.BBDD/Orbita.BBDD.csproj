@@ -103,7 +103,7 @@
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <DocumentationFile>bin\Debug\Orbita.BBDD.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\Orbita.BBDD.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
@@ -196,7 +196,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)Orbita.BBDD.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)Orbita.BBDD.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I
+xcopy "$(TargetDir)Orbita.BBDD.xml" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

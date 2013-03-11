@@ -195,7 +195,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)Orbita.Winsock.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)Orbita.Winsock.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I
+xcopy "$(TargetDir)Orbita.Winsock.xml" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

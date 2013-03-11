@@ -224,7 +224,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)Orbita.Trazabilidad.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)Orbita.Trazabilidad.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I
+xcopy "$(TargetDir)Orbita.Trazabilidad.xml" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
