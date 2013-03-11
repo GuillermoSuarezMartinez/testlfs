@@ -1,0 +1,1217 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orbita.Controles.Comunes</name>
+    </assembly>
+    <members>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraStatusBar.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraStatusBar.components">
+            <summary> 
+            Proporciona funcionalidad para contenedores. Los contenedores son objetos que contienen cero o más componentes de forma lógica.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraStatusBar.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraStatusBar.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunes.OColumnHeader">
+            <summary>
+            Esta clase de objeto representa un encabezado de columna en un control Orbita.Controles.Comunes.OrbitaListView.
+            Esta clase se extiende de Orbita.Controles.Comunes.OrbitaColumnHeader, a fin de apoyar ocultación de la columna.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeader.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeader.#ctor(System.String,System.Int32,System.Windows.Forms.HorizontalAlignment)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="str">Texto a visualizar.</param>
+            <param name="width">Ancho de columna.</param>
+            <param name="textAlign">Alineación.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeader.#ctor(System.Windows.Forms.ColumnHeader)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="columna">Columna.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeader.Initialize(System.String,System.Int32,System.Windows.Forms.HorizontalAlignment)">
+            <summary>
+            Column Initialization.
+            </summary>
+            <param name="str">Text to display</param>
+            <param name="width">Width of column</param>
+            <param name="textAlign">Alignment</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeader.ShowColumn(System.Boolean)">
+            <summary>
+            Method to show/hide column.
+            </summary>
+            <param name="visible">visibility</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeader.MenuItemClick(System.Object,System.EventArgs)">
+            <summary>
+            Handler to handel toggel of menu item.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="E:Orbita.Controles.Comunes.OColumnHeader.VisibleChanged">
+            <summary>
+            This event is raised when the visibility of column
+            is changed.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OColumnHeader.Identificador">
+            <summary>
+            A unique identifier for a column.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OColumnHeader.Visible">
+            <summary>
+            Property to change the visibility of the column.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OColumnHeader.ColumnMenuItem">
+            <summary>
+            Menu item which represents the column.
+            This menuitem can be used to add to the 
+            context menu, which can inturn used to
+            Hide/Show the column
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OColumnHeader.Text">
+            <summary>
+            Column Text to be displayed.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OColumnHeader.ListView">
+            <summary>
+            Gets the ListViewEx control the ColumnHeader is located in.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunes.Properties.Resources">
+            <summary>
+              Clase de recurso con establecimiento inflexible de tipos, para buscar cadenas traducidas, etc.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.Properties.Resources.ResourceManager">
+            <summary>
+              Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.Properties.Resources.Culture">
+            <summary>
+              Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
+              búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunes.OrbitaTimer">
+            <summary>
+            OrbitaTimer.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaTimer.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTimer.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTimer.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTimer.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTimer.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraDockManager.
+            </summary>
+            <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
+            que contienen cero o más componentes de forma lógica.</param>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaListBox.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaListBox.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaListBox.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaListBox.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunes.OrbitaUltraCheckEditor">
+            <summary>
+            OrbitaUltraCheckEditor
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraCheckEditor.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraCheckEditor.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraCheckEditor.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraCheckEditor.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OUltraButton.control">
+            <summary>
+            Control (sender).
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OUltraButton.tipo">
+            <summary>
+            Tipo de botón.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraMaskedEdit.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraMaskedEdit.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraDockManager.
+            </summary>
+            <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
+            que contienen cero o más componentes de forma lógica.</param>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraMaskedEdit.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraMaskedEdit.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraMaskedEdit.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaListView.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaListView.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaListView.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaListView.columnas">
+            <summary>
+            Colección de todos los encabezados de columna que aparecen en el control.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaListView.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListView.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaListView.ContextMenuPopup(System.Object,System.EventArgs)">
+            <summary>
+            ContextMenuPopup.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaListView.InitializeAttributes">
+            <summary>
+            Inicializar atributos.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaListView.Columnas">
+            <summary>
+            Obtiene la colección de todos los encabezados de columna que aparecen en el control.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDockManager.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDockManager.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraDockManager.
+            </summary>
+            <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
+            que contienen cero o más componentes de forma lógica.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDockManager.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraDockManager.
+            </summary>
+            <param name="info">Almacena todos los datos necesarios para serializar o deserializar un objeto.</param>
+            <param name="context">Describe el origen y destino de una secuencia de serialización determinada y proporciona un contexto definido por el llamador adicional.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDockManager.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Se invoca durante la serialización del objeto.
+            </summary>
+            <param name="info">Almacena todos los datos necesarios para serializar o deserializar un objeto.</param>
+            <param name="context">Describe el origen y destino de una secuencia de serialización determinada y proporciona un contexto definido por el llamador adicional.</param>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraDockManager.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDockManager.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDockManager.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter._minAnyoA">
+            <summary>
+            Valor mínimo del año A.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter._maxAnyoA">
+            <summary>
+            Valor máximo del año A.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter._valorAnyoA">
+            <summary>
+            Valor del año A.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter._minAnyoB">
+            <summary>
+            Valor mínimo del año B.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter._maxAnyoB">
+            <summary>
+            Valor máximo del año B.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter._valorAnyoB">
+            <summary>
+            Valor del año B.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaYearFilter.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter.CompruebaAnyos">
+            <summary>
+            Función que comprueba los años (mínimos, máximos, etc.).
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter.orbitaYearFilter_Leave(System.Object,System.EventArgs)">
+            <summary>
+            Leave.
+            </summary>
+            <param name="sender">Objeto que lanza el evento.</param>
+            <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter.OrbMinAnyoA">
+            <summary>
+            Valor mínimo del año A.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter.OrbMaxAnyoA">
+            <summary>
+            Valor máximo del año A.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter.OrbValueAnyoA">
+            <summary>
+            Valor del año A.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter.OrbMinAnyoB">
+            <summary>
+            Valor mínimo del año B.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter.OrbMaxAnyoB">
+            <summary>
+            Valor máximo del año B.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter.OrbValueAnyoB">
+            <summary>
+            Valor del año B.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorWithFilter">
+            <summary>
+            OrbitaUltraDateTimeEditorFilterCustom
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorWithFilter.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorWithFilter.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorWithFilter.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorWithFilter.desde">
+            <summary>
+            Valor de la fecha de inicio.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorWithFilter.hasta">
+            <summary>
+            Valor de la fecha de fin.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorWithFilter.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorFilterCustom.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorWithFilter.CompruebaFechas">
+            <summary>
+            Comprueba que la fecha "desde" sea menor a la "hasta".
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorWithFilter.dtDesde_ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            ValueChanged.
+            </summary>
+            <param name="sender">Objeto que lanza el evento.</param>
+            <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorWithFilter.dtHasta_ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            ValueChanged.
+            </summary>
+            <param name="sender">Objeto que lanza el evento.</param>
+            <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorWithFilter.OrbValueFechaDesde">
+            <summary>
+            Valor de la fecha Desde.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorWithFilter.OrbValueFechaHasta">
+            <summary>
+            Valor de la fecha Hasta.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunes.OrbitaToolTip">
+            <summary>
+            OrbitaTooltip
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaToolTip.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaToolTip.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaToolTip.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaToolTip.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraLabel.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaToolTip.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraDockManager.
+            </summary>
+            <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
+            que contienen cero o más componentes de forma lógica.</param>
+        </member>
+        <member name="T:Orbita.Controles.Comunes.OColumnHeaderCollection">
+            <summary>
+            This class Represents the collection of Orbita.Controles.Comunes.OrbitaColumnHeader in a Orbita.Controles.Comunes.ListView control.
+            This class stores the column headers that are displayed in the Orbita.Controles.Comunes.OrbitaListView control when the View 
+            property is set to View.Details. 
+            This class stores Orbita.Controles.Comunes.OrbitaColumnHeader objects that define the text to display for a column as well as 
+            how the column header is displayed in the ListViewEx control when displaying columns.
+            When a Orbita.Controles.Comunes.OrbitaListView displays columns, the items and their subitems are displayed in their own columns. 
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OColumnHeaderCollection.listaOrdenada">
+            <summary>
+            This is to maintain the list of columns added to the ListViewEx control, this will contain both visible and hidden columns.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OColumnHeaderCollection.contextMenu">
+            <summary>
+            MenuItem which contains all columns menuitem as Subitems. This menuitem can be used to add to the 
+            context menu, which inturn can be used to Hide/Show the columns.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeaderCollection.#ctor(System.Windows.Forms.ListView)">
+            <summary>
+            Constructor.
+            You cannot create an instance of this class 
+            without associating it with a ListView control.
+            </summary>
+            <param name="owner"></param>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OColumnHeaderCollection.disposed">
+            <summary>
+            Indica si ya se llamo al método Dispose. (Default = false)
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeaderCollection.Dispose">
+            <summary>
+            Implementa IDisposable.
+            No  hacer  este  método  virtual.
+            Una clase derivada no debería ser
+            capaz de  reemplazar este método.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeaderCollection.Dispose(System.Boolean)">
+            <summary>
+            Método  sobrecargado de  Dispose que será  el que
+            libera los recursos. Controla que solo se ejecute
+            dicha lógica una  vez y evita que el GC tenga que
+            llamar al destructor de clase.
+            </summary>
+            <param name="disposing">Indica si llama al método Dispose.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeaderCollection.Finalize">
+            <summary>
+            Destructor(es) de clase.
+            En caso de que se nos olvide “desechar” la clase,
+            el GC llamará al destructor, que tambén ejecuta 
+            la lógica anterior para liberar los recursos.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeaderCollection.Add(System.String,System.Int32,System.Windows.Forms.HorizontalAlignment)">
+            <summary>
+            Method adds a single column header to the collection.
+            </summary>
+            <param name="text">Text to display</param>
+            <param name="width">Width of column</param>
+            <param name="textAlign">Alignment</param>
+            <returns>new ColumnHeaderEx added</returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeaderCollection.Add(System.Windows.Forms.ColumnHeader)">
+            <summary>
+            Method adds a single column header to the collection.
+            </summary>
+            <param name="value"></param>
+            <returns>The zero-based index into the collection 
+            where the item was added.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeaderCollection.AddRange(System.Windows.Forms.ColumnHeader[])">
+            <summary>
+            Adds an array of column headers to the collection.
+            </summary>
+            <param name="values">An array of ColumnHeader 
+            objects to add to the collection. </param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeaderCollection.Add(Orbita.Controles.Comunes.OColumnHeader)">
+            <summary>
+            Adds an existing ColumnHeader to the collection.
+            </summary>
+            <param name="columna">The ColumnHeader to 
+            add to the collection. </param>
+            <returns>The zero-based index into the collection 
+            where the item was added.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeaderCollection.Remove(System.Windows.Forms.ColumnHeader)">
+            <summary>
+            Removes the specified column header from the collection.
+            </summary>
+            <param name="columna">A ColumnHeader representing the 
+            column header to remove from the collection.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeaderCollection.RemoveAt(System.Int32)">
+            <summary>
+            Removes the column header at the specified index within the collection.
+            </summary>
+            <param name="index">The zero-based index of the 
+            column header to remove</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeaderCollection.Clear">
+            <summary>
+            Removes all column headers from the collection.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeaderCollection.GetEnumerator">
+            <summary>
+            The IEnumerable interface is implemented by ICollection. 
+            Because the type underlying this collection is a reference type, 
+            you do not need a strongly typed version of GetEnumerator. 
+            </summary>
+            <returns>System.Collections.IEnumerator</returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeaderCollection.FindPreviousVisibleColumn(Orbita.Controles.Comunes.OColumnHeader)">
+            <summary>
+            This method is used to find the first visible column
+            which is present in front of the column specified
+            </summary>
+            <param name="columna">refrence columns for search</param>
+            <returns>null if no visible colums are in front of
+            the column specified, else previous columns returned</returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OColumnHeaderCollection.ColumnVisibleChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handler to handel the visiblity change of columns
+            </summary>
+            <param name="sender">ColumnHeaderEx</param>
+            <param name="e"></param>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OColumnHeaderCollection.Item(System.Int32)">
+            <summary>
+            Indexer to get columns by index
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OColumnHeaderCollection.ContextMenu">
+            MenuItem which contains all columns menuitem as
+            Subitems. This menuitem can be used to add to the 
+            context menu, which inturn can be used to
+            Hide/Show the columns.
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraButton.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraButton.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraButton.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraButton.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraButton.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunes.OrbitaUltraLabel">
+            <summary>
+            OrbitaUltraLabel
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraLabel.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraLabel.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraLabel.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraLabel.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraLabel.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraLabel.InitializeProperties">
+            <summary>
+            Inicializar propiedades.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OControlBase.apariencia">
+            <summary>
+            Apariencia.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OUltraLabel.control">
+            <summary>
+            Control (sender).
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunes.OrbitaUltraNumericEditor">
+            <summary>
+            OrbitaUltraNumbericEditor
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraNumericEditor.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraNumbericEditor.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraNumericEditor.InicializeProperties">
+            <summary>
+            Inicializar propiedades.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraNumericEditor.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraNumericEditor.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraNumericEditor.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OUltraNumericEditor.control">
+            <summary>
+            Control (sender).
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OAparienciaBase.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OAparienciaBase.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ResetColorBorde">
+            <summary>
+            Resetear color de borde.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ResetColorFondo">
+            <summary>
+            Resetear color de fondo.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ResetColorTexto">
+            <summary>
+            Resetear color de texto.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ResetEstiloBorde">
+            <summary>
+            Resetear estilo de borde.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ResetAlineacionTextoHorizontal">
+            <summary>
+            Resetear alineación de texto horizontal.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ResetAlineacionTextoVertical">
+            <summary>
+            Resetear alineación de texto vertical.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ResetAdornoTexto">
+            <summary>
+            Resetear adorno de texto.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OAparienciaBase.ColorBorde">
+            <summary>
+            Determina el color de borde.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OAparienciaBase.ColorFondo">
+            <summary>
+            Determina el color de fondo.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OAparienciaBase.ColorTexto">
+            <summary>
+            Determina el color de texto.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OAparienciaBase.EstiloBorde">
+            <summary>
+            Determina el estilo de borde.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OAparienciaBase.AlineacionTextoHorizontal">
+            <summary>
+            Determina la alineación horizontal del texto.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OAparienciaBase.AlineacionTextoVertical">
+            <summary>
+            Determina la alineación vertical del texto.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OAparienciaBase.AdornoTexto">
+            <summary>
+            Especifica como se reprensentará el texto cuando no hay suficiente espacio para mostrar la cadena completa.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTreeView.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaTreeView.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTreeView.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTreeView.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaTextBox.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTextBox.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTextBox.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTextBox.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaTextBox.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OPropiedadEventArgs.nombre">
+            <summary>
+            Nombre de la propiedad.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OPropiedadEventArgs.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OPropiedadEventArgs.#ctor(System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
+            </summary>
+            <param name="cadena">Nombre de la propiedad.</param>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OPropiedadEventArgs.Nombre">
+            <summary>
+            Nombre de la propiedad.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaPictureBox.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaPictureBox.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaPictureBox.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaPictureBox.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaPictureBox.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraSplitter.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraSplitter.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraSplitter.Dispose(System.Boolean)">
+            <summary>
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraSplitter.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditor.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditor.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditor.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditor.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraOptionSet.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraOptionSet.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraOptionSet.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraOptionSet.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaBarraProgreso.components">
+            <summary> 
+            Proporciona funcionalidad para contenedores. Los contenedores son objetos que contienen cero o más componentes de forma lógica.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaBarraProgreso.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaBarraProgreso.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaBarraProgreso.colorBorde">
+            <summary>
+            Color borde.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaBarraProgreso.colorRelleno1">
+            <summary>
+            Color relleno 1.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaBarraProgreso.colorRelleno2">
+            <summary>
+            Color relleno 2.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaBarraProgreso.minimo">
+            <summary>
+            Valor mínimo.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaBarraProgreso.maximo">
+            <summary>
+            Valor máximo.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaBarraProgreso.valor">
+            <summary>
+            Valor.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaBarraProgreso.borde">
+            <summary>
+            Borde.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaBarraProgreso.vertical">
+            <summary>
+            Vertical.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaBarraProgreso.monocolor">
+            <summary>
+            Monocolor.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaBarraProgreso.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.OrbitaBarraProgreso.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaBarraProgreso.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            OnPaint.
+            </summary>
+            <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaBarraProgreso.OnResize(System.EventArgs)">
+            <summary>
+            OnResize.
+            </summary>
+            <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
+        </member>
+        <member name="E:Orbita.Controles.Comunes.OrbitaBarraProgreso.ValorModificado">
+            <summary>
+            ValorModificado.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaBarraProgreso.ColorBorde">
+            <summary>
+            Color borde.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaBarraProgreso.ColorRelleno1">
+            <summary>
+            Color relleno 1.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaBarraProgreso.ColorRelleno2">
+            <summary>
+            Color relleno 2.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaBarraProgreso.Min">
+            <summary>
+            Valor mínimo.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaBarraProgreso.Max">
+            <summary>
+            Valor máximo.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaBarraProgreso.Valor">
+            <summary>
+            Valor.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaBarraProgreso.Borde">
+            <summary>
+            Borde.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaBarraProgreso.Vertical">
+            <summary>
+            Vertical.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaBarraProgreso.Monocolor">
+            <summary>
+            Monocolor.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorAboveFilter.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.OrbitaUltraDateTimeEditorFilter.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorAboveFilter.ValidarRango">
+            <summary>
+            Validar rango.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorAboveFilter.OrbitaUltraDateTimeEditorAboveFilter_Load(System.Object,System.EventArgs)">
+            <summary>
+            Load.
+            </summary>
+            <param name="sender">Objeto que lanza el evento.</param>
+            <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorAboveFilter.dttDesde_ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            ValueChanged.
+            </summary>
+            <param name="sender">Objeto que lanza el evento.</param>
+            <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorAboveFilter.dttHasta_ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            ValueChanged.
+            </summary>
+            <param name="sender">Objeto que lanza el evento.</param>
+            <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorAboveFilter.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorAboveFilter.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorAboveFilter.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorAboveFilter.OrbCambioValorFiltro">
+            <summary>
+            Cambio de valor del filtro.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorAboveFilter.Fechadesde">
+            <summary>
+            Devuelve o establece la fecha Desde.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorAboveFilter.FechaHasta">
+            <summary>
+            Devuelve o establece la fecha Hasta.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorAboveFilter.LabelDesde">
+            <summary>
+            Devuelve o establece el texto que aparece en el label Desde:
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorAboveFilter.LabelHasta">
+            <summary>
+            Devuelve o establece el texto que aparece en el label Hasta:
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorAboveFilter.OrbMascaraEntrada">
+            <summary>
+            Devuelve o establece el valor de la propiedad MaskInput de los dateTimes del control.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorAboveFilter.OrbDelegadoCambioValor">
+            <summary>
+            Delegado OrbDelegadoCambioValor.
+            </summary>
+            <param name="sender">Objeto que lanza el evento.</param>
+            <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OApariencia.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OApariencia.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunes.OApariencia.PropertyChanging">
+            <summary>
+            Cambiando la propiedad.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunes.OApariencia.PropertyChanged">
+            <summary>
+            Cambio la propiedad.
+            </summary>
+        </member>
+    </members>
+</doc>

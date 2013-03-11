@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orbita.Controles.Menu</name>
+    </assembly>
+    <members>
+        <member name="F:Orbita.Controles.Menu.OrbitaMenuStrip.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Menu.OrbitaMenuStrip.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Menu.OrbitaMenuStrip.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Menu.OrbitaMenuStrip.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaMenuStrip.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Menu.OrbitaUltraExplorerBar.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Menu.OrbitaUltraExplorerBar.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Menu.OrbitaUltraExplorerBar.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Menu.OrbitaUltraExplorerBar.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaUltraExplorerBar.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Menu.OrbitaUltraToolbarsManager.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Menu.OrbitaUltraToolbarsManager.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Menu.OrbitaUltraToolbarsManager.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Menu.OrbitaUltraToolbarsManager.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaUltraToolbarsManager.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Menu.OrbitaUltraToolbarsManager.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaUltraToolbarsManager.
+            </summary>
+            <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
+            que contienen cero o más componentes de forma lógica.</param>
+        </member>
+        <member name="M:Orbita.Controles.Menu.OrbitaUltraToolbarsManager.InitializeResourceStrings">
+            <summary>
+            InitializeResourceStrings.
+            </summary>
+        </member>
+    </members>
+</doc>

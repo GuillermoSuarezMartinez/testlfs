@@ -1,0 +1,438 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orbita.Controles.Combo</name>
+    </assembly>
+    <members>
+        <member name="F:Orbita.Controles.Combo.OPropiedadEventArgs.nombre">
+            <summary>
+            Nombre de la propiedad.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OPropiedadEventArgs.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OPropiedadEventArgs.#ctor(System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
+            </summary>
+            <param name="cadena">Nombre de la propiedad.</param>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OPropiedadEventArgs.Nombre">
+            <summary>
+            Nombre de la propiedad.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OColumnas.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OCeldas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OColumnas.ToString">
+            <summary>
+            Determina el número de propiedades modificadas.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OrbitaUltraCombo.stringManager">
+            <summary>
+            Proporciona un acceso a los recursos específicos de cada referencia cultural en tiempo de ejecución.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OrbitaUltraCombo.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OrbitaUltraCombo.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OrbitaUltraCombo.InitializeAttributes">
+            <summary>
+            Inicializar atributos.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OrbitaUltraCombo.InitializeProperties">
+            <summary>
+            Inicializar propiedades.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OrbitaUltraCombo.InitializeResourceStrings">
+            <summary>
+            SetResourceStrings.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OrbitaUltraCombo.OrbitaUltraCombo_AfterSortChange(System.Object,Infragistics.Win.UltraWinGrid.BandEventArgs)">
+            <summary>
+            AfterSortChange.
+            </summary>
+            <param name="sender">Objeto que lanza el evento.</param>
+            <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OrbitaUltraCombo.OrbitaUltraCombo_Validating(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Validating.
+            </summary>
+            <param name="sender">Objeto que lanza el evento.</param>
+            <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OrbitaUltraCombo.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OrbitaUltraCombo.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OrbitaUltraCombo.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OControlBase.apariencia">
+            <summary>
+            Apariencia.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OControlBase.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OControlBase.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OControlBase.ToString">
+            <summary>
+            Determina el número de propiedades modificadas.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OUltraCombo.control">
+            <summary>
+            Control (sender).
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OUltraCombo.filas">
+            <summary>
+            Configuración de filas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OUltraCombo.cabecera">
+            <summary>
+            Configuración de cabecera.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OUltraCombo.celdas">
+            <summary>
+            Configuración de celdas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OUltraCombo.columnas">
+            <summary>
+            Configuración de columnas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OUltraCombo.editable">
+            <summary>
+            Indica el tipo de control.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OUltraCombo.valor">
+            <summary>
+            El valor que ha sido seleccionado de la lista.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OUltraCombo.texto">
+            <summary>
+            El texto mostrado en la posición editable del control.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OUltraCombo.nullablePorTeclado">
+            <summary>
+            Permite suprimir el valor del combo con las teclas backspace ó supresión.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OUltraCombo.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OUltraCombo.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OUltraCombo.Formatear">
+            <summary>
+            Método formatear.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OFilaAlterna.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OFilaAlterna.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OFilas.activa">
+            <summary>
+            Fila activa.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OFilas.alterna">
+            <summary>
+            Fila alterna.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OFilas.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OFilas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OFilaActiva.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OFilaActiva.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OrbitaUltraDropDown.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OrbitaUltraDropDown.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OrbitaUltraDropDown.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OrbitaUltraDropDown.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OrbitaUltraDropDown.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OrbitaUltraDropDown.OrbFormatear(System.Data.DataTable,System.Collections.ArrayList,System.String,System.String)">
+            <summary>
+            Formatear el Dropdown.
+            </summary>
+            <param name="dt">Tabla de datos.</param>
+            <param name="cols">Lista de columnas.</param>
+            <param name="displayMember">Campo texto a visualizar.</param>
+            <param name="valueMember">Campo valor.</param>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OrbitaUltraDropDown.InitializeProperties">
+            <summary>
+            Inicializar propiedades.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OrbitaUltraDropDown.UltraDropDown">
+            <summary>
+            Propiedades del Dropdown de Infragistics.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Combo.Configuracion">
+            <summary>
+            Orbita.Controles.Combo.Configuracion.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OCeldas.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OCeldas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OCabecera.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OCabecera.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OAparienciaBase.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OAparienciaBase.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OAparienciaBase.ResetColorBorde">
+            <summary>
+            Resetear color de borde.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OAparienciaBase.ResetColorFondo">
+            <summary>
+            Resetear color de fondo.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OAparienciaBase.ResetColorTexto">
+            <summary>
+            Resetear color de texto.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OAparienciaBase.ResetEstiloBorde">
+            <summary>
+            Resetear estilo de borde.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OAparienciaBase.ResetAlineacionTextoHorizontal">
+            <summary>
+            Resetear alineación de texto horizontal.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OAparienciaBase.ResetAlineacionTextoVertical">
+            <summary>
+            Resetear alineación de texto vertical.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OAparienciaBase.ResetAdornoTexto">
+            <summary>
+            Resetear adorno de texto.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OAparienciaBase.ColorBorde">
+            <summary>
+            Determina el color de borde.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OAparienciaBase.ColorFondo">
+            <summary>
+            Determina el color de fondo.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OAparienciaBase.ColorTexto">
+            <summary>
+            Determina el color de texto.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OAparienciaBase.EstiloBorde">
+            <summary>
+            Determina el estilo de borde.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OAparienciaBase.AlineacionTextoHorizontal">
+            <summary>
+            Determina la alineación horizontal del texto.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OAparienciaBase.AlineacionTextoVertical">
+            <summary>
+            Determina la alineación vertical del texto.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OAparienciaBase.AdornoTexto">
+            <summary>
+            Especifica como se reprensentará el texto cuando no hay suficiente espacio para mostrar la cadena completa.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Combo.OConfiguracion">
+            <summary>
+            Orbita.Controles.Combo.Configuracion.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OConfiguracion.CboColorBorde">
+            <summary>
+            ColorBorde.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OConfiguracion.CboColorFondo">
+            <summary>
+            ColorFondo.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OConfiguracion.CboColorFila">
+            <summary>
+            ColorFila.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OConfiguracion.CboColorTextoFila">
+            <summary>
+            ColorTextoFila.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OConfiguracion.CboColorFilaActiva">
+            <summary>
+            ColorFilaActiva.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OConfiguracion.CboColorTextoFilaActiva">
+            <summary>
+            ColorTextoFilaActiva.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OConfiguracion.CboColorFilaAlterna">
+            <summary>
+            ColorFilaAlterna.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OConfiguracion.CboColorTextoFilaAlterna">
+            <summary>
+            ColorTextoFilaAlterna.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OConfiguracion.CboColorCabecera">
+            <summary>
+            ColorCabecera.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OConfiguracion.OrbCboColorBorde">
+            <summary>
+            ColorBorde.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OConfiguracion.OrbCboColorFondo">
+            <summary>
+            ColorFondo.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OConfiguracion.OrbCboColorFila">
+            <summary>
+            ColorFila.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OConfiguracion.OrbCboColorTextoFila">
+            <summary>
+            ColorTextoFila.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OConfiguracion.OrbCboColorFilaActiva">
+            <summary>
+            ColorFilaActiva.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OConfiguracion.OrbCboColorTextoFilaActiva">
+            <summary>
+            ColorTextoFilaActiva.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OConfiguracion.OrbCboColorFilaAlterna">
+            <summary>
+            ColorFilaAlterna.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OConfiguracion.OrbCboColorTextoFilaAlterna">
+            <summary>
+            ColorTextoFilaAlterna.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Combo.OConfiguracion.OrbCboColorCabecera">
+            <summary>
+            ColorCabecera.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OApariencia.apariencia">
+            <summary>
+            Apariencia.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OApariencia.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OApariencia.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Combo.OApariencia.PropertyChanging">
+            <summary>
+            Cambiando la propiedad.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Combo.OApariencia.PropertyChanged">
+            <summary>
+            Cambio la propiedad.
+            </summary>
+        </member>
+    </members>
+</doc>

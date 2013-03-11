@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orbita.Controles.Contenedores</name>
+    </assembly>
+    <members>
+        <member name="F:Orbita.Controles.Contenedores.OrbitaDialog.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaDialog.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaDialog.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaPanel.
+            </summary>
+        </member>
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaSplitContainer.#ctor" -->
+        <member name="F:Orbita.Controles.Contenedores.OrbitaSplitContainer.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaSplitContainer.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaSplitContainer.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.#ctor" -->
+        <member name="F:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.#ctor" -->
+        <member name="F:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Contenedores.OrbitaMdiForm.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiForm.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaForm.
+            </summary>
+        </member>
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.#ctor" -->
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.
+            </summary>
+            <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
+            que contienen cero o más componentes de forma lógica.</param>
+        </member>
+        <member name="F:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.Dispose(System.Boolean)">
+            <summary>
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaForm.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaForm.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Contenedores.OrbitaForm.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Contenedores.Properties.Resources">
+            <summary>
+              Clase de recurso con establecimiento inflexible de tipos, para buscar cadenas traducidas, etc.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Contenedores.Properties.Resources.ResourceManager">
+            <summary>
+              Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Contenedores.Properties.Resources.Culture">
+            <summary>
+              Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
+              búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
+            </summary>
+        </member>
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaUltraTabControl.#ctor" -->
+        <member name="F:Orbita.Controles.Contenedores.OrbitaUltraTabControl.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabControl.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabControl.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Contenedores.OrbitaPanel.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaPanel.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaPanel.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaPanel.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaPanel.
+            </summary>
+        </member>
+    </members>
+</doc>

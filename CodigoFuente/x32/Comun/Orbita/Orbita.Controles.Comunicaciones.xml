@@ -1,0 +1,396 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orbita.Controles.Comunicaciones</name>
+    </assembly>
+    <members>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaClienteComs._remotingPuerto">
+            <summary>
+            Puerto de comunicación de remoting
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaClienteComs._servidor">
+            <summary>
+            Servidor de comunicaciones.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaClienteComs._idDispositivo">
+            <summary>
+            Identificador de dispositivo
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaClienteComs._servidorRemoting">
+            <summary>
+            Servidor remoting
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.Iniciar">
+            <summary>
+            Arranca las comunicaciones con el dispositivo
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.Conectar(System.Boolean)">
+            <summary>
+            Conectar al servidor vía Remoting.
+            </summary>
+            <param name="estado">Estado de conexión.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.Desconectar">
+            <summary>
+            Desconectar del servidor vía Remoting.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.procesarComunicacionesServidor(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Procesa la información del evento de comunicaciones
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.cambiarEstado(Orbita.Comunicaciones.OEstadoComms)">
+            <summary>
+            Procesa la información para el cambio de estado por pantalla
+            </summary>
+            <param name="estado"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.agregarItemOrbita(System.String)">
+            <summary>
+            Agrega los items a la lista
+            </summary>
+            <param name="texto"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Evento de cambio de dato.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.eventWrapper_OrbitaAlarma(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Evento de alarma.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.eventWrapper_OrbitaComm(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Evento de comunicaciones.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.btnConectar_Click(System.Object,System.EventArgs)">
+            <summary>
+            Inicia el cliente de comunicaciones
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.btnLectura_Click(System.Object,System.EventArgs)">
+            <summary>
+            Lee una variable por OPC
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.btnEscritura_Click(System.Object,System.EventArgs)">
+            <summary>
+            Escribe una variable por OPC
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.btnLeerVariables_Click(System.Object,System.EventArgs)">
+            <summary>
+            Lee el valor de todas las variables del dispositivo
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.btnLeerAlarmas_Click(System.Object,System.EventArgs)">
+            <summary>
+            Lee las alarmas activas
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.OClienteComs_Load(System.Object,System.EventArgs)">
+            <summary>
+            Carga del formulario principal
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaClienteComs.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComs.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.OrbitaClienteComs.DelegadoAgregar">
+            <summary>
+            Delegado para mostar los datos en el formulario
+            </summary>
+            <param name="Elemento"></param>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.OrbitaClienteComs.DelegadoCambioEstado">
+            <summary>
+            Delegado para el cambio de estado
+            </summary>
+            <param name="Elemento"></param>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.OrbitaClienteComs.DelegadoES">
+            <summary>
+            Delegado para el cambio de las ES
+            </summary>
+            <param name="estado"></param>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaClienteComsOPC.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsOPC.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsOPC.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaClienteComsOPC._cadenaOPC">
+            <summary>
+            Enlace de OPC
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaClienteComsOPC._cadenaPLC">
+            <summary>
+            Enlace de PLC
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsOPC.Iniciar">
+            <summary>
+            Arranca las comunicaciones con el dispositivo
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsOPC.cambiarEstado(Orbita.Comunicaciones.OEstadoComms)">
+            <summary>
+            Procesa la información para el cambio de estado por pantalla
+            </summary>
+            <param name="estado"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsESSiemens.Iniciar">
+            <summary>
+            Inicia la comunicación con el servidor
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsESSiemens.actualizarES(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Actualiza las ES del control
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsESSiemens.InciarVisualizacion">
+            <summary>
+            Actualiza la visualización al arrancar la aplicación
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsESSiemens.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Actualizamos los valores del control
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaClienteComsESSiemens.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsESSiemens.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsESSiemens.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaPuertoSerie.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaPuertoSerie.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaPuertoSerie.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaPuertoSerie.PuertoSerie">
+            <summary>
+            Puerto serie
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaPuertoSerie.IniciarFormulario">
+            <summary>
+            Inicializa el control
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaPuertoSerie.agregarItemSerie(System.String)">
+            <summary>
+            Muestra los elementos recibidos por consola
+            </summary>
+            <param name="texto"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaPuertoSerie.PuertoSerie_OrbitaRX(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Recepción de datos
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaPuertoSerie.CargarPuertosDisponbiles">
+            <summary>
+            Carga los puertos series de la máquina
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaPuertoSerie.CargarComboConEnumerado(System.Windows.Forms.ComboBox,System.Type)">
+            <summary>
+            Carga los combos con los valores de las colecciones
+            </summary>
+            <param name="cbo"></param>
+            <param name="enumerado"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaPuertoSerie.AbrirPuerto">
+            <summary>
+            Abre el puerto serie
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaPuertoSerie.CerrarPuerto">
+            <summary>
+            Cierra el puerto serie
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.OrbitaPuertoSerie.DelegadoManejadorSerie">
+            <summary>
+            Delegado para mostar elementos del manejador de puerto serie
+            </summary>
+            <param name="Elemento"></param>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaClienteComsMCUSB.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsMCUSB.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsMCUSB.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsMCUSB.Iniciar">
+            <summary>
+            Inicia la comunicación con el servidor
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsMCUSB.actualizarES(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Actualiza las ES del control
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsMCUSB.InciarVisualizacion">
+            <summary>
+            Actualiza la visualización al arrancar la aplicación
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsMCUSB.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Actualizamos los valores del control
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaClienteComsESPhoenixILBK48.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsESPhoenixILBK48.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsESPhoenixILBK48.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsESPhoenixILBK48.Iniciar">
+            <summary>
+            Inicia la comunicación con el servidor
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsESPhoenixILBK48.actualizarES(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Actualiza las ES del control
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsESPhoenixILBK48.InciarVisualizacion">
+            <summary>
+            Actualiza la visualización al arrancar la aplicación
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsESPhoenixILBK48.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Actualizamos los valores del control
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaClienteRemoting.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteRemoting.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteRemoting.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+    </members>
+</doc>

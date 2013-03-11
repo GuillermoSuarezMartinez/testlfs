@@ -1,0 +1,1720 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orbita.BBDD</name>
+    </assembly>
+    <members>
+        <member name="T:Orbita.BBDD.OBBDDCore">
+            <summary>
+            El modificador abstract en una declaración de clase, se
+            usa para  indicar que la  clase sólo se  puede utilizar
+            como clase base de otras clases.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OBBDDCore.infoConexion">
+            <summary>
+            Información de la conexión.
+            La inclusión  del  atributo es  necesaria
+            para poder obtener las  propiedades de la
+            clase  InfoConexion  a  través del objeto
+            de base de datos que se cree en cada caso.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OBBDDCore.cadenaConexion">
+            <summary>
+            Información correspondiente a la cadena
+            de conexión de la base de datos.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OBBDDCore.timeout">
+            <summary>
+            Timeout de ejecución de sentencias T-SQL.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OBBDDCore.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Core.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OBBDDCore.#ctor(Orbita.BBDD.OInfoConexion)">
+            <summary>
+            Inicializar una nueva instancia de la clase Core.
+            </summary>
+            <param name="infoConexion">Información de la conexión actual.</param>
+        </member>
+        <member name="P:Orbita.BBDD.OBBDDCore.InfoConexion">
+            <summary>
+            Información de la conexión.
+            La inclusión  del  atributo es  necesaria
+            para poder obtener las  propiedades de la
+            clase  InfoConexion  a  través del objeto
+            de base de datos que se cree en cada caso.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OBBDDCore.CadenaConexion">
+            <summary>
+            Información correspondiente a la cadena de conexión de la base de datos.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OBBDDCore.Timeout">
+            <summary>
+            Timeout de ejecución de sentencias T-SQL. (En segundos).
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OBBDDCore.Instancia">
+            <summary>
+            Nombre de la instancia de base de datos.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OBBDDCore.BaseDatos">
+            <summary>
+            Nombre de la base de datos.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OBBDDCore.Usuario">
+            <summary>
+            Usuario de autenticación de base de datos.
+            </summary>
+        </member>
+        <member name="T:Orbita.BBDD.OInfoMirroring">
+            <summary>
+            Información de la conexión para SQL Server con mirroring.
+            </summary>
+        </member>
+        <member name="T:Orbita.BBDD.OInfoConexion">
+            <summary>
+            Información de la conexión.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OInfoConexion.DefaultTimeout">
+            <summary>
+            Timeout por defecto en segundos.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OInfoConexion.instancia">
+            <summary>
+            Nombre de la instancia de base de datos.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OInfoConexion.baseDatos">
+            <summary>
+            Nombre de la base de datos.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OInfoConexion.usuario">
+            <summary>
+            Usuario de autenticación de base de datos.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OInfoConexion.password">
+            <summary>
+            Password de autenticación de base de datos.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OInfoConexion.timeout">
+            <summary>
+            Timeout de conexión a base de datos.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OInfoConexion.port">
+            <summary>
+            Puerto de conexión.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OInfoConexion.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase InfoConexion.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OInfoConexion.#ctor(System.Int32)">
+            <summary>
+            Inicializar una nueva instancia de la clase InfoConexion.
+            </summary>
+            <param name="timeout">Timeout de conexión.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OInfoConexion.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase InfoConexion.
+            </summary>
+            <param name="instancia">Nombre de la instancia de base de datos.</param>
+            <param name="baseDatos">Nombre de la base de datos.</param>
+            <param name="usuario">Usuario de las credenciales de base de datos.</param>
+            <param name="password">Password de las credenciales de base de datos.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OInfoConexion.#ctor(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Inicializar una nueva instancia de la clase InfoConexion.
+            </summary>
+            <param name="instancia">Nombre de la instancia de base de datos.</param>
+            <param name="baseDatos">Nombre de la base de datos.</param>
+            <param name="usuario">Usuario de las credenciales de base de datos.</param>
+            <param name="password">Password de las credenciales de base de datos.</param>
+            <param name="timeout">Timeout de conexión.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OInfoConexion.#ctor(System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase InfoConexion a través de una cadena de conexion para SQL Server
+            </summary>
+            <param name="cadenaConexion">Cadena de conexion a la base de datos SQL Server. La ideal seria esta: @"Data Source={0}; Initial Catalog={1}; User Id={2}; Password={3}; Connect Timeout={4}". Se puede omitir el último parámetro, 'Connect Timeout', que por defecto será de InfoConexion.DefaultTimeout segundos.</param>
+        </member>
+        <member name="P:Orbita.BBDD.OInfoConexion.Instancia">
+            <summary>
+            Nombre de la instancia de base de datos.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OInfoConexion.BaseDatos">
+            <summary>
+            Nombre de la base de datos.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OInfoConexion.Usuario">
+            <summary>
+            Usuario de autenticación de base de datos.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OInfoConexion.Password">
+            <summary>
+            Password de autenticación de base de datos.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OInfoConexion.Timeout">
+            <summary>
+            Timeout de conexión en segundos a la base de datos.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OInfoConexion.Port">
+            <summary>
+            Puerto de conexión.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OInfoMirroring.mirror">
+            <summary>
+            Nombre del servidor en mirror.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OInfoMirroring.#ctor(System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase InfoMirroring.
+            </summary>
+            <param name="mirror">Nombre del servidor en mirror.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OInfoMirroring.#ctor(System.Int32,System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase InfoMirroring.
+            </summary>
+            <param name="timeout">Timeout de conexión.</param>
+            <param name="mirror">Nombre del servidor en mirror.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OInfoMirroring.#ctor(System.String,System.String,System.String,System.String,System.Int32,System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase InfoMirroring.
+            </summary>
+            <param name="servidor">Nombre del servidor.</param>
+            <param name="baseDatos">Nombre de la base de datos.</param>
+            <param name="usuario">Usuario de las credenciales de base de datos.</param>
+            <param name="password">Password de las credenciales de base de datos.</param>
+            <param name="timeout">Timeout de conexión.</param>
+            <param name="mirror">Nombre del servidor en mirror.</param>
+        </member>
+        <member name="P:Orbita.BBDD.OInfoMirroring.Mirror">
+            <summary>
+            Nombre del servidor en mirror.
+            </summary>
+        </member>
+        <member name="T:Orbita.BBDD.OPostgreSql">
+            <summary>
+            Clase tipo para instanciar objetos de base de datos OPostgreSQL.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OPostgreSql.#ctor(Orbita.BBDD.OInfoConexion)">
+            <summary>
+            Inicializar una nueva instancia de la clase MySQL.
+            </summary>
+            <param name="infoConexion">Información de la conexión actual.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OPostgreSql.TestConexion">
+            <summary>
+            Comprueba el estado una conexión existente.
+            </summary>
+            <returns>El resultado del test de conexión.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OPostgreSql.SeleccionSql(System.String)">
+            <summary>
+            Ejecutar una consulta Select con timeout por defecto.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <returns>Datatable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OPostgreSql.SeleccionSql(System.String,System.Int32)">
+            <summary>
+            Ejecutar una consulta Select.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Datatable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OPostgreSql.EjecutarSql(System.String)">
+            <summary>
+            Ejecutar una sentencia SQL con timeout por defecto.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <returns>Para las instrucciones Update, Insert y Delete, el 
+            valor devuelto corresponde al número de filas afectadas por
+            el comando. Para los demás tipos de instrucciones, el valor
+            devuelto es -1.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OPostgreSql.EjecutarSql(System.String,System.Int32)">
+            <summary>
+            Ejecutar una sentencia SQL.
+            Para las instrucciones Update, Insert y Delete, 
+            el valor devuelto corresponde al número de filas afectadas por
+            el comando. Para los demás tipos de instrucciones, el valor 
+            devuelto es -1.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Para las instrucciones Update, Insert y Delete, el 
+            valor devuelto corresponde al número de filas afectadas por
+            el comando. Para los demás tipos de instrucciones, el valor
+            devuelto es -1.</returns>
+        </member>
+        <member name="T:Orbita.BBDD.OOracle">
+            <summary>
+            Clase tipo para instanciar objetos de base de datos OOracle.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.#ctor(Orbita.BBDD.OInfoConexionOracle)">
+            <summary>
+            Inicializar una nueva instancia de la clase OOracle.
+            </summary>
+            <param name="infoConexion">Información de la conexión actual.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.TestConexion">
+            <summary>
+            Comprueba el estado una conexión existente.
+            </summary>
+            <returns>El resultado del test de conexión.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.SeleccionSql(System.String)">
+            <summary>
+            Ejecutar una consulta Select con timeout por defecto.
+            </summary>
+            <param name="sql">Consulta T-SQL.</param>
+            <returns>Datatable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.SeleccionSql(System.String,System.Int32)">
+            <summary>
+            Ejecutar una consulta Select.
+            </summary>
+            <param name="sql">Consulta T-SQL.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Datatable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.SeleccionProcedimientoAlmacenado(System.String)">
+            <summary>
+            Ejecutar una sentencia Select en un procedimiento almacenado con timeout por defecto.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <returns>Datatable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.SeleccionProcedimientoAlmacenado(System.String,System.Int32)">
+            <summary>
+            Ejecutar una sentencia Select en un procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Datatable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.SeleccionProcedimientoAlmacenado(System.String,System.Collections.ArrayList)">
+            <summary>
+            Ejecutar una sentencia Select en un procedimiento almacenado con parámetros de entrada y con timeout por defecto.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <returns>Datatable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.SeleccionProcedimientoAlmacenado(System.String,System.Collections.ArrayList,System.Int32)">
+            <summary>
+            Ejecutar una sentencia Select en un procedimiento almacenado con parámetros de entrada.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Datatable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarProcedimientoAlmacenado(System.String)">
+            <summary>
+            Ejecutar un procedimiento almacenado con timeout por defecto.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarProcedimientoAlmacenado(System.String,System.Int32)">
+            <summary>
+            Ejecutar un procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarProcedimientoAlmacenado(System.String,System.Collections.ArrayList)">
+            <summary>
+            Ejecutar un procedimiento almacenado con parámetros de entrada y timeout por defecto.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarProcedimientoAlmacenado(System.String,System.Collections.ArrayList,System.Int32)">
+            <summary>
+            Ejecutar un procedimiento almacenado con parámetros de entrada.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarProcedimientoAlmacenadoSinRetorno(System.String)">
+            <summary>
+            Ejecutar un procedimiento almacenado con timeout por defecto, prescindiendo 
+            del parámetro "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarProcedimientoAlmacenadoSinRetorno(System.String,System.Int32)">
+            <summary>
+            Ejecutar un procedimiento almacenado, prescindiendo del parámetro "return" 
+            del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarProcedimientoAlmacenadoSinRetorno(System.String,System.Collections.ArrayList)">
+            <summary>
+            Ejecutar un procedimiento almacenado con parámetros de entrada y timeout por defecto, 
+            prescindiendo del parámetro "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarProcedimientoAlmacenadoSinRetorno(System.String,System.Collections.ArrayList,System.Int32)">
+            <summary>
+            Ejecutar un procedimiento almacenado con parámetros de entrada y timeout por 
+            defecto, prescindiendo del parámetro "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarProcedimientoAlmacenadoTransaccional(System.String)">
+            <summary>
+            Ejecutar un procedimiento almacenado transaccional con timeout por defecto.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarProcedimientoAlmacenadoTransaccional(System.String,System.Int32)">
+            <summary>
+            Ejecutar un procedimiento almacenado transaccional.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarProcedimientoAlmacenadoTransaccional(System.String,System.Collections.ArrayList)">
+            <summary>
+            Ejecutar un procedimiento almacenado transaccional con parámetros de entrada y timeout por defecto.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarProcedimientoAlmacenadoTransaccional(System.String,System.Collections.ArrayList,System.Int32)">
+            <summary>
+            Ejecutar un procedimiento almacenado transaccional con parámetros de entrada.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarProcedimientoAlmacenadoTransaccionalSinRetorno(System.String)">
+            <summary>
+            Ejecutar un procedimiento almacenado transaccional con timeout por defecto, 
+            prescindiendo del parámetro "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarProcedimientoAlmacenadoTransaccionalSinRetorno(System.String,System.Int32)">
+            <summary>
+            Ejecutar un procedimiento almacenado transaccional, prescindiendo del parámetro
+            "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarProcedimientoAlmacenadoTransaccionalSinRetorno(System.String,System.Collections.ArrayList)">
+            <summary>
+            Ejecutar un procedimiento almacenado transaccional con parámetros de entrada y timeout 
+            por defecto, prescindiendo del parámetro "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarProcedimientoAlmacenadoTransaccionalSinRetorno(System.String,System.Collections.ArrayList,System.Int32)">
+            <summary>
+            Ejecutar un procedimiento almacenado transaccional con parámetros de entrada y timeout 
+            por defecto, prescindiendo del parámetro "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarSql(System.String)">
+            <summary>
+            Ejecutar una sentencia T-SQL con timeout por defecto.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <returns>Para las instrucciones Update, Insert y Delete, el 
+            valor devuelto corresponde al número de filas afectadas por
+            el comando. Para los demás tipos de instrucciones, el valor
+            devuelto es -1.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarSql(System.String,System.Int32)">
+            <summary>
+            Ejecutar una sentencia T-SQL.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Para las instrucciones Update, Insert y Delete, el 
+            valor devuelto corresponde al número de filas afectadas por
+            el comando. Para los demás tipos de instrucciones, el valor
+            devuelto es -1.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarSql(System.Data.DataTable,System.String)">
+            <summary>
+            ¡¡ATENCIÓN!!
+            Este método no está desarrollado ya que la versión del ODP.NET (Oracle Data Provider for .NET) no contiene el objecto OracleBulkCopy necesario para poder ejecutar este método.
+            La versión del ODP.NET utilizado en Orbita.BBDD.dll es la 10.2.0.2.20 (siendo la versión del fichero Oracle.DataAccess.dll la 1.102.5.0).
+            Según parece, a partir de la versión 11.1.6.20 la clase OracleBulkCopy ya se encuentra incluida en el ODP.NET. En agosto del 2011 la última versión disponible del ODP.NET era la 11.2.0.2
+            </summary>
+            <param name="dt">Datatabla con los datos a insertar.</param>
+            <param name="tablaDestino">Tabla de la base de datos sobre la que
+            se va a producir la inserción masiva de registros.</param>
+            <returns>Para la instrucción Insert, el valor devuelto corresponde 
+            al número de filas afectadas por  el comando. Para los demás tipos 
+            de instrucciones, el valor devuelto es -1.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarEscalar(System.String)">
+            <summary>
+            Ejecutar una sentencia T-SQL con timeout por defecto.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <returns>La primera columna de la primera fila retornada por
+            la query, ignora el resto de columnas retornadas.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OOracle.EjecutarEscalar(System.String,System.Int32)">
+            <summary>
+            Ejecutar una sentencia T-SQL.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>La primera columna de la primera fila retornada por
+            la query, ignora el resto de columnas retornadas.</returns>
+        </member>
+        <member name="T:Orbita.BBDD.OConexiones">
+            <summary>
+            Colección de OConexion.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OConexiones.conexiones">
+            <summary>
+            Colección de OConexiones.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OConexiones.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase OConexiones.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OConexiones.Item(System.String)">
+            <summary>
+            Adicionar la conexión a la colección.
+            </summary>
+            <param name="info">Información de la conexión.</param>
+            <returns> Nueva conexión creada.</returns>
+        </member>
+        <member name="P:Orbita.BBDD.OConexiones.Item(System.Guid)">
+            <summary>
+            Obtener el objeto oconexion de la colección.
+            </summary>
+            <param name="identificador">Identificador de conexión.</param>
+            <returns>Conexión de la colección.</returns>
+        </member>
+        <member name="T:Orbita.BBDD.ODB2">
+            <summary>
+            Clase tipo para instanciar objetos de base de datos ODB2.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.ODB2.#ctor(Orbita.BBDD.OInfoConexion)">
+            <summary>
+            Inicializar una nueva instancia de la clase DB2.
+            </summary>
+            <param name="infoConexion">Información de la conexión actual</param>
+        </member>
+        <member name="M:Orbita.BBDD.ODB2.TestConexion">
+            <summary>
+            Comprueba el estado una conexión existente.
+            </summary>
+            <returns>El resultado del test de conexión.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.ODB2.SeleccionSql(System.String)">
+            <summary>
+            Ejecutar una consulta Select con timeout por defecto.
+            </summary>
+            <param name="sql">Consulta T-SQL.</param>
+            <returns>Datatable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.ODB2.SeleccionSql(System.String,System.Int32)">
+            <summary>
+            Ejecutar una consulta Select.
+            </summary>
+            <param name="sql">Consulta T-SQL.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Datatable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.ODB2.EjecutarSql(System.String)">
+            <summary>
+            Ejecutar una sentencia T-SQL con timeout por defecto.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <returns>Para las instrucciones Update, Insert y Delete, el 
+            valor devuelto corresponde al número de filas afectadas por
+            el comando. Para los demás tipos de instrucciones, el valor
+            devuelto es -1.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.ODB2.EjecutarSql(System.String,System.Int32)">
+            <summary>
+            Ejecutar una sentencia T-SQL.
+            Para las instrucciones Update, Insert y Delete, 
+            el valor devuelto corresponde al número de filas afectadas por 
+            el comando. Para  los demás  tipos de  instrucciones, el valor 
+            devuelto es -1.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Para las instrucciones Update, Insert y Delete, el 
+            valor devuelto corresponde al número de filas afectadas por
+            el comando. Para los demás tipos de instrucciones, el valor
+            devuelto es -1.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.ODB2.EjecutarSql(System.Data.DataTable,System.String)">
+            <summary>
+            Ejecutar una sentencia T-SQL.
+            </summary>
+            <param name="dt">Datatabla con los datos a insertar.</param>
+            <param name="tablaDestino">Tabla de la base de datos sobre la que
+            se va a producir la inserción masiva de registros.</param>
+            <returns>Para la instrucción Insert, el valor devuelto corresponde 
+            al número de filas afectadas por  el comando. Para los demás tipos 
+            de instrucciones, el valor devuelto es -1.</returns>
+        </member>
+        <member name="T:Orbita.BBDD.OAccess">
+            <summary>
+            Clase tipo para instanciar objetos de base de datos OAccess.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OAccess.infoConexion">
+            <summary>
+            Contiene la información de conexión a la base de datos Access.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OAccess.#ctor(Orbita.BBDD.OAccess.InfoConexion)">
+            <summary>
+            Inicializar una nueva instancia de la clase Access.
+            Proveedor OLEDB.4.0.
+            </summary>
+            <param name="infoConexion">Información de la conexión actual.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OAccess.TestConexion">
+            <summary>
+            Comprueba el estado una conexión existente.
+            </summary>
+            <returns>El resultado del test de conexión.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OAccess.SeleccionSql(System.String)">
+            <summary>
+            Ejecutar una consulta Select.
+            </summary>
+            <param name="sql">Consulta T-SQL.</param>
+            <returns>Datatable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OAccess.EjecutarSql(System.String)">
+            <summary>
+            Ejecutar una sentencia T-SQL con timeout por defecto.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <returns>Para las instrucciones Update, Insert y Delete, el 
+            valor devuelto corresponde al número de filas afectadas por
+            el comando. Para los demás tipos de instrucciones, el valor
+            devuelto es -1.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OAccess.EjecutarSqlBatch(System.Collections.Generic.List{Orbita.BBDD.OAccess.ComandoSql}@)">
+            <summary>
+            Ejecutar una sentencia T-SQL con timeout por defecto.
+            </summary>
+            <param name="listaComandos">Lista de comandos.</param>
+            <returns>Para las instrucciones Update, Insert y Delete, el 
+            valor devuelto corresponde al número de filas afectadas por
+            el comando. Para los demás tipos de instrucciones, el valor
+            devuelto es -1.</returns>
+        </member>
+        <member name="P:Orbita.BBDD.OAccess.CadenaConexion">
+            <summary>
+            Cadena de conexión.
+            </summary>
+        </member>
+        <member name="T:Orbita.BBDD.OAccess.TipoConsulta">
+            <summary>
+            Tipo de consulta.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OAccess.TipoConsulta.Nonde">
+            <summary>
+            Indefinida.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OAccess.TipoConsulta.ConsultaDESeleccion">
+            <summary>
+            Select.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OAccess.TipoConsulta.ConsultaDEInsercion">
+            <summary>
+            Insert.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OAccess.TipoConsulta.ConsultaDEActualizacion">
+            <summary>
+            Update.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OAccess.TipoConsulta.ConsultaDEEliminacion">
+            <summary>
+            Delete.
+            </summary>
+        </member>
+        <member name="T:Orbita.BBDD.OAccess.InfoConexion">
+            <summary>
+            Información de la conexión para Access.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OAccess.InfoConexion.ruta">
+            <summary>
+            Nombre de la ruta de base de datos.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OAccess.InfoConexion.grupoTrabajo">
+            <summary>
+            Nombre del grupo de trabajo.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OAccess.InfoConexion.usuario">
+            <summary>
+            Usuario de autenticación de base de datos.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OAccess.InfoConexion.passwordUsuario">
+            <summary>
+            Password de autenticación de usuario.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OAccess.InfoConexion.passwordBBDD">
+            <summary>
+            Password de autenticación de base de datos.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OAccess.InfoConexion.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase InfoConexion.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OAccess.InfoConexion.Ruta">
+            <summary>
+            Nombre de la ruta de base de datos.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OAccess.InfoConexion.GrupoTrabajo">
+            <summary>
+            Nombre del grupo de trabajo.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OAccess.InfoConexion.Usuario">
+            <summary>
+            Usuario de autenticación de base de datos.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OAccess.InfoConexion.PasswordUsuario">
+            <summary>
+            Password de autenticación de usuario.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OAccess.InfoConexion.PasswordBbdd">
+            <summary>
+            Password de autenticación de base de datos.
+            </summary>
+        </member>
+        <member name="T:Orbita.BBDD.OAccess.ComandoSql">
+            <summary>
+            Contiene la información necesaria para realizar un comando NonQuery en Access.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OAccess.ComandoSql.sentenciaSQL">
+            <summary>
+            T-SQL.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OAccess.ComandoSql.parametros">
+            <summary>
+            Parámetros de entrada de la sentencia.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OAccess.ComandoSql.excepcion">
+            <summary>
+            Excepción.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OAccess.ComandoSql.resultado">
+            <summary>
+            Resultado de la query.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OAccess.ComandoSql.tipoConsulta">
+            <summary>
+            Tipo de consulta definida en el enumerado.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OAccess.ComandoSql.#ctor(System.String,Orbita.BBDD.OAccess.ParametrosSql,Orbita.BBDD.OAccess.TipoConsulta)">
+            <summary>
+            Inicializar una nueva instancia de la clase ComandoSQL.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OAccess.ComandoSql.SentenciaSql">
+            <summary>
+            T-SQL.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OAccess.ComandoSql.Parameters">
+            <summary>
+            Parámetros de entrada de la sentencia.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OAccess.ComandoSql.Excepcion">
+            <summary>
+            Excepción.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OAccess.ComandoSql.Resultado">
+            <summary>
+            Resultado de la query.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OAccess.ComandoSql.TipoConsulta">
+            <summary>
+            Tipo de consulta definida en el enumerado.
+            </summary>
+        </member>
+        <member name="T:Orbita.BBDD.OAccess.ParametrosSql">
+            <summary>
+            Creación de parámetros de los comandos SQL.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OAccess.ParametrosSql.ToString">
+            <summary>
+            Sobreescritura del método ToString().
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.BBDD.OConexion">
+            <summary>
+            Clase que almacena los datos necesarios útiles para el uso concatenado de transacciones.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OConexion.identificador">
+            <summary>
+            Identificador de transacción.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OConexion.conexion">
+            <summary>
+            Conexión de base de datos.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OConexion.transaccion">
+            <summary>
+            Transacción de base de datos.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OConexion.#ctor(System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase OConexion.
+            </summary>
+            <param name="infoConexion">Información de la conexión.</param>
+        </member>
+        <member name="F:Orbita.BBDD.OConexion.disposed">
+            <summary>
+            Indica si ya se llamo al método Dispose. (Default = false)
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OConexion.Dispose">
+            <summary>
+            Implementa IDisposable.
+            No  hacer  este  método  virtual.
+            Una clase derivada no debería ser
+            capaz de  reemplazar este método.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OConexion.Dispose(System.Boolean)">
+            <summary>
+            Método  sobrecargado de  Dispose que será  el que
+            libera los recursos. Controla que solo se ejecute
+            dicha lógica una  vez y evita que el GC tenga que
+            llamar al destructor de clase.
+            </summary>
+            <param name="disposing">Indica si llama al método Dispose.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OConexion.Finalize">
+            <summary>
+            Destructor(es) de clase.
+            En caso de que se nos olvide “desechar” la clase,
+            el GC llamará al destructor, que tambén ejecuta 
+            la lógica anterior para liberar los recursos.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OConexion.Iniciar">
+            <summary>
+            Iniciar transacción.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OConexion.Iniciar(System.Data.IsolationLevel)">
+            <summary>
+            Iniciar transacción con un nivel de bloqueo específico.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OConexion.Identificador">
+            <summary>
+            Identificador de transacción.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OConexion.Conexion">
+            <summary>
+            Conexión de base de datos.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OConexion.Transaccion">
+            <summary>
+            Transacción de base de datos.
+            </summary>
+        </member>
+        <member name="T:Orbita.BBDD.OWinCC">
+            <summary>
+            Clase tipo para instanciar objetos de base de datos SQLServer,
+            asignadas a WinCC. Acceso a través de Connectivity Pack.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OWinCC.#ctor(Orbita.BBDD.OInfoConexion)">
+            <summary>
+            Inicializar una nueva instancia de la clase WinCC.
+            </summary>
+            <param name="infoConexion">Información de la conexión actual.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OWinCC.LeerTagLogging(System.Object,System.DateTime)">
+            <summary>
+            Obtener registros de TagLogging.
+            </summary>
+            <param name="identificador">Identificador de Tagname
+            en TagLogging.</param>
+            <param name="fechaInicial">Fecha inicial.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.BBDD.OWinCC.LeerTagLogging(System.Object,System.DateTime,System.Int32,Orbita.BBDD.OWinCC.AgregationType)">
+            <summary>
+            Obtener registros de TagLogging.
+            </summary>
+            <param name="identificador">Identificador de Tagname
+            en TagLogging</param>
+            <param name="fechaInicial">Fecha inicial.</param>
+            <param name="tiempo">Tiempo de paso.</param>
+            <param name="agregado">Tipo de agregado para interpolación.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.BBDD.OWinCC.LeerTagLogging(System.Collections.ArrayList,System.DateTime,System.DateTime)">
+            <summary>
+            Recupera los datos de las variables que le pasamos como parámetro en un intervalo de tiempo.
+            </summary>
+            <param name="variables">Array con los ID's de las variables</param>
+            <param name="fechaInicial">Fecha de inicio</param>
+            <param name="fechaFinal">Fecha de fin</param>
+            <returns>Cada tabla es una variable. El nombre de la tabla es el ID de la variable</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OWinCC.LeerTagLogging(System.Collections.ArrayList,System.DateTime,System.DateTime,System.Int32,Orbita.BBDD.OWinCC.AgregationType)">
+            <summary>
+            Recupera los datos de las variables que le pasamos como parámetro en un intervalo de tiempo. Agregamos por tiempo.
+            </summary>
+            <param name="variables">Array con los ID's de las variables</param>
+            <param name="fechaInicial">Fecha de inicio</param>
+            <param name="fechaFinal">Fecha de fin</param>
+            <param name="timeStep">Intervalo de captura</param>
+            <param name="agregacion">Tipo de agregado</param>
+            <returns>Cada tabla es una variable. El nombre de la tabla es el ID de la variable</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OWinCC.LeerAlarmLogging(System.Object,System.DateTime)">
+            <summary>
+            Obtener registros de AlarmLogging.
+            </summary>
+            <param name="identificador">Identificador de tagname.</param>
+            <param name="fechaInicial">Fecha inicial.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.BBDD.OWinCC.LeerTagLogging(System.String)">
+            <summary>
+            Obtener registros de TagLogging.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <returns>Registros de resultados.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OWinCC.LeerAlarmlogging(System.String)">
+            <summary>
+            Obtener registros de AlarmLogging.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <returns>Registros de resultados.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OWinCC.LeerTagLogging">
+            <summary>
+            Crear las columnas TagLogging.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OWinCC.LeerAlarmLogging">
+            <summary>
+            Crear las columnas AlarmLogging.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.OWinCC.TablaTagLogging">
+            <summary>
+            Tabla con los Tags de WinCC
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.BBDD.OWinCC.Alarmas">
+            <summary>
+            Tipo de alarmas.
+            El parámetro FlagsAttribute considera
+            que el  enumerado  puede considerarse
+            como un conjunto de enumerados.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.Alarmas.None">
+            <summary>
+            Indefinido.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.Alarmas.Activa">
+            <summary>
+            Alarma activa.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.Alarmas.Inactiva">
+            <summary>
+            Alarma inactiva.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.Alarmas.Acusada">
+            <summary>
+            Alarma acusada.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.Alarmas.Reactivada">
+            <summary>
+            Alarma reactivada.
+            </summary>
+        </member>
+        <member name="T:Orbita.BBDD.OWinCC.AgregationType">
+            <summary>
+            Tipo agregado útil para interpolación.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.AgregationType.None">
+            <summary>
+            Indefinido.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.AgregationType.WithoutInterpolationFirst">
+            <summary>
+            Sin interpolación primero.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.AgregationType.WithoutInterpolationLast">
+            <summary>
+            Sin interpolación último.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.AgregationType.WithoutInterpolationMin">
+            <summary>
+            Sin interpolación mínimo.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.AgregationType.WithoutInterpolationMax">
+            <summary>
+            Sin interpolación máximo.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.AgregationType.WithoutInterpolationAvg">
+            <summary>
+            Sin interpolación media.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.AgregationType.WithoutInterpolationSum">
+            <summary>
+            Sin interpolación suma.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.AgregationType.WithoutInterpolationCount">
+            <summary>
+            Sin interpolación contador.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.AgregationType.WithInterpolationFirstInterpolated">
+            <summary>
+            Con interpolación primero.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.AgregationType.WithInterpolationLastInterpolated">
+            <summary>
+            Con interpolación último.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.AgregationType.WithInterpolationMinInterpolated">
+            <summary>
+            Con interpolación mínimo.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.AgregationType.WithInterpolationMaxInterpolated">
+            <summary>
+            Con interpolación máximo.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.AgregationType.WithInterpolationAvgInterpolated">
+            <summary>
+            Con interpolación media.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.AgregationType.WithInterpolationSumInterpolated">
+            <summary>
+            Con interpolación suma.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OWinCC.AgregationType.WithInterpolationCountInterpolated">
+            <summary>
+            Con interpolación contador.
+            </summary>
+        </member>
+        <member name="T:Orbita.BBDD.OSqlServer">
+            <summary>
+            Clase tipo para instanciar objetos de base de datos OSQLServer.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.#ctor(Orbita.BBDD.OInfoConexion)">
+            <summary>
+            Inicializar una nueva instancia de la clase SQLServer.
+            Connection strings for SQL Server 2005.
+            .NET Framework Data Provider for SQL Server.
+            Type: .NET Framework Class Library.
+            Usage: System.Data.SqlClient.SqlConnection.
+            Manufacturer: Microsoft.
+            Standard Security.
+            </summary>
+            <param name="infoConexion">Información de la conexión actual.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.#ctor(Orbita.BBDD.OInfoMirroring)">
+            <summary>
+            Inicializar una nueva instancia de la clase SQLServer.
+            Connection strings for SQL Server 2005.
+            .NET Framework Data Provider for SQL Server.
+            Type: .NET Framework Class Library.
+            Usage: System.Data.SqlClient.SqlConnection.
+            Manufacturer: Microsoft.
+            Mirroring Security.
+            </summary>
+            <param name="infoConexion">Información de la conexión actual con mirroring.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.TestConexion">
+            <summary>
+            Comprueba el estado una conexión existente.
+            </summary>
+            <returns>El resultado del test de conexión.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.SeleccionSql(System.String)">
+            <summary>
+            Ejecutar una consulta Select con timeout por defecto.
+            </summary>
+            <param name="sql">Consulta T-SQL.</param>
+            <returns>DataTable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.SeleccionSql(System.String,System.Int32)">
+            <summary>
+            Ejecutar una consulta Select.
+            </summary>
+            <param name="sql">Consulta T-SQL.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>DataTable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.SeleccionProcedimientoAlmacenado(System.String)">
+            <summary>
+            Ejecutar una sentencia Select en un procedimiento almacenado con timeout por defecto.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <returns>DataTable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.SeleccionProcedimientoAlmacenado(System.String,System.String)">
+            <summary>
+            Ejecutar una sentencia Select en un procedimiento almacenado con timeout por defecto.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="nombreTabla">Nombre de System.Data.DataTable.</param>
+            <returns>DataSet con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.SeleccionProcedimientoAlmacenado(System.String,System.Int32)">
+            <summary>
+            Ejecutar una sentencia Select en un procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>DataTable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.SeleccionProcedimientoAlmacenado(System.String,System.String,System.Int32)">
+            <summary>
+            Ejecutar una sentencia Select en un procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="nombreTabla">Nombre de System.Data.DataTable.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>DataSet con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.SeleccionProcedimientoAlmacenado(System.String,System.Collections.ArrayList)">
+            <summary>
+            Ejecutar una sentencia Select en un procedimiento almacenado con parámetros de entrada y con timeout por defecto.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <returns>DataTable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.SeleccionProcedimientoAlmacenado(System.String,System.String,System.Collections.ArrayList)">
+            <summary>
+            Ejecutar una sentencia Select en un procedimiento almacenado con parámetros de entrada y con timeout por defecto.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="nombreTabla">Nombre de System.Data.DataTable.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <returns>DataSet con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.SeleccionProcedimientoAlmacenado(System.String,System.Collections.ArrayList,System.Int32)">
+            <summary>
+            Ejecutar una sentencia Select en un procedimiento almacenado con parámetros de entrada.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>DataTable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.SeleccionProcedimientoAlmacenado(System.String,System.String,System.Collections.ArrayList,System.Int32)">
+            <summary>
+            Ejecutar una sentencia Select en un procedimiento almacenado con parámetros de entrada.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="nombreTabla">Nombre de System.Data.DataTable.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>DataTable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarProcedimientoAlmacenado(System.String)">
+            <summary>
+            Ejecutar un procedimiento almacenado con timeout por defecto.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarProcedimientoAlmacenado(System.String,System.Int32)">
+            <summary>
+            Ejecutar un procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarProcedimientoAlmacenado(System.String,System.Collections.ArrayList)">
+            <summary>
+            Ejecutar un procedimiento almacenado con parámetros de entrada y timeout por defecto.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarProcedimientoAlmacenado(System.String,System.Collections.ArrayList,System.Int32)">
+            <summary>
+            Ejecutar un procedimiento almacenado con parámetros de entrada.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarProcedimientoAlmacenadoSinRetorno(System.String)">
+            <summary>
+            Ejecutar un procedimiento almacenado con timeout por defecto, prescindiendo 
+            del parámetro "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarProcedimientoAlmacenadoSinRetorno(System.String,System.Int32)">
+            <summary>
+            Ejecutar un procedimiento almacenado, prescindiendo del parámetro "return" 
+            del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarProcedimientoAlmacenadoSinRetorno(System.String,System.Collections.ArrayList)">
+            <summary>
+            Ejecutar un procedimiento almacenado con parámetros de entrada y timeout por defecto, 
+            prescindiendo del parámetro "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarProcedimientoAlmacenadoSinRetorno(System.String,System.Collections.ArrayList,System.Int32)">
+            <summary>
+            Ejecutar un procedimiento almacenado con parámetros de entrada y timeout por 
+            defecto, prescindiendo del parámetro "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarProcedimientoAlmacenadoTransaccional(System.String)">
+            <summary>
+            Ejecutar un procedimiento almacenado transaccional con timeout por defecto.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarProcedimientoAlmacenadoTransaccional(System.String,System.Int32)">
+            <summary>
+            Ejecutar un procedimiento almacenado transaccional.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarProcedimientoAlmacenadoTransaccional(System.String,System.Collections.ArrayList)">
+            <summary>
+            Ejecutar un procedimiento almacenado transaccional con parámetros de entrada y timeout por defecto.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarProcedimientoAlmacenadoTransaccional(System.String,System.Collections.ArrayList,System.Int32)">
+            <summary>
+            Ejecutar un procedimiento almacenado transaccional con parámetros de entrada.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarProcedimientoAlmacenadoTransaccionalSinRetorno(System.String)">
+            <summary>
+            Ejecutar un procedimiento almacenado transaccional con timeout por defecto, 
+            prescindiendo del parámetro "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarProcedimientoAlmacenadoTransaccionalSinRetorno(System.String,System.Int32)">
+            <summary>
+            Ejecutar un procedimiento almacenado transaccional, prescindiendo del parámetro
+            "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarProcedimientoAlmacenadoTransaccionalSinRetorno(System.String,System.Collections.ArrayList)">
+            <summary>
+            Ejecutar un procedimiento almacenado transaccional con parámetros de entrada y timeout 
+            por defecto, prescindiendo del parámetro "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarProcedimientoAlmacenadoTransaccionalSinRetorno(System.String,System.Collections.ArrayList,System.Int32)">
+            <summary>
+            Ejecutar un procedimiento almacenado transaccional con parámetros de entrada y timeout 
+            por defecto, prescindiendo del parámetro "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarSql(System.String)">
+            <summary>
+            Ejecutar una sentencia T-SQL con timeout por defecto.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <returns>Para las instrucciones Update, Insert y Delete, el 
+            valor devuelto corresponde al número de filas afectadas por
+            el comando. Para los demás tipos de instrucciones, el valor
+            devuelto es -1.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarSql(System.String,System.Int32)">
+            <summary>
+            Ejecutar una sentencia T-SQL.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Para las instrucciones Update, Insert y Delete, el 
+            valor devuelto corresponde al número de filas afectadas por
+            el comando. Para los demás tipos de instrucciones, el valor
+            devuelto es -1.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarSql(System.Data.DataTable,System.String)">
+            <summary>
+            Ejecutar una sentencia T-SQL.
+            </summary>
+            <param name="dt">Datatabla con los datos a insertar.</param>
+            <param name="tablaDestino">Tabla de la base de datos sobre la que
+            se va a producir la inserción masiva de registros.</param>
+            <returns>Para la instrucción Insert, el valor devuelto corresponde 
+            al número de filas afectadas por  el comando. Para los demás tipos 
+            de instrucciones, el valor devuelto es -1.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarEscalar(System.String)">
+            <summary>
+            Ejecutar una sentencia T-SQL con timeout por defecto.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <returns>La primera columna de la primera fila retornada por
+            la query, ignora el resto de columnas retornadas.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.EjecutarEscalar(System.String,System.Int32)">
+            <summary>
+            Ejecutar una sentencia T-SQL.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>La primera columna de la primera fila retornada por
+            la query, ignora el resto de columnas retornadas.</returns>
+        </member>
+        <member name="P:Orbita.BBDD.OSqlServer.Mirror">
+            <summary>
+            Nombre del servidor en mirror.
+            </summary>
+        </member>
+        <member name="T:Orbita.BBDD.OSqlServer.Transaccional">
+            <summary>
+            Clase tipo para instanciar objetos de base de datos SQL Server,
+            útil cuando se llaman procedimientos almacenados concatenados,
+            de forma que la transacción es iniciada y finalizada desde los
+            propios métodos transaccionales.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OSqlServer.Transaccional.Conexiones">
+            <summary>
+            Colección estática de conexiones.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.Transaccional.#ctor(Orbita.BBDD.OInfoConexion)">
+            <summary>
+            Inicializar una nueva instancia de la clase Transaccional de SQL Server.
+            </summary>
+            <param name="infoConexion">Información de la conexión actual.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.Transaccional.#ctor(Orbita.BBDD.OInfoMirroring)">
+            <summary>
+            Inicializar una nueva instancia de la clase Transaccional de SQL Server.
+            </summary>
+            <param name="infoConexion">Información de la conexión actual con mirroring.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.Transaccional.Conexion(System.String)">
+            <summary>
+            Obtener la conexión de la colección de conexiones existente.
+            </summary>
+            <param name="identificadorTransaccion">Identificador de transacción.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.Transaccional.AbrirTransaccion">
+            <summary>
+            Crear la conexión e iniciar la transacción.
+            </summary>
+            <returns>Identificador de transacción.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.Transaccional.AbrirTransaccion(System.Data.IsolationLevel)">
+            <summary>
+            Crear la conexión e iniciar la transacción con un nivel de bloqueo específico.
+            </summary>
+            <param name="iso">Especifica el comportamiento de bloqueo de la transacción para la conexión.</param>
+            <returns>Identificador de transacción.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.Transaccional.CerrarTransaccion(System.String)">
+            <summary>
+            Confirmar la transacción y cerrar la conexión.
+            </summary>
+            <param name="identificadorTransaccion">Identificador de la transacción. 
+            Utilizar el método AbrirTransaccion() para generar un identificador de 
+            transacción válido.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.Transaccional.DeshacerTransaccion(System.String)">
+            <summary>
+            Deshacer la transacción y cerrar la conexión.
+            </summary>
+            <param name="identificadorTransaccion">Identificador de la transacción. 
+            Utilizar el método AbrirTransaccion() para generar un identificador de 
+            transacción válido.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.Transaccional.EjecutarProcedimientoAlmacenado(System.String,System.String)">
+            <summary>
+            Ejecutar un procedimiento almacenado con timeout por defecto.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="identificadorTransaccion">Identificador de la transacción. 
+            Utilizar el método AbrirTransaccion() para generar un identificador de 
+            transacción válido.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.Transaccional.EjecutarProcedimientoAlmacenado(System.String,System.Int32,System.String)">
+            <summary>
+            Ejecutar un procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <param name="identificadorTransaccion">Identificador de la transacción. 
+            Utilizar el método AbrirTransaccion() para generar un identificador de 
+            transacción válido.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.Transaccional.EjecutarProcedimientoAlmacenado(System.String,System.Collections.ArrayList,System.String)">
+            <summary>
+            Ejecutar un procedimiento almacenado con timeout por defecto.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <param name="identificadorTransaccion">Identificador de la transacción. 
+            Utilizar el método AbrirTransaccion() para generar un identificador de 
+            transacción válido.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.Transaccional.EjecutarProcedimientoAlmacenado(System.String,System.Collections.ArrayList,System.Int32,System.String)">
+            <summary>
+            Ejecutar un procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <param name="identificadorTransaccion">Identificador de la transacción. 
+            Utilizar el método AbrirTransaccion() para generar un identificador de 
+            transacción válido.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.Transaccional.EjecutarProcedimientoAlmacenadoSinRetorno(System.String,System.String)">
+            <summary>
+            Ejecutar un procedimiento almacenado con timeout por defecto, prescindiendo 
+            del parámetro "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="identificadorTransaccion">Identificador de la transacción. 
+            Utilizar el método AbrirTransaccion() para generar un identificador de 
+            transacción válido.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.Transaccional.EjecutarProcedimientoAlmacenadoSinRetorno(System.String,System.Int32,System.String)">
+            <summary>
+            Ejecutar un procedimiento almacenado, prescindiendo del parámetro "return" 
+            del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <param name="identificadorTransaccion">Identificador de la transacción. 
+            Utilizar el método AbrirTransaccion() para generar un identificador de 
+            transacción válido.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.Transaccional.EjecutarProcedimientoAlmacenadoSinRetorno(System.String,System.Collections.ArrayList,System.String)">
+            <summary>
+            Ejecutar un procedimiento almacenado con parámetros de entrada y timeout por defecto, 
+            prescindiendo del parámetro "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <param name="identificadorTransaccion">Identificador de la transacción. 
+            Utilizar el método AbrirTransaccion() para generar un identificador de 
+            transacción válido.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OSqlServer.Transaccional.EjecutarProcedimientoAlmacenadoSinRetorno(System.String,System.Collections.ArrayList,System.Int32,System.String)">
+            <summary>
+            Ejecutar un procedimiento almacenado con parámetros de entrada y timeout por 
+            defecto, prescindiendo del parámetro "return" del procedimiento almacenado.
+            </summary>
+            <param name="procedimiento">Nombre del procedimiento almacenado.</param>
+            <param name="parametros">Parámetros de entrada del procedimiento almacenado.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <param name="identificadorTransaccion">Identificador de la transacción. 
+            Utilizar el método AbrirTransaccion() para generar un identificador de 
+            transacción válido.</param>
+            <returns>Número de registros afectados en el procedimiento almacenado.</returns>
+        </member>
+        <member name="T:Orbita.BBDD.OMySql">
+            <summary>
+            Clase tipo para instanciar objetos de base de datos OMySQL.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OMySql.#ctor(Orbita.BBDD.OInfoConexion)">
+            <summary>
+            Inicializar una nueva instancia de la clase MySQL.
+            </summary>
+            <param name="infoConexion">Información de la conexión actual.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OMySql.TestConexion">
+            <summary>
+            Comprueba el estado una conexión existente.
+            </summary>
+            <returns>El resultado del test de conexión.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OMySql.SeleccionSql(System.String)">
+            <summary>
+            Ejecutar una consulta Select con timeout por defecto.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <returns>Datatable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OMySql.SeleccionSql(System.String,System.Int32)">
+            <summary>
+            Ejecutar una consulta Select.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Datatable con el resultado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OMySql.EjecutarSql(System.String)">
+            <summary>
+            Ejecutar una sentencia SQL con timeout por defecto.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <returns>Para las instrucciones Update, Insert y Delete, el 
+            valor devuelto corresponde al número de filas afectadas por
+            el comando. Para los demás tipos de instrucciones, el valor
+            devuelto es -1.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OMySql.EjecutarSql(System.String,System.Int32)">
+            <summary>
+            Ejecutar una sentencia SQL.
+            Para las instrucciones Update, Insert y Delete, 
+            el valor devuelto corresponde al número de filas afectadas por
+            el comando. Para los demás tipos de instrucciones, el valor 
+            devuelto es -1.
+            </summary>
+            <param name="sql">Consulta SQL.</param>
+            <param name="timeout">Timeout de SqlCommand.</param>
+            <returns>Para las instrucciones Update, Insert y Delete, el 
+            valor devuelto corresponde al número de filas afectadas por
+            el comando. Para los demás tipos de instrucciones, el valor
+            devuelto es -1.</returns>
+        </member>
+        <member name="T:Orbita.BBDD.OInfoConexionOracle">
+            <summary>
+            Información de la conexión de Oracle.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OInfoConexionOracle.DefaultPort">
+            <summary>
+            Puerto de conexión por defecto
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.OInfoConexionOracle.puerto">
+            <summary>
+            Número de puerto al que se conectará.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OInfoConexionOracle.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase InfoConexion.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.OInfoConexionOracle.#ctor(System.Int32)">
+            <summary>
+            Inicializar una nueva instancia de la clase InfoConexion.
+            </summary>
+            <param name="timeout">Timeout de conexión.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OInfoConexionOracle.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase InfoConexion.
+            </summary>
+            <param name="instancia">Nombre de la instancia de base de datos.</param>
+            <param name="baseDatos">Nombre de la base de datos.</param>
+            <param name="usuario">Usuario de las credenciales de base de datos.</param>
+            <param name="password">Password de las credenciales de base de datos.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OInfoConexionOracle.#ctor(System.String,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase InfoConexion.
+            </summary>
+            <param name="instancia">Nombre de la instancia de base de datos.</param>
+            <param name="puerto">Número de puerto al que se conectará.</param>
+            <param name="baseDatos">Nombre de la base de datos.</param>
+            <param name="usuario">Usuario de las credenciales de base de datos.</param>
+            <param name="password">Password de las credenciales de base de datos.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OInfoConexionOracle.#ctor(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Inicializar una nueva instancia de la clase InfoConexion.
+            </summary>
+            <param name="instancia">Nombre de la instancia de base de datos.</param>
+            <param name="baseDatos">Nombre de la base de datos.</param>
+            <param name="usuario">Usuario de las credenciales de base de datos.</param>
+            <param name="password">Password de las credenciales de base de datos.</param>
+            <param name="timeout">Timeout de conexión.</param>
+        </member>
+        <member name="M:Orbita.BBDD.OInfoConexionOracle.#ctor(System.String,System.Int32,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Inicializar una nueva instancia de la clase InfoConexion.
+            </summary>
+            <param name="instancia">Nombre de la instancia de base de datos.</param>
+            <param name="puerto">Número de puerto al que se conectará.</param>
+            <param name="baseDatos">Nombre de la base de datos.</param>
+            <param name="usuario">Usuario de las credenciales de base de datos.</param>
+            <param name="password">Password de las credenciales de base de datos.</param>
+            <param name="timeout">Timeout de conexión.</param>
+        </member>
+        <member name="P:Orbita.BBDD.OInfoConexionOracle.Puerto">
+            <summary>
+            Número de puerto al que se conectará.
+            </summary>
+        </member>
+    </members>
+</doc>
