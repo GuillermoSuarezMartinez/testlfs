@@ -10,10 +10,9 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-using System.Runtime.InteropServices;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
-
 namespace Orbita.Controles.VA
 {
     internal partial class MetodosNativos
@@ -156,7 +155,6 @@ namespace Orbita.Controles.VA
         }
 
         #endregion
-
     }
 
     /// <summary>
@@ -402,5 +400,4 @@ namespace Orbita.Controles.VA
         Rectangulo,
         Nada
     }
-
 }

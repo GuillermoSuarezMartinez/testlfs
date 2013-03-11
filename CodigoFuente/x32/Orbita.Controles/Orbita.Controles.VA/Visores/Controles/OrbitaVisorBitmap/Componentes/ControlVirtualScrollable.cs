@@ -13,7 +13,6 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-
 namespace Orbita.Controles.VA
 {
     [ToolboxItem(false)]
@@ -26,7 +25,7 @@ namespace Orbita.Controles.VA
 
         private Size _autoScrollMinSize;
 
-        private Point _autoScrollPosition; 
+        private Point _autoScrollPosition;
         #endregion
 
         #region Propiedad(es)
@@ -167,7 +166,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         /// <value>The view port rectangle.</value>
         protected Rectangle ViewPortRectangle
-        { get { return new Rectangle(-_autoScrollPosition.X, -_autoScrollPosition.Y, this.DisplayRectangle.Width, this.DisplayRectangle.Height); } } 
+        { get { return new Rectangle(-_autoScrollPosition.X, -_autoScrollPosition.Y, this.DisplayRectangle.Width, this.DisplayRectangle.Height); } }
         #endregion
 
         #region Constructor(s)

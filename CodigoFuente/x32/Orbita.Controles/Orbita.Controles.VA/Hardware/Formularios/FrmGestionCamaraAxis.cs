@@ -10,7 +10,6 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-
 namespace Orbita.Controles.VA
 {
     public partial class FrmGestionCamaraAxis : FrmBase
@@ -43,8 +42,7 @@ namespace Orbita.Controles.VA
             this.webBrowser.Navigate(uri1);
             return;
         }
-        
-        #endregion Métodos virtuales
 
+        #endregion Métodos virtuales
     }
 }

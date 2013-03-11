@@ -13,7 +13,6 @@ using System;
 using System.Windows.Forms;
 using Orbita.VA.Comun;
 using Orbita.VA.MaquinasEstados;
-
 namespace Orbita.Controles.VA
 {
     public partial class FrmMonitorizacionMaquinaEstados : FrmBase
@@ -33,7 +32,7 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Código de la máquina de estados
         /// </summary>
-        private string Codigo; 
+        private string Codigo;
         #endregion
 
         #region Constructor(es)
@@ -42,7 +41,7 @@ namespace Orbita.Controles.VA
         /// Constructor de la clase
         /// </summary>
         public FrmMonitorizacionMaquinaEstados(string codigo, string descripcion)
-            :base()
+            : base()
         {
             InitializeComponent();
             this.Codigo = codigo;
@@ -54,7 +53,7 @@ namespace Orbita.Controles.VA
             this.ImageList.Images.Add("ImgInfo24", global::Orbita.Controles.VA.Properties.Resources.ImgInfo24);
             this.ImageList.Images.Add("ImgWarning24", global::Orbita.Controles.VA.Properties.Resources.ImgWarning24);
             this.ImageList.Images.Add("ImgStop24", global::Orbita.Controles.VA.Properties.Resources.ImgStop24);
-        } 
+        }
 
         #endregion
 
@@ -148,7 +147,7 @@ namespace Orbita.Controles.VA
             {
                 OVALogsManager.Error(OModulosControl.Monitorizacion, this.Name, exception);
             }
-        } 
+        }
         #endregion
     }
 }

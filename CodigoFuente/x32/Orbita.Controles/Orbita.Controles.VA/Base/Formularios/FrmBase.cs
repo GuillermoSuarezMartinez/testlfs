@@ -17,13 +17,12 @@ using System.Windows.Forms;
 using Infragistics.Win;
 using Infragistics.Win.UltraWinDock;
 using Infragistics.Win.UltraWinGrid;
+using Orbita.Controles.Combo;
 using Orbita.Controles.Comunes;
 using Orbita.Controles.Contenedores;
+using Orbita.Controles.Grid;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
-using Orbita.Controles.Combo;
-using Orbita.Controles.Grid;
-
 namespace Orbita.Controles.VA
 {
     /// <summary>

@@ -15,7 +15,6 @@ using System.Drawing;
 using System.Drawing.Design;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-
 namespace Orbita.Controles.VA
 {
     /// <summary>
@@ -842,7 +841,7 @@ namespace Orbita.Controles.VA
             this.ZoomLevels = ZoomLevelCollection.Default;
             this._botonDER = new BotonRaton(MouseButtons.Right, OpcionClickBotones.ZoomMenos, OpcionMantenerClickBotones.Rectangulo);
             this._botonIZQ = new BotonRaton(MouseButtons.Left, OpcionClickBotones.ZoomMas, OpcionMantenerClickBotones.Pan);
-            this._botonMED = new BotonRaton(MouseButtons.Middle, OpcionClickBotones.AutoCenter, OpcionMantenerClickBotones.Nada); 
+            this._botonMED = new BotonRaton(MouseButtons.Middle, OpcionClickBotones.AutoCenter, OpcionMantenerClickBotones.Nada);
         }
 
         #endregion
@@ -1059,7 +1058,7 @@ namespace Orbita.Controles.VA
 
             if (this.AllowPainting)
                 this.Invalidate();
-        }        
+        }
         /// <summary>
         /// Gets the image view port.
         /// </summary>
@@ -2227,7 +2226,7 @@ namespace Orbita.Controles.VA
             this.AutoScrollPosition = position;
             this.Invalidate();
             this.OnScroll(new ScrollEventArgs(ScrollEventType.EndScroll, 0));
-        } 
+        }
         #endregion
 
         #region Método(s) Privado(s) Heredado(s)
@@ -2623,7 +2622,7 @@ namespace Orbita.Controles.VA
             catch
             {
             }
-        } 
+        }
         #endregion
     }
 }

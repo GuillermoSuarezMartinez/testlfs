@@ -10,7 +10,6 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System.ComponentModel;
-
 namespace Orbita.Controles.VA
 {
     internal partial class ScrollControl
@@ -24,7 +23,7 @@ namespace Orbita.Controles.VA
             /// <param name="container"></param>
             public HScrollProperties(ScrollControl container)
                 : base(container)
-            { } 
+            { }
             #endregion
         }
 
@@ -89,4 +88,3 @@ namespace Orbita.Controles.VA
         }
     }
 }
-

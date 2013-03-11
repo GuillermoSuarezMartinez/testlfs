@@ -20,14 +20,11 @@
 //***********************************************************************
 using System;
 using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
-using Orbita.VA.Comun;
-using Orbita.VA.Hardware;
-using Orbita.Controles.Contenedores;
 using Orbita.Controles.Shared;
 using Orbita.Utiles;
-
+using Orbita.VA.Comun;
+using Orbita.VA.Hardware;
 namespace Orbita.Controles.VA
 {
     /// <summary>
@@ -353,10 +350,10 @@ namespace Orbita.Controles.VA
         public OrbitaVisorBase(string titulo, string codCamara, double maxFrameIntervalVisualizacion, bool asociarCamara, bool visualizarEnVivo)
         {
             InitializeComponent();
-            
+
             // Recogemos los parametros
             this.Codigo = codCamara;
-            this.CamaraAsociada = asociarCamara? OCamaraManager.GetCamara(this.Codigo): null;
+            this.CamaraAsociada = asociarCamara ? OCamaraManager.GetCamara(this.Codigo) : null;
             this.VisualizarEnVivo = visualizarEnVivo && (this.CamaraAsociada is OCamaraBase);
 
             // Temas de visualización
@@ -414,12 +411,12 @@ namespace Orbita.Controles.VA
         protected void BotonPlayStopPulsado()
         {
             if (this.CamaraAsociada is OCamaraBase)
-	        {
+            {
                 if (this.CamaraAsociada.EstadoConexion == EstadoConexion.Conectado)
                 {
                     this.CamaraAsociada.Play = !this.CamaraAsociada.Play;
                 }
-	        }
+            }
         }
 
         /// <summary>
@@ -907,12 +904,12 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Enumerado que indica el orden del siguiente dispositivo a visualizar 
         /// </summary>
-		public enum DeviceViewerChangeOrder
+        public enum DeviceViewerChangeOrder
         {
             next,
             previous
         }
-	    #endregion
+        #endregion
     }
 
     /// <summary>

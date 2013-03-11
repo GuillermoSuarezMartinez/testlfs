@@ -13,9 +13,8 @@ using System;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
-using Orbita.VA.Comun;
 using Orbita.Controles.Contenedores;
-
+using Orbita.VA.Comun;
 namespace Orbita.Controles.VA
 {
     /// <summary>
@@ -236,5 +235,4 @@ namespace Orbita.Controles.VA
         }
         #endregion
     }
-
 }

@@ -16,10 +16,9 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using Orbita.Utiles;
 using Orbita.VA.Comun;
 using Orbita.VA.MaquinasEstados;
-using Orbita.Utiles;
-
 namespace Orbita.Controles.VA
 {
     /// <summary>
@@ -59,7 +58,7 @@ namespace Orbita.Controles.VA
         public OrbitaVisorMaquinaEstados()
         {
             InitializeComponent();
-        } 
+        }
 
         #endregion
 
@@ -191,7 +190,7 @@ namespace Orbita.Controles.VA
             {
                 // Reseteamos el timer para que no se vuelva a refrescar
                 this.MomentoUltimoRefresco = DateTime.Now;
-                this.timerRefresco.Enabled = false;                
+                this.timerRefresco.Enabled = false;
 
                 foreach (OEstadoVisual estado in this.MaquinaEstadosVisual.ListaEstados)
                 {
@@ -515,7 +514,7 @@ namespace Orbita.Controles.VA
         /// <param name="e"></param>
         [Category("Orbita")]
         [Description("Se dispara cuando se produce un cambio de estado en la máquina de estados.")]
-        public event EstadoCambiado OnEstadoCambiado; 
+        public event EstadoCambiado OnEstadoCambiado;
         #endregion
     }
 
@@ -569,7 +568,7 @@ namespace Orbita.Controles.VA
                 {
                     this.MaquinaEstadosAsociada = OMaquinasEstadosManager.GetMaquinaEstados(this.Codigo);
                 }
-                
+
                 // Cargamos los valores de los estados
                 DataTable dtEstados = Orbita.VA.MaquinasEstados.AppBD.GetEstados(this.Codigo);
                 if (dtEstados.Rows.Count > 0)
@@ -592,7 +591,7 @@ namespace Orbita.Controles.VA
                 if (dtTransiciones.Rows.Count > 0)
                 {
                     foreach (DataRow dr in dtTransiciones.Rows)
-                    { 
+                    {
                         string codTransicion = dr["codTransicion"].ToString();
                         OTransicionBase transcionAsociada = null;
                         if (online)
@@ -618,7 +617,7 @@ namespace Orbita.Controles.VA
             foreach (OEstadoVisual estado in this.ListaEstados)
             {
                 estado.Pinta(g);
-            } 
+            }
             foreach (OTransicionVisual transicion in this.ListaTransiciones)
             {
                 transicion.Pinta(g);
@@ -811,13 +810,13 @@ namespace Orbita.Controles.VA
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public EstadoCambiado OnEstadoCambiado; 
+        public EstadoCambiado OnEstadoCambiado;
         #endregion
     }
 
     /// <summary>
     /// Clase estado heredada de la base con el fin de dotarla de visualización
-        /// </summary>
+    /// </summary>
     internal class OEstadoVisual
     {
         #region Atributo(s)
@@ -912,7 +911,7 @@ namespace Orbita.Controles.VA
                     this.Localizacion.Y = (int)dtEstado.Rows[0]["PosY"];
                 }
             }
-        } 
+        }
 
         #endregion
 
@@ -991,7 +990,7 @@ namespace Orbita.Controles.VA
         {
             // Creamos las variables de visualización
             this.Shape = new RoundRectangleShape(this.Localizacion, this.Nombre, false);
-        } 
+        }
         #endregion
     }
 
@@ -1102,8 +1101,8 @@ namespace Orbita.Controles.VA
             if (dtTransicion.Rows.Count == 1)
             {
                 this.Nombre = dtTransicion.Rows[0]["NombreTransicion"].ToString();
-                
-                if (OEntero.IsNumericInt(dtTransicion.Rows[0]["PosicionFlechaEstadoOrigen"]) && 
+
+                if (OEntero.IsNumericInt(dtTransicion.Rows[0]["PosicionFlechaEstadoOrigen"]) &&
                    (OEntero.IsNumericInt(dtTransicion.Rows[0]["PosicionFlechaEstadoDestino"])))
                 {
                     // Se busca la posición origen
@@ -1468,7 +1467,7 @@ namespace Orbita.Controles.VA
                 path.CloseFigure();
             }
             return path;
-        } 
+        }
         #endregion
 
         #region Método(s) público(s)
@@ -1533,7 +1532,7 @@ namespace Orbita.Controles.VA
             return false;
         }
 
-    #endregion
+        #endregion
     }
 
     /// <summary>
@@ -1638,7 +1637,7 @@ namespace Orbita.Controles.VA
             path.AddLine(mp1, finalPoint);
             path.AddLine(mp2, finalPoint);
             return path;
-        } 
+        }
         #endregion
 
         #region Método(s) público(s)
@@ -1916,7 +1915,7 @@ namespace Orbita.Controles.VA
     /// <summary>
     /// Parametros de retorno del evento de cambio de posición en un estado
     /// </summary>
-    public class EventStateMoved: EventArgs
+    public class EventStateMoved : EventArgs
     {
         #region Atributo(s)
         /// <summary>
@@ -1926,7 +1925,7 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Posición del estado visual
         /// </summary>
-        public Point Posicion; 
+        public Point Posicion;
         #endregion
 
         #region Constructor
@@ -1939,7 +1938,7 @@ namespace Orbita.Controles.VA
         {
             this.CodEstado = codEstado;
             this.Posicion = posicion;
-        } 
+        }
         #endregion
     }
 

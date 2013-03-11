@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
-using System.Text;
 using System.Windows.Forms;
 using Orbita.Comunicaciones;
 using Orbita.Utiles;
-
 namespace Orbita.Controles.Comunicaciones
-{    
+{
     public partial class OrbitaClienteComs : UserControl
     {
         #region Delegados
@@ -30,7 +26,7 @@ namespace Orbita.Controles.Comunicaciones
         internal delegate void DelegadoES(OEventArgs estado);
         #endregion
 
-        #region Variables
+        #region Atributos
         /// <summary>
         /// Puerto de comunicación de remoting
         /// </summary>
@@ -50,13 +46,11 @@ namespace Orbita.Controles.Comunicaciones
         #endregion
 
         #region Constructores
-
         public OrbitaClienteComs()
         {
             InitializeComponent();
         }
-
-        #endregion        
+        #endregion
 
         #region Métodos
         /// <summary>
@@ -72,7 +66,7 @@ namespace Orbita.Controles.Comunicaciones
             }
             catch (Exception ex)
             {
-                OMensajes.MostrarError("Error al convertir los valores de configuración.",ex);
+                OMensajes.MostrarError("Error al convertir los valores de configuración.", ex);
             }
 
             try
@@ -185,10 +179,8 @@ namespace Orbita.Controles.Comunicaciones
                 this.listViewCDato.Items.Add(lvi);
             }
         }
-
         private void configurarDataGridEscrituras()
         {
-
             DataTable dtc = new DataTable();
 
             DataColumn column = new DataColumn();
@@ -201,9 +193,7 @@ namespace Orbita.Controles.Comunicaciones
             column2.ColumnName = "Valor";
             dtc.Columns.Add(column2);
 
-
             this.dataGridViewEscrituras.DataSource = dtc;
-
         }
         #endregion
 
@@ -228,7 +218,6 @@ namespace Orbita.Controles.Comunicaciones
             {
                 OMensajes.MostrarError(ex);
             }
-
         }
         /// <summary>
         /// Evento de alarma.
@@ -251,7 +240,6 @@ namespace Orbita.Controles.Comunicaciones
             {
                 OMensajes.MostrarError(ex);
             }
-
         }
         /// <summary>
         /// Evento de comunicaciones.
@@ -267,7 +255,6 @@ namespace Orbita.Controles.Comunicaciones
             {
                 OMensajes.MostrarError(ex);
             }
-
         }
         /// <summary>
         /// Inicia el cliente de comunicaciones
@@ -286,7 +273,7 @@ namespace Orbita.Controles.Comunicaciones
         private void btnLectura_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 string[] lectura = new string[1];
                 lectura[0] = this.txtVarLeer.Text;
                 DateTime dtini = DateTime.Now;
@@ -348,7 +335,7 @@ namespace Orbita.Controles.Comunicaciones
                 i++;
             }
 
-            object[] resultado =this._servidor.OrbitaLeer(this._idDispositivo, variables, true);
+            object[] resultado = this._servidor.OrbitaLeer(this._idDispositivo, variables, true);
 
             DataTable dt = new DataTable();
 
@@ -379,7 +366,6 @@ namespace Orbita.Controles.Comunicaciones
             }
 
             this.dataGridViewLecturas.DataSource = dt;
-            
         }
         /// <summary>
         /// Lee las alarmas activas
@@ -436,7 +422,6 @@ namespace Orbita.Controles.Comunicaciones
         {
             this.configurarDataGridEscrituras();
         }
-
-        #endregion                   
+        #endregion
     }
 }

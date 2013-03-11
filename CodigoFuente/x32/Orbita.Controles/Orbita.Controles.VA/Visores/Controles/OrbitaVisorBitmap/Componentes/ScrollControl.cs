@@ -14,10 +14,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-
 namespace Orbita.Controles.VA
 {
-    [ToolboxItem (false )]
+    [ToolboxItem(false)]
     internal partial class ScrollControl : Control
     {
         #region Atributo(s)
@@ -38,7 +37,8 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Constructor del componente
         /// </summary>
-        public ScrollControl():base()
+        public ScrollControl()
+            : base()
         {
             this.BorderStyle = BorderStyle.Fixed3D;
             this.ScrollSize = Size.Empty;

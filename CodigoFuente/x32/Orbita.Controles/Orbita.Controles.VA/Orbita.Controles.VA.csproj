@@ -72,7 +72,6 @@
       <HintPath>..\..\Comun\VA\Cognex\Cognex.VisionPro.Display.Controls.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Infragistics2.Documents.Excel.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="Infragistics2.Shared.v11.2">
       <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Shared.v11.2.dll</HintPath>
     </Reference>
@@ -91,13 +90,9 @@
     <Reference Include="Infragistics2.Win.UltraWinEditors.v11.2">
       <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinEditors.v11.2.dll</HintPath>
     </Reference>
-    <Reference Include="Infragistics2.Win.UltraWinExplorerBar.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
-    <Reference Include="Infragistics2.Win.UltraWinGrid.ExcelExport.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="Infragistics2.Win.UltraWinGrid.v11.2">
       <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinGrid.v11.2.dll</HintPath>
     </Reference>
-    <Reference Include="Infragistics2.Win.UltraWinPrintPreviewDialog.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
-    <Reference Include="Infragistics2.Win.UltraWinTabbedMdi.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="Infragistics2.Win.UltraWinTabControl.v11.2">
       <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinTabControl.v11.2.dll</HintPath>
     </Reference>
@@ -113,10 +108,6 @@
     </Reference>
     <Reference Include="Orbita.VA.Comun, Version=13.1.8.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.VA.Comun.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="Orbita.VA.Funciones, Version=13.1.8.1, Culture=neutral, processorArchitecture=x86">
-      <HintPath>..\..\Comun\Orbita\Orbita.VA.Funciones.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Orbita.VA.Hardware, Version=13.1.8.1, Culture=neutral, processorArchitecture=x86">
@@ -626,10 +617,6 @@
       <Project>{D66C367A-47B7-4464-93D6-92794E4A57C8}</Project>
       <Name>Orbita.Controles.Comunes</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Orbita.Controles.Comunicaciones\Orbita.Controles.Comunicaciones.csproj">
-      <Project>{7E7DAFD4-3823-46B8-917C-FCEA9431A1A9}</Project>
-      <Name>Orbita.Controles.Comunicaciones</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Orbita.Controles.Contenedores\Orbita.Controles.Contenedores.csproj">
       <Project>{B953E685-3E2D-4F93-BB80-805427BBB8A2}</Project>
       <Name>Orbita.Controles.Contenedores</Name>
@@ -637,14 +624,6 @@
     <ProjectReference Include="..\Orbita.Controles.Editor\Orbita.Controles.Editor.csproj">
       <Project>{AF6AFAC6-159A-4C37-8C74-4D8609088C05}</Project>
       <Name>Orbita.Controles.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orbita.Controles.Estilos\Orbita.Controles.Estilos.csproj">
-      <Project>{69BCFE99-17D1-4F08-AD49-95C395D247A6}</Project>
-      <Name>Orbita.Controles.Estilos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orbita.Controles.Gantt\Orbita.Controles.Gantt.csproj">
-      <Project>{00357F2C-A6CB-4374-A3BD-BF2B52CB5D97}</Project>
-      <Name>Orbita.Controles.Gantt</Name>
     </ProjectReference>
     <ProjectReference Include="..\Orbita.Controles.Grid\Orbita.Controles.Grid.csproj">
       <Project>{34B632DA-E0C4-4F27-AAFD-AFAD64604BFA}</Project>

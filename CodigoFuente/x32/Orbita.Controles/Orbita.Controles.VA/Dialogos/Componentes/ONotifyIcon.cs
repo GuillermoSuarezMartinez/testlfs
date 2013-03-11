@@ -9,14 +9,8 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.ComponentModel;
 using Orbita.VA.Comun;
-
 namespace Orbita.Controles.VA
 {
     /// <summary>
@@ -34,7 +28,7 @@ namespace Orbita.Controles.VA
         /// Tiemo de visualización
         /// </summary>
         private static int TimeOut;
-	    #endregion
+        #endregion
 
         #region Método(s) público(s)
         /// <summary>

@@ -12,8 +12,6 @@
 using System;
 using System.Windows.Forms;
 using Orbita.VA.Comun;
-using Orbita.VA.MaquinasEstados;
-
 namespace Orbita.Controles.VA
 {
     public partial class FrmVariableChart : FrmBase
@@ -83,7 +81,7 @@ namespace Orbita.Controles.VA
             {
                 this.Close();
             }
-        } 
+        }
         #endregion
 
         #region Método(s) heredado(s)

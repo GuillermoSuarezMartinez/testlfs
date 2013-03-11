@@ -11,7 +11,6 @@
 //***********************************************************************
 using System;
 using System.Windows.Forms;
-
 namespace Orbita.Controles.VA
 {
     /// <summary>
@@ -43,7 +42,7 @@ namespace Orbita.Controles.VA
         /// Constructor de la clase
         /// </summary>
         public FrmInputTextBox(string codigo, string titulo, string explicacion, string textoDefecto)
-            :base()
+            : base()
         {
             InitializeComponent();
 
@@ -51,7 +50,7 @@ namespace Orbita.Controles.VA
             this.Titulo = titulo;
             this.Explicacion = explicacion;
             this.TextoInputado = textoDefecto;
-        } 
+        }
         #endregion
 
         #region Método(s) público(s)

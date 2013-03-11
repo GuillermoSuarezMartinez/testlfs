@@ -11,10 +11,9 @@
 //***********************************************************************
 using System;
 using System.Windows.Forms;
+using Orbita.Utiles;
 using Orbita.VA.Comun;
 using Orbita.VA.Hardware;
-using Orbita.Utiles;
-
 namespace Orbita.Controles.VA
 {
     /// <summary>
@@ -52,7 +51,7 @@ namespace Orbita.Controles.VA
 
             this.ImageListSmall.Images.Add("imgVariableInactiva", global::Orbita.Controles.VA.Properties.Resources.imgVariableInactiva24);
             this.ImageListSmall.Images.Add("imgVariableActiva", global::Orbita.Controles.VA.Properties.Resources.imgVariableActiva24);
-        } 
+        }
         #endregion
 
         #region Método(s) heredado(s)
@@ -267,29 +266,29 @@ namespace Orbita.Controles.VA
         {
             try
             {
-            //    switch (this._ModoAperturaFormulario)
-            //    {
-            //        case ModoAperturaFormulario.Visualizacion:
-            //            {
-            //                if (this.ListTerminales.SelectedItems.Count > 0)
-            //                {
-            //                    foreach (ListViewItem item in this.ListTerminales.SelectedItems)
-            //                    {
-            //                        try
-            //                        {
-            //                            FrmVariableChart frm = new FrmVariableChart(item.Text);
-            //                            //OTrabajoControles.FormularioPrincipalMDI.OrbMdiEncolarForm(frm);
-            //                            frm.Show();
-            //                        }
-            //                        catch (Exception exception)
-            //                        {
-            //                            OVALogsManager.Warning(OModulosHardware.Monitorizacion, this.Name, "Warning: " + exception.ToString());
-            //                        }
-            //                    }
-            //                }
-            //                break;
-            //            }
-            //    }
+                //    switch (this._ModoAperturaFormulario)
+                //    {
+                //        case ModoAperturaFormulario.Visualizacion:
+                //            {
+                //                if (this.ListTerminales.SelectedItems.Count > 0)
+                //                {
+                //                    foreach (ListViewItem item in this.ListTerminales.SelectedItems)
+                //                    {
+                //                        try
+                //                        {
+                //                            FrmVariableChart frm = new FrmVariableChart(item.Text);
+                //                            //OTrabajoControles.FormularioPrincipalMDI.OrbMdiEncolarForm(frm);
+                //                            frm.Show();
+                //                        }
+                //                        catch (Exception exception)
+                //                        {
+                //                            OVALogsManager.Warning(OModulosHardware.Monitorizacion, this.Name, "Warning: " + exception.ToString());
+                //                        }
+                //                    }
+                //                }
+                //                break;
+                //            }
+                //    }
             }
             catch (Exception exception)
             {

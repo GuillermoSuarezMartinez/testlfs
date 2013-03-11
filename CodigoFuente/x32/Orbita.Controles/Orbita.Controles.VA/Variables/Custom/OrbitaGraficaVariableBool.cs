@@ -13,7 +13,6 @@ using System;
 using Infragistics.Win.UltraWinDataSource;
 using Orbita.VA.Comun;
 using Orbita.VA.MaquinasEstados;
-
 namespace Orbita.Controles.VA
 {
     /// <summary>
@@ -28,7 +27,7 @@ namespace Orbita.Controles.VA
         public OrbitaGraficaVariableBool()
         {
             InitializeComponent();
-        } 
+        }
         #endregion
 
         #region Método(s) virtual(es)
@@ -101,7 +100,7 @@ namespace Orbita.Controles.VA
             {
                 OVALogsManager.Error(OModulosControl.MonitorizacionVariables, this.Name, exception);
             }
-        } 
+        }
         #endregion
     }
 }

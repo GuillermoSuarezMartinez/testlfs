@@ -12,9 +12,8 @@
 using System;
 using System.Data;
 using System.IO;
-using Orbita.VA.Hardware;
 using Orbita.VA.Comun;
-
+using Orbita.VA.Hardware;
 namespace Orbita.Controles.VA
 {
     /// <summary>
@@ -27,12 +26,12 @@ namespace Orbita.Controles.VA
         /// Constructor de la cámara
         /// </summary>
         /// <param name="codigoCamara"></param>
-        public FrmDetalleCamara(string codigoCamara):
+        public FrmDetalleCamara(string codigoCamara) :
             this(codigoCamara, string.Empty, OrigenDatos.OrigenBBDD)
         {
         }
 
-        public FrmDetalleCamara(string codigoCamara, string xmlFile, OrigenDatos origenDatos):
+        public FrmDetalleCamara(string codigoCamara, string xmlFile, OrigenDatos origenDatos) :
             base(codigoCamara, xmlFile, origenDatos)
         {
             InitializeComponent();
@@ -76,5 +75,5 @@ namespace Orbita.Controles.VA
             }
         }
         #endregion
-  }
+    }
 }

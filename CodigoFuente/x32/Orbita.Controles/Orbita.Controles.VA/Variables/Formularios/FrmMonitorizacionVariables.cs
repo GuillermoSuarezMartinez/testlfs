@@ -11,14 +11,12 @@
 //***********************************************************************
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinToolbars;
+using Orbita.Utiles;
 using Orbita.VA.Comun;
 using Orbita.VA.MaquinasEstados;
-using Orbita.Utiles;
-
 namespace Orbita.Controles.VA
 {
     /// <summary>
@@ -166,7 +164,7 @@ namespace Orbita.Controles.VA
             {
                 // Variables de una vista
                 OVistaVariable OVistaVariable = OVariablesManager.Vistas[this.CodEscenarioActual]; // Extraigo la vista acutal
-                foreach (KeyValuePair<string,string> aliasPair in OVistaVariable.ListaAlias) // Para cada alias
+                foreach (KeyValuePair<string, string> aliasPair in OVistaVariable.ListaAlias) // Para cada alias
                 {
                     this.ListaCodVariablesActuales.Add(aliasPair.Value); // Guardo el código de la variable al que hace referencia
                 }
@@ -195,7 +193,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         private void DestruirItems()
         {
-            foreach (string codVariable in this.ListaCodVariablesActuales)                
+            foreach (string codVariable in this.ListaCodVariablesActuales)
             {
                 OVariablesManager.EliminarSuscripcion(codVariable, "Monitorización", this.Name, this.EventoRefrescarVariables);
             }

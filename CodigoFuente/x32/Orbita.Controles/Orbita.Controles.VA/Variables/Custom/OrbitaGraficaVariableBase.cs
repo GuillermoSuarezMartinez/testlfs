@@ -13,7 +13,6 @@ using System;
 using System.Windows.Forms;
 using Orbita.VA.Comun;
 using Orbita.VA.MaquinasEstados;
-
 namespace Orbita.Controles.VA
 {
     public partial class OrbitaGraficaVariableBase : UserControl
@@ -71,7 +70,7 @@ namespace Orbita.Controles.VA
         public virtual void IniciarEjecucion()
         {
             this.TimerRefresco.Start();
-            OVariablesManager.CrearSuscripcion(this.Codigo, "Monitorización", this.Name, RefrescarVariables);                    
+            OVariablesManager.CrearSuscripcion(this.Codigo, "Monitorización", this.Name, RefrescarVariables);
         }
 
         /// <summary>

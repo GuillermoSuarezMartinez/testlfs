@@ -14,11 +14,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
+using System.Windows.Forms;
 using Infragistics.Win.UltraWinDock;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
-using System.Windows.Forms;
-
 namespace Orbita.Controles.VA
 {
     /// <summary>

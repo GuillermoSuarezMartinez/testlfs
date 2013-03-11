@@ -15,13 +15,11 @@ using System.Drawing;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinDock;
 using Infragistics.Win.UltraWinGrid;
+using Orbita.Controles.Combo;
+using Orbita.Controles.Comunes;
+using Orbita.Controles.Grid;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
-using Orbita.Controles.Comunes;
-using Orbita.Controles.Contenedores;
-using Orbita.Controles.Grid;
-using Orbita.Controles.Combo;
-
 namespace Orbita.Controles.VA
 {
     /// <summary>
@@ -329,39 +327,39 @@ namespace Orbita.Controles.VA
             {
                 if (controlInterno != this.PnlInferiorPadre)
                 {
-                if (controlInterno is OrbitaUltraCombo)
-                {
-                    ((OrbitaUltraCombo)controlInterno).ValueChanged += this.EventoCambioValor;
-                }
-                else if (controlInterno is OrbitaTextBox)
-                {
-                    ((OrbitaTextBox)controlInterno).TextChanged += this.EventoCambioValor;
-                }
-                else if (controlInterno is OrbitaUltraNumericEditor)
-                {
-                    ((OrbitaUltraNumericEditor)controlInterno).ValueChanged += this.EventoCambioValor;
-                }
-                else if (controlInterno is OrbitaUltraCheckEditor)
-                {
-                    ((OrbitaUltraCheckEditor)controlInterno).CheckedChanged += this.EventoCambioValor;
-                }
-                else if (controlInterno is OrbitaUltraGrid)
-                {
-                    ((OrbitaUltraGrid)controlInterno).CellChange += this.EventoCeldaCambioValor;
-                }
-                else if (controlInterno is OrbitaUltraGridToolBar)
-                {
-                    ((OrbitaUltraGridToolBar)controlInterno).CellChange += this.EventoCeldaCambioValor;
-                }
-                else if (controlInterno is OrbitaUltraDateTimeEditor)
-                {
-                    ((OrbitaUltraDateTimeEditor)controlInterno).ValueChanged += this.EventoCambioValor;
-                }
+                    if (controlInterno is OrbitaUltraCombo)
+                    {
+                        ((OrbitaUltraCombo)controlInterno).ValueChanged += this.EventoCambioValor;
+                    }
+                    else if (controlInterno is OrbitaTextBox)
+                    {
+                        ((OrbitaTextBox)controlInterno).TextChanged += this.EventoCambioValor;
+                    }
+                    else if (controlInterno is OrbitaUltraNumericEditor)
+                    {
+                        ((OrbitaUltraNumericEditor)controlInterno).ValueChanged += this.EventoCambioValor;
+                    }
+                    else if (controlInterno is OrbitaUltraCheckEditor)
+                    {
+                        ((OrbitaUltraCheckEditor)controlInterno).CheckedChanged += this.EventoCambioValor;
+                    }
+                    else if (controlInterno is OrbitaUltraGrid)
+                    {
+                        ((OrbitaUltraGrid)controlInterno).CellChange += this.EventoCeldaCambioValor;
+                    }
+                    else if (controlInterno is OrbitaUltraGridToolBar)
+                    {
+                        ((OrbitaUltraGridToolBar)controlInterno).CellChange += this.EventoCeldaCambioValor;
+                    }
+                    else if (controlInterno is OrbitaUltraDateTimeEditor)
+                    {
+                        ((OrbitaUltraDateTimeEditor)controlInterno).ValueChanged += this.EventoCambioValor;
+                    }
 
-                // Recursivo
-                this.InternoIniciarMonitorizarModificaciones(controlInterno);
+                    // Recursivo
+                    this.InternoIniciarMonitorizarModificaciones(controlInterno);
+                }
             }
-        }
         }
 
         /// <summary>
@@ -373,39 +371,39 @@ namespace Orbita.Controles.VA
             {
                 if (controlInterno != this.PnlInferiorPadre)
                 {
-                if (controlInterno is OrbitaUltraCombo)
-                {
-                    ((OrbitaUltraCombo)controlInterno).ValueChanged -= this.EventoCambioValor;
-                }
-                else if (controlInterno is OrbitaTextBox)
-                {
-                    ((OrbitaTextBox)controlInterno).TextChanged -= this.EventoCambioValor;
-                }
-                else if (controlInterno is OrbitaUltraNumericEditor)
-                {
-                    ((OrbitaUltraNumericEditor)controlInterno).ValueChanged -= this.EventoCambioValor;
-                }
-                else if (controlInterno is OrbitaUltraCheckEditor)
-                {
-                    ((OrbitaUltraCheckEditor)controlInterno).CheckedChanged -= this.EventoCambioValor;
-                }
-                else if (controlInterno is OrbitaUltraGrid)
-                {
-                    ((OrbitaUltraGrid)controlInterno).CellChange -= this.EventoCeldaCambioValor;
-                }
-                else if (controlInterno is OrbitaUltraGridToolBar)
-                {
-                    ((OrbitaUltraGridToolBar)controlInterno).Grid.CellChange += this.EventoCeldaCambioValor;
-                }
-                else if (controlInterno is OrbitaUltraDateTimeEditor)
-                {
-                    ((OrbitaUltraDateTimeEditor)controlInterno).ValueChanged -= this.EventoCambioValor;
-                }
+                    if (controlInterno is OrbitaUltraCombo)
+                    {
+                        ((OrbitaUltraCombo)controlInterno).ValueChanged -= this.EventoCambioValor;
+                    }
+                    else if (controlInterno is OrbitaTextBox)
+                    {
+                        ((OrbitaTextBox)controlInterno).TextChanged -= this.EventoCambioValor;
+                    }
+                    else if (controlInterno is OrbitaUltraNumericEditor)
+                    {
+                        ((OrbitaUltraNumericEditor)controlInterno).ValueChanged -= this.EventoCambioValor;
+                    }
+                    else if (controlInterno is OrbitaUltraCheckEditor)
+                    {
+                        ((OrbitaUltraCheckEditor)controlInterno).CheckedChanged -= this.EventoCambioValor;
+                    }
+                    else if (controlInterno is OrbitaUltraGrid)
+                    {
+                        ((OrbitaUltraGrid)controlInterno).CellChange -= this.EventoCeldaCambioValor;
+                    }
+                    else if (controlInterno is OrbitaUltraGridToolBar)
+                    {
+                        ((OrbitaUltraGridToolBar)controlInterno).Grid.CellChange += this.EventoCeldaCambioValor;
+                    }
+                    else if (controlInterno is OrbitaUltraDateTimeEditor)
+                    {
+                        ((OrbitaUltraDateTimeEditor)controlInterno).ValueChanged -= this.EventoCambioValor;
+                    }
 
-                // Recursivo
-                this.InternoFinalizarMonitorizarModificaciones(controlInterno);
+                    // Recursivo
+                    this.InternoFinalizarMonitorizarModificaciones(controlInterno);
+                }
             }
-        }
         }
 
         /// <summary>
@@ -681,9 +679,9 @@ namespace Orbita.Controles.VA
         {
             this.CambiarTextoBotonGuardar("Aceptar");
             this.btnCancelar.Visible = false;
-                this.btnGuardar.Location = this.btnCancelar.Location;
-                this.btnGuardar.Select();
-            }
+            this.btnGuardar.Location = this.btnCancelar.Location;
+            this.btnGuardar.Select();
+        }
         /// <summary>
         /// Cambia la propiedad Visible de la barra de botones
         /// </summary>
@@ -1039,7 +1037,7 @@ namespace Orbita.Controles.VA
         /// <param name="sender">Objeto que envía el evento</param>
         /// <param name="e">Argumentos del evento</param>
         private void ChkToolTip_CheckedChanged(object sender, EventArgs e)
-        {    
+        {
             try
             {
                 this.toolTip.Active = ChkToolTip.Checked;

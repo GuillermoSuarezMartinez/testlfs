@@ -10,11 +10,9 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-using System.ComponentModel;
 using System.Windows.Forms;
-using Orbita.VA.Comun;
 using Orbita.Utiles;
-
+using Orbita.VA.Comun;
 namespace Orbita.Controles.VA
 {
     /// <summary>
@@ -26,7 +24,7 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Momento en el que se produjo el último refresco de las variables
         /// </summary>
-        DateTime MomentoUltimoRefresco; 
+        DateTime MomentoUltimoRefresco;
         #endregion
 
         #region Constructor(es)
@@ -43,7 +41,7 @@ namespace Orbita.Controles.VA
 
             this.ImageListSmall.Images.Add("imgContadorActivo", global::Orbita.Controles.VA.Properties.Resources.imgContadorActivo24);
             this.ImageListSmall.Images.Add("imgContadorInactivo", global::Orbita.Controles.VA.Properties.Resources.imgContadorInactivo24);
-        } 
+        }
         #endregion
 
         #region Método(s) heredado(s)
@@ -223,7 +221,7 @@ namespace Orbita.Controles.VA
         private void ListCronometros_MouseDoubleClick(object sender, MouseEventArgs e)
         {
         }
-        
+
         /// <summary>
         /// Timer de refresco del estado actual
         /// </summary>

@@ -10,10 +10,8 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-using System.Data;
-using Orbita.VA.Comun;
 using Orbita.Controles.Contenedores;
-
+using Orbita.VA.Comun;
 namespace Orbita.Controles.VA
 {
     /// <summary>
@@ -52,7 +50,7 @@ namespace Orbita.Controles.VA
         /// Constructor de la clase
         /// </summary>
         /// <param name="codigoCamara"></param>
-        public FrmDetalleVisor(string codigoCamara):
+        public FrmDetalleVisor(string codigoCamara) :
             this(codigoCamara, string.Empty, OrigenDatos.OrigenBBDD)
         {
         }

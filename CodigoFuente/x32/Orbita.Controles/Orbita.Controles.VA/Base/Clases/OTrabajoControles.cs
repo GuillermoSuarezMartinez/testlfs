@@ -19,13 +19,12 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 using Orbita.Controles.Combo;
-using Orbita.Controles.Grid;
 using Orbita.Controles.Comunes;
 using Orbita.Controles.Contenedores;
-using Orbita.Utiles;
 using Orbita.Controles.Editor;
+using Orbita.Controles.Grid;
+using Orbita.Utiles;
 using Orbita.VA.Comun;
-
 namespace Orbita.Controles.VA
 {
     #region Clase OTrabajoControles: Destinada a alojar métodos comnes para el trabajo con los controles
@@ -47,7 +46,7 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Gestor de anclas de los formularios
         /// </summary>
-        public static OrbitaUltraDockManager DockManager; 
+        public static OrbitaUltraDockManager DockManager;
         #endregion
 
         #region Método(s) estático(s)
@@ -261,7 +260,7 @@ namespace Orbita.Controles.VA
             // Desbloqueamos el grid
             grid.Grid.EndUpdate();
             grid.ResumeLayout();
-        }         
+        }
         /// <summary>
         /// Añade texto a un RichTextBox
         /// </summary>
@@ -456,7 +455,7 @@ namespace Orbita.Controles.VA
             return resultado;
         }
         #endregion
-    } 
+    }
     #endregion
 
     #region Clase EnumeracionCombo: Utilizada para visualizar en el componente OrbitaUltraCombo enumerados

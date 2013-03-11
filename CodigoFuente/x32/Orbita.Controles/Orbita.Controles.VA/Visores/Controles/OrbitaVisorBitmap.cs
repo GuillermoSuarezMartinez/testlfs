@@ -10,13 +10,12 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-using System.Drawing;
-using System.Windows.Forms;
 using System.ComponentModel;
+using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 using Orbita.VA.Comun;
 using Orbita.VA.Hardware;
-
 namespace Orbita.Controles.VA
 {
     /// <summary>
@@ -406,7 +405,7 @@ namespace Orbita.Controles.VA
         /// Color del grid de fondo
         /// </summary>
         [Browsable(true),
-        Category("Color del grid de fondo"), 
+        Category("Color del grid de fondo"),
         DefaultValue(typeof(Color), "Gainsboro")]
         public Color GridColor
         {
@@ -473,7 +472,7 @@ namespace Orbita.Controles.VA
             set { this.VisorImagenes.InterpolationMode = value; }
         }
 
-        [Browsable(true), 
+        [Browsable(true),
         Category("Behavior"),
         Description("Invertir el ratón"),
         DefaultValue(false)]
@@ -491,11 +490,11 @@ namespace Orbita.Controles.VA
         public override OImagen ImagenActual
         {
             get { return (OImagenBitmap)this._ImagenActual; }
-            set 
+            set
             {
                 if (value is OImagenBitmap)
                 {
-                    this._ImagenActual = value; 
+                    this._ImagenActual = value;
                 }
                 else if (value is OImagen)
                 {
@@ -673,7 +672,7 @@ namespace Orbita.Controles.VA
             this.PrimeraCarga = true;
             this.CurrentLocation = new Point();
             this.CurrentScrollPosition = new Point();
-        } 
+        }
         /// <summary>
         /// Constructor de la clase
         /// </summary>

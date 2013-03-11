@@ -13,10 +13,9 @@ using System;
 using System.Collections;
 using System.Data;
 using System.Windows.Forms;
+using Orbita.Controles.Grid;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
-using Orbita.Controles.Grid;
-
 namespace Orbita.Controles.VA
 {
     public partial class FrmGestionVariables : FrmBase
@@ -30,7 +29,7 @@ namespace Orbita.Controles.VA
             base()
         {
             InitializeComponent();
-        } 
+        }
         #endregion
 
         #region Método(s) heredado(s)
@@ -156,7 +155,7 @@ namespace Orbita.Controles.VA
             {
                 //Formateamos y cargamos el grid
                 ArrayList cols = new ArrayList();
-                cols.Add(new OEstiloColumna("CodVariable", "Código",150));
+                cols.Add(new OEstiloColumna("CodVariable", "Código", 150));
                 cols.Add(new OEstiloColumna("NombreVariable", "Nombre", 190));
                 cols.Add(new OEstiloColumna("DescVariable", "Descripción", 270));
                 cols.Add(new OEstiloColumna("HabilitadoVariable", "Habilitado", EstiloColumna.Check, Alineacion.Centrado, 80));
@@ -168,6 +167,5 @@ namespace Orbita.Controles.VA
             }
         }
         #endregion
-
     }
 }

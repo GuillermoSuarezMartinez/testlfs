@@ -37,6 +37,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPersonalizar));
             Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab3 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab4 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab5 = new Infragistics.Win.UltraWinTabControl.UltraTab();
@@ -55,7 +56,6 @@
             System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("General");
             System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Columnas agrupadas", new System.Windows.Forms.TreeNode[] {
             treeNode7});
-            Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
             this.orbitaTabPageControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.grpEntornoMostrar = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
             this.chbEntornoFilasVacias = new Orbita.Controles.Comunes.OrbitaUltraCheckEditor();
@@ -88,16 +88,16 @@
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.btnSubir = new Orbita.Controles.Comunes.OrbitaUltraButton();
             this.lblColumnaAgregarQuitar = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.orbitaTabPageControl5 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.orbitaPanel1 = new Orbita.Controles.Contenedores.OrbitaPanel();
+            this.lsvColumnasAgrupadas = new Orbita.Controles.Comunes.OrbitaListView();
+            this.orbitaUltraLabel2 = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.pnlFillPersonalizar = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.OrbitaUltraTabControl = new Orbita.Controles.Contenedores.OrbitaUltraTabControl();
             this.ultraTabSharedControlsPage1 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
             this.trvOpciones = new System.Windows.Forms.TreeView();
             this.pnlBottomPersonalizar = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.btnCancelar = new Orbita.Controles.Comunes.OrbitaUltraButton();
-            this.orbitaTabPageControl5 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
-            this.orbitaPanel1 = new Orbita.Controles.Contenedores.OrbitaPanel();
-            this.lsvColumnasAgrupadas = new Orbita.Controles.Comunes.OrbitaListView();
-            this.orbitaUltraLabel2 = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.orbitaTabPageControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grpEntornoMostrar)).BeginInit();
             this.grpEntornoMostrar.SuspendLayout();
@@ -126,12 +126,12 @@
             this.orbitaTabPageControl4.SuspendLayout();
             this.pnlListView.SuspendLayout();
             this.pnlMoverColumnas.SuspendLayout();
+            this.orbitaTabPageControl5.SuspendLayout();
+            this.orbitaPanel1.SuspendLayout();
             this.pnlFillPersonalizar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OrbitaUltraTabControl)).BeginInit();
             this.OrbitaUltraTabControl.SuspendLayout();
             this.pnlBottomPersonalizar.SuspendLayout();
-            this.orbitaTabPageControl5.SuspendLayout();
-            this.orbitaPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // orbitaTabPageControl1
@@ -139,7 +139,7 @@
             this.orbitaTabPageControl1.Controls.Add(this.grpEntornoMostrar);
             this.orbitaTabPageControl1.Location = new System.Drawing.Point(-10000, -10000);
             this.orbitaTabPageControl1.Name = "orbitaTabPageControl1";
-            this.orbitaTabPageControl1.Size = new System.Drawing.Size(396, 305);
+            this.orbitaTabPageControl1.Size = new System.Drawing.Size(375, 305);
             // 
             // grpEntornoMostrar
             // 
@@ -167,7 +167,7 @@
             this.orbitaTabPageControl2.Controls.Add(this.grpFilasConfiguracion);
             this.orbitaTabPageControl2.Location = new System.Drawing.Point(-10000, -10000);
             this.orbitaTabPageControl2.Name = "orbitaTabPageControl2";
-            this.orbitaTabPageControl2.Size = new System.Drawing.Size(396, 305);
+            this.orbitaTabPageControl2.Size = new System.Drawing.Size(375, 305);
             // 
             // grpFilasApariencia
             // 
@@ -244,9 +244,9 @@
             this.orbitaTabPageControl3.Controls.Add(this.grpColumnasAutoajustar);
             this.orbitaTabPageControl3.Controls.Add(this.lblColumnasMostrar);
             this.orbitaTabPageControl3.Controls.Add(this.grpColumnasMostrar);
-            this.orbitaTabPageControl3.Location = new System.Drawing.Point(-10000, -10000);
+            this.orbitaTabPageControl3.Location = new System.Drawing.Point(0, 0);
             this.orbitaTabPageControl3.Name = "orbitaTabPageControl3";
-            this.orbitaTabPageControl3.Size = new System.Drawing.Size(375, 305);
+            this.orbitaTabPageControl3.Size = new System.Drawing.Size(418, 305);
             // 
             // lblColumnasOperadores
             // 
@@ -480,6 +480,53 @@
             this.lblColumnaAgregarQuitar.Text = "Columnas:";
             this.lblColumnaAgregarQuitar.UseMnemonic = false;
             // 
+            // orbitaTabPageControl5
+            // 
+            this.orbitaTabPageControl5.Controls.Add(this.orbitaPanel1);
+            this.orbitaTabPageControl5.Location = new System.Drawing.Point(-10000, -10000);
+            this.orbitaTabPageControl5.Name = "orbitaTabPageControl5";
+            this.orbitaTabPageControl5.Size = new System.Drawing.Size(375, 305);
+            // 
+            // orbitaPanel1
+            // 
+            this.orbitaPanel1.Controls.Add(this.lsvColumnasAgrupadas);
+            this.orbitaPanel1.Controls.Add(this.orbitaUltraLabel2);
+            this.orbitaPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.orbitaPanel1.Location = new System.Drawing.Point(0, 0);
+            this.orbitaPanel1.Name = "orbitaPanel1";
+            this.orbitaPanel1.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
+            this.orbitaPanel1.Size = new System.Drawing.Size(375, 305);
+            this.orbitaPanel1.TabIndex = 18;
+            // 
+            // lsvColumnasAgrupadas
+            // 
+            this.lsvColumnasAgrupadas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lsvColumnasAgrupadas.CheckBoxes = true;
+            this.lsvColumnasAgrupadas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsvColumnasAgrupadas.FullRowSelect = true;
+            this.lsvColumnasAgrupadas.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lsvColumnasAgrupadas.HideSelection = false;
+            this.lsvColumnasAgrupadas.Location = new System.Drawing.Point(6, 19);
+            this.lsvColumnasAgrupadas.MultiSelect = false;
+            this.lsvColumnasAgrupadas.Name = "lsvColumnasAgrupadas";
+            this.lsvColumnasAgrupadas.Size = new System.Drawing.Size(369, 286);
+            this.lsvColumnasAgrupadas.TabIndex = 15;
+            this.lsvColumnasAgrupadas.UseCompatibleStateImageBehavior = false;
+            this.lsvColumnasAgrupadas.View = System.Windows.Forms.View.Details;
+            // 
+            // orbitaUltraLabel2
+            // 
+            appearance8.TextVAlignAsString = "Middle";
+            this.orbitaUltraLabel2.Appearance = appearance8;
+            this.orbitaUltraLabel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.orbitaUltraLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.orbitaUltraLabel2.Location = new System.Drawing.Point(6, 0);
+            this.orbitaUltraLabel2.Name = "orbitaUltraLabel2";
+            this.orbitaUltraLabel2.Size = new System.Drawing.Size(369, 19);
+            this.orbitaUltraLabel2.TabIndex = 16;
+            this.orbitaUltraLabel2.Text = "Columnas agrupadas:";
+            this.orbitaUltraLabel2.UseMnemonic = false;
+            // 
             // pnlFillPersonalizar
             // 
             this.pnlFillPersonalizar.Controls.Add(this.OrbitaUltraTabControl);
@@ -487,7 +534,7 @@
             this.pnlFillPersonalizar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlFillPersonalizar.Location = new System.Drawing.Point(5, 5);
             this.pnlFillPersonalizar.Name = "pnlFillPersonalizar";
-            this.pnlFillPersonalizar.Size = new System.Drawing.Size(554, 305);
+            this.pnlFillPersonalizar.Size = new System.Drawing.Size(597, 305);
             this.pnlFillPersonalizar.TabIndex = 16;
             // 
             // OrbitaUltraTabControl
@@ -502,7 +549,7 @@
             this.OrbitaUltraTabControl.Location = new System.Drawing.Point(179, 0);
             this.OrbitaUltraTabControl.Name = "OrbitaUltraTabControl";
             this.OrbitaUltraTabControl.SharedControlsPage = this.ultraTabSharedControlsPage1;
-            this.OrbitaUltraTabControl.Size = new System.Drawing.Size(375, 305);
+            this.OrbitaUltraTabControl.Size = new System.Drawing.Size(418, 305);
             this.OrbitaUltraTabControl.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.Wizard;
             this.OrbitaUltraTabControl.TabIndex = 2;
             ultraTab3.TabPage = this.orbitaTabPageControl1;
@@ -526,7 +573,7 @@
             // 
             this.ultraTabSharedControlsPage1.Location = new System.Drawing.Point(-10000, -10000);
             this.ultraTabSharedControlsPage1.Name = "ultraTabSharedControlsPage1";
-            this.ultraTabSharedControlsPage1.Size = new System.Drawing.Size(375, 305);
+            this.ultraTabSharedControlsPage1.Size = new System.Drawing.Size(418, 305);
             // 
             // trvOpciones
             // 
@@ -574,7 +621,7 @@
             this.pnlBottomPersonalizar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlBottomPersonalizar.Location = new System.Drawing.Point(5, 310);
             this.pnlBottomPersonalizar.Name = "pnlBottomPersonalizar";
-            this.pnlBottomPersonalizar.Size = new System.Drawing.Size(554, 35);
+            this.pnlBottomPersonalizar.Size = new System.Drawing.Size(597, 35);
             this.pnlBottomPersonalizar.TabIndex = 15;
             // 
             // btnCancelar
@@ -582,64 +629,17 @@
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Empty;
-            this.btnCancelar.Location = new System.Drawing.Point(491, 7);
+            this.btnCancelar.Location = new System.Drawing.Point(534, 7);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(63, 27);
             this.btnCancelar.TabIndex = 12;
             this.btnCancelar.Text = "&Cerrar";
             // 
-            // orbitaTabPageControl5
-            // 
-            this.orbitaTabPageControl5.Controls.Add(this.orbitaPanel1);
-            this.orbitaTabPageControl5.Location = new System.Drawing.Point(0, 0);
-            this.orbitaTabPageControl5.Name = "orbitaTabPageControl5";
-            this.orbitaTabPageControl5.Size = new System.Drawing.Size(375, 305);
-            // 
-            // orbitaPanel1
-            // 
-            this.orbitaPanel1.Controls.Add(this.lsvColumnasAgrupadas);
-            this.orbitaPanel1.Controls.Add(this.orbitaUltraLabel2);
-            this.orbitaPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.orbitaPanel1.Location = new System.Drawing.Point(0, 0);
-            this.orbitaPanel1.Name = "orbitaPanel1";
-            this.orbitaPanel1.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
-            this.orbitaPanel1.Size = new System.Drawing.Size(375, 305);
-            this.orbitaPanel1.TabIndex = 18;
-            // 
-            // lsvColumnasAgrupadas
-            // 
-            this.lsvColumnasAgrupadas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lsvColumnasAgrupadas.CheckBoxes = true;
-            this.lsvColumnasAgrupadas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lsvColumnasAgrupadas.FullRowSelect = true;
-            this.lsvColumnasAgrupadas.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lsvColumnasAgrupadas.HideSelection = false;
-            this.lsvColumnasAgrupadas.Location = new System.Drawing.Point(6, 19);
-            this.lsvColumnasAgrupadas.MultiSelect = false;
-            this.lsvColumnasAgrupadas.Name = "lsvColumnasAgrupadas";
-            this.lsvColumnasAgrupadas.Size = new System.Drawing.Size(369, 286);
-            this.lsvColumnasAgrupadas.TabIndex = 15;
-            this.lsvColumnasAgrupadas.UseCompatibleStateImageBehavior = false;
-            this.lsvColumnasAgrupadas.View = System.Windows.Forms.View.Details;
-            // 
-            // orbitaUltraLabel2
-            // 
-            appearance8.TextVAlignAsString = "Middle";
-            this.orbitaUltraLabel2.Appearance = appearance8;
-            this.orbitaUltraLabel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.orbitaUltraLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.orbitaUltraLabel2.Location = new System.Drawing.Point(6, 0);
-            this.orbitaUltraLabel2.Name = "orbitaUltraLabel2";
-            this.orbitaUltraLabel2.Size = new System.Drawing.Size(369, 19);
-            this.orbitaUltraLabel2.TabIndex = 16;
-            this.orbitaUltraLabel2.Text = "Columnas agrupadas:";
-            this.orbitaUltraLabel2.UseMnemonic = false;
-            // 
             // FrmPersonalizar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(564, 350);
+            this.ClientSize = new System.Drawing.Size(607, 350);
             this.Controls.Add(this.pnlFillPersonalizar);
             this.Controls.Add(this.pnlBottomPersonalizar);
             this.MaximizeBox = false;
@@ -682,12 +682,12 @@
             this.orbitaTabPageControl4.ResumeLayout(false);
             this.pnlListView.ResumeLayout(false);
             this.pnlMoverColumnas.ResumeLayout(false);
+            this.orbitaTabPageControl5.ResumeLayout(false);
+            this.orbitaPanel1.ResumeLayout(false);
             this.pnlFillPersonalizar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.OrbitaUltraTabControl)).EndInit();
             this.OrbitaUltraTabControl.ResumeLayout(false);
             this.pnlBottomPersonalizar.ResumeLayout(false);
-            this.orbitaTabPageControl5.ResumeLayout(false);
-            this.orbitaPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

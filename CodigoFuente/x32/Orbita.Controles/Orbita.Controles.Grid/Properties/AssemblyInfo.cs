@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // La información general sobre un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos atributos para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("Orbita.Controles.OrbitaGrid")]
+[assembly: AssemblyTitle("Orbita.Controles.Grid")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("Orbita.Controles.OrbitaGrid")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2012")]
+[assembly: AssemblyCompany("Órbita Ingeniería")]
+[assembly: AssemblyProduct("Orbita.Controles.Grid")]
+[assembly: AssemblyCopyright("Copyright © Orbita Ingenieria 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliantAttribute(false)]
@@ -35,5 +35,5 @@ using System.Runtime.InteropServices;
 // Puede especificar todos los valores o establecer como predeterminados los números de versión de compilación y de revisión 
 // mediante el asterisco ('*'), como se muestra a continuación:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("13.68.5.1")]
-[assembly: AssemblyFileVersion("13.68.5.1")]
+[assembly: AssemblyVersion("13.70.5.1")]
+[assembly: AssemblyFileVersion("13.70.5.1")]
