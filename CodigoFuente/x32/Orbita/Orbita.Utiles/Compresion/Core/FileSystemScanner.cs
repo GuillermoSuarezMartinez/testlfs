@@ -32,10 +32,7 @@
 // this exception to your version of the library, but you are not
 // obligated to do so.  If you do not wish to do so, delete this
 // exception statement from your version.
-
-
 using System;
-
 namespace Orbita.Utiles.Compresion.Core
 {
     #region EventArgs
@@ -62,7 +59,6 @@ namespace Orbita.Utiles.Compresion.Core
         {
             get { return name_; }
         }
-
         /// <summary>
         /// Get set a value indicating if scanning should continue or not.
         /// </summary>
@@ -218,7 +214,6 @@ namespace Orbita.Utiles.Compresion.Core
         {
             get { return name_; }
         }
-
         /// <summary>
         /// The applicable exception.
         /// </summary>
@@ -226,7 +221,6 @@ namespace Orbita.Utiles.Compresion.Core
         {
             get { return exception_; }
         }
-
         /// <summary>
         /// Get / set a value indicating wether scanning should continue.
         /// </summary>
@@ -250,35 +244,30 @@ namespace Orbita.Utiles.Compresion.Core
     /// Delegate invoked before starting to process a directory.
     /// </summary>
     public delegate void ProcessDirectoryHandler(object sender, DirectoryEventArgs e);
-
     /// <summary>
     /// Delegate invoked before starting to process a file.
     /// </summary>
     /// <param name="sender">The source of the event</param>
     /// <param name="e">The event arguments.</param>
     public delegate void ProcessFileHandler(object sender, ScanEventArgs e);
-
     /// <summary>
     /// Delegate invoked during processing of a file or directory
     /// </summary>
     /// <param name="sender">The source of the event</param>
     /// <param name="e">The event arguments.</param>
     public delegate void ProgressHandler(object sender, ProgressEventArgs e);
-
     /// <summary>
     /// Delegate invoked when a file has been completely processed.
     /// </summary>
     /// <param name="sender">The source of the event</param>
     /// <param name="e">The event arguments.</param>
     public delegate void CompletedFileHandler(object sender, ScanEventArgs e);
-
     /// <summary>
     /// Delegate invoked when a directory failure is detected.
     /// </summary>
     /// <param name="sender">The source of the event</param>
     /// <param name="e">The event arguments.</param>
     public delegate void DirectoryFailureHandler(object sender, ScanFailureEventArgs e);
-
     /// <summary>
     /// Delegate invoked when a file failure is detected.
     /// </summary>
@@ -301,7 +290,6 @@ namespace Orbita.Utiles.Compresion.Core
         {
             fileFilter_ = new PathFilter(filter);
         }
-
         /// <summary>
         /// Initialise a new instance of <see cref="FileSystemScanner"></see>
         /// </summary>
@@ -312,7 +300,6 @@ namespace Orbita.Utiles.Compresion.Core
             fileFilter_ = new PathFilter(fileFilter);
             directoryFilter_ = new PathFilter(directoryFilter);
         }
-
         /// <summary>
         /// Initialise a new instance of <see cref="FileSystemScanner"></see>
         /// </summary>
@@ -321,7 +308,6 @@ namespace Orbita.Utiles.Compresion.Core
         {
             fileFilter_ = fileFilter;
         }
-
         /// <summary>
         /// Initialise a new instance of <see cref="FileSystemScanner"></see>
         /// </summary>
@@ -378,7 +364,6 @@ namespace Orbita.Utiles.Compresion.Core
             }
             return result;
         }
-
         /// <summary>
         /// Raise the FileFailure event.
         /// </summary>
@@ -398,7 +383,6 @@ namespace Orbita.Utiles.Compresion.Core
             }
             return result;
         }
-
         /// <summary>
         /// Raise the ProcessFile event.
         /// </summary>
@@ -414,7 +398,6 @@ namespace Orbita.Utiles.Compresion.Core
                 alive_ = args.ContinueRunning;
             }
         }
-
         /// <summary>
         /// Raise the complete file event
         /// </summary>
@@ -430,7 +413,6 @@ namespace Orbita.Utiles.Compresion.Core
                 alive_ = args.ContinueRunning;
             }
         }
-
         /// <summary>
         /// Raise the ProcessDirectory event.
         /// </summary>
@@ -447,7 +429,6 @@ namespace Orbita.Utiles.Compresion.Core
                 alive_ = args.ContinueRunning;
             }
         }
-
         /// <summary>
         /// Scan a directory.
         /// </summary>

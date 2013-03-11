@@ -35,9 +35,7 @@
 // this exception to your version of the library, but you are not
 // obligated to do so.  If you do not wish to do so, delete this
 // exception statement from your version.
-
 using System;
-
 namespace Orbita.Utiles.Compresion.Checksums
 {
     /// <summary>
@@ -111,9 +109,7 @@ namespace Orbita.Utiles.Compresion.Checksums
 			0xafb010b1, 0xab710d06, 0xa6322bdf, 0xa2f33668,
 			0xbcb4666d, 0xb8757bda, 0xb5365d03, 0xb1f740b4
 		};
-
         int globalCrc;
-
         /// <summary>
         /// Initialise a default instance of <see cref="StrangeCRC"></see>
         /// </summary>	
@@ -121,7 +117,6 @@ namespace Orbita.Utiles.Compresion.Checksums
         {
             Reset();
         }
-
         /// <summary>
         /// Reset the state of Crc.
         /// </summary>
@@ -129,7 +124,6 @@ namespace Orbita.Utiles.Compresion.Checksums
         {
             globalCrc = -1;
         }
-
         /// <summary>
         /// Get the current Crc value.
         /// </summary>
@@ -140,7 +134,6 @@ namespace Orbita.Utiles.Compresion.Checksums
                 return ~globalCrc;
             }
         }
-
         /// <summary>
         /// Update the Crc value.
         /// </summary>
@@ -154,7 +147,6 @@ namespace Orbita.Utiles.Compresion.Checksums
             }
             globalCrc = unchecked((int)((globalCrc << 8) ^ crc32Table[temp]));
         }
-
         /// <summary>
         /// Update Crc based on a block of data
         /// </summary>
@@ -168,7 +160,6 @@ namespace Orbita.Utiles.Compresion.Checksums
 
             Update(buffer, 0, buffer.Length);
         }
-
         /// <summary>
         /// Update Crc based on a portion of a block of data
         /// </summary>

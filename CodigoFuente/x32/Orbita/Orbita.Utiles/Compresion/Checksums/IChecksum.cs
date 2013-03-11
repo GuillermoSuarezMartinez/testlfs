@@ -34,10 +34,8 @@
 // this exception to your version of the library, but you are not
 // obligated to do so.  If you do not wish to do so, delete this
 // exception statement from your version.
-
 namespace Orbita.Utiles.Compresion.Checksums
 {
-
     /// <summary>
     /// Interface to compute a data checksum used by checked input/output streams.
     /// A data checksum can be updated by one byte or with a byte array. After each
@@ -54,12 +52,10 @@ namespace Orbita.Utiles.Compresion.Checksums
         {
             get;
         }
-
         /// <summary>
         /// Resets the data checksum as if no update was ever called.
         /// </summary>
         void Reset();
-
         /// <summary>
         /// Adds one byte to the data checksum.
         /// </summary>
@@ -67,7 +63,6 @@ namespace Orbita.Utiles.Compresion.Checksums
         /// the data value to add. The high byte of the int is ignored.
         /// </param>
         void Update(int value);
-
         /// <summary>
         /// Updates the data checksum with the bytes taken from the array.
         /// </summary>
@@ -75,7 +70,6 @@ namespace Orbita.Utiles.Compresion.Checksums
         /// buffer an array of bytes
         /// </param>
         void Update(byte[] buffer);
-
         /// <summary>
         /// Adds the byte array to the data checksum.
         /// </summary>

@@ -32,7 +32,6 @@
 // this exception to your version of the library, but you are not
 // obligated to do so.  If you do not wish to do so, delete this
 // exception statement from your version.
-
 namespace Orbita.Utiles.Compresion.Core
 {
     /// <summary>
@@ -46,7 +45,6 @@ namespace Orbita.Utiles.Compresion.Core
         /// <param name="name">The name to transform.</param>
         /// <returns>The transformed file name.</returns>
         string TransformFile(string name);
-
         /// <summary>
         /// Given a directory name determine the transformed value.
         /// </summary>

@@ -32,14 +32,12 @@
 // this exception to your version of the library, but you are not
 // obligated to do so.  If you do not wish to do so, delete this
 // exception statement from your version.
-
 using System;
 using Orbita.Utiles.Compresion.Core;
 
 #if !NETCF_1_0 && !NETCF_2_0
 using System.Runtime.Serialization;
 #endif
-
 namespace Orbita.Utiles.Compresion.BZip2
 {
     /// <summary>
@@ -50,7 +48,6 @@ namespace Orbita.Utiles.Compresion.BZip2
 #endif
     public class BZip2Exception : OCompresionFicherosExcepcionBase
     {
-
 #if !NETCF_1_0 && !NETCF_2_0
         /// <summary>
         /// Deserialization constructor 
@@ -58,34 +55,24 @@ namespace Orbita.Utiles.Compresion.BZip2
         /// <param name="info"><see cref="SerializationInfo"/> for this constructor</param>
         /// <param name="context"><see cref="StreamingContext"/> for this constructor</param>
         protected BZip2Exception(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
+            : base(info, context) { }
 #endif
         /// <summary>
         /// Initialise a new instance of BZip2Exception.
         /// </summary>
-        public BZip2Exception()
-        {
-        }
-
+        public BZip2Exception() { }
         /// <summary>
         /// Initialise a new instance of BZip2Exception with its message set to message.
         /// </summary>
         /// <param name="message">The message describing the error.</param>
         public BZip2Exception(string message)
-            : base(message)
-        {
-        }
-
+            : base(message) { }
         /// <summary>
         /// Initialise an instance of BZip2Exception
         /// </summary>
         /// <param name="message">A message describing the error.</param>
         /// <param name="exception">The exception that is the cause of the current exception.</param>
         public BZip2Exception(string message, Exception exception)
-            : base(message, exception)
-        {
-        }
+            : base(message, exception) { }
     }
 }

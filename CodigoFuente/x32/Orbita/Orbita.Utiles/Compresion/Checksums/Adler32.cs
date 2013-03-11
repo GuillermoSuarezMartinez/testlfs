@@ -34,7 +34,6 @@
 // this exception to your version of the library, but you are not
 // obligated to do so.  If you do not wish to do so, delete this
 // exception statement from your version.
-
 using System;
 namespace Orbita.Utiles.Compresion.Checksums
 {
@@ -90,7 +89,6 @@ namespace Orbita.Utiles.Compresion.Checksums
         /// largest prime smaller than 65536
         /// </summary>
         const uint BASE = 65521;
-
         /// <summary>
         /// Returns the Adler32 data checksum computed so far.
         /// </summary>
@@ -101,7 +99,6 @@ namespace Orbita.Utiles.Compresion.Checksums
                 return checksum;
             }
         }
-
         /// <summary>
         /// Creates a new instance of the Adler32 class.
         /// The checksum starts off with a value of 1.
@@ -110,7 +107,6 @@ namespace Orbita.Utiles.Compresion.Checksums
         {
             Reset();
         }
-
         /// <summary>
         /// Resets the Adler32 checksum to the initial value.
         /// </summary>
@@ -118,7 +114,6 @@ namespace Orbita.Utiles.Compresion.Checksums
         {
             checksum = 1;
         }
-
         /// <summary>
         /// Updates the checksum with a byte value.
         /// </summary>
@@ -137,7 +132,6 @@ namespace Orbita.Utiles.Compresion.Checksums
 
             checksum = (s2 << 16) + s1;
         }
-
         /// <summary>
         /// Updates the checksum with an array of bytes.
         /// </summary>
@@ -153,7 +147,6 @@ namespace Orbita.Utiles.Compresion.Checksums
 
             Update(buffer, 0, buffer.Length);
         }
-
         /// <summary>
         /// Updates the checksum with the bytes taken from the array.
         /// </summary>

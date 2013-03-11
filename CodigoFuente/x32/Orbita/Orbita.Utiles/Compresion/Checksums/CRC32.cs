@@ -34,12 +34,9 @@
 // this exception to your version of the library, but you are not
 // obligated to do so.  If you do not wish to do so, delete this
 // exception statement from your version.
-
 using System;
-
 namespace Orbita.Utiles.Compresion.Checksums
 {
-
     /// <summary>
     /// Generate a table for a byte-wise 32-bit CRC calculation on the polynomial:
     /// x^32+x^26+x^23+x^22+x^16+x^12+x^11+x^10+x^8+x^7+x^5+x^4+x^2+x+1.
@@ -122,17 +119,14 @@ namespace Orbita.Utiles.Compresion.Checksums
 			0x5D681B02, 0x2A6F2B94, 0xB40BBE37, 0xC30C8EA1, 0x5A05DF1B,
 			0x2D02EF8D
 		};
-
         internal static uint ComputeCrc32(uint oldCrc, byte value)
         {
             return (uint)(Crc32.CrcTable[(oldCrc ^ value) & 0xFF] ^ (oldCrc >> 8));
         }
-
         /// <summary>
         /// The crc data checksum so far.
         /// </summary>
         uint crc;
-
         /// <summary>
         /// Returns the CRC32 data checksum computed so far.
         /// </summary>
@@ -147,7 +141,6 @@ namespace Orbita.Utiles.Compresion.Checksums
                 crc = (uint)value;
             }
         }
-
         /// <summary>
         /// Resets the CRC32 data checksum as if no update was ever called.
         /// </summary>
@@ -155,7 +148,6 @@ namespace Orbita.Utiles.Compresion.Checksums
         {
             crc = 0;
         }
-
         /// <summary>
         /// Updates the checksum with the int bval.
         /// </summary>
@@ -168,7 +160,6 @@ namespace Orbita.Utiles.Compresion.Checksums
             crc = CrcTable[(crc ^ value) & 0xFF] ^ (crc >> 8);
             crc ^= CrcSeed;
         }
-
         /// <summary>
         /// Updates the checksum with the bytes taken from the array.
         /// </summary>
@@ -184,7 +175,6 @@ namespace Orbita.Utiles.Compresion.Checksums
 
             Update(buffer, 0, buffer.Length);
         }
-
         /// <summary>
         /// Adds the byte array to the data checksum.
         /// </summary>

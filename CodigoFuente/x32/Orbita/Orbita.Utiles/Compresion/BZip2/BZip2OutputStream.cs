@@ -32,15 +32,12 @@
 // this exception to your version of the library, but you are not
 // obligated to do so.  If you do not wish to do so, delete this
 // exception statement from your version.
-
 using System;
 using System.IO;
 using Orbita.Utiles.Compresion.Checksums;
 namespace Orbita.Utiles.Compresion.BZip2
 {
-
     // TODO: Update to BZip2 1.0.1, 1.0.2
-
     /// <summary>
     /// An output stream that compresses into the BZip2 format 
     /// including file header chars into another stream.
@@ -54,7 +51,6 @@ namespace Orbita.Utiles.Compresion.BZip2
         const int LESSER_ICOST = 0;
         const int SMALL_THRESH = 20;
         const int DEPTH_THRESH = 10;
-
         /*--
         If you are ever unlucky/improbable enough
         to get a stack overflow whilst sorting,
@@ -64,7 +60,6 @@ namespace Orbita.Utiles.Compresion.BZip2
         limit seems very generous.
         --*/
         const int QSORT_STACK_SIZE = 1000;
-
         /*--
         Knuth's increments seem to work better
         than Incerpi-Sedgewick here.  Possibly
@@ -87,7 +82,6 @@ namespace Orbita.Utiles.Compresion.BZip2
             : this(stream, 9)
         {
         }
-
         /// <summary>
         /// Initialise a new instance of the <see cref="BZip2OutputStream"></see> 
         /// for the specified stream, using the given blocksize.
@@ -101,13 +95,11 @@ namespace Orbita.Utiles.Compresion.BZip2
         public BZip2OutputStream(Stream stream, int blockSize)
         {
             BsSetStream(stream);
-
             workFactor = 50;
             if (blockSize > 9)
             {
                 blockSize = 9;
             }
-
             if (blockSize < 1)
             {
                 blockSize = 1;
@@ -139,8 +131,6 @@ namespace Orbita.Utiles.Compresion.BZip2
             get { return isStreamOwner; }
             set { isStreamOwner = value; }
         }
-
-
         #region Stream overrides
         /// <summary>
         /// Gets a value indicating whether the current stream supports reading
@@ -152,7 +142,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 return false;
             }
         }
-
         /// <summary>
         /// Gets a value indicating whether the current stream supports seeking
         /// </summary>
@@ -163,7 +152,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 return false;
             }
         }
-
         /// <summary>
         /// Gets a value indicating whether the current stream supports writing
         /// </summary>
@@ -174,7 +162,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 return baseStream.CanWrite;
             }
         }
-
         /// <summary>
         /// Gets the length in bytes of the stream
         /// </summary>
@@ -185,7 +172,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 return baseStream.Length;
             }
         }
-
         /// <summary>
         /// Gets or sets the current position of this stream.
         /// </summary>
@@ -200,7 +186,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 throw new NotSupportedException("BZip2OutputStream position cannot be set");
             }
         }
-
         /// <summary>
         /// Sets the current position of this stream to the given value.
         /// </summary>
@@ -211,7 +196,6 @@ namespace Orbita.Utiles.Compresion.BZip2
         {
             throw new NotSupportedException("BZip2OutputStream Seek not supported");
         }
-
         /// <summary>
         /// Sets the length of this stream to the given value.
         /// </summary>
@@ -220,7 +204,6 @@ namespace Orbita.Utiles.Compresion.BZip2
         {
             throw new NotSupportedException("BZip2OutputStream SetLength not supported");
         }
-
         /// <summary>
         /// Read a byte from the stream advancing the position.
         /// </summary>
@@ -229,7 +212,6 @@ namespace Orbita.Utiles.Compresion.BZip2
         {
             throw new NotSupportedException("BZip2OutputStream ReadByte not supported");
         }
-
         /// <summary>
         /// Read a block of bytes
         /// </summary>
@@ -243,7 +225,6 @@ namespace Orbita.Utiles.Compresion.BZip2
         {
             throw new NotSupportedException("BZip2OutputStream Read not supported");
         }
-
         /// <summary>
         /// Write a block of bytes to the stream
         /// </summary>
@@ -277,7 +258,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 WriteByte(buffer[offset + i]);
             }
         }
-
         /// <summary>
         /// Write a byte to the stream.
         /// </summary>
@@ -310,7 +290,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 runLength++;
             }
         }
-
         /// <summary>
         /// End the current block and end compression.
         /// Close the stream and free any resources
@@ -320,7 +299,6 @@ namespace Orbita.Utiles.Compresion.BZip2
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
         #endregion
         void MakeMaps()
         {
@@ -335,7 +313,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 }
             }
         }
-
         /// <summary>
         /// Get the number of bytes written to output.
         /// </summary>
@@ -391,7 +368,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 WriteRun();
             }
         }
-
         /// <summary>
         /// Get the number of bytes written to the output.
         /// </summary>
@@ -399,7 +375,6 @@ namespace Orbita.Utiles.Compresion.BZip2
         {
             get { return bytesOut; }
         }
-
         /// <summary>
         /// Releases the unmanaged resources used by the <see cref="BZip2OutputStream"/> and optionally releases the managed resources.
         /// </summary>
@@ -449,7 +424,6 @@ namespace Orbita.Utiles.Compresion.BZip2
         {
             baseStream.Flush();
         }
-
         void Initialize()
         {
             bytesOut = 0;
@@ -467,7 +441,6 @@ namespace Orbita.Utiles.Compresion.BZip2
 
             combinedCRC = 0;
         }
-
         void InitBlock()
         {
             mCrc.Reset();
@@ -481,7 +454,6 @@ namespace Orbita.Utiles.Compresion.BZip2
             /*--- 20 is just a paranoia constant ---*/
             allowableBlockSize = BZip2Constants.BaseBlockSize * blockSize100k - 20;
         }
-
         void EndBlock()
         {
             if (last < 0)
@@ -536,7 +508,6 @@ namespace Orbita.Utiles.Compresion.BZip2
             /*-- Finally, block's contents proper. --*/
             MoveToFrontCodeAndSend();
         }
-
         void EndCompression()
         {
             /*--
@@ -560,7 +531,6 @@ namespace Orbita.Utiles.Compresion.BZip2
 
             BsFinishedWithStream();
         }
-
         void BsSetStream(Stream stream)
         {
             baseStream = stream;
@@ -568,7 +538,6 @@ namespace Orbita.Utiles.Compresion.BZip2
             bsBuff = 0;
             bytesOut = 0;
         }
-
         void BsFinishedWithStream()
         {
             while (bsLive > 0)
@@ -580,7 +549,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 bytesOut++;
             }
         }
-
         void BsW(int n, int v)
         {
             while (bsLive >= 8)
@@ -594,12 +562,10 @@ namespace Orbita.Utiles.Compresion.BZip2
             bsBuff |= (v << (32 - bsLive - n));
             bsLive += n;
         }
-
         void BsPutUChar(int c)
         {
             BsW(8, c);
         }
-
         void BsPutint(int u)
         {
             BsW(8, (u >> 24) & 0xFF);
@@ -607,12 +573,10 @@ namespace Orbita.Utiles.Compresion.BZip2
             BsW(8, (u >> 8) & 0xFF);
             BsW(8, u & 0xFF);
         }
-
         void BsPutIntVS(int numBits, int c)
         {
             BsW(numBits, c);
         }
-
         void SendMTFValues()
         {
             char[][] len = new char[BZip2Constants.GroupCount][];
@@ -1000,14 +964,12 @@ namespace Orbita.Utiles.Compresion.BZip2
                 Panic();
             }
         }
-
         void MoveToFrontCodeAndSend()
         {
             BsPutIntVS(24, origPtr);
             GenerateMTFValues();
             SendMTFValues();
         }
-
         void SimpleSort(int lo, int hi, int d)
         {
             int i, j, h, bigN, hp;
@@ -1093,7 +1055,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 }
             }
         }
-
         void Vswap(int p1, int p2, int n)
         {
             int temp = 0;
@@ -1107,7 +1068,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 n--;
             }
         }
-
         void QSort3(int loSt, int hiSt, int dSt)
         {
             int unLo, unHi, ltLo, gtHi, med, n, m;
@@ -1246,7 +1206,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 sp++;
             }
         }
-
         void MainSort()
         {
             int i, j, ss, sb;
@@ -1466,7 +1425,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 }
             }
         }
-
         void RandomiseBlock()
         {
             int i;
@@ -1496,7 +1454,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 inUse[block[i + 1]] = true;
             }
         }
-
         void DoReversibleTransformation()
         {
             workLimit = workFactor * last;
@@ -1530,7 +1487,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 Panic();
             }
         }
-
         bool FullGtU(int i1, int i2)
         {
             int k;
@@ -1672,7 +1628,6 @@ namespace Orbita.Utiles.Compresion.BZip2
 
             return false;
         }
-
         void AllocateCompressStructures()
         {
             int n = BZip2Constants.BaseBlockSize * blockSize100k;
@@ -1702,7 +1657,6 @@ namespace Orbita.Utiles.Compresion.BZip2
 
             szptr = new short[2 * n];
         }
-
         void GenerateMTFValues()
         {
             char[] yy = new char[256];
@@ -1816,12 +1770,10 @@ namespace Orbita.Utiles.Compresion.BZip2
 
             nMTF = wr;
         }
-
         static void Panic()
         {
             throw new BZip2Exception("BZip2 output stream panic");
         }
-
         static void HbMakeCodeLengths(char[] len, int[] freq, int alphaSize, int maxLen)
         {
             /*--
@@ -1976,7 +1928,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 }
             }
         }
-
         static void HbAssignCodes(int[] code, char[] length, int minLen, int maxLen, int alphaSize)
         {
             int vec = 0;
@@ -1993,7 +1944,6 @@ namespace Orbita.Utiles.Compresion.BZip2
                 vec <<= 1;
             }
         }
-
         static byte Med3(byte a, byte b, byte c)
         {
             byte t;
@@ -2015,60 +1965,46 @@ namespace Orbita.Utiles.Compresion.BZip2
             }
             return b;
         }
-
         struct StackElement
         {
             public int ll;
             public int hh;
             public int dd;
         }
-
         #region Instance Fields
         bool isStreamOwner = true;
-
         /*--
         index of the last char in the block, so
         the block size == last + 1.
         --*/
         int last;
-
         /*--
         index in zptr[] of original string after sorting.
         --*/
         int origPtr;
-
         /*--
         always: in the range 0 .. 9.
         The current block size is 100000 * this number.
         --*/
         int blockSize100k;
-
         bool blockRandomised;
-
         int bytesOut;
         int bsBuff;
         int bsLive;
         IChecksum mCrc = new StrangeCRC();
-
         bool[] inUse = new bool[256];
         int nInUse;
-
         char[] seqToUnseq = new char[256];
         char[] unseqToSeq = new char[256];
-
         char[] selector = new char[BZip2Constants.MaximumSelectors];
         char[] selectorMtf = new char[BZip2Constants.MaximumSelectors];
-
         byte[] block;
         int[] quadrant;
         int[] zptr;
         short[] szptr;
         int[] ftab;
-
         int nMTF;
-
         int[] mtfFreq = new int[BZip2Constants.MaximumAlphaSize];
-
         /*
         * Used when sorting.  If too many long comparisons
         * happen, we stop sorting, randomise the block
@@ -2079,7 +2015,6 @@ namespace Orbita.Utiles.Compresion.BZip2
         int workLimit;
         bool firstAttempt;
         int nBlocksRandomised;
-
         int currentChar = -1;
         int runLength;
         uint blockCRC, combinedCRC;
@@ -2089,7 +2024,6 @@ namespace Orbita.Utiles.Compresion.BZip2
         #endregion
     }
 }
-
 /* This file was derived from a file containing this license:
  * 
  * This file is a part of bzip2 and/or libbzip2, a program and

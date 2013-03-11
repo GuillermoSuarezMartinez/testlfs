@@ -35,12 +35,10 @@
 
 // HISTORY
 //	2010-03-03	Z-1654	Fixed bug where escape characters were excluded in SplitQuoted()
-
 using System;
 using System.Collections;
 using System.Text;
 using System.Text.RegularExpressions;
-
 namespace Orbita.Utiles.Compresion.Core
 {
     /// <summary>
