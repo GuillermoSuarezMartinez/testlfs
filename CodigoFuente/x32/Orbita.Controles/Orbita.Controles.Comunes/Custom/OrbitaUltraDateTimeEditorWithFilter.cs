@@ -89,7 +89,7 @@ namespace Orbita.Controles.Comunes
             {
                 System.DateTime fechaAux = desdeAux;
                 this.dttDesde.Value = hastaAux;
-                this.dttHasta.Value = fechaAux;            
+                this.dttHasta.Value = fechaAux;
             }
         }
         #endregion

@@ -184,7 +184,7 @@ namespace Orbita.Controles.Comunes
             {
                 this.CompruebaAnyos();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }

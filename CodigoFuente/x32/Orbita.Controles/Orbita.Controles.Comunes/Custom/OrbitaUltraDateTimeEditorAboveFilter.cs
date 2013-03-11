@@ -185,7 +185,7 @@ namespace Orbita.Controles.Comunes
                     if (!ValidarRango())
                     {
                         this.dttDesde.DateTime = this.dttHasta.DateTime;
-                        if (OrbCambioValorFiltro!=null)
+                        if (OrbCambioValorFiltro != null)
                         {
                             OrbCambioValorFiltro(this, new System.EventArgs());
                         }

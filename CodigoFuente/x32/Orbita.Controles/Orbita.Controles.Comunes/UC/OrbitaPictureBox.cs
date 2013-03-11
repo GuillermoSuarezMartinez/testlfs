@@ -9,16 +9,17 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Comunes
 {
     public partial class OrbitaPictureBox : System.Windows.Forms.PictureBox
     {
+        #region Nueva definición
         public class ControlNuevaDefinicion : OPictureBox
         {
             public ControlNuevaDefinicion(OrbitaPictureBox sender)
                 : base(sender) { }
         };
+        #endregion
 
         #region Atributos
         ControlNuevaDefinicion definicion;
@@ -38,7 +39,7 @@ namespace Orbita.Controles.Comunes
 
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }
