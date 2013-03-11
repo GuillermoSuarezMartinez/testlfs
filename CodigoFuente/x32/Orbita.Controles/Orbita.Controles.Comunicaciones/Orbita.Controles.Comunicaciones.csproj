@@ -135,6 +135,7 @@
       <DependentUpon>OrbitaPuertoSerie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)Orbita.Controles.Comunicaciones.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I
