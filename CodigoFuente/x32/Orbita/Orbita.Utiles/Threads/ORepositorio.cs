@@ -23,14 +23,14 @@ namespace Orbita.Utiles
         static OHilos shilos;
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Constructor estático de la clase Repositorio.
         /// </summary>
         ORepositorio() { }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
 
         #region Método(s) Estático(s)
         /// <summary>

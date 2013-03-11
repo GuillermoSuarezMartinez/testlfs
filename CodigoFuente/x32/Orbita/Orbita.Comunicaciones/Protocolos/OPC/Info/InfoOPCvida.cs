@@ -16,7 +16,7 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OInfoOPCvida
     {
-        #region Atributo(s)
+        #region Atributos
 
         /// <summary>
         /// Identificador de variables.
@@ -35,7 +35,7 @@ namespace Orbita.Comunicaciones
 
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
 
         /// <summary>
         /// Inicializar una nueva instancia de la clase InfoVida.
@@ -51,7 +51,7 @@ namespace Orbita.Comunicaciones
 
         #endregion
 
-        #region Propiedad(es)
+        #region Propiedades
 
         /// <summary>
         /// Enlace de conexión.
@@ -79,7 +79,7 @@ namespace Orbita.Comunicaciones
         }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
 
         /// <summary>
         /// Obtener la colección de variables.

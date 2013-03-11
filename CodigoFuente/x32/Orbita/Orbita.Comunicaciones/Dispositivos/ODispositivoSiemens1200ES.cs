@@ -103,7 +103,7 @@ namespace Orbita.Comunicaciones
         }
         #endregion
 
-        #region Metodos publicos
+        #region Métodos públicos
         /// <summary>
         /// Procesa las lecturas del dispositivo
         /// </summary>

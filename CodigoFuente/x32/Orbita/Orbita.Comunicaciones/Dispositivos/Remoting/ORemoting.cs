@@ -15,7 +15,7 @@ namespace Orbita.Comunicaciones
     [Serializable]
     public static class ORemoting
     {
-        #region Atributo(s)
+        #region Atributos
 
         /// <summary>
         /// Valor de inicialización.
@@ -27,8 +27,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         static IDictionary WellKnownTypes;
 
-        #region Constante(s)
-
+        #region Constantes
         /// <summary>
         /// Ruta de configuración general.
         /// </summary>
@@ -38,13 +37,11 @@ namespace Orbita.Comunicaciones
         /// y cliente para .NET Remoting.
         /// </summary>
         const string REMOTING = @"\Config\remoting";
-
         #endregion
 
         #endregion
 
-        #region Método(s) público(s)
-
+        #region Métodos públicos estáticos
         /// <summary>
         /// Método de inicialización del configurador de servidor para .NET Remoting.
         /// </summary>
@@ -93,7 +90,6 @@ namespace Orbita.Comunicaciones
 
             return fichero;
         }
-
         /// <summary>
         /// Método de inicialización del configurador de cliente para .NET Remoting.
         /// </summary>
@@ -102,7 +98,6 @@ namespace Orbita.Comunicaciones
         {
             return InicConfiguracionCliente(puerto, "localhost");
         }
-
         /// <summary>
         /// Método de inicialización del configurador de cliente para .NET Remoting.
         /// </summary>
@@ -145,7 +140,6 @@ namespace Orbita.Comunicaciones
 
             return fichero;
         }
-
         /// <summary>
         /// Obtener objeto de tipo remoting por el cliente
         /// de conexión.
@@ -163,11 +157,9 @@ namespace Orbita.Comunicaciones
             }
             return Activator.GetObject(entrada.ObjectType, entrada.ObjectUrl);
         }
-
         #endregion
 
-        #region Método(s) privado(s)
-
+        #region Métodos privados estáticos
         /// <summary>
         /// Configurar Remoting a partir de la información
         /// del  fichero creado  en  los  inicializadores.
@@ -178,7 +170,6 @@ namespace Orbita.Comunicaciones
             // Configurar .NET Remoting.
             RemotingConfiguration.Configure(fichero, false);
         }
-
         /// <summary>
         /// Inicializar el tipo caché.
         /// </summary>
@@ -190,7 +181,6 @@ namespace Orbita.Comunicaciones
                 WellKnownTypes.Add(entrada.ObjectType, entrada);
             }
         }
-
         #endregion
     }
 }

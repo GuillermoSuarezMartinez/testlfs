@@ -18,7 +18,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class OHilo
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Hilo (Thread).
         /// </summary>
@@ -36,7 +36,7 @@ namespace Orbita.Utiles
         /// de inicialización.
         /// </summary>
         bool _iniciar;
-        #region Evento(s)
+        #region Eventos
         /// <summary>
         /// Evento de los métodos: 
         /// Iniciar(), Suspender(), Reanudar(), Terminar().
@@ -45,7 +45,7 @@ namespace Orbita.Utiles
         #endregion
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase OHilo.
         /// </summary>
@@ -141,7 +141,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Propiedad(es)
+        #region Propiedades
         /// <summary>
         /// Hilo (Thread).
         /// </summary>
@@ -181,7 +181,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// Iniciar el hilo.
         /// </summary>

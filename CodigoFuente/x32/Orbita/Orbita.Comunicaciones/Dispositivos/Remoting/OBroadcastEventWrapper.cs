@@ -8,8 +8,7 @@ namespace Orbita.Comunicaciones
     [Serializable]
     public class OBroadcastEventWrapper : MarshalByRefObject
     {
-        #region Evento(s)
-
+        #region Eventos
         /// <summary>
         /// Evento de cambio de dato.
         /// </summary>
@@ -22,11 +21,9 @@ namespace Orbita.Comunicaciones
         /// Evento de comunicaciones.
         /// </summary>
         public event OManejadorEventoComm OrbitaComm;
-
         #endregion
 
-        #region Método(s) público(s)
-
+        #region Métodos públicos
         /// <summary>
         /// Evento de cambio de dato.
         /// </summary>
@@ -35,7 +32,6 @@ namespace Orbita.Comunicaciones
         {
             OrbitaCambioDato(e);
         }
-
         /// <summary>
         /// Evento de alarma.
         /// </summary>
@@ -44,7 +40,6 @@ namespace Orbita.Comunicaciones
         {
             OrbitaAlarma(e);
         }
-
         /// <summary>
         /// Evento de comunicaciones.
         /// </summary>
@@ -53,7 +48,6 @@ namespace Orbita.Comunicaciones
         {
             OrbitaComm(e);
         }
-
         #endregion
     }
 }

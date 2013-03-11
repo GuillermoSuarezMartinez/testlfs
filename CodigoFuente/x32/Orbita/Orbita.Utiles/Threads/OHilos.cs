@@ -19,7 +19,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class OHilos
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Colección de hilos.
         /// </summary>
@@ -32,7 +32,7 @@ namespace Orbita.Utiles
         #endregion
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase OHilos.
         /// </summary>
@@ -43,7 +43,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// Adicionar el hilo a la colección.
         /// </summary>

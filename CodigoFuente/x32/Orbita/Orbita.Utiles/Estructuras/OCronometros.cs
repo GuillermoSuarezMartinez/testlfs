@@ -21,7 +21,7 @@ namespace Orbita.Utiles
     /// </summary>
     public static class OCronometrosManager
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Listado de todos los cronómetros necesarios para el cómputo de tiempos de proceso
         /// </summary>
@@ -29,7 +29,7 @@ namespace Orbita.Utiles
 
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// Constructor de los campos de la clase
         /// </summary>
@@ -266,7 +266,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class OCronometro
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Cronómetro de la ejecución del estado
         /// </summary>
@@ -277,7 +277,7 @@ namespace Orbita.Utiles
         public EstadoCronometro EstadoCronometro;
         #endregion
 
-        #region Propiedad(es)
+        #region Propiedades
         /// <summary>
         /// Código identificativo del cronómetro.
         /// </summary>
@@ -400,7 +400,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Constructor de la clase
         /// </summary>
@@ -431,7 +431,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// Inicia el cronometro
         /// </summary>

@@ -17,14 +17,14 @@ namespace Orbita.Utiles
     /// </summary>
     public class OCola : ICola
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Colección definida, cola.
         /// </summary>
         Queue _cola;
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase OCola.
         /// </summary>
@@ -34,7 +34,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Propiedad(es)
+        #region Propiedades
         /// <summary>
         /// Colección definida, cola.
         /// </summary>
@@ -44,7 +44,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// Método que encola un objeto.
         /// </summary>

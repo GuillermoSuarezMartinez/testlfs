@@ -11,7 +11,6 @@ namespace Orbita.Comunicaciones
     public class ODispositivoMCUSB : ODispositivoES
     {
         #region Atributos
-
         /// <summary>
         /// Cola de recepción de tramas de datos.
         /// </summary>
@@ -80,7 +79,7 @@ namespace Orbita.Comunicaciones
 
         #endregion
 
-        #region Metodos publicos
+        #region Métodos públicos
 
         /// <summary>
         /// Procesa las lecturas del dispositivo
@@ -303,7 +302,7 @@ namespace Orbita.Comunicaciones
 
         #endregion
 
-        #region Metodos Privados
+        #region Métodos privados
 
         #region Comunes
 

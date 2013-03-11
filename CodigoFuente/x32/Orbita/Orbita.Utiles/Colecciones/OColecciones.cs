@@ -18,7 +18,7 @@ namespace Orbita.Utiles
     /// <typeparam name="TSecond">Tipo del segundo valor</typeparam>
     public class OPair<TFirst, TSecond>
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Primer valor
         /// </summary>
@@ -55,7 +55,7 @@ namespace Orbita.Utiles
     /// <typeparam name="TThird">Tipo del tercer valor</typeparam>
     public class OTriplet<TFirst, TSecond, TThird>
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Primer valor
         /// </summary>
@@ -98,7 +98,7 @@ namespace Orbita.Utiles
     /// <typeparam name="TFourth">Tipo del cuarto valor</typeparam>
     public class OQuartet<TFirst, TSecond, TThird, TFourth>
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Primer valor
         /// </summary>
@@ -147,7 +147,7 @@ namespace Orbita.Utiles
     /// <typeparam name="TFifth">Tipo del quinto valor</typeparam>
     public class OQuintet<TFirst, TSecond, TThird, TFourth, TFifth>
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Primer valor
         /// </summary>

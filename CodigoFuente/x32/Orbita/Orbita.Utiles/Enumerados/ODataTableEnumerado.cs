@@ -18,7 +18,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class ODataTableEnumerado
     {
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// Obtiene un datatable con los diferentes valores que puede tomar un enumerado.
         /// Devuelve la información en dos columnas:
@@ -53,7 +53,6 @@ namespace Orbita.Utiles
 
             DataRow dr;
             Array valoresEnumerado = System.Enum.GetValues(enumerado);
-
             for (int i = 0; i < valoresEnumerado.Length; i++)
             {
                 dr = dt.NewRow();
@@ -74,7 +73,6 @@ namespace Orbita.Utiles
                 {
                     dr["Valor"] = valoresEnumerado.GetValue(i).ToString();
                 }
-
                 dt.Rows.Add(dr);
             }
             return dt;

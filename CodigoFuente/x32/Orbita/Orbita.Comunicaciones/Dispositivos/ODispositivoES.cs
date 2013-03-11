@@ -10,7 +10,6 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class ODispositivoES : ODispositivo
     {
-
         #region Atributos
         /// <summary>
         /// Atributo que indica las  colecciones
@@ -41,7 +40,6 @@ namespace Orbita.Comunicaciones
         /// Valor devuelto para las entradas
         /// </summary>
         public byte[] Entradas;
-
         #endregion
 
         #region Constructores
@@ -51,7 +49,6 @@ namespace Orbita.Comunicaciones
         public ODispositivoES(OTags tags, OHilos hilos, ODispositivo dispositivo)
         {
             wrapper.Info("Creando dispositivo ODispositivoES");
-
             try
             {
                 // Asignación de las colecciones de datos, lecturas y alarmas.
@@ -74,7 +71,6 @@ namespace Orbita.Comunicaciones
                 wrapper.Error("Error en ODispositivoTCP. ", ex);
                 throw ex;
             }
-
         }
         #endregion
 
@@ -152,10 +148,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Proceso del hilo de vida.
         /// </summary>
-        public virtual void ProcesarHiloVida()
-        {
-
-        }
+        public virtual void ProcesarHiloVida() { }
         /// <summary>
         /// Limpia los objetos en memoria
         /// </summary>
@@ -177,7 +170,6 @@ namespace Orbita.Comunicaciones
             // a la colección que una vez añadido el hilo se iniciado.
             Hilos.Add(new ThreadStart(ProcesarHiloVida), true);
         }
-
         #endregion
     }
 }

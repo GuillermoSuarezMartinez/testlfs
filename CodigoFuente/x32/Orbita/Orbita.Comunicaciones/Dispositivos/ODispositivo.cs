@@ -9,8 +9,7 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class ODispositivo : IDisposable
     {
-        #region Atributo(s)
-
+        #region Atributos
         /// <summary>
         /// Identificador de dispositivo.
         /// </summary>
@@ -51,8 +50,9 @@ namespace Orbita.Comunicaciones
         /// Logger de la clase
         /// </summary>
         public static ILogger wrapper;
-        #region Evento(s)
+        #endregion
 
+        #region Eventos
         /// <summary>
         /// Evento de cambio de dato.
         /// </summary>
@@ -65,13 +65,9 @@ namespace Orbita.Comunicaciones
         /// Evento de comunicaciones correctas.
         /// </summary>
         public event OManejadorEventoComm OrbitaComm;
-
         #endregion
 
-        #endregion
-
-        #region Constructor(es)
-
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase Dispositivo.
         /// </summary>
@@ -97,11 +93,9 @@ namespace Orbita.Comunicaciones
             // readability and maintainability.
             Dispose(false);
         }
-
         #endregion
 
-        #region Propiedad(es)
-
+        #region Propiedades
         /// <summary>
         /// Identificador de dispositivo.
         /// </summary>
@@ -160,10 +154,7 @@ namespace Orbita.Comunicaciones
         }
         #endregion
 
-        #region Métodos públicos
-
-        #region Método(s) protegido(s)
-
+        #region Métodos protegidos
         /// <summary>
         /// El evento invoca el método que puede ser sobreescrito en la clase derivada.
         /// </summary>
@@ -179,10 +170,8 @@ namespace Orbita.Comunicaciones
             {
                 handler(e);
             }
-
             handler = null;
         }
-
         /// <summary>
         /// El evento invoca el método que puede ser sobreescrito en la clase derivada.
         /// </summary>
@@ -198,10 +187,8 @@ namespace Orbita.Comunicaciones
             {
                 handler(e);
             }
-
             handler = null;
         }
-
         /// <summary>
         /// El evento invoca el método que puede ser sobreescrito en la clase derivada.
         /// </summary>
@@ -217,12 +204,11 @@ namespace Orbita.Comunicaciones
             {
                 handler(e);
             }
-
             handler = null;
         }
-
         #endregion
 
+        #region Métodos públicos
         /// <summary>
         /// Arranca todas las comunicaciones del dispositivo
         /// </summary>
@@ -323,7 +309,6 @@ namespace Orbita.Comunicaciones
             // from executing a second time.
             GC.SuppressFinalize(this);
         }
-
         #endregion
     }
 }

@@ -17,7 +17,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class OTimer
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Timer.
         /// </summary>
@@ -28,14 +28,14 @@ namespace Orbita.Utiles
         System.Threading.TimerCallback _callBack;
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase OTimer.
         /// </summary>
         public OTimer() { }
         #endregion
 
-        #region Propiedad(es)
+        #region Propiedades
         /// <summary>
         /// Timer.
         /// </summary>
@@ -54,7 +54,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// Método Change correspondiente, en el primer caso a la llamada a AddHoras, 
         /// AddMinutos, AddSegundos, en el segundo y tercer caso, correspondiente a la 

@@ -66,7 +66,6 @@ namespace Orbita.Comunicaciones
         #endregion
 
         #region Destructores
-        
         /// <summary>
         /// Método  sobrecargado de  Dispose que será  el que
         /// libera los recursos. Controla que solo se ejecute
@@ -80,16 +79,16 @@ namespace Orbita.Comunicaciones
             if (!this.disposed)
             {
                 // Finalizar correctamente los recursos no manejados.
-                this._respuesta= null;
+                this._respuesta = null;
                 this._cuerpoRespuesta = null;
-                this._caracteresEscapeBody= null;
+                this._caracteresEscapeBody = null;
 
                 // Marcar como desechada ó desechandose,
                 // de forma que no se puede ejecutar el
                 // código dos veces.
                 disposed = true;
             }
-        }        
+        }
         #endregion
 
         #region Propiedades
@@ -110,27 +109,27 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Carácteres de escape HTML.
         /// </summary>
-        public string CaracteresEscapeBody 
-        { 
-            get 
+        public string CaracteresEscapeBody
+        {
+            get
             {
-                this._caracteresEscapeBody = this._cuerpoRespuesta.Replace("&", "&amp;").Replace("<", "&lt;"). Replace(">", "&gt;").Replace("'", "&apos;").Replace("\"", "&quot;");
+                this._caracteresEscapeBody = this._cuerpoRespuesta.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("'", "&apos;").Replace("\"", "&quot;");
                 return this._caracteresEscapeBody;
-            } 
+            }
         }
         /// <summary>
         /// Código de estado.
         /// </summary>
-        public int CodigoEstado 
-        { 
-            get { return this._codigoEstado; } 
+        public int CodigoEstado
+        {
+            get { return this._codigoEstado; }
         }
         /// <summary>
         /// Cabeceras.
         /// </summary>
-        public string Cabeceras 
-        { 
-            get 
+        public string Cabeceras
+        {
+            get
             {
                 string resultado = string.Empty;
                 if (this._respuesta != null)
@@ -143,14 +142,14 @@ namespace Orbita.Comunicaciones
                     resultado = cabeceras;
                 }
                 return resultado;
-            } 
+            }
         }
         /// <summary>
         /// Línea de estado.
         /// </summary>
-        public string LineaDEestado 
-        { 
-            get 
+        public string LineaDEestado
+        {
+            get
             {
                 string resultado = string.Empty;
                 if (this._respuesta != null)
@@ -158,7 +157,7 @@ namespace Orbita.Comunicaciones
                     resultado = string.Format(CultureInfo.CurrentCulture, "HTTP/{0} {1} {2}", this._respuesta.ProtocolVersion, (int)this._respuesta.StatusCode, this._respuesta.StatusDescription);
                 }
                 return resultado;
-            } 
+            }
         }
         /// <summary>
         /// Timeout.

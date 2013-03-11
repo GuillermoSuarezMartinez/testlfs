@@ -16,14 +16,14 @@ namespace Orbita.Utiles
     /// </summary>
     public class OColaSincronizada : OCola
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Atributo estático de sincronización.
         /// </summary>
         static OResetManual sResetManual;
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase OColaSincronizada.
         /// </summary>
@@ -39,7 +39,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Propiedad(es)
+        #region Propiedades
         /// <summary>
         /// Atributo de sincronización.
         /// </summary>
@@ -49,7 +49,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// Método que encola un objeto.
         /// </summary>

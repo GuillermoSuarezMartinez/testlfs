@@ -20,7 +20,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class OStringEnumerado
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Tipo.
         /// </summary>
@@ -31,7 +31,7 @@ namespace Orbita.Utiles
         static Hashtable _valores = new Hashtable();
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Creates a new <see cref="OStringEnumerado"/> instance.
         /// </summary>
@@ -46,7 +46,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Propiedad(es)
+        #region Propiedades
         /// <summary>
         /// Gets the underlying enum type for this instance.
         /// </summary>
@@ -57,7 +57,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// Gets the string value associated with the given enum value.
         /// </summary>

@@ -20,7 +20,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class OSeguridad : IDisposable
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Nombre del servidor.
         /// </summary>
@@ -55,7 +55,7 @@ namespace Orbita.Utiles
         static extern bool LogonUser(string lpszUsuario, string lpszDominio, string lpszPassword, int dwLogonType, int dwLogonProvider, ref IntPtr phToken);
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase OSeguridad.
         /// </summary>
@@ -143,7 +143,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// Establecer la apertura de la impersonalización.
         /// </summary>

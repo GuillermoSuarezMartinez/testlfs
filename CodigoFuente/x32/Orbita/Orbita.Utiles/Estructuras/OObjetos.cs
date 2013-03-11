@@ -122,7 +122,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class OObjetoBase<ClaseTipo>
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Indica que se ha de lanzar una excepción de tipo InvalidValueException cuando el valor a establecer no sea el correcto
         /// </summary>
@@ -133,7 +133,7 @@ namespace Orbita.Utiles
         public ClaseTipo ValorPorDefecto;
         #endregion
 
-        #region Propiedad(es)
+        #region Propiedades
         /// <summary>
         /// Valor del objeto
         /// </summary>
@@ -262,7 +262,7 @@ namespace Orbita.Utiles
 
     public interface IObjetoBase
     {
-        #region Propiedad(es)
+        #region Propiedades
         /// <summary>
         /// Código identificativo de la clase.
         /// </summary>
@@ -281,7 +281,7 @@ namespace Orbita.Utiles
         object ValorGenerico { get; set; }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// Comprueba que el valor del objeto es correcto
         /// </summary>
@@ -301,7 +301,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class EnumEstadoObjetoRobusto : OEnumeradosHeredable
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Módulo de funciones comunes del sistema. 
         /// </summary>
@@ -335,7 +335,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class OTexto : OObjetoBase<string>
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Máxima longitud del string
         /// </summary>
@@ -520,7 +520,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class EnumEstadoTextoRobusto : EnumEstadoObjetoRobusto
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// La longitud del texto es demasiado larga
         /// </summary>
@@ -539,7 +539,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class OEnumeradoTexto : OObjetoBase<string>
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Valores permitidos para el texto
         /// </summary>
@@ -843,7 +843,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class EnumEstadoEnumRobusto : EnumEstadoObjetoRobusto
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// El valor a asignar no está permitido
         /// </summary>
@@ -858,7 +858,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class OEntero : OObjetoBase<int>
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Valor mínimo
         /// </summary>
@@ -869,7 +869,7 @@ namespace Orbita.Utiles
         public int MaxValor;
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Constructor de la clase
         /// </summary>
@@ -1073,7 +1073,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class EnumEstadoEnteroRobusto : EnumEstadoObjetoRobusto
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// El valor a asignar es sueprior al máximo permitido
         /// </summary>
@@ -1092,7 +1092,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class ODecimal : OObjetoBase<double>
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Valor mínimo
         /// </summary>
@@ -1320,7 +1320,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class EnumEstadoDecimalRobusto : EnumEstadoObjetoRobusto
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// El valor a asignar es sueprior al máximo permitido
         /// </summary>
@@ -1495,7 +1495,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class OIntervaloTiempo : OObjetoBase<TimeSpan>
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Valor mínimo
         /// </summary>
@@ -1713,7 +1713,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class EnumEstadoIntervaloTiempoRobusto : EnumEstadoObjetoRobusto
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// El valor a asignar es sueprior al máximo permitido
         /// </summary>
@@ -1732,7 +1732,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class OFechaHora : OObjetoBase<DateTime>
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Valor mínimo
         /// </summary>
@@ -2029,7 +2029,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class EnumEstadoFechaHoraRobusta : EnumEstadoObjetoRobusto
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// El valor a asignar es sueprior al máximo permitido
         /// </summary>

@@ -19,7 +19,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class OEnumeradosHeredable
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Lista de los enumerados que contiene
         /// </summary>
@@ -54,7 +54,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// 
         /// </summary>
@@ -103,7 +103,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class OEnumeradoHeredable
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Nombre del enumerado
         /// </summary>

@@ -10,7 +10,7 @@ namespace Orbita.Utiles
     /// </summary>
     public class OServicioWindows : IDisposable
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Nombre del servicio
         /// </summary>
@@ -34,7 +34,7 @@ namespace Orbita.Utiles
         private ServiceController Controlador;
         #endregion
 
-        #region Propiedad(es)
+        #region Propiedades
         /// <summary>
         /// Informa si existe algún servicio con el nombre especificado, en caso contrario se supone que el servicio no está instalado
         /// </summary>
@@ -221,7 +221,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) privado(s)
+        #region Métodos privados
         /// <summary>
         /// Instala o desinstala el servicio
         /// </summary>

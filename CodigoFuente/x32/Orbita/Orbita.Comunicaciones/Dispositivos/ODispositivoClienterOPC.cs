@@ -93,7 +93,6 @@ namespace Orbita.Comunicaciones
         float deadband = 0;
         int TimeBias = 0;
         GCHandle hTimeBias, hDeadband;
-        //Dispositivo _dispositivo;
         OEventArgs _oEventargs;
         OEstadoComms[] _oOPCComms;
         OConfigDispositivo _config;

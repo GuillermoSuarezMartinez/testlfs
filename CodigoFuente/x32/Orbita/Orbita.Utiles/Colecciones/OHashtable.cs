@@ -20,8 +20,8 @@ namespace Orbita.Utiles
     [Serializable]
     public class OHashtable : Hashtable, IDisposable
     {
-        #region Atributo(s)
-        #region Evento(s)
+        #region Atributos
+        #region Eventos
         /// <summary>
         /// Evento que se ejecuta tras añadir un objeto a la colección.
         /// </summary>
@@ -33,7 +33,7 @@ namespace Orbita.Utiles
         #endregion
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase OHashtable.
         /// </summary>
@@ -110,7 +110,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// Agrega un elemento con  la clave y el  valor 
         /// especificados a System.Collections.Hashtable.

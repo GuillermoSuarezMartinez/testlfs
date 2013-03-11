@@ -17,7 +17,7 @@ namespace Orbita.Utiles
 {
     public class OFichero : IDisposable
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Identificador de fichero.
         /// </summary>
@@ -45,7 +45,7 @@ namespace Orbita.Utiles
         bool _copiarENbaseDEdatos;
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase OFichero.
         /// </summary>
@@ -123,7 +123,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Propiedad(es)
+        #region Propiedades
         /// <summary>
         /// Identificador de fichero.
         /// </summary>

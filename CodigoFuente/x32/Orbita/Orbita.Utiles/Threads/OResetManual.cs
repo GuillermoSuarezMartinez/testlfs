@@ -18,14 +18,14 @@ namespace Orbita.Utiles
     /// </summary>
     public class OResetManual
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Atributo que marca la sincronización.
         /// </summary>
         readonly ManualResetEvent[] _eventoResetManual;
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase OResetManual.
         /// </summary>
@@ -45,7 +45,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// Método que devuelve la colección.
         /// </summary>
@@ -144,7 +144,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) privado(s)
+        #region Métodos privados
         /// <summary>
         /// Inicializar el array de ManualResetEvent
         /// en función del contador de eventos.

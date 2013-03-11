@@ -7,7 +7,7 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class ODispositivoWinCC : ODispositivo
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Objeto para comunicar con WinCC
         /// </summary>
@@ -20,10 +20,9 @@ namespace Orbita.Comunicaciones
         /// Logger del sistema
         /// </summary>
         private ILogger logger;
-
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Constructor de clase
         /// </summary>
@@ -47,15 +46,11 @@ namespace Orbita.Comunicaciones
         }
         #endregion
 
-        #region Metodo(s) publicos
-
+        #region Métodos públicos
         /// <summary>
         /// Inicia el dispositivo
         /// </summary>
-        public override void Iniciar()
-        {
-
-        }
+        public override void Iniciar() { }
         /// <summary>
         /// limpia los objetos en memoria
         /// </summary>
@@ -67,19 +62,7 @@ namespace Orbita.Comunicaciones
             {
                 // If disposing equals true, dispose all managed 
                 // and unmanaged resources. 
-                if (disposing)
-                {
-                    //// Dispose managed resources.
-                    //component.Dispose();
-                }
-
-                // Call the appropriate methods to clean up 
-                // unmanaged resources here. 
-                // If disposing is false, 
-                // only the following code is executed.
-                //CloseHandle(handle);
-                //handle = IntPtr.Zero;
-
+                if (disposing) { }
                 // Note disposing has been done.
                 oDataManager = null;
                 disposed = true;
@@ -95,7 +78,6 @@ namespace Orbita.Comunicaciones
         {
             object[] retorno = new object[variables.Length];
             demanda = true;
-
             if (demanda)
             {
                 for (int i = 0; i < retorno.Length; i++)
@@ -107,7 +89,6 @@ namespace Orbita.Comunicaciones
                     }
                 }
             }
-
             return retorno;
         }
         /// <summary>
@@ -127,12 +108,11 @@ namespace Orbita.Comunicaciones
                     retorno = false;
                 }
             }
-
             return retorno;
         }
         #endregion
 
-        #region Metodo(s) privados
+        #region Métodos privados
         /// <summary>
         /// Lee la variable de wincc
         /// </summary>
@@ -145,7 +125,6 @@ namespace Orbita.Comunicaciones
 
             valor = null;
             UInt32 calidad = 0;
-
             try
             {
                 retorno = oDataManager.GetVarValue(variable, out valor, out calidad);
@@ -154,7 +133,6 @@ namespace Orbita.Comunicaciones
             {
                 this.logger.Fatal("Error al leer: ", ex);
             }
-
             return retorno;
         }
         /// <summary>
@@ -166,7 +144,6 @@ namespace Orbita.Comunicaciones
         private bool Escribir(string variable, object valor)
         {
             bool retorno = false;
-
             try
             {
                 m_CurVarType = valor.GetType();
@@ -177,7 +154,6 @@ namespace Orbita.Comunicaciones
             {
                 this.logger.Fatal("Error al escribir: ", ex);
             }
-
             return retorno;
         }
         #endregion

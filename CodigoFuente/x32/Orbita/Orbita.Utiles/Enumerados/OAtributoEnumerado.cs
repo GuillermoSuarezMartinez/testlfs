@@ -24,14 +24,14 @@ namespace Orbita.Utiles
     [AttributeUsageAttribute(AttributeTargets.All, Inherited = true)]
     public class OAtributoEnumerado : Attribute
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Valor del enumerado.
         /// </summary>
         string _valor;
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase OAtributoEnumerado.
         /// </summary>
@@ -46,7 +46,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Propiedad(es)
+        #region Propiedades
         /// <summary>
         /// Obtiene el valor.
         /// </summary>

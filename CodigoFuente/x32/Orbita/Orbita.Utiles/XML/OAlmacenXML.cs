@@ -21,14 +21,14 @@ namespace Orbita.Utiles
     [Serializable]
     public class OAlmacenXML : ICloneable
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Ruta del fichero xml.
         /// </summary>
         string _rutaFichero;
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase OAlmacenXML.
         /// </summary>
@@ -98,7 +98,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// Cargamos los datos del XML
         /// </summary>

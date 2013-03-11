@@ -7,7 +7,7 @@ namespace Orbita.Comunicaciones
     [Serializable]
     public class OInfoDato
     {
-        #region Atributo(s)
+        #region Atributos
 
         /// <summary>
         /// Identificador de dato.
@@ -88,7 +88,7 @@ namespace Orbita.Comunicaciones
 
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
 
         /// <summary>
         /// Inicializar una nueva instancia de la clase DatosOPC.
@@ -102,7 +102,7 @@ namespace Orbita.Comunicaciones
 
         #endregion
 
-        #region Propiedad(es)
+        #region Propiedades
         /// <summary>
         /// Identificador.
         /// </summary>

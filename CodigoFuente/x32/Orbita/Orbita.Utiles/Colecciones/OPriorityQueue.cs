@@ -29,14 +29,14 @@ namespace Orbita.Utiles
     /// <typeparam name="TPriority">Tipo de dato de la prioridad</typeparam>
     public class OPriorityQueue<TValue, TPriority> where TPriority : IComparable
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Diccionario ordenado de colas interno
         /// </summary>
         private SortedDictionary<TPriority, Queue<TValue>> storage;
         #endregion
 
-        #region Propiedad(es)
+        #region Propiedades
         /// <summary>
         /// Número de elementos de la cola
         /// </summary>
@@ -48,7 +48,7 @@ namespace Orbita.Utiles
         public bool Empty { get { return Count == 0; } }
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Constructor de la clase
         /// </summary>

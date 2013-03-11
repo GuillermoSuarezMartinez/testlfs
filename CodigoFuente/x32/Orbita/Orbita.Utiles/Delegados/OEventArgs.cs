@@ -19,14 +19,14 @@ namespace Orbita.Utiles
     [Serializable]
     public class OEventArgs : EventArgs
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Argumento adicional desarrollado en el evento.
         /// </summary>
         object _arg;
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase OEventArgs.
         /// </summary>
@@ -41,7 +41,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Propiedad(es)
+        #region Propiedades
         /// <summary>
         /// Argumento adicional desarrollado en el evento.
         /// </summary>

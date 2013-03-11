@@ -64,8 +64,7 @@ namespace Orbita.Comunicaciones
         }
         #endregion
 
-        #region Destructores       
-        
+        #region Destructores
         /// <summary>
         /// Método  sobrecargado de  Dispose que será  el que
         /// libera los recursos. Controla que solo se ejecute
@@ -141,11 +140,11 @@ namespace Orbita.Comunicaciones
                 }
                 return ficheroEndisco;
             }
-            finally 
-            { 
-                if (ficheroEndisco != null) 
+            finally
+            {
+                if (ficheroEndisco != null)
                 {
-                    ficheroEndisco.Dispose(); 
+                    ficheroEndisco.Dispose();
                 }
             }
         }

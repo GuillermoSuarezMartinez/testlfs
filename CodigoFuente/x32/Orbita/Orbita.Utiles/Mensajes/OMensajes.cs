@@ -19,14 +19,14 @@ namespace Orbita.Utiles
     /// </summary>
     public sealed class OMensajes
     {
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase OMensajes.
         /// </summary>
         OMensajes() { }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
         #region Método(s) estático(s)
         /// <summary>
         /// Obtiene el detalle del error en la clase OMensajesDetalle.

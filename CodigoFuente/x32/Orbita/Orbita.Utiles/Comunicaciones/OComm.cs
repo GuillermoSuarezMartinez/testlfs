@@ -18,7 +18,7 @@ namespace Orbita.Utiles
     /// </summary>
     public static class OComm
     {
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// Obtener la disponibilidad de un puerto.
         /// </summary>

@@ -17,7 +17,7 @@ namespace Orbita.Utiles
     /// </summary>
     public struct OMensajesDetalle
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Nombre de la excepción.
         /// </summary>
@@ -48,7 +48,7 @@ namespace Orbita.Utiles
         public string PilaLlamadas { get; set; }
         #endregion
 
-        #region Método(s) público(s)
+        #region Métodos públicos
         /// <summary>
         /// Devuelve el string formateado del error.
         /// </summary>
