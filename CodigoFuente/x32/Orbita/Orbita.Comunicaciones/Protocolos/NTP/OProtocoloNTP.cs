@@ -17,19 +17,19 @@ namespace Orbita.Comunicaciones
             /// <summary>
             /// 0 - No warning
             /// </summary>
-            NoWarning,		
+            NoWarning,
             /// <summary>
             /// 1 - Last minute has 61 seconds
             /// </summary>
             LastMinute61,
-	        /// <summary>
+            /// <summary>
             /// 2 - Last minute has 59 seconds
-	        /// </summary>
-            LastMinute59,	
+            /// </summary>
+            LastMinute59,
             /// <summary>
             /// 3 - Alarm condition (clock not synchronized)
             /// </summary>
-            Alarm			
+            Alarm
         }
         /// <summary>
         /// Mode field values
@@ -39,27 +39,27 @@ namespace Orbita.Comunicaciones
             /// <summary>
             /// 1 - Symmetric active
             /// </summary>
-            SymmetricActive,	
+            SymmetricActive,
             /// <summary>
             /// 2 - Symmetric pasive
             /// </summary>
-            SymmetricPassive,	
+            SymmetricPassive,
             /// <summary>
             /// 3 - Client
             /// </summary>
-            Client,	
-			/// <summary>
+            Client,
+            /// <summary>
             /// 4 - Server
-			/// </summary>
-            Server,	
-			/// <summary>
+            /// </summary>
+            Server,
+            /// <summary>
             /// 5 - Broadcast
-			/// </summary>
-            Broadcast,	
-		    /// <summary>
+            /// </summary>
+            Broadcast,
+            /// <summary>
             /// 0, 6, 7 - Reserved
-		    /// </summary>
-            Unknown				
+            /// </summary>
+            Unknown
         }
         /// <summary>
         /// Stratum field values
@@ -69,19 +69,19 @@ namespace Orbita.Comunicaciones
             /// <summary>
             /// 0 - unspecified or unavailable
             /// </summary>
-            Unspecified,	
-		    /// <summary>
+            Unspecified,
+            /// <summary>
             /// 1 - primary reference (e.g. radio-clock)
-		    /// </summary>
-            PrimaryReference,	
-	        /// <summary>
+            /// </summary>
+            PrimaryReference,
+            /// <summary>
             /// 2-15 - secondary reference (via NTP or SNTP)
-	        /// </summary>
-            SecondaryReference,		
+            /// </summary>
+            SecondaryReference,
             /// <summary>
             /// 16-255 - reserved
             /// </summary>
-            Reserved				
+            Reserved
         }
 
         /// <summary>
@@ -199,7 +199,7 @@ namespace Orbita.Comunicaciones
         /// +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
         /// 
         /// </summary>
-        public class OProtocoloNTPClient :Protocolo
+        public class OProtocoloNTPClient : Protocolo
         {
             // NTP Data Structure Length
             private const byte NTPDataLength = 48;

@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : OrbitaUtiles
+// Assembly         : Orbita.Utiles
 // Author           : crodriguez
 // Created          : 03-03-2011
 //
@@ -20,8 +20,7 @@ namespace Orbita.Utiles
     [Serializable]
     public class OHashtable : Hashtable, IDisposable
     {
-        #region Atributos
-        #region Eventos
+        #region Eventos públicos
         /// <summary>
         /// Evento que se ejecuta tras añadir un objeto a la colección.
         /// </summary>
@@ -30,7 +29,6 @@ namespace Orbita.Utiles
         /// Evento que se ejecuta tras eliminar un objeto de la colección.
         /// </summary>
         public event ManejadorEvento OnDespuesEliminar;
-        #endregion
         #endregion
 
         #region Constructores
@@ -58,7 +56,7 @@ namespace Orbita.Utiles
             : base(table) { }
         #endregion
 
-        #region Destructor(es)
+        #region Destructores
         /// <summary>
         /// Indica si ya se llamo al método Dispose. (default = false)
         /// </summary>
@@ -128,7 +126,6 @@ namespace Orbita.Utiles
                 if (!Existe(key))
                 {
                     base.Add(key, value);
-
                     // En C# debemos comprobar que el evento no sea null.
                     if (OnDespuesAdicionar != null)
                     {
@@ -224,7 +221,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) privado(es)
+        #region Métodos privados
         /// <summary>
         /// Copia los elementos de la interfaz System.Collections.ICollection en un objeto
         ///  System.Array, a partir de un índice determinado de la clase System.Array.

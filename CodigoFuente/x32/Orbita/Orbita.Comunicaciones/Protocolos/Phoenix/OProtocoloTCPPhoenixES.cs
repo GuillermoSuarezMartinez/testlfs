@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Text;
-using Orbita.Comunicaciones;
-
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -10,9 +6,7 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OProtocoloTCPPhoenixES : Protocolo
     {
-
-        #region Variables
-
+        #region Atributos
         /// <summary>
         /// Valor inicial del registro de lecturas
         /// </summary>
@@ -28,8 +22,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Número de escrituras a realizar
         /// </summary>
-        private int _tamanyoSalidas;  
-       
+        private int _tamanyoSalidas;
         #endregion
 
         #region Constructores
@@ -57,11 +50,9 @@ namespace Orbita.Comunicaciones
             // readability and maintainability.
             Dispose(false);
         }
+        #endregion
 
-        #endregion  
-
-        #region Metodos
-
+        #region Métodos
         /// <summary>
         /// Prepara el mensaje keep alive de respuesta
         /// </summary>
@@ -112,7 +103,6 @@ namespace Orbita.Comunicaciones
             {
                 throw ex;
             }
-
             return ret;
         }
         /// <summary>
@@ -127,7 +117,6 @@ namespace Orbita.Comunicaciones
             bool ret = false;
             entradas = new byte[this._tamanyoEntradas];
             salidas = new byte[this._tamanyoSalidas];
-            
             try
             {
                 for (int i = 0; i < this._tamanyoEntradas; i++)
@@ -135,7 +124,7 @@ namespace Orbita.Comunicaciones
                     entradas[i] = valor[i];
                 }
                 int j = 0;
-                for (int i = this._tamanyoEntradas; i < (this._tamanyoEntradas+this._tamanyoSalidas); i++)
+                for (int i = this._tamanyoEntradas; i < (this._tamanyoEntradas + this._tamanyoSalidas); i++)
                 {
                     salidas[j] = valor[i];
                     j++;
@@ -146,7 +135,6 @@ namespace Orbita.Comunicaciones
             {
                 throw ex;
             }
-
             return ret;
         }
         /// <summary>
@@ -159,13 +147,12 @@ namespace Orbita.Comunicaciones
             OProtocoloModbusTCP mensaje = new OProtocoloModbusTCP();
             try
             {
-                ret = mensaje.configurarMensajeEscrituraF16(this._registroInicialSalidas,salidas);
+                ret = mensaje.configurarMensajeEscrituraF16(this._registroInicialSalidas, salidas);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
             return ret;
         }
         /// <summary>
@@ -184,8 +171,6 @@ namespace Orbita.Comunicaciones
                 disposed = true;
             }
         }
-
-        #endregion       
-
+        #endregion
     }
 }

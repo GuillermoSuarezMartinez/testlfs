@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : OrbitaUtiles
+// Assembly         : Orbita.Utiles
 // Author           : vnicolau
 // Created          : 09-03-2011
 //

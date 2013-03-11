@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
-
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -9,8 +7,7 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OProtocoloTCPSiemensGateOSES : OProtocoloTCPSiemens
     {
-        #region Variables
-
+        #region Atributos
         /// <summary>
         /// byte inicio trama
         /// </summary>
@@ -43,22 +40,16 @@ namespace Orbita.Comunicaciones
         /// Tamaño máximo de trama
         /// </summary>
         private int _tamanyoMensaje = 26;
-
         #endregion
 
         #region Constructores
         /// <summary>
         /// Constructor para el protocolo GATE OS
         /// </summary>
-        public OProtocoloTCPSiemensGateOSES()
-        {
-
-        }
-
+        public OProtocoloTCPSiemensGateOSES() { }
         #endregion
 
-        #region Metodos
-
+        #region Métodos
         /// <summary>
         /// Prepara el mensaje keep alive de respuesta
         /// </summary>
@@ -91,7 +82,6 @@ namespace Orbita.Comunicaciones
             {
                 throw ex;
             }
-
             return ret;
         }
         /// <summary>
@@ -106,7 +96,6 @@ namespace Orbita.Comunicaciones
             byte id = 0;
             lecturas = new byte[5];
             byte[] BCC = new byte[6];
-
             try
             {
                 //Comprobamos el inicio y fin de trama
@@ -122,13 +111,11 @@ namespace Orbita.Comunicaciones
                         ret = true;
                     }
                 }
-
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
             return ret;
         }
         /// <summary>
@@ -177,16 +164,13 @@ namespace Orbita.Comunicaciones
                     {
                         resultado = resultado ^ dato[i + 1];
                     }
-
                 }
-
                 retorno[0] = (byte)resultado;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
             return retorno;
         }
         /// <summary>
@@ -202,16 +186,12 @@ namespace Orbita.Comunicaciones
                 if (disposing)
                 {
                     // Dispose managed resources.
-
                 }
-
             }
         }
-
         #endregion
 
         #region Propiedades
-
         /// <summary>
         /// byte inicio trama
         /// </summary>

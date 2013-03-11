@@ -78,10 +78,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public bool EstaAbierto
         {
-            get
-            {
-                return this.PuertoRS232.IsOpen;
-            }
+            get { return this.PuertoRS232.IsOpen; }
         }
         #endregion Propiedades
 
@@ -195,7 +192,6 @@ namespace Orbita.Comunicaciones
                     this.PuertoRS232.Close();
                 }
             }
-
             OConfiguracionPuertoRS configRS232 = (OConfiguracionPuertoRS)configuracionPuerto;
             this.PuertoRS232.PortName = "COM" + configRS232.NumeroPuerto.ToString();
             this.PuertoRS232.BaudRate = configRS232.Velocidad;

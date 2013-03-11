@@ -17,7 +17,6 @@ namespace Orbita.Comunicaciones
     public class OInfoOPCvida
     {
         #region Atributos
-
         /// <summary>
         /// Identificador de variables.
         /// </summary>
@@ -26,17 +25,13 @@ namespace Orbita.Comunicaciones
         /// Valor de las variables.
         /// </summary>
         string[] _valores;
-
-
         /// <summary>
         /// Enlace de conexión.
         /// </summary>
         string[] _enlaces;
-
         #endregion
 
         #region Constructores
-
         /// <summary>
         /// Inicializar una nueva instancia de la clase InfoVida.
         /// </summary>
@@ -48,11 +43,9 @@ namespace Orbita.Comunicaciones
             this._valores = new string[contador];
             this._enlaces = enlaces;
         }
-
         #endregion
 
         #region Propiedades
-
         /// <summary>
         /// Enlace de conexión.
         /// </summary>
@@ -80,7 +73,6 @@ namespace Orbita.Comunicaciones
         #endregion
 
         #region Métodos públicos
-
         /// <summary>
         /// Obtener la colección de variables.
         /// </summary>
@@ -100,7 +92,6 @@ namespace Orbita.Comunicaciones
         {
             return this._variables[indice];
         }
-
         /// <summary>
         /// Asignar la colección de variables.
         /// </summary>
@@ -110,7 +101,6 @@ namespace Orbita.Comunicaciones
         {
             this._variables[indice] = variable;
         }
-
         /// <summary>
         /// Obtener la colección de valores.
         /// </summary>
@@ -119,7 +109,6 @@ namespace Orbita.Comunicaciones
         {
             return this._valores;
         }
-
         /// <summary>
         /// Asignar la colección de valores.
         /// </summary>
@@ -127,7 +116,6 @@ namespace Orbita.Comunicaciones
         {
             this._valores = valores;
         }
-
         #endregion
     }
 }

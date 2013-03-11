@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : OrbitaUtiles
+// Assembly         : Orbita.Utiles
 // Author           : crodriguez
 // Created          : 03-03-2011
 //
@@ -66,7 +66,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Destructor(es)
+        #region Destructores
         /// <summary>
         /// Indica si ya se llamo al método Dispose. (default = false)
         /// </summary>

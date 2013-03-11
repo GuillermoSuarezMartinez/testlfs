@@ -2,13 +2,12 @@
 namespace Orbita.Comunicaciones
 {
     /// <summary>
-    /// Clase para todos las variables del servidor de comunicaciones
+    /// Clase para todos las variables del servidor de comunicaciones.
     /// </summary>
     [Serializable]
     public class OInfoDato
     {
         #region Atributos
-
         /// <summary>
         /// Identificador de dato.
         /// </summary>
@@ -85,11 +84,9 @@ namespace Orbita.Comunicaciones
         /// Indica si es una entrada
         /// </summary>
         bool _esEntrada;
-
         #endregion
 
         #region Constructores
-
         /// <summary>
         /// Inicializar una nueva instancia de la clase DatosOPC.
         /// </summary>
@@ -99,7 +96,6 @@ namespace Orbita.Comunicaciones
             this._esVisualizacion = false;
             this._esLectura = false;
         }
-
         #endregion
 
         #region Propiedades
@@ -248,7 +244,7 @@ namespace Orbita.Comunicaciones
             set { this._dispositivo = value; }
         }
         /// <summary>
-        /// Indica si la variable es una entrada
+        /// Indica si la variable es una entrada.
         /// </summary>
         public bool EsEntrada
         {

@@ -22,7 +22,7 @@ namespace Orbita.Comunicaciones
         int _tiempoVida;
         #endregion
 
-        #region Atributos públicos
+        #region Propiedades
         /// <summary>
         /// Tiempo de espera lectura (segundos).
         /// </summary>

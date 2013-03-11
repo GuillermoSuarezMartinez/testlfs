@@ -1,29 +1,23 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using System.Collections.Generic;
-using Orbita.Trazabilidad;
-
+using System.Runtime.InteropServices;
 namespace Orbita.Comunicaciones
 {
     /// <summary>
     /// Protocolo de comunicación con WinCC
     /// </summary>
-    public class OProtocoloWinCCDataManager:Protocolo
+    public class OProtocoloWinCCDataManager : Protocolo
     {
-        #region dm constants
+        #region DM constants
         private const Int32 MAX_DM_VAR_NAME = 128;
         private const Int32 _MAX_PATH = 260;
         private const Int32 MAX_DM_DSN_NAME = 32;
         private const Int32 MAX_DM_TYPE_NAME = 128;
-
         private const Int32 DM_E_NO_RT_PRJ = 0x00000004;
         private const Int32 DM_E_ALREADY_CONNECTED = 0x00000006;
-
         private const Int32 DM_VARFILTER_TYPE = 0x00000001;
         private const Int32 DM_VARFILTER_NAME = 0x00000004;
-
         private const Int32 DM_VARKEY_NAME = 0x00000002;
-
         private const Int32 DM_VARTYPE_BIT = 1;
         private const Int32 DM_VARTYPE_SBYTE = 2;
         private const Int32 DM_VARTYPE_BYTE = 3;
@@ -35,7 +29,6 @@ namespace Orbita.Comunicaciones
         private const Int32 DM_VARTYPE_DOUBLE = 9;
         private const Int32 DM_VARTYPE_TEXT_8 = 10;
         private const Int32 DM_VARTYPE_TEXT_16 = 11;
-
         private const Int32 VT_BOOL = 11;
         private const Int32 VT_I1 = 16;
         private const Int32 VT_UI1 = 17;
@@ -46,7 +39,6 @@ namespace Orbita.Comunicaciones
         private const Int32 VT_R4 = 4;
         private const Int32 VT_R8 = 5;
         private const Int32 VT_BSTR = 8;
-
         // * * *  DM-strcuts  * * *
 
         // Structs need a pack=1 attribute 
@@ -60,7 +52,6 @@ namespace Orbita.Comunicaciones
         //    > Strings (Pointer): as UnmanagedType.LPStr
         //
         // *  Pointer can be defined as pointer (unsafe-Code needed) or as IntPtr.
-
         [StructLayout(LayoutKind.Sequential,
          Pack = 1, CharSet = CharSet.Ansi)]
         private struct DM_VARKEY
@@ -72,7 +63,6 @@ namespace Orbita.Comunicaciones
             public String szName;
             public IntPtr pUserData;
         }
-
         [StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Ansi)]
         private struct CMN_ERROR
         {
@@ -84,7 +74,6 @@ namespace Orbita.Comunicaciones
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 512)]
             public String szErrorText;
         }
-
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         private struct DM_VARFILTER
         {
@@ -98,7 +87,6 @@ namespace Orbita.Comunicaciones
             [MarshalAs(UnmanagedType.LPStr)]
             public String pszConn;
         }
-
         [StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Ansi)]
         private struct DM_TYPEREF
         {
@@ -107,7 +95,6 @@ namespace Orbita.Comunicaciones
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = MAX_DM_TYPE_NAME + 1)]
             public String szTypeName;
         }
-
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         private struct DM_VAR_UPDATE_STRUCT
         {
@@ -116,7 +103,6 @@ namespace Orbita.Comunicaciones
             public VARIANT dmValue;
             public UInt32 dwState;
         }
-
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         private struct DM_PROJECT_INFO
         {
@@ -126,7 +112,6 @@ namespace Orbita.Comunicaciones
             public String szDSNName;
             UInt32 dwDataLocale;
         }
-
         // VARIANT: von www.pinvoke.net
         //
         // Um unions nachzubilden, wird das Offset der Member in der struct
@@ -135,7 +120,6 @@ namespace Orbita.Comunicaciones
         // Es gibt zwar ein [MarshalAs(UnmanagedType.Bstr)]-Attribut für String. Dieses kann aber nicht
         // verwendet werden, um VT_BSTR (bstrVal) zu marshalen, weil Referenz- und Werttypen
         // sich sinnvollerweise nicht überlappen dürfen.
-
         [StructLayout(LayoutKind.Explicit, Size = 16)]
         struct VARIANT
         {
@@ -171,8 +155,6 @@ namespace Orbita.Comunicaciones
             public IntPtr bstrVal;
             // die anderen Member werden nicht gebraucht
         }
-
-
         //  * * *  Callbacks  * * * 
 
         // It is important to set the callconvention attribute to Cdecl,
@@ -180,13 +162,10 @@ namespace Orbita.Comunicaciones
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate Boolean DM_NOTIFY_PROC(UInt32 dwNotifyClass, UInt32 dwNotifyCode, IntPtr pData, UInt32 dwItems, IntPtr pUser);
-
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate Boolean DM_ENUM_VAR_PROC(ref DM_VARKEY varkey, ref Object objvars);
-
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate Boolean DM_ENUM_OPENED_PROJECTS_PROC(ref DM_PROJECT_INFO pInfo, ref String strProject);
-
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate Boolean DM_NOTIFY_VARIABLE_PROC(
             UInt32 dwTAID,
@@ -194,9 +173,6 @@ namespace Orbita.Comunicaciones
         DM_VAR_UPDATE_STRUCT[] updates,
             UInt32 dwItems,
             ref Object objlist);
-
-
-
         //  * * *  DM-Funktionen  * * *
 
         // Wo die DM-Funktionen Pointer erwarten, können Referenzen übergeben werden:
@@ -217,55 +193,43 @@ namespace Orbita.Comunicaciones
         [DllImport("dmclient.dll")]
         private static extern Boolean DMEnumVariables(String pszProject, [In] ref DM_VARFILTER pVarFilter, DM_ENUM_VAR_PROC fpEnumProc,
           ref Object objvars, [Out] out CMN_ERROR pError);
-
         [DllImport("dmclient.dll")]
         private static extern Boolean DMGetRuntimeProject([Out, MarshalAs(UnmanagedType.LPArray)] Byte[] pszProjectFile, UInt32 dwBufSize,
           [Out] out CMN_ERROR pError);
-
         [DllImport("dmclient.dll")]
         private static extern Boolean DMConnect(
             String pszAppName,
             DM_NOTIFY_PROC fpNotifyProc,
             IntPtr pUser,
             [Out] out CMN_ERROR pError);
-
         [DllImport("dmclient.dll")]
         private static extern Boolean DMDisConnect([Out] out CMN_ERROR pError);
-
         [DllImport("dmclient.dll")]
         private static extern Boolean DMSetValue([MarshalAs(UnmanagedType.LPArray)] DM_VARKEY[] varkey, UInt32 dwItems,
           [MarshalAs(UnmanagedType.LPArray)] VARIANT[] value, [Out, MarshalAs(UnmanagedType.LPArray)] UInt32[] pdwVarState,
           [Out] out CMN_ERROR pError);
-
         [DllImport("dmclient.dll")]
         private static extern Boolean DMEnumOpenedProjects([Out] out UInt32 pdwItems, DM_ENUM_OPENED_PROJECTS_PROC fpEnumProc,
           out String strProjectFile, [Out] out CMN_ERROR pError);
-
         [DllImport("dmclient.dll")]
         private static extern Boolean DMGetVarType(String pszProjectFile, [MarshalAs(UnmanagedType.LPArray)] DM_VARKEY[] pVarkey,
           UInt32 dwItems, [Out, MarshalAs(UnmanagedType.LPArray)] DM_TYPEREF[] pTyperef, [Out] out CMN_ERROR pError);
-
         [DllImport("dmclient.dll")]
         private static extern Boolean DMGetValueWait([Out] out UInt32 pdwTAID, [MarshalAs(UnmanagedType.LPArray)] DM_VARKEY[] varkey,
           UInt32 dwItems, Int32 fWaitForCompletion, UInt32 dwTimeout, DM_NOTIFY_VARIABLE_PROC fpNotifyProc, ref Object objlist,
           [Out] out CMN_ERROR pError);
-
         #endregion
 
-        #region
-
+        #region Member Variables
         private String m_strProject;      // complete wincc projectname
         private CMN_ERROR m_Error;        // global error struct for all function calls 
-
-        //private Boolean m_fIsConnected;   // connectionstate to WinCC V7 ODK
-
         private DM_NOTIFY_PROC m_fpMyNotifyProc;                        // functionpointer or delegate
         private DM_ENUM_VAR_PROC m_fpMyEnumVarProc;                     // for ODK Callbacks
         private DM_ENUM_OPENED_PROJECTS_PROC m_fpMyEnumProjectsProc;
         private DM_NOTIFY_VARIABLE_PROC m_fpMyGetVarsProc;
-        #endregion membervariables
+        #endregion Member Variables
 
-        #region  construction_Destruction
+        #region Constructores
         /// <summary>
         /// Constructor de clase
         /// </summary>
@@ -279,8 +243,7 @@ namespace Orbita.Comunicaciones
             m_fpMyEnumVarProc = new DM_ENUM_VAR_PROC(MyEnumVarProc);
             m_fpMyEnumProjectsProc = new DM_ENUM_OPENED_PROJECTS_PROC(MyEnumProjectsProc);
             m_fpMyGetVarsProc = new DM_NOTIFY_VARIABLE_PROC(MyGetVarsProc);
-        }      
-
+        }
         /// <summary>
         /// Limpia objetos de memoria
         /// </summary>
@@ -297,8 +260,7 @@ namespace Orbita.Comunicaciones
                 disposed = true;
             }
         }
-
-        #endregion  construction_Destruction
+        #endregion Constructores
 
         #region StandardODKCalls
         /// <summary>
@@ -322,7 +284,6 @@ namespace Orbita.Comunicaciones
 
             return true;
         }
-
         /// <summary>
         /// Obtiene las variables con el filtro indicado
         /// </summary>
@@ -389,7 +350,6 @@ namespace Orbita.Comunicaciones
                     return "<?>";
             }
         }
-
         /// <summary>
         /// Get current value and Quality from a WinCC Tag
         /// </summary>
@@ -424,7 +384,6 @@ namespace Orbita.Comunicaciones
             nQuality = updates[0].dwState;
             return true;
         }
-
         /// <summary>
         /// Write value to wincc tag
         /// </summary>
@@ -453,10 +412,9 @@ namespace Orbita.Comunicaciones
 
             return fRet;
         }
-        #endregion #region StandardODKCalls
+        #endregion StandardODKCalls
 
         #region Helperfunctions
-
         // Converts Object to VARIANT 
         private bool ObjectToVariant(Object obj, ref VARIANT var)
         {
@@ -516,7 +474,6 @@ namespace Orbita.Comunicaciones
 
             return true;
         }
-
         //  Converts a VARIANT to an Object 
         private bool VariantToObject(VARIANT var, ref Object obj)
         {
@@ -555,13 +512,11 @@ namespace Orbita.Comunicaciones
                 default:
                     return false;
             }
-
             return true;
         }
         #endregion Helperfunctions
 
         #region ODK-Callbacks
-
         // is used from DMEnumVariables and stroes all Taginformation in a list
         private static Boolean MyEnumVarProc(ref DM_VARKEY varkey, ref Object objvars)
         {
@@ -569,23 +524,17 @@ namespace Orbita.Comunicaciones
             vars.Add(varkey.szName);
             return true;
         }
-
-
         // is used from DM Connect 
         private static Boolean MyNotifyProc(UInt32 dwNotifyClass, UInt32 dwNotifyCode, IntPtr pData, UInt32 dwItems, IntPtr pUser)
         {
             return true;
         }
-
-
         // is used from DMEnumOpenedProjects and stores the porject name;
         private static Boolean MyEnumProjectsProc(ref DM_PROJECT_INFO info, ref String strProject)
         {
             strProject = info.szProjectFile;
             return true;
         }
-
-
         // is used from DMGetValueWait and stores all reseived DM_VAR_UPDATE_STRUCT's in one list
         private static Boolean MyGetVarsProc(UInt32 dwTAID, DM_VAR_UPDATE_STRUCT[] updates, UInt32 dwItems, ref Object objlist)
         {
@@ -595,6 +544,5 @@ namespace Orbita.Comunicaciones
             return true;
         }
         #endregion ODK-Callbacks
-
     }
 }

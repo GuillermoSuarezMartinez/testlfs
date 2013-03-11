@@ -5,7 +5,7 @@
     /// </summary>
     public static class OCifrado
     {
-        #region Método(s) estático(s) público(s) encriptación
+        #region Métodos estáticos públicos encriptación
         /// <summary>
         /// Clave de la librería para encriptar y desencriptar.
         /// Está puesto como método porque si se pone como atributo o propiedad, a pesar de estar ofuscado, se desemambla y se obtiene su valor.
@@ -42,23 +42,7 @@
             // used defaults).
             OEncriptacion rijndaelKey = new OEncriptacion(ObtenerContraseñaLibreria(), ObtenerVectorInicioLibreria());
 
-            //Console.WriteLine(String.Format("Plaintext   : {0}\n", textoPlano));
-
-            //No hace falta encriptar tantas veces
-            //// Encrypt the same plain text data 10 time (using the same key,
-            //// initialization vector, etc) and see the resulting cipher text;
-            //// encrypted values will be different.
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    cipherText = rijndaelKey.Encrypt(textoPlano);
-            //    Console.WriteLine(String.Format("Encrypted #{0}: {1}", i, textoPlano));
-            //    //textoPlano = rijndaelKey.Decrypt(textoPlano);
-            //}
             textoCifrado = rijndaelKey.Encrypt(textoPlano);
-
-            // Make sure we got decryption working correctly.
-            //Console.WriteLine(String.Format("\nDecrypted   :{0}", textoPlano));
-
             return textoCifrado;
         }
         /// <summary>
@@ -95,7 +79,7 @@
         }
         #endregion
 
-        #region Método(s) estático(s) público(s) desencriptación
+        #region Métodos estáticos públicos desencriptación
         /// <summary>
         /// Desencripta un texto con la contraseña y el vector de incio de la librería
         /// </summary>
@@ -112,23 +96,7 @@
                 // used defaults).
                 OEncriptacion rijndaelKey = new OEncriptacion(ObtenerContraseñaLibreria(), ObtenerVectorInicioLibreria());
 
-                //Console.WriteLine(String.Format("Plaintext   : {0}\n", textoPlano));
-
-                //No hace falta desencriptar tantas veces
-                //// Encrypt the same plain text data 10 time (using the same key,
-                //// initialization vector, etc) and see the resulting cipher text;
-                //// encrypted values will be different.
-                //for (int i = 0; i < 10; i++)
-                //{
-                //    //cipherText = rijndaelKey.Encrypt(plainText);
-                //    //Console.WriteLine(
-                //    //    String.Format("Encrypted #{0}: {1}", i, cipherText));
-                //    textoPlano = rijndaelKey.Decrypt(textoCifrado);
-                //}
                 textoPlano = rijndaelKey.Decrypt(textoCifrado);
-                // //Make sure we got decryption working correctly.
-                //Console.WriteLine(String.Format("\nDecrypted   :{0}", textoPlano));
-
                 return textoPlano;
             }
             catch (System.Security.Cryptography.CryptographicException)

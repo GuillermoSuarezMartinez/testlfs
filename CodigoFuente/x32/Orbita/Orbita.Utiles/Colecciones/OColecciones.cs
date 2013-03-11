@@ -29,13 +29,11 @@ namespace Orbita.Utiles
         public TSecond Second;
         #endregion
 
-        #region Constructor de la clase
+        #region Constructor
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OPair()
-        {
-        }
+        public OPair() { }
         /// <summary>
         /// Constructor de la clase
         /// </summary>
@@ -70,13 +68,11 @@ namespace Orbita.Utiles
         public TThird Third;
         #endregion
 
-        #region Constructor de la clase
+        #region Constructor
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OTriplet()
-        {
-        }
+        public OTriplet() { }
         /// <summary>
         /// Constructor de la clase
         /// </summary>
@@ -117,13 +113,11 @@ namespace Orbita.Utiles
         public TFourth Fourth;
         #endregion
 
-        #region Constructor de la clase
+        #region Constructor
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OQuartet()
-        {
-        }
+        public OQuartet() { }
         /// <summary>
         /// Constructor de la clase
         /// </summary>
@@ -170,13 +164,11 @@ namespace Orbita.Utiles
         public TFifth Fifth;
         #endregion
 
-        #region Constructor de la clase
+        #region Constructor
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OQuintet()
-        {
-        }
+        public OQuintet() { }
         /// <summary>
         /// Constructor de la clase
         /// </summary>

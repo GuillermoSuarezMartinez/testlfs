@@ -66,20 +66,14 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public OInformacionPuerto InformacionPuerto
         {
-            get
-            {
-                return this._InformacionPuerto;
-            }
+            get { return this._InformacionPuerto; }
         }
         /// <summary>
         /// Obtiene la configuración del puerto de comunicaciones
         /// </summary>
         public OConfiguracionPuerto ConfiguracionPuerto
         {
-            get
-            {
-                return this._ConfiguracionPuerto;
-            }
+            get { return this._ConfiguracionPuerto; }
         }
         #endregion
 

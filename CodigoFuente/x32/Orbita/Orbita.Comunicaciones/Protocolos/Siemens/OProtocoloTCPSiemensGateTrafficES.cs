@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
-
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -9,9 +7,7 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OProtocoloTCPSiemensGateTrafficES : OProtocoloTCPSiemens
     {
-
-        #region Variables
-
+        #region Atributos
         /// <summary>
         /// byte inicio trama
         /// </summary>
@@ -44,22 +40,16 @@ namespace Orbita.Comunicaciones
         /// Tamaño máximo de trama
         /// </summary>
         private int _tamanyoMensaje = 30;
-
         #endregion
 
         #region Constructores
         /// <summary>
         /// Contructor de clase para GATE OCR
         /// </summary>
-        public OProtocoloTCPSiemensGateTrafficES()
-        {
-
-        }
-
+        public OProtocoloTCPSiemensGateTrafficES() { }
         #endregion
 
-        #region Metodos
-
+        #region Métodos
         /// <summary>
         /// Prepara el mensaje keep alive de respuesta
         /// </summary>
@@ -94,7 +84,6 @@ namespace Orbita.Comunicaciones
             {
                 throw ex;
             }
-
             return ret;
         }
         /// <summary>
@@ -109,7 +98,6 @@ namespace Orbita.Comunicaciones
             byte id = 0;
             lecturas = new byte[9];
             byte[] BCC = new byte[10];
-
             try
             {
                 //Comprobamos el inicio y fin de trama
@@ -125,13 +113,11 @@ namespace Orbita.Comunicaciones
                         ret = true;
                     }
                 }
-
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
             return ret;
         }
         /// <summary>
@@ -143,7 +129,6 @@ namespace Orbita.Comunicaciones
         public override byte[] SalidasEnviar(byte[] salidas, byte idMensaje)
         {
             byte[] ret = null;
-
             try
             {
                 ret = KeepAliveEnviar();
@@ -162,7 +147,6 @@ namespace Orbita.Comunicaciones
             {
                 throw ex;
             }
-
             return ret;
         }
         /// <summary>
@@ -177,7 +161,6 @@ namespace Orbita.Comunicaciones
             byte[] entradas = new byte[7];
             byte[] salidas = new byte[2];
             byte[] BCC = new byte[10];
-
             try
             {
                 //Comprobamos el inicio y fin de trama
@@ -194,13 +177,11 @@ namespace Orbita.Comunicaciones
                         ret = true;
                     }
                 }
-
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
             return ret;
         }
         /// <summary>
@@ -212,7 +193,6 @@ namespace Orbita.Comunicaciones
         {
             int resultado = 0;
             byte[] retorno = new byte[1];
-
             try
             {
                 for (int i = 0; i < (dato.Length - 1); i++)
@@ -225,16 +205,13 @@ namespace Orbita.Comunicaciones
                     {
                         resultado = resultado ^ dato[i + 1];
                     }
-
                 }
-
                 retorno[0] = (byte)resultado;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
             return retorno;
         }
         /// <summary>
@@ -250,16 +227,12 @@ namespace Orbita.Comunicaciones
                 if (disposing)
                 {
                     // Dispose managed resources.
-
                 }
-
             }
         }
-
         #endregion
 
         #region Propiedades
-
         /// <summary>
         /// byte inicio trama
         /// </summary>
@@ -315,8 +288,6 @@ namespace Orbita.Comunicaciones
                 return this._traDataResult;
             }
         }
-
         #endregion
-
     }
 }

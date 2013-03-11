@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -9,8 +6,7 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OProtocoloModbusTCP : Protocolo
     {
-        #region Variables
-
+        #region Atributos
         /// <summary>
         /// cabecera del mensaje de lectura F3
         /// </summary>
@@ -18,20 +14,21 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// cabecera del mensaje de escritura F16
         /// </summary>
-        private byte[] _cabeceraMensajeEscrituraF16; 
-
+        private byte[] _cabeceraMensajeEscrituraF16;
         #endregion
+
+        #region Constructor
         /// <summary>
         /// Cosntructor de clase para el protocolo modbus TCP
         /// </summary>
         public OProtocoloModbusTCP()
-        { 
+        {
             this._cabeceraMensajeLecturaF3 = new byte[8];
             this._cabeceraMensajeEscrituraF16 = new byte[8];
         }
+        #endregion
 
-        #region Metodos
- 
+        #region Métodos
         /// <summary>
         /// Configura el mensaje para la lectura de variables F3
         /// </summary>
@@ -41,26 +38,22 @@ namespace Orbita.Comunicaciones
         public byte[] configurarMensajeLecturaF3(int registro, int lecturas)
         {
             byte[] mensaje = null;
-
             try
             {
                 mensaje = new byte[12];
-
                 this.CabeceraMensajeLecturaF3.CopyTo(mensaje, 0);
 
                 byte[] registroDisp = this.convertirArrayLectura(registro);
                 byte[] valorLecturas = this.convertirArrayLectura(lecturas);
 
-                registroDisp.CopyTo(mensaje,8);
-                valorLecturas.CopyTo(mensaje,10);
+                registroDisp.CopyTo(mensaje, 8);
+                valorLecturas.CopyTo(mensaje, 10);
             }
             catch (Exception ex)
             {
                 string error = "Error en configurarMensajeLecturaF3: " + ex;
                 throw ex;
             }
-            
-
             return mensaje;
         }
         /// <summary>
@@ -72,19 +65,17 @@ namespace Orbita.Comunicaciones
         public byte[] configurarMensajeEscrituraF16(int registro, byte[] escrituras)
         {
             byte[] mensaje = null;
-
             try
             {
-                mensaje = new byte[13+escrituras.Length];
-
+                mensaje = new byte[13 + escrituras.Length];
                 //agregamos la cabecera
                 this.CabeceraMensajeEscrituraF16.CopyTo(mensaje, 0);
                 //agregamos el registro
                 byte[] registroDisp = this.convertirArrayLectura(registro);
-                registroDisp.CopyTo(mensaje, 8);               
+                registroDisp.CopyTo(mensaje, 8);
                 //agregamos el número de valores
                 byte[] wordCount = new byte[2];
-                wordCount = this.convertirArrayLectura(escrituras.Length/2);
+                wordCount = this.convertirArrayLectura(escrituras.Length / 2);
                 wordCount.CopyTo(mensaje, 10);
                 //agregamos el número de bytes
                 byte[] numBytes = new byte[1];
@@ -92,15 +83,13 @@ namespace Orbita.Comunicaciones
                 Array.Resize(ref numBytes, 1);
                 numBytes.CopyTo(mensaje, 12);
                 //agregamos las escrituras
-                escrituras.CopyTo(mensaje,13);
+                escrituras.CopyTo(mensaje, 13);
             }
             catch (Exception ex)
             {
                 string error = "Error en configurarMensajeLecturaF3: " + ex;
                 throw ex;
             }
-
-
             return mensaje;
         }
         /// <summary>
@@ -111,15 +100,13 @@ namespace Orbita.Comunicaciones
         {
             // Preguntar si Dispose ya fue llamado.
             if (!this.disposed)
-            {               
-
+            {
                 // Marcar como desechada ó desechandose,
                 // de forma que no se puede ejecutar el
                 // código dos veces.
                 disposed = true;
             }
         }
-
         private byte[] convertirArrayLectura(int valor)
         {
             byte[] retorno = null;
@@ -131,17 +118,15 @@ namespace Orbita.Comunicaciones
                 byte valor1 = retorno[1];
                 retorno[1] = retorno[0];
                 retorno[0] = valor1;
-               
+
             }
             catch (Exception ex)
             {
                 string error = "Error en convertirArrayLectura: " + ex;
                 throw ex;
-            }            
-
+            }
             return retorno;
         }
-
         #endregion
 
         #region Propiedades
@@ -150,8 +135,8 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public byte[] CabeceraMensajeLecturaF3
         {
-            get {
-
+            get
+            {
                 this._cabeceraMensajeLecturaF3[0] = 0;
                 this._cabeceraMensajeLecturaF3[1] = 0;
                 this._cabeceraMensajeLecturaF3[2] = 0;
@@ -160,15 +145,16 @@ namespace Orbita.Comunicaciones
                 this._cabeceraMensajeLecturaF3[5] = 6;
                 this._cabeceraMensajeLecturaF3[6] = 255;
                 this._cabeceraMensajeLecturaF3[7] = 3;
-
-                return _cabeceraMensajeLecturaF3; }
+                return _cabeceraMensajeLecturaF3;
+            }
         }
         /// <summary>
         /// cabecera del mensaje de escritura F16
         /// </summary>
         public byte[] CabeceraMensajeEscrituraF16
         {
-            get {
+            get
+            {
                 this._cabeceraMensajeEscrituraF16[0] = 0;
                 this._cabeceraMensajeEscrituraF16[1] = 0;
                 this._cabeceraMensajeEscrituraF16[2] = 0;
@@ -177,10 +163,9 @@ namespace Orbita.Comunicaciones
                 this._cabeceraMensajeEscrituraF16[5] = 9;
                 this._cabeceraMensajeEscrituraF16[6] = 1;
                 this._cabeceraMensajeEscrituraF16[7] = 16;
-                
-                return _cabeceraMensajeEscrituraF16; }           
+                return _cabeceraMensajeEscrituraF16;
+            }
         }
-
         #endregion
     }
 }

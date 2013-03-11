@@ -41,7 +41,6 @@ namespace Orbita.Utiles
         /// Número de elementos de la cola
         /// </summary>
         public int Count { get; private set; }
-
         /// <summary>
         /// Indica que la cola está vacía
         /// </summary>
@@ -84,7 +83,6 @@ namespace Orbita.Utiles
             }
             return default(TValue); // not supposed to reach here.
         }
-
         /// <summary>
         /// Obtener el primer valor de la cola sin desencolar
         /// </summary>
@@ -107,7 +105,6 @@ namespace Orbita.Utiles
             }
             return default(TValue); // not supposed to reach here.
         }
-
         /// <summary>
         /// Encolar con prioridad
         /// </summary>
@@ -116,7 +113,6 @@ namespace Orbita.Utiles
         {
             this.Enqueue(item, default(TPriority));
         }
-
         /// <summary>
         /// Encolar con prioridad
         /// </summary>
@@ -135,7 +131,6 @@ namespace Orbita.Utiles
                 this.Count++;
             }
         }
-
         /// <summary>
         /// Quita todos los objetos de la colección.
         /// </summary>

@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : OrbitaUtiles
+// Assembly         : Orbita.Utiles
 // Author           : crodriguez
 // Created          : 03-03-2011
 //
@@ -145,7 +145,9 @@ namespace Orbita.Utiles
         {
             this._timer.Change(ts, new TimeSpan(0, 0, 0, 0, -1));
         }
-        #region Método(s) estático(s)
+        #endregion
+
+        #region Métodos públicos estáticos
         /// <summary>
         /// Ejecutar a una hora concreta de un dia concreto y cada mes.
         /// La función se divide en 2 partes, de forma que no se utiliza el
@@ -349,7 +351,6 @@ namespace Orbita.Utiles
             }
             return resultado;
         }
-        #endregion
         #endregion
     }
 }

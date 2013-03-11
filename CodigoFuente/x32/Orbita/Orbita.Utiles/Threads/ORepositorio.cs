@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : OrbitaUtiles
+// Assembly         : Orbita.Utiles
 // Author           : crodriguez
 // Created          : 03-03-2011
 //
@@ -30,9 +30,7 @@ namespace Orbita.Utiles
         ORepositorio() { }
         #endregion
 
-        #region Métodos públicos
-
-        #region Método(s) Estático(s)
+        #region Métodos públicos estáticos
         /// <summary>
         /// Obtener la colección de hilos.
         /// </summary>
@@ -49,8 +47,6 @@ namespace Orbita.Utiles
         {
             shilos = hilos;
         }
-        #endregion
-
         #endregion
     }
 }

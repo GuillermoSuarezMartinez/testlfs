@@ -1,30 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Orbita.Trazabilidad;
-
-namespace Orbita.Comunicaciones
+﻿namespace Orbita.Comunicaciones
 {
     /// <summary>
     /// Protocolo para los dispositivos TSP de siemens
     /// </summary>
     public class OProtocoloTCPSiemens : Protocolo
     {
-      
-
         #region Constructor
         /// <summary>
-        /// Protocolo TCP de Siemens
+        /// Protocolo TCP de Siemens.
         /// </summary>
-        public OProtocoloTCPSiemens()
-        {
-            //wrapper = LogManager.GetLogger("wrapper"); 
-        }
-
+        public OProtocoloTCPSiemens() { }
         #endregion
 
-        #region Metodos
-
+        #region Métodos
         /// <summary>
         /// Procesa el mensaje keep alive del PLC
         /// </summary>
@@ -64,7 +52,6 @@ namespace Orbita.Comunicaciones
         {
             return null;
         }
-
         /// <summary>
         /// Limpia objetos de memoria
         /// </summary>
@@ -81,7 +68,6 @@ namespace Orbita.Comunicaciones
                 disposed = true;
             }
         }
-        
         #endregion
     }
 }

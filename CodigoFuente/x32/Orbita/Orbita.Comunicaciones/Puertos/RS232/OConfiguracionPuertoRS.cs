@@ -6,7 +6,7 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OConfiguracionPuertoRS : OConfiguracionPuerto
     {
-        #region Atributos/s
+        #region Atributos
         /// <summary>
         /// Identificador de puerto
         /// </summary>
@@ -32,9 +32,9 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public OHandShakes Handshake;
 
-        #endregion Atributos/s
+        #endregion Atributos
 
-        #region Constructor/es
+        #region Constructores
         /// <summary>
         /// Constructor con la configuración por defecto
         /// </summary>
@@ -66,7 +66,7 @@ namespace Orbita.Comunicaciones
             this.BitsStop = bitsStop;
             this.Handshake = handShakes;
         }
-        #endregion Constructor/es
+        #endregion Constructores
     }
     /// <summary>
     /// Enumera las posibles velocidades para el puerto serie RS232.
@@ -201,7 +201,6 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public enum OBitsStop
     {
-
         /// <summary>
         /// Uno
         /// </summary>

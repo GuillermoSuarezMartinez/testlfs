@@ -87,13 +87,10 @@ namespace Orbita.BBDD
                 {
                     // Abrir conexión.
                     conexion.Open();
-
                     // Establecer timeout de ejecución.
                     command.CommandTimeout = timeout;
-
                     //Establecer el tipo de comando
                     command.CommandType = CommandType.Text;
-
                     using (OracleDataAdapter adapter = new OracleDataAdapter(command))
                     {
                         // Asignar resultados al DataTable.
@@ -101,7 +98,6 @@ namespace Orbita.BBDD
                         // Establecer una configuración regional actual.
                         resultado.Locale = CultureInfo.CurrentCulture;
                     }
-
                     conexion.Close();
                 }
 
@@ -387,22 +383,16 @@ namespace Orbita.BBDD
                 {
                     // Abrir conexión.
                     conexion.Open();
-
                     //Comenzamos la transacción (ésta debe hacerse después de abrir la conexión)
                     transaccion = conexion.BeginTransaction();
-
                     //Indicamos al comando en qué transacción se ´va a ejecutar
                     command.Transaction = transaccion;
-
                     // Establecer timeout de ejecución.
                     command.CommandTimeout = timeout;
-
                     // Ejecutar query.
                     resultado = command.ExecuteNonQuery();
-
                     // Confirmar transacción.
                     transaccion.Commit();
-
                     // Cerrar conexión
                     conexion.Close();
                 }

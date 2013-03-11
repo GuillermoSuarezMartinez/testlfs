@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -16,7 +12,7 @@ namespace Orbita.Comunicaciones
         public bool disposed = false;
 
         #region Dispose
-		    
+
         /// <summary>
         /// Implementa IDisposable.
         /// No  hacer  este  método  virtual.
@@ -39,7 +35,7 @@ namespace Orbita.Comunicaciones
         /// llamar al destructor de clase.
         /// </summary>
         /// <param name="disposing">Indica si llama al método Dispose.</param>
-        public abstract void Dispose(bool disposing);        
+        public abstract void Dispose(bool disposing);
         /// <summary>
         /// Destructor(es) de clase.
         /// En caso de que se nos olvide “desechar” la clase,
@@ -52,6 +48,6 @@ namespace Orbita.Comunicaciones
             // de legibilidad y mantenimiento.
             Dispose(false);
         }
-	    #endregion        
+        #endregion
     }
 }

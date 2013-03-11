@@ -31,7 +31,7 @@ namespace Orbita.Utiles
         /// <summary>
         /// Controlador del servicio instalado
         /// </summary>
-        private ServiceController Controlador;
+        ServiceController Controlador;
         #endregion
 
         #region Propiedades
@@ -40,16 +40,9 @@ namespace Orbita.Utiles
         /// </summary>
         public bool Instalado
         {
-            get
-            {
-                return this.IsInstalled();
-            }
-            set
-            {
-                this.Instalar(value);
-            }
+            get { return this.IsInstalled(); }
+            set { this.Instalar(value); }
         }
-
         /// <summary>
         /// Estado del servicio
         /// </summary>
@@ -61,17 +54,16 @@ namespace Orbita.Utiles
 
         #region Constructor
         /// <summary>
-        /// Constructor de la clase
+        /// 
         /// </summary>
-        /// <param name="nombre">Nombre del servicio</param>
+        /// <param name="nombre">Nombre del servicio.</param>
+        /// <param name="ruta">Ruta del servicio.</param>
         public OServicioWindows(string nombre, string ruta)
         {
             this.Nombre = nombre;
             this.Ruta = ruta;
-
             this.Controlador = new ServiceController(this.Nombre, this.Maquina);
         }
-
         /// <summary>
         /// Constructor de la clase
         /// </summary>
@@ -84,7 +76,6 @@ namespace Orbita.Utiles
 
             this.Controlador = new ServiceController(this.Nombre, this.Maquina);
         }
-
         /// <summary>
         /// Constructor de la clase
         /// </summary>
@@ -97,7 +88,6 @@ namespace Orbita.Utiles
 
             this.Controlador = new ServiceController(this.Nombre, this.Maquina);
         }
-
         /// <summary>
         /// Constructor de la clase
         /// </summary>
@@ -113,7 +103,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Destructor(es)
+        #region Destructores
         /// <summary>
         /// Indica si ya se llamo al método Dispose. (default = false)
         /// </summary>
@@ -169,7 +159,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Método(s) público
+        #region Métodos públicos
         /// <summary>
         /// Instala el servicio
         /// </summary>

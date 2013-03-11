@@ -187,7 +187,7 @@ namespace Orbita.Utiles
         /// <summary>
         /// Tiempo de consulta
         /// </summary>
-        private int segundosConsulta = 3600;//3600/1hora
+        private int segundosConsulta = 3600; // 1 hora.
         #endregion
 
         #region Propiedades
@@ -231,7 +231,6 @@ namespace Orbita.Utiles
         /// </summary>
         public OHaspSN()
         {
-            //ImpedirDepurador();
             wrapper = LogManager.GetLogger("wrapper");
             Assembly assem = Assembly.GetEntryAssembly();
             this.nombreAplicacion = assem.Location;
@@ -241,7 +240,6 @@ namespace Orbita.Utiles
         #region Métodos
 
         #region depurador
-
         /// <summary>
         /// Impide la depuración del código
         /// </summary>
@@ -281,12 +279,8 @@ namespace Orbita.Utiles
                 }
                 Thread.Sleep(espera);
             }
-
-
             return true;
-
         }
-
         #endregion
 
         /// <summary>
@@ -306,7 +300,6 @@ namespace Orbita.Utiles
                 {
                     wrapper = LogManager.SetDebugLogger("wrapper", NivelLog.Debug);
                 }
-
                 wrapper.Info("Comprobando lista de productos inicial");
 
                 this.IncluirSerial();
@@ -333,7 +326,6 @@ namespace Orbita.Utiles
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                //wrapper.Error("Excepción general. Se cerrará la aplicación. " + ex.ToString());
                 this.CerrarAplicacion();
             }
         }
@@ -343,9 +335,7 @@ namespace Orbita.Utiles
         private void ComprobarTecnologia()
         {
             OProductos prodCheck = (OProductos)productos[0];
-
             this.swCod = "";
-
             try
             {
                 using (StreamReader sr = new StreamReader(Application.StartupPath + @"\orbita.lic"))
@@ -378,7 +368,6 @@ namespace Orbita.Utiles
                 Thread.Sleep(30000);
                 this.CerrarAplicacion();
             }
-
         }
         /// <summary>
         /// Comprueba si existe licencia HASP Usb
@@ -631,9 +620,7 @@ namespace Orbita.Utiles
                 for (int i = 0; i < productos.Count; i++)
                 {
                     OProductos prodCheck = (OProductos)productos[i];
-
                     bool check = false;
-
                     if (this.licencia == OLicencias.HASPSentinel)
                     {
                         check = this.ComprobarProductoHASPSL(prodCheck);
@@ -672,7 +659,6 @@ namespace Orbita.Utiles
                             }
                         }
                     }
-
                     if (!check)
                     {
                         wrapper.Info("TareasHasp. No se encuentra la licencia de " + prodCheck.ToString());
@@ -700,7 +686,6 @@ namespace Orbita.Utiles
                         }
                     }
                 }
-
                 Thread.Sleep(tpoEspera);
             }
         }
@@ -736,7 +721,6 @@ namespace Orbita.Utiles
                     }
                 }
             }
-
             nodeList = null;
             ns = null;
             xmlDoc = null;
@@ -774,7 +758,6 @@ namespace Orbita.Utiles
                         }
                     }
                 }
-
                 foreach (ServiceController servicio in ServiceController.GetServices("."))
                 {
                     if (servicio.ServiceName.ToLower() == service.ToLower())
@@ -785,7 +768,6 @@ namespace Orbita.Utiles
                             servicio.Stop();
                         }
                     }
-
                 }
             }
             Application.Exit();

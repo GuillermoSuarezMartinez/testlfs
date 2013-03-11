@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : OrbitaUtiles
+// Assembly         : Orbita.Utiles
 // Author           : crodriguez
 // Created          : 03-03-2011
 //
@@ -39,9 +39,7 @@ namespace Orbita.Utiles
         public OResetManual(short contador)
         {
             this._eventoResetManual = new ManualResetEvent[contador];
-
-            // Inicializar contador de eventos.
-            Inicializar(contador);
+            Inicializar(contador); // Inicializar contador de eventos.
         }
         #endregion
 

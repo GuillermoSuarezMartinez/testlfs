@@ -145,7 +145,7 @@ namespace Orbita.Comunicaciones
             set { this._htVida = value; }
         }
         /// <summary>
-        /// Configuracion
+        /// Configuración.
         /// </summary>
         public OConfigDispositivo Config
         {

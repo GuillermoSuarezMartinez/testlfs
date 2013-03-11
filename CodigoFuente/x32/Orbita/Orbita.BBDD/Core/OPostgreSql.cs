@@ -162,8 +162,6 @@ namespace Orbita.BBDD
                         // Liberar transacción.
                         transaccion.Rollback();
                     }
-
-
                 }
             }
             return resultado;

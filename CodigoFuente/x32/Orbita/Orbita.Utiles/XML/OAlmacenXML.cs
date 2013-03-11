@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : OrbitaUtiles
+// Assembly         : Orbita.Utiles
 // Author           : ahidalgo
 // Created          : 03-03-2011
 //
@@ -32,10 +32,7 @@ namespace Orbita.Utiles
         /// <summary>
         /// Inicializar una nueva instancia de la clase OAlmacenXML.
         /// </summary>
-        public OAlmacenXML()
-        {
-            // Constructor vacío
-        }
+        public OAlmacenXML() { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase OAlmacenXML.
         /// </summary>
@@ -46,7 +43,7 @@ namespace Orbita.Utiles
         }
         #endregion
 
-        #region Destructor(es)
+        #region Destructores
         /// <summary>
         /// Indica si ya se llamo al método Dispose. (default = false)
         /// </summary>

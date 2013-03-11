@@ -9,7 +9,7 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OProtocoloTCPSiemensGateOCRES : OProtocoloTCPSiemens
     {
-        #region Variables
+        #region Atributos
 
         /// <summary>
         /// byte inicio trama
@@ -53,11 +53,11 @@ namespace Orbita.Comunicaciones
         public OProtocoloTCPSiemensGateOCRES()
         {
 
-        }       
+        }
 
         #endregion
 
-        #region Metodos
+        #region Métodos
 
         /// <summary>
         /// Prepara el mensaje keep alive de respuesta
