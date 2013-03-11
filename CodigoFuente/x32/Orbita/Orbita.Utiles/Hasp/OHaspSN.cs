@@ -232,7 +232,7 @@ namespace Orbita.Utiles
         public OHaspSN()
         {
             //ImpedirDepurador();
-            wrapper = LogManager.GetLogger("wrapper"); 
+            wrapper = LogManager.GetLogger("wrapper");
             Assembly assem = Assembly.GetEntryAssembly();
             this.nombreAplicacion = assem.Location;
         }
@@ -797,7 +797,7 @@ namespace Orbita.Utiles
     /// oOPCComms.
     /// </summary>
     [Serializable]
-    public class oMsgHasp:IDisposable
+    public class oMsgHasp : IDisposable
     {
         #region Atributos
         /// <summary>
@@ -846,7 +846,7 @@ namespace Orbita.Utiles
         /// Dispose.
         /// </summary>
         public void Dispose()
-        {            
+        {
             GC.SuppressFinalize(this);
         }
         #endregion

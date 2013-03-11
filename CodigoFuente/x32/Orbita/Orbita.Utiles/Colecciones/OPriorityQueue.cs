@@ -11,8 +11,6 @@
 //***********************************************************************
 using System;
 using System.Collections.Generic;
-using System.Text;
-
 namespace Orbita.Utiles
 {
     /// <summary>
@@ -66,18 +64,18 @@ namespace Orbita.Utiles
         /// Desencolar
         /// </summary>
         /// <returns>Valor desencolado</returns>
-		public TValue Dequeue()
+        public TValue Dequeue()
         {
-            if (this.Empty) 
+            if (this.Empty)
             {
-                throw new Exception ("PriorityQueue is empty");
-            } 
+                throw new Exception("PriorityQueue is empty");
+            }
             else
             {
-                foreach (Queue<TValue> q in storage.Values) 
+                foreach (Queue<TValue> q in storage.Values)
                 {
                     // we use a sorted dictionary
-                    if (q.Count > 0) 
+                    if (q.Count > 0)
                     {
                         this.Count--;
                         return q.Dequeue();
@@ -99,7 +97,7 @@ namespace Orbita.Utiles
             }
             else
             {
-                foreach (Queue<TValue> q in storage.Values) 
+                foreach (Queue<TValue> q in storage.Values)
                 {
                     if (q.Count > 0)
                     {
@@ -126,12 +124,12 @@ namespace Orbita.Utiles
         /// <param name="priority">prioridad de encolamiento</param>
         public void Enqueue(TValue item, TPriority priority)
         {
-            if (!storage.ContainsKey (priority)) 
+            if (!storage.ContainsKey(priority))
             {
                 storage.Add(priority, new Queue<TValue>());
                 Enqueue(item, priority);
             }
-            else 
+            else
             {
                 storage[priority].Enqueue(item);
                 this.Count++;
@@ -149,6 +147,6 @@ namespace Orbita.Utiles
             }
             storage.Clear();
         }
-	    #endregion    
+        #endregion
     }
 }

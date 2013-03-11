@@ -11,7 +11,7 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OPuertoRS : OPuertoComunicaciones
     {
-        #region Atributo/s
+        #region Atributos
         /// <summary>
         /// PuertoRS232.
         /// </summary>
@@ -29,10 +29,9 @@ namespace Orbita.Comunicaciones
         /// Evento para la recepción de datos
         /// </summary>
         public event OManejadorEventoSerie OrbitaRX;
+        #endregion Atributos
 
-        #endregion Atributo/s
-
-        #region Constructor/es
+        #region Constructores
         /// <summary>
         /// Constructor del puerto con la configuración por defecto
         /// </summary>
@@ -71,9 +70,9 @@ namespace Orbita.Comunicaciones
         {
             this.IniciarComponentes();
         }
-        #endregion Constructor/es
+        #endregion Constructores
 
-        #region Propiedad/es
+        #region Propiedades
         /// <summary>
         /// Indica si el puerto serie RS232  está abierto
         /// </summary>
@@ -84,9 +83,9 @@ namespace Orbita.Comunicaciones
                 return this.PuertoRS232.IsOpen;
             }
         }
-        #endregion Propiedad/es
+        #endregion Propiedades
 
-        #region Metodo/s privado/s
+        #region Métodos privados
         /// <summary>
         /// Inicia todos los componentes de este puerto de comunicaciones, a excepción del inicio del puerto serie, ya que se hace desde la clase padre al configurar el puerto
         /// </summary>
@@ -179,9 +178,9 @@ namespace Orbita.Comunicaciones
             }
             return convHandshake;
         }
-        #endregion Metodo/s privado/s
+        #endregion Métodos privados
 
-        #region Metodo/s publico/s
+        #region Métodos públicos
         /// <summary>
         /// Crea y configura el puerto serie RS232
         /// </summary>
@@ -360,9 +359,9 @@ namespace Orbita.Comunicaciones
             }
             return dt;
         }
-        #endregion Metodo/s publico/s
+        #endregion Métodos públicos
 
-        #region Manejador/es de evento/s
+        #region Manejadores de eventos
         /// <summary>
         /// Se ejecuta cada vez que se reciben datos por this.PuertoRS232
         /// </summary>
@@ -400,7 +399,6 @@ namespace Orbita.Comunicaciones
                 OMensajes.MostrarError(ex.ToString());
             }
         }
-
         protected void OnCambioDato(OEventArgs e)
         {
             // Hacer una copia temporal del evento para evitar una condición
@@ -415,6 +413,6 @@ namespace Orbita.Comunicaciones
 
             handler = null;
         }
-        #endregion Manejador/es de evento/s
+        #endregion Manejadores de eventos
     }
 }

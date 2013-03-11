@@ -1,4 +1,5 @@
-﻿//***********************************************************************
+﻿using System;
+//***********************************************************************
 // Assembly         : OrbitaUtiles
 // Author           : crodriguez
 // Created          : 03-03-2011
@@ -11,7 +12,6 @@
 //***********************************************************************
 using System.Collections.Generic;
 using System.Threading;
-using System;
 namespace Orbita.Utiles
 {
     /// <summary>

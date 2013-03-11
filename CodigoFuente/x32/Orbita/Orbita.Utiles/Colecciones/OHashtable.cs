@@ -38,7 +38,7 @@ namespace Orbita.Utiles
         /// Inicializar una nueva instancia de la clase OHashtable.
         /// </summary>
         public OHashtable()
-            :base() { }
+            : base() { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase OHashtable.
         /// </summary>
@@ -55,7 +55,7 @@ namespace Orbita.Utiles
         /// </summary>
         /// <param name="table">Colección hashtable.</param>
         OHashtable(Hashtable table)
-            :base(table) { }
+            : base(table) { }
         #endregion
 
         #region Destructor(es)

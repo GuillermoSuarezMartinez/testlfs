@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Diagnostics;
 using System.IO;
-
 namespace Orbita.Utiles
 {
     public static class OProcesos
@@ -16,7 +13,6 @@ namespace Orbita.Utiles
         public static Process EncontrarProceso(string nombre, string ruta)
         {
             Process resultado = null;
-
             try
             {
                 Process[] asProccess = Process.GetProcessesByName(nombre);
@@ -29,13 +25,9 @@ namespace Orbita.Utiles
                     }
                 }
             }
-            catch (Exception exception)
-            {
-            }
-
+            catch (Exception) { }
             return resultado;
         }
-
         /// <summary>
         /// Mata determinado proceso
         /// </summary>
@@ -44,7 +36,6 @@ namespace Orbita.Utiles
         public static bool MatarProceso(string nombre, string ruta)
         {
             bool resultado = false;
-
             try
             {
                 bool procesoEncontrado;
@@ -81,13 +72,9 @@ namespace Orbita.Utiles
                 }
                 resultado = !procesoEncontrado;
             }
-            catch (Exception exception)
-            {
-            }
-
+            catch (Exception) { }
             return resultado;
         }
-
         /// <summary>
         /// Inicia una aplicación
         /// </summary>
@@ -96,7 +83,6 @@ namespace Orbita.Utiles
         public static bool IniciarProceso(string ruta)
         {
             bool resultado = false;
-
             try
             {
                 if (Path.IsPathRooted(ruta) && File.Exists(ruta))
@@ -106,10 +92,7 @@ namespace Orbita.Utiles
                     resultado = true;
                 }
             }
-            catch (Exception exception)
-            {
-            }
-
+            catch (Exception) { }
             return resultado;
         }
     }

@@ -19,7 +19,7 @@ namespace Orbita.Utiles
     [Serializable]
     public class OExcepcion : Exception
     {
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase OExcepcion.
         /// </summary>

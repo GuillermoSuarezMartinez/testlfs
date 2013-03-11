@@ -19,7 +19,7 @@ namespace Orbita.Utiles
     /// Clase OAlmacenXML
     /// </summary>
     [Serializable]
-    public class OAlmacenXML: ICloneable
+    public class OAlmacenXML : ICloneable
     {
         #region Atributo(s)
         /// <summary>

@@ -12,7 +12,6 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-
 namespace Orbita.Utiles
 {
     /// <summary>
@@ -36,7 +35,6 @@ namespace Orbita.Utiles
             this.ListaEnumerados = new List<OEnumeradoHeredable>();
 
             Type tipo = this.GetType();
-
             while (tipo != typeof(OEnumeradosHeredable))
             {
                 FieldInfo[] fields = tipo.GetFields();
@@ -75,7 +73,6 @@ namespace Orbita.Utiles
                     return (T)enumerado;
                 }
             }
-
             return resultado;
         }
 
@@ -89,7 +86,6 @@ namespace Orbita.Utiles
             where T : OEnumeradoHeredable
         {
             T resultado = null;
-
             foreach (OEnumeradoHeredable enumerado in this.ListaEnumerados)
             {
                 if (enumerado.Valor == valor)
@@ -97,7 +93,6 @@ namespace Orbita.Utiles
                     return (T)enumerado;
                 }
             }
-
             return resultado;
         }
         #endregion
@@ -134,5 +129,5 @@ namespace Orbita.Utiles
             this.Valor = valor;
         }
         #endregion
-    } 
+    }
 }

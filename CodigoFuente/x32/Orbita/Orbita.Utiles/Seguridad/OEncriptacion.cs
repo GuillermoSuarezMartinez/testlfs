@@ -1,7 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using System.IO;
 namespace Orbita.Utiles
 {
     /// <summary>
@@ -57,7 +57,7 @@ namespace Orbita.Utiles
         /// secure than the CBC mode.
         /// </remarks>
         public OEncriptacion(string passPhrase)
-            :this(passPhrase, null) { }
+            : this(passPhrase, null) { }
         /// <summary>
         /// Use this constructor if you are planning to perform encryption/
         /// decryption with 256-bit key, derived using 1 password iteration,
@@ -78,7 +78,7 @@ namespace Orbita.Utiles
         /// in secret.
         /// </param>
         public OEncriptacion(string passPhrase, string initVector)
-            :this(passPhrase, initVector, -1) { }
+            : this(passPhrase, initVector, -1) { }
         /// <summary>
         /// Use this constructor if you are planning to perform encryption/
         /// decryption with 256-bit key, derived using 1 password iteration,
@@ -105,7 +105,7 @@ namespace Orbita.Utiles
         /// bytes).
         /// </param>
         public OEncriptacion(string passPhrase, string initVector, int minSaltLen)
-            :this(passPhrase, initVector, minSaltLen, -1) { }
+            : this(passPhrase, initVector, minSaltLen, -1) { }
         /// <summary>
         /// Use this constructor if you are planning to perform encryption/
         /// decryption with 256-bit key, derived using 1 password iteration,
@@ -142,7 +142,7 @@ namespace Orbita.Utiles
         /// In this case, salt will not be processed during decryption either.
         /// </param>
         public OEncriptacion(string passPhrase, string initVector, int minSaltLen, int maxSaltLen)
-            :this(passPhrase, initVector, minSaltLen, maxSaltLen, -1) { }
+            : this(passPhrase, initVector, minSaltLen, maxSaltLen, -1) { }
         /// <summary>
         /// Use this constructor if you are planning to perform encryption/
         /// decryption using the key derived from 1 password iteration,
@@ -181,7 +181,7 @@ namespace Orbita.Utiles
         /// Size of symmetric key (in bits): 128, 192, or 256.
         /// </param>
         public OEncriptacion(string passPhrase, string initVector, int minSaltLen, int maxSaltLen, int keySize)
-            :this(passPhrase, initVector, minSaltLen, maxSaltLen, keySize, null) { }
+            : this(passPhrase, initVector, minSaltLen, maxSaltLen, keySize, null) { }
         /// <summary>
         /// Use this constructor if you are planning to perform encryption/
         /// decryption using the key derived from 1 password iteration, hashing 
@@ -222,7 +222,7 @@ namespace Orbita.Utiles
         /// Hashing algorithm: "MD5" or "SHA1". SHA1 is recommended.
         /// </param>
         public OEncriptacion(string passPhrase, string initVector, int minSaltLen, int maxSaltLen, int keySize, string hashAlgorithm)
-            :this(passPhrase, initVector, minSaltLen, maxSaltLen, keySize, hashAlgorithm, null) { }
+            : this(passPhrase, initVector, minSaltLen, maxSaltLen, keySize, hashAlgorithm, null) { }
         /// <summary>
         /// Use this constructor if you are planning to perform encryption/
         /// decryption using the key derived from 1 password iteration, and
@@ -268,7 +268,7 @@ namespace Orbita.Utiles
         /// can be any string.
         /// </param>
         public OEncriptacion(string passPhrase, string initVector, int minSaltLen, int maxSaltLen, int keySize, string hashAlgorithm, string saltValue)
-            :this(passPhrase, initVector, minSaltLen, maxSaltLen, keySize, hashAlgorithm, saltValue, 1) { }
+            : this(passPhrase, initVector, minSaltLen, maxSaltLen, keySize, hashAlgorithm, saltValue, 1) { }
         /// <summary>
         /// Use this constructor if you are planning to perform encryption/
         /// decryption with the key derived from the explicitly specified
