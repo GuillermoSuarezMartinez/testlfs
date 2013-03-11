@@ -33,12 +33,14 @@
 // obligated to do so.  If you do not wish to do so, delete this
 // exception statement from your version.
 
-namespace Orbita.Utiles.Compresion.LZW {
+namespace Orbita.Utiles.Compresion.LZW
+{
 
     /// <summary>
     /// This class contains constants used for LZW
     /// </summary>
-    sealed public class LzwConstants {
+    sealed public class LzwConstants
+    {
         /// <summary>
         /// Magic number found at start of LZW header: 0x1f 0x9d
         /// </summary>
@@ -59,18 +61,18 @@ namespace Orbita.Utiles.Compresion.LZW {
         /// <summary>
         /// Mask for 'number of compression bits'
         /// </summary>
-        public const int BIT_MASK       = 0x1f;
+        public const int BIT_MASK = 0x1f;
 
         /// <summary>
         /// Indicates the presence of a fourth header byte
         /// </summary>
-        public const int EXTENDED_MASK  = 0x20;
+        public const int EXTENDED_MASK = 0x20;
         //public const int FREE_MASK      = 0x40;
 
         /// <summary>
         /// Reserved bits
         /// </summary>
-        public const int RESERVED_MASK  = 0x60;
+        public const int RESERVED_MASK = 0x60;
 
         /// <summary>
         /// Block compression: if table is full and compression rate is dropping,
@@ -88,7 +90,8 @@ namespace Orbita.Utiles.Compresion.LZW {
         /// </summary>
         public const int INIT_BITS = 9;
 
-        LzwConstants() {
+        LzwConstants()
+        {
         }
     }
 }

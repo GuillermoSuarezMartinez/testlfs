@@ -89,19 +89,19 @@ namespace Orbita.Trazabilidad
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
         /// </summary>
         /// <param name="identificador">Identificador de logger.</param>
-        /// <param name="OInfoConexion">Información de la conexión actual.</param>
-        public TrazaLogger(string identificador, OInfoConexion OInfoConexion)
-            : this(identificador, OInfoConexion, null) { }
+        /// <param name="oInfoConexion">Información de la conexión actual.</param>
+        public TrazaLogger(string identificador, OInfoConexion oInfoConexion)
+            : this(identificador, oInfoConexion, null) { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
         /// </summary>
         /// <param name="identificador">Identificador de logger.</param>
-        /// <param name="OInfoConexion">Información de la conexión actual.</param>
+        /// <param name="oInfoConexion">Información de la conexión actual.</param>
         /// <param name="logger">DebugLogger de registro que chequea errores de inserción en base de datos.</param>
-        public TrazaLogger(string identificador, OInfoConexion OInfoConexion, ILogger logger)
+        public TrazaLogger(string identificador, OInfoConexion oInfoConexion, ILogger logger)
             : this(identificador)
         {
-            this.infoConexion = OInfoConexion;
+            this.infoConexion = oInfoConexion;
             this.logger = logger;
         }
         #endregion

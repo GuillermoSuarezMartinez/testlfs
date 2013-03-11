@@ -60,7 +60,6 @@ namespace Orbita.Trazabilidad
         public System.Collections.Generic.List<ILogger> Loggers
         {
             get { return this.loggers; }
-            set { this.loggers = value; }
         }
         #endregion
 
@@ -71,13 +70,17 @@ namespace Orbita.Trazabilidad
         /// <param name="item">Entrada de registro.</param>
         public override void Log(ItemLog item)
         {
-            // Recorrer la colección de loggers.
-            foreach (BaseLogger logger in this.loggers)
+            // Validar el parámetro 'item' antes de utilizarlo.
+            if (item != null)
             {
-                if (item.NivelLog >= logger.NivelLog)
+                // Recorrer la colección de loggers.
+                foreach (BaseLogger logger in this.loggers)
                 {
-                    // Registrar cada item de la colección.
-                    logger.Log(item);
+                    if (item.NivelLog >= logger.NivelLog)
+                    {
+                        // Registrar cada item de la colección.
+                        logger.Log(item);
+                    }
                 }
             }
         }
@@ -88,13 +91,17 @@ namespace Orbita.Trazabilidad
         /// <param name="args">Parámetros adicionales.</param>
         public override void Log(ItemLog item, object[] args)
         {
-            // Recorrer la colección de loggers.
-            foreach (BaseLogger logger in this.loggers)
+            // Validar el parámetro 'item' antes de utilizarlo.
+            if (item != null)
             {
-                if (item.NivelLog >= logger.NivelLog)
+                // Recorrer la colección de loggers.
+                foreach (BaseLogger logger in this.loggers)
                 {
-                    // Registrar cada item de la colección.
-                    logger.Log(item, args);
+                    if (item.NivelLog >= logger.NivelLog)
+                    {
+                        // Registrar cada item de la colección.
+                        logger.Log(item, args);
+                    }
                 }
             }
         }

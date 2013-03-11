@@ -59,14 +59,16 @@ namespace Orbita.Utiles.Compresion.LZW
         /// <param name="info"><see cref="SerializationInfo"/> for this constructor</param>
         /// <param name="context"><see cref="StreamingContext"/> for this constructor</param>
         protected LzwException(SerializationInfo info, StreamingContext context)
-            : base(info, context) {
+            : base(info, context)
+        {
         }
 #endif
 
         /// <summary>
         /// Initialise a new instance of LzwException
         /// </summary>
-        public LzwException() {
+        public LzwException()
+        {
         }
 
         /// <summary>
@@ -74,7 +76,8 @@ namespace Orbita.Utiles.Compresion.LZW
         /// </summary>
         /// <param name="message">A <see cref="string"/> that describes the error.</param>
         public LzwException(string message)
-            : base(message) {
+            : base(message)
+        {
         }
 
         /// <summary>
@@ -83,7 +86,8 @@ namespace Orbita.Utiles.Compresion.LZW
         /// <param name="message">A <see cref="string"/> that describes the error.</param>
         /// <param name="innerException">The <see cref="Exception"/> that caused this exception.</param>
         public LzwException(string message, Exception innerException)
-            : base(message, innerException) {
+            : base(message, innerException)
+        {
         }
     }
 }

@@ -171,7 +171,7 @@ namespace Orbita.Utiles
             DateTime fechaHora = DateTime.Now;
             // Concatenar a la fecha la hora de ejecución.
             DateTime fechaHoraEjecucion = new DateTime(fechaHora.Year, fechaHora.Month, dia, ts.Hours, ts.Minutes, ts.Seconds);
-            
+
             return fechaHoraEjecucion.AddMonths(1).Subtract(fechaHora);
         }
         /// <summary>
