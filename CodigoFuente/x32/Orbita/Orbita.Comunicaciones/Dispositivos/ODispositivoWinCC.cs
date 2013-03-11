@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Runtime.InteropServices;
-using System.Collections.Generic;
 using Orbita.Trazabilidad;
-
 namespace Orbita.Comunicaciones
 {
     /// <summary>
     /// Protocolo pra comunicar con WinCC. Es necesario que este dispositivo esté en la misma máquina que WinCC.
     /// </summary>
-    public class ODispositivoWinCC:ODispositivo
+    public class ODispositivoWinCC : ODispositivo
     {
         #region Atributo(s)
         /// <summary>
@@ -96,22 +93,22 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public override object[] Leer(string[] variables, bool demanda)
         {
-               object[] retorno = new object[variables.Length];
-               demanda = true;
+            object[] retorno = new object[variables.Length];
+            demanda = true;
 
-               if (demanda)
-               {
-                   for (int i = 0; i < retorno.Length; i++)
-                   {
-                       object valor = null;
-                       if (this.Leer(variables[i], out  valor))
-                       {
-                           retorno[i] = valor;
-                       }
-                   }
-               }
-               
-               return retorno;
+            if (demanda)
+            {
+                for (int i = 0; i < retorno.Length; i++)
+                {
+                    object valor = null;
+                    if (this.Leer(variables[i], out  valor))
+                    {
+                        retorno[i] = valor;
+                    }
+                }
+            }
+
+            return retorno;
         }
         /// <summary>
         /// Escribe las variables en WinCC. El método de escritura es variable a variable
@@ -125,15 +122,15 @@ namespace Orbita.Comunicaciones
 
             for (int i = 0; i < variables.Length; i++)
             {
-                if (!this.Escribir(variables[i],valores[i]))
+                if (!this.Escribir(variables[i], valores[i]))
                 {
                     retorno = false;
-                }                
+                }
             }
 
             return retorno;
         }
-        #endregion  
+        #endregion
 
         #region Metodo(s) privados
         /// <summary>
@@ -185,6 +182,4 @@ namespace Orbita.Comunicaciones
         }
         #endregion
     }
-
-    
 }

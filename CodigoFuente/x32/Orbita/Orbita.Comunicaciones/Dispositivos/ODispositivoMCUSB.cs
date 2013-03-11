@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Text;
 using System.Threading;
-
-using Orbita.Utiles;
-using Orbita.Trazabilidad;
-using Orbita.Winsock;
 using MccDaq;
-
+using Orbita.Utiles;
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -16,7 +11,7 @@ namespace Orbita.Comunicaciones
     public class ODispositivoMCUSB : ODispositivoES
     {
         #region Atributos
-        
+
         /// <summary>
         /// Cola de recepción de tramas de datos.
         /// </summary>
@@ -29,7 +24,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Colección para la búsqueda de lecturas. La clave es la dupla "dirección-bit"
         /// </summary>
-        private OHashtable _almacenLecturas;             
+        private OHashtable _almacenLecturas;
         /// <summary>
         /// Número de lecturas a realizar
         /// </summary>
@@ -70,7 +65,7 @@ namespace Orbita.Comunicaciones
             //Inicialización de objetos
             this.IniciarObjetos();
             wrapper.Debug("Objetos del dispositivo de ES MCC creados.");
-            
+
             try
             {
                 Hilos.Add(new ThreadStart(ESProcesarHilo), true);
@@ -103,7 +98,7 @@ namespace Orbita.Comunicaciones
             int maxReintentos = 3;
 
             while (true)
-            {  
+            {
                 try
                 {
                     responde = true;
@@ -111,7 +106,7 @@ namespace Orbita.Comunicaciones
                     ErrorInfo info;
                     info = _daqBoard.DIn(DigitalPortType.FirstPortA, out data);
                     this._lecturas[0] = (byte)data;
-                    if (info.Value!= ErrorInfo.ErrorCode.NoErrors)
+                    if (info.Value != ErrorInfo.ErrorCode.NoErrors)
                     {
                         responde = false;
                         wrapper.Error("Error en keep alive del dispositivo de ES MCC canal A: " + info.Value.ToString());
@@ -142,7 +137,7 @@ namespace Orbita.Comunicaciones
 
                     if (!responde)
                     {
-                        if (reintento<maxReintentos)
+                        if (reintento < maxReintentos)
                         {
                             reintento++;
                         }
@@ -163,7 +158,7 @@ namespace Orbita.Comunicaciones
                     estado.Estado = "NOK";
                     wrapper.Error("Error en keep alive del dispositivo de ES MCC: ", ex);
                 }
-                
+
                 try
                 {
                     this.OEventargs.Argumento = estado;
@@ -209,7 +204,7 @@ namespace Orbita.Comunicaciones
             {
                 wrapper.Fatal("Error al leer en el dispositivo de ES MCC. ", ex);
                 throw ex;
-            }     
+            }
 
             return resultado;
         }
@@ -223,86 +218,86 @@ namespace Orbita.Comunicaciones
         {
             lock (this)
             {
-                
-            
-            bool resultado = false;
 
-            byte[] lecturasEscribir = new byte[this._lecturas.Length];
-            lecturasEscribir = this._lecturas;
-            try
-            {
-                for (int i = 0; i < variables.Length; i++)
+
+                bool resultado = false;
+
+                byte[] lecturasEscribir = new byte[this._lecturas.Length];
+                lecturasEscribir = this._lecturas;
+                try
                 {
-                    OInfoDato infodato = this.Tags.GetDB(variables[i]);
-
-                    switch (infodato.Conexion.ToUpper())
+                    for (int i = 0; i < variables.Length; i++)
                     {
-                        case "A":
-                            lecturasEscribir[0] = this.ProcesarByte(this._lecturas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
-                            break;
-                        case "B":
-                            lecturasEscribir[1] = this.ProcesarByte(this._lecturas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
-                            break;
-                        case "CL":
-                            lecturasEscribir[2] = this.ProcesarByte(this._lecturas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
-                            break;
-                        case "CH":
-                            lecturasEscribir[3] = this.ProcesarByte(this._lecturas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
-                            break;
-                        default:
-                            break;
-                    }                    
-                }
+                        OInfoDato infodato = this.Tags.GetDB(variables[i]);
 
-                resultado = true;
-                ErrorInfo info;
-                for (int i = 0; i < 2; i++)
-                {
-                    switch (Salidas[i])
+                        switch (infodato.Conexion.ToUpper())
+                        {
+                            case "A":
+                                lecturasEscribir[0] = this.ProcesarByte(this._lecturas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
+                                break;
+                            case "B":
+                                lecturasEscribir[1] = this.ProcesarByte(this._lecturas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
+                                break;
+                            case "CL":
+                                lecturasEscribir[2] = this.ProcesarByte(this._lecturas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
+                                break;
+                            case "CH":
+                                lecturasEscribir[3] = this.ProcesarByte(this._lecturas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+                    resultado = true;
+                    ErrorInfo info;
+                    for (int i = 0; i < 2; i++)
                     {
-                        case 0:
-                            info = _daqBoard.DOut(DigitalPortType.FirstPortA, lecturasEscribir[0]);
-                            if (info.Value != ErrorInfo.ErrorCode.NoErrors)
-                            {
-                                resultado = false;
-                                wrapper.Error("Error al escribir en el dispositivo de ES MCC canal A: " + info.Value.ToString());
-                            }
-                            break;
-                        case 1:
-                            info = _daqBoard.DOut(DigitalPortType.FirstPortB, lecturasEscribir[1]);
-                            if (info.Value != ErrorInfo.ErrorCode.NoErrors)
-                            {
-                                resultado = false;
-                                wrapper.Error("Error al escribir en el dispositivo de ES MCC canal B: " + info.Value.ToString());
-                            }
-                            break;
-                        case 2:
-                            info = _daqBoard.DOut(DigitalPortType.FirstPortCL, lecturasEscribir[2]);
-                            if (info.Value != ErrorInfo.ErrorCode.NoErrors)
-                            {
-                                resultado = false;
-                                wrapper.Error("Error al escribir en el dispositivo de ES MCC canal CL: " + info.Value.ToString());
-                            }
-                            break;
-                        case 3:
-                            info = _daqBoard.DOut(DigitalPortType.FirstPortCH, lecturasEscribir[3]);
-                            if (info.Value != ErrorInfo.ErrorCode.NoErrors)
-                            {
-                                resultado = false;
-                                wrapper.Error("Error al escribir en el dispositivo de ES MCC canal CH: " + info.Value.ToString());
-                            }
-                            break;
-                        default:
-                            break;
+                        switch (Salidas[i])
+                        {
+                            case 0:
+                                info = _daqBoard.DOut(DigitalPortType.FirstPortA, lecturasEscribir[0]);
+                                if (info.Value != ErrorInfo.ErrorCode.NoErrors)
+                                {
+                                    resultado = false;
+                                    wrapper.Error("Error al escribir en el dispositivo de ES MCC canal A: " + info.Value.ToString());
+                                }
+                                break;
+                            case 1:
+                                info = _daqBoard.DOut(DigitalPortType.FirstPortB, lecturasEscribir[1]);
+                                if (info.Value != ErrorInfo.ErrorCode.NoErrors)
+                                {
+                                    resultado = false;
+                                    wrapper.Error("Error al escribir en el dispositivo de ES MCC canal B: " + info.Value.ToString());
+                                }
+                                break;
+                            case 2:
+                                info = _daqBoard.DOut(DigitalPortType.FirstPortCL, lecturasEscribir[2]);
+                                if (info.Value != ErrorInfo.ErrorCode.NoErrors)
+                                {
+                                    resultado = false;
+                                    wrapper.Error("Error al escribir en el dispositivo de ES MCC canal CL: " + info.Value.ToString());
+                                }
+                                break;
+                            case 3:
+                                info = _daqBoard.DOut(DigitalPortType.FirstPortCH, lecturasEscribir[3]);
+                                if (info.Value != ErrorInfo.ErrorCode.NoErrors)
+                                {
+                                    resultado = false;
+                                    wrapper.Error("Error al escribir en el dispositivo de ES MCC canal CH: " + info.Value.ToString());
+                                }
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                wrapper.Fatal("Error en la escritura de variables en el dispositivo de ES MCC " + ex.ToString());
-            }
+                catch (Exception ex)
+                {
+                    wrapper.Fatal("Error en la escritura de variables en el dispositivo de ES MCC " + ex.ToString());
+                }
 
-            return resultado;
+                return resultado;
             }
         }
 
@@ -310,8 +305,8 @@ namespace Orbita.Comunicaciones
 
         #region Metodos Privados
 
-        #region Comunes        
-        
+        #region Comunes
+
         /// <summary>
         /// Establece el valor inicial de los objetos
         /// </summary>
@@ -338,7 +333,7 @@ namespace Orbita.Comunicaciones
                 string key = infodato.Conexion.ToString() + "-" + infodato.Bit.ToString();
                 this._almacenLecturas.Add(key, infodato);
                 if (infodato.EsEntrada)
-                {                    
+                {
                     if (!listEntradas.Contains(infodato.Conexion))
                     {
                         listEntradas.Add(infodato.Conexion);
@@ -351,10 +346,10 @@ namespace Orbita.Comunicaciones
                         listSalidas.Add(infodato.Conexion);
                     }
                 }
-            }            
+            }
 
             listEntradas.Sort();
-            listSalidas.Sort();   
+            listSalidas.Sort();
 
             this._numLecturas = listEntradas.Count + listSalidas.Count;
             this._numeroBytesEntradas = listEntradas.Count;
@@ -369,16 +364,16 @@ namespace Orbita.Comunicaciones
                 switch (listSalidas[i].ToString().ToUpper())
                 {
                     case "A":
-                        Salidas[i] =  0;
+                        Salidas[i] = 0;
                         break;
                     case "B":
-                        Salidas[i] =  1;
+                        Salidas[i] = 1;
                         break;
                     case "CL":
-                        Salidas[i] =  2;
+                        Salidas[i] = 2;
                         break;
                     case "CH":
-                        Salidas[i] =  3;
+                        Salidas[i] = 3;
                         break;
                 }
             }
@@ -430,9 +425,9 @@ namespace Orbita.Comunicaciones
                 }
             }
 
-            #endregion            
-        }               
-        
+            #endregion
+        }
+
         /// <summary>
         /// Procesa los bits poniendo a 1 o 0 el bit correspondiente
         /// </summary>
@@ -463,8 +458,8 @@ namespace Orbita.Comunicaciones
             return ret;
         }
 
-        #endregion       
-           
+        #endregion
+
         #region ES
 
         /// <summary>
@@ -478,7 +473,7 @@ namespace Orbita.Comunicaciones
             {
                 // Encolar la trama de ES recibida.
                 this._qEntradaSalida.Enqueue(trama);
-                
+
                 this._eReset.Despertar(0);
             }
         }
@@ -545,9 +540,9 @@ namespace Orbita.Comunicaciones
                 {
                     if (mensaje[i] != this.LecturasContinuas[i])
                     {
-                        this.ESActualizarVariables(mensaje[i], i );
+                        this.ESActualizarVariables(mensaje[i], i);
                         this.LecturasContinuas[i] = mensaje[i];
-                    }                    
+                    }
                 }
             }
             catch (Exception ex)
@@ -583,9 +578,9 @@ namespace Orbita.Comunicaciones
                             break;
                         case 3:
                             infodato = (OInfoDato)this._almacenLecturas["CH-" + i.ToString()];
-                            break;                         
+                            break;
                     }
-                    
+
                     //Comprobamos el valor nuevo 
                     if (infodato != null)
                     {
@@ -643,7 +638,6 @@ namespace Orbita.Comunicaciones
 
         #endregion
 
-        #endregion       
-    }   
-    
+        #endregion
+    }
 }

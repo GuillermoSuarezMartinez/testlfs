@@ -2,11 +2,8 @@
 using System.Collections;
 using System.Text;
 using System.Threading;
-
-using Orbita.Winsock;
 using Orbita.Utiles;
-using Orbita.Trazabilidad;
-
+using Orbita.Winsock;
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -15,7 +12,6 @@ namespace Orbita.Comunicaciones
     public class ODispositivoSiemens1200ES : ODispositivoES
     {
         #region Atributos
-
         /// <summary>
         /// Cola de recepción de tramas de datos.
         /// </summary>
@@ -57,7 +53,6 @@ namespace Orbita.Comunicaciones
         /// Valor inicial del registro de escrituras
         /// </summary>
         private int _registroInicialSalidas;
-
         /// <summary>
         /// identificador del mensaje
         /// </summary>
@@ -82,8 +77,6 @@ namespace Orbita.Comunicaciones
         /// Valor devuelto tras la escritura del PLC
         /// </summary>
         private byte[] _valorEscritura;
-
-
         #endregion
 
         #region Constructor
@@ -95,7 +88,6 @@ namespace Orbita.Comunicaciones
         {
             //Inicialización de objetos
             this.IniciarObjetos();
-
             wrapper.Debug("Objetos del dispositivo de ES Siemens creados.");
             //Inicio de los parámetros TCP
             try
@@ -107,20 +99,16 @@ namespace Orbita.Comunicaciones
             {
                 wrapper.Error("No se pudo crear la conexión TCP con el dispositivo de ES Siemens." + ex.ToString());
             }
-
             wrapper.Debug("Comunicaciones TCP del dispositivo de ES Siemens arrancadas correctamente.");
         }
-
         #endregion
 
         #region Metodos publicos
-
         /// <summary>
         /// Procesa las lecturas del dispositivo
         /// </summary>
         public override void ProcesarHiloVida()
         {
-
             OEstadoComms estado = new OEstadoComms();
             estado.Nombre = this.Nombre;
             estado.Id = this.Identificador;
@@ -330,13 +318,11 @@ namespace Orbita.Comunicaciones
 
             return resultado;
         }
-
         #endregion
 
-        #region Metodos Privados
+        #region Métodos privados
 
         #region Comunes
-
         /// <summary>
         /// Publica los eventos de socket
         /// </summary>
@@ -545,11 +531,9 @@ namespace Orbita.Comunicaciones
 
             return ret;
         }
-
         #endregion
 
         #region ES
-
         /// <summary>
         /// Método que encola trama GateData.
         /// </summary>
@@ -978,7 +962,6 @@ namespace Orbita.Comunicaciones
         #endregion
 
         #region Eventos Socket
-
         /// <summary>
         /// Evento de recepción de datos
         /// </summary>
@@ -1077,7 +1060,6 @@ namespace Orbita.Comunicaciones
                 wrapper.Error(error);
             }
         }
-
         #endregion
 
         #region Propiedades
@@ -1099,7 +1081,6 @@ namespace Orbita.Comunicaciones
                 return idMensaje;
             }
         }
-
         #endregion
     }
 }

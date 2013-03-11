@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
@@ -7,7 +6,6 @@ using System.Security.Permissions;
 using System.Threading;
 using OpcRcw.Comn;
 using OpcRcw.Da;
-using Orbita.Trazabilidad;
 using Orbita.Utiles;
 namespace Orbita.Comunicaciones
 {
@@ -100,7 +98,7 @@ namespace Orbita.Comunicaciones
         OEstadoComms[] _oOPCComms;
         OConfigDispositivo _config;
         #endregion
-        
+
         #endregion
 
         #region Constructores
@@ -213,7 +211,7 @@ namespace Orbita.Comunicaciones
             this.InicHiloVida();
             this.InicTareasEstado();
             this.IniciaStringsLocales();
-        }              
+        }
         /// <summary>
         /// Leer el valor de las descripciones de variables de la colección bajo demanda.
         /// </summary>
@@ -338,7 +336,7 @@ namespace Orbita.Comunicaciones
                 }
             }
             return resultado;
-        }        
+        }
         /// <summary>
         /// Devuelva las alarmas alctivas del sistemas
         /// </summary>
@@ -785,7 +783,7 @@ namespace Orbita.Comunicaciones
             // Crear el objeto Hilo e iniciarlo. El parámetro iniciar indica
             // a la colección que una vez añadido el hilo se iniciado.
             Hilos.Add(new ThreadStart(ProcesarHiloEstado), true);
-        }               
+        }
         /// <summary>
         /// Proceso del hilo de vida.
         /// </summary>
@@ -886,7 +884,7 @@ namespace Orbita.Comunicaciones
             {
                 dato.Calidad = GetQuality(0);
             }
-        }        
+        }
         /// <summary>
         /// Lecturas asíncronas.
         /// </summary>
@@ -958,7 +956,7 @@ namespace Orbita.Comunicaciones
                     }
                 }
             }
-        }                
+        }
         /// <summary>
         /// Leer el valor de los identificadores de variables de la colección.
         /// </summary>
@@ -1080,7 +1078,7 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         private ArrayList ActualizarAlarmas()
         {
-            ArrayList alarmasActivas = null;           
+            ArrayList alarmasActivas = null;
             foreach (DictionaryEntry item in this.Datos)
             {
                 OInfoDato dato = (OInfoDato)item.Value;
@@ -1091,7 +1089,7 @@ namespace Orbita.Comunicaciones
                         if (!this.AlarmasActivas.Contains(dato.Texto))
                         {
                             this.AlarmasActivas.Add(dato.Texto);
-                        }                            
+                        }
                     }
                     else
                     {
@@ -1101,10 +1099,10 @@ namespace Orbita.Comunicaciones
                         }
                     }
                 }
-            }                
-            
+            }
+
             return alarmasActivas;
-        }      
+        }
         #region Estáticos
         /// <summary>
         /// Obtener calidad.
@@ -1206,7 +1204,7 @@ namespace Orbita.Comunicaciones
                                     infoOPCalarma = this._tags.GetAlarmas(phClientItems[i]);
                                     infoOPCalarma.Valor = pvValues[i] as string;
                                     infoOPCalarma.Calidad = this.GetQuality(pwQualities[i]);
-                                    this.OnAlarma(new OEventArgs(infoOPCalarma));                                  
+                                    this.OnAlarma(new OEventArgs(infoOPCalarma));
                                 }
                             }
                             catch (Exception ex)
@@ -1281,5 +1279,4 @@ namespace Orbita.Comunicaciones
 
         #endregion
     }
-    
 }

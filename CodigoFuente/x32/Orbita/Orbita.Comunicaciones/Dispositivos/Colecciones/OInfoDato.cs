@@ -1,12 +1,10 @@
-﻿
-using System;
-
+﻿using System;
 namespace Orbita.Comunicaciones
 {
     /// <summary>
     /// Clase para todos las variables del servidor de comunicaciones
     /// </summary>
-    [Serializable]    
+    [Serializable]
     public class OInfoDato
     {
         #region Atributo(s)
@@ -86,8 +84,8 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Indica si es una entrada
         /// </summary>
-        bool _esEntrada;       
-        
+        bool _esEntrada;
+
         #endregion
 
         #region Constructor(es)

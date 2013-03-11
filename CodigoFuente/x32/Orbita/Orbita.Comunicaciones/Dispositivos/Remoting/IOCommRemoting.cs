@@ -1,9 +1,5 @@
-﻿
-using System;
-using System.Collections;
+﻿using System.Collections;
 using Orbita.Utiles;
-
-
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -11,8 +7,7 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public interface IOCommRemoting
     {
-        #region Evento(s)
-
+        #region Eventos
         /// <summary>
         /// Evento de cambio de dato.
         /// </summary>
@@ -25,11 +20,9 @@ namespace Orbita.Comunicaciones
         /// Evento de comunicaciones.
         /// </summary>
         event OManejadorEventoComm OrbitaComm;
-
         #endregion
 
-        #region Método(s)
-
+        #region Métodos privados
         /// <summary>
         /// Método de conexión entre procesos.
         /// </summary>
@@ -51,7 +44,7 @@ namespace Orbita.Comunicaciones
         /// <param name="variables">Colección de variables.</param>
         /// <param name="demanda">Lectura contra dispositivo</param>
         /// <returns>Colección de resultados.</returns>
-        object[] OrbitaLeer(int dispositivo, string[] variables,bool demanda);  
+        object[] OrbitaLeer(int dispositivo, string[] variables, bool demanda);
         /// <summary>
         /// Obtener la colección de datos, lecturas y alarmas.
         /// </summary>

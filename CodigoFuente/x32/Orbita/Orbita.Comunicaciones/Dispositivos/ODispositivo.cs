@@ -1,16 +1,13 @@
-﻿
-using System;
-using Orbita.Utiles;
-using System.Data;
+﻿using System;
 using System.Collections;
 using Orbita.Trazabilidad;
-
+using Orbita.Utiles;
 namespace Orbita.Comunicaciones
 {
     /// <summary>
     /// Dispositivo.
     /// </summary>
-    public class ODispositivo:IDisposable
+    public class ODispositivo : IDisposable
     {
         #region Atributo(s)
 
@@ -82,13 +79,13 @@ namespace Orbita.Comunicaciones
         {
             try
             {
-                wrapper = LogManager.GetLogger("wrapper"); 
+                wrapper = LogManager.GetLogger("wrapper");
             }
             catch (Exception e)
             {
-                OExcepcion ex = new OExcepcion("No se ha definido el objeto logger (nombre wrapper) desde la aplicación.",e);
+                OExcepcion ex = new OExcepcion("No se ha definido el objeto logger (nombre wrapper) desde la aplicación.", e);
             }
-            
+
         }
         /// <summary>
         /// Destruye el objeto
@@ -160,7 +157,7 @@ namespace Orbita.Comunicaciones
         {
             get { return _local; }
             set { _local = value; }
-        }     
+        }
         #endregion
 
         #region Métodos públicos
@@ -223,7 +220,7 @@ namespace Orbita.Comunicaciones
 
             handler = null;
         }
-       
+
         #endregion
 
         /// <summary>

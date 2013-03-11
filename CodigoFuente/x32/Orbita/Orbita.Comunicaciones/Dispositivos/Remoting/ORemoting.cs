@@ -1,14 +1,12 @@
-﻿
-using System;
+﻿using System;
 using System.Collections;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
 using System.Runtime.Remoting;
 using System.Security.Permissions;
 using System.Windows.Forms;
 using System.Xml;
-using System.Reflection;
-
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -76,7 +74,7 @@ namespace Orbita.Comunicaciones
                             "</service>" +
                         "</application>" +
                     "</system.runtime.remoting>" +
-                 "</configuration>", puerto, espacioDEnombres, clase, ensamblado.Name,canal));
+                 "</configuration>", puerto, espacioDEnombres, clase, ensamblado.Name, canal));
             // Ruta de salida.
             string directorio = string.Concat(Application.StartupPath, CONFIG);
 
@@ -102,7 +100,7 @@ namespace Orbita.Comunicaciones
         /// <param name="puerto">Puerto de salidad de datos.</param>
         public static string InicConfiguracionCliente(int puerto)
         {
-            return InicConfiguracionCliente(puerto,"localhost");
+            return InicConfiguracionCliente(puerto, "localhost");
         }
 
         /// <summary>
@@ -130,7 +128,7 @@ namespace Orbita.Comunicaciones
                         "</application>" +
                     "</system.runtime.remoting>" +
                  "</configuration>", ensamblado.Name, typeof(IOCommRemoting).Name, puerto, maquina));
-           
+
             string directorio = string.Concat(Application.StartupPath, CONFIG);
             string fichero = string.Concat(Application.StartupPath, REMOTING);
 

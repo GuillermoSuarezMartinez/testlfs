@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Diagnostics.CodeAnalysis;
-using System.Security.Permissions;
 using System.Threading;
-using System.Data;
-using Orbita.Trazabilidad;
 using Orbita.Utiles;
 using Orbita.Winsock;
-
-
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -47,7 +41,7 @@ namespace Orbita.Comunicaciones
         /// Valor devuelto para las entradas
         /// </summary>
         public byte[] Entradas;
-        
+
         #endregion
 
         #region Constructores
@@ -185,6 +179,5 @@ namespace Orbita.Comunicaciones
         }
 
         #endregion
-
     }
 }

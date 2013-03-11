@@ -53,7 +53,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Configuracion
         /// </summary>
-        OConfigDispositivo _config;        
+        OConfigDispositivo _config;
         #endregion
 
         #region Constructores
@@ -301,7 +301,7 @@ namespace Orbita.Comunicaciones
         public OInfoOPCvida GetVida()
         {
             return this._htVida;
-        }        
+        }
         /// <summary>
         /// Asignar la colección de alarmas.
         /// </summary>

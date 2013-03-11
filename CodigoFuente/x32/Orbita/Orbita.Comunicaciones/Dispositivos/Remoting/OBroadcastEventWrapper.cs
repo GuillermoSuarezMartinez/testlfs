@@ -1,7 +1,5 @@
-﻿
-using System;
+﻿using System;
 using Orbita.Utiles;
-
 namespace Orbita.Comunicaciones
 {
     /// <summary>

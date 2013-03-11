@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Diagnostics.CodeAnalysis;
-using System.Security.Permissions;
 using System.Threading;
-using System.Data;
-using Orbita.Trazabilidad;
 using Orbita.Utiles;
 using Orbita.Winsock;
-
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -134,7 +129,7 @@ namespace Orbita.Comunicaciones
                             if (!this._eReset.Dormir(0, TimeSpan.FromSeconds(this.Config.TiempoVida / 1000)))
                             {
                                 responde = false;
-                                    
+
                                 if (reintento < maxReintentos)
                                 {
                                     reintento++;
@@ -231,7 +226,7 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public override bool Escribir(string[] variables, object[] valores)
         {
-            bool resultado = false;            
+            bool resultado = false;
             byte[] salidas = new byte[_numeroBytesSalidas];
 
             try
@@ -676,7 +671,7 @@ namespace Orbita.Comunicaciones
 
                                 this.OnAlarma(ev);
                             }
-                        }                        
+                        }
                     }
                     else
                     {

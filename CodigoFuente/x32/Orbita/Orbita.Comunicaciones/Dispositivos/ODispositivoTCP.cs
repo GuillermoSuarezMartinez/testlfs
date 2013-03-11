@@ -1,15 +1,11 @@
-﻿
-using System;
+﻿using System;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Permissions;
 using System.Threading;
-using System.Data;
-using Orbita.Trazabilidad;
 using Orbita.Utiles;
-
-namespace Orbita.Comunicaciones  
-{ 
+namespace Orbita.Comunicaciones
+{
     /// <summary>
     /// Dispositivo TCP de Orbita
     /// </summary>
@@ -41,10 +37,9 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Inicializar una nueva instancia de la clase SiemensOPC.
         /// </summary>
-        public ODispositivoTCP(OTags tags,OHilos hilos, ODispositivo dispositivo)
+        public ODispositivoTCP(OTags tags, OHilos hilos, ODispositivo dispositivo)
         {
             wrapper.Info("Creando dispositivo ODispositivoTCP");
-
             try
             {
                 // Asignación de las colecciones de datos, lecturas y alarmas.
@@ -57,15 +52,13 @@ namespace Orbita.Comunicaciones
                 this.Tipo = dispositivo.Tipo;
                 this.Direccion = dispositivo.Direccion;
                 this.Local = dispositivo.Local;
-
                 Hilos = hilos;
             }
             catch (Exception ex)
             {
-                wrapper.Error("Error en ODispositivoTCP. ",ex);
+                wrapper.Error("Error en ODispositivoTCP. ", ex);
                 throw ex;
-            }            
-
+            }
         }
         #endregion
 
@@ -108,7 +101,7 @@ namespace Orbita.Comunicaciones
         public override void Iniciar()
         {
             this.InicHiloVida();
-        }          
+        }
         /// <summary>
         /// Leer el valor de las descripciones de variables de la colección
         /// a partir del valor de la colección de datos DB actualiza  en el
@@ -142,8 +135,7 @@ namespace Orbita.Comunicaciones
             {
                 wrapper.Fatal("OrbitaTCP Error al leer. ", ex);
                 throw ex;
-            }            
-            
+            }
             return resultado;
         }
         /// <summary>
@@ -168,15 +160,15 @@ namespace Orbita.Comunicaciones
                         OInfoDato infoDBdato = this._tags.GetDB(variables[i]);
                         infoDBdato.UltimoValor = infoDBdato.Valor;
                         infoDBdato.Valor = valores[i];
-                        
-                        if (this._tags.GetLecturas(infoDBdato.Identificador)!= null)
+
+                        if (this._tags.GetLecturas(infoDBdato.Identificador) != null)
                         {
-                            if (infoDBdato.UltimoValor!=infoDBdato.Valor)
+                            if (infoDBdato.UltimoValor != infoDBdato.Valor)
                             {
                                 this.OnCambioDato(new OEventArgs(infoDBdato));
-                            }                            
+                            }
                         }
-                        if (this._tags.GetAlarmas(infoDBdato.Identificador)!=null)
+                        if (this._tags.GetAlarmas(infoDBdato.Identificador) != null)
                         {
                             try
                             {
@@ -197,7 +189,7 @@ namespace Orbita.Comunicaciones
                                             this.AlarmasActivas.Remove(infoDBdato.Texto);
                                         }
                                     }
-                                }                                
+                                }
                             }
                             catch (Exception ex)
                             {
@@ -212,9 +204,9 @@ namespace Orbita.Comunicaciones
                 resultado = false;
                 wrapper.Fatal("OrbitaTCP Error al escribir: ", ex);
             }
-           
+
             return resultado;
-        }        
+        }
         /// <summary>
         /// Devuelva las alarmas alctivas del sistemas
         /// </summary>
@@ -229,7 +221,7 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public override OHashtable GetDatos()
         {
-             return this._tags.GetDatos();
+            return this._tags.GetDatos();
         }
         /// <summary>
         /// Devuelve las lectuas del dipositivo y su valor
