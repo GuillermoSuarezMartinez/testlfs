@@ -24,6 +24,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using Orbita.VA.Comun;
 using Orbita.VA.Hardware;
+using Orbita.Controles.Contenedores;
+using Orbita.Controles.Shared;
 using Orbita.Utiles;
 
 namespace Orbita.Controles.VA
@@ -31,7 +33,7 @@ namespace Orbita.Controles.VA
     /// <summary>
     /// Control base para todos los tipos de displays
     /// </summary>
-    public partial class OrbitaVisorBase : UserControl
+    public partial class OrbitaVisorBase : OrbitaUserControl
     {
         #region Atributos
         /// <summary>
@@ -131,7 +133,7 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Muestra el botón de guardar fotografía
         /// </summary>
-        protected bool _MostrarBtnGuardar;
+        protected bool _MostrarbtnGuardar;
         /// <summary>
         /// Muestra el botón de guardar fotografía
         /// </summary>
@@ -139,12 +141,12 @@ namespace Orbita.Controles.VA
         Category("Orbita"),
         Description("Indica si se ha de mostrar el botón de guardar imagen"),
         DefaultValue(true)]
-        public virtual bool MostrarBtnGuardar
+        public virtual bool MostrarbtnGuardar
         {
-            get { return _MostrarBtnGuardar; }
+            get { return _MostrarbtnGuardar; }
             set
             {
-                this._MostrarBtnGuardar = value;
+                this._MostrarbtnGuardar = value;
             }
         }
 

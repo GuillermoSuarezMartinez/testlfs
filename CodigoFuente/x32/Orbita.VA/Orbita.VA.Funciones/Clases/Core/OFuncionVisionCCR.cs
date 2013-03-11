@@ -306,11 +306,10 @@ namespace Orbita.VA.Funciones
         #endregion
     }
 
-    #region Clase VisionCCRContainerFunction
     /// <summary>
     /// Clase que realizara la función de reconocimiento de CCR
     /// </summary>
-    public class VisionCCRContainerFunction : OFuncionVisionEncolada
+    public class OFuncionVisionCCR : OFuncionVisionEncolada
     {
         #region Constante(s)
         /// <summary>
@@ -336,17 +335,17 @@ namespace Orbita.VA.Funciones
         /// Siguiente ruta de imágen a procesar en el CCR
         /// </summary>
         private string RutaImagen;
-        ///// <summary>
-        ///// Hilo para ir procesando las imagenes pendientes
-        ///// </summary>
-        //private OHilo HiloProcesarPendientes;
+        /// <summary>
+        /// Lista de información adicional incorporada por el controlador externo
+        /// </summary>
+        private Dictionary<string, object> InformacionAdicional;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Contructor de la clase
         /// </summary>
-        public VisionCCRContainerFunction(string codFuncionVision)
+        public OFuncionVisionCCR(string codFuncionVision)
             : base(codFuncionVision)
         {
             try
@@ -356,6 +355,7 @@ namespace Orbita.VA.Funciones
 
                 this.Valido = true;
                 this.ParametrosCCR = new OParametrosCCR();
+                this.InformacionAdicional = new Dictionary<string, object>();
 
                 // Cargamos valores de la base de datos
                 DataTable dtFuncionVision = AppBD.GetFuncionVision(this.Codigo);
@@ -372,6 +372,8 @@ namespace Orbita.VA.Funciones
                     this.ParametrosCCR.CoeficienteVertical = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_CoeficienteVertical"], -100000, +100000, 0);
                     this.ParametrosCCR.CoeficienteRadial = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_CoeficienteRadial"], -100000, +100000, 0);
                     this.ParametrosCCR.AnguloRotacion = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_AnguloRotacion"], -100000, +100000, 0);
+                    this.ParametrosCCR.InclinacionVertical = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_InclinacionVertical"], -100000, +100000, 0);
+                    this.ParametrosCCR.InclinacionHorizontal = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_InclinacionHorizontal"], -100000, +100000, 0);
                     this.ParametrosCCR.Distancia = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_Distancia"], 0, +100000, 0);
                     this.ParametrosCCR.CoordIzq = OEntero.Validar(dtFuncionVision.Rows[0]["NL_CoordIzq"], 0, 10000, 0);
                     this.ParametrosCCR.CoordArriba = OEntero.Validar(dtFuncionVision.Rows[0]["NL_CoordArriba"], 0, 10000, 0);
@@ -408,7 +410,7 @@ namespace Orbita.VA.Funciones
             // Ejecutamos la configuración
             MTInterface.SetConfiguration(parametros.TimeOut, parametros.ActivadaAjusteCorreccion,
                     parametros.Distancia, parametros.CoeficienteVertical, parametros.CoeficienteHorizontal, parametros.CoeficienteRadial,
-                    parametros.AnguloRotacion, parametros.CoordIzq, parametros.CoordArriba,
+                    parametros.AnguloRotacion, parametros.InclinacionVertical, parametros.InclinacionHorizontal, parametros.CoordIzq, parametros.CoordArriba,
                     parametros.AnchuraVentanaBusqueda, parametros.AlturaVentanaBusqueda, parametros.ActivadoRangoAlturas,
                     parametros.VectorAlturas, parametros.ActivadaMasInformacion,parametros.Escala,parametros.Param1,parametros.Param2);
         }
@@ -464,16 +466,6 @@ namespace Orbita.VA.Funciones
             // Guardamos la traza
             OVALogsManager.Debug(ModulosFunciones.CCRContainer, this.Codigo, "Reset de la función de visión " + this.Codigo + " realizado con éxito");
         }
-        /// <summary>
-        /// Ejecuta lo que ha quedado pendiente en un hilo
-        /// </summary>
-        //public void EjecutarPendientes()
-        //{
-        //    // Creamos el hilo para procesar las imagenes pendientes
-        //    HiloProcesarPendientes = new OHilo(new ThreadStart(this.ProcesarImagenesPendientes), "Procesa las imagenes que han quedado pendientes", ThreadPriority.Normal, true, true);
-        //    // iniciamos el hilo
-        //    HiloProcesarPendientes.Iniciar();
-        //}
         #endregion
 
         #region Método(s) heredado(s)
@@ -503,7 +495,8 @@ namespace Orbita.VA.Funciones
                                 null,
                                 new OInfoImagenCCR(this.IdEjecucionActual, this.Codigo, this.IndiceFotografia, DateTime.Now, AñadirResultadoParcial),
                                 this.ParametrosCCR,
-                                new OResultadoCCR());
+                                new OResultadoCCR(),
+                                this.InformacionAdicional);
 
                         // Se carga la configuración
                         this.EstablecerConfiguracion((OParametrosCCR)this.ParametrosCCR);
@@ -588,7 +581,8 @@ namespace Orbita.VA.Funciones
                 }
                 else
                 {
-                    throw new Exception("Error en la asignación del parámetro '" + codigo + "' a la función '" + this.Codigo + "'. No se admite este tipo de parámetros.");
+                    this.InformacionAdicional[codigo] = valor;
+                    //throw new Exception("Error en la asignación del parámetro '" + entrada.Nombre + "' a la función '" + this.Codigo + "'. No se admite este tipo de parámetros.");
                 }
                 resultado = true;
             }
@@ -597,10 +591,48 @@ namespace Orbita.VA.Funciones
                 OVALogsManager.Error(ModulosFunciones.CCRContainer, this.Codigo, exception);
             }
             return resultado;
-        }       
+        }
+
+        /// <summary>
+        /// Función para la actualización de parámetros de entrada
+        /// </summary>
+        /// <param name="ParamName">Nombre identificador del parámetro</param>
+        /// <param name="ParamValue">Nuevo valor del parámetro</param>
+        /// <returns></returns>
+        /// <remarks></remarks>
+        public override bool SetEntrada(EnumEntradaFuncionVision entrada, object valor, OEnumTipoDato tipoVariable)
+        {
+            bool resultado = false;
+
+            try
+            {
+                if (entrada == EntradasFuncionesVisionCCR.Imagen)
+                {
+                    this.Imagen = (OImagenBitmap)valor;
+                }
+                else if (entrada == EntradasFuncionesVisionCCR.ParametrosCCR)
+                {
+                    this.ParametrosCCR = (OParametrosCCR)valor;
+                }
+                else if (entrada == EntradasFuncionesVisionCCR.RutaImagen)
+                {
+                    this.RutaImagen = (string)valor;
+                }
+                else
+                {
+                    this.InformacionAdicional[entrada.Nombre] = valor;
+                    //throw new Exception("Error en la asignación del parámetro '" + entrada.Nombre + "' a la función '" + this.Codigo + "'. No se admite este tipo de parámetros.");
+                }
+                resultado = true;
+            }
+            catch (Exception exception)
+            {
+                OVALogsManager.Error(ModulosFunciones.CCRContainer, this.Codigo, exception);
+            }
+            return resultado;
+        }
         #endregion
     }
-    #endregion
 
     /// <summary>
     /// Clase que contiene la información referente a la inspección
@@ -624,8 +656,8 @@ namespace Orbita.VA.Funciones
         /// <param name="info"></param>
         /// <param name="parametros"></param>
         /// <param name="resultados"></param>
-        public OInfoInspeccionCCR(OImagenBitmap imagen, OInfoImagenCCR info, OParametrosCCR parametros, OResultadoCCR resultados)
-            : base(imagen, info, parametros, resultados)
+        public OInfoInspeccionCCR(OImagenBitmap imagen, OInfoImagenCCR info, OParametrosCCR parametros, OResultadoCCR resultados, Dictionary<string, object> informacionAdicional)
+            : base(imagen, info, parametros, resultados, informacionAdicional)
         {
         }
         #endregion
@@ -737,6 +769,14 @@ namespace Orbita.VA.Funciones
         /// </summary>
         public float AnguloRotacion;
         /// <summary>
+        /// Inclinación vertical
+        /// </summary>
+        public float InclinacionVertical;
+        /// <summary>
+        /// Inclinación vertical
+        /// </summary>
+        public float InclinacionHorizontal;
+        /// <summary>
         /// Distancia al código desde la camara en metros
         /// </summary>
         public float Distancia;
@@ -793,6 +833,8 @@ namespace Orbita.VA.Funciones
             this.CoeficienteVertical = 0;
             this.CoeficienteRadial = 0;
             this.AnguloRotacion = 0;
+            this.InclinacionVertical = 0;
+            this.InclinacionHorizontal = 0;
             this.Distancia = 0;
             this.CoordArriba = 0;
             this.CoordIzq = 0;
@@ -991,5 +1033,22 @@ namespace Orbita.VA.Funciones
         {
         }
         #endregion Constructor
+    }
+
+    /// <summary>
+    /// Define el conjunto de tipos de entradas de las funciones de visión CCR
+    /// </summary>
+    public class EntradasFuncionesVisionCCR : EntradasFuncionesVision
+    {
+        #region Atributo(s)
+        /// <summary>
+        /// Parametros de configuración del CCR
+        /// </summary>
+        public static EnumEntradaFuncionVision ParametrosCCR = new EnumEntradaFuncionVision("ParametrosLPR", "Parametros de configuración del CCR", 201);
+        /// <summary>
+        /// Ruta en disco de la imagen de entrada
+        /// </summary>
+        public static EnumEntradaFuncionVision RutaImagen = new EnumEntradaFuncionVision("RutaImagen", "Ruta en disco de la imagen de entrada", 202);
+        #endregion
     }
 }

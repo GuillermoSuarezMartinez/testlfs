@@ -33,5 +33,12 @@ namespace Orbita.Controles.Comunes
             get { return this.control; }
         }
         #endregion
+
+        #region Métodos públicos
+        public override string ToString()
+        {
+            return null;
+        }
+        #endregion
     }
 }

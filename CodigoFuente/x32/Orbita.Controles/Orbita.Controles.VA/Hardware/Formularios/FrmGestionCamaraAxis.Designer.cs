@@ -29,18 +29,34 @@ namespace Orbita.Controles.VA
         private void InitializeComponent()
         {
             this.webBrowser = new System.Windows.Forms.WebBrowser();
-            this.pnlPanelPrincipalPadre.SuspendLayout();
+            this.PnlPanelPrincipalPadre.SuspendLayout();
+            this.PnlInferiorPadre.SuspendLayout();
+            this.PnlBotonesPadre.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkDock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkToolTip)).BeginInit();
             this.SuspendLayout();
             // 
-            // pnlInferiorPadre
+            // PnlPanelPrincipalPadre
             // 
-            this.pnlInferiorPadre.Location = new System.Drawing.Point(10, 519);
-            this.pnlInferiorPadre.Size = new System.Drawing.Size(1204, 43);
+            this.PnlPanelPrincipalPadre.Controls.Add(this.webBrowser);
+            this.PnlPanelPrincipalPadre.Size = new System.Drawing.Size(1204, 509);
             // 
-            // pnlPanelPrincipalPadre
+            // btnCancelar
             // 
-            this.pnlPanelPrincipalPadre.Controls.Add(this.webBrowser);
-            this.pnlPanelPrincipalPadre.Size = new System.Drawing.Size(1204, 509);
+            this.btnCancelar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            // 
+            // PnlInferiorPadre
+            // 
+            this.PnlInferiorPadre.Location = new System.Drawing.Point(10, 519);
+            this.PnlInferiorPadre.Size = new System.Drawing.Size(1204, 43);
+            // 
+            // PnlBotonesPadre
+            // 
+            this.PnlBotonesPadre.Location = new System.Drawing.Point(1002, 0);
             // 
             // webBrowser
             // 
@@ -60,7 +76,11 @@ namespace Orbita.Controles.VA
             this.ShowInTaskbar = false;
             this.Text = "Mantenimiento cámara AXIS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.pnlPanelPrincipalPadre.ResumeLayout(false);
+            this.PnlPanelPrincipalPadre.ResumeLayout(false);
+            this.PnlInferiorPadre.ResumeLayout(false);
+            this.PnlBotonesPadre.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ChkDock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkToolTip)).EndInit();
             this.ResumeLayout(false);
 
         }

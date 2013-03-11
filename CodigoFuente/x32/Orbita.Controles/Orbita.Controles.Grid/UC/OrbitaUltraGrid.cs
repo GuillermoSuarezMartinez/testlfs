@@ -23,9 +23,6 @@ namespace Orbita.Controles.Grid
         };
 
         #region Atributos
-        /// <summary>
-        /// Proporciona un acceso a los recursos específicos de cada referencia cultural en tiempo de ejecución.
-        /// </summary>
         ControlNuevaDefinicion definicion;
         #endregion
 
@@ -38,7 +35,7 @@ namespace Orbita.Controles.Grid
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OrbitaUltraGrid.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OrbitaUltraGrid.
         /// </summary>
         public OrbitaUltraGrid()
             : base()
@@ -54,7 +51,7 @@ namespace Orbita.Controles.Grid
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public ControlNuevaDefinicion Orbita
+        public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }
             set { this.definicion = value; }
@@ -74,11 +71,11 @@ namespace Orbita.Controles.Grid
         }
         void InitializeProperties()
         {
-            this.Orbita.Editable = Configuracion.DefectoEditable;
-            this.Orbita.OcultarAgrupadorFilas = Configuracion.DefectoOcultarAgrupadorFilas;
-            this.Orbita.CancelarTeclaReturn = Configuracion.DefectoCancelarTeclaReturn;
-            this.Orbita.ModoActualizacion = Configuracion.DefectoModoActualizacion;
-            this.Orbita.MostrarTitulo = Configuracion.DefectoMostrarTitulo;
+            this.OI.Editable = Configuracion.DefectoEditable;
+            this.OI.OcultarAgrupadorFilas = Configuracion.DefectoOcultarAgrupadorFilas;
+            this.OI.CancelarTeclaReturn = Configuracion.DefectoCancelarTeclaReturn;
+            this.OI.ModoActualizacion = Configuracion.DefectoModoActualizacion;
+            this.OI.MostrarTitulo = Configuracion.DefectoMostrarTitulo;
         }
         void InitializeEvents()
         {

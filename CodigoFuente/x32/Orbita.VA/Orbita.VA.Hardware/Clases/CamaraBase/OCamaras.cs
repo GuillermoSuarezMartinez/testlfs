@@ -1029,7 +1029,7 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Control PTZ
         /// </summary>
-        internal OPTZBase PTZ
+        public OPTZBase PTZ
         {
             get { return _PTZ; }
             set { _PTZ = value; }
@@ -1086,6 +1086,18 @@ namespace Orbita.VA.Hardware
             get { return this.VideoFile.TiempoMaxGrabacion; }
             set { this.VideoFile.TiempoMaxGrabacion = value; }
         }
+
+        /// <summary>
+        /// Contador de fotografías desde que se inició la adquisición
+        /// </summary>
+        private long _ContadorFotografias;
+        /// <summary>
+        /// Contador de fotografías desde que se inició la adquisición
+        /// </summary>
+        public long ContadorFotografias
+	    {
+		    get { return _ContadorFotografias;}
+	    }
         #endregion
 
         #region Propiedad(es) virtual(es)
@@ -1786,6 +1798,8 @@ namespace Orbita.VA.Hardware
 
             this.MedidorVelocidadAdquisicion.ResetearMediciones();
 
+            this._ContadorFotografias = 0;
+
             // Método implementado en las clases hijas
             return true;
         }
@@ -1864,6 +1878,9 @@ namespace Orbita.VA.Hardware
         {
             // Actualizo la conectividad
             this.Conectividad.EstadoConexion = EstadoConexion.Conectado;
+
+            // Actualizo el contador de fotografías
+            this._ContadorFotografias++;
 
             // Actualizo el Frame Rate
             this.MedidorVelocidadAdquisicion.NuevaCaptura();

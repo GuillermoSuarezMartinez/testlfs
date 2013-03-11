@@ -33,16 +33,16 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Constructor de la calse
         /// </summary>
-        public FrmMonitorizacionCronometros():
+        public FrmMonitorizacionCronometros() :
             base()
         {
             InitializeComponent();
 
-            this.imageListLarge.Images.Add("imgContadorActivo", Orbita.Controles.VA.Properties.Resources.imgContadorActivo32);
-            this.imageListLarge.Images.Add("imgContadorInactivo", Orbita.Controles.VA.Properties.Resources.imgContadorInactivo32);
+            this.ImageListLarge.Images.Add("imgContadorActivo", global::Orbita.Controles.VA.Properties.Resources.imgContadorActivo32);
+            this.ImageListLarge.Images.Add("imgContadorInactivo", global::Orbita.Controles.VA.Properties.Resources.imgContadorInactivo32);
 
-            this.imageListSmall.Images.Add("imgContadorActivo", Orbita.Controles.VA.Properties.Resources.imgContadorActivo24);
-            this.imageListSmall.Images.Add("imgContadorInactivo", Orbita.Controles.VA.Properties.Resources.imgContadorInactivo24);
+            this.ImageListSmall.Images.Add("imgContadorActivo", global::Orbita.Controles.VA.Properties.Resources.imgContadorActivo24);
+            this.ImageListSmall.Images.Add("imgContadorInactivo", global::Orbita.Controles.VA.Properties.Resources.imgContadorInactivo24);
         } 
         #endregion
 
@@ -56,7 +56,7 @@ namespace Orbita.Controles.VA
 
             // Inicializamos el timer de refresco
             this.MomentoUltimoRefresco = DateTime.Now;
-            this.timerRefresco.Interval = Convert.ToInt32(OSistemaManager.Configuracion.CadenciaMonitorizacion.TotalMilliseconds);
+            this.TimerRefresco.Interval = Convert.ToInt32(OSistemaManager.Configuracion.CadenciaMonitorizacion.TotalMilliseconds);
 
             foreach (OCronometro cronometro in OCronometrosManager.ListaCronometros)
             {
@@ -71,7 +71,7 @@ namespace Orbita.Controles.VA
         {
             base.CargarDatosModoMonitorizacion();
 
-            this.timerRefresco.Enabled = true;
+            this.TimerRefresco.Enabled = true;
         }
         /// <summary>
         /// Establece la habiliacion adecuada de los controles para el modo visualizacion
@@ -79,15 +79,13 @@ namespace Orbita.Controles.VA
         protected override void EstablecerModoMonitorizacion()
         {
             base.EstablecerModoModificacion();
-            this.btnMonitorizar.Visible = true;
-            this.ListCronometros.ContextMenuStrip = menuCronometro;
         }
         /// <summary>
         ///  Funciones a realizar al salir del formulario
         /// </summary>
         protected override void AccionesSalir()
         {
-            this.timerRefresco.Enabled = false;
+            this.TimerRefresco.Enabled = false;
         }
         #endregion
 
@@ -110,26 +108,10 @@ namespace Orbita.Controles.VA
             item.ToolTipText = descripcion;
             item.Tag = cronometro;
 
-            //if (grupo != string.Empty)
-            //{
-            //    if (this.ListVariables.Groups[grupo] == null)
-            //    {
-            //        item.Group = this.ListVariables.Groups.Add(grupo, grupo);
-            //    }
-            //    else
-            //    {
-            //        item.Group = this.ListVariables.Groups[grupo];
-            //    }
-            //}
-
             ListViewItem.ListViewSubItem subItemDescCronometro = new ListViewItem.ListViewSubItem();
             subItemDescCronometro.Name = "Descripcion";
             subItemDescCronometro.Text = descripcion;
             item.SubItems.Add(subItemDescCronometro);
-
-            //ListViewItem.ListViewSubItem subItemEjecutando = new ListViewItem.ListViewSubItem();
-            //subItemEjecutando.Name = "Ejecutando";
-            //item.SubItems.Add(subItemEjecutando);
 
             ListViewItem.ListViewSubItem subItemContador = new ListViewItem.ListViewSubItem();
             subItemContador.Name = "Contador";
@@ -149,7 +131,7 @@ namespace Orbita.Controles.VA
 
             this.PintarItem(codigo, cronometro.Ejecutando, cronometro.ContadorEjecuciones, cronometro.DuracionUltimaEjecucion, cronometro.DuracionPromedioEjecucion, cronometro.DuracionTotalEjecucion, item);
 
-            this.ListCronometros.Items.Add(item);
+            this.ListView.Items.Add(item);
         }
 
         /// <summary>
@@ -176,7 +158,6 @@ namespace Orbita.Controles.VA
                 item.ImageKey = "imgContadorInactivo";
             }
         }
-
         #endregion
 
         #region Evento(s)
@@ -187,7 +168,7 @@ namespace Orbita.Controles.VA
         {
             try
             {
-                foreach (ListViewItem item in this.ListCronometros.Items)
+                foreach (ListViewItem item in this.ListView.Items)
                 {
                     string codigo = item.Text;
 
@@ -202,21 +183,36 @@ namespace Orbita.Controles.VA
         }
 
         /// <summary>
-        /// Monitorizar la variable seleccionada
+        /// Clic en la lista del botón desplegable
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnMonitorizar_Click(object sender, EventArgs e)
+        private void ToolbarsManager_ToolClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
-        }
-
-        /// <summary>
-        /// Evento que se ejecuta al abrir el menú popup de las variables
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void menuVariable_Opening(object sender, CancelEventArgs e)
-        {
+            try
+            {
+                switch (e.Tool.Key)
+                {
+                    case "KeyIconosGrandes":
+                        this.ListView.View = View.LargeIcon;
+                        break;
+                    case "KeyIconosPequeños":
+                        this.ListView.View = View.SmallIcon;
+                        break;
+                    case "KeyLista":
+                        this.ListView.View = View.List;
+                        break;
+                    case "KeyDetalles":
+                        this.ListView.View = View.Details;
+                        break;
+                    case "Monitorizar":    // ButtonTool
+                        break;
+                }
+            }
+            catch (Exception exception)
+            {
+                OVALogsManager.Error(ModulosSistema.MonitorizacionVariables, this.Name, exception);
+            }
         }
 
         /// <summary>
@@ -226,37 +222,6 @@ namespace Orbita.Controles.VA
         /// <param name="e"></param>
         private void ListCronometros_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-        }
-
-        /// <summary>
-        /// Clic en la lista del botón desplegable
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ultraToolbarsManager_ToolClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
-        {
-            try
-            {
-                switch (e.Tool.Key)
-                {
-                    case "KeyIconosGrandes":
-                        this.ListCronometros.View = View.LargeIcon;
-                        break;
-                    case "KeyIconosPequeños":
-                        this.ListCronometros.View = View.SmallIcon;
-                        break;
-                    case "KeyLista":
-                        this.ListCronometros.View = View.List;
-                        break;
-                    case "KeyDetalles":
-                        this.ListCronometros.View = View.Details;
-                        break;
-                }
-            }
-            catch (Exception exception)
-            {
-                OVALogsManager.Error(ModulosSistema.Monitorizacion, this.Name, exception);
-            }
         }
         
         /// <summary>

@@ -316,7 +316,8 @@ namespace Orbita.Controles.Gantt
             {
                 this.ConfigurarColumnas();
                 this.EstablecerResolucion();
-                this.CalendarLook.ActiveDayAppearance.BackColor = Orbita.Controles.Grid.OConfiguracion.OrbGridColorFilaActiva;
+                //TODO: Descomentar con estilos.
+               // this.CalendarLook.ActiveDayAppearance.BackColor = Orbita.Controles.Grid.OConfiguracion.OrbGridColorFilaActiva;
                 this.CalendarInfo.ActivateDay(System.DateTime.Now);
                 return true;
             }

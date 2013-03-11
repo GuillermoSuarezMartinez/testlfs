@@ -9,76 +9,93 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System.ComponentModel;
+using System;
 namespace Orbita.Controles.Comunes
 {
     public partial class OrbitaUltraMaskedEdit : Infragistics.Win.UltraWinMaskedEdit.UltraMaskedEdit
     {
+        public class ControlNuevaDefinicion : OUltraMaskedEdit
+        {
+            public ControlNuevaDefinicion(OrbitaUltraMaskedEdit sender)
+                : base(sender) { }
+        };
+
+        #region Atributos
+        ControlNuevaDefinicion definicion;
+        #endregion
+
+        #region Eventos
+        public new event EventHandler Enter;
+        public new event EventHandler Click;
+        #endregion
+
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraMaskedEdit.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
         /// </summary>
         public OrbitaUltraMaskedEdit()
             : base()
         {
             InitializeComponent();
+            InitializeAttributes();
+            InitializeEvents();
+        }
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraDockManager.
+        /// </summary>
+        /// <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
+        /// que contienen cero o más componentes de forma lógica.</param>
+        public OrbitaUltraMaskedEdit(object owner)
+            : base(owner)
+        {
+            InitializeComponent();
+            InitializeAttributes();
+            InitializeEvents();
         }
         #endregion
 
-        #region Delegados
-        /// <summary>
-        /// Delegado Enter del control.
-        /// </summary>
-        /// <param name="sender">Objeto que lanza el evento.</param>
-        /// <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
-        public delegate void OrbEnterHandler(object sender, System.EventArgs e);
-        /// <summary>
-        /// Delegado Click del control.
-        /// </summary>
-        public delegate void OrbClickHandler(object sender, System.EventArgs e);
+        #region Propiedades
+        [System.ComponentModel.Category("Gestión de controles")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public ControlNuevaDefinicion OI
+        {
+            get { return this.definicion; }
+            set { this.definicion = value; }
+        }
         #endregion
 
-        #region Eventos
-        /// <summary>
-        /// Cuando el control se activa por tabulación o .focus().
-        /// </summary>
-        [System.ComponentModel.Category("Orbita")]
-        [System.ComponentModel.Description("Enter del control")]
-        public event OrbEnterHandler OrbEnterControl;
-        /// <summary>
-        /// Cuando se hace click en el control.
-        /// </summary>
-        [System.ComponentModel.Category("Orbita")]
-        [System.ComponentModel.Description("Click en el control")]
-        public event OrbClickHandler OrbClickControl;
+        #region Métodos privados
+        void InitializeAttributes()
+        {
+            if (this.definicion == null)
+            {
+                this.definicion = new ControlNuevaDefinicion(this);
+            }
+        }
+        void InitializeEvents()
+        {
+            this.Enter += new System.EventHandler(ControlEnter);
+            this.Click += new System.EventHandler(ControlClick);
+        }
         #endregion
 
         #region Manejadores de eventos
-        /// <summary>
-        /// Enter.
-        /// </summary>
-        /// <param name="sender">Objeto que lanza el evento.</param>
-        /// <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
-        void OrbitaUltraMaskedEdit_Enter(object sender, System.EventArgs e)
+        private void ControlEnter(object sender, EventArgs e)
         {
             try
             {
                 this.SelectAll();
-                if (OrbEnterControl != null)
+                if (this.Enter != null)
                 {
-                    OrbEnterControl(this, e);
+                    this.Enter(sender, e);
                 }
             }
-            catch (Orbita.Controles.Shared.OExcepcion ex)
+            catch (Exception)
             {
-                System.Windows.Forms.MessageBox.Show(ex.ToString(), "ExcepcionError", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error, System.Windows.Forms.MessageBoxDefaultButton.Button1, 0);
             }
         }
-        /// <summary>
-        /// Click.
-        /// </summary>
-        /// <param name="sender">Objeto que lanza el evento.</param>
-        /// <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
-        void OrbitaUltraMaskedEdit_Click(object sender, System.EventArgs e)
+        private void ControlClick(object sender, EventArgs e)
         {
             try
             {
@@ -86,14 +103,13 @@ namespace Orbita.Controles.Comunes
                 {
                     this.SelectAll();
                 }
-                if (OrbClickControl != null)
+                if (this.Click != null)
                 {
-                    OrbClickControl(this, e);
+                    this.Click(sender, e);
                 }
             }
-            catch (Orbita.Controles.Shared.OExcepcion ex)
+            catch (Exception)
             {
-                System.Windows.Forms.MessageBox.Show(ex.ToString(), "ExcepcionError", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error, System.Windows.Forms.MessageBoxDefaultButton.Button1, 0);
             }
         }
         #endregion

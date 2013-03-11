@@ -18,6 +18,7 @@ namespace Orbita.Controles.Comunes
         internal const AlineacionHorizontal DefectoAlineacionTextoHorizontal = AlineacionHorizontal.Izquierda;
         internal const AlineacionVertical DefectoAlineacionTextoVertical = AlineacionVertical.Arriba;
         internal const AdornoTexto DefectoAdornoTexto = AdornoTexto.Ninguno;
+        internal const bool DefectoAutoScrollBar = true;
         #endregion
     }
 }

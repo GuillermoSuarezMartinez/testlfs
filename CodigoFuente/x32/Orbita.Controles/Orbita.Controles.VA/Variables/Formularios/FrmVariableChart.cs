@@ -53,7 +53,7 @@ namespace Orbita.Controles.VA
                         break;
                     case OEnumTipoDato.Bit:
                         this.CtrlVariableChart = new OrbitaGraficaVariableBool();
-                        this.CtrlVariableChart.Parent = this.pnlPanelPrincipalPadre;
+                        this.CtrlVariableChart.Parent = this.PnlPanelPrincipalPadre;
                         this.CtrlVariableChart.Dock = DockStyle.Fill;
                         break;
                     case OEnumTipoDato.Entero:

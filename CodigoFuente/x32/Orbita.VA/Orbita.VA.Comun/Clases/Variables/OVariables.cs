@@ -74,11 +74,6 @@ namespace Orbita.VA.Comun
         /// Canal de Servidor de remoting
         /// </summary>
         internal static TcpChannel CanalServidor; //channel to communicate
-
-        /// <summary>
-        /// Informa de la posibilidad de acceder a las variables a través de vistas
-        /// </summary>
-        internal static bool UtilizaVistas;
         #endregion
 
         #region Método(s) público(s)
@@ -87,19 +82,9 @@ namespace Orbita.VA.Comun
         /// </summary>
         public static void Constructor()
         {
-            Constructor(true);
-        }
-
-        /// <summary>
-        /// Construye los objetos
-        /// </summary>
-        public static void Constructor(bool utilizaVistas)
-        {
-            UtilizaVistas = utilizaVistas;
-
             // Creación de los objetos
             ListaVariables = new Dictionary<string, OVariable>();
-            if (UtilizaVistas)
+            if (OSistemaManager.IntegraMaquinaEstados)
             {
                 Vistas = new Dictionary<string, OVistaVariable>();
             }
@@ -151,7 +136,7 @@ namespace Orbita.VA.Comun
             }
 
             // Consulta de todas las vistas existentes en el sistema
-            if (UtilizaVistas)
+            if (OSistemaManager.IntegraMaquinaEstados)
             {
                 DataTable dtVista = Orbita.VA.Comun.AppBD.GetVistas();
                 if (dtVista.Rows.Count > 0)
@@ -671,7 +656,7 @@ namespace Orbita.VA.Comun
             string alias = codAlias;
 
             // Cambio el alias al de la vista
-            if ((codVista != string.Empty) && (UtilizaVistas) && (Vistas is Dictionary<string, OVistaVariable>))
+            if ((codVista != string.Empty) && (OSistemaManager.IntegraMaquinaEstados) && (Vistas is Dictionary<string, OVistaVariable>))
             {
                 // Cambio el alias
                 OVistaVariable vistaVariable;
@@ -1004,7 +989,7 @@ namespace Orbita.VA.Comun
         /// Carga los valores de la variable
         /// </summary>
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public void Inicializar()
+        internal void Inicializar()
         {
             this.VariableCore.Inicializar();
             //this.VariableCore.CambioValor += this.EjecutaEventos;
@@ -1014,7 +999,7 @@ namespace Orbita.VA.Comun
         /// Finaliza la ejecución
         /// </summary>
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public void Finalizar()
+        internal void Finalizar()
         {
             if (this.Remoto)
             {

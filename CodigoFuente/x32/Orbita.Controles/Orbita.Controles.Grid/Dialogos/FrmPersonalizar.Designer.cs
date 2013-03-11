@@ -147,8 +147,6 @@
             this.grpEntornoMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.grpEntornoMostrar.Location = new System.Drawing.Point(6, 3);
             this.grpEntornoMostrar.Name = "grpEntornoMostrar";
-            this.grpEntornoMostrar.OrbColorBorde = System.Drawing.Color.Empty;
-            this.grpEntornoMostrar.OrbColorCabecera = System.Drawing.Color.Empty;
             this.grpEntornoMostrar.Size = new System.Drawing.Size(387, 56);
             this.grpEntornoMostrar.TabIndex = 10;
             this.grpEntornoMostrar.Text = "Mostrar";
@@ -177,8 +175,6 @@
             this.grpFilasApariencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.grpFilasApariencia.Location = new System.Drawing.Point(6, 143);
             this.grpFilasApariencia.Name = "grpFilasApariencia";
-            this.grpFilasApariencia.OrbColorBorde = System.Drawing.Color.Empty;
-            this.grpFilasApariencia.OrbColorCabecera = System.Drawing.Color.Empty;
             this.grpFilasApariencia.Size = new System.Drawing.Size(387, 50);
             this.grpFilasApariencia.TabIndex = 10;
             this.grpFilasApariencia.Text = "Apariencia";
@@ -199,8 +195,6 @@
             this.grpFilasMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.grpFilasMostrar.Location = new System.Drawing.Point(6, 66);
             this.grpFilasMostrar.Name = "grpFilasMostrar";
-            this.grpFilasMostrar.OrbColorBorde = System.Drawing.Color.Empty;
-            this.grpFilasMostrar.OrbColorCabecera = System.Drawing.Color.Empty;
             this.grpFilasMostrar.Size = new System.Drawing.Size(387, 71);
             this.grpFilasMostrar.TabIndex = 9;
             this.grpFilasMostrar.Text = "Mostrar";
@@ -229,8 +223,6 @@
             this.grpFilasConfiguracion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.grpFilasConfiguracion.Location = new System.Drawing.Point(6, 3);
             this.grpFilasConfiguracion.Name = "grpFilasConfiguracion";
-            this.grpFilasConfiguracion.OrbColorBorde = System.Drawing.Color.Empty;
-            this.grpFilasConfiguracion.OrbColorCabecera = System.Drawing.Color.Empty;
             this.grpFilasConfiguracion.Size = new System.Drawing.Size(387, 57);
             this.grpFilasConfiguracion.TabIndex = 8;
             this.grpFilasConfiguracion.Text = "Configuración";
@@ -278,8 +270,6 @@
             this.grpColumnasOperadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.grpColumnasOperadores.Location = new System.Drawing.Point(9, 155);
             this.grpColumnasOperadores.Name = "grpColumnasOperadores";
-            this.grpColumnasOperadores.OrbColorBorde = System.Drawing.Color.Empty;
-            this.grpColumnasOperadores.OrbColorCabecera = System.Drawing.Color.Empty;
             this.grpColumnasOperadores.Size = new System.Drawing.Size(387, 90);
             this.grpColumnasOperadores.TabIndex = 15;
             // 
@@ -331,8 +321,6 @@
             this.grpColumnasAutoajustar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.grpColumnasAutoajustar.Location = new System.Drawing.Point(9, 12);
             this.grpColumnasAutoajustar.Name = "grpColumnasAutoajustar";
-            this.grpColumnasAutoajustar.OrbColorBorde = System.Drawing.Color.Empty;
-            this.grpColumnasAutoajustar.OrbColorCabecera = System.Drawing.Color.Empty;
             this.grpColumnasAutoajustar.Size = new System.Drawing.Size(387, 46);
             this.grpColumnasAutoajustar.TabIndex = 13;
             // 
@@ -372,8 +360,6 @@
             this.grpColumnasMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.grpColumnasMostrar.Location = new System.Drawing.Point(9, 69);
             this.grpColumnasMostrar.Name = "grpColumnasMostrar";
-            this.grpColumnasMostrar.OrbColorBorde = System.Drawing.Color.Empty;
-            this.grpColumnasMostrar.OrbColorCabecera = System.Drawing.Color.Empty;
             this.grpColumnasMostrar.Size = new System.Drawing.Size(387, 69);
             this.grpColumnasMostrar.TabIndex = 9;
             // 

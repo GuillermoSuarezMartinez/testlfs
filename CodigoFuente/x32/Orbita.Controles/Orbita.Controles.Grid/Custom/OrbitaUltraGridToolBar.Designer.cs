@@ -130,6 +130,7 @@
             this.preview = new Infragistics.Win.Printing.UltraPrintPreviewDialog(this.components);
             this.excel = new Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter(this.components);
             this.imprimir = new Infragistics.Win.UltraWinGrid.UltraGridPrintDocument(this.components);
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.grid = new Orbita.Controles.Grid.OrbitaUltraGrid();
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this.toolbar = new Orbita.Controles.Menu.OrbitaUltraToolbarsManager(this.components);
@@ -167,6 +168,10 @@
             // 
             this.preview.Name = "OrbPrintPreviewDialog";
             // 
+            // timer
+            // 
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // grid
             // 
             this.grid.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ExtendLastColumn;
@@ -185,9 +190,10 @@
             this.grid.DisplayLayout.Override.SummaryDisplayArea = Infragistics.Win.UltraWinGrid.SummaryDisplayAreas.BottomFixed;
             this.grid.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.False;
             this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grid.Location = new System.Drawing.Point(0, 29);
+            this.grid.Location = new System.Drawing.Point(0, 75);
             this.grid.Name = "grid";
-            this.grid.Size = new System.Drawing.Size(852, 146);
+            this.grid.OI.Filas.TipoSeleccion = null;
+            this.grid.Size = new System.Drawing.Size(852, 100);
             this.grid.TabIndex = 13;
             this.grid.Text = "orbitaUltraGrid1";
             this.grid.UpdateMode = Infragistics.Win.UltraWinGrid.UpdateMode.OnCellChangeOrLostFocus;
@@ -200,9 +206,9 @@
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left.BackColor = System.Drawing.SystemColors.Control;
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 29);
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 75);
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left.Name = "_OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left";
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 146);
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 100);
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left.ToolbarsManager = this.toolbar;
             // 
             // toolbar
@@ -475,9 +481,9 @@
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.BackColor = System.Drawing.SystemColors.Control;
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(852, 29);
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(852, 75);
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.Name = "_OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right";
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 146);
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 100);
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolbar;
             // 
             // _OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom
@@ -499,7 +505,7 @@
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.Name = "_OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top";
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(852, 29);
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(852, 75);
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolbar;
             // 
             // OrbitaUltraGridToolBar
@@ -531,5 +537,6 @@
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top;
+        private System.Windows.Forms.Timer timer;
     }
 }

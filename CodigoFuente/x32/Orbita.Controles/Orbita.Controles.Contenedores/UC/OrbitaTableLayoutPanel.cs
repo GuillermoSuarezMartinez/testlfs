@@ -9,18 +9,49 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System.ComponentModel;
 namespace Orbita.Controles.Contenedores
 {
     public partial class OrbitaTableLayoutPanel : System.Windows.Forms.TableLayoutPanel
     {
+        public class ControlNuevaDefinicion : OTableLayoutPanel
+        {
+            public ControlNuevaDefinicion(OrbitaTableLayoutPanel sender)
+                : base(sender) { }
+        };
+
+        #region Atributos
+        ControlNuevaDefinicion definicion;
+        #endregion
+
         #region Constructor
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.
-        /// </summary>
         public OrbitaTableLayoutPanel()
             : base()
         {
             InitializeComponent();
+            InitializeAttributes();
+        }
+        #endregion
+
+        #region Propiedades
+        [System.ComponentModel.Category("Gestión de controles")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public ControlNuevaDefinicion OI
+        {
+            get { return this.definicion; }
+            set { this.definicion = value; }
+        }
+        #endregion
+
+        #region Métodos privados
+        void InitializeAttributes()
+        {
+            if (this.definicion == null)
+            {
+                this.definicion = new ControlNuevaDefinicion(this);
+            }
         }
         #endregion
     }

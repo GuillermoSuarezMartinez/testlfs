@@ -13,9 +13,12 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinGrid;
-using Orbita.Controles.Grid;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
+using Orbita.Controles.Contenedores;
+using Orbita.Controles.Comunes;
+using Orbita.Controles.Combo;
+using Orbita.Controles.Grid;
 
 namespace Orbita.Controles.VA
 {
@@ -58,11 +61,11 @@ namespace Orbita.Controles.VA
             this.CargarGridEscritorios();
 
             // General
-            this.checkHabilitado.Checked = this.OpcionesEscritorios.ManejoAvanzadoEscritorio;
-            this.checkAnclaje.Checked = this.OpcionesEscritorios.PermiteAnclajes;
-            this.checkHabilitado_CheckedChanged(this.checkHabilitado, new EventArgs());
-            this.checkAutoAbrirFoms.Checked = this.OpcionesEscritorios.AutoAbrirFoms;
-            this.checkPreferenciaMaximizado.Checked = this.OpcionesEscritorios.PreferenciaMaximizado;
+            this.CheckHabilitado.Checked = this.OpcionesEscritorios.ManejoAvanzadoEscritorio;
+            this.ChkAnclaje.Checked = this.OpcionesEscritorios.PermiteAnclajes;
+            this.checkHabilitado_CheckedChanged(this.CheckHabilitado, new EventArgs());
+            this.ChkAutoAbrirFoms.Checked = this.OpcionesEscritorios.AutoAbrirFoms;
+            this.ChkPreferenciaMaximizado.Checked = this.OpcionesEscritorios.PreferenciaMaximizado;
             this.CargarComboEscritorios();
 
             this.ResumeLayout();
@@ -74,8 +77,8 @@ namespace Orbita.Controles.VA
         {
             base.IniciarMonitorizarModificaciones();
 
-            this.GridEscritorios.OrbBotonAñadirClick += this.EventoCambioValor;
-            this.GridEscritorios.OrbBotonEliminarFilaClick += this.EventoCambioValor;
+            //this.GridEscritorios.ToolAñadirClick += this.EventoCambioValor;
+            //this.GridEscritorios.ToolEliminarClick += this.EventoCambioValor;
         }
         /// <summary>
         /// Se elimina el evento de monitorización a los controles del formulario
@@ -84,8 +87,8 @@ namespace Orbita.Controles.VA
         {
             base.FinalizarMonitorizarModificaciones();
 
-            this.GridEscritorios.OrbBotonAñadirClick -= this.EventoCambioValor;
-            this.GridEscritorios.OrbBotonEliminarFilaClick -= this.EventoCambioValor;
+            //this.GridEscritorios_.ToolAñadirClick -= this.EventoCambioValor;
+            //this.GridEscritorios_.ToolEliminarClick -= this.EventoCambioValor;
         }
         /// <summary>
         /// Realiza las comprobaciones pertinentes antes de realizar un guardado de los datos. Se usa para el caso en que hayan restricciones en el momento de guardar los datos
@@ -96,43 +99,43 @@ namespace Orbita.Controles.VA
             bool resultado = base.ComprobacionesDeCampos();
             try
             {
-                foreach (UltraGridRow row in this.GridEscritorios.OrbGrid.Rows)
-                {
-                    if (!(row.Cells["Valor"].Value is OpcionesEscritorio))
-                    {    
-                        resultado = false;
-                        throw new Exception("La lista de escritorios no es válida");
-                    }
+                //foreach (UltraGridRow row in this.GridEscritorios_.Grid.Rows)
+                //{
+                //    if (!(row.Cells["Valor"].Value is OpcionesEscritorio))
+                //    {    
+                //        resultado = false;
+                //        throw new Exception("La lista de escritorios no es válida");
+                //    }
 
-                    OpcionesEscritorio opcionesEscritorio = (OpcionesEscritorio)row.Cells["Valor"].Value;
-                    if (resultado)
-                    {
-                        OTexto textoRobusto = new OTexto("Lista Escritorios", 50, false, false, string.Empty, true);
-                        textoRobusto.ValorGenerico = opcionesEscritorio.Nombre;
-                        resultado = textoRobusto.Valido;
-                    }
-                    //resultado &= OTextoRobusto.Validar(opcionesEscritorio.Nombre, "Lista Escritorios", 50, false, true);
-                }
+                //    OpcionesEscritorio opcionesEscritorio = (OpcionesEscritorio)row.Cells["Valor"].Value;
+                //    if (resultado)
+                //    {
+                //        OTexto textoRobusto = new OTexto("Lista Escritorios", 50, false, false, string.Empty, true);
+                //        textoRobusto.ValorGenerico = opcionesEscritorio.Nombre;
+                //        resultado = textoRobusto.Valido;
+                //    }
+                //    //resultado &= OTextoRobusto.Validar(opcionesEscritorio.Nombre, "Lista Escritorios", 50, false, true);
+                //}
 
-                if (resultado && this.checkHabilitado.Checked)
-                {
-                    if (!OTrabajoControles.ComprobarFila(this.cboEscritorios.UltraCombo.ActiveRow))
-                    {
-                        resultado = false;
-                        throw new Exception("El campo Escritorio Predefinido no es válido");
-                    }
-                    resultado &= OTexto.Validar(this.cboEscritorios.UltraCombo.ActiveRow.Cells["Indice"].Value, "Escritorio Predefinido", 50, false, false, string.Empty, true) == EnumEstadoObjetoRobusto.ResultadoCorrecto;
-                    string nombreEscritorioPredefinido = (string)this.cboEscritorios.UltraCombo.ActiveRow.Cells["Indice"].Value;
+                //if (resultado && this.CheckHabilitado.Checked)
+                //{
+                //    if (!OTrabajoControles.ComprobarFila(this.CboEscritorios.ActiveRow))
+                //    {
+                //        resultado = false;
+                //        throw new Exception("El campo Escritorio Predefinido no es válido");
+                //    }
+                //    resultado &= OTexto.Validar(this.CboEscritorios.ActiveRow.Cells["Indice"].Value, "Escritorio Predefinido", 50, false, false, string.Empty, true) == EnumEstadoObjetoRobusto.ResultadoCorrecto;
+                //    string nombreEscritorioPredefinido = (string)this.CboEscritorios.ActiveRow.Cells["Indice"].Value;
 
-                    // Escritorios
-                    List<OpcionesEscritorio> listaOpcionesEscritorio = this.ObtenerListaOpcionesEscritoriosDeGrid();
-                    bool existeEscritorio = listaOpcionesEscritorio.Exists(delegate(OpcionesEscritorio opcionesEscritorio) { return opcionesEscritorio.Nombre == nombreEscritorioPredefinido; });
-                    if (!existeEscritorio)
-                    {
-                        resultado = false;
-                        throw new Exception("No existe el Escritorio Predefinido seleccionado");
-                    }
-                }
+                //    // Escritorios
+                //    List<OpcionesEscritorio> listaOpcionesEscritorio = this.ObtenerListaOpcionesEscritoriosDeGrid();
+                //    bool existeEscritorio = listaOpcionesEscritorio.Exists(delegate(OpcionesEscritorio opcionesEscritorio) { return opcionesEscritorio.Nombre == nombreEscritorioPredefinido; });
+                //    if (!existeEscritorio)
+                //    {
+                //        resultado = false;
+                //        throw new Exception("No existe el Escritorio Predefinido seleccionado");
+                //    }
+                //}
             }
             catch (Exception exception)
             {
@@ -163,7 +166,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         private void CargarComboEscritorios()
         {
-            this.cboEscritorios.OrbLimpiarValor();
+            this.CboEscritorios.Orbita.ResetValor();
 
             List<OpcionesEscritorio> listaOpcionesEscritorio = this.ObtenerListaOpcionesEscritoriosDeGrid();
             if (listaOpcionesEscritorio.Count > 0)
@@ -173,7 +176,7 @@ namespace Orbita.Controles.VA
                 {
                     valores.Add(opcionesEscritorio.Nombre, opcionesEscritorio.Nombre);
                 }
-                OTrabajoControles.CargarCombo(this.cboEscritorios, valores, typeof(string), this.OpcionesEscritorios.NombreEscritorioActual);
+                OTrabajoControles.CargarCombo(this.CboEscritorios, valores, typeof(string), this.OpcionesEscritorios.NombreEscritorioActual);
             }
         }
 
@@ -183,10 +186,10 @@ namespace Orbita.Controles.VA
         private void RefrescarComboEscritorios()
         {
             //Obtenemos información sobre el registro está actualmente seleccionado
-            string nombreEscritorioSeleccionado = this.cboEscritorios.OrbTexto; // Nunca puede ser null
+            string nombreEscritorioSeleccionado = this.CboEscritorios.Orbita.Texto; // Nunca puede ser null
 
             // Limpiamos los valores del combo
-            this.cboEscritorios.OrbLimpiarValor();
+            this.CboEscritorios.Orbita.ResetValor();
 
             List<OpcionesEscritorio> listaOpcionesEscritorio = this.ObtenerListaOpcionesEscritoriosDeGrid();
             if (listaOpcionesEscritorio.Count > 0)
@@ -196,7 +199,7 @@ namespace Orbita.Controles.VA
                 {
                     valores.Add(opcionesEscritorio.Nombre, opcionesEscritorio.Nombre);
                 }
-                OTrabajoControles.CargarCombo(this.cboEscritorios, valores, typeof(string), nombreEscritorioSeleccionado);
+                OTrabajoControles.CargarCombo(this.CboEscritorios, valores, typeof(string), nombreEscritorioSeleccionado);
             }
         }
 
@@ -210,9 +213,9 @@ namespace Orbita.Controles.VA
             {
                 valores.Add(opcionesEscritorio);
             }
-            OTrabajoControles.CargarGridSimple(this.GridEscritorios, valores, typeof(OpcionesEscritorio), EstiloColumna.Texto, Alineacion.Izquierda, null, 150, null);
 
-            this.GridEscritorios.OrbToolBarAgregarBoton("Establecer", global::Orbita.Controles.VA.Properties.Resources.btnEstablecerEscritorio16, "Establecer", 2, true);
+            OTrabajoControles.CargarGridSimple(this.GridEscritorios, valores, typeof(OpcionesEscritorio), EstiloColumna.Texto, Alineacion.Izquierda, null, 150, null);
+            //*//this.GridEscritorios.OrbToolBarAgregarBoton("Establecer", global::Orbita.Controles.VA.Properties.Resources.btnEstablecerEscritorio16, "Establecer", 2, true);
         }
 
         /// <summary>
@@ -224,14 +227,14 @@ namespace Orbita.Controles.VA
             try
             {
                 // General
-                this.OpcionesEscritorios.AutoAbrirFoms = this.checkAutoAbrirFoms.Checked;
-                this.OpcionesEscritorios.ManejoAvanzadoEscritorio = this.checkHabilitado.Checked;
-                this.OpcionesEscritorios.PermiteAnclajes = this.checkAnclaje.Checked;
-                this.OpcionesEscritorios.PreferenciaMaximizado = this.checkPreferenciaMaximizado.Checked;
+                this.OpcionesEscritorios.AutoAbrirFoms = this.ChkAutoAbrirFoms.Checked;
+                this.OpcionesEscritorios.ManejoAvanzadoEscritorio = this.CheckHabilitado.Checked;
+                this.OpcionesEscritorios.PermiteAnclajes = this.ChkAnclaje.Checked;
+                this.OpcionesEscritorios.PreferenciaMaximizado = this.ChkPreferenciaMaximizado.Checked;
                 this.OpcionesEscritorios.NombreEscritorioActual = string.Empty;
-                if (this.cboEscritorios.UltraCombo.ActiveRow != null)
+                if (this.CboEscritorios.ActiveRow != null)
                 {
-                    this.OpcionesEscritorios.NombreEscritorioActual = (string)this.cboEscritorios.UltraCombo.ActiveRow.Cells["Indice"].Value;
+                    this.OpcionesEscritorios.NombreEscritorioActual = (string)this.CboEscritorios.ActiveRow.Cells["Indice"].Value;
                 }
 
                 // Escritorios
@@ -248,10 +251,13 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// añade una nueva fila a un grid simple (Una sóla columna)
         /// </summary>
-        private void NuevaFila(OrbitaGrid grid, object valor)
+        private void NuevaFila(OrbitaUltraGridToolBar grid, object valor)
         {
-            grid.OrbFilaActiva = grid.OrbGrid.DisplayLayout.Bands[0].AddNew();
-            grid.OrbFilaActiva.Cells[0].Value = valor;
+            grid.Grid.ActiveRow = grid.Grid.DisplayLayout.Bands[0].AddNew();
+            grid.Grid.ActiveRow.Cells[0].Value = valor;
+
+            //grid.Grid.ActiveRow = grid.OrbGrid.DisplayLayout.Bands[0].AddNew();
+            //grid.Grid.ActiveRow.Cells[0].Value = valor;
         }
 
         /// <summary>
@@ -260,13 +266,13 @@ namespace Orbita.Controles.VA
         private List<OpcionesEscritorio> ObtenerListaOpcionesEscritoriosDeGrid()
         {
             List<OpcionesEscritorio> listaOpcionesEscritorio = new List<OpcionesEscritorio>();
-            foreach (UltraGridRow row in this.GridEscritorios.OrbGrid.Rows)
-            {
-                if (row.Cells["Valor"].Value is OpcionesEscritorio)
-                {
-                    listaOpcionesEscritorio.Add((OpcionesEscritorio)row.Cells["Valor"].Value);
-                }
-            }
+            //foreach (UltraGridRow row in this.GridEscritorios_.Grid.Rows)
+            //{
+            //    if (row.Cells["Valor"].Value is OpcionesEscritorio)
+            //    {
+            //        listaOpcionesEscritorio.Add((OpcionesEscritorio)row.Cells["Valor"].Value);
+            //    }
+            //}
 
             return listaOpcionesEscritorio;
         }
@@ -306,15 +312,10 @@ namespace Orbita.Controles.VA
         /// <param name="celda">Argumentos del evento</param>
         private void checkHabilitado_CheckedChanged(object sender, EventArgs e)
         {
-            this.PnlOpcionesEscritorios.Visible = this.checkHabilitado.Checked;
+            this.PnlOpcionesEscritorios.Visible = this.CheckHabilitado.Checked;
         }
 
-        /// <summary>
-        /// Nuevo escritorio
-        /// </summary>
-        /// <param name="sender">Objeto que envía el evento</param>
-        /// <param name="e">Argumentos del evento</param>
-        private void GridEscritorios_OrbBotonAñadirClick(object sender, EventArgs e)
+        private void GridEscritorios_ToolAñadirClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -334,7 +335,7 @@ namespace Orbita.Controles.VA
                 opcionesEscritorio.Nombre = escritorio.Nombre;
                 opcionesEscritorio.ListaInfoPosForms = escritorio.ListaInfoPosForms;
 
-                this.NuevaFila(this.GridEscritorios, opcionesEscritorio);
+                //this.NuevaFila(this.GridEscritorios_, opcionesEscritorio);
 
                 this.RefrescarComboEscritorios();
             }
@@ -344,24 +345,18 @@ namespace Orbita.Controles.VA
             }
         }
 
-        /// <summary>
-        /// Eliminar escritorio
-        /// </summary>
-        /// <param name="sender">Objeto que envía el evento</param>
-        /// <param name="e">Argumentos del evento</param>
-        private void GridEscritorios_OrbBotonEliminarFilaClick(object sender, EventArgs e)
+        private void GridEscritorios_ToolEliminarClick(object sender, Orbita.Controles.Grid.OToolClickCollectionEventArgs e)
         {
             try
             {
-                if (OTrabajoControles.ComprobarGrid(this.GridEscritorios)) // Si hay alguna selección en el grid
-                {
-                    if (OMensajes.MostrarPreguntaSiNo("¿Desea eliminar el escritorio " + this.GridEscritorios.OrbFilaActiva.Cells["Valor"].Text + "?") == DialogResult.Yes)
-                    {
-                        this.GridEscritorios.OrbEliminarFilaActiva();
-
-                        this.RefrescarComboEscritorios();
-                    }
-                }
+                //if (OTrabajoControles.ComprobarGrid(this.GridEscritorios_)) // Si hay alguna selección en el grid
+                //{
+                //    if (OMensajes.MostrarPreguntaSiNo("¿Desea eliminar el escritorio " + this.GridEscritorios_.Grid.ActiveRow.Cells["Valor"].Text + "?") == DialogResult.Yes)
+                //    {
+                //        this.GridEscritorios_.Orbita.Filas.Activas.Eliminar();
+                //        this.RefrescarComboEscritorios();
+                //    }
+                //}
             }
             catch (System.Exception exception)
             {
@@ -369,28 +364,48 @@ namespace Orbita.Controles.VA
             }
         }
 
-        /// <summary>
-        /// Cambios en las celdas del grid de la lista de escritorios
-        /// </summary>
-        /// <param name="sender">Objeto que envía el evento</param>
-        /// <param name="e">Argumentos del evento</param>
-        private void GridEscritorios_OrbCeldaFinEdicion(object sender, UltraGridCell celda)
+        private void GridEscritorios_ToolClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
-                if ((celda.Value is string) && (celda.OriginalValue is OpcionesEscritorio))
+                if (e.Tool.Key == "Establecer")
                 {
-                    string anteriorNombre = ((OpcionesEscritorio)celda.OriginalValue).Nombre;
-                    string nuevoNombre = (string)celda.Value;
+                    //if (OTrabajoControles.ComprobarGrid(this.GridEscritorios_)) // Si hay alguna selección en el grid
+                    //{
+                    //    //Obtenemos información sobre el registro está actualmente seleccionado
+                    //    object valorCeldaActiva = this.GridEscritorios_.Grid.ActiveRow.Cells["Valor"].Value;
+                    //    if (valorCeldaActiva is OpcionesEscritorio)
+                    //    {
+                    //        OpcionesEscritorio opcionesEscritorio = (OpcionesEscritorio)valorCeldaActiva;
+                    //        OEscritorio escritorio = new OEscritorio(opcionesEscritorio.Nombre, opcionesEscritorio.ListaInfoPosForms);
+                    //        escritorio.EstablecerEscritorioAplicacion();
+                    //    }
+                    //}
+                }
+            }
+            catch (Exception exception)
+            {
+                OVALogsManager.Error(ModulosSistema.Escritorios, "ClickEnBarraGridEscritorios", exception);
+            }
+        }
+
+        private void GridEscritorios_AfterCellUpdate(object sender, CellEventArgs e)
+        {
+            try
+            {
+                if ((e.Cell.Value is string) && (e.Cell.OriginalValue is OpcionesEscritorio))
+                {
+                    string anteriorNombre = ((OpcionesEscritorio)e.Cell.OriginalValue).Nombre;
+                    string nuevoNombre = (string)e.Cell.Value;
                     if (!this.ValidarNuevoNombreEscritorioEnGrid(anteriorNombre, nuevoNombre))
                     {
                         OMensajes.MostrarAviso("Ya existe un escritorio con el nombre " + nuevoNombre);
                         nuevoNombre = anteriorNombre;
                     }
 
-                    OpcionesEscritorio opcionesEscritorio = (OpcionesEscritorio)celda.OriginalValue;
+                    OpcionesEscritorio opcionesEscritorio = (OpcionesEscritorio)e.Cell.OriginalValue;
                     opcionesEscritorio.Nombre = nuevoNombre;
-                    celda.Value = opcionesEscritorio;
+                    e.Cell.Value = opcionesEscritorio;
 
                     this.RefrescarComboEscritorios();
                 }
@@ -398,36 +413,6 @@ namespace Orbita.Controles.VA
             catch (Exception exception)
             {
                 OVALogsManager.Error(ModulosSistema.Escritorios, "FinEdicionGridEscritorios", exception);
-            }
-        }
-
-        /// <summary>
-        /// Click en los botones personalizados de la barra del grid de escritorios
-        /// </summary>
-        /// <param name="sender">Objeto que envía el evento</param>
-        /// <param name="e">Argumentos del evento</param>
-        private void GridEscritorios_OrbToolbarClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
-        {
-            try
-            {
-                if (e.Tool.Key == "Establecer")
-                {
-                    if (OTrabajoControles.ComprobarGrid(this.GridEscritorios)) // Si hay alguna selección en el grid
-                    {
-                        //Obtenemos información sobre el registro está actualmente seleccionado
-                        object valorCeldaActiva = this.GridEscritorios.OrbFilaActiva.Cells["Valor"].Value;
-                        if (valorCeldaActiva is OpcionesEscritorio)
-                        {
-                            OpcionesEscritorio opcionesEscritorio = (OpcionesEscritorio)valorCeldaActiva;
-                            OEscritorio escritorio = new OEscritorio(opcionesEscritorio.Nombre, opcionesEscritorio.ListaInfoPosForms);
-                            escritorio.EstablecerEscritorioAplicacion();
-                        }
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                OVALogsManager.Error(ModulosSistema.Escritorios, "ClickEnBarraGridEscritorios", exception);
             }
         }
         #endregion

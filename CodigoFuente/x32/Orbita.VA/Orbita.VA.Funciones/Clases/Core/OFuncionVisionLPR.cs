@@ -10,6 +10,7 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Threading;
@@ -203,25 +204,18 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Ejecuta el callback en el mismo thread que la Applicación principal
         /// </summary>
-        private void CallBack(NLInfo element, PlateInfo plateInfo)
+        private void CallBack(OInfoInspeccionLPR infoInspeccionLPR)
         {
             try
             {
-                if ((element != null))
+                EventArgsResultadoParcial argumentoEvento = new EventArgsResultadoParcial(infoInspeccionLPR); // Creación del argumento del evento
+                CallBackResultadoParcial callBack = infoInspeccionLPR.Info.CallBackResultadoParcial; // Obtención del callback
+
+                // Llamada al callback
+                if (callBack != null)
                 {
-                    OInfoInspeccionLPR infoInspeccionLPR = (OInfoInspeccionLPR)element.ImageInformation.GetObject; // Obtengo la información de entrada de la inspección
-                    OResultadoLPR resultadoParcial = new OResultadoLPR(plateInfo, element.ImageInformation.GetTimestamp); // Obtengo el resultado parcial
-                    infoInspeccionLPR.Resultados = resultadoParcial; // Añado el resultado a la información de la inspección
-
-                    EventArgsResultadoParcial argumentoEvento = new EventArgsResultadoParcial(infoInspeccionLPR); // Creación del argumento del evento
-                    CallBackResultadoParcial callBack = infoInspeccionLPR.Info.CallBackResultadoParcial; // Obtención del callback
-
-                    // Llamada al callback
-                    if (callBack != null)
-                    {
-                        // Llamada desde el thread principal
-                        OThreadManager.SincronizarConThreadPrincipal(new CallBackResultadoParcial(callBack), new object[] { this, argumentoEvento });
-                    }
+                    // Llamada desde el thread principal
+                    OThreadManager.SincronizarConThreadPrincipal(new CallBackResultadoParcial(callBack), new object[] { this, argumentoEvento });
                 }
             }
             catch (Exception exception)
@@ -229,7 +223,6 @@ namespace Orbita.VA.Funciones
                 OVALogsManager.Error(ModulosFunciones.LPR, this.Codigo, exception);
             }
         }
-
         #endregion
 
         #region Definición de delegado(s)
@@ -242,7 +235,6 @@ namespace Orbita.VA.Funciones
         #endregion
 
         #region Método(s) heredado(s)
-
         protected override void Ejecucion(ref bool finalize)
         {
             finalize = this.Finalizar;
@@ -264,21 +256,35 @@ namespace Orbita.VA.Funciones
                     element = MTInterface.GetFirstElement();
                     if (element != null)
                     {
-                        PlateInfo info = element.GetFirstPlate;
+                        // Obtengo la información de entrada de la inspección
+                        OInfoInspeccionLPR infoInspeccionLPR = (OInfoInspeccionLPR)element.ImageInformation.GetObject; 
+                        infoInspeccionLPR.Resultados = new OResultadoLPR(); // Inicializo los resultados
 
-                        this.CallBack(element, info); // Llamada al callback
-                        if (info != null)
+                        PlateInfo plateInfo = null;
+                        do
                         {
-                            info.Dispose();
+                            plateInfo = element.GetFirstPlate;
+                            if (plateInfo != null)
+                            {
+                                // Obtengo el resultado de una matricula
+                                OResultadoSimpleLPR resultadoParcial = new OResultadoSimpleLPR(plateInfo, element.ImageInformation.GetTimestamp);
+                                // Añado el resultado de la matricula a la lista de matriculas reconocidas de la imagen
+                                infoInspeccionLPR.Resultados.Add(resultadoParcial); 
+
+                                plateInfo.Dispose();
+                            }
                         }
-                        element.Dispose();
+                        while (plateInfo != null);
+
+                        this.CallBack(infoInspeccionLPR); // Llamada al callback
 
                         // Guardamos la traza
                         OVALogsManager.Debug(ModulosFunciones.LPR, this.Codigo, "Fin de ejecución de la función " + this.Codigo);
+
+                        element.Dispose();
                     }
                 }
                 while (element != null);
-
             }
         }
         #endregion
@@ -308,14 +314,14 @@ namespace Orbita.VA.Funciones
         private OImagenBitmap Imagen;
 
         /// <summary>
-        /// Para ir alternando la configuración, si tiene distorisión tambien es útil combinarla con la configuración estandar
-        /// </summary>
-        private bool AlternarConfiguracion;
-
-        /// <summary>
         /// Siguiente ruta de imágen a procesar en el LPR
         /// </summary>
         private string RutaImagen;
+
+        /// <summary>
+        /// Lista de información adicional incorporada por el controlador externo
+        /// </summary>
+        private Dictionary<string, object> InformacionAdicional;
         #endregion
 
         #region Constructor
@@ -332,7 +338,7 @@ namespace Orbita.VA.Funciones
 
                 this.Valido = true;
                 this.ParametrosLPR = new OParametrosLPR();
-                this.AlternarConfiguracion = false;
+                this.InformacionAdicional = new Dictionary<string, object>();
 
                 // Cargamos valores de la base de datos
                 DataTable dtFuncionVision = AppBD.GetFuncionVision(this.Codigo);
@@ -368,23 +374,14 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Cargamos la configuracion de los parametros definidos como entrada, es más eficiente alternar con los de por defecto, para tener mejor tasa de acierto
         /// </summary>
-        private void EstablecerConfiguracion(OParametrosLPR parametros,bool usarPorDefecto)
+        private void EstablecerConfiguracion(OParametrosLPR parametros)
         {
-            bool resultCode;
-            if (usarPorDefecto)
-            {
-                // Ejecutamos la configuración por defecto
-                resultCode = MTInterface.SetConfiguration(0,0,10,0,0,0,0,0,0,0,0,new int[3]);
-            }
-            else
-            {
-                // Ejecutamos la configuración
-                resultCode = MTInterface.SetConfiguration(parametros.TimeOut, parametros.ActivadaAjusteCorreccion,
-                    parametros.Distancia, parametros.CoeficienteVertical, parametros.CoeficienteHorizontal,
-                    parametros.AnguloRotacion, parametros.CoordIzq, parametros.CoordArriba,
-                    parametros.AnchuraVentanaBusqueda, parametros.AlturaVentanaBusqueda, parametros.ActivadoRangoAlturas,
-                    parametros.VectorAlturas);
-            }
+            // Ejecutamos la configuración
+            bool resultCode = MTInterface.SetConfiguration(parametros.TimeOut, parametros.ActivadaAjusteCorreccion,
+                parametros.Distancia, parametros.CoeficienteVertical, parametros.CoeficienteHorizontal,
+                parametros.AnguloRotacion, parametros.CoordIzq, parametros.CoordArriba,
+                parametros.AnchuraVentanaBusqueda, parametros.AlturaVentanaBusqueda, parametros.ActivadoRangoAlturas,
+                parametros.VectorAlturas);
             if (!resultCode)
             {
                 OVALogsManager.Error(ModulosFunciones.LPR, "FuncionLPR", "Error al establecer la configuración del VPAR");
@@ -470,12 +467,12 @@ namespace Orbita.VA.Funciones
                                 this.Imagen,
                                 new OInfoImagenLPR(this.IdEjecucionActual,this.Codigo, this.IndiceFotografia, DateTime.Now, AñadirResultadoParcial),
                                 this.ParametrosLPR,
-                                new OResultadoLPR());
+                                new OResultadoLPR(),
+                                this.InformacionAdicional);
 
                         // Se carga la configuración
-                        this.EstablecerConfiguracion((OParametrosLPR)this.ParametrosLPR, this.AlternarConfiguracion);
+                        this.EstablecerConfiguracion((OParametrosLPR)this.ParametrosLPR);
                         // Variamos la configuración para la siguiente 
-                        this.AlternarConfiguracion = !this.AlternarConfiguracion;
                         // Se carga la imagen
                         object info = infoInspeccionLPR;
                         int resultCode = 0;
@@ -558,7 +555,47 @@ namespace Orbita.VA.Funciones
                 }
                 else
                 {
-                    throw new Exception("Error en la asignación del parámetro '" + codigo + "' a la función '" + this.Codigo + "'. No se admite este tipo de parámetros.");
+                    this.InformacionAdicional[codigo] = valor;
+                    //throw new Exception("Error en la asignación del parámetro '" + entrada.Nombre + "' a la función '" + this.Codigo + "'. No se admite este tipo de parámetros.");
+                }
+                resultado = true;
+            }
+            catch (Exception exception)
+            {
+                OVALogsManager.Error(ModulosFunciones.LPR, this.Codigo, exception);
+            }
+            return resultado;
+        }
+
+        /// <summary>
+        /// Función para la actualización de parámetros de entrada
+        /// </summary>
+        /// <param name="ParamName">Nombre identificador del parámetro</param>
+        /// <param name="ParamValue">Nuevo valor del parámetro</param>
+        /// <returns></returns>
+        /// <remarks></remarks>
+        public override bool SetEntrada(EnumEntradaFuncionVision entrada, object valor, OEnumTipoDato tipoVariable)
+        {
+            bool resultado = false;
+
+            try
+            {
+                if (entrada == EntradasFuncionesVisionLPR.Imagen)
+                {
+                    this.Imagen = (OImagenBitmap)valor;
+                }
+                else if (entrada == EntradasFuncionesVisionLPR.ParametrosLPR)
+                {
+                    this.ParametrosLPR = (OParametrosLPR)valor;
+                }
+                else if (entrada == EntradasFuncionesVisionLPR.RutaImagen)
+                {
+                    this.RutaImagen = (string)valor;
+                }
+                else
+                {
+                    this.InformacionAdicional[entrada.Nombre] = valor;
+                    //throw new Exception("Error en la asignación del parámetro '" + entrada.Nombre + "' a la función '" + this.Codigo + "'. No se admite este tipo de parámetros.");
                 }
                 resultado = true;
             }
@@ -593,8 +630,8 @@ namespace Orbita.VA.Funciones
         /// <param name="info"></param>
         /// <param name="parametros"></param>
         /// <param name="resultados"></param>
-        public OInfoInspeccionLPR(OImagenBitmap imagen, OInfoImagenLPR info, OParametrosLPR parametros, OResultadoLPR resultados)
-            : base(imagen, info, parametros, resultados)
+        public OInfoInspeccionLPR(OImagenBitmap imagen, OInfoImagenLPR info, OParametrosLPR parametros, OResultadoLPR resultados, Dictionary<string,object> informacionAdicional)
+            : base(imagen, info, parametros, resultados, informacionAdicional)
         {
         }
         #endregion
@@ -767,9 +804,16 @@ namespace Orbita.VA.Funciones
     }
 
     /// <summary>
+    /// Lista de resultados de todas las matriculas de una imagen
+    /// </summary>
+    public class OResultadoLPR: List<OResultadoSimpleLPR>
+    {
+    }
+
+    /// <summary>
     /// Clase que contiene los resultados que se reciben de la funcion LPR para una imagen pasada 
     /// </summary>
-    public class OResultadoLPR
+    public class OResultadoSimpleLPR
     {
         #region Atributo(s)
         /// <summary>
@@ -816,13 +860,21 @@ namespace Orbita.VA.Funciones
         /// <summary>Devuelve el pais que cumple la sintáxis
         /// </summary>
         public int PaisSintaxis;
+        /// <summary>
+        /// Número de carácters de la matrícula
+        /// </summary>
+        public int NumCaracteres;
+        /// <summary>
+        /// Contiene las fiabilidades de cada letra individual
+        /// </summary>
+        public float[] FiabilidadesLetras;
         #endregion
 
         #region Constructor(es)
         /// <summary>
         /// Constructor sin parametros
         /// </summary>
-        public OResultadoLPR()
+        public OResultadoSimpleLPR()
         {
             this.Matricula = string.Empty;
             this.FiabilidadMatricula = 0;
@@ -835,11 +887,13 @@ namespace Orbita.VA.Funciones
             this.CodigoPais = 0;
             this.FechaEncolamiento = DateTime.Now;
             this.PaisSintaxis = 0;
+            this.NumCaracteres = 0;
+            this.FiabilidadesLetras = new float[0];
         }
         /// <summary>
         /// Constructor con parametros
         /// </summary>
-        public OResultadoLPR(PlateInfo resultadoImagen, DateTime fechaEncola)
+        public OResultadoSimpleLPR(PlateInfo resultadoImagen, DateTime fechaEncola)
         {
             try
             {
@@ -854,6 +908,17 @@ namespace Orbita.VA.Funciones
                 this.CodigoPais = Convert.ToInt16((Convert.ToInt16(resultadoImagen.GetPlateFormat)).ToString().Clone());
                 this.FechaEncolamiento = fechaEncola;
                 this.PaisSintaxis = Convert.ToInt16((Convert.ToInt16(resultadoImagen.GetPlateFormat)).ToString().Clone());
+                this.NumCaracteres = Convert.ToInt16((Convert.ToInt16(resultadoImagen.GetNumCharacters)).ToString().Clone());
+
+                // Si tenemos código identificado , obtenemos las fiabilidades de cada una de las letras
+                if (this.NumCaracteres > 0)
+                {
+                    float[] fiabilidades = resultadoImagen.GetCharConfidence();
+                    for (int i = 0; i < fiabilidades.Length; i++)
+                    {
+                        this.FiabilidadesLetras[i] = Convert.ToSingle(fiabilidades[i]);
+                    }
+                }
             }
             catch (Exception exception)
             {
@@ -935,5 +1000,22 @@ namespace Orbita.VA.Funciones
         {
         }
         #endregion Constructor
+    }
+
+    /// <summary>
+    /// Define el conjunto de tipos de entradas de las funciones de visión LPR
+    /// </summary>
+    public class EntradasFuncionesVisionLPR : EntradasFuncionesVision
+    {
+        #region Atributo(s)
+        /// <summary>
+        /// Parametros de configuración del LPR
+        /// </summary>
+        public static EnumEntradaFuncionVision ParametrosLPR = new EnumEntradaFuncionVision("ParametrosLPR", "Parametros de configuración del LPR", 101);
+        /// <summary>
+        /// Ruta en disco de la imagen de entrada
+        /// </summary>
+        public static EnumEntradaFuncionVision RutaImagen = new EnumEntradaFuncionVision("RutaImagen", "Ruta en disco de la imagen de entrada", 102);
+        #endregion
     }
 }

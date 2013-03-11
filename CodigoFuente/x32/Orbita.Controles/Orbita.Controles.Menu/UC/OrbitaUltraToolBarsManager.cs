@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : Orbita.Controles.Menu
+// Assembly         : Orbita.Controles.Contenedores
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -9,10 +9,21 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System.ComponentModel;
 namespace Orbita.Controles.Menu
 {
     public partial class OrbitaUltraToolbarsManager : Infragistics.Win.UltraWinToolbars.UltraToolbarsManager
     {
+        public class ControlNuevaDefinicion : OUltraToolbarsManager
+        {
+            public ControlNuevaDefinicion(OrbitaUltraToolbarsManager sender)
+                : base(sender) { }
+        };
+
+        #region Atributos
+        ControlNuevaDefinicion definicion;
+        #endregion
+
         #region Constructor
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaUltraToolbarsManager.
@@ -21,6 +32,7 @@ namespace Orbita.Controles.Menu
             : base()
         {
             InitializeComponent();
+            InitializeAttributes();
             InitializeResourceStrings();
         }
         /// <summary>
@@ -37,209 +49,27 @@ namespace Orbita.Controles.Menu
             }
             contenedor.Add(this);
             InitializeComponent();
+            InitializeAttributes();
             InitializeResourceStrings();
         }
         #endregion
 
-        #region Métodos públicos
-        /// <summary>
-        /// Hace visible o no un botón de la Toolbar.
-        /// </summary>
-        /// <param name="clave">Clave del botón.</param>
-        /// <param name="mostrar">Indica si se muestra o no el botón.</param>    
-        public void BotonVisible(string clave, bool mostrar)
+        #region Propiedades
+        [System.ComponentModel.Category("Gestión de controles")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public ControlNuevaDefinicion OI
         {
-            this.Toolbars[0].Tools[clave].SharedProps.Visible = mostrar;
+            get { return this.definicion; }
+            set { this.definicion = value; }
         }
-        /// <summary>
-        /// Habilita o deshabilita un botón de la ToolBar.
-        /// <param name="clave">Clave del botón.</param>
-        /// <param name="habilitar">Indica si se habilita o no el botón.</param>     
-        /// </summary> 
-        public void BotonEnabled(string clave, bool habilitar)
+        #endregion
+
+        #region Métodos privados
+        void InitializeAttributes()
         {
-            this.Toolbars[0].Tools[clave].SharedProps.Enabled = habilitar;
-        }
-        /// <summary>
-        /// Da valor al ToolTipText del botón.
-        /// <param name="clave">key del botón.</param>
-        /// <param name="texto">texto a mostrar en el botón.</param>     
-        /// </summary> 
-        public void BotonToolTipText(string clave, string texto)
-        {
-            this.Toolbars[0].Tools[clave].SharedProps.ToolTipText = texto;
-        }
-        /// <summary>
-        /// Agregar un botón a la ToolBar del tipo BotonesToolbar.TipoBoton.
-        /// </summary>
-        /// <param name="posicionToolbar">ToolBar correspondiente a la Orbita.Controles.ToolBarManager.</param>
-        /// <param name="control">Control a añadir.</param>
-        /// <param name="posicion">Posicion del control.</param>
-        /// <param name="alFinal">Indicamos si lo ponemos al final.</param>       
-        public void AgregarControl(Orbita.Controles.Shared.PosicionToolBar posicionToolbar, System.Windows.Forms.Control control, int posicion, bool alFinal)
-        {
-            if (control == null)
+            if (this.definicion == null)
             {
-                return;
-            }
-            Infragistics.Win.UltraWinToolbars.ControlContainerTool nuevoContainerTool = new Infragistics.Win.UltraWinToolbars.ControlContainerTool(control.Name);
-            nuevoContainerTool.SharedProps.Visible = true;
-            nuevoContainerTool.Control = control;
-            this.Tools.Add(nuevoContainerTool);
-            if (alFinal || posicion > this.Toolbars[(int)posicionToolbar].Tools.Count - 1)
-            {
-                this.Toolbars[(int)posicionToolbar].Tools.AddTool(nuevoContainerTool.Key);
-            }
-            else
-            {
-                if (posicion < 0)
-                {
-                    this.Toolbars[(int)posicionToolbar].Tools.InsertTool(0, nuevoContainerTool.Key);
-                }
-                else
-                {
-                    this.Toolbars[(int)posicionToolbar].Tools.InsertTool(posicion, nuevoContainerTool.Key);
-                }
-            }
-        }
-        /// <summary>
-        /// Agregar un botón a la ToolBar del tipo BotonesToolbar.TipoBoton.
-        /// </summary>
-        /// <param name="texto">Texto a añadir.</param>
-        /// <param name="posicion">Posicion del texto.</param>
-        /// <param name="alFinal">Hace spring hasta el final.</param>
-        /// <returns>La clave del texto que se acaba de añadir para identificar el control dentro de la ToolBar.</returns>
-        public string AgregarTexto(string texto, int posicion, bool alFinal)
-        {
-            // Crear un LabelTool que contenga el texto.
-            Infragistics.Win.UltraWinToolbars.LabelTool nuevoLabelTool = new Infragistics.Win.UltraWinToolbars.LabelTool("LabelTexto" + (this.Toolbars[0].Tools.Count - 1));
-            nuevoLabelTool.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.TextOnlyAlways;
-            nuevoLabelTool.SharedProps.Caption = texto;
-            this.Tools.Add(nuevoLabelTool);
-            if (alFinal || posicion > this.Toolbars[0].Tools.Count - 1)
-            {
-                nuevoLabelTool.SharedProps.Spring = true;
-                this.Toolbars[0].Tools.AddTool(nuevoLabelTool.Key);
-            }
-            else
-            {
-                if (posicion < 0)
-                {
-                    this.Toolbars[0].Tools.InsertTool(0, nuevoLabelTool.Key);
-                }
-                else
-                {
-                    this.Toolbars[0].Tools.InsertTool(posicion, nuevoLabelTool.Key);
-                }
-            }
-            return nuevoLabelTool.Key;
-        }
-        /// <summary>
-        /// Agregar un botón a la ToolBar del tipo BotonesToolbar.TipoBoton.
-        /// </summary>
-        /// <param name="clave">Key del botón.</param>
-        /// <param name="texto">texto del botón (ToolTipText).</param>
-        /// <param name="imagen">Imagen del botón.</param>
-        public void AgregarBoton(string clave, string texto, System.Drawing.Bitmap imagen)
-        {
-            Infragistics.Win.UltraWinToolbars.ToolBase boton = new Infragistics.Win.UltraWinToolbars.ButtonTool(clave);
-            boton.SharedProps.AppearancesLarge.Appearance.Image = boton.SharedProps.AppearancesSmall.Appearance.Image = imagen;
-            boton.SharedProps.Caption = clave;
-            boton.SharedProps.ToolTipText = texto;
-            this.Tools.Add(boton);
-            this.Toolbars[0].Tools.AddTool(clave);
-        }
-        /// <summary>
-        /// Agregar un botón a la ToolBar del tipo BotonesToolbar.TipoBoton.
-        /// </summary>
-        /// <param name="texto">Texto del botón.</param>
-        /// <param name="imagen">Imagen del botón.</param>
-        /// <param name="clave">Key del botón.</param>
-        /// <param name="posicion">Posición en la botón.</param>
-        /// <param name="alFinal">Lo ponemos al final.</param>
-        public void AgregarBoton(string texto, System.Drawing.Bitmap imagen, string clave, int posicion, bool alFinal)
-        {
-            this.AgregarBoton(0, texto, imagen, clave, posicion, alFinal, Orbita.Controles.Shared.TipoTool.Boton);
-        }
-        /// <summary>
-        /// Agregar un botón a la ToolBar del tipo BotonesToolbar.TipoBoton.
-        /// </summary>
-        /// <param name="posicionToolBar">La toolbar en la que vamos a agregar el control.</param>
-        /// <param name="texto">Texto del botón.</param>
-        /// <param name="imagen">Imagen del botón.</param>
-        /// <param name="clave">Key del botón.</param>
-        /// <param name="posicion">Posición en la botón.</param>
-        /// <param name="alFinal">Lo ponemos al final.</param>
-        public void AgregarBoton(Orbita.Controles.Shared.PosicionToolBar posicionToolBar, string texto, System.Drawing.Bitmap imagen, string clave, int posicion, bool alFinal)
-        {
-            this.AgregarBoton(posicionToolBar, texto, imagen, clave, posicion, alFinal, Orbita.Controles.Shared.TipoTool.Boton);
-        }
-        /// <summary>
-        /// Agregar un botón a la ToolBar del tipo BotonesToolbar.TipoBoton.
-        /// </summary>
-        /// <param name="texto">Texto de la tool.</param>
-        /// <param name="imagen">Imagen de la tool.</param>
-        /// <param name="clave">Key de la tool.</param>
-        /// <param name="tipoTool">Tipo de tool.</param>
-        public void AgregarBoton(string texto, System.Drawing.Bitmap imagen, string clave, Orbita.Controles.Shared.TipoTool tipoTool)
-        {
-            this.AgregarBoton(0, texto, imagen, clave, 0, true, tipoTool);
-        }
-        /// <summary>
-        /// Agregar un botón a la ToolBar del tipo BotonesToolbar.Tipo.Boton.
-        /// </summary>
-        /// <param name="posicionToolbar">La ToolBar en la que vamos a agregar el control.</param>
-        /// <param name="texto">Texto de la tool.</param>
-        /// <param name="imagen">Imagen de la tool.</param>
-        /// <param name="clave">Clave de la tool.</param>
-        /// <param name="posicion">Posición en la ToolBar.</param>
-        /// <param name="alFinal">Lo ponemos al final.</param>
-        /// <param name="tipoTool">Tipo de tool.</param>
-        public void AgregarBoton(Orbita.Controles.Shared.PosicionToolBar posicionToolbar, string texto, System.Drawing.Bitmap imagen, string clave, int posicion, bool alFinal, Orbita.Controles.Shared.TipoTool tipoTool)
-        {
-            Infragistics.Win.UltraWinToolbars.ToolBase boton;
-            switch (tipoTool)
-            {
-                case Orbita.Controles.Shared.TipoTool.Boton:
-                default:
-                    boton = new Infragistics.Win.UltraWinToolbars.ButtonTool(clave);
-                    break;
-                case Orbita.Controles.Shared.TipoTool.Check:
-                    boton = new Infragistics.Win.UltraWinToolbars.StateButtonTool(clave);
-                    break;
-            }
-            boton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
-            boton.SharedProps.Caption = texto;
-            boton.SharedProps.Visible = true;
-            boton.SharedProps.AppearancesSmall.Appearance.Image = imagen;
-            this.Tools.Add(boton);
-            if (alFinal || posicion > this.Toolbars[0].Tools.Count - 1)
-            {
-                this.Toolbars[(int)posicionToolbar].Tools.AddTool(clave);
-            }
-            else
-            {
-                if (posicion < 0)
-                {
-                    this.Toolbars[(int)posicionToolbar].Tools.InsertTool(0, clave);
-                }
-                else
-                {
-                    this.Toolbars[(int)posicionToolbar].Tools.InsertTool(posicion, clave);
-                }
-            }
-        }
-        /// <summary>
-        /// Hace visible o no un control de la ToolBar.
-        /// </summary>
-        /// <param name="posicionToolbar">ToolBar correspondiente a la Orbita.Controles.ToolBarManager.</param>
-        /// <param name="control">Control a añadir.</param>
-        /// <param name="mostrar">Indica si se muestra o no el botón.</param>
-        public void ControlVisible(Orbita.Controles.Shared.PosicionToolBar posicionToolbar, System.Windows.Forms.Control control, bool mostrar)
-        {
-            if (control != null)
-            {
-                this.Toolbars[(int)posicionToolbar].Tools[control.Name].SharedProps.Visible = mostrar;
+                this.definicion = new ControlNuevaDefinicion(this);
             }
         }
         #endregion

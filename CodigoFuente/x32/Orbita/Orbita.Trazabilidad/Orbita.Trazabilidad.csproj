@@ -209,7 +209,9 @@
   <ItemGroup>
     <Content Include="Config\Ejemplos\Remoting.config.xml" />
     <Content Include="Config\Ejemplos\Debug.config.xml" />
-    <Content Include="Config\Ejemplos\Wrapper.config.xml" />
+    <Content Include="Config\Ejemplos\Wrapper.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Config\Ejemplos\Remoting.full.config.xml" />
     <Content Include="Config\Ejemplos\Wrapper.full.config.xml" />
     <Content Include="Config\Ejemplos\Debug.full.config.xml" />

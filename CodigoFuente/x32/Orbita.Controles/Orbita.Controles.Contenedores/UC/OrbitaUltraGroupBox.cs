@@ -9,41 +9,49 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System.ComponentModel;
 namespace Orbita.Controles.Contenedores
 {
     public partial class OrbitaUltraGroupBox : Infragistics.Win.Misc.UltraGroupBox
     {
+        public class ControlNuevaDefinicion : OUltraGroupBox
+        {
+            public ControlNuevaDefinicion(OrbitaUltraGroupBox sender)
+                : base(sender) { }
+        };
+
+        #region Atributos
+        ControlNuevaDefinicion definicion;
+        #endregion
+
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraGroupBox.
-        /// </summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.
         public OrbitaUltraGroupBox()
             : base()
         {
             InitializeComponent();
+            InitializeAttributes();
         }
         #endregion
 
         #region Propiedades
-        /// <summary>
-        /// Color del borde.
-        /// </summary>
-        [System.ComponentModel.Category("Orbita")]
-        [System.ComponentModel.Description("Color del borde.")]
-        public System.Drawing.Color OrbColorBorde
+        [System.ComponentModel.Category("Gestión de controles")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public ControlNuevaDefinicion OI
         {
-            get { return this.ContentAreaAppearance.BorderColor; }
-            set { this.ContentAreaAppearance.BorderColor = value; }
+            get { return this.definicion; }
+            set { this.definicion = value; }
         }
-        /// <summary>
-        /// Color de la cabecera.
-        /// </summary>
-        [System.ComponentModel.Category("Orbita")]
-        [System.ComponentModel.Description("Color de la cabecera.")]
-        public System.Drawing.Color OrbColorCabecera
+        #endregion
+
+        #region Métodos privados
+        void InitializeAttributes()
         {
-            get { return this.HeaderAppearance.ForeColor; }
-            set { this.HeaderAppearance.ForeColor = value; }
+            if (this.definicion == null)
+            {
+                this.definicion = new ControlNuevaDefinicion(this);
+            }
         }
         #endregion
     }

@@ -15,7 +15,7 @@ namespace Orbita.Trazabilidad
     /// <summary>
     /// Una clase para configurar Logger desde un archivo de configuración XML.
     /// </summary>
-   [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+    [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
     public class ConfiguracionXmlLogger : ConfiguracionLogger
     {
         #region Atributos
@@ -42,7 +42,7 @@ namespace Orbita.Trazabilidad
         /// Configurar de loggers desde el fichero Xml correspondiente.
         /// </summary>
         /// <param name="fichero">Fichero de logger.</param>
-       [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         void ConfigurarDesdeFichero(string fichero)
         {
             string clave = System.IO.Path.GetFullPath(fichero);
@@ -70,7 +70,7 @@ namespace Orbita.Trazabilidad
         /// Configurar desde elemento dado.
         /// </summary>
         /// <param name="elemento">Elemento Xml.</param>
-       [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         void ConfigurarDesdeElementoXml(System.Xml.XmlElement elemento)
         {
             foreach (System.Xml.XmlNode nodo in elemento.ChildNodes)
@@ -153,7 +153,7 @@ namespace Orbita.Trazabilidad
         #endregion
 
         #region Métodos privados estáticos
-       [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         static void ConfigurarPropiedadesDesdeElementoXml(ConfiguracionLogger config, System.Xml.XmlElement elemento)
         {
             if (elemento == null)
@@ -243,7 +243,6 @@ namespace Orbita.Trazabilidad
                     sb.Replace("nombre", "identificador");
                     sb.Replace("nivel", "nivellog");
                     sb.Replace("bytes", "sizeBackup");
-
                     string nombre = sb.ToString();
                     string valor = atributo.InnerText;
                     PropertyHelper.SetPropertyFromString(logger, nombre, valor);
@@ -263,7 +262,6 @@ namespace Orbita.Trazabilidad
                     System.Text.StringBuilder sb = new System.Text.StringBuilder(atributo.LocalName);
                     sb.Replace("ruta", "path");
                     sb.Replace("subruta", "subpath");
-
                     string nombre = sb.ToString();
                     string valor = atributo.InnerText;
                     if (nombre.ToUpperInvariant() != "logger".ToUpperInvariant())

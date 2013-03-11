@@ -30,112 +30,95 @@
         {
             this.components = new System.ComponentModel.Container();
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
+            Infragistics.Win.UltraWinToolbars.UltraToolbar ultraToolbar1 = new Infragistics.Win.UltraWinToolbars.UltraToolbar("ToolbarGeneral");
+            Infragistics.Win.UltraWinToolbars.ButtonTool BtnMonitorizar = new Infragistics.Win.UltraWinToolbars.ButtonTool("Monitorizar");
+            Infragistics.Win.UltraWinToolbars.PopupMenuTool MenuVistas = new Infragistics.Win.UltraWinToolbars.PopupMenuTool("Vistas");
+            Infragistics.Win.UltraWinToolbars.ButtonTool BtnIconosGrandes = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyIconosGrandes");
+            Infragistics.Win.UltraWinToolbars.ButtonTool BtnIconosPequeños = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyIconosPequeños");
+            Infragistics.Win.UltraWinToolbars.ButtonTool BtnLista = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyLista");
+            Infragistics.Win.UltraWinToolbars.ButtonTool BtnDetalles = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyDetalles");
             Infragistics.Win.UltraWinToolbars.PopupMenuTool popupMenuTool1 = new Infragistics.Win.UltraWinToolbars.PopupMenuTool("Vistas");
-            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool1 = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyIconosGrandes");
-            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool2 = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyIconosPequeños");
-            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool3 = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyLista");
-            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool4 = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyDetalles");
+            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool5 = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyIconosGrandes");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool6 = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyIconosPequeños");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool7 = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyLista");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool8 = new Infragistics.Win.UltraWinToolbars.ButtonTool("KeyDetalles");
-            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
-            this.grbCronometros = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
-            this.ListCronometros = new Orbita.Controles.Comunes.OrbitaListView();
+            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool10 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Monitorizar");
+            Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
+            this.ListView = new Orbita.Controles.Comunes.OrbitaListView();
             this.Codigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Descripcion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Contador = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.UltimaEjecucion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Promedio = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Total = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.menuCronometro = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.menuMonitorizar = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageListLarge = new System.Windows.Forms.ImageList(this.components);
-            this.imageListSmall = new System.Windows.Forms.ImageList(this.components);
-            this.pnlBarraBotones = new Orbita.Controles.Contenedores.OrbitaPanel();
-            this.orbitaPanel1 = new Orbita.Controles.Contenedores.OrbitaPanel();
-            this.ultraDropDownButton1 = new Infragistics.Win.Misc.UltraDropDownButton();
-            this.toolbarsManager = new Infragistics.Win.UltraWinToolbars.UltraToolbarsManager(this.components);
-            this.btnMonitorizar = new Orbita.Controles.Comunes.OrbitaUltraButton();
-            this.btnVistas = new Infragistics.Win.Misc.UltraDropDownButton();
-            this.iconosGrandesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._Form1_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this._Form1_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this._Form1_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this._Form1_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this._FrmBase_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this._FrmBase_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this.ImageListLarge = new System.Windows.Forms.ImageList(this.components);
+            this.ImageListSmall = new System.Windows.Forms.ImageList(this.components);
+            this.grbPrincipal = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
+            this.TimerRefresco = new System.Windows.Forms.Timer(this.components);
+            this.ToolbarsManager = new Orbita.Controles.Menu.OrbitaUltraToolbarsManager(this.components);
             this._FrmBase_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._FrmBase_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this.timerRefresco = new System.Windows.Forms.Timer(this.components);
-            this.pnlPanelPrincipalPadre.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grbCronometros)).BeginInit();
-            this.grbCronometros.SuspendLayout();
-            this.menuCronometro.SuspendLayout();
-            this.pnlBarraBotones.SuspendLayout();
-            this.orbitaPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.toolbarsManager)).BeginInit();
+            this._FrmBase_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this._FrmBase_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this.PnlPanelPrincipalPadre.SuspendLayout();
+            this.PnlInferiorPadre.SuspendLayout();
+            this.PnlBotonesPadre.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkDock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkToolTip)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grbPrincipal)).BeginInit();
+            this.grbPrincipal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ToolbarsManager)).BeginInit();
             this.SuspendLayout();
             // 
-            // pnlInferiorPadre
+            // PnlPanelPrincipalPadre
             // 
-            this.pnlInferiorPadre.Location = new System.Drawing.Point(10, 347);
-            this.pnlInferiorPadre.Size = new System.Drawing.Size(763, 43);
+            this.PnlPanelPrincipalPadre.Controls.Add(this.grbPrincipal);
+            this.PnlPanelPrincipalPadre.Location = new System.Drawing.Point(10, 53);
+            this.PnlPanelPrincipalPadre.Size = new System.Drawing.Size(772, 360);
             // 
-            // pnlPanelPrincipalPadre
+            // btnCancelar
             // 
-            this.pnlPanelPrincipalPadre.Controls.Add(this.grbCronometros);
-            this.pnlPanelPrincipalPadre.Size = new System.Drawing.Size(763, 337);
+            this.btnCancelar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnCancelar.Size = new System.Drawing.Size(98, 33);
             // 
-            // grbCronometros
+            // btnGuardar
             // 
-            this.grbCronometros.ContentPadding.Bottom = 2;
-            this.grbCronometros.ContentPadding.Left = 2;
-            this.grbCronometros.ContentPadding.Right = 2;
-            this.grbCronometros.ContentPadding.Top = 2;
-            this.grbCronometros.Controls.Add(this.ListCronometros);
-            this.grbCronometros.Controls.Add(this.pnlBarraBotones);
-            this.grbCronometros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grbCronometros.Location = new System.Drawing.Point(0, 0);
-            this.grbCronometros.Name = "grbCronometros";
-            this.grbCronometros.OrbColorBorde = System.Drawing.Color.Empty;
-            this.grbCronometros.OrbColorCabecera = System.Drawing.Color.Empty;
-            this.grbCronometros.Size = new System.Drawing.Size(763, 337);
-            this.grbCronometros.TabIndex = 15;
-            this.grbCronometros.Text = "Listado de cronómetros del sistema";
+            this.btnGuardar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnGuardar.Size = new System.Drawing.Size(98, 33);
             // 
-            // ListCronometros
+            // ListView
             // 
-            this.ListCronometros.AllowColumnReorder = true;
-            this.ListCronometros.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ListView.AllowColumnReorder = true;
+            this.ListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Codigo,
             this.Descripcion,
             this.Contador,
             this.UltimaEjecucion,
             this.Promedio,
             this.Total});
-            this.ListCronometros.ContextMenuStrip = this.menuCronometro;
-            this.ListCronometros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ListCronometros.LargeImageList = this.imageListLarge;
-            this.ListCronometros.Location = new System.Drawing.Point(5, 61);
-            this.ListCronometros.Name = "ListCronometros";
-            this.ListCronometros.ShowItemToolTips = true;
-            this.ListCronometros.Size = new System.Drawing.Size(753, 271);
-            this.ListCronometros.SmallImageList = this.imageListSmall;
-            this.ListCronometros.TabIndex = 15;
-            this.ListCronometros.UseCompatibleStateImageBehavior = false;
-            this.ListCronometros.View = System.Windows.Forms.View.Details;
-            this.ListCronometros.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListCronometros_MouseDoubleClick);
+            this.ListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ListView.LargeImageList = this.ImageListLarge;
+            this.ListView.Location = new System.Drawing.Point(5, 17);
+            this.ListView.Name = "ListView";
+            this.ListView.ShowItemToolTips = true;
+            this.ListView.Size = new System.Drawing.Size(762, 338);
+            this.ListView.SmallImageList = this.ImageListSmall;
+            this.ListView.TabIndex = 16;
+            this.ListView.UseCompatibleStateImageBehavior = false;
+            this.ListView.View = System.Windows.Forms.View.Details;
             // 
             // Codigo
             // 
             this.Codigo.Text = "Código";
-            this.Codigo.Width = 145;
+            this.Codigo.Width = 150;
             // 
             // Descripcion
             // 
             this.Descripcion.Text = "Descripción";
-            this.Descripcion.Width = 195;
+            this.Descripcion.Width = 450;
             // 
             // Contador
             // 
@@ -157,191 +140,94 @@
             this.Total.Text = "Total";
             this.Total.Width = 105;
             // 
-            // menuCronometro
+            // ImageListLarge
             // 
-            this.menuCronometro.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuMonitorizar});
-            this.menuCronometro.Name = "menuVariable";
-            this.menuCronometro.Size = new System.Drawing.Size(136, 26);
-            this.menuCronometro.Opening += new System.ComponentModel.CancelEventHandler(this.menuVariable_Opening);
+            this.ImageListLarge.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.ImageListLarge.ImageSize = new System.Drawing.Size(32, 32);
+            this.ImageListLarge.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // menuMonitorizar
+            // ImageListSmall
             // 
-            this.menuMonitorizar.Name = "menuMonitorizar";
-            this.menuMonitorizar.Size = new System.Drawing.Size(135, 22);
-            this.menuMonitorizar.Text = "Monitorizar";
-            this.menuMonitorizar.Click += new System.EventHandler(this.btnMonitorizar_Click);
+            this.ImageListSmall.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.ImageListSmall.ImageSize = new System.Drawing.Size(24, 24);
+            this.ImageListSmall.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // imageListLarge
+            // grbPrincipal
             // 
-            this.imageListLarge.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.imageListLarge.ImageSize = new System.Drawing.Size(32, 32);
-            this.imageListLarge.TransparentColor = System.Drawing.Color.Transparent;
+            this.grbPrincipal.ContentPadding.Bottom = 2;
+            this.grbPrincipal.ContentPadding.Left = 2;
+            this.grbPrincipal.ContentPadding.Right = 2;
+            this.grbPrincipal.ContentPadding.Top = 2;
+            this.grbPrincipal.Controls.Add(this.ListView);
+            this.grbPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grbPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.grbPrincipal.Name = "grbPrincipal";
+            this.grbPrincipal.Size = new System.Drawing.Size(772, 360);
+            this.grbPrincipal.TabIndex = 1;
+            this.grbPrincipal.Text = "Listado de elementos";
             // 
-            // imageListSmall
+            // TimerRefresco
             // 
-            this.imageListSmall.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.imageListSmall.ImageSize = new System.Drawing.Size(24, 24);
-            this.imageListSmall.TransparentColor = System.Drawing.Color.Transparent;
+            this.TimerRefresco.Interval = 250;
+            this.TimerRefresco.Tick += new System.EventHandler(this.timerRefresco_Tick);
             // 
-            // pnlBarraBotones
+            // ToolbarsManager
             // 
-            this.pnlBarraBotones.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pnlBarraBotones.Controls.Add(this.orbitaPanel1);
-            this.pnlBarraBotones.Controls.Add(this.btnVistas);
-            this.pnlBarraBotones.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlBarraBotones.Location = new System.Drawing.Point(5, 18);
-            this.pnlBarraBotones.Name = "pnlBarraBotones";
-            this.pnlBarraBotones.Size = new System.Drawing.Size(753, 43);
-            this.pnlBarraBotones.TabIndex = 16;
-            // 
-            // orbitaPanel1
-            // 
-            this.orbitaPanel1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.orbitaPanel1.Controls.Add(this.ultraDropDownButton1);
-            this.orbitaPanel1.Controls.Add(this.btnMonitorizar);
-            this.orbitaPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.orbitaPanel1.Location = new System.Drawing.Point(0, 0);
-            this.orbitaPanel1.Name = "orbitaPanel1";
-            this.orbitaPanel1.Padding = new System.Windows.Forms.Padding(3);
-            this.orbitaPanel1.Size = new System.Drawing.Size(753, 43);
-            this.orbitaPanel1.TabIndex = 17;
-            // 
-            // ultraDropDownButton1
-            // 
-            appearance1.Image = global::Orbita.Controles.VA.Properties.Resources.imgVistasVariables24;
-            this.ultraDropDownButton1.Appearance = appearance1;
-            this.ultraDropDownButton1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ultraDropDownButton1.Location = new System.Drawing.Point(651, 3);
-            this.ultraDropDownButton1.Name = "ultraDropDownButton1";
-            this.ultraDropDownButton1.PopupItemKey = "Vistas";
-            this.ultraDropDownButton1.PopupItemProvider = this.toolbarsManager;
-            this.ultraDropDownButton1.Size = new System.Drawing.Size(99, 37);
-            this.ultraDropDownButton1.Style = Infragistics.Win.Misc.SplitButtonDisplayStyle.DropDownButtonOnly;
-            this.ultraDropDownButton1.TabIndex = 7;
-            this.ultraDropDownButton1.Text = "Vistas";
-            // 
-            // toolbarsManager
-            // 
-            this.toolbarsManager.AlwaysShowMenusExpanded = Infragistics.Win.DefaultableBoolean.True;
-            this.toolbarsManager.DesignerFlags = 1;
-            this.toolbarsManager.DockWithinContainer = this;
-            this.toolbarsManager.DockWithinContainerBaseType = typeof(Orbita.Controles.VA.FrmBase);
-            this.toolbarsManager.ShowFullMenusDelay = 500;
+            appearance1.BackColor = System.Drawing.SystemColors.Control;
+            this.ToolbarsManager.Appearance = appearance1;
+            this.ToolbarsManager.DesignerFlags = 1;
+            this.ToolbarsManager.DockWithinContainer = this;
+            this.ToolbarsManager.DockWithinContainerBaseType = typeof(Orbita.Controles.VA.FrmBase);
+            this.ToolbarsManager.ShowFullMenusDelay = 500;
+            ultraToolbar1.DockedColumn = 0;
+            ultraToolbar1.DockedRow = 0;
+            MenuVistas.InstanceProps.IsFirstInGroup = true;
+            ultraToolbar1.NonInheritedTools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
+            BtnMonitorizar,
+            MenuVistas});
+            ultraToolbar1.Settings.AllowCustomize = Infragistics.Win.DefaultableBoolean.False;
+            ultraToolbar1.Settings.AllowDockBottom = Infragistics.Win.DefaultableBoolean.False;
+            ultraToolbar1.Settings.AllowDockLeft = Infragistics.Win.DefaultableBoolean.False;
+            ultraToolbar1.Settings.AllowDockRight = Infragistics.Win.DefaultableBoolean.False;
+            ultraToolbar1.Settings.AllowDockTop = Infragistics.Win.DefaultableBoolean.False;
+            ultraToolbar1.Settings.AllowFloating = Infragistics.Win.DefaultableBoolean.False;
+            ultraToolbar1.Settings.AllowHiding = Infragistics.Win.DefaultableBoolean.False;
+            ultraToolbar1.Settings.UseLargeImages = Infragistics.Win.DefaultableBoolean.True;
+            ultraToolbar1.Text = "ToolbarGeneral";
+            this.ToolbarsManager.Toolbars.AddRange(new Infragistics.Win.UltraWinToolbars.UltraToolbar[] {
+            ultraToolbar1});
+            BtnIconosGrandes.SharedPropsInternal.Caption = "Iconos grandes";
+            BtnIconosPequeños.SharedPropsInternal.Caption = "Iconos pequeños";
+            BtnLista.SharedPropsInternal.Caption = "Lista";
+            BtnDetalles.SharedPropsInternal.Caption = "Detalles";
+            appearance2.Image = global::Orbita.Controles.VA.Properties.Resources.imgVistasVariables24;
+            popupMenuTool1.Settings.Appearance = appearance2;
+            popupMenuTool1.Settings.ToolDisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.TextOnlyInMenus;
+            popupMenuTool1.Settings.UseLargeImages = Infragistics.Win.DefaultableBoolean.False;
+            appearance3.Image = global::Orbita.Controles.VA.Properties.Resources.imgVistasVariables24;
+            popupMenuTool1.SharedPropsInternal.AppearancesLarge.Appearance = appearance3;
+            appearance4.Image = global::Orbita.Controles.VA.Properties.Resources.imgVistasVariables24;
+            popupMenuTool1.SharedPropsInternal.AppearancesSmall.Appearance = appearance4;
             popupMenuTool1.SharedPropsInternal.Caption = "Vistas";
+            popupMenuTool1.SharedPropsInternal.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
             popupMenuTool1.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
-            buttonTool1,
-            buttonTool2,
-            buttonTool3,
-            buttonTool4});
-            buttonTool5.SharedPropsInternal.Caption = "Iconos grandes";
-            buttonTool6.SharedPropsInternal.Caption = "Iconos pequeños";
-            buttonTool7.SharedPropsInternal.Caption = "Lista";
-            buttonTool8.SharedPropsInternal.Caption = "Detalles";
-            this.toolbarsManager.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
-            popupMenuTool1,
             buttonTool5,
             buttonTool6,
             buttonTool7,
             buttonTool8});
-            this.toolbarsManager.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.ultraToolbarsManager_ToolClick);
-            // 
-            // btnMonitorizar
-            // 
-            appearance2.Image = global::Orbita.Controles.VA.Properties.Resources.imgMonitorizarVariable24;
-            this.btnMonitorizar.Appearance = appearance2;
-            this.btnMonitorizar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnMonitorizar.ImageSize = new System.Drawing.Size(24, 24);
-            this.btnMonitorizar.Location = new System.Drawing.Point(3, 3);
-            this.btnMonitorizar.Name = "btnMonitorizar";
-            this.btnMonitorizar.Size = new System.Drawing.Size(99, 37);
-            this.btnMonitorizar.TabIndex = 6;
-            this.btnMonitorizar.Text = "Monitorizar";
-            this.btnMonitorizar.Click += new System.EventHandler(this.btnMonitorizar_Click);
-            // 
-            // btnVistas
-            // 
-            this.btnVistas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVistas.Location = new System.Drawing.Point(651, 4);
-            this.btnVistas.Name = "btnVistas";
-            this.btnVistas.PopupItemKey = "Vistas";
-            this.btnVistas.PopupItemProvider = this.toolbarsManager;
-            this.btnVistas.Size = new System.Drawing.Size(99, 36);
-            this.btnVistas.Style = Infragistics.Win.Misc.SplitButtonDisplayStyle.DropDownButtonOnly;
-            this.btnVistas.TabIndex = 5;
-            this.btnVistas.Text = "Vistas";
-            // 
-            // iconosGrandesToolStripMenuItem
-            // 
-            this.iconosGrandesToolStripMenuItem.Name = "iconosGrandesToolStripMenuItem";
-            this.iconosGrandesToolStripMenuItem.Size = new System.Drawing.Size(99, 20);
-            this.iconosGrandesToolStripMenuItem.Text = "Iconos grandes";
-            // 
-            // _Form1_Toolbars_Dock_Area_Top
-            // 
-            this._Form1_Toolbars_Dock_Area_Top.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._Form1_Toolbars_Dock_Area_Top.BackColor = System.Drawing.SystemColors.Control;
-            this._Form1_Toolbars_Dock_Area_Top.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Top;
-            this._Form1_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._Form1_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(10, 10);
-            this._Form1_Toolbars_Dock_Area_Top.Name = "_Form1_Toolbars_Dock_Area_Top";
-            this._Form1_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(763, 0);
-            this._Form1_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolbarsManager;
-            // 
-            // _Form1_Toolbars_Dock_Area_Bottom
-            // 
-            this._Form1_Toolbars_Dock_Area_Bottom.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._Form1_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.SystemColors.Control;
-            this._Form1_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
-            this._Form1_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._Form1_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(10, 390);
-            this._Form1_Toolbars_Dock_Area_Bottom.Name = "_Form1_Toolbars_Dock_Area_Bottom";
-            this._Form1_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(763, 0);
-            this._Form1_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolbarsManager;
-            // 
-            // _Form1_Toolbars_Dock_Area_Left
-            // 
-            this._Form1_Toolbars_Dock_Area_Left.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._Form1_Toolbars_Dock_Area_Left.BackColor = System.Drawing.SystemColors.Control;
-            this._Form1_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
-            this._Form1_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._Form1_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(10, 10);
-            this._Form1_Toolbars_Dock_Area_Left.Name = "_Form1_Toolbars_Dock_Area_Left";
-            this._Form1_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 380);
-            this._Form1_Toolbars_Dock_Area_Left.ToolbarsManager = this.toolbarsManager;
-            // 
-            // _Form1_Toolbars_Dock_Area_Right
-            // 
-            this._Form1_Toolbars_Dock_Area_Right.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._Form1_Toolbars_Dock_Area_Right.BackColor = System.Drawing.SystemColors.Control;
-            this._Form1_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
-            this._Form1_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._Form1_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(773, 10);
-            this._Form1_Toolbars_Dock_Area_Right.Name = "_Form1_Toolbars_Dock_Area_Right";
-            this._Form1_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 380);
-            this._Form1_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolbarsManager;
-            // 
-            // _FrmBase_Toolbars_Dock_Area_Left
-            // 
-            this._FrmBase_Toolbars_Dock_Area_Left.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._FrmBase_Toolbars_Dock_Area_Left.BackColor = System.Drawing.SystemColors.Control;
-            this._FrmBase_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
-            this._FrmBase_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._FrmBase_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(10, 10);
-            this._FrmBase_Toolbars_Dock_Area_Left.Name = "_FrmBase_Toolbars_Dock_Area_Left";
-            this._FrmBase_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 380);
-            this._FrmBase_Toolbars_Dock_Area_Left.ToolbarsManager = this.toolbarsManager;
-            // 
-            // _FrmBase_Toolbars_Dock_Area_Right
-            // 
-            this._FrmBase_Toolbars_Dock_Area_Right.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._FrmBase_Toolbars_Dock_Area_Right.BackColor = System.Drawing.SystemColors.Control;
-            this._FrmBase_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
-            this._FrmBase_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._FrmBase_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(773, 10);
-            this._FrmBase_Toolbars_Dock_Area_Right.Name = "_FrmBase_Toolbars_Dock_Area_Right";
-            this._FrmBase_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 380);
-            this._FrmBase_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolbarsManager;
+            appearance5.Image = global::Orbita.Controles.VA.Properties.Resources.ImgLupa24;
+            buttonTool10.SharedPropsInternal.AppearancesLarge.Appearance = appearance5;
+            buttonTool10.SharedPropsInternal.Caption = "Monitorizar";
+            buttonTool10.SharedPropsInternal.CustomizerCaption = "Monitorizar";
+            buttonTool10.SharedPropsInternal.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
+            this.ToolbarsManager.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
+            BtnIconosGrandes,
+            BtnIconosPequeños,
+            BtnLista,
+            BtnDetalles,
+            popupMenuTool1,
+            buttonTool10});
+            this.ToolbarsManager.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.ToolbarsManager_ToolClick);
             // 
             // _FrmBase_Toolbars_Dock_Area_Top
             // 
@@ -351,8 +237,8 @@
             this._FrmBase_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
             this._FrmBase_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(10, 10);
             this._FrmBase_Toolbars_Dock_Area_Top.Name = "_FrmBase_Toolbars_Dock_Area_Top";
-            this._FrmBase_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(763, 0);
-            this._FrmBase_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolbarsManager;
+            this._FrmBase_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(772, 43);
+            this._FrmBase_Toolbars_Dock_Area_Top.ToolbarsManager = this.ToolbarsManager;
             // 
             // _FrmBase_Toolbars_Dock_Area_Bottom
             // 
@@ -360,85 +246,79 @@
             this._FrmBase_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.SystemColors.Control;
             this._FrmBase_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
             this._FrmBase_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._FrmBase_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(10, 390);
+            this._FrmBase_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(10, 456);
             this._FrmBase_Toolbars_Dock_Area_Bottom.Name = "_FrmBase_Toolbars_Dock_Area_Bottom";
-            this._FrmBase_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(763, 0);
-            this._FrmBase_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolbarsManager;
+            this._FrmBase_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(772, 0);
+            this._FrmBase_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.ToolbarsManager;
             // 
-            // timerRefresco
+            // _FrmBase_Toolbars_Dock_Area_Left
             // 
-            this.timerRefresco.Interval = 250;
-            this.timerRefresco.Tick += new System.EventHandler(this.timerRefresco_Tick);
+            this._FrmBase_Toolbars_Dock_Area_Left.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._FrmBase_Toolbars_Dock_Area_Left.BackColor = System.Drawing.SystemColors.Control;
+            this._FrmBase_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
+            this._FrmBase_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._FrmBase_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(10, 53);
+            this._FrmBase_Toolbars_Dock_Area_Left.Name = "_FrmBase_Toolbars_Dock_Area_Left";
+            this._FrmBase_Toolbars_Dock_Area_Left.Size = new System.Drawing.Size(0, 403);
+            this._FrmBase_Toolbars_Dock_Area_Left.ToolbarsManager = this.ToolbarsManager;
+            // 
+            // _FrmBase_Toolbars_Dock_Area_Right
+            // 
+            this._FrmBase_Toolbars_Dock_Area_Right.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._FrmBase_Toolbars_Dock_Area_Right.BackColor = System.Drawing.SystemColors.Control;
+            this._FrmBase_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
+            this._FrmBase_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._FrmBase_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(782, 53);
+            this._FrmBase_Toolbars_Dock_Area_Right.Name = "_FrmBase_Toolbars_Dock_Area_Right";
+            this._FrmBase_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 403);
+            this._FrmBase_Toolbars_Dock_Area_Right.ToolbarsManager = this.ToolbarsManager;
             // 
             // FrmMonitorizacionCronometros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(783, 400);
-            this.Controls.Add(this._Form1_Toolbars_Dock_Area_Left);
-            this.Controls.Add(this._Form1_Toolbars_Dock_Area_Right);
+            this.ClientSize = new System.Drawing.Size(792, 466);
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Left);
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Right);
-            this.Controls.Add(this._Form1_Toolbars_Dock_Area_Bottom);
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Bottom);
-            this.Controls.Add(this._Form1_Toolbars_Dock_Area_Top);
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Top);
-            this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Monitorizacion;
             this.Name = "FrmMonitorizacionCronometros";
-            this.RecordarPosicion = true;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
             this.Text = "Monitorización de los cronómetros del sistema";
             this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Top, 0);
-            this.Controls.SetChildIndex(this._Form1_Toolbars_Dock_Area_Top, 0);
             this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Bottom, 0);
-            this.Controls.SetChildIndex(this._Form1_Toolbars_Dock_Area_Bottom, 0);
             this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Right, 0);
             this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Left, 0);
-            this.Controls.SetChildIndex(this._Form1_Toolbars_Dock_Area_Right, 0);
-            this.Controls.SetChildIndex(this._Form1_Toolbars_Dock_Area_Left, 0);
-            this.Controls.SetChildIndex(this.pnlInferiorPadre, 0);
-            this.Controls.SetChildIndex(this.pnlPanelPrincipalPadre, 0);
-            this.pnlPanelPrincipalPadre.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grbCronometros)).EndInit();
-            this.grbCronometros.ResumeLayout(false);
-            this.menuCronometro.ResumeLayout(false);
-            this.pnlBarraBotones.ResumeLayout(false);
-            this.orbitaPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.toolbarsManager)).EndInit();
+            this.Controls.SetChildIndex(this.PnlInferiorPadre, 0);
+            this.Controls.SetChildIndex(this.PnlPanelPrincipalPadre, 0);
+            this.PnlPanelPrincipalPadre.ResumeLayout(false);
+            this.PnlInferiorPadre.ResumeLayout(false);
+            this.PnlBotonesPadre.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ChkDock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkToolTip)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grbPrincipal)).EndInit();
+            this.grbPrincipal.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ToolbarsManager)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Orbita.Controles.Contenedores.OrbitaUltraGroupBox grbCronometros;
-        private Orbita.Controles.Comunes.OrbitaListView ListCronometros;
-        private System.Windows.Forms.ColumnHeader Codigo;
-        private System.Windows.Forms.ColumnHeader Descripcion;
+        protected Contenedores.OrbitaUltraGroupBox grbPrincipal;
+        protected Comunes.OrbitaListView ListView;
+        protected System.Windows.Forms.ColumnHeader Codigo;
         private System.Windows.Forms.ColumnHeader Contador;
+        protected System.Windows.Forms.ColumnHeader Descripcion;
         private System.Windows.Forms.ColumnHeader UltimaEjecucion;
+        protected System.Windows.Forms.Timer TimerRefresco;
+        protected System.Windows.Forms.ImageList ImageListSmall;
+        protected System.Windows.Forms.ImageList ImageListLarge;
         private System.Windows.Forms.ColumnHeader Promedio;
-        private System.Windows.Forms.ImageList imageListSmall;
-        private Orbita.Controles.Contenedores.OrbitaPanel pnlBarraBotones;
-        private System.Windows.Forms.ToolStripMenuItem iconosGrandesToolStripMenuItem;
-        private System.Windows.Forms.ImageList imageListLarge;
-        private System.Windows.Forms.ContextMenuStrip menuCronometro;
-        private System.Windows.Forms.ToolStripMenuItem menuMonitorizar;
-        private Infragistics.Win.Misc.UltraDropDownButton btnVistas;
-        private Infragistics.Win.UltraWinToolbars.UltraToolbarsManager toolbarsManager;
-        private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _Form1_Toolbars_Dock_Area_Left;
-        private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _Form1_Toolbars_Dock_Area_Right;
-        private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _FrmBase_Toolbars_Dock_Area_Left;
-        private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _FrmBase_Toolbars_Dock_Area_Right;
-        private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _Form1_Toolbars_Dock_Area_Top;
-        private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _Form1_Toolbars_Dock_Area_Bottom;
-        private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _FrmBase_Toolbars_Dock_Area_Top;
-        private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _FrmBase_Toolbars_Dock_Area_Bottom;
-        private Orbita.Controles.Contenedores.OrbitaPanel orbitaPanel1;
-        private Infragistics.Win.Misc.UltraDropDownButton ultraDropDownButton1;
-        private Orbita.Controles.Comunes.OrbitaUltraButton btnMonitorizar;
-        private System.Windows.Forms.Timer timerRefresco;
         private System.Windows.Forms.ColumnHeader Total;
-
+        protected Menu.OrbitaUltraToolbarsManager ToolbarsManager;
+        protected Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _FrmBase_Toolbars_Dock_Area_Left;
+        protected Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _FrmBase_Toolbars_Dock_Area_Right;
+        protected Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _FrmBase_Toolbars_Dock_Area_Bottom;
+        protected Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _FrmBase_Toolbars_Dock_Area_Top;
     }
 }

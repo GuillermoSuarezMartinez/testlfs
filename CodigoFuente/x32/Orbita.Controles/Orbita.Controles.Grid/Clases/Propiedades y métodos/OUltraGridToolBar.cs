@@ -142,6 +142,12 @@ namespace Orbita.Controles.Grid
             get { return this.control.Toolbar.Tools["Refrescar"].SharedProps.Visible; }
             set { this.control.Toolbar.Tools["Refrescar"].SharedProps.Visible = value; }
         }
+        [System.ComponentModel.Description("Determina la visibilidad del botón refrescar.")]
+        public bool MostrarToolCiclico
+        {
+            get { return this.control.Toolbar.Tools["Ciclico"].SharedProps.Visible; }
+            set { this.control.Toolbar.Tools["Ciclico"].SharedProps.Visible = value; }
+        }
         #endregion
 
         #region Métodos protegidos

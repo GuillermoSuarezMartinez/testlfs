@@ -9,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System;
 namespace Orbita.Controles.Comunes
 {
     public partial class OrbitaUltraNumericEditorWithFilter : Orbita.Controles.Shared.OrbitaUserControl
@@ -183,9 +184,8 @@ namespace Orbita.Controles.Comunes
             {
                 this.CompruebaAnyos();
             }
-            catch (Orbita.Controles.Shared.OExcepcion ex)
+            catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.ToString(), "ExcepcionError", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error, System.Windows.Forms.MessageBoxDefaultButton.Button1, 0);
             }
         }
         #endregion

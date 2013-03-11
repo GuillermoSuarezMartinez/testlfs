@@ -49,11 +49,11 @@ namespace Orbita.Controles.VA
             this.Text = "Monitorización de máquinas de estado [" + descripcion + "]";
 
             // Se rellena el imagelist
-            this.ImageList.Images.Add("ImgNuevoEstado24", Orbita.Controles.VA.Properties.Resources.ImgNuevoEstado24);
-            this.ImageList.Images.Add("ImgNuevaTransicion24", Orbita.Controles.VA.Properties.Resources.ImgNuevaTransicion24);
-            this.ImageList.Images.Add("ImgInfo24", Orbita.Controles.VA.Properties.Resources.ImgInfo24);
-            this.ImageList.Images.Add("ImgWarning24", Orbita.Controles.VA.Properties.Resources.ImgWarning24);
-            this.ImageList.Images.Add("ImgStop24", Orbita.Controles.VA.Properties.Resources.ImgStop24);
+            this.ImageList.Images.Add("ImgNuevoEstado24", global::Orbita.Controles.VA.Properties.Resources.ImgNuevoEstado24);
+            this.ImageList.Images.Add("ImgNuevaTransicion24", global::Orbita.Controles.VA.Properties.Resources.ImgNuevaTransicion24);
+            this.ImageList.Images.Add("ImgInfo24", global::Orbita.Controles.VA.Properties.Resources.ImgInfo24);
+            this.ImageList.Images.Add("ImgWarning24", global::Orbita.Controles.VA.Properties.Resources.ImgWarning24);
+            this.ImageList.Images.Add("ImgStop24", global::Orbita.Controles.VA.Properties.Resources.ImgStop24);
         } 
 
         #endregion
@@ -66,14 +66,14 @@ namespace Orbita.Controles.VA
         {
             base.CargarDatosComunes();
 
-            this.ctrlStateMachineDisplay.Inicializar(this.Codigo, this._ModoAperturaFormulario, true);
+            this.CtrlStateMachineDisplay.Inicializar(this.Codigo, this._ModoAperturaFormulario, true);
         }
         /// <summary>
         ///  Funciones a realizar al salir del formulario
         /// </summary>
         protected override void AccionesSalir()
         {
-            this.ctrlStateMachineDisplay.Finalizar();
+            this.CtrlStateMachineDisplay.Finalizar();
         }
         #endregion Métodos virtuales
 

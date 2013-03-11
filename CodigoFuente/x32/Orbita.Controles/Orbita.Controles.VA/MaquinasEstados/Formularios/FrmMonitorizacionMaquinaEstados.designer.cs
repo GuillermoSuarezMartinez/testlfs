@@ -30,72 +30,89 @@ namespace Orbita.Controles.VA
 		private void InitializeComponent()
 		{
             this.components = new System.ComponentModel.Container();
-            this.splitPrincipal = new Orbita.Controles.Contenedores.OrbitaSplitContainer();
-            this.ctrlStateMachineDisplay = new Orbita.Controles.VA.OrbitaVisorMaquinaEstados();
-            this.picMaquinaEstados = new Orbita.Controles.Comunes.OrbitaPictureBox();
+            this.SplitPrincipal = new Orbita.Controles.Contenedores.OrbitaSplitContainer();
+            this.CtrlStateMachineDisplay = new Orbita.Controles.VA.OrbitaVisorMaquinaEstados();
+            this.PicMaquinaEstados = new Orbita.Controles.Comunes.OrbitaPictureBox();
             this.ListMensajes = new Orbita.Controles.Comunes.OrbitaListView();
             this.Tipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Descripcion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Hora = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ImageList = new System.Windows.Forms.ImageList(this.components);
-            this.pnlPanelPrincipalPadre.SuspendLayout();
-            this.splitPrincipal.Panel1.SuspendLayout();
-            this.splitPrincipal.Panel2.SuspendLayout();
-            this.splitPrincipal.SuspendLayout();
-            this.ctrlStateMachineDisplay.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMaquinaEstados)).BeginInit();
+            this.PnlPanelPrincipalPadre.SuspendLayout();
+            this.PnlInferiorPadre.SuspendLayout();
+            this.PnlBotonesPadre.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkDock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkToolTip)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SplitPrincipal)).BeginInit();
+            this.SplitPrincipal.Panel1.SuspendLayout();
+            this.SplitPrincipal.Panel2.SuspendLayout();
+            this.SplitPrincipal.SuspendLayout();
+            this.CtrlStateMachineDisplay.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicMaquinaEstados)).BeginInit();
             this.SuspendLayout();
             // 
-            // pnlInferiorPadre
+            // PnlPanelPrincipalPadre
             // 
-            this.pnlInferiorPadre.Location = new System.Drawing.Point(10, 476);
-            this.pnlInferiorPadre.Size = new System.Drawing.Size(851, 43);
+            this.PnlPanelPrincipalPadre.Controls.Add(this.SplitPrincipal);
+            this.PnlPanelPrincipalPadre.Size = new System.Drawing.Size(851, 466);
             // 
-            // pnlPanelPrincipalPadre
+            // btnCancelar
             // 
-            this.pnlPanelPrincipalPadre.Controls.Add(this.splitPrincipal);
-            this.pnlPanelPrincipalPadre.Size = new System.Drawing.Size(851, 466);
+            this.btnCancelar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             // 
-            // splitPrincipal
+            // btnGuardar
             // 
-            this.splitPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitPrincipal.Location = new System.Drawing.Point(0, 0);
-            this.splitPrincipal.Name = "splitPrincipal";
-            this.splitPrincipal.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.btnGuardar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             // 
-            // splitPrincipal.Panel1
+            // PnlInferiorPadre
             // 
-            this.splitPrincipal.Panel1.Controls.Add(this.ctrlStateMachineDisplay);
-            this.splitPrincipal.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.PnlInferiorPadre.Location = new System.Drawing.Point(10, 476);
+            this.PnlInferiorPadre.Size = new System.Drawing.Size(851, 43);
             // 
-            // splitPrincipal.Panel2
+            // PnlBotonesPadre
             // 
-            this.splitPrincipal.Panel2.Controls.Add(this.ListMensajes);
-            this.splitPrincipal.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitPrincipal.Panel2MinSize = 50;
-            this.splitPrincipal.Size = new System.Drawing.Size(851, 466);
-            this.splitPrincipal.SplitterDistance = 357;
-            this.splitPrincipal.TabIndex = 13;
+            this.PnlBotonesPadre.Location = new System.Drawing.Point(649, 0);
             // 
-            // ctrlStateMachineDisplay
+            // SplitPrincipal
             // 
-            this.ctrlStateMachineDisplay.Controls.Add(this.picMaquinaEstados);
-            this.ctrlStateMachineDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlStateMachineDisplay.Location = new System.Drawing.Point(0, 0);
-            this.ctrlStateMachineDisplay.Name = "ctrlStateMachineDisplay";
-            this.ctrlStateMachineDisplay.Size = new System.Drawing.Size(851, 357);
-            this.ctrlStateMachineDisplay.TabIndex = 15;
-            this.ctrlStateMachineDisplay.OnMensajeMaquinaEstados += new MensajeMaquinaEstadosLanzado(this.ctrlStateMachineDisplay_OnMensajeMaquinaEstadosRecibido);
+            this.SplitPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SplitPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.SplitPrincipal.Name = "SplitPrincipal";
+            this.SplitPrincipal.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // picMaquinaEstados
+            // SplitPrincipal.Panel1
             // 
-            this.picMaquinaEstados.BackColor = System.Drawing.SystemColors.Window;
-            this.picMaquinaEstados.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picMaquinaEstados.Location = new System.Drawing.Point(0, 0);
-            this.picMaquinaEstados.Name = "picMaquinaEstados";
-            this.picMaquinaEstados.Size = new System.Drawing.Size(851, 357);
-            this.picMaquinaEstados.TabIndex = 0;
-            this.picMaquinaEstados.TabStop = false;
+            this.SplitPrincipal.Panel1.Controls.Add(this.CtrlStateMachineDisplay);
+            this.SplitPrincipal.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            // 
+            // SplitPrincipal.Panel2
+            // 
+            this.SplitPrincipal.Panel2.Controls.Add(this.ListMensajes);
+            this.SplitPrincipal.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.SplitPrincipal.Panel2MinSize = 50;
+            this.SplitPrincipal.Size = new System.Drawing.Size(851, 466);
+            this.SplitPrincipal.SplitterDistance = 357;
+            this.SplitPrincipal.TabIndex = 13;
+            // 
+            // CtrlStateMachineDisplay
+            // 
+            this.CtrlStateMachineDisplay.Controls.Add(this.PicMaquinaEstados);
+            this.CtrlStateMachineDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CtrlStateMachineDisplay.Location = new System.Drawing.Point(0, 0);
+            this.CtrlStateMachineDisplay.Name = "CtrlStateMachineDisplay";
+            this.CtrlStateMachineDisplay.Size = new System.Drawing.Size(851, 357);
+            this.CtrlStateMachineDisplay.TabIndex = 15;
+            this.CtrlStateMachineDisplay.OnMensajeMaquinaEstados += new Orbita.VA.MaquinasEstados.MensajeMaquinaEstadosLanzado(this.ctrlStateMachineDisplay_OnMensajeMaquinaEstadosRecibido);
+            // 
+            // PicMaquinaEstados
+            // 
+            this.PicMaquinaEstados.BackColor = System.Drawing.SystemColors.Window;
+            this.PicMaquinaEstados.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PicMaquinaEstados.Location = new System.Drawing.Point(0, 0);
+            this.PicMaquinaEstados.Name = "PicMaquinaEstados";
+            this.PicMaquinaEstados.Size = new System.Drawing.Size(851, 357);
+            this.PicMaquinaEstados.TabIndex = 0;
+            this.PicMaquinaEstados.TabStop = false;
             // 
             // ListMensajes
             // 
@@ -145,29 +162,34 @@ namespace Orbita.Controles.VA
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(871, 529);
-            this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Monitorizacion;
+            this.ModoAperturaFormulario = global::Orbita.Controles.VA.ModoAperturaFormulario.Monitorizacion;
             this.MultiplesInstancias = true;
             this.Name = "FrmMonitorizacionMaquinaEstados";
             this.Text = "Monitorización de máquinas de estado";
-            this.pnlPanelPrincipalPadre.ResumeLayout(false);
-            this.splitPrincipal.Panel1.ResumeLayout(false);
-            this.splitPrincipal.Panel2.ResumeLayout(false);
-            this.splitPrincipal.ResumeLayout(false);
-            this.ctrlStateMachineDisplay.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picMaquinaEstados)).EndInit();
+            this.PnlPanelPrincipalPadre.ResumeLayout(false);
+            this.PnlInferiorPadre.ResumeLayout(false);
+            this.PnlBotonesPadre.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ChkDock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkToolTip)).EndInit();
+            this.SplitPrincipal.Panel1.ResumeLayout(false);
+            this.SplitPrincipal.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SplitPrincipal)).EndInit();
+            this.SplitPrincipal.ResumeLayout(false);
+            this.CtrlStateMachineDisplay.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PicMaquinaEstados)).EndInit();
             this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-        private Orbita.Controles.Contenedores.OrbitaSplitContainer splitPrincipal;
+        private Orbita.Controles.Contenedores.OrbitaSplitContainer SplitPrincipal;
         private Orbita.Controles.Comunes.OrbitaListView ListMensajes;
         private System.Windows.Forms.ColumnHeader Tipo;
         private System.Windows.Forms.ColumnHeader Descripcion;
         private System.Windows.Forms.ColumnHeader Hora;
-        private Orbita.Controles.VA.OrbitaVisorMaquinaEstados ctrlStateMachineDisplay;
-        private Orbita.Controles.Comunes.OrbitaPictureBox picMaquinaEstados;
+        private Orbita.Controles.VA.OrbitaVisorMaquinaEstados CtrlStateMachineDisplay;
+        private Orbita.Controles.Comunes.OrbitaPictureBox PicMaquinaEstados;
         private System.Windows.Forms.ImageList ImageList;
 
 

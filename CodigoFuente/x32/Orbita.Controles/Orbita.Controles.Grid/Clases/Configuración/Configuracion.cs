@@ -53,6 +53,7 @@ namespace Orbita.Controles.Grid
         internal const bool DefectoMostrarToolImprimir = false;
         internal const bool DefectoMostrarToolEstilo = false;
         internal const bool DefectoMostrarToolRefrescar = true;
+        internal const bool DefectoMostrarToolCiclico = false;
         #endregion
     }
 }

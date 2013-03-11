@@ -55,5 +55,12 @@ namespace Orbita.Controles.Comunes
             this.Control.Appearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.Apariencia.AdornoTexto;
         }
         #endregion
+
+        #region Métodos públicos
+        public override string ToString()
+        {
+            return null;
+        }
+        #endregion
     }
 }

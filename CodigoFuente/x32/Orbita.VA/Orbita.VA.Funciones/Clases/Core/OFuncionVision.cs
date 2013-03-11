@@ -678,6 +678,18 @@ namespace Orbita.VA.Funciones
         }
 
         /// <summary>
+        /// Función para la actualización de parámetros de entrada
+        /// </summary>
+        /// <param name="entrada">Nombre identificador del parámetro</param>
+        /// <param name="ParamValue">Nuevo valor del parámetro</param>
+        /// <returns></returns>
+        /// <remarks></remarks>
+        public virtual bool SetEntrada(EnumEntradaFuncionVision entrada, object valor, OEnumTipoDato tipoVariable)
+        {
+            return false;
+        }
+
+        /// <summary>
         /// Función para la consulta de parámetros de salida
         /// </summary>
         /// <param name="ParamName">Nombre identificador del parámetro</param>
@@ -690,6 +702,18 @@ namespace Orbita.VA.Funciones
             return false;
         }
 
+        /// <summary>
+        /// Función para la consulta de parámetros de salida
+        /// </summary>
+        /// <param name="ParamName">Nombre identificador del parámetro</param>
+        /// <param name="ParamValue">Nuevo valor del parámetro</param>
+        /// <returns></returns>
+        /// <remarks></remarks>
+        public virtual bool GetSalida(EnumSalidaFuncionVision salida, out object valor, OEnumTipoDato tipoVariable)
+        {
+            valor = null;
+            return false;
+        }
         #endregion
 
         #region Eventos
@@ -1166,6 +1190,10 @@ namespace Orbita.VA.Funciones
         /// Resultados de la inspección
         /// </summary>
         public TResultados Resultados;
+        /// <summary>
+        /// Lista de información adicional incorporada por el controlador externo
+        /// </summary>
+        public Dictionary<string, object> InformacionAdicional;
         #endregion
 
         #region Constructor
@@ -1182,12 +1210,13 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OInfoInspeccion(TImagen imagen, TInfo info, TParametros parametros, TResultados resultados)
+        public OInfoInspeccion(TImagen imagen, TInfo info, TParametros parametros, TResultados resultados, Dictionary<string, object> informacionAdicional)
         {
             this.Imagen = imagen;
             this.Info = info;
             this.Parametros = parametros;
             this.Resultados = resultados;
+            this.InformacionAdicional = informacionAdicional;
         }
         #endregion
     }
@@ -1229,5 +1258,63 @@ namespace Orbita.VA.Funciones
     /// <param name="sender"></param>
     /// <param name="e"></param>
     public delegate void CallBackResultadoParcial(object sender, EventArgsResultadoParcial e);
+    #endregion
+
+    #region Enumerados de Tipos de Entrada o Salida
+    /// <summary>
+    /// Define el conjunto de tipos de entradas de las funciones de visión
+    /// </summary>
+    public class EntradasFuncionesVision : OEnumeradosHeredable
+    {
+        #region Atributo(s)
+        /// <summary>
+        /// Imagen de entrada
+        /// </summary>
+        public static EnumEntradaFuncionVision Imagen = new EnumEntradaFuncionVision("Imagen", "Imagen de entrada", 1);
+        #endregion
+    }
+
+    /// <summary>
+    /// Clase que implementa el enumerado de las entradas de las funciones de visión
+    /// </summary>
+    public class EnumEntradaFuncionVision : OEnumeradoHeredable
+    {
+        #region Constructor
+        /// <summary>
+        /// Constuctor de la clase
+        /// </summary>
+        public EnumEntradaFuncionVision(string nombre, string descripcion, int valor) :
+            base(nombre, descripcion, valor)
+        { }
+        #endregion
+    }
+
+    /// <summary>
+    /// Define el conjunto de tipos de salidas de las funciones de visión
+    /// </summary>
+    public class SalidasFuncionesVision : OEnumeradosHeredable
+    {
+        #region Atributo(s)
+        /// <summary>
+        /// Imagen de salida
+        /// </summary>
+        public static EnumSalidaFuncionVision Imagen = new EnumSalidaFuncionVision("Imagen", "Imagen de salida", 1);
+        #endregion
+    }
+
+    /// <summary>
+    /// Clase que implementa el enumerado de las salidas de las funciones de visión
+    /// </summary>
+    public class EnumSalidaFuncionVision : OEnumeradoHeredable
+    {
+        #region Constructor
+        /// <summary>
+        /// Constuctor de la clase
+        /// </summary>
+        public EnumSalidaFuncionVision(string nombre, string descripcion, int valor) :
+            base(nombre, descripcion, valor)
+        { }
+        #endregion
+    }
     #endregion
 }

@@ -21,9 +21,6 @@ namespace Orbita.Controles.Comunes
         };
 
         #region Atributos
-        /// <summary>
-        /// Proporciona un acceso a los recursos específicos de cada referencia cultural en tiempo de ejecución.
-        /// </summary>
         ControlNuevaDefinicion definicion;
         #endregion
 
@@ -43,7 +40,7 @@ namespace Orbita.Controles.Comunes
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public ControlNuevaDefinicion Orbita
+        public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }
             set { this.definicion = value; }

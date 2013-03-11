@@ -38,6 +38,9 @@ namespace Orbita.Trazabilidad
         /// o a un objeto de la clase System.IO.Stream como un archivo System.IO.FileStream.
         /// </summary>
         protected TextWriterTraceListener listener;
+        /// <summary>
+        /// Guarda relativa al evento cíclico que sucede si se traza sobre el evento elevado de logger.
+        /// </summary>
         bool eventoCiclico = true;
         #endregion
 
@@ -93,6 +96,8 @@ namespace Orbita.Trazabilidad
             this.retornoDeCarro = false;
             // Separador de mensajes.
             this.separador = Orbita.Trazabilidad.Logger.Separador;
+            // Asignación del método delegado dinámico de traza de nivel.
+            this.TrazarNivel = new NivelSID(Nivel);
         }
         #endregion
 
@@ -185,6 +190,15 @@ namespace Orbita.Trazabilidad
 
         #region Métodos privados
         /// <summary>
+        /// Método privado asociado al evento NivelSID.
+        /// </summary>
+        /// <param name="item">Item de entrada.</param>
+        /// <returns>Nivel de log.</returns>
+        string Nivel(ItemLog item)
+        {
+            return item.SNivelLog;
+        }
+        /// <summary>
         /// Método que formatea la cadena de entrada. Eliminando los  saltos de
         /// línea por emptys y reemplazando los caracteres que coincidan con el
         /// separador por el carácter desconocido (?).
@@ -222,7 +236,7 @@ namespace Orbita.Trazabilidad
         /// <returns>Cadena de entrada formateada.</returns>
         string Formatear(ItemLog item)
         {
-            return string.Format(CultureInfo.CurrentCulture, "{0} {1}{2}{3}", item.SFecha, item.SNivelLog, this.Separador, this.Formatear(item.Mensaje));
+            return string.Format(CultureInfo.CurrentCulture, "{0}  {1} {2} {3}", item.SFecha, this.TrazarNivel(item), this.Separador, this.Formatear(item.Mensaje));
         }
         /// <summary>
         /// Escribir en disco la cadena de texto.

@@ -327,7 +327,7 @@ namespace Orbita.VA.Hardware
             DateTime start;
             TimeSpan span;
 
-            OComunicacionCGI comunicacionCGI = new OComunicacionCGI(this.Source, this._Login, this._Password, this.GetHashCode().ToString(), this._SeparateConnectionGroup, this._ReadTimeOutMs);
+            OComunicacionCGI comunicacionCGI = new OComunicacionCGI(this.Source, this._Login, this._Password, this.GetHashCode().ToString(), this._SeparateConnectionGroup, this._ReadTimeOutMs, HttpStatusCode.OK);
 
             // Salida por número de capturas máxima superada
             bool forzarSalida = false;

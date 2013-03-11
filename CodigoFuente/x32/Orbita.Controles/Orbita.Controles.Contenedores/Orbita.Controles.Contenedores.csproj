@@ -18,25 +18,6 @@
     <SccProvider>SAK</SccProvider>
     <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
@@ -96,7 +77,21 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\OConfiguracion.cs" />
+    <Compile Include="Clases\Configuración\OConfiguracion.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OForm.cs" />
+    <Compile Include="Clases\Propiedades y métodos\ODialog.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OTableLayoutPanel.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUltraGroupBox.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUltraTabbedMdiManager.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUltraTabControl.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OSplitContainer.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OPanel.cs" />
+    <Compile Include="Custom\OrbitaMdiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaMdiForm.Designer.cs">
+      <DependentUpon>OrbitaMdiForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom\OrbitaDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +103,11 @@
     </Compile>
     <Compile Include="Custom\OrbitaForm.Designer.cs">
       <DependentUpon>OrbitaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="UC\OrbitaUltraGroupBox.cs">
       <SubType>Component</SubType>
@@ -148,6 +148,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Custom\OrbitaMdiForm.resx">
+      <DependentUpon>OrbitaMdiForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Custom\OrbitaDialog.resx">
       <DependentUpon>OrbitaDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,6 +158,10 @@
       <DependentUpon>OrbitaForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Orbita.Controles.Comunes\Orbita.Controles.Comunes.csproj">
@@ -165,6 +172,9 @@
       <Project>{D104B7D1-93CB-46AE-8F84-AA68BB3B2C5E}</Project>
       <Name>Orbita.Controles.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orbita.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

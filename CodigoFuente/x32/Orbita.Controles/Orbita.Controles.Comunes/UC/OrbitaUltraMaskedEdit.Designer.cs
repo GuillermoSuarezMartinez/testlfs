@@ -13,8 +13,8 @@ namespace Orbita.Controles.Comunes
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            this.Enter -= new System.EventHandler(this.OrbitaUltraMaskedEdit_Enter);
-            this.Click -= new System.EventHandler(this.OrbitaUltraMaskedEdit_Click);
+            this.Enter -= new System.EventHandler(ControlEnter);
+            this.Click -= new System.EventHandler(ControlClick);
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -29,13 +29,6 @@ namespace Orbita.Controles.Comunes
         void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            this.SuspendLayout();
-            // 
-            // OrbitaUltraMaskedEdit
-            // 
-            this.Enter += new System.EventHandler(this.OrbitaUltraMaskedEdit_Enter);
-            this.Click += new System.EventHandler(this.OrbitaUltraMaskedEdit_Click);
-            this.ResumeLayout(false);
         }
         #endregion
     }

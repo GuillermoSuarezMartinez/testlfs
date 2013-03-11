@@ -78,19 +78,19 @@ namespace Orbita.Controles.VA
         {
             try
             {
-                if (OMensajes.MostrarPreguntaSiNo("¿Desea eliminar la variable " + gridVariables.OrbFilaActiva.Cells["CodVariable"].Value.ToString() + "?") == DialogResult.Yes)
+                if (OMensajes.MostrarPreguntaSiNo("¿Desea eliminar la variable " + gridVariables.Grid.ActiveRow.Cells["CodVariable"].Value.ToString() + "?") == DialogResult.Yes)
                 {
                     //Indice en la tabla
-                    int indice = this.gridVariables.OrbFilaActiva.VisibleIndex;
+                    int indice = this.gridVariables.Grid.ActiveRow.VisibleIndex;
 
                     //LLamada a la funcion que llama al procedimiento SQL
-                    Orbita.VA.Comun.AppBD.EliminaVariable((int)gridVariables.OrbFilaActiva.Cells["IdVariable"].Value);
+                    global::Orbita.VA.Comun.AppBD.EliminaVariable((int)gridVariables.Grid.ActiveRow.Cells["IdVariable"].Value);
 
                     //Refrescamos la lista
                     this.CargarVariables();
 
                     //Dejar seleccionada la fila con la entidad
-                    this.gridVariables.OrbActivarFila(indice);
+                    this.gridVariables.Orbita.Filas.Activar(indice);
                 }
             }
             catch (Exception exception)
@@ -122,25 +122,25 @@ namespace Orbita.Controles.VA
         {
             // Creamos el formaulario de edicion de la variable
             FrmGestionVariablesEdicion frmGestionVariablesEdicion = new FrmGestionVariablesEdicion(
-                (int)gridVariables.OrbFilaActiva.Cells["IdVariable"].Value,
-                gridVariables.OrbFilaActiva.Cells["CodVariable"].Value.ToString(),
-                gridVariables.OrbFilaActiva.Cells["NombreVariable"].Value.ToString(),
-                gridVariables.OrbFilaActiva.Cells["DescVariable"].Value.ToString(),
-                (bool)gridVariables.OrbFilaActiva.Cells["HabilitadoVariable"].Value,
-                gridVariables.OrbFilaActiva.Cells["Grupo"].Value.ToString(),
-                (bool)gridVariables.OrbFilaActiva.Cells["GuardarTrazabilidad"].Value,
-                (int)gridVariables.OrbFilaActiva.Cells["IdTipoVariable"].Value);
+                (int)gridVariables.Grid.ActiveRow.Cells["IdVariable"].Value,
+                gridVariables.Grid.ActiveRow.Cells["CodVariable"].Value.ToString(),
+                gridVariables.Grid.ActiveRow.Cells["NombreVariable"].Value.ToString(),
+                gridVariables.Grid.ActiveRow.Cells["DescVariable"].Value.ToString(),
+                (bool)gridVariables.Grid.ActiveRow.Cells["HabilitadoVariable"].Value,
+                gridVariables.Grid.ActiveRow.Cells["Grupo"].Value.ToString(),
+                (bool)gridVariables.Grid.ActiveRow.Cells["GuardarTrazabilidad"].Value,
+                (int)gridVariables.Grid.ActiveRow.Cells["IdTipoVariable"].Value);
 
             if (frmGestionVariablesEdicion.ShowDialog() == DialogResult.OK)
             {
                 //Indice en la tabla
-                int indice = this.gridVariables.OrbFilaActiva.VisibleIndex;
+                int indice = this.gridVariables.Grid.ActiveRow.VisibleIndex;
 
                 // Cargamos las variables
                 CargarVariables();
 
                 //Dejar seleccionada la fila con la entidad
-                this.gridVariables.OrbActivarFila(indice);
+                this.gridVariables.Orbita.Filas.Activar(indice);
             }
         }
         #endregion
@@ -151,7 +151,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         private void CargarVariables()
         {
-            DataTable dt = Orbita.VA.Comun.AppBD.GetListaVariables();
+            DataTable dt = global::Orbita.VA.Comun.AppBD.GetListaVariables();
             if (dt != null)
             {
                 //Formateamos y cargamos el grid
@@ -164,7 +164,7 @@ namespace Orbita.Controles.VA
                 cols.Add(new OEstiloColumna("GuardarTrazabilidad", "Trazabilidad", EstiloColumna.Check, Alineacion.Centrado, 80));
                 cols.Add(new OEstiloColumna("NombreTipoVariable", "Tipo", 80));
 
-                gridVariables.OrbFormatear(dt, cols);
+                gridVariables.Orbita.Formatear(dt, cols);
             }
         }
         #endregion

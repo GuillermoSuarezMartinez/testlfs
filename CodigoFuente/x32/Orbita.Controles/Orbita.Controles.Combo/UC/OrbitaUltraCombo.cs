@@ -37,7 +37,7 @@ namespace Orbita.Controles.Combo
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
         //[System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ControlNuevaDefinicion Orbita
+        public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }
             set { this.definicion = value; }
@@ -337,7 +337,7 @@ namespace Orbita.Controles.Combo
         {
             try
             {
-                if (this.DropDownStyle == Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList && this.Orbita.NullablePorTeclado)
+                if (this.DropDownStyle == Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList && this.OI.NullablePorTeclado)
                 {
                     if (e != null)
                     {
@@ -345,7 +345,7 @@ namespace Orbita.Controles.Combo
                         {
                             case System.Windows.Forms.Keys.Back:
                             case System.Windows.Forms.Keys.Delete:
-                                this.Orbita.ResetValor();
+                                this.OI.ResetValor();
                                 break;
                         }
                     }

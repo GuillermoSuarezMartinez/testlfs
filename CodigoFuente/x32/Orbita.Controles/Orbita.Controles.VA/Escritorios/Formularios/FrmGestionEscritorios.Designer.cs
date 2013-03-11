@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
@@ -40,65 +39,86 @@
             Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab1 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.UltraWinTabControl.UltraTab ultraTab2 = new Infragistics.Win.UltraWinTabControl.UltraTab();
-            this.ultraTabPageControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.TabPage1 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.GrpConfigEscritorio = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
-            this.lblAnclaje = new Orbita.Controles.Comunes.OrbitaUltraLabel();
-            this.checkAnclaje = new Orbita.Controles.Comunes.OrbitaUltraCheckEditor();
+            this.LblAnclaje = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.ChkAnclaje = new Orbita.Controles.Comunes.OrbitaUltraCheckEditor();
             this.PnlOpcionesEscritorios = new Orbita.Controles.Contenedores.OrbitaPanel();
-            this.checkPreferenciaMaximizado = new Orbita.Controles.Comunes.OrbitaUltraCheckEditor();
-            this.lblPreferenciaMaximizado = new Orbita.Controles.Comunes.OrbitaUltraLabel();
-            this.cboEscritorios = new Orbita.Controles.Combo.OrbitaUltraCombo();
-            this.checkAutoAbrirFoms = new Orbita.Controles.Comunes.OrbitaUltraCheckEditor();
-            this.lblConfigEscritorio = new Orbita.Controles.Comunes.OrbitaUltraLabel();
-            this.lblAutoAbrirFoms = new Orbita.Controles.Comunes.OrbitaUltraLabel();
-            this.lblHabilitado = new Orbita.Controles.Comunes.OrbitaUltraLabel();
-            this.checkHabilitado = new Orbita.Controles.Comunes.OrbitaUltraCheckEditor();
+            this.ChkPreferenciaMaximizado = new Orbita.Controles.Comunes.OrbitaUltraCheckEditor();
+            this.LblPreferenciaMaximizado = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.CboEscritorios = new Orbita.Controles.Combo.OrbitaUltraCombo();
+            this.ChkAutoAbrirFoms = new Orbita.Controles.Comunes.OrbitaUltraCheckEditor();
+            this.LblConfigEscritorio = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.LblAutoAbrirFoms = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.LblHabilitado = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.CheckHabilitado = new Orbita.Controles.Comunes.OrbitaUltraCheckEditor();
             this.PnlGeneral = new Orbita.Controles.Contenedores.OrbitaPanel();
-            this.lblExplicacionGeneral = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.LblExplicacionGeneral = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.ImgGeneral = new Orbita.Controles.Comunes.OrbitaPictureBox();
-            this.ultraTabPageControl2 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
+            this.TabPage2 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.GrpListaEscritorios = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
-            this.lblListadoEscritorios = new Orbita.Controles.Comunes.OrbitaUltraLabel();
-            this.GridEscritorios = new Orbita.Controles.Grid.OrbitaGrid();
+            this.LblListadoEscritorios = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.GridEscritorios = new Orbita.Controles.Grid.OrbitaUltraGridToolBar();
             this.PnlEscritorios = new Orbita.Controles.Contenedores.OrbitaPanel();
-            this.orbitaLabel5 = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.LblExplicacion = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.ImgEscritorios = new Orbita.Controles.Comunes.OrbitaPictureBox();
-            this.lblExplicacionEscritorios = new Orbita.Controles.Contenedores.OrbitaUltraTabControl();
-            this.ultraTabSharedControlsPage1 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
-            this.pnlInferiorPadre.SuspendLayout();
-            this.pnlPanelPrincipalPadre.SuspendLayout();
-            this.ultraTabPageControl1.SuspendLayout();
+            this.TabControl = new Orbita.Controles.Contenedores.OrbitaUltraTabControl();
+            this.TabPageShared = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
+            this.PnlInferiorPadre.SuspendLayout();
+            this.PnlBotonesPadre.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkToolTip)).BeginInit();
+            this.PnlPanelPrincipalPadre.SuspendLayout();
+            this.TabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GrpConfigEscritorio)).BeginInit();
             this.GrpConfigEscritorio.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkAnclaje)).BeginInit();
             this.PnlOpcionesEscritorios.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkPreferenciaMaximizado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CboEscritorios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkAutoAbrirFoms)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckHabilitado)).BeginInit();
             this.PnlGeneral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImgGeneral)).BeginInit();
-            this.ultraTabPageControl2.SuspendLayout();
+            this.TabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GrpListaEscritorios)).BeginInit();
             this.GrpListaEscritorios.SuspendLayout();
             this.PnlEscritorios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImgEscritorios)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblExplicacionEscritorios)).BeginInit();
-            this.lblExplicacionEscritorios.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TabControl)).BeginInit();
+            this.TabControl.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnlInferiorPadre
+            // PnlInferiorPadre
             // 
-            this.pnlInferiorPadre.Location = new System.Drawing.Point(10, 306);
-            this.pnlInferiorPadre.Size = new System.Drawing.Size(375, 43);
+            this.PnlInferiorPadre.Location = new System.Drawing.Point(10, 306);
+            this.PnlInferiorPadre.Size = new System.Drawing.Size(375, 43);
             // 
-            // pnlPanelPrincipalPadre
+            // PnlBotonesPadre
             // 
-            this.pnlPanelPrincipalPadre.Controls.Add(this.lblExplicacionEscritorios);
-            this.pnlPanelPrincipalPadre.Size = new System.Drawing.Size(375, 296);
+            this.PnlBotonesPadre.Location = new System.Drawing.Point(173, 0);
             // 
-            // ultraTabPageControl1
+            // btnCancelar
             // 
-            this.ultraTabPageControl1.Controls.Add(this.GrpConfigEscritorio);
-            this.ultraTabPageControl1.Controls.Add(this.PnlGeneral);
-            this.ultraTabPageControl1.Location = new System.Drawing.Point(2, 21);
-            this.ultraTabPageControl1.Name = "ultraTabPageControl1";
-            this.ultraTabPageControl1.Size = new System.Drawing.Size(371, 273);
+            this.btnCancelar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnCancelar.Size = new System.Drawing.Size(98, 33);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnGuardar.Size = new System.Drawing.Size(98, 33);
+            // 
+            // PnlPanelPrincipalPadre
+            // 
+            this.PnlPanelPrincipalPadre.Controls.Add(this.TabControl);
+            this.PnlPanelPrincipalPadre.Size = new System.Drawing.Size(375, 296);
+            // 
+            // TabPage1
+            // 
+            this.TabPage1.Controls.Add(this.GrpConfigEscritorio);
+            this.TabPage1.Controls.Add(this.PnlGeneral);
+            this.TabPage1.Location = new System.Drawing.Point(-10000, -10000);
+            this.TabPage1.Name = "TabPage1";
+            this.TabPage1.Size = new System.Drawing.Size(371, 273);
             // 
             // GrpConfigEscritorio
             // 
@@ -106,11 +126,11 @@
             this.GrpConfigEscritorio.ContentPadding.Left = 2;
             this.GrpConfigEscritorio.ContentPadding.Right = 2;
             this.GrpConfigEscritorio.ContentPadding.Top = 2;
-            this.GrpConfigEscritorio.Controls.Add(this.lblAnclaje);
-            this.GrpConfigEscritorio.Controls.Add(this.checkAnclaje);
+            this.GrpConfigEscritorio.Controls.Add(this.LblAnclaje);
+            this.GrpConfigEscritorio.Controls.Add(this.ChkAnclaje);
             this.GrpConfigEscritorio.Controls.Add(this.PnlOpcionesEscritorios);
-            this.GrpConfigEscritorio.Controls.Add(this.lblHabilitado);
-            this.GrpConfigEscritorio.Controls.Add(this.checkHabilitado);
+            this.GrpConfigEscritorio.Controls.Add(this.LblHabilitado);
+            this.GrpConfigEscritorio.Controls.Add(this.CheckHabilitado);
             this.GrpConfigEscritorio.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GrpConfigEscritorio.Location = new System.Drawing.Point(0, 100);
             this.GrpConfigEscritorio.Name = "GrpConfigEscritorio";
@@ -118,127 +138,131 @@
             this.GrpConfigEscritorio.TabIndex = 35;
             this.GrpConfigEscritorio.Text = "Configuración predefinida";
             // 
-            // lblAnclaje
+            // LblAnclaje
             // 
             appearance1.BackColor = System.Drawing.Color.Transparent;
             appearance1.ForeColor = System.Drawing.Color.Black;
             appearance1.TextHAlignAsString = "Right";
-            this.lblAnclaje.Appearance = appearance1;
-            this.lblAnclaje.Location = new System.Drawing.Point(10, 54);
-            this.lblAnclaje.Name = "lblAnclaje";
-            this.lblAnclaje.Size = new System.Drawing.Size(122, 15);
-            this.lblAnclaje.TabIndex = 36;
-            this.lblAnclaje.Text = "Permite anclaje:";
-            this.lblAnclaje.UseMnemonic = false;
+            this.LblAnclaje.Appearance = appearance1;
+            this.LblAnclaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.LblAnclaje.Location = new System.Drawing.Point(10, 54);
+            this.LblAnclaje.Name = "LblAnclaje";
+            this.LblAnclaje.Size = new System.Drawing.Size(122, 15);
+            this.LblAnclaje.TabIndex = 36;
+            this.LblAnclaje.Text = "Permite anclaje:";
+            this.LblAnclaje.UseMnemonic = false;
             // 
-            // checkAnclaje
+            // ChkAnclaje
             // 
-            this.checkAnclaje.Location = new System.Drawing.Point(138, 52);
-            this.checkAnclaje.Name = "checkAnclaje";
-            this.checkAnclaje.Size = new System.Drawing.Size(120, 20);
-            this.checkAnclaje.TabIndex = 35;
+            this.ChkAnclaje.Location = new System.Drawing.Point(138, 52);
+            this.ChkAnclaje.Name = "ChkAnclaje";
+            this.ChkAnclaje.Size = new System.Drawing.Size(120, 20);
+            this.ChkAnclaje.TabIndex = 35;
             // 
             // PnlOpcionesEscritorios
             // 
-            this.PnlOpcionesEscritorios.Controls.Add(this.checkPreferenciaMaximizado);
-            this.PnlOpcionesEscritorios.Controls.Add(this.lblPreferenciaMaximizado);
-            this.PnlOpcionesEscritorios.Controls.Add(this.cboEscritorios);
-            this.PnlOpcionesEscritorios.Controls.Add(this.checkAutoAbrirFoms);
-            this.PnlOpcionesEscritorios.Controls.Add(this.lblConfigEscritorio);
-            this.PnlOpcionesEscritorios.Controls.Add(this.lblAutoAbrirFoms);
+            this.PnlOpcionesEscritorios.Controls.Add(this.ChkPreferenciaMaximizado);
+            this.PnlOpcionesEscritorios.Controls.Add(this.LblPreferenciaMaximizado);
+            this.PnlOpcionesEscritorios.Controls.Add(this.CboEscritorios);
+            this.PnlOpcionesEscritorios.Controls.Add(this.ChkAutoAbrirFoms);
+            this.PnlOpcionesEscritorios.Controls.Add(this.LblConfigEscritorio);
+            this.PnlOpcionesEscritorios.Controls.Add(this.LblAutoAbrirFoms);
             this.PnlOpcionesEscritorios.Location = new System.Drawing.Point(8, 72);
             this.PnlOpcionesEscritorios.Name = "PnlOpcionesEscritorios";
             this.PnlOpcionesEscritorios.Size = new System.Drawing.Size(355, 93);
             this.PnlOpcionesEscritorios.TabIndex = 34;
             // 
-            // checkPreferenciaMaximizado
+            // ChkPreferenciaMaximizado
             // 
-            this.checkPreferenciaMaximizado.Location = new System.Drawing.Point(130, 6);
-            this.checkPreferenciaMaximizado.Name = "checkPreferenciaMaximizado";
-            this.checkPreferenciaMaximizado.Size = new System.Drawing.Size(120, 20);
-            this.checkPreferenciaMaximizado.TabIndex = 29;
+            this.ChkPreferenciaMaximizado.Location = new System.Drawing.Point(130, 6);
+            this.ChkPreferenciaMaximizado.Name = "ChkPreferenciaMaximizado";
+            this.ChkPreferenciaMaximizado.Size = new System.Drawing.Size(120, 20);
+            this.ChkPreferenciaMaximizado.TabIndex = 29;
             // 
-            // lblPreferenciaMaximizado
+            // LblPreferenciaMaximizado
             // 
             appearance2.BackColor = System.Drawing.Color.Transparent;
             appearance2.ForeColor = System.Drawing.Color.Black;
             appearance2.TextHAlignAsString = "Right";
-            this.lblPreferenciaMaximizado.Appearance = appearance2;
-            this.lblPreferenciaMaximizado.Location = new System.Drawing.Point(2, 8);
-            this.lblPreferenciaMaximizado.Name = "lblPreferenciaMaximizado";
-            this.lblPreferenciaMaximizado.Size = new System.Drawing.Size(122, 15);
-            this.lblPreferenciaMaximizado.TabIndex = 30;
-            this.lblPreferenciaMaximizado.Text = "Maximizar:";
-            this.lblPreferenciaMaximizado.UseMnemonic = false;
+            this.LblPreferenciaMaximizado.Appearance = appearance2;
+            this.LblPreferenciaMaximizado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.LblPreferenciaMaximizado.Location = new System.Drawing.Point(2, 8);
+            this.LblPreferenciaMaximizado.Name = "LblPreferenciaMaximizado";
+            this.LblPreferenciaMaximizado.Size = new System.Drawing.Size(122, 15);
+            this.LblPreferenciaMaximizado.TabIndex = 30;
+            this.LblPreferenciaMaximizado.Text = "Maximizar:";
+            this.LblPreferenciaMaximizado.UseMnemonic = false;
             // 
-            // cboEscritorios
+            // CboEscritorios
             // 
-            this.cboEscritorios.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboEscritorios.Location = new System.Drawing.Point(130, 58);
-            this.cboEscritorios.Margin = new System.Windows.Forms.Padding(0);
-            this.cboEscritorios.Name = "cboEscritorios";
-            this.cboEscritorios.OrbTexto = "";
-            this.cboEscritorios.OrbValor = null;
-            this.cboEscritorios.Size = new System.Drawing.Size(212, 21);
-            this.cboEscritorios.TabIndex = 33;
+            this.CboEscritorios.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList;
+            this.CboEscritorios.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboEscritorios.Location = new System.Drawing.Point(130, 58);
+            this.CboEscritorios.Margin = new System.Windows.Forms.Padding(0);
+            this.CboEscritorios.Name = "CboEscritorios";
+            this.CboEscritorios.Size = new System.Drawing.Size(212, 21);
+            this.CboEscritorios.TabIndex = 33;
             // 
-            // checkAutoAbrirFoms
+            // ChkAutoAbrirFoms
             // 
-            this.checkAutoAbrirFoms.Location = new System.Drawing.Point(130, 32);
-            this.checkAutoAbrirFoms.Name = "checkAutoAbrirFoms";
-            this.checkAutoAbrirFoms.Size = new System.Drawing.Size(120, 20);
-            this.checkAutoAbrirFoms.TabIndex = 31;
+            this.ChkAutoAbrirFoms.Location = new System.Drawing.Point(130, 32);
+            this.ChkAutoAbrirFoms.Name = "ChkAutoAbrirFoms";
+            this.ChkAutoAbrirFoms.Size = new System.Drawing.Size(120, 20);
+            this.ChkAutoAbrirFoms.TabIndex = 31;
             // 
-            // lblConfigEscritorio
+            // LblConfigEscritorio
             // 
             appearance3.BackColor = System.Drawing.Color.Transparent;
             appearance3.ForeColor = System.Drawing.Color.Black;
             appearance3.TextHAlignAsString = "Right";
-            this.lblConfigEscritorio.Appearance = appearance3;
-            this.lblConfigEscritorio.Location = new System.Drawing.Point(2, 61);
-            this.lblConfigEscritorio.Name = "lblConfigEscritorio";
-            this.lblConfigEscritorio.Size = new System.Drawing.Size(122, 15);
-            this.lblConfigEscritorio.TabIndex = 27;
-            this.lblConfigEscritorio.Text = "Escritorio predefinido:";
-            this.lblConfigEscritorio.UseMnemonic = false;
+            this.LblConfigEscritorio.Appearance = appearance3;
+            this.LblConfigEscritorio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.LblConfigEscritorio.Location = new System.Drawing.Point(2, 61);
+            this.LblConfigEscritorio.Name = "LblConfigEscritorio";
+            this.LblConfigEscritorio.Size = new System.Drawing.Size(122, 15);
+            this.LblConfigEscritorio.TabIndex = 27;
+            this.LblConfigEscritorio.Text = "Escritorio predefinido:";
+            this.LblConfigEscritorio.UseMnemonic = false;
             // 
-            // lblAutoAbrirFoms
+            // LblAutoAbrirFoms
             // 
             appearance4.BackColor = System.Drawing.Color.Transparent;
             appearance4.ForeColor = System.Drawing.Color.Black;
             appearance4.TextHAlignAsString = "Right";
-            this.lblAutoAbrirFoms.Appearance = appearance4;
-            this.lblAutoAbrirFoms.Location = new System.Drawing.Point(2, 34);
-            this.lblAutoAbrirFoms.Name = "lblAutoAbrirFoms";
-            this.lblAutoAbrirFoms.Size = new System.Drawing.Size(122, 15);
-            this.lblAutoAbrirFoms.TabIndex = 32;
-            this.lblAutoAbrirFoms.Text = "Apertura automática:";
-            this.lblAutoAbrirFoms.UseMnemonic = false;
+            this.LblAutoAbrirFoms.Appearance = appearance4;
+            this.LblAutoAbrirFoms.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.LblAutoAbrirFoms.Location = new System.Drawing.Point(2, 34);
+            this.LblAutoAbrirFoms.Name = "LblAutoAbrirFoms";
+            this.LblAutoAbrirFoms.Size = new System.Drawing.Size(122, 15);
+            this.LblAutoAbrirFoms.TabIndex = 32;
+            this.LblAutoAbrirFoms.Text = "Apertura automática:";
+            this.LblAutoAbrirFoms.UseMnemonic = false;
             // 
-            // lblHabilitado
+            // LblHabilitado
             // 
             appearance5.BackColor = System.Drawing.Color.Transparent;
             appearance5.ForeColor = System.Drawing.Color.Black;
             appearance5.TextHAlignAsString = "Right";
-            this.lblHabilitado.Appearance = appearance5;
-            this.lblHabilitado.Location = new System.Drawing.Point(10, 30);
-            this.lblHabilitado.Name = "lblHabilitado";
-            this.lblHabilitado.Size = new System.Drawing.Size(122, 15);
-            this.lblHabilitado.TabIndex = 25;
-            this.lblHabilitado.Text = "Habilitado:";
-            this.lblHabilitado.UseMnemonic = false;
+            this.LblHabilitado.Appearance = appearance5;
+            this.LblHabilitado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.LblHabilitado.Location = new System.Drawing.Point(10, 30);
+            this.LblHabilitado.Name = "LblHabilitado";
+            this.LblHabilitado.Size = new System.Drawing.Size(122, 15);
+            this.LblHabilitado.TabIndex = 25;
+            this.LblHabilitado.Text = "Habilitado:";
+            this.LblHabilitado.UseMnemonic = false;
             // 
-            // checkHabilitado
+            // CheckHabilitado
             // 
-            this.checkHabilitado.Location = new System.Drawing.Point(138, 28);
-            this.checkHabilitado.Name = "checkHabilitado";
-            this.checkHabilitado.Size = new System.Drawing.Size(120, 20);
-            this.checkHabilitado.TabIndex = 24;
-            this.checkHabilitado.CheckedChanged += new System.EventHandler(this.checkHabilitado_CheckedChanged);
+            this.CheckHabilitado.Location = new System.Drawing.Point(138, 28);
+            this.CheckHabilitado.Name = "CheckHabilitado";
+            this.CheckHabilitado.Size = new System.Drawing.Size(120, 20);
+            this.CheckHabilitado.TabIndex = 24;
+            this.CheckHabilitado.CheckedChanged += new System.EventHandler(this.checkHabilitado_CheckedChanged);
             // 
             // PnlGeneral
             // 
-            this.PnlGeneral.Controls.Add(this.lblExplicacionGeneral);
+            this.PnlGeneral.Controls.Add(this.LblExplicacionGeneral);
             this.PnlGeneral.Controls.Add(this.ImgGeneral);
             this.PnlGeneral.Dock = System.Windows.Forms.DockStyle.Top;
             this.PnlGeneral.Location = new System.Drawing.Point(0, 0);
@@ -246,22 +270,22 @@
             this.PnlGeneral.Size = new System.Drawing.Size(371, 100);
             this.PnlGeneral.TabIndex = 23;
             // 
-            // lblExplicacionGeneral
+            // LblExplicacionGeneral
             // 
             appearance6.BackColor = System.Drawing.Color.Transparent;
             appearance6.ForeColor = System.Drawing.Color.Black;
             appearance6.TextHAlignAsString = "Left";
             appearance6.TextVAlignAsString = "Top";
-            this.lblExplicacionGeneral.Appearance = appearance6;
-            this.lblExplicacionGeneral.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblExplicacionGeneral.Location = new System.Drawing.Point(84, 29);
-            this.lblExplicacionGeneral.Name = "lblExplicacionGeneral";
-            this.lblExplicacionGeneral.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblExplicacionGeneral.Size = new System.Drawing.Size(266, 42);
-            this.lblExplicacionGeneral.TabIndex = 36;
-            this.lblExplicacionGeneral.Text = "La gestión de escritorios nos permite configurar nuestras preferencias sobre los " +
+            this.LblExplicacionGeneral.Appearance = appearance6;
+            this.LblExplicacionGeneral.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.LblExplicacionGeneral.Location = new System.Drawing.Point(84, 29);
+            this.LblExplicacionGeneral.Name = "LblExplicacionGeneral";
+            this.LblExplicacionGeneral.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.LblExplicacionGeneral.Size = new System.Drawing.Size(266, 42);
+            this.LblExplicacionGeneral.TabIndex = 36;
+            this.LblExplicacionGeneral.Text = "La gestión de escritorios nos permite configurar nuestras preferencias sobre los " +
                 "formularios que se han de iniciar con la aplicación.";
-            this.lblExplicacionGeneral.UseMnemonic = false;
+            this.LblExplicacionGeneral.UseMnemonic = false;
             // 
             // ImgGeneral
             // 
@@ -273,13 +297,13 @@
             this.ImgGeneral.TabIndex = 34;
             this.ImgGeneral.TabStop = false;
             // 
-            // ultraTabPageControl2
+            // TabPage2
             // 
-            this.ultraTabPageControl2.Controls.Add(this.GrpListaEscritorios);
-            this.ultraTabPageControl2.Controls.Add(this.PnlEscritorios);
-            this.ultraTabPageControl2.Location = new System.Drawing.Point(-10000, -10000);
-            this.ultraTabPageControl2.Name = "ultraTabPageControl2";
-            this.ultraTabPageControl2.Size = new System.Drawing.Size(371, 273);
+            this.TabPage2.Controls.Add(this.GrpListaEscritorios);
+            this.TabPage2.Controls.Add(this.PnlEscritorios);
+            this.TabPage2.Location = new System.Drawing.Point(2, 21);
+            this.TabPage2.Name = "TabPage2";
+            this.TabPage2.Size = new System.Drawing.Size(371, 273);
             // 
             // GrpListaEscritorios
             // 
@@ -287,7 +311,7 @@
             this.GrpListaEscritorios.ContentPadding.Left = 2;
             this.GrpListaEscritorios.ContentPadding.Right = 2;
             this.GrpListaEscritorios.ContentPadding.Top = 2;
-            this.GrpListaEscritorios.Controls.Add(this.lblListadoEscritorios);
+            this.GrpListaEscritorios.Controls.Add(this.LblListadoEscritorios);
             this.GrpListaEscritorios.Controls.Add(this.GridEscritorios);
             this.GrpListaEscritorios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GrpListaEscritorios.Location = new System.Drawing.Point(0, 100);
@@ -296,38 +320,41 @@
             this.GrpListaEscritorios.TabIndex = 37;
             this.GrpListaEscritorios.Text = "Listado de escritorios";
             // 
-            // lblListadoEscritorios
+            // LblListadoEscritorios
             // 
             appearance7.BackColor = System.Drawing.Color.Transparent;
             appearance7.ForeColor = System.Drawing.Color.Black;
-            this.lblListadoEscritorios.Appearance = appearance7;
-            this.lblListadoEscritorios.AutoSize = true;
-            this.lblListadoEscritorios.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.lblListadoEscritorios.Location = new System.Drawing.Point(14, 29);
-            this.lblListadoEscritorios.Name = "lblListadoEscritorios";
-            this.lblListadoEscritorios.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblListadoEscritorios.Size = new System.Drawing.Size(60, 14);
-            this.lblListadoEscritorios.TabIndex = 42;
-            this.lblListadoEscritorios.Text = "Escritorios:";
-            this.lblListadoEscritorios.UseMnemonic = false;
+            this.LblListadoEscritorios.Appearance = appearance7;
+            this.LblListadoEscritorios.AutoSize = true;
+            this.LblListadoEscritorios.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.LblListadoEscritorios.Location = new System.Drawing.Point(14, 29);
+            this.LblListadoEscritorios.Name = "LblListadoEscritorios";
+            this.LblListadoEscritorios.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.LblListadoEscritorios.Size = new System.Drawing.Size(58, 13);
+            this.LblListadoEscritorios.TabIndex = 42;
+            this.LblListadoEscritorios.Text = "Escritorios:";
+            this.LblListadoEscritorios.UseMnemonic = false;
             // 
             // GridEscritorios
             // 
             this.GridEscritorios.Location = new System.Drawing.Point(84, 24);
             this.GridEscritorios.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.GridEscritorios.Name = "GridEscritorios";
-            this.GridEscritorios.OrbSeparador = Infragistics.Win.UltraWinGrid.SpecialRowSeparator.FilterRow;
+            this.GridEscritorios.Orbita.CampoPosicionable = null;
+            this.GridEscritorios.Orbita.Filas.TipoSeleccion = null;
+            this.GridEscritorios.Orbita.MostrarToolAñadir = true;
+            this.GridEscritorios.Orbita.MostrarToolCiclico = false;
+            this.GridEscritorios.Orbita.MostrarToolEditar = false;
+            this.GridEscritorios.Orbita.MostrarToolExportar = false;
+            this.GridEscritorios.Orbita.MostrarToolLimpiarFiltros = false;
+            this.GridEscritorios.Orbita.MostrarToolRefrescar = false;
             this.GridEscritorios.Size = new System.Drawing.Size(279, 112);
             this.GridEscritorios.TabIndex = 41;
-            this.OrbToolTip.SetToolTip(this.GridEscritorios, resources.GetString("GridEscritorios.ToolTip"));
-            this.GridEscritorios.OrbCeldaFinEdicion += new Orbita.Controles.Grid.OrbitaGrid.CeldaFinEdicionHandler(this.GridEscritorios_OrbCeldaFinEdicion);
-            this.GridEscritorios.OrbToolBarClick += new Orbita.Controles.Grid.OrbitaGrid.ToolBarClickHandler(this.GridEscritorios_OrbToolbarClick);
-            this.GridEscritorios.OrbBotonEliminarFilaClick += new Orbita.Controles.Grid.OrbitaGrid.OrbDelegadoEliminarFila(this.GridEscritorios_OrbBotonEliminarFilaClick);
-            this.GridEscritorios.OrbBotonAñadirClick += new Orbita.Controles.Grid.OrbitaGrid.OrbDelegadoAñadir(this.GridEscritorios_OrbBotonAñadirClick);
+            this.toolTip.SetToolTip(this.GridEscritorios, resources.GetString("GridEscritorios.ToolTip"));
             // 
             // PnlEscritorios
             // 
-            this.PnlEscritorios.Controls.Add(this.orbitaLabel5);
+            this.PnlEscritorios.Controls.Add(this.LblExplicacion);
             this.PnlEscritorios.Controls.Add(this.ImgEscritorios);
             this.PnlEscritorios.Dock = System.Windows.Forms.DockStyle.Top;
             this.PnlEscritorios.Location = new System.Drawing.Point(0, 0);
@@ -335,23 +362,23 @@
             this.PnlEscritorios.Size = new System.Drawing.Size(371, 100);
             this.PnlEscritorios.TabIndex = 36;
             // 
-            // orbitaLabel5
+            // LblExplicacion
             // 
             appearance8.BackColor = System.Drawing.Color.Transparent;
             appearance8.ForeColor = System.Drawing.Color.Black;
             appearance8.TextHAlignAsString = "Left";
             appearance8.TextVAlignAsString = "Top";
-            this.orbitaLabel5.Appearance = appearance8;
-            this.orbitaLabel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.orbitaLabel5.Location = new System.Drawing.Point(84, 21);
-            this.orbitaLabel5.Name = "orbitaLabel5";
-            this.orbitaLabel5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.orbitaLabel5.Size = new System.Drawing.Size(258, 54);
-            this.orbitaLabel5.TabIndex = 36;
-            this.orbitaLabel5.Text = "Llamamos escritorio a la disposición de los formularios abiertos en la aplicación" +
+            this.LblExplicacion.Appearance = appearance8;
+            this.LblExplicacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.LblExplicacion.Location = new System.Drawing.Point(84, 21);
+            this.LblExplicacion.Name = "LblExplicacion";
+            this.LblExplicacion.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.LblExplicacion.Size = new System.Drawing.Size(258, 54);
+            this.LblExplicacion.TabIndex = 36;
+            this.LblExplicacion.Text = "Llamamos escritorio a la disposición de los formularios abiertos en la aplicación" +
                 ".\r\nMediante este asistente podemos crear nuevos escritorios o eliminar existente" +
                 "s.";
-            this.orbitaLabel5.UseMnemonic = false;
+            this.LblExplicacion.UseMnemonic = false;
             // 
             // ImgEscritorios
             // 
@@ -362,86 +389,94 @@
             this.ImgEscritorios.TabIndex = 34;
             this.ImgEscritorios.TabStop = false;
             // 
-            // lblExplicacionEscritorios
+            // TabControl
             // 
-            this.lblExplicacionEscritorios.Controls.Add(this.ultraTabSharedControlsPage1);
-            this.lblExplicacionEscritorios.Controls.Add(this.ultraTabPageControl1);
-            this.lblExplicacionEscritorios.Controls.Add(this.ultraTabPageControl2);
-            this.lblExplicacionEscritorios.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblExplicacionEscritorios.Location = new System.Drawing.Point(0, 0);
-            this.lblExplicacionEscritorios.Name = "lblExplicacionEscritorios";
-            this.lblExplicacionEscritorios.SharedControlsPage = this.ultraTabSharedControlsPage1;
-            this.lblExplicacionEscritorios.Size = new System.Drawing.Size(375, 296);
-            this.lblExplicacionEscritorios.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.PropertyPage2003;
-            this.lblExplicacionEscritorios.TabIndex = 37;
-            ultraTab1.TabPage = this.ultraTabPageControl1;
+            this.TabControl.Controls.Add(this.TabPageShared);
+            this.TabControl.Controls.Add(this.TabPage1);
+            this.TabControl.Controls.Add(this.TabPage2);
+            this.TabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TabControl.Location = new System.Drawing.Point(0, 0);
+            this.TabControl.Name = "TabControl";
+            this.TabControl.SharedControlsPage = this.TabPageShared;
+            this.TabControl.Size = new System.Drawing.Size(375, 296);
+            this.TabControl.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.PropertyPage2003;
+            this.TabControl.TabIndex = 37;
+            ultraTab1.TabPage = this.TabPage1;
             ultraTab1.Text = "General";
-            ultraTab2.TabPage = this.ultraTabPageControl2;
+            ultraTab2.TabPage = this.TabPage2;
             ultraTab2.Text = "Escritorios";
-            this.lblExplicacionEscritorios.Tabs.AddRange(new Infragistics.Win.UltraWinTabControl.UltraTab[] {
+            this.TabControl.Tabs.AddRange(new Infragistics.Win.UltraWinTabControl.UltraTab[] {
             ultraTab1,
             ultraTab2});
             // 
-            // ultraTabSharedControlsPage1
+            // TabPageShared
             // 
-            this.ultraTabSharedControlsPage1.Location = new System.Drawing.Point(-10000, -10000);
-            this.ultraTabSharedControlsPage1.Name = "ultraTabSharedControlsPage1";
-            this.ultraTabSharedControlsPage1.Size = new System.Drawing.Size(371, 273);
+            this.TabPageShared.Location = new System.Drawing.Point(-10000, -10000);
+            this.TabPageShared.Name = "TabPageShared";
+            this.TabPageShared.Size = new System.Drawing.Size(371, 273);
             // 
             // FrmGestionEscritorios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(395, 359);
-            this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Modificacion;
+            this.ModoAperturaFormulario = global::Orbita.Controles.VA.ModoAperturaFormulario.Modificacion;
             this.Name = "FrmGestionEscritorios";
             this.Text = "Gestión de escritorios";
-            this.pnlInferiorPadre.ResumeLayout(false);
-            this.pnlPanelPrincipalPadre.ResumeLayout(false);
-            this.ultraTabPageControl1.ResumeLayout(false);
+            this.PnlInferiorPadre.ResumeLayout(false);
+            this.PnlBotonesPadre.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ChkToolTip)).EndInit();
+            this.PnlPanelPrincipalPadre.ResumeLayout(false);
+            this.TabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GrpConfigEscritorio)).EndInit();
             this.GrpConfigEscritorio.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ChkAnclaje)).EndInit();
             this.PnlOpcionesEscritorios.ResumeLayout(false);
+            this.PnlOpcionesEscritorios.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkPreferenciaMaximizado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CboEscritorios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkAutoAbrirFoms)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CheckHabilitado)).EndInit();
             this.PnlGeneral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ImgGeneral)).EndInit();
-            this.ultraTabPageControl2.ResumeLayout(false);
+            this.TabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GrpListaEscritorios)).EndInit();
             this.GrpListaEscritorios.ResumeLayout(false);
             this.GrpListaEscritorios.PerformLayout();
             this.PnlEscritorios.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ImgEscritorios)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblExplicacionEscritorios)).EndInit();
-            this.lblExplicacionEscritorios.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.TabControl)).EndInit();
+            this.TabControl.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Orbita.Controles.Comunes.OrbitaUltraLabel lblHabilitado;
-        private Orbita.Controles.Comunes.OrbitaUltraCheckEditor checkHabilitado;
-        private Orbita.Controles.Comunes.OrbitaUltraLabel lblConfigEscritorio;
-        private Orbita.Controles.Comunes.OrbitaUltraLabel lblPreferenciaMaximizado;
-        private Orbita.Controles.Comunes.OrbitaUltraCheckEditor checkPreferenciaMaximizado;
-        private Orbita.Controles.Comunes.OrbitaUltraLabel lblAutoAbrirFoms;
-        private Orbita.Controles.Comunes.OrbitaUltraCheckEditor checkAutoAbrirFoms;
-        private Orbita.Controles.Combo.OrbitaUltraCombo cboEscritorios;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel LblHabilitado;
+        private Orbita.Controles.Comunes.OrbitaUltraCheckEditor CheckHabilitado;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel LblConfigEscritorio;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel LblPreferenciaMaximizado;
+        private Orbita.Controles.Comunes.OrbitaUltraCheckEditor ChkPreferenciaMaximizado;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel LblAutoAbrirFoms;
+        private Orbita.Controles.Comunes.OrbitaUltraCheckEditor ChkAutoAbrirFoms;
+        private Orbita.Controles.Combo.OrbitaUltraCombo CboEscritorios;
         private Orbita.Controles.Comunes.OrbitaPictureBox ImgGeneral;
         private Orbita.Controles.Contenedores.OrbitaUltraGroupBox GrpConfigEscritorio;
-        private Orbita.Controles.Comunes.OrbitaUltraLabel lblExplicacionGeneral;
-        private Orbita.Controles.Contenedores.OrbitaUltraTabControl lblExplicacionEscritorios;
-        private Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage ultraTabSharedControlsPage1;
-        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl1;
-        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl2;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel LblExplicacionGeneral;
+        private Orbita.Controles.Contenedores.OrbitaUltraTabControl TabControl;
+        private Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage TabPageShared;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl TabPage1;
+        private Infragistics.Win.UltraWinTabControl.UltraTabPageControl TabPage2;
         private Orbita.Controles.Contenedores.OrbitaPanel PnlGeneral;
         private Orbita.Controles.Comunes.OrbitaPictureBox ImgEscritorios;
         private Orbita.Controles.Contenedores.OrbitaUltraGroupBox GrpListaEscritorios;
         private Orbita.Controles.Contenedores.OrbitaPanel PnlEscritorios;
-        private Orbita.Controles.Comunes.OrbitaUltraLabel orbitaLabel5;
-        private Orbita.Controles.Comunes.OrbitaUltraLabel lblListadoEscritorios;
-        private Orbita.Controles.Grid.OrbitaGrid GridEscritorios;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel LblExplicacion;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel LblListadoEscritorios;
+        private Orbita.Controles.Grid.OrbitaUltraGridToolBar GridEscritorios;
         private Orbita.Controles.Contenedores.OrbitaPanel PnlOpcionesEscritorios;
-        private Orbita.Controles.Comunes.OrbitaUltraLabel lblAnclaje;
-        private Orbita.Controles.Comunes.OrbitaUltraCheckEditor checkAnclaje;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel LblAnclaje;
+        private Orbita.Controles.Comunes.OrbitaUltraCheckEditor ChkAnclaje;
     }
 }

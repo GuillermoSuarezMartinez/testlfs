@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrbitaVisorVPro));
             this.Display = new Cognex.VisionPro.Display.CogDisplay();
-            this.PnlButtonsTop = new System.Windows.Forms.Panel();
+            this.PnlButtonsTop = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.toolStripCenter = new System.Windows.Forms.ToolStrip();
             this.separadorVPro = new System.Windows.Forms.ToolStripSeparator();
             this.btnPlayStop = new System.Windows.Forms.ToolStripButton();
@@ -48,7 +48,7 @@
             this.btnOpen = new System.Windows.Forms.ToolStripButton();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.separadorArchivos = new System.Windows.Forms.ToolStripSeparator();
-            this.PnlStatusBottom = new System.Windows.Forms.Panel();
+            this.PnlStatusBottom = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.lblMensaje = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -353,7 +353,7 @@
         #endregion
 
         private Cognex.VisionPro.Display.CogDisplay Display;
-        private System.Windows.Forms.Panel PnlButtonsTop;
+        private Orbita.Controles.Contenedores.OrbitaPanel PnlButtonsTop;
         public System.Windows.Forms.ToolStrip toolStripLeft;
         private System.Windows.Forms.ToolStripButton btnOpen;
         private System.Windows.Forms.ToolStripButton btnSave;
@@ -365,7 +365,7 @@
         public System.Windows.Forms.ToolStrip toolStripRight;
         private System.Windows.Forms.ToolStripButton btnMaximize;
         private System.Windows.Forms.ToolStripButton btnInfo;
-        private System.Windows.Forms.Panel PnlStatusBottom;
+        private Orbita.Controles.Contenedores.OrbitaPanel PnlStatusBottom;
         private Orbita.Controles.Contenedores.OrbitaPanel PnlStatusVPro;
         private Cognex.VisionPro.CogDisplayStatusBarV2 DisplayStatusBar;
         private System.Windows.Forms.StatusStrip statusStrip;

@@ -1,3 +1,4 @@
+using System.Windows.Forms;
 namespace Orbita.Controles.VA
 {
     partial class FrmDetalleCamara
@@ -30,15 +31,15 @@ namespace Orbita.Controles.VA
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDetalleCamara));
             this.pnlPadre = new Orbita.Controles.Contenedores.OrbitaPanel();
-            this.lblFirmware = new System.Windows.Forms.Label();
-            this.lblIP = new System.Windows.Forms.Label();
-            this.lblCodigoModelo = new System.Windows.Forms.Label();
-            this.lblModelo = new System.Windows.Forms.Label();
-            this.lblFabricante = new System.Windows.Forms.Label();
-            this.lblColor = new System.Windows.Forms.Label();
-            this.lblResolucion = new System.Windows.Forms.Label();
-            this.pbCamara = new System.Windows.Forms.PictureBox();
-            this.lblSerial = new System.Windows.Forms.Label();
+            this.lblFirmware = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblIP = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblCodigoModelo = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblModelo = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblFabricante = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblColor = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblResolucion = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.pbCamara = new Orbita.Controles.Comunes.OrbitaPictureBox();
+            this.lblSerial = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.pnlPadre.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbCamara)).BeginInit();
             this.SuspendLayout();
@@ -137,7 +138,7 @@ namespace Orbita.Controles.VA
             this.pbCamara.Location = new System.Drawing.Point(3, 35);
             this.pbCamara.Name = "pbCamara";
             this.pbCamara.Size = new System.Drawing.Size(295, 158);
-            this.pbCamara.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbCamara.SizeMode = PictureBoxSizeMode.Zoom;
             this.pbCamara.TabIndex = 8;
             this.pbCamara.TabStop = false;
             this.pbCamara.Click += this.CerrarVentana;
@@ -172,15 +173,15 @@ namespace Orbita.Controles.VA
         #endregion
 
         private Orbita.Controles.Contenedores.OrbitaPanel pnlPadre;
-        private System.Windows.Forms.Label lblFirmware;
-        private System.Windows.Forms.Label lblIP;
-        private System.Windows.Forms.Label lblCodigoModelo;
-        private System.Windows.Forms.Label lblModelo;
-        private System.Windows.Forms.Label lblFabricante;
-        private System.Windows.Forms.Label lblColor;
-        private System.Windows.Forms.Label lblResolucion;
-        private System.Windows.Forms.PictureBox pbCamara;
-        private System.Windows.Forms.Label lblSerial;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblFirmware;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblIP;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblCodigoModelo;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblModelo;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblFabricante;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblColor;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblResolucion;
+        private Orbita.Controles.Comunes.OrbitaPictureBox pbCamara;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblSerial;
 
     }
 }

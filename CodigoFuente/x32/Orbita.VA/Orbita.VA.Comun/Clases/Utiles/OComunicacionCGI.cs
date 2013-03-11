@@ -184,6 +184,20 @@ namespace Orbita.VA.Comun
                 return resultado;
             }
         }
+
+        /// <summary>
+        /// Código de la respuesta esperada 
+        /// </summary>
+        private HttpStatusCode _CodigoRespuesta;
+        /// <summary>
+        /// Código de la respuesta esperada 
+        /// </summary>
+	    public HttpStatusCode CodigoRespuesta
+	    {
+		    get { return _CodigoRespuesta;}
+            set { _CodigoRespuesta = value; }
+	    }
+        
         #endregion
 
         #region Constructor(es)
@@ -203,7 +217,7 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OComunicacionCGI(string url, string usuario, string contraseña, string codigo, bool usaGrupoConexionSeparado, int timeOut)
+        public OComunicacionCGI(string url, string usuario, string contraseña, string codigo, bool usaGrupoConexionSeparado, int timeOut, HttpStatusCode codigoRespuesta)
         {
             this.Url = url;
             this.Usuario = usuario;
@@ -211,6 +225,7 @@ namespace Orbita.VA.Comun
             this.Codigo = codigo;
             this.UsaGrupoConexionSeparado = usaGrupoConexionSeparado;
             this.TimeOut = timeOut;
+            this.CodigoRespuesta = codigoRespuesta;
         }
         #endregion
 
@@ -251,7 +266,8 @@ namespace Orbita.VA.Comun
                 this.Stream = this.Response.GetResponseStream();
                 this.Stream.ReadTimeout = this.TimeOut;
 
-                resultado = this.Response.StatusDescription == "OK";
+                //resultado = this.Response.StatusDescription == "OK";
+                resultado = this.Response.StatusCode == this.CodigoRespuesta;
             }
             catch (Exception exception)
             {
@@ -287,6 +303,11 @@ namespace Orbita.VA.Comun
                     {
                         this.Response.Close();
                         this.Response = null;
+                    }
+
+                    if (this.Request != null)
+                    {
+                        this.Request.Abort();
                     }
 
                     resultado = true;
@@ -345,8 +366,8 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OComunicacionCGITexto(string url, string usuario, string contraseña, string codigo, bool usaGrupoConexionSeparado, int timeOut) :
-            base(url, usuario, contraseña, codigo, usaGrupoConexionSeparado, timeOut)
+        public OComunicacionCGITexto(string url, string usuario, string contraseña, string codigo, bool usaGrupoConexionSeparado, int timeOut, HttpStatusCode codigoRespuesta) :
+            base(url, usuario, contraseña, codigo, usaGrupoConexionSeparado, timeOut, codigoRespuesta)
         {
         }
         #endregion

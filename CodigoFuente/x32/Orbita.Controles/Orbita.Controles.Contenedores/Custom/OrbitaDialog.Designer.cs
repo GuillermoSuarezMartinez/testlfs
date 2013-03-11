@@ -33,7 +33,6 @@ namespace Orbita.Controles.Contenedores
             // 
             // toolTip
             // 
-            this.toolTip.AutomaticDelay = 1000;
             this.toolTip.ShowAlways = true;
             // 
             // OrbitaDialog
@@ -46,10 +45,9 @@ namespace Orbita.Controles.Contenedores
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKeyPress);
             this.ResumeLayout(false);
-
         }
         #endregion
 
-        Comunes.OrbitaToolTip toolTip;
+        protected Comunes.OrbitaToolTip toolTip;
     }
 }

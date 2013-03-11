@@ -23,7 +23,7 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Tipo de botón.
         /// </summary>
-        Orbita.Controles.Shared.TipoBoton tipo;
+        TipoBoton tipo;
         EstiloBoton estilo;
         #endregion
 
@@ -37,54 +37,35 @@ namespace Orbita.Controles.Comunes
 
         #region Propiedades
         [System.ComponentModel.Description("")]
-        public Orbita.Controles.Shared.TipoBoton Tipo
+        public TipoBoton Tipo
         {
             get { return this.tipo; }
             set
             {
                 this.tipo = value;
-                //switch (this.tipo)
-                //{
-                //    case Orbita.Controles.Shared.TipoBoton.Aceptar:
-                //    case Orbita.Controles.Shared.TipoBoton.Cancelar:
-                //    case Orbita.Controles.Shared.TipoBoton.Cerrar:
-                //    case Orbita.Controles.Shared.TipoBoton.Guardar:
-                //    case Orbita.Controles.Shared.TipoBoton.Descartar:
-                //        int altoAncho = 18;
-                //        if (this.estilo != EstiloBoton.Pequeño)
-                //        {
-                //            altoAncho = 20;
-                //        }
-                //        this.control.ImageSize = new System.Drawing.Size(altoAncho, altoAncho);
-                //        break;
-                //    case Orbita.Controles.Shared.TipoBoton.Normal:
-                //    default:
-                //        this.control.ImageSize = System.Drawing.Size.Empty;
-                //        break;
-                //}
                 switch (this.tipo)
                 {
-                    case Orbita.Controles.Shared.TipoBoton.Aceptar:
+                    case TipoBoton.Aceptar:
                         this.control.Appearance.Image = Orbita.Controles.Comunes.Properties.Resources.btnAceptarEstandar24;
                         this.control.Text = "Aceptar";
                         break;
-                    case Orbita.Controles.Shared.TipoBoton.Cancelar:
+                    case TipoBoton.Cancelar:
                         this.control.Appearance.Image = Orbita.Controles.Comunes.Properties.Resources.btnCerrarEstandar24;
                         this.control.Text = "Cancelar";
                         break;
-                    case Orbita.Controles.Shared.TipoBoton.Cerrar:
+                    case TipoBoton.Cerrar:
                         this.control.Appearance.Image = Orbita.Controles.Comunes.Properties.Resources.btnCerrarEstandar24;
                         this.control.Text = "Cerrar";
                         break;
-                    case Orbita.Controles.Shared.TipoBoton.Guardar:
+                    case TipoBoton.Guardar:
                         this.control.Appearance.Image = Orbita.Controles.Comunes.Properties.Resources.btnGuardarEstandar24;
                         this.control.Text = "Guardar";
                         break;
-                    case Orbita.Controles.Shared.TipoBoton.Descartar:
+                    case TipoBoton.Descartar:
                         this.control.Appearance.Image = Orbita.Controles.Comunes.Properties.Resources.btnDescartarEstandar24;
                         this.control.Text = "Descartar";
                         break;
-                    case Orbita.Controles.Shared.TipoBoton.Normal:
+                    case TipoBoton.Normal:
                     default:
                         this.control.Appearance.Image = null;
                         this.control.Text = this.control.ToString();
@@ -117,8 +98,6 @@ namespace Orbita.Controles.Comunes
                         break;
                     case EstiloBoton.Pequeño:
                     default:
-                        alto = 23;
-                        tamañoImagen = 18;
                         break;
                 }
                 this.control.ImageSize = new System.Drawing.Size(tamañoImagen, tamañoImagen);
@@ -135,7 +114,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeTipo()
         {
-            return (this.Tipo != Orbita.Controles.Shared.TipoBoton.Normal);
+            return (this.Tipo != TipoBoton.Normal);
         }
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeEstilo()
@@ -145,7 +124,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetTipo()
         {
-            this.Tipo = Orbita.Controles.Shared.TipoBoton.Normal;
+            this.Tipo = TipoBoton.Normal;
         }
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetEstilo()
@@ -155,10 +134,6 @@ namespace Orbita.Controles.Comunes
         #endregion
 
         #region Métodos públicos
-        /// <summary>
-        /// Determina el número de propiedades modificadas.
-        /// </summary>
-        /// <returns></returns>
         public override string ToString()
         {
             return null;

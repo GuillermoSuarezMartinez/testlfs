@@ -165,7 +165,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         public string SNivelLog
         {
-            get { return string.Format(CultureInfo.CurrentCulture, " {0}", this.nivelLog).ToUpper(CultureInfo.CurrentCulture); }
+            get { return this.nivelLog.ToString().PadRight(5).ToUpper(CultureInfo.CurrentCulture); }
         }
         /// <summary>
         /// Dia y hora de entrada en el registro. Si no  explicitamente

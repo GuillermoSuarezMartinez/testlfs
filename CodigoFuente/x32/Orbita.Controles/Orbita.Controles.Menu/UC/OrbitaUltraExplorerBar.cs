@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Controles.Menu
+// Assembly         : Orbita.Controles.Contenedores
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -9,13 +9,21 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System.ComponentModel;
 namespace Orbita.Controles.Menu
 {
-    /// <summary>
-    /// Orbita.Controles.Menu.OrbitaUltraExplorerBar.
-    /// </summary>
     public partial class OrbitaUltraExplorerBar : Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar
     {
+        public class ControlNuevaDefinicion : OUltraExplorerBar
+        {
+            public ControlNuevaDefinicion(OrbitaUltraExplorerBar sender)
+                : base(sender) { }
+        };
+
+        #region Atributos
+        ControlNuevaDefinicion definicion;
+        #endregion
+
         #region Constructor
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaUltraExplorerBar.
@@ -24,6 +32,27 @@ namespace Orbita.Controles.Menu
             : base()
         {
             InitializeComponent();
+            InitializeAttributes();
+        }
+        #endregion
+
+        #region Propiedades
+        [System.ComponentModel.Category("Gestión de controles")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public ControlNuevaDefinicion OI
+        {
+            get { return this.definicion; }
+            set { this.definicion = value; }
+        }
+        #endregion
+
+        #region Métodos privados
+        void InitializeAttributes()
+        {
+            if (this.definicion == null)
+            {
+                this.definicion = new ControlNuevaDefinicion(this);
+            }
         }
         #endregion
     }

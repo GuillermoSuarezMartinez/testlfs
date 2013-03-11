@@ -9,29 +9,50 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System.ComponentModel;
 namespace Orbita.Controles.Comunes
 {
     public partial class OrbitaUltraSplitter : Infragistics.Win.Misc.UltraSplitter
     {
+        public class ControlNuevaDefinicion : OUltraSplitter
+        {
+            public ControlNuevaDefinicion(OrbitaUltraSplitter sender)
+                : base(sender) { }
+        };
+
+        #region Atributos
+        ControlNuevaDefinicion definicion;
+        #endregion
+
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraSplitter.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
         /// </summary>
         public OrbitaUltraSplitter()
             : base()
         {
             InitializeComponent();
-            InitializeProperties();
+            InitializeAttributes();
+        }
+        #endregion
+
+        #region Propiedades
+        [System.ComponentModel.Category("Gestión de controles")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public ControlNuevaDefinicion OI
+        {
+            get { return this.definicion; }
+            set { this.definicion = value; }
         }
         #endregion
 
         #region Métodos privados
-        /// <summary>
-        /// Inicializar propiedades.
-        /// </summary>
-        void InitializeProperties()
+        void InitializeAttributes()
         {
-            this.Appearance.BackColor = this.Appearance.BackColor2 = System.Drawing.SystemColors.Control;
+            if (this.definicion == null)
+            {
+                this.definicion = new ControlNuevaDefinicion(this);
+            }
         }
         #endregion
     }

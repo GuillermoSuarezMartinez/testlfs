@@ -11,6 +11,7 @@
 //***********************************************************************
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -27,6 +28,24 @@ namespace Orbita.Trazabilidad
         /// Nivel de logger.
         /// </summary>
         NivelLog nivelLog;
+        /// <summary>
+        /// Identificador alfanumérico de logger.
+        /// Trazable en la trama. Útil si varios logger escriben en el mismo fichero.
+        /// </summary>
+        string sid;
+        /// <summary>
+        /// Atributo asociada al delegado de traza de nivel y SID.
+        /// </summary>
+        NivelSID trazarNivel;
+        #endregion
+
+        #region Delegado
+        /// <summary>
+        /// Delegado dinámico de traza de nivel y SID.
+        /// </summary>
+        /// <param name="item">Item de entrada.</param>
+        /// <returns>Cadena de nivel formateada.</returns>
+        protected delegate string NivelSID(ItemLog item);
         #endregion
 
         #region Eventos
@@ -73,6 +92,30 @@ namespace Orbita.Trazabilidad
         {
             get { return this.nivelLog; }
             set { this.nivelLog = value; }
+        }
+        /// <summary>
+        /// Identificador alfanumérico de logger.
+        /// </summary>
+        public string SID
+        {
+            get { return this.sid; }
+            set 
+            { 
+                this.sid = value;
+                // Asignación del método delegado dinámico de traza de nivel.
+                this.trazarNivel = new NivelSID(Nivel);
+            }
+        }
+        #endregion
+
+        #region Propiedades protegidas
+        /// <summary>
+        /// Propiedad asociada al delegado de traza de nivel y SID.
+        /// </summary>
+        protected NivelSID TrazarNivel
+        {
+            get { return this.trazarNivel; }
+            set { this.trazarNivel = value; }
         }
         #endregion
 
@@ -565,6 +608,18 @@ namespace Orbita.Trazabilidad
             {
                 ErrorLogger(this, e);
             }
+        }
+        #endregion
+
+        #region Métodos privados
+        /// <summary>
+        /// Método privado asociado al evento NivelSID.
+        /// </summary>
+        /// <param name="item">Item de entrada.</param>
+        /// <returns>Nivel de log + SID formateado.</returns>
+        string Nivel(ItemLog item)
+        {
+            return string.Format(CultureInfo.CurrentCulture, "{0} {1}", item.SNivelLog, this.sid);
         }
         #endregion
     }

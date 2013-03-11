@@ -70,9 +70,9 @@
             this.lblPosicion.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblPosicion.Location = new System.Drawing.Point(0, 0);
             this.lblPosicion.Name = "lblPosicion";
-            this.lblPosicion.Orbita.Apariencia.AlineacionTextoHorizontal = Orbita.Controles.Comunes.AlineacionHorizontal.Centro;
-            this.lblPosicion.Orbita.Apariencia.AlineacionTextoVertical = Orbita.Controles.Comunes.AlineacionVertical.Medio;
-            this.lblPosicion.Orbita.Apariencia.ColorFondo = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.lblPosicion.OI.Apariencia.AlineacionTextoHorizontal = Orbita.Controles.Comunes.AlineacionHorizontal.Centro;
+            this.lblPosicion.OI.Apariencia.AlineacionTextoVertical = Orbita.Controles.Comunes.AlineacionVertical.Medio;
+            this.lblPosicion.OI.Apariencia.ColorFondo = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.lblPosicion.Size = new System.Drawing.Size(175, 17);
             this.lblPosicion.TabIndex = 2;
             this.lblPosicion.Text = "Nueva posición";

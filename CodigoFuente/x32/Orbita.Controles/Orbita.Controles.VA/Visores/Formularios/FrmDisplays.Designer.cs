@@ -29,43 +29,63 @@
         private void InitializeComponent()
         {
             this.layFondoVisores = new Orbita.Controles.Contenedores.OrbitaTableLayoutPanel();
-            this.pnlPanelPrincipalPadre.SuspendLayout();
+            this.PnlPanelPrincipalPadre.SuspendLayout();
+            this.PnlInferiorPadre.SuspendLayout();
+            this.PnlBotonesPadre.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkDock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkToolTip)).BeginInit();
             this.SuspendLayout();
             // 
-            // pnlInferiorPadre
+            // PnlPanelPrincipalPadre
             // 
-            this.pnlInferiorPadre.Location = new System.Drawing.Point(10, 197);
-            this.pnlInferiorPadre.Size = new System.Drawing.Size(514, 43);
+            this.PnlPanelPrincipalPadre.Controls.Add(this.layFondoVisores);
+            this.PnlPanelPrincipalPadre.Size = new System.Drawing.Size(514, 187);
             // 
-            // pnlPanelPrincipalPadre
+            // btnCancelar
             // 
-            this.pnlPanelPrincipalPadre.Controls.Add(this.layFondoVisores);
-            this.pnlPanelPrincipalPadre.Size = new System.Drawing.Size(514, 187);
+            this.btnCancelar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             // 
-            // layFondoCamaras
+            // btnGuardar
+            // 
+            this.btnGuardar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            // 
+            // PnlInferiorPadre
+            // 
+            this.PnlInferiorPadre.Location = new System.Drawing.Point(10, 197);
+            this.PnlInferiorPadre.Size = new System.Drawing.Size(514, 43);
+            // 
+            // PnlBotonesPadre
+            // 
+            this.PnlBotonesPadre.Location = new System.Drawing.Point(312, 0);
+            // 
+            // layFondoVisores
             // 
             this.layFondoVisores.ColumnCount = 1;
             this.layFondoVisores.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.layFondoVisores.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layFondoVisores.Location = new System.Drawing.Point(0, 0);
-            this.layFondoVisores.Name = "layFondoCamaras";
+            this.layFondoVisores.Name = "layFondoVisores";
             this.layFondoVisores.RowCount = 1;
             this.layFondoVisores.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.layFondoVisores.Size = new System.Drawing.Size(514, 187);
             this.layFondoVisores.TabIndex = 0;
             // 
-            // FrmMonitorizacionCamaras
+            // FrmDisplays
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 250);
-            this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Monitorizacion;
+            this.ModoAperturaFormulario = global::Orbita.Controles.VA.ModoAperturaFormulario.Monitorizacion;
             this.MostrarBotones = false;
-            this.Name = "FrmMonitorizacionCamaras";
+            this.Name = "FrmDisplays";
             this.RecordarPosicion = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Monitorización de cámaras";
-            this.pnlPanelPrincipalPadre.ResumeLayout(false);
+            this.PnlPanelPrincipalPadre.ResumeLayout(false);
+            this.PnlInferiorPadre.ResumeLayout(false);
+            this.PnlBotonesPadre.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ChkDock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkToolTip)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -9,21 +9,32 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System.ComponentModel;
 namespace Orbita.Controles.Comunes
 {
-    [System.Serializable]
     public partial class OrbitaUltraDockManager : Infragistics.Win.UltraWinDock.UltraDockManager
     {
-        #region Constructores
+        public class ControlNuevaDefinicion : OUltraDockManager
+        {
+            public ControlNuevaDefinicion(OrbitaUltraDockManager sender)
+                : base(sender) { }
+        };
+
+        #region Atributos
+        ControlNuevaDefinicion definicion;
+        #endregion
+
+        #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraDockManager.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
         /// </summary>
         public OrbitaUltraDockManager()
             : base()
         {
             InitializeComponent();
+            InitializeAttributes();
         }
-        /// <summary>
+               /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraDockManager.
         /// </summary>
         /// <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
@@ -37,6 +48,7 @@ namespace Orbita.Controles.Comunes
             }
             contenedor.Add(this);
             InitializeComponent();
+            InitializeAttributes();
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraDockManager.
@@ -47,6 +59,27 @@ namespace Orbita.Controles.Comunes
             : base(info, context)
         {
             InitializeComponent();
+            InitializeAttributes();
+        }
+        #endregion
+
+        #region Propiedades
+        [System.ComponentModel.Category("Gestión de controles")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public ControlNuevaDefinicion OI
+        {
+            get { return this.definicion; }
+            set { this.definicion = value; }
+        }
+        #endregion
+
+        #region Métodos privados
+        void InitializeAttributes()
+        {
+            if (this.definicion == null)
+            {
+                this.definicion = new ControlNuevaDefinicion(this);
+            }
         }
         #endregion
 

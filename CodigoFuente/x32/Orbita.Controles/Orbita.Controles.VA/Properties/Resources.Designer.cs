@@ -116,6 +116,13 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ImgAccion24 {
+            get {
+                object obj = ResourceManager.GetObject("ImgAccion24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap ImgChat16 {
             get {
                 object obj = ResourceManager.GetObject("ImgChat16", resourceCulture);
@@ -235,9 +242,30 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ImgInputText32 {
+            get {
+                object obj = ResourceManager.GetObject("ImgInputText32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ImgInputText64 {
+            get {
+                object obj = ResourceManager.GetObject("ImgInputText64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap imgLogo {
             get {
                 object obj = ResourceManager.GetObject("imgLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ImgLupa24 {
+            get {
+                object obj = ResourceManager.GetObject("ImgLupa24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -31,11 +31,6 @@ namespace Orbita.VA.Hardware
         /// Lista de todas las vistas de hardware del sistema
         /// </summary>
         public static Dictionary<string, OVistaHardware> Vistas;
-
-        /// <summary>
-        /// Informa de la posibilidad de acceder a las variables a través de vistas
-        /// </summary>
-        internal static bool UtilizaVistas;
         #endregion
 
         #region Método(s) público(s)
@@ -44,18 +39,8 @@ namespace Orbita.VA.Hardware
         /// </summary>
         public static void Constructor()
         {
-            Constructor(true);
-        }
-
-        /// <summary>
-        /// Construye los campos de la clase
-        /// </summary>
-        public static void Constructor(bool utilizaVistas)
-        {
-            UtilizaVistas = utilizaVistas;
-
             ListaHardware = new Dictionary<string, IHardware>();
-            if (UtilizaVistas)
+            if (OSistemaManager.IntegraMaquinaEstados)
             {
                 Vistas = new Dictionary<string, OVistaHardware>();
             }
@@ -64,7 +49,7 @@ namespace Orbita.VA.Hardware
             OCamaraManager.Constructor();
 
             // Consulta de todas las vistas existentes en el sistema
-            if (UtilizaVistas)
+            if (OSistemaManager.IntegraMaquinaEstados)
             {
                 DataTable dtVista = Orbita.VA.Comun.AppBD.GetVistas();
                 if (dtVista.Rows.Count > 0)
@@ -256,7 +241,7 @@ namespace Orbita.VA.Hardware
             string alias = codAlias;
 
             // Cambio el alias al de la vista
-            if ((codVista != string.Empty) && (UtilizaVistas) && (Vistas is Dictionary<string, OVistaHardware>))
+            if ((codVista != string.Empty) && (OSistemaManager.IntegraMaquinaEstados) && (Vistas is Dictionary<string, OVistaHardware>))
             {
                 // Cambio el alias
                 OVistaHardware vistaHardware;

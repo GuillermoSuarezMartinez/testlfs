@@ -20,25 +20,6 @@
     <EnableCodeInspectionOnBuild>false</EnableCodeInspectionOnBuild>
     <EnableCodeAnalysisOnBuild>false</EnableCodeAnalysisOnBuild>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
@@ -120,11 +101,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\EventArgs\Copia de ORowEventArgs.cs" />
     <Compile Include="Clases\EventArgs\OToolClickCollectionEventArgs.cs" />
     <Compile Include="Clases\EventArgs\ORowEventArgs.cs" />
     <Compile Include="Clases\EventArgs\OPropertyExtendedChangedEventArgs.cs" />
     <Compile Include="Clases\EventArgs\OToolClickEventArgs.cs" />
-    <Compile Include="Clases\OColoresCorporativos.cs" />
     <Compile Include="Clases\OColumnaCalculada.cs" />
     <Compile Include="Clases\OEstiloColumna.cs" />
     <Compile Include="Clases\OMascara.cs" />
@@ -276,8 +257,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)Orbita.Controles.Grid.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(PROGRAMFILES)\MSBuild\FxCop Integrator\FxCopIntegrator.targets" Condition="Exists('$(PROGRAMFILES)\MSBuild\FxCop Integrator\FxCopIntegrator.targets')" />
   <Target Name="AfterBuild">

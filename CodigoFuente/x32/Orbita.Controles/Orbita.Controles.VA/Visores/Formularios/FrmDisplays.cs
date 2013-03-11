@@ -288,7 +288,7 @@ namespace Orbita.Controles.VA
 
                             // Añado propiedades especificas a los displays para su visualización
                             display.MostrarBtnAbrir = false;
-                            display.MostrarBtnGuardar = true;
+                            display.MostrarbtnGuardar = true;
                             display.MostrarBtnReproduccion = this._ControlCamara;
                             display.MostrarBtnSnap = this._ControlCamara;
                             display.MostrarBtnInfo = true;

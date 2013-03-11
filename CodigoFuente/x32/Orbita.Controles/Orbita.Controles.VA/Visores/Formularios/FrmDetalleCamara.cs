@@ -11,7 +11,6 @@
 //***********************************************************************
 using System;
 using System.Data;
-using Orbita.Controles;
 using System.IO;
 using Orbita.VA.Hardware;
 using Orbita.VA.Comun;
@@ -48,7 +47,7 @@ namespace Orbita.Controles.VA
         {
             try
             {
-                DataTable dt = Orbita.VA.Hardware.AppBD.GetCamara(this.Codigo);
+                DataTable dt = global::Orbita.VA.Hardware.AppBD.GetCamara(this.Codigo);
                 this.lblCodigoModelo.Text = dt.Rows[0]["CodTipoHardware"].ToString();
                 this.lblFabricante.Text = "Fabricante: " + dt.Rows[0]["Fabricante"].ToString();
                 this.lblModelo.Text = "Modelo: " + dt.Rows[0]["Modelo"].ToString();

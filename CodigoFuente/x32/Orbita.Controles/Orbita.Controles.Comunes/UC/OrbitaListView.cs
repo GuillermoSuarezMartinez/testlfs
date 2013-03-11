@@ -17,7 +17,7 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Colección de todos los encabezados de columna que aparecen en el control.
         /// </summary>
-        OColumnHeaderCollection columnaHeadersEx;
+        OColumnHeaderCollection columnas;
         #endregion
 
         #region Constructor
@@ -38,7 +38,7 @@ namespace Orbita.Controles.Comunes
         /// </summary>
         public OColumnHeaderCollection Columnas
         {
-            get { return this.columnaHeadersEx; }
+            get { return this.columnas; }
         }
         #endregion
 
@@ -55,10 +55,10 @@ namespace Orbita.Controles.Comunes
         void InitializeAttributes()
         {
             // Crear una nueva colección que contenga las columnas.
-            this.columnaHeadersEx = new OColumnHeaderCollection(this);
+            this.columnas = new OColumnHeaderCollection(this);
             // Crear un menu de contexto.
             base.ContextMenu = new System.Windows.Forms.ContextMenu();
-            base.ContextMenu.MenuItems.Add(this.columnaHeadersEx.ContextMenu);
+            base.ContextMenu.MenuItems.Add(this.columnas.ContextMenu);
             base.ContextMenu.Popup += new System.EventHandler(ContextMenuPopup);
             // Modificar la vista.
             base.View = System.Windows.Forms.View.Details;

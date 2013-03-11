@@ -11,6 +11,7 @@
 //***********************************************************************
 using System;
 using Infragistics.Win.UltraWinGrid;
+using System.ComponentModel;
 namespace Orbita.Controles.Grid
 {
     [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
@@ -39,14 +40,9 @@ namespace Orbita.Controles.Grid
         int alto;
         bool permitirBorrar;
         TipoSeleccionFila tipoSeleccion;
-        public TipoSeleccionFila TipoSeleccion
-        {
-            get { return this.tipoSeleccion; }
-            set { this.tipoSeleccion = value; }
-        }
         #endregion
 
-        #region Delegado(s)
+        #region Delegado
         /// <summary>
         /// Delegado útil para que el manejador de evento eliminar ejecute el método de clase adecuado.
         /// </summary>
@@ -204,7 +200,12 @@ namespace Orbita.Controles.Grid
                 }
             }
         }
-        [System.ComponentModel.Description("Determina si se permite eliminar filas.")]
+        [Browsable(false)]
+        public TipoSeleccionFila TipoSeleccion
+        {
+            get { return this.tipoSeleccion; }
+            set { this.tipoSeleccion = value; }
+        }
         #endregion
 
         #region Métodos protegidos
@@ -308,7 +309,6 @@ namespace Orbita.Controles.Grid
                 fila.Update();
             }
         }
-
         //public bool Eliminar(bool prompt)
         //{
         //    if (prompt)

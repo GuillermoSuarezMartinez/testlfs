@@ -18,11 +18,12 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
-using Orbita.Controles.Contenedores;
-using Orbita.Controles.Grid;
 using Orbita.Controles.Combo;
+using Orbita.Controles.Grid;
 using Orbita.Controles.Comunes;
+using Orbita.Controles.Contenedores;
 using Orbita.Utiles;
+using Orbita.Controles.Editor;
 using Orbita.VA.Comun;
 
 namespace Orbita.Controles.VA
@@ -119,14 +120,14 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Comprueba que hay una fila correctamente activada para lanzar un nuevo formulario
         /// </summary>
-        /// <param name="grid">OrbitaGrid que se desea comprobar</param>
+        /// <param name="grid">OrbitaUltraGrid que se desea comprobar</param>
         /// <returns>True si se puede lanzar un nuevo formulario basado en la selección; false en caso contrario</returns>
-        public static bool ComprobarGrid(OrbitaGrid grid)
+        public static bool ComprobarGrid(OrbitaUltraGridToolBar grid)
         {
-            return ((grid.OrbGrid.ActiveRow != null) &&
-                    (grid.OrbGrid.ActiveRow.IsDataRow) &&
-                    (!grid.OrbGrid.ActiveRow.IsFilteredOut) &&
-                    (!grid.OrbGrid.ActiveRow.IsAddRow));
+            return ((grid.Grid.ActiveRow != null) &&
+                    (grid.Grid.ActiveRow.IsDataRow) &&
+                    (!grid.Grid.ActiveRow.IsFilteredOut) &&
+                    (!grid.Grid.ActiveRow.IsAddRow));
         }
         /// <summary>
         /// Comprueba que la fila cumple todos los requisitos para trabajar con los campos de la misma
@@ -167,10 +168,10 @@ namespace Orbita.Controles.VA
             cols.Add(new OEstiloColumna("Descripcion", "Descripción"));
 
             // Se rellena el grid
-            combo.OrbFormatear(table, cols, "Descripcion", "Descripcion");
+            //*//combo.Orbita.Formatear(table, cols, "Descripcion", "Descripcion");
 
             // Se establece el valor actual
-            combo.UltraCombo.Value = OAtributoEnumerado.GetStringValue((Enum)valorDefecto);
+            combo.OI.Valor = OAtributoEnumerado.GetStringValue((Enum)valorDefecto);
         }
         /// <summary>
         /// Carga el combo con la lista de módulos de la aplicación
@@ -200,15 +201,15 @@ namespace Orbita.Controles.VA
             cols.Add(new OEstiloColumna("Indice", "Índice"));
 
             // Se rellena el grid
-            combo.OrbFormatear(table, cols, "Descripcion", "Indice");
+            //*//combo.Orbita.Formatear(table, cols, "Descripcion", "Indice");
 
             // Se establece el valor actual
-            combo.UltraCombo.Value = valorDefecto;
+            combo.OI.Valor = valorDefecto;
 
             // Se oculta el índice
-            combo.UltraCombo.DisplayLayout.Bands[0].Columns["Indice"].Hidden = true;
-            combo.UltraCombo.DisplayLayout.Bands[0].ColHeadersVisible = false;
-            combo.UltraCombo.DisplayLayout.Bands[0].Columns["Descripcion"].AutoSizeMode = Infragistics.Win.UltraWinGrid.ColumnAutoSizeMode.VisibleRows;
+            combo.DisplayLayout.Bands[0].Columns["Indice"].Hidden = true;
+            combo.DisplayLayout.Bands[0].ColHeadersVisible = false;
+            combo.DisplayLayout.Bands[0].Columns["Descripcion"].AutoSizeMode = Infragistics.Win.UltraWinGrid.ColumnAutoSizeMode.VisibleRows;
         }
         /// <summary>
         /// Carga de un grid de un único campo
@@ -221,11 +222,11 @@ namespace Orbita.Controles.VA
         /// <param name="mascara">Máscara aplicada</param>
         /// <param name="ancho">Ancho de la columna</param>
         /// <param name="editorControl">Control con el cual se modificarán los valores</param>
-        public static void CargarGridSimple(OrbitaGrid grid, List<object> valores, Type tipo, EstiloColumna estilo, Alineacion alinear, OMascara mascara, int ancho, Control editorControl)
+        public static void CargarGridSimple(OrbitaUltraGridToolBar grid, List<object> valores, Type tipo, EstiloColumna estilo, Alineacion alinear, OMascara mascara, int ancho, Control editorControl)
         {
             // Bloqueamos el grid
-            grid.OrbGrid.BeginUpdate();
-            grid.SuspendLayout();
+            grid.Grid.BeginUpdate();
+            grid.Grid.SuspendLayout();
 
             // Creación de una nueva tabla.
             DataTable table = new DataTable("Table");
@@ -248,26 +249,26 @@ namespace Orbita.Controles.VA
             list.Add(new OEstiloColumna("Valor", "Valor", estilo, alinear, mascara, ancho, false));
 
             // Formateamos las columnas y las rellenamos de datos
-            grid.OrbFormatear(table, list);
+            grid.Orbita.Formatear(table, list);
 
             // Formato
-            grid.OrbGrid.DisplayLayout.Bands[0].ColHeadersVisible = false;
+            grid.Grid.DisplayLayout.Bands[0].ColHeadersVisible = false;
             if (editorControl != null)
             {
-                grid.OrbGrid.DisplayLayout.Bands[0].Columns[0].EditorControl = editorControl;
+                grid.Grid.DisplayLayout.Bands[0].Columns[0].EditorComponent = editorControl;
             }
 
             // Desbloqueamos el grid
-            grid.OrbGrid.EndUpdate();
+            grid.Grid.EndUpdate();
             grid.ResumeLayout();
-        }
+        }         
         /// <summary>
         /// Añade texto a un RichTextBox
         /// </summary>
         /// <param name="box"></param>
         /// <param name="text"></param>
         /// <param name="color"></param>
-        public static void RichTextBoxAppendText(RichTextBox box, string text, Color color)
+        public static void RichTextBoxAppendText(OrbitaRichTextBox box, string text, Color color)
         {
             box.SelectionStart = box.TextLength;
             box.SelectionLength = 0;
@@ -283,7 +284,7 @@ namespace Orbita.Controles.VA
         /// <param name="box"></param>
         /// <param name="text"></param>
         /// <param name="font"></param>
-        public static void RichTextBoxAppendText(RichTextBox box, string text, Font font)
+        public static void RichTextBoxAppendText(OrbitaRichTextBox box, string text, Font font)
         {
             box.SelectionStart = box.TextLength;
             box.SelectionLength = 0;
@@ -300,7 +301,7 @@ namespace Orbita.Controles.VA
         /// <param name="text"></param>
         /// <param name="color"></param>
         /// <param name="font"></param>
-        public static void RichTextBoxAppendText(RichTextBox box, string text, Color color, Font font)
+        public static void RichTextBoxAppendText(OrbitaRichTextBox box, string text, Color color, Font font)
         {
             box.SelectionStart = box.TextLength;
             box.SelectionLength = 0;

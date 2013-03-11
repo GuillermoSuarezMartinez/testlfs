@@ -28,18 +28,19 @@ namespace Orbita.Controles.Contenedores
         void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrbitaForm));
             this.toolTip = new Orbita.Controles.Comunes.OrbitaToolTip(this.components);
             this.SuspendLayout();
             // 
             // toolTip
             // 
-            this.toolTip.AutomaticDelay = 1000;
             this.toolTip.ShowAlways = true;
             // 
             // OrbitaForm
             // 
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OrbitaForm";
             this.Text = this.Name;
             this.ResumeLayout(false);
@@ -47,6 +48,6 @@ namespace Orbita.Controles.Contenedores
         }
         #endregion
 
-        Comunes.OrbitaToolTip toolTip;
+        protected Comunes.OrbitaToolTip toolTip;
     }
 }

@@ -13,9 +13,6 @@ namespace Orbita.Controles.Comunes
         /// <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
         protected override void Dispose(bool disposing)
         {
-            this.TextChanged -= new System.EventHandler(this.OrbitaTextChanged);
-            this.KeyPress -= new System.Windows.Forms.KeyPressEventHandler(this.OrbitaKeyPress);
-            this.fuente.Dispose();
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -30,14 +27,6 @@ namespace Orbita.Controles.Comunes
         void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            this.SuspendLayout();
-            // 
-            // OrbitaTextBox
-            // 
-            this.Font = new System.Drawing.Font("Franklin Gothic Book", 9F);
-            this.TextChanged += new System.EventHandler(this.OrbitaTextChanged);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OrbitaKeyPress);
-            this.ResumeLayout(false);
         }
         #endregion
     }

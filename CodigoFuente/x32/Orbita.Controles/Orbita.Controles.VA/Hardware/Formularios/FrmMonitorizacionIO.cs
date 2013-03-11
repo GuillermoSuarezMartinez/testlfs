@@ -26,7 +26,7 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Código de la tarjeta IO
         /// </summary>
-        private string Codigo;
+        private string CodHardware;
 
         /// <summary>
         /// Módulo de entradas / salidas
@@ -39,19 +39,19 @@ namespace Orbita.Controles.VA
         /// Constructor de la clase
         /// </summary>
         /// <param name="codigo">Código del dispositivo IO</param>
-        public FrmMonitorizacionIO(string codigo):
+        public FrmMonitorizacionIO(string codigo) :
             base()
         {
             InitializeComponent();
 
-            this.Codigo = codigo;
+            this.CodHardware = codigo;
             this.Text = @"Monitorización de Entradas / Salidas [" + codigo + "]";
 
-            this.imageListLarge.Images.Add("imgVariableInactiva", Orbita.Controles.VA.Properties.Resources.imgVariableInactiva32);
-            this.imageListLarge.Images.Add("imgVariableActiva", Orbita.Controles.VA.Properties.Resources.imgVariableActiva32);
+            this.ImageListLarge.Images.Add("imgVariableInactiva", global::Orbita.Controles.VA.Properties.Resources.imgVariableInactiva32);
+            this.ImageListLarge.Images.Add("imgVariableActiva", global::Orbita.Controles.VA.Properties.Resources.imgVariableActiva32);
 
-            this.imageListSmall.Images.Add("imgVariableInactiva", Orbita.Controles.VA.Properties.Resources.imgVariableInactiva24);
-            this.imageListSmall.Images.Add("imgVariableActiva", Orbita.Controles.VA.Properties.Resources.imgVariableActiva24);
+            this.ImageListSmall.Images.Add("imgVariableInactiva", global::Orbita.Controles.VA.Properties.Resources.imgVariableInactiva24);
+            this.ImageListSmall.Images.Add("imgVariableActiva", global::Orbita.Controles.VA.Properties.Resources.imgVariableActiva24);
         } 
         #endregion
 
@@ -63,12 +63,12 @@ namespace Orbita.Controles.VA
         {
             base.CargarDatosComunes();
 
-            this.Hardware = OHardwareManager.GetHardware(this.Codigo);
+            this.Hardware = OHardwareManager.GetHardware(this.CodHardware);
 
             if (this.Hardware != null)
             {
                 // Inicializamos el timer de refresco
-                this.timerRefresco.Interval = OSistemaManager.Configuracion.CadenciaMonitorizacionMilisegundos;
+                this.TimerRefresco.Interval = OSistemaManager.Configuracion.CadenciaMonitorizacionMilisegundos;
 
                 foreach (OTerminalIOBase terminalIO in this.Hardware.ListaTerminales.Values)
                 {
@@ -83,16 +83,14 @@ namespace Orbita.Controles.VA
         {
             base.EstablecerModoModificacion();
 
-            this.btnMonitorizar.Visible = true;
-            this.ListTerminales.ContextMenuStrip = menuTerminal;
-            this.timerRefresco.Enabled = true;
+            this.TimerRefresco.Enabled = true;
         }
         /// <summary>
         ///  Funciones a realizar al salir del formulario
         /// </summary>
         protected override void AccionesSalir()
         {
-            this.timerRefresco.Enabled = false;
+            this.TimerRefresco.Enabled = false;
         }
         #endregion
 
@@ -118,13 +116,13 @@ namespace Orbita.Controles.VA
 
             if (tipo != string.Empty)
             {
-                if (this.ListTerminales.Groups[tipo] == null)
+                if (this.ListView.Groups[tipo] == null)
                 {
-                    item.Group = this.ListTerminales.Groups.Add(tipo, tipo);
+                    item.Group = this.ListView.Groups.Add(tipo, tipo);
                 }
                 else
                 {
-                    item.Group = this.ListTerminales.Groups[tipo];
+                    item.Group = this.ListView.Groups[tipo];
                 }
             }
 
@@ -134,12 +132,12 @@ namespace Orbita.Controles.VA
             this.PintarItem(codigo, terminalIO.Valor, item);
 
             ListViewItem.ListViewSubItem subItemDescTerminal = new ListViewItem.ListViewSubItem();
-            subItemDescTerminal.Name = "DescTerminal";
+            subItemDescTerminal.Name = "Descripcion";
             subItemDescTerminal.Text = descripcion;
             item.SubItems.Add(subItemDescTerminal);
 
             ListViewItem.ListViewSubItem subItemHabilitadoTerminal = new ListViewItem.ListViewSubItem();
-            subItemHabilitadoTerminal.Name = "HabilitadoTerminal";
+            subItemHabilitadoTerminal.Name = "Habilitado";
             subItemHabilitadoTerminal.Text = habilitado;
             item.SubItems.Add(subItemHabilitadoTerminal);
 
@@ -148,7 +146,7 @@ namespace Orbita.Controles.VA
             subItemTipo.Text = tipo;
             item.SubItems.Add(subItemTipo);
 
-            this.ListTerminales.Items.Add(item);
+            this.ListView.Items.Add(item);
         }
 
         /// <summary>
@@ -217,7 +215,6 @@ namespace Orbita.Controles.VA
                     break;
             }
         }
-
         #endregion
 
         #region Eventos
@@ -243,7 +240,7 @@ namespace Orbita.Controles.VA
         {
             try
             {
-                foreach (ListViewItem item in this.ListTerminales.Items)
+                foreach (ListViewItem item in this.ListView.Items)
                 {
                     string codigo = item.Text;
                     OTerminalIOBase terminalIO = (OTerminalIOBase)item.Tag;
@@ -312,16 +309,16 @@ namespace Orbita.Controles.VA
                 switch (e.Tool.Key)
                 {
                     case "KeyIconosGrandes":
-                        this.ListTerminales.View = View.LargeIcon;
+                        this.ListView.View = View.LargeIcon;
                         break;
                     case "KeyIconosPequeños":
-                        this.ListTerminales.View = View.SmallIcon;
+                        this.ListView.View = View.SmallIcon;
                         break;
                     case "KeyLista":
-                        this.ListTerminales.View = View.List;
+                        this.ListView.View = View.List;
                         break;
                     case "KeyDetalles":
-                        this.ListTerminales.View = View.Details;
+                        this.ListView.View = View.Details;
                         break;
                 }
             }
@@ -338,7 +335,7 @@ namespace Orbita.Controles.VA
         /// <param name="e"></param>
         private void timerRefresco_Tick(object sender, EventArgs e)
         {
-            this.timerRefresco.Enabled = false;
+            this.TimerRefresco.Enabled = false;
             try
             {
                 this.RefrescarTodosTerminales();
@@ -347,7 +344,7 @@ namespace Orbita.Controles.VA
             {
                 OVALogsManager.Error(ModulosHardware.Monitorizacion, this.Name, exception);
             }
-            this.timerRefresco.Enabled = true;
+            this.TimerRefresco.Enabled = true;
         }
         #endregion
     }

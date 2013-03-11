@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Controles.Contenedores
+// Assembly         : Orbita.Controles.Comunes
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -9,18 +9,29 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System.ComponentModel;
 namespace Orbita.Controles.Contenedores
 {
     public partial class OrbitaUltraTabbedMdiManager : Infragistics.Win.UltraWinTabbedMdi.UltraTabbedMdiManager
     {
+        public class ControlNuevaDefinicion : OUltraTabbedMdiManager
+        {
+            public ControlNuevaDefinicion(OrbitaUltraTabbedMdiManager sender)
+                : base(sender) { }
+        };
+
+        #region Atributos
+        ControlNuevaDefinicion definicion;
+        #endregion
+
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.
-        /// </summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.
         public OrbitaUltraTabbedMdiManager()
             : base()
         {
             InitializeComponent();
+            InitializeAttributes();
             InitializeResourceStrings();
         }
         /// <summary>
@@ -37,14 +48,32 @@ namespace Orbita.Controles.Contenedores
             }
             contenedor.Add(this);
             InitializeComponent();
+            InitializeAttributes();
             InitializeResourceStrings();
         }
         #endregion
 
+        #region Propiedades
+        [System.ComponentModel.Category("Gestión de controles")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public ControlNuevaDefinicion OI
+        {
+            get { return this.definicion; }
+            set { this.definicion = value; }
+        }
+        #endregion
+
+        #region Métodos privados
+        void InitializeAttributes()
+        {
+            if (this.definicion == null)
+            {
+                this.definicion = new ControlNuevaDefinicion(this);
+            }
+        }
+        #endregion
+
         #region Métodos privados estáticos
-        /// <summary>
-        /// InitializeResourceStrings.
-        /// </summary>
         static void InitializeResourceStrings()
         {
             Infragistics.Shared.ResourceCustomizer resCustomizer = Infragistics.Win.UltraWinTabbedMdi.Resources.Customizer;

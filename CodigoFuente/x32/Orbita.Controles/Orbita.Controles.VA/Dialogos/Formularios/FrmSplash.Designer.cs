@@ -30,14 +30,14 @@
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSplash));
             this.TimerRefresco = new System.Windows.Forms.Timer(this.components);
-            this.lblUsuario = new System.Windows.Forms.Label();
-            this.lblMaquina = new System.Windows.Forms.Label();
-            this.lblIdioma = new System.Windows.Forms.Label();
+            this.lblUsuario = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblMaquina = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblIdioma = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.lblMensaje = new Orbita.Controles.Comunes.OrbitaUltraLabel();
-            this.lblVersion = new System.Windows.Forms.Label();
-            this.lblCompañia = new System.Windows.Forms.Label();
-            this.lblProducto = new System.Windows.Forms.Label();
-            this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.lblVersion = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblCompañia = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblProducto = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.pbLogo = new Orbita.Controles.Comunes.OrbitaPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,8 +88,8 @@
             this.lblMensaje.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblMensaje.Location = new System.Drawing.Point(0, 235);
             this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.OrbColorFondo = System.Drawing.Color.Transparent;
-            this.lblMensaje.OrbColorFuente = System.Drawing.Color.Black;
+            this.lblMensaje.OI.Apariencia.ColorFondo = System.Drawing.Color.Transparent;
+            this.lblMensaje.OI.Apariencia.ColorTexto = System.Drawing.Color.Black;
             this.lblMensaje.Size = new System.Drawing.Size(244, 23);
             this.lblMensaje.TabIndex = 5;
             this.lblMensaje.UseMnemonic = false;
@@ -162,15 +162,15 @@
         }
 
         private System.Windows.Forms.Timer TimerRefresco;
-        private System.Windows.Forms.PictureBox pbLogo;
-        private System.Windows.Forms.Label lblUsuario;
-        private System.Windows.Forms.Label lblMaquina;
+        private Orbita.Controles.Comunes.OrbitaPictureBox pbLogo;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblUsuario;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblMaquina;
         private Orbita.Controles.Comunes.OrbitaUltraLabel lblMensaje;
-        private System.Windows.Forms.Label lblVersion;
-        private System.Windows.Forms.Label lblIdioma;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblVersion;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblIdioma;
 
         #endregion
-        private System.Windows.Forms.Label lblCompañia;
-        private System.Windows.Forms.Label lblProducto;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblCompañia;
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblProducto;
     }
 }

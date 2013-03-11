@@ -29,20 +29,38 @@
         private void InitializeComponent()
         {
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.gridVariables = new Orbita.Controles.Grid.OrbitaGrid();
-            this.pnlPanelPrincipalPadre.SuspendLayout();
+            this.gridVariables = new Orbita.Controles.Grid.OrbitaUltraGridToolBar();
+            this.PnlPanelPrincipalPadre.SuspendLayout();
+            this.PnlInferiorPadre.SuspendLayout();
+            this.PnlBotonesPadre.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkDock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkToolTip)).BeginInit();
             this.toolStripContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnlInferiorPadre
+            // PnlPanelPrincipalPadre
             // 
-            this.pnlInferiorPadre.Location = new System.Drawing.Point(10, 425);
-            this.pnlInferiorPadre.Size = new System.Drawing.Size(970, 43);
+            this.PnlPanelPrincipalPadre.Controls.Add(this.gridVariables);
+            this.PnlPanelPrincipalPadre.Size = new System.Drawing.Size(970, 415);
             // 
-            // pnlPanelPrincipalPadre
+            // btnCancelar
             // 
-            this.pnlPanelPrincipalPadre.Controls.Add(this.gridVariables);
-            this.pnlPanelPrincipalPadre.Size = new System.Drawing.Size(970, 415);
+            this.btnCancelar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnCancelar.Size = new System.Drawing.Size(98, 33);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnGuardar.Size = new System.Drawing.Size(98, 33);
+            // 
+            // PnlInferiorPadre
+            // 
+            this.PnlInferiorPadre.Location = new System.Drawing.Point(10, 425);
+            this.PnlInferiorPadre.Size = new System.Drawing.Size(970, 43);
+            // 
+            // PnlBotonesPadre
+            // 
+            this.PnlBotonesPadre.Location = new System.Drawing.Point(768, 0);
             // 
             // toolStripContainer1
             // 
@@ -65,17 +83,20 @@
             this.gridVariables.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridVariables.Location = new System.Drawing.Point(0, 0);
             this.gridVariables.Name = "gridVariables";
-            this.gridVariables.OrbColumnaAutoAjuste = Infragistics.Win.UltraWinGrid.AutoFitStyle.None;
-            this.gridVariables.OrbToolBarMostrarToolAñadir = true;
-            this.gridVariables.OrbToolBarMostrarToolEliminar = true;
-            this.gridVariables.OrbToolBarMostrarToolModificar = true;
-            this.gridVariables.OrbToolBarMostrarToolRefrescar = true;
+            this.gridVariables.Orbita.CampoPosicionable = null;
+            this.gridVariables.Orbita.Filas.TipoSeleccion = null;
+            this.gridVariables.Orbita.MostrarToolCiclico = false;
+            this.gridVariables.Orbita.MostrarToolEliminar = true;
+            this.gridVariables.Orbita.MostrarToolEstilo = true;
+            this.gridVariables.Orbita.MostrarToolLimpiarFiltros = false;
+            this.gridVariables.Orbita.MostrarToolModificar = true;
+            this.gridVariables.Orbita.MostrarToolVer = true;
             this.gridVariables.Size = new System.Drawing.Size(970, 415);
             this.gridVariables.TabIndex = 3;
-            this.gridVariables.OrbBotonRefrescarClick += new Orbita.Controles.Grid.OrbitaGrid.OrbDelegadoRefrescar(this.gridVariables_OrbBotonRefrescarClick);
-            this.gridVariables.OrbBotonEliminarFilaClick += new Orbita.Controles.Grid.OrbitaGrid.OrbDelegadoEliminarFila(this.gridVariables_OrbBotonEliminarFilaClick);
-            this.gridVariables.OrbBotonModificarClick += new Orbita.Controles.Grid.OrbitaGrid.OrbDelegadoModificar(this.gridVariables_OrbBotonModificarClick);
-            this.gridVariables.OrbBotonAñadirClick += new Orbita.Controles.Grid.OrbitaGrid.OrbDelegadoAñadir(this.gridVariables_OrbBotonAñadirClick);
+            this.gridVariables.ToolModificarClick += new global::Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolModificarClickEventHandler(this.gridVariables_OrbBotonModificarClick);
+            this.gridVariables.ToolAñadirClick += new global::Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolAñadirClickEventHandler(this.gridVariables_OrbBotonAñadirClick);
+            this.gridVariables.ToolEliminarClick += new global::Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolEliminarClickEventHandler(this.gridVariables_OrbBotonEliminarFilaClick);
+            this.gridVariables.ToolRefrescarClick += new global::Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolRefrescarClickEventHandler(this.gridVariables_OrbBotonRefrescarClick);
             // 
             // FrmGestionVariables
             // 
@@ -87,9 +108,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
             this.Text = "Gestión de variables";
             this.Controls.SetChildIndex(this.toolStripContainer1, 0);
-            this.Controls.SetChildIndex(this.pnlInferiorPadre, 0);
-            this.Controls.SetChildIndex(this.pnlPanelPrincipalPadre, 0);
-            this.pnlPanelPrincipalPadre.ResumeLayout(false);
+            this.Controls.SetChildIndex(this.PnlInferiorPadre, 0);
+            this.Controls.SetChildIndex(this.PnlPanelPrincipalPadre, 0);
+            this.PnlPanelPrincipalPadre.ResumeLayout(false);
+            this.PnlInferiorPadre.ResumeLayout(false);
+            this.PnlBotonesPadre.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ChkDock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ChkToolTip)).EndInit();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
             this.ResumeLayout(false);
@@ -106,6 +131,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn grupoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn guardarTrazabilidadDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descVariableDataGridViewTextBoxColumn;
-        private Orbita.Controles.Grid.OrbitaGrid gridVariables;
+        private Orbita.Controles.Grid.OrbitaUltraGridToolBar gridVariables;
     }
 }

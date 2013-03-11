@@ -103,20 +103,20 @@ namespace Orbita.Controles.VA
             {
                 this._MostrarBtnAbrir = value;
                 this.btnOpen.Visible = value;
-                this.separadorArchivos.Visible = this._MostrarBtnGuardar || this._MostrarBtnAbrir;
+                this.separadorArchivos.Visible = this._MostrarbtnGuardar || this._MostrarBtnAbrir;
             }
         }
 
         /// <summary>
         /// Muestra el botón de guardar fotografía
         /// </summary>
-        public override bool MostrarBtnGuardar
+        public override bool MostrarbtnGuardar
         {
             set
             {
-                this._MostrarBtnGuardar = value;
+                this._MostrarbtnGuardar = value;
                 this.btnSave.Visible = value;
-                this.separadorArchivos.Visible = this._MostrarBtnGuardar || this._MostrarBtnAbrir;
+                this.separadorArchivos.Visible = this._MostrarbtnGuardar || this._MostrarBtnAbrir;
             }
         }
 

@@ -15,13 +15,13 @@ using System.Drawing;
 using System.Windows.Forms;
 using Infragistics.Win.UltraWinDock;
 using Infragistics.Win.UltraWinGrid;
-using Orbita.Controles;
-using Orbita.Controles.Comunes;
-using Orbita.Controles.Grid;
-using Orbita.Controles.Combo;
-using Orbita.Controles.Contenedores;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
+using Orbita.Controles.Comunes;
+using Orbita.Controles.Contenedores;
+using Infragistics.Win.UltraWinToolbars;
+using Orbita.Controles.Grid;
+using Orbita.Controles.Combo;
 
 namespace Orbita.Controles.VA
 {
@@ -336,11 +336,11 @@ namespace Orbita.Controles.VA
         {
             foreach (Control controlInterno in control.Controls)
             {
-                if (controlInterno != this.pnlInferiorPadre)
+                if (controlInterno != this.PnlInferiorPadre)
                 {
                     if (controlInterno is OrbitaUltraCombo)
                     {
-                        ((OrbitaUltraCombo)controlInterno).OrbCambiaValor += this.EventoCambioValor;
+                        ((OrbitaUltraCombo)controlInterno).ValueChanged += this.EventoCambioValor;
                     }
                     else if (controlInterno is OrbitaTextBox)
                     {
@@ -354,9 +354,13 @@ namespace Orbita.Controles.VA
                     {
                         ((OrbitaUltraCheckEditor)controlInterno).CheckedChanged += this.EventoCambioValor;
                     }
-                    else if (controlInterno is OrbitaGrid)
+                    else if (controlInterno is OrbitaUltraGrid)
                     {
-                        ((OrbitaGrid)controlInterno).OrbCeldaCambiaValor += this.EventoCeldaCambioValor;
+                        ((OrbitaUltraGrid)controlInterno).CellChange += this.EventoCeldaCambioValor;
+                    }
+                    else if (controlInterno is OrbitaUltraGridToolBar)
+                    {
+                        ((OrbitaUltraGridToolBar)controlInterno).CellChange += this.EventoCeldaCambioValor;
                     }
                     else if (controlInterno is OrbitaUltraDateTimeEditor)
                     {
@@ -376,11 +380,11 @@ namespace Orbita.Controles.VA
         {
             foreach (Control controlInterno in control.Controls)
             {
-                if (controlInterno != this.pnlInferiorPadre)
+                if (controlInterno != this.PnlInferiorPadre)
                 {
                     if (controlInterno is OrbitaUltraCombo)
                     {
-                        ((OrbitaUltraCombo)controlInterno).OrbCambiaValor -= this.EventoCambioValor;
+                        ((OrbitaUltraCombo)controlInterno).ValueChanged -= this.EventoCambioValor;
                     }
                     else if (controlInterno is OrbitaTextBox)
                     {
@@ -394,9 +398,13 @@ namespace Orbita.Controles.VA
                     {
                         ((OrbitaUltraCheckEditor)controlInterno).CheckedChanged -= this.EventoCambioValor;
                     }
-                    else if (controlInterno is OrbitaGrid)
+                    else if (controlInterno is OrbitaUltraGrid)
                     {
-                        ((OrbitaGrid)controlInterno).OrbCeldaCambiaValor -= this.EventoCeldaCambioValor;
+                        ((OrbitaUltraGrid)controlInterno).CellChange -= this.EventoCeldaCambioValor;
+                    }
+                    else if (controlInterno is OrbitaUltraGridToolBar)
+                    {
+                        ((OrbitaUltraGridToolBar)controlInterno).Grid.CellChange += this.EventoCeldaCambioValor;
                     }
                     else if (controlInterno is OrbitaUltraDateTimeEditor)
                     {
@@ -416,13 +424,9 @@ namespace Orbita.Controles.VA
         {
             foreach (Control controlInterno in control.Controls)
             {
-                if (controlInterno is OrbitaUltraCombo)
+                if (controlInterno is OrbitaUltraGridToolBar)
                 {
-                    this.OrbToolTip.SetToolTip(((OrbitaUltraCombo)controlInterno).UltraCombo, this.OrbToolTip.GetToolTip(((OrbitaUltraCombo)controlInterno)));
-                }
-                if (controlInterno is OrbitaGrid)
-                {
-                    this.OrbToolTip.SetToolTip(((OrbitaGrid)controlInterno).OrbGrid, this.OrbToolTip.GetToolTip(((OrbitaGrid)controlInterno)));
+                    this.toolTip.SetToolTip(((OrbitaUltraGridToolBar)controlInterno).Grid, this.toolTip.GetToolTip(((OrbitaUltraGrid)controlInterno)));
                 }
 
                 // Recursivo
@@ -439,7 +443,7 @@ namespace Orbita.Controles.VA
             {
                 if (controlInterno is OrbitaUltraCombo)
                 {
-                    ((OrbitaUltraCombo)controlInterno).UltraCombo.ReadOnly = this.ModoAperturaFormulario == ModoAperturaFormulario.Visualizacion;
+                    ((OrbitaUltraCombo)controlInterno).ReadOnly = this.ModoAperturaFormulario == ModoAperturaFormulario.Visualizacion;
                 }
                 else if (controlInterno is OrbitaTextBox)
                 {
@@ -453,9 +457,13 @@ namespace Orbita.Controles.VA
                 {
                     ((OrbitaUltraCheckEditor)controlInterno).Enabled = this.ModoAperturaFormulario != ModoAperturaFormulario.Visualizacion;
                 }
-                else if (controlInterno is OrbitaGrid)
+                else if (controlInterno is OrbitaUltraGrid)
                 {
-                    ((OrbitaGrid)controlInterno).OrbCeldaEditable = this.ModoAperturaFormulario != ModoAperturaFormulario.Visualizacion;
+                    ((OrbitaUltraGrid)controlInterno).Orbita.Editable = this.ModoAperturaFormulario != ModoAperturaFormulario.Visualizacion;
+                }
+                else if (controlInterno is OrbitaUltraGridToolBar)
+                {
+                    ((OrbitaUltraGridToolBar)controlInterno).Orbita.Editable = this.ModoAperturaFormulario != ModoAperturaFormulario.Visualizacion;
                 }
                 else if (controlInterno is OrbitaUltraDateTimeEditor)
                 {
@@ -626,7 +634,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         protected void OcultarBotones()
         {
-            this.pnlInferiorPadre.Visible = this._MostrarBotones;
+            this.PnlInferiorPadre.Visible = this._MostrarBotones;
             this.OcultarBotonCancelar();
             this.OcultarBotonAceptar();
         }
@@ -697,8 +705,8 @@ namespace Orbita.Controles.VA
         {
             this.SuspendLayout();
             this.ChkToolTip.Checked = false;
-            this.OrbToolTip.Active = false;
-            this.InternoEstablecerModo(this.pnlPanelPrincipalPadre);
+            this.toolTip.Active = false;
+            this.InternoEstablecerModo(this.PnlPanelPrincipalPadre);
             this.ResumeLayout();
         }
         /// <summary>
@@ -708,8 +716,8 @@ namespace Orbita.Controles.VA
         {
             this.SuspendLayout();
             this.ChkToolTip.Checked = false;
-            this.OrbToolTip.Active = false;
-            this.InternoEstablecerModo(this.pnlPanelPrincipalPadre);
+            this.toolTip.Active = false;
+            this.InternoEstablecerModo(this.PnlPanelPrincipalPadre);
             this.ResumeLayout();
         }
         /// <summary>
@@ -719,8 +727,8 @@ namespace Orbita.Controles.VA
         {
             this.SuspendLayout();
             this.ChkToolTip.Checked = false;
-            this.OrbToolTip.Active = false;
-            this.InternoEstablecerModo(this.pnlPanelPrincipalPadre);
+            this.toolTip.Active = false;
+            this.InternoEstablecerModo(this.PnlPanelPrincipalPadre);
             this.ResumeLayout();
         }
         /// <summary>
@@ -730,8 +738,8 @@ namespace Orbita.Controles.VA
         {
             this.SuspendLayout();
             this.ChkToolTip.Checked = false;
-            this.OrbToolTip.Active = false;
-            this.InternoEstablecerModo(this.pnlPanelPrincipalPadre);
+            this.toolTip.Active = false;
+            this.InternoEstablecerModo(this.PnlPanelPrincipalPadre);
             this.ResumeLayout();
         }
         /// <summary>
@@ -741,8 +749,8 @@ namespace Orbita.Controles.VA
         {
             this.SuspendLayout();
             this.ChkToolTip.Checked = false;
-            this.OrbToolTip.Active = false;
-            this.InternoEstablecerModo(this.pnlPanelPrincipalPadre);
+            this.toolTip.Active = false;
+            this.InternoEstablecerModo(this.PnlPanelPrincipalPadre);
             this.ResumeLayout();
         }
         /// <summary>
@@ -1014,6 +1022,7 @@ namespace Orbita.Controles.VA
                 OVALogsManager.Error(ModulosSistema.Escritorios, "Activación de formulario", exception);
             }
         }
+
         /// <summary>
         /// Cambio de valor en un componente
         /// </summary>
@@ -1038,7 +1047,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         /// <param name="sender">Objeto que envía el evento</param>
         /// <param name="celda">Argumentos del evento</param>
-        private void EventoCeldaCambioValor(object sender, UltraGridCell celda)
+        private void EventoCeldaCambioValor(object sender, CellEventArgs celda)
         {
             this.EventoCambioValor(sender, new EventArgs());
         }
@@ -1051,7 +1060,7 @@ namespace Orbita.Controles.VA
         {
             try
             {
-                this.OrbToolTip.Active = ChkToolTip.Checked;
+                this.toolTip.Active = ChkToolTip.Checked;
             }
             catch (Exception exception)
             {

@@ -1,11 +1,11 @@
 ﻿//***********************************************************************
 // Assembly         : Orbita.Controles.VA
 // Author           : aibañez
-// Created          : 06-09-2012
+// Created          : 04-03-2013
 //
-// Last Modified By : aibañez
-// Last Modified On : 16-11-2012
-// Description      : Movido al proyecto Orbita.Controles.VA
+// Last Modified By : 
+// Last Modified On : 
+// Description      : 
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
@@ -52,53 +52,56 @@ namespace Orbita.Controles.VA
         {
             InitializeComponent();
 
-            this.imageListLarge.Images.Add("imgVariableInactiva", Orbita.Controles.VA.Properties.Resources.imgVariableInactiva32);
-            this.imageListLarge.Images.Add("imgVariableInactivaForzada", Orbita.Controles.VA.Properties.Resources.imgVariableInactivaForzada32);
-            this.imageListLarge.Images.Add("imgVariableActiva", Orbita.Controles.VA.Properties.Resources.imgVariableActiva32);
-            this.imageListLarge.Images.Add("imgVariableActivaForzada", Orbita.Controles.VA.Properties.Resources.imgVariableActivaForzada32);
-            this.imageListLarge.Images.Add("imgTexto", Orbita.Controles.VA.Properties.Resources.imgTexto32);
-            this.imageListLarge.Images.Add("imgTextoForzada", Orbita.Controles.VA.Properties.Resources.imgTextoForzada32);
-            this.imageListLarge.Images.Add("imgNumero", Orbita.Controles.VA.Properties.Resources.imgNumero32);
-            this.imageListLarge.Images.Add("imgNumeroForzada", Orbita.Controles.VA.Properties.Resources.imgNumeroForzada32);
-            this.imageListLarge.Images.Add("imgFoto", Orbita.Controles.VA.Properties.Resources.imgFoto32);
-            this.imageListLarge.Images.Add("imgFotoForzada", Orbita.Controles.VA.Properties.Resources.imgFotoForzada32);
+            this.ImageListLarge.Images.Add("imgVariableInactiva", global::Orbita.Controles.VA.Properties.Resources.imgVariableInactiva32);
+            this.ImageListLarge.Images.Add("imgVariableInactivaForzada", global::Orbita.Controles.VA.Properties.Resources.imgVariableInactivaForzada32);
+            this.ImageListLarge.Images.Add("imgVariableActiva", global::Orbita.Controles.VA.Properties.Resources.imgVariableActiva32);
+            this.ImageListLarge.Images.Add("imgVariableActivaForzada", global::Orbita.Controles.VA.Properties.Resources.imgVariableActivaForzada32);
+            this.ImageListLarge.Images.Add("imgTexto", global::Orbita.Controles.VA.Properties.Resources.imgTexto32);
+            this.ImageListLarge.Images.Add("imgTextoForzada", global::Orbita.Controles.VA.Properties.Resources.imgTextoForzada32);
+            this.ImageListLarge.Images.Add("imgNumero", global::Orbita.Controles.VA.Properties.Resources.imgNumero32);
+            this.ImageListLarge.Images.Add("imgNumeroForzada", global::Orbita.Controles.VA.Properties.Resources.imgNumeroForzada32);
+            this.ImageListLarge.Images.Add("imgFoto", global::Orbita.Controles.VA.Properties.Resources.imgFoto32);
+            this.ImageListLarge.Images.Add("imgFotoForzada", global::Orbita.Controles.VA.Properties.Resources.imgFotoForzada32);
 
-            this.imageListSmall.Images.Add("imgVariableInactiva", Orbita.Controles.VA.Properties.Resources.imgVariableInactiva24);
-            this.imageListSmall.Images.Add("imgVariableInactivaForzada", Orbita.Controles.VA.Properties.Resources.imgVariableInactivaForzada24);
-            this.imageListSmall.Images.Add("imgVariableActiva", Orbita.Controles.VA.Properties.Resources.imgVariableActiva24);
-            this.imageListSmall.Images.Add("imgVariableActivaForzada", Orbita.Controles.VA.Properties.Resources.imgVariableActivaForzada24);
-            this.imageListSmall.Images.Add("imgTexto", Orbita.Controles.VA.Properties.Resources.imgTexto24);
-            this.imageListSmall.Images.Add("imgTextoForzada", Orbita.Controles.VA.Properties.Resources.imgTextoForzada24);
-            this.imageListSmall.Images.Add("imgNumero", Orbita.Controles.VA.Properties.Resources.imgNumero24);
-            this.imageListSmall.Images.Add("imgNumeroForzada", Orbita.Controles.VA.Properties.Resources.imgNumeroForzada24);
-            this.imageListSmall.Images.Add("imgFoto", Orbita.Controles.VA.Properties.Resources.imgFoto24);
-            this.imageListSmall.Images.Add("imgFotoForzada", Orbita.Controles.VA.Properties.Resources.imgFotoForzada24);
+            this.ImageListSmall.Images.Add("imgVariableInactiva", global::Orbita.Controles.VA.Properties.Resources.imgVariableInactiva24);
+            this.ImageListSmall.Images.Add("imgVariableInactivaForzada", global::Orbita.Controles.VA.Properties.Resources.imgVariableInactivaForzada24);
+            this.ImageListSmall.Images.Add("imgVariableActiva", global::Orbita.Controles.VA.Properties.Resources.imgVariableActiva24);
+            this.ImageListSmall.Images.Add("imgVariableActivaForzada", global::Orbita.Controles.VA.Properties.Resources.imgVariableActivaForzada24);
+            this.ImageListSmall.Images.Add("imgTexto", global::Orbita.Controles.VA.Properties.Resources.imgTexto24);
+            this.ImageListSmall.Images.Add("imgTextoForzada", global::Orbita.Controles.VA.Properties.Resources.imgTextoForzada24);
+            this.ImageListSmall.Images.Add("imgNumero", global::Orbita.Controles.VA.Properties.Resources.imgNumero24);
+            this.ImageListSmall.Images.Add("imgNumeroForzada", global::Orbita.Controles.VA.Properties.Resources.imgNumeroForzada24);
+            this.ImageListSmall.Images.Add("imgFoto", global::Orbita.Controles.VA.Properties.Resources.imgFoto24);
+            this.ImageListSmall.Images.Add("imgFotoForzada", global::Orbita.Controles.VA.Properties.Resources.imgFotoForzada24);
 
             // Inicialización de las variables
             this.CodEscenarioActual = string.Empty;
             this.ListaCodVariablesActuales = new List<string>();
 
             // Rellenamos el menú de escenarios
-            PopupMenuTool menuEscenarios = (PopupMenuTool)this.toolbarsManager.Tools["Escenarios"];
-
-            // Menu de todos los escenarios
-            ButtonTool btnVistaTodos = new ButtonTool("Todos");
-            btnVistaTodos.SharedProps.Caption = "Todos";
-            btnVistaTodos.ToolClick += EscenarioClick;
-            this.toolbarsManager.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] { btnVistaTodos });
-            menuEscenarios.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] { btnVistaTodos });
-
-            // Menu de cada escenario
-            DataTable dt = Orbita.VA.Comun.AppBD.GetVistas();
-            foreach (DataRow dr in dt.Rows)
+            PopupMenuTool menuEscenarios = (PopupMenuTool)this.ToolbarsManager.Tools["Escenarios"];
+            menuEscenarios.SharedProps.Visible = OSistemaManager.IntegraMaquinaEstados;
+            if (OSistemaManager.IntegraMaquinaEstados)
             {
-                string codVista = dr["CodVista"].ToString();
-                string nombreVista = dr["NombreVista"].ToString();
-                ButtonTool btnVista = new ButtonTool(codVista);
-                btnVista.SharedProps.Caption = nombreVista;
-                btnVista.ToolClick += EscenarioClick;
-                this.toolbarsManager.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] { btnVista });
-                menuEscenarios.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] { btnVista });
+                // Menu de todos los escenarios
+                ButtonTool btnVistaTodos = new ButtonTool("Todos");
+                btnVistaTodos.SharedProps.Caption = "Todos";
+                btnVistaTodos.ToolClick += EscenarioClick;
+                this.ToolbarsManager.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] { btnVistaTodos });
+                menuEscenarios.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] { btnVistaTodos });
+
+                // Menu de cada escenario
+                DataTable dt = global::Orbita.VA.Comun.AppBD.GetVistas();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    string codVista = dr["CodVista"].ToString();
+                    string nombreVista = dr["NombreVista"].ToString();
+                    ButtonTool btnVista = new ButtonTool(codVista);
+                    btnVista.SharedProps.Caption = nombreVista;
+                    btnVista.ToolClick += EscenarioClick;
+                    this.ToolbarsManager.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] { btnVista });
+                    menuEscenarios.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] { btnVista });
+                }
             }
         }
         #endregion
@@ -113,7 +116,7 @@ namespace Orbita.Controles.VA
 
             // Inicializamos el timer de refresco
             this.MomentoUltimoRefresco = DateTime.Now;
-            this.timerRefresco.Interval = OSistemaManager.Configuracion.CadenciaMonitorizacionMilisegundos;
+            this.TimerRefresco.Interval = OSistemaManager.Configuracion.CadenciaMonitorizacionMilisegundos;
         }
         /// <summary>
         /// Carga y muestra datos del formulario en modo nuevo. Se cargan todos datos que se muestran en 
@@ -131,9 +134,6 @@ namespace Orbita.Controles.VA
         protected override void EstablecerModoMonitorizacion()
         {
             base.EstablecerModoMonitorizacion();
-
-            this.btnMonitorizar.Visible = true;
-            this.ListVariables.ContextMenuStrip = menuVariable;
         }
         /// <summary>
         ///  Funciones a realizar al salir del formulario
@@ -142,13 +142,12 @@ namespace Orbita.Controles.VA
         {
             base.AccionesSalir();
 
-            this.timerRefresco.Enabled = false;
+            this.TimerRefresco.Enabled = false;
             this.DestruirItems();
         }
         #endregion
 
         #region Método(s) privado(s)
-
         /// <summary>
         /// Crea los items de las variables
         /// </summary>
@@ -202,7 +201,7 @@ namespace Orbita.Controles.VA
             }
 
             this.ListaCodVariablesActuales.Clear();
-            this.ListVariables.Items.Clear();
+            this.ListView.Items.Clear();
         }
 
         /// <summary>
@@ -226,13 +225,13 @@ namespace Orbita.Controles.VA
 
             if (grupo != string.Empty)
             {
-                if (this.ListVariables.Groups[grupo] == null)
+                if (this.ListView.Groups[grupo] == null)
                 {
-                    item.Group = this.ListVariables.Groups.Add(grupo, grupo);
+                    item.Group = this.ListView.Groups.Add(grupo, grupo);
                 }
                 else
                 {
-                    item.Group = this.ListVariables.Groups[grupo];
+                    item.Group = this.ListView.Groups[grupo];
                 }
             }
 
@@ -256,7 +255,7 @@ namespace Orbita.Controles.VA
             subItemGuardarTrazabilidad.Text = guardarTrazabilidad;
             item.SubItems.Add(subItemGuardarTrazabilidad);
 
-            this.ListVariables.Items.Add(item);
+            this.ListView.Items.Add(item);
         }
 
         /// <summary>
@@ -379,6 +378,127 @@ namespace Orbita.Controles.VA
             }
         }
 
+        /// <summary>
+        /// Se lanza cuando el usuario imputa el texto de una variable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextoImputadoPorUsuario(object sender, EventArgsInputText e)
+        {
+            try
+            {
+                OVariablesManager.ForzarValor(e.Codigo, e.TextoImputado, "Monitorizacion", this.Name);
+            }
+            catch (Exception exception)
+            {
+                OVALogsManager.Error(OModulosControl.MonitorizacionVariables, this.Name, exception);
+            }
+        }
+
+        /// <summary>
+        /// Evento que se ejecuta al abrir el menú popup de las variables
+        /// </summary>
+        private void ConfeccionarMenuVariable()
+        {
+            if (this.ListView.FocusedItem != null)
+            {
+                OVariable variable = (OVariable)this.ListView.FocusedItem.Tag;
+
+                // Menú de bloqueo
+                this.ToolbarsManager.Tools["Bloquear"].SharedProps.Enabled = !variable.Bloqueado;
+                this.ToolbarsManager.Tools["Desbloquear"].SharedProps.Enabled = variable.Bloqueado;
+                this.ToolbarsManager.Tools["ForzarValor"].SharedProps.Enabled = variable.Bloqueado;
+                this.ToolbarsManager.Tools["ForzarVerdadero"].SharedProps.Enabled = variable.Bloqueado;
+                this.ToolbarsManager.Tools["ForzarFalso"].SharedProps.Enabled = variable.Bloqueado;
+                this.ToolbarsManager.Tools["CargarImagen"].SharedProps.Enabled = variable.Bloqueado;
+                this.ToolbarsManager.Tools["GuardarImagen"].SharedProps.Enabled = variable.Bloqueado;
+
+                // Menú de Forzado
+                switch (variable.Tipo)
+                {
+                    case OEnumTipoDato.Flag:
+                        this.ToolbarsManager.Tools["ForzarValor"].SharedProps.Visible = true;
+                        this.ToolbarsManager.Tools["ForzarValor"].SharedProps.Visible = false;
+                        this.ToolbarsManager.Tools["ForzarVerdadero"].SharedProps.Visible = false;
+                        this.ToolbarsManager.Tools["ForzarFalso"].SharedProps.Visible = false;
+                        this.ToolbarsManager.Tools["CargarImagen"].SharedProps.Visible = false;
+                        this.ToolbarsManager.Tools["GuardarImagen"].SharedProps.Visible = false;
+                        break;
+                    case OEnumTipoDato.Bit:
+                        bool boolValorTrue = false;
+                        bool boolValorFalse = false;
+                        object objValor = variable.GetValor();
+                        if (objValor is bool)
+                        {
+                            boolValorTrue = (bool)objValor;
+                            boolValorFalse = !(bool)objValor;
+                        }
+
+                        this.ToolbarsManager.Tools["ForzarValor"].SharedProps.Visible = false;
+                        this.ToolbarsManager.Tools["ForzarVerdadero"].SharedProps.Visible = !boolValorTrue;
+                        this.ToolbarsManager.Tools["ForzarFalso"].SharedProps.Visible = !boolValorFalse;
+                        this.ToolbarsManager.Tools["CargarImagen"].SharedProps.Visible = false;
+                        this.ToolbarsManager.Tools["GuardarImagen"].SharedProps.Visible = false;
+                        break;
+                    case OEnumTipoDato.Entero:
+                    case OEnumTipoDato.Decimal:
+                    case OEnumTipoDato.Texto:
+                    case OEnumTipoDato.Fecha:
+                        this.ToolbarsManager.Tools["ForzarValor"].SharedProps.Visible = true;
+                        this.ToolbarsManager.Tools["ForzarVerdadero"].SharedProps.Visible = false;
+                        this.ToolbarsManager.Tools["ForzarFalso"].SharedProps.Visible = false;
+                        this.ToolbarsManager.Tools["CargarImagen"].SharedProps.Visible = false;
+                        this.ToolbarsManager.Tools["GuardarImagen"].SharedProps.Visible = false;
+                        break;
+                    case OEnumTipoDato.Imagen:
+                    case OEnumTipoDato.Grafico:
+                        this.ToolbarsManager.Tools["ForzarValor"].SharedProps.Visible = false;
+                        this.ToolbarsManager.Tools["ForzarVerdadero"].SharedProps.Visible = false;
+                        this.ToolbarsManager.Tools["ForzarFalso"].SharedProps.Visible = false;
+                        this.ToolbarsManager.Tools["CargarImagen"].SharedProps.Visible = true;
+                        this.ToolbarsManager.Tools["GuardarImagen"].SharedProps.Visible = true;
+                        break;
+                    default:
+                        this.ToolbarsManager.Tools["ForzarValor"].SharedProps.Visible = false;
+                        this.ToolbarsManager.Tools["ForzarVerdadero"].SharedProps.Visible = false;
+                        this.ToolbarsManager.Tools["ForzarFalso"].SharedProps.Visible = false;
+                        this.ToolbarsManager.Tools["CargarImagen"].SharedProps.Visible = false;
+                        this.ToolbarsManager.Tools["GuardarImagen"].SharedProps.Visible = false;
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Monitorizar la variable seleccionada
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MonitorizarVariable()
+        {
+            switch (this._ModoAperturaFormulario)
+            {
+                case ModoAperturaFormulario.Monitorizacion:
+                    {
+                        if (this.ListView.SelectedItems.Count > 0)
+                        {
+                            foreach (ListViewItem item in this.ListView.SelectedItems)
+                            {
+                                try
+                                {
+                                    FrmVariableChart frm = new FrmVariableChart(item.Text);
+                                    frm.Show();
+                                }
+                                catch (Exception exception)
+                                {
+                                    OVALogsManager.Fatal(OModulosControl.MonitorizacionVariables, this.Name, exception);
+                                }
+                            }
+                        }
+                        break;
+                    }
+            }
+        }
         #endregion
 
         #region Eventos
@@ -393,7 +513,7 @@ namespace Orbita.Controles.VA
                 if (tiempoSinRefrescar > OVariablesManager.CadenciaMonitorizacion)
                 {
                     // Si hace más de x tiempo que se refresco, volvemos a referescar
-                    ListViewItem[] items = this.ListVariables.Items.Find(codigo, false);
+                    ListViewItem[] items = this.ListView.Items.Find(codigo, false);
 
                     if (items.Length > 0)
                     {
@@ -403,9 +523,9 @@ namespace Orbita.Controles.VA
                 else
                 {
                     // Si hace menos de x tiempo que se refresco, ponemos un timer
-                    if (!this.timerRefresco.Enabled)
+                    if (!this.TimerRefresco.Enabled)
                     {
-                        this.timerRefresco.Enabled = true;
+                        this.TimerRefresco.Enabled = true;
                     }
                 }
             }
@@ -424,7 +544,7 @@ namespace Orbita.Controles.VA
             {
                 // Reseteamos el timer para que no se vuelva a refrescar
                 this.MomentoUltimoRefresco = DateTime.Now;
-                this.timerRefresco.Enabled = false;
+                this.TimerRefresco.Enabled = false;
 
                 this.PintarItem(codigo, valor, item);
             }
@@ -441,7 +561,7 @@ namespace Orbita.Controles.VA
         {
             try
             {
-                foreach (ListViewItem item in this.ListVariables.Items)
+                foreach (ListViewItem item in this.ListView.Items)
                 {
                     string codigo = item.Text;
                     object valor = OVariablesManager.GetValue(codigo);
@@ -466,273 +586,18 @@ namespace Orbita.Controles.VA
         }
 
         /// <summary>
-        /// Monitorizar la variable seleccionada
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnMonitorizar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                switch (this._ModoAperturaFormulario)
-                {
-                    case ModoAperturaFormulario.Monitorizacion:
-                        {
-                            if (this.ListVariables.SelectedItems.Count > 0)
-                            {
-                                foreach (ListViewItem item in this.ListVariables.SelectedItems)
-                                {
-                                    try
-                                    {
-                                        FrmVariableChart frm = new FrmVariableChart(item.Text);
-                                        //OTrabajoControles.FormularioPrincipalMDI.OrbMdiEncolarForm(frm);
-                                        frm.Show();
-                                    }
-                                    catch (Exception exception)
-                                    {
-                                        OVALogsManager.Fatal(OModulosControl.MonitorizacionVariables, this.Name, exception);
-                                    }
-                                }
-                            }
-                            break;
-                        }
-                }
-            }
-            catch (Exception exception)
-            {
-                OVALogsManager.Error(OModulosControl.MonitorizacionVariables, this.Name, exception);
-            }
-        }
-
-        /// <summary>
-        /// Evento que se ejecuta al abrir el menú popup de las variables
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void menuVariable_Opening(object sender, CancelEventArgs e)
-        {
-            try
-            {
-                if (this.ListVariables.FocusedItem != null)
-                {
-                    OVariable variable = (OVariable)this.ListVariables.FocusedItem.Tag;
-
-                    // Menú de bloqueo
-                    this.menuBloquearVariable.Visible = !variable.Bloqueado;
-                    this.menuDesbloquearVariable.Visible = variable.Bloqueado;
-                    this.menuForzarValor.Enabled = variable.Bloqueado;
-                    this.menuForzarValorFalso.Enabled = variable.Bloqueado;
-                    this.menuForzarValorVerdadero.Enabled = variable.Bloqueado;
-                    this.menuCargarFoto.Enabled = variable.Bloqueado;
-                    this.menuGuardarFoto.Enabled = variable.Bloqueado;
-
-                    // Menú de Forzado
-                    switch (variable.Tipo)
-                    {
-                        case OEnumTipoDato.Flag:
-                            this.menuForzarValor.Visible = true;
-                            this.menuForzarValorFalso.Visible = false;
-                            this.menuForzarValorVerdadero.Visible = false;
-                            this.menuCargarFoto.Visible = false;
-                            this.menuGuardarFoto.Visible = false;
-                            break;
-                        case OEnumTipoDato.Bit:
-                            bool boolValor = false;
-                            object objValor = variable.GetValor();
-                            if ((objValor is bool) && ((bool)objValor))
-                            {
-                                boolValor = true;
-                            }
-
-                            this.menuForzarValor.Visible = false;
-                            this.menuForzarValorFalso.Visible = boolValor;
-                            this.menuForzarValorVerdadero.Visible = !boolValor;
-                            this.menuCargarFoto.Visible = false;
-                            this.menuGuardarFoto.Visible = false;
-                            break;
-                        case OEnumTipoDato.Entero:
-                            this.menuForzarValor.Visible = true;
-                            this.menuForzarValorFalso.Visible = false;
-                            this.menuForzarValorVerdadero.Visible = false;
-                            this.menuCargarFoto.Visible = false;
-                            this.menuGuardarFoto.Visible = false;
-                            break;
-                        case OEnumTipoDato.Texto:
-                            this.menuForzarValor.Visible = true;
-                            this.menuForzarValorFalso.Visible = false;
-                            this.menuForzarValorVerdadero.Visible = false;
-                            this.menuCargarFoto.Visible = false;
-                            this.menuGuardarFoto.Visible = false;
-                            break;
-                        case OEnumTipoDato.Fecha:
-                            this.menuForzarValor.Visible = true;
-                            this.menuForzarValorFalso.Visible = false;
-                            this.menuForzarValorVerdadero.Visible = false;
-                            this.menuCargarFoto.Visible = false;
-                            this.menuGuardarFoto.Visible = false;
-                            break;
-                        case OEnumTipoDato.Imagen:
-                            this.menuForzarValor.Visible = false;
-                            this.menuForzarValorFalso.Visible = false;
-                            this.menuForzarValorVerdadero.Visible = false;
-                            this.menuCargarFoto.Visible = true;
-                            this.menuGuardarFoto.Visible = true;
-                            break;
-                        default:
-                            this.menuForzarValor.Visible = false;
-                            this.menuForzarValorFalso.Visible = false;
-                            this.menuForzarValorVerdadero.Visible = false;
-                            this.menuCargarFoto.Visible = false;
-                            this.menuGuardarFoto.Visible = false;
-                            break;
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                OVALogsManager.Error(OModulosControl.MonitorizacionVariables, this.Name, exception);
-            }
-        }
-
-        /// <summary>
-        /// Bloquea una variable para que nadie pueda modificarla excepto forzando su valor
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void menuBloquearVariable_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.ListVariables.FocusedItem != null)
-                {
-                    string codigo = this.ListVariables.FocusedItem.Text;
-                    OVariablesManager.Bloquear(codigo, "Monitorizacion", this.Name);
-
-                    this.PintarItem(codigo, OVariablesManager.GetValue(codigo), this.ListVariables.FocusedItem);
-                }
-            }
-            catch (Exception exception)
-            {
-                OVALogsManager.Error(OModulosControl.MonitorizacionVariables, this.Name, exception);
-            }
-        }
-
-        /// <summary>
-        /// Desbloquea una variable para que cualquiera pueda modificarla
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void menuDesbloquearVariable_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.ListVariables.FocusedItem != null)
-                {
-                    string codigo = this.ListVariables.FocusedItem.Text;
-                    OVariablesManager.Desbloquear(codigo, "Monitorizacion", this.Name);
-
-                    this.PintarItem(codigo, OVariablesManager.GetValue(codigo), this.ListVariables.FocusedItem);
-                }
-            }
-            catch (Exception exception)
-            {
-                OVALogsManager.Error(OModulosControl.MonitorizacionVariables, this.Name, exception);
-            }
-        }
-
-        /// <summary>
-        /// Fuerza el valor de una variable de tipo texto, entero o decimal
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void menuForzarValor_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.ListVariables.FocusedItem != null)
-                {
-                    OVariable variable = (OVariable)this.ListVariables.FocusedItem.Tag;
-                    string codigo = this.ListVariables.FocusedItem.Text;
-                    switch (variable.Tipo)
-                    {
-                        case OEnumTipoDato.Entero:
-                        case OEnumTipoDato.Texto:
-                        case OEnumTipoDato.Decimal:
-                        case OEnumTipoDato.Fecha:
-                            this.ForzarValor(variable);
-                            break;
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                OVALogsManager.Error(OModulosControl.MonitorizacionVariables, this.Name, exception);
-            }
-        }
-
-        /// <summary>
-        /// Fuerza el valor de una variable de tipo bool a verdadero
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void menuForzarValorVerdadero_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.ListVariables.FocusedItem != null)
-                {
-                    OVariable variable = (OVariable)this.ListVariables.FocusedItem.Tag;
-                    if (variable.Tipo == OEnumTipoDato.Bit)
-                    {
-                        string codigo = this.ListVariables.FocusedItem.Text;
-                        OVariablesManager.ForzarValor(codigo, true, "Monitorizacion", this.Name);
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                OVALogsManager.Error(OModulosControl.MonitorizacionVariables, this.Name, exception);
-            }
-        }
-
-        /// <summary>
-        /// Fuerza el valor de una variable de tipo bool a verdadero
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void menuForzarValorFalso_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.ListVariables.FocusedItem != null)
-                {
-                    OVariable variable = (OVariable)this.ListVariables.FocusedItem.Tag;
-                    if (variable.Tipo == OEnumTipoDato.Bit)
-                    {
-                        string codigo = this.ListVariables.FocusedItem.Text;
-                        OVariablesManager.ForzarValor(codigo, false, "Monitorizacion", this.Name);
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                OVALogsManager.Error(OModulosControl.MonitorizacionVariables, this.Name, exception);
-            }
-        }
-
-        /// <summary>
         /// Doble clic sobre una variable fuerza su cambio de valor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ListVariables_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void ListView_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             try
             {
-                if (this.ListVariables.FocusedItem != null)
+                if (this.ListView.FocusedItem != null)
                 {
-                    OVariable variable = (OVariable)this.ListVariables.FocusedItem.Tag;
-                    string codigo = this.ListVariables.FocusedItem.Text;
+                    OVariable variable = (OVariable)this.ListView.FocusedItem.Tag;
+                    string codigo = this.ListView.FocusedItem.Text;
                     object objValor = OVariablesManager.GetValue(codigo);
 
                     switch (variable.Tipo)
@@ -755,7 +620,7 @@ namespace Orbita.Controles.VA
                             this.ForzarValor(variable);
                             break;
                     }
-                    this.ListVariables.SelectedItems.Clear();
+                    this.ListView.SelectedItems.Clear();
                 }
             }
             catch (Exception exception)
@@ -776,18 +641,130 @@ namespace Orbita.Controles.VA
                 switch (e.Tool.Key)
                 {
                     case "KeyIconosGrandes":
-                        this.ListVariables.View = View.LargeIcon;
+                        this.ListView.View = View.LargeIcon;
                         break;
                     case "KeyIconosPequeños":
-                        this.ListVariables.View = View.SmallIcon;
+                        this.ListView.View = View.SmallIcon;
                         break;
                     case "KeyLista":
-                        this.ListVariables.View = View.List;
+                        this.ListView.View = View.List;
                         break;
                     case "KeyDetalles":
-                        this.ListVariables.View = View.Details;
+                        this.ListView.View = View.Details;
+                        break;
+                    case "Monitorizar":    // ButtonTool
+                        this.MonitorizarVariable();
+                        break;
+                    case "Bloquear":    // StateButtonTool
+                        if (this.ListView.FocusedItem != null)
+                        {
+                            string codigo = this.ListView.FocusedItem.Text;
+                            OVariablesManager.Bloquear(codigo, "Monitorizacion", this.Name);
+
+                            this.PintarItem(codigo, OVariablesManager.GetValue(codigo), this.ListView.FocusedItem);
+                            this.ConfeccionarMenuVariable();
+                        }
+                        break;
+                    case "Desbloquear":    // StateButtonTool
+                        if (this.ListView.FocusedItem != null)
+                        {
+                            string codigo = this.ListView.FocusedItem.Text;
+                            OVariablesManager.Desbloquear(codigo, "Monitorizacion", this.Name);
+
+                            this.PintarItem(codigo, OVariablesManager.GetValue(codigo), this.ListView.FocusedItem);
+                            this.ConfeccionarMenuVariable();
+                        }
+                        break;
+                    case "ForzarValor":    // ButtonTool
+                        if (this.ListView.FocusedItem != null)
+                        {
+                            OVariable variable = (OVariable)this.ListView.FocusedItem.Tag;
+                            string codigo = this.ListView.FocusedItem.Text;
+                            switch (variable.Tipo)
+                            {
+                                case OEnumTipoDato.Entero:
+                                case OEnumTipoDato.Texto:
+                                case OEnumTipoDato.Decimal:
+                                case OEnumTipoDato.Fecha:
+                                    this.ForzarValor(variable);
+                                    break;
+                            }
+                            this.ConfeccionarMenuVariable();
+                        }
+                        break;
+                    case "ForzarVerdadero":    // ButtonTool
+                        if (this.ListView.FocusedItem != null)
+                        {
+                            OVariable variable = (OVariable)this.ListView.FocusedItem.Tag;
+                            if ((variable.Bloqueado) && (variable.Tipo == OEnumTipoDato.Bit))
+                            {
+                                string codigo = this.ListView.FocusedItem.Text;
+                                OVariablesManager.ForzarValor(codigo, true, "Monitorizacion", this.Name);
+                            }
+                            this.ConfeccionarMenuVariable();
+                        }
+                        break;
+                    case "ForzarFalso":    // ButtonTool
+                        if (this.ListView.FocusedItem != null)
+                        {
+                            OVariable variable = (OVariable)this.ListView.FocusedItem.Tag;
+                            if ((variable.Bloqueado) && (variable.Tipo == OEnumTipoDato.Bit))
+                            {
+                                string codigo = this.ListView.FocusedItem.Text;
+                                OVariablesManager.ForzarValor(codigo, false, "Monitorizacion", this.Name);
+                            }
+                            this.ConfeccionarMenuVariable();
+                        }
+                        break;
+                    case "CargarImagen":    // ButtonTool
+                        if (this.ListView.FocusedItem != null)
+                        {
+                            OVariable variable = (OVariable)this.ListView.FocusedItem.Tag;
+                            if ((variable.Bloqueado) && (variable.Tipo == OEnumTipoDato.Imagen))
+                            {
+                                string codigo = this.ListView.FocusedItem.Text;
+                                string rutaArchivo = ORutaParametrizable.AppFolder;
+                                bool archivoSeleccionadoOK = OTrabajoControles.FormularioSeleccionArchivo(this.openFileDialog, ref rutaArchivo);
+                                if (archivoSeleccionadoOK)
+                                {
+                                    OImagen imagen;
+                                    object objImagen = OVariablesManager.GetValue(codigo);
+
+                                    // Por defecto se crea una imagen de tipo BitmapImage
+                                    if ((objImagen == null) || !(objImagen is OImagen))
+                                    {
+                                        imagen = new OImagenBitmap();
+                                    }
+                                    else
+                                    {
+                                        imagen = ((OImagen)objImagen).Nueva();
+                                    }
+
+                                    imagen.Cargar(rutaArchivo);
+                                    OVariablesManager.ForzarValor(codigo, imagen, "Monitorizacion", this.Name);
+                                }
+                            }
+                            this.ConfeccionarMenuVariable();
+                        }
                         break;
                 }
+            }
+            catch (Exception exception)
+            {
+                OVALogsManager.Error(OModulosControl.MonitorizacionVariables, this.Name, exception);
+            }
+        }
+
+        /// <summary>
+        /// Evento de selección de item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.ConfeccionarMenuVariable();
             }
             catch (Exception exception)
             {
@@ -835,77 +812,6 @@ namespace Orbita.Controles.VA
             {
                 OVALogsManager.Error(OModulosControl.MonitorizacionVariables, this.Name, exception);
             }
-        }
-
-        /// <summary>
-        /// Se lanza cuando el usuario imputa el texto de una variable
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TextoImputadoPorUsuario(object sender, EventArgsInputText e)
-        {
-            try
-            {
-                OVariablesManager.ForzarValor(e.Codigo, e.TextoImputado, "Monitorizacion", this.Name);
-            }
-            catch (Exception exception)
-            {
-                OVALogsManager.Error(OModulosControl.MonitorizacionVariables, this.Name, exception);
-            }
-        }
-
-        /// <summary>
-        /// Carga una fotografía de disco
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void menuCargarFoto_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                if (this.ListVariables.FocusedItem != null)
-                {
-                    OVariable variable = (OVariable)this.ListVariables.FocusedItem.Tag;
-                    if (variable.Tipo == OEnumTipoDato.Imagen)
-                    {
-                        string codigo = this.ListVariables.FocusedItem.Text;
-                        string rutaArchivo = ORutaParametrizable.AppFolder;
-                        bool archivoSeleccionadoOK = OTrabajoControles.FormularioSeleccionArchivo(this.openFileDialog, ref rutaArchivo);
-                        if (archivoSeleccionadoOK)
-                        {
-                            OImagen imagen;
-                            object objImagen = OVariablesManager.GetValue(codigo);
-
-                            // Por defecto se crea una imagen de tipo BitmapImage
-                            if ((objImagen == null) || !(objImagen is OImagen))
-                            {
-                                imagen = new OImagenBitmap();
-                            }
-                            else
-                            {
-                                imagen = ((OImagen)objImagen).Nueva();
-                            }
-
-                            imagen.Cargar(rutaArchivo);
-                            OVariablesManager.ForzarValor(codigo, imagen, "Monitorizacion", this.Name);
-                        }
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                OVALogsManager.Error(OModulosControl.MonitorizacionVariables, this.Name, exception);
-            }
-        }
-
-        /// <summary>
-        /// Guarda una fotografía a disco
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void menuGuardarFoto_Click(object sender, EventArgs e)
-        {
         }
         #endregion
     }

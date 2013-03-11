@@ -9,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System;
 namespace Orbita.Controles.Gantt
 {
     public partial class OrbitaGantt : Orbita.Controles.Shared.OrbitaUserControl
@@ -245,9 +246,9 @@ namespace Orbita.Controles.Gantt
                         break;
                 }
             }
-            catch (Orbita.Controles.Shared.OExcepcion ex)
+            catch (Exception ex)
             {
-                throw new Orbita.Controles.Shared.OExcepcion("Excepción no controlada en OrbitaGantt", ex.InnerException);
+                throw new Exception("Excepción no controlada en OrbitaGantt", ex.InnerException);
             }
         }
         #endregion

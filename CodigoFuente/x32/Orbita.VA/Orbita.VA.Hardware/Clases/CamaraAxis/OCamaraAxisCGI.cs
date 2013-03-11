@@ -337,6 +337,26 @@ namespace Orbita.VA.Hardware
         }
 
         /// <summary>
+        /// Se comprueba que el valor a escribir sea del tipo correcto
+        /// </summary>
+        /// <param name="valor">Valor a escribir</param>
+        /// <param name="byteValor">Valor a escribir del tipo correcto</param>
+        /// <returns>Devuelve verdadero si el valor a escribir es válido</returns>
+        private bool ComprobarValor(object valor, out bool boolValor)
+        {
+            boolValor = false;
+
+            // Se comprueba que el valor sea correcto
+            bool valorOK = false;
+            if (valor is bool)
+            {
+                boolValor = (bool)valor;
+                valorOK = true;
+            }
+            return valorOK;
+        }
+
+        /// <summary>
         /// Realiza una lectura de una URL (entrada o salida)
         /// </summary>
         /// <param name="URL">URL a la que tiene que consultar</param>
@@ -344,16 +364,20 @@ namespace Orbita.VA.Hardware
         /// <returns>Verdadero si la consulta se ha realizado con éxito</returns>
         private bool LecturaInterna(string uRL, ref bool valor, string variable, int timeOutMs)
         {
-            OComunicacionCGITexto com = new OComunicacionCGITexto(uRL, string.Empty, string.Empty, this.Codigo, false, timeOutMs);
-            string respuesta;
-            bool ok = com.Ejecuta(out respuesta);
-            if (ok)
+            bool ok = false;
+            if (this.Habilitado)
             {
-                valor = this.StringToBit(respuesta, variable);
-            }
-            else
-            {
-                OVALogsManager.Info(ModulosHardware.CamaraAxis, "LecturaInterna", String.Format("Error comuniacando con la URL: {0} .Trama resultado: {1}", uRL, respuesta));
+                OComunicacionCGITexto com = new OComunicacionCGITexto(uRL, string.Empty, string.Empty, this.Codigo, false, timeOutMs, HttpStatusCode.OK);
+                string respuesta;
+                ok = com.Ejecuta(out respuesta);
+                if (ok)
+                {
+                    valor = this.StringToBit(respuesta, variable);
+                }
+                else
+                {
+                    OVALogsManager.Info(ModulosHardware.CamaraAxis, "LecturaInterna", String.Format("Error comuniacando con la URL: {0} .Trama resultado: {1}", uRL, respuesta));
+                }
             }
 
             return ok;
@@ -378,12 +402,16 @@ namespace Orbita.VA.Hardware
         /// <returns>Verdadero si la escritura se ha realizado con éxito</returns>
         private bool EscrituraInterna(string uRL, int timeOutMs)
         {
-            OComunicacionCGITexto com = new OComunicacionCGITexto(uRL, string.Empty, string.Empty, this.Codigo, false, timeOutMs);
-            string respuesta;
-            bool ok = com.Ejecuta(out respuesta);
-            if (!ok)
+            bool ok = false;
+            if (this.Habilitado)
             {
-                OVALogsManager.Info(ModulosHardware.CamaraAxis, "EscrituraInterna", String.Format("Error comuniacando con la URL: {0} .Trama resultado: {1}", uRL, respuesta));
+                OComunicacionCGITexto com = new OComunicacionCGITexto(uRL, string.Empty, string.Empty, this.Codigo, false, timeOutMs, HttpStatusCode.OK);
+                string respuesta;
+                ok = com.Ejecuta(out respuesta);
+                if (!ok)
+                {
+                    OVALogsManager.Info(ModulosHardware.CamaraAxis, "EscrituraInterna", String.Format("Error comuniacando con la URL: {0} .Trama resultado: {1}", uRL, respuesta));
+                }
             }
             return ok;
         }
@@ -420,7 +448,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                if (this.Conectividad.EstadoConexion == EstadoConexion.Conectado)
+                if ((this.Conectividad.EstadoConexion == EstadoConexion.Conectado) && this.Habilitado)
                 {
                     base.LeerEntrada();
                     bool boolValor = this.Valor;
@@ -449,7 +477,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                if (this.Conectividad.EstadoConexion == EstadoConexion.Conectado)
+                if ((this.Conectividad.EstadoConexion == EstadoConexion.Conectado) && this.Habilitado)
                 {
                     base.LeerSalida();
                     bool boolValor = this.Valor;
@@ -478,7 +506,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                if (this.Conectividad.EstadoConexion == EstadoConexion.Conectado)
+                if ((this.Conectividad.EstadoConexion == EstadoConexion.Conectado) && this.Habilitado)
                 {
                     base.EscribirSalida(codigoVariable, valor);
 
@@ -502,26 +530,6 @@ namespace Orbita.VA.Hardware
             {
                 OVALogsManager.Error(ModulosHardware.CamaraAxis, this.CodTarjeta, exception);
             }
-        }
-
-        /// <summary>
-        /// Se comprueba que el valor a escribir sea del tipo correcto
-        /// </summary>
-        /// <param name="valor">Valor a escribir</param>
-        /// <param name="byteValor">Valor a escribir del tipo correcto</param>
-        /// <returns>Devuelve verdadero si el valor a escribir es válido</returns>
-        private bool ComprobarValor(object valor, out bool boolValor)
-        {
-            boolValor = false;
-
-            // Se comprueba que el valor sea correcto
-            bool valorOK = false;
-            if (valor is bool)
-            {
-                boolValor = (bool)valor;
-                valorOK = true;
-            }
-            return valorOK;
         }
         #endregion
     }

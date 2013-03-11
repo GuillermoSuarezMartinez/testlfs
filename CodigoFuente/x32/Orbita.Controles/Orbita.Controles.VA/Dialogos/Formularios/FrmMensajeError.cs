@@ -63,7 +63,7 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public MensajeError()
+        internal MensajeError()
         {
             InitializeComponent();
         }
@@ -158,13 +158,13 @@ namespace Orbita.Controles.VA
         /// <param name="e"></param>
         private void MensajeError_Load(System.Object sender, System.EventArgs e)
         {
-            this.txtMensaje.Text = this.Mensaje;
-            this.txtExcepcion.Text = this.Excepcion;
-            this.txtFichero.Text = this.File;
-            this.txtClase.Text = this.ClassName;
-            this.txtMetodo.Text = this.Methode;
-            this.txtEnsamblado.Text = this.Assembly;
-            this.txtLinea.Text = this.Line.ToString();
+            this.TxtMensaje.Text = this.Mensaje;
+            this.TxtExcepcion.Text = this.Excepcion;
+            this.TxtFichero.Text = this.File;
+            this.TxtClase.Text = this.ClassName;
+            this.TxtMetodo.Text = this.Methode;
+            this.TxtEnsamblado.Text = this.Assembly;
+            this.TxtLinea.Text = this.Line.ToString();
         }
 
         /// <summary>
@@ -174,7 +174,11 @@ namespace Orbita.Controles.VA
         /// <param name="e"></param>
         private void btnMasInfo_Click(System.Object sender, System.EventArgs e)
         {
-            MessageBox.Show(this.PilaLlamadas, "Pila de llamadas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                MessageBox.Show(this.PilaLlamadas, "Pila de llamadas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch { }
         }
 
         #endregion

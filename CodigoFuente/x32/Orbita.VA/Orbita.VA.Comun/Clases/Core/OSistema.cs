@@ -75,6 +75,18 @@ namespace Orbita.VA.Comun
         {
             get { return _ModoInicio; }
         }
+
+        /// <summary>
+        /// Informa de la integración de la funcionalidad de máquinas de estados dentro del sistema
+        /// </summary>
+        private static bool _IntegraMaquinaEstados;
+        /// <summary>
+        /// Informa de la integración de la funcionalidad de máquinas de estados dentro del sistema
+        /// </summary>
+        public static bool IntegraMaquinaEstados
+        {
+            get { return _IntegraMaquinaEstados; }
+        }
         #endregion
 
         #region Método(s) privado(s)
@@ -87,7 +99,7 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Constructor de los campos estáticos de la clase
         /// </summary>
-        public static bool Constructor(OSistema sistema, Form mainForm, bool instanciaUnica)
+        public static bool Constructor(OSistema sistema, Form mainForm, bool instanciaUnica, bool integraMaquinasEstados)
         {
             _Sistema = sistema;
 
@@ -98,6 +110,7 @@ namespace Orbita.VA.Comun
             }
 
             App.FormularioPrincipal = mainForm;
+            _IntegraMaquinaEstados = integraMaquinasEstados;
 
             return resultado;
         }

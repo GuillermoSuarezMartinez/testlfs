@@ -15,9 +15,9 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using Infragistics.Win.UltraWinDock;
-using Orbita.Controles.Contenedores;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
+using System.Windows.Forms;
 
 namespace Orbita.Controles.VA
 {
@@ -277,7 +277,8 @@ namespace Orbita.Controles.VA
         public void ObtenerEscritorioAplicacion()
         {
             this.ListaInfoPosForms = new List<PosicionFormulario>();
-            foreach (OrbitaForm form in OTrabajoControles.FormularioPrincipalMDI.OrbMdiColaFormularios) // Para todos los formularios abiertos
+
+            foreach (Form form in OTrabajoControles.FormularioPrincipalMDI.MdiChildren) // Para todos los formularios abiertos
             {
                 if (form is IOrbitaForm)
                 {
@@ -306,7 +307,7 @@ namespace Orbita.Controles.VA
                 IOrbitaForm frmBase = null;
 
                 // Busqueda del formulario
-                foreach (IOrbitaForm form in OTrabajoControles.FormularioPrincipalMDI.OrbMdiColaFormularios) // Para todos los formularios abiertos
+                foreach (Form form in OTrabajoControles.FormularioPrincipalMDI.MdiChildren) // Para todos los formularios abiertos
                 {
                     if (form.Name == posicionFormulario.Nombre)
                     {
@@ -372,9 +373,13 @@ namespace Orbita.Controles.VA
         public void Maximizar()
         {
             // Se maximizan todos los formularios
-            foreach (IOrbitaForm form in OTrabajoControles.FormularioPrincipalMDI.OrbMdiColaFormularios) // Para todos los formularios abiertos
+            foreach (Form form in OTrabajoControles.FormularioPrincipalMDI.MdiChildren) // Para todos los formularios abiertos
             {
-                form.Maximized = true;
+                if (form is IOrbitaForm)
+                {
+                    IOrbitaForm orbitaForm = (IOrbitaForm)form;
+                    orbitaForm.Maximized = true;
+                }
             }
         }
         #endregion

@@ -9,29 +9,60 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System;
+using System.ComponentModel;
 namespace Orbita.Controles.Contenedores
 {
-	public partial class OrbitaDialog : System.Windows.Forms.Form
-	{
-		#region Constructor
-		/// <summary>
-		/// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaDialog.
-		/// </summary>
-		public OrbitaDialog()
-		{
-			InitializeComponent();
-			InitializeProperties();
-		}
-		#endregion
+    public partial class OrbitaDialog : System.Windows.Forms.Form
+    {
+        public class ControlNuevaDefinicion : ODialog
+        {
+            public ControlNuevaDefinicion(OrbitaDialog sender)
+                : base(sender) { }
+        };
 
-		#region Métodos privados
-		void InitializeProperties()
-		{
-			this.toolTip.Active = OConfiguracion.OrbFormVerToolTips;
-		}
-		#endregion
+        #region Atributos
+        ControlNuevaDefinicion definicion;
+        #endregion
 
-		#region Manejadores de eventos
+        #region Constructor
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaPanel.
+        /// </summary>
+        public OrbitaDialog()
+            : base()
+        {
+            InitializeComponent();
+            InitializeAttributes();
+            InitializeProperties();
+        }
+        #endregion
+
+        #region Propiedades
+        [System.ComponentModel.Category("Gestión de controles")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public ControlNuevaDefinicion OI
+        {
+            get { return this.definicion; }
+            set { this.definicion = value; }
+        }
+        #endregion
+
+        #region Métodos privados
+        void InitializeAttributes()
+        {
+            if (this.definicion == null)
+            {
+                this.definicion = new ControlNuevaDefinicion(this);
+            }
+        }
+        void InitializeProperties()
+		{
+			this.toolTip.Active = Configuracion.DefectoVerToolTips;
+		}
+        #endregion
+
+        #region Manejadores de eventos
 		protected virtual void OnKeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
 		{
 			try
@@ -45,11 +76,10 @@ namespace Orbita.Controles.Contenedores
 					this.Close();
 				}
 			}
-			catch (Orbita.Controles.Shared.OExcepcion ex)
+			catch (Exception)
 			{
-				System.Windows.Forms.MessageBox.Show(ex.ToString(), "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error, System.Windows.Forms.MessageBoxDefaultButton.Button1, 0);
 			}
 		}
 		#endregion
-	}
+    }
 }

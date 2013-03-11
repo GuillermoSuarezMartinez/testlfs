@@ -13,6 +13,7 @@ using System;
 using System.Collections;
 using System.Windows.Forms;
 using Orbita.Utiles;
+using Orbita.Controles.Estilos;
 using Orbita.VA.Comun;
 using Orbita.Controles.Grid;
 
@@ -98,24 +99,24 @@ namespace Orbita.Controles.VA
         {
             if (this.Nuevo)
             {
-                AppBD.AddVariable(this.txtCodigo.Text,
-                    this.txtNombre.Text,
-                    this.txtDescripcion.Text,
-                    this.checkHabilitado.Checked,
-                    this.txtGrupo.Text,
-                    this.checkTrazabilidad.Checked,
-                    (int)this.cboTipo.OrbValor);
+                AppBD.AddVariable(this.TxtCodigo.Text,
+                    this.TxtNombre.Text,
+                    this.TxtDescripcion.Text,
+                    this.ChkHabilitado.Checked,
+                    this.TxtGrupo.Text,
+                    this.ChkTrazabilidad.Checked,
+                    (int)this.CboTipo.OI.Valor);
             }
             else
             {
                 int retorno = AppBD.ModificaVariable(this.Id,
-                    this.txtCodigo.Text,
-                    this.txtNombre.Text,
-                    this.txtDescripcion.Text,
-                    this.checkHabilitado.Checked,
-                    this.txtGrupo.Text,
-                    this.checkTrazabilidad.Checked,
-                    (int)this.cboTipo.OrbValor);
+                    this.TxtCodigo.Text,
+                    this.TxtNombre.Text,
+                    this.TxtDescripcion.Text,
+                    this.ChkHabilitado.Checked,
+                    this.TxtGrupo.Text,
+                    this.ChkTrazabilidad.Checked,
+                    (int)this.CboTipo.OI.Valor);
             }
             Guardado = true;
             return true;
@@ -127,13 +128,13 @@ namespace Orbita.Controles.VA
         /// <returns>True si se ha modificado algún campo; false en caso contrario</returns>
         private bool ComprobarDatosModificados()
         {
-            if (this.txtCodigo.Modified)
+            if (this.TxtCodigo.Modified)
                 return true;
-            if (this.txtDescripcion.Modified)
+            if (this.TxtDescripcion.Modified)
                 return true;
-            if (this.txtGrupo.Modified)
+            if (this.TxtGrupo.Modified)
                 return true;
-            if (this.txtNombre.Modified)
+            if (this.TxtNombre.Modified)
                 return true;
             if (this.AlgoModificado)
                 return true;
@@ -151,17 +152,18 @@ namespace Orbita.Controles.VA
             //Aplicamos el formato
             ArrayList cols = new ArrayList();
             cols.Add(new OEstiloColumna("CodTipoVariable", "Codigo"));
-            this.cboTipo.OrbFormatear(AppBD.GetTiposVariables(), cols, "CodTipoVariable", "IdTipoVariable");
+
+            //*//this.CboTipo.Orbita.Formatear(AppBD.GetTiposVariables(), cols, "CodTipoVariable", "IdTipoVariable");
 
             if (!Nuevo)
             {
-                this.txtCodigo.Text = this.Codigo;
-                this.txtNombre.Text = this.Nombre;
-                this.txtDescripcion.Text = this.Descripcion;
-                this.checkHabilitado.Checked = this.Habilitado;
-                this.txtGrupo.Text = this.Grupo;
-                this.checkTrazabilidad.Checked = this.Trazabilidad;
-                this.cboTipo.OrbValor = this.Tipo;
+                this.TxtCodigo.Text = this.Codigo;
+                this.TxtNombre.Text = this.Nombre;
+                this.TxtDescripcion.Text = this.Descripcion;
+                this.ChkHabilitado.Checked = this.Habilitado;
+                this.TxtGrupo.Text = this.Grupo;
+                this.ChkTrazabilidad.Checked = this.Trazabilidad;
+                this.CboTipo.OI.Valor = this.Tipo;
             }
 
             this.Inicio = false;
@@ -236,7 +238,7 @@ namespace Orbita.Controles.VA
                 //Si hay datos modificados en el formulario, avisar y preguntar qué hacer
                 if (this.ComprobarDatosModificados() && !Guardado)
                 {
-                    switch (OMensajes.MostrarPreguntaSiNoCancelar("¿Desea guardar los cambios realizados de la variable " + this.txtCodigo.Text + "?", MessageBoxDefaultButton.Button3))
+                    switch (OMensajes.MostrarPreguntaSiNoCancelar("¿Desea guardar los cambios realizados de la variable " + this.TxtCodigo.Text + "?", MessageBoxDefaultButton.Button3))
                     {
                         case DialogResult.Yes:
                             if (!this.GuardarDatos())

@@ -84,7 +84,6 @@ namespace Orbita.VA.Comun
         {
             AlmacenObjetosVisuales.GuardarGrafico(ruta, grafico);
         }
-
         #endregion
     }
 

@@ -12,6 +12,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Globalization;
 using Orbita.VA.Comun;
 using System.Net;
 using System.Data;
@@ -200,11 +201,11 @@ namespace Orbita.VA.Hardware
 	                {
                         case OEnumModoMovimientoPTZ.Absoluto:
                             float valorPanA = (float)ODecimal.Validar(valor, -180, 180, 0);
-                            resultado = valorPanA.ToString("{0:0.0}"); //float
+                            resultado = valorPanA.ToString("#.0", CultureInfo.InvariantCulture); //float
                             break;
                         case OEnumModoMovimientoPTZ.Relativo:
                             float valorPanR = (float)ODecimal.Validar(valor, -360, 360, 0);
-                            resultado = valorPanR.ToString("{0:0.0}"); //float
+                            resultado = valorPanR.ToString("#.0", CultureInfo.InvariantCulture); //float
                             break;
 	                }
                     break;
@@ -213,11 +214,11 @@ namespace Orbita.VA.Hardware
 	                {
                         case OEnumModoMovimientoPTZ.Absoluto:
                             float valorTiltA = (float)ODecimal.Validar(valor, -180, 180, 0);
-                            resultado = valorTiltA.ToString("{0:0.0}"); //float
+                            resultado = valorTiltA.ToString("#.0", CultureInfo.InvariantCulture); //float
                             break;
                         case OEnumModoMovimientoPTZ.Relativo:
                             float valorTiltR = (float)ODecimal.Validar(valor, -360, 360, 0);
-                            resultado = valorTiltR.ToString("{0:0.0}"); //float
+                            resultado = valorTiltR.ToString("#.0", CultureInfo.InvariantCulture); //float
                             break;
 	                }
                     break;
@@ -414,7 +415,7 @@ namespace Orbita.VA.Hardware
                         urlComando += this.TipoMovimientoYValorToString(comando.Movimiento.Tipo, comando.Movimiento.Modo, comando.Valor) + "&";
                     }
 
-                    OComunicacionCGITexto comunicacionCGITexto = new OComunicacionCGITexto(urlComando, this.Usuario, this.Contraseña, this.Codigo, true, this.TimeOutMs);
+                    OComunicacionCGITexto comunicacionCGITexto = new OComunicacionCGITexto(urlComando, this.Usuario, this.Contraseña, this.Codigo, false, this.TimeOutMs, HttpStatusCode.NoContent);
                     string respuesta;
                     if (comunicacionCGITexto.Ejecuta(out respuesta))
                     {
@@ -441,7 +442,7 @@ namespace Orbita.VA.Hardware
             try
             {
                 string urlComando = this.URL + "?query=position";
-                OComunicacionCGITexto comunicacionCGITexto = new OComunicacionCGITexto(urlComando, this.Usuario, this.Contraseña, this.Codigo, true, this.TimeOutMs);
+                OComunicacionCGITexto comunicacionCGITexto = new OComunicacionCGITexto(urlComando, this.Usuario, this.Contraseña, this.Codigo, false, this.TimeOutMs, HttpStatusCode.OK);
                 string respuesta;
                 if (comunicacionCGITexto.Ejecuta(out respuesta))
                 {

@@ -107,7 +107,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="identificador">Identificador de logger.</param>
         /// <param name="sizeBackup">Tamaño máximo de logger hasta generar backup en bytes.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public DebugLogger(string identificador, long sizeBackup)
             : this(identificador, NivelLog.Debug, sizeBackup) { }
         /// <summary>
@@ -126,7 +126,7 @@ namespace Orbita.Trazabilidad
         /// <param name="identificador">Identificador de logger.</param>
         /// <param name="nivelLog">Nivel de logger. Por defecto, <c>NivelLog.Debug</c>.</param>
         /// <param name="sizeBackup">Tamaño máximo de logger hasta generar backup en bytes.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public DebugLogger(string identificador, NivelLog nivelLog, long sizeBackup)
             : this(identificador, nivelLog, new PathLogger(), sizeBackup) { }
         /// <summary>
@@ -145,7 +145,7 @@ namespace Orbita.Trazabilidad
         /// <param name="identificador">Identificador de logger.</param>
         /// <param name="pathLogger">Ruta de almacenamiento del fichero de logger.</param>
         /// <param name="sizeBackup">Tamaño máximo de logger hasta generar backup en bytes.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public DebugLogger(string identificador, PathLogger pathLogger, long sizeBackup)
             : this(identificador, NivelLog.Debug, pathLogger, sizeBackup) { }
         /// <summary>
@@ -166,7 +166,7 @@ namespace Orbita.Trazabilidad
         /// <param name="nivelLog">Nivel de logger. Por defecto, <c>NivelLog.Debug</c>.</param>
         /// <param name="pathLogger">Ruta de almacenamiento del fichero de logger.</param>
         /// <param name="sizeBackup">Tamaño máximo de logger hasta generar backup en bytes.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public DebugLogger(string identificador, NivelLog nivelLog, PathLogger pathLogger, long sizeBackup)
             : this(identificador, nivelLog, pathLogger, sizeBackup, new PathBackup()) { }
         /// <summary>
@@ -221,7 +221,7 @@ namespace Orbita.Trazabilidad
         /// <param name="identificador">Identificador de logger.</param>
         /// <param name="sizeBackup">Tamaño máximo de logger hasta generar backup en bytes.</param>
         /// <param name="pathBackup">Ruta de almacenamiento del fichero de backup de logger.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public DebugLogger(string identificador, long sizeBackup, PathBackup pathBackup)
             : this(identificador, NivelLog.Debug, sizeBackup, pathBackup) { }
         /// <summary>
@@ -242,7 +242,7 @@ namespace Orbita.Trazabilidad
         /// <param name="nivelLog">Nivel de logger. Por defecto, <c>NivelLog.Debug</c>.</param>
         /// <param name="sizeBackup">Tamaño máximo de logger hasta generar backup en bytes.</param>
         /// <param name="pathBackup">Ruta de almacenamiento del fichero de backup de logger.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public DebugLogger(string identificador, NivelLog nivelLog, long sizeBackup, PathBackup pathBackup)
             : this(identificador, nivelLog, new PathLogger(), sizeBackup, pathBackup) { }
         /// <summary>
@@ -263,7 +263,7 @@ namespace Orbita.Trazabilidad
         /// <param name="pathLogger">Ruta de almacenamiento del fichero de logger.</param>
         /// <param name="sizeBackup">Tamaño máximo de logger hasta generar backup en bytes.</param>
         /// <param name="pathBackup">Ruta de almacenamiento del fichero de backup de logger.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public DebugLogger(string identificador, PathLogger pathLogger, long sizeBackup, PathBackup pathBackup)
             : this(identificador, NivelLog.Debug, pathLogger, sizeBackup, pathBackup) { }
         /// <summary>
@@ -289,7 +289,7 @@ namespace Orbita.Trazabilidad
         /// <param name="pathLogger">Ruta de almacenamiento del fichero de logger.</param>
         /// <param name="sizeBackup">Tamaño máximo de logger hasta generar backup en bytes.</param>
         /// <param name="pathBackup">Ruta de almacenamiento del fichero de backup de logger.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public DebugLogger(string identificador, NivelLog nivelLog, PathLogger pathLogger, long sizeBackup, PathBackup pathBackup)
             : this(identificador, nivelLog, pathLogger, null, pathBackup)
         {
@@ -362,7 +362,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         public override string Separador
         {
-            get { return string.Format(System.Globalization.CultureInfo.CurrentCulture, " {0} ", this.separador); }
+            get { return this.separador; }
             set { this.separador = value; }
         }
         /// <summary>
@@ -503,7 +503,7 @@ namespace Orbita.Trazabilidad
         /// Asignar el objeto System.IO.FileSystemWatcher.
         /// </summary>
         /// <param name="size">Tamaño máximo de logger.</param>
-       [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public void SetFileSystemWatcher(long size)
         {
             // Tamaño máximo de logger hasta hacer backup.

@@ -305,7 +305,7 @@ namespace Orbita.VA.Hardware
         {
             byte[] buffer = new byte[bufSize];	// buffer to read stream
 
-            OComunicacionCGI comunicacionCGI = new OComunicacionCGI(this.Source, this._Login, this._Password, this.GetHashCode().ToString(), this._SeparateConnectionGroup, this._ReadTimeOutMs);
+            OComunicacionCGI comunicacionCGI = new OComunicacionCGI(this.Source, this._Login, this._Password, this.GetHashCode().ToString(), this._SeparateConnectionGroup, this._ReadTimeOutMs, HttpStatusCode.OK);
 
             // Salida por número de capturas máxima superada
             bool forzarSalida = false;

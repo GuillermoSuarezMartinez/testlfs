@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Utiles", "Orbita.Uti
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Orbita.Winsock", "Orbita.Winsock\Orbita.Winsock.vbproj", "{71BD7FF7-F873-49B9-8DC2-C41F909D7300}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Test", "Orbita.Test\Orbita.Test.csproj", "{5A389901-6ECF-48D6-8DDC-0A83AE46925C}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 6
@@ -115,6 +117,16 @@ Global
 		{71BD7FF7-F873-49B9-8DC2-C41F909D7300}.Release|Mixed Platforms.Build.0 = Release|x86
 		{71BD7FF7-F873-49B9-8DC2-C41F909D7300}.Release|x86.ActiveCfg = Release|x86
 		{71BD7FF7-F873-49B9-8DC2-C41F909D7300}.Release|x86.Build.0 = Release|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Debug|x86.ActiveCfg = Debug|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Debug|x86.Build.0 = Debug|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|Any CPU.ActiveCfg = Release|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|x86.ActiveCfg = Release|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
