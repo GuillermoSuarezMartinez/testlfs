@@ -16,7 +16,6 @@
 using System;
 using System.Globalization;
 using System.Text;
-
 namespace Orbita.Utiles
 {
     #region ORobusto
@@ -42,7 +41,6 @@ namespace Orbita.Utiles
 
             return false;
         }
-
         /// <summary>
         /// Indica si el objeto pasado es de tipo numérico
         /// </summary>
@@ -52,7 +50,6 @@ namespace Orbita.Utiles
         {
             return (o != null) && IsTypeOf(o, typeof(int), typeof(short), typeof(long), typeof(uint), typeof(ushort), typeof(ulong), typeof(byte), typeof(float), typeof(double), typeof(decimal));
         }
-
         /// <summary>
         /// Convierte un objeto a string
         /// </summary>
@@ -62,7 +59,6 @@ namespace Orbita.Utiles
         {
             return valor != null ? valor.ToString() : string.Empty;
         }
-
         /// <summary>
         /// Realiza una comparación entre dos objetos
         /// </summary>
@@ -156,7 +152,6 @@ namespace Orbita.Utiles
                 this.ValorGenerico = value;
             }
         }
-
         /// <summary>
         /// Código identificativo de la clase.
         /// </summary>
@@ -169,7 +164,6 @@ namespace Orbita.Utiles
             get { return _Codigo; }
             set { _Codigo = value; }
         }
-
         /// <summary>
         /// Indica que el valor asignado es válido
         /// </summary>
@@ -177,7 +171,6 @@ namespace Orbita.Utiles
         {
             get { return this.Estado == EnumEstadoObjetoRobusto.ResultadoCorrecto; }
         }
-
         /// <summary>
         /// Estado del valor actual
         /// </summary>
@@ -190,7 +183,6 @@ namespace Orbita.Utiles
             get { return _Estado; }
             set { _Estado = value; }
         }
-
         /// <summary>
         /// Valor del objeto
         /// </summary>
@@ -257,7 +249,6 @@ namespace Orbita.Utiles
             // Devolución de resultados
             return validacion;
         }
-
         /// <summary>
         /// Lanza una exepción por no estár permitido el valor especificado
         /// </summary>
@@ -434,7 +425,6 @@ namespace Orbita.Utiles
             valor = outValor;
             return validacion;
         }
-
         /// <summary>
         /// Lanza una exepción por no estár permitido el valor especificado
         /// </summary>
@@ -461,7 +451,6 @@ namespace Orbita.Utiles
             validacion = robusto.Estado;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Evalua si el parámetro es texto
         /// </summary>
@@ -471,7 +460,6 @@ namespace Orbita.Utiles
             robusto.ValorGenerico = valor;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Evalua si el parámetro es texto
         /// </summary>
@@ -479,7 +467,6 @@ namespace Orbita.Utiles
         {
             return Validar(valor, int.MaxValue, true, false, string.Empty);
         }
-
         /// <summary>
         /// Comprueba que el valor del objeto es correcto
         /// </summary>
@@ -491,7 +478,6 @@ namespace Orbita.Utiles
             robusto.ValorGenerico = valor;
             return robusto.Estado;
         }
-
         /// <summary>
         /// Case insensitive version of String.Replace().
         /// </summary>
@@ -629,7 +615,6 @@ namespace Orbita.Utiles
             valor = outValor;
             return validacion;
         }
-
         /// <summary>
         /// Lanza una exepción por no estár permitido el valor especificado
         /// </summary>
@@ -654,7 +639,6 @@ namespace Orbita.Utiles
             validacion = robusto.Estado;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Evalua si el parámetro es texto
         /// </summary>
@@ -664,7 +648,6 @@ namespace Orbita.Utiles
             robusto.ValorGenerico = valor;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Comprueba que el valor del objeto es correcto
         /// </summary>
@@ -768,7 +751,6 @@ namespace Orbita.Utiles
             valor = outValor;
             return validacion;
         }
-
         /// <summary>
         /// Lanza una exepción por no estár permitido el valor especificado
         /// </summary>
@@ -793,7 +775,6 @@ namespace Orbita.Utiles
             validacion = robusto.Estado;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Evalua si el parámetro es texto
         /// </summary>
@@ -803,7 +784,6 @@ namespace Orbita.Utiles
             robusto.ValorGenerico = valor;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Comprueba que el valor del objeto es correcto
         /// </summary>
@@ -816,7 +796,6 @@ namespace Orbita.Utiles
             valor = robusto.Valor;
             return robusto.Estado;
         }
-
         /// <summary>
         /// Se utiliza con enumerados y devuelve verdadero si el enumerado está contenido en el valor
         /// </summary>
@@ -834,7 +813,6 @@ namespace Orbita.Utiles
             }
             return false;
         }
-
         /// <summary>
         /// Se utiliza con enumerados para convertir un valor de texto en un enumerado del tipo indicado
         /// </summary>
@@ -2162,6 +2140,6 @@ namespace Orbita.Utiles
                 numero = (uint)(numero & ~mascara);
             }
         }
-    } 
+    }
     #endregion
 }
