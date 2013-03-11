@@ -8,7 +8,7 @@ xcopy ..\Orbita.Controles.Combo.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.Comunes.dll /q/f
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.Comunes.xml /q/f
 "C:\Archivos de programa\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.Controles.Comunes32.saproj
-verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.Combo.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2012"
+verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.Comunes.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2012"
 xcopy ..\Orbita.Controles.Comunes.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.Comunicaciones.dll /q/f
