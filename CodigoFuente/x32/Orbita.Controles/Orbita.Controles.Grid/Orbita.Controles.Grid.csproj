@@ -104,7 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\EventArgs\OTimerEventArgs.cs" />
-    <Compile Include="Clases\Configuración\OToolClickCollectionEventArgs.cs" />
+    <Compile Include="Clases\EventArgs\OToolClickCollectionEventArgs.cs" />
     <Compile Include="Clases\EventArgs\ORowEventArgs.cs" />
     <Compile Include="Clases\EventArgs\OPropertyExtendedChangedEventArgs.cs" />
     <Compile Include="Clases\EventArgs\OToolClickEventArgs.cs" />
