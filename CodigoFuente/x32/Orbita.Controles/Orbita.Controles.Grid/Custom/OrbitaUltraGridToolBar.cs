@@ -24,9 +24,8 @@ namespace Orbita.Controles.Grid
         public class ControlNuevaDefinicion : OUltraGridToolBar
         {
             public ControlNuevaDefinicion(OrbitaUltraGridToolBar sender)
-                : base(sender)
-            { }
-        };
+                : base(sender) { }
+        }
         #endregion Nueva definicion
 
         #region Atributos
@@ -581,7 +580,7 @@ namespace Orbita.Controles.Grid
                     this.ToolGestionarClick(this, e);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -601,7 +600,7 @@ namespace Orbita.Controles.Grid
                     this.ToolVerClick(this, nuevoEventArgs);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -621,7 +620,7 @@ namespace Orbita.Controles.Grid
                     this.ToolModificarClick(this, nuevoEventArgs);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -634,7 +633,7 @@ namespace Orbita.Controles.Grid
                     this.ToolAñadirClick(this, e);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -710,7 +709,7 @@ namespace Orbita.Controles.Grid
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -720,7 +719,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolLimpiarFiltros();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -737,7 +736,7 @@ namespace Orbita.Controles.Grid
                     this.ToolbarToolExportar();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -754,7 +753,7 @@ namespace Orbita.Controles.Grid
                     this.ToolbarToolImprimir();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -767,7 +766,7 @@ namespace Orbita.Controles.Grid
                     this.ToolRefrescarClick(this, e);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -787,7 +786,7 @@ namespace Orbita.Controles.Grid
                     timer.Enabled = activo;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -797,7 +796,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolEditarDeshacer();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -807,7 +806,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolEditarRehacer();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -817,7 +816,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolEditarCortar();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -827,7 +826,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolEditarCopiar();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -837,7 +836,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolEditarPegar();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -852,7 +851,7 @@ namespace Orbita.Controles.Grid
                     this.ToolbarToolEditarSiguiente();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
             finally
@@ -866,7 +865,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolEditarAnterior();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -876,7 +875,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolEditarSiguiente();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -886,7 +885,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolEditarUltimo();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -896,7 +895,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolEditarSeleccionarTodo();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -906,7 +905,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolEditarDeseleccionarTodo();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -916,7 +915,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolEditarBuscar();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -926,7 +925,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolPersonalizar();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -935,7 +934,7 @@ namespace Orbita.Controles.Grid
             try
             {
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -944,7 +943,7 @@ namespace Orbita.Controles.Grid
             try
             {
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -953,7 +952,7 @@ namespace Orbita.Controles.Grid
             try
             {
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -962,7 +961,7 @@ namespace Orbita.Controles.Grid
             try
             {
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -971,7 +970,7 @@ namespace Orbita.Controles.Grid
             try
             {
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -980,7 +979,7 @@ namespace Orbita.Controles.Grid
             try
             {
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -994,7 +993,7 @@ namespace Orbita.Controles.Grid
                     this.ToolEditarBeforeToolDropDown(this, e);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -1007,7 +1006,7 @@ namespace Orbita.Controles.Grid
                     this.ToolEstiloBeforeToolDropDown(this, e);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -1054,7 +1053,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolIrPrimero();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -1064,7 +1063,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolIrAnterior();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -1074,7 +1073,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolIrSiguiente();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -1084,7 +1083,7 @@ namespace Orbita.Controles.Grid
             {
                 this.ToolbarToolIrUltimo();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
@@ -1115,7 +1114,7 @@ namespace Orbita.Controles.Grid
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
