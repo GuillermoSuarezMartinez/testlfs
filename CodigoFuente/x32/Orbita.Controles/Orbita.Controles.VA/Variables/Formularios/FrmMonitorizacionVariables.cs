@@ -82,20 +82,20 @@ namespace Orbita.Controles.VA
             if (OSistemaManager.IntegraMaquinaEstados)
             {
                 // Menu de todos los escenarios
-                ButtonTool btnVistaTodos = new ButtonTool("Todos");
-                btnVistaTodos.SharedProps.Caption = "Todos";
-                btnVistaTodos.ToolClick += EscenarioClick;
-                this.ToolbarsManager.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] { btnVistaTodos });
-                menuEscenarios.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] { btnVistaTodos });
+                ButtonTool btnEscenarioTodos = new ButtonTool("Todos");
+                btnEscenarioTodos.SharedProps.Caption = "Todos";
+                btnEscenarioTodos.ToolClick += EscenarioClick;
+                this.ToolbarsManager.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] { btnEscenarioTodos });
+                menuEscenarios.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] { btnEscenarioTodos });
 
                 // Menu de cada escenario
-                DataTable dt = global::Orbita.VA.Comun.AppBD.GetVistas();
+                DataTable dt = global::Orbita.VA.Comun.AppBD.GetEscenarios();
                 foreach (DataRow dr in dt.Rows)
                 {
-                    string codVista = dr["CodVista"].ToString();
-                    string nombreVista = dr["NombreVista"].ToString();
-                    ButtonTool btnVista = new ButtonTool(codVista);
-                    btnVista.SharedProps.Caption = nombreVista;
+                    string codEscenario = dr["CodEscenario"].ToString();
+                    string nombreEscenario = dr["NombreEscenario"].ToString();
+                    ButtonTool btnVista = new ButtonTool(codEscenario);
+                    btnVista.SharedProps.Caption = nombreEscenario;
                     btnVista.ToolClick += EscenarioClick;
                     this.ToolbarsManager.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] { btnVista });
                     menuEscenarios.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] { btnVista });
@@ -163,8 +163,8 @@ namespace Orbita.Controles.VA
             else
             {
                 // Variables de una vista
-                OVistaVariable OVistaVariable = OVariablesManager.Vistas[this.CodEscenarioActual]; // Extraigo la vista acutal
-                foreach (KeyValuePair<string, string> aliasPair in OVistaVariable.ListaAlias) // Para cada alias
+                OEscenarioVariable OEscenarioVariable = OVariablesManager.Escenarios[this.CodEscenarioActual]; // Extraigo la vista acutal
+                foreach (KeyValuePair<string, string> aliasPair in OEscenarioVariable.ListaAlias) // Para cada alias
                 {
                     this.ListaCodVariablesActuales.Add(aliasPair.Value); // Guardo el código de la variable al que hace referencia
                 }

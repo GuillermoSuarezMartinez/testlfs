@@ -43,11 +43,13 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnCancelar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnCancelar.Size = new System.Drawing.Size(98, 33);
             // 
             // btnGuardar
             // 
-            this.btnGuardar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnGuardar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnGuardar.Size = new System.Drawing.Size(98, 33);
             // 
             // PnlInferiorPadre
             // 
@@ -75,7 +77,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 250);
-            this.ModoAperturaFormulario = global::Orbita.Controles.VA.ModoAperturaFormulario.Monitorizacion;
+            this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Monitorizacion;
             this.MostrarBotones = false;
             this.Name = "FrmDisplays";
             this.RecordarPosicion = true;

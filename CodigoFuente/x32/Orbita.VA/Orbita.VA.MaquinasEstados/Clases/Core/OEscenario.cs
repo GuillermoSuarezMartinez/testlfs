@@ -16,7 +16,7 @@ namespace Orbita.VA.MaquinasEstados
 {
     /// <summary>
     /// Escenario Base.
-    /// Permite la utilización de vistas.
+    /// Permite la utilización de escenarios.
     /// </summary>
     public class OEscenario
     {
@@ -42,8 +42,8 @@ namespace Orbita.VA.MaquinasEstados
             this.Codigo = codigo;
             this.Claves = new OClaves();
 
-            // Consulta las claves de una determinada vista
-            DataTable dt = AppBD.GetClavesDeVista(this.Codigo);
+            // Consulta las claves de una determinada escenario
+            DataTable dt = AppBD.GetClavesDeEscenario(this.Codigo);
             if (dt.Rows.Count > 0)
             {
                 foreach (DataRow dr in dt.Rows)

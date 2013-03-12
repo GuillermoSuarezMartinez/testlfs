@@ -426,7 +426,7 @@ namespace Orbita.VA.Funciones
 
                 this._CodVariableEnEjecucion = dtFuncionVision.Rows[0]["CodVariable"].ToString();
 
-                // Consulta las claves de una determinada vista
+                // Consulta las claves de una determinada escenario
                 this.Claves = new OClaves();
                 DataTable dt = AppBD.GetClavesDeFuncionVision(this.Codigo);
                 if (dt.Rows.Count > 0)

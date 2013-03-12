@@ -18,7 +18,7 @@ namespace Orbita.VAGeneradorEscenarios
 {
     /// <summary>
     /// Clase encargada de escribir el código C# para permitir el acceso rápido a variables.
-    /// Lee de la tabla de vistas y crea una clase para cada una de ellas
+    /// Lee de la tabla de escenarios y crea una clase para cada una de ellas
     /// </summary>
     class OGeneradorAccesoRapido
     {

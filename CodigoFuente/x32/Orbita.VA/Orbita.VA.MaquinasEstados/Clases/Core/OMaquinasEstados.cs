@@ -44,17 +44,17 @@ namespace Orbita.VA.MaquinasEstados
             // Construyo la lista de máquinas de estados
             ListaMaquinasEstados = new List<OMaquinaEstadosBase>();
 
-            DataTable dt = AppBD.GetMaquinasEstados();
+            DataTable dt = AppBD.GetInstanciasMaquinasEstados();
             if (dt.Rows.Count > 0)
             {
                 foreach (DataRow dr in dt.Rows)
                 {
-                    string codMaquinaEstados = dr["CodMaquinaEstados"].ToString();
+                    string codInstanciaMaquinaEstados = dr["CodInstanciaMaquinaEstados"].ToString();
                     string ensambladoClaseImplementadora = dr["EnsambladoClaseImplementadora"].ToString();
                     string claseImplementadora = string.Format("{0}.{1}", ensambladoClaseImplementadora, dr["ClaseImplementadora"].ToString());
 
                     object objetoImplementado;
-                    if (App.ConstruirClase(ensambladoClaseImplementadora, claseImplementadora, out objetoImplementado, codMaquinaEstados))
+                    if (App.ConstruirClase(ensambladoClaseImplementadora, claseImplementadora, out objetoImplementado, codInstanciaMaquinaEstados))
                     {
                         OMaquinaEstadosBase maquinaEstados = (OMaquinaEstadosBase)objetoImplementado;
                         ListaMaquinasEstados.Add(maquinaEstados);
@@ -269,10 +269,9 @@ namespace Orbita.VA.MaquinasEstados
         public string VariableEstadoActual = string.Empty;
 
         /// <summary>
-        /// Código de la vista utilizada
+        /// Código del escenario utilizada
         /// </summary>
-        public string CodVista = string.Empty;
-
+        public string CodEscenario = string.Empty;
         #endregion
 
         #region Propiedad(es)
@@ -287,6 +286,19 @@ namespace Orbita.VA.MaquinasEstados
         {
             get { return _Codigo; }
             set { _Codigo = value; }
+        }
+
+        /// <summary>
+        /// Código del estado. Texto que lo identifica inequívocamente.
+        /// </summary>
+        private string _CodMaquinaEstados;
+        /// <summary>
+        /// Código del estado. Texto que lo identifica inequívocamente.
+        /// </summary>
+        public string CodMaquinaEstados
+        {
+            get { return _CodMaquinaEstados; }
+            set { _CodMaquinaEstados = value; }
         }
 
         /// <summary>
@@ -414,14 +426,15 @@ namespace Orbita.VA.MaquinasEstados
                 this.ListaTransicionesUniversales = new List<OTransicionBase>();
 
                 // Cargamos valores de la base de datos
-                DataTable dtMaquinaEstados = AppBD.GetMaquinaEstados(this._Codigo);
+                DataTable dtMaquinaEstados = AppBD.GetInstanciaMaquinaEstados(this._Codigo);
                 if (dtMaquinaEstados.Rows.Count == 1)
                 {
-                    this.Nombre = dtMaquinaEstados.Rows[0]["NombreMaquinaEstados"].ToString();
-                    this.Descripcion = dtMaquinaEstados.Rows[0]["DescMaquinaEstados"].ToString();
+                    this.CodMaquinaEstados = dtMaquinaEstados.Rows[0]["CodInstanciaMaquinaEstados"].ToString();
+                    this.Nombre = dtMaquinaEstados.Rows[0]["NombreInstanciaMaquinaEstados"].ToString();
+                    this.Descripcion = dtMaquinaEstados.Rows[0]["DescInstanciaMaquinaEstados"].ToString();
                     this.Habilitado = (bool)dtMaquinaEstados.Rows[0]["HabilitadoMaquinaEstados"];
                     this.VariableEstadoActual = dtMaquinaEstados.Rows[0]["CodVariableEstadoActual"].ToString();
-                    this.CodVista = dtMaquinaEstados.Rows[0]["CodVista"].ToString();
+                    this.CodEscenario = dtMaquinaEstados.Rows[0]["CodEscenario"].ToString();
                     this._ForzarColectorBasura = OBooleano.Validar(dtMaquinaEstados.Rows[0]["ForzarColectorBasura"], true);
                     this._MaquinaEstadosSimulacion = OBooleano.Validar(dtMaquinaEstados.Rows[0]["MaquinaEstadosSimulacion"], false);
 
@@ -774,7 +787,7 @@ namespace Orbita.VA.MaquinasEstados
         /// </summary>
         private void EjecutarTransiciones()
         {
-            if (!this.EstadoActual.EnEjecucion) // Si el estado actual está en ejecución no se pueden comprobar sus transiciones
+            if (!this.EstadoActual.EnEjecucionAlEntrar) // Si el estado actual está en ejecución no se pueden comprobar sus transiciones
             {
                 if (this._Valido)
                 {
@@ -1082,14 +1095,14 @@ namespace Orbita.VA.MaquinasEstados
         /// <summary>
         /// Código de la máquina de estados. Texto que lo identifica inequívocamente.
         /// </summary>
-        private string _CodigoMaquinaEstados;
+        private string _CodigoInstanciaMaquinaEstados;
         /// <summary>
         /// Código de la máquina de estados. Texto que lo identifica inequívocamente.
         /// </summary>
-        public string CodigoMaquinaEstados
+        public string CodigoInstanciaMaquinaEstados
         {
-            get { return _CodigoMaquinaEstados; }
-            set { _CodigoMaquinaEstados = value; }
+            get { return _CodigoInstanciaMaquinaEstados; }
+            set { _CodigoInstanciaMaquinaEstados = value; }
         }
 
         /// <summary>
@@ -1172,16 +1185,29 @@ namespace Orbita.VA.MaquinasEstados
         }
 
         /// <summary>
-        /// Indica si el estado actual está en ejecución
+        /// Indica si el estado actual está en ejecución de la entrada
         /// </summary>
-        private bool _EnEjecucion;
+        private bool _EnEjecucionAlEntrar;
         /// <summary>
-        /// Indica si el estado actual está en ejecución
+        /// Indica si el estado actual está en ejecución de la entrada
         /// </summary>
-        public bool EnEjecucion
+        public bool EnEjecucionAlEntrar
         {
-            get { return _EnEjecucion; }
-            set { _EnEjecucion = value; }
+            get { return _EnEjecucionAlEntrar; }
+            set { _EnEjecucionAlEntrar = value; }
+        }
+
+        /// <summary>
+        /// Indica si el estado actual está en ejecución de la salida
+        /// </summary>
+        private bool _EnEjecucionAlSalir;
+        /// <summary>
+        /// Indica si el estado actual está en ejecución de la salida
+        /// </summary>
+        public bool EnEjecucionAlSalir
+        {
+            get { return _EnEjecucionAlSalir; }
+            set { _EnEjecucionAlSalir = value; }
         }
 
         /// <summary>
@@ -1215,20 +1241,22 @@ namespace Orbita.VA.MaquinasEstados
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        /// <param name="codigoMaquinaEstados">Código de la máquina de estados</param>
+        /// <param name="codigoInstanciaMaquinaEstados">Código de la máquina de estados</param>
         /// <param name="codigo">Código del estado</param>
-        public OEstadoBase(string codigoMaquinaEstados, string codigo, OEscenario escenario)
+        public OEstadoBase(string codigoInstanciaMaquinaEstados, string codigo, OEscenario escenario)
         {
             try
             {
 
                 // Inicializamos las variables
-                this._CodigoMaquinaEstados = codigoMaquinaEstados;
+                this._CodigoInstanciaMaquinaEstados = codigoInstanciaMaquinaEstados;
                 this._Codigo = codigo;
                 this._Escenario = escenario;
+                this._EnEjecucionAlEntrar = false;
+                this._EnEjecucionAlSalir = false;
 
                 // Cargamos valores de la base de datos
-                DataTable dtEstado = AppBD.GetEstado(this.CodigoMaquinaEstados, this.Codigo);
+                DataTable dtEstado = AppBD.GetEstado(this.CodigoInstanciaMaquinaEstados, this.Codigo);
                 if (dtEstado.Rows.Count == 1)
                 {
                     this.Nombre = dtEstado.Rows[0]["NombreEstado"].ToString();
@@ -1245,11 +1273,11 @@ namespace Orbita.VA.MaquinasEstados
                     //this.TipoEstado = (TipoEstado)App.EnumParse(TipoEstado.GetType(), dtEstado.Rows[0]["Tipo"].ToString(), TipoEstado.EstadoSimple);
 
                     // Creación de los cronómetros
-                    this.CodCronometroAsociadoActivacion = this.CodigoMaquinaEstados + "." + this.Codigo + ".Activacion";
+                    this.CodCronometroAsociadoActivacion = this.CodigoInstanciaMaquinaEstados + "." + this.Codigo + ".Activacion";
                     OCronometrosManager.NuevoCronometro(this.CodCronometroAsociadoActivacion, "Activación Estado " + this.Nombre, "Activación del estado " + this.Nombre);
-                    this.CodCronometroAsociadoEjecucionEntrada = this.CodigoMaquinaEstados + "." + this.Codigo + ".Ejecucion";
+                    this.CodCronometroAsociadoEjecucionEntrada = this.CodigoInstanciaMaquinaEstados + "." + this.Codigo + ".Ejecucion";
                     OCronometrosManager.NuevoCronometro(this.CodCronometroAsociadoEjecucionEntrada, "Ejecución de la entrada al Estado " + this.Nombre, "Ejecución de la entrada al estado " + this.Nombre);
-                    this.CodCronometroAsociadoEjecucionSalida = this.CodigoMaquinaEstados + "." + this.Codigo + ".Ejecucion";
+                    this.CodCronometroAsociadoEjecucionSalida = this.CodigoInstanciaMaquinaEstados + "." + this.Codigo + ".Ejecucion";
                     OCronometrosManager.NuevoCronometro(this.CodCronometroAsociadoEjecucionSalida, "Ejecución de la salida del Estado " + this.Nombre, "Ejecución de la salida del estado " + this.Nombre);
                 }
                 else
@@ -1263,7 +1291,6 @@ namespace Orbita.VA.MaquinasEstados
                 throw new Exception("Imposible iniciar el estado " + this.Codigo);
             }
         }
-
         #endregion
 
         #region Método(s) virtual(es)
@@ -1281,7 +1308,7 @@ namespace Orbita.VA.MaquinasEstados
         /// </summary>
         public virtual void Finalizar()
         {
-            OThreadManager.Espera(ref this._EnEjecucion, false, 1000);
+            OThreadManager.Espera(ref this._EnEjecucionAlEntrar, false, 1000);
         }
 
         /// <summary>
@@ -1295,7 +1322,7 @@ namespace Orbita.VA.MaquinasEstados
             // Guardamos la traza de registros del inicio del estado al entrar
             OVALogsManager.Info(OModulosControl.MaquinasEstado, this._Codigo, "Activación del estado " + this._Codigo);
 
-            this._EnEjecucion = true;
+            this._EnEjecucionAlEntrar = true;
             try
             {
                 // Cronometramos la duración de la ejecución
@@ -1317,7 +1344,7 @@ namespace Orbita.VA.MaquinasEstados
             {
                 OVALogsManager.Error(OModulosControl.MaquinasEstado, this._Codigo, exception);
             }
-            this._EnEjecucion = false;
+            this._EnEjecucionAlEntrar = false;
         }
 
         /// <summary>
@@ -1325,7 +1352,7 @@ namespace Orbita.VA.MaquinasEstados
         /// </summary>
         internal virtual void FinalizarEjecucion()
         {
-            this._EnEjecucion = true;
+            this._EnEjecucionAlSalir = true;
             try
             {
                 // Cronometramos la duración de la ejecución
@@ -1347,7 +1374,7 @@ namespace Orbita.VA.MaquinasEstados
             {
                 OVALogsManager.Error(OModulosControl.MaquinasEstado, this.Codigo, exception);
             }
-            this._EnEjecucion = false;
+            this._EnEjecucionAlSalir = false;
 
             // Parmos el cronómetro de la duración del estado como activo
             OCronometrosManager.Stop(this.CodCronometroAsociadoActivacion);
@@ -1384,21 +1411,6 @@ namespace Orbita.VA.MaquinasEstados
         private BackgroundWorker ThreadEjecucion;
         #endregion
 
-        #region Propiedad(es)
-        /// <summary>
-        /// Código de la variable asociada a la ejecución del estado.
-        /// </summary>
-        private string _CodVariableEnEjecucion;
-        /// <summary>
-        /// Código de la variable asociada a la ejecución del estado.
-        /// </summary>
-        public string CodVariableEnEjecucion
-        {
-            get { return _CodVariableEnEjecucion; }
-            set { _CodVariableEnEjecucion = value; }
-        } 
-        #endregion
-
         #region Constructor(es)
 
         /// <summary>
@@ -1416,17 +1428,6 @@ namespace Orbita.VA.MaquinasEstados
                 this.ThreadEjecucion.WorkerSupportsCancellation = true;
                 this.ThreadEjecucion.DoWork += new DoWorkEventHandler(this.EjecucionEnThread);
                 this.ThreadEjecucion.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.FinEjecucionThread);
-
-                // Cargamos valores de la base de datos
-                DataTable dtEstado = AppBD.GetEstadoAsincrono(this.CodigoMaquinaEstados, this.Codigo);
-                if (dtEstado.Rows.Count == 1)
-                {
-                    this._CodVariableEnEjecucion = dtEstado.Rows[0]["CodVariable"].ToString();
-                }
-                else
-                {
-                    throw new Exception("No se ha podido cargar la información del estado asíncrono " + codigo + " \r\nde la base de datos.");
-                }
             }
             catch (Exception exception)
             {
@@ -1463,7 +1464,7 @@ namespace Orbita.VA.MaquinasEstados
         /// <param name="e"></param>
         private void FinEjecucionThread(object sender, RunWorkerCompletedEventArgs e)
         {
-            this.EnEjecucion = false; // Nuevo
+            this.EnEjecucionAlEntrar = false; // Nuevo
 
             // Paramos el cronometro de la duración de la ejecución
             OCronometrosManager.Stop(this.CodCronometroAsociadoEjecucionEntrada);
@@ -1472,7 +1473,7 @@ namespace Orbita.VA.MaquinasEstados
             OVALogsManager.Debug(OModulosControl.MaquinasEstado, this.Codigo, "Fin del método 'al entrar' del estado " + this.Codigo + ". Duración: " + OCronometrosManager.DuracionUltimaEjecucion(this.CodCronometroAsociadoEjecucionEntrada).ToString());
 
             // Llamada a la variable que indica el estado de ejecución del thread
-            OVariablesManager.SetValue(this._CodVariableEnEjecucion, false, "MaquinaEstados", this.Codigo);
+            //OVariablesManager.SetValue(this._CodVariableEnEjecucion, false, "MaquinaEstados", this.Codigo);
         }
 
         #endregion
@@ -1490,7 +1491,7 @@ namespace Orbita.VA.MaquinasEstados
             // Guardamos la traza de registros del inicio del estado al entrar
             OVALogsManager.Info(OModulosControl.MaquinasEstado, this.Codigo, "Activación del estado " + this.Codigo);
                                                                        
-            this.EnEjecucion = true;
+            this.EnEjecucionAlEntrar = true;
             try
             {
                 // Cronometramos la duración de la ejecución
@@ -1500,15 +1501,15 @@ namespace Orbita.VA.MaquinasEstados
                 OVALogsManager.Debug(OModulosControl.MaquinasEstado, this.Codigo, "Inicio del método 'al entrar' del estado " + this.Codigo);
 
                 // Llamada a la variable que indica el estado de ejecución del thread
-                OVariablesManager.SetValue(this._CodVariableEnEjecucion, true, "MaquinaEstados", this.Codigo);
+                //OVariablesManager.SetValue(this._CodVariableEnEjecucion, true, "MaquinaEstados", this.Codigo);
 
                 // Ejecutamos el estado del thread
                 this.ThreadEjecucion.RunWorkerAsync();
-
             }
             catch (Exception exception)
             {
                 OVALogsManager.Error(OModulosControl.MaquinasEstado, this.Codigo, exception);
+                this.EnEjecucionAlEntrar = false;
             }
             //this.EnEjecucion = false;
         }
@@ -1562,14 +1563,14 @@ namespace Orbita.VA.MaquinasEstados
         /// <summary>
         /// Código de la máquina de estados. Texto que lo identifica inequívocamente.
         /// </summary>
-        private string _CodigoMaquinaEstados;
+        private string _CodigoInstanciaMaquinaEstados;
         /// <summary>
         /// Código de la máquina de estados. Texto que lo identifica inequívocamente.
         /// </summary>
-        public string CodigoMaquinaEstados
+        public string CodigoInstanciaMaquinaEstados
         {
-            get { return _CodigoMaquinaEstados; }
-            set { _CodigoMaquinaEstados = value; }
+            get { return _CodigoInstanciaMaquinaEstados; }
+            set { _CodigoInstanciaMaquinaEstados = value; }
         }
 
         /// <summary>
@@ -1692,20 +1693,20 @@ namespace Orbita.VA.MaquinasEstados
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        /// <param name="codigoMaquinaEstados">Código de la máquina de estados</param>
+        /// <param name="codigoInstanciaMaquinaEstados">Código de la máquina de estados</param>
         /// <param name="codigo">Código de la transición</param>
-        public OTransicionBase(string codigoMaquinaEstados, string codigo, OEscenario escenario)
+        public OTransicionBase(string codigoInstanciaMaquinaEstados, string codigo, OEscenario escenario)
         {
             try
             {
                 // Inicializamos las variables
-                this._CodigoMaquinaEstados = codigoMaquinaEstados;
+                this._CodigoInstanciaMaquinaEstados = codigoInstanciaMaquinaEstados;
                 this._Codigo = codigo;
                 this._VariablesUtilizadas = new List<string>();
                 this._Escenario = escenario;
 
                 // Cargamos valores de la base de datos
-                DataTable dtTransicion = AppBD.GetTransicion(this._CodigoMaquinaEstados, this._Codigo);
+                DataTable dtTransicion = AppBD.GetTransicion(this._CodigoInstanciaMaquinaEstados, this._Codigo);
                 if (dtTransicion.Rows.Count == 1)
                 {
                     this.Nombre = dtTransicion.Rows[0]["NombreTransicion"].ToString();
@@ -1719,7 +1720,7 @@ namespace Orbita.VA.MaquinasEstados
                     //this.TipoTransicion = (OTipoTransicion)App.EnumParse(TipoTransicion.GetType(), dtTransicion.Rows[0]["Tipo"].ToString(), OTipoTransicion.TransicionSimple);
 
                     // Cargamos el código de las variables que se utilizan en la transición
-                    DataTable dtVariables = AppBD.GetVariablesTransicion(this._CodigoMaquinaEstados, this._Codigo);
+                    DataTable dtVariables = AppBD.GetVariablesTransicion(this._CodigoInstanciaMaquinaEstados, this._Codigo);
                     if (dtVariables.Rows.Count > 0)
                     {
                         object codVariableAux;
@@ -1734,7 +1735,7 @@ namespace Orbita.VA.MaquinasEstados
                     }
 
                     // Creación de los cronómetros
-                    this.CodCronometro = this.CodigoMaquinaEstados + "." + this.Codigo;
+                    this.CodCronometro = this.CodigoInstanciaMaquinaEstados + "." + this.Codigo;
                     OCronometrosManager.NuevoCronometro(this.CodCronometro, "Comprobación transición " + this.Nombre, "Comprobación de la transición " + this.Nombre);
                 }
                 else

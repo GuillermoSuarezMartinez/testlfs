@@ -625,6 +625,10 @@
       <Project>{AF6AFAC6-159A-4C37-8C74-4D8609088C05}</Project>
       <Name>Orbita.Controles.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Estilos\Orbita.Controles.Estilos.csproj">
+      <Project>{69BCFE99-17D1-4F08-AD49-95C395D247A6}</Project>
+      <Name>Orbita.Controles.Estilos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orbita.Controles.Grid\Orbita.Controles.Grid.csproj">
       <Project>{34B632DA-E0C4-4F27-AAFD-AFAD64604BFA}</Project>
       <Name>Orbita.Controles.Grid</Name>

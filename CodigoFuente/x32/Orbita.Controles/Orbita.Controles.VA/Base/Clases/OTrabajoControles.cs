@@ -37,9 +37,9 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Formulario principal de tipo MDI de la aplicación
         /// </summary>
-        public static OrbitaForm FormularioPrincipalMDI
+        public static OrbitaMdiParentForm FormularioPrincipalMDI
         {
-            get { return (OrbitaForm)App.FormularioPrincipal; }
+            get { return (OrbitaMdiParentForm)App.FormularioPrincipal; }
             set { App.FormularioPrincipal = value; }
         }
 

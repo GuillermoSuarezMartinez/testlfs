@@ -99,12 +99,12 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnCancelar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnCancelar.Size = new System.Drawing.Size(98, 33);
             // 
             // btnGuardar
             // 
-            this.btnGuardar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnGuardar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnGuardar.Size = new System.Drawing.Size(98, 33);
             // 
             // PnlPanelPrincipalPadre
@@ -116,7 +116,7 @@
             // 
             this.TabPage1.Controls.Add(this.GrpConfigEscritorio);
             this.TabPage1.Controls.Add(this.PnlGeneral);
-            this.TabPage1.Location = new System.Drawing.Point(-10000, -10000);
+            this.TabPage1.Location = new System.Drawing.Point(2, 21);
             this.TabPage1.Name = "TabPage1";
             this.TabPage1.Size = new System.Drawing.Size(371, 273);
             // 
@@ -200,7 +200,7 @@
             this.CboEscritorios.Location = new System.Drawing.Point(130, 58);
             this.CboEscritorios.Margin = new System.Windows.Forms.Padding(0);
             this.CboEscritorios.Name = "CboEscritorios";
-            this.CboEscritorios.Size = new System.Drawing.Size(212, 21);
+            this.CboEscritorios.Size = new System.Drawing.Size(212, 23);
             this.CboEscritorios.TabIndex = 33;
             // 
             // ChkAutoAbrirFoms
@@ -301,7 +301,7 @@
             // 
             this.TabPage2.Controls.Add(this.GrpListaEscritorios);
             this.TabPage2.Controls.Add(this.PnlEscritorios);
-            this.TabPage2.Location = new System.Drawing.Point(2, 21);
+            this.TabPage2.Location = new System.Drawing.Point(-10000, -10000);
             this.TabPage2.Name = "TabPage2";
             this.TabPage2.Size = new System.Drawing.Size(371, 273);
             // 
@@ -330,7 +330,7 @@
             this.LblListadoEscritorios.Location = new System.Drawing.Point(14, 29);
             this.LblListadoEscritorios.Name = "LblListadoEscritorios";
             this.LblListadoEscritorios.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.LblListadoEscritorios.Size = new System.Drawing.Size(58, 13);
+            this.LblListadoEscritorios.Size = new System.Drawing.Size(60, 14);
             this.LblListadoEscritorios.TabIndex = 42;
             this.LblListadoEscritorios.Text = "Escritorios:";
             this.LblListadoEscritorios.UseMnemonic = false;
@@ -420,7 +420,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(395, 359);
-            this.ModoAperturaFormulario = global::Orbita.Controles.VA.ModoAperturaFormulario.Modificacion;
+            this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Modificacion;
             this.Name = "FrmGestionEscritorios";
             this.Text = "Gestión de escritorios";
             this.PnlInferiorPadre.ResumeLayout(false);

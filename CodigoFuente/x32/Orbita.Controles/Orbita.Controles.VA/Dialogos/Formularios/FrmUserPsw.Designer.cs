@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
-            Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
-            this.GrpFondo = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox ();
+            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
+            this.GrpFondo = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
             this.LblErrorContraseña = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.OrbitaPictureBox = new Orbita.Controles.Comunes.OrbitaPictureBox();
             this.ComboUsuario = new Orbita.Controles.Combo.OrbitaUltraCombo();
@@ -45,7 +45,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GrpFondo)).BeginInit();
             this.GrpFondo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OrbitaPictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtContraseña)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComboUsuario)).BeginInit();
             this.SuspendLayout();
             // 
             // PnlInferiorPadre
@@ -60,12 +60,12 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnCancelar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnCancelar.Size = new System.Drawing.Size(98, 33);
             // 
             // btnGuardar
             // 
-            this.btnGuardar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnGuardar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnGuardar.Size = new System.Drawing.Size(98, 33);
             // 
             // PnlPanelPrincipalPadre
@@ -97,12 +97,12 @@
             // 
             this.LblErrorContraseña.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            appearance4.BackColor = System.Drawing.Color.Transparent;
-            appearance4.ForeColor = System.Drawing.Color.Red;
-            appearance4.TextHAlignAsString = "Center";
-            this.LblErrorContraseña.Appearance = appearance4;
+            appearance1.BackColor = System.Drawing.Color.Transparent;
+            appearance1.ForeColor = System.Drawing.Color.Red;
+            appearance1.TextHAlignAsString = "Center";
+            this.LblErrorContraseña.Appearance = appearance1;
             this.LblErrorContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.LblErrorContraseña.Location = new System.Drawing.Point(20, 108);
+            this.LblErrorContraseña.Location = new System.Drawing.Point(20, 107);
             this.LblErrorContraseña.Name = "LblErrorContraseña";
             this.LblErrorContraseña.Size = new System.Drawing.Size(363, 18);
             this.LblErrorContraseña.TabIndex = 4;
@@ -121,22 +121,22 @@
             // 
             // ComboUsuario
             // 
+            this.ComboUsuario.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList;
             this.ComboUsuario.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboUsuario.Location = new System.Drawing.Point(159, 40);
             this.ComboUsuario.Margin = new System.Windows.Forms.Padding(0);
             this.ComboUsuario.Name = "ComboUsuario";
-            this.ComboUsuario.OI.Valor = null;
-            this.ComboUsuario.Size = new System.Drawing.Size(224, 21);
+            this.ComboUsuario.Size = new System.Drawing.Size(224, 23);
             this.ComboUsuario.TabIndex = 1;
             // 
             // LblContraseña
             // 
             this.LblContraseña.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            appearance5.BackColor = System.Drawing.Color.Transparent;
-            appearance5.ForeColor = System.Drawing.Color.Black;
-            appearance5.TextHAlignAsString = "Right";
-            this.LblContraseña.Appearance = appearance5;
+            appearance2.BackColor = System.Drawing.Color.Transparent;
+            appearance2.ForeColor = System.Drawing.Color.Black;
+            appearance2.TextHAlignAsString = "Right";
+            this.LblContraseña.Appearance = appearance2;
             this.LblContraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.LblContraseña.Location = new System.Drawing.Point(78, 78);
             this.LblContraseña.Name = "LblContraseña";
@@ -149,10 +149,10 @@
             // 
             this.LblUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            appearance6.BackColor = System.Drawing.Color.Transparent;
-            appearance6.ForeColor = System.Drawing.Color.Black;
-            appearance6.TextHAlignAsString = "Right";
-            this.LblUsuario.Appearance = appearance6;
+            appearance3.BackColor = System.Drawing.Color.Transparent;
+            appearance3.ForeColor = System.Drawing.Color.Black;
+            appearance3.TextHAlignAsString = "Right";
+            this.LblUsuario.Appearance = appearance3;
             this.LblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.LblUsuario.Location = new System.Drawing.Point(78, 43);
             this.LblUsuario.Name = "LblUsuario";
@@ -169,7 +169,7 @@
             this.TxtContraseña.Location = new System.Drawing.Point(159, 75);
             this.TxtContraseña.Name = "TxtContraseña";
             this.TxtContraseña.PasswordChar = '*';
-            this.TxtContraseña.Size = new System.Drawing.Size(224, 21);
+            this.TxtContraseña.Size = new System.Drawing.Size(224, 20);
             this.TxtContraseña.TabIndex = 2;
             // 
             // FrmUserPsw
@@ -180,7 +180,7 @@
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(428, 197);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.ModoAperturaFormulario = global::Orbita.Controles.VA.ModoAperturaFormulario.Modificacion;
+            this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Modificacion;
             this.Name = "FrmUserPsw";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cambio de usuario";
@@ -192,7 +192,7 @@
             this.GrpFondo.ResumeLayout(false);
             this.GrpFondo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OrbitaPictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtContraseña)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ComboUsuario)).EndInit();
             this.ResumeLayout(false);
 
         }

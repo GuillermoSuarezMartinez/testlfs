@@ -81,12 +81,12 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnCancelar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnCancelar.Size = new System.Drawing.Size(98, 33);
             // 
             // btnGuardar
             // 
-            this.btnGuardar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnGuardar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnGuardar.Size = new System.Drawing.Size(98, 33);
             // 
             // ListView
@@ -101,10 +101,10 @@
             this.Total});
             this.ListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListView.LargeImageList = this.ImageListLarge;
-            this.ListView.Location = new System.Drawing.Point(5, 17);
+            this.ListView.Location = new System.Drawing.Point(5, 18);
             this.ListView.Name = "ListView";
             this.ListView.ShowItemToolTips = true;
-            this.ListView.Size = new System.Drawing.Size(762, 338);
+            this.ListView.Size = new System.Drawing.Size(762, 337);
             this.ListView.SmallImageList = this.ImageListSmall;
             this.ListView.TabIndex = 16;
             this.ListView.UseCompatibleStateImageBehavior = false;
@@ -282,7 +282,9 @@
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Right);
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Bottom);
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Top);
+            this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Monitorizacion;
             this.Name = "FrmMonitorizacionCronometros";
+            this.RecordarPosicion = true;
             this.Text = "Monitorización de los cronómetros del sistema";
             this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Top, 0);
             this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Bottom, 0);

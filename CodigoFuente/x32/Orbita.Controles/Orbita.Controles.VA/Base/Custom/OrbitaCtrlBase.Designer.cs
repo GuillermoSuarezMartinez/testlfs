@@ -76,7 +76,7 @@
             this.btnCancelar.ImageSize = new System.Drawing.Size(24, 24);
             this.btnCancelar.Location = new System.Drawing.Point(104, 9);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnCancelar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnCancelar.Size = new System.Drawing.Size(98, 34);
             this.btnCancelar.TabIndex = 30;
             this.btnCancelar.Text = "Cancelar";
@@ -89,7 +89,7 @@
             this.btnGuardar.ImageSize = new System.Drawing.Size(24, 24);
             this.btnGuardar.Location = new System.Drawing.Point(0, 9);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnGuardar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnGuardar.Size = new System.Drawing.Size(98, 34);
             this.btnGuardar.TabIndex = 31;
             this.btnGuardar.Text = "Guardar";

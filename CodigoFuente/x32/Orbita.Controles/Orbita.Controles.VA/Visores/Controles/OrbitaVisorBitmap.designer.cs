@@ -383,14 +383,14 @@
             this.TimerUpdateFps.Interval = 200;
             this.TimerUpdateFps.Tick += new System.EventHandler(this.TimerUpdateFps_Tick);
             // 
-            // ODisplayBitmap
+            // OrbitaVisorBitmap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.VisorImagenes);
             this.Controls.Add(this.StatusStripBottom);
             this.Controls.Add(this.ToolStripTop);
-            this.Name = "ODisplayBitmap";
+            this.Name = "OrbitaVisorBitmap";
             this.Size = new System.Drawing.Size(578, 369);
             this.Load += new System.EventHandler(this.CtrlDisplayBitmap_Load);
             this.ToolStripTop.ResumeLayout(false);

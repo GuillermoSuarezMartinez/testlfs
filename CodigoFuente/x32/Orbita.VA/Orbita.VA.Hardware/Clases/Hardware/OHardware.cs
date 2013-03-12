@@ -28,9 +28,9 @@ namespace Orbita.VA.Hardware
         public static Dictionary<string, IHardware> ListaHardware;
 
         /// <summary>
-        /// Lista de todas las vistas de hardware del sistema
+        /// Lista de todas las escenarios de hardware del sistema
         /// </summary>
-        public static Dictionary<string, OVistaHardware> Vistas;
+        public static Dictionary<string, OEscenarioHardware> Escenarios;
         #endregion
 
         #region Método(s) público(s)
@@ -42,26 +42,26 @@ namespace Orbita.VA.Hardware
             ListaHardware = new Dictionary<string, IHardware>();
             if (OSistemaManager.IntegraMaquinaEstados)
             {
-                Vistas = new Dictionary<string, OVistaHardware>();
+                Escenarios = new Dictionary<string, OEscenarioHardware>();
             }
 
             OIOManager.Constructor();
             OCamaraManager.Constructor();
 
-            // Consulta de todas las vistas existentes en el sistema
+            // Consulta de todas las escenarios existentes en el sistema
             if (OSistemaManager.IntegraMaquinaEstados)
             {
-                DataTable dtVista = Orbita.VA.Comun.AppBD.GetVistas();
-                if (dtVista.Rows.Count > 0)
+                DataTable dtEscenario = Orbita.VA.Comun.AppBD.GetEscenarios();
+                if (dtEscenario.Rows.Count > 0)
                 {
-                    // Cargamos todas las vistas existentes en el sistema
-                    OVistaHardware vista;
-                    foreach (DataRow drVista in dtVista.Rows)
+                    // Cargamos todas las escenarios existentes en el sistema
+                    OEscenarioHardware escenario;
+                    foreach (DataRow drEscenario in dtEscenario.Rows)
                     {
-                        // Creamos cada una de las vistas del sistema
-                        string codVista = drVista["CodVista"].ToString();
-                        vista = new OVistaHardware(codVista);
-                        Vistas.Add(codVista, vista);
+                        // Creamos cada una de las escenarios del sistema
+                        string codEscenario = drEscenario["CodEscenario"].ToString();
+                        escenario = new OEscenarioHardware(codEscenario);
+                        Escenarios.Add(codEscenario, escenario);
                     }
                 }
             }
@@ -118,13 +118,13 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Busca la cámara con el código indicado
         /// </summary>
-        /// <param name="vista">Vista utilizada</param>
+        /// <param name="escenario">Escenario utilizada</param>
         /// <param name="codigo">Código de la cámara</param>
         /// <returns>Hardware encontrado</returns>
-        public static IHardware GetHardware(string vista, string codigo)
+        public static IHardware GetHardware(string escenario, string codigo)
         {
             IHardware hardware;
-            if (TryGetHardware(vista, codigo, out hardware))
+            if (TryGetHardware(escenario, codigo, out hardware))
             {
                 return hardware;
             }
@@ -229,26 +229,26 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Método para acceder a un hardware
         /// </summary>
-        /// <param name="codVista">Vista</param>
+        /// <param name="codEscenario">Escenario</param>
         /// <param name="codAlias">Código o alias del hardware</param>
         /// <param name="hardware">Hardware devuelto</param>
         /// <returns>Devuelve la variable correspondientes</returns>
-        private static bool TryGetHardware(string codVista, string codAlias, out IHardware hardware)
+        private static bool TryGetHardware(string codEscenario, string codAlias, out IHardware hardware)
         {
             // Inicialización de resultados
             bool resultado = false;
             hardware = null;
             string alias = codAlias;
 
-            // Cambio el alias al de la vista
-            if ((codVista != string.Empty) && (OSistemaManager.IntegraMaquinaEstados) && (Vistas is Dictionary<string, OVistaHardware>))
+            // Cambio el alias al del escenario
+            if ((codEscenario != string.Empty) && (OSistemaManager.IntegraMaquinaEstados) && (Escenarios is Dictionary<string, OEscenarioHardware>))
             {
                 // Cambio el alias
-                OVistaHardware vistaHardware;
-                if (Vistas.TryGetValue(codVista, out vistaHardware))
+                OEscenarioHardware escenarioHardware;
+                if (Escenarios.TryGetValue(codEscenario, out escenarioHardware))
                 {
                     string codHardware;
-                    if (vistaHardware.ListaAlias.TryGetValue(codAlias, out codHardware))
+                    if (escenarioHardware.ListaAlias.TryGetValue(codAlias, out codHardware))
                     {
                         alias = codHardware;
                     }
@@ -359,18 +359,18 @@ namespace Orbita.VA.Hardware
     }
 
     /// <summary>
-    /// Clase que implementa las vistas del hardware
+    /// Clase que implementa las escenarios del hardware
     /// </summary>
-    public class OVistaHardware
+    public class OEscenarioHardware
     {
         #region Atributo(s)
         /// <summary>
-        /// Código de la vista
+        /// Código del escenario
         /// </summary>
         public string Codigo;
 
         /// <summary>
-        /// Lista de todos los alias de la vista
+        /// Lista de todos los alias del escenario
         /// </summary>
         public Dictionary<string, string> ListaAlias;
 
@@ -380,25 +380,25 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        /// <param name="codVista">Código de la vista</param>
-        public OVistaHardware(string codVista)
+        /// <param name="codEscenario">Código del escenario</param>
+        public OEscenarioHardware(string codEscenario)
         {
-            this.Codigo = codVista;
+            this.Codigo = codEscenario;
 
             this.ListaAlias = new Dictionary<string, string>();
-            this.RellenarAlias(codVista);
+            this.RellenarAlias(codEscenario);
         }
 
         #endregion
 
         #region Método(s) privado(s)
         /// <summary>
-        /// Rellena la lista de alias de la vista
+        /// Rellena la lista de alias del escenario
         /// </summary>
-        private void RellenarAlias(string codVista)
+        private void RellenarAlias(string codEscenario)
         {
             // Consulta de todos los alias existentes en el sistema
-            DataTable dtVar = AppBD.GetAliasVistaHardware(codVista);
+            DataTable dtVar = AppBD.GetAliasEscenarioHardware(codEscenario);
             if (dtVar.Rows.Count > 0)
             {
                 // Cargamos todos los alias existentes en el sistema

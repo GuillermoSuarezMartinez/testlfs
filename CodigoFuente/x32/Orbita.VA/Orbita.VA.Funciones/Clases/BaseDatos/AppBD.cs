@@ -3,9 +3,9 @@
 // Author           : aibañez
 // Created          : 06-09-2012
 //
-// Last Modified By : 
-// Last Modified On : 
-// Description      : 
+// Last Modified By : aibañez
+// Last Modified On : 12-03-2013
+// Description      : Cambiados el acceso a los procedimientos almacenados para incluir el prefijo VA
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
@@ -30,7 +30,7 @@ namespace Orbita.VA.Funciones
 			list.Add(new SqlParameter("@CodFuncionVision", codFuncionVision));
 			list.Add(new SqlParameter("@EsEntrada", esEntrada));
 
-			return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VIS_GET_PARAMETROS_FUNCIONES_VISION", list);
+			return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_VIS_GET_PARAMETROS_FUNCIONES_VISION", list);
 		}
 
 		/// <summary>
@@ -43,7 +43,7 @@ namespace Orbita.VA.Funciones
 			list.Add(new SqlParameter("@CodFuncionVision", codFuncionVision));
 			list.Add(new SqlParameter("@codParametroFuncionVision", codParametroFuncionVision));
 
-			return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VIS_GET_PARAMETRO_FUNCION_VISION", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_VIS_GET_PARAMETRO_FUNCION_VISION", list);
 		}
 
 		/// <summary>
@@ -54,7 +54,7 @@ namespace Orbita.VA.Funciones
 		{
 			ArrayList list = new ArrayList();
 
-			return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VIS_GET_FUNCIONES_VISION", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_VIS_GET_FUNCIONES_VISION", list);
 		}
 
 		/// <summary>
@@ -66,20 +66,20 @@ namespace Orbita.VA.Funciones
 			ArrayList list = new ArrayList();
 			list.Add(new SqlParameter("@CodFuncionVision", codFuncionVision));
 
-			return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VIS_GET_FUNCION_VISION", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_VIS_GET_FUNCION_VISION", list);
 		}
 
 		/// <summary>
-		/// Consulta las claves de una determinada vista
+		/// Consulta las claves de una determinada escenario
 		/// </summary>
-		/// <param name="codVista"></param>
+		/// <param name="codEscenario"></param>
 		/// <returns></returns>
 		public static DataTable GetClavesDeFuncionVision(string codFuncionVision)
 		{
 			ArrayList list = new ArrayList();
 			list.Add(new SqlParameter("@CodFuncionVision", codFuncionVision));
 
-			return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VIS_GET_FUNCIONES_VISION_CLAVES", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_VIS_GET_FUNCIONES_VISION_CLAVES", list);
 		}
 
 		#endregion

@@ -1171,7 +1171,7 @@ namespace Orbita.Controles.VA
                 {
                     // Apertura del formulario
                     this.CierrePorUsuario = false;
-                    //OTrabajoControles.FormularioPrincipalMDI.OrbMdiEncolarForm(this);
+                    OTrabajoControles.FormularioPrincipalMDI.OI.MostrarFormulario(this);
 
                     // Posición por defecto del formulario
                     this.DefatulRectangle = new Rectangle(this.Left, this.Top, this.Width, this.Height);

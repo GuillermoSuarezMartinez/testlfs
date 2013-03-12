@@ -80,12 +80,12 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnCancelar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnCancelar.Size = new System.Drawing.Size(98, 33);
             // 
             // btnGuardar
             // 
-            this.btnGuardar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnGuardar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnGuardar.Size = new System.Drawing.Size(98, 33);
             // 
             // TimerRefresco
@@ -275,6 +275,8 @@
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Right);
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Bottom);
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Top);
+            this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Monitorizacion;
+            this.MultiplesInstancias = true;
             this.Name = "FrmMonitorizacionIO";
             this.Text = "Monitorización de Entradas / Salidas";
             this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Top, 0);

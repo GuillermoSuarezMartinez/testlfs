@@ -32,12 +32,12 @@
             this.TimerRefresco = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // CtrlVariableChart
+            // OrbitaGraficaVariableBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "CtrlVariableChart";
-            this.Size = new System.Drawing.Size(777, 131);
+            this.Name = "OrbitaGraficaVariableBase";
+            this.Size = new System.Drawing.Size(778, 131);
             this.ResumeLayout(false);
 
         }

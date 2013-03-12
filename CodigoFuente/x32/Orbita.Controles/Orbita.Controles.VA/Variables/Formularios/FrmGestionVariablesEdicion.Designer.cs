@@ -51,11 +51,8 @@ namespace Orbita.Controles.VA
             this.PnlBotonesPadre.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ChkToolTip)).BeginInit();
             this.PnlPanelPrincipalPadre.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtCodigo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CboTipo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChkTrazabilidad)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtNombre)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtDescripcion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtGrupo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChkHabilitado)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,12 +67,12 @@ namespace Orbita.Controles.VA
             // 
             // btnCancelar
             // 
-            this.btnCancelar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnCancelar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnCancelar.Size = new System.Drawing.Size(98, 33);
             // 
             // btnGuardar
             // 
-            this.btnGuardar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnGuardar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnGuardar.Size = new System.Drawing.Size(98, 33);
             // 
             // PnlPanelPrincipalPadre
@@ -96,13 +93,12 @@ namespace Orbita.Controles.VA
             // 
             // CboTipo
             // 
+            this.CboTipo.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList;
             this.CboTipo.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboTipo.Location = new System.Drawing.Point(90, 174);
             this.CboTipo.Margin = new System.Windows.Forms.Padding(0);
             this.CboTipo.Name = "CboTipo";
-            this.CboTipo.OI.Texto = "";
-            this.CboTipo.OI.Valor = null;
-            this.CboTipo.Size = new System.Drawing.Size(164, 21);
+            this.CboTipo.Size = new System.Drawing.Size(164, 23);
             this.CboTipo.TabIndex = 37;
             // 
             // LblCodigo
@@ -123,7 +119,7 @@ namespace Orbita.Controles.VA
             // 
             this.TxtCodigo.Location = new System.Drawing.Point(90, 12);
             this.TxtCodigo.Name = "TxtCodigo";
-            this.TxtCodigo.Size = new System.Drawing.Size(414, 21);
+            this.TxtCodigo.Size = new System.Drawing.Size(414, 20);
             this.TxtCodigo.TabIndex = 25;
             // 
             // ChkTrazabilidad
@@ -139,7 +135,7 @@ namespace Orbita.Controles.VA
             // 
             this.TxtNombre.Location = new System.Drawing.Point(90, 39);
             this.TxtNombre.Name = "TxtNombre";
-            this.TxtNombre.Size = new System.Drawing.Size(414, 21);
+            this.TxtNombre.Size = new System.Drawing.Size(414, 20);
             this.TxtNombre.TabIndex = 27;
             // 
             // LblTipo
@@ -189,14 +185,14 @@ namespace Orbita.Controles.VA
             this.TxtDescripcion.Location = new System.Drawing.Point(90, 66);
             this.TxtDescripcion.Name = "TxtDescripcion";
             this.TxtDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TxtDescripcion.Size = new System.Drawing.Size(414, 21);
+            this.TxtDescripcion.Size = new System.Drawing.Size(414, 20);
             this.TxtDescripcion.TabIndex = 29;
             // 
             // TxtGrupo
             // 
             this.TxtGrupo.Location = new System.Drawing.Point(90, 119);
             this.TxtGrupo.Name = "TxtGrupo";
-            this.TxtGrupo.Size = new System.Drawing.Size(164, 21);
+            this.TxtGrupo.Size = new System.Drawing.Size(164, 20);
             this.TxtGrupo.TabIndex = 32;
             // 
             // LblDescripcion
@@ -227,6 +223,7 @@ namespace Orbita.Controles.VA
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(538, 277);
+            this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Modificacion;
             this.Name = "FrmGestionVariablesEdicion";
             this.Text = "Edición variables";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmGestionVariablesEdicion_FormClosing);
@@ -236,11 +233,8 @@ namespace Orbita.Controles.VA
             ((System.ComponentModel.ISupportInitialize)(this.ChkToolTip)).EndInit();
             this.PnlPanelPrincipalPadre.ResumeLayout(false);
             this.PnlPanelPrincipalPadre.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtCodigo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CboTipo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChkTrazabilidad)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtNombre)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtDescripcion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtGrupo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChkHabilitado)).EndInit();
             this.ResumeLayout(false);
 

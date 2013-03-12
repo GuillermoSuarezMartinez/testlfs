@@ -46,9 +46,9 @@ namespace Orbita.VA.Comun
         public static Dictionary<string, OVariable> ListaVariables;
 
         /// <summary>
-        /// Lista de todas las vistas de variables del sistema
+        /// Lista de todas las escenarios de variables del sistema
         /// </summary>
-        public static Dictionary<string, OVistaVariable> Vistas;
+        public static Dictionary<string, OEscenarioVariable> Escenarios;
 
         /// <summary>
         /// Variable que almacena la trazabilidad de las variables
@@ -86,7 +86,7 @@ namespace Orbita.VA.Comun
             ListaVariables = new Dictionary<string, OVariable>();
             if (OSistemaManager.IntegraMaquinaEstados)
             {
-                Vistas = new Dictionary<string, OVistaVariable>();
+                Escenarios = new Dictionary<string, OEscenarioVariable>();
             }
             Trazabilidad = new OTrazabilidadVariables();
 
@@ -135,20 +135,20 @@ namespace Orbita.VA.Comun
                 }
             }
 
-            // Consulta de todas las vistas existentes en el sistema
+            // Consulta de todas las escenarios existentes en el sistema
             if (OSistemaManager.IntegraMaquinaEstados)
             {
-                DataTable dtVista = Orbita.VA.Comun.AppBD.GetVistas();
-                if (dtVista.Rows.Count > 0)
+                DataTable dtEscenario = Orbita.VA.Comun.AppBD.GetEscenarios();
+                if (dtEscenario.Rows.Count > 0)
                 {
-                    // Cargamos todas las vistas existentes en el sistema
-                    OVistaVariable vista;
-                    foreach (DataRow drVista in dtVista.Rows)
+                    // Cargamos todas las escenarios existentes en el sistema
+                    OEscenarioVariable escenario;
+                    foreach (DataRow drEscenario in dtEscenario.Rows)
                     {
-                        // Creamos cada una de las vistas del sistema
-                        string codVista = drVista["CodVista"].ToString();
-                        vista = new OVistaVariable(codVista);
-                        Vistas.Add(codVista, vista);
+                        // Creamos cada una de los escenarios del sistema
+                        string codEscenario = drEscenario["CodEscenario"].ToString();
+                        escenario = new OEscenarioVariable(codEscenario);
+                        Escenarios.Add(codEscenario, escenario);
                     }
                 }
             }
@@ -209,10 +209,10 @@ namespace Orbita.VA.Comun
         /// </summary>
         /// <param name="codigo">Código de la variable</param>
         /// <returns>Devuelve el valor de la variable con el código correspondientes</returns>
-        public static object GetValue(string vista, string codigo)
+        public static object GetValue(string escenario, string codigo)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 return variable.GetValor();
             }
@@ -234,10 +234,10 @@ namespace Orbita.VA.Comun
         /// </summary>
         /// <param name="codigo">Código de la variable</param>
         /// <returns>Devuelve el tiempo de permanencia del valor de la variable</returns>
-        public static TimeSpan GetPermanencia(string vista, string codigo)
+        public static TimeSpan GetPermanencia(string escenario, string codigo)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 return variable.GetPermanencia();
             }
@@ -259,10 +259,10 @@ namespace Orbita.VA.Comun
         /// </summary>
         /// <param name="codigo">Código de la variable</param>
         /// <returns>Devuelve verdadero si valor de la variable con el código correspondientes ha cambiado</returns>
-        public static bool GetChanged(string vista, string codigo, string codRemitente)
+        public static bool GetChanged(string escenario, string codigo, string codRemitente)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 return variable.GetHayCambio(codRemitente);
             }
@@ -284,10 +284,10 @@ namespace Orbita.VA.Comun
         /// </summary>
         /// <param name="codigo">Código de la variable</param>
         /// <returns>Devuelve verdadero si valor de la variable con el código correspondientes ha cambiado</returns>
-        public static OEnumTipoDato GetType(string vista, string codigo)
+        public static OEnumTipoDato GetType(string escenario, string codigo)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 return variable.GetTipo();
             }
@@ -313,10 +313,10 @@ namespace Orbita.VA.Comun
         /// <param name="valor">Nuevo valor de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void SetValue(string vista, string codigo, object valor, string codigoModuloLlamada, string descripcionLlamada)
+        public static void SetValue(string escenario, string codigo, object valor, string codigoModuloLlamada, string descripcionLlamada)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 variable.SetValor(valor, codigoModuloLlamada, descripcionLlamada);
             }
@@ -342,10 +342,10 @@ namespace Orbita.VA.Comun
         /// <param name="retraso">Tiempo de retraso de la actualización del valor</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void SetValueDelayed(string vista, string codigo, object valor, TimeSpan retraso, string codigoModuloLlamada, string descripcionLlamada)
+        public static void SetValueDelayed(string escenario, string codigo, object valor, TimeSpan retraso, string codigoModuloLlamada, string descripcionLlamada)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 variable.SetValorRetrasado(valor, retraso, codigoModuloLlamada, descripcionLlamada);
             }
@@ -369,10 +369,10 @@ namespace Orbita.VA.Comun
         /// <param name="valor">Nuevo valor de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void Bloquear(string vista, string codigo, string codigoModuloLlamada, string descripcionLlamada)
+        public static void Bloquear(string escenario, string codigo, string codigoModuloLlamada, string descripcionLlamada)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 variable.Bloquear(codigoModuloLlamada, descripcionLlamada);
             }
@@ -394,10 +394,10 @@ namespace Orbita.VA.Comun
         /// <param name="codigo">Código de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void Desbloquear(string vista, string codigo, string codigoModuloLlamada, string descripcionLlamada)
+        public static void Desbloquear(string escenario, string codigo, string codigoModuloLlamada, string descripcionLlamada)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 variable.Desbloquear(codigoModuloLlamada, descripcionLlamada);
             }
@@ -419,10 +419,10 @@ namespace Orbita.VA.Comun
         /// <param name="codigo">Código de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void Inhibir(string vista, string codigo, string codigoModuloLlamada, string descripcionLlamada)
+        public static void Inhibir(string escenario, string codigo, string codigoModuloLlamada, string descripcionLlamada)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 variable.Inhibir(codigoModuloLlamada, descripcionLlamada);
             }
@@ -444,10 +444,10 @@ namespace Orbita.VA.Comun
         /// <param name="codigo">Código de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void Desinhibir(string vista, string codigo, string codigoModuloLlamada, string descripcionLlamada)
+        public static void Desinhibir(string escenario, string codigo, string codigoModuloLlamada, string descripcionLlamada)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 variable.Desinhibir(codigoModuloLlamada, descripcionLlamada);
             }
@@ -471,10 +471,10 @@ namespace Orbita.VA.Comun
         /// <param name="valor">Nuevo valor de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void ForzarValor(string vista, string codigo, object valor, string codigoModuloLlamada, string descripcionLlamada)
+        public static void ForzarValor(string escenario, string codigo, object valor, string codigoModuloLlamada, string descripcionLlamada)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 variable.ForzarValor(valor, codigoModuloLlamada, descripcionLlamada);
             }
@@ -492,13 +492,13 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Obtiene la variable de un determinado código
         /// </summary>
-        /// <param name="vista">Vista utilizada</param>
+        /// <param name="escenario">Escenario utilizada</param>
         /// <param name="codigo">Código de la variable</param>
         /// <returns>variable</returns>
-        public static OVariable GetVariable(string vista, string codigo)
+        public static OVariable GetVariable(string escenario, string codigo)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 return variable;
             }
@@ -522,10 +522,10 @@ namespace Orbita.VA.Comun
         /// <param name="codigo">Código de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void Dispara(string vista, string codigo, string codigoModuloLlamada, string descripcionLlamada)
+        public static void Dispara(string escenario, string codigo, string codigoModuloLlamada, string descripcionLlamada)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 variable.Disparo(codigoModuloLlamada, descripcionLlamada);
             }
@@ -547,10 +547,10 @@ namespace Orbita.VA.Comun
         /// <param name="codigo">Código de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void CrearSuscripcion(string vista, string codigo, string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegate delegadoSuscriptor)
+        public static void CrearSuscripcion(string escenario, string codigo, string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegate delegadoSuscriptor)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 variable.CrearSuscripcion(codigoModuloLlamada, descripcionLlamada, delegadoSuscriptor);
             }
@@ -572,10 +572,10 @@ namespace Orbita.VA.Comun
         /// <param name="codigo">Código de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void CrearSuscripcion(string vista, string codigo, string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegateAdvanced delegadoSuscriptor)
+        public static void CrearSuscripcion(string escenario, string codigo, string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegateAdvanced delegadoSuscriptor)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 variable.CrearSuscripcion(codigoModuloLlamada, descripcionLlamada, delegadoSuscriptor);
             }
@@ -597,10 +597,10 @@ namespace Orbita.VA.Comun
         /// <param name="codigo">Código de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void EliminarSuscripcion(string vista, string codigo, string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegate delegadoSuscriptor)
+        public static void EliminarSuscripcion(string escenario, string codigo, string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegate delegadoSuscriptor)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 variable.EliminarSuscripcion(codigoModuloLlamada, descripcionLlamada, delegadoSuscriptor);
             }
@@ -622,10 +622,10 @@ namespace Orbita.VA.Comun
         /// <param name="codigo">Código de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void EliminarSuscripcion(string vista, string codigo, string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegateAdvanced delegadoSuscriptor)
+        public static void EliminarSuscripcion(string escenario, string codigo, string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegateAdvanced delegadoSuscriptor)
         {
             OVariable variable;
-            if (TryGetVariable(vista, codigo, out variable))
+            if (TryGetVariable(escenario, codigo, out variable))
             {
                 variable.EliminarSuscripcion(codigoModuloLlamada, descripcionLlamada, delegadoSuscriptor);
             }
@@ -645,25 +645,25 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Método para acceder a una variable
         /// </summary>
-        /// <param name="codigo">Vista</param>
+        /// <param name="codigo">Escenario</param>
         /// <param name="codigo">Código o alias de la variable</param>
         /// <returns>Devuelve la variable correspondientes</returns>
-        private static bool TryGetVariable(string codVista, string codAlias, out OVariable variableItem)
+        private static bool TryGetVariable(string codEscenario, string codAlias, out OVariable variableItem)
         {
             // Inicialización de resultados
             bool resultado = false;
             variableItem = null;
             string alias = codAlias;
 
-            // Cambio el alias al de la vista
-            if ((codVista != string.Empty) && (OSistemaManager.IntegraMaquinaEstados) && (Vistas is Dictionary<string, OVistaVariable>))
+            // Cambio el alias al del escenario
+            if ((codEscenario != string.Empty) && (OSistemaManager.IntegraMaquinaEstados) && (Escenarios is Dictionary<string, OEscenarioVariable>))
             {
                 // Cambio el alias
-                OVistaVariable vistaVariable;
-                if (Vistas.TryGetValue(codVista, out vistaVariable))
+                OEscenarioVariable escenarioVariable;
+                if (Escenarios.TryGetValue(codEscenario, out escenarioVariable))
                 {
                     string codVariable;
-                    if (vistaVariable.ListaAlias.TryGetValue(codAlias, out codVariable))
+                    if (escenarioVariable.ListaAlias.TryGetValue(codAlias, out codVariable))
                     {
                         alias = codVariable;
                     }
@@ -681,19 +681,19 @@ namespace Orbita.VA.Comun
     }
 
     /// <summary>
-    /// Clase que implementa las vistas de las variables.
-    /// Las vistas son agrupaciones de variables que se acceden con un alias en lugar de por su código
+    /// Clase que implementa las escenarios de las variables.
+    /// Las escenarios son agrupaciones de variables que se acceden con un alias en lugar de por su código
     /// </summary>
-    public class OVistaVariable
+    public class OEscenarioVariable
     {
         #region Atributo(s)
         /// <summary>
-        /// Código de la vista
+        /// Código del escenario
         /// </summary>
         public string Codigo;
 
         /// <summary>
-        /// Lista de todos los alias de la vista
+        /// Lista de todos los alias del escenario
         /// </summary>
         public Dictionary<string, string> ListaAlias;
 
@@ -703,24 +703,24 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        /// <param name="codVista">Código de la vista</param>
-        public OVistaVariable(string codVista)
+        /// <param name="codEscenario">Código del escenario</param>
+        public OEscenarioVariable(string codEscenario)
         {
-            this.Codigo = codVista;
+            this.Codigo = codEscenario;
 
             this.ListaAlias = new Dictionary<string, string>();
-            this.RellenarAlias(codVista);
+            this.RellenarAlias(codEscenario);
         }
         #endregion
 
         #region Método(s) privado(s)
         /// <summary>
-        /// Rellena la lista de alias de la vista
+        /// Rellena la lista de alias del escenario
         /// </summary>
-        private void RellenarAlias(string codVista)
+        private void RellenarAlias(string codEscenario)
         {
             // Consulta de todos los alias existentes en el sistema
-            DataTable dtVar = AppBD.GetAliasVistaVariables(codVista);
+            DataTable dtVar = AppBD.GetAliasEscenarioVariables(codEscenario);
             if (dtVar.Rows.Count > 0)
             {
                 // Cargamos todos los alias existentes en el sistema

@@ -43,7 +43,7 @@ namespace Orbita.Controles.VA
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(535, 231);
+            this.ClientSize = new System.Drawing.Size(536, 231);
             this.ControlBox = false;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -51,7 +51,6 @@ namespace Orbita.Controles.VA
             this.MinimizeBox = false;
             this.Name = "FrmDetalleVisor";
             this.Opacity = 0.8D;
-            this.Text = "";
             this.Load += new System.EventHandler(this.FrmDetalleVisor_Load);
             this.Click += new System.EventHandler(this.CerrarVentana);
             this.ResumeLayout(false);

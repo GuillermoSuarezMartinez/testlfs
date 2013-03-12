@@ -49,13 +49,14 @@
             ultraDataColumn2});
             this.varDataSource.Band.Key = "Valor";
             // 
-            //'UltraChart' properties's serialization: Since 'ChartType' changes the way axes look,
-            //'ChartType' must be persisted ahead of any Axes change made in design time.
-            //
+            //			'UltraChart' properties's serialization: Since 'ChartType' changes the way axes look,
+            //			'ChartType' must be persisted ahead of any Axes change made in design time.
+            //		
             this.ChartVariable.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.StepLineChart;
             // 
             // ChartVariable
             // 
+            this.ChartVariable.Axis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(220)))));
             this.ChartVariable.Axis.X.Extent = 59;
             this.ChartVariable.Axis.X.Labels.Font = new System.Drawing.Font("Verdana", 7F);
             this.ChartVariable.Axis.X.Labels.FontColor = System.Drawing.Color.DimGray;
@@ -80,7 +81,7 @@
             this.ChartVariable.Axis.X.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.ChartVariable.Axis.X.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.ChartVariable.Axis.X.MinorGridLines.Visible = false;
-            this.ChartVariable.Axis.X.TickmarkInterval = 50;
+            this.ChartVariable.Axis.X.TickmarkInterval = 50D;
             this.ChartVariable.Axis.X.TickmarkIntervalType = Infragistics.UltraChart.Shared.Styles.AxisIntervalType.Hours;
             this.ChartVariable.Axis.X.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.ChartVariable.Axis.X.Visible = false;
@@ -108,7 +109,7 @@
             this.ChartVariable.Axis.X2.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.ChartVariable.Axis.X2.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.ChartVariable.Axis.X2.MinorGridLines.Visible = false;
-            this.ChartVariable.Axis.X2.TickmarkInterval = 50;
+            this.ChartVariable.Axis.X2.TickmarkInterval = 50D;
             this.ChartVariable.Axis.X2.TickmarkIntervalType = Infragistics.UltraChart.Shared.Styles.AxisIntervalType.Hours;
             this.ChartVariable.Axis.X2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.ChartVariable.Axis.X2.Visible = false;
@@ -136,7 +137,7 @@
             this.ChartVariable.Axis.Y.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.ChartVariable.Axis.Y.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.ChartVariable.Axis.Y.MinorGridLines.Visible = false;
-            this.ChartVariable.Axis.Y.TickmarkInterval = 1;
+            this.ChartVariable.Axis.Y.TickmarkInterval = 1D;
             this.ChartVariable.Axis.Y.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.DataInterval;
             this.ChartVariable.Axis.Y.Visible = true;
             this.ChartVariable.Axis.Y2.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -163,7 +164,7 @@
             this.ChartVariable.Axis.Y2.MinorGridLines.Color = System.Drawing.Color.LightGray;
             this.ChartVariable.Axis.Y2.MinorGridLines.DrawStyle = Infragistics.UltraChart.Shared.Styles.LineDrawStyle.Dot;
             this.ChartVariable.Axis.Y2.MinorGridLines.Visible = false;
-            this.ChartVariable.Axis.Y2.TickmarkInterval = 100000;
+            this.ChartVariable.Axis.Y2.TickmarkInterval = 100000D;
             this.ChartVariable.Axis.Y2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.ChartVariable.Axis.Y2.Visible = false;
             this.ChartVariable.Axis.Z.Labels.Font = new System.Drawing.Font("Verdana", 7F);
@@ -216,6 +217,7 @@
             this.ChartVariable.Axis.Z2.MinorGridLines.Visible = false;
             this.ChartVariable.Axis.Z2.TickmarkStyle = Infragistics.UltraChart.Shared.Styles.AxisTickStyle.Smart;
             this.ChartVariable.Axis.Z2.Visible = false;
+            this.ChartVariable.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ChartVariable.ColorModel.AlphaLevel = ((byte)(150));
             this.ChartVariable.ColorModel.ModelStyle = Infragistics.UltraChart.Shared.Styles.ColorModels.CustomLinear;
             numericTimeSeries1.Data.TimeValueColumn = "";
@@ -233,18 +235,19 @@
             this.ChartVariable.LineChart = lineChartAppearance1;
             this.ChartVariable.Location = new System.Drawing.Point(0, 0);
             this.ChartVariable.Name = "ChartVariable";
-            this.ChartVariable.Size = new System.Drawing.Size(777, 131);
+            this.ChartVariable.Size = new System.Drawing.Size(776, 131);
             this.ChartVariable.TabIndex = 19;
             this.ChartVariable.TitleTop.Text = "dafasdf";
             this.ChartVariable.Tooltips.HighlightFillColor = System.Drawing.Color.DimGray;
             this.ChartVariable.Tooltips.HighlightOutlineColor = System.Drawing.Color.DarkGray;
             // 
-            // CtrlVariableChartBool
+            // OrbitaGraficaVariableBool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ChartVariable);
-            this.Name = "CtrlVariableChartBool";
+            this.Name = "OrbitaGraficaVariableBool";
+            this.Size = new System.Drawing.Size(776, 131);
             ((System.ComponentModel.ISupportInitialize)(this.varDataSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChartVariable)).EndInit();
             this.ResumeLayout(false);

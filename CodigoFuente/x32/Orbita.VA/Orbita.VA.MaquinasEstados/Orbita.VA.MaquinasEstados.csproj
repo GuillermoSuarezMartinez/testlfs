@@ -146,9 +146,63 @@
       <HintPath>..\..\Comun\Orbita\Orbita.BBDD.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="Orbita.Comunicaciones">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.Comunicaciones.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.Combo">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.Controles.Combo.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.Comunes">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.Controles.Comunes.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.Comunicaciones">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.Controles.Comunicaciones.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.Contenedores">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.Controles.Contenedores.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.Editor">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.Controles.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.Estilos">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.Controles.Estilos.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.Gantt">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.Controles.Gantt.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.Grid">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.Controles.Grid.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.Menu">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.Controles.Menu.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.Shared">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.Controles.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.VA">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.Controles.VA.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Trazabilidad">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.Trazabilidad.dll</HintPath>
+    </Reference>
     <Reference Include="Orbita.Utiles, Version=13.43.8.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Orbita.VA.Comun">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.VA.Comun.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.VA.Funciones">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.VA.Funciones.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.VA.Hardware">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.VA.Hardware.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.VA.MaquinasEstados, Version=13.44.8.1, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.VA.MaquinasEstados.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Winsock">
+      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.Winsock.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
@@ -191,13 +245,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Orbita.VA.Comun\Orbita.VA.Comun.csproj">
-      <Project>{CC36FE63-3F16-4355-A11D-F0926DFBC977}</Project>
-      <Name>Orbita.VA.Comun</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

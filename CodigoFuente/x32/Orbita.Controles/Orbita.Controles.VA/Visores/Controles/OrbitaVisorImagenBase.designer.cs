@@ -53,7 +53,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.Name = "OrbitaVisorBase";
-            this.Size = new System.Drawing.Size(698, 453);
+            this.Size = new System.Drawing.Size(697, 453);
             this.ResumeLayout(false);
 
         }

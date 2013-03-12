@@ -40,13 +40,13 @@
             this.picMaquinaEstados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picMaquinaEstados.Location = new System.Drawing.Point(0, 0);
             this.picMaquinaEstados.Name = "picMaquinaEstados";
-            this.picMaquinaEstados.Size = new System.Drawing.Size(435, 402);
+            this.picMaquinaEstados.Size = new System.Drawing.Size(436, 402);
             this.picMaquinaEstados.TabIndex = 0;
             this.picMaquinaEstados.TabStop = false;
-            this.picMaquinaEstados.DoubleClick += new System.EventHandler(this.picMaquinaEstados_DoubleClick);
-            this.picMaquinaEstados.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picMaquinaEstados_MouseMove);
-            this.picMaquinaEstados.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picMaquinaEstados_MouseDown);
             this.picMaquinaEstados.Paint += new System.Windows.Forms.PaintEventHandler(this.picMaquinaEstados_Paint);
+            this.picMaquinaEstados.DoubleClick += new System.EventHandler(this.picMaquinaEstados_DoubleClick);
+            this.picMaquinaEstados.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picMaquinaEstados_MouseDown);
+            this.picMaquinaEstados.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picMaquinaEstados_MouseMove);
             this.picMaquinaEstados.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picMaquinaEstados_MouseUp);
             // 
             // timerRefresco
@@ -54,13 +54,13 @@
             this.timerRefresco.Interval = 250;
             this.timerRefresco.Tick += new System.EventHandler(this.timerRefresco_Tick);
             // 
-            // CtrlStateMachineDisplay
+            // OrbitaVisorMaquinaEstados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.picMaquinaEstados);
-            this.Name = "CtrlStateMachineDisplay";
-            this.Size = new System.Drawing.Size(435, 402);
+            this.Name = "OrbitaVisorMaquinaEstados";
+            this.Size = new System.Drawing.Size(436, 402);
             this.Load += new System.EventHandler(this.CtrlStateMachineDisplay_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picMaquinaEstados)).EndInit();
             this.ResumeLayout(false);

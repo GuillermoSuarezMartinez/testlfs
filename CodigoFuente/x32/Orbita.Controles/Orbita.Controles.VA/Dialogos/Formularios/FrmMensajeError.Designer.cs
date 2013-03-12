@@ -30,9 +30,23 @@ namespace Orbita.Controles.VA
         /// </summary>
         private void InitializeComponent()
         {
+            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
-            this.GprInfo = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox ();
+            Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance8 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance9 = new Infragistics.Win.Appearance();
+            this.GprInfo = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
+            this.TxtFichero = new Orbita.Controles.Comunes.OrbitaTextBox();
+            this.TxtMensaje = new Orbita.Controles.Comunes.OrbitaTextBox();
+            this.TxtLinea = new Orbita.Controles.Comunes.OrbitaTextBox();
+            this.TxtMetodo = new Orbita.Controles.Comunes.OrbitaTextBox();
+            this.TxtClase = new Orbita.Controles.Comunes.OrbitaTextBox();
+            this.TxtEnsamblado = new Orbita.Controles.Comunes.OrbitaTextBox();
+            this.TxtExcepcion = new Orbita.Controles.Comunes.OrbitaTextBox();
             this.label8 = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.Label6 = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.Label5 = new Orbita.Controles.Comunes.OrbitaUltraLabel();
@@ -41,27 +55,13 @@ namespace Orbita.Controles.VA
             this.Label2 = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.Label1 = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.PnlInferior = new Orbita.Controles.Contenedores.OrbitaPanel();
-            this.TxtFichero = new Orbita.Controles.Comunes.OrbitaTextBox();
-            this.TxtMensaje = new Orbita.Controles.Comunes.OrbitaTextBox();
-            this.TxtLinea = new Orbita.Controles.Comunes.OrbitaTextBox();
-            this.TxtMetodo = new Orbita.Controles.Comunes.OrbitaTextBox();
-            this.TxtClase = new Orbita.Controles.Comunes.OrbitaTextBox();
-            this.TxtEnsamblado = new Orbita.Controles.Comunes.OrbitaTextBox();
-            this.TxtExcepcion = new Orbita.Controles.Comunes.OrbitaTextBox();
-            this.LabelTitulo = new Orbita.Controles.Comunes.OrbitaUltraLabel();
-            this.PictureBox = new Orbita.Controles.Comunes.OrbitaPictureBox();
             this.BtnMasInfo_ = new Orbita.Controles.Comunes.OrbitaUltraButton();
             this.BtnAceptar = new Orbita.Controles.Comunes.OrbitaUltraButton();
+            this.LabelTitulo = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.PictureBox = new Orbita.Controles.Comunes.OrbitaPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.GprInfo)).BeginInit();
             this.GprInfo.SuspendLayout();
             this.PnlInferior.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtFichero)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtMensaje)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtLinea)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtMetodo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtClase)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtEnsamblado)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtExcepcion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,98 +88,6 @@ namespace Orbita.Controles.VA
             this.GprInfo.TabIndex = 15;
             this.GprInfo.Text = "Información del error";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(31, 129);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(68, 13);
-            this.label8.TabIndex = 25;
-            this.label8.Text = "Ensamblado:";
-            this.label8.OI.Apariencia.AlineacionTextoHorizontal = AlineacionHorizontal.Derecha;
-            this.label8.OI.Apariencia.AlineacionTextoVertical = AlineacionVertical.Arriba;
-            // 
-            // Label6
-            // 
-            this.Label6.AutoSize = true;
-            this.Label6.Location = new System.Drawing.Point(61, 245);
-            this.Label6.Name = "Label6";
-            this.Label6.Size = new System.Drawing.Size(38, 13);
-            this.Label6.TabIndex = 15;
-            this.Label6.Text = "Línea:";
-            this.Label6.OI.Apariencia.AlineacionTextoHorizontal = AlineacionHorizontal.Derecha;
-            this.Label6.OI.Apariencia.AlineacionTextoVertical = AlineacionVertical.Arriba;
-            // 
-            // Label5
-            // 
-            this.Label5.AutoSize = true;
-            this.Label5.Location = new System.Drawing.Point(53, 182);
-            this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(46, 13);
-            this.Label5.TabIndex = 14;
-            this.Label5.Text = "Método:";
-            this.Label5.OI.Apariencia.AlineacionTextoHorizontal = AlineacionHorizontal.Derecha;
-            this.Label5.OI.Apariencia.AlineacionTextoVertical = AlineacionVertical.Arriba;
-
-            // 
-            // Label4
-            // 
-            this.Label4.AutoSize = true;
-            this.Label4.Location = new System.Drawing.Point(63, 156);
-            this.Label4.Name = "Label4";
-            this.Label4.Size = new System.Drawing.Size(36, 13);
-            this.Label4.TabIndex = 13;
-            this.Label4.Text = "Clase:";
-            this.Label4.OI.Apariencia.AlineacionTextoHorizontal = AlineacionHorizontal.Derecha;
-            this.Label4.OI.Apariencia.AlineacionTextoVertical = AlineacionVertical.Arriba;
-
-            // 
-            // Label3
-            // 
-            this.Label3.AutoSize = true;
-            this.Label3.Location = new System.Drawing.Point(54, 208);
-            this.Label3.Name = "Label3";
-            this.Label3.Size = new System.Drawing.Size(45, 13);
-            this.Label3.TabIndex = 18;
-            this.Label3.Text = "Fichero:";
-            this.Label3.OI.Apariencia.AlineacionTextoHorizontal = AlineacionHorizontal.Derecha;
-            this.Label3.OI.Apariencia.AlineacionTextoVertical = AlineacionVertical.Arriba;
-
-            // 
-            // Label2
-            // 
-            this.Label2.AutoSize = true;
-            this.Label2.Location = new System.Drawing.Point(39, 103);
-            this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(60, 13);
-            this.Label2.TabIndex = 17;
-            this.Label2.Text = "Excepcion:";
-            this.Label2.OI.Apariencia.AlineacionTextoHorizontal = AlineacionHorizontal.Derecha;
-            this.Label2.OI.Apariencia.AlineacionTextoVertical = AlineacionVertical.Arriba;
-
-            // 
-            // Label1
-            // 
-            this.Label1.AutoSize = true;
-            this.Label1.Location = new System.Drawing.Point(49, 29);
-            this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(50, 13);
-            this.Label1.TabIndex = 16;
-            this.Label1.Text = "Mensaje:";
-            this.Label1.OI.Apariencia.AlineacionTextoHorizontal = AlineacionHorizontal.Derecha;
-            this.Label1.OI.Apariencia.AlineacionTextoVertical = AlineacionVertical.Arriba;
-
-            // 
-            // PnlInferior
-            // 
-            this.PnlInferior.Controls.Add(this.BtnMasInfo_);
-            this.PnlInferior.Controls.Add(this.BtnAceptar);
-            this.PnlInferior.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PnlInferior.Location = new System.Drawing.Point(10, 383);
-            this.PnlInferior.Name = "PnlInferior";
-            this.PnlInferior.Size = new System.Drawing.Size(518, 42);
-            this.PnlInferior.TabIndex = 16;
-            // 
             // TxtFichero
             // 
             this.TxtFichero.Enabled = false;
@@ -205,7 +113,7 @@ namespace Orbita.Controles.VA
             this.TxtLinea.Enabled = false;
             this.TxtLinea.Location = new System.Drawing.Point(113, 242);
             this.TxtLinea.Name = "TxtLinea";
-            this.TxtLinea.Size = new System.Drawing.Size(396, 21);
+            this.TxtLinea.Size = new System.Drawing.Size(396, 20);
             this.TxtLinea.TabIndex = 31;
             // 
             // TxtMetodo
@@ -213,7 +121,7 @@ namespace Orbita.Controles.VA
             this.TxtMetodo.Enabled = false;
             this.TxtMetodo.Location = new System.Drawing.Point(113, 179);
             this.TxtMetodo.Name = "TxtMetodo";
-            this.TxtMetodo.Size = new System.Drawing.Size(396, 21);
+            this.TxtMetodo.Size = new System.Drawing.Size(396, 20);
             this.TxtMetodo.TabIndex = 30;
             // 
             // TxtClase
@@ -221,7 +129,7 @@ namespace Orbita.Controles.VA
             this.TxtClase.Enabled = false;
             this.TxtClase.Location = new System.Drawing.Point(113, 153);
             this.TxtClase.Name = "TxtClase";
-            this.TxtClase.Size = new System.Drawing.Size(396, 21);
+            this.TxtClase.Size = new System.Drawing.Size(396, 20);
             this.TxtClase.TabIndex = 29;
             // 
             // TxtEnsamblado
@@ -229,7 +137,7 @@ namespace Orbita.Controles.VA
             this.TxtEnsamblado.Enabled = false;
             this.TxtEnsamblado.Location = new System.Drawing.Point(113, 126);
             this.TxtEnsamblado.Name = "TxtEnsamblado";
-            this.TxtEnsamblado.Size = new System.Drawing.Size(396, 21);
+            this.TxtEnsamblado.Size = new System.Drawing.Size(396, 20);
             this.TxtEnsamblado.TabIndex = 28;
             // 
             // TxtExcepcion
@@ -237,8 +145,135 @@ namespace Orbita.Controles.VA
             this.TxtExcepcion.Enabled = false;
             this.TxtExcepcion.Location = new System.Drawing.Point(113, 100);
             this.TxtExcepcion.Name = "TxtExcepcion";
-            this.TxtExcepcion.Size = new System.Drawing.Size(396, 21);
+            this.TxtExcepcion.Size = new System.Drawing.Size(396, 20);
             this.TxtExcepcion.TabIndex = 27;
+            // 
+            // label8
+            // 
+            appearance1.TextHAlignAsString = "Right";
+            this.label8.Appearance = appearance1;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(31, 129);
+            this.label8.Name = "label8";
+            this.label8.OI.Apariencia.AlineacionTextoHorizontal = Orbita.Controles.Comunes.AlineacionHorizontal.Derecha;
+            this.label8.Size = new System.Drawing.Size(70, 14);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "Ensamblado:";
+            this.label8.UseMnemonic = false;
+            // 
+            // Label6
+            // 
+            appearance2.TextHAlignAsString = "Right";
+            this.Label6.Appearance = appearance2;
+            this.Label6.AutoSize = true;
+            this.Label6.Location = new System.Drawing.Point(61, 245);
+            this.Label6.Name = "Label6";
+            this.Label6.OI.Apariencia.AlineacionTextoHorizontal = Orbita.Controles.Comunes.AlineacionHorizontal.Derecha;
+            this.Label6.Size = new System.Drawing.Size(35, 14);
+            this.Label6.TabIndex = 15;
+            this.Label6.Text = "Línea:";
+            this.Label6.UseMnemonic = false;
+            // 
+            // Label5
+            // 
+            appearance3.TextHAlignAsString = "Right";
+            this.Label5.Appearance = appearance3;
+            this.Label5.AutoSize = true;
+            this.Label5.Location = new System.Drawing.Point(53, 182);
+            this.Label5.Name = "Label5";
+            this.Label5.OI.Apariencia.AlineacionTextoHorizontal = Orbita.Controles.Comunes.AlineacionHorizontal.Derecha;
+            this.Label5.Size = new System.Drawing.Size(45, 14);
+            this.Label5.TabIndex = 14;
+            this.Label5.Text = "Método:";
+            this.Label5.UseMnemonic = false;
+            // 
+            // Label4
+            // 
+            appearance4.TextHAlignAsString = "Right";
+            this.Label4.Appearance = appearance4;
+            this.Label4.AutoSize = true;
+            this.Label4.Location = new System.Drawing.Point(63, 156);
+            this.Label4.Name = "Label4";
+            this.Label4.OI.Apariencia.AlineacionTextoHorizontal = Orbita.Controles.Comunes.AlineacionHorizontal.Derecha;
+            this.Label4.Size = new System.Drawing.Size(36, 14);
+            this.Label4.TabIndex = 13;
+            this.Label4.Text = "Clase:";
+            this.Label4.UseMnemonic = false;
+            // 
+            // Label3
+            // 
+            appearance5.TextHAlignAsString = "Right";
+            this.Label3.Appearance = appearance5;
+            this.Label3.AutoSize = true;
+            this.Label3.Location = new System.Drawing.Point(54, 208);
+            this.Label3.Name = "Label3";
+            this.Label3.OI.Apariencia.AlineacionTextoHorizontal = Orbita.Controles.Comunes.AlineacionHorizontal.Derecha;
+            this.Label3.Size = new System.Drawing.Size(45, 14);
+            this.Label3.TabIndex = 18;
+            this.Label3.Text = "Fichero:";
+            this.Label3.UseMnemonic = false;
+            // 
+            // Label2
+            // 
+            appearance6.TextHAlignAsString = "Right";
+            this.Label2.Appearance = appearance6;
+            this.Label2.AutoSize = true;
+            this.Label2.Location = new System.Drawing.Point(39, 103);
+            this.Label2.Name = "Label2";
+            this.Label2.OI.Apariencia.AlineacionTextoHorizontal = Orbita.Controles.Comunes.AlineacionHorizontal.Derecha;
+            this.Label2.Size = new System.Drawing.Size(60, 14);
+            this.Label2.TabIndex = 17;
+            this.Label2.Text = "Excepcion:";
+            this.Label2.UseMnemonic = false;
+            // 
+            // Label1
+            // 
+            appearance7.TextHAlignAsString = "Right";
+            this.Label1.Appearance = appearance7;
+            this.Label1.AutoSize = true;
+            this.Label1.Location = new System.Drawing.Point(49, 29);
+            this.Label1.Name = "Label1";
+            this.Label1.OI.Apariencia.AlineacionTextoHorizontal = Orbita.Controles.Comunes.AlineacionHorizontal.Derecha;
+            this.Label1.Size = new System.Drawing.Size(50, 14);
+            this.Label1.TabIndex = 16;
+            this.Label1.Text = "Mensaje:";
+            this.Label1.UseMnemonic = false;
+            // 
+            // PnlInferior
+            // 
+            this.PnlInferior.Controls.Add(this.BtnMasInfo_);
+            this.PnlInferior.Controls.Add(this.BtnAceptar);
+            this.PnlInferior.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PnlInferior.Location = new System.Drawing.Point(10, 383);
+            this.PnlInferior.Name = "PnlInferior";
+            this.PnlInferior.Size = new System.Drawing.Size(518, 42);
+            this.PnlInferior.TabIndex = 16;
+            // 
+            // BtnMasInfo_
+            // 
+            appearance8.Image = global::Orbita.Controles.VA.Properties.Resources.ImgInfo24;
+            this.BtnMasInfo_.Appearance = appearance8;
+            this.BtnMasInfo_.ImageSize = new System.Drawing.Size(24, 24);
+            this.BtnMasInfo_.Location = new System.Drawing.Point(6, 5);
+            this.BtnMasInfo_.Name = "BtnMasInfo_";
+            this.BtnMasInfo_.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.BtnMasInfo_.Size = new System.Drawing.Size(98, 34);
+            this.BtnMasInfo_.TabIndex = 33;
+            this.BtnMasInfo_.Text = "Más info.";
+            this.BtnMasInfo_.Click += new System.EventHandler(this.btnMasInfo_Click);
+            // 
+            // BtnAceptar
+            // 
+            appearance9.Image = global::Orbita.Controles.VA.Properties.Resources.btnOk24;
+            this.BtnAceptar.Appearance = appearance9;
+            this.BtnAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.BtnAceptar.ImageSize = new System.Drawing.Size(24, 24);
+            this.BtnAceptar.Location = new System.Drawing.Point(411, 5);
+            this.BtnAceptar.Name = "BtnAceptar";
+            this.BtnAceptar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.BtnAceptar.Size = new System.Drawing.Size(98, 34);
+            this.BtnAceptar.TabIndex = 32;
+            this.BtnAceptar.Text = "Aceptar";
             // 
             // LabelTitulo
             // 
@@ -258,35 +293,9 @@ namespace Orbita.Controles.VA
             this.PictureBox.Location = new System.Drawing.Point(16, 16);
             this.PictureBox.Name = "PictureBox";
             this.PictureBox.Size = new System.Drawing.Size(64, 64);
-            this.PictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+            this.PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.PictureBox.TabIndex = 13;
             this.PictureBox.TabStop = false;
-            // 
-            // BtnMasInfo_
-            // 
-            appearance3.Image = global::Orbita.Controles.VA.Properties.Resources.ImgInfo24;
-            this.BtnMasInfo_.Appearance = appearance3;
-            this.BtnMasInfo_.ImageSize = new System.Drawing.Size(24, 24);
-            this.BtnMasInfo_.Location = new System.Drawing.Point(6, 5);
-            this.BtnMasInfo_.Name = "BtnMasInfo_";
-            this.BtnMasInfo_.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
-            this.BtnMasInfo_.Size = new System.Drawing.Size(98, 34);
-            this.BtnMasInfo_.TabIndex = 33;
-            this.BtnMasInfo_.Text = "Más info.";
-            this.BtnMasInfo_.Click += new System.EventHandler(this.btnMasInfo_Click);
-            // 
-            // BtnAceptar
-            // 
-            appearance4.Image = global::Orbita.Controles.VA.Properties.Resources.btnOk24;
-            this.BtnAceptar.Appearance = appearance4;
-            this.BtnAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.BtnAceptar.ImageSize = new System.Drawing.Size(24, 24);
-            this.BtnAceptar.Location = new System.Drawing.Point(411, 5);
-            this.BtnAceptar.Name = "BtnAceptar";
-            this.BtnAceptar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
-            this.BtnAceptar.Size = new System.Drawing.Size(98, 34);
-            this.BtnAceptar.TabIndex = 32;
-            this.BtnAceptar.Text = "Aceptar";
             // 
             // MensajeError
             // 
@@ -308,13 +317,6 @@ namespace Orbita.Controles.VA
             this.GprInfo.ResumeLayout(false);
             this.GprInfo.PerformLayout();
             this.PnlInferior.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.TxtFichero)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtMensaje)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtLinea)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtMetodo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtClase)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtEnsamblado)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TxtExcepcion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

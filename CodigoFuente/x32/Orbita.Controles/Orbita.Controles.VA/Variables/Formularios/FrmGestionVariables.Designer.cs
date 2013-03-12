@@ -45,12 +45,12 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnCancelar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnCancelar.Size = new System.Drawing.Size(98, 33);
             // 
             // btnGuardar
             // 
-            this.btnGuardar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnGuardar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnGuardar.Size = new System.Drawing.Size(98, 33);
             // 
             // PnlInferiorPadre
@@ -93,10 +93,10 @@
             this.gridVariables.OI.MostrarToolVer = true;
             this.gridVariables.Size = new System.Drawing.Size(970, 415);
             this.gridVariables.TabIndex = 3;
-            this.gridVariables.ToolModificarClick += new global::Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolModificarClickEventHandler(this.gridVariables_OrbBotonModificarClick);
-            this.gridVariables.ToolAñadirClick += new global::Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolAñadirClickEventHandler(this.gridVariables_OrbBotonAñadirClick);
-            this.gridVariables.ToolEliminarClick += new global::Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolEliminarClickEventHandler(this.gridVariables_OrbBotonEliminarFilaClick);
-            this.gridVariables.ToolRefrescarClick += new global::Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolRefrescarClickEventHandler(this.gridVariables_OrbBotonRefrescarClick);
+            this.gridVariables.ToolModificarClick += new Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolModificarClickEventHandler(this.gridVariables_OrbBotonModificarClick);
+            this.gridVariables.ToolAñadirClick += new Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolAñadirClickEventHandler(this.gridVariables_OrbBotonAñadirClick);
+            this.gridVariables.ToolEliminarClick += new Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolEliminarClickEventHandler(this.gridVariables_OrbBotonEliminarFilaClick);
+            this.gridVariables.ToolRefrescarClick += new Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolRefrescarClickEventHandler(this.gridVariables_OrbBotonRefrescarClick);
             // 
             // FrmGestionVariables
             // 
@@ -104,6 +104,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(990, 478);
             this.Controls.Add(this.toolStripContainer1);
+            this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Modificacion;
             this.Name = "FrmGestionVariables";
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
             this.Text = "Gestión de variables";

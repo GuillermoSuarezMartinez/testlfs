@@ -31,6 +31,7 @@ namespace Orbita.Controles.VA
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDetalleCamara));
             this.pnlPadre = new Orbita.Controles.Contenedores.OrbitaPanel();
+            this.lblSerial = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.lblFirmware = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.lblIP = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.lblCodigoModelo = new Orbita.Controles.Comunes.OrbitaUltraLabel();
@@ -39,7 +40,6 @@ namespace Orbita.Controles.VA
             this.lblColor = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.lblResolucion = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.pbCamara = new Orbita.Controles.Comunes.OrbitaPictureBox();
-            this.lblSerial = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.pnlPadre.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbCamara)).BeginInit();
             this.SuspendLayout();
@@ -59,89 +59,6 @@ namespace Orbita.Controles.VA
             this.pnlPadre.Name = "pnlPadre";
             this.pnlPadre.Size = new System.Drawing.Size(516, 207);
             this.pnlPadre.TabIndex = 9;
-            this.pnlPadre.Click += this.CerrarVentana;
-            // 
-            // lblFirmware
-            // 
-            this.lblFirmware.AutoSize = true;
-            this.lblFirmware.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFirmware.Location = new System.Drawing.Point(316, 155);
-            this.lblFirmware.Name = "lblFirmware";
-            this.lblFirmware.Size = new System.Drawing.Size(49, 13);
-            this.lblFirmware.TabIndex = 15;
-            this.lblFirmware.Text = "Firmware";
-            this.lblFirmware.Click += this.CerrarVentana;
-            // 
-            // lblIP
-            // 
-            this.lblIP.AutoSize = true;
-            this.lblIP.Location = new System.Drawing.Point(316, 132);
-            this.lblIP.Name = "lblIP";
-            this.lblIP.Size = new System.Drawing.Size(17, 13);
-            this.lblIP.TabIndex = 14;
-            this.lblIP.Text = "IP";
-            this.lblIP.Click += this.CerrarVentana;
-            // 
-            // lblCodigoModelo
-            // 
-            this.lblCodigoModelo.AutoSize = true;
-            this.lblCodigoModelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodigoModelo.Location = new System.Drawing.Point(123, 5);
-            this.lblCodigoModelo.Name = "lblCodigoModelo";
-            this.lblCodigoModelo.Size = new System.Drawing.Size(59, 20);
-            this.lblCodigoModelo.TabIndex = 13;
-            this.lblCodigoModelo.Text = "Codigo";
-            this.lblCodigoModelo.Click += this.CerrarVentana;
-            // 
-            // lblModelo
-            // 
-            this.lblModelo.AutoSize = true;
-            this.lblModelo.Location = new System.Drawing.Point(316, 61);
-            this.lblModelo.Name = "lblModelo";
-            this.lblModelo.Size = new System.Drawing.Size(45, 13);
-            this.lblModelo.TabIndex = 12;
-            this.lblModelo.Text = "Modelo:";
-            this.lblModelo.Click += this.CerrarVentana;
-            // 
-            // lblFabricante
-            // 
-            this.lblFabricante.AutoSize = true;
-            this.lblFabricante.Location = new System.Drawing.Point(316, 36);
-            this.lblFabricante.Name = "lblFabricante";
-            this.lblFabricante.Size = new System.Drawing.Size(60, 13);
-            this.lblFabricante.TabIndex = 11;
-            this.lblFabricante.Text = "Fabricante:";
-            this.lblFabricante.Click += this.CerrarVentana;
-            // 
-            // lblColor
-            // 
-            this.lblColor.AutoSize = true;
-            this.lblColor.Location = new System.Drawing.Point(316, 86);
-            this.lblColor.Name = "lblColor";
-            this.lblColor.Size = new System.Drawing.Size(31, 13);
-            this.lblColor.TabIndex = 10;
-            this.lblColor.Text = "Color";
-            this.lblColor.Click += this.CerrarVentana;
-            // 
-            // lblResolucion
-            // 
-            this.lblResolucion.AutoSize = true;
-            this.lblResolucion.Location = new System.Drawing.Point(316, 110);
-            this.lblResolucion.Name = "lblResolucion";
-            this.lblResolucion.Size = new System.Drawing.Size(60, 13);
-            this.lblResolucion.TabIndex = 9;
-            this.lblResolucion.Text = "Resolucion";
-            this.lblResolucion.Click += this.CerrarVentana;
-            // 
-            // pbCamara
-            // 
-            this.pbCamara.Location = new System.Drawing.Point(3, 35);
-            this.pbCamara.Name = "pbCamara";
-            this.pbCamara.Size = new System.Drawing.Size(295, 158);
-            this.pbCamara.SizeMode = PictureBoxSizeMode.Zoom;
-            this.pbCamara.TabIndex = 8;
-            this.pbCamara.TabStop = false;
-            this.pbCamara.Click += this.CerrarVentana;
             // 
             // lblSerial
             // 
@@ -149,10 +66,91 @@ namespace Orbita.Controles.VA
             this.lblSerial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSerial.Location = new System.Drawing.Point(316, 180);
             this.lblSerial.Name = "lblSerial";
-            this.lblSerial.Size = new System.Drawing.Size(87, 13);
+            this.lblSerial.Size = new System.Drawing.Size(91, 14);
             this.lblSerial.TabIndex = 16;
             this.lblSerial.Text = "Número de serie:";
-            this.lblSerial.Click += this.CerrarVentana;
+            this.lblSerial.UseMnemonic = false;
+            // 
+            // lblFirmware
+            // 
+            this.lblFirmware.AutoSize = true;
+            this.lblFirmware.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFirmware.Location = new System.Drawing.Point(316, 155);
+            this.lblFirmware.Name = "lblFirmware";
+            this.lblFirmware.Size = new System.Drawing.Size(51, 14);
+            this.lblFirmware.TabIndex = 15;
+            this.lblFirmware.Text = "Firmware";
+            this.lblFirmware.UseMnemonic = false;
+            // 
+            // lblIP
+            // 
+            this.lblIP.AutoSize = true;
+            this.lblIP.Location = new System.Drawing.Point(316, 132);
+            this.lblIP.Name = "lblIP";
+            this.lblIP.Size = new System.Drawing.Size(15, 14);
+            this.lblIP.TabIndex = 14;
+            this.lblIP.Text = "IP";
+            this.lblIP.UseMnemonic = false;
+            // 
+            // lblCodigoModelo
+            // 
+            this.lblCodigoModelo.AutoSize = true;
+            this.lblCodigoModelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCodigoModelo.Location = new System.Drawing.Point(123, 5);
+            this.lblCodigoModelo.Name = "lblCodigoModelo";
+            this.lblCodigoModelo.Size = new System.Drawing.Size(58, 21);
+            this.lblCodigoModelo.TabIndex = 13;
+            this.lblCodigoModelo.Text = "Codigo";
+            this.lblCodigoModelo.UseMnemonic = false;
+            // 
+            // lblModelo
+            // 
+            this.lblModelo.AutoSize = true;
+            this.lblModelo.Location = new System.Drawing.Point(316, 61);
+            this.lblModelo.Name = "lblModelo";
+            this.lblModelo.Size = new System.Drawing.Size(45, 14);
+            this.lblModelo.TabIndex = 12;
+            this.lblModelo.Text = "Modelo:";
+            this.lblModelo.UseMnemonic = false;
+            // 
+            // lblFabricante
+            // 
+            this.lblFabricante.AutoSize = true;
+            this.lblFabricante.Location = new System.Drawing.Point(316, 36);
+            this.lblFabricante.Name = "lblFabricante";
+            this.lblFabricante.Size = new System.Drawing.Size(61, 14);
+            this.lblFabricante.TabIndex = 11;
+            this.lblFabricante.Text = "Fabricante:";
+            this.lblFabricante.UseMnemonic = false;
+            // 
+            // lblColor
+            // 
+            this.lblColor.AutoSize = true;
+            this.lblColor.Location = new System.Drawing.Point(316, 86);
+            this.lblColor.Name = "lblColor";
+            this.lblColor.Size = new System.Drawing.Size(31, 14);
+            this.lblColor.TabIndex = 10;
+            this.lblColor.Text = "Color";
+            this.lblColor.UseMnemonic = false;
+            // 
+            // lblResolucion
+            // 
+            this.lblResolucion.AutoSize = true;
+            this.lblResolucion.Location = new System.Drawing.Point(316, 110);
+            this.lblResolucion.Name = "lblResolucion";
+            this.lblResolucion.Size = new System.Drawing.Size(60, 14);
+            this.lblResolucion.TabIndex = 9;
+            this.lblResolucion.Text = "Resolucion";
+            this.lblResolucion.UseMnemonic = false;
+            // 
+            // pbCamara
+            // 
+            this.pbCamara.Location = new System.Drawing.Point(3, 35);
+            this.pbCamara.Name = "pbCamara";
+            this.pbCamara.Size = new System.Drawing.Size(295, 158);
+            this.pbCamara.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbCamara.TabIndex = 8;
+            this.pbCamara.TabStop = false;
             // 
             // FrmDetalleCamara
             // 

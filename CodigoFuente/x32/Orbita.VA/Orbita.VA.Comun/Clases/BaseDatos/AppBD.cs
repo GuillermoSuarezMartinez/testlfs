@@ -7,6 +7,10 @@
 // Last Modified On : 27-09-2012
 // Description      : Añadidas funciones de almacenamiento
 //
+// Last Modified By : aibañez
+// Last Modified On : 12-03-2013
+// Description      : Cambiados el acceso a los procedimientos almacenados para incluir el prefijo VA
+//
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
@@ -48,7 +52,7 @@ namespace Orbita.VA.Comun
             {
                 ArrayList list = new ArrayList();
                 list.Add(new SqlParameter("@TextoSQL", tabla.Value));
-                DataTable dt = OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("APP_GET_SELECT_A_MEDIDA", list);
+                DataTable dt = OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_APP_GET_SELECT_A_MEDIDA", list);
                 dt.TableName = tabla.Key;
                 ds.Tables.Add(dt);
             }
@@ -209,27 +213,27 @@ namespace Orbita.VA.Comun
         /// <returns>DataTable con los parámetros básicos de la aplicación</returns>
         public static DataTable GetParametrosAplicacion()
         {
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("APP_GET_PARAMETROS");
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_APP_GET_PARAMETROS");
         }
 
         /// <summary>
-        /// Consulta todas vistas existentes en el sistema
+        /// Consulta todas escenarios existentes en el sistema
         /// </summary>
         /// <returns>DataTable con los códigos de las variables existentes en el sistema</returns>
-        public static DataTable GetVistas()
+        public static DataTable GetEscenarios()
         {
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VST_GET_VISTAS");
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_ESC_GET_ESCENARIOS");
         }
         /// <summary>
-        /// Consulta una vista existente en el sistema
+        /// Consulta una escenario existente en el sistema
         /// </summary>
-        /// <returns>DataTable con los códigos de las vistas existentes en el sistema</returns>
-        public static DataTable GetVista(string codVista)
+        /// <returns>DataTable con los códigos de las escenarios existentes en el sistema</returns>
+        public static DataTable GetEscenario(string codEscenario)
         {
             ArrayList list = new ArrayList();
-            list.Add(new SqlParameter("@CodVista", codVista));
+            list.Add(new SqlParameter("@CodEscenario", codEscenario));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VST_GET_VISTA", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_ESC_GET_ESCENARIO", list);
         }
 
         /// <summary>
@@ -238,7 +242,7 @@ namespace Orbita.VA.Comun
         /// <returns>DataTable con los la información del usuario</returns>
         public static DataTable GetUsuarios()
         {
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("USU_GET_USUARIOS");
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_USU_GET_USUARIOS");
         }
         /// <summary>
         /// Consulta un usuario existente en el sistema
@@ -249,7 +253,7 @@ namespace Orbita.VA.Comun
             ArrayList list = new ArrayList();
             list.Add(new SqlParameter("@CodUsuario", codigo));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("USU_GET_USUARIO", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_USU_GET_USUARIO", list);
         }
 
         /// <summary>
@@ -260,7 +264,7 @@ namespace Orbita.VA.Comun
         {
             ArrayList list = new ArrayList();
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VAR_GET_VARIABLES", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_VAR_GET_VARIABLES", list);
         }
 
         /// <summary>
@@ -272,7 +276,7 @@ namespace Orbita.VA.Comun
             ArrayList list = new ArrayList();
             list.Add(new SqlParameter("@CodVariable", codVariable));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VAR_GET_VARIABLE", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_VAR_GET_VARIABLE", list);
         }
 
         /// <summary>
@@ -283,7 +287,7 @@ namespace Orbita.VA.Comun
         {
             ArrayList list = new ArrayList();
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VAR_GET_LISTA_VARIABLES", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_VAR_GET_LISTA_VARIABLES", list);
         }
 
         /// <summary>
@@ -294,20 +298,20 @@ namespace Orbita.VA.Comun
         {
             ArrayList list = new ArrayList();
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VAR_GET_TIPOS_VARIABLES", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_VAR_GET_TIPOS_VARIABLES", list);
         }
 
         /// <summary>
-        /// Consulta el alias de una vista de variables
+        /// Consulta el alias de una escenario de variables
         /// </summary>
-        /// <param name="codVista"></param>
+        /// <param name="codEscenario"></param>
         /// <returns></returns>
-        public static DataTable GetAliasVistaVariables(string codVista)
+        public static DataTable GetAliasEscenarioVariables(string codEscenario)
         {
             ArrayList list = new ArrayList();
-            list.Add(new SqlParameter("@CodVista", codVista));
+            list.Add(new SqlParameter("@CodEscenario", codEscenario));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VAR_GET_ALIAS_VISTA", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_VAR_GET_ALIAS_ESCENARIO", list);
         }
         #endregion
 
@@ -405,7 +409,7 @@ namespace Orbita.VA.Comun
             list.Add(new SqlParameter("@GuardarTrazabilidad", trazabilidad));
             list.Add(new SqlParameter("@IdTipoVariable", tipo));
 
-            return OBaseDatosParam.SQLServer.EjecutarProcedimientoAlmacenado("VAR_ADD_LISTA_VARIABLES", list);
+            return OBaseDatosParam.SQLServer.EjecutarProcedimientoAlmacenado("VA_VAR_ADD_LISTA_VARIABLES", list);
         }
         #endregion
 
@@ -434,7 +438,7 @@ namespace Orbita.VA.Comun
             list.Add(new SqlParameter("@GuardarTrazabilidad", trazabilidad));
             list.Add(new SqlParameter("@IdTipoVariable", tipo));
 
-            return OBaseDatosParam.SQLServer.EjecutarProcedimientoAlmacenado("VAR_MDF_LISTA_VARIABLES", list);
+            return OBaseDatosParam.SQLServer.EjecutarProcedimientoAlmacenado("VA_VAR_MDF_LISTA_VARIABLES", list);
         }
         #endregion
 
@@ -449,7 +453,7 @@ namespace Orbita.VA.Comun
             ArrayList list = new ArrayList();
             list.Add(new SqlParameter("@IdVariable", idVariable));
 
-            return OBaseDatosParam.SQLServer.EjecutarProcedimientoAlmacenado("VAR_DEL_LISTA_VARIABLES", list);
+            return OBaseDatosParam.SQLServer.EjecutarProcedimientoAlmacenado("VA_VAR_DEL_LISTA_VARIABLES", list);
         }
         #endregion
     }

@@ -3,9 +3,9 @@
 // Author           : aibañez
 // Created          : 06-09-2012
 //
-// Last Modified By : 
-// Last Modified On : 
-// Description      : 
+// Last Modified By : aibañez
+// Last Modified On : 12-03-2013
+// Description      : Cambiados el acceso a los procedimientos almacenados para incluir el prefijo VA
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
@@ -23,16 +23,16 @@ namespace Orbita.VA.Hardware
     {
         #region TAB Select: funciones Get -> GetX(...)
         /// <summary>
-        /// Consulta el alias de una vista de hardware
+        /// Consulta el alias de una escenario de hardware
         /// </summary>
-        /// <param name="codVista"></param>
+        /// <param name="codEscenario"></param>
         /// <returns></returns>
-        public static DataTable GetAliasVistaHardware(string codVista)
+        public static DataTable GetAliasEscenarioHardware(string codEscenario)
         {
             ArrayList list = new ArrayList();
-            list.Add(new SqlParameter("@CodVista", codVista));
+            list.Add(new SqlParameter("@CodEscenario", codEscenario));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("HWR_GET_ALIAS_VISTA", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_HWR_GET_ALIAS_ESCENARIO", list);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Orbita.VA.Hardware
         /// <returns>DataTable con los códigos de las cámaras existentes en el sistema</returns>
         public static DataTable GetCamaras()
         {
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("CAM_GET_CAMARAS");
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_CAM_GET_CAMARAS");
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Orbita.VA.Hardware
             ArrayList list = new ArrayList();
             list.Add(new SqlParameter("@CodCamara", codCamara));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("CAM_GET_CAMARA", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_CAM_GET_CAMARA", list);
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Orbita.VA.Hardware
         /// <returns>DataTable con los códigos de las tarjetas IO existentes en el sistema</returns>
         public static DataTable GetTarjetasIO()
         {
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("IO_GET_TARJETAS");
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_IO_GET_TARJETAS");
         }
         /// <summary>
         /// Consulta los terminales IO de una determinada tarjeta IO
@@ -73,7 +73,7 @@ namespace Orbita.VA.Hardware
             ArrayList list = new ArrayList();
             list.Add(new SqlParameter("@CodTarjetaIO", codTarjetaIO));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("IO_GET_TERMINALES", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_IO_GET_TERMINALES", list);
         }
         /// <summary>
         /// Consulta la información de una determinada tarjeta IO
@@ -84,7 +84,7 @@ namespace Orbita.VA.Hardware
             ArrayList list = new ArrayList();
             list.Add(new SqlParameter("@CodTarjetaIO", codTarjetaIO));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("IO_GET_TARJETA", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_IO_GET_TARJETA", list);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Orbita.VA.Hardware
             list.Add(new SqlParameter("@CodTarjetaIO", codTarjetaIO));
             list.Add(new SqlParameter("@CodTerminalIO", codTerminalIO));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("IO_GET_TERMINAL", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_IO_GET_TERMINAL", list);
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace Orbita.VA.Hardware
             list.Add(new SqlParameter("@CodTarjetaIO", codTarjetaIO));
             list.Add(new SqlParameter("@CodTerminalIO", codTerminalIOEscritura));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("IO_GET_SCED_TERMINALES_ESCRITURA", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_IO_GET_SCED_TERMINALES_ESCRITURA", list);
         }
         #endregion
 

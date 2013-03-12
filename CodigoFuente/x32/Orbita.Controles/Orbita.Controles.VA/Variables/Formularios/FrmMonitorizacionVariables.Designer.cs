@@ -101,12 +101,12 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnCancelar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnCancelar.Size = new System.Drawing.Size(98, 33);
             // 
             // btnGuardar
             // 
-            this.btnGuardar.OI.Estilo = global::Orbita.Controles.Comunes.EstiloBoton.Extragrande;
+            this.btnGuardar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnGuardar.Size = new System.Drawing.Size(98, 33);
             // 
             // PnlInferiorPadre
@@ -140,7 +140,7 @@
             this.Valor,
             this.Descripcion,
             this.Habilitado});
-            this.ToolbarsManager.SetContextMenuUltra(this.ListView, "Escenarios");
+            this.ToolbarsManager.SetContextMenuUltra(this.ListView, "Acciones");
             this.ListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListView.LargeImageList = this.ImageListLarge;
             this.ListView.Location = new System.Drawing.Point(5, 18);
@@ -354,7 +354,7 @@
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Right);
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Bottom);
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Top);
-            this.ModoAperturaFormulario = global::Orbita.Controles.VA.ModoAperturaFormulario.Monitorizacion;
+            this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Monitorizacion;
             this.Name = "FrmMonitorizacionVariables";
             this.RecordarPosicion = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;

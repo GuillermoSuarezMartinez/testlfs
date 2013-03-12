@@ -76,7 +76,7 @@ namespace Orbita.VAGeneradorEscenarios
                     string codME = drME["CodMaquinaEstados"].ToString();
                     string descME = drME["DescMaquinaEstados"].ToString();
                     string claseImplementadora = drME["ClaseImplementadora"].ToString();
-                    string codVista = drME["CodVista"].ToString();
+                    string codEscenario = drME["CodEscenario"].ToString();
                     bool OK;
 
                     //------------ MÁQUINA DE ESTADOS ---------------//
@@ -99,13 +99,13 @@ namespace Orbita.VAGeneradorEscenarios
                     //------------ VARIABLES ---------------//
                     if (HabilitadoVariables)
                     {
-                        GenerarVariables(generador, codVista, claseEscenario);
+                        GenerarVariables(generador, codEscenario, claseEscenario);
                     }
 
                     //------------ HARDWARE ---------------//
                     if (HabilitadoHardware)
                     {
-                        GenerarHardware(generador, codVista, claseEscenario);
+                        GenerarHardware(generador, codEscenario, claseEscenario);
                     }
 
                     //------------ ESTADOS ---------------//
@@ -155,7 +155,7 @@ namespace Orbita.VAGeneradorEscenarios
                 new CodeStatement[] { });
 
             // Generadora del método de creación del escenario
-            CodeStatement creacionObjetoEscenario = generador.New("_Escenario", "Escenario_" + claseImplementadora, "CodVista");
+            CodeStatement creacionObjetoEscenario = generador.New("_Escenario", "Escenario_" + claseImplementadora, "CodEscenario");
             generador.GenerarMetodo("CrearEscenario", claseMaquinaEstados, "Constructor de la clase", MemberAttributes.Public | MemberAttributes.Override,
                 new CodeParameterDeclarationExpression[] { },
                 new CodeStatement[] { creacionObjetoEscenario });
@@ -217,16 +217,16 @@ namespace Orbita.VAGeneradorEscenarios
         /// Generación de la clase interior al escenario que implementa las variables
         /// </summary>
         /// <param name="generador"></param>
-        /// <param name="codVista"></param>
+        /// <param name="codEscenario"></param>
         /// <param name="claseEscenario"></param>
-        private static void GenerarVariables(OGeneradorAccesoRapido generador, string codVista, CodeTypeDeclaration claseEscenario)
+        private static void GenerarVariables(OGeneradorAccesoRapido generador, string codEscenario, CodeTypeDeclaration claseEscenario)
         {
             // Se genera la propiedad Variables
             generador.GenerarPropiedadReadOnly(ref claseEscenario, "Variables", string.Empty, "Variables del escenario", MemberAttributes.Public, "CVariables", true);
 
-            // Generador de la clase interna de vistas de variables
+            // Generador de la clase interna de escenarios de variables
             CodeTypeDeclaration claseVariables = generador.GenerarClase("CVariables", string.Empty, claseEscenario, "Variables del escenario", MemberAttributes.Public);
-            generador.GenerarPropiedadReadOnly(ref claseVariables, "Codigo", string.Empty, "Código de la vista", MemberAttributes.Public, typeof(string).ToString(), true);
+            generador.GenerarPropiedadReadOnly(ref claseVariables, "Codigo", string.Empty, "Código del escenario", MemberAttributes.Public, typeof(string).ToString(), true);
 
             // Constructor de la clase Variables con la asignación del código
             CodeStatement asignacionCodigoVariables = generador.Asignacion("_Codigo", "codigo");
@@ -236,7 +236,7 @@ namespace Orbita.VAGeneradorEscenarios
                 new CodeStatement[] { asignacionCodigoVariables });
 
             // Lectura de los alias de la base de datos
-            DataTable dtAliasVariables = Orbita.VA.Comun.AppBD.GetAliasVistaVariables(codVista);
+            DataTable dtAliasVariables = Orbita.VA.Comun.AppBD.GetAliasEscenarioVariables(codEscenario);
             foreach (DataRow drAlias in dtAliasVariables.Rows)
             {
                 // Creamos una propiedad con cada uno de los alias
@@ -252,16 +252,16 @@ namespace Orbita.VAGeneradorEscenarios
         /// Generación de la clase interior al escenario que implementa las variables
         /// </summary>
         /// <param name="generador"></param>
-        /// <param name="codVista"></param>
+        /// <param name="codEscenario"></param>
         /// <param name="claseEscenario"></param>
-        private static void GenerarHardware(OGeneradorAccesoRapido generador, string codVista, CodeTypeDeclaration claseEscenario)
+        private static void GenerarHardware(OGeneradorAccesoRapido generador, string codEscenario, CodeTypeDeclaration claseEscenario)
         {
             // Se genera la propiedad Hardware
             generador.GenerarPropiedadReadOnly(ref claseEscenario, "Hardware", string.Empty, "Hardware del escenario", MemberAttributes.Public, "CHardware", true);
 
-            // Generador de la clase interna de vistas de Hardware
+            // Generador de la clase interna de escenarios de Hardware
             CodeTypeDeclaration claseHardware = generador.GenerarClase("CHardware", string.Empty, claseEscenario, "Hardware del escenario", MemberAttributes.Public);
-            generador.GenerarPropiedadReadOnly(ref claseHardware, "Codigo", string.Empty, "Código de la vista", MemberAttributes.Public, typeof(string).ToString(), true);
+            generador.GenerarPropiedadReadOnly(ref claseHardware, "Codigo", string.Empty, "Código del escenario", MemberAttributes.Public, typeof(string).ToString(), true);
 
             // Constructor de la clase Hardware con la asignación del código
             CodeStatement asignacionCodigoHardware = generador.Asignacion("_Codigo", "codigo");
@@ -271,7 +271,7 @@ namespace Orbita.VAGeneradorEscenarios
                 new CodeStatement[] { asignacionCodigoHardware });
 
             // Lectura de los alias de la base de datos
-            DataTable dtAliasHardware = Orbita.VA.Hardware.AppBD.GetAliasVistaHardware(codVista);
+            DataTable dtAliasHardware = Orbita.VA.Hardware.AppBD.GetAliasEscenarioHardware(codEscenario);
             foreach (DataRow drAlias in dtAliasHardware.Rows)
             {
                 // Creamos una propiedad con cada uno de los alias

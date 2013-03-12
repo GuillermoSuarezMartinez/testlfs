@@ -27,7 +27,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSplash));
             this.TimerRefresco = new System.Windows.Forms.Timer(this.components);
             this.lblUsuario = new Orbita.Controles.Comunes.OrbitaUltraLabel();
@@ -47,7 +47,7 @@
             // 
             // lblUsuario
             // 
-            this.lblUsuario.BackColor = System.Drawing.Color.Transparent;
+            this.lblUsuario.BackColorInternal = System.Drawing.Color.Transparent;
             this.lblUsuario.Font = new System.Drawing.Font("Franklin Gothic Book", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsuario.ForeColor = System.Drawing.Color.Black;
             this.lblUsuario.Location = new System.Drawing.Point(22, 170);
@@ -55,10 +55,11 @@
             this.lblUsuario.Size = new System.Drawing.Size(204, 16);
             this.lblUsuario.TabIndex = 2;
             this.lblUsuario.Text = "Usuario";
+            this.lblUsuario.UseMnemonic = false;
             // 
             // lblMaquina
             // 
-            this.lblMaquina.BackColor = System.Drawing.Color.Transparent;
+            this.lblMaquina.BackColorInternal = System.Drawing.Color.Transparent;
             this.lblMaquina.Font = new System.Drawing.Font("Franklin Gothic Book", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMaquina.ForeColor = System.Drawing.Color.Black;
             this.lblMaquina.Location = new System.Drawing.Point(22, 153);
@@ -66,10 +67,11 @@
             this.lblMaquina.Size = new System.Drawing.Size(204, 16);
             this.lblMaquina.TabIndex = 3;
             this.lblMaquina.Text = "Equipo";
+            this.lblMaquina.UseMnemonic = false;
             // 
             // lblIdioma
             // 
-            this.lblIdioma.BackColor = System.Drawing.Color.Transparent;
+            this.lblIdioma.BackColorInternal = System.Drawing.Color.Transparent;
             this.lblIdioma.Font = new System.Drawing.Font("Franklin Gothic Book", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIdioma.ForeColor = System.Drawing.Color.Black;
             this.lblIdioma.Location = new System.Drawing.Point(22, 187);
@@ -77,17 +79,18 @@
             this.lblIdioma.Size = new System.Drawing.Size(204, 16);
             this.lblIdioma.TabIndex = 4;
             this.lblIdioma.Text = "Idioma";
+            this.lblIdioma.UseMnemonic = false;
             // 
             // lblMensaje
             // 
-            appearance2.BackColor = System.Drawing.Color.Transparent;
-            appearance2.ForeColor = System.Drawing.Color.Black;
-            appearance2.TextHAlignAsString = "Center";
-            appearance2.TextVAlignAsString = "Middle";
-            this.lblMensaje.Appearance = appearance2;
+            appearance1.BackColor = System.Drawing.Color.Transparent;
+            appearance1.ForeColor = System.Drawing.Color.Black;
+            appearance1.TextHAlignAsString = "Center";
+            this.lblMensaje.Appearance = appearance1;
             this.lblMensaje.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblMensaje.Location = new System.Drawing.Point(0, 235);
             this.lblMensaje.Name = "lblMensaje";
+            this.lblMensaje.OI.Apariencia.AlineacionTextoHorizontal = Orbita.Controles.Comunes.AlineacionHorizontal.Centro;
             this.lblMensaje.OI.Apariencia.ColorFondo = System.Drawing.Color.Transparent;
             this.lblMensaje.OI.Apariencia.ColorTexto = System.Drawing.Color.Black;
             this.lblMensaje.Size = new System.Drawing.Size(244, 23);
@@ -96,7 +99,7 @@
             // 
             // lblVersion
             // 
-            this.lblVersion.BackColor = System.Drawing.Color.Transparent;
+            this.lblVersion.BackColorInternal = System.Drawing.Color.Transparent;
             this.lblVersion.Font = new System.Drawing.Font("Franklin Gothic Book", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.ForeColor = System.Drawing.Color.Black;
             this.lblVersion.Location = new System.Drawing.Point(22, 204);
@@ -104,10 +107,11 @@
             this.lblVersion.Size = new System.Drawing.Size(204, 16);
             this.lblVersion.TabIndex = 6;
             this.lblVersion.Text = "Versión";
+            this.lblVersion.UseMnemonic = false;
             // 
             // lblCompañia
             // 
-            this.lblCompañia.BackColor = System.Drawing.Color.Transparent;
+            this.lblCompañia.BackColorInternal = System.Drawing.Color.Transparent;
             this.lblCompañia.Font = new System.Drawing.Font("Franklin Gothic Book", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCompañia.ForeColor = System.Drawing.Color.Black;
             this.lblCompañia.Location = new System.Drawing.Point(22, 136);
@@ -115,10 +119,11 @@
             this.lblCompañia.Size = new System.Drawing.Size(204, 16);
             this.lblCompañia.TabIndex = 7;
             this.lblCompañia.Text = "Comañía";
+            this.lblCompañia.UseMnemonic = false;
             // 
             // lblProducto
             // 
-            this.lblProducto.BackColor = System.Drawing.Color.Transparent;
+            this.lblProducto.BackColorInternal = System.Drawing.Color.Transparent;
             this.lblProducto.Font = new System.Drawing.Font("Franklin Gothic Book", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProducto.ForeColor = System.Drawing.Color.Black;
             this.lblProducto.Location = new System.Drawing.Point(22, 119);
@@ -126,6 +131,7 @@
             this.lblProducto.Size = new System.Drawing.Size(204, 16);
             this.lblProducto.TabIndex = 8;
             this.lblProducto.Text = "Producto";
+            this.lblProducto.UseMnemonic = false;
             // 
             // pbLogo
             // 
