@@ -80,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\Configuración\OConfiguracion.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OMdiForm.cs" />
     <Compile Include="Clases\Propiedades y métodos\OForm.cs" />
     <Compile Include="Clases\Propiedades y métodos\ODialog.cs" />
     <Compile Include="Clases\Propiedades y métodos\OTableLayoutPanel.cs" />

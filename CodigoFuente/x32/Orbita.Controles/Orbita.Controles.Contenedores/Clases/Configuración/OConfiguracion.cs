@@ -14,7 +14,7 @@ namespace Orbita.Controles.Contenedores
     internal static class Configuracion
     {
         #region Atributos internos constantes
-        internal const int DefectoNumeroMaximoFormulariosAbiertosEnMdi = 50;
+        internal const int DefectoNumeroMaximoFormulariosAbiertos = 50;
         internal const bool DefectoVerToolTips = true;
         #endregion
     }

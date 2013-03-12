@@ -9,16 +9,17 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Contenedores
 {
     public partial class OrbitaUltraTabbedMdiManager : Infragistics.Win.UltraWinTabbedMdi.UltraTabbedMdiManager
     {
+        #region Nueva definición
         public class ControlNuevaDefinicion : OUltraTabbedMdiManager
         {
             public ControlNuevaDefinicion(OrbitaUltraTabbedMdiManager sender)
                 : base(sender) { }
-        };
+        }
+        #endregion
 
         #region Atributos
         ControlNuevaDefinicion definicion;
@@ -55,7 +56,7 @@ namespace Orbita.Controles.Contenedores
 
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }
@@ -74,6 +75,9 @@ namespace Orbita.Controles.Contenedores
         #endregion
 
         #region Métodos privados estáticos
+        /// <summary>
+        /// Inicializar recursos.
+        /// </summary>
         static void InitializeResourceStrings()
         {
             Infragistics.Shared.ResourceCustomizer resCustomizer = Infragistics.Win.UltraWinTabbedMdi.Resources.Customizer;

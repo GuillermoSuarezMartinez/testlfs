@@ -44,7 +44,6 @@ namespace Orbita.Controles.Contenedores
             this.Name = "OrbitaForm";
             this.Text = this.Name;
             this.ResumeLayout(false);
-
         }
         #endregion
 

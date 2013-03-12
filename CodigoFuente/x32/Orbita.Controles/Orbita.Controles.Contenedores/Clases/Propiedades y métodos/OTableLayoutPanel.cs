@@ -9,10 +9,9 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Contenedores
 {
-    [TypeConverter(typeof(ExpandableObjectConverter))]
+    [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
     public class OTableLayoutPanel
     {
         #region Atributos

@@ -9,16 +9,17 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Contenedores
 {
     public partial class OrbitaMdiForm : System.Windows.Forms.Form
     {
-        public class ControlNuevaDefinicion : OForm
+        #region Nueva definición
+        public class ControlNuevaDefinicion : OMdiForm
         {
-            public ControlNuevaDefinicion(OrbitaForm sender)
+            public ControlNuevaDefinicion(OrbitaMdiForm sender)
                 : base(sender) { }
-        };
+        }
+        #endregion
 
         #region Atributos
         ControlNuevaDefinicion definicion;
@@ -32,34 +33,34 @@ namespace Orbita.Controles.Contenedores
             : base()
         {
             InitializeComponent();
-            //InitializeAttributes();
-            //InitializeProperties();
+            InitializeAttributes();
+            InitializeProperties();
         }
         #endregion
 
-        //#region Propiedades
-        //[System.ComponentModel.Category("Gestión de controles")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        //public ControlNuevaDefinicion OI
-        //{
-        //    get { return this.definicion; }
-        //    set { this.definicion = value; }
-        //}
-        //#endregion
+        #region Propiedades
+        [System.ComponentModel.Category("Gestión de controles")]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public ControlNuevaDefinicion OI
+        {
+            get { return this.definicion; }
+            set { this.definicion = value; }
+        }
+        #endregion
 
-        //#region Métodos privados
-        //void InitializeAttributes()
-        //{
-        //    if (this.definicion == null)
-        //    {
-        //        this.definicion = new ControlNuevaDefinicion(this);
-        //    }
-        //}
-        //void InitializeProperties()
-        //{
-        //    this.toolTip.Active = Configuracion.DefectoVerToolTips;
-        //    this.Orbita.NumeroMaximoFormulariosAbiertosEnMdi = Configuracion.DefectoNumeroMaximoFormulariosAbiertosEnMdi;
-        //}
-        //#endregion
+        #region Métodos privados
+        void InitializeAttributes()
+        {
+            if (this.definicion == null)
+            {
+                this.definicion = new ControlNuevaDefinicion(this);
+            }
+        }
+        void InitializeProperties()
+        {
+            this.toolTip.Active = Configuracion.DefectoVerToolTips;
+            this.OI.NumeroMaximoFormulariosAbiertos = Configuracion.DefectoNumeroMaximoFormulariosAbiertos;
+        }
+        #endregion
     }
 }

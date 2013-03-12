@@ -9,16 +9,17 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Contenedores
 {
     public partial class OrbitaUltraGroupBox : Infragistics.Win.Misc.UltraGroupBox
     {
+        #region Nueva definición
         public class ControlNuevaDefinicion : OUltraGroupBox
         {
             public ControlNuevaDefinicion(OrbitaUltraGroupBox sender)
                 : base(sender) { }
-        };
+        }
+        #endregion
 
         #region Atributos
         ControlNuevaDefinicion definicion;
@@ -37,7 +38,7 @@ namespace Orbita.Controles.Contenedores
 
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }

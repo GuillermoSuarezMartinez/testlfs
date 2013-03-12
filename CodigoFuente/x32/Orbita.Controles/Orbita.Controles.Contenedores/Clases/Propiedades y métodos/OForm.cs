@@ -9,16 +9,13 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
-using System;
 namespace Orbita.Controles.Contenedores
 {
-    [TypeConverter(typeof(ExpandableObjectConverter))]
+    [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
     public class OForm
     {
         #region Atributos
         OrbitaForm control;
-        int numeroMaximoFormulariosAbiertosEnMdi;
         #endregion
 
         #region Constructor
@@ -34,12 +31,6 @@ namespace Orbita.Controles.Contenedores
         {
             get { return this.control; }
         }
-        [System.ComponentModel.Description("")]
-        public int NumeroMaximoFormulariosAbiertosEnMdi
-        {
-            get { return this.numeroMaximoFormulariosAbiertosEnMdi; }
-            set { this.numeroMaximoFormulariosAbiertosEnMdi = value; }
-        }
         #endregion
 
         #region Métodos públicos
@@ -49,32 +40,11 @@ namespace Orbita.Controles.Contenedores
         }
         public void MostrarFormularioEnMdi(OrbitaForm form)
         {
-            if (this.control.IsMdiContainer && this.control.MdiChildren.Length < this.numeroMaximoFormulariosAbiertosEnMdi)
+            if (form == null)
             {
-                if (form == null)
-                {
-                    return;
-                }
-                form.MdiParent = this.control;
-                form.Show();
+                return;
             }
-            else
-            {
-                throw new Exception("Se ha alcanzado el número máximo de formularios abiertos.");
-            }
-        }
-        #endregion
-
-        #region Métodos protegidos
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
-        protected void ResetNumeroMaximoFormulariosAbiertosEnMdi()
-        {
-            this.NumeroMaximoFormulariosAbiertosEnMdi = Configuracion.DefectoNumeroMaximoFormulariosAbiertosEnMdi;
-        }
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
-        protected bool ShouldSerializeNumeroMaximoFormulariosAbiertosEnMdi()
-        {
-            return (this.NumeroMaximoFormulariosAbiertosEnMdi != Configuracion.DefectoNumeroMaximoFormulariosAbiertosEnMdi);
+            form.Show();
         }
         #endregion
     }

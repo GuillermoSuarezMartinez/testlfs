@@ -9,16 +9,17 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Contenedores
 {
     public partial class OrbitaForm : System.Windows.Forms.Form
     {
+        #region Nueva definición
         public class ControlNuevaDefinicion : OForm
         {
             public ControlNuevaDefinicion(OrbitaForm sender)
                 : base(sender) { }
-        };
+        }
+        #endregion
 
         #region Atributos
         ControlNuevaDefinicion definicion;
@@ -39,7 +40,7 @@ namespace Orbita.Controles.Contenedores
 
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }
@@ -58,7 +59,6 @@ namespace Orbita.Controles.Contenedores
         void InitializeProperties()
         {
             this.toolTip.Active = Configuracion.DefectoVerToolTips;
-            this.OI.NumeroMaximoFormulariosAbiertosEnMdi = Configuracion.DefectoNumeroMaximoFormulariosAbiertosEnMdi;
         }
         #endregion
     }
