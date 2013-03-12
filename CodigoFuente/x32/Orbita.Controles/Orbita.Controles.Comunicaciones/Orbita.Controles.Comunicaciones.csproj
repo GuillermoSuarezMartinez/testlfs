@@ -54,8 +54,48 @@
     <DocumentationFile>bin\Release\Orbita.Controles.Comunicaciones.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Infragistics2.Shared.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Shared.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.Misc.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.Misc.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinExplorerBar.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinExplorerBar.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinGrid.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinGrid.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinMaskedEdit.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinMaskedEdit.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinStatusBar.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinStatusBar.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinTabbedMdi.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinTabbedMdi.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinTabControl.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinTabControl.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinToolbars.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinToolbars.v11.2.dll</HintPath>
+    </Reference>
     <Reference Include="Orbita.Comunicaciones">
       <HintPath>..\..\Comun\Orbita\Orbita.Comunicaciones.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Trazabilidad, Version=13.68.3.1, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Orbita\Orbita.Trazabilidad.dll</HintPath>
     </Reference>
     <Reference Include="Orbita.Utiles">
       <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
@@ -63,6 +103,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -134,6 +175,51 @@
     <EmbeddedResource Include="OrbitaPuertoSerie.resx">
       <DependentUpon>OrbitaPuertoSerie.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Borrar.png" />
+    <Content Include="Resources\eraser2.png" />
+    <Content Include="Resources\error.png" />
+    <Content Include="Resources\EstadoDetenido.png" />
+    <Content Include="Resources\EstadoIniciado.png" />
+    <Content Include="Resources\exit.png" />
+    <Content Include="Resources\information.png" />
+    <Content Include="Resources\Iniciar.png" />
+    <Content Include="Resources\media_play_green.png" />
+    <Content Include="Resources\media_stop_red.png" />
+    <Content Include="Resources\MensajeAdvertencia.png" />
+    <Content Include="Resources\MensajeError.png" />
+    <Content Include="Resources\MensajeFatal.png" />
+    <Content Include="Resources\MensajeInformacion.png" />
+    <Content Include="Resources\MensajeKeepAlive.png" />
+    <Content Include="Resources\ok.png" />
+    <Content Include="Resources\Parar.png" />
+    <Content Include="Resources\Salir.png" />
+    <Content Include="Resources\sign_stop.png" />
+    <Content Include="Resources\sign_warning.png" />
+    <Content Include="Resources\Tool_Error.png" />
+    <Content Include="Resources\Tool_Fatal.png" />
+    <Content Include="Resources\Tool_Warning.png" />
+    <Content Include="XML\ConfiguracionVisorTCP.xml" />
+    <Content Include="XML\GestionColumnas.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Clases\" />
+    <Folder Include="Formularios\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Orbita.Controles.Comunes\Orbita.Controles.Comunes.csproj">
+      <Project>{D66C367A-47B7-4464-93D6-92794E4A57C8}</Project>
+      <Name>Orbita.Controles.Comunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Contenedores\Orbita.Controles.Contenedores.csproj">
+      <Project>{B953E685-3E2D-4F93-BB80-805427BBB8A2}</Project>
+      <Name>Orbita.Controles.Contenedores</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Grid\Orbita.Controles.Grid.csproj">
+      <Project>{34B632DA-E0C4-4F27-AAFD-AFAD64604BFA}</Project>
+      <Name>Orbita.Controles.Grid</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
