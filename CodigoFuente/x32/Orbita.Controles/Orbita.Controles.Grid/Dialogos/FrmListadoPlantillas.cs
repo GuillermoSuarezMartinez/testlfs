@@ -35,9 +35,9 @@ namespace Orbita.Controles.Grid
                 this.Lista.Visible = !error;
                 if (!error)
                 {
-                    this.Lista.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Nombre", 100, System.Windows.Forms.HorizontalAlignment.Left));
-                    this.Lista.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Descripción", 100, System.Windows.Forms.HorizontalAlignment.Left));
-                    this.Lista.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Identificador", 50, System.Windows.Forms.HorizontalAlignment.Left));
+                    this.Lista.OI.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Nombre", 100, System.Windows.Forms.HorizontalAlignment.Left));
+                    this.Lista.OI.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Descripción", 100, System.Windows.Forms.HorizontalAlignment.Left));
+                    this.Lista.OI.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Identificador", 50, System.Windows.Forms.HorizontalAlignment.Left));
                     foreach (System.Collections.Generic.KeyValuePair<string, OPlantilla> plantilla in plantillas)
                     {
                         if (!plantilla.Value.Activo)
@@ -57,7 +57,7 @@ namespace Orbita.Controles.Grid
                         }
                     }
                     // Ocultar la columna identificador.
-                    this.Lista.Columnas[2].Visible = false;
+                    this.Lista.OI.Columnas[2].Visible = false;
                 }
             }
         }

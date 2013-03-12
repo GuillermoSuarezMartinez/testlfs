@@ -111,8 +111,8 @@ namespace Orbita.Controles.Grid
             foreach (var item in Grid.DisplayLayout.Bands)
             {
                 columnas = new List<OColumnaInfo>(item.Columns.Count);
-                this.lsvColumnas.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Columna", 200, System.Windows.Forms.HorizontalAlignment.Left));
-                this.lsvColumnasAgrupadas.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Columna", 200, System.Windows.Forms.HorizontalAlignment.Left));
+                this.lsvColumnas.OI.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Columna", 200, System.Windows.Forms.HorizontalAlignment.Left));
+                this.lsvColumnasAgrupadas.OI.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Columna", 200, System.Windows.Forms.HorizontalAlignment.Left));
                 foreach (var columnaGrid in item.Columns)
                 {
                     //if (columnaGrid.Tag != null)
@@ -236,7 +236,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         void trvOpciones_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e)
@@ -273,7 +272,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         void trvOpciones_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -299,7 +297,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         void btnCancelar_Click(object sender, System.EventArgs e)
@@ -313,7 +310,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
 
@@ -332,7 +328,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         #endregion
@@ -363,7 +358,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         /// <summary>
@@ -387,7 +381,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         /// <summary>
@@ -411,7 +404,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         #endregion
@@ -435,7 +427,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         /// <summary>
@@ -452,7 +443,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         /// <summary>
@@ -476,7 +466,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         /// <summary>
@@ -500,7 +489,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         /// <summary>
@@ -522,7 +510,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         #endregion
@@ -536,7 +523,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         void btnBajar_Click(object sender, System.EventArgs e)
@@ -547,7 +533,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         void lsvColumnas_ItemChecked(object sender, ItemCheckedEventArgs e)
@@ -559,7 +544,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         void lsvColumnasAgrupadas_ItemChecked(object sender, ItemCheckedEventArgs e)
@@ -583,7 +567,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         void lsvColumnas_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -605,7 +588,6 @@ namespace Orbita.Controles.Grid
             }
             catch
             {
-                throw;
             }
         }
         #endregion

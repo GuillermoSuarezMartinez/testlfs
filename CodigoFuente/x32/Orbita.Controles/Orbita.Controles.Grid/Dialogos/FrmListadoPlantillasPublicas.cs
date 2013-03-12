@@ -15,14 +15,14 @@ namespace Orbita.Controles.Grid
     {
         #region Constructores
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Dialogos.ListadoPlantillasPublicas.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.ListadoPlantillasPublicas.
         /// </summary>
         public FrmListadoPlantillasPublicas()
         {
             InitializeComponent();
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Dialogos.ListadoPlantillasPublicas.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.ListadoPlantillasPublicas.
         /// </summary>
         /// <param name="plantillas">Colección de plantillas.</param>
         /// <param name="error">Si error, no existen plantillas a mostrar.</param>
@@ -35,10 +35,10 @@ namespace Orbita.Controles.Grid
                 this.Lista.Visible = !error;
                 if (!error)
                 {
-                    this.Lista.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Usuario", 100, System.Windows.Forms.HorizontalAlignment.Left));
-                    this.Lista.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Nombre", 100, System.Windows.Forms.HorizontalAlignment.Left));
-                    this.Lista.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Descripción", 100, System.Windows.Forms.HorizontalAlignment.Left));
-                    this.Lista.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Identificador", 50, System.Windows.Forms.HorizontalAlignment.Left));
+                    this.Lista.OI.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Usuario", 100, System.Windows.Forms.HorizontalAlignment.Left));
+                    this.Lista.OI.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Nombre", 100, System.Windows.Forms.HorizontalAlignment.Left));
+                    this.Lista.OI.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Descripción", 100, System.Windows.Forms.HorizontalAlignment.Left));
+                    this.Lista.OI.Columnas.Add(new Orbita.Controles.Comunes.OColumnHeader("Identificador", 50, System.Windows.Forms.HorizontalAlignment.Left));
                     foreach (System.Collections.Generic.KeyValuePair<string, OPlantilla> plantilla in plantillas)
                     {
                         if (!plantilla.Value.Activo)
@@ -62,7 +62,7 @@ namespace Orbita.Controles.Grid
                         }
                     }
                     // Ocultar la columna identificador.
-                    this.Lista.Columnas[3].Visible = false;
+                    this.Lista.OI.Columnas[3].Visible = false;
                 }
             }
         }
