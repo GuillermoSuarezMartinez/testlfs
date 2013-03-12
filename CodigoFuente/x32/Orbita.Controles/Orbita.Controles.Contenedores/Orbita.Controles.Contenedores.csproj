@@ -80,7 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\Configuración\OConfiguracion.cs" />
-    <Compile Include="Clases\Propiedades y métodos\OMdiForm.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OMdiParentForm.cs" />
     <Compile Include="Clases\Propiedades y métodos\OForm.cs" />
     <Compile Include="Clases\Propiedades y métodos\ODialog.cs" />
     <Compile Include="Clases\Propiedades y métodos\OTableLayoutPanel.cs" />
@@ -89,11 +89,11 @@
     <Compile Include="Clases\Propiedades y métodos\OUltraTabControl.cs" />
     <Compile Include="Clases\Propiedades y métodos\OSplitContainer.cs" />
     <Compile Include="Clases\Propiedades y métodos\OPanel.cs" />
-    <Compile Include="Custom\OrbitaMdiForm.cs">
+    <Compile Include="Custom\OrbitaMdiParentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaMdiForm.Designer.cs">
-      <DependentUpon>OrbitaMdiForm.cs</DependentUpon>
+    <Compile Include="Custom\OrbitaMdiParentForm.Designer.cs">
+      <DependentUpon>OrbitaMdiParentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Custom\OrbitaDialog.cs">
       <SubType>Form</SubType>
@@ -151,8 +151,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Custom\OrbitaMdiForm.resx">
-      <DependentUpon>OrbitaMdiForm.cs</DependentUpon>
+    <EmbeddedResource Include="Custom\OrbitaMdiParentForm.resx">
+      <DependentUpon>OrbitaMdiParentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Custom\OrbitaDialog.resx">
       <DependentUpon>OrbitaDialog.cs</DependentUpon>
