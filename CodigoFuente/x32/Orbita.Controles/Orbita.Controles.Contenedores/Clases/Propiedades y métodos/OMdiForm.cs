@@ -45,7 +45,7 @@ namespace Orbita.Controles.Contenedores
         {
             return null;
         }
-        public void MostrarFormulario(OrbitaMdiForm form)
+        public void MostrarFormulario(OrbitaForm form)
         {
             if (this.control.MdiChildren.Length < this.numeroMaximoFormulariosAbiertos)
             {

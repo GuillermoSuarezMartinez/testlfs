@@ -38,7 +38,7 @@ namespace Orbita.Controles.Contenedores
         {
             return null;
         }
-        public void MostrarFormularioEnMdi(OrbitaForm form)
+        public void MostrarFormulario(OrbitaForm form)
         {
             if (form == null)
             {
