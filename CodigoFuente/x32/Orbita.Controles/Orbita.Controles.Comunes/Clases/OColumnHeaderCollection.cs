@@ -26,11 +26,11 @@ namespace Orbita.Controles.Comunes
         /// This is to maintain the list of columns added to the ListViewEx control, this will contain both visible and hidden columns.
         /// </summary>
         System.Collections.SortedList listaOrdenada = new System.Collections.SortedList();
-        /// <summary>
-        /// MenuItem which contains all columns menuitem as Subitems. This menuitem can be used to add to the 
-        /// context menu, which inturn can be used to Hide/Show the columns.
-        /// </summary>
-        System.Windows.Forms.MenuItem contextMenu = null;
+        ///// <summary>
+        ///// MenuItem which contains all columns menuitem as Subitems. This menuitem can be used to add to the 
+        ///// context menu, which inturn can be used to Hide/Show the columns.
+        ///// </summary>
+        //System.Windows.Forms.MenuItem contextMenu = null;
         #endregion
 
         #region Constructor
@@ -44,7 +44,7 @@ namespace Orbita.Controles.Comunes
             : base(owner)
         {
             // Create a menu item to add submenus for each column added
-            this.contextMenu = new System.Windows.Forms.MenuItem("Columnas");
+            //this.contextMenu = new System.Windows.Forms.MenuItem("Columnas");
         }
         #endregion
 
@@ -83,7 +83,7 @@ namespace Orbita.Controles.Comunes
                 if (disposing)
                 {
                     // Llamar a dispose de todos los recursos manejados.
-                    this.contextMenu.Dispose();
+                    // this.contextMenu.Dispose();
                 }
                 // Liberar recursos nativos.
                 this.listaOrdenada = null;
@@ -111,14 +111,14 @@ namespace Orbita.Controles.Comunes
         {
             get { return (OColumnHeader)this.listaOrdenada.GetByIndex(index); }
         }
-        /// MenuItem which contains all columns menuitem as
-        /// Subitems. This menuitem can be used to add to the 
-        /// context menu, which inturn can be used to
-        /// Hide/Show the columns.
-        public System.Windows.Forms.MenuItem ContextMenu
-        {
-            get { return this.contextMenu; }
-        }
+        ///// MenuItem which contains all columns menuitem as
+        ///// Subitems. This menuitem can be used to add to the 
+        ///// context menu, which inturn can be used to
+        ///// Hide/Show the columns.
+        //public System.Windows.Forms.MenuItem ContextMenu
+        //{
+        //    get { return this.contextMenu; }
+        //}
         #endregion
 
         #region Métodos públicos
@@ -177,7 +177,7 @@ namespace Orbita.Controles.Comunes
             // Keep a refrence in columnList
             listaOrdenada.Add(columna.Identificador, columna);
             // Add the its menu to main menu
-            ContextMenu.MenuItems.Add(columna.ColumnMenuItem);
+            //ContextMenu.MenuItems.Add(columna.ColumnMenuItem);
             // Subscribe to the visiblity change event of the column
             columna.VisibleChanged += new System.EventHandler(ColumnVisibleChanged);
             return retValue;
@@ -195,7 +195,7 @@ namespace Orbita.Controles.Comunes
             // Remove the reference in columnList
             listaOrdenada.Remove(columnaExtendida.Identificador);
             // remove the menu item associated with it
-            ContextMenu.MenuItems.Remove(columnaExtendida.ColumnMenuItem);
+            // ContextMenu.MenuItems.Remove(columnaExtendida.ColumnMenuItem);
         }
         /// <summary>
         /// Removes the column header at the specified index within the collection.
@@ -217,7 +217,7 @@ namespace Orbita.Controles.Comunes
             // Remove all references.
             listaOrdenada.Clear();
             // Clear all menu items.
-            ContextMenu.MenuItems.Clear();
+            //ContextMenu.MenuItems.Clear();
         }
         // Provide the strongly typed member for ICollection. 
         public void CopyTo(System.Exception[] array, int index)

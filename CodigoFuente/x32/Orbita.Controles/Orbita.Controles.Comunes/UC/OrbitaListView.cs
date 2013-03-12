@@ -13,11 +13,16 @@ namespace Orbita.Controles.Comunes
 {
     public partial class OrbitaListView : System.Windows.Forms.ListView
     {
-        #region Atributos privados
-        /// <summary>
-        /// Colección de todos los encabezados de columna que aparecen en el control.
-        /// </summary>
-        OColumnHeaderCollection columnas;
+        #region Nueva definición
+        public class ControlNuevaDefinicion : OListView
+        {
+            public ControlNuevaDefinicion(OrbitaListView sender)
+                : base(sender) { }
+        }
+        #endregion
+
+        #region Atributos
+        ControlNuevaDefinicion definicion;
         #endregion
 
         #region Constructor
@@ -29,39 +34,34 @@ namespace Orbita.Controles.Comunes
         {
             InitializeComponent();
             InitializeAttributes();
+            InitializeProperties();
         }
         #endregion
 
         #region Propiedades
-        /// <summary>
-        /// Obtiene la colección de todos los encabezados de columna que aparecen en el control.
-        /// </summary>
-        public OColumnHeaderCollection Columnas
+        [System.ComponentModel.Category("Gestión de controles")]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public ControlNuevaDefinicion OI
         {
-            get { return this.columnas; }
+            get { return this.definicion; }
+            set { this.definicion = value; }
         }
         #endregion
 
         #region Métodos privados
-        /// <summary>
-        /// ContextMenuPopup.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void ContextMenuPopup(object sender, System.EventArgs e) { }
-        /// <summary>
-        /// Inicializar atributos.
-        /// </summary>
         void InitializeAttributes()
         {
-            // Crear una nueva colección que contenga las columnas.
-            this.columnas = new OColumnHeaderCollection(this);
-            // Crear un menu de contexto.
-            base.ContextMenu = new System.Windows.Forms.ContextMenu();
-            base.ContextMenu.MenuItems.Add(this.columnas.ContextMenu);
-            base.ContextMenu.Popup += new System.EventHandler(ContextMenuPopup);
+            if (this.definicion == null)
+            {
+                this.definicion = new ControlNuevaDefinicion(this);
+            }
+        }
+        void InitializeProperties()
+        {
             // Modificar la vista.
             base.View = System.Windows.Forms.View.Details;
+            // Crear una nueva colección que contenga las columnas.
+            this.OI.Columnas = new OColumnHeaderCollection(this);
         }
         #endregion
     }

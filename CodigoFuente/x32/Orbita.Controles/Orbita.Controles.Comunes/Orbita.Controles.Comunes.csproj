@@ -97,6 +97,7 @@
     <Compile Include="Clases\OColumnHeader.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Clases\Propiedades y métodos\OListView.cs" />
     <Compile Include="Clases\Propiedades y métodos\OUltraMaskedEdit.cs" />
     <Compile Include="Clases\Propiedades y métodos\OUltraDockManager.cs" />
     <Compile Include="Clases\Propiedades y métodos\OTextBox.cs" />

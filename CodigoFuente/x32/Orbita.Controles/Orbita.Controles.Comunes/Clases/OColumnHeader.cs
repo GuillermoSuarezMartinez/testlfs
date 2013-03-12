@@ -18,7 +18,7 @@ namespace Orbita.Controles.Comunes
     public class OColumnHeader : System.Windows.Forms.ColumnHeader
     {
         #region Atributos privados
-        System.Windows.Forms.MenuItem item = null;
+        //System.Windows.Forms.MenuItem item = null;
         bool columnaVisible = true;
         int identificador = 0;
         #endregion
@@ -60,8 +60,7 @@ namespace Orbita.Controles.Comunes
 
         #region Eventos públicos
         /// <summary>
-        /// This event is raised when the visibility of column
-        /// is changed.
+        /// This event is raised when the visibility of column is changed.
         /// </summary>
         public event System.EventHandler VisibleChanged;
         #endregion
@@ -88,10 +87,10 @@ namespace Orbita.Controles.Comunes
         /// context menu, which can inturn used to
         /// Hide/Show the column
         /// </summary>
-        public System.Windows.Forms.MenuItem ColumnMenuItem
-        {
-            get { return this.item; }
-        }
+        //public System.Windows.Forms.MenuItem ColumnMenuItem
+        //{
+        //    get { return this.item; }
+        //}
         /// <summary>
         /// Column Text to be displayed.
         /// </summary>
@@ -102,7 +101,7 @@ namespace Orbita.Controles.Comunes
             {
                 base.Text = value;
                 // Ensure that menu name is same as column name.
-                item.Text = value;
+                //item.Text = value;
             }
         }
         /// <summary>
@@ -129,8 +128,8 @@ namespace Orbita.Controles.Comunes
             this.identificador = autoColumnaId++;
 
             // Create the menu item associated with this column
-            item = new System.Windows.Forms.MenuItem(Text, new System.EventHandler(this.MenuItemClick));
-            item.Checked = true;
+            //item = new System.Windows.Forms.MenuItem(Text, new System.EventHandler(this.MenuItemClick));
+            //item.Checked = true;
         }
         /// <summary>
         /// Method to show/hide column.
@@ -141,24 +140,24 @@ namespace Orbita.Controles.Comunes
             if (columnaVisible != visible)
             {
                 columnaVisible = visible;
-                item.Checked = visible;
+                //item.Checked = visible;
                 if (VisibleChanged != null)
                 {
                     VisibleChanged(this, System.EventArgs.Empty);
                 }
             }
         }
-        /// <summary>
-        /// Handler to handel toggel of menu item.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void MenuItemClick(System.Object sender, System.EventArgs e)
-        {
-            System.Windows.Forms.MenuItem itemMenu = (System.Windows.Forms.MenuItem)sender;
-            // Ensure Column is hidden/shown accordingly.
-            ShowColumn(!itemMenu.Checked);
-        }
+        ///// <summary>
+        ///// Handler to handel toggel of menu item.
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //void MenuItemClick(System.Object sender, System.EventArgs e)
+        //{
+        //    System.Windows.Forms.MenuItem itemMenu = (System.Windows.Forms.MenuItem)sender;
+        //    // Ensure Column is hidden/shown accordingly.
+        //    ShowColumn(!itemMenu.Checked);
+        //}
         #endregion
     }
 }
