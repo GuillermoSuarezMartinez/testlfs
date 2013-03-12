@@ -35,7 +35,7 @@ namespace Orbita.Controles.Combo
         /// Formatear el Dropdown.
         /// </summary>
         /// <param name="dt">Tabla de datos.</param>
-        /// <param name="cols">Lista de columnas.</param>
+        /// <param name="columnas">Lista de columnas.</param>
         /// <param name="displayMember">Campo texto a visualizar.</param>
         /// <param name="valueMember">Campo valor.</param>
         public void OrbFormatear(System.Data.DataTable dt, System.Collections.ArrayList columnas, string displayMember, string valueMember)

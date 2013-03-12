@@ -21,6 +21,9 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Constructores
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
+        /// </summary>
         public OPropertyExtendedChangedEventArgs()
             : base() { }
         /// <summary>
@@ -31,7 +34,8 @@ namespace Orbita.Controles.Grid
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
         /// </summary>
-        /// <param name="cadena">Nombre de la propiedad.</param>
+        /// <param name="nombre">Nombre de la propiedad.</param>
+        /// <param name="valor">Empty.</param>
         public OPropertyExtendedChangedEventArgs(string nombre, object valor)
             : this(nombre)
         {

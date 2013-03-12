@@ -9,10 +9,9 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Menu
 {
-    [TypeConverter(typeof(ExpandableObjectConverter))]
+    [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
     public class OMenuStrip
     {
         #region Atributos
@@ -20,6 +19,10 @@ namespace Orbita.Controles.Menu
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OMenuStrip.
+        /// </summary>
+        /// <param name="control">>Orbita.Controles.Menu.OrbitaMenuStrip.</param>
         public OMenuStrip(object control)
             : base()
         {

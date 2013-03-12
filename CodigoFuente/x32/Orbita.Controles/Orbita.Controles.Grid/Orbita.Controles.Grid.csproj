@@ -103,8 +103,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\EventArgs\Copia de ORowEventArgs.cs" />
-    <Compile Include="Clases\EventArgs\OToolClickCollectionEventArgs.cs" />
+    <Compile Include="Clases\EventArgs\OTimerEventArgs.cs" />
+    <Compile Include="Clases\Configuración\OToolClickCollectionEventArgs.cs" />
     <Compile Include="Clases\EventArgs\ORowEventArgs.cs" />
     <Compile Include="Clases\EventArgs\OPropertyExtendedChangedEventArgs.cs" />
     <Compile Include="Clases\EventArgs\OToolClickEventArgs.cs" />
@@ -253,9 +253,6 @@
       <Project>{3FC7CCF4-13B4-4B2B-95A9-CC178C85C343}</Project>
       <Name>Orbita.Controles.Menu</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
