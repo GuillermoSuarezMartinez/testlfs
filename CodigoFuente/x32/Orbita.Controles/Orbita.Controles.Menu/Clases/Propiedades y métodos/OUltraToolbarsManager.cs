@@ -183,7 +183,7 @@ namespace Orbita.Controles.Menu
         }
         public void AgregarToolLabel(string toolbar, string tool, string key)
         {
-            Infragistics.Win.UltraWinToolbars.LabelTool toolLabel = new Infragistics.Win.UltraWinToolbars.LabelTool(tool);
+            Infragistics.Win.UltraWinToolbars.LabelTool toolLabel = new Infragistics.Win.UltraWinToolbars.LabelTool(key);
             toolLabel.SharedProps.Caption = tool;
             this.control.Tools.Add(toolLabel);
             toolLabel.SharedProps.Spring = true;
@@ -195,7 +195,7 @@ namespace Orbita.Controles.Menu
         }
         public void AgregarToolLabel(string toolbar, string tool, string key, int posicion)
         {
-            Infragistics.Win.UltraWinToolbars.LabelTool toolLabel = new Infragistics.Win.UltraWinToolbars.LabelTool(tool);
+            Infragistics.Win.UltraWinToolbars.LabelTool toolLabel = new Infragistics.Win.UltraWinToolbars.LabelTool(key);
             toolLabel.SharedProps.Caption = tool;
             this.control.Tools.Add(toolLabel);
             if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
@@ -268,7 +268,7 @@ namespace Orbita.Controles.Menu
         }
         public void AgregarToolButton(string toolbar, string tool, string key, int posicion, System.Drawing.Bitmap imagen)
         {
-            Infragistics.Win.UltraWinToolbars.ButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.ButtonTool(tool);
+            Infragistics.Win.UltraWinToolbars.ButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.ButtonTool(key);
             toolBoton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
             toolBoton.SharedProps.AppearancesLarge.Appearance.Image = toolBoton.SharedProps.AppearancesSmall.Appearance.Image = imagen;
             toolBoton.SharedProps.Caption = tool;
@@ -298,7 +298,7 @@ namespace Orbita.Controles.Menu
         }
         public void AgregarToolStateButton(string toolbar, string tool, string key)
         {
-            Infragistics.Win.UltraWinToolbars.StateButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.StateButtonTool(tool);
+            Infragistics.Win.UltraWinToolbars.StateButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.StateButtonTool(key);
             toolBoton.SharedProps.Caption = tool;
             this.control.Tools.Add(toolBoton);
             this.control.Toolbars[toolbar].Tools.AddTool(tool);
@@ -309,7 +309,7 @@ namespace Orbita.Controles.Menu
         }
         public void AgregarToolStateButton(string toolbar, string tool, string key, int posicion)
         {
-            Infragistics.Win.UltraWinToolbars.StateButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.StateButtonTool(tool);
+            Infragistics.Win.UltraWinToolbars.StateButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.StateButtonTool(key);
             toolBoton.SharedProps.Caption = tool;
             this.control.Tools.Add(toolBoton);
             if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
@@ -342,7 +342,7 @@ namespace Orbita.Controles.Menu
         }
         public void AgregarToolStateButton(string toolbar, string tool, string key, int posicion, System.Drawing.Bitmap imagen)
         {
-            Infragistics.Win.UltraWinToolbars.StateButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.StateButtonTool(tool);
+            Infragistics.Win.UltraWinToolbars.StateButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.StateButtonTool(key);
             toolBoton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
             toolBoton.SharedProps.AppearancesLarge.Appearance.Image = toolBoton.SharedProps.AppearancesSmall.Appearance.Image = imagen;
             toolBoton.SharedProps.Caption = tool;
