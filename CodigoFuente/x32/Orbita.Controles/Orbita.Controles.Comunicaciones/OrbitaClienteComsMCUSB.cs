@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
-using System.Windows.Forms;
 using Orbita.Comunicaciones;
 using Orbita.Utiles;
-
 namespace Orbita.Controles.Comunicaciones
 {
     public partial class OrbitaClienteComsMCUSB : OrbitaClienteComs
@@ -19,7 +14,7 @@ namespace Orbita.Controles.Comunicaciones
             InitializeComponent();
         }
 
-        #endregion        
+        #endregion
 
         #region Métodos
         /// <summary>

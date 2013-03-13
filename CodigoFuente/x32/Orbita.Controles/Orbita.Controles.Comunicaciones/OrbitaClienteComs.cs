@@ -17,7 +17,7 @@ namespace Orbita.Controles.Comunicaciones
         /// <summary>
         /// Delegado para el cambio de estado
         /// </summary>
-        /// <param name="Elemento"></param>
+        /// <param name="estado"></param>
         internal delegate void DelegadoCambioEstado(OEstadoComms estado);
         /// <summary>
         /// Delegado para el cambio de las ES
@@ -68,7 +68,6 @@ namespace Orbita.Controles.Comunicaciones
             {
                 OMensajes.MostrarError("Error al convertir los valores de configuración.", ex);
             }
-
             try
             {
                 // Establecer la configuración Remoting entre procesos.
@@ -208,7 +207,6 @@ namespace Orbita.Controles.Comunicaciones
             {
                 OInfoDato info = (OInfoDato)e.Argumento;
                 string texto = "Cambio de dato de la variable " + info.Texto.ToString() + " a " + info.Valor.ToString();
-
                 if (info.Dispositivo == this._idDispositivo)
                 {
                     this.agregarItemOrbita(texto);
@@ -364,7 +362,6 @@ namespace Orbita.Controles.Comunicaciones
 
                 dt.Rows.Add(dr);
             }
-
             this.dataGridViewLecturas.DataSource = dt;
         }
         /// <summary>

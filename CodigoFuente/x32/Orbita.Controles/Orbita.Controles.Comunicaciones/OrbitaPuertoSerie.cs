@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Orbita.Comunicaciones;
 using Orbita.Utiles;
-
 namespace Orbita.Controles.Comunicaciones
 {
     public partial class OrbitaPuertoSerie : UserControl
@@ -23,7 +18,6 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="Elemento"></param>
         internal delegate void DelegadoManejadorSerie(string Elemento);
-
         #endregion
 
         public OrbitaPuertoSerie()
@@ -50,7 +44,6 @@ namespace Orbita.Controles.Comunicaciones
             this.CargarComboConEnumerado(this.cmbParidad, typeof(OParidades));
             this.CargarComboConEnumerado(this.cmbBitsParada, typeof(OBitsStop));
             this.CargarComboConEnumerado(this.cmbControlFlujo, typeof(OHandShakes));
-           
         }
         /// <summary>
         /// Muestra los elementos recibidos por consola
@@ -83,7 +76,6 @@ namespace Orbita.Controles.Comunicaciones
             {
 
             }
-
         }
         /// <summary>
         /// Carga los puertos series de la máquina
@@ -99,7 +91,6 @@ namespace Orbita.Controles.Comunicaciones
             this.cmbPuerto.DataSource = dt;
             this.cmbPuerto.ValueMember = "NumeroCOM";
             this.cmbPuerto.DisplayMember = "Nombre";
-
         }
         /// <summary>
         /// Carga los combos con los valores de las colecciones
@@ -155,18 +146,15 @@ namespace Orbita.Controles.Comunicaciones
         }
         #endregion
 
-        #region Eventos        
-
+        #region Eventos
         private void btnAbrir_Click(object sender, EventArgs e)
         {
             this.AbrirPuerto();
         }
-
         private void brnCerrar_Click(object sender, EventArgs e)
         {
             this.CerrarPuerto();
         }
-
         private void btnRecibir_Click(object sender, EventArgs e)
         {
             try
@@ -179,7 +167,6 @@ namespace Orbita.Controles.Comunicaciones
                 OMensajes.MostrarError(ex);
             }
         }
-
         private void btnEnviar_Click(object sender, EventArgs e)
         {
             try
@@ -192,8 +179,6 @@ namespace Orbita.Controles.Comunicaciones
                 OMensajes.MostrarError(ex);
             }
         }
-
-        #endregion 
-
+        #endregion
     }
 }
