@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
 namespace Orbita.Controles.Grid
 {
     [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
@@ -21,13 +20,13 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Eventos
-        public event EventHandler<OPropiedadEventArgs> PropertyChanging;
-        public event EventHandler<OPropiedadEventArgs> PropertyChanged;
+        public event System.EventHandler<OPropiedadEventArgs> PropertyChanging;
+        public event System.EventHandler<OPropiedadEventArgs> PropertyChanged;
         #endregion
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFiltro.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFiltros.
         /// </summary>
         public OFiltros()
             : base() { }

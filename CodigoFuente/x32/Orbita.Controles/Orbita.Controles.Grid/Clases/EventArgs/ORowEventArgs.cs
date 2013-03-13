@@ -9,19 +9,27 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using Infragistics.Win.UltraWinGrid;
 namespace Orbita.Controles.Grid
 {
-    public class ORowEventArgs : RowEventArgs
+    public class ORowEventArgs : Infragistics.Win.UltraWinGrid.RowEventArgs
     {
         #region Atributos privados
-        UltraGridRow anterior;
+        Infragistics.Win.UltraWinGrid.UltraGridRow anterior;
         #endregion
 
         #region Constructores
-        public ORowEventArgs(UltraGridRow fila)
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.ORowEventArgs.
+        /// </summary>
+        /// <param name="fila"></param>
+        public ORowEventArgs(Infragistics.Win.UltraWinGrid.UltraGridRow fila)
             : base(fila) { }
-        public ORowEventArgs(UltraGridRow fila, UltraGridRow anterior)
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.ORowEventArgs.
+        /// </summary>
+        /// <param name="fila">Empty.</param>
+        /// <param name="anterior">Empty.</param>
+        public ORowEventArgs(Infragistics.Win.UltraWinGrid.UltraGridRow fila, Infragistics.Win.UltraWinGrid.UltraGridRow anterior)
             : this(fila)
         {
             this.anterior = anterior;
@@ -29,7 +37,7 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Propiedades
-        public UltraGridRow FilaAnterior
+        public Infragistics.Win.UltraWinGrid.UltraGridRow FilaAnterior
         {
             get { return this.anterior; }
             set { this.anterior = value; }

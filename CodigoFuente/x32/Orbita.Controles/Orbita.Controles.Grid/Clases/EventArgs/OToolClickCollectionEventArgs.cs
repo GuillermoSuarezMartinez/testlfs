@@ -22,7 +22,7 @@ namespace Orbita.Controles.Grid
 
         #region Constructores
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OToolClickCollectionEventArgs.
         /// </summary>
         public OToolClickCollectionEventArgs(Infragistics.Win.UltraWinToolbars.ToolBase tool, Infragistics.Win.UltraWinToolbars.ListToolItem listToolItem)
             : base(tool, listToolItem) { }

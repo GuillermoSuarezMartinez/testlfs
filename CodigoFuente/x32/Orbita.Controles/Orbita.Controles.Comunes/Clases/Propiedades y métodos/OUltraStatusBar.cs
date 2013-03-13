@@ -9,10 +9,9 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Comunes
 {
-    [TypeConverter(typeof(ExpandableObjectConverter))]
+    [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
     public class OUltraStatusBar
     {
         #region Atributos
@@ -20,6 +19,10 @@ namespace Orbita.Controles.Comunes
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OUltraStatusBar.
+        /// </summary>
+        /// <param name="control"></param>
         public OUltraStatusBar(object control)
             : base()
         {

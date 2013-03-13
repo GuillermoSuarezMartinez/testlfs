@@ -41,7 +41,7 @@ namespace Orbita.Controles.Grid
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Personalizar.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmPersonalizar.
         /// </summary>
         public FrmPersonalizar(object nodoSeleccionado)
         {

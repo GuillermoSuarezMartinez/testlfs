@@ -23,6 +23,10 @@ namespace Orbita.Controles.Comunes
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OListView.
+        /// </summary>
+        /// <param name="control"></param>
         public OListView(object control)
             : base()
         {

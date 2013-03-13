@@ -10,15 +10,15 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows.Forms;
 using Infragistics.Win.UltraWinGrid;
 using Infragistics.Win.UltraWinToolbars;
 using Orbita.Controles.Menu;
-using System.Collections.Generic;
+using Orbita.Controles.Shared;
 namespace Orbita.Controles.Grid
 {
-    public partial class OrbitaUltraGridToolBar : UserControl
+    public partial class OrbitaUltraGridToolBar : OrbitaUserControl
     {
         #region Nueva definicion
         public class ControlNuevaDefinicion : OUltraGridToolBar

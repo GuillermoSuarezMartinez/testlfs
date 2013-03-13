@@ -27,7 +27,7 @@ namespace Orbita.Controles.Contenedores
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.
         public OrbitaUltraTabbedMdiManager()
             : base()
         {

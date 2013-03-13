@@ -41,8 +41,8 @@ namespace Orbita.Controles.Grid
             {
                 return;
             }
-            //   See if there is an active row; if there is, use it, otherwise
-            //   activate the first row and start the search from there
+            // See if there is an active row; if there is, use it, otherwise
+            // activate the first row and start the search from there
             UltraGridRow filaActiva = grid.ActiveRow;
             if (filaActiva == null)
             {
@@ -62,7 +62,7 @@ namespace Orbita.Controles.Grid
                     return;
                 }
             }
-            //   We didn't find it the first time around, so start again from the first row
+            // We didn't find it the first time around, so start again from the first row
             filaActiva = grid.GetRow(Infragistics.Win.UltraWinGrid.ChildRow.First);
             while (filaActiva != null)
             {
@@ -78,7 +78,7 @@ namespace Orbita.Controles.Grid
                 }
                 filaActiva = filaActiva.GetSibling(Infragistics.Win.UltraWinGrid.SiblingRow.Next);
             }
-            //   If we get this far, we didn//t find the string, so show a message box
+            // If we get this far, we didn//t find the string, so show a message box
             MessageBox.Show("No se encontró '" + this.cboBuscar.Text + "'", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         bool MatchText(UltraGridRow fila)
@@ -102,14 +102,14 @@ namespace Orbita.Controles.Grid
         }
         bool Match(string userString, string cellValue)
         {
-            //   If our search is case insensitive, make both strings uppercase
+            // If our search is case insensitive, make both strings uppercase
             if (!this.chkMayusculasMinisculas.Checked)
             {
                 userString = userString.ToUpper();
                 cellValue = cellValue.ToUpper();
             }
-            //   If the user string is larger than the cell value, it is by definition
-            //   a mismatch, so return false
+            // If the user string is larger than the cell value, it is by definition
+            // a mismatch, so return false
             if (userString.Length > cellValue.Length)
             {
                 return false;
@@ -120,7 +120,7 @@ namespace Orbita.Controles.Grid
             }
             else
             {
-                //   There is probably an easier way to do this
+                // There is probably an easier way to do this
                 for (int i = 0; i <= (cellValue.Length - userString.Length); i++)
                 {
                     if (userString == cellValue.Substring(i, userString.Length))

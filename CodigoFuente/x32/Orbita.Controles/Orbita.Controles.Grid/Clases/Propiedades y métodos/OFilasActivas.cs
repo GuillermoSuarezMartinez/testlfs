@@ -20,7 +20,7 @@ namespace Orbita.Controles.Grid
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OFilaActiva.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilas.
         /// </summary>
         public OFilasActivas(object control)
             : base(control) { }

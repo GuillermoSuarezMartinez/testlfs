@@ -62,6 +62,9 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OUltraGrid.
+        /// </summary>
         public OUltraGrid()
             : base()
         {
@@ -69,6 +72,7 @@ namespace Orbita.Controles.Grid
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OUltraGrid.
         /// </summary>
+        /// <param name="control"></param>
         public OUltraGrid(object control)
             : base(control)
         {

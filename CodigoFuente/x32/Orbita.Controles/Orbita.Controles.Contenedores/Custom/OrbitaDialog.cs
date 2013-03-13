@@ -27,7 +27,7 @@ namespace Orbita.Controles.Contenedores
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaPanel.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaDialog.
         /// </summary>
         public OrbitaDialog()
             : base()

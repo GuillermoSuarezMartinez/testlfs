@@ -50,7 +50,7 @@ namespace Orbita.Controles.Grid
 
         #region Constructores
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -60,7 +60,7 @@ namespace Orbita.Controles.Grid
             this.nombre = nombre;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -71,7 +71,7 @@ namespace Orbita.Controles.Grid
             this.ancho = ancho;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -82,7 +82,7 @@ namespace Orbita.Controles.Grid
             this.estilo = estilo;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -94,7 +94,7 @@ namespace Orbita.Controles.Grid
             this.estilo = estilo;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -106,7 +106,7 @@ namespace Orbita.Controles.Grid
             this.mascara = mascara;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -119,7 +119,7 @@ namespace Orbita.Controles.Grid
             this.ancho = ancho;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -130,7 +130,7 @@ namespace Orbita.Controles.Grid
             this.alinear = alinear;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -142,7 +142,7 @@ namespace Orbita.Controles.Grid
             this.alinear = alinear;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -154,7 +154,7 @@ namespace Orbita.Controles.Grid
             this.alinear = alinear;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -167,7 +167,7 @@ namespace Orbita.Controles.Grid
             this.alinear = alinear;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -180,7 +180,7 @@ namespace Orbita.Controles.Grid
             this.alinear = alinear;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -194,7 +194,7 @@ namespace Orbita.Controles.Grid
             this.alinear = alinear;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -207,7 +207,7 @@ namespace Orbita.Controles.Grid
             this.sumario = sumario;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -221,7 +221,7 @@ namespace Orbita.Controles.Grid
             this.sumario = sumario;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -235,7 +235,7 @@ namespace Orbita.Controles.Grid
             this.sumario = sumario;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -250,7 +250,7 @@ namespace Orbita.Controles.Grid
             this.sumario = sumario;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -261,7 +261,7 @@ namespace Orbita.Controles.Grid
             this.bloqueado = bloqueado;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -273,7 +273,7 @@ namespace Orbita.Controles.Grid
             this.bloqueado = bloqueado;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -285,7 +285,7 @@ namespace Orbita.Controles.Grid
             this.bloqueado = bloqueado;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -298,7 +298,7 @@ namespace Orbita.Controles.Grid
             this.bloqueado = bloqueado;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -311,7 +311,7 @@ namespace Orbita.Controles.Grid
             this.bloqueado = bloqueado;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -325,7 +325,7 @@ namespace Orbita.Controles.Grid
             this.bloqueado = bloqueado;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -337,7 +337,7 @@ namespace Orbita.Controles.Grid
             this.bloqueado = bloqueado;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -350,7 +350,7 @@ namespace Orbita.Controles.Grid
             this.bloqueado = bloqueado;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -363,7 +363,7 @@ namespace Orbita.Controles.Grid
             this.bloqueado = bloqueado;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -377,7 +377,7 @@ namespace Orbita.Controles.Grid
             this.bloqueado = bloqueado;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -391,7 +391,7 @@ namespace Orbita.Controles.Grid
             this.bloqueado = bloqueado;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -406,7 +406,7 @@ namespace Orbita.Controles.Grid
             this.bloqueado = bloqueado;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -420,7 +420,7 @@ namespace Orbita.Controles.Grid
             this.bloqueado = bloqueado;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -435,7 +435,7 @@ namespace Orbita.Controles.Grid
             this.bloqueado = bloqueado;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -450,7 +450,7 @@ namespace Orbita.Controles.Grid
             this.bloqueado = bloqueado;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>

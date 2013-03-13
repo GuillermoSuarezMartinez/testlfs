@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
 namespace Orbita.Controles.Grid
 {
     [System.ComponentModel.TypeConverter(typeof(OAparienciaConverter))]
@@ -26,16 +25,16 @@ namespace Orbita.Controles.Grid
         /// <summary>
         /// Cambiando la propiedad.
         /// </summary>
-        public event EventHandler<OPropiedadEventArgs> PropertyChanging;
+        public event System.EventHandler<OPropiedadEventArgs> PropertyChanging;
         /// <summary>
         /// Cambio la propiedad.
         /// </summary>
-        public event EventHandler<OPropiedadEventArgs> PropertyChanged;
+        public event System.EventHandler<OPropiedadEventArgs> PropertyChanged;
         #endregion
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OApariencia.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OApariencia.
         /// </summary>
         public OApariencia() { }
         #endregion

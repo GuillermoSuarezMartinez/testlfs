@@ -9,24 +9,22 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using Infragistics.Win.UltraWinGrid;
-using Infragistics.Win.UltraWinToolbars;
 namespace Orbita.Controles.Grid
 {
-    public class OToolClickEventArgs : ToolClickEventArgs
+    public class OToolClickEventArgs : Infragistics.Win.UltraWinToolbars.ToolClickEventArgs
     {
         #region Atributos privados
         /// <summary>
         /// Nombre de la propiedad.
         /// </summary>
-        UltraGridRow fila;
+        Infragistics.Win.UltraWinGrid.UltraGridRow fila;
         #endregion
 
         #region Constructores
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OToolClickEventArgs.
         /// </summary>
-        public OToolClickEventArgs(ToolBase tool, Infragistics.Win.UltraWinToolbars.ListToolItem listToolItem)
+        public OToolClickEventArgs(Infragistics.Win.UltraWinToolbars.ToolBase tool, Infragistics.Win.UltraWinToolbars.ListToolItem listToolItem)
             : base(tool, listToolItem) { }
         #endregion
 
@@ -34,7 +32,7 @@ namespace Orbita.Controles.Grid
         /// <summary>
         /// Nombre de la propiedad.
         /// </summary>
-        public UltraGridRow Fila
+        public Infragistics.Win.UltraWinGrid.UltraGridRow Fila
         {
             get { return this.fila; }
             set { this.fila = value; }

@@ -16,7 +16,7 @@ namespace Orbita.Controles.Comunes
     {
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OAparienciaBase.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OAparienciaBase.
         /// </summary>
         protected OAparienciaBase() { }
         #endregion

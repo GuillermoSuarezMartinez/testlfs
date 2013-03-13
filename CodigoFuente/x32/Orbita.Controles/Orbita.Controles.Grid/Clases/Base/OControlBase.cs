@@ -20,11 +20,11 @@ namespace Orbita.Controles.Grid
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OControlBase.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OControlBase.
         /// </summary>
         protected OControlBase() { }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OControlBase.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OControlBase.
         /// </summary>
         /// <param name="control"></param>
         protected OControlBase(object control)

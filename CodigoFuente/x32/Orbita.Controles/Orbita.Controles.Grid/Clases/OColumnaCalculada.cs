@@ -19,7 +19,7 @@ namespace Orbita.Controles.Grid
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CampoCalculado.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaCalculada.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos.</param>
         /// <param name="nombre">Texto del header del campo.</param>
@@ -35,7 +35,7 @@ namespace Orbita.Controles.Grid
             this.columna.Expression = formula;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CampoCalculado.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaCalculada.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -53,7 +53,7 @@ namespace Orbita.Controles.Grid
             this.columna.Expression = formula;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CampoCalculado.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaCalculada.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>
@@ -70,7 +70,7 @@ namespace Orbita.Controles.Grid
             this.columna.Expression = formula;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.CampoCalculado.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaCalculada.
         /// </summary>
         /// <param name="campo">Nombre del campo en base de datos</param>
         /// <param name="nombre">Texto del header del campo</param>

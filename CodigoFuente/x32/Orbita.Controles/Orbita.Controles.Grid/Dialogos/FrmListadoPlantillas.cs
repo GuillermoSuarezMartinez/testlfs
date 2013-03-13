@@ -15,14 +15,14 @@ namespace Orbita.Controles.Grid
     {
         #region Constructores
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.ListadoPlantillas.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmListadoPlantillas.
         /// </summary>
         public FrmListadoPlantillas()
         {
             InitializeComponent();
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Dialogos.ListadoPlantillas.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmListadoPlantillas.
         /// </summary>
         /// <param name="plantillas">Colección de plantillas.</param>
         /// <param name="error">Si error, no existen plantillas a mostrar.</param>

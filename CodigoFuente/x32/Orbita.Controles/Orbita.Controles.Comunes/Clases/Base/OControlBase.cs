@@ -14,13 +14,13 @@ namespace Orbita.Controles.Comunes
     public abstract class OControlBase
     {
         #region Atributos
-        /// <summary>
-        /// Apariencia.
-        /// </summary>
         OApariencia apariencia;
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OControlBase.
+        /// </summary>
         protected OControlBase() { }
         #endregion
 
@@ -43,15 +43,18 @@ namespace Orbita.Controles.Comunes
 
         #region Métodos protegidos
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
-        protected bool ShouldSerializeApariencia()
-        {
-            return this.apariencia.ShouldSerialize();
-        }
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetApariencia()
         {
             this.apariencia.Reset();
         }
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+        protected bool ShouldSerializeApariencia()
+        {
+            return this.apariencia.ShouldSerialize();
+        }
+        #endregion
+
+        #region Métodos protegidos virtuales
         protected virtual void AparienciaChanging(object sender, OPropiedadEventArgs e) { }
         protected virtual void AparienciaChanged(object sender, OPropiedadEventArgs e) { }
         #endregion

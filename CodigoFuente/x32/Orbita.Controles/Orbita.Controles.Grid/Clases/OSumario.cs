@@ -26,7 +26,7 @@ namespace Orbita.Controles.Grid
 
         #region Constructores
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Sumario.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaSumario.
         /// </summary>
         /// <param name="mascara">Máscara de sumario.</param>
         public OColumnaSumario(string mascara)
@@ -34,7 +34,7 @@ namespace Orbita.Controles.Grid
             this.mascara = mascara;
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Sumario.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaSumario.
         /// </summary>
         /// <param name="mascara">Máscara de sumario.</param>
         /// <param name="operacion">Operación a aplicar.</param>

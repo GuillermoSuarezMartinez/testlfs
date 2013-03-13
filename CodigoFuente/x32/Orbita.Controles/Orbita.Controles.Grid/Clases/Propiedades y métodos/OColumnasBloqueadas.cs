@@ -16,7 +16,7 @@ namespace Orbita.Controles.Grid
     {
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OBloqueadas.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnasBloqueadas.
         /// </summary>
         public OColumnasBloqueadas()
             : base() { }

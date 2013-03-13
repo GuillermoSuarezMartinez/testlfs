@@ -19,6 +19,10 @@ namespace Orbita.Controles.Contenedores
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OTableLayoutPanel.
+        /// </summary>
+        /// <param name="control"></param>
         public OTableLayoutPanel(object control)
             : base()
         {

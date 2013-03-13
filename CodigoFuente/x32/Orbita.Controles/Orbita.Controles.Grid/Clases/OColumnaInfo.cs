@@ -39,7 +39,7 @@ namespace Orbita.Controles.Grid
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Columna.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaInfo.
         /// </summary>
         public OColumnaInfo() { }
         #endregion

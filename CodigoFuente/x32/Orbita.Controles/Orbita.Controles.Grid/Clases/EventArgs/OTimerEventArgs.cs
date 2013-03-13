@@ -18,6 +18,10 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Constructores
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OTimerEventArgs.
+        /// </summary>
+        /// <param name="intervalo"></param>
         public OTimerEventArgs(int intervalo)
         {
             this.intervalo = intervalo;

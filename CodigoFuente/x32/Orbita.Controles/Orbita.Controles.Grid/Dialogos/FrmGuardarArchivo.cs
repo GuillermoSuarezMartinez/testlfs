@@ -14,19 +14,19 @@ namespace Orbita.Controles.Grid
     public partial class FrmGuardarArchivo : Orbita.Controles.Contenedores.OrbitaDialog
     {
         #region Atributos
-        bool _nueva = true;
+        bool nueva = true;
         #endregion
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.DialogoGuardarArchivo.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmGuardarArchivo.
         /// </summary>
         public FrmGuardarArchivo()
         {
             InitializeComponent();
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.DialogoGuardarArchivo.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmGuardarArchivo.
         /// </summary>
         /// <param name="nombre">Nombre.</param>
         /// <param name="descripcion">Descripción.</param>
@@ -60,7 +60,7 @@ namespace Orbita.Controles.Grid
         /// </summary>
         public bool Nueva
         {
-            get { return this._nueva; }
+            get { return this.nueva; }
         }
         #endregion
 
@@ -88,7 +88,7 @@ namespace Orbita.Controles.Grid
         /// <param name="e"></param>
         void chbCrearNuevaPlantilla_CheckedChanged(object sender, System.EventArgs e)
         {
-            this._nueva = (!this.chbCrearNuevaPlantilla.Visible) || ((this.chbCrearNuevaPlantilla.Visible) && this.chbCrearNuevaPlantilla.Checked);
+            this.nueva = (!this.chbCrearNuevaPlantilla.Visible) || ((this.chbCrearNuevaPlantilla.Visible) && this.chbCrearNuevaPlantilla.Checked);
         }
         #endregion
     }

@@ -16,11 +16,13 @@ namespace Orbita.Controles.Grid
 {
     public partial class OrbitaUltraGrid : Infragistics.Win.UltraWinGrid.UltraGrid
     {
+        #region Nueva definición
         public class ControlNuevaDefinicion : OUltraGrid
         {
             public ControlNuevaDefinicion(OrbitaUltraGrid sender)
                 : base(sender) { }
-        };
+        }
+        #endregion
 
         #region Atributos
         ControlNuevaDefinicion definicion;
@@ -59,9 +61,6 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Métodos privados
-        /// <summary>
-        /// Inicializar atributos.
-        /// </summary>
         void InitializeAttributes()
         {
             if (this.definicion == null)
@@ -85,7 +84,7 @@ namespace Orbita.Controles.Grid
 
         #region Métodos estáticos
         /// <summary>
-        /// Establecer recursos del Grid.
+        /// Inicializar recursos.
         /// </summary>
         static void InitializeResourceStrings()
         {
@@ -209,4 +208,3 @@ namespace Orbita.Controles.Grid
         #endregion
     }
 }
-

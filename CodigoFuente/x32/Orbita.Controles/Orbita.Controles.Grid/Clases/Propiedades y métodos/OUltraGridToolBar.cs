@@ -9,11 +9,9 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.ComponentModel;
 namespace Orbita.Controles.Grid
 {
-    [TypeConverter(typeof(ExpandableObjectConverter))]
+    [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
     public class OUltraGridToolBar : OUltraGrid
     {
         #region Atributos
@@ -22,14 +20,15 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Eventos
-        public event EventHandler<OPropertyExtendedChangedEventArgs> PropertyChanging;
-        public event EventHandler<OPropertyExtendedChangedEventArgs> PropertyChanged;
+        public event System.EventHandler<OPropertyExtendedChangedEventArgs> PropertyChanging;
+        public event System.EventHandler<OPropertyExtendedChangedEventArgs> PropertyChanged;
         #endregion
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OUltraGrid.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OUltraGridToolBar.
         /// </summary>
+        /// <param name="control"></param>
         public OUltraGridToolBar(OrbitaUltraGridToolBar control)
             : base(control.Grid)
         {
@@ -264,7 +263,7 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Manejadores de eventos
-        protected void Toolbar_Click(object sender, EventArgs e)
+        protected void Toolbar_Click(object sender, System.EventArgs e)
         {
             try
             {
@@ -273,7 +272,7 @@ namespace Orbita.Controles.Grid
                 // Ejecutar eventos de actualización.
                 this.Filas.Actualizar();
             }
-            catch (Exception ex)
+            catch (System.Exception)
             {
             }
         }

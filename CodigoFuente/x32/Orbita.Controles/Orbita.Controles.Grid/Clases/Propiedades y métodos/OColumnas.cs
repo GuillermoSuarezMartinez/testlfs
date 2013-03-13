@@ -9,8 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.Collections;
 using System.ComponentModel;
 namespace Orbita.Controles.Grid
 {
@@ -22,25 +20,26 @@ namespace Orbita.Controles.Grid
         AutoAjustarEstilo estilo;
         OColumnasBloqueadas bloqueadas;
         TipoSeleccion tipoSeleccion;
-        ArrayList visibles;
+        System.Collections.ArrayList visibles;
         #endregion
 
         #region Eventos
-        public event EventHandler<OPropiedadEventArgs> PropertyChanging;
-        public event EventHandler<OPropiedadEventArgs> PropertyChanged;
+        public event System.EventHandler<OPropiedadEventArgs> PropertyChanging;
+        public event System.EventHandler<OPropiedadEventArgs> PropertyChanged;
         #endregion
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OCeldas.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnas.
         /// </summary>
+        /// <param name="control"></param>
         public OColumnas(object control)
             : base(control) { }
         #endregion
 
         #region Propiedades
         [Browsable(false)]
-        public ArrayList Visibles
+        public System.Collections.ArrayList Visibles
         {
             get { return this.visibles; }
             set { this.visibles = value; }

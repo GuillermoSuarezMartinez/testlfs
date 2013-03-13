@@ -15,7 +15,7 @@ namespace Orbita.Controles.Grid
     {
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.DialogoListView.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmListadoPlantillasBase.
         /// </summary>
         public FrmListadoPlantillasBase()
         {
@@ -25,21 +25,21 @@ namespace Orbita.Controles.Grid
 
         #region Propiedades
         /// <summary>
-        /// OrbitaUltraLabel.
+        /// Etiqueta cabecera de tipo Orbita.Controles.Comunes.OrbitaUltraLabel.
         /// </summary>
         public Orbita.Controles.Comunes.OrbitaUltraLabel Cabecera
         {
             get { return this.lblCabecera; }
         }
         /// <summary>
-        /// OrbitaListView.
+        /// Control lista de tipo Orbita.Controles.Comunes.OrbitaListView.
         /// </summary>
         public Orbita.Controles.Comunes.OrbitaListView Lista
         {
             get { return this.lstView; }
         }
         /// <summary>
-        /// OrbitaUltraLabel.
+        /// Etiqueta sin elementos de tipo Orbita.Controles.Comunes.OrbitaUltraLabel.
         /// </summary>
         public Orbita.Controles.Comunes.OrbitaUltraLabel SinElementos
         {

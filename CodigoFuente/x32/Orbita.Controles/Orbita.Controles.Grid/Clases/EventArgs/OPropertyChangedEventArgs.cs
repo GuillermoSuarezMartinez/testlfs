@@ -22,12 +22,12 @@ namespace Orbita.Controles.Grid
 
         #region Constructores
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OPropiedadEventArgs.
         /// </summary>
         public OPropiedadEventArgs()
             : base() { }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OPropiedadEventArgs.
         /// </summary>
         /// <param name="cadena">Nombre de la propiedad.</param>
         public OPropiedadEventArgs(string nombre)

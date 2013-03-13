@@ -16,14 +16,14 @@ namespace Orbita.Controles.Grid
     {
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OFilaAlterna.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilasAlternas.
         /// </summary>
         public OFilasAlternas()
             : base() { }
         #endregion
 
         #region Propiedades
-        [System.ComponentModel.Description("Determina la apariencia de fila alterna.")]
+        [System.ComponentModel.Description("Determina la apariencia de las filas alternas.")]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public override OApariencia Apariencia
         {
