@@ -136,41 +136,47 @@ namespace Orbita.Controles.Menu
         #region AgregarTool
 
         #region AgregarToolContainer
-        public void AgregarToolContainer(string toolbar, System.Windows.Forms.Control control)
+        public void AgregarToolContainer(string toolbar, System.Windows.Forms.Control control, string key)
         {
             if (control == null)
             {
                 return;
             }
-            Infragistics.Win.UltraWinToolbars.ControlContainerTool toolContainer = new Infragistics.Win.UltraWinToolbars.ControlContainerTool(control.Name);
-            toolContainer.SharedProps.Visible = true;
-            toolContainer.Control = control;
-            this.control.Tools.Add(toolContainer);
-            this.control.Toolbars[toolbar].Tools.AddTool(toolContainer.Key);
+            if (!this.control.Tools.Exists(key))
+            {
+                Infragistics.Win.UltraWinToolbars.ControlContainerTool toolContainer = new Infragistics.Win.UltraWinToolbars.ControlContainerTool(key);
+                toolContainer.SharedProps.Visible = true;
+                toolContainer.Control = control;
+                this.control.Tools.Add(toolContainer);
+                this.control.Toolbars[toolbar].Tools.AddTool(key);
+            }
         }
-        public void AgregarToolContainer(string toolbar, System.Windows.Forms.Control control, int posicion)
+        public void AgregarToolContainer(string toolbar, System.Windows.Forms.Control control, string key, int posicion)
         {
             if (control == null)
             {
                 return;
             }
-            Infragistics.Win.UltraWinToolbars.ControlContainerTool toolContainer = new Infragistics.Win.UltraWinToolbars.ControlContainerTool(control.Name);
-            toolContainer.SharedProps.Visible = true;
-            toolContainer.Control = control;
-            this.control.Tools.Add(toolContainer);
-            if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
+            if (!this.control.Tools.Exists(key))
             {
-                this.control.Toolbars[toolbar].Tools.AddTool(toolContainer.Key);
-            }
-            else
-            {
-                if (posicion < 0)
+                Infragistics.Win.UltraWinToolbars.ControlContainerTool toolContainer = new Infragistics.Win.UltraWinToolbars.ControlContainerTool(key);
+                toolContainer.SharedProps.Visible = true;
+                toolContainer.Control = control;
+                this.control.Tools.Add(toolContainer);
+                if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
                 {
-                    this.control.Toolbars[toolbar].Tools.InsertTool(0, toolContainer.Key);
+                    this.control.Toolbars[toolbar].Tools.AddTool(key);
                 }
                 else
                 {
-                    this.control.Toolbars[toolbar].Tools.InsertTool(posicion, toolContainer.Key);
+                    if (posicion < 0)
+                    {
+                        this.control.Toolbars[toolbar].Tools.InsertTool(0, key);
+                    }
+                    else
+                    {
+                        this.control.Toolbars[toolbar].Tools.InsertTool(posicion, key);
+                    }
                 }
             }
         }
@@ -183,11 +189,15 @@ namespace Orbita.Controles.Menu
         }
         public void AgregarToolLabel(string toolbar, string tool, string key)
         {
-            Infragistics.Win.UltraWinToolbars.LabelTool toolLabel = new Infragistics.Win.UltraWinToolbars.LabelTool(key);
-            toolLabel.SharedProps.Caption = tool;
-            this.control.Tools.Add(toolLabel);
-            toolLabel.SharedProps.Spring = true;
-            this.control.Toolbars[toolbar].Tools.AddTool(tool);
+            if (!this.control.Tools.Exists(key))
+            {
+                Infragistics.Win.UltraWinToolbars.LabelTool toolLabel = new Infragistics.Win.UltraWinToolbars.LabelTool(key);
+                toolLabel.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.Default;
+                toolLabel.SharedProps.Caption = tool;
+                this.control.Tools.Add(toolLabel);
+                toolLabel.SharedProps.Spring = true;
+                this.control.Toolbars[toolbar].Tools.AddTool(key);
+            }
         }
         public void AgregarToolLabel(string toolbar, string tool, int posicion)
         {
@@ -195,23 +205,27 @@ namespace Orbita.Controles.Menu
         }
         public void AgregarToolLabel(string toolbar, string tool, string key, int posicion)
         {
-            Infragistics.Win.UltraWinToolbars.LabelTool toolLabel = new Infragistics.Win.UltraWinToolbars.LabelTool(key);
-            toolLabel.SharedProps.Caption = tool;
-            this.control.Tools.Add(toolLabel);
-            if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
+            if (!this.control.Tools.Exists(key))
             {
-                toolLabel.SharedProps.Spring = true;
-                this.control.Toolbars[toolbar].Tools.AddTool(tool);
-            }
-            else
-            {
-                if (posicion < 0)
+                Infragistics.Win.UltraWinToolbars.LabelTool toolLabel = new Infragistics.Win.UltraWinToolbars.LabelTool(key);
+                toolLabel.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.Default;
+                toolLabel.SharedProps.Caption = tool;
+                this.control.Tools.Add(toolLabel);
+                if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
                 {
-                    this.control.Toolbars[toolbar].Tools.InsertTool(0, tool);
+                    toolLabel.SharedProps.Spring = true;
+                    this.control.Toolbars[toolbar].Tools.AddTool(key);
                 }
                 else
                 {
-                    this.control.Toolbars[toolbar].Tools.InsertTool(posicion, tool);
+                    if (posicion < 0)
+                    {
+                        this.control.Toolbars[toolbar].Tools.InsertTool(0, key);
+                    }
+                    else
+                    {
+                        this.control.Toolbars[toolbar].Tools.InsertTool(posicion, key);
+                    }
                 }
             }
         }
@@ -224,10 +238,14 @@ namespace Orbita.Controles.Menu
         }
         public void AgregarToolButton(string toolbar, string tool, string key)
         {
-            Infragistics.Win.UltraWinToolbars.ButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.ButtonTool(key);
-            toolBoton.SharedProps.Caption = tool;
-            this.control.Tools.Add(toolBoton);
-            this.control.Toolbars[toolbar].Tools.AddTool(tool);
+            if (!this.control.Tools.Exists(key))
+            {
+                Infragistics.Win.UltraWinToolbars.ButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.ButtonTool(key);
+                toolBoton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.TextOnlyAlways;
+                toolBoton.SharedProps.Caption = tool;
+                this.control.Tools.Add(toolBoton);
+                this.control.Toolbars[toolbar].Tools.AddTool(key);
+            }
         }
         public void AgregarToolButton(string toolbar, string tool, int posicion)
         {
@@ -235,22 +253,26 @@ namespace Orbita.Controles.Menu
         }
         public void AgregarToolButton(string toolbar, string tool, string key, int posicion)
         {
-            Infragistics.Win.UltraWinToolbars.ButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.ButtonTool(key);
-            toolBoton.SharedProps.Caption = tool;
-            this.control.Tools.Add(toolBoton);
-            if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
+            if (!this.control.Tools.Exists(key))
             {
-                this.control.Toolbars[toolbar].Tools.AddTool(tool);
-            }
-            else
-            {
-                if (posicion < 0)
+                Infragistics.Win.UltraWinToolbars.ButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.ButtonTool(key);
+                toolBoton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.TextOnlyAlways;
+                toolBoton.SharedProps.Caption = tool;
+                this.control.Tools.Add(toolBoton);
+                if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
                 {
-                    this.control.Toolbars[toolbar].Tools.InsertTool(0, tool);
+                    this.control.Toolbars[toolbar].Tools.AddTool(key);
                 }
                 else
                 {
-                    this.control.Toolbars[toolbar].Tools.InsertTool(posicion, tool);
+                    if (posicion < 0)
+                    {
+                        this.control.Toolbars[toolbar].Tools.InsertTool(0, key);
+                    }
+                    else
+                    {
+                        this.control.Toolbars[toolbar].Tools.InsertTool(posicion, key);
+                    }
                 }
             }
         }
@@ -268,24 +290,27 @@ namespace Orbita.Controles.Menu
         }
         public void AgregarToolButton(string toolbar, string tool, string key, int posicion, System.Drawing.Bitmap imagen)
         {
-            Infragistics.Win.UltraWinToolbars.ButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.ButtonTool(key);
-            toolBoton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
-            toolBoton.SharedProps.AppearancesLarge.Appearance.Image = toolBoton.SharedProps.AppearancesSmall.Appearance.Image = imagen;
-            toolBoton.SharedProps.Caption = tool;
-            this.control.Tools.Add(toolBoton);
-            if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
+            if (!this.control.Tools.Exists(key))
             {
-                this.control.Toolbars[toolbar].Tools.AddTool(tool);
-            }
-            else
-            {
-                if (posicion < 0)
+                Infragistics.Win.UltraWinToolbars.ButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.ButtonTool(key);
+                toolBoton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
+                toolBoton.SharedProps.AppearancesLarge.Appearance.Image = toolBoton.SharedProps.AppearancesSmall.Appearance.Image = imagen;
+                toolBoton.SharedProps.Caption = tool;
+                this.control.Tools.Add(toolBoton);
+                if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
                 {
-                    this.control.Toolbars[toolbar].Tools.InsertTool(0, tool);
+                    this.control.Toolbars[toolbar].Tools.AddTool(key);
                 }
                 else
                 {
-                    this.control.Toolbars[toolbar].Tools.InsertTool(posicion, tool);
+                    if (posicion < 0)
+                    {
+                        this.control.Toolbars[toolbar].Tools.InsertTool(0, key);
+                    }
+                    else
+                    {
+                        this.control.Toolbars[toolbar].Tools.InsertTool(posicion, key);
+                    }
                 }
             }
         }
@@ -298,10 +323,14 @@ namespace Orbita.Controles.Menu
         }
         public void AgregarToolStateButton(string toolbar, string tool, string key)
         {
-            Infragistics.Win.UltraWinToolbars.StateButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.StateButtonTool(key);
-            toolBoton.SharedProps.Caption = tool;
-            this.control.Tools.Add(toolBoton);
-            this.control.Toolbars[toolbar].Tools.AddTool(tool);
+            if (!this.control.Tools.Exists(key))
+            {
+                Infragistics.Win.UltraWinToolbars.StateButtonTool toolStateBoton = new Infragistics.Win.UltraWinToolbars.StateButtonTool(key);
+                toolStateBoton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.TextOnlyAlways;
+                toolStateBoton.SharedProps.Caption = tool;
+                this.control.Tools.Add(toolStateBoton);
+                this.control.Toolbars[toolbar].Tools.AddTool(key);
+            }
         }
         public void AgregarToolStateButton(string toolbar, string tool, int posicion)
         {
@@ -309,22 +338,26 @@ namespace Orbita.Controles.Menu
         }
         public void AgregarToolStateButton(string toolbar, string tool, string key, int posicion)
         {
-            Infragistics.Win.UltraWinToolbars.StateButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.StateButtonTool(key);
-            toolBoton.SharedProps.Caption = tool;
-            this.control.Tools.Add(toolBoton);
-            if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
+            if (!this.control.Tools.Exists(key))
             {
-                this.control.Toolbars[toolbar].Tools.AddTool(tool);
-            }
-            else
-            {
-                if (posicion < 0)
+                Infragistics.Win.UltraWinToolbars.StateButtonTool toolStateBoton = new Infragistics.Win.UltraWinToolbars.StateButtonTool(key);
+                toolStateBoton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.TextOnlyAlways;
+                toolStateBoton.SharedProps.Caption = tool;
+                this.control.Tools.Add(toolStateBoton);
+                if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
                 {
-                    this.control.Toolbars[toolbar].Tools.InsertTool(0, tool);
+                    this.control.Toolbars[toolbar].Tools.AddTool(key);
                 }
                 else
                 {
-                    this.control.Toolbars[toolbar].Tools.InsertTool(posicion, tool);
+                    if (posicion < 0)
+                    {
+                        this.control.Toolbars[toolbar].Tools.InsertTool(0, key);
+                    }
+                    else
+                    {
+                        this.control.Toolbars[toolbar].Tools.InsertTool(posicion, key);
+                    }
                 }
             }
         }
@@ -342,24 +375,27 @@ namespace Orbita.Controles.Menu
         }
         public void AgregarToolStateButton(string toolbar, string tool, string key, int posicion, System.Drawing.Bitmap imagen)
         {
-            Infragistics.Win.UltraWinToolbars.StateButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.StateButtonTool(key);
-            toolBoton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
-            toolBoton.SharedProps.AppearancesLarge.Appearance.Image = toolBoton.SharedProps.AppearancesSmall.Appearance.Image = imagen;
-            toolBoton.SharedProps.Caption = tool;
-            this.control.Tools.Add(toolBoton);
-            if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
+            if (!this.control.Tools.Exists(key))
             {
-                this.control.Toolbars[toolbar].Tools.AddTool(tool);
-            }
-            else
-            {
-                if (posicion < 0)
+                Infragistics.Win.UltraWinToolbars.StateButtonTool toolStateBoton = new Infragistics.Win.UltraWinToolbars.StateButtonTool(key);
+                toolStateBoton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
+                toolStateBoton.SharedProps.AppearancesLarge.Appearance.Image = toolStateBoton.SharedProps.AppearancesSmall.Appearance.Image = imagen;
+                toolStateBoton.SharedProps.Caption = tool;
+                this.control.Tools.Add(toolStateBoton);
+                if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
                 {
-                    this.control.Toolbars[toolbar].Tools.InsertTool(0, tool);
+                    this.control.Toolbars[toolbar].Tools.AddTool(key);
                 }
                 else
                 {
-                    this.control.Toolbars[toolbar].Tools.InsertTool(posicion, tool);
+                    if (posicion < 0)
+                    {
+                        this.control.Toolbars[toolbar].Tools.InsertTool(0, key);
+                    }
+                    else
+                    {
+                        this.control.Toolbars[toolbar].Tools.InsertTool(posicion, key);
+                    }
                 }
             }
         }
