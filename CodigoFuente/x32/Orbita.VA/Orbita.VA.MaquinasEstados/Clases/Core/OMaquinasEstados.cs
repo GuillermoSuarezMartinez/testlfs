@@ -354,7 +354,6 @@ namespace Orbita.VA.MaquinasEstados
             set { _MaquinaEstadosSimulacion = value; }
         }
 
-
         /// <summary>
         /// Tiempo entre comprobaciones de condiciones
         /// </summary>
@@ -448,7 +447,7 @@ namespace Orbita.VA.MaquinasEstados
                     this.CrearEscenario();
 
                     // Creación de los estados
-                    DataTable dtEstados = AppBD.GetEstados(this.Codigo);
+                    DataTable dtEstados = AppBD.GetInstanciasEstados(this.Codigo);
                     if (dtEstados.Rows.Count > 0)
                     {
                         foreach (DataRow drEstados in dtEstados.Rows)
@@ -471,7 +470,7 @@ namespace Orbita.VA.MaquinasEstados
                     }
 
                     // Creación de las transiciones
-                    DataTable dtTransiciones = AppBD.GetTransiciones(this.Codigo);
+                    DataTable dtTransiciones = AppBD.GetInstanciasTransiciones(this.Codigo);
                     if (dtTransiciones.Rows.Count > 0)
                     {
                         foreach (DataRow drTransiciones in dtTransiciones.Rows)
@@ -1256,7 +1255,7 @@ namespace Orbita.VA.MaquinasEstados
                 this._EnEjecucionAlSalir = false;
 
                 // Cargamos valores de la base de datos
-                DataTable dtEstado = AppBD.GetEstado(this.CodigoInstanciaMaquinaEstados, this.Codigo);
+                DataTable dtEstado = AppBD.GetInstanciaEstado(this.CodigoInstanciaMaquinaEstados, this.Codigo);
                 if (dtEstado.Rows.Count == 1)
                 {
                     this.Nombre = dtEstado.Rows[0]["NombreEstado"].ToString();
@@ -1706,7 +1705,7 @@ namespace Orbita.VA.MaquinasEstados
                 this._Escenario = escenario;
 
                 // Cargamos valores de la base de datos
-                DataTable dtTransicion = AppBD.GetTransicion(this._CodigoInstanciaMaquinaEstados, this._Codigo);
+                DataTable dtTransicion = AppBD.GetInstanciaTransicion(this._CodigoInstanciaMaquinaEstados, this._Codigo);
                 if (dtTransicion.Rows.Count == 1)
                 {
                     this.Nombre = dtTransicion.Rows[0]["NombreTransicion"].ToString();

@@ -570,7 +570,7 @@ namespace Orbita.Controles.VA
                 }
 
                 // Cargamos los valores de los estados
-                DataTable dtEstados = Orbita.VA.MaquinasEstados.AppBD.GetEstados(this.Codigo);
+                DataTable dtEstados = Orbita.VA.MaquinasEstados.AppBD.GetInstanciasEstados(this.Codigo);
                 if (dtEstados.Rows.Count > 0)
                 {
                     foreach (DataRow dr in dtEstados.Rows)
@@ -587,7 +587,7 @@ namespace Orbita.Controles.VA
                 }
 
                 // Cargamos los valores de las transiciones
-                DataTable dtTransiciones = Orbita.VA.MaquinasEstados.AppBD.GetTransiciones(this.Codigo);
+                DataTable dtTransiciones = Orbita.VA.MaquinasEstados.AppBD.GetInstanciasTransiciones(this.Codigo);
                 if (dtTransiciones.Rows.Count > 0)
                 {
                     foreach (DataRow dr in dtTransiciones.Rows)
@@ -897,7 +897,7 @@ namespace Orbita.Controles.VA
             this.EstadoAsociado = estadoAsociado;
 
             // Cargamos valores de la base de datos
-            DataTable dtEstado = Orbita.VA.MaquinasEstados.AppBD.GetEstado(this.CodigoMaquinaEstados, this.Codigo);
+            DataTable dtEstado = Orbita.VA.MaquinasEstados.AppBD.GetInstanciaEstado(this.CodigoMaquinaEstados, this.Codigo);
             if (dtEstado.Rows.Count == 1)
             {
                 this.Nombre = dtEstado.Rows[0]["NombreEstado"].ToString();
@@ -1097,7 +1097,7 @@ namespace Orbita.Controles.VA
             this.TransicionAsociada = transicionAsociada;
 
             // Cargamos valores de la base de datos
-            DataTable dtTransicion = Orbita.VA.MaquinasEstados.AppBD.GetTransicion(this.CodigoMaquinaEstados, this.Codigo);
+            DataTable dtTransicion = Orbita.VA.MaquinasEstados.AppBD.GetInstanciaTransicion(this.CodigoMaquinaEstados, this.Codigo);
             if (dtTransicion.Rows.Count == 1)
             {
                 this.Nombre = dtTransicion.Rows[0]["NombreTransicion"].ToString();

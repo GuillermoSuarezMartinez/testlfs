@@ -120,6 +120,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Orbita.VA.GeneradorEscenarios.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Orbita.VA.Comun\Orbita.VA.Comun.csproj">

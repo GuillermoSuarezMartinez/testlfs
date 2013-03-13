@@ -74,51 +74,101 @@ namespace Orbita.VA.MaquinasEstados
 		/// Consulta todos los estados pertenecientes a determinada máquina de estados
 		/// </summary>
 		/// <returns>DataTable con los códigos de los estados pertenecientes a determinada máquina de estados</returns>
-        public static DataTable GetEstados(string codInstanciaMaquinaEstados)
+        public static DataTable GetInstanciasEstados(string codInstanciaMaquinaEstados)
 		{
 			ArrayList list = new ArrayList();
             list.Add(new SqlParameter("@CodInstanciaMaquinaEstados", codInstanciaMaquinaEstados));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_EST_GET_ESTADOS", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_EST_GET_INSTANCIAS_ESTADOS", list);
 		}
 
 		/// <summary>
 		/// Consulta todos las transiciones pertenecientes a determinada máquina de estados
 		/// </summary>
 		/// <returns>DataTable con los códigos de las transiciones pertenecientes a determinada máquina de estados</returns>
-        public static DataTable GetTransiciones(string codInstanciaMaquinaEstados)
+        public static DataTable GetInstanciasTransiciones(string codInstanciaMaquinaEstados)
 		{
 			ArrayList list = new ArrayList();
             list.Add(new SqlParameter("@CodInstanciaMaquinaEstados", codInstanciaMaquinaEstados));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_EST_GET_TRANSICIONES", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_EST_GET_INSTANCIAS_TRANSICIONES", list);
 		}
 
-		/// <summary>
+        /// <summary>
+        /// Consulta todos los estados pertenecientes a determinada máquina de estados
+        /// </summary>
+        /// <returns>DataTable con los códigos de los estados pertenecientes a determinada máquina de estados</returns>
+        public static DataTable GetEstados(string codMaquinaEstados)
+        {
+            ArrayList list = new ArrayList();
+            list.Add(new SqlParameter("@CodMaquinaEstados", codMaquinaEstados));
+
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_EST_GET_ESTADOS", list);
+        }
+
+        /// <summary>
+        /// Consulta todos las transiciones pertenecientes a determinada máquina de estados
+        /// </summary>
+        /// <returns>DataTable con los códigos de las transiciones pertenecientes a determinada máquina de estados</returns>
+        public static DataTable GetTransiciones(string codMaquinaEstados)
+        {
+            ArrayList list = new ArrayList();
+            list.Add(new SqlParameter("@CodMaquinaEstados", codMaquinaEstados));
+
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_EST_GET_TRANSICIONES", list);
+        }
+
+        /// <summary>
 		/// Consulta un determinado estado
 		/// </summary>
 		/// <returns>DataTable con la información de un determinado estado</returns>
-        public static DataTable GetEstado(string codInstanciaMaquinaEstados, string codEstado)
+        public static DataTable GetInstanciaEstado(string codInstanciaMaquinaEstados, string codEstado)
 		{
 			ArrayList list = new ArrayList();
             list.Add(new SqlParameter("@CodInstanciaMaquinaEstados", codInstanciaMaquinaEstados));
 			list.Add(new SqlParameter("@CodEstado", codEstado));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_EST_GET_ESTADO", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_EST_GET_INSTANCIA_ESTADO", list);
 		}
 
 		/// <summary>
 		/// Consulta un determinada transicion
 		/// </summary>
 		/// <returns>DataTable con la información de una determinada transicion</returns>
-        public static DataTable GetTransicion(string codInstanciaMaquinaEstados, string codTransicion)
+        public static DataTable GetInstanciaTransicion(string codInstanciaMaquinaEstados, string codTransicion)
 		{
 			ArrayList list = new ArrayList();
             list.Add(new SqlParameter("@CodInstanciaMaquinaEstados", codInstanciaMaquinaEstados));
 			list.Add(new SqlParameter("@CodTransicion", codTransicion));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_EST_GET_TRANSICION", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_EST_GET_INSTANCIA_TRANSICION", list);
 		}
+
+        /// <summary>
+        /// Consulta todos los estados pertenecientes a determinada máquina de estados
+        /// </summary>
+        /// <returns>DataTable con los códigos de los estados pertenecientes a determinada máquina de estados</returns>
+        public static DataTable GetEstado(string codMaquinaEstados, string codEstado)
+        {
+            ArrayList list = new ArrayList();
+            list.Add(new SqlParameter("@codMaquinaEstados", codMaquinaEstados));
+            list.Add(new SqlParameter("@CodEstado", codEstado));
+
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_EST_GET_ESTADO", list);
+        }
+
+        /// <summary>
+        /// Consulta un determinada transicion
+        /// </summary>
+        /// <returns>DataTable con la información de una determinada transicion</returns>
+        public static DataTable GetTransicion(string codMaquinaEstados, string codTransicion)
+        {
+            ArrayList list = new ArrayList();
+            list.Add(new SqlParameter("@codMaquinaEstados", codMaquinaEstados));
+            list.Add(new SqlParameter("@CodTransicion", codTransicion));
+
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_EST_GET_TRANSICION", list);
+        }
 
 		/// <summary>
 		/// Consulta las variables de un determinada transicion

@@ -358,7 +358,7 @@
             this.Name = "FrmMonitorizacionVariables";
             this.RecordarPosicion = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
-            this.Text = "Monitorizacion de las variables del sistema";
+            this.Text = "Monitorización de las variables del sistema";
             this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Top, 0);
             this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Bottom, 0);
             this.Controls.SetChildIndex(this._FrmBase_Toolbars_Dock_Area_Right, 0);
