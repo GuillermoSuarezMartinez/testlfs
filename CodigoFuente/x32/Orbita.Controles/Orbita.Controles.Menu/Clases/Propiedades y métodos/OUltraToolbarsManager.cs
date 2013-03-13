@@ -45,98 +45,104 @@ namespace Orbita.Controles.Menu
         }
 
         #region ToolVisible
-        public void ToolVisible(string toolbar, string tool)
+        public void ToolVisible(string key)
         {
-            this.ToolVisible(toolbar, tool, true);
+            this.ToolVisible(0, key, true);
         }
-        public void ToolVisible(int toolbar, string tool)
+        public void ToolVisible(string key, bool visible)
         {
-            this.ToolVisible(toolbar, tool, true);
+            if (this.control.Toolbars[0].Tools.Exists(key))
+            {
+                this.control.Toolbars[0].Tools[key].SharedProps.Visible = visible;
+            }
         }
-        public void ToolVisible(string toolbar, int tool)
+        public void ToolVisible(int toolbar, string key)
         {
-            this.ToolVisible(toolbar, tool, true);
+            this.ToolVisible(toolbar, key, true);
         }
-        public void ToolVisible(int toolbar, int tool)
+        public void ToolVisible(int toolbar, int index)
         {
-            this.ToolVisible(toolbar, tool, true);
+            this.ToolVisible(toolbar, index, true);
         }
-        public void ToolVisible(string toolbar, string tool, bool visible)
+        public void ToolVisible(int toolbar, string key, bool visible)
         {
-            this.control.Toolbars[toolbar].Tools[tool].SharedProps.Visible = visible;
+            if (this.control.Toolbars[toolbar].Tools.Exists(key))
+            {
+                this.control.Toolbars[toolbar].Tools[key].SharedProps.Visible = visible;
+            }
         }
-        public void ToolVisible(int toolbar, string tool, bool visible)
+        public void ToolVisible(int toolbar, int index, bool visible)
         {
-            this.control.Toolbars[toolbar].Tools[tool].SharedProps.Visible = visible;
-        }
-        public void ToolVisible(string toolbar, int tool, bool visible)
-        {
-            this.control.Toolbars[toolbar].Tools[tool].SharedProps.Visible = visible;
-        }
-        public void ToolVisible(int toolbar, int tool, bool visible)
-        {
-            this.control.Toolbars[toolbar].Tools[tool].SharedProps.Visible = visible;
+            this.control.Toolbars[toolbar].Tools[index].SharedProps.Visible = visible;
         }
         #endregion ToolVisible
 
         #region ToolEnabled
-        public void ToolEnabled(string toolbar, string tool)
+        public void ToolEnabled(string key)
         {
-            this.ToolEnabled(toolbar, tool, true);
+            this.ToolEnabled(0, key, true);
         }
-        public void ToolEnabled(int toolbar, string tool)
+        public void ToolEnabled(string key, bool enabled)
         {
-            this.ToolEnabled(toolbar, tool, true);
+            if (this.control.Toolbars[0].Tools.Exists(key))
+            {
+                this.control.Toolbars[0].Tools[key].SharedProps.Enabled = enabled;
+            }
         }
-        public void ToolEnabled(string toolbar, int tool)
+        public void ToolEnabled(int toolbar, string key)
         {
-            this.ToolEnabled(toolbar, tool, true);
+            this.ToolEnabled(toolbar, key, true);
         }
-        public void ToolEnabled(int toolbar, int tool)
+        public void ToolEnabled(int toolbar, int index)
         {
-            this.ToolEnabled(toolbar, tool, true);
+            this.ToolEnabled(toolbar, index, true);
         }
-        public void ToolEnabled(string toolbar, string tool, bool habilitar)
+        public void ToolEnabled(int toolbar, string key, bool enabled)
         {
-            this.control.Toolbars[toolbar].Tools[tool].SharedProps.Enabled = habilitar;
+            if (this.control.Toolbars[toolbar].Tools.Exists(key))
+            {
+                this.control.Toolbars[toolbar].Tools[key].SharedProps.Enabled = enabled;
+            }
         }
-        public void ToolEnabled(int toolbar, string tool, bool habilitar)
+        public void ToolEnabled(int toolbar, int index, bool enabled)
         {
-            this.control.Toolbars[toolbar].Tools[tool].SharedProps.Enabled = habilitar;
-        }
-        public void ToolEnabled(string toolbar, int tool, bool habilitar)
-        {
-            this.control.Toolbars[toolbar].Tools[tool].SharedProps.Enabled = habilitar;
-        }
-        public void ToolEnabled(int toolbar, int tool, bool habilitar)
-        {
-            this.control.Toolbars[toolbar].Tools[tool].SharedProps.Enabled = habilitar;
+            this.control.Toolbars[toolbar].Tools[index].SharedProps.Enabled = enabled;
         }
         #endregion ToolEnabled
 
         #region ToolTipText
-        public void ToolTipText(string toolbar, string tool, string texto)
+        public void ToolTipText(string key, string tooltip)
         {
-            this.control.Toolbars[toolbar].Tools[tool].SharedProps.ToolTipText = texto;
+            if (this.control.Toolbars[0].Tools.Exists(key))
+            {
+                this.control.Toolbars[0].Tools[key].SharedProps.ToolTipText = tooltip;
+            }
         }
-        public void ToolTipText(int toolbar, string tool, string texto)
+        public void ToolTipText(int toolbar, string key, string tooltip)
         {
-            this.control.Toolbars[toolbar].Tools[tool].SharedProps.ToolTipText = texto;
+            if (this.control.Toolbars[toolbar].Tools.Exists(key))
+            {
+                this.control.Toolbars[toolbar].Tools[key].SharedProps.ToolTipText = tooltip;
+            }
         }
-        public void ToolTipText(string toolbar, int tool, string texto)
+        public void ToolTipText(int toolbar, int index, string tooltip)
         {
-            this.control.Toolbars[toolbar].Tools[tool].SharedProps.ToolTipText = texto;
-        }
-        public void ToolTipText(int toolbar, int tool, string texto)
-        {
-            this.control.Toolbars[toolbar].Tools[tool].SharedProps.ToolTipText = texto;
+            this.control.Toolbars[toolbar].Tools[index].SharedProps.ToolTipText = tooltip;
         }
         #endregion ToolTipText
 
         #region AgregarTool
 
         #region AgregarToolContainer
-        public void AgregarToolContainer(string toolbar, System.Windows.Forms.Control control, string key)
+        public void AgregarToolContainer(System.Windows.Forms.Control control, string key)
+        {
+            this.AgregarToolContainer(0, control, key);
+        }
+        public void AgregarToolContainer(System.Windows.Forms.Control control, string key, int posicion)
+        {
+            this.AgregarToolContainer(0, control, key, posicion);
+        }
+        public void AgregarToolContainer(int toolbar, System.Windows.Forms.Control control, string key)
         {
             if (control == null)
             {
@@ -151,7 +157,7 @@ namespace Orbita.Controles.Menu
                 this.control.Toolbars[toolbar].Tools.AddTool(key);
             }
         }
-        public void AgregarToolContainer(string toolbar, System.Windows.Forms.Control control, string key, int posicion)
+        public void AgregarToolContainer(int toolbar, System.Windows.Forms.Control control, string key, int posicion)
         {
             if (control == null)
             {
@@ -183,33 +189,49 @@ namespace Orbita.Controles.Menu
         #endregion AgregarToolContainer
 
         #region AgregarToolLabel
-        public void AgregarToolLabel(string toolbar, string tool)
+        public void AgregarToolLabel(string caption)
         {
-            this.AgregarToolLabel(toolbar, tool, tool);
+            this.AgregarToolLabel(0, caption);
         }
-        public void AgregarToolLabel(string toolbar, string tool, string key)
+        public void AgregarToolLabel(string caption, string key)
+        {
+            this.AgregarToolLabel(0, caption, key);
+        }
+        public void AgregarToolLabel(string caption, int posicion)
+        {
+            this.AgregarToolLabel(0, caption, posicion);
+        }
+        public void AgregarToolLabel(string caption, string key, int posicion)
+        {
+            this.AgregarToolLabel(0, caption, key, posicion);
+        }
+        public void AgregarToolLabel(int toolbar, string caption)
+        {
+            this.AgregarToolLabel(toolbar, caption, caption);
+        }
+        public void AgregarToolLabel(int toolbar, string caption, string key)
         {
             if (!this.control.Tools.Exists(key))
             {
                 Infragistics.Win.UltraWinToolbars.LabelTool toolLabel = new Infragistics.Win.UltraWinToolbars.LabelTool(key);
                 toolLabel.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.Default;
-                toolLabel.SharedProps.Caption = tool;
+                toolLabel.SharedProps.Caption = caption;
                 this.control.Tools.Add(toolLabel);
                 toolLabel.SharedProps.Spring = true;
                 this.control.Toolbars[toolbar].Tools.AddTool(key);
             }
         }
-        public void AgregarToolLabel(string toolbar, string tool, int posicion)
+        public void AgregarToolLabel(int toolbar, string caption, int posicion)
         {
-            this.AgregarToolLabel(toolbar, tool, tool, posicion);
+            this.AgregarToolLabel(toolbar, caption, caption, posicion);
         }
-        public void AgregarToolLabel(string toolbar, string tool, string key, int posicion)
+        public void AgregarToolLabel(int toolbar, string caption, string key, int posicion)
         {
             if (!this.control.Tools.Exists(key))
             {
                 Infragistics.Win.UltraWinToolbars.LabelTool toolLabel = new Infragistics.Win.UltraWinToolbars.LabelTool(key);
                 toolLabel.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.Default;
-                toolLabel.SharedProps.Caption = tool;
+                toolLabel.SharedProps.Caption = caption;
                 this.control.Tools.Add(toolLabel);
                 if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
                 {
@@ -232,32 +254,64 @@ namespace Orbita.Controles.Menu
         #endregion AgregarToolLabel
 
         #region AgregarToolButton
-        public void AgregarToolButton(string toolbar, string tool)
+        public void AgregarToolButton(string caption)
         {
-            this.AgregarToolButton(toolbar, tool, tool);
+            this.AgregarToolButton(0, caption);
         }
-        public void AgregarToolButton(string toolbar, string tool, string key)
+        public void AgregarToolButton(string caption, string key)
+        {
+            this.AgregarToolButton(0, caption, key);
+        }
+        public void AgregarToolButton(string caption, int posicion)
+        {
+            this.AgregarToolButton(0, caption, posicion);
+        }
+        public void AgregarToolButton(string caption, string key, int posicion)
+        {
+            this.AgregarToolButton(0, caption, key, posicion);
+        }
+        public void AgregarToolButton(string caption, System.Drawing.Bitmap imagen)
+        {
+            this.AgregarToolButton(0, caption, imagen);
+        }
+        public void AgregarToolButton(string caption, string key, System.Drawing.Bitmap imagen)
+        {
+            this.AgregarToolButton(0, caption, key, imagen);
+        }
+        public void AgregarToolButton(string caption, int posicion, System.Drawing.Bitmap imagen)
+        {
+            this.AgregarToolButton(0, caption, posicion, imagen);
+        }
+        public void AgregarToolButton(string caption, string key, int posicion, System.Drawing.Bitmap imagen)
+        {
+            this.AgregarToolButton(0, caption, key, posicion, imagen);
+        }
+        public void AgregarToolButton(int toolbar, string caption)
+        {
+            this.AgregarToolButton(toolbar, caption, caption);
+        }
+        public void AgregarToolButton(int toolbar, string caption, string key)
         {
             if (!this.control.Tools.Exists(key))
             {
                 Infragistics.Win.UltraWinToolbars.ButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.ButtonTool(key);
                 toolBoton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.TextOnlyAlways;
-                toolBoton.SharedProps.Caption = tool;
+                toolBoton.SharedProps.Caption = caption;
                 this.control.Tools.Add(toolBoton);
                 this.control.Toolbars[toolbar].Tools.AddTool(key);
             }
         }
-        public void AgregarToolButton(string toolbar, string tool, int posicion)
+        public void AgregarToolButton(int toolbar, string caption, int posicion)
         {
-            this.AgregarToolButton(toolbar, tool, tool, posicion);
+            this.AgregarToolButton(toolbar, caption, caption, posicion);
         }
-        public void AgregarToolButton(string toolbar, string tool, string key, int posicion)
+        public void AgregarToolButton(int toolbar, string caption, string key, int posicion)
         {
             if (!this.control.Tools.Exists(key))
             {
                 Infragistics.Win.UltraWinToolbars.ButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.ButtonTool(key);
                 toolBoton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.TextOnlyAlways;
-                toolBoton.SharedProps.Caption = tool;
+                toolBoton.SharedProps.Caption = caption;
                 this.control.Tools.Add(toolBoton);
                 if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
                 {
@@ -276,26 +330,26 @@ namespace Orbita.Controles.Menu
                 }
             }
         }
-        public void AgregarToolButton(string toolbar, string tool, System.Drawing.Bitmap imagen)
+        public void AgregarToolButton(int toolbar, string caption, System.Drawing.Bitmap imagen)
         {
-            this.AgregarToolButton(toolbar, tool, tool, imagen);
+            this.AgregarToolButton(toolbar, caption, caption, imagen);
         }
-        public void AgregarToolButton(string toolbar, string tool, string key, System.Drawing.Bitmap imagen)
+        public void AgregarToolButton(int toolbar, string caption, string key, System.Drawing.Bitmap imagen)
         {
-            this.AgregarToolButton(toolbar, tool, key, imagen);
+            this.AgregarToolButton(toolbar, caption, key, imagen);
         }
-        public void AgregarToolButton(string toolbar, string tool, int posicion, System.Drawing.Bitmap imagen)
+        public void AgregarToolButton(int toolbar, string caption, int posicion, System.Drawing.Bitmap imagen)
         {
-            this.AgregarToolButton(toolbar, tool, tool, posicion, imagen);
+            this.AgregarToolButton(toolbar, caption, caption, posicion, imagen);
         }
-        public void AgregarToolButton(string toolbar, string tool, string key, int posicion, System.Drawing.Bitmap imagen)
+        public void AgregarToolButton(int toolbar, string caption, string key, int posicion, System.Drawing.Bitmap imagen)
         {
             if (!this.control.Tools.Exists(key))
             {
                 Infragistics.Win.UltraWinToolbars.ButtonTool toolBoton = new Infragistics.Win.UltraWinToolbars.ButtonTool(key);
                 toolBoton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
                 toolBoton.SharedProps.AppearancesLarge.Appearance.Image = toolBoton.SharedProps.AppearancesSmall.Appearance.Image = imagen;
-                toolBoton.SharedProps.Caption = tool;
+                toolBoton.SharedProps.Caption = caption;
                 this.control.Tools.Add(toolBoton);
                 if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
                 {
@@ -317,32 +371,64 @@ namespace Orbita.Controles.Menu
         #endregion AgregarToolButton
 
         #region AgregarToolStateButton
-        public void AgregarToolStateButton(string toolbar, string tool)
+        public void AgregarToolStateButton(string caption)
         {
-            this.AgregarToolStateButton(toolbar, tool, tool);
+            this.AgregarToolStateButton(0, caption);
         }
-        public void AgregarToolStateButton(string toolbar, string tool, string key)
+        public void AgregarToolStateButton(string caption, string key)
+        {
+            this.AgregarToolStateButton(0, caption, key);
+        }
+        public void AgregarToolStateButton(string caption, int posicion)
+        {
+            this.AgregarToolStateButton(0, caption, posicion);
+        }
+        public void AgregarToolStateButton(string caption, string key, int posicion)
+        {
+            this.AgregarToolStateButton(0, caption, key, posicion);
+        }
+        public void AgregarToolStateButton(string caption, System.Drawing.Bitmap imagen)
+        {
+            this.AgregarToolStateButton(0, caption, imagen);
+        }
+        public void AgregarToolStateButton(string caption, string key, System.Drawing.Bitmap imagen)
+        {
+            this.AgregarToolStateButton(0, caption, key, imagen);
+        }
+        public void AgregarToolStateButton(string caption, int posicion, System.Drawing.Bitmap imagen)
+        {
+            this.AgregarToolStateButton(0, caption, posicion, imagen);
+        }
+        public void AgregarToolStateButton(string caption, string key, int posicion, System.Drawing.Bitmap imagen)
+        {
+            this.AgregarToolStateButton(0, caption, key, posicion, imagen);
+        }
+        public void AgregarToolStateButton(int toolbar, string caption)
+        {
+            this.AgregarToolStateButton(toolbar, caption, caption);
+        }
+        public void AgregarToolStateButton(int toolbar, string caption, string key)
         {
             if (!this.control.Tools.Exists(key))
             {
                 Infragistics.Win.UltraWinToolbars.StateButtonTool toolStateBoton = new Infragistics.Win.UltraWinToolbars.StateButtonTool(key);
                 toolStateBoton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.TextOnlyAlways;
-                toolStateBoton.SharedProps.Caption = tool;
+                toolStateBoton.SharedProps.Caption = caption;
                 this.control.Tools.Add(toolStateBoton);
                 this.control.Toolbars[toolbar].Tools.AddTool(key);
             }
         }
-        public void AgregarToolStateButton(string toolbar, string tool, int posicion)
+        public void AgregarToolStateButton(int toolbar, string caption, int posicion)
         {
-            this.AgregarToolStateButton(toolbar, tool, tool, posicion);
+            this.AgregarToolStateButton(toolbar, caption, caption, posicion);
         }
-        public void AgregarToolStateButton(string toolbar, string tool, string key, int posicion)
+        public void AgregarToolStateButton(int toolbar, string caption, string key, int posicion)
         {
             if (!this.control.Tools.Exists(key))
             {
                 Infragistics.Win.UltraWinToolbars.StateButtonTool toolStateBoton = new Infragistics.Win.UltraWinToolbars.StateButtonTool(key);
                 toolStateBoton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.TextOnlyAlways;
-                toolStateBoton.SharedProps.Caption = tool;
+                toolStateBoton.SharedProps.Caption = caption;
                 this.control.Tools.Add(toolStateBoton);
                 if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
                 {
@@ -361,26 +447,26 @@ namespace Orbita.Controles.Menu
                 }
             }
         }
-        public void AgregarToolStateButton(string toolbar, string tool, System.Drawing.Bitmap imagen)
+        public void AgregarToolStateButton(int toolbar, string caption, System.Drawing.Bitmap imagen)
         {
-            this.AgregarToolStateButton(toolbar, tool, tool, imagen);
+            this.AgregarToolStateButton(toolbar, caption, caption, imagen);
         }
-        public void AgregarToolStateButton(string toolbar, string tool, string key, System.Drawing.Bitmap imagen)
+        public void AgregarToolStateButton(int toolbar, string caption, string key, System.Drawing.Bitmap imagen)
         {
-            this.AgregarToolStateButton(toolbar, tool, key, imagen);
+            this.AgregarToolStateButton(toolbar, caption, key, imagen);
         }
-        public void AgregarToolStateButton(string toolbar, string tool, int posicion, System.Drawing.Bitmap imagen)
+        public void AgregarToolStateButton(int toolbar, string caption, int posicion, System.Drawing.Bitmap imagen)
         {
-            this.AgregarToolStateButton(toolbar, tool, tool, posicion, imagen);
+            this.AgregarToolStateButton(toolbar, caption, caption, posicion, imagen);
         }
-        public void AgregarToolStateButton(string toolbar, string tool, string key, int posicion, System.Drawing.Bitmap imagen)
+        public void AgregarToolStateButton(int toolbar, string caption, string key, int posicion, System.Drawing.Bitmap imagen)
         {
             if (!this.control.Tools.Exists(key))
             {
                 Infragistics.Win.UltraWinToolbars.StateButtonTool toolStateBoton = new Infragistics.Win.UltraWinToolbars.StateButtonTool(key);
                 toolStateBoton.SharedProps.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
                 toolStateBoton.SharedProps.AppearancesLarge.Appearance.Image = toolStateBoton.SharedProps.AppearancesSmall.Appearance.Image = imagen;
-                toolStateBoton.SharedProps.Caption = tool;
+                toolStateBoton.SharedProps.Caption = caption;
                 this.control.Tools.Add(toolStateBoton);
                 if (posicion > this.control.Toolbars[toolbar].Tools.Count - 1)
                 {
