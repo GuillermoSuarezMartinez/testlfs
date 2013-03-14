@@ -8,10 +8,10 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("OrbitaWinsock")> 
+<Assembly: AssemblyTitle("Orbita.Winsock")> 
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("Orbita Ingenieria")> 
-<Assembly: AssemblyProduct("OrbitaWinsock")> 
+<Assembly: AssemblyProduct("Orbita.Winsock")> 
 <Assembly: AssemblyCopyright("Copyright © Orbita Ingenieria 2011")> 
 <Assembly: AssemblyTrademark("")> 
 
