@@ -210,7 +210,7 @@ namespace Orbita.Controles.VA
             }
 
             OTrabajoControles.CargarGridSimple(this.GridEscritorios, valores, typeof(OpcionesEscritorio), EstiloColumna.Texto, Alineacion.Izquierda, null, 150, null);
-            this.GridEscritorios.Toolbar.OI.AgregarToolButton("Establecer", "Establecer", "Establece el escritorio seleccionado", 2, global::Orbita.Controles.VA.Properties.Resources.btnEstablecerEscritorio16);
+            this.GridEscritorios.Toolbar.OI.AgregarToolButton(0, "Establecer", "Establece el escritorio seleccionado", 2, global::Orbita.Controles.VA.Properties.Resources.btnEstablecerEscritorio16);
         }
 
         /// <summary>
