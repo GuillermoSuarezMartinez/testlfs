@@ -1,4 +1,4 @@
-﻿namespace oVisorTCP
+﻿namespace Orbita.Controles.Comunicaciones
 {
     partial class FrmConfigLogger
     {
@@ -53,19 +53,19 @@
             this.lblFilasTrazas = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.btnAceptar = new Orbita.Controles.Comunes.OrbitaUltraButton();
             this.btnCancelar = new Orbita.Controles.Comunes.OrbitaUltraButton();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLogger)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCaracter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtExtensionFicheros)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRutaBackup)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.txtLogger)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.txtCaracter)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.txtExtensionFicheros)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.txtRutaBackup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gbRemoting)).BeginInit();
             this.gbRemoting.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPuerto)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.txtPuerto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gbBackup)).BeginInit();
             this.gbBackup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gbGeneral)).BeginInit();
             this.gbGeneral.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFilasError)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFilasTrazas)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.txtFilasError)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.txtFilasTrazas)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPuerto
@@ -160,8 +160,8 @@
             this.gbRemoting.Controls.Add(this.txtLogger);
             this.gbRemoting.Location = new System.Drawing.Point(12, 12);
             this.gbRemoting.Name = "gbRemoting";
-            this.gbRemoting.OrbColorBorde = System.Drawing.Color.DarkGray;
-            this.gbRemoting.OrbColorCabecera = System.Drawing.Color.Empty;
+            this.gbRemoting.ContentAreaAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.gbRemoting.HeaderAppearance.BackColor = System.Drawing.Color.Empty;
             this.gbRemoting.Size = new System.Drawing.Size(181, 86);
             this.gbRemoting.TabIndex = 10;
             this.gbRemoting.Text = "Logger remoting";
@@ -186,8 +186,8 @@
             this.gbBackup.Controls.Add(this.txtRutaBackup);
             this.gbBackup.Location = new System.Drawing.Point(199, 12);
             this.gbBackup.Name = "gbBackup";
-            this.gbBackup.OrbColorBorde = System.Drawing.Color.DarkGray;
-            this.gbBackup.OrbColorCabecera = System.Drawing.Color.Empty;
+            this.gbBackup.ContentAreaAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.gbBackup.HeaderAppearance.BackColor = System.Drawing.Color.Empty;
             this.gbBackup.Size = new System.Drawing.Size(396, 86);
             this.gbBackup.TabIndex = 11;
             this.gbBackup.Text = "Backup logger";
@@ -202,8 +202,8 @@
             this.gbGeneral.Controls.Add(this.lblFilasTrazas);
             this.gbGeneral.Location = new System.Drawing.Point(12, 104);
             this.gbGeneral.Name = "gbGeneral";
-            this.gbGeneral.OrbColorBorde = System.Drawing.Color.DarkGray;
-            this.gbGeneral.OrbColorCabecera = System.Drawing.Color.Empty;
+            this.gbGeneral.ContentAreaAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.gbGeneral.HeaderAppearance.BackColor = System.Drawing.Color.Empty;
             this.gbGeneral.Size = new System.Drawing.Size(583, 59);
             this.gbGeneral.TabIndex = 12;
             this.gbGeneral.Text = "General";
@@ -251,8 +251,7 @@
             this.btnAceptar.ImageSize = new System.Drawing.Size(24, 24);
             this.btnAceptar.Location = new System.Drawing.Point(393, 169);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Orbita.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
-            this.btnAceptar.Orbita.Tipo = Orbita.Controles.Shared.TipoBoton.Aceptar;
+            this.btnAceptar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnAceptar.Size = new System.Drawing.Size(98, 33);
             this.btnAceptar.TabIndex = 14;
             this.btnAceptar.Text = "Aceptar";
@@ -266,8 +265,7 @@
             this.btnCancelar.ImageSize = new System.Drawing.Size(24, 24);
             this.btnCancelar.Location = new System.Drawing.Point(497, 169);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Orbita.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
-            this.btnCancelar.Orbita.Tipo = Orbita.Controles.Shared.TipoBoton.Cancelar;
+            this.btnCancelar.OI.Estilo = Orbita.Controles.Comunes.EstiloBoton.Extragrande;
             this.btnCancelar.Size = new System.Drawing.Size(98, 33);
             this.btnCancelar.TabIndex = 15;
             this.btnCancelar.Text = "Cancelar";
@@ -291,22 +289,22 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configuración Visor";
             this.Load += new System.EventHandler(this.FrmConfigLogger_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.txtLogger)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCaracter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtExtensionFicheros)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRutaBackup)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.txtLogger)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.txtCaracter)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.txtExtensionFicheros)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.txtRutaBackup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gbRemoting)).EndInit();
             this.gbRemoting.ResumeLayout(false);
             this.gbRemoting.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPuerto)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.txtPuerto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gbBackup)).EndInit();
             this.gbBackup.ResumeLayout(false);
             this.gbBackup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gbGeneral)).EndInit();
             this.gbGeneral.ResumeLayout(false);
             this.gbGeneral.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFilasError)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtFilasTrazas)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.txtFilasError)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.txtFilasTrazas)).EndInit();
             this.ResumeLayout(false);
 
         }

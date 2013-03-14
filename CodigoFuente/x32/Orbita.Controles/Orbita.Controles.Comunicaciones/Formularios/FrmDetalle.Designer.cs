@@ -1,4 +1,4 @@
-﻿namespace oVisorTCP
+﻿namespace Orbita.Controles.Comunicaciones
 {
     partial class FrmDetalle
     {

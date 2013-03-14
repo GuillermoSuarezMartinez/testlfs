@@ -1,5 +1,5 @@
 ﻿
-namespace oVisorTCP
+namespace Orbita.Controles.Comunicaciones
 {
     /// <summary>
     /// Clase para gestión de argumentos (de log) desde fichero de configuración.

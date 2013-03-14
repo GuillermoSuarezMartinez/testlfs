@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using Orbita.Trazabilidad;
 
 
-namespace oVisorTCP
+namespace Orbita.Controles.Comunicaciones
 {
     public partial class FrmDetalle : Form
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Orbita.Trazabilidad;
 
-namespace oVisorTCP
+namespace Orbita.Controles.Comunicaciones
 {
     /// <summary>
     /// Clase para la recepción de logs por remoting.
@@ -15,14 +15,14 @@ namespace oVisorTCP
         /// <param name="mensajes">Listado de mensajes.</param>
         public void Log(ItemLog[] mensajes)
         {
-            oVisorTCP visor = oVisorTCP.Visor;
+            OrbitaVisorTCP visor = OrbitaVisorTCP.Visor;
             if (visor != null)
             {
                 if (mensajes != null)
                 {
                     foreach (ItemLog mensaje in mensajes)
                     {
-                        oVisorTCP.Visor.AddLinea(mensaje);
+                        OrbitaVisorTCP.Visor.AddLinea(mensaje);
                     }
                 }
             }

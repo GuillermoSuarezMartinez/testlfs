@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Xml;
 using Orbita.Utiles;
 
-namespace oVisorTCP
+namespace Orbita.Controles.Comunicaciones
 {
     public partial class FrmConfigLogger : Form
     {

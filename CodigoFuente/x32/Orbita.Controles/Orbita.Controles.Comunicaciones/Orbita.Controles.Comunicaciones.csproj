@@ -90,6 +90,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinToolbars.v11.2.dll</HintPath>
     </Reference>
+    <Reference Include="Infragistics2.Win.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.v11.2.dll</HintPath>
+    </Reference>
     <Reference Include="Orbita.Comunicaciones">
       <HintPath>..\..\Comun\Orbita\Orbita.Comunicaciones.dll</HintPath>
     </Reference>
@@ -102,12 +106,27 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Argumento.cs" />
+    <Compile Include="Clases\Logger.cs" />
+    <Compile Include="Formularios\FrmConfigLogger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmConfigLogger.designer.cs">
+      <DependentUpon>FrmConfigLogger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmDetalle.designer.cs">
+      <DependentUpon>FrmDetalle.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrbitaClienteComs.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -150,10 +169,33 @@
     <Compile Include="OrbitaPuertoSerie.Designer.cs">
       <DependentUpon>OrbitaPuertoSerie.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrbitaVisorDiferido.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OrbitaVisorDiferido.designer.cs">
+      <DependentUpon>OrbitaVisorDiferido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrbitaVisorTCP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OrbitaVisorTCP.designer.cs">
+      <DependentUpon>OrbitaVisorTCP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Formularios\FrmConfigLogger.resx">
+      <DependentUpon>FrmConfigLogger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmDetalle.resx">
+      <DependentUpon>FrmDetalle.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OrbitaClienteComs.resx">
       <DependentUpon>OrbitaClienteComs.cs</DependentUpon>
     </EmbeddedResource>
@@ -174,6 +216,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OrbitaPuertoSerie.resx">
       <DependentUpon>OrbitaPuertoSerie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrbitaVisorDiferido.resx">
+      <DependentUpon>OrbitaVisorDiferido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrbitaVisorTCP.resx">
+      <DependentUpon>OrbitaVisorTCP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -203,10 +255,7 @@
     <Content Include="XML\ConfiguracionVisorTCP.xml" />
     <Content Include="XML\GestionColumnas.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Clases\" />
-    <Folder Include="Formularios\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Orbita.Controles.Comunes\Orbita.Controles.Comunes.csproj">
       <Project>{D66C367A-47B7-4464-93D6-92794E4A57C8}</Project>
@@ -216,9 +265,21 @@
       <Project>{B953E685-3E2D-4F93-BB80-805427BBB8A2}</Project>
       <Name>Orbita.Controles.Contenedores</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Estilos\Orbita.Controles.Estilos.csproj">
+      <Project>{69BCFE99-17D1-4F08-AD49-95C395D247A6}</Project>
+      <Name>Orbita.Controles.Estilos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orbita.Controles.Grid\Orbita.Controles.Grid.csproj">
       <Project>{34B632DA-E0C4-4F27-AAFD-AFAD64604BFA}</Project>
       <Name>Orbita.Controles.Grid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Menu\Orbita.Controles.Menu.csproj">
+      <Project>{3FC7CCF4-13B4-4B2B-95A9-CC178C85C343}</Project>
+      <Name>Orbita.Controles.Menu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Shared\Orbita.Controles.Shared.csproj">
+      <Project>{D104B7D1-93CB-46AE-8F84-AA68BB3B2C5E}</Project>
+      <Name>Orbita.Controles.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
