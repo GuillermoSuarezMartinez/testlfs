@@ -28,3 +28,5 @@ del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.GeneradorEscenarios.xml /q/f
 "%PROGRAMFILES%\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.VA.GeneradorEscenarios32.saproj
 verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.GeneradorEscenarios.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2012"
 xcopy ..\Orbita.VA.GeneradorEscenarios.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
+
+%comspec% /k "".\tf.bat"" 

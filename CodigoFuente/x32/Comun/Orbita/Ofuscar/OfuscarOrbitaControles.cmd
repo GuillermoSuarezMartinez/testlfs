@@ -1,4 +1,4 @@
-@echo off
+@echo Orbita.Controles.Combo.............................................
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.Combo.dll /q/f
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.Combo.xml /q/f
 "%PROGRAMFILES%\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.Controles.Combo32.saproj
@@ -64,6 +64,8 @@ del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.VA.xml /q/f
 "%PROGRAMFILES%\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.Controles.VA32.saproj
 verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.VA.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2012"
 xcopy ..\Orbita.Controles.VA.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
+
+%comspec% /k "".\tf.bat"" 
 
 pause
 
