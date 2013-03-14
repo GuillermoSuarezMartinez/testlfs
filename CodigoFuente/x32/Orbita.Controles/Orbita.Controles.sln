@@ -240,6 +240,7 @@ Global
 		{7E7DAFD4-3823-46B8-917C-FCEA9431A1A9}.Release|Mixed Platforms.Build.0 = Release|x86
 		{7E7DAFD4-3823-46B8-917C-FCEA9431A1A9}.Release|x64.ActiveCfg = Release|x86
 		{7E7DAFD4-3823-46B8-917C-FCEA9431A1A9}.Release|x86.ActiveCfg = Release|x86
+		{7E7DAFD4-3823-46B8-917C-FCEA9431A1A9}.Release|x86.Build.0 = Release|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Debug|Any CPU.ActiveCfg = Release|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -251,6 +252,7 @@ Global
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Release|Mixed Platforms.Build.0 = Release|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Release|x64.ActiveCfg = Release|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Release|x86.ActiveCfg = Release|x86
+		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
