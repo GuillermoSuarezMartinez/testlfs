@@ -349,18 +349,10 @@ namespace Orbita.Controles.Combo
         #endregion
 
         #region Métodos públicos
-        public void Formatear(System.Data.DataTable dt)
-        {
-            this.Formatear(dt, null, null, null);
-        }
         public void Formatear(System.Data.DataTable dt, string columnaDeTexto, string columnaDeValor)
         {
             this.formateado = true;
             this.Formatear(dt, null, columnaDeTexto, columnaDeValor);
-        }
-        public void Formatear(System.Data.DataTable dt, System.Collections.ArrayList columnas)
-        {
-            this.Formatear(dt, columnas, null, null);
         }
         public void Formatear(System.Data.DataTable dt, System.Collections.ArrayList columnas, string columnaDeTexto, string columnaDeValor)
         {

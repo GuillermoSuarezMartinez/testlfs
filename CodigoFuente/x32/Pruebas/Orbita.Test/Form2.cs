@@ -48,7 +48,6 @@ namespace Orbita.Test
             ArrayList list = new ArrayList();
             list.Add(new SqlParameter("@IdSede", 1));
             DataTable dt = BDatos.Bd.SeleccionProcedimientoAlmacenado("ADM_GET_ACCIONESTODAS", list);
-            this.orbitaUltraCombo1.OI.Formatear(dt);
         }
     }
 }
