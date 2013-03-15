@@ -38,8 +38,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Infragistics2.Shared.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics2.Win.Misc.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics2.Win.UltraWinDock.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics2.Win.UltraWinEditors.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics2.Win.UltraWinExplorerBar.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics2.Win.UltraWinMaskedEdit.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics2.Win.UltraWinStatusBar.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics2.Win.UltraWinToolbars.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics2.Win.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
     <Reference Include="Orbita.Comunicaciones">
       <HintPath>..\..\Comun\Orbita\Orbita.Comunicaciones.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.Comunes, Version=13.70.5.1, Culture=neutral, processorArchitecture=x86" />
+    <Reference Include="Orbita.Controles.Shared, Version=13.70.5.1, Culture=neutral, processorArchitecture=x86" />
+    <Reference Include="Orbita.Trazabilidad">
+      <HintPath>..\..\Comun\Orbita\Orbita.Trazabilidad.dll</HintPath>
     </Reference>
     <Reference Include="Orbita.Utiles">
       <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
@@ -58,10 +72,28 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3.Designer.cs">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form3.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -89,9 +121,17 @@
       <Project>{7E7DAFD4-3823-46B8-917C-FCEA9431A1A9}</Project>
       <Name>Orbita.Controles.Comunicaciones</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Orbita\Orbita.Trazabilidad\Orbita.Trazabilidad.csproj">
-      <Project>{1A2EEC44-A494-4BA6-A591-267B73A55CD1}</Project>
-      <Name>Orbita.Trazabilidad</Name>
+    <ProjectReference Include="..\..\Orbita.Controles\Orbita.Controles.Contenedores\Orbita.Controles.Contenedores.csproj">
+      <Project>{B953E685-3E2D-4F93-BB80-805427BBB8A2}</Project>
+      <Name>Orbita.Controles.Contenedores</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Orbita.Controles\Orbita.Controles.Grid\Orbita.Controles.Grid.csproj">
+      <Project>{34B632DA-E0C4-4F27-AAFD-AFAD64604BFA}</Project>
+      <Name>Orbita.Controles.Grid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Orbita.Controles\Orbita.Controles.Menu\Orbita.Controles.Menu.csproj">
+      <Project>{3FC7CCF4-13B4-4B2B-95A9-CC178C85C343}</Project>
+      <Name>Orbita.Controles.Menu</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

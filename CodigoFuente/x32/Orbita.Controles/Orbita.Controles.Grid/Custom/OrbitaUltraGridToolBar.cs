@@ -16,6 +16,7 @@ using Infragistics.Win.UltraWinGrid;
 using Infragistics.Win.UltraWinToolbars;
 using Orbita.Controles.Menu;
 using Orbita.Controles.Shared;
+using Orbita.Controles.Comunes;
 namespace Orbita.Controles.Grid
 {
     public partial class OrbitaUltraGridToolBar : OrbitaUserControl
@@ -777,11 +778,13 @@ namespace Orbita.Controles.Grid
                 if (this.ToolCiclicoClick != null)
                 {
                     bool activo = (e.Tool as Infragistics.Win.UltraWinToolbars.StateButtonTool).Checked;
-                    this.Toolbar.Tools["SegundosCiclo"].SharedProps.Visible = activo;
                     if (activo)
                     {
-                        ciclo = new OTimerEventArgs(5);
-                        timer.Interval = 5 * 1000;
+                        Infragistics.Win.UltraWinToolbars.ControlContainerTool tool = this.Toolbar.Tools["PeriodoCiclico"] as ControlContainerTool;
+                        OrbitaUltraNumericEditor periodo = tool.Control as OrbitaUltraNumericEditor;
+                        object valor = string.IsNullOrEmpty(periodo.Value.ToString()) ? periodo.NullText : periodo.Value;
+                        ciclo = new OTimerEventArgs((int)valor);
+                        timer.Interval = ciclo.Intervalo * 1000;
                     }
                     timer.Enabled = activo;
                 }

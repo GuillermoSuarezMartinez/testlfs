@@ -17,7 +17,7 @@ namespace Orbita.Test
             Application.SetCompatibleTextRenderingDefault(false);
             string fichero = @"C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Trazabilidad\Config\Ejemplos\Wrapper.config.xml";
             LogManager.ConfiguracionLogger(fichero);
-            Application.Run(new Form1());
+            Application.Run(new Form2());
         }
     }
 }

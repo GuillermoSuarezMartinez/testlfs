@@ -309,22 +309,6 @@ namespace Orbita.Controles.Grid
                 fila.Update();
             }
         }
-        //public bool Eliminar(bool prompt)
-        //{
-        //    if (prompt)
-        //    {
-        //        return this.Eliminar();
-        //    }
-        //    else
-        //    {
-        //        bool tempConfirmarBorrado = this.ConfirmarBorrado;
-        //        this.ConfirmarBorrado = false;
-        //        bool res = this.Eliminar();
-        //        this.ConfirmarBorrado = tempConfirmarBorrado;
-        //        return res;
-        //    }
-        //}
-
         public bool Eliminar()
         {
             bool retorno = false;

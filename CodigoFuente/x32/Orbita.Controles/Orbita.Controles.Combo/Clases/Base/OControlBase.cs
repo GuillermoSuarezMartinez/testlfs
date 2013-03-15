@@ -1,6 +1,5 @@
-﻿using System;
-//***********************************************************************
-// Assembly         : Orbita.Controles
+﻿//***********************************************************************
+// Assembly         : Orbita.Controles.Grid
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -10,22 +9,29 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using Orbita.Controles.Grid;
 namespace Orbita.Controles.Combo
 {
     public abstract class OControlBase
     {
         #region Atributos
-        /// <summary>
-        /// Apariencia.
-        /// </summary>
+        OrbitaUltraCombo control;
         OApariencia apariencia;
         #endregion
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OControlBase.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OControlBase.
         /// </summary>
         protected OControlBase() { }
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OControlBase.
+        /// </summary>
+        /// <param name="control"></param>
+        protected OControlBase(object control)
+        {
+            this.control = (OrbitaUltraCombo)control;
+        }
         #endregion
 
         #region Propiedades
@@ -43,8 +49,13 @@ namespace Orbita.Controles.Combo
             }
             set { this.apariencia = value; }
         }
+        internal OrbitaUltraCombo Control
+        {
+            get { return this.control; }
+        }
         #endregion
 
+        #region Métodos protegidos
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeApariencia()
         {
@@ -55,17 +66,15 @@ namespace Orbita.Controles.Combo
         {
             this.apariencia.Reset();
         }
-
         protected virtual void AparienciaChanging(object sender, OPropiedadEventArgs e) { }
         protected virtual void AparienciaChanged(object sender, OPropiedadEventArgs e) { }
+        #endregion
 
-        /// <summary>
-        /// Determina el número de propiedades modificadas.
-        /// </summary>
-        /// <returns></returns>
+        #region Métodos públicos
         public override string ToString()
         {
             return null;
         }
+        #endregion
     }
 }

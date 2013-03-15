@@ -39,20 +39,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Controles.VA", "Orbi
 		{3FC7CCF4-13B4-4B2B-95A9-CC178C85C343} = {3FC7CCF4-13B4-4B2B-95A9-CC178C85C343}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Test", "..\Pruebas\Orbita.Test\Orbita.Test.csproj", "{5A389901-6ECF-48D6-8DDC-0A83AE46925C}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 12
+		SccNumberOfProjects = 13
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://01x0019:8080/tfs/orbitasoftware
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Orbita.Controles.Comunicaciones\\Orbita.Controles.Comunicaciones.csproj
+		SccProjectUniqueName0 = Orbita.Controles.Comunicaciones\\Orbita.Controles.Comunicaciones.csproj
+		SccProjectTopLevelParentUniqueName0 = Orbita.Controles.sln
+		SccProjectName0 = Orbita.Controles.Comunicaciones
+		SccLocalPath0 = Orbita.Controles.Comunicaciones
+		SccProjectUniqueName1 = Orbita.Controles.VA\\Orbita.Controles.VA.csproj
 		SccProjectTopLevelParentUniqueName1 = Orbita.Controles.sln
-		SccProjectName1 = Orbita.Controles.Comunicaciones
-		SccLocalPath1 = Orbita.Controles.Comunicaciones
-		SccProjectUniqueName2 = Orbita.Controles.VA\\Orbita.Controles.VA.csproj
-		SccProjectTopLevelParentUniqueName2 = Orbita.Controles.sln
-		SccProjectName2 = Orbita.Controles.VA
-		SccLocalPath2 = Orbita.Controles.VA
+		SccProjectName1 = Orbita.Controles.VA
+		SccLocalPath1 = Orbita.Controles.VA
+		SccProjectUniqueName2 = ..\\Pruebas\\Orbita.Test\\Orbita.Test.csproj
+		SccProjectName2 = ../Pruebas/Orbita.Test
+		SccLocalPath2 = ..\\Pruebas\\Orbita.Test
 		SccProjectUniqueName3 = Orbita.Controles.Grid\\Orbita.Controles.Grid.csproj
 		SccProjectTopLevelParentUniqueName3 = Orbita.Controles.sln
 		SccProjectName3 = Orbita.Controles.Grid
@@ -89,6 +93,7 @@ Global
 		SccProjectTopLevelParentUniqueName11 = Orbita.Controles.sln
 		SccProjectName11 = Orbita.Controles.Shared
 		SccLocalPath11 = Orbita.Controles.Shared
+		SccLocalPath12 = .
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -242,7 +247,6 @@ Global
 		{7E7DAFD4-3823-46B8-917C-FCEA9431A1A9}.Release|x86.ActiveCfg = Release|x86
 		{7E7DAFD4-3823-46B8-917C-FCEA9431A1A9}.Release|x86.Build.0 = Release|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Debug|Any CPU.ActiveCfg = Release|x86
-		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Debug|Any CPU.Build.0 = Release|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Debug|x64.ActiveCfg = Debug|x86
@@ -254,6 +258,18 @@ Global
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Release|x64.ActiveCfg = Release|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Release|x86.ActiveCfg = Release|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Release|x86.Build.0 = Release|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Debug|x64.ActiveCfg = Debug|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Debug|x86.ActiveCfg = Debug|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Debug|x86.Build.0 = Debug|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|Any CPU.ActiveCfg = Release|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|x64.ActiveCfg = Release|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|x86.ActiveCfg = Release|x86
+		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

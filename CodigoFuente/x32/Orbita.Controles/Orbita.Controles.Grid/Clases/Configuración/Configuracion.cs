@@ -42,7 +42,7 @@ namespace Orbita.Controles.Grid
         internal const TipoSeleccion DefectoTipoSeleccionColumna = TipoSeleccion.Ninguna;
         internal const ModoActualizacion DefectoModoActualizacion = ModoActualizacion.CambioDeCeldaOsinFoco;
         internal const bool DefectoMostrarTitulo = false;
-        internal const string DefectoColorFondoColumnasBloquedas = "Control";
+        internal const string DefectoColorFondoColumnasBloqueadas = "Control";
         internal const bool DefectoMostrarToolGestionar = false;
         internal const bool DefectoMostrarToolVer = false;
         internal const bool DefectoMostrarToolModificar = false;

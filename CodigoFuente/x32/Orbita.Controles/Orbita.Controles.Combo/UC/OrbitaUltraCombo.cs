@@ -1,22 +1,29 @@
-﻿using Orbita.Controles.Grid;
-using System.Runtime.InteropServices;
+﻿//***********************************************************************
+// Assembly         : Orbita.Controles.Combo
+// Author           : crodriguez
+// Created          : 19-01-2012
+//
+// Last Modified By : crodriguez
+// Last Modified On : 19-01-2012
+// Description      : 
+//
+// Copyright        : (c) Orbita Ingenieria. All rights reserved.
+//***********************************************************************
 using System;
-using System.IO;
+using Orbita.Controles.Grid;
 namespace Orbita.Controles.Combo
 {
     public partial class OrbitaUltraCombo : Infragistics.Win.UltraWinGrid.UltraCombo
     {
+        #region Nueva definición
         public class ControlNuevaDefinicion : OUltraCombo
         {
             public ControlNuevaDefinicion(OrbitaUltraCombo sender)
                 : base(sender as object) { }
-        };
+        }
+        #endregion
 
         #region Atributos
-        /// <summary>
-        /// Proporciona un acceso a los recursos específicos de cada referencia cultural en tiempo de ejecución.
-        /// </summary>
-        System.Resources.ResourceManager stringManager;
         ControlNuevaDefinicion definicion;
         #endregion
 
@@ -28,9 +35,9 @@ namespace Orbita.Controles.Combo
             : base()
         {
             InitializeComponent();
+            InitializeResourceStrings();
             InitializeAttributes();
             InitializeProperties();
-            InitializeResourceStrings();
         }
         #endregion
 
@@ -193,19 +200,15 @@ namespace Orbita.Controles.Combo
         //#endregion
 
         #region Métodos privados
-        /// <summary>
-        /// Inicializar atributos.
-        /// </summary>
         void InitializeAttributes()
         {
-            this.definicion = new ControlNuevaDefinicion(this);
-            this.stringManager = new System.Resources.ResourceManager("es-ES", System.Reflection.Assembly.GetExecutingAssembly());
+            if (this.definicion == null)
+            {
+                this.definicion = new ControlNuevaDefinicion(this);
+            }
         }
-        /// <summary>
-        /// Inicializar propiedades.
-        /// </summary>
-        void InitializeProperties()
-        {
+        //void InitializeProperties()
+        //{
             //Stream isl = Estilos.Comunes.GetIsl("FlatNature");
             //Infragistics.Win.AppStyling.StyleManager.Load(isl, true, "FlatNature");
             //this.StyleLibraryName = "FlatNature";
@@ -238,6 +241,11 @@ namespace Orbita.Controles.Combo
             //this.DisplayLayout.Override.HeaderAppearance.TextHAlign = Infragistics.Win.HAlign.Left;
             // Mostrar ls posibilidad de ordenar columna.
             // this.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortSingle;
+        //}
+        void InitializeProperties()
+        {
+            this.OI.Editable = Configuracion.DefectoEditable;
+            this.OI.NullablePorTeclado = Configuracion.DefectoNullablePorTeclado;
         }
         #endregion
 
@@ -328,9 +336,8 @@ namespace Orbita.Controles.Combo
             {
                 e.CustomRowFiltersDialog.TopMost = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                System.Windows.Forms.MessageBox.Show(string.Format(System.Globalization.CultureInfo.CurrentCulture, OEstilo.FormatExcepcionGeneral(), ex.TargetSite, ex.ToString(), ex.StackTrace), stringManager.GetString("ExcepcionOrbitaCombo", System.Globalization.CultureInfo.CurrentUICulture), System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Exclamation, System.Windows.Forms.MessageBoxDefaultButton.Button1, 0);
             }
         }
         void OrbitaUltraCombo_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -351,9 +358,8 @@ namespace Orbita.Controles.Combo
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                System.Windows.Forms.MessageBox.Show(string.Format(System.Globalization.CultureInfo.CurrentCulture, OEstilo.FormatExcepcionGeneral(), ex.TargetSite, ex.ToString(), ex.StackTrace), stringManager.GetString("ExcepcionOrbitaCombo", System.Globalization.CultureInfo.CurrentUICulture), System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Exclamation, System.Windows.Forms.MessageBoxDefaultButton.Button1, 0);
             }
         }
         /// <summary>

@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Controles
+// Assembly         : Orbita.Controles.Combo
 // Author           : crodriguez
 // Created          : 19-01-2012
 //
@@ -9,8 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.IO;
+using Orbita.Controles.Grid;
 namespace Orbita.Controles.Combo
 {
     [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
@@ -18,11 +17,12 @@ namespace Orbita.Controles.Combo
     {
         #region Atributos
         EstiloCabecera estilo;
+        bool multilinea;
         #endregion
 
         #region Eventos
-        public event EventHandler<OPropiedadEventArgs> PropertyChanging;
-        public event EventHandler<OPropiedadEventArgs> PropertyChanged;
+        public event System.EventHandler<OPropiedadEventArgs> PropertyChanging;
+        public event System.EventHandler<OPropiedadEventArgs> PropertyChanged;
         #endregion
 
         #region Constructor
@@ -35,7 +35,7 @@ namespace Orbita.Controles.Combo
 
         #region Propiedades
         [System.ComponentModel.Description("Determina la apariencia de cabecera.")]
-        //[System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public override OApariencia Apariencia
         {
             get { return base.Apariencia; }
@@ -47,17 +47,31 @@ namespace Orbita.Controles.Combo
             get { return this.estilo; }
             set
             {
-                if (this.estilo != value)
+                if (this.PropertyChanging != null)
                 {
-                    if (this.PropertyChanging != null)
-                    {
-                        this.PropertyChanging(this, new OPropiedadEventArgs("Estilo"));
-                    }
-                    this.estilo = value;
-                    if (this.PropertyChanged != null)
-                    {
-                        this.PropertyChanged(this, new OPropiedadEventArgs("Estilo"));
-                    }
+                    this.PropertyChanging(this, new OPropiedadEventArgs("Estilo"));
+                }
+                this.estilo = value;
+                if (this.PropertyChanged != null)
+                {
+                    this.PropertyChanged(this, new OPropiedadEventArgs("Estilo"));
+                }
+            }
+        }
+        [System.ComponentModel.Description("Determina el estilo multilínea de la cabecera.")]
+        public bool Multilinea
+        {
+            get { return this.multilinea; }
+            set
+            {
+                if (this.PropertyChanging != null)
+                {
+                    this.PropertyChanging(this, new OPropiedadEventArgs("Multilinea"));
+                }
+                this.multilinea = value;
+                if (this.PropertyChanged != null)
+                {
+                    this.PropertyChanged(this, new OPropiedadEventArgs("Multilinea"));
                 }
             }
         }
@@ -70,9 +84,19 @@ namespace Orbita.Controles.Combo
             this.Estilo = Configuracion.DefectoEstiloCabecera;
         }
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+        protected void ResetMultilinea()
+        {
+            this.Multilinea = Configuracion.DefectoCabeceraMultilinea;
+        }
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeEstilo()
         {
             return (this.Estilo != Configuracion.DefectoEstiloCabecera);
+        }
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+        protected bool ShouldSerializeMultilinea()
+        {
+            return (this.Multilinea != Configuracion.DefectoCabeceraMultilinea);
         }
         #endregion
     }

@@ -73,27 +73,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\Configuración\OConfiguracion.cs" />
-    <Compile Include="Clases\ExpandableObjectConverter\OAparienciaConverter.cs" />
-    <Compile Include="Clases\EventArgs\OPropertyChangedEventArgs.cs" />
-    <Compile Include="Clases\Base\OAparienciaBase.cs" />
-    <Compile Include="Clases\Propiedades y métodos\OColumnas.cs" />
-    <Compile Include="Clases\Propiedades y métodos\OCeldas.cs" />
-    <Compile Include="Clases\Propiedades y métodos\OCabecera.cs" />
     <Compile Include="Clases\Base\OControlBase.cs" />
-    <Compile Include="Clases\Propiedades y métodos\OFilaAlterna.cs" />
-    <Compile Include="Clases\Propiedades y métodos\OFilaActiva.cs" />
+    <Compile Include="Clases\Configuración\OConfiguracion.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OCeldas.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OColumnas.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OCabecera.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OFilasActivas.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OFilasAlternas.cs" />
     <Compile Include="Clases\Propiedades y métodos\OFilas.cs" />
-    <Compile Include="Clases\Propiedades y métodos\OApariencia.cs" />
     <Compile Include="Clases\Propiedades y métodos\OUltraCombo.cs" />
     <Compile Include="Clases\Configuración\Configuracion.cs" />
-    <Compile Include="Enumerados\AlineacionHorizontal.cs" />
-    <Compile Include="Enumerados\AlineacionVertical.cs" />
-    <Compile Include="Enumerados\AdornoTexto.cs" />
-    <Compile Include="Enumerados\AutoAjustarEstilo.cs" />
-    <Compile Include="Enumerados\EstiloCabecera.cs" />
-    <Compile Include="Enumerados\EstiloBorde.cs" />
-    <Compile Include="Estructuras\OAparienciaDatos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UC\OrbitaUltraCombo.cs">
       <SubType>Component</SubType>
