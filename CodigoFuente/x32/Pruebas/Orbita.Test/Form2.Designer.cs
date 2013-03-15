@@ -37,7 +37,14 @@
             this._OrbitaMdiForm_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._OrbitaMdiForm_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._OrbitaMdiForm_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this.orbitaUltraCombo1 = new Orbita.Controles.Combo.OrbitaUltraCombo();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.orbitaUltraToolbarsManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orbitaUltraCombo1)).BeginInit();
             this.SuspendLayout();
             // 
             // orbitaUltraGridToolBar1
@@ -116,11 +123,73 @@
             this._OrbitaMdiForm_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(482, 0);
             this._OrbitaMdiForm_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.orbitaUltraToolbarsManager1;
             // 
+            // orbitaUltraCombo1
+            // 
+            this.orbitaUltraCombo1.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList;
+            this.orbitaUltraCombo1.Location = new System.Drawing.Point(36, 45);
+            this.orbitaUltraCombo1.Name = "orbitaUltraCombo1";
+            this.orbitaUltraCombo1.Size = new System.Drawing.Size(228, 22);
+            this.orbitaUltraCombo1.TabIndex = 6;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(204, 205);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(204, 234);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 12;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(363, 23);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 17;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(363, 45);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 18;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(363, 60);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.TabIndex = 19;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 433);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.orbitaUltraCombo1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.orbitaUltraGridToolBar1);
             this.Controls.Add(this._OrbitaMdiForm_Toolbars_Dock_Area_Left);
@@ -128,7 +197,6 @@
             this.Controls.Add(this._OrbitaMdiForm_Toolbars_Dock_Area_Bottom);
             this.Controls.Add(this._OrbitaMdiForm_Toolbars_Dock_Area_Top);
             this.Name = "Form2";
-            this.OI.MostrarFondoCorporativo = false;
             this.Text = "Form2";
             this.Controls.SetChildIndex(this._OrbitaMdiForm_Toolbars_Dock_Area_Top, 0);
             this.Controls.SetChildIndex(this._OrbitaMdiForm_Toolbars_Dock_Area_Bottom, 0);
@@ -136,8 +204,16 @@
             this.Controls.SetChildIndex(this._OrbitaMdiForm_Toolbars_Dock_Area_Left, 0);
             this.Controls.SetChildIndex(this.orbitaUltraGridToolBar1, 0);
             this.Controls.SetChildIndex(this.button1, 0);
+            this.Controls.SetChildIndex(this.orbitaUltraCombo1, 0);
+            this.Controls.SetChildIndex(this.button2, 0);
+            this.Controls.SetChildIndex(this.button3, 0);
+            this.Controls.SetChildIndex(this.button4, 0);
+            this.Controls.SetChildIndex(this.button5, 0);
+            this.Controls.SetChildIndex(this.button6, 0);
             ((System.ComponentModel.ISupportInitialize)(this.orbitaUltraToolbarsManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orbitaUltraCombo1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -150,5 +226,11 @@
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _OrbitaMdiForm_Toolbars_Dock_Area_Right;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _OrbitaMdiForm_Toolbars_Dock_Area_Bottom;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _OrbitaMdiForm_Toolbars_Dock_Area_Top;
+        private Controles.Combo.OrbitaUltraCombo orbitaUltraCombo1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
     }
 }

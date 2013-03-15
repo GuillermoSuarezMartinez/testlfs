@@ -66,17 +66,13 @@ namespace Orbita.Controles.Grid
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OUltraGrid.
         /// </summary>
         public OUltraGrid()
-            : base()
-        {
-        }
+            : base() { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OUltraGrid.
         /// </summary>
         /// <param name="control"></param>
         public OUltraGrid(object control)
-            : base(control)
-        {
-        }
+            : base(control)  { }
         #endregion
 
         #region Propiedades

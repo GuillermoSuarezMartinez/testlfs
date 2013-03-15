@@ -245,7 +245,9 @@ namespace Orbita.Controles.Combo
         void InitializeProperties()
         {
             this.OI.Editable = Configuracion.DefectoEditable;
-            this.OI.NullablePorTeclado = Configuracion.DefectoNullablePorTeclado;
+            this.OI.AnulablePorTeclado = Configuracion.DefectoNullablePorTeclado;
+            this.OI.Valor = Configuracion.DefectoValor;
+            this.OI.Texto = Configuracion.DefectoTexto;
         }
         #endregion
 
@@ -344,7 +346,7 @@ namespace Orbita.Controles.Combo
         {
             try
             {
-                if (this.DropDownStyle == Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList && this.OI.NullablePorTeclado)
+                if (this.DropDownStyle == Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList && this.OI.AnulablePorTeclado)
                 {
                     if (e != null)
                     {

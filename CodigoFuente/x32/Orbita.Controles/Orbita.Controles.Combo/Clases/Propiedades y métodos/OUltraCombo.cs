@@ -21,10 +21,6 @@ namespace Orbita.Controles.Combo
     {
         #region Atributos
         /// <summary>
-        /// Control (sender).
-        /// </summary>
-        OrbitaUltraCombo control;
-        /// <summary>
         /// Configuración de filas.
         /// </summary>
         OFilas filas;
@@ -45,17 +41,9 @@ namespace Orbita.Controles.Combo
         /// </summary>
         bool editable;
         /// <summary>
-        /// El valor que ha sido seleccionado de la lista.
-        /// </summary>
-        object valor;
-        /// <summary>
-        /// El texto mostrado en la posición editable del control.
-        /// </summary>
-        string texto;
-        /// <summary>
         /// Permite suprimir el valor del combo con las teclas backspace ó supresión.
         /// </summary>
-        bool nullablePorTeclado;
+        bool anulablePorTeclado;
         bool formateado = false;
         bool activarPrimeraFilaAlFormatear = true;
         #endregion
@@ -64,15 +52,14 @@ namespace Orbita.Controles.Combo
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OUltraCombo.
         /// </summary>
+        public OUltraCombo()
+            : base() { }
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OUltraCombo.
+        /// </summary>
+        /// <param name="control"> Orbita.Controles.Combo.OrbitaUltraCombo.</param>
         public OUltraCombo(object control)
-            : base()
-        {
-            this.control = (OrbitaUltraCombo)control;
-            this.Editable = Configuracion.DefectoEditable;
-            this.Valor = Configuracion.DefectoValor;
-            this.Texto = Configuracion.DefectoTexto;
-            this.NullablePorTeclado = Configuracion.DefectoNullablePorTeclado;
-        }
+            : base(control)  { }
         #endregion
 
         #region Propiedades
@@ -103,34 +90,36 @@ namespace Orbita.Controles.Combo
             set { this.activarPrimeraFilaAlFormatear = value; }
         }
         [System.ComponentModel.Description(" Permite suprimir el valor del combo con las teclas backspace ó supresión.")]
-        public bool NullablePorTeclado
+        public bool AnulablePorTeclado
         {
-            get { return this.nullablePorTeclado; }
-            set { this.nullablePorTeclado = value; }
+            get { return this.anulablePorTeclado; }
+            set { this.anulablePorTeclado = value; }
         }
-        [System.ComponentModel.Description("El valor que ha sido seleccionado de la lista.")]
         [Browsable(false)]
         public object Valor
         {
-            get { return this.valor; }
-            set
+            get 
             {
-                this.valor = value;
-                this.OnChanged(new OPropiedadEventArgs("Valor"));
+                if (this.Control.Value != null)
+                {
+                    return this.Control.Value;
+                }
+                return string.Empty;
             }
+            set { this.Control.Value = value; }
         }
-        [System.ComponentModel.Description("El texto mostrado en la posición editable del control.")]
+        [Browsable(false)]
         public string Texto
         {
-            get { return this.texto; }
-            set
+            get
             {
-                if (this.editable)
+                if (this.Control.Text != null)
                 {
-                    this.texto = value;
-                    this.OnChanged(new OPropiedadEventArgs("Texto"));
+                    return this.Control.Text;
                 }
+                return string.Empty;
             }
+            set { this.Control.Text = value; }
         }
         [System.ComponentModel.Description("Determina si se permite editar el TextBox asociado a OrbitaUltraCombo.")]
         public bool Editable
@@ -178,7 +167,6 @@ namespace Orbita.Controles.Combo
                 if (this.cabecera == null)
                 {
                     this.cabecera = new OCabecera();
-                    this.cabecera.PropertyChanged += new EventHandler<OPropiedadEventArgs>(CabeceraChanged);
                     this.cabecera.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaCabeceraChanged);
                     this.cabecera.Estilo = Configuracion.DefectoEstiloCabecera;
                     this.cabecera.Multilinea = Configuracion.DefectoCabeceraMultilinea;
@@ -232,18 +220,12 @@ namespace Orbita.Controles.Combo
                     case "Editable":
                         if (this.editable)
                         {
-                            this.control.DropDownStyle = UltraComboStyle.DropDown;
+                            this.Control.DropDownStyle = UltraComboStyle.DropDown;
                         }
                         else
                         {
-                            this.control.DropDownStyle = UltraComboStyle.DropDownList;
+                            this.Control.DropDownStyle = UltraComboStyle.DropDownList;
                         }
-                        break;
-                    case "Valor":
-                        this.control.Value = this.valor;
-                        break;
-                    case "Texto":
-                        this.control.Text = this.texto;
                         break;
                 }
             }
@@ -267,7 +249,6 @@ namespace Orbita.Controles.Combo
                 }
             }
         }
-        protected virtual void CabeceraChanged(object sender, OPropiedadEventArgs e) { }
         protected virtual void ColumnasChanged(object sender, OPropiedadEventArgs e)
         {
             if (e != null)
@@ -276,112 +257,120 @@ namespace Orbita.Controles.Combo
                 {
                     if (this.columnas.PermitirOrdenar)
                     {
-                        this.control.DisplayLayout.Override.HeaderClickAction = HeaderClickAction.SortMulti;
+                        this.Control.DisplayLayout.Override.HeaderClickAction = HeaderClickAction.SortMulti;
                     }
                     else
                     {
-                        this.control.DisplayLayout.Override.HeaderClickAction = HeaderClickAction.Select;
+                        this.Control.DisplayLayout.Override.HeaderClickAction = HeaderClickAction.Select;
                     }
                 }
                 else if (e.Nombre == "Estilo")
                 {
                     if (this.columnas.Estilo == AutoAjustarEstilo.ExtenderUltimaColumna)
                     {
-                        this.control.DisplayLayout.AutoFitStyle = AutoFitStyle.ExtendLastColumn;
+                        this.Control.DisplayLayout.AutoFitStyle = AutoFitStyle.ExtendLastColumn;
                     }
                     else if (this.columnas.Estilo == AutoAjustarEstilo.RedimensionarTodasLasColumnas)
                     {
-                        this.control.DisplayLayout.AutoFitStyle = AutoFitStyle.ResizeAllColumns;
+                        this.Control.DisplayLayout.AutoFitStyle = AutoFitStyle.ResizeAllColumns;
                     }
                     else if (this.columnas.Estilo == AutoAjustarEstilo.SinAutoajusteColumnas)
                     {
-                        this.control.DisplayLayout.AutoFitStyle = AutoFitStyle.None;
+                        this.Control.DisplayLayout.AutoFitStyle = AutoFitStyle.None;
                     }
                 }
                 else if (e.Nombre == "MostrarFiltro")
                 {
                     if (this.Columnas.MostrarFiltro)
                     {
-                        this.control.DisplayLayout.Override.AllowRowFiltering = DefaultableBoolean.True;
+                        this.Control.DisplayLayout.Override.AllowRowFiltering = DefaultableBoolean.True;
                     }
                     else
                     {
-                        this.control.DisplayLayout.Override.AllowRowFiltering = DefaultableBoolean.Default;
+                        this.Control.DisplayLayout.Override.AllowRowFiltering = DefaultableBoolean.Default;
                     }
                 }
             }
         }
         protected virtual void AparienciaCeldasChanged(object sender, OPropiedadEventArgs e)
         {
-            this.control.DisplayLayout.Override.CellAppearance.BackColor = this.celdas.Apariencia.ColorFondo;
-            this.control.DisplayLayout.Override.CellAppearance.BorderColor = this.celdas.Apariencia.ColorBorde;
-            this.control.DisplayLayout.Override.CellAppearance.ForeColor = this.celdas.Apariencia.ColorTexto;
-            this.control.DisplayLayout.Override.CellAppearance.TextHAlign = (Infragistics.Win.HAlign)(int)this.celdas.Apariencia.AlineacionTextoHorizontal;
-            this.control.DisplayLayout.Override.CellAppearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.celdas.Apariencia.AlineacionTextoVertical;
-            this.control.DisplayLayout.Override.CellAppearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.celdas.Apariencia.AdornoTexto;
+            this.Control.DisplayLayout.Override.CellAppearance.BackColor = this.celdas.Apariencia.ColorFondo;
+            this.Control.DisplayLayout.Override.CellAppearance.BorderColor = this.celdas.Apariencia.ColorBorde;
+            this.Control.DisplayLayout.Override.CellAppearance.ForeColor = this.celdas.Apariencia.ColorTexto;
+            this.Control.DisplayLayout.Override.CellAppearance.TextHAlign = (Infragistics.Win.HAlign)(int)this.celdas.Apariencia.AlineacionTextoHorizontal;
+            this.Control.DisplayLayout.Override.CellAppearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.celdas.Apariencia.AlineacionTextoVertical;
+            this.Control.DisplayLayout.Override.CellAppearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.celdas.Apariencia.AdornoTexto;
         }
         protected virtual void AparienciaCabeceraChanged(object sender, OPropiedadEventArgs e)
         {
-            this.control.DisplayLayout.Override.HeaderAppearance.BackColor = this.cabecera.Apariencia.ColorFondo;
-            this.control.DisplayLayout.Override.HeaderAppearance.BorderColor = this.cabecera.Apariencia.ColorBorde;
-            this.control.DisplayLayout.Override.HeaderAppearance.ForeColor = this.cabecera.Apariencia.ColorTexto;
-            this.control.DisplayLayout.Override.HeaderAppearance.TextHAlign = (Infragistics.Win.HAlign)(int)this.cabecera.Apariencia.AlineacionTextoHorizontal;
-            this.control.DisplayLayout.Override.HeaderAppearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.cabecera.Apariencia.AlineacionTextoVertical;
-            this.control.DisplayLayout.Override.HeaderAppearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.cabecera.Apariencia.AdornoTexto;
+            this.Control.DisplayLayout.Override.HeaderAppearance.BackColor = this.cabecera.Apariencia.ColorFondo;
+            this.Control.DisplayLayout.Override.HeaderAppearance.BorderColor = this.cabecera.Apariencia.ColorBorde;
+            this.Control.DisplayLayout.Override.HeaderAppearance.ForeColor = this.cabecera.Apariencia.ColorTexto;
+            this.Control.DisplayLayout.Override.HeaderAppearance.TextHAlign = (Infragistics.Win.HAlign)(int)this.cabecera.Apariencia.AlineacionTextoHorizontal;
+            this.Control.DisplayLayout.Override.HeaderAppearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.cabecera.Apariencia.AlineacionTextoVertical;
+            this.Control.DisplayLayout.Override.HeaderAppearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.cabecera.Apariencia.AdornoTexto;
         }
         protected override void AparienciaChanged(object sender, OPropiedadEventArgs e)
         {
-            this.control.Appearance.BackColor = this.Apariencia.ColorFondo;
-            this.control.Appearance.BorderColor = this.Apariencia.ColorBorde;
-            this.control.Appearance.ForeColor = this.Apariencia.ColorTexto;
-            this.control.Appearance.TextHAlign = (Infragistics.Win.HAlign)(int)this.Apariencia.AlineacionTextoHorizontal;
-            this.control.Appearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.Apariencia.AlineacionTextoVertical;
-            this.control.Appearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.Apariencia.AdornoTexto;
+            this.Control.Appearance.BackColor = this.Apariencia.ColorFondo;
+            this.Control.Appearance.BorderColor = this.Apariencia.ColorBorde;
+            this.Control.Appearance.ForeColor = this.Apariencia.ColorTexto;
+            this.Control.Appearance.TextHAlign = (Infragistics.Win.HAlign)(int)this.Apariencia.AlineacionTextoHorizontal;
+            this.Control.Appearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.Apariencia.AlineacionTextoVertical;
+            this.Control.Appearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.Apariencia.AdornoTexto;
         }
         protected virtual void AparienciaFilasChanged(object sender, OPropiedadEventArgs e)
         {
-            this.control.DisplayLayout.Override.RowAppearance.BackColor = this.filas.Apariencia.ColorFondo;
-            this.control.DisplayLayout.Override.RowAppearance.BorderColor = this.filas.Apariencia.ColorBorde;
-            this.control.DisplayLayout.Override.RowAppearance.ForeColor = this.filas.Apariencia.ColorTexto;
-            this.control.DisplayLayout.Override.RowAppearance.TextHAlign = (Infragistics.Win.HAlign)(int)this.filas.Apariencia.AlineacionTextoHorizontal;
-            this.control.DisplayLayout.Override.RowAppearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.filas.Apariencia.AlineacionTextoVertical;
-            this.control.DisplayLayout.Override.RowAppearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.filas.Apariencia.AdornoTexto;
+            this.Control.DisplayLayout.Override.RowAppearance.BackColor = this.filas.Apariencia.ColorFondo;
+            this.Control.DisplayLayout.Override.RowAppearance.BorderColor = this.filas.Apariencia.ColorBorde;
+            this.Control.DisplayLayout.Override.RowAppearance.ForeColor = this.filas.Apariencia.ColorTexto;
+            this.Control.DisplayLayout.Override.RowAppearance.TextHAlign = (Infragistics.Win.HAlign)(int)this.filas.Apariencia.AlineacionTextoHorizontal;
+            this.Control.DisplayLayout.Override.RowAppearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.filas.Apariencia.AlineacionTextoVertical;
+            this.Control.DisplayLayout.Override.RowAppearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.filas.Apariencia.AdornoTexto;
         }
         protected virtual void AparienciaFilasActivasChanged(object sender, OPropiedadEventArgs e)
         {
-            this.control.DisplayLayout.Override.SelectedRowAppearance.BackColor = this.filas.Activas.Apariencia.ColorFondo;
-            this.control.DisplayLayout.Override.SelectedRowAppearance.BorderColor = this.filas.Activas.Apariencia.ColorBorde;
-            this.control.DisplayLayout.Override.SelectedRowAppearance.ForeColor = this.filas.Activas.Apariencia.ColorTexto;
-            this.control.DisplayLayout.Override.SelectedRowAppearance.TextHAlign = (Infragistics.Win.HAlign)(int)this.filas.Activas.Apariencia.AlineacionTextoHorizontal;
-            this.control.DisplayLayout.Override.SelectedRowAppearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.filas.Activas.Apariencia.AlineacionTextoVertical;
-            this.control.DisplayLayout.Override.SelectedRowAppearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.filas.Activas.Apariencia.AdornoTexto;
+            this.Control.DisplayLayout.Override.SelectedRowAppearance.BackColor = this.filas.Activas.Apariencia.ColorFondo;
+            this.Control.DisplayLayout.Override.SelectedRowAppearance.BorderColor = this.filas.Activas.Apariencia.ColorBorde;
+            this.Control.DisplayLayout.Override.SelectedRowAppearance.ForeColor = this.filas.Activas.Apariencia.ColorTexto;
+            this.Control.DisplayLayout.Override.SelectedRowAppearance.TextHAlign = (Infragistics.Win.HAlign)(int)this.filas.Activas.Apariencia.AlineacionTextoHorizontal;
+            this.Control.DisplayLayout.Override.SelectedRowAppearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.filas.Activas.Apariencia.AlineacionTextoVertical;
+            this.Control.DisplayLayout.Override.SelectedRowAppearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.filas.Activas.Apariencia.AdornoTexto;
         }
         protected virtual void AparienciaFilasAlternasChanged(object sender, OPropiedadEventArgs e)
         {
-            this.control.DisplayLayout.Override.RowAlternateAppearance.BackColor = this.filas.Alternas.Apariencia.ColorFondo;
-            this.control.DisplayLayout.Override.RowAlternateAppearance.BorderColor = this.filas.Alternas.Apariencia.ColorBorde;
-            this.control.DisplayLayout.Override.RowAlternateAppearance.ForeColor = this.filas.Alternas.Apariencia.ColorTexto;
-            this.control.DisplayLayout.Override.RowAlternateAppearance.TextHAlign = (Infragistics.Win.HAlign)(int)this.filas.Alternas.Apariencia.AlineacionTextoHorizontal;
-            this.control.DisplayLayout.Override.RowAlternateAppearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.filas.Alternas.Apariencia.AlineacionTextoVertical;
-            this.control.DisplayLayout.Override.RowAlternateAppearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.filas.Alternas.Apariencia.AdornoTexto;
+            this.Control.DisplayLayout.Override.RowAlternateAppearance.BackColor = this.filas.Alternas.Apariencia.ColorFondo;
+            this.Control.DisplayLayout.Override.RowAlternateAppearance.BorderColor = this.filas.Alternas.Apariencia.ColorBorde;
+            this.Control.DisplayLayout.Override.RowAlternateAppearance.ForeColor = this.filas.Alternas.Apariencia.ColorTexto;
+            this.Control.DisplayLayout.Override.RowAlternateAppearance.TextHAlign = (Infragistics.Win.HAlign)(int)this.filas.Alternas.Apariencia.AlineacionTextoHorizontal;
+            this.Control.DisplayLayout.Override.RowAlternateAppearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.filas.Alternas.Apariencia.AlineacionTextoVertical;
+            this.Control.DisplayLayout.Override.RowAlternateAppearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.filas.Alternas.Apariencia.AdornoTexto;
         }
         #endregion
 
         #region Métodos públicos
-        public void Formatear(System.Data.DataTable dt, string displayMember, string valueMember)
+        public void Formatear(System.Data.DataTable dt)
+        {
+            this.Formatear(dt, null, null, null);
+        }
+        public void Formatear(System.Data.DataTable dt, string columnaDeTexto, string columnaDeValor)
         {
             this.formateado = true;
-            this.Formatear(dt, null, displayMember, valueMember);
+            this.Formatear(dt, null, columnaDeTexto, columnaDeValor);
         }
-        public void Formatear(System.Data.DataTable dt, System.Collections.ArrayList columnas, string displayMember, string valueMember)
+        public void Formatear(System.Data.DataTable dt, System.Collections.ArrayList columnas)
+        {
+            this.Formatear(dt, columnas, null, null);
+        }
+        public void Formatear(System.Data.DataTable dt, System.Collections.ArrayList columnas, string columnaDeTexto, string columnaDeValor)
         {
             // Guardar la lista de columnas.
             this.Columnas.Visibles = columnas;
             // Asignar DataSource del Grid.
             this.DataSource = dt;
-            this.control.DataBind();
-            this.control.DisplayMember = displayMember;
-            this.control.ValueMember = valueMember;
+            //this.Control.DataBind();
+            this.Control.DisplayMember = columnaDeTexto;
+            this.Control.ValueMember = columnaDeValor;
             // Comprobar el formateo previo, o la carga de la colección de plantillas.
             // La única posición donde se modifica este atributo a False (no formateado)
             if (!this.formateado)
@@ -428,7 +417,7 @@ namespace Orbita.Controles.Combo
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetNullablePorTeclado()
         {
-            this.NullablePorTeclado = Configuracion.DefectoNullablePorTeclado;
+            this.AnulablePorTeclado = Configuracion.DefectoNullablePorTeclado;
         }
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetTexto()
@@ -448,7 +437,7 @@ namespace Orbita.Controles.Combo
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeNullablePorTeclado()
         {
-            return (this.NullablePorTeclado != Configuracion.DefectoNullablePorTeclado);
+            return (this.AnulablePorTeclado != Configuracion.DefectoNullablePorTeclado);
         }
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeTexto()
