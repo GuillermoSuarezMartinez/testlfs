@@ -26,6 +26,7 @@ using System.Runtime.Serialization.Formatters;
 using System.Security.Permissions;
 using System.Threading;
 using Orbita.Utiles;
+using Orbita.Xml;
 
 namespace Orbita.VA.Comun
 {

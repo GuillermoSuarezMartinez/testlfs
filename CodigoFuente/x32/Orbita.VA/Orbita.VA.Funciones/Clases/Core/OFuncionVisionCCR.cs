@@ -19,6 +19,7 @@ using System.Windows.Forms;
 using CIDARMTWrapper;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
+using Orbita.Xml;
 
 namespace Orbita.VA.Funciones
 {

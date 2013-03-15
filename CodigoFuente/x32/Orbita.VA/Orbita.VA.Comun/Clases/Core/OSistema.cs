@@ -20,6 +20,7 @@ using System.Xml.Serialization;
 using Orbita.Utiles;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using Orbita.Xml;
 
 namespace Orbita.VA.Comun
 {

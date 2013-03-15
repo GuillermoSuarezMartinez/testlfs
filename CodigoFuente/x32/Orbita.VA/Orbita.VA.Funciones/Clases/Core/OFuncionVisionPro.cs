@@ -17,6 +17,7 @@ using Cognex.VisionPro;
 using Cognex.VisionPro.ToolBlock;
 using Orbita.VA.Comun;
 using Orbita.Utiles;
+using Orbita.MS;
 
 namespace Orbita.VA.Funciones
 {

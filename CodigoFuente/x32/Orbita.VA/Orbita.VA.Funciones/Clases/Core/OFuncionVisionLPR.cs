@@ -18,6 +18,7 @@ using System.Windows.Forms;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
 using VPARMTWrapper;
+using Orbita.Xml;
 
 namespace Orbita.VA.Funciones
 {

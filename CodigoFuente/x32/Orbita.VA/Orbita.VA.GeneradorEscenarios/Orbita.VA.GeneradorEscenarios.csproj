@@ -187,6 +187,9 @@
       <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="Orbita.Xml">
+      <HintPath>..\..\Comun\Orbita\Orbita.Xml.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />

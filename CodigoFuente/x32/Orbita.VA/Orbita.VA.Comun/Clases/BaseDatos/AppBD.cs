@@ -20,6 +20,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using Orbita.Utiles;
+using Orbita.Xml;
 using System.Text.RegularExpressions;
 
 namespace Orbita.VA.Comun
