@@ -73,7 +73,6 @@ namespace Orbita.Utiles
             this.Nombre = nombre;
             this.Ruta = ruta;
             this.Maquina = maquina;
-
             this.Controlador = new ServiceController(this.Nombre, this.Maquina);
         }
         /// <summary>

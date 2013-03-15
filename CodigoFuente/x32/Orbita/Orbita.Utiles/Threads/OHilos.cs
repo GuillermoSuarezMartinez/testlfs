@@ -24,12 +24,13 @@ namespace Orbita.Utiles
         /// Colección de hilos.
         /// </summary>
         List<OHilo> _lista;
-        #region Delegado(s)
+        #endregion
+
+        #region Eventos
         /// <summary>
         /// Evento del método adición.
         /// </summary>
         public event ManejadorEvento OnDespuesAdicionar;
-        #endregion
         #endregion
 
         #region Constructores

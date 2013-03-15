@@ -62,10 +62,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OCifrado.cs" />
-    <Compile Include="OEncriptacion.cs" />
-    <Compile Include="OHaspSN.cs" />
-    <Compile Include="OSeguridad.cs" />
+    <Compile Include="Core\OCifrado.cs" />
+    <Compile Include="Core\OEncriptacion.cs" />
+    <Compile Include="Core\OHaspSN.cs" />
+    <Compile Include="Core\OSeguridad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

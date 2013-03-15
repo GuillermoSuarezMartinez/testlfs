@@ -966,7 +966,6 @@ namespace Orbita.Utiles
             valor = outValor;
             return validacion;
         }
-
         /// <summary>
         /// Lanza una exepción por no estár permitido el valor especificado
         /// </summary>
@@ -993,7 +992,6 @@ namespace Orbita.Utiles
             validacion = robusto.Estado;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
@@ -1004,7 +1002,6 @@ namespace Orbita.Utiles
             robusto.ValorGenerico = valor;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
@@ -1013,7 +1010,6 @@ namespace Orbita.Utiles
         {
             return Validar(valor, int.MinValue, int.MaxValue, default(int));
         }
-
         /// <summary>
         /// Comprueba que el valor del objeto es correcto
         /// </summary>
@@ -1026,7 +1022,6 @@ namespace Orbita.Utiles
             valor = robusto.Valor;
             return robusto.Estado;
         }
-
         /// <summary>
         /// Indica si el objeto pasado es de tipo entero
         /// </summary>
@@ -1036,7 +1031,6 @@ namespace Orbita.Utiles
         {
             return (o != null) && OObjeto.IsTypeOf(o, typeof(int), typeof(short), typeof(long), typeof(uint), typeof(ushort), typeof(ulong), typeof(byte));
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
@@ -1045,7 +1039,6 @@ namespace Orbita.Utiles
         {
             return (valor >= min) && (valor <= max);
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
         /// </summary>
@@ -1199,7 +1192,6 @@ namespace Orbita.Utiles
             valor = outValor;
             return validacion;
         }
-
         /// <summary>
         /// Lanza una exepción por no estár permitido el valor especificado
         /// </summary>
@@ -1227,7 +1219,6 @@ namespace Orbita.Utiles
             validacion = robusto.Estado;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
@@ -1238,7 +1229,6 @@ namespace Orbita.Utiles
             robusto.ValorGenerico = valor;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
@@ -1247,7 +1237,6 @@ namespace Orbita.Utiles
         {
             return Validar(valor, double.MinValue, double.MaxValue, default(double));
         }
-
         /// <summary>
         /// Comprueba que el valor del objeto es correcto
         /// </summary>
@@ -1260,7 +1249,6 @@ namespace Orbita.Utiles
             valor = robusto.Valor;
             return robusto.Estado;
         }
-
         /// <summary>
         /// Indica si el objeto pasado es de tipo decimal
         /// </summary>
@@ -1270,7 +1258,6 @@ namespace Orbita.Utiles
         {
             return (o != null) && OObjeto.IsTypeOf(o, typeof(float), typeof(double), typeof(decimal));
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
@@ -1279,7 +1266,6 @@ namespace Orbita.Utiles
         {
             return (valor >= min) && (valor <= max);
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
         /// </summary>
@@ -1299,7 +1285,6 @@ namespace Orbita.Utiles
 
             return resultado;
         }
-
         /// <summary>
         /// Compara dos valores decimales para definir si son similares, con una diferencia menor que sigma
         /// </summary>
@@ -1423,7 +1408,6 @@ namespace Orbita.Utiles
             valor = outValor;
             return validacion;
         }
-
         /// <summary>
         /// Lanza una exepción por no estár permitido el valor especificado
         /// </summary>
@@ -1445,7 +1429,6 @@ namespace Orbita.Utiles
             validacion = robusto.Estado;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
@@ -1456,7 +1439,6 @@ namespace Orbita.Utiles
             robusto.ValorGenerico = valor;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
@@ -1465,7 +1447,6 @@ namespace Orbita.Utiles
         {
             return Validar(valor, default(bool));
         }
-
         /// <summary>
         /// Comprueba que el valor del objeto es correcto
         /// </summary>
@@ -1603,7 +1584,6 @@ namespace Orbita.Utiles
             valor = outValor;
             return validacion;
         }
-
         /// <summary>
         /// Lanza una exepción por no estár permitido el valor especificado
         /// </summary>
@@ -1631,7 +1611,6 @@ namespace Orbita.Utiles
             validacion = robusto.Estado;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
@@ -1642,7 +1621,6 @@ namespace Orbita.Utiles
             robusto.ValorGenerico = valor;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
@@ -1653,7 +1631,6 @@ namespace Orbita.Utiles
             robusto.ValorGenerico = valor;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
@@ -1662,7 +1639,6 @@ namespace Orbita.Utiles
         {
             return Validar(valor, default(TimeSpan));
         }
-
         /// <summary>
         /// Comprueba que el valor del objeto es correcto
         /// </summary>
@@ -1675,7 +1651,6 @@ namespace Orbita.Utiles
             valor = robusto.Valor;
             return robusto.Estado;
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
@@ -1684,7 +1659,6 @@ namespace Orbita.Utiles
         {
             return (valor >= min) && (valor <= max);
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
         /// </summary>
@@ -1704,7 +1678,6 @@ namespace Orbita.Utiles
 
             return resultado;
         }
-
         #endregion
     }
 
@@ -1824,7 +1797,6 @@ namespace Orbita.Utiles
             valor = outValor;
             return validacion;
         }
-
         /// <summary>
         /// Lanza una exepción por no estár permitido el valor especificado
         /// </summary>
@@ -1850,7 +1822,6 @@ namespace Orbita.Utiles
             validacion = robusto.Estado;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
@@ -1861,7 +1832,6 @@ namespace Orbita.Utiles
             robusto.ValorGenerico = valor;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
@@ -1872,7 +1842,6 @@ namespace Orbita.Utiles
             robusto.ValorGenerico = valor;
             return robusto.Valor;
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
@@ -1881,7 +1850,6 @@ namespace Orbita.Utiles
         {
             return Validar(valor, default(DateTime));
         }
-
         /// <summary>
         /// Comprueba que el valor del objeto es correcto
         /// </summary>
@@ -1894,7 +1862,6 @@ namespace Orbita.Utiles
             valor = robusto.Valor;
             return robusto.Estado;
         }
-
         /// <summary>
         /// Conversión de día gregocriano a juliano
         /// </summary>
@@ -1930,7 +1897,6 @@ namespace Orbita.Utiles
                1721119;
             return jdia;
         }
-
         /// <summary>
         /// Conversión de dia juliano a gregoriano
         /// </summary>
@@ -1958,7 +1924,6 @@ namespace Orbita.Utiles
             }
             return new DateTime((int)anno, (int)mes, (int)dia);
         }
-
         /// <summary>
         /// Devuelve una cadena de texto identificativa del día actual (utilizada para indexar ficheros)
         /// </summary>
@@ -1973,7 +1938,6 @@ namespace Orbita.Utiles
 
             return resultado;
         }
-
         /// <summary>
         /// Devuelve una cadena de texto identificativa del momento actual (utilizada para indexar ficheros)
         /// </summary>
@@ -1992,7 +1956,6 @@ namespace Orbita.Utiles
 
             return resultado;
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
@@ -2001,7 +1964,6 @@ namespace Orbita.Utiles
         {
             return (valor >= min) && (valor <= max);
         }
-
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
         /// </summary>
@@ -2059,7 +2021,6 @@ namespace Orbita.Utiles
             byte mascara = Convert.ToByte(Math.Pow(2, posicion));
             return (numero & mascara) != 0;
         }
-
         /// <summary>
         /// Extrae un bit en la posición indicada
         /// </summary>
@@ -2071,7 +2032,6 @@ namespace Orbita.Utiles
             UInt16 mascara = Convert.ToUInt16(Math.Pow(2, posicion));
             return (numero & mascara) != 0;
         }
-
         /// <summary>
         /// Extrae un bit en la posición indicada
         /// </summary>
@@ -2083,7 +2043,6 @@ namespace Orbita.Utiles
             uint mascara = Convert.ToUInt32(Math.Pow(2, posicion));
             return (numero & mascara) != 0;
         }
-
         /// <summary>
         /// Establece un bit en la posición indicada
         /// </summary>
@@ -2102,7 +2061,6 @@ namespace Orbita.Utiles
                 numero = (byte)(numero & ~mascara);
             }
         }
-
         /// <summary>
         /// Establece un bit en la posición indicada
         /// </summary>
@@ -2121,7 +2079,6 @@ namespace Orbita.Utiles
                 numero = (ushort)(numero & ~mascara);
             }
         }
-
         /// <summary>
         /// Establece un bit en la posición indicada
         /// </summary>

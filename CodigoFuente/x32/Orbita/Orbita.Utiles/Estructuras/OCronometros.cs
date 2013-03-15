@@ -13,7 +13,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-
 namespace Orbita.Utiles
 {
     /// <summary>
@@ -102,7 +101,7 @@ namespace Orbita.Utiles
         /// <returns></returns>
         public static bool ExisteCronometro(string codigo)
         {
-            return ListaCronometros.Exists(delegate(OCronometro c) { return c.Codigo == codigo;});
+            return ListaCronometros.Exists(delegate(OCronometro c) { return c.Codigo == codigo; });
         }
 
         /// <summary>

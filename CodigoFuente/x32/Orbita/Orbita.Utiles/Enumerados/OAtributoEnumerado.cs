@@ -78,7 +78,6 @@ namespace Orbita.Utiles
 
             return output;
         }
-
         /// <summary>
         /// Devuelve una lista con los valores de texto de los enumerados
         /// </summary>
@@ -95,7 +94,6 @@ namespace Orbita.Utiles
 
             return resultado;
         }
-
         /// <summary>
         /// Busca si el texto coincide con un enumerado
         /// </summary>
@@ -117,7 +115,6 @@ namespace Orbita.Utiles
 
             return resultado;
         }
-
         #endregion
     }
 }

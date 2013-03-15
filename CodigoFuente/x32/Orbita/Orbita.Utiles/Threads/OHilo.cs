@@ -36,13 +36,14 @@ namespace Orbita.Utiles
         /// de inicialización.
         /// </summary>
         bool _iniciar;
+        #endregion
+
         #region Eventos
         /// <summary>
         /// Evento de los métodos: 
         /// Iniciar(), Suspender(), Reanudar(), Terminar().
         /// </summary>
         public event ManejadorEvento OnDespuesAccion;
-        #endregion
         #endregion
 
         #region Constructores

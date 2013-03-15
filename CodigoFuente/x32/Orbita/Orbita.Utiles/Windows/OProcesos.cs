@@ -39,7 +39,6 @@ namespace Orbita.Utiles
             try
             {
                 bool procesoEncontrado;
-
                 // Matamos el proceso de depuración
                 procesoEncontrado = true;
                 while (procesoEncontrado)
@@ -53,7 +52,6 @@ namespace Orbita.Utiles
                         procesoEncontrado = true;
                     }
                 }
-
                 // Matamos el proceso principal
                 procesoEncontrado = true;
                 while (procesoEncontrado)
