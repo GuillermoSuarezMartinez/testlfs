@@ -55,8 +55,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OAlmacenXML.cs" />
-    <Compile Include="OXml.cs" />
+    <Compile Include="Core\OAlmacenXML.cs" />
+    <Compile Include="Core\OXml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
