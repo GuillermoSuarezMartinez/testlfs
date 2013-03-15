@@ -22,8 +22,14 @@
         </member>
         <member name="M:Orbita.Controles.Contenedores.OrbitaDialog.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaPanel.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaDialog.
             </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.ODialog.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.ODialog.
+            </summary>
+            <param name="control"></param>
         </member>
         <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaSplitContainer.#ctor" -->
         <member name="F:Orbita.Controles.Contenedores.OrbitaSplitContainer.components">
@@ -43,6 +49,18 @@
             el contenido del método con el editor de código.
             </summary>
         </member>
+        <member name="M:Orbita.Controles.Contenedores.OSplitContainer.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OSplitContainer.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OUltraTabbedMdiManager.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OUltraTabbedMdiManager.
+            </summary>
+            <param name="control"></param>
+        </member>
         <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.#ctor" -->
         <member name="F:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.components">
             <summary>
@@ -59,6 +77,18 @@
             <summary>
             Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
             </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OUltraGroupBox.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OUltraGroupBox.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OTableLayoutPanel.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OTableLayoutPanel.
+            </summary>
+            <param name="control"></param>
         </member>
         <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.#ctor" -->
         <member name="F:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.components">
@@ -78,28 +108,6 @@
             el contenido del método con el editor de código.
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Contenedores.OrbitaMdiForm.components">
-            <summary>
-            Variable del diseñador requerida.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiForm.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaForm.
-            </summary>
-        </member>
         <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.#ctor" -->
         <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.#ctor(System.ComponentModel.IContainer)">
             <summary>
@@ -107,6 +115,11 @@
             </summary>
             <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
             que contienen cero o más componentes de forma lógica.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.InitializeResourceStrings">
+            <summary>
+            Inicializar recursos.
+            </summary>
         </member>
         <member name="F:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.components">
             <summary> 
@@ -147,6 +160,18 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="M:Orbita.Controles.Contenedores.OForm.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OForm.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OPanel.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OPanel.
+            </summary>
+            <param name="control"></param>
+        </member>
         <member name="T:Orbita.Controles.Contenedores.Properties.Resources">
             <summary>
               Clase de recurso con establecimiento inflexible de tipos, para buscar cadenas traducidas, etc.
@@ -181,6 +206,12 @@
             el contenido del método con el editor de código.
             </summary>
         </member>
+        <member name="M:Orbita.Controles.Contenedores.OUltraTabControl.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OUltraTabControl.
+            </summary>
+            <param name="control"></param>
+        </member>
         <member name="F:Orbita.Controles.Contenedores.OrbitaPanel.components">
             <summary> 
             Variable del diseñador requerida.
@@ -202,6 +233,34 @@
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaPanel.
             </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaMdiParentForm.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OMdiContainerForm.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OMdiContainerForm.
+            </summary>
+            <param name="control"></param>
         </member>
     </members>
 </doc>

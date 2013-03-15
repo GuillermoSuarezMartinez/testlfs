@@ -4,14 +4,14 @@
         <name>Orbita.BBDD</name>
     </assembly>
     <members>
-        <member name="T:Orbita.BBDD.OBBDDCore">
+        <member name="T:Orbita.BBDD.OCore">
             <summary>
             El modificador abstract en una declaración de clase, se
             usa para  indicar que la  clase sólo se  puede utilizar
             como clase base de otras clases.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.OBBDDCore.infoConexion">
+        <member name="F:Orbita.BBDD.OCore.infoConexion">
             <summary>
             Información de la conexión.
             La inclusión  del  atributo es  necesaria
@@ -20,29 +20,29 @@
             de base de datos que se cree en cada caso.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.OBBDDCore.cadenaConexion">
+        <member name="F:Orbita.BBDD.OCore.cadenaConexion">
             <summary>
             Información correspondiente a la cadena
             de conexión de la base de datos.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.OBBDDCore.timeout">
+        <member name="F:Orbita.BBDD.OCore.timeout">
             <summary>
             Timeout de ejecución de sentencias T-SQL.
             </summary>
         </member>
-        <member name="M:Orbita.BBDD.OBBDDCore.#ctor">
+        <member name="M:Orbita.BBDD.OCore.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase Core.
             </summary>
         </member>
-        <member name="M:Orbita.BBDD.OBBDDCore.#ctor(Orbita.BBDD.OInfoConexion)">
+        <member name="M:Orbita.BBDD.OCore.#ctor(Orbita.BBDD.OInfoConexion)">
             <summary>
             Inicializar una nueva instancia de la clase Core.
             </summary>
             <param name="infoConexion">Información de la conexión actual.</param>
         </member>
-        <member name="P:Orbita.BBDD.OBBDDCore.InfoConexion">
+        <member name="P:Orbita.BBDD.OCore.InfoConexion">
             <summary>
             Información de la conexión.
             La inclusión  del  atributo es  necesaria
@@ -51,27 +51,27 @@
             de base de datos que se cree en cada caso.
             </summary>
         </member>
-        <member name="P:Orbita.BBDD.OBBDDCore.CadenaConexion">
+        <member name="P:Orbita.BBDD.OCore.CadenaConexion">
             <summary>
             Información correspondiente a la cadena de conexión de la base de datos.
             </summary>
         </member>
-        <member name="P:Orbita.BBDD.OBBDDCore.Timeout">
+        <member name="P:Orbita.BBDD.OCore.Timeout">
             <summary>
             Timeout de ejecución de sentencias T-SQL. (En segundos).
             </summary>
         </member>
-        <member name="P:Orbita.BBDD.OBBDDCore.Instancia">
+        <member name="P:Orbita.BBDD.OCore.Instancia">
             <summary>
             Nombre de la instancia de base de datos.
             </summary>
         </member>
-        <member name="P:Orbita.BBDD.OBBDDCore.BaseDatos">
+        <member name="P:Orbita.BBDD.OCore.BaseDatos">
             <summary>
             Nombre de la base de datos.
             </summary>
         </member>
-        <member name="P:Orbita.BBDD.OBBDDCore.Usuario">
+        <member name="P:Orbita.BBDD.OCore.Usuario">
             <summary>
             Usuario de autenticación de base de datos.
             </summary>
@@ -1714,6 +1714,382 @@
         <member name="P:Orbita.BBDD.OInfoConexionOracle.Puerto">
             <summary>
             Número de puerto al que se conectará.
+            </summary>
+        </member>
+        <member name="T:Orbita.BBDD.Trazabilidad.TrazaLogger">
+            <summary>
+            Traza Logger.
+            </summary>
+        </member>
+        <member name="T:Orbita.BBDD.Trazabilidad.BaseTraza">
+            <summary>
+            Traza base.
+            </summary>
+        </member>
+        <member name="T:Orbita.BBDD.Trazabilidad.ITraza">
+            <summary>
+            ITraza.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.ITraza.Add(System.String)">
+            <summary>
+            Llama a un procedimiento de inserción (<see cref="F:Orbita.Trazabilidad.NivelTraza.Add"/>).
+            </summary>
+            <param name="procedimiento">El procedimiento almacenado.</param>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.ITraza.Add(System.String,System.Collections.ArrayList)">
+            <summary>
+            Llama a un procedimiento de inserción (<see cref="F:Orbita.Trazabilidad.NivelTraza.Add"/>).
+            </summary>
+            <param name="procedimiento">El procedimiento almacenado.</param>
+            <param name="args">Una colección de parámetros.</param>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.ITraza.Del(System.String)">
+            <summary>
+            Llama a un procedimiento de eliminación (<see cref="F:Orbita.Trazabilidad.NivelTraza.Del"/>).
+            </summary>
+            <param name="procedimiento">El procedimiento almacenado.</param>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.ITraza.Del(System.String,System.Collections.ArrayList)">
+            <summary>
+            Llama a un procedimiento de eliminación (<see cref="F:Orbita.Trazabilidad.NivelTraza.Del"/>).
+            </summary>
+            <param name="procedimiento">El procedimiento almacenado.</param>
+            <param name="args">Una colección de parámetros.</param>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.ITraza.Mdf(System.String)">
+            <summary>
+            Llama a un procedimiento de modificación (<see cref="F:Orbita.Trazabilidad.NivelTraza.Mdf"/>).
+            </summary>
+            <param name="procedimiento">El procedimiento almacenado.</param>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.ITraza.Mdf(System.String,System.Collections.ArrayList)">
+            <summary>
+            Llama a un procedimiento de modificación (<see cref="F:Orbita.Trazabilidad.NivelTraza.Mdf"/>).
+            </summary>
+            <param name="procedimiento">El procedimiento almacenado.</param>
+            <param name="args">Una colección de parámetros.</param>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.ITraza.Log(Orbita.Trazabilidad.ItemTraza)">
+            <summary>
+            Crea una nueva entrada de registro basada en un elemento item.
+            </summary>
+            <param name="item">Encapsula información de registro.</param>
+        </member>
+        <member name="P:Orbita.BBDD.Trazabilidad.ITraza.Identificador">
+            <summary>
+            Identificador de traza.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.Trazabilidad.BaseTraza.identificador">
+            <summary>
+            Identificador de traza.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.BaseTraza.#ctor(System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.BaseTraza.
+            </summary>
+            <param name="identificador">Identificador de traza.</param>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.BaseTraza.Add(System.String)">
+            <summary>
+            Método add traza.
+            </summary>
+            <param name="procedimiento">Procedimiento almacenado.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.BaseTraza.Add(System.String,System.Collections.ArrayList)">
+            <summary>
+            Método add traza.
+            </summary>
+            <param name="procedimiento">Procedimiento almacenado.</param>
+            <param name="args">Argumentos de entrada del procedimiento almacenado.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.BaseTraza.Del(System.String)">
+            <summary>
+            Método delete traza.
+            </summary>
+            <param name="procedimiento">Procedimiento almacenado.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.BaseTraza.Del(System.String,System.Collections.ArrayList)">
+            <summary>
+            Método delete traza.
+            </summary>
+            <param name="procedimiento">Procedimiento almacenado.</param>
+            <param name="args">Argumentos de entrada del procedimiento almacenado.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.BaseTraza.Mdf(System.String)">
+            <summary>
+            Método modificar traza.
+            </summary>
+            <param name="procedimiento">Procedimiento almacenado.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.BaseTraza.Mdf(System.String,System.Collections.ArrayList)">
+            <summary>
+            Método modificar traza.
+            </summary>
+            <param name="procedimiento">Procedimiento almacenado.</param>
+            <param name="args">Argumentos de entrada del procedimiento almacenado.</param>
+            <returns>Resultado del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.BaseTraza.Log(Orbita.Trazabilidad.ItemTraza)">
+            <summary>
+            Crea una entrada de registro nuevo basado en un elemento de inicio de sesión dado.
+            </summary>
+            <param name="item">Encapsula la información de registro.</param>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.BaseTraza.Log(Orbita.Trazabilidad.NivelTraza,System.String)">
+            <summary>
+            Crea una entrada de registro nuevo basado en un elemento de inicio de sesión dado.
+            </summary>
+            <param name="nivel">Nvel de traza.</param>
+            <param name="procedimiento">Procedimiento almacenado.</param>
+            <returns>Resultado de ejecución del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.BaseTraza.Log(Orbita.Trazabilidad.NivelTraza,System.String,System.Collections.ArrayList)">
+            <summary>
+            Crea una entrada de registro nuevo basado en un elemento de inicio de sesión dado.
+            </summary>
+            <param name="nivel">Nivel de traza.</param>
+            <param name="procedimiento">Procedimiento almacenado.</param>
+            <param name="args">Argumentos del procedimiento almacenado.</param>
+            <returns>Resultado de ejecución del procedimiento almacenado.</returns>
+        </member>
+        <member name="P:Orbita.BBDD.Trazabilidad.BaseTraza.Identificador">
+            <summary>
+            Identificador de traza.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.Trazabilidad.TrazaLogger.infoConexion">
+            <summary>
+            Información de la conexión.
+            La inclusión del atributo es necesaria para poder obtener las propiedades de  la
+            clase OInfoConexion a través del objeto de base de datos que se cree en cada caso.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.Trazabilidad.TrazaLogger.logger">
+            <summary>
+            Logger de trazas correctas.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaLogger.#ctor(System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
+            </summary>
+            <param name="identificador">Identificador de logger.</param>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaLogger.#ctor(System.String,System.String,System.String,System.String,System.String,Orbita.Trazabilidad.ILogger)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
+            </summary>
+            <param name="identificador">Identificador de logger.</param>
+            <param name="instancia">Nombre de la instancia de base de datos.</param>
+            <param name="baseDatos">Nombre de la base de datos.</param>
+            <param name="usuario">Usuario de las credenciales de base de datos.</param>
+            <param name="password">Password de las credenciales de base de datos.</param>
+            <param name="logger">DebugLogger de registro que chequea errores de inserción en base de datos.</param>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaLogger.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
+            </summary>
+            <param name="identificador">Identificador de logger.</param>
+            <param name="instancia">Nombre de la instancia de base de datos.</param>
+            <param name="baseDatos">Nombre de la base de datos.</param>
+            <param name="usuario">Usuario de las credenciales de base de datos.</param>
+            <param name="password">Password de las credenciales de base de datos.</param>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaLogger.#ctor(System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
+            </summary>
+            <param name="identificador">Identificador de logger.</param>
+            <param name="instancia">Nombre de la instancia de base de datos.</param>
+            <param name="baseDatos">Nombre de la base de datos.</param>
+            <param name="usuario">Usuario de las credenciales de base de datos.</param>
+            <param name="password">Password de las credenciales de base de datos.</param>
+            <param name="timeout">Timeout de conexión.</param>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaLogger.#ctor(System.String,System.String,System.String,System.String,System.String,System.Int32,Orbita.Trazabilidad.ILogger)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
+            </summary>
+            <param name="identificador">Identificador de logger.</param>
+            <param name="instancia">Nombre de la instancia de base de datos.</param>
+            <param name="baseDatos">Nombre de la base de datos.</param>
+            <param name="usuario">Usuario de las credenciales de base de datos.</param>
+            <param name="password">Password de las credenciales de base de datos.</param>
+            <param name="timeout">Timeout de conexión.</param>
+            <param name="logger">DebugLogger de registro que chequea errores de inserción en base de datos.</param>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaLogger.#ctor(System.String,Orbita.BBDD.OInfoConexion)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
+            </summary>
+            <param name="identificador">Identificador de logger.</param>
+            <param name="oInfoConexion">Información de la conexión actual.</param>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaLogger.#ctor(System.String,Orbita.BBDD.OInfoConexion,Orbita.Trazabilidad.ILogger)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
+            </summary>
+            <param name="identificador">Identificador de logger.</param>
+            <param name="oInfoConexion">Información de la conexión actual.</param>
+            <param name="logger">DebugLogger de registro que chequea errores de inserción en base de datos.</param>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaLogger.Log(Orbita.Trazabilidad.ItemTraza)">
+            <summary>
+            Crea una entrada de registro nuevo basado en un elemento de inicio de sesión dado.
+            </summary>
+            <param name="item">Entrada de registro de traza.</param>
+            <returns>Resultado de ejecución del procedimiento almacenado.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaLogger.TrazarDato(Orbita.Trazabilidad.ItemTraza)">
+            <summary>
+            Escribir en base de datos.
+            </summary>
+            <param name="item">Entrada de registro de traza.</param>
+            <returns>El estado del procedimiento almacenado.</returns>
+        </member>
+        <member name="P:Orbita.BBDD.Trazabilidad.TrazaLogger.OInfoConexion">
+            <summary>
+            OInfoConexion de base de datos.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.Trazabilidad.TrazaLogger.BD">
+            <summary>
+            Base de datos.
+            </summary>
+        </member>
+        <member name="P:Orbita.BBDD.Trazabilidad.TrazaLogger.Logger">
+            <summary>
+            Logger de control de excepciones.
+            </summary>
+        </member>
+        <member name="T:Orbita.BBDD.Trazabilidad.TrazaManager">
+            <summary>
+            TrazaManager.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.Trazabilidad.TrazaManager.Repositorio">
+            <summary>
+            Repositorio de trazas.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaManager.GetTraza(System.String)">
+            <summary>
+            Obtener la traza por nombre.
+            </summary>
+            <param name="identificador">Identificador de la traza.</param>
+            <returns>Interface de traza.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaManager.SetTraza(Orbita.BBDD.Trazabilidad.ITraza)">
+            <summary>
+            Asignar al repositorio de trazas la traza del parámetro de entrada del método actual.
+            </summary>
+            <param name="traza">Interface de traza.</param>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaManager.DelTraza(System.String)">
+            <summary>
+            Eliminar traza por nombre del repositorio.
+            </summary>
+            <param name="identificador">Identificador de traza.</param>
+            <returns>Si existe en la colección el identificador de traza.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaManager.SetTrazaLogger(System.String,System.String,System.String,System.String,System.String,Orbita.Trazabilidad.ILogger)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
+            </summary>
+            <param name="identificador">Identificador de logger.</param>
+            <param name="instancia">Nombre de la instancia de base de datos.</param>
+            <param name="baseDatos">Nombre de la base de datos.</param>
+            <param name="usuario">Usuario de las credenciales de base de datos.</param>
+            <param name="password">Password de las credenciales de base de datos.</param>
+            <param name="logger">DebugLogger de registro que chequea errores de inserción en base de datos.</param>
+            <returns>ITraza.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaManager.SetTrazaLogger(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
+            </summary>
+            <param name="identificador">Identificador de logger.</param>
+            <param name="instancia">Nombre de la instancia de base de datos.</param>
+            <param name="baseDatos">Nombre de la base de datos.</param>
+            <param name="usuario">Usuario de las credenciales de base de datos.</param>
+            <param name="password">Password de las credenciales de base de datos.</param>
+            <returns>ITraza.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaManager.SetTrazaLogger(System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
+            </summary>
+            <param name="identificador">Identificador de logger.</param>
+            <param name="instancia">Nombre de la instancia de base de datos.</param>
+            <param name="baseDatos">Nombre de la base de datos.</param>
+            <param name="usuario">Usuario de las credenciales de base de datos.</param>
+            <param name="password">Password de las credenciales de base de datos.</param>
+            <param name="timeout">Timeout de conexión.</param>
+            <returns>ITraza.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaManager.SetTrazaLogger(System.String,System.String,System.String,System.String,System.String,System.Int32,Orbita.Trazabilidad.ILogger)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
+            </summary>
+            <param name="identificador">Identificador de logger.</param>
+            <param name="instancia">Nombre de la instancia de base de datos.</param>
+            <param name="baseDatos">Nombre de la base de datos.</param>
+            <param name="usuario">Usuario de las credenciales de base de datos.</param>
+            <param name="password">Password de las credenciales de base de datos.</param>
+            <param name="timeout">Timeout de conexión.</param>
+            <param name="logger">DebugLogger de registro que chequea errores de inserción en base de datos.</param>
+            <returns>ITraza.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaManager.SetTrazaLogger(System.String,Orbita.BBDD.OInfoConexion)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
+            </summary>
+            <param name="identificador">Identificador de logger.</param>
+            <param name="infoConexion">Información de la conexión actual.</param>
+            <returns>ITraza.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.TrazaManager.SetTrazaLogger(System.String,Orbita.BBDD.OInfoConexion,Orbita.Trazabilidad.ILogger)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TrazaLogger.
+            </summary>
+            <param name="identificador">Identificador de logger.</param>
+            <param name="infoConexion">Información de la conexión actual.</param>
+            <param name="logger">DebugLogger de registro que chequea errores de inserción en base de datos.</param>
+            <returns>ITraza.</returns>
+        </member>
+        <member name="T:Orbita.BBDD.Trazabilidad.SimpleTraza">
+            <summary>
+            Simple Traza.
+            </summary>
+        </member>
+        <member name="F:Orbita.BBDD.Trazabilidad.SimpleTraza.traza">
+            <summary>
+            Interface de traza.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.SimpleTraza.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.SimpleTraza.
+            </summary>
+        </member>
+        <member name="M:Orbita.BBDD.Trazabilidad.SimpleTraza.#ctor(Orbita.BBDD.Trazabilidad.ITraza)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.SimpleTraza.
+            </summary>
+            <param name="traza">Interface de traza.</param>
+        </member>
+        <member name="P:Orbita.BBDD.Trazabilidad.SimpleTraza.Traza">
+            <summary>
+            Interface de traza.
             </summary>
         </member>
     </members>

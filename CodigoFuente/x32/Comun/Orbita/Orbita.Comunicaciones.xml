@@ -625,7 +625,7 @@
         </member>
         <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemens.#ctor">
             <summary>
-            Protocolo TCP de Siemens
+            Protocolo TCP de Siemens.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemens.KeepAliveProcesar(System.Byte[],System.Byte[]@)">
@@ -1404,7 +1404,7 @@
         </member>
         <member name="T:Orbita.Comunicaciones.OInfoDato">
             <summary>
-            Clase para todos las variables del servidor de comunicaciones
+            Clase para todos las variables del servidor de comunicaciones.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OInfoDato._identificador">
@@ -1599,7 +1599,7 @@
         </member>
         <member name="P:Orbita.Comunicaciones.OInfoDato.EsEntrada">
             <summary>
-            Indica si la variable es una entrada
+            Indica si la variable es una entrada.
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.OConfigDispositivo">
@@ -3198,7 +3198,7 @@
         </member>
         <member name="P:Orbita.Comunicaciones.OTags.Config">
             <summary>
-            Configuracion
+            Configuración.
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.OOPCEnlaces">

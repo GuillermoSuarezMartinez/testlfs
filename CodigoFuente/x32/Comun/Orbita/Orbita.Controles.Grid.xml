@@ -9,14 +9,9 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OrbitaUltraGrid.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Grid.OrbitaUltraGrid.InitializeAttributes">
-            <summary>
-            Inicializar atributos.
-            </summary>
-        </member>
         <member name="M:Orbita.Controles.Grid.OrbitaUltraGrid.InitializeResourceStrings">
             <summary>
-            Establecer recursos del Grid.
+            Inicializar recursos.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.OrbitaUltraGrid.components">
@@ -38,12 +33,12 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OControlBase.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OControlBase.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OControlBase.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.OControlBase.#ctor(System.Object)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OControlBase.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OControlBase.
             </summary>
             <param name="control"></param>
         </member>
@@ -92,10 +87,16 @@
             Determina la posibilidad de cancelar la pulsación de la tecla Return.
             </summary>
         </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OUltraGrid.
+            </summary>
+        </member>
         <member name="M:Orbita.Controles.Grid.OUltraGrid.#ctor(System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OUltraGrid.
             </summary>
+            <param name="control"></param>
         </member>
         <member name="T:Orbita.Controles.Grid.Configuracion">
             <summary>
@@ -114,13 +115,13 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OColumnaSumario.#ctor(System.String)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Sumario.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaSumario.
             </summary>
             <param name="mascara">Máscara de sumario.</param>
         </member>
         <member name="M:Orbita.Controles.Grid.OColumnaSumario.#ctor(System.String,Infragistics.Win.UltraWinGrid.SummaryType)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Sumario.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaSumario.
             </summary>
             <param name="mascara">Máscara de sumario.</param>
             <param name="operacion">Operación a aplicar.</param>
@@ -152,7 +153,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OCeldas.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OCeldas.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OCeldas.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.OCeldas.ToString">
@@ -183,7 +184,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.FrmListadoPlantillasBase.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.DialogoListView.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmListadoPlantillasBase.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.FrmListadoPlantillasBase.components">
@@ -205,17 +206,17 @@
         </member>
         <member name="P:Orbita.Controles.Grid.FrmListadoPlantillasBase.Cabecera">
             <summary>
-            OrbitaUltraLabel.
+            Etiqueta cabecera de tipo Orbita.Controles.Comunes.OrbitaUltraLabel.
             </summary>
         </member>
         <member name="P:Orbita.Controles.Grid.FrmListadoPlantillasBase.Lista">
             <summary>
-            OrbitaListView.
+            Control lista de tipo Orbita.Controles.Comunes.OrbitaListView.
             </summary>
         </member>
         <member name="P:Orbita.Controles.Grid.FrmListadoPlantillasBase.SinElementos">
             <summary>
-            OrbitaUltraLabel.
+            Etiqueta sin elementos de tipo Orbita.Controles.Comunes.OrbitaUltraLabel.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.FrmListadoPlantillasPublicas.components">
@@ -237,12 +238,12 @@
         </member>
         <member name="M:Orbita.Controles.Grid.FrmListadoPlantillasPublicas.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Dialogos.ListadoPlantillasPublicas.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmListadoPlantillasPublicas.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.FrmListadoPlantillasPublicas.#ctor(System.Collections.Generic.Dictionary{System.String,Orbita.Controles.Grid.OPlantilla},System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Dialogos.ListadoPlantillasPublicas.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmListadoPlantillasPublicas.
             </summary>
             <param name="plantillas">Colección de plantillas.</param>
             <param name="error">Si error, no existen plantillas a mostrar.</param>
@@ -271,15 +272,20 @@
         </member>
         <member name="M:Orbita.Controles.Grid.FrmListadoPlantillas.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.ListadoPlantillas.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmListadoPlantillas.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.FrmListadoPlantillas.#ctor(System.Collections.Generic.Dictionary{System.String,Orbita.Controles.Grid.OPlantilla},System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Dialogos.ListadoPlantillas.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmListadoPlantillas.
             </summary>
             <param name="plantillas">Colección de plantillas.</param>
             <param name="error">Si error, no existen plantillas a mostrar.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.Posicion.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.Posicion.
+            </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.Posicion.components">
             <summary> 
@@ -340,14 +346,14 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,System.Int32)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -355,7 +361,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -363,7 +369,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,System.Int32)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -372,7 +378,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -381,7 +387,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,System.Int32)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -391,7 +397,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.Alineacion)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -399,7 +405,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.Alineacion,System.Int32)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -408,7 +414,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -417,7 +423,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,System.Int32)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -427,7 +433,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -437,7 +443,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,System.Int32)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -448,7 +454,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,Orbita.Controles.Grid.OColumnaSumario)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -458,7 +464,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,System.Int32,Orbita.Controles.Grid.OColumnaSumario)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -469,7 +475,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,Orbita.Controles.Grid.OColumnaSumario)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -480,7 +486,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,Orbita.Controles.Grid.OColumnaSumario,System.Int32)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -492,7 +498,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -500,7 +506,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,System.Int32,System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -509,7 +515,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -518,7 +524,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,System.Int32,System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -528,7 +534,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -538,7 +544,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,System.Int32,System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -549,7 +555,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.Alineacion,System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -558,7 +564,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.Alineacion,System.Int32,System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -568,7 +574,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -578,7 +584,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,System.Int32,System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -589,7 +595,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -600,7 +606,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,System.Int32,System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -612,7 +618,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,Orbita.Controles.Grid.OColumnaSumario,System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -623,7 +629,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,System.Int32,Orbita.Controles.Grid.OColumnaSumario,System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -635,7 +641,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,Orbita.Controles.Grid.OColumnaSumario,System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -647,7 +653,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,Orbita.Controles.Grid.OColumnaSumario,System.Int32,System.Boolean)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CamposEstilos.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -712,12 +718,12 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OPropiedadEventArgs.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OPropiedadEventArgs.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.OPropiedadEventArgs.#ctor(System.String)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OPropiedadEventArgs.
             </summary>
             <param name="cadena">Nombre de la propiedad.</param>
         </member>
@@ -731,16 +737,22 @@
             Valor de la propiedad.
             </summary>
         </member>
+        <member name="M:Orbita.Controles.Grid.OPropertyExtendedChangedEventArgs.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OPropiedadEventArgs.
+            </summary>
+        </member>
         <member name="M:Orbita.Controles.Grid.OPropertyExtendedChangedEventArgs.#ctor(System.String)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OPropiedadEventArgs.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.OPropertyExtendedChangedEventArgs.#ctor(System.String,System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
             </summary>
-            <param name="cadena">Nombre de la propiedad.</param>
+            <param name="nombre">Nombre de la propiedad.</param>
+            <param name="valor">Empty.</param>
         </member>
         <member name="P:Orbita.Controles.Grid.OPropertyExtendedChangedEventArgs.Valor">
             <summary>
@@ -760,7 +772,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OColumnaCalculada.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,System.String,System.String)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CampoCalculado.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaCalculada.
             </summary>
             <param name="campo">Nombre del campo en base de datos.</param>
             <param name="nombre">Texto del header del campo.</param>
@@ -771,7 +783,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OColumnaCalculada.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,System.Int32,System.String,System.String)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CampoCalculado.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaCalculada.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -784,7 +796,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OColumnaCalculada.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,Orbita.Controles.Grid.OColumnaSumario,System.String,System.String)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CampoCalculado.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaCalculada.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -796,7 +808,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OColumnaCalculada.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,Orbita.Controles.Grid.OColumnaSumario,System.Int32,System.String,System.String)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.CampoCalculado.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaCalculada.
             </summary>
             <param name="campo">Nombre del campo en base de datos</param>
             <param name="nombre">Texto del header del campo</param>
@@ -930,7 +942,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OAparienciaBase.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OAparienciaBase.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OAparienciaBase.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.OAparienciaBase.ResetColorBorde">
@@ -1010,7 +1022,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OApariencia.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OApariencia.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OApariencia.
             </summary>
         </member>
         <member name="E:Orbita.Controles.Grid.OApariencia.PropertyChanging">
@@ -1025,17 +1037,17 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OFiltros.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFiltro.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFiltros.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.FrmGuardarArchivo.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.DialogoGuardarArchivo.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmGuardarArchivo.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.FrmGuardarArchivo.#ctor(System.String,System.String)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.DialogoGuardarArchivo.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmGuardarArchivo.
             </summary>
             <param name="nombre">Nombre.</param>
             <param name="descripcion">Descripción.</param>
@@ -1120,7 +1132,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OColumnaInfo.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Columna.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaInfo.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.OrbitaUltraGridToolBar.stringManager">
@@ -1147,22 +1159,23 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.#ctor(Orbita.Controles.Grid.OrbitaUltraGridToolBar)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OUltraGrid.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OUltraGridToolBar.
             </summary>
+            <param name="control"></param>
         </member>
         <member name="M:Orbita.Controles.Grid.OCabecera.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OCabecera.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OCabecera.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.OColumnasBloqueadas.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OBloqueadas.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnasBloqueadas.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.OFilasSeleccionadas.#ctor(System.Object)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OFilasSeleccionadas.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilasSeleccionadas.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.OToolClickCollectionEventArgs.filas">
@@ -1172,7 +1185,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OToolClickCollectionEventArgs.#ctor(Infragistics.Win.UltraWinToolbars.ToolBase,Infragistics.Win.UltraWinToolbars.ListToolItem)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OToolClickCollectionEventArgs.
             </summary>
         </member>
         <member name="P:Orbita.Controles.Grid.OToolClickCollectionEventArgs.Filas">
@@ -1182,7 +1195,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OFilasNuevas.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OFilaAlterna.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilasNuevas.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.OFilas.activas">
@@ -1207,7 +1220,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OFilas.#ctor(System.Object)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OFilas.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilas.
             </summary>
         </member>
         <member name="T:Orbita.Controles.Grid.OFilas.TipoSeleccionFila">
@@ -1222,7 +1235,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OToolClickEventArgs.#ctor(Infragistics.Win.UltraWinToolbars.ToolBase,Infragistics.Win.UltraWinToolbars.ListToolItem)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OToolClickEventArgs.
             </summary>
         </member>
         <member name="P:Orbita.Controles.Grid.OToolClickEventArgs.Fila">
@@ -1232,12 +1245,12 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OFilasActivas.#ctor(System.Object)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OFilaActiva.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilas.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.OCeldasAgrupadas.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OAgrupadas.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OCeldasAgrupadas.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.OPlantilla.identificador">
@@ -1282,7 +1295,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OPlantilla.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.Plantilla.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OPlantilla.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.OPlantilla.GetEstructura">
@@ -1369,7 +1382,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.FrmPersonalizar.#ctor(System.Object)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Personalizar.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmPersonalizar.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.FrmPersonalizar.chbEntornoFilasVacias_CheckedChanged(System.Object,System.EventArgs)">
@@ -1452,7 +1465,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OFilasAlternas.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OFilaAlterna.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilasAlternas.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.OEstilo.MascaraPorcentaje">
@@ -1598,6 +1611,25 @@
             (or the forceDrawAsFocused parameter was set to true on the call to the Draw method) and the element's virtual
             DrawsFocusRect property returns true.
             </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.ORowEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridRow)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.ORowEventArgs.
+            </summary>
+            <param name="fila"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.ORowEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridRow,Infragistics.Win.UltraWinGrid.UltraGridRow)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.ORowEventArgs.
+            </summary>
+            <param name="fila">Empty.</param>
+            <param name="anterior">Empty.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OTimerEventArgs.#ctor(System.Int32)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OTimerEventArgs.
+            </summary>
+            <param name="intervalo"></param>
         </member>
         <member name="T:Orbita.Controles.Grid.Tools">
             <summary>
@@ -1756,7 +1788,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OCeldasActivas.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OCeldaActiva.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OCeldasActivas.
             </summary>
         </member>
         <member name="P:Orbita.Controles.Grid.OGetStyleLibrary.styleLibraryPath">
@@ -1786,33 +1818,33 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OMascara.#ctor(System.String)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Mascara.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OMascara.
             </summary>
             <param name="nombre">Expresión de máscara</param>
         </member>
         <member name="M:Orbita.Controles.Grid.OMascara.#ctor(System.String,System.Char)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Mascara.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OMascara.
             </summary>
             <param name="nombre">Expresión de máscara.</param>
             <param name="prompt">Caracter de separación.</param>
         </member>
         <member name="M:Orbita.Controles.Grid.OMascara.#ctor(System.String,System.Object,System.Object)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Mascara.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OMascara.
             </summary>
-            <param name="nombre">Expresión de máscara</param>
-            <param name="maximo">Valor máximo del campo</param>
-            <param name="minimo">Valor mínimo del campo</param>
+            <param name="nombre">Expresión de máscara.</param>
+            <param name="maximo">Valor máximo del campo.</param>
+            <param name="minimo">Valor mínimo del campo.</param>
         </member>
         <member name="M:Orbita.Controles.Grid.OMascara.#ctor(System.String,System.Char,System.Object,System.Object)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Mascara.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OMascara.
             </summary>
-            <param name="nombre">Expresión de máscara</param>
-            <param name="prompt">Caracter de separación</param>
-            <param name="maximo">Valor máximo del campo</param>
-            <param name="minimo">Valor mínimo del campo</param>
+            <param name="nombre">Expresión de máscara.</param>
+            <param name="prompt">Caracter de separación.</param>
+            <param name="maximo">Valor máximo del campo.</param>
+            <param name="minimo">Valor mínimo del campo.</param>
         </member>
         <member name="P:Orbita.Controles.Grid.OMascara.Nombre">
             <summary>
@@ -1836,8 +1868,9 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OColumnas.#ctor(System.Object)">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OCeldas.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnas.
             </summary>
+            <param name="control"></param>
         </member>
         <member name="M:Orbita.Controles.Grid.OColumnas.ToString">
             <summary>

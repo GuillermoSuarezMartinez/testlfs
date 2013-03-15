@@ -25,6 +25,12 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaMenuStrip.
             </summary>
         </member>
+        <member name="M:Orbita.Controles.Menu.OMenuStrip.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OMenuStrip.
+            </summary>
+            <param name="control">>Orbita.Controles.Menu.OrbitaMenuStrip.</param>
+        </member>
         <member name="F:Orbita.Controles.Menu.OrbitaUltraExplorerBar.components">
             <summary> 
             Variable del diseñador requerida.
@@ -45,6 +51,12 @@
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaUltraExplorerBar.
             </summary>
+        </member>
+        <member name="M:Orbita.Controles.Menu.OUltraExplorerBar.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OUltraExplorerBar.
+            </summary>
+            <param name="control">>Orbita.Controles.Menu.OrbitaUltraExplorerBar.</param>
         </member>
         <member name="F:Orbita.Controles.Menu.OrbitaUltraToolbarsManager.components">
             <summary>
@@ -78,6 +90,12 @@
             <summary>
             InitializeResourceStrings.
             </summary>
+        </member>
+        <member name="M:Orbita.Controles.Menu.OUltraToolbarsManager.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OUltraToolbarsManager.
+            </summary>
+            <param name="control">Orbita.Controles.Menu.OrbitaUltraToolbarsManager.</param>
         </member>
     </members>
 </doc>
