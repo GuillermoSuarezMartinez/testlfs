@@ -108,12 +108,9 @@
     <Compile Include="Logger\PathLogger.cs" />
     <Compile Include="Core\RemotingLogger.cs" />
     <Compile Include="Core\TraceLogger.cs" />
-    <Compile Include="Core\TrazaLogger.cs" />
     <Compile Include="Logger\BaseLogger.cs" />
-    <Compile Include="Logger\BaseTraza.cs" />
     <Compile Include="Logger\ItemLog.cs" />
     <Compile Include="Logger\ItemTraza.cs" />
-    <Compile Include="Interfaces\ITraza.cs" />
     <Compile Include="Enumerados\NivelLog.cs" />
     <Compile Include="Enumerados\NivelTraza.cs" />
     <Compile Include="Logger\TimerBackup.cs" />
@@ -123,8 +120,6 @@
     <Compile Include="Repositorio\ExtensionUtiles.cs" />
     <Compile Include="Repositorio\SimpleLogger.cs" />
     <Compile Include="Repositorio\LogManager.cs" />
-    <Compile Include="Repositorio\TrazaManager.cs" />
-    <Compile Include="Repositorio\SimpleTraza.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -152,12 +147,6 @@
     <Content Include="Config\Ejemplos\Remoting.full.config.xml" />
     <Content Include="Config\Ejemplos\Wrapper.full.config.xml" />
     <Content Include="Config\Ejemplos\Debug.full.config.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Orbita.BBDD\Orbita.BBDD.csproj">
-      <Project>{CF7F04AE-7DA5-48C5-BB08-DC57D3192A2D}</Project>
-      <Name>Orbita.BBDD</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

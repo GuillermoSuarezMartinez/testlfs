@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
-using Orbita.Utiles;
 using System.Windows.Forms;
+using Orbita.Utiles;
 namespace Orbita.Compresion
 {
     /// <summary>

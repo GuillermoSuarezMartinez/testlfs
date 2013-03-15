@@ -15,9 +15,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 namespace Orbita.Xml
 {
-    /// <summary>
-    /// Clase OAlmacenXML
-    /// </summary>
     [Serializable]
     public class OAlmacenXML : ICloneable
     {
