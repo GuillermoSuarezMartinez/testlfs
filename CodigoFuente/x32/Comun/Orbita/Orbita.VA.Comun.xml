@@ -1234,25 +1234,25 @@
             <param name="codEscenario"></param>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Comun.AppBD.AddHistoricoSerie(System.Boolean,System.DateTime,System.Boolean,System.String,System.Boolean,System.TimeSpan,System.Int32,Orbita.Utiles.OXml,Orbita.Utiles.OXml)">
+        <member name="M:Orbita.VA.Comun.AppBD.AddHistoricoSerie(System.Boolean,System.DateTime,System.Boolean,System.String,System.Boolean,System.TimeSpan,System.Int32,Orbita.Xml.OXml,Orbita.Xml.OXml)">
             <summary>
             Añade el historico de la inspección de la pieza
             </summary>
             <returns></returns>        
         </member>
-        <member name="M:Orbita.VA.Comun.AppBD.AddHistoricoSubInspeccionSerie(System.Int32,System.Boolean,System.Boolean,System.String,System.TimeSpan,Orbita.Utiles.OXml)">
+        <member name="M:Orbita.VA.Comun.AppBD.AddHistoricoSubInspeccionSerie(System.Int32,System.Boolean,System.Boolean,System.String,System.TimeSpan,Orbita.Xml.OXml)">
             <summary>
             Añade el historico de la inspección de la pieza
             </summary>
             <returns></returns>        
         </member>
-        <member name="M:Orbita.VA.Comun.AppBD.AddHistoricoParalelo(System.Int32,Orbita.Utiles.OXml,Orbita.Utiles.OXml,Orbita.Utiles.OXml)">
+        <member name="M:Orbita.VA.Comun.AppBD.AddHistoricoParalelo(System.Int32,Orbita.Xml.OXml,Orbita.Xml.OXml,Orbita.Xml.OXml)">
             <summary>
             Añade el historico de la inspección de la pieza
             </summary>
             <returns></returns>        
         </member>
-        <member name="M:Orbita.VA.Comun.AppBD.AddTrazas(Orbita.Utiles.OXml)">
+        <member name="M:Orbita.VA.Comun.AppBD.AddTrazas(Orbita.Xml.OXml)">
             <summary>
             Añade información de las trazas a la base de datos
             </summary>
