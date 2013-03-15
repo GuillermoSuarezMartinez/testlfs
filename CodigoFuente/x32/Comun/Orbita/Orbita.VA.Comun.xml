@@ -1179,17 +1179,17 @@
             </summary>
             <returns>DataTable con los parámetros básicos de la aplicación</returns>
         </member>
-        <member name="M:Orbita.VA.Comun.AppBD.GetVistas">
+        <member name="M:Orbita.VA.Comun.AppBD.GetEscenarios">
             <summary>
-            Consulta todas vistas existentes en el sistema
+            Consulta todas escenarios existentes en el sistema
             </summary>
             <returns>DataTable con los códigos de las variables existentes en el sistema</returns>
         </member>
-        <member name="M:Orbita.VA.Comun.AppBD.GetVista(System.String)">
+        <member name="M:Orbita.VA.Comun.AppBD.GetEscenario(System.String)">
             <summary>
-            Consulta una vista existente en el sistema
+            Consulta una escenario existente en el sistema
             </summary>
-            <returns>DataTable con los códigos de las vistas existentes en el sistema</returns>
+            <returns>DataTable con los códigos de las escenarios existentes en el sistema</returns>
         </member>
         <member name="M:Orbita.VA.Comun.AppBD.GetUsuarios">
             <summary>
@@ -1227,11 +1227,11 @@
             </summary>
             <returns>DataTable con la información de los tipos de variables existentes en el sistema</returns>
         </member>
-        <member name="M:Orbita.VA.Comun.AppBD.GetAliasVistaVariables(System.String)">
+        <member name="M:Orbita.VA.Comun.AppBD.GetAliasEscenarioVariables(System.String)">
             <summary>
-            Consulta el alias de una vista de variables
+            Consulta el alias de una escenario de variables
             </summary>
-            <param name="codVista"></param>
+            <param name="codEscenario"></param>
             <returns></returns>
         </member>
         <member name="M:Orbita.VA.Comun.AppBD.AddHistoricoSerie(System.Boolean,System.DateTime,System.Boolean,System.String,System.Boolean,System.TimeSpan,System.Int32,Orbita.Utiles.OXml,Orbita.Utiles.OXml)">
@@ -3119,9 +3119,9 @@
             Lista de todas las variables del sistema
             </summary>
         </member>
-        <member name="F:Orbita.VA.Comun.OVariablesManager.Vistas">
+        <member name="F:Orbita.VA.Comun.OVariablesManager.Escenarios">
             <summary>
-            Lista de todas las vistas de variables del sistema
+            Lista de todas las escenarios de variables del sistema
             </summary>
         </member>
         <member name="F:Orbita.VA.Comun.OVariablesManager.Trazabilidad">
@@ -3358,7 +3358,7 @@
             <summary>
             Obtiene la variable de un determinado código
             </summary>
-            <param name="vista">Vista utilizada</param>
+            <param name="escenario">Escenario utilizada</param>
             <param name="codigo">Código de la variable</param>
             <returns>variable</returns>
         </member>
@@ -3452,35 +3452,35 @@
             <summary>
             Método para acceder a una variable
             </summary>
-            <param name="codigo">Vista</param>
+            <param name="codigo">Escenario</param>
             <param name="codigo">Código o alias de la variable</param>
             <returns>Devuelve la variable correspondientes</returns>
         </member>
-        <member name="T:Orbita.VA.Comun.OVistaVariable">
+        <member name="T:Orbita.VA.Comun.OEscenarioVariable">
             <summary>
-            Clase que implementa las vistas de las variables.
-            Las vistas son agrupaciones de variables que se acceden con un alias en lugar de por su código
+            Clase que implementa las escenarios de las variables.
+            Las escenarios son agrupaciones de variables que se acceden con un alias en lugar de por su código
             </summary>
         </member>
-        <member name="F:Orbita.VA.Comun.OVistaVariable.Codigo">
+        <member name="F:Orbita.VA.Comun.OEscenarioVariable.Codigo">
             <summary>
-            Código de la vista
+            Código del escenario
             </summary>
         </member>
-        <member name="F:Orbita.VA.Comun.OVistaVariable.ListaAlias">
+        <member name="F:Orbita.VA.Comun.OEscenarioVariable.ListaAlias">
             <summary>
-            Lista de todos los alias de la vista
+            Lista de todos los alias del escenario
             </summary>
         </member>
-        <member name="M:Orbita.VA.Comun.OVistaVariable.#ctor(System.String)">
+        <member name="M:Orbita.VA.Comun.OEscenarioVariable.#ctor(System.String)">
             <summary>
             Constructor de la clase
             </summary>
-            <param name="codVista">Código de la vista</param>
+            <param name="codEscenario">Código del escenario</param>
         </member>
-        <member name="M:Orbita.VA.Comun.OVistaVariable.RellenarAlias(System.String)">
+        <member name="M:Orbita.VA.Comun.OEscenarioVariable.RellenarAlias(System.String)">
             <summary>
-            Rellena la lista de alias de la vista
+            Rellena la lista de alias del escenario
             </summary>
         </member>
         <member name="T:Orbita.VA.Comun.OVariable">

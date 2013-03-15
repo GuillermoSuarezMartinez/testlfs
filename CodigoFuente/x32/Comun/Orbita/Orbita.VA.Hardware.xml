@@ -5878,11 +5878,11 @@
             Clase estática que contiene llamadas a los procedimiento almacenados en la base de datos
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.AppBD.GetAliasVistaHardware(System.String)">
+        <member name="M:Orbita.VA.Hardware.AppBD.GetAliasEscenarioHardware(System.String)">
             <summary>
-            Consulta el alias de una vista de hardware
+            Consulta el alias de una escenario de hardware
             </summary>
-            <param name="codVista"></param>
+            <param name="codEscenario"></param>
             <returns></returns>
         </member>
         <member name="M:Orbita.VA.Hardware.AppBD.GetCamaras">
@@ -5937,9 +5937,9 @@
             Lista de las cámaras del sistema
             </summary>
         </member>
-        <member name="F:Orbita.VA.Hardware.OHardwareManager.Vistas">
+        <member name="F:Orbita.VA.Hardware.OHardwareManager.Escenarios">
             <summary>
-            Lista de todas las vistas de hardware del sistema
+            Lista de todas las escenarios de hardware del sistema
             </summary>
         </member>
         <member name="M:Orbita.VA.Hardware.OHardwareManager.Constructor">
@@ -5973,7 +5973,7 @@
             <summary>
             Busca la cámara con el código indicado
             </summary>
-            <param name="vista">Vista utilizada</param>
+            <param name="escenario">Escenario utilizada</param>
             <param name="codigo">Código de la cámara</param>
             <returns>Hardware encontrado</returns>
         </member>
@@ -6035,35 +6035,35 @@
             <summary>
             Método para acceder a un hardware
             </summary>
-            <param name="codVista">Vista</param>
+            <param name="codEscenario">Escenario</param>
             <param name="codAlias">Código o alias del hardware</param>
             <param name="hardware">Hardware devuelto</param>
             <returns>Devuelve la variable correspondientes</returns>
         </member>
-        <member name="T:Orbita.VA.Hardware.OVistaHardware">
+        <member name="T:Orbita.VA.Hardware.OEscenarioHardware">
             <summary>
-            Clase que implementa las vistas del hardware
+            Clase que implementa las escenarios del hardware
             </summary>
         </member>
-        <member name="F:Orbita.VA.Hardware.OVistaHardware.Codigo">
+        <member name="F:Orbita.VA.Hardware.OEscenarioHardware.Codigo">
             <summary>
-            Código de la vista
+            Código del escenario
             </summary>
         </member>
-        <member name="F:Orbita.VA.Hardware.OVistaHardware.ListaAlias">
+        <member name="F:Orbita.VA.Hardware.OEscenarioHardware.ListaAlias">
             <summary>
-            Lista de todos los alias de la vista
+            Lista de todos los alias del escenario
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OVistaHardware.#ctor(System.String)">
+        <member name="M:Orbita.VA.Hardware.OEscenarioHardware.#ctor(System.String)">
             <summary>
             Constructor de la clase
             </summary>
-            <param name="codVista">Código de la vista</param>
+            <param name="codEscenario">Código del escenario</param>
         </member>
-        <member name="M:Orbita.VA.Hardware.OVistaHardware.RellenarAlias(System.String)">
+        <member name="M:Orbita.VA.Hardware.OEscenarioHardware.RellenarAlias(System.String)">
             <summary>
-            Rellena la lista de alias de la vista
+            Rellena la lista de alias del escenario
             </summary>
         </member>
         <member name="T:Orbita.VA.Hardware.TipoHardware">

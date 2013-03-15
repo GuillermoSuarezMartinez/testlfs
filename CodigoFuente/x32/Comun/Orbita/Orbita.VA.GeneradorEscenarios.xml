@@ -50,7 +50,7 @@
             Generación de la clase interior al escenario que implementa las variables
             </summary>
             <param name="generador"></param>
-            <param name="codVista"></param>
+            <param name="codEscenario"></param>
             <param name="claseEscenario"></param>
         </member>
         <member name="M:Orbita.VAGeneradorEscenarios.Program.GenerarHardware(Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.CodeDom.CodeTypeDeclaration)">
@@ -58,7 +58,7 @@
             Generación de la clase interior al escenario que implementa las variables
             </summary>
             <param name="generador"></param>
-            <param name="codVista"></param>
+            <param name="codEscenario"></param>
             <param name="claseEscenario"></param>
         </member>
         <member name="M:Orbita.VAGeneradorEscenarios.Program.GenerarEstados(Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.String)">
@@ -78,7 +78,7 @@
         <member name="T:Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido">
             <summary>
             Clase encargada de escribir el código C# para permitir el acceso rápido a variables.
-            Lee de la tabla de vistas y crea una clase para cada una de ellas
+            Lee de la tabla de escenarios y crea una clase para cada una de ellas
             </summary>
         </member>
         <member name="F:Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido.CodeCompileUnit">

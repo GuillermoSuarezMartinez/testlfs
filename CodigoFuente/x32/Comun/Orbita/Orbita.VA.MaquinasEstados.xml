@@ -21,6 +21,30 @@
             </summary>
             <returns>DataTable con la información de las máquinas de estados</returns>
         </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetInstanciasMaquinasEstados">
+            <summary>
+            Consulta todas las máquinas de estados existentes en el sistema
+            </summary>
+            <returns>DataTable con los códigos de las máquinas de estado existentes en el sistema</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetInstanciaMaquinaEstados(System.String)">
+            <summary>
+            Consulta una máquina de estados
+            </summary>
+            <returns>DataTable con la información de las máquinas de estados</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetInstanciasEstados(System.String)">
+            <summary>
+            Consulta todos los estados pertenecientes a determinada máquina de estados
+            </summary>
+            <returns>DataTable con los códigos de los estados pertenecientes a determinada máquina de estados</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetInstanciasTransiciones(System.String)">
+            <summary>
+            Consulta todos las transiciones pertenecientes a determinada máquina de estados
+            </summary>
+            <returns>DataTable con los códigos de las transiciones pertenecientes a determinada máquina de estados</returns>
+        </member>
         <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetEstados(System.String)">
             <summary>
             Consulta todos los estados pertenecientes a determinada máquina de estados
@@ -33,17 +57,23 @@
             </summary>
             <returns>DataTable con los códigos de las transiciones pertenecientes a determinada máquina de estados</returns>
         </member>
-        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetEstado(System.String,System.String)">
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetInstanciaEstado(System.String,System.String)">
             <summary>
             Consulta un determinado estado
             </summary>
             <returns>DataTable con la información de un determinado estado</returns>
         </member>
-        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetEstadoAsincrono(System.String,System.String)">
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetInstanciaTransicion(System.String,System.String)">
             <summary>
-            Consulta un determinado estado de tipo thread
+            Consulta un determinada transicion
             </summary>
-            <returns>DataTable con la información de un determinado estado</returns>
+            <returns>DataTable con la información de una determinada transicion</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetEstado(System.String,System.String)">
+            <summary>
+            Consulta todos los estados pertenecientes a determinada máquina de estados
+            </summary>
+            <returns>DataTable con los códigos de los estados pertenecientes a determinada máquina de estados</returns>
         </member>
         <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetTransicion(System.String,System.String)">
             <summary>
@@ -57,11 +87,11 @@
             </summary>
             <returns>DataTable con la información de una determinada transicion</returns>
         </member>
-        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetClavesDeVista(System.String)">
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetClavesDeEscenario(System.String)">
             <summary>
-            Consulta las claves de una determinada vista
+            Consulta las claves de una determinada escenario
             </summary>
-            <param name="codVista"></param>
+            <param name="codEscenario"></param>
             <returns></returns>
         </member>
         <member name="T:Orbita.VA.MaquinasEstados.OMaquinasEstadosManager">
@@ -191,12 +221,17 @@
             Variable que informa del estado actual de la aplicación
             </summary>
         </member>
-        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.CodVista">
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.CodEscenario">
             <summary>
-            Código de la vista utilizada
+            Código del escenario utilizada
             </summary>
         </member>
         <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase._Codigo">
+            <summary>
+            Código del estado. Texto que lo identifica inequívocamente.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase._CodMaquinaEstados">
             <summary>
             Código del estado. Texto que lo identifica inequívocamente.
             </summary>
@@ -396,6 +431,11 @@
             Código del estado. Texto que lo identifica inequívocamente.
             </summary>
         </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.CodMaquinaEstados">
+            <summary>
+            Código del estado. Texto que lo identifica inequívocamente.
+            </summary>
+        </member>
         <member name="P:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.Nombre">
             <summary>
             Nombre del estado. Texto descriptivo de la funcionalidad del estado.
@@ -476,7 +516,7 @@
             Código del estado. Texto que lo identifica inequívocamente.
             </summary>
         </member>
-        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._CodigoMaquinaEstados">
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._CodigoInstanciaMaquinaEstados">
             <summary>
             Código de la máquina de estados. Texto que lo identifica inequívocamente.
             </summary>
@@ -511,9 +551,14 @@
             Tiempo máximo que puede durar el estado
             </summary>
         </member>
-        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._EnEjecucion">
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._EnEjecucionAlEntrar">
             <summary>
-            Indica si el estado actual está en ejecución
+            Indica si el estado actual está en ejecución de la entrada
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._EnEjecucionAlSalir">
+            <summary>
+            Indica si el estado actual está en ejecución de la salida
             </summary>
         </member>
         <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._Escenario">
@@ -525,7 +570,7 @@
             <summary>
             Constructor de la clase
             </summary>
-            <param name="codigoMaquinaEstados">Código de la máquina de estados</param>
+            <param name="codigoInstanciaMaquinaEstados">Código de la máquina de estados</param>
             <param name="codigo">Código del estado</param>
         </member>
         <member name="M:Orbita.VA.MaquinasEstados.OEstadoBase.Inicializar">
@@ -563,7 +608,7 @@
             Código del estado. Texto que lo identifica inequívocamente.
             </summary>
         </member>
-        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.CodigoMaquinaEstados">
+        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.CodigoInstanciaMaquinaEstados">
             <summary>
             Código de la máquina de estados. Texto que lo identifica inequívocamente.
             </summary>
@@ -598,9 +643,14 @@
             Tiempo máximo que puede durar el estado
             </summary>
         </member>
-        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.EnEjecucion">
+        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.EnEjecucionAlEntrar">
             <summary>
-            Indica si el estado actual está en ejecución
+            Indica si el estado actual está en ejecución de la entrada
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.EnEjecucionAlSalir">
+            <summary>
+            Indica si el estado actual está en ejecución de la salida
             </summary>
         </member>
         <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.DuracionActivacion">
@@ -621,11 +671,6 @@
         <member name="F:Orbita.VA.MaquinasEstados.OEstadoAsincrono.ThreadEjecucion">
             <summary>
             Trabajo en segundo plano
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.MaquinasEstados.OEstadoAsincrono._CodVariableEnEjecucion">
-            <summary>
-            Código de la variable asociada a la ejecución del estado.
             </summary>
         </member>
         <member name="M:Orbita.VA.MaquinasEstados.OEstadoAsincrono.#ctor(System.String,System.String,Orbita.VA.MaquinasEstados.OEscenario)">
@@ -659,11 +704,6 @@
             Método donde se espera la finalización
             </summary>
         </member>
-        <member name="P:Orbita.VA.MaquinasEstados.OEstadoAsincrono.CodVariableEnEjecucion">
-            <summary>
-            Código de la variable asociada a la ejecución del estado.
-            </summary>
-        </member>
         <member name="T:Orbita.VA.MaquinasEstados.OTransicionBase">
             <summary>
             Clase base de todas las transiciones entre estados
@@ -684,7 +724,7 @@
             Código de la transición. Texto que lo identifica inequívocamente.
             </summary>
         </member>
-        <member name="F:Orbita.VA.MaquinasEstados.OTransicionBase._CodigoMaquinaEstados">
+        <member name="F:Orbita.VA.MaquinasEstados.OTransicionBase._CodigoInstanciaMaquinaEstados">
             <summary>
             Código de la máquina de estados. Texto que lo identifica inequívocamente.
             </summary>
@@ -743,7 +783,7 @@
             <summary>
             Constructor de la clase
             </summary>
-            <param name="codigoMaquinaEstados">Código de la máquina de estados</param>
+            <param name="codigoInstanciaMaquinaEstados">Código de la máquina de estados</param>
             <param name="codigo">Código de la transición</param>
         </member>
         <member name="M:Orbita.VA.MaquinasEstados.OTransicionBase.IniciarComprobacionCondiciones">
@@ -773,7 +813,7 @@
             Código de la transición. Texto que lo identifica inequívocamente.
             </summary>
         </member>
-        <member name="P:Orbita.VA.MaquinasEstados.OTransicionBase.CodigoMaquinaEstados">
+        <member name="P:Orbita.VA.MaquinasEstados.OTransicionBase.CodigoInstanciaMaquinaEstados">
             <summary>
             Código de la máquina de estados. Texto que lo identifica inequívocamente.
             </summary>
@@ -934,7 +974,7 @@
         <member name="T:Orbita.VA.MaquinasEstados.OEscenario">
             <summary>
             Escenario Base.
-            Permite la utilización de vistas.
+            Permite la utilización de escenarios.
             </summary>
         </member>
         <member name="F:Orbita.VA.MaquinasEstados.OEscenario.Codigo">

@@ -65,9 +65,9 @@
         </member>
         <member name="M:Orbita.VA.Funciones.AppBD.GetClavesDeFuncionVision(System.String)">
             <summary>
-            Consulta las claves de una determinada vista
+            Consulta las claves de una determinada escenario
             </summary>
-            <param name="codVista"></param>
+            <param name="codEscenario"></param>
             <returns></returns>
         </member>
         <member name="T:Orbita.VA.Funciones.OCCRManager">
