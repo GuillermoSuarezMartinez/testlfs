@@ -18,6 +18,7 @@ using System.Windows.Forms;
 using Infragistics.Win.UltraWinDock;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
+using Orbita.Xml;
 namespace Orbita.Controles.VA
 {
     /// <summary>
