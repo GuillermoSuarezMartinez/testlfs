@@ -555,6 +555,10 @@
                 <Merging />
                 <Embedding />
             </Assembly>
+            <Assembly AssemblyName="Orbita.Xml, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
         </Assemblies>
         <Options>
             <Obfuscation FieldsNameMangling="3" NameMangling="3" />
