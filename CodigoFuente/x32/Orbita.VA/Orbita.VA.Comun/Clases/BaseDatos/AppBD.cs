@@ -65,11 +65,11 @@ namespace Orbita.VA.Comun
         /// </summary>
         public static void ExtraerEsquemaBBDD(EnumOrigenBaseDatos origenBaseDatos, ref DataSet ds)
         {
-            DataTable dtTablas = OBaseDatosManager.SQLServer(origenBaseDatos).SeleccionProcedimientoAlmacenado("APP_GET_ESQUEMA_TABLAS");
+            DataTable dtTablas = OBaseDatosManager.SQLServer(origenBaseDatos).SeleccionProcedimientoAlmacenado("VA_APP_GET_ESQUEMA_TABLAS");
             dtTablas.TableName = "TABLAS_" + origenBaseDatos.Nombre;
             ds.Tables.Add(dtTablas);
 
-            DataTable dtProcedimientos = OBaseDatosManager.SQLServer(origenBaseDatos).SeleccionProcedimientoAlmacenado("APP_GET_PROCEDIMIENTOS");
+            DataTable dtProcedimientos = OBaseDatosManager.SQLServer(origenBaseDatos).SeleccionProcedimientoAlmacenado("VA_APP_GET_PROCEDIMIENTOS");
             dtProcedimientos.TableName = "PROCEDIMIENTOS_" + origenBaseDatos.Nombre;
             ds.Tables.Add(dtProcedimientos);
 

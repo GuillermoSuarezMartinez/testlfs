@@ -342,7 +342,7 @@ namespace Orbita.VA.Comun
     /// <summary>
     /// Define el origen de la base de datos
     /// </summary>
-    internal class OrigenBaseDatos
+    public class OrigenBaseDatos
     {
         #region Atributo(s)
         /// <summary>
