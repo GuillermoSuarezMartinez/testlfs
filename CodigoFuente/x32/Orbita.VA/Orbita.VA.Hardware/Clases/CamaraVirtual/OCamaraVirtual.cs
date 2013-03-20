@@ -11,19 +11,11 @@
 //***********************************************************************
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Runtime.Remoting.Channels;
-using System.Net;
-using Orbita.VA.Comun;
-using System.Runtime.Remoting.Channels.Tcp;
-using Orbita.Utiles;
-using System.Runtime.Serialization.Formatters;
-using System.Collections;
 using System.Data;
-using System.Runtime.Remoting.Messaging;
-using System.Security.Permissions;
 using System.IO;
 using System.Windows.Forms;
+using Orbita.Utiles;
+using Orbita.VA.Comun;
 
 namespace Orbita.VA.Hardware
 {

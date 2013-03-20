@@ -10,8 +10,6 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using Orbita.Utiles;
 

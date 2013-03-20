@@ -1,6 +1,6 @@
 ﻿using System;
-using Orbita.VA.Comun;
 using Orbita.Utiles;
+using Orbita.VA.Comun;
 
 namespace Orbita.VAGeneradorEscenarios
 {
@@ -134,7 +134,7 @@ namespace Orbita.VAGeneradorEscenarios
                     OVALogsManager.Finalizar();
                     OVALogsManager.Destructor();
                 }
-                catch (Exception exception)
+                catch
                 {
                     resultado = false;
                 }

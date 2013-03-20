@@ -16,7 +16,6 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Cognex.VisionPro;
 using Cognex.VisionPro.ImageFile;
-using Orbita.VA.Comun;
 
 namespace Orbita.VA.Comun
 {
@@ -332,7 +331,7 @@ namespace Orbita.VA.Comun
                         formateador.Serialize(stream, this.Image);
                         resultado = stream.ToArray();
                     }
-                    catch (Exception exception)
+                    catch
                     {
                         resultado = new byte[0];
                     }
@@ -368,7 +367,7 @@ namespace Orbita.VA.Comun
                         formateador.Serialize(stream, this.Image);
                         resultado = stream.ToArray();
                     }
-                    catch (Exception exception)
+                    catch
                     {
                         resultado = new byte[0];
                     }

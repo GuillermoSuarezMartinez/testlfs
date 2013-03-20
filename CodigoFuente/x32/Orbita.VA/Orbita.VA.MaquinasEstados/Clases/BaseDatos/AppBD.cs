@@ -13,7 +13,6 @@ using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
 using Orbita.VA.Comun;
-using Orbita.Utiles;
 
 namespace Orbita.VA.MaquinasEstados
 {

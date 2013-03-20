@@ -135,7 +135,15 @@ namespace Orbita.VA.Comun
             OImagenBitmap imagenResultado = new OImagenBitmap();
             if (this._Image != null)
             {
-                imagenResultado._Image = this.Image.Clone();
+                //imagenResultado._Image = this.Image.Clone();
+
+                // Fase 1: Copia de la imagen a Array de Bytes
+                OByteArrayImage imagenByteArray = new OByteArrayImage();
+                imagenByteArray.Serializar(this);
+
+                // Fase 2: Restauración del Array de Bytes a la Imagen
+                imagenResultado = (OImagenBitmap)imagenByteArray.Desserializar();
+
                 imagenResultado.Codigo = this.Codigo;
                 imagenResultado.MomentoCreacion = this.MomentoCreacion;
             }
@@ -238,8 +246,11 @@ namespace Orbita.VA.Comun
                 try
                 {
                     MemoryStream stream = new MemoryStream();
-                    this.Image.Save(stream, ImageFormat.Bmp);
+                    //this.Image.Save(stream, ImageFormat.Bmp);
+                    this.Image.Save(stream, this.Image.RawFormat); // Nuevo
                     resultado = stream.ToArray();
+                    stream.Close(); // Nuevo
+                    stream.Dispose(); // Nuevo
                 }
                 catch
                 {
@@ -267,6 +278,8 @@ namespace Orbita.VA.Comun
                     MemoryStream stream = new MemoryStream();
                     imgAux.Image.Save(stream, formato);
                     resultado = stream.ToArray();
+                    stream.Close(); // Nuevo
+                    stream.Dispose(); // Nuevo
                 }
                 catch
                 {
@@ -293,6 +306,9 @@ namespace Orbita.VA.Comun
                     Bitmap bmp = new Bitmap(stream);
 
                     resultado = new OImagenBitmap(this.Codigo, bmp);
+
+                    stream.Close(); // Nuevo
+                    stream.Dispose(); // Nuevo
                 }
                 catch
                 {

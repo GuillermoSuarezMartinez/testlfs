@@ -1,6 +1,5 @@
-using System;
-using PylonC.NET;
 using System.Collections.Generic;
+using PylonC.NET;
 
 namespace Orbita.VA.Hardware
 {

@@ -22,19 +22,9 @@
 //***********************************************************************
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 using Orbita.Utiles;
                                                             
@@ -204,7 +194,7 @@ namespace Orbita.VA.Comun
                 resultado = webResponse.ContentLength > 0;
                 // do something with response.Headers to find out information about the request
             }
-            catch (WebException ex)
+            catch
             {
                 //set flag if there was a timeout or some other issues
             }

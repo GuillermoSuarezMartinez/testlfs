@@ -10,7 +10,6 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;

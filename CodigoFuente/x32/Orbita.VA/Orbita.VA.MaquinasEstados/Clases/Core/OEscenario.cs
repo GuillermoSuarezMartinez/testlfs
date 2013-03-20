@@ -11,7 +11,6 @@
 //***********************************************************************
 using System.Data;
 using Orbita.VA.Comun;
-using System.Collections.Generic;
 
 namespace Orbita.VA.MaquinasEstados
 {

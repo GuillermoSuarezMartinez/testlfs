@@ -9,8 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using Orbita.VA.Comun;
 using Orbita.Utiles;
 
 namespace Orbita.VA.Hardware

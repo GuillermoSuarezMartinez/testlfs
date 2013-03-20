@@ -13,9 +13,9 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Data;
+using Orbita.Utiles;
 using Orbita.VA.Comun;
 using Orbita.VA.MaquinasEstados;
-using Orbita.Utiles;
 
 namespace Orbita.VAGeneradorEscenarios
 {
@@ -121,6 +121,18 @@ namespace Orbita.VAGeneradorEscenarios
                         generador.RegionStart(descME, claseMaquinaEstados);
                         generador.RegionEnd(ultimaTransicion);
                     }
+                }
+
+                if (HabilitadoVariables)
+                {
+                    CodeTypeDeclaration claseImplementacionVariables;
+                    GenerarImplementadorVariables(generador, "OImplementacionVariables", "Mapeado de las variables", out claseImplementacionVariables);
+                }
+
+                if (HabilitadoHardware)
+                {
+                    CodeTypeDeclaration claseImplementacionHardware;
+                    GenerarImplementadorHardware(generador, "OImplementacionHardware", "Mapeado del hardware", out claseImplementacionHardware);
                 }
 
                 // Guardar el fichero
@@ -426,6 +438,64 @@ namespace Orbita.VAGeneradorEscenarios
                 }
 
                 generador.Region(descTransicion, claseTransicion);
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Generador de la clase estática de implementación de variables
+        /// </summary>
+        /// <param name="generador"></param>
+        /// <param name="codMaquinaEstados"></param>
+        private static bool GenerarImplementadorVariables(OGeneradorAccesoRapido generador, string claseImplementadora, string descripcion, out CodeTypeDeclaration clase)
+        {
+            // Generación de la clase parcial de la máquina de estados
+            string clasePadre = typeof(Object).Name;
+            clase = generador.GenerarClase(claseImplementadora, string.Empty, descripcion, MemberAttributes.Public | MemberAttributes.Static, false);
+            if (clase == null)
+            {
+                return false;
+            }
+            generador.Region(descripcion, clase);
+
+            // Lectura de los alias de la base de datos
+            DataTable dtVariables = Orbita.VA.Comun.AppBD.GetVariables();
+            foreach (DataRow drVar in dtVariables.Rows)
+            {
+                // Creamos una propiedad con cada uno de los alias
+                string codVariable = drVar["CodVariable"].ToString();
+                generador.GenerarPropiedadReadOnlyRuntime(ref clase, codVariable, string.Empty, codVariable, MemberAttributes.Public | MemberAttributes.Static, "OVariable", "OVariablesManager", "GetVariable", new CodeExpression[] { new CodePrimitiveExpression(codVariable) });
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Generador de la clase estática de implementación del hardware
+        /// </summary>
+        /// <param name="generador"></param>
+        /// <param name="codMaquinaEstados"></param>
+        private static bool GenerarImplementadorHardware(OGeneradorAccesoRapido generador, string claseImplementadora, string descripcion, out CodeTypeDeclaration clase)
+        {
+            // Generación de la clase parcial de la máquina de estados
+            string clasePadre = typeof(Object).Name;
+            clase = generador.GenerarClase(claseImplementadora, string.Empty, descripcion, MemberAttributes.Public | MemberAttributes.Static, false);
+            if (clase == null)
+            {
+                return false;
+            }
+            generador.Region(descripcion, clase);
+
+            // Lectura de los alias de la base de datos
+            DataTable dtHardware = Orbita.VA.Hardware.AppBD.GetHardware();
+            foreach (DataRow drHw in dtHardware.Rows)
+            {
+                // Creamos una propiedad con cada uno de los alias
+                string codHardware = drHw["CodHardware"].ToString();
+                string descHardware = drHw["DescHardware"].ToString();
+                string claseImplementadoraHw = drHw["ClaseImplementadora"].ToString();
+                generador.GenerarPropiedadReadOnlyRuntime(ref clase, codHardware, claseImplementadoraHw, descHardware, MemberAttributes.Public | MemberAttributes.Static, claseImplementadoraHw, "OHardwareManager", "GetHardware", new CodeExpression[] { new CodePrimitiveExpression(codHardware) });
             }
 
             return true;

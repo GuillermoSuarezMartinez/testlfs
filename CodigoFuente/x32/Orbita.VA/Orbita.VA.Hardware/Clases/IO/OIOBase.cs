@@ -9,13 +9,12 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
-using Orbita.VA.Comun;
-using Orbita.VA.MaquinasEstados;
 using Orbita.Utiles;
-using System;
+using Orbita.VA.Comun;
 
 namespace Orbita.VA.Hardware
 {
@@ -606,11 +605,12 @@ namespace Orbita.VA.Hardware
             switch (this._TipoTerminalIO)
             {
                 case OTipoTerminalIO.EntradaDigital:
-                    OVariablesManager.CrearSuscripcion(this._CodVariable, "IO", this._Codigo, this.EscribirEntrada);
+                case OTipoTerminalIO.EntradaComando:
+                    //OVariablesManager.CrearSuscripcion(this._CodVariable, "IO", this._Codigo, this.EscribirEntrada); // Nuevo: No se puede leer una entrada
                     break;
                 case OTipoTerminalIO.SalidaDigital:
                 case OTipoTerminalIO.SalidaComando:
-                    OVariablesManager.CrearSuscripcion(this._CodVariable, "IO", this._Codigo, this.EscribirSalida);
+                    OVariablesManager.CrearSuscripcion(this._CodVariable, "IO", this._Codigo, this.EscribirSalida); // Nuevo: No se puede leer una entrada
                     break;
             }
         }

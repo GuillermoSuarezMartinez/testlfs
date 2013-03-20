@@ -12,9 +12,8 @@
 using System;
 using System.Drawing;
 using System.IO;
-using System.Text;
-using System.Threading;
 using System.Net;
+using System.Threading;
 using System.Windows.Forms;
 using Orbita.VA.Comun;
 
@@ -478,7 +477,7 @@ namespace Orbita.VA.Hardware
                         // wait for a while before the next try
                         Thread.Sleep(250);
                     }
-                    catch (ThreadAbortException ex)
+                    catch (ThreadAbortException)
                     {
                     }
                     catch (Exception ex)

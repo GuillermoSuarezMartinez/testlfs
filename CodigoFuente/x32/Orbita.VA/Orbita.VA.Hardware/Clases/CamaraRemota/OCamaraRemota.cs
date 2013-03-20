@@ -10,18 +10,16 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.Remoting.Channels;
-using System.Net;
-using Orbita.VA.Comun;
-using System.Runtime.Remoting.Channels.Tcp;
-using Orbita.Utiles;
-using System.Runtime.Serialization.Formatters;
 using System.Collections;
 using System.Data;
+using System.Net;
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Channels.Tcp;
 using System.Runtime.Remoting.Messaging;
+using System.Runtime.Serialization.Formatters;
 using System.Security.Permissions;
+using Orbita.Utiles;
+using Orbita.VA.Comun;
 
 namespace Orbita.VA.Hardware
 {
@@ -31,10 +29,6 @@ namespace Orbita.VA.Hardware
     public class OCamaraRemota : OCamaraBase
     {
         #region Atributo(s) estático(s)
-        /// <summary>
-        /// Clase remoting del servidor de cámaras
-        /// </summary>
-        private static OServidorCamaras ServidorCamaras;
         /// <summary>
         /// Booleano que evita que se construya varias veces el listado de cámaras de tipo GigE
         /// </summary>
@@ -150,7 +144,7 @@ namespace Orbita.VA.Hardware
         /// <param name="modo">Modo de movimiento: Absoluto o relativo</param>
         /// <param name="valor">valor a establecer</param>
         /// <returns>Verdadero si se ha ejecutado correctamente</returns>
-        public bool EjecutaMovimientoPTZ(OEnumTipoMovimientoPTZ tipo, OEnumModoMovimientoPTZ modo, double valor)
+        public override bool EjecutaMovimientoPTZ(OEnumTipoMovimientoPTZ tipo, OEnumModoMovimientoPTZ modo, double valor)
         {
             if (this.EstadoConexion == EstadoConexion.Conectado)
             {
@@ -165,7 +159,7 @@ namespace Orbita.VA.Hardware
         /// <param name="movimiento">Tipo de movimiento ptz a ejecutar</param>
         /// <param name="valor">valor a establecer</param>
         /// <returns>Verdadero si se ha ejecutado correctamente</returns>
-        public bool EjecutaMovimientoPTZ(OMovimientoPTZ movimiento, double valor)
+        public override bool EjecutaMovimientoPTZ(OMovimientoPTZ movimiento, double valor)
         {
             if (this.EstadoConexion == EstadoConexion.Conectado)
             {
@@ -179,7 +173,7 @@ namespace Orbita.VA.Hardware
         /// </summary>
         /// <param name="comando">Comando del movimiento ptz a ejecutar</param>
         /// <returns>Verdadero si se ha ejecutado correctamente</returns>
-        public bool EjecutaMovimientoPTZ(OComandoPTZ comando)
+        public override bool EjecutaMovimientoPTZ(OComandoPTZ comando)
         {
             if (this.EstadoConexion == EstadoConexion.Conectado)
             {

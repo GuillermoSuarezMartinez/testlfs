@@ -29,6 +29,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 using Cognex.VisionPro;
 using Cognex.VisionPro.Exceptions;
@@ -37,7 +38,6 @@ using Cognex.VisionPro.FGGigE.Implementation.Internal;
 using Orbita.Trazabilidad;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
-using System.Threading;
 
 namespace Orbita.VA.Hardware
 {
@@ -81,7 +81,7 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Indica que la adquisición está siendo procesada en el momento actual
         /// </summary>
-        private bool AdquisicionEnProceso;
+        public bool AdquisicionEnProceso;
         /// <summary>
         /// Tiempo máximo de acceso a la parametrización GigE
         /// </summary>
@@ -1474,7 +1474,7 @@ namespace Orbita.VA.Hardware
                     resultado = ok;
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -1500,7 +1500,7 @@ namespace Orbita.VA.Hardware
                     resultado = true;
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -1606,7 +1606,7 @@ namespace Orbita.VA.Hardware
                     resultado = ok;
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -1632,7 +1632,7 @@ namespace Orbita.VA.Hardware
                     resultado = true;
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -1738,7 +1738,7 @@ namespace Orbita.VA.Hardware
                     resultado = ok;
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -1764,7 +1764,7 @@ namespace Orbita.VA.Hardware
                     resultado = true;
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -1870,7 +1870,7 @@ namespace Orbita.VA.Hardware
                     resultado = ok;
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -1896,7 +1896,7 @@ namespace Orbita.VA.Hardware
                     resultado = true;
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -2006,7 +2006,7 @@ namespace Orbita.VA.Hardware
                     resultado = ok;
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -2033,7 +2033,7 @@ namespace Orbita.VA.Hardware
                     resultado = true;
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -2117,7 +2117,7 @@ namespace Orbita.VA.Hardware
                     }
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -2143,7 +2143,7 @@ namespace Orbita.VA.Hardware
                     resultado = true;
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -2219,7 +2219,7 @@ namespace Orbita.VA.Hardware
                     resultado = true;
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -2245,7 +2245,7 @@ namespace Orbita.VA.Hardware
                     resultado = true;
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -2335,7 +2335,7 @@ namespace Orbita.VA.Hardware
                     resultado = this.FeatureBalanceRatio.Send(true, modoAjuste);
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -2463,7 +2463,7 @@ namespace Orbita.VA.Hardware
                     }
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -2608,7 +2608,7 @@ namespace Orbita.VA.Hardware
                     resultado = this.FeatureTriggerMode.Send(true, ModoAjuste.Ejecucion);
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }
@@ -2728,7 +2728,7 @@ namespace Orbita.VA.Hardware
                     resultado = true;
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }

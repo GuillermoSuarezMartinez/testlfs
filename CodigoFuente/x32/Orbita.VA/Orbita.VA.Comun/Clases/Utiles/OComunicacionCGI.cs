@@ -412,4 +412,51 @@ namespace Orbita.VA.Comun
         }
         #endregion
     }
+
+    /// <summary>
+    /// Comunicación con aplicaciones CGI con respuesta de texto
+    /// </summary>
+    public class OComunicacionCGIDummy : OComunicacionCGI
+    {
+        #region Constructor(es)
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OComunicacionCGIDummy() :
+            base()
+        {
+        }
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OComunicacionCGIDummy(string url, string usuario, string contraseña, string codigo, bool usaGrupoConexionSeparado, int timeOut, HttpStatusCode codigoRespuesta):
+            base(url, usuario, contraseña, codigo, usaGrupoConexionSeparado, timeOut, codigoRespuesta)
+        {
+        }
+        #endregion
+
+        #region Método(s) público(s)
+        /// <summary>
+        /// Envio de comando CGI para información de texto
+        /// </summary>
+        /// <returns>Verdadero si la ejecución se ha realizado con éxito</returns>
+        public bool Ejecuta()
+        {
+            bool resultado = false;
+
+            try
+            {
+                resultado = this.Start();
+                this.Stop();
+            }
+            catch (Exception exception)
+            {
+                OVALogsManager.Info(ModulosSistema.Comun, "OComunicacionCGIDummy", exception);
+            }
+
+            return resultado;
+        }
+        #endregion
+    }
 }

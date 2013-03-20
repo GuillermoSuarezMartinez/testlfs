@@ -33,7 +33,7 @@ namespace Orbita.VA.Comun
     /// <summary>
     /// Clase estática para acceder a las variables desde cualquier lugar de la aplicacion
     /// </summary>
-    public static class OVariablesManager
+    public static partial class OVariablesManager
     {
         #region Atributo(s)
         /// <summary>
@@ -219,6 +219,181 @@ namespace Orbita.VA.Comun
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Método para acceder al valor de una variable de tipo bool
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        public static bool GetBool(string codigo, bool defecto)
+        {
+            return GetBool(string.Empty, codigo, defecto);
+        }
+        /// <summary>
+        /// Método para acceder al valor de una variable de tipo bool
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        public static bool GetBool(string escenario, string codigo, bool defecto)
+        {
+            OVariable variable;
+            if (TryGetVariable(escenario, codigo, out variable))
+            {
+                return variable.GetBool(defecto);
+            }
+
+            return defecto;
+        }
+
+        /// <summary>
+        /// Método para acceder al valor de una variable de tipo int
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        public static int GetEntero(string codigo, int min, int max, int defecto)
+        {
+            return GetEntero(string.Empty, codigo, min, max, defecto);
+        }
+        /// <summary>
+        /// Método para acceder al valor de una variable de tipo int
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        public static int GetEntero(string escenario, string codigo, int min, int max, int defecto)
+        {
+            OVariable variable;
+            if (TryGetVariable(escenario, codigo, out variable))
+            {
+                return variable.GetEntero(min, max, defecto);
+            }
+
+            return defecto;
+        }
+
+        /// <summary>
+        /// Método para acceder al valor de una variable de tipo string
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el valor de la variable con el código correspondientes</returns>
+        public static string GetTexto(string codigo, int maxLength, bool admiteVacio, bool limitarLongitud, string defecto)
+        {
+            return GetTexto(string.Empty, codigo, maxLength, admiteVacio, limitarLongitud, defecto);
+        }
+        /// <summary>
+        /// Método para acceder al valor de una variable de tipo string
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        public static string GetTexto(string escenario, string codigo, int maxLength, bool admiteVacio, bool limitarLongitud, string defecto)
+        {
+            OVariable variable;
+            if (TryGetVariable(escenario, codigo, out variable))
+            {
+                return variable.GetTexto(maxLength, admiteVacio, limitarLongitud, defecto);
+            }
+
+            return defecto;
+        }
+
+        /// <summary>
+        /// Método para acceder al valor de una variable de tipo double
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        public static double GetDecimal(string codigo, double min, double max, double defecto)
+        {
+            return GetDecimal(string.Empty, codigo, min, max, defecto);
+        }
+        /// <summary>
+        /// Método para acceder al valor de una variable de tipo double
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        public static double GetDecimal(string escenario, string codigo, double min, double max, double defecto)
+        {
+            OVariable variable;
+            if (TryGetVariable(escenario, codigo, out variable))
+            {
+                return variable.GetDecimal(min, max, defecto);
+            }
+
+            return defecto;
+        }
+
+        /// <summary>
+        /// Método para acceder al valor de una variable de tipo Datetime
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        public static DateTime GetFecha(string codigo, DateTime min, DateTime max, DateTime defecto)
+        {
+            return GetFecha(string.Empty, codigo, min, max, defecto);
+        }
+        /// <summary>
+        /// Método para acceder al valor de una variable de tipo Datetime
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        public static DateTime GetFecha(string escenario, string codigo, DateTime min, DateTime max, DateTime defecto)
+        {
+            OVariable variable;
+            if (TryGetVariable(escenario, codigo, out variable))
+            {
+                return variable.GetFecha(min, max, defecto);
+            }
+
+            return defecto;
+        }
+
+        /// <summary>
+        /// Método para acceder al valor de una variable de tipo Imagen
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        public static OImagen GetImagen(string codigo, OImagen defecto)
+        {
+            return GetImagen(string.Empty, codigo, defecto);
+        }
+        /// <summary>
+        /// Método para acceder al valor de una variable de tipo Imagen
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        public static OImagen GetImagen(string escenario, string codigo, OImagen defecto)
+        {
+            OVariable variable;
+            if (TryGetVariable(escenario, codigo, out variable))
+            {
+                return variable.GetImagen(defecto);
+            }
+
+            return defecto;
+        }
+
+        /// <summary>
+        /// Método para acceder al valor de una variable de tipo Grafico
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        public static OGrafico GetGrafico(string codigo, OGrafico defecto)
+        {
+            return GetGrafico(string.Empty, codigo, defecto);
+        }
+        /// <summary>
+        /// Método para acceder al valor de una variable de tipo Grafico
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        public static OGrafico GetGrafico(string escenario, string codigo, OGrafico defecto)
+        {
+            OVariable variable;
+            if (TryGetVariable(escenario, codigo, out variable))
+            {
+                return variable.GetGrafico(defecto);
+            }
+
+            return defecto;
         }
 
         /// <summary>
@@ -1029,6 +1204,97 @@ namespace Orbita.VA.Comun
         }
 
         /// <summary>
+        /// Lectura de la variable
+        /// </summary>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public bool GetBool(bool defecto)
+        {
+            if (OVariablesManager.Iniciado)
+            {
+                return this.VariableCore.GetBool(defecto);
+            }
+            return defecto;
+        }
+
+        /// <summary>
+        /// Lectura de la variable
+        /// </summary>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public int GetEntero(int min, int max, int defecto)
+        {
+            if (OVariablesManager.Iniciado)
+            {
+                return this.VariableCore.GetEntero(min, max, defecto);
+            }
+            return defecto;
+        }
+
+        /// <summary>
+        /// Lectura de la variable
+        /// </summary>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public string GetTexto(int maxLength, bool admiteVacio, bool limitarLongitud, string defecto)
+        {
+            if (OVariablesManager.Iniciado)
+            {
+                return this.VariableCore.GetTexto(maxLength, admiteVacio, limitarLongitud, defecto);
+            }
+            return defecto;
+        }
+
+        /// <summary>
+        /// Lectura de la variable
+        /// </summary>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public double GetDecimal(double min, double max, double defecto)
+        {
+            if (OVariablesManager.Iniciado)
+            {
+                return this.VariableCore.GetDecimal(min, max, defecto);
+            }
+            return defecto;
+        }
+
+        /// <summary>
+        /// Lectura de la variable
+        /// </summary>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public DateTime GetFecha(DateTime min, DateTime max, DateTime defecto)
+        {
+            if (OVariablesManager.Iniciado)
+            {
+                return this.VariableCore.GetFecha(min, max, defecto);
+            }
+            return defecto;
+        }
+
+        /// <summary>
+        /// Lectura de la variable
+        /// </summary>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public OImagen GetImagen(OImagen defecto)
+        {
+            if (OVariablesManager.Iniciado)
+            {
+                return this.VariableCore.GetImagen(defecto);
+            }
+            return defecto;
+        }
+
+        /// <summary>
+        /// Lectura de la variable
+        /// </summary>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public OGrafico GetGrafico(OGrafico defecto)
+        {
+            if (OVariablesManager.Iniciado)
+            {
+                return this.VariableCore.GetGrafico(defecto);
+            }
+            return defecto;
+        }
+
+        /// <summary>
         /// Método para consultar el tiempo de permanencia del valor de la variable
         /// </summary>
         /// <param name="codigo">Código de la variable</param>
@@ -1583,6 +1849,81 @@ namespace Orbita.VA.Comun
         public object GetValor()
         {
             return this.Valor;
+        }
+
+        /// <summary>
+        /// Lectura de la variable
+        /// </summary>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public bool GetBool(bool defecto)
+        {
+            return OBooleano.Validar(this.Valor, defecto);
+        }
+
+        /// <summary>
+        /// Lectura de la variable
+        /// </summary>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public int GetEntero(int min, int max, int defecto)
+        {
+            return OEntero.Validar(this.Valor, min, max, defecto);
+        }
+
+        /// <summary>
+        /// Lectura de la variable
+        /// </summary>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public string GetTexto(int maxLength, bool admiteVacio, bool limitarLongitud, string defecto)
+        {
+            return OTexto.Validar(this.Valor, maxLength, admiteVacio, limitarLongitud, defecto);
+        }
+
+        /// <summary>
+        /// Lectura de la variable
+        /// </summary>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public double GetDecimal(double min, double max, double defecto)
+        {
+            return ODecimal.Validar(this.Valor, min, max, defecto);
+        }
+
+        /// <summary>
+        /// Lectura de la variable
+        /// </summary>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public DateTime GetFecha(DateTime min, DateTime max, DateTime defecto)
+        {
+            return OFechaHora.Validar(this.Valor, min, max, defecto);
+        }
+
+        /// <summary>
+        /// Lectura de la variable
+        /// </summary>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public OImagen GetImagen(OImagen defecto)
+        {
+            object valor = this.GetValor();
+            if (valor is OImagen)
+            {
+                return (OImagen)valor;
+            }
+
+            return defecto;
+        }
+
+        /// <summary>
+        /// Lectura de la variable
+        /// </summary>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public OGrafico GetGrafico(OGrafico defecto)
+        {
+            object valor = this.GetValor();
+            if (valor is OGrafico)
+            {
+                return (OGrafico)valor;
+            }
+
+            return defecto;
         }
 
         /// <summary>

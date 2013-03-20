@@ -10,11 +10,11 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-using Orbita.VA.Comun;
-using System.Threading;
+using System.Collections.Generic;
 using System.Data;
 using System.Net;
-using System.Collections.Generic;
+using System.Threading;
+using Orbita.VA.Comun;
 
 namespace Orbita.VA.Hardware
 {

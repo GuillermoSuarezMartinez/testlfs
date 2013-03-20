@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using PylonC.NET;
 using System.Threading;
 using System.Windows.Forms;
+using PylonC.NET;
 
 namespace Orbita.VA.Hardware
 {
@@ -276,12 +276,12 @@ namespace Orbita.VA.Hardware
                             throw new Exception(string.Format("A grab failure occurred. See the method ImageProvider::Grab for more information. The error code is {0:X08}.", grabResult.ErrorCode));
                         }
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
-                        ///* The grabbing stops due to an error. Set m_grabThreadRun to false to avoid that any more buffers are queued for grabbing. */
+                        //// The grabbing stops due to an error. Set m_grabThreadRun to false to avoid that any more buffers are queued for grabbing. */
                         //m_grabThreadRun = false;
 
-                        ///* Get the last error message here, because it could be overwritten by cleaning up. */
+                        //// Get the last error message here, because it could be overwritten by cleaning up. */
                         //string lastErrorMessage = GetLastErrorText();
 
                         //try
@@ -294,7 +294,7 @@ namespace Orbita.VA.Hardware
                         //    /* Another exception cannot be handled. */
                         //}
 
-                        ///* Notify that grabbing has stopped. This event could be used to update the state of the GUI. */
+                        //// Notify that grabbing has stopped. This event could be used to update the state of the GUI. */
                         //OnGrabbingStoppedEvent();
 
                         //if (!m_removed) /* In case the device was removed from the PC suppress the notification. */
@@ -316,7 +316,7 @@ namespace Orbita.VA.Hardware
                     OnGrabbingStoppedEvent();
                 }
             }
-            catch (Exception e) { }
+            catch (Exception) { }
         }
 
         /// <summary>

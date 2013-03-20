@@ -10,7 +10,6 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-using System.Drawing.Imaging;
 
 namespace Orbita.VA.Hardware
 {

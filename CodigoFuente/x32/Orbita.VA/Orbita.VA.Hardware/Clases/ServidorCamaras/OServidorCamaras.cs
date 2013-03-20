@@ -10,16 +10,13 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.Remoting.Channels.Tcp;
-using System.Data;
-using System.Runtime.Remoting.Channels;
-using Orbita.Utiles;
-using System.Runtime.Serialization.Formatters;
-using System.Runtime.Remoting;
 using System.Collections;
-using System.Drawing;
+using System.Data;
+using System.Runtime.Remoting;
+using System.Runtime.Remoting.Channels;
+using System.Runtime.Remoting.Channels.Tcp;
+using System.Runtime.Serialization.Formatters;
+using Orbita.Utiles;
 using Orbita.VA.Comun;
 
 namespace Orbita.VA.Hardware

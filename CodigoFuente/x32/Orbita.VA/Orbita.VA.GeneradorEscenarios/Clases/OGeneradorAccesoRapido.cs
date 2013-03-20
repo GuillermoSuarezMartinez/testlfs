@@ -45,7 +45,21 @@ namespace Orbita.VAGeneradorEscenarios
         }
         #endregion    
 
-        #region Métodos públicos
+        #region Método(s) privado(s)
+        /// <summary>
+        /// Método encargado de realizar comentarios xml
+        /// </summary>
+        /// <param name="miembro"></param>
+        /// <param name="comentario"></param>
+        public void Comentar(CodeTypeMember miembro, string comentario)
+        {
+            miembro.Comments.Add(new CodeCommentStatement("<sumary>", true));
+            miembro.Comments.Add(new CodeCommentStatement(comentario, true));
+            miembro.Comments.Add(new CodeCommentStatement("</sumary>", true));
+        }
+        #endregion
+
+        #region Método(s) público(s)
         /// <summary>
         /// Genera la unit
         /// </summary>
@@ -86,7 +100,8 @@ namespace Orbita.VAGeneradorEscenarios
             {
                 clase = new CodeTypeDeclaration(nombre);
                 clase.IsClass = true;
-                clase.Comments.Add(new CodeCommentStatement(comentarios));
+                this.Comentar(clase, comentarios);
+                //clase.Comments.Add(new CodeCommentStatement(comentarios));
                 clase.Attributes = atributos;
                 if (padre != string.Empty)
                 {
@@ -124,7 +139,8 @@ namespace Orbita.VAGeneradorEscenarios
             {
                 clase = new CodeTypeDeclaration(nombre);
                 clase.IsClass = true;
-                clase.Comments.Add(new CodeCommentStatement(comentarios));
+                this.Comentar(clase, comentarios);
+                //clase.Comments.Add(new CodeCommentStatement(comentarios));
                 clase.Attributes = atributos;
                 if (padre != string.Empty)
                 {
@@ -149,7 +165,8 @@ namespace Orbita.VAGeneradorEscenarios
             // Declare a new class
             CodeMemberMethod metodo = new CodeMemberMethod();
             metodo.Attributes = atributos;
-            metodo.Comments.Add(new CodeCommentStatement(comentarios));
+            this.Comentar(metodo, comentarios);
+            //metodo.Comments.Add(new CodeCommentStatement(comentarios));
             metodo.Name = nombre;
             metodo.Parameters.AddRange(parametros);
 
@@ -194,7 +211,8 @@ namespace Orbita.VAGeneradorEscenarios
             // Declare a new class
             CodeConstructor metodo = new CodeConstructor();
             metodo.Attributes = atributos;
-            metodo.Comments.Add(new CodeCommentStatement(comentarios));
+            this.Comentar(metodo, comentarios);
+            //metodo.Comments.Add(new CodeCommentStatement(comentarios));
 
             metodo.Parameters.AddRange(parametros);
             metodo.BaseConstructorArgs.AddRange(parametrosBase);
@@ -218,7 +236,8 @@ namespace Orbita.VAGeneradorEscenarios
                 // Añadir campo
                 CodeMemberField campo = new CodeMemberField(tipo, nombreCampo);
                 campo.Attributes = MemberAttributes.Private;
-                campo.Comments.Add(new CodeCommentStatement(comentarios));
+                this.Comentar(campo, comentarios);
+                //campo.Comments.Add(new CodeCommentStatement(comentarios));
                 clase.Members.Add(campo);
             }
 
@@ -240,7 +259,8 @@ namespace Orbita.VAGeneradorEscenarios
             varProperty.Name = nombre;
             varProperty.HasGet = true;
             varProperty.Type = new CodeTypeReference(tipo);
-            varProperty.Comments.Add(new CodeCommentStatement(comentarios));
+            this.Comentar(varProperty, comentarios);
+            //varProperty.Comments.Add(new CodeCommentStatement(comentarios));
             varProperty.GetStatements.Add(new CodeMethodReturnStatement(expresion));
 
             clase.Members.Add(varProperty);
@@ -277,7 +297,8 @@ namespace Orbita.VAGeneradorEscenarios
             varProperty.Name = nombre;
             varProperty.HasGet = true;
             varProperty.Type = new CodeTypeReference(tipo);
-            varProperty.Comments.Add(new CodeCommentStatement(comentarios));
+            this.Comentar(varProperty, comentarios);
+            //varProperty.Comments.Add(new CodeCommentStatement(comentarios));
             varProperty.GetStatements.Add(new CodeMethodReturnStatement(expresion));
 
             clase.Members.Add(varProperty);
@@ -303,7 +324,8 @@ namespace Orbita.VAGeneradorEscenarios
             varProperty.Name = nombre;
             varProperty.HasGet = true;
             varProperty.Type = new CodeTypeReference(tipo);
-            varProperty.Comments.Add(new CodeCommentStatement(comentarios));
+            this.Comentar(varProperty, comentarios);
+            //varProperty.Comments.Add(new CodeCommentStatement(comentarios));
             varProperty.GetStatements.Add(new CodeMethodReturnStatement(expresionGET));
             varProperty.SetStatements.Add(expresionSET);
 

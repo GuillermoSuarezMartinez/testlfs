@@ -234,12 +234,6 @@
     <ProjectReference Include="..\Orbita.VA.Comun\Orbita.VA.Comun.csproj">
       <Project>{CC36FE63-3F16-4355-A11D-F0926DFBC977}</Project>
       <Name>Orbita.VA.Comun</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\Orbita.VA.MaquinasEstados\Orbita.VA.MaquinasEstados.csproj">
-      <Project>{1CA30AAB-0DA9-4947-B5C5-E81E9A2D9C18}</Project>
-      <Name>Orbita.VA.MaquinasEstados</Name>
-      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

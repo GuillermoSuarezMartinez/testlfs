@@ -19,9 +19,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-using Orbita.Utiles;
-using Orbita.Xml;
 using System.Text.RegularExpressions;
+using Orbita.Xml;
 
 namespace Orbita.VA.Comun
 {

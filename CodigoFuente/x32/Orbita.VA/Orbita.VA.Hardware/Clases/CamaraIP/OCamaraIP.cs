@@ -14,8 +14,8 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Net;
-using Orbita.VA.Comun;
 using Orbita.Utiles;
+using Orbita.VA.Comun;
 
 namespace Orbita.VA.Hardware
 {
@@ -24,6 +24,10 @@ namespace Orbita.VA.Hardware
     /// </summary>
     public class OCamaraIP : OCamaraBitmap
     {
+        #region Contante(s)
+        public const int TimeOutPrimeraConexionMs = 12000;
+        #endregion
+
         #region Atributo(s)
         /// <summary>
         /// Dirección URL original del grab
@@ -161,6 +165,12 @@ namespace Orbita.VA.Hardware
                 // Nos suscribimos a la recepción de imágenes de la cámara
                 this.VideoSource.NewFrame += this.ImagenAdquirida;
                 this.VideoSource.OnCameraError += ErrorAdquisicion;
+
+                // Debido a que la primera conexión CGI tiene una duración superior a lo normal, 
+                // realizamos una conexión/desconexión simple para evitar problemas de timeouts vencidos
+                // durante el proceso de trabajo normal con el CGI
+                OComunicacionCGIDummy dummy = new OComunicacionCGIDummy(this.URL, this.Usuario, this.Contraseña, "dummy", true, TimeOutPrimeraConexionMs, HttpStatusCode.NoContent);
+                dummy.Ejecuta();
 
                 resultado = true;
             }

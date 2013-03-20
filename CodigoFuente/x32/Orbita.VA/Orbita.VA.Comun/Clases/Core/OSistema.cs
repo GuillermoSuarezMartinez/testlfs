@@ -14,12 +14,12 @@
 //***********************************************************************
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using Orbita.Utiles;
-using System.Drawing;
-using System.Runtime.InteropServices;
 using Orbita.Xml;
 
 namespace Orbita.VA.Comun
@@ -351,7 +351,7 @@ namespace Orbita.VA.Comun
             {
                 this.Configuracion = (ConfiguracionSistema)(new ConfiguracionSistema(configFile).CargarDatos());
             }
-            catch (FileNotFoundException exception)
+            catch (FileNotFoundException)
             {
                 this.MensajeInfoArranqueAplicacion("Imposible abrir el fichero de configuración: " + configFile, true, OTipoMensaje.Error);
                 this.Configuracion = new ConfiguracionSistema();

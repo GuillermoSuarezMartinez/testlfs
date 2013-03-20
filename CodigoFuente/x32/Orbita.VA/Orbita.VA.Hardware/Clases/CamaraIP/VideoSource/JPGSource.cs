@@ -12,10 +12,10 @@
 using System;
 using System.Drawing;
 using System.IO;
-using System.Threading;
 using System.Net;
-using Orbita.VA.Comun;
+using System.Threading;
 using System.Windows.Forms;
+using Orbita.VA.Comun;
 
 namespace Orbita.VA.Hardware
 {
@@ -425,7 +425,7 @@ namespace Orbita.VA.Hardware
                         // wait for a while before the next try
                         Thread.Sleep(250);
                     }
-                    catch (ThreadAbortException exception)
+                    catch (ThreadAbortException)
                     {
                     }
                     catch (Exception ex)

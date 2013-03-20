@@ -9,12 +9,10 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using Orbita.VA.Comun;
 using System;
-using System.Diagnostics;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
-using PylonC.NET;
 using Orbita.VA.Comun;
 
 namespace Orbita.VA.Hardware

@@ -11,15 +11,12 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
-using Orbita.Trazabilidad;
-using System.Windows.Forms;
+using System.Threading;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
 using PylonC.NET;
-using System.Threading;
 
 namespace Orbita.VA.Hardware
 {
@@ -98,10 +95,6 @@ namespace Orbita.VA.Hardware
         /// </summary>
         private int IntervaloComprobacionConectividadMS;
         /// <summary>
-        /// Indica que la adquisición está siendo procesada en el momento actual
-        /// </summary>
-        private bool AdquisicionEnProceso;
-        /// <summary>
         /// Tiempo máximo de acceso a la parametrización GigE
         /// </summary>
         private int TimeOutAccesoGigEFeatures;
@@ -131,9 +124,6 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                // Inicialización de variables
-                this.AdquisicionEnProceso = false;
-
                 // Create one image provider.
                 this.ImageProvider = new ImageProvider();
 
@@ -365,9 +355,6 @@ namespace Orbita.VA.Hardware
                 {
                     base.StartInterno();
 
-                    // Indicamos que no existe ninguna adquisición ejecutandose en estos momentos
-                    this.AdquisicionEnProceso = false;
-
                     // Acquisition configuration
                     this.Ajustes.Start();
 
@@ -407,9 +394,6 @@ namespace Orbita.VA.Hardware
 
                     // Se configuran los ajustes
                     this.Ajustes.Stop();
-
-                    // Indicamos que no existe ninguna adquisición ejecutandose en estos momentos
-                    this.AdquisicionEnProceso = false;
 
                     base.StopInterno();
                 }
@@ -534,9 +518,6 @@ namespace Orbita.VA.Hardware
                 return;
             }
 
-            // indicamos que se está procesando una adquisición
-            this.AdquisicionEnProceso = true;
-
             try
             {
                 if (this.EstadoConexion == EstadoConexion.Conectado)
@@ -605,9 +586,6 @@ namespace Orbita.VA.Hardware
             {
                 OVALogsManager.Error(ModulosHardware.CamaraBaslerPylon, this.Codigo, exception, this.ImageProvider.GetLastErrorMessage());
             }
-
-            // indicamos se ha finalizado la adquisición
-            this.AdquisicionEnProceso = false;
         }
 
         /// <summary>
@@ -2258,7 +2236,7 @@ namespace Orbita.VA.Hardware
                     resultado = true;
                 }
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 throw new OCameraConectionException();
             }

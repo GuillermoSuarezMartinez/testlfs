@@ -36,6 +36,17 @@ namespace Orbita.VA.Hardware
         }
 
         /// <summary>
+        /// Consulta todo el hardware del sistema
+        /// </summary>
+        /// <param name="codEscenario"></param>
+        /// <returns></returns>
+        public static DataTable GetHardware()
+        {
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_HWR_GET_HARDWARE");
+        }
+
+
+        /// <summary>
         /// Consulta las cámaras del sistema
         /// </summary>
         /// <returns>DataTable con los códigos de las cámaras existentes en el sistema</returns>

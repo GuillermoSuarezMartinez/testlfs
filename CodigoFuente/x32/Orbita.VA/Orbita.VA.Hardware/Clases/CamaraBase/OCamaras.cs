@@ -28,12 +28,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Reflection;
-using System.Windows.Forms;
-using Orbita.VA.Comun;
-using Orbita.VA.MaquinasEstados;
 using Orbita.Utiles;
+using Orbita.VA.Comun;
 
 namespace Orbita.VA.Hardware
 {

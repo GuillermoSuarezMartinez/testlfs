@@ -227,7 +227,7 @@
     <Compile Include="Clases\IO\OIO_MeasurementComputing.cs" />
     <Compile Include="Clases\Logs\OExtensionLogs.cs" />
     <Compile Include="Clases\Hardware\OHardware.cs" />
-    <Compile Include="Clases\IO\OIO_SCED.cs" />
+    <Compile Include="Clases\IO\OClienteComunicacion.cs" />
     <Compile Include="Clases\CamaraBaslerPylon\Pylon.NETSupportLibrary\BitmapFactory.cs" />
     <Compile Include="Clases\CamaraBaslerPylon\Pylon.NETSupportLibrary\DeviceEnumerator.cs" />
     <Compile Include="Clases\CamaraBaslerPylon\Pylon.NETSupportLibrary\ImageProvider.cs" />
@@ -265,15 +265,8 @@
     <ProjectReference Include="..\Orbita.VA.Comun\Orbita.VA.Comun.csproj">
       <Project>{CC36FE63-3F16-4355-A11D-F0926DFBC977}</Project>
       <Name>Orbita.VA.Comun</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\Orbita.VA.MaquinasEstados\Orbita.VA.MaquinasEstados.csproj">
-      <Project>{1CA30AAB-0DA9-4947-B5C5-E81E9A2D9C18}</Project>
-      <Name>Orbita.VA.MaquinasEstados</Name>
-      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)Orbita.VA.Hardware.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I

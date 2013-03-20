@@ -189,15 +189,6 @@
       <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Orbita.VA.Comun">
-      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.VA.Comun.dll</HintPath>
-    </Reference>
-    <Reference Include="Orbita.VA.Funciones">
-      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.VA.Funciones.dll</HintPath>
-    </Reference>
-    <Reference Include="Orbita.VA.Hardware">
-      <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.VA.Hardware.dll</HintPath>
-    </Reference>
     <Reference Include="Orbita.VA.MaquinasEstados, Version=13.44.8.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\..\..\..\Servicios\CodigoFuente\x32\OrbitaServidorCamaras\Comun\Orbita\Orbita.VA.MaquinasEstados.dll</HintPath>
     </Reference>
@@ -245,6 +236,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Orbita.VA.Comun\Orbita.VA.Comun.csproj">
+      <Project>{CC36FE63-3F16-4355-A11D-F0926DFBC977}</Project>
+      <Name>Orbita.VA.Comun</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

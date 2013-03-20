@@ -9,11 +9,11 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.Threading;
 using System;
-using System.IO;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
+using System.Threading;
 using AForge.Video.FFMPEG;
 
 namespace Orbita.VA.Comun
