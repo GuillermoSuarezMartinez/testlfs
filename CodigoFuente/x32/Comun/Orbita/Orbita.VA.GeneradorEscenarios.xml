@@ -75,6 +75,20 @@
             <param name="generador"></param>
             <param name="codMaquinaEstados"></param>
         </member>
+        <member name="M:Orbita.VAGeneradorEscenarios.Program.GenerarImplementadorVariables(Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.String,System.CodeDom.CodeTypeDeclaration@)">
+            <summary>
+            Generador de la clase estática de implementación de variables
+            </summary>
+            <param name="generador"></param>
+            <param name="codMaquinaEstados"></param>
+        </member>
+        <member name="M:Orbita.VAGeneradorEscenarios.Program.GenerarImplementadorHardware(Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.String,System.CodeDom.CodeTypeDeclaration@)">
+            <summary>
+            Generador de la clase estática de implementación del hardware
+            </summary>
+            <param name="generador"></param>
+            <param name="codMaquinaEstados"></param>
+        </member>
         <member name="T:Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido">
             <summary>
             Clase encargada de escribir el código C# para permitir el acceso rápido a variables.
@@ -95,6 +109,13 @@
             <summary>
             Constructor de la clase
             </summary>
+        </member>
+        <member name="M:Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido.Comentar(System.CodeDom.CodeTypeMember,System.String)">
+            <summary>
+            Método encargado de realizar comentarios xml
+            </summary>
+            <param name="miembro"></param>
+            <param name="comentario"></param>
         </member>
         <member name="M:Orbita.VAGeneradorEscenarios.OGeneradorAccesoRapido.GenerarUnit(System.String,System.String[])">
             <summary>

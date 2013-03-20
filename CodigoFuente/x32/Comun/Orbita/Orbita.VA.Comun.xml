@@ -3183,6 +3183,104 @@
             <param name="codigo">Código de la variable</param>
             <returns>Devuelve el valor de la variable con el código correspondientes</returns>
         </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.GetBool(System.String,System.Boolean)">
+            <summary>
+            Método para acceder al valor de una variable de tipo bool
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.GetBool(System.String,System.String,System.Boolean)">
+            <summary>
+            Método para acceder al valor de una variable de tipo bool
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.GetEntero(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Método para acceder al valor de una variable de tipo int
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.GetEntero(System.String,System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Método para acceder al valor de una variable de tipo int
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.GetTexto(System.String,System.Int32,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Método para acceder al valor de una variable de tipo string
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <returns>Devuelve el valor de la variable con el código correspondientes</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.GetTexto(System.String,System.String,System.Int32,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Método para acceder al valor de una variable de tipo string
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.GetDecimal(System.String,System.Double,System.Double,System.Double)">
+            <summary>
+            Método para acceder al valor de una variable de tipo double
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.GetDecimal(System.String,System.String,System.Double,System.Double,System.Double)">
+            <summary>
+            Método para acceder al valor de una variable de tipo double
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.GetFecha(System.String,System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Método para acceder al valor de una variable de tipo Datetime
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.GetFecha(System.String,System.String,System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Método para acceder al valor de una variable de tipo Datetime
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.GetImagen(System.String,Orbita.VA.Comun.OImagen)">
+            <summary>
+            Método para acceder al valor de una variable de tipo Imagen
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.GetImagen(System.String,System.String,Orbita.VA.Comun.OImagen)">
+            <summary>
+            Método para acceder al valor de una variable de tipo Imagen
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.GetGrafico(System.String,Orbita.VA.Comun.OGrafico)">
+            <summary>
+            Método para acceder al valor de una variable de tipo Grafico
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.GetGrafico(System.String,System.String,Orbita.VA.Comun.OGrafico)">
+            <summary>
+            Método para acceder al valor de una variable de tipo Grafico
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <returns>Devuelve el valor de la variable con el código correspondiente</returns>
+        </member>
         <member name="M:Orbita.VA.Comun.OVariablesManager.GetPermanencia(System.String)">
             <summary>
             Método para consultar el tiempo de permanencia del valor de la variable
@@ -3563,6 +3661,41 @@
             Lectura de la variable
             </summary>
         </member>
+        <member name="M:Orbita.VA.Comun.OVariable.GetBool(System.Boolean)">
+            <summary>
+            Lectura de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariable.GetEntero(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Lectura de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariable.GetTexto(System.Int32,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Lectura de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariable.GetDecimal(System.Double,System.Double,System.Double)">
+            <summary>
+            Lectura de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariable.GetFecha(System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Lectura de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariable.GetImagen(Orbita.VA.Comun.OImagen)">
+            <summary>
+            Lectura de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariable.GetGrafico(Orbita.VA.Comun.OGrafico)">
+            <summary>
+            Lectura de la variable
+            </summary>
+        </member>
         <member name="M:Orbita.VA.Comun.OVariable.GetPermanencia">
             <summary>
             Método para consultar el tiempo de permanencia del valor de la variable
@@ -3867,6 +4000,41 @@
             </summary>
         </member>
         <member name="M:Orbita.VA.Comun.VariableCore.GetValor">
+            <summary>
+            Lectura de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.VariableCore.GetBool(System.Boolean)">
+            <summary>
+            Lectura de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.VariableCore.GetEntero(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Lectura de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.VariableCore.GetTexto(System.Int32,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Lectura de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.VariableCore.GetDecimal(System.Double,System.Double,System.Double)">
+            <summary>
+            Lectura de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.VariableCore.GetFecha(System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Lectura de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.VariableCore.GetImagen(Orbita.VA.Comun.OImagen)">
+            <summary>
+            Lectura de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.VariableCore.GetGrafico(Orbita.VA.Comun.OGrafico)">
             <summary>
             Lectura de la variable
             </summary>
@@ -5400,6 +5568,27 @@
             </summary>
         </member>
         <member name="M:Orbita.VA.Comun.OComunicacionCGITexto.Ejecuta(System.String@)">
+            <summary>
+            Envio de comando CGI para información de texto
+            </summary>
+            <returns>Verdadero si la ejecución se ha realizado con éxito</returns>
+        </member>
+        <member name="T:Orbita.VA.Comun.OComunicacionCGIDummy">
+            <summary>
+            Comunicación con aplicaciones CGI con respuesta de texto
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OComunicacionCGIDummy.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OComunicacionCGIDummy.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.Int32,System.Net.HttpStatusCode)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OComunicacionCGIDummy.Ejecuta">
             <summary>
             Envio de comando CGI para información de texto
             </summary>

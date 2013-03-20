@@ -2917,6 +2917,371 @@
             Módulo de funcionamiento de las cámaras virtuales
             </summary>
         </member>
+        <member name="T:Orbita.VA.Hardware.OClienteComunicacion">
+            <summary>
+            Clase que implementa las funciones para el control de Entradas/Salidas del SCED
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Hardware.OModuloIOBase">
+            <summary>
+            Clase base para todos los módulos de EntradaSalida
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OModuloIOBase._Codigo">
+            <summary>
+            Código identificativo de la tarjeta de IO
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OModuloIOBase._Nombre">
+            <summary>
+            Nombre identificativo de la tarjeta de IO
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OModuloIOBase._Descripcion">
+            <summary>
+            Descripción de la tarjeta de IO
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OModuloIOBase._Habilitado">
+            <summary>
+            Habilita o deshabilita el funcionamiento
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OModuloIOBase._TipoTarjetaIO">
+            <summary>
+            Tipo de tarjeta de IO
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OModuloIOBase._Fabricante">
+            <summary>
+            Descripción del fabricante de la tarjeta de IO
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OModuloIOBase._Modelo">
+            <summary>
+            Descripción del modelo de la tarjeta de IO
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OModuloIOBase._ListaTerminales">
+            <summary>
+            Lista de todos los terminales de la tarjeta de IO
+            </summary>              
+        </member>
+        <member name="F:Orbita.VA.Hardware.OModuloIOBase._Existe">
+            <summary>
+            Indica que se ha podido acceder al módulo con éxito
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OModuloIOBase.#ctor(System.String)">
+            <summary>
+            Contructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OModuloIOBase.CrearSuscripcionCambioValorTerminal(System.String,Orbita.VA.Hardware.CambioValorTerminalEvent)">
+            <summary>
+            Suscribe el cambio de valor de un terminal de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoCambioValorTerminal">Delegado donde recibir llamadas a cada cambio de valor</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OModuloIOBase.EliminarSuscripcionCambioValorTerminal(System.String,Orbita.VA.Hardware.CambioValorTerminalEvent)">
+            <summary>
+            Elimina el cambio de valor de un terminal de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoCambioValorTerminal">Delegado donde recibir llamadas a cada cambio de valor</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OModuloIOBase.Inicializar">
+            <summary>
+            Método a heredar donde se conecta y se configura la tarjeta de IO
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OModuloIOBase.Finalizar">
+            <summary>
+            Método a heredar donde se desconecta y se libera la tarjeta de IO
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OModuloIOBase.Start">
+            <summary>
+            Comienza el hardware
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OModuloIOBase.Stop">
+            <summary>
+            Para el hardware
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OModuloIOBase.LanzarEventoMensajeModuloIO(System.String,System.String)">
+            <summary>
+            Lanza evento de mensaje de la cámara
+            </summary>
+            <param name="estadoConexion"></param>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OModuloIOBase.Codigo">
+            <summary>
+            Código identificativo de la tarjeta de IO
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OModuloIOBase.Nombre">
+            <summary>
+            Nombre identificativo de la tarjeta de IO
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OModuloIOBase.Descripcion">
+            <summary>
+            Descripción de la tarjeta de IO
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OModuloIOBase.Habilitado">
+            <summary>
+            Habilita o deshabilita el funcionamiento
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OModuloIOBase.TipoHardware">
+            <summary>
+            Tipo de hardware
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OModuloIOBase.TipoTarjetaIO">
+            <summary>
+            Tipo de tarjeta de IO
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OModuloIOBase.Fabricante">
+            <summary>
+            Descripción del fabricante de la tarjeta de IO
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OModuloIOBase.Modelo">
+            <summary>
+            Descripción del modelo de la tarjeta de IO
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OModuloIOBase.ListaTerminales">
+            <summary>
+            Lista de todos los terminales de la tarjeta de IO
+            </summary>              
+        </member>
+        <member name="P:Orbita.VA.Hardware.OModuloIOBase.Existe">
+            <summary>
+            Indica que se ha podido acceder al módulo con éxito
+            </summary>
+        </member>
+        <member name="E:Orbita.VA.Hardware.OModuloIOBase.OnMensaje">
+            <summary>
+            Delegado de mensaje del módulo de Entrada / salida
+            </summary>
+            <param name="estadoConexion"></param>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OClienteComunicacion._Valido">
+            <summary>
+            Si están o no configurados los terminales
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OClienteComunicacion.Servidor">
+            <summary>
+            Servidor de comunicaciones.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OClienteComunicacion._ServidorSced">
+            <summary>
+            Dirección del servidor SCED
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OClienteComunicacion._PuertoRemoto">
+            <summary>
+            Número de puerto remoto
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OClienteComunicacion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codHardware">Código del hardware</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OClienteComunicacion.Inicializar">
+            <summary>
+            Método a heredar donde se conecta y se configura la tarjeta de IO
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OClienteComunicacion.Finalizar">
+            <summary>
+            Método a heredar donde se conecta y se configura la tarjeta de IO
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OClienteComunicacion.Desconectar">
+            <summary>
+            Desconectar del servidor vía Remoting.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OClienteComunicacion.Conectar">
+            <summary>
+            Conectar al servidor vía Remoting.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OClienteComunicacion.Conectar(System.Boolean)">
+            <summary>
+            Conectar al servidor vía Remoting.
+            </summary>
+            <param name="estado">Estado de conexión.</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OClienteComunicacion.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Evento de cambio de dato.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OClienteComunicacion.eventWrapper_OrbitaComm(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Evento de comunicaciones.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OClienteComunicacion.ServidorSced">
+            <summary>
+            Dirección del servidor SCED
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OClienteComunicacion.PuertoRemoto">
+            <summary>
+            Número de puerto remoto
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Hardware.OTerminalClienteComunicacion">
+            <summary>
+            Terminal del SCED
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OTerminalClienteComunicacion.CodigoVariableSCED">
+            <summary>
+            Código de la variable del SCED contra la que trabaja el terminal
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OTerminalClienteComunicacion.Servidor">
+            <summary>
+            Servidor de comunicación
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OTerminalClienteComunicacion.IdDispositivo">
+            <summary>
+            Información del Dispositivo
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OTerminalClienteComunicacion.TipoDispositivo">
+            <summary>
+            Tipo de dispositivo controlado por el SCED
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OTerminalClienteComunicacion.EscrituraInmediata">
+            <summary>
+            Indica que la escritura del valor se ha de producir inmediatamente al cambio del valor de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacion.#ctor(System.String,System.String,Orbita.VA.Hardware.OEnumTipoDispositivoClienteComunicacion)">
+            <summary>
+            Contructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacion.SCEDAFormatoCorrecto(System.Object,Orbita.VA.Comun.OEnumTipoDato)">
+            <summary>
+            Convierte el string devuelto por el servidor de sced al formato correcto de trabajo
+            </summary>
+            <param name="valorSCED"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacion.FormatoCorrectoASCED(System.Object,Orbita.VA.Comun.OEnumTipoDato)">
+            <summary>
+            Convierte el string devuelto por el servidor de sced al formato correcto de trabajo
+            </summary>
+            <param name="valorObj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacion.LeerEntrada(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Trata el cambio de valor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacion.ValorFormateado">
+            <summary>
+            Devuelve el valor listo para ser enviado al SCED
+            </summary>
+            <param name="valorObj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacion.Inicializar(Orbita.Comunicaciones.IOCommRemoting)">
+            <summary>
+            Método a heredar donde se inicializan los terminales
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacion.EscribirEntrada(System.String,System.Object)">
+            <summary>
+            Simulación de la escritura de la entrada física
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacion.EscribirSalida(System.String,System.Object)">
+            <summary>
+            Escritura de la salida
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacion.LeerEntrada">
+            <summary>
+            lee del OPC.Servidor el valor de la variable
+            </summary>       
+            <param name="variable">variable en la que se escribe el valor</param>
+        </member>
+        <member name="T:Orbita.VA.Hardware.OTerminalClienteComunicacionWriteCommand">
+            <summary>
+            Terminal del SCED para trabajo con texto
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OTerminalClienteComunicacionWriteCommand.ListaCodigosTerminalesAsociados">
+            <summary>
+            Lista de códigos de terminales asociados
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OTerminalClienteComunicacionWriteCommand.ListaTerminalesAsociados">
+            <summary>
+            Lista de terminales asociados
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacionWriteCommand.#ctor(System.String,System.String,Orbita.VA.Hardware.OEnumTipoDispositivoClienteComunicacion)">
+            <summary>
+            Contructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacionWriteCommand.Inicializar">
+            <summary>
+            Inicialización de los terminales
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacionWriteCommand.EscribirSalida(System.String,System.Object)">
+            <summary>
+            Escritura de la salida
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Hardware.OEnumTipoDispositivoClienteComunicacion">
+            <summary>
+            Tipo de dispositivo controlado por el SCED
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OEnumTipoDispositivoClienteComunicacion.OPC_SimaticNET">
+            <summary>
+            Servidor OPC de Siemens
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OEnumTipoDispositivoClienteComunicacion.MCC_EPDISO16">
+            <summary>
+            Tarjeta Ethernet E/S
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OEnumTipoDispositivoClienteComunicacion.Orbita">
+            <summary>
+            Dispositivo para variables internas
+            </summary>
+        </member>
         <member name="T:Orbita.VA.Hardware.OConectividad">
             <summary>
             Clase encargada de comprobar la conectividad con un dispositivo TCP/IP
@@ -3758,11 +4123,6 @@
         <member name="F:Orbita.VA.Hardware.OCamaraBaslerPylon.IntervaloComprobacionConectividadMS">
             <summary>
             Inervalo entre comprobaciones de conectividad con la cámara IP
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OCamaraBaslerPylon.AdquisicionEnProceso">
-            <summary>
-            Indica que la adquisición está siendo procesada en el momento actual
             </summary>
         </member>
         <member name="F:Orbita.VA.Hardware.OCamaraBaslerPylon.TimeOutAccesoGigEFeatures">
@@ -4625,159 +4985,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Orbita.VA.Hardware.OModuloIOBase">
-            <summary>
-            Clase base para todos los módulos de EntradaSalida
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OModuloIOBase._Codigo">
-            <summary>
-            Código identificativo de la tarjeta de IO
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OModuloIOBase._Nombre">
-            <summary>
-            Nombre identificativo de la tarjeta de IO
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OModuloIOBase._Descripcion">
-            <summary>
-            Descripción de la tarjeta de IO
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OModuloIOBase._Habilitado">
-            <summary>
-            Habilita o deshabilita el funcionamiento
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OModuloIOBase._TipoTarjetaIO">
-            <summary>
-            Tipo de tarjeta de IO
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OModuloIOBase._Fabricante">
-            <summary>
-            Descripción del fabricante de la tarjeta de IO
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OModuloIOBase._Modelo">
-            <summary>
-            Descripción del modelo de la tarjeta de IO
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OModuloIOBase._ListaTerminales">
-            <summary>
-            Lista de todos los terminales de la tarjeta de IO
-            </summary>              
-        </member>
-        <member name="F:Orbita.VA.Hardware.OModuloIOBase._Existe">
-            <summary>
-            Indica que se ha podido acceder al módulo con éxito
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OModuloIOBase.#ctor(System.String)">
-            <summary>
-            Contructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OModuloIOBase.CrearSuscripcionCambioValorTerminal(System.String,Orbita.VA.Hardware.CambioValorTerminalEvent)">
-            <summary>
-            Suscribe el cambio de valor de un terminal de una determinada cámara
-            </summary>
-            <param name="codigo">Código de la cámara</param>
-            <param name="delegadoCambioValorTerminal">Delegado donde recibir llamadas a cada cambio de valor</param>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OModuloIOBase.EliminarSuscripcionCambioValorTerminal(System.String,Orbita.VA.Hardware.CambioValorTerminalEvent)">
-            <summary>
-            Elimina el cambio de valor de un terminal de una determinada cámara
-            </summary>
-            <param name="codigo">Código de la cámara</param>
-            <param name="delegadoCambioValorTerminal">Delegado donde recibir llamadas a cada cambio de valor</param>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OModuloIOBase.Inicializar">
-            <summary>
-            Método a heredar donde se conecta y se configura la tarjeta de IO
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OModuloIOBase.Finalizar">
-            <summary>
-            Método a heredar donde se desconecta y se libera la tarjeta de IO
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OModuloIOBase.Start">
-            <summary>
-            Comienza el hardware
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OModuloIOBase.Stop">
-            <summary>
-            Para el hardware
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OModuloIOBase.LanzarEventoMensajeModuloIO(System.String,System.String)">
-            <summary>
-            Lanza evento de mensaje de la cámara
-            </summary>
-            <param name="estadoConexion"></param>
-        </member>
-        <member name="P:Orbita.VA.Hardware.OModuloIOBase.Codigo">
-            <summary>
-            Código identificativo de la tarjeta de IO
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Hardware.OModuloIOBase.Nombre">
-            <summary>
-            Nombre identificativo de la tarjeta de IO
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Hardware.OModuloIOBase.Descripcion">
-            <summary>
-            Descripción de la tarjeta de IO
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Hardware.OModuloIOBase.Habilitado">
-            <summary>
-            Habilita o deshabilita el funcionamiento
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Hardware.OModuloIOBase.TipoHardware">
-            <summary>
-            Tipo de hardware
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Hardware.OModuloIOBase.TipoTarjetaIO">
-            <summary>
-            Tipo de tarjeta de IO
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Hardware.OModuloIOBase.Fabricante">
-            <summary>
-            Descripción del fabricante de la tarjeta de IO
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Hardware.OModuloIOBase.Modelo">
-            <summary>
-            Descripción del modelo de la tarjeta de IO
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Hardware.OModuloIOBase.ListaTerminales">
-            <summary>
-            Lista de todos los terminales de la tarjeta de IO
-            </summary>              
-        </member>
-        <member name="P:Orbita.VA.Hardware.OModuloIOBase.Existe">
-            <summary>
-            Indica que se ha podido acceder al módulo con éxito
-            </summary>
-        </member>
-        <member name="E:Orbita.VA.Hardware.OModuloIOBase.OnMensaje">
-            <summary>
-            Delegado de mensaje del módulo de Entrada / salida
-            </summary>
-            <param name="estadoConexion"></param>
-        </member>
         <member name="T:Orbita.VA.Hardware.OTipoTarjetaIO">
             <summary>
             Enumerado que identifica a los tipos de tarjetas de IO
@@ -4870,223 +5077,6 @@
         <member name="P:Orbita.VA.Hardware.OCambioValorTerminalEventArgs.Valor">
             <summary>
             Valor de la variable
-            </summary>
-        </member>
-        <member name="T:Orbita.VA.Hardware.OIO_SCED">
-            <summary>
-            Clase que implementa las funciones para el control de Entradas/Salidas del SCED
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OIO_SCED._Valido">
-            <summary>
-            Si están o no configurados los terminales
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OIO_SCED.Servidor">
-            <summary>
-            Servidor de comunicaciones.
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OIO_SCED._ServidorSced">
-            <summary>
-            Dirección del servidor SCED
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OIO_SCED._PuertoRemoto">
-            <summary>
-            Número de puerto remoto
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OIO_SCED.#ctor(System.String)">
-            <summary>
-            Constructor de la clase
-            </summary>
-            <param name="codHardware">Código del hardware</param>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OIO_SCED.Inicializar">
-            <summary>
-            Método a heredar donde se conecta y se configura la tarjeta de IO
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OIO_SCED.Finalizar">
-            <summary>
-            Método a heredar donde se conecta y se configura la tarjeta de IO
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OIO_SCED.Desconectar">
-            <summary>
-            Desconectar del servidor vía Remoting.
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OIO_SCED.Conectar">
-            <summary>
-            Conectar al servidor vía Remoting.
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OIO_SCED.Conectar(System.Boolean)">
-            <summary>
-            Conectar al servidor vía Remoting.
-            </summary>
-            <param name="estado">Estado de conexión.</param>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OIO_SCED.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Evento de cambio de dato.
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OIO_SCED.eventWrapper_OrbitaComm(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Evento de comunicaciones.
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="P:Orbita.VA.Hardware.OIO_SCED.ServidorSced">
-            <summary>
-            Dirección del servidor SCED
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Hardware.OIO_SCED.PuertoRemoto">
-            <summary>
-            Número de puerto remoto
-            </summary>
-        </member>
-        <member name="T:Orbita.VA.Hardware.OTerminalIOSCED">
-            <summary>
-            Terminal del SCED
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OTerminalIOSCED.CodigoVariableSCED">
-            <summary>
-            Código de la variable del SCED contra la que trabaja el terminal
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OTerminalIOSCED.Servidor">
-            <summary>
-            Servidor de comunicación
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OTerminalIOSCED.IdDispositivo">
-            <summary>
-            Información del Dispositivo
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OTerminalIOSCED.TipoDispositivo">
-            <summary>
-            Tipo de dispositivo controlado por el SCED
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OTerminalIOSCED.EscrituraInmediata">
-            <summary>
-            Indica que la escritura del valor se ha de producir inmediatamente al cambio del valor de la variable
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OTerminalIOSCED.ProcedeEventoCambio">
-            <summary>
-            Nos indica si el cambio de valor procede del evento al cambio para en ese caso no realizar escrituras en los delegados
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOSCED.#ctor(System.String,System.String,Orbita.VA.Hardware.OEnumTipoDispositivoSCED)">
-            <summary>
-            Contructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOSCED.SCEDAFormatoCorrecto(System.Object,Orbita.VA.Comun.OEnumTipoDato)">
-            <summary>
-            Convierte el string devuelto por el servidor de sced al formato correcto de trabajo
-            </summary>
-            <param name="valorSCED"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOSCED.FormatoCorrectoASCED(System.Object,Orbita.VA.Comun.OEnumTipoDato)">
-            <summary>
-            Convierte el string devuelto por el servidor de sced al formato correcto de trabajo
-            </summary>
-            <param name="valorObj"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOSCED.LeerEntrada(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Trata el cambio de valor
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOSCED.ValorFormateado">
-            <summary>
-            Devuelve el valor listo para ser enviado al SCED
-            </summary>
-            <param name="valorObj"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOSCED.Inicializar(Orbita.Comunicaciones.IOCommRemoting)">
-            <summary>
-            Método a heredar donde se inicializan los terminales
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOSCED.EscribirEntrada(System.String,System.Object)">
-            <summary>
-            Simulación de la escritura de la entrada física
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOSCED.EscribirSalida(System.String,System.Object)">
-            <summary>
-            Escritura de la salida
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOSCED.LeerEntrada">
-            <summary>
-            lee del OPC.Servidor el valor de la variable
-            </summary>       
-            <param name="variable">variable en la que se escribe el valor</param>
-        </member>
-        <member name="T:Orbita.VA.Hardware.OTerminalIOSCED_WriteCommand">
-            <summary>
-            Terminal del SCED para trabajo con texto
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OTerminalIOSCED_WriteCommand.ListaCodigosTerminalesAsociados">
-            <summary>
-            Lista de códigos de terminales asociados
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OTerminalIOSCED_WriteCommand.ListaTerminalesAsociados">
-            <summary>
-            Lista de terminales asociados
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOSCED_WriteCommand.#ctor(System.String,System.String,Orbita.VA.Hardware.OEnumTipoDispositivoSCED)">
-            <summary>
-            Contructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOSCED_WriteCommand.Inicializar">
-            <summary>
-            Inicialización de los terminales
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOSCED_WriteCommand.EscribirSalida(System.String,System.Object)">
-            <summary>
-            Escritura de la salida
-            </summary>
-        </member>
-        <member name="T:Orbita.VA.Hardware.OEnumTipoDispositivoSCED">
-            <summary>
-            Tipo de dispositivo controlado por el SCED
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OEnumTipoDispositivoSCED.OPC_SimaticNET">
-            <summary>
-            Servidor OPC de Siemens
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OEnumTipoDispositivoSCED.MCC_EPDISO16">
-            <summary>
-            Tarjeta Ethernet E/S
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OEnumTipoDispositivoSCED.Orbita">
-            <summary>
-            Dispositivo para variables internas
             </summary>
         </member>
         <member name="T:Orbita.VA.Hardware.CameraEventHandler">
@@ -5881,6 +5871,13 @@
         <member name="M:Orbita.VA.Hardware.AppBD.GetAliasEscenarioHardware(System.String)">
             <summary>
             Consulta el alias de una escenario de hardware
+            </summary>
+            <param name="codEscenario"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.AppBD.GetHardware">
+            <summary>
+            Consulta todo el hardware del sistema
             </summary>
             <param name="codEscenario"></param>
             <returns></returns>
@@ -6692,11 +6689,6 @@
         <member name="T:Orbita.VA.Hardware.OCamaraRemota">
             <summary>
             Cámara remota
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OCamaraRemota.ServidorCamaras">
-            <summary>
-            Clase remoting del servidor de cámaras
             </summary>
         </member>
         <member name="F:Orbita.VA.Hardware.OCamaraRemota.PrimeraInstancia">
