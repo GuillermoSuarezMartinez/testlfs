@@ -135,7 +135,7 @@ IF %resp% == t GOTO teamfundationEx
 set /p resp="Desea subir los ficheros al teamfundation? (s=si, n=no, t=si a todo): " %=%
 IF %resp% == n GOTO fin
 :teamfundationEx
-%comspec% /k "".\tf.bat"" 
+%comspec% /c "".\tf.bat"" 
 
 :fin
 pause
