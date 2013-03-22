@@ -7,7 +7,7 @@
 // Last Modified On : aibañez
 // Description      : Cambiado el trabajo con el thread
 //
-// Last Modified By : 15-11-2012
+// Last Modified By : 15-11-2012 
 // Last Modified On : aibañez
 // Description      : Añadidas instrucciones en la finalización del thread
 //
