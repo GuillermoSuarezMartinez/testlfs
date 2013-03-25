@@ -44,21 +44,31 @@ namespace Orbita.VA.Funciones
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
-            PointF[] srcs = new PointF[4];
-            srcs[0] = puntoOriginal1;
-            srcs[1] = puntoOriginal2;
-            srcs[2] = puntoOriginal3;
-            srcs[3] = puntoOriginal4;
+            OImagenOpenCV<TColor, TDepth> resultado = null;
+            try
+            {
+                PointF[] srcs = new PointF[4];
+                srcs[0] = puntoOriginal1;
+                srcs[1] = puntoOriginal2;
+                srcs[2] = puntoOriginal3;
+                srcs[3] = puntoOriginal4;
 
-            PointF[] dsts = new PointF[4];
-            dsts[0] = puntoDestino1;
-            dsts[1] = puntoDestino2;
-            dsts[2] = puntoDestino3;
-            dsts[3] = puntoDestino4;
+                PointF[] dsts = new PointF[4];
+                dsts[0] = puntoDestino1;
+                dsts[1] = puntoDestino2;
+                dsts[2] = puntoDestino3;
+                dsts[3] = puntoDestino4;
 
-            HomographyMatrix mywarpmat = CameraCalibration.GetPerspectiveTransform(srcs, dsts);
-            Emgu.CV.Image<TColor, TDepth> img = imagenOriginal.Image.WarpPerspective(mywarpmat, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC, Emgu.CV.CvEnum.WARP.CV_WARP_DEFAULT, default(TColor));
-            return new OImagenOpenCV<TColor, TDepth>(imagenOriginal.Codigo, img);
+                HomographyMatrix mywarpmat = CameraCalibration.GetPerspectiveTransform(srcs, dsts);
+                Emgu.CV.Image<TColor, TDepth> img = imagenOriginal.Image.WarpPerspective(mywarpmat, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC, Emgu.CV.CvEnum.WARP.CV_WARP_DEFAULT, default(TColor));
+                resultado = new OImagenOpenCV<TColor, TDepth>(imagenOriginal.Codigo, img);
+            }
+            catch (Exception exception)
+            {
+                OVALogsManager.Error(ModulosFunciones.OpenCV, "Corección Distorsión", exception);
+            }
+
+            return resultado;
         }
 
         /// <summary>
@@ -119,11 +129,22 @@ namespace Orbita.VA.Funciones
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
-            Emgu.CV.Image<TColor, TDepth> imgResut = new Image<TColor,TDepth>(anchoDestino, altoDestino, default(TColor));
-            imgResut.ROI = new Rectangle( offsetX, OffsetY, anchoDestino, altoDestino);
-            imagenOriginal.Image.CopyTo(imgResut);
+            OImagenOpenCV<TColor, TDepth> resultado = null;
 
-            return new OImagenOpenCV<TColor, TDepth>(imagenOriginal.Codigo, imgResut);
+            try
+            {
+                Emgu.CV.Image<TColor, TDepth> imgResut = new Image<TColor, TDepth>(anchoDestino, altoDestino, default(TColor));
+                imgResut.ROI = new Rectangle(offsetX, OffsetY, anchoDestino, altoDestino);
+                imagenOriginal.Image.CopyTo(imgResut);
+
+                resultado = new OImagenOpenCV<TColor, TDepth>(imagenOriginal.Codigo, imgResut);
+            }
+            catch (Exception exception)
+            {
+                OVALogsManager.Error(ModulosFunciones.OpenCV, "Cambio tamaño lienzo", exception);
+            }
+
+            return resultado;
         }
         
         #endregion
