@@ -811,7 +811,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Comun.OImagen.FromArray(System.Byte[])">
+        <member name="M:Orbita.VA.Comun.OImagen.FromArray(System.Byte[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Método que realiza el desempaquetado de un objeto recibido por remoting
             </summary>
@@ -870,6 +870,11 @@
             Informa del momento de la creación de la imagen
             </summary>
         </member>
+        <member name="P:Orbita.VA.Comun.OImagen.Profundidad">
+            <summary>
+            Profundidad en bytes de cada píxel
+            </summary>
+        </member>
         <member name="T:Orbita.VA.Comun.OByteArrayImage">
             <summary>
             Clase utilizada para serializar imagenes
@@ -908,6 +913,11 @@
         <member name="F:Orbita.VA.Comun.OByteArrayImage.Serializado">
             <summary>
             Indica que contiene una imagen serializada
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OByteArrayImage.Profundidad">
+            <summary>
+            Profundidad en bytes de cada píxel
             </summary>
         </member>
         <member name="M:Orbita.VA.Comun.OByteArrayImage.#ctor">
@@ -1053,9 +1063,9 @@
             CogImage de VisionPro
             </summary>
         </member>
-        <member name="F:Orbita.VA.Comun.TipoImagen.Emgu">
+        <member name="F:Orbita.VA.Comun.TipoImagen.OpenCV">
             <summary>
-            Imagen de Emgu
+            Imagen de OpenCV utilizando el wrapper Emgu
             </summary>
         </member>
         <member name="T:Orbita.VA.Comun.ResolucionesImagenEstandar">
@@ -4655,6 +4665,142 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Orbita.VA.Comun.OImagenOpenCV`2">
+            <summary>
+            Imagen de tipo VisionPro de Cognex
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCV`2.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCV`2.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCV`2.#ctor(System.Object)">
+            <summary>
+            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+            </summary>
+            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCV`2.#ctor(System.String,System.Object)">
+            <summary>
+            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+            </summary>
+            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCV`2.Dispose(System.Boolean)">
+            <summary>
+            Método a implementar en las clases hijas. Elimina la memoria asignada por el objeto.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCV`2.Clone">
+            <summary>
+            Clonado de la imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCV`2.EsValida">
+            <summary>
+            Método a implementar en las clases hijas que indica que la imagen es válida
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCV`2.Guardar(System.String)">
+            <summary>
+            Método a implementar en las clases hijas para guardar la imagen en un fichero de disco
+            </summary>
+            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
+            <returns>Verdadero si la ruta donde se ha de guardar el fichero es válida</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCV`2.Cargar(System.String)">
+            <summary>
+            Método a implementar en las clases hijas para cargar la imagen de un fichero de disco
+            </summary>
+            <param name="ruta">Ruta de donde se ha de cargar la imagen</param>
+            <returns>Verdadero si el fichero que se ha de cargar existe</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCV`2.ConvertFromBitmap(System.Drawing.Bitmap)">
+            <summary>
+            Convierte la imagen de tipo bitmap al tipo actual
+            </summary>
+            <param name="imagenBitmap">Imagen de tipo bitmap desde el cual se va a importar la imagen</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCV`2.ConvertToBitmap">
+            <summary>
+            Convierte la imagen actual al tipo genérico de imagen de tipo bitmap
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCV`2.EscalarImagen(Orbita.VA.Comun.OImagen,System.Int32,System.Int32)">
+            <summary>
+            Sirve para reducir la imagen 
+            </summary>
+            <param name="img">Imagen a reducir</param>
+            <param name="width">Ancho de la imagen resultado</param>
+            <param name="height">Alto de la imagen resultado</param>
+            <returns>Imagen reducida</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCV`2.ToArray">
+            <summary>
+            Método que realiza el empaquetado de un objeto para ser enviado por remoting
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCV`2.ToArray(System.Drawing.Imaging.ImageFormat,System.Double)">
+            <summary>
+            Método que realiza el empaquetado de un objeto para ser enviado por remoting
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCV`2.FromArray(System.Byte[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Método que realiza el desempaquetado de un objeto recibido por remoting
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCV`2.Nueva">
+            <summary>
+            Crea una nueva imagen de la misma clase
+            </summary>
+            <returns>Nueva instancia de la misma clase de imagen</returns>
+        </member>
+        <member name="P:Orbita.VA.Comun.OImagenOpenCV`2.Image">
+            <summary>
+            Propieadad a heredar donde se accede a la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OImagenOpenCV`2.Width">
+            <summary>
+            Tamaño en X de la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OImagenOpenCV`2.Height">
+            <summary>
+            Tamaño en Y de la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OImagenOpenCV`2.Color">
+            <summary>
+            Retorna el tipo de color de la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OImagenOpenCV`2.Profundidad">
+            <summary>
+            Retorna la profundidad imagen
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OOpenCVTiposColor">
+            <summary>
+            Tipos de color de la imagen de opencv
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OOpenCVTiposProfundidad">
+            <summary>
+            Tipos de profundidad de la imagen de opencv
+            </summary>
+        </member>
         <member name="T:Orbita.VA.Comun.OImagenBitmap">
             <summary>
             Imagen de tipo Bitmap de windows
@@ -4744,7 +4890,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Comun.OImagenBitmap.FromArray(System.Byte[])">
+        <member name="M:Orbita.VA.Comun.OImagenBitmap.FromArray(System.Byte[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Método que realiza el desempaquetado de un objeto recibido por remoting
             </summary>
@@ -4769,6 +4915,11 @@
         <member name="P:Orbita.VA.Comun.OImagenBitmap.Height">
             <summary>
             Tamaño en Y de la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OImagenBitmap.Profundidad">
+            <summary>
+            Profundidad en bytes de cada píxel
             </summary>
         </member>
         <member name="T:Orbita.VA.Comun.OImagenVisionPro">
@@ -4860,7 +5011,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Comun.OImagenVisionPro.FromArray(System.Byte[])">
+        <member name="M:Orbita.VA.Comun.OImagenVisionPro.FromArray(System.Byte[],System.Int32,System.Int32,System.Int32)">
             <summary>
             Método que realiza el desempaquetado de un objeto recibido por remoting
             </summary>

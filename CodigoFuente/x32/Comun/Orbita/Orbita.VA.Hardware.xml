@@ -6627,7 +6627,7 @@
             <param name="movimientoPTZ">Valor de un movimiento a convertir a string</param>
             <returns>String del valor de un movimiento que será utilizado construir la consulta PTZ</returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.OPTZAxis.StringToPosicion(System.String,System.String)">
+        <member name="M:Orbita.VA.Hardware.OPTZAxis.StringToPosicion(System.String,System.String,Orbita.VA.Hardware.OPosicionPTZ@)">
             <summary>
             Devuelve una posiciones a partir de la cadena devuelta por el CGI
             </summary>

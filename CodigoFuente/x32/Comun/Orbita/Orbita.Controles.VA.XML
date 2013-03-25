@@ -1273,6 +1273,21 @@
             <returns>An image containing the selection contents if a selection if present, otherwise null</returns>
             <remarks>The caller is responsible for disposing of the returned image</remarks>
         </member>
+        <member name="M:Orbita.Controles.VA.VisorImagenes.GetCurrentPosition(System.Drawing.Point)">
+            <summary>
+            Obtiene la posición actual del cursor
+            </summary>
+            <param name="location"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.VisorImagenes.GetCurrentPosition(System.Int32,System.Int32)">
+            <summary>
+            Obtiene la posición actual del cursor
+            </summary>
+            <param name="x">Posición X actual</param>
+            <param name="y">Posición Y actual</param>
+            <returns></returns>
+        </member>
         <member name="M:Orbita.Controles.VA.VisorImagenes.CreateCheckerBoxTile(System.Int32,System.Drawing.Color,System.Drawing.Color)">
             <summary>
             Creates a bitmap image containing a 2x2 grid using the specified cell size and colors.
@@ -3556,6 +3571,11 @@
             Código identificativo del visor o de la cámara asociada al display
             </summary>
         </member>
+        <member name="F:Orbita.Controles.VA.OrbitaVisorBase._CurrentCursorPosition">
+            <summary>
+            Obtiene la posición actual del raton
+            </summary>
+        </member>
         <member name="F:Orbita.Controles.VA.OrbitaVisorBase._MostrarToolStrip">
             <summary>
             Muestra la barra superior de botones
@@ -3571,7 +3591,7 @@
             Muestra el botón de abrir fotografía
             </summary>
         </member>
-        <member name="F:Orbita.Controles.VA.OrbitaVisorBase._MostrarbtnGuardar">
+        <member name="F:Orbita.Controles.VA.OrbitaVisorBase._MostrarBtnGuardar">
             <summary>
             Muestra el botón de guardar fotografía
             </summary>
@@ -3827,6 +3847,11 @@
         <member name="P:Orbita.Controles.VA.OrbitaVisorBase.Codigo">
             <summary>
             Código identificativo del visor o de la cámara asociada al display
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaVisorBase.CurrentCursorPosition">
+            <summary>
+            Obtiene la posición actual del raton
             </summary>
         </member>
         <member name="P:Orbita.Controles.VA.OrbitaVisorBase.MostrarBtnAbrir">
@@ -4294,6 +4319,23 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="F:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:Orbita.Controles.VA.MensajeError">
             <summary>
             Formulario de visualización de error
@@ -4445,6 +4487,93 @@
             <summary>
             El formulario se abre en modo sistema, por lo que no se puede cerrar por el usuario
             </summary>
+        </member>
+        <member name="T:Orbita.Controles.VA.EstadoVentanaCambiado">
+            <summary>
+            Delegado que indica el cambio de estado de visualización de la ventana (maximizado o normal)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.VA.EventStateMaximizedArgs">
+            <summary>
+            Parametros de retorno del evento de cambio de maximizado o restaurado de la ventana
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.EventStateMaximizedArgs.CodCamara">
+            <summary>
+            Código de la cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.EventStateMaximizedArgs.EstadoVentana">
+            <summary>
+            Estado actual de la ventana
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.EventStateMaximizedArgs.#ctor(System.String,System.Windows.Forms.FormWindowState)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codEstado">Código del estado visual</param>
+            <param name="posicion">Posición del estado visual</param>
+        </member>
+        <member name="T:Orbita.Controles.VA.VisorDispositivoCambiado">
+            <summary>
+            Delegado que indica el cambio de visualización al siguiente o anterior dispositivo
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.VA.EventDeviceViewerChangedArgs">
+            <summary>
+            Parametros de retorno del evento de cambio de visualización al siguiente o anterior dispositivo
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.EventDeviceViewerChangedArgs.CodCamara">
+            <summary>
+            Código de la cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.EventDeviceViewerChangedArgs.OrdenSiguienteDispositivoAVisualizar">
+            <summary>
+            Estado actual de la ventana
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.EventDeviceViewerChangedArgs.#ctor(System.String,Orbita.Controles.VA.EventDeviceViewerChangedArgs.DeviceViewerChangeOrder)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codEstado">Código del estado visual</param>
+            <param name="posicion">Posición del estado visual</param>
+        </member>
+        <member name="T:Orbita.Controles.VA.EventDeviceViewerChangedArgs.DeviceViewerChangeOrder">
+            <summary>
+            Enumerado que indica el orden del siguiente dispositivo a visualizar 
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.VA.VisorClicBoton">
+            <summary>
+            Delegado que indica el cambio de estado de visualización de la ventana (maximizado o normal)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.VA.EventVisorClickButtonArgs">
+            <summary>
+            Parametros de retorno del evento de cambio de maximizado o restaurado de la ventana
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.EventVisorClickButtonArgs.CodCamara">
+            <summary>
+            Código de la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.EventVisorClickButtonArgs.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codEstado">Código del estado visual</param>
+            <param name="posicion">Posición del estado visual</param>
         </member>
         <member name="T:Orbita.Controles.VA.FrmUserPsw">
             <summary>
@@ -4621,11 +4750,6 @@
             Indica si se trata de la primera vez que cargamos una imagen en el control
             </summary>
         </member>
-        <member name="F:Orbita.Controles.VA.OrbitaVisorBitmap.CurrentLocation">
-            <summary>
-            Indica la posición actual del cursor
-            </summary>
-        </member>
         <member name="F:Orbita.Controles.VA.OrbitaVisorBitmap.CurrentScrollPosition">
             <summary>
             Indica la posición actual del scroll
@@ -4704,6 +4828,13 @@
             <param name="point"></param>
             <returns></returns>
         </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorBitmap.FormatPointF(System.Drawing.PointF)">
+            <summary>
+            Formatea un punto como texto para ser visualizado
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
         <member name="M:Orbita.Controles.VA.OrbitaVisorBitmap.FormatRectangle(System.Drawing.RectangleF)">
             <summary>
             Formatea un rectangulo como texto para ser visualizado
@@ -4725,7 +4856,7 @@
             <param name="rect"></param>
             <returns></returns>
         </member>
-        <member name="M:Orbita.Controles.VA.OrbitaVisorBitmap.UpdateCursorPosition(System.Drawing.Point)">
+        <member name="M:Orbita.Controles.VA.OrbitaVisorBitmap.UpdateCursorPosition(System.Drawing.PointF)">
             <summary>
             Visualiza la posición del cursor en la statusbar
             </summary>
@@ -4966,6 +5097,13 @@
         <member name="M:Orbita.Controles.VA.OrbitaVisorBitmap.VisorImagenes_MouseMove(System.Object,System.Windows.Forms.MouseEventArgs)">
             <summary>
             Ratón movido en el visor
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorBitmap.VisorImagenes_MouseClick(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Click en el visor
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
@@ -5374,93 +5512,6 @@
             <summary>
             Cargamos la información de la cámara
             </summary>
-        </member>
-        <member name="T:Orbita.Controles.VA.EstadoVentanaCambiado">
-            <summary>
-            Delegado que indica el cambio de estado de visualización de la ventana (maximizado o normal)
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="T:Orbita.Controles.VA.EventStateMaximizedArgs">
-            <summary>
-            Parametros de retorno del evento de cambio de maximizado o restaurado de la ventana
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.VA.EventStateMaximizedArgs.CodCamara">
-            <summary>
-            Código de la cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.VA.EventStateMaximizedArgs.EstadoVentana">
-            <summary>
-            Estado actual de la ventana
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.VA.EventStateMaximizedArgs.#ctor(System.String,System.Windows.Forms.FormWindowState)">
-            <summary>
-            Constructor de la clase
-            </summary>
-            <param name="codEstado">Código del estado visual</param>
-            <param name="posicion">Posición del estado visual</param>
-        </member>
-        <member name="T:Orbita.Controles.VA.VisorDispositivoCambiado">
-            <summary>
-            Delegado que indica el cambio de visualización al siguiente o anterior dispositivo
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="T:Orbita.Controles.VA.EventDeviceViewerChangedArgs">
-            <summary>
-            Parametros de retorno del evento de cambio de visualización al siguiente o anterior dispositivo
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.VA.EventDeviceViewerChangedArgs.CodCamara">
-            <summary>
-            Código de la cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.VA.EventDeviceViewerChangedArgs.OrdenSiguienteDispositivoAVisualizar">
-            <summary>
-            Estado actual de la ventana
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.VA.EventDeviceViewerChangedArgs.#ctor(System.String,Orbita.Controles.VA.EventDeviceViewerChangedArgs.DeviceViewerChangeOrder)">
-            <summary>
-            Constructor de la clase
-            </summary>
-            <param name="codEstado">Código del estado visual</param>
-            <param name="posicion">Posición del estado visual</param>
-        </member>
-        <member name="T:Orbita.Controles.VA.EventDeviceViewerChangedArgs.DeviceViewerChangeOrder">
-            <summary>
-            Enumerado que indica el orden del siguiente dispositivo a visualizar 
-            </summary>
-        </member>
-        <member name="T:Orbita.Controles.VA.VisorClicBoton">
-            <summary>
-            Delegado que indica el cambio de estado de visualización de la ventana (maximizado o normal)
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="T:Orbita.Controles.VA.EventVisorClickButtonArgs">
-            <summary>
-            Parametros de retorno del evento de cambio de maximizado o restaurado de la ventana
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.VA.EventVisorClickButtonArgs.CodCamara">
-            <summary>
-            Código de la cámara
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.VA.EventVisorClickButtonArgs.#ctor(System.String)">
-            <summary>
-            Constructor de la clase
-            </summary>
-            <param name="codEstado">Código del estado visual</param>
-            <param name="posicion">Posición del estado visual</param>
         </member>
         <member name="T:Orbita.Controles.VA.FrmMonitorizacionVariables">
             <summary>

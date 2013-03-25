@@ -106,7 +106,7 @@ namespace Orbita.Controles.Comunes
             {
                 this.CompruebaFechas();
             }
-            catch (Exception ex)
+            catch
             {
             }
         }
