@@ -103,7 +103,7 @@ namespace Orbita.Controles.VA
             {
                 this._MostrarBtnAbrir = value;
                 this.btnOpen.Visible = value;
-                this.separadorArchivos.Visible = this._MostrarbtnGuardar || this._MostrarBtnAbrir;
+                this.separadorArchivos.Visible = this._MostrarBtnGuardar || this._MostrarBtnAbrir;
             }
         }
 
@@ -114,9 +114,9 @@ namespace Orbita.Controles.VA
         {
             set
             {
-                this._MostrarbtnGuardar = value;
+                this._MostrarBtnGuardar = value;
                 this.btnSave.Visible = value;
-                this.separadorArchivos.Visible = this._MostrarbtnGuardar || this._MostrarBtnAbrir;
+                this.separadorArchivos.Visible = this._MostrarBtnGuardar || this._MostrarBtnAbrir;
             }
         }
 
@@ -302,7 +302,10 @@ namespace Orbita.Controles.VA
             this.ImagenActual = new OImagenVisionPro();
             resultado = this.ImagenActual.Cargar(ruta);
 
-            //this.VisualizarImagen(this.ImagenActual, this.GraficoActual);
+            if (resultado)
+            {
+                this.VisualizarInterno();
+            }
 
             return resultado;
         }

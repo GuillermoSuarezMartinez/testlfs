@@ -15,6 +15,7 @@ using System.Drawing;
 using System.Drawing.Design;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using Orbita.Utiles;
 namespace Orbita.Controles.VA
 {
     /// <summary>
@@ -973,6 +974,36 @@ namespace Orbita.Controles.VA
                 result = null;
 
             return result;
+        }
+        /// <summary>
+        /// Obtiene la posición actual del cursor
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns></returns>
+        public PointF GetCurrentPosition(Point location)
+        {
+            Point imageOffset = this.GetImageViewPort().Location;
+
+            float x = location.X - imageOffset.X - this.AutoScrollPosition.X;
+            float y = location.Y - imageOffset.Y - this.AutoScrollPosition.Y;
+
+            x = x / (float)this.ZoomFactor;
+            y = y / (float)this.ZoomFactor;
+
+            x = (float)ODecimal.EnsureRange(x, 0, this.Image.Width);
+            y = (float)ODecimal.EnsureRange(y, 0, this.Image.Height);
+
+            return new PointF(x, y);
+        }
+        /// <summary>
+        /// Obtiene la posición actual del cursor
+        /// </summary>
+        /// <param name="x">Posición X actual</param>
+        /// <param name="y">Posición Y actual</param>
+        /// <returns></returns>
+        public PointF GetCurrentPosition(int x, int y)
+        {
+            return GetCurrentPosition(new Point(x, y));
         }
         #endregion
 

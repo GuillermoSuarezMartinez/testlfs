@@ -100,11 +100,12 @@
             this.VisorImagenes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.VisorImagenes.Location = new System.Drawing.Point(0, 25);
             this.VisorImagenes.Name = "VisorImagenes";
-            this.VisorImagenes.Size = new System.Drawing.Size(578, 322);
+            this.VisorImagenes.Size = new System.Drawing.Size(585, 342);
             this.VisorImagenes.TabIndex = 6;
             this.VisorImagenes.SelectionRegionChanged += new System.EventHandler(this.VisorImagenes_SelectionRegionChanged);
             this.VisorImagenes.ZoomChanged += new System.EventHandler(this.VisorImagenes_ZoomChanged);
             this.VisorImagenes.Scroll += new System.Windows.Forms.ScrollEventHandler(this.VisorImagenes_Scroll);
+            this.VisorImagenes.MouseClick += new System.Windows.Forms.MouseEventHandler(this.VisorImagenes_MouseClick);
             this.VisorImagenes.MouseLeave += new System.EventHandler(this.VisorImagenes_MouseLeave);
             this.VisorImagenes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.VisorImagenes_MouseMove);
             this.VisorImagenes.Resize += new System.EventHandler(this.VisorImagenes_Resize);
@@ -135,7 +136,7 @@
             this.ToolStripTop.Location = new System.Drawing.Point(0, 0);
             this.ToolStripTop.Name = "ToolStripTop";
             this.ToolStripTop.Padding = new System.Windows.Forms.Padding(0);
-            this.ToolStripTop.Size = new System.Drawing.Size(578, 25);
+            this.ToolStripTop.Size = new System.Drawing.Size(585, 25);
             this.ToolStripTop.TabIndex = 11;
             // 
             // btnOpen
@@ -308,10 +309,10 @@
             this.lblZoom,
             this.lblCursor,
             this.lblSelection});
-            this.StatusStripBottom.Location = new System.Drawing.Point(0, 347);
+            this.StatusStripBottom.Location = new System.Drawing.Point(0, 367);
             this.StatusStripBottom.Name = "StatusStripBottom";
             this.StatusStripBottom.ShowItemToolTips = true;
-            this.StatusStripBottom.Size = new System.Drawing.Size(578, 22);
+            this.StatusStripBottom.Size = new System.Drawing.Size(585, 22);
             this.StatusStripBottom.SizingGrip = false;
             this.StatusStripBottom.TabIndex = 12;
             // 
@@ -325,7 +326,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(219, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(226, 17);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // lblFps
@@ -391,7 +392,7 @@
             this.Controls.Add(this.StatusStripBottom);
             this.Controls.Add(this.ToolStripTop);
             this.Name = "OrbitaVisorBitmap";
-            this.Size = new System.Drawing.Size(578, 369);
+            this.Size = new System.Drawing.Size(585, 389);
             this.Load += new System.EventHandler(this.CtrlDisplayBitmap_Load);
             this.ToolStripTop.ResumeLayout(false);
             this.ToolStripTop.PerformLayout();
@@ -439,8 +440,5 @@
         private System.Windows.Forms.ToolStripButton btnPlayStop;
         private System.Windows.Forms.ToolStripSeparator separadorReproduccion;
         private System.Windows.Forms.ToolStripButton btnSnap;
-
-
-
     }
 }

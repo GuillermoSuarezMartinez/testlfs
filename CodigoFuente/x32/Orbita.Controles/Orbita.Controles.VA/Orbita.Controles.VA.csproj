@@ -72,6 +72,12 @@
       <HintPath>..\..\Comun\VA\Cognex\Cognex.VisionPro.Display.Controls.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="Emgu.CV">
+      <HintPath>..\..\Comun\VA\OpenCV\Emgu.CV.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.Util">
+      <HintPath>..\..\Comun\VA\OpenCV\Emgu.Util.dll</HintPath>
+    </Reference>
     <Reference Include="Infragistics2.Shared.v11.2">
       <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Shared.v11.2.dll</HintPath>
     </Reference>
@@ -108,6 +114,9 @@
     <Reference Include="Orbita.VA.Comun, Version=13.1.8.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.VA.Comun.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Orbita.VA.Funciones">
+      <HintPath>..\..\Comun\Orbita\Orbita.VA.Funciones.dll</HintPath>
     </Reference>
     <Reference Include="Orbita.VA.Hardware, Version=13.1.8.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.VA.Hardware.dll</HintPath>
@@ -179,6 +188,12 @@
       <DependentUpon>FrmUserPsw.cs</DependentUpon>
     </Compile>
     <Compile Include="Escritorios\Clases\OEscritorios.cs" />
+    <Compile Include="FuncionesVision\FrmCorreccionDistorsionOpenCV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FuncionesVision\FrmCorreccionDistorsionOpenCV.Designer.cs">
+      <DependentUpon>FrmCorreccionDistorsionOpenCV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Hardware\Formularios\FrmGestionCamaraAxis.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,11 +266,11 @@
     <Compile Include="Variables\Formularios\FrmVariableChart.Designer.cs">
       <DependentUpon>FrmVariableChart.cs</DependentUpon>
     </Compile>
-    <Compile Include="Visores\Controles\OrbitaVisorImagenBase.cs">
+    <Compile Include="Visores\Controles\OrbitaVisorBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Visores\Controles\OrbitaVisorImagenBase.designer.cs">
-      <DependentUpon>OrbitaVisorImagenBase.cs</DependentUpon>
+    <Compile Include="Visores\Controles\OrbitaVisorBase.designer.cs">
+      <DependentUpon>OrbitaVisorBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Visores\Controles\OrbitaVisorBitmap.cs">
       <SubType>UserControl</SubType>
@@ -330,6 +345,9 @@
     <EmbeddedResource Include="Dialogos\Formularios\FrmUserPsw.resx">
       <DependentUpon>FrmUserPsw.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FuncionesVision\FrmCorreccionDistorsionOpenCV.resx">
+      <DependentUpon>FrmCorreccionDistorsionOpenCV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Hardware\Formularios\FrmGestionCamaraAxis.resx">
       <DependentUpon>FrmGestionCamaraAxis.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -375,8 +393,8 @@
       <DependentUpon>FrmVariableChart.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Visores\Controles\OrbitaVisorImagenBase.resx">
-      <DependentUpon>OrbitaVisorImagenBase.cs</DependentUpon>
+    <EmbeddedResource Include="Visores\Controles\OrbitaVisorBase.resx">
+      <DependentUpon>OrbitaVisorBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visores\Controles\OrbitaVisorBitmap.resx">
       <DependentUpon>OrbitaVisorBitmap.cs</DependentUpon>
@@ -643,6 +661,9 @@
       <Project>{D104B7D1-93CB-46AE-8F84-AA68BB3B2C5E}</Project>
       <Name>Orbita.Controles.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnAplicar24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

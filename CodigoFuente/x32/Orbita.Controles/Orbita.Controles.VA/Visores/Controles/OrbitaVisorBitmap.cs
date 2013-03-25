@@ -29,10 +29,6 @@ namespace Orbita.Controles.VA
         /// </summary>
         private bool PrimeraCarga = true;
         /// <summary>
-        /// Indica la posición actual del cursor
-        /// </summary>
-        private Point CurrentLocation;
-        /// <summary>
         /// Indica la posición actual del scroll
         /// </summary>
         private Point CurrentScrollPosition;
@@ -52,8 +48,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         [Browsable(false),
         Category("Orbita"),
-        Description("Indica si se ha de mostrar el botón de modo puntero"),
-        DefaultValue(false)]
+        Description("Indica si se ha de mostrar el botón de modo puntero")]
         protected bool MostrarBtnModoPuntero
         {
             get { return _MostrarBtnModoPuntero; }
@@ -74,8 +69,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         [Browsable(false),
         Category("Orbita"),
-        Description("Indica si se ha de mostrar el botón de modo deslizar"),
-        DefaultValue(false)]
+        Description("Indica si se ha de mostrar el botón de modo deslizar")]
         protected bool MostrarBtnModoDeslizar
         {
             get { return _MostrarBtnModoDeslizar; }
@@ -96,8 +90,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         [Browsable(false),
         Category("Orbita"),
-        Description("Indica si se ha de mostrar los botones de modo zoon"),
-        DefaultValue(true)]
+        Description("Indica si se ha de mostrar los botones de modo zoon")]
         protected bool MostrarBtnModoZoom
         {
             get { return _MostrarBtnModoZoom; }
@@ -119,8 +112,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         [Browsable(true),
         Category("Orbita"),
-        Description("Indica si se ha de mostrar el botón de modo zoon fit"),
-        DefaultValue(true)]
+        Description("Indica si se ha de mostrar el botón de modo zoon fit")]
         protected bool MostrarBtnModoZoomFit
         {
             get { return _MostrarBtnModoZoomFit; }
@@ -141,8 +133,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         [Browsable(true),
         Category("Orbita"),
-        Description("Indica si se ha de mostrar la información de posición en la barra de estado"),
-        DefaultValue(true)]
+        Description("Indica si se ha de mostrar la información de posición en la barra de estado")]
         protected bool MostrarStatusPosicion
         {
             get { return _MostrarStatusPosicion; }
@@ -162,8 +153,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         [Browsable(true),
         Category("Orbita"),
-        Description("Indica si se ha de mostrar la información de tamaño de la imagen en la barra de estado"),
-        DefaultValue(true)]
+        Description("Indica si se ha de mostrar la información de tamaño de la imagen en la barra de estado")]
         protected bool MostrarStatusTamaño
         {
             get { return _MostrarStatusTamaño; }
@@ -183,8 +173,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         [Browsable(true),
         Category("Orbita"),
-        Description("Indica si se ha de mostrar la información del zoom actual en la barra de estado"),
-        DefaultValue(true)]
+        Description("Indica si se ha de mostrar la información del zoom actual en la barra de estado")]
         protected bool MostrarStatusZoom
         {
             get { return _MostrarStatusZoom; }
@@ -204,8 +193,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         [Browsable(true),
         Category("Orbita"),
-        Description("Indica si se ha de mostrar la información del desplazamiento actual del visor"),
-        DefaultValue(false)]
+        Description("Indica si se ha de mostrar la información del desplazamiento actual del visor")]
         protected bool MostrarStatusPosicionScroll
         {
             get { return _MostrarStatusPosicionScroll; }
@@ -225,8 +213,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         [Browsable(true),
         Category("Orbita"),
-        Description("Indica si se ha de mostrar la información de la selección actual"),
-        DefaultValue(false)]
+        Description("Indica si se ha de mostrar la información de la selección actual")]
         protected bool MostrarStatusSeleccion
         {
             get { return _MostrarStatusSeleccion; }
@@ -246,8 +233,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         [Browsable(true),
         Category("Orbita"),
-        Description("Indica si se ha de mostrar información sobre el valor del píxel actual"),
-        DefaultValue(true)]
+        Description("Indica si se ha de mostrar información sobre el valor del píxel actual")]
         public bool MostrarStatusValorPixel
         {
             get { return _MostrarStatusValorPixel; }
@@ -341,8 +327,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         [Browsable(true),
         Category("Behavior"),
-        Description("Permite zoom al hacer click"),
-        DefaultValue(false)]
+        Description("Permite zoom al hacer click")]
         public bool PermitirClickZoom
         {
             get { return this.VisorImagenes.AllowClickZoom; }
@@ -354,8 +339,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         [Browsable(true),
         Category("Behavior"),
-        Description("Permite cambiar el zoom"),
-        DefaultValue(true)]
+        Description("Permite cambiar el zoom")]
         public bool PermitirZoom
         {
             get { return this.VisorImagenes.AllowZoom; }
@@ -367,8 +351,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         [Browsable(true),
         Category("Appearance"),
-        Description("Centra automáticamente la imagen al realizar el zoom"),
-        DefaultValue(true)]
+        Description("Centra automáticamente la imagen al realizar el zoom")]
         public bool AutoCenter
         {
             get { return this.VisorImagenes.AutoCenter; }
@@ -380,8 +363,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         [Browsable(true),
         Category("Behavior"),
-        Description("Permite desplazar la imagen"),
-        DefaultValue(true)]
+        Description("Permite desplazar la imagen")]
         public bool AutoPan
         {
             get { return this.VisorImagenes.AutoPan; }
@@ -474,8 +456,7 @@ namespace Orbita.Controles.VA
 
         [Browsable(true),
         Category("Behavior"),
-        Description("Invertir el ratón"),
-        DefaultValue(false)]
+        Description("Invertir el ratón")]
         public bool InvertMouse
         {
             get { return this.VisorImagenes.InvertMouse; }
@@ -543,7 +524,7 @@ namespace Orbita.Controles.VA
             {
                 this._MostrarBtnAbrir = value;
                 this.btnOpen.Visible = value;
-                this.separadorArchivos.Visible = this._MostrarbtnGuardar || this._MostrarBtnAbrir;
+                this.separadorArchivos.Visible = this._MostrarBtnGuardar || this._MostrarBtnAbrir;
             }
         }
 
@@ -554,9 +535,9 @@ namespace Orbita.Controles.VA
         {
             set
             {
-                this._MostrarbtnGuardar = value;
+                this._MostrarBtnGuardar = value;
                 this.btnSave.Visible = value;
-                this.separadorArchivos.Visible = this._MostrarbtnGuardar || this._MostrarBtnAbrir;
+                this.separadorArchivos.Visible = this._MostrarBtnGuardar || this._MostrarBtnAbrir;
             }
         }
 
@@ -670,7 +651,7 @@ namespace Orbita.Controles.VA
             InitializeComponent();
 
             this.PrimeraCarga = true;
-            this.CurrentLocation = new Point();
+            this._CurrentCursorPosition = new PointF();
             this.CurrentScrollPosition = new Point();
         }
         /// <summary>
@@ -686,7 +667,7 @@ namespace Orbita.Controles.VA
             this.lblTituloDisplay.Text = titulo;
 
             this.PrimeraCarga = true;
-            this.CurrentLocation = new Point();
+            this._CurrentCursorPosition = new PointF();
             this.CurrentScrollPosition = new Point();
         }
         #endregion
@@ -698,6 +679,16 @@ namespace Orbita.Controles.VA
         /// <param name="point"></param>
         /// <returns></returns>
         private string FormatPoint(Point point)
+        {
+            return string.Format("X:{0}, Y:{1}", point.X, point.Y);
+        }
+
+        /// <summary>
+        /// Formatea un punto como texto para ser visualizado
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        private string FormatPointF(PointF point)
         {
             return string.Format("X:{0}, Y:{1}", point.X, point.Y);
         }
@@ -736,9 +727,9 @@ namespace Orbita.Controles.VA
         /// Visualiza la posición del cursor en la statusbar
         /// </summary>
         /// <param name="location"></param>
-        private void UpdateCursorPosition(Point location)
+        private void UpdateCursorPosition(PointF location)
         {
-            this.lblCursor.Text = location != Point.Empty ? this.FormatPoint(location) : string.Empty;
+            this.lblCursor.Text = location != Point.Empty ? this.FormatPointF(location) : string.Empty;
         }
 
         /// <summary>
@@ -856,6 +847,11 @@ namespace Orbita.Controles.VA
 
             this.ImagenActual = new OImagenBitmap();
             resultado = this.ImagenActual.Cargar(ruta);
+
+            if (resultado)
+            {
+                this.VisualizarInterno();
+            }
 
             return resultado;
         }
@@ -1285,8 +1281,25 @@ namespace Orbita.Controles.VA
         {
             try
             {
-                this.CurrentLocation = e.Location;
+                this._CurrentCursorPosition = this.VisorImagenes.GetCurrentPosition(e.Location);
                 this.TimerUpdateCursorPosition.Start();
+            }
+            catch (Exception exception)
+            {
+                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+            }
+        }
+
+        /// <summary>
+        /// Click en el visor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void VisorImagenes_MouseClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                this.OnMouseClick(e);
             }
             catch (Exception exception)
             {
@@ -1303,7 +1316,7 @@ namespace Orbita.Controles.VA
         {
             try
             {
-                this.CurrentLocation = Point.Empty;
+                this._CurrentCursorPosition = PointF.Empty;
                 this.TimerUpdateCursorPosition.Start();
             }
             catch (Exception exception)
@@ -1339,7 +1352,7 @@ namespace Orbita.Controles.VA
         {
             try
             {
-                this.UpdateCursorPosition(this.CurrentLocation);
+                this.UpdateCursorPosition(this._CurrentCursorPosition);
             }
             catch (Exception exception)
             {
