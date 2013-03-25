@@ -228,7 +228,6 @@
     <Compile Include="Clases\Logs\OExtensionLogs.cs" />
     <Compile Include="Clases\Hardware\OHardware.cs" />
     <Compile Include="Clases\IO\OClienteComunicacion.cs" />
-    <Compile Include="Clases\CamaraBaslerPylon\Pylon.NETSupportLibrary\BitmapFactory.cs" />
     <Compile Include="Clases\CamaraBaslerPylon\Pylon.NETSupportLibrary\DeviceEnumerator.cs" />
     <Compile Include="Clases\CamaraBaslerPylon\Pylon.NETSupportLibrary\ImageProvider.cs" />
     <Compile Include="Clases\CamaraIP\VideoSource\ByteArrayUtils.cs" />

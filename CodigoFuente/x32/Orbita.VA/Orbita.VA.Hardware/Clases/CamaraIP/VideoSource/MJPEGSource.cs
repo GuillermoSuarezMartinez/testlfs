@@ -11,11 +11,14 @@
 //***********************************************************************
 using System;
 using System.Drawing;
+using System.Windows;
 using System.IO;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 using Orbita.VA.Comun;
+//using System.Windows.Media.Imaging;
+using System.Drawing.Imaging;
 
 namespace Orbita.VA.Hardware
 {
@@ -432,13 +435,26 @@ namespace Orbita.VA.Hardware
                                     // image at stop
                                     if (NewFrame != null)
                                     {
-                                        MemoryStream memStream = new MemoryStream(buffer, start, stop - start);
+                                        // Copy the buffer into a new one
+                                        byte[] bufferAux = new byte[stop - start];
+                                        Buffer.BlockCopy(buffer, start, bufferAux, 0, stop - start);
+                                        MemoryStream memStream = new MemoryStream(bufferAux, 0, stop - start);
+
+                                        // Sin copia
+                                        //MemoryStream memStream = new MemoryStream(buffer, start, stop - start);
+
+                                        // Decodificación JPG
+                                        //JpegBitmapDecoder decoder = new JpegBitmapDecoder(memStream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
+                                        //BitmapSource bitmapSource = decoder.Frames[0];
+                                        //Bitmap bmp = GetBitmap(bitmapSource);
+
                                         Bitmap bmp = (Bitmap)Bitmap.FromStream(memStream);
+
                                         // notify client
                                         NewFrame(this, new CameraEventArgs(bmp));
                                         // release the image
-                                        bmp.Dispose();
-                                        bmp = null;
+                                        //bmp.Dispose(); // Nuevo
+                                        //bmp = null; // Nuevo
                                     }
 
                                     // Evaluación de salida por número máximo de fotos superado
@@ -531,5 +547,14 @@ namespace Orbita.VA.Hardware
             }
         }
         #endregion
+
+        //Bitmap GetBitmap(BitmapSource source)
+        //{
+        //    Bitmap bmp = new Bitmap(source.PixelWidth, source.PixelHeight, PixelFormat.Format32bppPArgb);
+        //    BitmapData data = bmp.LockBits(new Rectangle(System.Drawing.Point.Empty, bmp.Size), ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
+        //    source.CopyPixels(Int32Rect.Empty, data.Scan0, data.Height * data.Stride, data.Stride);
+        //    bmp.UnlockBits(data);
+        //    return bmp;
+        //}
     }
 }

@@ -548,8 +548,8 @@ namespace Orbita.VA.Hardware
                     /* Check if the image has been removed in the meantime. */
                     if (image != null)
                     {
-                        BitmapFactory.CreateBitmap(out this.TempBitmap, image.Width, image.Height, image.Color);
-                        BitmapFactory.UpdateBitmap(this.TempBitmap, image.Buffer, image.Width, image.Height, image.Color);
+                        BitmapFactory.CreateBitmap(out this.TempBitmap, image.Width, image.Height, image.Profundidad);
+                        BitmapFactory.UpdateBitmap(this.TempBitmap, image.Buffer, image.Width, image.Height, image.Profundidad);
 
                         /* The processing of the image is done. Release the image buffer. */
                         this.ImageProvider.ReleaseImage();
@@ -557,8 +557,9 @@ namespace Orbita.VA.Hardware
                          If another image is in the output queue it can be acquired now using GetCurrentImage(). */
                     }
 
-                    this.ImagenActual = new OImagenBitmap(this.Codigo);
-                    this.ImagenActual.Image = (Bitmap)this.TempBitmap.Clone();
+                    // Antes
+                    //this.ImagenActual = new OImagenBitmap(this.Codigo);
+                    //this.ImagenActual.Image = (Bitmap)this.TempBitmap.Clone(); // Ojo!! comprobar!!
 
                     // Comprobación de que la imagen recibida de la cámara es correcta
                     if ((this.ImagenActual.Image == null) || (this.ImagenActual.Image.Width <= 0) || (this.ImagenActual.Image.Height <= 0))

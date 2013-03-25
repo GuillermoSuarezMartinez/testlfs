@@ -159,6 +159,12 @@
       <HintPath>..\..\Comun\VA\Cognex\Cognex.VisionPro.ImageFile.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="Emgu.CV">
+      <HintPath>..\..\Comun\VA\OpenCV\Emgu.CV.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.Util">
+      <HintPath>..\..\Comun\VA\OpenCV\Emgu.Util.dll</HintPath>
+    </Reference>
     <Reference Include="Orbita.BBDD, Version=13.32.3.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.BBDD.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
@@ -184,11 +190,15 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Imagen\BitmapFactory.cs" />
+    <Compile Include="Clases\Imagen\OImagenOpenCV.cs" />
+    <Compile Include="Clases\Imagen\OImagenVisionPro.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Clases\Variables\OVariables.cs" />
     <Compile Include="Clases\Imagen\OAlmacenImagenes.cs" />
     <Compile Include="Clases\Utiles\App.cs" />
     <Compile Include="Clases\BaseDatos\AppBD.cs" />
-    <Compile Include="Clases\Imagen\OImagenVisionPro.cs" />
     <Compile Include="Clases\BaseDatos\OBaseDatos.cs" />
     <Compile Include="Clases\Utiles\ODebug.cs" />
     <Compile Include="Clases\Utiles\OFicheros.cs" />

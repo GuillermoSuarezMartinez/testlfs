@@ -283,19 +283,21 @@ namespace Orbita.VA.Hardware
         /// <param name="strTipo">Cadena del tipo devuelta por el CGI</param>
         /// <param name="strValor">Cadena del valor devuelta por el CGI</param>
         /// <returns>Posiciones</returns>
-        private OPosicionPTZ StringToPosicion(string strTipo, string strValor)
+        private bool StringToPosicion(string strTipo, string strValor, out OPosicionPTZ posicionPTZ)
         {
             // Inicialización de resultado
-            OPosicionPTZ resultado = new OPosicionPTZ();
+            bool resultado = false;
+            posicionPTZ = new OPosicionPTZ();
 
             OEnumerado<OEnumTipoMovimientoPTZ> tipo = new OEnumerado<OEnumTipoMovimientoPTZ>("TipoPosicion", OEnumTipoMovimientoPTZ.Focus, false);
             tipo.ValorGenerico = strTipo;
             if (tipo.Valido)
             {
-                resultado.Tipo = tipo.Valor;
+                posicionPTZ.Tipo = tipo.Valor;
+                resultado = true;
             }
 
-            switch (resultado.Tipo)
+            switch (posicionPTZ.Tipo)
             {
                 case OEnumTipoMovimientoPTZ.Pan:
                 case OEnumTipoMovimientoPTZ.Tilt:
@@ -303,7 +305,7 @@ namespace Orbita.VA.Hardware
                     valorDouble.ValorGenerico = strValor;
                     if (valorDouble.Valido)
                     {
-                        resultado.Valor = valorDouble.Valor;
+                        posicionPTZ.Valor = valorDouble.Valor;
                     }
                     break;
                 case OEnumTipoMovimientoPTZ.Zoom:
@@ -313,7 +315,7 @@ namespace Orbita.VA.Hardware
                     valorEntero.ValorGenerico = strValor;
                     if (valorEntero.Valido)
                     {
-                        resultado.Valor = valorEntero.Valor;
+                        posicionPTZ.Valor = valorEntero.Valor;
                     }
                     break;
             }
@@ -348,8 +350,12 @@ namespace Orbita.VA.Hardware
                     string strTipo = strPosicion.Substring(0, indice);
                     string strValor = strPosicion.Substring(indice + 1);
 
-                    OPosicionPTZ posicion = this.StringToPosicion(strTipo, strValor);
-                    resultado.Add(posicion);
+                    OPosicionPTZ posicion;
+                    bool ok = this.StringToPosicion(strTipo, strValor, out posicion);
+                    if (ok)
+	                {
+                        resultado.Add(posicion);
+	                }
                 }
             }
 
@@ -444,6 +450,8 @@ namespace Orbita.VA.Hardware
                 string respuesta;
                 if (comunicacionCGITexto.Ejecuta(out respuesta))
                 {
+                    OVALogsManager.Info(ModulosHardware.PTZ, "Consulta de posición", respuesta);
+
                     // Interpretación de la respuesta
                     resultado = this.StringToPosiciones(respuesta);
                     this._Posicion = resultado;

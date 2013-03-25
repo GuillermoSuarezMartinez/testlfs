@@ -269,7 +269,7 @@ namespace Orbita.VA.Comun
                 //resultado = this.Response.StatusDescription == "OK";
                 resultado = this.Response.StatusCode == this.CodigoRespuesta;
             }
-            catch (Exception exception)
+                catch (Exception exception)
             {
                 this.Request = null;
                 this.Response = null;

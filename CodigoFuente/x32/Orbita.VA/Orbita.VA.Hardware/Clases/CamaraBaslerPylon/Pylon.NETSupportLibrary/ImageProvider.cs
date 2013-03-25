@@ -18,6 +18,16 @@ namespace Orbita.VA.Hardware
         public readonly bool Color; /* If false the buffer contains a Mono8 image. Otherwise, RGBA8packed is provided. */
         #endregion
 
+        #region Propiedad(es)
+        public int Profundidad
+        {
+            get
+            {
+                return Color ? 4 : 1;
+            }
+        }
+        #endregion
+
         #region Constructor(es)
         /// <summary>
         /// Constructor de la clase

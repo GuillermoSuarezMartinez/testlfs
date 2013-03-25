@@ -25,7 +25,7 @@ namespace Orbita.VA.Hardware
     public class OCamaraIP : OCamaraBitmap
     {
         #region Contante(s)
-        public const int TimeOutPrimeraConexionMs = 12000;
+        public const int TimeOutPrimeraConexionMs = 20000;
         #endregion
 
         #region Atributo(s)
@@ -333,26 +333,17 @@ namespace Orbita.VA.Hardware
                 }
 
                 this.HayNuevaImagen = true;
-            
+
                 if (this.EstadoConexion == EstadoConexion.Conectado)
                 {
-                    this.ImagenActual = new OImagenBitmap(this.Codigo);
-                    this.ImagenActual.Image = (Bitmap)e.Bitmap.Clone();
+                    //OImagenBitmap imgAux = new OImagenBitmap(this.Codigo);
+                    //imgAux.Image = e.Bitmap;
 
-                    //// Actualizo la conectividad
-                    //this.Conectividad.EstadoConexion = EstadoConexion.Conectado;
-
-                    //// Actualizo el Frame Rate
-                    //this.MedidorVelocidadAdquisicion.NuevaCaptura();
+                    //this.ImagenActual = (OImagenBitmap)imgAux.Clone();
+                    this.ImagenActual = new OImagenBitmap(this.Codigo, e.Bitmap);
 
                     // Lanamos el evento de adquisición
                     this.AdquisicionCompletada(this.ImagenActual);
-
-                    //// Se asigna el valor de la variable asociada
-                    //if (this.LanzarEventoAlSnap && this.ImagenActual.EsValida())
-                    //{
-                    //    this.EstablecerVariableImagenAsociada(this.ImagenActual);
-                    //}
                 }
             }
             catch (Exception exception)
@@ -360,6 +351,35 @@ namespace Orbita.VA.Hardware
                 OVALogsManager.Error(ModulosHardware.Camaras, this.Codigo, exception);
             }
         }
+
+        //private void ImagenAdquirida(object sender, CameraEventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (!OThreadManager.EjecucionEnTrheadPrincipal())
+        //        {
+        //            OThreadManager.SincronizarConThreadPrincipal(new CameraEventHandler(this.ImagenAdquirida), new object[] { sender, e });
+        //            return;
+        //        }
+
+        //        this.HayNuevaImagen = true;
+            
+        //        if (this.EstadoConexion == EstadoConexion.Conectado)
+        //        {
+        //            OImagenBitmap imgAux = new OImagenBitmap(this.Codigo);
+        //            imgAux.Image = e.Bitmap;
+
+        //            this.ImagenActual = (OImagenBitmap)imgAux.Clone();
+
+        //            // Lanamos el evento de adquisición
+        //            this.AdquisicionCompletada(this.ImagenActual);
+        //        }
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        OVALogsManager.Error(ModulosHardware.Camaras, this.Codigo, exception);
+        //    }
+        //}
 
         /// <summary>
         /// Evento de recepción de nueva imagen

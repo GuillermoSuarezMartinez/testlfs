@@ -378,10 +378,14 @@ namespace Orbita.VA.Hardware
                     resultado = null;
                     try
                     {
-                        byte[] valorByte = (byte[])valorSCED;
-                        OImagenBitmap bmp = new OImagenBitmap();
+                        // Por probar
+                        OByteArrayImage img = (OByteArrayImage)valorSCED;
+                        resultado = img.Desserializar();
 
-                        resultado = bmp.FromArray(valorByte);
+                        //byte[] valorByte = (byte[])valorSCED;
+                        //OImagenBitmap bmp = new OImagenBitmap();
+
+                        //resultado = bmp.FromArray(valorByte);
                     }
                     catch
                     {

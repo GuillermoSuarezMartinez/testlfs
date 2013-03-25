@@ -90,6 +90,14 @@ namespace Orbita.VA.Comun
             get { return _MomentoCreacion; }
             set { _MomentoCreacion = value; }
         }
+
+        /// <summary>
+        /// Profundidad en bytes de cada píxel
+        /// </summary>
+        public virtual int Profundidad
+        {
+            get { return 1; }
+        }
         #endregion
 
         #region Constructor
@@ -274,7 +282,7 @@ namespace Orbita.VA.Comun
         /// Método que realiza el desempaquetado de un objeto recibido por remoting
         /// </summary>
         /// <returns></returns>
-        public virtual OImagen FromArray(byte[] arrayValue)
+        public virtual OImagen FromArray(byte[] arrayValue, int width, int height, int profundidad)
         {
             // Implementado en hijos
             return null;
@@ -416,6 +424,10 @@ namespace Orbita.VA.Comun
         /// Indica que contiene una imagen serializada
         /// </summary>
         public bool Serializado;
+        /// <summary>
+        /// Profundidad en bytes de cada píxel
+        /// </summary>
+        public int Profundidad;
         #endregion
 
         #region Constructor(es)
@@ -440,6 +452,7 @@ namespace Orbita.VA.Comun
             this.MomentoCreacion = imagen.MomentoCreacion;
             this.DatosImagen = imagen.ToArray();
             this.Serializado = true;
+            this.Profundidad = imagen.Profundidad;
         }
 
         /// <summary>
@@ -457,11 +470,12 @@ namespace Orbita.VA.Comun
                 case TipoImagen.VisionPro:
                     imgAux = new OImagenVisionPro();
                     break;
-                case TipoImagen.Emgu:
+                case TipoImagen.OpenCV:
                     break;
             }
 
-            OImagen resultado = imgAux.FromArray(this.DatosImagen);
+            //OImagen resultado = imgAux.FromArray(this.DatosImagen);
+            OImagen resultado = imgAux.FromArray(this.DatosImagen, this.Width, this.Height, this.Profundidad);
             resultado.MomentoCreacion = this.MomentoCreacion;
             resultado.Codigo = this.Codigo;
 
@@ -676,9 +690,9 @@ namespace Orbita.VA.Comun
         /// </summary>
         VisionPro,
         /// <summary>
-        /// Imagen de Emgu
+        /// Imagen de OpenCV utilizando el wrapper Emgu
         /// </summary>
-        Emgu
+        OpenCV
     }
     /// <summary>
     /// Resoluciones frecuentes de imagenes

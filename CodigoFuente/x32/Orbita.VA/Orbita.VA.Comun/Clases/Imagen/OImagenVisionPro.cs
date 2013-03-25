@@ -307,10 +307,10 @@ namespace Orbita.VA.Comun
         /// <returns>Imagen reducida</returns>
         public override OImagen EscalarImagen(OImagen img, int ancho, int alto)
         {
-            OImagenVisionPro resultado = new OImagenVisionPro(this.Codigo, this.Image.ScaleImage(ancho, alto));
-            resultado.MomentoCreacion = this.MomentoCreacion;
+            OImagenVisionPro reducida = new OImagenVisionPro(this.Codigo, this.Image.ScaleImage(ancho, alto));
+            reducida.MomentoCreacion = this.MomentoCreacion;
 
-            return resultado;
+            return reducida;
         }
 
         /// <summary>
@@ -386,7 +386,7 @@ namespace Orbita.VA.Comun
         /// Método que realiza el desempaquetado de un objeto recibido por remoting
         /// </summary>
         /// <returns></returns>
-        public override OImagen FromArray(byte[] arrayValue)
+        public override OImagen FromArray(byte[] arrayValue, int width, int height, int profundidad)
         {
             OImagenVisionPro resultado = null;
 
