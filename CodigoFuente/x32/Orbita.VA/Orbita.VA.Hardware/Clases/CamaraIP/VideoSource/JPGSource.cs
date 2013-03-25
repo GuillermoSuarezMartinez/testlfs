@@ -382,12 +382,18 @@ namespace Orbita.VA.Hardware
                             // image at stop
                             if (NewFrame != null)
                             {
-                                Bitmap bmp = (Bitmap)Bitmap.FromStream(new MemoryStream(buffer, 0, total));
+                                // Copy the buffer into a new one
+                                byte[] bufferAux = new byte[total];
+                                Buffer.BlockCopy(buffer, 0, bufferAux, 0, total);
+                                MemoryStream memStream = new MemoryStream(bufferAux, 0, total);
+                                Bitmap bmp = (Bitmap)Bitmap.FromStream(memStream);
+
+                                //Bitmap bmp = (Bitmap)Bitmap.FromStream(new MemoryStream(buffer, 0, total));
                                 // notify client
                                 NewFrame(this, new CameraEventArgs(bmp));
                                 // release the image
-                                bmp.Dispose();
-                                bmp = null;
+                                //bmp.Dispose(); // Nuevo
+                                //bmp = null; // Nuevo
                             }
 
                             // Evaluación de salida por número máximo de fotos superado
