@@ -237,11 +237,15 @@ namespace Orbita.Utiles
         {
             // Inicialización de resultados
             EnumEstadoRobusto validacion = EnumEstadoTextoRobusto.ValorTipoIncorrecto;
+            bool correcto = false;
+
             // Validación
             if (valor is ClaseTipo)
             {
                 validacion = EnumEstadoTextoRobusto.ResultadoCorrecto;
+                correcto = true;
             }
+
             // Devolución de resultados
             return validacion;
         }
@@ -255,6 +259,7 @@ namespace Orbita.Utiles
         }
         #endregion
     }
+
     public interface IObjetoBase
     {
         #region Propiedades
@@ -474,6 +479,15 @@ namespace Orbita.Utiles
             return robusto.Estado;
         }
         /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="valor">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        public static EnumEstadoRobusto ValidarTexto(object valor, string codigo, int maxLength, bool admiteVacio, bool limitarLongitud, string defecto, bool lanzarExcepcionSiValorNoValido)
+        {
+            return Validar(valor, codigo, maxLength, admiteVacio, limitarLongitud, defecto, lanzarExcepcionSiValorNoValido);
+        }
+        /// <summary>
         /// Case insensitive version of String.Replace().
         /// </summary>
         /// <param name="s">String that contains patterns to replace</param>
@@ -481,7 +495,7 @@ namespace Orbita.Utiles
         /// <param name="newValue">New pattern to replaces old</param>
         /// <param name="comparisonType">String comparison type</param>
         /// <returns></returns>
-        public static string StringReplace(string s, string oldValue, string newValue, StringComparison comparisonType)
+        public static string Reemplazar(string s, string oldValue, string newValue, StringComparison comparisonType)
         {
             if (s == null)
                 return null;
@@ -506,6 +520,57 @@ namespace Orbita.Utiles
             result.Append(s, pos, s.Length - pos);
 
             return result.ToString();
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Asignación de una variable a un campo de tipo texto
+    /// </summary>
+    public static class OTextoExtension
+    {
+        #region Método(s) de extensión
+        /// <summary>
+        /// Evalua si el parámetro es texto
+        /// </summary>
+        public static string ValidarTexto(this object valor, out EnumEstadoRobusto validacion, int maxLength, bool admiteVacio, bool limitarLongitud, string defecto)
+        {
+            return OTexto.Validar(valor, out validacion, maxLength, admiteVacio, limitarLongitud, defecto);
+        }
+        /// <summary>
+        /// Evalua si el parámetro es texto
+        /// </summary>
+        public static string ValidarTexto(this object valor, int maxLength, bool admiteVacio, bool limitarLongitud, string defecto)
+        {
+            return OTexto.Validar(valor, maxLength, admiteVacio, limitarLongitud, defecto);
+        }
+        /// <summary>
+        /// Evalua si el parámetro es texto
+        /// </summary>
+        public static string ValidarTexto(this object valor)
+        {
+            return OTexto.Validar(valor);
+        }
+        /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="valor">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        public static EnumEstadoRobusto ValidarTexto(this object valor, string codigo, int maxLength, bool admiteVacio, bool limitarLongitud, string defecto, bool lanzarExcepcionSiValorNoValido)
+        {
+            return OTexto.Validar(valor, codigo, maxLength, admiteVacio, limitarLongitud, defecto, lanzarExcepcionSiValorNoValido);
+        }
+        /// <summary>
+        /// Case insensitive version of String.Replace().
+        /// </summary>
+        /// <param name="s">String that contains patterns to replace</param>
+        /// <param name="oldValue">Pattern to find</param>
+        /// <param name="newValue">New pattern to replaces old</param>
+        /// <param name="comparisonType">String comparison type</param>
+        /// <returns></returns>
+        public static string Reemplazar(this string s, string oldValue, string newValue, StringComparison comparisonType)
+        {
+            return OTexto.Reemplazar(s, oldValue, newValue, comparisonType);
         }
         #endregion
     }
@@ -661,6 +726,38 @@ namespace Orbita.Utiles
     /// <summary>
     /// Asignación de una variable a un campo de tipo enumerado (aunque internamente trabaja como un string)
     /// </summary>
+    public static class OEnumeradoTextoExtension
+    {
+        #region Método(s) de extensión
+        /// <summary>
+        /// Evalua si el parámetro es texto
+        /// </summary>
+        public static string ValidarEnumeradoTexto(this object valor, out EnumEstadoRobusto validacion, string[] valoresPermitidos, string defecto)
+        {
+            return OEnumeradoTexto.Validar(valor, out validacion, valoresPermitidos, defecto);
+        }
+        /// <summary>
+        /// Evalua si el parámetro es texto
+        /// </summary>
+        public static string ValidarEnumeradoTexto(this object valor, string[] valoresPermitidos, string defecto)
+        {
+            return OEnumeradoTexto.Validar(valor, valoresPermitidos, defecto);
+        }
+        /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="valor">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        public static EnumEstadoRobusto ValidarEnumeradoTexto(this object valor, string codigo, string[] valoresPermitidos, string defecto, bool lanzarExcepcionSiValorNoValido)
+        {
+            return OEnumeradoTexto.Validar(valor, codigo, valoresPermitidos, defecto, lanzarExcepcionSiValorNoValido);
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Asignación de una variable a un campo de tipo enumerado (aunque internamente trabaja como un string)
+    /// </summary>
     public class OEnumerado<T> : OObjetoBase<T>
     {
         #region Constructor
@@ -717,7 +814,7 @@ namespace Orbita.Utiles
             // Validación nº 3
             if (!correcto)
             {
-                if (OEntero.IsNumericInt(valor))
+                if (OEntero.EsEntero(valor))
                 {
                     try
                     {
@@ -792,30 +889,13 @@ namespace Orbita.Utiles
             return robusto.Estado;
         }
         /// <summary>
-        /// Se utiliza con enumerados y devuelve verdadero si el enumerado está contenido en el valor
-        /// </summary>
-        /// <param name="valor">Valor del cual se quiere saber si contiene cieto enumerado</param>
-        /// <param name="enumerate">Enumerado que deseamos comparar con el valor</param>
-        /// <returns>Devuelve verdadero si el enumerado está contenido en el valor</returns>
-        public static bool EnumContains(int valor, int[] enumerate)
-        {
-            foreach (int i in enumerate)
-            {
-                if ((valor & i) != 0)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        /// <summary>
         /// Se utiliza con enumerados para convertir un valor de texto en un enumerado del tipo indicado
         /// </summary>
         /// <param name="enumType">Tipo del enumerado al que deseamos convertir</param>
         /// <param name="valor">Texto que queremos convertir a enumerado</param>
         /// <param name="defecto">Valor por defecto en el caso que el texto no coincida con ningun elemento del enumerado</param>
         /// <returns>Devuelve el enumerado correspondiente con el texto</returns>
-        public static object EnumParse(Type enumType, string valor, object defecto)
+        public static object AnalizaEnumerado(Type enumType, string valor, object defecto)
         {
             object resultado;
 
@@ -829,6 +909,82 @@ namespace Orbita.Utiles
             }
 
             return resultado;
+        }
+        /// <summary>
+        /// Se utiliza con enumerados y devuelve verdadero si el enumerado está contenido en el valor
+        /// </summary>
+        /// <param name="valor">Valor del cual se quiere saber si contiene cieto enumerado</param>
+        /// <param name="coleccion">Enumerado que deseamos comparar con el valor</param>
+        /// <returns>Devuelve verdadero si el enumerado está contenido en el valor</returns>
+        public static bool EnColeccion(int valor, int[] coleccion)
+        {
+            foreach (int i in coleccion)
+            {
+                if ((valor & i) != 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        #endregion
+
+        #region Método(s) de extensión
+        /// <summary>
+        /// Evalua si el parámetro es texto
+        /// </summary>
+        public static T ValidarEnumerado(object valor, out EnumEstadoRobusto validacion, T defecto)
+        {
+            return Validar(valor, out validacion, defecto);
+        }
+        /// <summary>
+        /// Evalua si el parámetro es texto
+        /// </summary>
+        public static T ValidarEnumerado(object valor, T defecto)
+        {
+            return Validar(valor, defecto);
+        }
+        /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="valor">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        public static EnumEstadoRobusto ValidarEnumerado(object valor, string codigo, T defecto, bool lanzarExcepcionSiValorNoValido)
+        {
+            return Validar(valor, codigo, defecto, lanzarExcepcionSiValorNoValido);
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Asignación de una variable a un campo de tipo enumerado (aunque internamente trabaja como un string)
+    /// </summary>
+    public static class OEnumeradoExtension
+    {
+        #region Método(s) de extensión
+        /// <summary>
+        /// Evalua si el parámetro es texto
+        /// </summary>
+        public static T ValidarEnumerado<T>(this object valor, out EnumEstadoRobusto validacion, T defecto)
+        {
+            return OEnumerado<T>.Validar(valor, out validacion, defecto);
+        }
+        /// <summary>
+        /// Evalua si el parámetro es texto
+        /// </summary>
+        public static T ValidarEnumerado<T>(this object valor, T defecto)
+        {
+            return OEnumerado<T>.Validar(valor, defecto);
+        }
+        /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="valor">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        public static EnumEstadoRobusto ValidarEnumerado<T>(this object valor, string codigo, T defecto, bool lanzarExcepcionSiValorNoValido)
+        {
+            return OEnumerado<T>.Validar(valor, codigo, defecto, lanzarExcepcionSiValorNoValido);
         }
         #endregion
     }
@@ -893,7 +1049,7 @@ namespace Orbita.Utiles
             // Validación nº 1
             if (!correcto)
             {
-                if (IsNumericInt(valor))
+                if (EsEntero(valor))
                 {
                     auxValor = Convert.ToInt32(valor);
                     validacion = EnumEstadoEnteroRobusto.ResultadoCorrecto;
@@ -1022,7 +1178,7 @@ namespace Orbita.Utiles
         /// </summary>
         /// <param name="o">Objeto que se quiere conocer si es de tipo entero</param>
         /// <returns>Verdadero si el tipo del objeto es entero</returns>
-        public static bool IsNumericInt(object o)
+        public static bool EsEntero(object o)
         {
             return (o != null) && OObjeto.IsTypeOf(o, typeof(int), typeof(short), typeof(long), typeof(uint), typeof(ushort), typeof(ulong), typeof(byte));
         }
@@ -1030,7 +1186,7 @@ namespace Orbita.Utiles
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
         /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
-        public static bool InRange(int valor, int min, int max)
+        public static bool EnRango(int valor, int min, int max)
         {
             return (valor >= min) && (valor <= max);
         }
@@ -1038,7 +1194,7 @@ namespace Orbita.Utiles
         /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
         /// </summary>
         /// <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
-        public static int EnsureRange(int valor, int min, int max)
+        public static int AsegurarRango(int valor, int min, int max)
         {
             int resultado = valor;
 
@@ -1052,6 +1208,116 @@ namespace Orbita.Utiles
             }
 
             return resultado;
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static bool EnTolerancia(int valor, int media, int tolerancia)
+        {
+            return (valor >= media - tolerancia) && (valor <= media + tolerancia);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+        /// </summary>
+        /// <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        public static int AsegurarTolerancia(int valor, int media, int tolerancia)
+        {
+            int resultado = valor;
+
+            if (valor < media - tolerancia)
+            {
+                resultado = media - tolerancia;
+            }
+            if (valor > media + tolerancia)
+            {
+                resultado = media + tolerancia;
+            }
+
+            return resultado;
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Asignación de una variable a un campo de tipo entero
+    /// </summary>
+    public static class OEnteroExtension
+    {
+        #region Método(s) de extensión
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static int ValidarEntero(this object valor, out EnumEstadoRobusto validacion, int min, int max, int defecto)
+        {
+            return OEntero.Validar(valor, out validacion, min, max, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static int ValidarEntero(this object valor, int min, int max, int defecto)
+        {
+            return OEntero.Validar(valor, min, max, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static int ValidarEntero(this object valor)
+        {
+            return OEntero.Validar(valor);
+        }
+        /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="value">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        public static EnumEstadoRobusto ValidarEntero(this object valor, string codigo, int min, int max, int defecto, bool lanzarExcepcionSiValorNoValido)
+        {
+            return OEntero.Validar(valor, codigo, min, max, defecto, lanzarExcepcionSiValorNoValido);
+        }
+        /// <summary>
+        /// Indica si el objeto pasado es de tipo entero
+        /// </summary>
+        /// <param name="o">Objeto que se quiere conocer si es de tipo entero</param>
+        /// <returns>Verdadero si el tipo del objeto es entero</returns>
+        public static bool EsEntero(this object o)
+        {
+            return OEntero.EsEntero(o);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static bool EnRango(this int valor, int min, int max)
+        {
+            return OEntero.EnRango(valor, min, max);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+        /// </summary>
+        /// <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        public static int AsegurarRango(this int valor, int min, int max)
+        {
+            return OEntero.AsegurarRango(valor, min, max);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static bool EnTolerancia(this int valor, int media, int tolerancia)
+        {
+            return OEntero.EnTolerancia(valor, media, tolerancia);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+        /// </summary>
+        /// <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        public static int AsegurarTolerancia(this int valor, int media, int tolerancia)
+        {
+            return OEntero.AsegurarTolerancia(valor, media, tolerancia);
         }
         #endregion
     }
@@ -1120,7 +1386,7 @@ namespace Orbita.Utiles
             // Validación nº 1
             if (!correcto)
             {
-                if (IsNumericFloat(valor))
+                if (EsDecimal(valor))
                 {
                     auxValor = Convert.ToDouble(valor);
                     validacion = EnumEstadoDecimalRobusto.ResultadoCorrecto;
@@ -1249,7 +1515,7 @@ namespace Orbita.Utiles
         /// </summary>
         /// <param name="o">Objeto que se quiere conocer si es de tipo decimal</param>
         /// <returns>Verdadero si el tipo del objeto es decimal</returns>
-        public static bool IsNumericFloat(object o)
+        public static bool EsDecimal(object o)
         {
             return (o != null) && OObjeto.IsTypeOf(o, typeof(float), typeof(double), typeof(decimal));
         }
@@ -1257,7 +1523,7 @@ namespace Orbita.Utiles
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
         /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
-        public static bool InRange(double valor, double min, double max)
+        public static bool EnRango(double valor, double min, double max)
         {
             return (valor >= min) && (valor <= max);
         }
@@ -1265,7 +1531,7 @@ namespace Orbita.Utiles
         /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
         /// </summary>
         /// <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
-        public static double EnsureRange(double valor, double min, double max)
+        public static double AsegurarRango(double valor, double min, double max)
         {
             double resultado = valor;
 
@@ -1283,14 +1549,119 @@ namespace Orbita.Utiles
         /// <summary>
         /// Compara dos valores decimales para definir si son similares, con una diferencia menor que sigma
         /// </summary>
-        /// <param name="valor1">Primer valor a comparar</param>
-        /// <param name="valor2">Segundo valor a comparar</param>
-        /// <param name="sigma">Diferencia máxima entre ambos valores</param>
+        /// <param name="valor">Primer valor a comparar</param>
+        /// <param name="media">Segundo valor a comparar</param>
+        /// <param name="tolerancia">Diferencia máxima entre ambos valores</param>
         /// <returns>Verdadero si los valores son menores que sigma</returns>
-        public static bool Similar(double valor1, double valor2, double sigma)
+        public static bool EnTolerancia(double valor, double media, double tolerancia)
         {
-            double diff = Math.Abs(valor1 - valor2);
-            return diff <= sigma;
+            double diff = Math.Abs(valor - media);
+            return diff <= tolerancia;
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+        /// </summary>
+        /// <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        public static double AsegurarTolerancia(double valor, double media, double tolerancia)
+        {
+            double resultado = valor;
+
+            if (valor < media - tolerancia)
+            {
+                resultado = media - tolerancia;
+            }
+            if (valor > media + tolerancia)
+            {
+                resultado = media + tolerancia;
+            }
+
+            return resultado;
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Asignación de una variable a un campo de tipo decimal
+    /// </summary>
+    public static class ODecimalExtension
+    {
+        #region Método(s) de extensión
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static double ValidarDecimal(this object valor, out EnumEstadoRobusto validacion, double min, double max, double defecto)
+        {
+            return ODecimal.Validar(valor, out validacion, min, max, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static double ValidarDecimal(this object valor, double min, double max, double defecto)
+        {
+            return ODecimal.Validar(valor, min, max, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static double ValidarDecimal(this object valor)
+        {
+            return ODecimal.Validar(valor);
+        }
+        /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="value">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        public static EnumEstadoRobusto ValidarDecimal(this object valor, string codigo, double min, double max, double defecto, bool lanzarExcepcionSiValorNoValido)
+        {
+            return ODecimal.Validar(valor, codigo, min, max, defecto, lanzarExcepcionSiValorNoValido);
+        }
+        /// <summary>
+        /// Indica si el objeto pasado es de tipo decimal
+        /// </summary>
+        /// <param name="o">Objeto que se quiere conocer si es de tipo decimal</param>
+        /// <returns>Verdadero si el tipo del objeto es decimal</returns>
+        public static bool EsDecimal(this object o)
+        {
+            return ODecimal.EsDecimal(o);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static bool EnRango(this double valor, double min, double max)
+        {
+            return ODecimal.EnRango(valor, min, max);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+        /// </summary>
+        /// <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        public static double AsegurarRango(this double valor, double min, double max)
+        {
+            return ODecimal.AsegurarRango(valor, min, max);
+        }
+        /// <summary>
+        /// Compara dos valores decimales para definir si son similares, con una diferencia menor que sigma
+        /// </summary>
+        /// <param name="valor">Primer valor a comparar</param>
+        /// <param name="media">Segundo valor a comparar</param>
+        /// <param name="tolerancia">Diferencia máxima entre ambos valores</param>
+        /// <returns>Verdadero si los valores son menores que sigma</returns>
+        public static bool EnTolerancia(this double valor, double media, double tolerancia)
+        {
+            return ODecimal.EnTolerancia(valor, media, tolerancia);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+        /// </summary>
+        /// <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        public static double AsegurarTolerancia(this double valor, double media, double tolerancia)
+        {
+            return ODecimal.AsegurarTolerancia(valor, media, tolerancia);
         }
         #endregion
     }
@@ -1453,6 +1824,47 @@ namespace Orbita.Utiles
             robusto.ValorGenerico = valor;
             valor = robusto.Valor;
             return robusto.Estado;
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Asignación de una variable a un campo de tipo booleano
+    /// </summary>
+    public static class OBooleanoExtension
+    {
+        #region Método(s) de extensión
+        /// <summary>
+        /// Evalúa si el parámetro es booleano
+        /// </summary>
+        public static bool ValidarBooleano(this object valor, out EnumEstadoRobusto validacion, bool defecto)
+        {
+            return OBooleano.Validar(valor, out validacion, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static bool ValidarBooleano(this object valor, bool defecto)
+        {
+            return OBooleano.Validar(valor, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static bool ValidarBooleano(this object valor)
+        {
+            return OBooleano.Validar(valor);
+        }
+        /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="valor">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        public static EnumEstadoRobusto ValidarBooleano(this object valor, string codigo, bool defecto, bool lanzarExcepcionSiValorNoValido)
+        {
+            return OBooleano.Validar(valor, codigo, defecto, lanzarExcepcionSiValorNoValido);
         }
         #endregion
     }
@@ -1650,7 +2062,7 @@ namespace Orbita.Utiles
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
         /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
-        public static bool InRange(TimeSpan valor, TimeSpan min, TimeSpan max)
+        public static bool EnRango(TimeSpan valor, TimeSpan min, TimeSpan max)
         {
             return (valor >= min) && (valor <= max);
         }
@@ -1658,7 +2070,7 @@ namespace Orbita.Utiles
         /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
         /// </summary>
         /// <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
-        public static TimeSpan EnsureRange(TimeSpan valor, TimeSpan min, TimeSpan max)
+        public static TimeSpan AseguraRango(TimeSpan valor, TimeSpan min, TimeSpan max)
         {
             TimeSpan resultado = valor;
 
@@ -1673,7 +2085,114 @@ namespace Orbita.Utiles
 
             return resultado;
         }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static bool EnTolerancia(TimeSpan valor, TimeSpan media, TimeSpan tolerancia)
+        {
+            return (valor >= media - tolerancia) && (valor <= media + tolerancia);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+        /// </summary>
+        /// <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        public static TimeSpan AseguraTolerancia(TimeSpan valor, TimeSpan media, TimeSpan tolerancia)
+        {
+            TimeSpan resultado = valor;
+
+            if (valor < media - tolerancia)
+            {
+                resultado = media - tolerancia;
+            }
+            if (valor > media + tolerancia)
+            {
+                resultado = media + tolerancia;
+            }
+
+            return resultado;
+        }
         #endregion
+    }
+
+    /// <summary>
+    /// Asignación de una variable a un campo de tipo intervalo de tiempo
+    /// </summary>
+    public static class OIntervaloTiempoExtension
+    {
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static TimeSpan ValidarIntervaloTiempo(this object valor, out EnumEstadoRobusto validacion, TimeSpan min, TimeSpan max, TimeSpan defecto)
+        {
+            return OIntervaloTiempo.Validar(valor, out validacion, min, max, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static TimeSpan ValidarIntervaloTiempo(this object valor, TimeSpan min, TimeSpan max, TimeSpan defecto)
+        {
+            return OIntervaloTiempo.Validar(valor, min, max, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static TimeSpan ValidarIntervaloTiempo(this object valor, TimeSpan defecto)
+        {
+            return OIntervaloTiempo.Validar(valor, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static TimeSpan ValidarIntervaloTiempo(this object valor)
+        {
+            return OIntervaloTiempo.Validar(valor);
+        }
+        /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="valor">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        public static EnumEstadoRobusto ValidarIntervaloTiempo(this object valor, string codigo, TimeSpan min, TimeSpan max, TimeSpan defecto, bool lanzarExcepcionSiValorNoValido)
+        {
+            return OIntervaloTiempo.Validar(valor, codigo, min, max, defecto, lanzarExcepcionSiValorNoValido);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static bool EnRango(this TimeSpan valor, TimeSpan min, TimeSpan max)
+        {
+            return OIntervaloTiempo.EnRango(valor, min, max);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+        /// </summary>
+        /// <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        public static TimeSpan AseguraRango(this TimeSpan valor, TimeSpan min, TimeSpan max)
+        {
+            return OIntervaloTiempo.AseguraRango(valor, min, max);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static bool EnTolerancia(this TimeSpan valor, TimeSpan media, TimeSpan tolerancia)
+        {
+            return OIntervaloTiempo.EnTolerancia(valor, media, tolerancia);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+        /// </summary>
+        /// <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        public static TimeSpan AseguraTolerancia(this TimeSpan valor, TimeSpan media, TimeSpan tolerancia)
+        {
+            return OIntervaloTiempo.AseguraTolerancia(valor, media, tolerancia);
+        }
     }
 
     /// <summary>
@@ -1923,7 +2442,7 @@ namespace Orbita.Utiles
         /// Devuelve una cadena de texto identificativa del día actual (utilizada para indexar ficheros)
         /// </summary>
         /// <returns></returns>
-        public static string DateString(DateTime fecha)
+        public static string FechaATextoSimple(DateTime fecha)
         {
             string resultado = string.Empty;
 
@@ -1937,7 +2456,7 @@ namespace Orbita.Utiles
         /// Devuelve una cadena de texto identificativa del momento actual (utilizada para indexar ficheros)
         /// </summary>
         /// <returns></returns>
-        public static string DateTimeString(DateTime fecha)
+        public static string FechaHoraATextoSimple(DateTime fecha)
         {
             string resultado = string.Empty;
 
@@ -1955,7 +2474,7 @@ namespace Orbita.Utiles
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
         /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
-        public static bool InRange(DateTime valor, DateTime min, DateTime max)
+        public static bool EnRango(DateTime valor, DateTime min, DateTime max)
         {
             return (valor >= min) && (valor <= max);
         }
@@ -1963,7 +2482,7 @@ namespace Orbita.Utiles
         /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
         /// </summary>
         /// <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
-        public static DateTime EnsureRange(DateTime valor, DateTime min, DateTime max)
+        public static DateTime AseguraRango(DateTime valor, DateTime min, DateTime max)
         {
             DateTime resultado = valor;
 
@@ -1977,6 +2496,130 @@ namespace Orbita.Utiles
             }
 
             return resultado;
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static bool EnTolerancia(DateTime valor, DateTime media, TimeSpan tolerancia)
+        {
+            return (valor >= media - tolerancia) && (valor <= media + tolerancia);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+        /// </summary>
+        /// <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        public static DateTime AseguraTolerancia(DateTime valor, DateTime media, TimeSpan tolerancia)
+        {
+            DateTime resultado = valor;
+
+            if (valor < media - tolerancia)
+            {
+                resultado = media - tolerancia;
+            }
+            if (valor > media + tolerancia)
+            {
+                resultado = media + tolerancia;
+            }
+
+            return resultado;
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Asignación de una variable a un campo de tipo fecha
+    /// </summary>
+    public static class OFechaHoraExtension
+    {
+        #region Método(s) de extensión
+        /// <summary>
+        /// Evalúa si el parámetro es booleano
+        /// </summary>
+        public static DateTime ValidarFechaHora(this object valor, out EnumEstadoRobusto validacion, DateTime min, DateTime max, DateTime defecto)
+        {
+            return OFechaHora.Validar(valor, out validacion, min, max, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static DateTime ValidarFechaHora(this object valor, DateTime min, DateTime max, DateTime defecto)
+        {
+            return OFechaHora.Validar(valor, min, max, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static DateTime ValidarFechaHora(this object valor, DateTime defecto)
+        {
+            return OFechaHora.Validar(valor, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static DateTime ValidarFechaHora(this object valor)
+        {
+            return OFechaHora.Validar(valor);
+        }
+        /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="valor">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        public static EnumEstadoRobusto ValidaFechaHora(this object valor, string codigo, DateTime min, DateTime max, DateTime defecto, bool lanzarExcepcionSiValorNoValido)
+        {
+            return OFechaHora.Validar(valor, codigo, min, max, defecto, lanzarExcepcionSiValorNoValido);
+        }
+        /// <summary>
+        /// Devuelve una cadena de texto identificativa del día actual (utilizada para indexar ficheros)
+        /// </summary>
+        /// <returns></returns>
+        public static string FechaATextoSimple(this DateTime fecha)
+        {
+            return OFechaHora.FechaATextoSimple(fecha);
+        }
+        /// <summary>
+        /// Devuelve una cadena de texto identificativa del momento actual (utilizada para indexar ficheros)
+        /// </summary>
+        /// <returns></returns>
+        public static string FechaHoraATextoSimple(this DateTime fecha)
+        {
+            return OFechaHora.FechaHoraATextoSimple(fecha);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static bool EnRango(this DateTime valor, DateTime min, DateTime max)
+        {
+            return OFechaHora.EnRango(valor, min, max);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+        /// </summary>
+        /// <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        public static DateTime AseguraRango(this DateTime valor, DateTime min, DateTime max)
+        {
+            return OFechaHora.AseguraRango(valor, min, max);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static bool EnTolerancia(this DateTime valor, DateTime media, TimeSpan tolerancia)
+        {
+            return OFechaHora.EnTolerancia(valor, media, tolerancia);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+        /// </summary>
+        /// <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        public static DateTime AseguraTolerancia(this DateTime valor, DateTime media, TimeSpan tolerancia)
+        {
+            return OFechaHora.AseguraTolerancia(valor, media, tolerancia);
         }
         #endregion
     }
@@ -2011,7 +2654,7 @@ namespace Orbita.Utiles
         /// <param name="numero">Valor al cual queremos extraer el bit</param>
         /// <param name="posicion">Posición del bit a extraer</param>
         /// <returns>Booleano con el valor del bit extraido</returns>
-        public static bool GetBit(byte numero, int posicion)
+        public static bool GetBit(this byte numero, int posicion)
         {
             byte mascara = Convert.ToByte(Math.Pow(2, posicion));
             return (numero & mascara) != 0;
@@ -2022,7 +2665,7 @@ namespace Orbita.Utiles
         /// <param name="numero">Valor al cual queremos extraer el bit</param>
         /// <param name="posicion">Posición del bit a extraer</param>
         /// <returns>Booleano con el valor del bit extraido</returns>
-        public static bool GetBit(ushort numero, int posicion)
+        public static bool GetBit(this ushort numero, int posicion)
         {
             UInt16 mascara = Convert.ToUInt16(Math.Pow(2, posicion));
             return (numero & mascara) != 0;
@@ -2033,7 +2676,7 @@ namespace Orbita.Utiles
         /// <param name="numero">Valor al cual queremos extraer el bit</param>
         /// <param name="posicion">Posición del bit a extraer</param>
         /// <returns>Booleano con el valor del bit extraido</returns>
-        public static bool GetBit(uint numero, int posicion)
+        public static bool GetBit(this uint numero, int posicion)
         {
             uint mascara = Convert.ToUInt32(Math.Pow(2, posicion));
             return (numero & mascara) != 0;
@@ -2091,6 +2734,42 @@ namespace Orbita.Utiles
             {
                 numero = (uint)(numero & ~mascara);
             }
+        }
+        /// <summary>
+        /// Establece un bit en la posición indicada
+        /// </summary>
+        /// <param name="numero">Valor al cual queremos establecer el bit</param>
+        /// <param name="posicion">Posición del bit a establecer</param>
+        /// <param name="valor">Booleano con el valor del bit a establecer</param>
+        public static byte SetBit(this byte numero, int posicion, bool valor)
+        {
+            byte resultado = numero;
+            SetBit(ref resultado, posicion, valor);
+            return resultado;
+        }
+        /// <summary>
+        /// Establece un bit en la posición indicada
+        /// </summary>
+        /// <param name="numero">Valor al cual queremos establecer el bit</param>
+        /// <param name="posicion">Posición del bit a establecer</param>
+        /// <param name="valor">Booleano con el valor del bit a establecer</param>
+        public static ushort SetBit(this ushort numero, int posicion, bool valor)
+        {
+            ushort resultado = numero;
+            SetBit(ref resultado, posicion, valor);
+            return resultado;
+        }
+        /// <summary>
+        /// Establece un bit en la posición indicada
+        /// </summary>
+        /// <param name="numero">Valor al cual queremos establecer el bit</param>
+        /// <param name="posicion">Posición del bit a establecer</param>
+        /// <param name="valor">Booleano con el valor del bit a establecer</param>
+        public static uint SetBit(this uint numero, int posicion, bool valor)
+        {
+            uint resultado = numero;
+            SetBit(ref resultado, posicion, valor);
+            return resultado;
         }
     }
     #endregion
