@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright © Orbita Ingenieria 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+[assembly: System.Runtime.InteropServices.ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("3c320503-4e85-4de5-9d0e-5c14d9d495b9")]

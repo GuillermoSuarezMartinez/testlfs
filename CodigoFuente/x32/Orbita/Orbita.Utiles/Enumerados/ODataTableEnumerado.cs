@@ -16,7 +16,7 @@ namespace Orbita.Utiles
     /// <summary>
     /// Clase para obtener datatables con los valores de un enumerado
     /// </summary>
-    public class ODataTableEnumerado
+    public static class ODataTableEnumerado
     {
         #region Métodos públicos
         /// <summary>

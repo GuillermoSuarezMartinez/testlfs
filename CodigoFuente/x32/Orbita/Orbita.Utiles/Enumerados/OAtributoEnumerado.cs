@@ -22,13 +22,13 @@ namespace Orbita.Utiles
     /// Clases para dotar de atributos a los tipos enumerados.
     /// </summary>
     [AttributeUsageAttribute(AttributeTargets.All, Inherited = true)]
-    public class OAtributoEnumerado : Attribute
+    public sealed class OAtributoEnumerado : Attribute
     {
         #region Atributos
         /// <summary>
         /// Valor del enumerado.
         /// </summary>
-        string _valor;
+        string valor;
         #endregion
 
         #region Constructores
@@ -42,7 +42,7 @@ namespace Orbita.Utiles
         /// <param name="valor">valor.</param>
         public OAtributoEnumerado(string valor)
         {
-            this._valor = valor;
+            this.valor = valor;
         }
         #endregion
 
@@ -53,7 +53,7 @@ namespace Orbita.Utiles
         /// <value></value>
         public string Valor
         {
-            get { return this._valor; }
+            get { return this.valor; }
         }
         #endregion
 
@@ -97,7 +97,8 @@ namespace Orbita.Utiles
         /// <summary>
         /// Busca si el texto coincide con un enumerado
         /// </summary>
-        /// <param name="stringValue"></param>
+        /// <param name="enumType"></param>
+        /// <param name="DefaultValue"></param>
         /// <returns></returns>
         public static Enum FindStringValue(Type enumType, string stringValue, Enum DefaultValue)
         {

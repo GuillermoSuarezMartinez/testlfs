@@ -237,15 +237,11 @@ namespace Orbita.Utiles
         {
             // Inicialización de resultados
             EnumEstadoRobusto validacion = EnumEstadoTextoRobusto.ValorTipoIncorrecto;
-            bool correcto = false;
-
             // Validación
             if (valor is ClaseTipo)
             {
                 validacion = EnumEstadoTextoRobusto.ResultadoCorrecto;
-                correcto = true;
             }
-
             // Devolución de resultados
             return validacion;
         }
@@ -259,7 +255,6 @@ namespace Orbita.Utiles
         }
         #endregion
     }
-
     public interface IObjetoBase
     {
         #region Propiedades

@@ -12,26 +12,25 @@ namespace Orbita.Utiles
     {
         #region Atributos
         /// <summary>
-        /// Nombre del servicio
+        /// Nombre del servicio.
         /// </summary>
-        string Nombre;
+        string nombre;
         /// <summary>
-        /// Ruta del ejecutable
+        /// Ruta del ejecutable.
         /// </summary>
-        string Ruta;
+        string ruta;
         /// <summary>
         /// Máquina donde se encuentra el servicio Windows.
         /// </summary>
-        string Maquina = ".";
+        string maquina = ".";
         /// <summary>
-        /// TimeOut de espera hasta el inicio/paro
-        /// del servicio Windows.
+        /// TimeOut de espera hasta el inicio/paro del servicio Windows.
         /// </summary>
-        int TimeOutMilisegundos = 10000;
+        int timeOutMilisegundos = 10000;
         /// <summary>
-        /// Controlador del servicio instalado
+        /// Controlador del servicio instalado.
         /// </summary>
-        ServiceController Controlador;
+        ServiceController controlador;
         #endregion
 
         #region Propiedades
@@ -48,7 +47,7 @@ namespace Orbita.Utiles
         /// </summary>
         public ServiceControllerStatus Estado
         {
-            get { return this.Controlador.Status; }
+            get { return this.controlador.Status; }
         }
         #endregion
 
@@ -60,9 +59,9 @@ namespace Orbita.Utiles
         /// <param name="ruta">Ruta del servicio.</param>
         public OServicioWindows(string nombre, string ruta)
         {
-            this.Nombre = nombre;
-            this.Ruta = ruta;
-            this.Controlador = new ServiceController(this.Nombre, this.Maquina);
+            this.nombre = nombre;
+            this.ruta = ruta;
+            this.controlador = new ServiceController(this.nombre, this.maquina);
         }
         /// <summary>
         /// Constructor de la clase
@@ -70,10 +69,10 @@ namespace Orbita.Utiles
         /// <param name="nombre">Nombre del servicio</param>
         public OServicioWindows(string nombre, string ruta, string maquina)
         {
-            this.Nombre = nombre;
-            this.Ruta = ruta;
-            this.Maquina = maquina;
-            this.Controlador = new ServiceController(this.Nombre, this.Maquina);
+            this.nombre = nombre;
+            this.ruta = ruta;
+            this.maquina = maquina;
+            this.controlador = new ServiceController(this.nombre, this.maquina);
         }
         /// <summary>
         /// Constructor de la clase
@@ -81,11 +80,11 @@ namespace Orbita.Utiles
         /// <param name="nombre">Nombre del servicio</param>
         public OServicioWindows(string nombre, string ruta, int timeOutMilisegundos)
         {
-            this.Nombre = nombre;
-            this.Ruta = ruta;
-            this.TimeOutMilisegundos = timeOutMilisegundos;
+            this.nombre = nombre;
+            this.ruta = ruta;
+            this.timeOutMilisegundos = timeOutMilisegundos;
 
-            this.Controlador = new ServiceController(this.Nombre, this.Maquina);
+            this.controlador = new ServiceController(this.nombre, this.maquina);
         }
         /// <summary>
         /// Constructor de la clase
@@ -93,12 +92,11 @@ namespace Orbita.Utiles
         /// <param name="nombre">Nombre del servicio</param>
         public OServicioWindows(string nombre, string ruta, string maquina, int timeOutMilisegundos)
         {
-            this.Nombre = nombre;
-            this.Ruta = ruta;
-            this.Maquina = maquina;
-            this.TimeOutMilisegundos = timeOutMilisegundos;
-
-            this.Controlador = new ServiceController(this.Nombre, this.Maquina);
+            this.nombre = nombre;
+            this.ruta = ruta;
+            this.maquina = maquina;
+            this.timeOutMilisegundos = timeOutMilisegundos;
+            this.controlador = new ServiceController(this.nombre, this.maquina);
         }
         #endregion
 
@@ -135,8 +133,8 @@ namespace Orbita.Utiles
             if (!this.disposed)
             {
                 // Finalizar correctamente los recursos no manejados.
-                this.Nombre = null;
-                this.Maquina = null;
+                this.nombre = null;
+                this.maquina = null;
 
                 // Marcar como desechada ó desechandose,
                 // de forma que no se puede ejecutar el
@@ -181,16 +179,15 @@ namespace Orbita.Utiles
         /// <returns>Verdadero si se ha iniciado con éxtio</returns>
         public bool Iniciar()
         {
-            if (this.Controlador is ServiceController)
+            if (this.controlador is ServiceController)
             {
-                if ((this.Controlador.Status == ServiceControllerStatus.Stopped) || (this.Controlador.Status == ServiceControllerStatus.Paused))
+                if ((this.controlador.Status == ServiceControllerStatus.Stopped) || (this.controlador.Status == ServiceControllerStatus.Paused))
                 {
-                    this.Controlador.Start();
-                    this.Controlador.WaitForStatus(ServiceControllerStatus.Running, TimeSpan.FromMilliseconds(this.TimeOutMilisegundos));
+                    this.controlador.Start();
+                    this.controlador.WaitForStatus(ServiceControllerStatus.Running, TimeSpan.FromMilliseconds(this.timeOutMilisegundos));
                 }
-
             }
-            return this.Controlador.Status == ServiceControllerStatus.Running;
+            return this.controlador.Status == ServiceControllerStatus.Running;
         }
         /// <summary>
         /// Inicia el servicio
@@ -198,15 +195,15 @@ namespace Orbita.Utiles
         /// <returns>Verdadero si se ha iniciado con éxtio</returns>
         public bool Detener()
         {
-            if (this.Controlador is ServiceController)
+            if (this.controlador is ServiceController)
             {
-                if ((this.Controlador.Status == ServiceControllerStatus.Running) || (this.Controlador.Status == ServiceControllerStatus.Paused))
+                if ((this.controlador.Status == ServiceControllerStatus.Running) || (this.controlador.Status == ServiceControllerStatus.Paused))
                 {
-                    this.Controlador.Stop();
-                    this.Controlador.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromMilliseconds(this.TimeOutMilisegundos));
+                    this.controlador.Stop();
+                    this.controlador.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromMilliseconds(this.timeOutMilisegundos));
                 }
             }
-            return this.Controlador.Status == ServiceControllerStatus.Stopped;
+            return this.controlador.Status == ServiceControllerStatus.Stopped;
         }
         #endregion
 
@@ -226,11 +223,11 @@ namespace Orbita.Utiles
                 proceso.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 if (valor)
                 {
-                    proceso.StartInfo.Arguments = this.Ruta;
+                    proceso.StartInfo.Arguments = this.ruta;
                 }
                 else
                 {
-                    proceso.StartInfo.Arguments = "-u " + this.Ruta;
+                    proceso.StartInfo.Arguments = "-u " + this.ruta;
                 }
                 proceso.Start();
                 proceso.WaitForExit();
@@ -244,13 +241,13 @@ namespace Orbita.Utiles
         /// <returns></returns>
         private bool IsInstalled()
         {
-            this.Controlador = null;
+            this.controlador = null;
             ServiceController[] listaServicios = ServiceController.GetServices();
             foreach (ServiceController servicio in listaServicios)
             {
-                if ((servicio.ServiceName == this.Nombre) && (servicio.MachineName == this.Maquina))
+                if ((servicio.ServiceName == this.nombre) && (servicio.MachineName == this.maquina))
                 {
-                    this.Controlador = servicio;
+                    this.controlador = servicio;
                     return true;
                 }
             }
