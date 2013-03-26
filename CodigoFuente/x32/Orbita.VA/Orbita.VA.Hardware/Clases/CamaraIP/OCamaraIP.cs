@@ -128,15 +128,15 @@ namespace Orbita.VA.Hardware
         protected virtual string ComponerURL(string url)
         {
             // Construcción de la url del Grab
-            url = OTexto.StringReplace(url, @"%IPCam_IP%", this.IP.ToString(), StringComparison.OrdinalIgnoreCase);
-            url = OTexto.StringReplace(url, @"%IPCam_Puerto%", this.Puerto.ToString(), StringComparison.OrdinalIgnoreCase);
-            url = OTexto.StringReplace(url, @"%IPCam_Usuario%", this.Usuario, StringComparison.OrdinalIgnoreCase);
-            url = OTexto.StringReplace(url, @"%IPCam_Contraseña%", this.Contraseña, StringComparison.OrdinalIgnoreCase);
-            url = OTexto.StringReplace(url, @"%ResolucionX%", this.Resolucion.Width.ToString(), StringComparison.OrdinalIgnoreCase);
-            url = OTexto.StringReplace(url, @"%ResolucionY%", this.Resolucion.Height.ToString(), StringComparison.OrdinalIgnoreCase);
+            url = OTexto.Reemplazar(url, @"%IPCam_IP%", this.IP.ToString(), StringComparison.OrdinalIgnoreCase);
+            url = OTexto.Reemplazar(url, @"%IPCam_Puerto%", this.Puerto.ToString(), StringComparison.OrdinalIgnoreCase);
+            url = OTexto.Reemplazar(url, @"%IPCam_Usuario%", this.Usuario, StringComparison.OrdinalIgnoreCase);
+            url = OTexto.Reemplazar(url, @"%IPCam_Contraseña%", this.Contraseña, StringComparison.OrdinalIgnoreCase);
+            url = OTexto.Reemplazar(url, @"%ResolucionX%", this.Resolucion.Width.ToString(), StringComparison.OrdinalIgnoreCase);
+            url = OTexto.Reemplazar(url, @"%ResolucionY%", this.Resolucion.Height.ToString(), StringComparison.OrdinalIgnoreCase);
             int fps = (int)Math.Ceiling(this.ExpectedFrameRate);
-            url = OTexto.StringReplace(url, @"%FrameIntervalMs%", fps.ToString(), StringComparison.OrdinalIgnoreCase);
-            url = OTexto.StringReplace(url, @"%fps%", fps.ToString(), StringComparison.OrdinalIgnoreCase);
+            url = OTexto.Reemplazar(url, @"%FrameIntervalMs%", fps.ToString(), StringComparison.OrdinalIgnoreCase);
+            url = OTexto.Reemplazar(url, @"%fps%", fps.ToString(), StringComparison.OrdinalIgnoreCase);
             return url;
         }
         #endregion

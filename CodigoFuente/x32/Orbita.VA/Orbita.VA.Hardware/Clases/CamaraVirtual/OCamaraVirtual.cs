@@ -304,7 +304,7 @@ namespace Orbita.VA.Hardware
                         if (this.ListaRutaFotografias.Count > 0)
                         {
                             this.IndiceFotografia++;
-                            resultado = OEntero.InRange(this.IndiceFotografia, 0, this.ListaRutaFotografias.Count - 1);
+                            resultado = OEntero.EnRango(this.IndiceFotografia, 0, this.ListaRutaFotografias.Count - 1);
                             if (resultado)
                             {
                                 rutaFotografiaActual = this.ListaRutaFotografias[this.IndiceFotografia];

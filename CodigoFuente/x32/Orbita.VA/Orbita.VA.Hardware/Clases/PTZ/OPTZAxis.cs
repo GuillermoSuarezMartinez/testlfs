@@ -125,10 +125,10 @@ namespace Orbita.VA.Hardware
 
                     // Construcción de la url
                     string url = this.URLOriginal;
-                    url = OTexto.StringReplace(url, @"%IPCam_IP%", this.IP.ToString(), StringComparison.OrdinalIgnoreCase);
-                    url = OTexto.StringReplace(url, @"%IPCam_Puerto%", this.Puerto.ToString(), StringComparison.OrdinalIgnoreCase);
-                    url = OTexto.StringReplace(url, @"%IPCam_Usuario%", this.Usuario, StringComparison.OrdinalIgnoreCase);
-                    url = OTexto.StringReplace(url, @"%IPCam_Contraseña%", this.Contraseña, StringComparison.OrdinalIgnoreCase);
+                    url = OTexto.Reemplazar(url, @"%IPCam_IP%", this.IP.ToString(), StringComparison.OrdinalIgnoreCase);
+                    url = OTexto.Reemplazar(url, @"%IPCam_Puerto%", this.Puerto.ToString(), StringComparison.OrdinalIgnoreCase);
+                    url = OTexto.Reemplazar(url, @"%IPCam_Usuario%", this.Usuario, StringComparison.OrdinalIgnoreCase);
+                    url = OTexto.Reemplazar(url, @"%IPCam_Contraseña%", this.Contraseña, StringComparison.OrdinalIgnoreCase);
                     this.URL = url;
                 }
 

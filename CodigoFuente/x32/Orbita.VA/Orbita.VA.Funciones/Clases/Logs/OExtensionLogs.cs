@@ -16,7 +16,7 @@ namespace Orbita.VA.Funciones
     /// <summary>
     /// Define el conjunto de módulos del sistema
     /// </summary>
-    public class ModulosFunciones: ModulosSistema
+    public class ModulosFunciones : ModulosSistema
     {
         #region Atributo(s)
         /// <summary>

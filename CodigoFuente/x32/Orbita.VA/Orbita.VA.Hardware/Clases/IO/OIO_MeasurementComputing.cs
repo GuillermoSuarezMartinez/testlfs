@@ -495,12 +495,12 @@ namespace Orbita.VA.Hardware
 
             // Se comprueba que el valor sea correcto
             bool valorOK = false;
-            if (OEntero.IsNumericInt(valor))
+            if (OEntero.EsEntero(valor))
             {
                 int intValor = Convert.ToInt32(valor);
                 int maxvalor = (int)Math.Pow(2, this.NumBits) - 1;
 
-                if (OEntero.InRange(intValor, 0x00, maxvalor))
+                if (OEntero.EnRango(intValor, 0x00, maxvalor))
                 {
                     ushortValor = (ushort)intValor;
                     valorOK = true;

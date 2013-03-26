@@ -1776,7 +1776,7 @@ namespace Orbita.VA.Hardware
                     {
                         Pylon.DeviceSetFloatFeature(this.PylonDeviceHandle, this.Codigo, doubleValue);
                         doubleOutValue = Pylon.DeviceGetFloatFeature(this.PylonDeviceHandle, this.Codigo);
-                        ok = ODecimal.Similar(doubleValue, doubleOutValue, 0.01);
+                        ok = ODecimal.EnTolerancia(doubleValue, doubleOutValue, 0.01);
                         return ok;
                     }, this.TimeOut);
                     resultado = ok;
@@ -2361,7 +2361,7 @@ namespace Orbita.VA.Hardware
                 {
                     // Envio del BandWidth
                     double reserveBandWith = 100 - (100 / this.Valor);
-                    this.FeatureReserveBandwidth.ValorGenerico = ODecimal.EnsureRange(reserveBandWith, 0.0, 99.0);
+                    this.FeatureReserveBandwidth.ValorGenerico = ODecimal.AsegurarRango(reserveBandWith, 0.0, 99.0);
                     this.FeatureReserveBandwidth.Send(true, modoAjuste);
 
                     // 1000 MBytes / sec overall throughput. Suponemos que usamos una red GigE

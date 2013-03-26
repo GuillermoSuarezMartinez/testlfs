@@ -1263,7 +1263,7 @@ namespace Orbita.VA.MaquinasEstados
                     this.Habilitado = (bool)dtEstado.Rows[0]["HabilitadoEstado"];
                     this.Monitorizado = (bool)dtEstado.Rows[0]["Monitorizado"];
                     this.EsEstadoInicial = (bool)dtEstado.Rows[0]["EsEstadoInicial"];
-                    if (OEntero.IsNumericInt(dtEstado.Rows[0]["TimeOut"]))
+                    if (OEntero.EsEntero(dtEstado.Rows[0]["TimeOut"]))
                     {
                         this.TimeOut = TimeSpan.FromMilliseconds((int)dtEstado.Rows[0]["TimeOut"]);
                     }

@@ -214,7 +214,7 @@
     <Compile Include="Clases\Utiles\OScript.cs" />
     <Compile Include="Clases\Thread\OThreadLoop.cs" />
     <Compile Include="Clases\Utiles\OUsuarios.cs" />
-    <Compile Include="Clases\Logs\OVALogs.cs" />
+    <Compile Include="Clases\Logs\OExtensionLogs.cs" />
     <Compile Include="Clases\Video\OVideoFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Clases\Core\OSistema.cs" />

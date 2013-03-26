@@ -24,7 +24,7 @@ namespace Orbita.VA.Funciones
     /// </summary>
     public static class OHerramientasOpenCV
     {
-        #region Corrección de distorsión
+        #region Corrección de perspectiva
         /// <summary>
         /// Corección de distorsión para imagenes de tipo OpenCV
         /// </summary>
@@ -40,7 +40,7 @@ namespace Orbita.VA.Funciones
         /// <param name="puntoDestino3">Punto destino 3</param>
         /// <param name="puntoDestino4">Punto destino 4</param>
         /// <returns></returns>
-        public static OImagenOpenCV<TColor, TDepth> CorregirDistorsion<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, PointF puntoDestino1, PointF puntoDestino2, PointF puntoDestino3, PointF puntoDestino4)
+        public static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, PointF puntoDestino1, PointF puntoDestino2, PointF puntoDestino3, PointF puntoDestino4)
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
@@ -86,7 +86,7 @@ namespace Orbita.VA.Funciones
         /// <param name="anchoDestino">Ancho destino</param>
         /// <param name="altoDestino">Alto destino</param>
         /// <returns></returns>
-        public static OImagenOpenCV<TColor, TDepth> CorregirDistorsion<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, float xDestino, float yDestino, float anchoDestino, float altoDestino)
+        public static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, float xDestino, float yDestino, float anchoDestino, float altoDestino)
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
@@ -95,7 +95,7 @@ namespace Orbita.VA.Funciones
             PointF puntoDestino3 = new PointF(xDestino + anchoDestino, yDestino + altoDestino);
             PointF puntoDestino4 = new PointF(xDestino + 0, yDestino + altoDestino);
 
-            return CorregirDistorsion<TColor, TDepth>(imagenOriginal, puntoOriginal1, puntoOriginal2, puntoOriginal3, puntoOriginal4, puntoDestino1, puntoDestino2, puntoDestino3, puntoDestino4);
+            return CorregirPerspectiva<TColor, TDepth>(imagenOriginal, puntoOriginal1, puntoOriginal2, puntoOriginal3, puntoOriginal4, puntoDestino1, puntoDestino2, puntoDestino3, puntoDestino4);
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace Orbita.VA.Funciones
         /// <param name="puntoOriginal4">Punto origen 4</param>
         /// <param name="areaDestino">Area destino</param>
         /// <returns></returns>
-        public static OImagenOpenCV<TColor, TDepth> CorregirDistorsion<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, RectangleF areaDestino)
+        public static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, RectangleF areaDestino)
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
@@ -119,7 +119,7 @@ namespace Orbita.VA.Funciones
             float anchoDestino = areaDestino.Width;
             float altoDestino = areaDestino.Height;
 
-            return CorregirDistorsion<TColor, TDepth>(imagenOriginal, puntoOriginal1, puntoOriginal2, puntoOriginal3, puntoOriginal4, xDestino, yDestino, anchoDestino, altoDestino);
+            return CorregirPerspectiva<TColor, TDepth>(imagenOriginal, puntoOriginal1, puntoOriginal2, puntoOriginal3, puntoOriginal4, xDestino, yDestino, anchoDestino, altoDestino);
         } 
 
         #endregion

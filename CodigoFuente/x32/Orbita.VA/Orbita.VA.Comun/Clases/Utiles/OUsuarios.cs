@@ -176,7 +176,7 @@ namespace Orbita.VA.Comun
             if (dtFuncionVision.Rows.Count == 1)
             {
                 this.Contraseña = dtFuncionVision.Rows[0]["Contraseña"].ToString();
-                this.Permisos = (OPermisos)OEnumerado<OPermisos>.EnumParse(typeof(OPermisos), dtFuncionVision.Rows[0]["Permiso"].ToString(), OPermisos.Operador);
+                this.Permisos = (OPermisos)OEnumerado<OPermisos>.AnalizaEnumerado(typeof(OPermisos), dtFuncionVision.Rows[0]["Permiso"].ToString(), OPermisos.Operador);
             }            
         }
         #endregion
