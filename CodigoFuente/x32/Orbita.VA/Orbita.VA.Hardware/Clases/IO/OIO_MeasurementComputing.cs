@@ -100,7 +100,7 @@ namespace Orbita.VA.Hardware
         {
             if ((error != null) && (error.Value != 0))
             {
-                OVALogsManager.Error(ModulosHardware.ES_MeasurementComputing, codigo, "Error: " + error.Message);
+                OLogsVAHardware.Camaras.Error(codigo, "Error: " + error.Message);
             }
         }
         #endregion
@@ -149,11 +149,11 @@ namespace Orbita.VA.Hardware
             catch (AccessViolationException exception)
             {
                 OMensajes.MostrarError("El módulo de entradas/salidas con identificador " + this.Codigo + "\n no se encuetra o está actualmente en uso.");
-                OVALogsManager.Info(ModulosHardware.CamaraBaslerVPro, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Info(exception, this.Codigo);
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.ES_MeasurementComputing, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
         }
 
@@ -191,7 +191,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.ES_MeasurementComputing, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
             this.TimerScan.Start();
         }

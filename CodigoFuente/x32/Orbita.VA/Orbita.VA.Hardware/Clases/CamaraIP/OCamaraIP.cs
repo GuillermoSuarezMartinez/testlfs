@@ -113,7 +113,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Fatal(ModulosHardware.Camaras, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Fatal(this.Codigo, exception);
                 throw new Exception("Imposible iniciar la cámara " + this.Codigo);
             }
         }
@@ -176,7 +176,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.Camaras, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -205,7 +205,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.Camaras, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -234,7 +234,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.Camaras, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -264,7 +264,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.Camaras, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -286,7 +286,7 @@ namespace Orbita.VA.Hardware
                     // Verificamos que la cámara está preparada para adquirir la imagen
                     if (this.VideoSource.Running)
                     {
-                        OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, "La cámara no está preparada para adquirir imágenes");
+                        OLogsVAHardware.Camaras.Debug(this.Codigo, "La cámara no está preparada para adquirir imágenes");
                         return false;
                     }
 
@@ -301,7 +301,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.Camaras, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
             return resultado;
         }
@@ -348,7 +348,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.Camaras, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
         }
 
@@ -377,7 +377,7 @@ namespace Orbita.VA.Hardware
         //    }
         //    catch (Exception exception)
         //    {
-        //        OVALogsManager.Error(ModulosHardware.Camaras, this.Codigo, exception);
+        //        OLogsVAHardware.Camaras.Error(exception, this.Codigo);
         //    }
         //}
 
@@ -424,7 +424,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.Camaras, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
         }
         #endregion

@@ -188,7 +188,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.Camaras, "Conectividad " + this.IP.ToString(), exception);
+                OLogsVAHardware.Camaras.Error("Conectividad " + this.IP.ToString(), exception);
             }
             this.TimerComprobacionConexion.Start();
         }
@@ -228,7 +228,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.Camaras, "Conectividad " + this.IP.ToString(), exception);
+                OLogsVAHardware.Camaras.Error("Conectividad " + this.IP.ToString(), exception);
             }
         }
         #endregion

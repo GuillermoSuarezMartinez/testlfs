@@ -1233,7 +1233,7 @@ namespace Orbita.VA.Hardware
 			}
 			catch (Exception exception)
 			{
-				OVALogsManager.Fatal(ModulosHardware.Camaras, this.Codigo, exception);
+				OLogsVAHardware.Camaras.Fatal(this.Codigo, exception);
 				throw new Exception("Imposible iniciar la cámara " + this.Codigo);
 			}
 		}
@@ -1384,7 +1384,7 @@ namespace Orbita.VA.Hardware
             if (this.Habilitado && (this.EstadoConexion == EstadoConexion.Conectado))
             {
                 // Información extra
-                OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, "Start de la cámara: " + this.Codigo);
+                OLogsVAHardware.Camaras.Debug(this.Codigo, "Start de la cámara: " + this.Codigo);
 
                 OVariablesManager.CrearSuscripcion(this._CodVariableSnap, "Camaras", this.Codigo, ComandoSnapPorVariable);
                 OVariablesManager.CrearSuscripcion(this._CodVariableReproduccion, "Camaras", this.Codigo, ComandoReproduccionPorVariable);
@@ -1407,7 +1407,7 @@ namespace Orbita.VA.Hardware
             if (this.Habilitado)
             {
                 // Información extra
-                OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, "Stop de la cámara: " + this.Codigo);
+                OLogsVAHardware.Camaras.Debug(this.Codigo, "Stop de la cámara: " + this.Codigo);
 
                 OVariablesManager.EliminarSuscripcion(this._CodVariableSnap, "Camaras", this.Codigo, ComandoSnapPorVariable);
                 OVariablesManager.EliminarSuscripcion(this._CodVariableReproduccion, "Camaras", this.Codigo, ComandoReproduccionPorVariable);
@@ -1434,7 +1434,7 @@ namespace Orbita.VA.Hardware
                 resultado = this.SnapInterno();
 
                 // Información extra
-                OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, "Snap de la cámara: " + this.Codigo + ". Resultado: " + resultado.ToString());
+                OLogsVAHardware.Camaras.Debug(this.Codigo, "Snap de la cámara: " + this.Codigo + ". Resultado: " + resultado.ToString());
             }
 
 			return resultado;
@@ -1477,7 +1477,7 @@ namespace Orbita.VA.Hardware
             if (this.Habilitado && (this.EstadoConexion == EstadoConexion.Conectado))
             {
                 // Información extra
-                OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, "REC de la cámara: " + this.Codigo);
+                OLogsVAHardware.Camaras.Debug(this.Codigo, "REC de la cámara: " + this.Codigo);
 
                 resultado = this.StartRECInterno(fichero);
             }
@@ -1495,7 +1495,7 @@ namespace Orbita.VA.Hardware
             if (this.Habilitado && (this.EstadoConexion == EstadoConexion.Conectado))
             {
                 // Información extra
-                OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, "StopREC de la cámara: " + this.Codigo);
+                OLogsVAHardware.Camaras.Debug(this.Codigo, "StopREC de la cámara: " + this.Codigo);
 
                 resultado = this.StopRECInterno();
             }
@@ -1574,7 +1574,7 @@ namespace Orbita.VA.Hardware
 
                 if (!this.Conectar())
 				{
-					OVALogsManager.Error(ModulosHardware.Camaras, "Inicialización", "Ha sido imposible realizar la conexión de la cámara " + this.Nombre);
+					OLogsVAHardware.Camaras.Error("Inicialización", "Ha sido imposible realizar la conexión de la cámara " + this.Nombre);
 				}
 			}
 		}
@@ -1597,7 +1597,7 @@ namespace Orbita.VA.Hardware
 				}
 				else
 				{
-					OVALogsManager.Error(ModulosHardware.Camaras, "Finalización", "Ha sido imposible realizar la desconexión de la cámara " + this.Nombre);
+					OLogsVAHardware.Camaras.Error("Finalización", "Ha sido imposible realizar la desconexión de la cámara " + this.Nombre);
 				}
 			}
 		}
@@ -1768,7 +1768,7 @@ namespace Orbita.VA.Hardware
         protected virtual bool ConectarInterno(bool reconexion)
         {
             // Información extra
-            OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, "Conexión de la cámara: " + this.Codigo);
+            OLogsVAHardware.Camaras.Debug(this.Codigo, "Conexión de la cámara: " + this.Codigo);
 
             return false;
         }
@@ -1780,7 +1780,7 @@ namespace Orbita.VA.Hardware
         protected virtual bool DesconectarInterno(bool errorConexion)
         {
             // Información extra
-            OVALogsManager.Debug(ModulosHardware.Camaras, this.Codigo, "Desconexión de la cámara: " + this.Codigo);
+            OLogsVAHardware.Camaras.Debug(this.Codigo, "Desconexión de la cámara: " + this.Codigo);
 
             return false;
         }

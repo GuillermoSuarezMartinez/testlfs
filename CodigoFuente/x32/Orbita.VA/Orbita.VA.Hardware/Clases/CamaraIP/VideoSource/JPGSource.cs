@@ -421,13 +421,13 @@ namespace Orbita.VA.Hardware
                     }
                     catch (WebException ex)
                     {
-                        OVALogsManager.Info(ModulosHardware.Camaras, "Thread de JPG", ex);
+                        OLogsVAHardware.Camaras.Info("Thread de JPG", ex);
                         // wait for a while before the next try
                         Thread.Sleep(250);
                     }
                     catch (ApplicationException ex)
                     {
-                        OVALogsManager.Info(ModulosHardware.Camaras, "Thread de JPG", ex);
+                        OLogsVAHardware.Camaras.Info("Thread de JPG", ex);
                         // wait for a while before the next try
                         Thread.Sleep(250);
                     }
@@ -436,7 +436,7 @@ namespace Orbita.VA.Hardware
                     }
                     catch (Exception ex)
                     {
-                        OVALogsManager.Info(ModulosHardware.Camaras, "Thread de JPG", ex);
+                        OLogsVAHardware.Camaras.Info("Thread de JPG", ex);
                         // wait for a while before the next try
                         Thread.Sleep(250);
                     }
@@ -455,7 +455,7 @@ namespace Orbita.VA.Hardware
                 }
                 catch (Exception ex)
                 {
-                    OVALogsManager.Info(ModulosHardware.Camaras, "Thread de JPG", ex);
+                    OLogsVAHardware.Camaras.Info("Thread de JPG", ex);
                 }
             }
         }

@@ -504,7 +504,7 @@ namespace Orbita.VA.Funciones
                 OCronometrosManager.Start(this._Codigo);
 
                 // Guardamos la traza
-                OVALogsManager.Info(ModulosFunciones.Vision, this._Codigo, "Inicio de la ejecución síncrona de la función " + this._Codigo);
+                OLogsVAFunciones.Vision.Info(this._Codigo, "Inicio de la ejecución síncrona de la función " + this._Codigo);
 
                 this.EjecucionTerminada = false;
 
@@ -527,7 +527,7 @@ namespace Orbita.VA.Funciones
                 OCronometrosManager.Start(this._Codigo);
 
                 // Guardamos la traza
-                OVALogsManager.Info(ModulosFunciones.Vision, this._Codigo, "Inicio de la ejecución asíncrona de la función " + this._Codigo);
+                OLogsVAFunciones.Vision.Info(this._Codigo, "Inicio de la ejecución asíncrona de la función " + this._Codigo);
 
                 this.EjecucionTerminada = false;
 
@@ -731,7 +731,7 @@ namespace Orbita.VA.Funciones
                 OCronometrosManager.Stop(this._Codigo);
 
                 // Guardamos la traza
-                OVALogsManager.Info(ModulosFunciones.Vision, this._Codigo, "Fin de la ejecución de la función " + this._Codigo + ". Duración: " + OCronometrosManager.DuracionUltimaEjecucion(this._Codigo).ToString());
+                OLogsVAFunciones.Vision.Info(this._Codigo, "Fin de la ejecución de la función " + this._Codigo + ". Duración: " + OCronometrosManager.DuracionUltimaEjecucion(this._Codigo).ToString());
 
                 // Llamada a la variable que indica el estado de ejecución de la función
                 OVariablesManager.SetValue(this._CodVariableEnEjecucion, false, "Vision", this.Codigo);
@@ -740,7 +740,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.Vision, this._Codigo, exception);
+                OLogsVAFunciones.Vision.Error(exception, this._Codigo);
             }
         }
         #endregion
@@ -839,7 +839,7 @@ namespace Orbita.VA.Funciones
                 OCronometrosManager.Start(this.Codigo);
 
                 // Guardamos la traza
-                OVALogsManager.Info(ModulosFunciones.Vision, this.Codigo, "Inicio de la ejecución encolada de la función " + this.Codigo);
+                OLogsVAFunciones.Vision.Info(this.Codigo, "Inicio de la ejecución encolada de la función " + this.Codigo);
 
                 this.EjecucionTerminada = false;
 
@@ -909,7 +909,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.Vision, this.Codigo, exception);
+                OLogsVAFunciones.Vision.Error(exception, this.Codigo);
             }
         }
 

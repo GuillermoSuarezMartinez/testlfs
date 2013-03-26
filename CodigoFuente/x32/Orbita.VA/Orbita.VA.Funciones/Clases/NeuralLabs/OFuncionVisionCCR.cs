@@ -76,7 +76,7 @@ namespace Orbita.VA.Funciones
                 }
                 catch (FileNotFoundException exception)
                 {
-                    OVALogsManager.Error(ModulosFunciones.CCR, "CCR", exception);
+                    OLogsVAFunciones.CCR.Error(exception, "CCR");
                     OCCRManager.Configuracion = new ConfiguracionCCR();
                     OCCRManager.Configuracion.Guardar();
                 }
@@ -86,11 +86,11 @@ namespace Orbita.VA.Funciones
                 // Almacenamos el valor de incio
                 if (id == 1)
                 {
-                    OVALogsManager.Debug(ModulosFunciones.CCR, "CCR", "Iniciado correctamente");
+                    OLogsVAFunciones.CCR.Debug("CCR", "Iniciado correctamente");
                 }
                 else
                 {
-                    OVALogsManager.Error(ModulosFunciones.CCR, "CCR", "Error de inicialización");
+                    OLogsVAFunciones.CCR.Error("CCR", "Error de inicialización");
                 }
                 // Si hemos de limitar los núcleos los limitamos
                 if (OCCRManager.Configuracion.LimitCores)
@@ -99,13 +99,13 @@ namespace Orbita.VA.Funciones
                     // Almacenamos el valor de incio
                     if (id == 0)
                     {
-                        OVALogsManager.Error(ModulosFunciones.CCR, "CCR", "Error limitando Cores");
+                        OLogsVAFunciones.CCR.Error("CCR", "Error limitando Cores");
                     }
                 }
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.CCR, "CCR", exception);
+                OLogsVAFunciones.CCR.Error(exception, "CCR");
             }
 
             ThreadEjecucionCCR.Start();
@@ -136,7 +136,7 @@ namespace Orbita.VA.Funciones
             // Almacenamos el valor de incio
             if (id == 0)
             {
-                OVALogsManager.Debug(ModulosFunciones.CCR, "CCR", "Error reseteando el wrapper");
+                OLogsVAFunciones.CCR.Debug("CCR", "Error reseteando el wrapper");
                 // Lo realizamos a lo bestia como antes
                 // Liberamos memoria reservada para la libreria de CCR, cuando termina de procesar las imagenes
                 MTInterface.QueryEnd();
@@ -261,7 +261,7 @@ namespace Orbita.VA.Funciones
                     if (element != null)
                     {
                         // Guardamos la traza
-                        OVALogsManager.Debug(ModulosFunciones.Vision, this.Codigo, "Ejecución de la función LPR " + this.Codigo);
+                        OLogsVAFunciones.Vision.Debug(this.Codigo, "Ejecución de la función LPR " + this.Codigo);
 
                         CodeInfo info = element.GetFirstItem;
                         OInfoInspeccionCCR infoInspeccionCCR = (OInfoInspeccionCCR)element.ImageInformation.GetObject; // Obtengo la información de entrada de la inspección
@@ -279,7 +279,7 @@ namespace Orbita.VA.Funciones
                         fcode += "(FI:" + Math.Round(info.GetExtraInfoConfidence, 1) + ")";
                         fcode += "(AC:" + info.GetAverageCharacterHeigth + ")";
                         fcode += "(T:" + info.GetProcessingTime + ")";
-                        OVALogsManager.Debug(ModulosFunciones.CCR, this.Codigo, "Resultado recibido:" + fcode);
+                        OLogsVAFunciones.CCR.Debug(this.Codigo, "Resultado recibido:" + fcode);
 
                         if (info != null)
                         {
@@ -301,7 +301,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.CCR, this.Codigo, exception);
+                OLogsVAFunciones.CCR.Error(exception, this.Codigo);
             }
         }
         #endregion
@@ -390,14 +390,14 @@ namespace Orbita.VA.Funciones
                     }
                     catch (Exception ex)
                     {
-                        OVALogsManager.Error(ModulosFunciones.CCR, "FuncionCCR", ex);
+                        OLogsVAFunciones.CCR.Error("FuncionCCR", ex);
                     }
                 }
                 this.ListaImagenesPendientes = new List<Bitmap>();
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.CCR, "FuncionCCR", exception);
+                OLogsVAFunciones.CCR.Error(exception, "FuncionCCR");
             }
         }
         #endregion
@@ -453,7 +453,7 @@ namespace Orbita.VA.Funciones
         public void Reset()
         {
             // Guardamos la traza
-            OVALogsManager.Debug(ModulosFunciones.CCR, this.Codigo, "Se procede a resetear la función de visión " + this.Codigo);
+            OLogsVAFunciones.CCR.Debug(this.Codigo, "Se procede a resetear la función de visión " + this.Codigo);
 
             OCCRManager.Reset();
 
@@ -465,7 +465,7 @@ namespace Orbita.VA.Funciones
             this.FuncionEjecutada();
 
             // Guardamos la traza
-            OVALogsManager.Debug(ModulosFunciones.CCR, this.Codigo, "Reset de la función de visión " + this.Codigo + " realizado con éxito");
+            OLogsVAFunciones.CCR.Debug(this.Codigo, "Reset de la función de visión " + this.Codigo + " realizado con éxito");
         }
         #endregion
 
@@ -529,13 +529,13 @@ namespace Orbita.VA.Funciones
                     {
                         // Temporal hasta que lo soluccionen
                         //this.ListaImagenesPendientes.Add(this.Imagen.Image);
-                        OVALogsManager.Info(ModulosFunciones.CCR, "FuncionCCR: Sobrepasado el limite de imagenes en cola", "");
+                        OLogsVAFunciones.CCR.Info("FuncionCCR: Sobrepasado el limite de imagenes en cola", "");
                     }
                 }
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.CCR, "FuncionCCR", exception);
+                OLogsVAFunciones.CCR.Error(exception, "FuncionCCR");
             }
 
             return resultado;
@@ -589,7 +589,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.CCR, this.Codigo, exception);
+                OLogsVAFunciones.CCR.Error(exception, this.Codigo);
             }
             return resultado;
         }
@@ -628,7 +628,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.CCR, this.Codigo, exception);
+                OLogsVAFunciones.CCR.Error(exception, this.Codigo);
             }
             return resultado;
         }
@@ -969,7 +969,7 @@ namespace Orbita.VA.Funciones
                 {
                     this.FiabilidadesLetras[i] = 0;
                 }
-                OVALogsManager.Info(ModulosFunciones.CCR, "FuncionCCR:" + resultadoImagen.GetAverageCharacterHeigth.ToString()
+                OLogsVAFunciones.CCR.Info("FuncionCCR:" + resultadoImagen.GetAverageCharacterHeigth.ToString()
                      + " " + resultadoImagen.GetGlobalConfidence.ToString()
                         + " " + resultadoImagen.GetExtraInfoConfidence.ToString(), exception);
             }

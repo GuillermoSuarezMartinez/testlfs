@@ -136,7 +136,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Fatal(ModulosHardware.Camaras, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Fatal(this.Codigo, exception);
                 throw new Exception("Imposible iniciar el PTZ " + this.Codigo);
             }
         }
@@ -429,7 +429,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.PTZ, this.Codigo, exception);
+                OLogsVAHardware.PTZ.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -450,7 +450,7 @@ namespace Orbita.VA.Hardware
                 string respuesta;
                 if (comunicacionCGITexto.Ejecuta(out respuesta))
                 {
-                    OVALogsManager.Info(ModulosHardware.PTZ, "Consulta de posición", respuesta);
+                    OLogsVAHardware.PTZ.Info("Consulta de posición", respuesta);
 
                     // Interpretación de la respuesta
                     resultado = this.StringToPosiciones(respuesta);
@@ -459,7 +459,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Info(ModulosHardware.PTZ, this.Codigo, exception);
+                OLogsVAHardware.PTZ.Info(exception, this.Codigo);
             }
 
             return resultado;
@@ -484,7 +484,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.PTZ, this.Codigo, exception);
+                OLogsVAHardware.PTZ.Error(exception, this.Codigo);
             }
 
             return resultado;

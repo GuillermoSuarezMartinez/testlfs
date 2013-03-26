@@ -16,8 +16,9 @@ using System.Data;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
 using Orbita.VA.MaquinasEstados;
+using Orbita.Trazabilidad;
 
-namespace Orbita.VAGeneradorEscenarios
+namespace Orbita.VA.GeneradorEscenarios
 {
     /// <summary>
     /// Programa generador de código automático

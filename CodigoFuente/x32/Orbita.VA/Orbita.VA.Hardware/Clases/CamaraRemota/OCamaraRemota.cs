@@ -86,7 +86,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Fatal(ModulosHardware.CamaraRemota, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Fatal(this.Codigo, exception);
                 throw new Exception("Imposible iniciar la cámara " + this.Codigo);
             }
         }
@@ -249,7 +249,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraRemota, this.Codigo, "Error al conectarse a la cámara " + this.Codigo + ": " + exception.ToString());
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo, "Error al conectarse a la cámara " + this.Codigo + ": ".ToString());
             }
 
             return resultado;
@@ -279,7 +279,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraRemota, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -304,7 +304,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraRemota, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -330,7 +330,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraRemota, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -354,7 +354,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraRemota, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
             return resultado;
         }
@@ -471,7 +471,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraRemota, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
         }
         /// <summary>

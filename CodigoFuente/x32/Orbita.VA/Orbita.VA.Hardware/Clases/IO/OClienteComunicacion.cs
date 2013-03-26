@@ -148,7 +148,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.ES_SCED, this.Servidor.ToString(), exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
             }
 
         }
@@ -176,7 +176,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.ES_SCED, this.Servidor.ToString(), exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
             }
         }
         #endregion
@@ -188,7 +188,7 @@ namespace Orbita.VA.Hardware
         private void Desconectar()
         {
             Conectar(false);
-            OVALogsManager.Info(ModulosHardware.ES_SCED, this.Servidor.ToString(), "Desconectado del Servicio");
+            OLogsVAHardware.Camaras.Info(this.Servidor.ToString(), "Desconectado del Servicio");
         }
         /// <summary>
         /// Conectar al servidor vía Remoting.
@@ -226,11 +226,11 @@ namespace Orbita.VA.Hardware
                 // Establecer conexión con el servidor.
                 Conectar(true);
 
-                OVALogsManager.Info(ModulosHardware.ES_SCED, this.Servidor.ToString(), "Conectado al servicio");
+                OLogsVAHardware.Camaras.Info(this.Servidor.ToString(), "Conectado al servicio");
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.ES_SCED, this.Servidor.ToString(), exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
             }
         }
         /// <summary>
@@ -269,7 +269,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.ES_SCED, this.Servidor.ToString(), exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
             }
         }
 
@@ -468,7 +468,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.ES_SCED, this.Servidor.ToString(), exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
             }
         }
 
@@ -499,7 +499,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.ES_SCED, this.Servidor.ToString(), exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
             }
         }
 
@@ -534,7 +534,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.ES_SCED, this.Servidor.ToString(), exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
             }
         }
         
@@ -573,7 +573,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.ES_SCED, this.Servidor.ToString(), exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
             }
         }
         #endregion
@@ -672,7 +672,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.ES_SCED, this.Servidor.ToString(), exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
             }
         }
         #endregion

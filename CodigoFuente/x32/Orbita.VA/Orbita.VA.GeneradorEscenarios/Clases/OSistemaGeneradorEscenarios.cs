@@ -2,7 +2,7 @@
 using Orbita.Utiles;
 using Orbita.VA.Comun;
 
-namespace Orbita.VAGeneradorEscenarios
+namespace Orbita.VA.GeneradorEscenarios
 {
     /// <summary>
     /// Clase que controla el inicio y la detención del resto de módulos instalados en el sistema
@@ -42,9 +42,9 @@ namespace Orbita.VAGeneradorEscenarios
                     {
                         // Creación del log de eventos
                         MensajeInfoArranqueAplicacion("Creando log de eventos", false, OTipoMensaje.Info);
-                        OVALogsManager.Constructor(this.OnShowLogMessage, this.OnShowLogException);
-                        OVALogsManager.Inicializar();
-                        OVALogsManager.Info(ModulosSistema.Sistema, "IniciarSistema", "Inicio del sistema");
+                        //OLogsVAGeneradorEscenarios.Constructor(this.OnShowLogMessage, this.OnShowLogException);
+                        //OLogsVAGeneradorEscenarios.Inicializar();
+                        OLogsVAGeneradorEscenarios.GeneradorCodigo.Info("IniciarSistema", "Inicio del sistema");
 
                         // Conexión con la base de datos
                         if (this.Configuracion.UtilizaBaseDeDatos)
@@ -58,7 +58,7 @@ namespace Orbita.VAGeneradorEscenarios
                     }
                     catch (Exception exception)
                     {
-                        OVALogsManager.Error(ModulosSistema.Sistema, "IniciarSistema", exception);
+                        OLogsVAGeneradorEscenarios.GeneradorCodigo.Error(exception, "IniciarSistema");
                         resultado = false;
                     }
                 }
@@ -76,15 +76,15 @@ namespace Orbita.VAGeneradorEscenarios
                 try
                 {
                     // Se finaliza el modo inicialización de los logs (tienen un comportamiento dinstinto)
-                    OVALogsManager.FinInicializacion();
+                    //OLogsVAGeneradorEscenarios.FinInicializacion();
 
                     // Ocultamos el formulario Splash
                     MensajeInfoArranqueAplicacion("Inicio finalizado con éxito", false, OTipoMensaje.Info);
-                    OVALogsManager.Info(ModulosSistema.Sistema, "IniciarSistema", "Inicio finalizado con éxito");
+                    OLogsVAGeneradorEscenarios.GeneradorCodigo.Info("IniciarSistema", "Inicio finalizado con éxito");
                 }
                 catch (Exception exception)
                 {
-                    OVALogsManager.Error(ModulosSistema.Sistema, "IniciarSistema", "Error: " + exception.ToString());
+                    OLogsVAGeneradorEscenarios.GeneradorCodigo.Error(exception, "IniciarSistema", "Error: ".ToString());
                     resultado = false;
                 }
             }
@@ -111,7 +111,7 @@ namespace Orbita.VAGeneradorEscenarios
                 this.EstadoSistema = EstadoSistema.Deteniendo;
                 resultado = true;
 
-                OVALogsManager.Info(ModulosSistema.Sistema, "PararSistema", "Paro del sistema");
+                OLogsVAGeneradorEscenarios.GeneradorCodigo.Info("PararSistema", "Paro del sistema");
             }
 
             return resultado;
@@ -130,9 +130,9 @@ namespace Orbita.VAGeneradorEscenarios
                     OBaseDatosManager.Destructor();
 
                     // Finalización del log de eventos
-                    OVALogsManager.Info(ModulosSistema.Sistema, "PararSistema", "Paro del sistema finalizado con éxito");
-                    OVALogsManager.Finalizar();
-                    OVALogsManager.Destructor();
+                    OLogsVAGeneradorEscenarios.GeneradorCodigo.Info("PararSistema", "Paro del sistema finalizado con éxito");
+                    //OLogsVAGeneradorEscenarios.Finalizar();
+                    //OLogsVAGeneradorEscenarios.Destructor();
                 }
                 catch
                 {

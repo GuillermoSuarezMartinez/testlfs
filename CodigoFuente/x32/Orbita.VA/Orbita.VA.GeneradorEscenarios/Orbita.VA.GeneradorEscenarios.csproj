@@ -183,6 +183,9 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Orbita.Trazabilidad">
+      <HintPath>..\..\Comun\Orbita\Orbita.Trazabilidad.dll</HintPath>
+    </Reference>
     <Reference Include="Orbita.Utiles, Version=13.43.8.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
@@ -197,6 +200,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Logs\OExtensionLogs.cs" />
     <Compile Include="Clases\OGeneradorAccesoRapido.cs" />
     <Compile Include="Clases\OSistemaGeneradorEscenarios.cs" />
     <Compile Include="Program.cs" />

@@ -84,25 +84,25 @@ namespace Orbita.VA.Hardware
                     {
                         case EstadoConexion.Desconectado:
                         default:
-                            OVALogsManager.Info(ModulosHardware.Camaras, "Conectividad" + this.Codigo, "Dispositivo desconectado");
+                            OLogsVAHardware.Camaras.Info("Conectividad" + this.Codigo, "Dispositivo desconectado");
                             break;
                         case EstadoConexion.Desconectando:
-                            OVALogsManager.Info(ModulosHardware.Camaras, "Conectividad" + this.Codigo, "Dispositivo en proceso de desconexión");
+                            OLogsVAHardware.Camaras.Info("Conectividad" + this.Codigo, "Dispositivo en proceso de desconexión");
                             break;
                         case EstadoConexion.Conectado:
-                            OVALogsManager.Info(ModulosHardware.Camaras, "Conectividad" + this.Codigo, "Dispositivo conectado");
+                            OLogsVAHardware.Camaras.Info("Conectividad" + this.Codigo, "Dispositivo conectado");
                             break;
                         case EstadoConexion.Conectando:
-                            OVALogsManager.Info(ModulosHardware.Camaras, "Conectividad" + this.Codigo, "Dispositivo en proceso de conexión");
+                            OLogsVAHardware.Camaras.Info("Conectividad" + this.Codigo, "Dispositivo en proceso de conexión");
                             break;
                         case EstadoConexion.ErrorConexion:
-                            OVALogsManager.Error(ModulosHardware.Camaras, "Conectividad" + this.Codigo, "Problema de conexión con el dispositivo.");
+                            OLogsVAHardware.Camaras.Error("Conectividad" + this.Codigo, "Problema de conexión con el dispositivo.");
                             break;
                         case EstadoConexion.Reconectando:
-                            OVALogsManager.Error(ModulosHardware.Camaras, "Conectividad" + this.Codigo, "Dispositivo en proceso de reconexión.");
+                            OLogsVAHardware.Camaras.Error("Conectividad" + this.Codigo, "Dispositivo en proceso de reconexión.");
                             break;
                         case EstadoConexion.Reconectado:
-                            OVALogsManager.Error(ModulosHardware.Camaras, "Conectividad" + this.Codigo, "Dispositivo reconectado.");
+                            OLogsVAHardware.Camaras.Error("Conectividad" + this.Codigo, "Dispositivo reconectado.");
                             break;
                     }
 

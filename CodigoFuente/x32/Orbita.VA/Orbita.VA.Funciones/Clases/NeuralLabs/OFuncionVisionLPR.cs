@@ -76,7 +76,7 @@ namespace Orbita.VA.Funciones
                 }
                 catch (FileNotFoundException exception)
                 {
-                    OVALogsManager.Error(ModulosFunciones.LPR, "LPR", exception);
+                    OLogsVAFunciones.LPR.Error(exception, "LPR");
                     OLPRManager.Configuracion = new ConfiguracionLPR();
                     OLPRManager.Configuracion.Guardar();
                 }
@@ -86,16 +86,16 @@ namespace Orbita.VA.Funciones
                 // Almacenamos el valor de incio
                 if (id == 1)
                 {
-                    OVALogsManager.Debug(ModulosFunciones.LPR, "LPR", "Iniciado correctamente");
+                    OLogsVAFunciones.LPR.Debug("LPR", "Iniciado correctamente");
                 }
                 else
                 {
-                    OVALogsManager.Error(ModulosFunciones.LPR, "LPR", "Error de inicialización");
+                    OLogsVAFunciones.LPR.Error("LPR", "Error de inicialización");
                 }
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.LPR, "LPR", exception);
+                OLogsVAFunciones.LPR.Error(exception, "LPR");
             }
 
             ThreadEjecucionLPR.Start();
@@ -221,7 +221,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.LPR, this.Codigo, exception);
+                OLogsVAFunciones.LPR.Error(exception, this.Codigo);
             }
         }
         #endregion
@@ -245,7 +245,7 @@ namespace Orbita.VA.Funciones
                 // Guardamos la traza únicamente cuando hay un cambio en el tamaño de la cola de elementos a procesar en MTInterface
                 if (this.QueueSize != MTInterface.GetQueueSize)
                 {
-                    OVALogsManager.Info(ModulosFunciones.LPR, this.Codigo, "Eliminada imagen de la cola VPAR. Total imágenes: " + MTInterface.GetQueueSize.ToString());
+                    OLogsVAFunciones.LPR.Info(this.Codigo, "Eliminada imagen de la cola VPAR. Total imágenes: " + MTInterface.GetQueueSize.ToString());
                     this.QueueSize = MTInterface.GetQueueSize;
                 }
 
@@ -280,7 +280,7 @@ namespace Orbita.VA.Funciones
                         this.CallBack(infoInspeccionLPR); // Llamada al callback
 
                         // Guardamos la traza
-                        OVALogsManager.Debug(ModulosFunciones.LPR, this.Codigo, "Fin de ejecución de la función " + this.Codigo);
+                        OLogsVAFunciones.LPR.Debug(this.Codigo, "Fin de ejecución de la función " + this.Codigo);
 
                         element.Dispose();
                     }
@@ -366,7 +366,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.LPR, "FuncionLPR", exception);
+                OLogsVAFunciones.LPR.Error(exception, "FuncionLPR");
             }
         }
         #endregion
@@ -385,7 +385,7 @@ namespace Orbita.VA.Funciones
                 parametros.VectorAlturas);
             if (!resultCode)
             {
-                OVALogsManager.Error(ModulosFunciones.LPR, "FuncionLPR", "Error al establecer la configuración del VPAR");
+                OLogsVAFunciones.LPR.Error("FuncionLPR", "Error al establecer la configuración del VPAR");
             }
         }
         /// <summary>
@@ -426,7 +426,7 @@ namespace Orbita.VA.Funciones
         public void Reset()
         {
             // Guardamos la traza
-            OVALogsManager.Debug(ModulosFunciones.LPR, this.Codigo, "Se procede a resetear la función de visión " + this.Codigo);
+            OLogsVAFunciones.LPR.Debug(this.Codigo, "Se procede a resetear la función de visión " + this.Codigo);
 
             OLPRManager.Reset();
 
@@ -438,7 +438,7 @@ namespace Orbita.VA.Funciones
             this.FuncionEjecutada();
 
             // Guardamos la traza
-            OVALogsManager.Debug(ModulosFunciones.LPR, this.Codigo, "Reset de la función de visión " + this.Codigo + " realizado con éxito");
+            OLogsVAFunciones.LPR.Debug(this.Codigo, "Reset de la función de visión " + this.Codigo + " realizado con éxito");
         }
         #endregion
 
@@ -500,16 +500,16 @@ namespace Orbita.VA.Funciones
 
                         if (resultCode == -1)
                         {
-                            OVALogsManager.Error(ModulosFunciones.LPR, "FuncionLPR", "Error al añadir imagen a la cola VPAR. Total imágenes: " + MTInterface.GetQueueSize.ToString());
+                            OLogsVAFunciones.LPR.Error("FuncionLPR", "Error al añadir imagen a la cola VPAR. Total imágenes: " + MTInterface.GetQueueSize.ToString());
                         }
 
-                        OVALogsManager.Info(ModulosFunciones.LPR, "FuncionLPR", "Añadida imagen a la cola VPAR. Total imágenes: " + MTInterface.GetQueueSize.ToString());
+                        OLogsVAFunciones.LPR.Info("FuncionLPR", "Añadida imagen a la cola VPAR. Total imágenes: " + MTInterface.GetQueueSize.ToString());
                     }
                 }
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.LPR, "FuncionLPR", exception);
+                OLogsVAFunciones.LPR.Error(exception, "FuncionLPR");
             }
 
             return resultado;
@@ -563,7 +563,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.LPR, this.Codigo, exception);
+                OLogsVAFunciones.LPR.Error(exception, this.Codigo);
             }
             return resultado;
         }
@@ -602,7 +602,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.LPR, this.Codigo, exception);
+                OLogsVAFunciones.LPR.Error(exception, this.Codigo);
             }
             return resultado;
         }
@@ -934,7 +934,7 @@ namespace Orbita.VA.Funciones
                 this.RightPosicionMatricula = 0;
                 this.CodigoPais = 0;
                 this.FechaEncolamiento = DateTime.Now;
-                OVALogsManager.Info(ModulosFunciones.LPR, "FuncionLPR", exception);
+                OLogsVAFunciones.LPR.Info(exception, "FuncionLPR");
             }
         }
         #endregion

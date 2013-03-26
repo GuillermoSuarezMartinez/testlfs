@@ -507,7 +507,7 @@ namespace Orbita.VA.MaquinasEstados
             }
             catch (Exception exception)
             {
-                OVALogsManager.Fatal(OModulosControl.MaquinasEstado, this._Codigo, exception);
+                OLogsVAMaquinasEstados.MaquinasEstado.Fatal(exception, this._Codigo);
                 throw new Exception("Imposible iniciar la máquina de estados " + this.Codigo);
             }
         }
@@ -1016,7 +1016,7 @@ namespace Orbita.VA.MaquinasEstados
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MaquinasEstado, this._Codigo, exception);
+                OLogsVAMaquinasEstados.MaquinasEstado.Error(exception, this._Codigo);
             }
 
             this.TimerEjecucion.Enabled = true;
@@ -1286,7 +1286,7 @@ namespace Orbita.VA.MaquinasEstados
             }
             catch (Exception exception)
             {
-                OVALogsManager.Fatal(OModulosControl.MaquinasEstado, this._Codigo, exception);
+                OLogsVAMaquinasEstados.MaquinasEstado.Fatal(exception, this._Codigo);
                 throw new Exception("Imposible iniciar el estado " + this.Codigo);
             }
         }
@@ -1319,7 +1319,7 @@ namespace Orbita.VA.MaquinasEstados
             OCronometrosManager.Start(this.CodCronometroAsociadoActivacion);
 
             // Guardamos la traza de registros del inicio del estado al entrar
-            OVALogsManager.Info(OModulosControl.MaquinasEstado, this._Codigo, "Activación del estado " + this._Codigo);
+            OLogsVAMaquinasEstados.MaquinasEstado.Info(this._Codigo, "Activación del estado " + this._Codigo);
 
             this._EnEjecucionAlEntrar = true;
             try
@@ -1328,7 +1328,7 @@ namespace Orbita.VA.MaquinasEstados
                 OCronometrosManager.Start(this.CodCronometroAsociadoEjecucionEntrada);
 
                 // Guardamos la traza de registros del inicio del estado al entrar
-                OVALogsManager.Debug(OModulosControl.MaquinasEstado, this._Codigo, "Inicio del método 'al entrar' del estado " + this._Codigo);
+                OLogsVAMaquinasEstados.MaquinasEstado.Debug(this._Codigo, "Inicio del método 'al entrar' del estado " + this._Codigo);
 
                 // Ejecutamos el estado
                 this.EjecucionAlEntrar();
@@ -1337,11 +1337,11 @@ namespace Orbita.VA.MaquinasEstados
                 OCronometrosManager.Stop(this.CodCronometroAsociadoEjecucionEntrada);
 
                 // Guardamos la traza de registros del fin del estado al entrar
-                OVALogsManager.Debug(OModulosControl.MaquinasEstado, this._Codigo, "Fin del método 'al entrar' del estado " + this._Codigo + ". Duración: " + OCronometrosManager.DuracionUltimaEjecucion(this.CodCronometroAsociadoEjecucionEntrada).ToString());
+                OLogsVAMaquinasEstados.MaquinasEstado.Debug(this._Codigo, "Fin del método 'al entrar' del estado " + this._Codigo + ". Duración: " + OCronometrosManager.DuracionUltimaEjecucion(this.CodCronometroAsociadoEjecucionEntrada).ToString());
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MaquinasEstado, this._Codigo, exception);
+                OLogsVAMaquinasEstados.MaquinasEstado.Error(exception, this._Codigo);
             }
             this._EnEjecucionAlEntrar = false;
         }
@@ -1358,7 +1358,7 @@ namespace Orbita.VA.MaquinasEstados
                 OCronometrosManager.Start(this.CodCronometroAsociadoEjecucionSalida);
 
                 // Guardamos la traza de registros del inicio del estado al salir
-                OVALogsManager.Debug(OModulosControl.MaquinasEstado, this._Codigo, "Inicio del método 'al salir' del estado " + this._Codigo);
+                OLogsVAMaquinasEstados.MaquinasEstado.Debug(this._Codigo, "Inicio del método 'al salir' del estado " + this._Codigo);
 
                 // Ejecutamos el estado
                 this.EjecucionAlSalir();
@@ -1367,11 +1367,11 @@ namespace Orbita.VA.MaquinasEstados
                 OCronometrosManager.Stop(this.CodCronometroAsociadoEjecucionSalida);
 
                 // Guardamos la traza de registros del fin del estado al salir
-                OVALogsManager.Debug(OModulosControl.MaquinasEstado, this._Codigo, "Fin del método 'al salir' del estado " + this._Codigo + ". Duración: " + OCronometrosManager.DuracionUltimaEjecucion(this.CodCronometroAsociadoEjecucionSalida).ToString());
+                OLogsVAMaquinasEstados.MaquinasEstado.Debug(this._Codigo, "Fin del método 'al salir' del estado " + this._Codigo + ". Duración: " + OCronometrosManager.DuracionUltimaEjecucion(this.CodCronometroAsociadoEjecucionSalida).ToString());
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MaquinasEstado, this.Codigo, exception);
+                OLogsVAMaquinasEstados.MaquinasEstado.Error(exception, this.Codigo);
             }
             this._EnEjecucionAlSalir = false;
 
@@ -1379,7 +1379,7 @@ namespace Orbita.VA.MaquinasEstados
             OCronometrosManager.Stop(this.CodCronometroAsociadoActivacion);
 
             // Guardamos la traza de registros del fin del estado al salir
-            OVALogsManager.Info(OModulosControl.MaquinasEstado, this._Codigo, "Fin de la activación del estado " + this._Codigo + ". Duración: " + OCronometrosManager.DuracionUltimaEjecucion(this.CodCronometroAsociadoActivacion).ToString());
+            OLogsVAMaquinasEstados.MaquinasEstado.Info(this._Codigo, "Fin de la activación del estado " + this._Codigo + ". Duración: " + OCronometrosManager.DuracionUltimaEjecucion(this.CodCronometroAsociadoActivacion).ToString());
         }
 
         /// <summary>
@@ -1430,7 +1430,7 @@ namespace Orbita.VA.MaquinasEstados
             }
             catch (Exception exception)
             {
-                OVALogsManager.Fatal(OModulosControl.MaquinasEstado, this.Codigo, exception);
+                OLogsVAMaquinasEstados.MaquinasEstado.Fatal(exception, this.Codigo);
                 throw new Exception("Imposible iniciar el estado asíncrono " + this.Codigo);
             }
         }
@@ -1452,7 +1452,7 @@ namespace Orbita.VA.MaquinasEstados
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MaquinasEstado, this.Codigo, exception);
+                OLogsVAMaquinasEstados.MaquinasEstado.Error(exception, this.Codigo);
             }
         }
 
@@ -1469,7 +1469,7 @@ namespace Orbita.VA.MaquinasEstados
             OCronometrosManager.Stop(this.CodCronometroAsociadoEjecucionEntrada);
 
             // Guardamos la traza de registros del fin del estado al entrar
-            OVALogsManager.Debug(OModulosControl.MaquinasEstado, this.Codigo, "Fin del método 'al entrar' del estado " + this.Codigo + ". Duración: " + OCronometrosManager.DuracionUltimaEjecucion(this.CodCronometroAsociadoEjecucionEntrada).ToString());
+            OLogsVAMaquinasEstados.MaquinasEstado.Debug(this.Codigo, "Fin del método 'al entrar' del estado " + this.Codigo + ". Duración: " + OCronometrosManager.DuracionUltimaEjecucion(this.CodCronometroAsociadoEjecucionEntrada).ToString());
 
             // Llamada a la variable que indica el estado de ejecución del thread
             //OVariablesManager.SetValue(this._CodVariableEnEjecucion, false, "MaquinaEstados", this.Codigo);
@@ -1488,7 +1488,7 @@ namespace Orbita.VA.MaquinasEstados
             OCronometrosManager.Start(this.CodCronometroAsociadoActivacion);
 
             // Guardamos la traza de registros del inicio del estado al entrar
-            OVALogsManager.Info(OModulosControl.MaquinasEstado, this.Codigo, "Activación del estado " + this.Codigo);
+            OLogsVAMaquinasEstados.MaquinasEstado.Info(this.Codigo, "Activación del estado " + this.Codigo);
                                                                        
             this.EnEjecucionAlEntrar = true;
             try
@@ -1497,7 +1497,7 @@ namespace Orbita.VA.MaquinasEstados
                 OCronometrosManager.Start(this.CodCronometroAsociadoEjecucionEntrada);
 
                 // Guardamos la traza de registros del inicio del estado al entrar
-                OVALogsManager.Debug(OModulosControl.MaquinasEstado, this.Codigo, "Inicio del método 'al entrar' del estado " + this.Codigo);
+                OLogsVAMaquinasEstados.MaquinasEstado.Debug(this.Codigo, "Inicio del método 'al entrar' del estado " + this.Codigo);
 
                 // Llamada a la variable que indica el estado de ejecución del thread
                 //OVariablesManager.SetValue(this._CodVariableEnEjecucion, true, "MaquinaEstados", this.Codigo);
@@ -1507,7 +1507,7 @@ namespace Orbita.VA.MaquinasEstados
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MaquinasEstado, this.Codigo, exception);
+                OLogsVAMaquinasEstados.MaquinasEstado.Error(exception, this.Codigo);
                 this.EnEjecucionAlEntrar = false;
             }
             //this.EnEjecucion = false;
@@ -1744,7 +1744,7 @@ namespace Orbita.VA.MaquinasEstados
             }
             catch (Exception exception)
             {
-                OVALogsManager.Fatal(OModulosControl.MaquinasEstado, this._Codigo, exception);
+                OLogsVAMaquinasEstados.MaquinasEstado.Fatal(exception, this._Codigo);
                 throw new Exception("Imposible iniciar la transición " + this.Codigo);
             }
         }
@@ -1773,12 +1773,12 @@ namespace Orbita.VA.MaquinasEstados
                 // Guardamos la traza de registros
                 if (resultado)
                 {
-                    OVALogsManager.Info(OModulosControl.MaquinasEstado, this.Codigo, "Transición cumplida: " + this.Codigo + ". Duración: " + OCronometrosManager.DuracionUltimaEjecucion(this.CodCronometro).ToString());
+                    OLogsVAMaquinasEstados.MaquinasEstado.Info(this.Codigo, "Transición cumplida: " + this.Codigo + ". Duración: " + OCronometrosManager.DuracionUltimaEjecucion(this.CodCronometro).ToString());
                 }
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MaquinasEstado, this._Codigo, exception);
+                OLogsVAMaquinasEstados.MaquinasEstado.Error(exception, this._Codigo);
             }
             return resultado;
         }
@@ -1834,7 +1834,7 @@ namespace Orbita.VA.MaquinasEstados
             }
             catch (Exception exception)
             {
-                OVALogsManager.Fatal(OModulosControl.MaquinasEstado, this.Codigo, exception);
+                OLogsVAMaquinasEstados.MaquinasEstado.Fatal(exception, this.Codigo);
                 throw new Exception("Imposible iniciar la transición universal " + this.Codigo);
             }
         }

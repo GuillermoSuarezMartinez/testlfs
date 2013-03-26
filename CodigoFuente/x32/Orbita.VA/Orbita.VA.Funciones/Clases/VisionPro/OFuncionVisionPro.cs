@@ -94,7 +94,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.VisionPro, this.Codigo, exception);
+                OLogsVAFunciones.VisionPro.Error(exception, this.Codigo);
             }
         }
 
@@ -115,7 +115,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.VisionPro, this.Codigo, exception);
+                OLogsVAFunciones.VisionPro.Error(exception, this.Codigo);
             }
         }
 
@@ -162,7 +162,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.VisionPro, this.Codigo, exception);
+                OLogsVAFunciones.VisionPro.Error(exception, this.Codigo);
             }
         }
 
@@ -206,7 +206,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.VisionPro, this.Codigo, exception);
+                OLogsVAFunciones.VisionPro.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -229,7 +229,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.VisionPro, this.Codigo, exception);
+                OLogsVAFunciones.VisionPro.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -281,7 +281,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.VisionPro, this.Codigo, exception);
+                OLogsVAFunciones.VisionPro.Error(exception, this.Codigo);
             }
             return functionReturnValue;
         }
@@ -326,7 +326,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.VisionPro, this.Codigo, exception);
+                OLogsVAFunciones.VisionPro.Error(exception, this.Codigo);
             }
             return functionReturnValue;
         }

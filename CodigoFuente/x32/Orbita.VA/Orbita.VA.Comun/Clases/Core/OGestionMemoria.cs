@@ -205,7 +205,7 @@ namespace Orbita.VA.Comun
             if (esperaFinalizacion)
             {
                 GC.WaitForPendingFinalizers();
-                OLogsVAComun.Comun.Info("Colector de basura", "Duración: " + OCronometrosManager.DuracionUltimaEjecucion("GarbageCollector").TotalMilliseconds.ToString());
+                OLogsVAComun.GestionMemoria.Info("Colector de basura", "Duración: " + OCronometrosManager.DuracionUltimaEjecucion("GarbageCollector").TotalMilliseconds.ToString());
             }
 
             OCronometrosManager.Stop("GarbageCollector");

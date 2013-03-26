@@ -60,7 +60,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Fatal(ModulosHardware.CamaraAxis, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Fatal(exception, this.Codigo);
                 throw new Exception("Imposible iniciar la cámara " + this.Codigo);
             }
         }
@@ -89,7 +89,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraAxis, this.Codigo, "Error al conectarse a la cámara " + this.Codigo + ": " + exception.ToString());
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo, "Error al conectarse a la cámara " + this.Codigo + ": ".ToString());
             }
 
             return resultado;
@@ -112,7 +112,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraAxis, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -135,7 +135,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraAxis, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -158,7 +158,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraAxis, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -182,7 +182,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraAxis, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
             return resultado;
         }
@@ -219,7 +219,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraAxis, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
         }
         #endregion
@@ -376,7 +376,7 @@ namespace Orbita.VA.Hardware
                 }
                 else
                 {
-                    OVALogsManager.Info(ModulosHardware.CamaraAxis, "LecturaInterna", String.Format("Error comuniacando con la URL: {0} .Trama resultado: {1}", uRL, respuesta));
+                    OLogsVAHardware.Camaras.Info("LecturaInterna", String.Format("Error comuniacando con la URL: {0} .Trama resultado: {1}", uRL, respuesta));
                 }
             }
 
@@ -410,7 +410,7 @@ namespace Orbita.VA.Hardware
                 ok = com.Ejecuta(out respuesta);
                 if (!ok)
                 {
-                    OVALogsManager.Info(ModulosHardware.CamaraAxis, "EscrituraInterna", String.Format("Error comuniacando con la URL: {0} .Trama resultado: {1}", uRL, respuesta));
+                    OLogsVAHardware.Camaras.Info("EscrituraInterna", String.Format("Error comuniacando con la URL: {0} .Trama resultado: {1}", uRL, respuesta));
                 }
             }
             return ok;
@@ -437,7 +437,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraAxis, this.CodTarjeta, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.CodTarjeta);
             }
         }
 
@@ -466,7 +466,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraAxis, this.CodTarjeta, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.CodTarjeta);
             }
         }
 
@@ -495,7 +495,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraAxis, this.CodTarjeta, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.CodTarjeta);
             }
         }
 
@@ -528,7 +528,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraAxis, this.CodTarjeta, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.CodTarjeta);
             }
         }
         #endregion

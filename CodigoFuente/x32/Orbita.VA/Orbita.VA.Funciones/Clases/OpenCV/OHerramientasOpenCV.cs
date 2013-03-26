@@ -65,7 +65,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.OpenCV, "Corección Distorsión", exception);
+                OLogsVAFunciones.OpenCV.Error(exception, "Corección Distorsión");
             }
 
             return resultado;
@@ -141,7 +141,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosFunciones.OpenCV, "Cambio tamaño lienzo", exception);
+                OLogsVAFunciones.OpenCV.Error(exception, "Cambio tamaño lienzo");
             }
 
             return resultado;

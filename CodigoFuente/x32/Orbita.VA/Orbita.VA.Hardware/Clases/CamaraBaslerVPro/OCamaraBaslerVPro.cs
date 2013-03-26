@@ -175,7 +175,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Fatal(ModulosHardware.CamaraBaslerVPro, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Fatal(this.Codigo, exception);
                 throw new Exception("Imposible iniciar la cámara " + this.Codigo);
             }
         }
@@ -212,7 +212,7 @@ namespace Orbita.VA.Hardware
             catch (COMException exception)
             {
                 OMensajes.MostrarError("La cámara con número de serie " + this._DeviceId + "\n no se encuetra o está actualmente en uso.");
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.DeviceId, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.DeviceId);
             }
 
             return resultado;
@@ -246,7 +246,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -327,11 +327,11 @@ namespace Orbita.VA.Hardware
             }
             catch (OCameraConectionException exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": " + exception.ToString());
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": ".ToString());
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, "Error al conectarse a la cámara " + this.Codigo + ": " + exception.ToString());
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo, "Error al conectarse a la cámara " + this.Codigo + ": ".ToString());
             }
 
             return resultado;
@@ -359,7 +359,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -393,12 +393,12 @@ namespace Orbita.VA.Hardware
             }
             catch (OCameraConectionException exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": " + exception.ToString());
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": ".ToString());
                 this.EstadoConexion = EstadoConexion.ErrorConexion;
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -436,7 +436,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
 
             return resultado;
@@ -462,12 +462,12 @@ namespace Orbita.VA.Hardware
             }
             catch (OCameraConectionException exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": " + exception.ToString());
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": ".ToString());
                 this.EstadoConexion = EstadoConexion.ErrorConexion;
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
             return resultado;
         }
@@ -572,7 +572,7 @@ namespace Orbita.VA.Hardware
             {
                 if (this.Ajustes.AcquisitionMode.Valor != ModoAdquisicion.Continuo)
                 {
-                    OVALogsManager.Debug(ModulosHardware.CamaraBaslerVPro, this.Codigo, "Imagen adquirida", NivelLog.Info);
+                    OLogsVAHardware.Camaras.Debug(this.Codigo, "Imagen adquirida", NivelLog.Info);
                 }
 
                 if (this.LanzarEventoAlSnap && (this.EstadoConexion == EstadoConexion.Conectado))
@@ -612,17 +612,17 @@ namespace Orbita.VA.Hardware
             }
             catch (OCameraConectionException exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": " + exception.ToString());
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": ".ToString());
                 this.EstadoConexion = EstadoConexion.ErrorConexion;
             }
             catch (CogAcqException exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": " + exception.ToString());
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": ".ToString());
                 this.EstadoConexion = EstadoConexion.ErrorConexion;
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
 
             // indicamos se ha finalizado la adquisición
@@ -651,12 +651,12 @@ namespace Orbita.VA.Hardware
             }
             catch (OCameraConectionException exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": " + exception.ToString());
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": ".ToString());
                 this.EstadoConexion = EstadoConexion.ErrorConexion;
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
         }
         #endregion
@@ -686,7 +686,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.Camaras, this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
         }
         #endregion
@@ -1271,7 +1271,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.CodCamara, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.CodCamara);
             }
         }
         #endregion
@@ -1296,7 +1296,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "InitializeForCompatibility", exception);
+                OLogsVAHardware.Camaras.Error("InitializeForCompatibility", exception);
             }
         }
 
@@ -1480,7 +1480,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -1506,7 +1506,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -1612,7 +1612,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -1638,7 +1638,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -1744,7 +1744,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -1770,7 +1770,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -1876,7 +1876,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -1902,7 +1902,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -2012,7 +2012,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -2039,7 +2039,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -2123,7 +2123,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -2149,7 +2149,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -2225,7 +2225,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -2251,7 +2251,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -2341,7 +2341,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -2366,7 +2366,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -2469,7 +2469,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -2495,7 +2495,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -2614,7 +2614,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -2652,7 +2652,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -2734,7 +2734,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -2758,7 +2758,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
             }
 
             return resultado;
@@ -3005,7 +3005,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, "SendBandwidth", exception);
+                OLogsVAHardware.Camaras.Error("SendBandwidth", exception);
             }
 
             return resultado;
@@ -3140,12 +3140,12 @@ namespace Orbita.VA.Hardware
             }
             catch (OCameraConectionException exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": " + exception.ToString());
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": ".ToString());
                 this.Conectividad.EstadoConexion = EstadoConexion.ErrorConexion;
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.CodTarjeta, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.CodTarjeta);
             }
         }
 
@@ -3177,12 +3177,12 @@ namespace Orbita.VA.Hardware
             }
             catch (OCameraConectionException exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": " + exception.ToString());
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": ".ToString());
                 this.Conectividad.EstadoConexion = EstadoConexion.ErrorConexion;
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.CodTarjeta, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.CodTarjeta);
             }
         }
 
@@ -3225,12 +3225,12 @@ namespace Orbita.VA.Hardware
             }
             catch (OCameraConectionException exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": " + exception.ToString());
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo, "Problema de conexión con la cámara " + this.Codigo + ": ".ToString());
                 this.Conectividad.EstadoConexion = EstadoConexion.ErrorConexion;
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.CamaraBaslerVPro, this.CodTarjeta, exception);
+                OLogsVAHardware.Camaras.Error(exception, this.CodTarjeta);
             }
 
         }

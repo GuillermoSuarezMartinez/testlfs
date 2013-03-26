@@ -1,7 +1,7 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.VA.MaquinasEstados
+// Assembly         : Orbita.VA.GeneradorEscenarios
 // Author           : aibañez
-// Created          : 26-03-2013
+// Created          : 06-09-2012
 //
 // Last Modified By : 
 // Last Modified On : 
@@ -12,18 +12,18 @@
 using Orbita.VA.Comun;
 using Orbita.Trazabilidad;
 
-namespace Orbita.VA.MaquinasEstados
+namespace Orbita.VA.GeneradorEscenarios
 {
     /// <summary>
     /// Define el conjunto de módulos del sistema
     /// </summary>
-    internal static class OLogsVAMaquinasEstados
+    internal class OLogsVAGeneradorEscenarios
     {
-        #region Atributo(s) estático(s)
+        #region Atributo(s)
         /// <summary>
-        /// Módulo de las máquinas de estado
+        /// Módulo de las funciones de visión
         /// </summary>
-        public static ILogger MaquinasEstado = LogManager.GetLogger("MaquinasEstado");
+        public static ILogger GeneradorCodigo = new DebugLogger("GeneradorCodigo");
         #endregion
     }
 }
