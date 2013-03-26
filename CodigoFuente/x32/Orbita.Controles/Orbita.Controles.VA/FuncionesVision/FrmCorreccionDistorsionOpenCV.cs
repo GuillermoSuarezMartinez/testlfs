@@ -66,7 +66,7 @@ namespace Orbita.Controles.VA
                 imgVisualizada.Convert<OImagenOpenCV<Emgu.CV.Structure.Rgb, byte>>(out imgOriginal);
 
                 OImagenOpenCV<Emgu.CV.Structure.Rgb, byte> imgDestino;
-                imgDestino = imgOriginal.CorregirDistorsion(PuntoOriginal1, PuntoOriginal2, PuntoOriginal3, PuntoOriginal4, x, y, ancho, alto);
+                imgDestino = imgOriginal.CorregirPerspectiva(PuntoOriginal1, PuntoOriginal2, PuntoOriginal3, PuntoOriginal4, x, y, ancho, alto);
 
                 this.VisorBitmapDestino.Visualizar(imgDestino);
             }

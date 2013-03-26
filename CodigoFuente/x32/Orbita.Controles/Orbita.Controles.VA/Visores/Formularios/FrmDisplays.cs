@@ -239,14 +239,14 @@ namespace Orbita.Controles.VA
                         case EventDeviceViewerChangedArgs.DeviceViewerChangeOrder.next:
                         default:
                             indiceSiguiente = indiceActual + 1;
-                            if (!OEntero.InRange(indiceSiguiente, 0, this.ListaDisplays.Count - 1))
+                            if (!OEntero.EnRango(indiceSiguiente, 0, this.ListaDisplays.Count - 1))
                             {
                                 indiceSiguiente = 0;
                             }
                             break;
                         case EventDeviceViewerChangedArgs.DeviceViewerChangeOrder.previous:
                             indiceSiguiente = indiceActual - 1;
-                            if (!OEntero.InRange(indiceSiguiente, 0, this.ListaDisplays.Count - 1))
+                            if (!OEntero.EnRango(indiceSiguiente, 0, this.ListaDisplays.Count - 1))
                             {
                                 indiceSiguiente = this.ListaDisplays.Count - 1;
                             }

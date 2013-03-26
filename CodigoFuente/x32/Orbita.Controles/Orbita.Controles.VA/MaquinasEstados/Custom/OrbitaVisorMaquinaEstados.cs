@@ -902,11 +902,11 @@ namespace Orbita.Controles.VA
             {
                 this.Nombre = dtEstado.Rows[0]["NombreEstado"].ToString();
 
-                if (OEntero.IsNumericInt(dtEstado.Rows[0]["PosX"]))
+                if (OEntero.EsEntero(dtEstado.Rows[0]["PosX"]))
                 {
                     this.Localizacion.X = (int)dtEstado.Rows[0]["PosX"];
                 }
-                if (OEntero.IsNumericInt(dtEstado.Rows[0]["PosY"]))
+                if (OEntero.EsEntero(dtEstado.Rows[0]["PosY"]))
                 {
                     this.Localizacion.Y = (int)dtEstado.Rows[0]["PosY"];
                 }
@@ -1102,8 +1102,8 @@ namespace Orbita.Controles.VA
             {
                 this.Nombre = dtTransicion.Rows[0]["NombreTransicion"].ToString();
 
-                if (OEntero.IsNumericInt(dtTransicion.Rows[0]["PosicionFlechaEstadoOrigen"]) &&
-                   (OEntero.IsNumericInt(dtTransicion.Rows[0]["PosicionFlechaEstadoDestino"])))
+                if (OEntero.EsEntero(dtTransicion.Rows[0]["PosicionFlechaEstadoOrigen"]) &&
+                   (OEntero.EsEntero(dtTransicion.Rows[0]["PosicionFlechaEstadoDestino"])))
                 {
                     // Se busca la posición origen
                     string codigoEstadoOrigen = dtTransicion.Rows[0]["CodigoEstadoOrigen"].ToString();

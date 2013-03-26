@@ -990,8 +990,8 @@ namespace Orbita.Controles.VA
             x = x / (float)this.ZoomFactor;
             y = y / (float)this.ZoomFactor;
 
-            x = (float)ODecimal.EnsureRange(x, 0, this.Image.Width);
-            y = (float)ODecimal.EnsureRange(y, 0, this.Image.Height);
+            x = (float)ODecimal.AsegurarRango(x, 0, this.Image.Width);
+            y = (float)ODecimal.AsegurarRango(y, 0, this.Image.Height);
 
             return new PointF(x, y);
         }
