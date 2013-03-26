@@ -125,10 +125,8 @@ namespace Orbita.MS
                     else
                     {
                         string resultado = string.Empty;
-
                         OEncriptacion rijndaelKey = new OEncriptacion(clave, vectorInicio);
                         resultado = rijndaelKey.Decrypt(textoCifrado);
-
                         return resultado;
                     }
                 }

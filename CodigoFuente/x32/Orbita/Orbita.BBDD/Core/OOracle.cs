@@ -58,7 +58,7 @@ namespace Orbita.BBDD
             }
             return resultado;
         }
-        #endregion
+        #endregion Test
 
         #region SeleccionSql
         /// <summary>
@@ -111,7 +111,7 @@ namespace Orbita.BBDD
                 }
             }
         }
-        #endregion
+        #endregion SeleccionSql
 
         #region SeleccionProcedimientoAlmacenado
         /// <summary>
@@ -156,7 +156,7 @@ namespace Orbita.BBDD
         {
             throw new NotImplementedException("Este método no está todavía implementado. Es cuestión de tiempo que lo esté.");
         }
-        #endregion
+        #endregion SeleccionProcedimientoAlmacenado
 
         #region EjecutarProcedimientoAlmacenado
         /// <summary>
@@ -203,7 +203,7 @@ namespace Orbita.BBDD
         {
             throw new NotImplementedException("Este método no está todavía implementado. Es cuestión de tiempo que lo esté.");
         }
-        #endregion
+        #endregion EjecutarProcedimientoAlmacenado
 
         #region EjecutarProcedimientoAlmacenadoSinRetorno
         /// <summary>
@@ -253,7 +253,7 @@ namespace Orbita.BBDD
         {
             throw new NotImplementedException("Este método no está todavía implementado. Es cuestión de tiempo que lo esté.");
         }
-        #endregion
+        #endregion EjecutarProcedimientoAlmacenadoSinRetorno
 
         #region EjecutarProcedimientoAlmacenadoTransaccional
         /// <summary>
@@ -298,7 +298,7 @@ namespace Orbita.BBDD
         {
             throw new NotImplementedException("Este método no está todavía implementado. Es cuestión de tiempo que lo esté.");
         }
-        #endregion
+        #endregion EjecutarProcedimientoAlmacenadoTransaccional
 
         #region EjecutarProcedimientoAlmacenadoTransaccionalSinRetorno
         /// <summary>
@@ -347,7 +347,7 @@ namespace Orbita.BBDD
         {
             throw new NotImplementedException("Este método no está todavía implementado. Es cuestión de tiempo que lo esté.");
         }
-        #endregion
+        #endregion EjecutarProcedimientoAlmacenadoTransaccionalSinRetorno
 
         #region EjecutarSql
         /// <summary>
@@ -427,7 +427,7 @@ namespace Orbita.BBDD
         {
             throw new NotImplementedException("Este método no está desarrollado ya que la versión del ODP.NET (Oracle Data Provider for .NET) no contiene el objecto OracleBulkCopy necesario para poder ejecutar este método." + Environment.NewLine + "La versión del ODP.NET utilizado en Orbita.BBDD.dll es la 10.2.0.2.20 (siendo la versión del fichero Oracle.DataAccess.dll la 1.102.5.0)." + Environment.NewLine + "Según parece, a partir de la versión 11.1.6.20 la clase OracleBulkCopy ya se encuentra incluida en el ODP.NET. En agosto del 2011 la última versión disponible del ODP.NET era la 11.2.0.2" + Environment.NewLine);
         }
-        #endregion
+        #endregion EjecutarSql
 
         #region EjecutarEscalar
         /// <summary>
@@ -480,8 +480,8 @@ namespace Orbita.BBDD
                 }
             }
         }
-        #endregion
+        #endregion EjecutarEscalar
 
-        #endregion
+        #endregion Métodos públicos
     }
 }

@@ -37,22 +37,22 @@ namespace Orbita.Xml
         /// Este atributo indica 'QUE VARIABLES' se van a escribir en Base de datos,
         /// es decir, contiene cada uno de los registros que se van a insertar.
         /// </summary>
-        StringWriter m_swXml;
+        StringWriter swXml;
         /// <summary>
         /// Variable para escribir el XML
         /// </summary>
-        XmlTextWriter m_escritorXml;
+        XmlTextWriter escritorXml;
         #endregion Atributos
 
-        #region Constructores
+        #region Constructor
         /// <summary>
         /// Constructor de la clase.
         /// </summary>
         public OXml()
         {
             // Para escritura.
-            this.m_swXml = new StringWriter(CultureInfo.CurrentCulture);
-            this.m_escritorXml = new XmlTextWriter(this.m_swXml);
+            this.swXml = new StringWriter(CultureInfo.CurrentCulture);
+            this.escritorXml = new XmlTextWriter(this.swXml);
         }
         #endregion
 
@@ -62,16 +62,16 @@ namespace Orbita.Xml
         /// </summary>
         public StringWriter SWXml
         {
-            get { return this.m_swXml; }
-            set { this.m_swXml = value; }
+            get { return this.swXml; }
+            set { this.swXml = value; }
         }
         /// <summary>
         /// Propiedad para acceder al XmlTextWriter.
         /// </summary>
         public XmlTextWriter EscritorXml
         {
-            get { return this.m_escritorXml; }
-            set { this.m_escritorXml = value; }
+            get { return this.escritorXml; }
+            set { this.escritorXml = value; }
         }
         #endregion Propiedades
 
@@ -84,7 +84,7 @@ namespace Orbita.Xml
         {
             if (!string.IsNullOrEmpty(etiqueta))
             {
-                this.m_escritorXml.WriteStartElement(etiqueta.ToString());
+                this.escritorXml.WriteStartElement(etiqueta.ToString());
             }
         }
         /// <summary>
@@ -93,7 +93,7 @@ namespace Orbita.Xml
         /// <param name="etiqueta"></param>
         public void Add(string etiqueta)
         {
-            this.m_escritorXml.WriteStartElement(etiqueta.ToString());
+            this.escritorXml.WriteStartElement(etiqueta.ToString());
         }
         /// <summary>
         /// Funcion para añadir un campo tipo pasandole un balor tipo object.
@@ -114,9 +114,9 @@ namespace Orbita.Xml
                 }
                 else
                 {
-                    this.m_escritorXml.WriteStartElement(etiqueta.ToString());
-                    this.m_escritorXml.WriteValue(valor);
-                    this.m_escritorXml.WriteEndElement();
+                    this.escritorXml.WriteStartElement(etiqueta.ToString());
+                    this.escritorXml.WriteValue(valor);
+                    this.escritorXml.WriteEndElement();
                 }
             }
         }
@@ -127,9 +127,9 @@ namespace Orbita.Xml
         /// <param name="valor"></param>
         public void Add(string etiqueta, int valor)
         {
-            this.m_escritorXml.WriteStartElement(etiqueta.ToString());
-            this.m_escritorXml.WriteValue(valor);
-            this.m_escritorXml.WriteEndElement();
+            this.escritorXml.WriteStartElement(etiqueta.ToString());
+            this.escritorXml.WriteValue(valor);
+            this.escritorXml.WriteEndElement();
         }
         /// <summary>
         /// Funcion para añadir un campo tipo pasandole un balor tipo bool.
@@ -140,9 +140,9 @@ namespace Orbita.Xml
         {
             if (!string.IsNullOrEmpty(etiqueta))
             {
-                this.m_escritorXml.WriteStartElement(etiqueta.ToString());
-                this.m_escritorXml.WriteValue(valor);
-                this.m_escritorXml.WriteEndElement();
+                this.escritorXml.WriteStartElement(etiqueta.ToString());
+                this.escritorXml.WriteValue(valor);
+                this.escritorXml.WriteEndElement();
             }
         }
         /// <summary>
@@ -152,9 +152,9 @@ namespace Orbita.Xml
         /// <param name="valor"></param>
         public void Add(string etiqueta, DBNull valor)
         {
-            this.m_escritorXml.WriteStartElement(etiqueta.ToString());
-            this.m_escritorXml.WriteValue(null); //No funciona!! Para pasar un valor NULL, hay que utilizar string.Empty como argumento al llamar al método Add
-            this.m_escritorXml.WriteEndElement();
+            this.escritorXml.WriteStartElement(etiqueta.ToString());
+            this.escritorXml.WriteValue(null); //No funciona!! Para pasar un valor NULL, hay que utilizar string.Empty como argumento al llamar al método Add
+            this.escritorXml.WriteEndElement();
         }
         /// <summary>
         /// Funcion para añadir un campo tipo pasandole un balor tipo datetime.
@@ -165,9 +165,9 @@ namespace Orbita.Xml
         {
             if (!string.IsNullOrEmpty(etiqueta))
             {
-                this.m_escritorXml.WriteStartElement(etiqueta.ToString());
-                this.m_escritorXml.WriteValue(valor);
-                this.m_escritorXml.WriteEndElement();
+                this.escritorXml.WriteStartElement(etiqueta.ToString());
+                this.escritorXml.WriteValue(valor);
+                this.escritorXml.WriteEndElement();
             }
         }
         /// <summary>
@@ -180,9 +180,9 @@ namespace Orbita.Xml
         {
             if (!string.IsNullOrEmpty(etiqueta))
             {
-                this.m_escritorXml.WriteStartElement(etiqueta.ToString());
-                this.m_escritorXml.WriteValue(valor.ToString("yyyyMMdd' 'HH':'mm':'ss.fff", DateTimeFormatInfo.InvariantInfo));
-                this.m_escritorXml.WriteEndElement();
+                this.escritorXml.WriteStartElement(etiqueta.ToString());
+                this.escritorXml.WriteValue(valor.ToString("yyyyMMdd' 'HH':'mm':'ss.fff", DateTimeFormatInfo.InvariantInfo));
+                this.escritorXml.WriteEndElement();
             }
         }
         /// <summary>
@@ -194,9 +194,9 @@ namespace Orbita.Xml
         {
             if (!string.IsNullOrEmpty(etiqueta))
             {
-                this.m_escritorXml.WriteStartElement(etiqueta.ToString());
-                this.m_escritorXml.WriteValue(valor);
-                this.m_escritorXml.WriteEndElement();
+                this.escritorXml.WriteStartElement(etiqueta.ToString());
+                this.escritorXml.WriteValue(valor);
+                this.escritorXml.WriteEndElement();
             }
         }
         /// <summary>
@@ -208,9 +208,9 @@ namespace Orbita.Xml
         {
             if (!string.IsNullOrEmpty(etiqueta))
             {
-                this.m_escritorXml.WriteStartElement(etiqueta.ToString());
-                this.m_escritorXml.WriteValue(valor);
-                this.m_escritorXml.WriteEndElement();
+                this.escritorXml.WriteStartElement(etiqueta.ToString());
+                this.escritorXml.WriteValue(valor);
+                this.escritorXml.WriteEndElement();
             }
         }
         /// <summary>
@@ -222,9 +222,9 @@ namespace Orbita.Xml
         {
             if (!string.IsNullOrEmpty(etiqueta))
             {
-                this.m_escritorXml.WriteStartElement(etiqueta.ToString());
-                this.m_escritorXml.WriteValue(valor);
-                this.m_escritorXml.WriteEndElement();
+                this.escritorXml.WriteStartElement(etiqueta.ToString());
+                this.escritorXml.WriteValue(valor);
+                this.escritorXml.WriteEndElement();
             }
         }
         /// <summary>
@@ -236,9 +236,9 @@ namespace Orbita.Xml
         {
             if (!string.IsNullOrEmpty(etiqueta))
             {
-                this.m_escritorXml.WriteStartElement(etiqueta.ToString());
-                this.m_escritorXml.WriteValue(valor);
-                this.m_escritorXml.WriteEndElement();
+                this.escritorXml.WriteStartElement(etiqueta.ToString());
+                this.escritorXml.WriteValue(valor);
+                this.escritorXml.WriteEndElement();
             }
         }
         /// <summary>
@@ -251,9 +251,9 @@ namespace Orbita.Xml
         {
             if (!string.IsNullOrEmpty(etiqueta))
             {
-                this.m_escritorXml.WriteStartElement(etiqueta.ToString());
-                this.m_escritorXml.WriteValue(valor.TotalMilliseconds);
-                this.m_escritorXml.WriteEndElement();
+                this.escritorXml.WriteStartElement(etiqueta.ToString());
+                this.escritorXml.WriteValue(valor.TotalMilliseconds);
+                this.escritorXml.WriteEndElement();
             }
         }
         /// <summary>
@@ -262,9 +262,9 @@ namespace Orbita.Xml
         /// <param name="etiqueta"></param>
         public void AddNull(string etiqueta)
         {
-            this.m_escritorXml.WriteStartElement(etiqueta.ToString());
-            this.m_escritorXml.WriteValue(@"xsi:nil=""true""");
-            this.m_escritorXml.WriteEndElement();
+            this.escritorXml.WriteStartElement(etiqueta.ToString());
+            this.escritorXml.WriteValue(@"xsi:nil=""true""");
+            this.escritorXml.WriteEndElement();
         }
 
         /// <summary>
@@ -272,14 +272,14 @@ namespace Orbita.Xml
         /// </summary>
         public void CerrarEtiqueta()
         {
-            this.m_escritorXml.WriteEndElement();
+            this.escritorXml.WriteEndElement();
         }
         /// <summary>
         /// Función para abrir el documento.
         /// </summary>
         public void AbrirDocumento()
         {
-            this.m_escritorXml.WriteStartDocument();
+            this.escritorXml.WriteStartDocument();
         }
         /// <summary>
         /// Función para abrir el documento incluyendole una etiqueta inicial.
@@ -289,8 +289,8 @@ namespace Orbita.Xml
         {
             if (!string.IsNullOrEmpty(etiqueta))
             {
-                this.m_escritorXml.WriteStartDocument();
-                this.m_escritorXml.WriteStartElement(etiqueta.ToString());
+                this.escritorXml.WriteStartDocument();
+                this.escritorXml.WriteStartElement(etiqueta.ToString());
             }
         }
         /// <summary>
@@ -298,10 +298,10 @@ namespace Orbita.Xml
         /// </summary>
         public void CerrarDocumento()
         {
-            this.m_escritorXml.WriteEndElement();
-            this.m_escritorXml.Flush();
-            this.m_escritorXml.Close();
-            this.m_swXml.Flush();
+            this.escritorXml.WriteEndElement();
+            this.escritorXml.Flush();
+            this.escritorXml.Close();
+            this.swXml.Flush();
         }
         /// <summary>
         /// Función para leer el documento almacenado. 
@@ -309,7 +309,7 @@ namespace Orbita.Xml
         /// <returns></returns>
         public XPathDocument LeerXml()
         {
-            StringReader sr = new StringReader(this.m_swXml.ToString());
+            StringReader sr = new StringReader(this.swXml.ToString());
             XPathDocument xpathDoc = new XPathDocument(sr);
             sr.Close();
             return (xpathDoc);
@@ -322,16 +322,16 @@ namespace Orbita.Xml
         /// </summary>
         public void Dispose()
         {
-            if (this.m_escritorXml != null)
+            if (this.escritorXml != null)
             {
-                this.m_escritorXml.Close();
-                this.m_escritorXml = null;
+                this.escritorXml.Close();
+                this.escritorXml = null;
             }
-            if (this.m_swXml != null)
+            if (this.swXml != null)
             {
-                this.m_swXml.Close();
-                this.m_swXml.Dispose();
-                this.m_swXml = null;
+                this.swXml.Close();
+                this.swXml.Dispose();
+                this.swXml = null;
             }
         }
         #endregion

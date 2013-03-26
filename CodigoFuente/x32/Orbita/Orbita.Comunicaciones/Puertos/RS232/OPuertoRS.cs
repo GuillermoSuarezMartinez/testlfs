@@ -264,13 +264,11 @@ namespace Orbita.Comunicaciones
                 {
                     tramaRx = new byte[this.BufferDatosRecibidos.Count];
                     int i = 0;
-
                     while (this.BufferDatosRecibidos.Count > 0)
                     {
                         tramaRx[i] = (byte)this.BufferDatosRecibidos.Dequeue();
                         i++;
                     }
-
                     this.BufferDatosRecibidos.TrimToSize();
                 }
                 return tramaRx;

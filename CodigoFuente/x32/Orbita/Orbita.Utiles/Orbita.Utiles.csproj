@@ -85,7 +85,10 @@
     <Compile Include="Comunicaciones\OComm.cs" />
     <Compile Include="Delegados\OEventArgs.cs" />
     <Compile Include="Delegados\OManejadores.cs" />
-    <Compile Include="Enumerados\Enumerados.cs" />
+    <Compile Include="Enumerados\Accion.cs" />
+    <Compile Include="Enumerados\Extension.cs" />
+    <Compile Include="Enumerados\OEnumeradosHeredable.cs" />
+    <Compile Include="Enumerados\Tiempo.cs" />
     <Compile Include="Enumerados\ODataTableEnumerado.cs" />
     <Compile Include="Enumerados\OEnumeradoHeredable.cs" />
     <Compile Include="Enumerados\OStringEnumerado.cs" />

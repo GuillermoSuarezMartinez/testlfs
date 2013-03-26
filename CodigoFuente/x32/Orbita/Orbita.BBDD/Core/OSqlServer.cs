@@ -100,7 +100,6 @@ namespace Orbita.BBDD
                         conexion.Transaccion.Commit();
                         // Liberar la transacción.
                         conexion.Transaccion.Dispose();
-
                         // Cerrar la conexión.
                         conexion.Conexion.Close();
                         // Liberar la conexión.
@@ -114,7 +113,6 @@ namespace Orbita.BBDD
                             // Liberar transacción.
                             conexion.Transaccion.Rollback();
                         }
-
                         // Control en la excepción de la conexión.
                         if (conexion.Conexion != null)
                         {
@@ -147,7 +145,6 @@ namespace Orbita.BBDD
                         // Liberar transacción.
                         conexion.Transaccion.Rollback();
                     }
-
                     // Control en la excepción de la conexión.
                     if (conexion.Conexion != null)
                     {

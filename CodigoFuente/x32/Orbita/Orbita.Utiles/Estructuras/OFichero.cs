@@ -21,28 +21,28 @@ namespace Orbita.Utiles
         /// <summary>
         /// Identificador de fichero.
         /// </summary>
-        string _identificador;
+        string identificador;
         /// <summary>
         /// Nombre de fichero.
         /// </summary>
-        string _nombre;
+        string nombre;
         /// <summary>
         /// Ruta de fichero.
         /// </summary>
-        string _ruta;
+        string ruta;
         /// <summary>
         /// Extensión de fichero.
         /// </summary>
-        Extension _extension;
+        Extension extension;
         /// <summary>
         /// Indica si debe ser copiado en disco.
         /// </summary>
-        bool _copiarENdisco;
+        bool copiarENdisco;
         /// <summary>
         /// Indica si debe ser copiado en Base
         /// de datos.
         /// </summary>
-        bool _copiarENbaseDEdatos;
+        bool copiarENbaseDEdatos;
         #endregion
 
         #region Constructores
@@ -59,10 +59,10 @@ namespace Orbita.Utiles
         /// <param name="copiarENbd">Determinar si copiar dicho fichero en base de datos.</param>
         public OFichero(string identificador, Extension extension, bool copiarENdisco, bool copiarENbd)
         {
-            this._identificador = identificador;
-            this._extension = extension;
-            this._copiarENdisco = copiarENdisco;
-            this._copiarENbaseDEdatos = copiarENbd;
+            this.identificador = identificador;
+            this.extension = extension;
+            this.copiarENdisco = copiarENdisco;
+            this.copiarENbaseDEdatos = copiarENbd;
         }
         #endregion
 
@@ -99,9 +99,9 @@ namespace Orbita.Utiles
             if (!this.disposed)
             {
                 // Finalizar correctamente los recursos no manejados.
-                this._identificador = null;
-                this._nombre = null;
-                this._ruta = null;
+                this.identificador = null;
+                this.nombre = null;
+                this.ruta = null;
 
                 // Marcar como desechada ó desechandose,
                 // de forma que no se puede ejecutar el
@@ -129,50 +129,47 @@ namespace Orbita.Utiles
         /// </summary>
         public string Identificador
         {
-            get { return this._identificador; }
-            set { this._identificador = value; }
+            get { return this.identificador; }
+            set { this.identificador = value; }
         }
         /// <summary>
         /// Nombre de fichero.
         /// </summary>
         public string Nombre
         {
-            get { return this._nombre; }
-            set { this._nombre = value; }
+            get { return this.nombre; }
+            set { this.nombre = value; }
         }
         /// <summary>
         /// Ruta de fichero.
         /// </summary>
         public string Ruta
         {
-            get { return this._ruta; }
-            set { this._ruta = value; }
+            get { return this.ruta; }
+            set { this.ruta = value; }
         }
         /// <summary>
         /// Ruta completa de fichero. Ruta + nombre.
         /// </summary>
         public string RutaCompleta
         {
-            get
-            {
-                return string.Format(CultureInfo.CurrentCulture, @"{0}\{1}", this._ruta, this._nombre);
-            }
+            get { return string.Format(CultureInfo.CurrentCulture, @"{0}\{1}", this.ruta, this.nombre); }
         }
         /// <summary>
         /// Copiar en disco.
         /// </summary>
         public bool CopiarENdisco
         {
-            get { return this._copiarENdisco; }
-            set { this._copiarENdisco = value; }
+            get { return this.copiarENdisco; }
+            set { this.copiarENdisco = value; }
         }
         /// <summary>
         /// Copiar en base de datos.
         /// </summary>
         public bool CopiarENbaseDEdatos
         {
-            get { return this._copiarENbaseDEdatos; }
-            set { this._copiarENbaseDEdatos = value; }
+            get { return this.copiarENbaseDEdatos; }
+            set { this.copiarENbaseDEdatos = value; }
         }
         /// <summary>
         /// Comprueba la existencia de los directorios
@@ -188,13 +185,11 @@ namespace Orbita.Utiles
             {
                 // Asignar la fecha en el formato adecuado.
                 DateTime fecha = DateTime.Now;
-
                 // Fecha en formato yyyymmdd : 8 dígitos.
                 string subdirectorio = string.Concat(
                     fecha.Year.ToString("0000", CultureInfo.CurrentCulture),
                         fecha.Month.ToString("00", CultureInfo.CurrentCulture),
                             fecha.Day.ToString("00", CultureInfo.CurrentCulture));
-
                 // Cada fichero se va a insertar en su correspondiente subdirectorio
                 // que hace referencia a la fecha en cuestión de lectura.
                 string ruta = string.Format(CultureInfo.CurrentCulture, @"{0}\{1}\{2}", Application.StartupPath, directorio, subdirectorio);
@@ -203,21 +198,19 @@ namespace Orbita.Utiles
                 {
                     Directory.CreateDirectory(ruta);
                 }
-
                 string fichero = string.Format(CultureInfo.CurrentCulture, @"{0}{1}{2}{3}{4}.{5}",
                     identificador, fecha.Hour.ToString("00", CultureInfo.CurrentCulture),
                         fecha.Minute.ToString("00", CultureInfo.CurrentCulture),
                             fecha.Second.ToString("00", CultureInfo.CurrentCulture),
                                 fecha.Millisecond.ToString("000", CultureInfo.CurrentCulture),
-                                    Enum.GetName(typeof(Extension), this._extension));
+                                    Enum.GetName(typeof(Extension), this.extension));
 
                 // Nombre del fichero en formato:
                 // dispositivo : 2 dígitos.
                 // hhmmssfff : 9 dígitos.
-                this._nombre = fichero;
+                this.nombre = fichero;
                 // Identificador de dispositivo + Hora en formato hhmmssfff : 9 dígitos.
-                this._ruta = ruta;
-
+                this.ruta = ruta;
                 return string.Format(CultureInfo.CurrentCulture, @"{0}\{1}", ruta, fichero);
             }
         }

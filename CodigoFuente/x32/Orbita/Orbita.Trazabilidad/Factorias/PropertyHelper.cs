@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : OrbitaTrazabilidad
+// Assembly         : Orbita.Trazabilidad
 // Author           : crodriguez
 // Created          : 02-17-2011
 //
@@ -10,9 +10,8 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-using System.Reflection;
-using System.Xml;
 using System.Globalization;
+using System.Reflection;
 namespace Orbita.Trazabilidad
 {
     internal sealed class PropertyHelper

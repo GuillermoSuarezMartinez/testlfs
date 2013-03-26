@@ -57,7 +57,7 @@ namespace Orbita.BBDD
             // http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlconnection.close.aspx
             return resultado;
         }
-        #endregion
+        #endregion Test
 
         #region SeleccionSql
         /// <summary>
@@ -90,7 +90,6 @@ namespace Orbita.BBDD
                     // Establecer timeout de ejecución.
                     command.CommandTimeout = timeout;
                     command.CommandText = sql;
-
                     using (NpgsqlDataReader reader = command.ExecuteReader())
                     {
                         // Asignar resultados al DataTable.
@@ -108,7 +107,7 @@ namespace Orbita.BBDD
             }
             finally { if (resultado != null) { resultado.Dispose(); } }
         }
-        #endregion
+        #endregion SeleccionSql
 
         #region EjecutarSql
         /// <summary>
@@ -166,8 +165,8 @@ namespace Orbita.BBDD
             }
             return resultado;
         }
-        #endregion
+        #endregion EjecutarSql
 
-        #endregion
+        #endregion Métodos públicos
     }
 }

@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : OrbitaTrazabilidad
+// Assembly         : Orbita.Trazabilidad
 // Author           : crodriguez
 // Created          : 02-17-2011
 //
@@ -25,6 +25,7 @@ namespace Orbita.Trazabilidad
 
         #region Constructor
         /// <summary>
+        /// 
         /// </summary>
         public ConfiguracionLogger() { }
         #endregion
@@ -58,14 +59,11 @@ namespace Orbita.Trazabilidad
         #endregion
 
         #region Métodos internos
-        ///// <summary>
-        ///// Flushes any pending log messages on all appenders.
-        ///// </summary>
         //internal void FlushAllLoggers()
         //{
         //    foreach (ILogger logger in loggers.Values)
         //    {
-        //        // logger.Flush();
+        //        logger.Flush();
         //    }
         //}
         #endregion

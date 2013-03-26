@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : OrbitaTrazabilidad
+// Assembly         : Orbita.Trazabilidad
 // Author           : crodriguez
 // Created          : 02-17-2011
 //
@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -63,7 +62,7 @@ namespace Orbita.Trazabilidad
         /// System.Threading.Timer.</param>
         /// <param name="periodo">Período de tiempo entre invocaciones del método de llamada especificado en
         /// el momento de la construcción de System.Threading.Timer.</param>
-        public void Change(TimeSpan hora, TimeSpan periodo)
+        public void Change(System.TimeSpan hora, System.TimeSpan periodo)
         {
             this.timer.Change(Add(hora), periodo);
         }
@@ -77,9 +76,9 @@ namespace Orbita.Trazabilidad
         /// se llame al método de devolución de llamada que se especificó cuando se creó
         /// System.Threading.Timer.</param>
         /// <returns>TimeSpan.</returns>
-        static TimeSpan Add(TimeSpan hora)
+        static System.TimeSpan Add(System.TimeSpan hora)
         {
-            TimeSpan resultado = TimeSpan.MinValue;
+            System.TimeSpan resultado = System.TimeSpan.MinValue;
             // La función Change de Timer se lee: ...en prosa: 
             // ejecutate dentro de (tiempo) y luego cada (tiempo).
 
@@ -87,9 +86,9 @@ namespace Orbita.Trazabilidad
             // actual, el tiempo que falta para ejecutarse.
 
             // Primero definir la fecha actual con la hora de ejecución.
-            DateTime fechaHora = DateTime.Now;
+            System.DateTime fechaHora = System.DateTime.Now;
             // Concatenar a la fecha la hora de ejecución.
-            DateTime fechaHoraEjecucion = new DateTime(fechaHora.Year, fechaHora.Month, fechaHora.Day, hora.Hours, hora.Minutes, hora.Seconds);
+            System.DateTime fechaHoraEjecucion = new System.DateTime(fechaHora.Year, fechaHora.Month, fechaHora.Day, hora.Hours, hora.Minutes, hora.Seconds);
             if (fechaHoraEjecucion > fechaHora)
             {
                 // Si la fecha de ejecución calculada es posterior a la actual.

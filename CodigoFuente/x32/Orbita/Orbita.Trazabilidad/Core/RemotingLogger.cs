@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : OrbitaTrazabilidad
+// Assembly         : Orbita.Trazabilidad
 // Author           : crodriguez
 // Created          : 02-17-2011
 //
@@ -15,8 +15,8 @@ using System.Globalization;
 using System.Net;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
-using System.Threading;
 using System.Security.Permissions;
+using System.Threading;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -69,7 +69,7 @@ namespace Orbita.Trazabilidad
         /// Por defecto, <c>NivelLog=Debug</c>, <c>Alias=logger</c>, <c>Puerto=1440</c>, <c>Máquina=localhost</c>.
         /// </summary>
         /// <param name="identificador">Identificador del logger.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public RemotingLogger(string identificador)
             : this(identificador, NivelLog.Debug) { }
         /// <summary>
@@ -78,7 +78,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="identificador">Identificador del logger.</param>
         /// <param name="nivelLog">Nivel de logger.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public RemotingLogger(string identificador, NivelLog nivelLog)
             : this(identificador, nivelLog, Orbita.Trazabilidad.Logger.Alias) { }
         /// <summary>
@@ -87,7 +87,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="identificador">Identificador del logger.</param>
         /// <param name="puerto">Puerto del URI de conexión .NET remoting.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public RemotingLogger(string identificador, int puerto)
             : this(identificador, NivelLog.Debug, puerto) { }
         /// <summary>
@@ -97,7 +97,7 @@ namespace Orbita.Trazabilidad
         /// <param name="identificador">Identificador del logger.</param>
         /// <param name="nivelLog">Nivel de logger.</param>
         /// <param name="puerto">Puerto del URI de conexión .NET remoting.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public RemotingLogger(string identificador, NivelLog nivelLog, int puerto)
             : this(identificador, nivelLog, Orbita.Trazabilidad.Logger.Alias, puerto) { }
         /// <summary>
@@ -107,7 +107,7 @@ namespace Orbita.Trazabilidad
         /// <param name="identificador">Identificador del logger.</param>
         /// <param name="puerto">Puerto del URI de conexión .NET remoting.</param>
         /// <param name="maquina">Host de la máquina cliente de conexión .NET remoting.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public RemotingLogger(string identificador, int puerto, string maquina)
             : this(identificador, NivelLog.Debug, puerto, maquina) { }
         /// <summary>
@@ -118,7 +118,7 @@ namespace Orbita.Trazabilidad
         /// <param name="nivelLog">Nivel de logger.</param>
         /// <param name="puerto">Puerto del URI de conexión .NET remoting.</param>
         /// <param name="maquina">Host de la máquina cliente de conexión .NET remoting.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public RemotingLogger(string identificador, NivelLog nivelLog, int puerto, string maquina)
             : this(identificador, nivelLog, Orbita.Trazabilidad.Logger.Alias, puerto, maquina) { }
         /// <summary>
@@ -127,7 +127,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="identificador">Identificador del logger.</param>
         /// <param name="alias">Alias del URI de conexión .NET remoting.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public RemotingLogger(string identificador, string alias)
             : this(identificador, NivelLog.Debug, alias) { }
         /// <summary>
@@ -137,7 +137,7 @@ namespace Orbita.Trazabilidad
         /// <param name="identificador">Identificador del logger.</param>
         /// <param name="nivelLog">Nivel de logger.</param>
         /// <param name="alias">Alias del URI de conexión .NET remoting.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public RemotingLogger(string identificador, NivelLog nivelLog, string alias)
             : this(identificador, nivelLog, alias, Orbita.Trazabilidad.Logger.Puerto) { }
         /// <summary>
@@ -147,7 +147,7 @@ namespace Orbita.Trazabilidad
         /// <param name="identificador">Identificador del logger.</param>
         /// <param name="alias">Alias del URI de conexión .NET remoting.</param>
         /// <param name="puerto">Puerto del URI de conexión .NET remoting.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public RemotingLogger(string identificador, string alias, int puerto)
             : this(identificador, NivelLog.Debug, alias, puerto) { }
         /// <summary>
@@ -158,7 +158,7 @@ namespace Orbita.Trazabilidad
         /// <param name="nivelLog">Nivel de logger.</param>
         /// <param name="alias">Alias del URI de conexión .NET remoting.</param>
         /// <param name="puerto">Puerto del URI de conexión .NET remoting.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public RemotingLogger(string identificador, NivelLog nivelLog, string alias, int puerto)
             : this(identificador, nivelLog, alias, puerto, Dns.GetHostName()) { }
         /// <summary>
@@ -169,7 +169,7 @@ namespace Orbita.Trazabilidad
         /// <param name="alias">Alias del URI de conexión .NET remoting.</param>
         /// <param name="puerto">Puerto del URI de conexión .NET remoting.</param>
         /// <param name="maquina">Host de la máquina cliente de conexión .NET remoting.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public RemotingLogger(string identificador, string alias, int puerto, string maquina)
             : this(identificador, NivelLog.Debug, alias, puerto, maquina) { }
         /// <summary>
@@ -180,7 +180,7 @@ namespace Orbita.Trazabilidad
         /// <param name="alias">Alias del URI de conexión .NET remoting.</param>
         /// <param name="puerto">Puerto del URI de conexión .NET remoting.</param>
         /// <param name="maquina">Host de la máquina cliente de conexión .NET remoting.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public RemotingLogger(string identificador, NivelLog nivelLog, string alias, int puerto, string maquina)
             : base(identificador, nivelLog)
         {
@@ -219,7 +219,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Asignar el canal de conexión con los servicios de canal.
         /// </summary>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         public void SetTcpClientChannel()
         {
             if (string.IsNullOrEmpty(this.alias))
@@ -275,7 +275,7 @@ namespace Orbita.Trazabilidad
         /// <param name="alias">Alias.</param>
         /// <param name="puerto">Puerto.</param>
         /// <param name="maquina">Máquina.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted=true)]
+        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
         void SetTcpClientChannel(string alias, int puerto, string maquina)
         {
             // Crear la cadena URL de conexión.

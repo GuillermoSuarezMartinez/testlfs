@@ -24,11 +24,11 @@ namespace Orbita.Utiles
         /// <summary>
         /// Tipo.
         /// </summary>
-        Type _tipo;
+        Type tipo;
         /// <summary>
         /// Valores.
         /// </summary>
-        static Hashtable _valores = new Hashtable();
+        static Hashtable valores = new Hashtable();
         #endregion
 
         #region Constructores
@@ -42,7 +42,7 @@ namespace Orbita.Utiles
             {
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "El tipo proporcionado debe ser un enumerado.  Tipo es: {0}", tipo));
             }
-            this._tipo = tipo;
+            this.tipo = tipo;
         }
         #endregion
 
@@ -53,7 +53,7 @@ namespace Orbita.Utiles
         /// <value></value>
         public Type TipoEnumerado
         {
-            get { return this._tipo; }
+            get { return this.tipo; }
         }
         #endregion
 
@@ -67,7 +67,7 @@ namespace Orbita.Utiles
         {
             Enum enumType;
             string stringValue = null;
-            enumType = (Enum)Enum.Parse(this._tipo, valor);
+            enumType = (Enum)Enum.Parse(this.tipo, valor);
             stringValue = GetValorString(enumType);
 
             return stringValue;
@@ -80,7 +80,7 @@ namespace Orbita.Utiles
         {
             ArrayList values = new ArrayList();
             //Look for our string value associated with fields in this enum
-            foreach (FieldInfo fi in this._tipo.GetFields())
+            foreach (FieldInfo fi in this.tipo.GetFields())
             {
                 //Check for our custom attribute
                 OAtributoEnumerado[] attrs = fi.GetCustomAttributes(typeof(OAtributoEnumerado), false) as OAtributoEnumerado[];
@@ -97,16 +97,16 @@ namespace Orbita.Utiles
         /// <returns>IList for data binding</returns>
         public IList GetListaValores()
         {
-            Type underlyingType = Enum.GetUnderlyingType(this._tipo);
+            Type underlyingType = Enum.GetUnderlyingType(this.tipo);
             ArrayList values = new ArrayList();
             //Look for our string value associated with fields in this enum
-            foreach (FieldInfo fi in this._tipo.GetFields())
+            foreach (FieldInfo fi in this.tipo.GetFields())
             {
                 //Check for our custom attribute
                 OAtributoEnumerado[] attrs = fi.GetCustomAttributes(typeof(OAtributoEnumerado), false) as OAtributoEnumerado[];
                 if (attrs.Length > 0)
                 {
-                    values.Add(new DictionaryEntry(Convert.ChangeType(Enum.Parse(this._tipo, fi.Name), underlyingType, CultureInfo.CurrentCulture), attrs[0].Valor));
+                    values.Add(new DictionaryEntry(Convert.ChangeType(Enum.Parse(this.tipo, fi.Name), underlyingType, CultureInfo.CurrentCulture), attrs[0].Valor));
                 }
             }
             return values;
@@ -118,7 +118,7 @@ namespace Orbita.Utiles
         /// <returns>Existence of the string value</returns>
         public bool StringDefinido(string valor)
         {
-            return Parse(this._tipo, valor) != null;
+            return Parse(this.tipo, valor) != null;
         }
         /// <summary>
         /// Return the existence of the given string value within the enum.
@@ -128,7 +128,7 @@ namespace Orbita.Utiles
         /// <returns>Existence of the string value</returns>
         public bool StringDefinido(string valor, bool ignoreCase)
         {
-            return Parse(this._tipo, valor, ignoreCase) != null;
+            return Parse(this.tipo, valor, ignoreCase) != null;
         }
         #region Método(s) estático(s)
         /// <summary>
@@ -141,8 +141,8 @@ namespace Orbita.Utiles
             string output = null;
             Type type = valor.GetType();
 
-            if (_valores.ContainsKey(valor))
-                output = (_valores[valor] as OAtributoEnumerado).Valor;
+            if (valores.ContainsKey(valor))
+                output = (valores[valor] as OAtributoEnumerado).Valor;
             else
             {
                 //Look for our 'StringValueAttribute' in the field's custom attributes
@@ -150,7 +150,7 @@ namespace Orbita.Utiles
                 OAtributoEnumerado[] attrs = fi.GetCustomAttributes(typeof(OAtributoEnumerado), false) as OAtributoEnumerado[];
                 if (attrs.Length > 0)
                 {
-                    _valores.Add(valor, attrs[0]);
+                    valores.Add(valor, attrs[0]);
                     output = attrs[0].Valor;
                 }
             }

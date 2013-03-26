@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : OrbitaTrazabilidad
+// Assembly         : Orbita.Trazabilidad
 // Author           : crodriguez
 // Created          : 02-17-2011
 //
@@ -12,7 +12,7 @@
 namespace Orbita.Trazabilidad
 {
     /// <summary>
-    /// Extensión útiles.
+    /// Extensiones útiles.
     /// </summary>
     public static class ExtensionUtiles
     {
@@ -20,7 +20,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Colección de ensamblados.
         /// </summary>
-        static System.Collections.ArrayList Ensamblados = InicializarExtensionUtiles();
+        static System.Collections.ArrayList Ensamblados = Inicializar();
         #endregion
 
         #region Métodos públicos
@@ -39,7 +39,7 @@ namespace Orbita.Trazabilidad
         /// Inicializar el atributo de tipo colección de ensamblados.
         /// </summary>
         /// <returns></returns>
-        static System.Collections.ArrayList InicializarExtensionUtiles()
+        static System.Collections.ArrayList Inicializar()
         {
             // Añade los defectos de logger.
             Ensamblados = new System.Collections.ArrayList();

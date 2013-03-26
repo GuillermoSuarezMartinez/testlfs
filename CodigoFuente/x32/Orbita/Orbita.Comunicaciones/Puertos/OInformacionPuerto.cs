@@ -9,11 +9,11 @@
         /// <summary>
         /// Identificador númerico del puerto de comunicaciones
         /// </summary>
-        int _idPuerto;
+        int idPuerto;
         /// <summary>
         /// Tipo del puerto de comunicaciones
         /// </summary>
-        string _tipoPuerto;
+        string tipoPuerto;
         #endregion
 
         #region Constructores
@@ -24,8 +24,8 @@
         /// <param name="tipoPuerto">Tipo del puerto de comunicaciones</param>
         public OInformacionPuerto(int idPuerto, string tipoPuerto)
         {
-            this._idPuerto = idPuerto;
-            this._tipoPuerto = tipoPuerto;
+            this.idPuerto = idPuerto;
+            this.tipoPuerto = tipoPuerto;
         }
         #endregion
 
@@ -35,14 +35,14 @@
         /// </summary>
         public int IdPuerto
         {
-            get { return this._idPuerto; }
+            get { return this.idPuerto; }
         }
         /// <summary>
         /// Identificador textual del puerto de comunicaciones
         /// </summary>
         public string TipoPuerto
         {
-            get { return this._tipoPuerto; }
+            get { return this.tipoPuerto; }
         }
         #endregion
     }

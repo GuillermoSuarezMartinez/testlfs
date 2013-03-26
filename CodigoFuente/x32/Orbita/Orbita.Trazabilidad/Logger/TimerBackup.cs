@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : OrbitaTrazabilidad
+// Assembly         : Orbita.Trazabilidad
 // Author           : crodriguez
 // Created          : 02-17-2011
 //
@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -23,12 +22,12 @@ namespace Orbita.Trazabilidad
         /// se llame al método de devolución de llamada que se especificó cuando se creó
         /// System.Threading.Timer.
         /// </summary>
-        TimeSpan hora;
+        System.TimeSpan hora;
         /// <summary>
         /// Período de tiempo entre invocaciones del método de llamada especificado en
         /// el momento de la construcción de System.Threading.Timer.
         /// </summary>
-        TimeSpan periodo;
+        System.TimeSpan periodo;
         #endregion
 
         #region Constructores
@@ -36,14 +35,14 @@ namespace Orbita.Trazabilidad
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TimerBackup.
         /// </summary>
         public TimerBackup()
-            : this(new TimeSpan(23, 0, 0), new TimeSpan(1, 0, 0, 0)) { }
+            : this(new System.TimeSpan(23, 0, 0), new System.TimeSpan(1, 0, 0, 0)) { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TimerBackup.
         /// </summary>
         /// <param name="hora">System.TimeSpan que representa el período tiempo de retraso antes de que se
         /// llame al método de devolución de llamada que se especificó cuando se creó System.Threading.Timer.</param>
-        public TimerBackup(TimeSpan hora)
-            : this(hora, new TimeSpan(1, 0, 0, 0)) { }
+        public TimerBackup(System.TimeSpan hora)
+            : this(hora, new System.TimeSpan(1, 0, 0, 0)) { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TimerBackup.
         /// </summary>
@@ -51,7 +50,7 @@ namespace Orbita.Trazabilidad
         /// llame al método de devolución de llamada que se especificó cuando se creó System.Threading.Timer.</param>
         /// <param name="periodo">Período de tiempo entre invocaciones del método de llamada especificado en
         /// el momento de la construcción de System.Threading.Timer.</param>
-        public TimerBackup(TimeSpan hora, TimeSpan periodo)
+        public TimerBackup(System.TimeSpan hora, System.TimeSpan periodo)
         {
             this.hora = hora;
             this.periodo = periodo;
@@ -63,7 +62,7 @@ namespace Orbita.Trazabilidad
         /// System.TimeSpan que representa el período tiempo de retraso antes de que se llame al método 
         /// de devolución de llamada que se especificó cuando se creó System.Threading.Timer.
         /// </summary>
-        public TimeSpan Hora
+        public System.TimeSpan Hora
         {
             get { return this.hora; }
             set { this.hora = value; }
@@ -72,7 +71,7 @@ namespace Orbita.Trazabilidad
         /// Período de tiempo entre invocaciones del método de llamada especificado en el momento de la
         /// construcción de System.Threading.Timer.
         /// </summary>
-        public TimeSpan Periodo
+        public System.TimeSpan Periodo
         {
             get { return this.periodo; }
             set { this.periodo = value; }

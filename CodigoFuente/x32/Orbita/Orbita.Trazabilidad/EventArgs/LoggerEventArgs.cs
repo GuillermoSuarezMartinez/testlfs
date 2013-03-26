@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : OrbitaTrazabilidad
+// Assembly         : Orbita.Trazabilidad
 // Author           : crodriguez
 // Created          : 02-17-2011
 //
@@ -18,9 +18,9 @@ namespace Orbita.Trazabilidad
     {
         #region Atributos privados
         /// <summary>
-        /// Cadena de entrada a escribir en logger.
+        /// Item de entrada.
         /// </summary>
-        string cadena;
+        ItemLog item;
         #endregion
 
         #region Constructores
@@ -32,21 +32,21 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.LoggerEventArgs.
         /// </summary>
-        /// <param name="cadena">Cadena de entrada a escribir en logger.</param>
-        public LoggerEventArgs(string cadena)
+        /// <param name="item">Item de entrada.</param>
+        public LoggerEventArgs(ItemLog item)
             : this()
         {
-            this.cadena = cadena;
+            this.item = item;
         }
         #endregion
 
         #region Propiedades
         /// <summary>
-        /// Cadena de entrada a escribir en logger.
+        /// Item de entrada.
         /// </summary>
-        public string Cadena
+        public ItemLog Item
         {
-            get { return this.cadena; }
+            get { return this.item; }
         }
         #endregion
     }

@@ -775,7 +775,7 @@ namespace Orbita.MS
         /// </summary>
         /// <param name="inputFile"></param>
         /// <param name="outputFile"></param>
-        /// <param name="key"></param>
+        /// <param name="passPhrase"></param>
         public static void DecryptFile(string inputFile, string outputFile, string passPhrase)
         {
             OEncriptacion dec = new OEncriptacion(passPhrase);
@@ -785,8 +785,7 @@ namespace Orbita.MS
         /// Desencripta el fichero pasado
         /// </summary>
         /// <param name="inputFile"></param>
-        /// <param name="outputFile"></param>
-        /// <param name="key"></param>
+        /// <param name="passPhrase"></param>
         public static byte[] DecryptFileToBytes(string inputFile, string passPhrase)
         {
             OEncriptacion dec = new OEncriptacion(passPhrase);
@@ -819,15 +818,12 @@ namespace Orbita.MS
             byte[] saltBytes = GenerateSalt();
 
             // Allocate array which will hold salt and plain text bytes.
-            byte[] plainTextBytesWithSalt = new byte[plainTextBytes.Length +
-                                                     saltBytes.Length];
+            byte[] plainTextBytesWithSalt = new byte[plainTextBytes.Length + saltBytes.Length];
             // First, copy salt bytes.
             Array.Copy(saltBytes, plainTextBytesWithSalt, saltBytes.Length);
 
             // Append plain text bytes to the salt value.
-            Array.Copy(plainTextBytes, 0,
-                        plainTextBytesWithSalt, saltBytes.Length,
-                        plainTextBytes.Length);
+            Array.Copy(plainTextBytes, 0, plainTextBytesWithSalt, saltBytes.Length, plainTextBytes.Length);
 
             return plainTextBytesWithSalt;
         }
@@ -869,7 +865,6 @@ namespace Orbita.MS
             salt[1] = (byte)((salt[1] & 0xf3) | (saltLen & 0x0c));
             salt[2] = (byte)((salt[2] & 0xcf) | (saltLen & 0x30));
             salt[3] = (byte)((salt[3] & 0x3f) | (saltLen & 0xc0));
-
             return salt;
         }
         /// <summary>

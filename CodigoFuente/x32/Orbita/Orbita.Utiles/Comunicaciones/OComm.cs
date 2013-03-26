@@ -45,7 +45,6 @@ namespace Orbita.Utiles
                     }
                 }
             }
-
             return disponible;
         }
         #endregion

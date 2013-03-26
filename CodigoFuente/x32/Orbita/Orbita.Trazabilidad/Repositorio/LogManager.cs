@@ -1,5 +1,5 @@
 //***********************************************************************
-// Assembly         : OrbitaTrazabilidad
+// Assembly         : Orbita.Trazabilidad
 // Author           : crodriguez
 // Created          : 02-17-2011
 //
@@ -9,8 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.Collections;
-using System.Net;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -22,7 +20,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Repositorio de loggers.
         /// </summary>
-        static Hashtable Repositorio = new Hashtable();
+        static System.Collections.Hashtable Repositorio = new System.Collections.Hashtable();
         #endregion
 
         #region Métodos públicos estáticos
@@ -97,7 +95,7 @@ namespace Orbita.Trazabilidad
         /// <param name="identificador">Identificador de logger.</param>
         /// <returns>ILogger.</returns>
         public static ILogger SetDebugLogger(string identificador)
-        { 
+        {
             return SetDebugLogger(identificador, NivelLog.Debug);
         }
         /// <summary>
@@ -396,7 +394,7 @@ namespace Orbita.Trazabilidad
             return GetLogger(identificador);
         }
         #endregion
-       
+
         #region RemotingLogger
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.RemotingLogger.
@@ -513,7 +511,7 @@ namespace Orbita.Trazabilidad
         /// <returns>ILogger.</returns>
         public static ILogger SetRemotingLogger(string identificador, NivelLog nivelLog, string alias, int puerto)
         {
-            return SetRemotingLogger(identificador, nivelLog, alias, puerto, Dns.GetHostName());
+            return SetRemotingLogger(identificador, nivelLog, alias, puerto, System.Net.Dns.GetHostName());
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.RemotingLogger.

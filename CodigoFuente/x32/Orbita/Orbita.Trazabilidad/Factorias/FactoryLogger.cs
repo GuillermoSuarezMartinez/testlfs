@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : OrbitaTrazabilidad
+// Assembly         : Orbita.Trazabilidad
 // Author           : crodriguez
 // Created          : 02-17-2011
 //
@@ -92,10 +92,10 @@ namespace Orbita.Trazabilidad
                 System.Type t = loggers[tipo];
                 if (t != null)
                 {
-                    ILogger la = FactoryHelper.CreateInstance(t) as ILogger;
-                    if (la != null)
+                    ILogger logger = FactoryHelper.CreateInstance(t) as ILogger;
+                    if (logger != null)
                     {
-                        return la;
+                        return logger;
                     }
                 }
             }

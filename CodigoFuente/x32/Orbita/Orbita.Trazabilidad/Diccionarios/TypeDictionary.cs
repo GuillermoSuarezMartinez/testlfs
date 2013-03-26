@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : OrbitaTrazabilidad
+// Assembly         : Orbita.Trazabilidad
 // Author           : crodriguez
 // Created          : 02-17-2011
 //
@@ -13,7 +13,7 @@ using System;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
-    /// A dictionary with keys of type string and values of type Type
+    /// A dictionary with keys of type string and values of type Type.
     /// </summary>
     internal class TypeDictionary : System.Collections.DictionaryBase
     {
@@ -63,20 +63,6 @@ namespace Orbita.Trazabilidad
         /// otherwise, false.
         /// </returns>
         public virtual bool Contains(string key)
-        {
-            return this.Dictionary.Contains(key);
-        }
-        /// <summary>
-        /// Determines whether this TypeDictionary contains a specific key.
-        /// </summary>
-        /// <param name="key">
-        /// The string key to locate in this TypeDictionary.
-        /// </param>
-        /// <returns>
-        /// true if this TypeDictionary contains an element with the specified key;
-        /// otherwise, false.
-        /// </returns>
-        public virtual bool ContainsKey(string key)
         {
             return this.Dictionary.Contains(key);
         }

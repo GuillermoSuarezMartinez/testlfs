@@ -20,9 +20,9 @@ namespace Orbita.Xml
     {
         #region Atributos
         /// <summary>
-        /// Ruta del fichero xml.
+        /// Ruta del fichero Xml.
         /// </summary>
-        string _rutaFichero;
+        string rutaFichero;
         #endregion
 
         #region Constructores
@@ -36,7 +36,7 @@ namespace Orbita.Xml
         /// <param name="rutaFichero">Ruta del fichero de configuracion xml.</param>
         public OAlmacenXML(string rutaFichero)
         {
-            this._rutaFichero = rutaFichero;
+            this.rutaFichero = rutaFichero;
         }
         #endregion
 
@@ -100,13 +100,13 @@ namespace Orbita.Xml
         public OAlmacenXML CargarDatos()
         {
             // Si no existe el fichero de configuracion lanzamos una excepción.
-            if (!File.Exists(this._rutaFichero))
+            if (!File.Exists(this.rutaFichero))
             {
-                throw new FileNotFoundException("No se encuentra el fichero de configuración", this._rutaFichero);
+                throw new FileNotFoundException("No se encuentra el fichero de configuración", this.rutaFichero);
             }
             // Leemos los datos deserializando el objeto OAlmacenXML.
             XmlSerializer serializer = new XmlSerializer(this.GetType());
-            using (StreamReader reader = new StreamReader(this._rutaFichero))
+            using (StreamReader reader = new StreamReader(this.rutaFichero))
             {
                 return (OAlmacenXML)serializer.Deserialize(reader);
             }
@@ -118,7 +118,7 @@ namespace Orbita.Xml
         {
             // Guardamos la serialización del objeto en el fichero.
             XmlSerializer serializer = new XmlSerializer(this.GetType());
-            using (StreamWriter writer = new StreamWriter(this._rutaFichero))
+            using (StreamWriter writer = new StreamWriter(this.rutaFichero))
             {
                 serializer.Serialize(writer, this);
             }

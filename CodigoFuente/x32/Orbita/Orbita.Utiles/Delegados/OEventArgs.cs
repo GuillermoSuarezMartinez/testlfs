@@ -23,7 +23,7 @@ namespace Orbita.Utiles
         /// <summary>
         /// Argumento adicional desarrollado en el evento.
         /// </summary>
-        object _arg;
+        object arg;
         #endregion
 
         #region Constructores
@@ -37,7 +37,7 @@ namespace Orbita.Utiles
         /// <param name="arg">Argumento adicional.</param>
         public OEventArgs(object arg)
         {
-            this._arg = arg;
+            this.arg = arg;
         }
         #endregion
 
@@ -47,8 +47,8 @@ namespace Orbita.Utiles
         /// </summary>
         public object Argumento
         {
-            get { return this._arg; }
-            set { this._arg = value; }
+            get { return this.arg; }
+            set { this.arg = value; }
         }
         #endregion
     }

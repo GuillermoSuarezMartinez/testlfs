@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : OrbitaTrazabilidad
+// Assembly         : Orbita.Trazabilidad
 // Author           : crodriguez
 // Created          : 02-17-2011
 //
@@ -9,8 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
 namespace Orbita.Trazabilidad
@@ -37,7 +35,7 @@ namespace Orbita.Trazabilidad
         /// Dirige los resultados del seguimiento o la depuración a un objeto System.IO.TextWriter
         /// o a un objeto de la clase System.IO.Stream como un archivo System.IO.FileStream.
         /// </summary>
-        protected TextWriterTraceListener listener;
+        protected System.Diagnostics.TextWriterTraceListener listener;
         /// <summary>
         /// Guarda relativa al evento cíclico que sucede si se traza sobre el evento elevado de logger.
         /// </summary>
@@ -140,7 +138,7 @@ namespace Orbita.Trazabilidad
         /// Registra un elemento determinado en disco.
         /// </summary>
         /// <param name="item">El elemento que va a ser registrado.</param>
-        [SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         public override void Log(ItemLog item)
         {
             try
@@ -148,7 +146,7 @@ namespace Orbita.Trazabilidad
                 // Crear la cadena que se va a escribir en el log.
                 string cadena = Formatear(item);
                 // Escribir en disco la cadena de texto.
-                this.Escribir(cadena);
+                this.Escribir(cadena, item);
             }
             catch (System.Exception ex)
             {
@@ -161,7 +159,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="item">El elemento que va a ser registrado.</param>
         /// <param name="args">Argumentos adicionales.</param>
-        [SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
         public override void Log(ItemLog item, object[] args)
         {
             try
@@ -178,7 +176,7 @@ namespace Orbita.Trazabilidad
                     }
                 }
                 // Escribir en disco la cadena de texto.
-                this.Escribir(cadena);
+                this.Escribir(cadena, item);
             }
             catch (System.Exception ex)
             {
@@ -242,7 +240,8 @@ namespace Orbita.Trazabilidad
         /// Escribir en disco la cadena de texto.
         /// </summary>
         /// <param name="cadena">Cadena de texto.</param>
-        void Escribir(string cadena)
+        /// <param name="item">Item de entrada.</param>
+        void Escribir(string cadena, ItemLog item)
         {
             // Utilizar bloqueo...static volatile object Bloqueo = new object();
             lock (Bloqueo)
@@ -276,7 +275,7 @@ namespace Orbita.Trazabilidad
                         {
                             this.eventoCiclico = false;
                             // Argumentos relativos al evento de escritura.
-                            LoggerEventArgs e = new LoggerEventArgs(cadena);
+                            LoggerEventArgs e = new LoggerEventArgs(item);
                             // El evento se lanza como cualquier delegado.
                             this.OnDespuesEscribirLogger(this, e);
                         }
@@ -320,11 +319,11 @@ namespace Orbita.Trazabilidad
                     this.listener.Close();
                     // Vacía el búfer de resultados de la propiedad System.Diagnostics.TextWriterTraceListener.Writer.
                     this.listener.Flush();
+                    // Argumentos relativos al evento de escritura.
+                    LoggerEventArgs e = new LoggerEventArgs(item);
+                    // El evento se lanza como cualquier delegado.
+                    this.OnErrorLogger(this, e);
                 }
-                // Argumentos relativos al evento de escritura.
-                LoggerEventArgs e = new LoggerEventArgs(cadena);
-                // El evento se lanza como cualquier delegado.
-                this.OnErrorLogger(this, e);
             }
         }
         #endregion

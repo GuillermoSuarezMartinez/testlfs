@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : OrbitaTrazabilidad
+// Assembly         : Orbita.Trazabilidad
 // Author           : crodriguez
 // Created          : 02-17-2011
 //
@@ -9,13 +9,12 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.Security.Permissions;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
     /// Una clase para configurar Logger desde un archivo de configuración XML.
     /// </summary>
-    [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
+    [System.Security.Permissions.EnvironmentPermissionAttribute(System.Security.Permissions.SecurityAction.LinkDemand, Unrestricted = true)]
     public class ConfiguracionXmlLogger : ConfiguracionLogger
     {
         #region Atributos
@@ -42,7 +41,7 @@ namespace Orbita.Trazabilidad
         /// Configurar de loggers desde el fichero Xml correspondiente.
         /// </summary>
         /// <param name="fichero">Fichero de logger.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
+        [System.Security.Permissions.EnvironmentPermissionAttribute(System.Security.Permissions.SecurityAction.LinkDemand, Unrestricted = true)]
         void ConfigurarDesdeFichero(string fichero)
         {
             string clave = System.IO.Path.GetFullPath(fichero);
@@ -70,7 +69,7 @@ namespace Orbita.Trazabilidad
         /// Configurar desde elemento dado.
         /// </summary>
         /// <param name="elemento">Elemento Xml.</param>
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
+        [System.Security.Permissions.EnvironmentPermissionAttribute(System.Security.Permissions.SecurityAction.LinkDemand, Unrestricted = true)]
         void ConfigurarDesdeElementoXml(System.Xml.XmlElement elemento)
         {
             foreach (System.Xml.XmlNode nodo in elemento.ChildNodes)
@@ -153,7 +152,7 @@ namespace Orbita.Trazabilidad
         #endregion
 
         #region Métodos privados estáticos
-        [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
+        [System.Security.Permissions.EnvironmentPermissionAttribute(System.Security.Permissions.SecurityAction.LinkDemand, Unrestricted = true)]
         static void ConfigurarPropiedadesDesdeElementoXml(ConfiguracionLogger config, System.Xml.XmlElement elemento)
         {
             if (elemento == null)

@@ -51,10 +51,8 @@ namespace Orbita.BBDD
                 {
                     // Crear una nueva conexión.
                     OConexion conexion = new OConexion(info);
-
                     // Asignar identificador de transacción.
                     conexion.Identificador = System.Guid.NewGuid();
-
                     // Añadir a la colección.
                     this.conexiones.Add(conexion.Identificador, conexion);
                     return conexion;

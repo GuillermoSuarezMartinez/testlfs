@@ -14,8 +14,8 @@ namespace Orbita.Utiles
     /// <summary>
     /// Clase utilizada para almacenar un par de valores
     /// </summary>
-    /// <typeparam name="TFirst">Tipo del primer valor</typeparam>
-    /// <typeparam name="TSecond">Tipo del segundo valor</typeparam>
+    /// <typeparam name="TFirst">Tipo del primer valor.</typeparam>
+    /// <typeparam name="TSecond">Tipo del segundo valor.</typeparam>
     public class OPair<TFirst, TSecond>
     {
         #region Atributos
@@ -46,7 +46,7 @@ namespace Orbita.Utiles
     }
 
     /// <summary>
-    /// Clase utilizada para almacenar un trío de valores
+    /// Clase utilizada para almacenar un trío de valores.
     /// </summary>
     /// <typeparam name="TFirst">Tipo del primer valor</typeparam>
     /// <typeparam name="TSecond">Tipo del segundo valor</typeparam>
