@@ -392,7 +392,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OLogsControlesVA.ControlesVA.Error(e.CodCamara, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, e.CodCamara);
             }
         }
 
@@ -409,7 +409,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OLogsControlesVA.ControlesVA.Error(e.CodCamara, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, e.CodCamara);
             }
         }
 
@@ -427,7 +427,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OLogsControlesVA.ControlesVA.Error(e.CodCamara, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, e.CodCamara);
             }
         }
         #endregion
