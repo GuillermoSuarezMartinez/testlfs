@@ -1580,7 +1580,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Variables, "CambioValor", exception);
+                OLogsVAComun.Variables.Error(exception, "CambioValor");
             }
         }
 
@@ -1763,7 +1763,7 @@ namespace Orbita.VA.Comun
                     }
                     catch (Exception exception)
                     {
-                        OVALogsManager.Error(ModulosSistema.Variables, "CambioValor", exception);
+                        OLogsVAComun.Variables.Error(exception, "CambioValor");
                     }
                 }
             }
@@ -1970,7 +1970,7 @@ namespace Orbita.VA.Comun
             {
                 // Insertamos la traza
                 this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.CambioValor);
-                OVALogsManager.Debug(ModulosSistema.Variables, "SetValor", "La variable " + this.Codigo + " cambia su valor a " + OObjeto.ToString(valor));
+                OLogsVAComun.Variables.Debug("SetValor", "La variable " + this.Codigo + " cambia su valor a " + OObjeto.ToString(valor));
 
                 // Establecimiento del valor
                 this.Valor = valor;
@@ -2095,7 +2095,7 @@ namespace Orbita.VA.Comun
             {
                 // Insertamos la traza
                 this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.ForzarValor);
-                OVALogsManager.Info(ModulosSistema.Variables, "SetValor", "La variable " + this.Codigo + " cambia su valor a " + OObjeto.ToString(valor));
+                OLogsVAComun.Variables.Info("SetValor", "La variable " + this.Codigo + " cambia su valor a " + OObjeto.ToString(valor));
 
                 // Establecimiento del valor
                 this.Valor = valor;
@@ -2125,7 +2125,7 @@ namespace Orbita.VA.Comun
             {
                 // Insertamos la traza
                 this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.DisparoSuscripciones);
-                OVALogsManager.Debug(ModulosSistema.Variables, "SetValor", "La variable " + this.Codigo + " realiza un disparo");
+                OLogsVAComun.Variables.Debug("SetValor", "La variable " + this.Codigo + " realiza un disparo");
 
                 // Establecimiento del valor
                 this.AccionesTrasEstablecerValor();
@@ -2403,7 +2403,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Variables, "Secuencia", exception);
+                OLogsVAComun.Variables.Error(exception, "Secuencia");
             }
         }
 
@@ -2742,7 +2742,7 @@ namespace Orbita.VA.Comun
             {
                 info += "Valor: (vacio); ";
             }
-            OVALogsManager.Debug(ModulosSistema.Variables, traza.CodVariable, info);
+            OLogsVAComun.Variables.Debug(traza.CodVariable, info);
         }
 
         #endregion
@@ -2852,7 +2852,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Variables, "Trazabilidad", exception);
+                OLogsVAComun.Variables.Error(exception, "Trazabilidad");
             }
         }
 

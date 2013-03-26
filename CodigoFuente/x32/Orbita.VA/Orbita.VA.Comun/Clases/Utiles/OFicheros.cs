@@ -52,7 +52,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Comun, "CreacionDirectorio", exception);
+                OLogsVAComun.Comun.Error(exception, "CreacionDirectorio");
             }
 
             return false;
@@ -136,7 +136,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Comun, "DirectoryCopy", exception);
+                OLogsVAComun.Comun.Error(exception, "DirectoryCopy");
             }
             return resultado;
         }
@@ -192,7 +192,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Comun, "DirectoryMove", exception);
+                OLogsVAComun.Comun.Error(exception, "DirectoryMove");
             }
             return resultado;
         }

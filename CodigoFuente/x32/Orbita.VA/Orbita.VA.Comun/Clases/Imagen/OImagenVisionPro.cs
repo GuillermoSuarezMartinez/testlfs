@@ -147,7 +147,7 @@ namespace Orbita.VA.Comun
                 }
                 catch (Exception exception)
                 {
-                    OVALogsManager.Error(ModulosSistema.ImagenGraficos, "VisionProImage_Clone", exception);
+                    OLogsVAComun.ImagenGraficos.Error(exception, "VisionProImage_Clone");
                 }
             }
             return imagenResultado;
@@ -189,7 +189,7 @@ namespace Orbita.VA.Comun
                     }
                     catch (Exception exception)
                     {
-                        OVALogsManager.Error(ModulosSistema.ImagenGraficos, "VisionProImage", exception);
+                        OLogsVAComun.ImagenGraficos.Error(exception, "VisionProImage");
                     }
                     stream.Close();
 
@@ -198,7 +198,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, "VisionProImage", exception);
+                OLogsVAComun.ImagenGraficos.Error(exception, "VisionProImage");
             }
 
             return false;
@@ -234,7 +234,7 @@ namespace Orbita.VA.Comun
                         }
                         catch (Exception exception)
                         {
-                            OVALogsManager.Error(ModulosSistema.ImagenGraficos, "VisionProImage", exception);
+                            OLogsVAComun.ImagenGraficos.Error(exception, "VisionProImage");
                         }
                         stream.Close();
                         this.Image.PixelFromRootTransform = extras.PixelFromRootTransform;
@@ -246,7 +246,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, "VisionProImage", exception);
+                OLogsVAComun.ImagenGraficos.Error(exception, "VisionProImage");
             }
 
             return false;
@@ -405,7 +405,7 @@ namespace Orbita.VA.Comun
                     }
                     catch (Exception exception)
                     {
-                        OVALogsManager.Error(ModulosSistema.ImagenGraficos, "VisionProImage", exception);
+                        OLogsVAComun.ImagenGraficos.Error(exception, "VisionProImage");
                         resultado = null;
                     }
                     stream.Close();
@@ -605,7 +605,7 @@ namespace Orbita.VA.Comun
                     }
                     catch (Exception exception)
                     {
-                        OVALogsManager.Error(ModulosSistema.ImagenGraficos, "VisionProGrafico", exception);
+                        OLogsVAComun.ImagenGraficos.Error(exception, "VisionProGrafico");
                     }
                     stream.Close();
 
@@ -614,7 +614,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, "VisionProGrafico", exception);
+                OLogsVAComun.ImagenGraficos.Error(exception, "VisionProGrafico");
             }
 
             return false;
@@ -641,7 +641,7 @@ namespace Orbita.VA.Comun
                     }
                     catch (Exception exception)
                     {
-                        OVALogsManager.Error(ModulosSistema.ImagenGraficos, "VisionProGrafico", exception);
+                        OLogsVAComun.ImagenGraficos.Error(exception, "VisionProGrafico");
                     }
                     stream.Close();
                     this.Grafico = graficoVPro;
@@ -651,7 +651,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, "VisionProGrafico", exception);
+                OLogsVAComun.ImagenGraficos.Error(exception, "VisionProGrafico");
             }
 
             return false;

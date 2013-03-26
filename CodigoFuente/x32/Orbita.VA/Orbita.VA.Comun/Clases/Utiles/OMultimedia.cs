@@ -52,7 +52,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Comun, "ConversionFicheroImagen", exception);
+                OLogsVAComun.Multimedia.Error(exception, "ConversionFicheroImagen");
             }
             return resultado;
         }

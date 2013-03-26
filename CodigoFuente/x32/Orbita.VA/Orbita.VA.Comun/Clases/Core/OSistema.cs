@@ -258,7 +258,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Comun, "GetDiskSpace", exception);
+                OLogsVAComun.Sistema.Error(exception, "GetDiskSpace");
             }
 
             return space;
@@ -457,11 +457,6 @@ namespace Orbita.VA.Comun
         /// Lista de informaciones de las bases de datos existentes en el sistema
         /// </summary>
         public List<InformacionBasesDatos> ListaInformacionBasesDatos;
-
-        /// <summary>
-        /// Opciones de configuración del registro de eventos
-        /// </summary>
-        public OpcionesLogs OpcionesLogs;
         #endregion
 
         #region Constructor
@@ -472,7 +467,6 @@ namespace Orbita.VA.Comun
             : base(ConfFile)
         {
             this.ListaInformacionBasesDatos = new List<InformacionBasesDatos>();
-            this.OpcionesLogs = new OpcionesLogs();
         }
 
         /// <summary>

@@ -88,7 +88,7 @@ namespace Orbita.VA.Comun
                 }
                 catch (Exception exception)
                 {
-                    OVALogsManager.Error(ModulosSistema.Multimedia, "Consultar la validez de la ruta: " + this.Codigo, exception);
+                    OLogsVAComun.Multimedia.Error(exception, "Consultar la validez de la ruta: ", this.Codigo);
                 }
             }
         }
@@ -282,7 +282,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Multimedia, "Inicio de la grabación de video: " + this.Codigo, exception);
+                OLogsVAComun.Multimedia.Error(exception, "Inicio de la grabación de video: " + this.Codigo);
             }
 
             return resultado;
@@ -302,7 +302,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Multimedia, "Fin de la grabación de video: " + this.Codigo, exception);
+                OLogsVAComun.Multimedia.Error(exception, "Fin de la grabación de video: " + this.Codigo);
             }
         }
         #endregion
@@ -323,7 +323,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Info(ModulosSistema.Multimedia, "Añadir Frame al video: " + this.Codigo, exception);
+                OLogsVAComun.Multimedia.Info(exception, "Añadir Frame al video: " + this.Codigo);
             }
         }
 
@@ -355,7 +355,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Info(ModulosSistema.Multimedia, "Guardado en disco del video: " + this.Codigo, exception);
+                OLogsVAComun.Multimedia.Info(exception, "Guardado en disco del video: " + this.Codigo);
             }
         }
         #endregion

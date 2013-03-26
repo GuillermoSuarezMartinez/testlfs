@@ -167,7 +167,7 @@ namespace Orbita.VA.Comun
                 }
                 catch (Exception exception)
                 {
-                    OVALogsManager.Error(ModulosSistema.ImagenGraficos, "ImagenBitmap_Clone", exception);
+                    OLogsVAComun.ImagenGraficos.Error(exception, "ImagenBitmap_Clone");
                 }
             }
             return imagenResultado;

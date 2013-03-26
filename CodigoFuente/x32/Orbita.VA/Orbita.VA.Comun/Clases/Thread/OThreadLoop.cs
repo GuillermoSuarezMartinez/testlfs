@@ -156,7 +156,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Info(ModulosSistema.Threads, "SincronizarConThreadPrincipal", exception);
+                OLogsVAComun.Threads.Info(exception, "SincronizarConThreadPrincipal");
             }
         }
 
@@ -413,7 +413,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Info(ModulosSistema.Threads, "LanzarEventoEjecucion", exception);
+                OLogsVAComun.Threads.Info(exception, "LanzarEventoEjecucion");
             }
         }
 
@@ -438,7 +438,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Info(ModulosSistema.Threads, "LanzarEventoFinEjecucion", exception);
+                OLogsVAComun.Threads.Info(exception, "LanzarEventoFinEjecucion");
             }
         }
         #endregion
@@ -490,7 +490,7 @@ namespace Orbita.VA.Comun
                 }
                 catch (Exception exception)
                 {
-                    OVALogsManager.Error(ModulosSistema.Threads, "Stop", exception);
+                    OLogsVAComun.Threads.Error(exception, "Stop");
                 }
             }
         }
@@ -565,7 +565,7 @@ namespace Orbita.VA.Comun
                 }
                 catch (Exception exception)
                 {
-                    OVALogsManager.Info(ModulosSistema.Threads, "Wait", exception);
+                    OLogsVAComun.Threads.Info(exception, "Wait");
                 }
             }
 
@@ -693,7 +693,7 @@ namespace Orbita.VA.Comun
                     }
                     catch (Exception exception)
                     {
-                        OVALogsManager.Info(ModulosSistema.Threads, "EjecucionInterna: " + this._Codigo, exception);
+                        OLogsVAComun.Threads.Info(exception, "EjecucionInterna: " + this._Codigo);
                     }
                     Thread.Sleep(this._TiempoSleep);
                 }

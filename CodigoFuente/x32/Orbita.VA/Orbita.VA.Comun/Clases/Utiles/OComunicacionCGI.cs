@@ -150,7 +150,7 @@ namespace Orbita.VA.Comun
                 catch (Exception exception)
                 {
                     resultado = TipoContenidoRespuestaCGI.Desconocido;
-                    OVALogsManager.Error(ModulosSistema.Comun, "ExtraeTipoContenidoRespuestaComandoCGI", exception);
+                    OLogsVAComun.Comun.Error(exception, "ExtraeTipoContenidoRespuestaComandoCGI");
                 }
 
                 return resultado;
@@ -178,7 +178,7 @@ namespace Orbita.VA.Comun
                 }
                 catch (Exception exception)
                 {
-                    OVALogsManager.Error(ModulosSistema.Comun, "ExtraeLimiteRespuestaComandoCGI", exception);
+                    OLogsVAComun.Comun.Error(exception, "ExtraeLimiteRespuestaComandoCGI");
                 }
 
                 return resultado;
@@ -274,7 +274,7 @@ namespace Orbita.VA.Comun
                 this.Request = null;
                 this.Response = null;
                 this.Stream = null;
-                OVALogsManager.Info(ModulosSistema.Comun, "StartComandoCGI", exception);
+                OLogsVAComun.Comun.Info(exception, "StartComandoCGI");
             }
 
             this.Conectado = resultado;
@@ -316,7 +316,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Comun, "StopComandoCGI", exception);
+                OLogsVAComun.Comun.Error(exception, "StopComandoCGI");
             }
 
             return resultado;
@@ -405,7 +405,7 @@ namespace Orbita.VA.Comun
             {
                 resultado = false;
                 respuesta = string.Empty;
-                OVALogsManager.Info(ModulosSistema.Comun, "EjecucionComandoCGITexto", exception);
+                OLogsVAComun.Comun.Info(exception, "EjecucionComandoCGITexto");
             }
 
             return resultado;
@@ -452,7 +452,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Info(ModulosSistema.Comun, "OComunicacionCGIDummy", exception);
+                OLogsVAComun.Comun.Info(exception, "OComunicacionCGIDummy");
             }
 
             return resultado;

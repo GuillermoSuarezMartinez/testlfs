@@ -142,7 +142,7 @@ namespace Orbita.VA.Comun
 				Type tipoClaseImplementadora = assembly.GetType(claseImplementadora);
 				if (tipoClaseImplementadora == null)
 				{
-					OVALogsManager.Fatal(ModulosSistema.Comun, "Constructor clase", "No se encuentra la clase implementadora " + claseImplementadora);
+					OLogsVAComun.Comun.Fatal("Constructor clase", "No se encuentra la clase implementadora " + claseImplementadora);
 				}
 				else
 				{
@@ -152,7 +152,7 @@ namespace Orbita.VA.Comun
 			}
 			catch (Exception exception)
 			{
-				OVALogsManager.Error(ModulosSistema.Comun, "ConstruirClasePorReflexión", exception, string.Format("Ensamblado: {0}, Clase: {1}", ensamblado, claseImplementadora));
+                OLogsVAComun.Comun.Error(exception, "ConstruirClasePorReflexión", string.Format("Ensamblado: {0}, Clase: {1}", ensamblado, claseImplementadora));
 			}
 			return resultado;
 		}
@@ -175,7 +175,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Comun, "ConstruirClasePorReflexión", exception, string.Format("Clase: {0}", claseImplementadora.ToString()));
+                OLogsVAComun.Comun.Error(exception, "ConstruirClasePorReflexión", string.Format("Clase: {0}", claseImplementadora.ToString()));
             }
             return resultado;
         }

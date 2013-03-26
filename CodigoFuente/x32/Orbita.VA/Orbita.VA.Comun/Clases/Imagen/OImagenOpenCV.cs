@@ -162,7 +162,7 @@ namespace Orbita.VA.Comun
                 }
                 catch (Exception exception)
                 {
-                    OVALogsManager.Error(ModulosSistema.ImagenGraficos, "ImagenOpenCV_Clone", exception);
+                    OLogsVAComun.ImagenGraficos.Error(exception, "ImagenOpenCV_Clone");
                 }
             }
             return imagenResultado;
@@ -195,7 +195,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, "ImagenOpenCV_Guardar", exception);
+                OLogsVAComun.ImagenGraficos.Error(exception, "ImagenOpenCV_Guardar");
             }
 
             return false;
@@ -220,7 +220,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, "ImagenOpenCV_Cargar", exception);
+                OLogsVAComun.ImagenGraficos.Error(exception, "ImagenOpenCV_Cargar");
             }
 
             return false;
@@ -317,7 +317,7 @@ namespace Orbita.VA.Comun
                     }
                     catch (Exception exception)
                     {
-                        OVALogsManager.Error(ModulosSistema.ImagenGraficos, "ImagenOpenCV_FromArray", exception);
+                        OLogsVAComun.ImagenGraficos.Error(exception, "ImagenOpenCV_FromArray");
                         resultado = null;
                     }
                     stream.Close();

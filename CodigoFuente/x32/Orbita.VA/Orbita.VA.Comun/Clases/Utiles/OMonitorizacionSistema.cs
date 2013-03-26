@@ -119,7 +119,7 @@ namespace Orbita.VA.Comun
 
             foreach (string info in listaLogs)
             {
-                OVALogsManager.Info(ModulosSistema.Monitorizacion, "MonitorizaciónSistema", info);
+                OLogsVAComun.Monitorizacion.Info("MonitorizaciónSistema", info);
             }
         }
         #endregion

@@ -168,7 +168,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Info(ModulosSistema.Threads, "LanzarEventoConsumidor", exception);
+                OLogsVAComun.Threads.Info(exception, "LanzarEventoConsumidor");
             }
         }
 
@@ -200,7 +200,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Info(ModulosSistema.Threads, "LanzarEventoProductor", exception);
+                OLogsVAComun.Threads.Info(exception, "LanzarEventoProductor");
             }
         }
 
@@ -229,7 +229,7 @@ namespace Orbita.VA.Comun
             }
             catch (Exception exception)
             {
-                OVALogsManager.Info(ModulosSistema.Threads, "LanzarEventoMonitorizacion", exception);
+                OLogsVAComun.Threads.Info(exception, "LanzarEventoMonitorizacion");
             }
         }
         #endregion
@@ -466,7 +466,7 @@ namespace Orbita.VA.Comun
                 }
                 catch (Exception exception)
                 {
-                    OVALogsManager.Info(ModulosSistema.Threads, "EjecucionProductor", exception);
+                    OLogsVAComun.Threads.Info(exception, "EjecucionProductor");
                 }
 
                 // Llamada al consumidor
@@ -486,7 +486,7 @@ namespace Orbita.VA.Comun
                 }
                 catch (Exception exception)
                 {
-                    OVALogsManager.Info(ModulosSistema.Threads, "EjecucionConsumidor", exception);
+                    OLogsVAComun.Threads.Info(exception, "EjecucionConsumidor");
                 }
             }
 

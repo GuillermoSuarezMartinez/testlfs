@@ -144,7 +144,7 @@ namespace Orbita.VA.Comun
                 List<string> listaResumen = Resumen(textoFormateado);
                 foreach (string textoResumen in listaResumen)
                 {
-                    OVALogsManager.Info(ModulosSistema.GestionMemoria, "LargeObjectsRuntime", textoResumen);
+                    OLogsVAComun.GestionMemoria.Info("LargeObjectsRuntime", textoResumen);
                 }
             }
         }
@@ -205,7 +205,7 @@ namespace Orbita.VA.Comun
             if (esperaFinalizacion)
             {
                 GC.WaitForPendingFinalizers();
-                OVALogsManager.Info(ModulosSistema.Comun, "Colector de basura", "Duración: " + OCronometrosManager.DuracionUltimaEjecucion("GarbageCollector").TotalMilliseconds.ToString());
+                OLogsVAComun.Comun.Info("Colector de basura", "Duración: " + OCronometrosManager.DuracionUltimaEjecucion("GarbageCollector").TotalMilliseconds.ToString());
             }
 
             OCronometrosManager.Stop("GarbageCollector");
