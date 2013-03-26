@@ -176,7 +176,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Monitorizacion, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
 
@@ -209,7 +209,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.MonitorizacionVariables, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
 
@@ -235,7 +235,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Monitorizacion, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
         #endregion

@@ -134,7 +134,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                //OVALogsManager.Error(OModulosSistema.Escritorios, "ComprobacionesDeCampos", exception);
+                //OLogsControlesVA.ControlesVA.Error(exception, "ComprobacionesDeCampos");
                 OMensajes.MostrarAviso(exception.Message);
                 resultado = false;
             }
@@ -237,7 +237,7 @@ namespace Orbita.Controles.VA
             }
             catch (System.Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Escritorios, "Guardar datos", exception);
+                OLogsControlesVA.ControlesVA.Error(exception, "Guardar datos");
                 resultado = false;
             }
             return resultado;
@@ -336,7 +336,7 @@ namespace Orbita.Controles.VA
             }
             catch (System.Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Escritorios, "Nuevo escritorio", exception);
+                OLogsControlesVA.ControlesVA.Error(exception, "Nuevo escritorio");
             }
         }
 
@@ -355,7 +355,7 @@ namespace Orbita.Controles.VA
             }
             catch (System.Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Escritorios, "Eliminar escritorio", exception);
+                OLogsControlesVA.ControlesVA.Error(exception, "Eliminar escritorio");
             }
         }
 
@@ -380,7 +380,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Escritorios, "ClickEnBarraGridEscritorios", exception);
+                OLogsControlesVA.ControlesVA.Error(exception, "ClickEnBarraGridEscritorios");
             }
         }
 
@@ -407,7 +407,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.Escritorios, "FinEdicionGridEscritorios", exception);
+                OLogsControlesVA.ControlesVA.Error(exception, "FinEdicionGridEscritorios");
             }
         }
         #endregion

@@ -128,7 +128,7 @@ namespace Orbita.Controles.VA
                 }
                 catch (Exception exception)
                 {
-                    OVALogsManager.Error(OModulosControl.MonitorizacionMaquinasEstado, this.Name, exception);
+                    OLogsControlesVA.ControlesVA.Error(exception, this.Name);
                 }
             }
         }
@@ -161,7 +161,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MonitorizacionMaquinasEstado, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
 
@@ -177,7 +177,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MonitorizacionMaquinasEstado, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
 
@@ -200,7 +200,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MonitorizacionMaquinasEstado, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
 
@@ -219,7 +219,7 @@ namespace Orbita.Controles.VA
                 }
                 catch (Exception exception)
                 {
-                    OVALogsManager.Error(OModulosControl.MonitorizacionMaquinasEstado, this.Name, exception);
+                    OLogsControlesVA.ControlesVA.Error(exception, this.Name);
                 }
             }
         }
@@ -246,7 +246,7 @@ namespace Orbita.Controles.VA
                 }
                 catch (Exception exception)
                 {
-                    OVALogsManager.Error(OModulosControl.MonitorizacionMaquinasEstado, this.Name, exception);
+                    OLogsControlesVA.ControlesVA.Error(exception, this.Name);
                 }
             }
         }
@@ -274,7 +274,7 @@ namespace Orbita.Controles.VA
                 }
                 catch (Exception exception)
                 {
-                    OVALogsManager.Error(OModulosControl.MonitorizacionMaquinasEstado, this.Name, exception);
+                    OLogsControlesVA.ControlesVA.Error(exception, this.Name);
                 }
             }
         }
@@ -303,7 +303,7 @@ namespace Orbita.Controles.VA
                 }
                 catch (Exception exception)
                 {
-                    OVALogsManager.Error(OModulosControl.MonitorizacionMaquinasEstado, this.Name, exception);
+                    OLogsControlesVA.ControlesVA.Error(exception, this.Name);
                 }
             }
         }
@@ -331,7 +331,7 @@ namespace Orbita.Controles.VA
                 }
                 catch (Exception exception)
                 {
-                    OVALogsManager.Error(OModulosControl.MonitorizacionMaquinasEstado, this.Name, exception);
+                    OLogsControlesVA.ControlesVA.Error(exception, this.Name);
                 }
             }
         }
@@ -355,7 +355,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MonitorizacionMaquinasEstado, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
 
@@ -378,7 +378,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MonitorizacionMaquinasEstado, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
 
@@ -401,7 +401,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MonitorizacionMaquinasEstado, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
 
@@ -424,7 +424,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MonitorizacionMaquinasEstado, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
 
@@ -447,7 +447,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MonitorizacionMaquinasEstado, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
 
@@ -464,7 +464,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MonitorizacionMaquinasEstado, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
 
@@ -605,7 +605,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MonitorizacionMaquinasEstado, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 

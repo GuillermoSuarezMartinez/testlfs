@@ -108,6 +108,9 @@
     <Reference Include="Infragistics2.Win.v11.2">
       <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.v11.2.dll</HintPath>
     </Reference>
+    <Reference Include="Orbita.Trazabilidad">
+      <HintPath>..\..\Comun\Orbita\Orbita.Trazabilidad.dll</HintPath>
+    </Reference>
     <Reference Include="Orbita.Utiles">
       <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
     </Reference>
@@ -206,6 +209,7 @@
     <Compile Include="Hardware\Formularios\FrmMonitorizacionIO.Designer.cs">
       <DependentUpon>FrmMonitorizacionIO.cs</DependentUpon>
     </Compile>
+    <Compile Include="Logs\OExtensionLogs.cs" />
     <Compile Include="MaquinasEstados\Custom\OrbitaVisorMaquinaEstados.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -665,6 +669,7 @@
   <ItemGroup>
     <None Include="Resources\BtnAplicar24.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)Orbita.Controles.VA.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I

@@ -72,7 +72,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, "Procesar", exception);
+                OLogsControlesVA.ControlesVA.Error(exception, "Procesar");
             }
 
         }

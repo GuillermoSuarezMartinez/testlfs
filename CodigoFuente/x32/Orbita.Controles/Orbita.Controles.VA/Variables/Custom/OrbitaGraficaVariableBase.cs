@@ -97,7 +97,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.MonitorizacionVariables, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
 

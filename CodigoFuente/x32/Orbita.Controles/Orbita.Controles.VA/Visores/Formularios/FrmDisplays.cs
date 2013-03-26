@@ -392,7 +392,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, e.CodCamara, exception);
+                OLogsControlesVA.ControlesVA.Error(e.CodCamara, exception);
             }
         }
 
@@ -409,7 +409,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, e.CodCamara, exception);
+                OLogsControlesVA.ControlesVA.Error(e.CodCamara, exception);
             }
         }
 
@@ -427,7 +427,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, e.CodCamara, exception);
+                OLogsControlesVA.ControlesVA.Error(e.CodCamara, exception);
             }
         }
         #endregion

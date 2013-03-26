@@ -145,7 +145,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(OModulosControl.Monitorizacion, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
         #endregion

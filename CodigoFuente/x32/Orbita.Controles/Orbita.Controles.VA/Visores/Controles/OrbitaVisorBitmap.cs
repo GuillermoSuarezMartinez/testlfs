@@ -1007,7 +1007,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1024,7 +1024,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1041,7 +1041,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1056,7 +1056,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1071,7 +1071,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1086,7 +1086,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1103,7 +1103,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1121,7 +1121,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1141,7 +1141,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1161,7 +1161,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1178,7 +1178,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1195,7 +1195,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1213,7 +1213,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1230,7 +1230,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1248,7 +1248,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1268,7 +1268,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1286,7 +1286,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1303,7 +1303,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1321,7 +1321,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -1338,7 +1338,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
             this.TimerUpdateAutoScrollPosition.Stop();
         }
@@ -1356,7 +1356,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
             this.TimerUpdateCursorPosition.Stop();
         }
@@ -1374,7 +1374,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
             this.TimerUpdateZoomLevel.Stop();
         }
@@ -1392,7 +1392,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
             this.TimerUpdateViewSize.Stop();
         }
@@ -1410,7 +1410,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
             this.TimerUpdateSelecction.Stop();
         }
@@ -1428,7 +1428,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
             this.TimerUpdateFps.Stop();
         }
@@ -1461,7 +1461,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
         #endregion

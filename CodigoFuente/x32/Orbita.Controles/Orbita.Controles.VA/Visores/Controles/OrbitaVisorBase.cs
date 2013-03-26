@@ -709,7 +709,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -731,7 +731,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
 
@@ -794,7 +794,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosSistema.ImagenGraficos, this.Codigo, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
         #endregion

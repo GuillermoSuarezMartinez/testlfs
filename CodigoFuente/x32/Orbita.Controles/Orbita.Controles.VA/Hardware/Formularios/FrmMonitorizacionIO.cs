@@ -228,7 +228,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.Monitorizacion, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
 
@@ -253,7 +253,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.Monitorizacion, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
 
@@ -282,7 +282,7 @@ namespace Orbita.Controles.VA
                 //                        }
                 //                        catch (Exception exception)
                 //                        {
-                //                            OVALogsManager.Warning(OModulosHardware.Monitorizacion, this.Name, "Warning: " + exception.ToString());
+                //                            OLogsControlesVA.ControlesVA.Warn(this.Name, "Warning: " .ToString());
                 //                        }
                 //                    }
                 //                }
@@ -292,7 +292,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.Monitorizacion, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
 
@@ -323,7 +323,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.Monitorizacion, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
         }
 
@@ -341,7 +341,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Error(ModulosHardware.Monitorizacion, this.Name, exception);
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
             }
             this.TimerRefresco.Enabled = true;
         }

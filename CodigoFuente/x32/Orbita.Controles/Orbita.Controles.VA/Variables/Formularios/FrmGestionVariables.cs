@@ -64,7 +64,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                //OVALogsManager.Error(OModulosSistema.Comun, "DirectoryCopy", exception);
+                //OLogsControlesVA.Comun.Error(exception, "DirectoryCopy");
                 //MensajeError.MostrarExcepcion(ex);
             }
         }
@@ -94,7 +94,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OVALogsManager.Fatal(ModulosSistema.GestionVariables, "Eliminación", exception);
+                OLogsControlesVA.ControlesVA.Fatal("Eliminación", exception);
             }
         }
         /// <summary>
