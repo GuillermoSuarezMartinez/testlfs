@@ -7,6 +7,10 @@
 // Last Modified On : 02-21-2011
 // Description      : 
 //
+// Last Modified By : aibañez
+// Last Modified On : 27-03-2013
+// Description      : Modificada función GetLoggers para devolver un diccionario
+//
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System.Collections.Generic;
