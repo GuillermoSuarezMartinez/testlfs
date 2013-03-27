@@ -51,6 +51,14 @@ namespace Orbita.Trazabilidad
             return logger;
         }
         /// <summary>
+        /// Colección de loggers.
+        /// </summary>
+        /// <returns></returns>
+        public static System.Collections.Hashtable GetLoggers()
+        {
+            return Repositorio;
+        }
+        /// <summary>
         /// Asignar logger al repositorio.
         /// </summary>
         /// <param name="logger">Interface de logger.</param>
