@@ -9,6 +9,10 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System.Collections.Generic;
+using System.Linq;
+using System.Collections;
+
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -54,9 +58,9 @@ namespace Orbita.Trazabilidad
         /// Colección de loggers.
         /// </summary>
         /// <returns></returns>
-        public static System.Collections.Hashtable GetLoggers()
+        public static Dictionary<string, ILogger> GetLoggers()
         {
-            return Repositorio;
+            return Repositorio.Cast<DictionaryEntry>().ToDictionary(kvp => (string)kvp.Key, kvp => (ILogger)((SimpleLogger)kvp.Value).Logger);
         }
         /// <summary>
         /// Asignar logger al repositorio.
