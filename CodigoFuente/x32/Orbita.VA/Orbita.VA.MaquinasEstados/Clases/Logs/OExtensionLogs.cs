@@ -23,7 +23,7 @@ namespace Orbita.VA.MaquinasEstados
         /// <summary>
         /// Módulo de las máquinas de estado
         /// </summary>
-        public static ILogger MaquinasEstado = LogManager.GetLogger("MaquinasEstado");
+        public static ILogger MaquinasEstados = LogManager.GetLogger("MaquinasEstados");
         #endregion
     }
 }
