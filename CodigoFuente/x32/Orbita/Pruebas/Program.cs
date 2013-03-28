@@ -16,7 +16,8 @@ namespace Pruebas
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            string fichero = @"C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Trazabilidad\Config\Ejemplos\Wrapper2.full.config.xml";
+            //string fichero = @"C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Trazabilidad\Config\Ejemplos\Wrapper2.full.config.xml";
+            string fichero = @"C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Trazabilidad\Config\Ejemplos\Debug.config.xml";
             LogManager.ConfiguracionLogger(fichero);
             Application.Run(new Form1());
         }

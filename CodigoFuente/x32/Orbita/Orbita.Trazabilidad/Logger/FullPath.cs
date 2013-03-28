@@ -35,7 +35,8 @@ namespace Orbita.Trazabilidad
         /// <param name="path">Ruta de almacenamiento de ficheros.</param>
         public FullPath(string path)
         {
-            this.Path = path;
+            //this.Path = path;
+            this.path = path;
         }
         #endregion
 

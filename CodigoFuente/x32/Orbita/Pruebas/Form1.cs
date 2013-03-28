@@ -12,15 +12,15 @@ namespace Pruebas
 {
     public partial class Form1 : Form
     {
-        ILogger logger1 = LogManager.GetLogger("ServidorCamaras");
-        ILogger logger2 = LogManager.GetLogger("FormulariosServidorCamaras");
+        ILogger logger1 = LogManager.GetLogger("odebug");
+        //ILogger logger2 = LogManager.GetLogger("FormulariosServidorCamaras");
 
         public Form1()
         {
             InitializeComponent();
             Exception ex = new Exception();
-            logger1.Info(ex);
-            logger2.Debug("pp2");
+            logger1.Debug(ex);
+          //  logger2.Debug("pp2");
         }
     }
 }
