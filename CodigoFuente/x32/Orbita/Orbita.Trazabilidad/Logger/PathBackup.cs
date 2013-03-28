@@ -9,8 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.Globalization;
-using System.Windows.Forms;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -30,7 +28,7 @@ namespace Orbita.Trazabilidad
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.PathBackup.
         /// </summary>
         public PathBackup()
-            : this(string.Format(CultureInfo.CurrentCulture, @"{0}\{1}", Application.StartupPath, Orbita.Trazabilidad.Ruta.Backup)) { }
+            : this(string.Format(System.Globalization.CultureInfo.CurrentCulture, @"{0}\{1}", System.Windows.Forms.Application.StartupPath, Orbita.Trazabilidad.Ruta.Backup)) { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.PathBackup.
         /// </summary>
@@ -42,7 +40,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="subPath">Subruta de almacenamiento de ficheros de backup de logger.</param>
         public PathBackup(Orbita.Trazabilidad.Mascara subPath)
-            : this(string.Format(CultureInfo.CurrentCulture, @"{0}\{1}", Application.StartupPath, Orbita.Trazabilidad.Ruta.Backup), subPath) { }
+            : this(string.Format(System.Globalization.CultureInfo.CurrentCulture, @"{0}\{1}", System.Windows.Forms.Application.StartupPath, Orbita.Trazabilidad.Ruta.Backup), subPath) { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.PathBackup.
         /// </summary>

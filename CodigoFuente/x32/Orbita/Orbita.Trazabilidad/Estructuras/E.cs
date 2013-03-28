@@ -9,14 +9,12 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.Diagnostics.CodeAnalysis;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
     /// Estructuras generales.
     /// </summary>
-    [SuppressMessageAttribute("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly",
+    [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly",
      Justification = "E interesante para estructuras del lenguaje.")]
     public struct E
     {
@@ -33,7 +31,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="obj">Objeto de comparación.</param>
         /// <returns>Si la instancia y el objeto son iguales.</returns>
-        public override bool Equals(Object obj)
+        public override bool Equals(System.Object obj)
         {
             return false;
         }
@@ -51,7 +49,7 @@ namespace Orbita.Trazabilidad
         /// <param name="e">E de tipo contenedor.</param>
         /// <param name="cadena">Cadena de comparación.</param>
         /// <returns>La igualdad de la cadena de comparación con el tipo.</returns>
-        [SuppressMessageAttribute("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", Justification = "E interesante para estructuras del lenguaje.")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", Justification = "E interesante para estructuras del lenguaje.")]
         public static bool operator ==(Orbita.Trazabilidad.E e, string cadena)
         {
             return e.Equals(cadena);
@@ -62,7 +60,7 @@ namespace Orbita.Trazabilidad
         /// <param name="e">E de tipo contenedor.</param>
         /// <param name="cadena">Cadena de comparación.</param>
         /// <returns>La desigualdad de la cadena de comparación con el tipo.</returns>
-        [SuppressMessageAttribute("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", Justification = "E interesante para estructuras del lenguaje.")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", Justification = "E interesante para estructuras del lenguaje.")]
         public static bool operator !=(Orbita.Trazabilidad.E e, string cadena)
         {
             return !e.Equals(cadena);

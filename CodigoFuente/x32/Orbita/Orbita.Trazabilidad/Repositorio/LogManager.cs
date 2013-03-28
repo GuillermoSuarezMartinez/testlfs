@@ -13,14 +13,11 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.Collections.Generic;
 using System.Linq;
-using System.Collections;
-
 namespace Orbita.Trazabilidad
 {
     /// <summary>
-    /// LogManager.
+    /// Log manager.
     /// </summary>
     public static class LogManager
     {
@@ -62,18 +59,9 @@ namespace Orbita.Trazabilidad
         /// Colección de loggers.
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<string, ILogger> GetLoggers()
+        public static System.Collections.Generic.Dictionary<string, ILogger> GetLoggers()
         {
-            return Repositorio.Cast<DictionaryEntry>().ToDictionary(kvp => (string)kvp.Key, kvp => (ILogger)((SimpleLogger)kvp.Value).Logger);
-        }
-        /// <summary>
-        /// Colección de loggers.
-        /// </summary>
-        /// <returns></returns>
-        public static Dictionary<string, ILogger> GetLoggers<TLogger>()
-            where TLogger: ILogger
-        {
-            return (Dictionary<string, ILogger>)GetLoggers().Where(kvp => kvp.Value is TLogger).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            return Repositorio.Cast<System.Collections.DictionaryEntry>().ToDictionary(kvp => (string)kvp.Key, kvp => (ILogger)((SimpleLogger)kvp.Value).Logger);
         }
         /// <summary>
         /// Asignar logger al repositorio.

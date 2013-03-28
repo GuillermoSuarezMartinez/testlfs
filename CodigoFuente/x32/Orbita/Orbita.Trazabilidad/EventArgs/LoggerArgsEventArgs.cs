@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -41,7 +40,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="item">Item de entrada.</param>
         /// <param name="excepcion">Excepción.</param>
-        public LoggerArgsEventArgs(ItemLog item, Exception excepcion)
+        public LoggerArgsEventArgs(ItemLog item, System.Exception excepcion)
             : base(item, excepcion) { }
         #endregion
 

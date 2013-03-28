@@ -9,9 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -52,15 +49,15 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Evento que se ejecuta antes de escribir en el fichero de logger.
         /// </summary>
-        public event EventHandler<LoggerEventArgs> AntesEscribirLogger;
+        public event System.EventHandler<LoggerEventArgs> AntesEscribirLogger;
         /// <summary>
         /// Evento que se ejecuta tras escribir en el fichero de logger.
         /// </summary>
-        public event EventHandler<LoggerEventArgs> DespuesEscribirLogger;
+        public event System.EventHandler<LoggerEventArgs> DespuesEscribirLogger;
         /// <summary>
         /// Evento que se ejecuta tras producirse un error en la escritura en el fichero de logger.
         /// </summary>
-        public event EventHandler<LoggerEventArgs> ErrorLogger;
+        public event System.EventHandler<LoggerEventArgs> ErrorLogger;
         #endregion
 
         #region Constructores protegidos
@@ -164,7 +161,7 @@ namespace Orbita.Trazabilidad
         /// Logger de tipo debug.
         /// </summary>
         /// <param name="excepcion">Excepción.</param>
-        public void Debug(Exception excepcion)
+        public void Debug(System.Exception excepcion)
         {
             if (ESNivelLogEnabled(NivelLog.Debug))
             {
@@ -176,7 +173,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="excepcion">Excepción.</param>
         /// <param name="mensaje">Mensaje de logger.</param>
-        public void Debug(Exception excepcion, string mensaje)
+        public void Debug(System.Exception excepcion, string mensaje)
         {
             if (ESNivelLogEnabled(NivelLog.Debug))
             {
@@ -189,7 +186,7 @@ namespace Orbita.Trazabilidad
         /// <param name="excepcion">Excepción.</param>
         /// <param name="mensaje">Mensaje de logger.</param>
         /// <param name="args">Argumentos de inclusión.</param>
-        public void Debug(Exception excepcion, string mensaje, params object[] args)
+        public void Debug(System.Exception excepcion, string mensaje, params object[] args)
         {
             if (ESNivelLogEnabled(NivelLog.Debug))
             {
@@ -237,7 +234,7 @@ namespace Orbita.Trazabilidad
         /// Logger de tipo info.
         /// </summary>
         /// <param name="excepcion">Excepción de inclusión.</param>
-        public void Info(Exception excepcion)
+        public void Info(System.Exception excepcion)
         {
             if (ESNivelLogEnabled(NivelLog.Info))
             {
@@ -249,7 +246,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="excepcion">Excepción de inclusión.</param>
         /// <param name="mensaje">Mensaje de logger.</param>
-        public void Info(Exception excepcion, string mensaje)
+        public void Info(System.Exception excepcion, string mensaje)
         {
             if (ESNivelLogEnabled(NivelLog.Info))
             {
@@ -262,7 +259,7 @@ namespace Orbita.Trazabilidad
         /// <param name="excepcion"></param>
         /// <param name="mensaje">Mensaje de logger.</param>
         /// <param name="args">Argumentos de inclusión.</param>
-        public void Info(Exception excepcion, string mensaje, params object[] args)
+        public void Info(System.Exception excepcion, string mensaje, params object[] args)
         {
             if (ESNivelLogEnabled(NivelLog.Info))
             {
@@ -310,7 +307,7 @@ namespace Orbita.Trazabilidad
         /// Logger de tipo Warn.
         /// </summary>
         /// <param name="excepcion">Excepción de inclusión.</param>
-        public void Warn(Exception excepcion)
+        public void Warn(System.Exception excepcion)
         {
             if (ESNivelLogEnabled(NivelLog.Warn))
             {
@@ -322,7 +319,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="excepcion">Excepción de inclusión.</param>
         /// <param name="mensaje">Mensaje de logger.</param>
-        public void Warn(Exception excepcion, string mensaje)
+        public void Warn(System.Exception excepcion, string mensaje)
         {
             if (ESNivelLogEnabled(NivelLog.Warn))
             {
@@ -335,7 +332,7 @@ namespace Orbita.Trazabilidad
         /// <param name="excepcion">Excepción de inclusión.</param>
         /// <param name="mensaje">Mensaje de logger.</param>
         /// <param name="args">Argumentos de inclusión.</param>
-        public void Warn(Exception excepcion, string mensaje, params object[] args)
+        public void Warn(System.Exception excepcion, string mensaje, params object[] args)
         {
             if (ESNivelLogEnabled(NivelLog.Warn))
             {
@@ -383,7 +380,7 @@ namespace Orbita.Trazabilidad
         /// Logger de tipo error.
         /// </summary>
         /// <param name="excepcion">Excepción de inclusión.</param>
-        public void Error(Exception excepcion)
+        public void Error(System.Exception excepcion)
         {
             if (ESNivelLogEnabled(NivelLog.Error))
             {
@@ -395,7 +392,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="excepcion">Excepción de inclusión.</param>
         /// <param name="mensaje">Mensaje de logger.</param>
-        public void Error(Exception excepcion, string mensaje)
+        public void Error(System.Exception excepcion, string mensaje)
         {
             if (ESNivelLogEnabled(NivelLog.Error))
             {
@@ -408,7 +405,7 @@ namespace Orbita.Trazabilidad
         /// <param name="excepcion">Excepción de inclusión.</param>
         /// <param name="mensaje">Mensaje de logger.</param>
         /// <param name="args">Argumentos de inclusión.</param>
-        public void Error(Exception excepcion, string mensaje, params object[] args)
+        public void Error(System.Exception excepcion, string mensaje, params object[] args)
         {
             if (ESNivelLogEnabled(NivelLog.Error))
             {
@@ -456,7 +453,7 @@ namespace Orbita.Trazabilidad
         /// Logger de tipo error fatal.
         /// </summary>
         /// <param name="excepcion">Excepción de inclusión.</param>
-        public void Fatal(Exception excepcion)
+        public void Fatal(System.Exception excepcion)
         {
             if (ESNivelLogEnabled(NivelLog.Fatal))
             {
@@ -468,7 +465,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="excepcion">Excepción de inclusión.</param>
         /// <param name="mensaje">Mensaje de logger.</param>
-        public void Fatal(Exception excepcion, string mensaje)
+        public void Fatal(System.Exception excepcion, string mensaje)
         {
             if (ESNivelLogEnabled(NivelLog.Fatal))
             {
@@ -481,7 +478,7 @@ namespace Orbita.Trazabilidad
         /// <param name="excepcion">Excepción de inclusión.</param>
         /// <param name="mensaje">Mensaje de logger.</param>
         /// <param name="args">Argumentos de inclusión.</param>
-        public void Fatal(Exception excepcion, string mensaje, params object[] args)
+        public void Fatal(System.Exception excepcion, string mensaje, params object[] args)
         {
             if (ESNivelLogEnabled(NivelLog.Fatal))
             {
@@ -507,7 +504,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="nivel">Nivel de logger.</param>
         /// <param name="mensaje">Mensaje de logger.</param>
-        [SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope")]
         public virtual void Log(NivelLog nivel, string mensaje)
         {
             ItemLog item = new ItemLog(nivel, mensaje);
@@ -523,7 +520,7 @@ namespace Orbita.Trazabilidad
         /// <param name="nivel">Nivel de logger.</param>
         /// <param name="mensaje">Mensaje de logger.</param>
         /// <param name="args">Argumentos de inclusión.</param>
-        [SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope")]
         public virtual void Log(NivelLog nivel, string mensaje, params object[] args)
         {
             ItemLog item = new ItemLog(nivel, mensaje);
@@ -540,8 +537,8 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="nivel">Nivel de logger.</param>
         /// <param name="excepcion">Excepción de inclusión.</param>
-        [SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope")]
-        public virtual void Log(NivelLog nivel, Exception excepcion)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope")]
+        public virtual void Log(NivelLog nivel, System.Exception excepcion)
         {
             ItemLog item = new ItemLog(nivel, excepcion);
             // Argumentos relativos al evento de escritura.
@@ -556,8 +553,8 @@ namespace Orbita.Trazabilidad
         /// <param name="nivel">Nivel de logger.</param>
         /// <param name="excepcion">Excepción de inclusión.</param>
         /// <param name="mensaje">Mensaje de logger.</param>
-        [SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope")]
-        public virtual void Log(NivelLog nivel, Exception excepcion, string mensaje)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope")]
+        public virtual void Log(NivelLog nivel, System.Exception excepcion, string mensaje)
         {
             ItemLog item = new ItemLog(nivel, excepcion, mensaje);
             // Argumentos relativos al evento de escritura.
@@ -573,8 +570,8 @@ namespace Orbita.Trazabilidad
         /// <param name="excepcion">Excepción de inclusión.</param>
         /// <param name="mensaje">Mensaje de logger.</param>
         /// <param name="args">Argumentos de inclusión.</param>
-        [SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope")]
-        public virtual void Log(NivelLog nivel, Exception excepcion, string mensaje, params object[] args)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:DisposeObjectsBeforeLosingScope")]
+        public virtual void Log(NivelLog nivel, System.Exception excepcion, string mensaje, params object[] args)
         {
             ItemLog item = new ItemLog(nivel, excepcion, mensaje);
             item.SetArgumentos(args);
@@ -645,7 +642,7 @@ namespace Orbita.Trazabilidad
         /// <returns>Nivel de log + SID formateado.</returns>
         string Nivel(ItemLog item)
         {
-            return string.Format(CultureInfo.CurrentCulture, "{0} {1}", item.SNivelLog, this.sid);
+            return string.Format(System.Globalization.CultureInfo.CurrentCulture, "{0} {1}", item.SNivelLog, this.sid);
         }
         #endregion
     }

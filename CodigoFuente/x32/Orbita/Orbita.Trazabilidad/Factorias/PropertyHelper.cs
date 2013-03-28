@@ -9,9 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.Globalization;
-using System.Reflection;
 namespace Orbita.Trazabilidad
 {
     internal sealed class PropertyHelper
@@ -32,10 +29,10 @@ namespace Orbita.Trazabilidad
         {
             try
             {
-                PropertyInfo propInfo = GetPropertyInfo(o, name);
+                System.Reflection.PropertyInfo propInfo = GetPropertyInfo(o, name);
                 if (propInfo == null)
                 {
-                    throw new NotSupportedException("Parámetro " + name + " no soportado en " + o.GetType().Name);
+                    throw new System.NotSupportedException("Parámetro " + name + " no soportado en " + o.GetType().Name);
                 }
 
                 object newValue = null;
@@ -43,17 +40,17 @@ namespace Orbita.Trazabilidad
                 {
                     newValue = GetEnumValue(propInfo.PropertyType, value);
                 }
-                else if (propInfo.PropertyType == typeof(TimeSpan))
+                else if (propInfo.PropertyType == typeof(System.TimeSpan))
                 {
-                    TimeSpan span;
-                    if (TimeSpan.TryParse(value.Replace("h", string.Empty).Replace("m", string.Empty).Replace("s", string.Empty), out span))
+                    System.TimeSpan span;
+                    if (System.TimeSpan.TryParse(value.Replace("h", string.Empty).Replace("m", string.Empty).Replace("s", string.Empty), out span))
                     {
                         newValue = span;
                     }
                 }
                 else
                 {
-                    newValue = Convert.ChangeType(value, propInfo.PropertyType, CultureInfo.InvariantCulture);
+                    newValue = System.Convert.ChangeType(value, propInfo.PropertyType, System.Globalization.CultureInfo.InvariantCulture);
                 }
                 propInfo.SetValue(o, newValue, null);
                 return true;
@@ -66,28 +63,28 @@ namespace Orbita.Trazabilidad
         #endregion
 
         #region Métodos privados estáticos
-        static object GetEnumValue(Type enumType, string value)
+        static object GetEnumValue(System.Type enumType, string value)
         {
-            if (enumType.IsDefined(typeof(FlagsAttribute), false))
+            if (enumType.IsDefined(typeof(System.FlagsAttribute), false))
             {
                 ulong union = 0;
                 foreach (string v in value.Split(','))
                 {
-                    FieldInfo enumField = enumType.GetField(v.Trim(), BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
-                    union |= Convert.ToUInt64(enumField.GetValue(null), CultureInfo.InvariantCulture);
+                    System.Reflection.FieldInfo enumField = enumType.GetField(v.Trim(), System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.FlattenHierarchy | System.Reflection.BindingFlags.Public);
+                    union |= System.Convert.ToUInt64(enumField.GetValue(null), System.Globalization.CultureInfo.InvariantCulture);
                 }
-                object retval = Convert.ChangeType(union, Enum.GetUnderlyingType(enumType), CultureInfo.InvariantCulture);
+                object retval = System.Convert.ChangeType(union, System.Enum.GetUnderlyingType(enumType), System.Globalization.CultureInfo.InvariantCulture);
                 return retval;
             }
             else
             {
-                FieldInfo enumField = enumType.GetField(value, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
+                System.Reflection.FieldInfo enumField = enumType.GetField(value, System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.FlattenHierarchy | System.Reflection.BindingFlags.Public);
                 return enumField.GetValue(null);
             }
         }
-        static PropertyInfo GetPropertyInfo(object o, string propiedad)
+        static System.Reflection.PropertyInfo GetPropertyInfo(object o, string propiedad)
         {
-            PropertyInfo propInfo = o.GetType().GetProperty(propiedad, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+            System.Reflection.PropertyInfo propInfo = o.GetType().GetProperty(propiedad, System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
             if (propInfo != null)
             {
                 return propInfo;

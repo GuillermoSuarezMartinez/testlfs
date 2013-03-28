@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -35,7 +34,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="obj">Objeto de comparación.</param>
         /// <returns>Si la instancia y el objeto son iguales.</returns>
-        public override bool Equals(Object obj)
+        public override bool Equals(System.Object obj)
         {
             return false;
         }

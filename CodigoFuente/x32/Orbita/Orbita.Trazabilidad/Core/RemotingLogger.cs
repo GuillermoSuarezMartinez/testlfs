@@ -9,14 +9,12 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Security.Permissions;
-using System.Threading;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -29,7 +27,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Crea y controla un subproceso, establece su prioridad y obtiene su estado.
         /// </summary>
-        Thread hilo;
+        System.Threading.Thread hilo;
         /// <summary>
         /// Cliente remoting.
         /// </summary>
@@ -56,7 +54,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Evento que se ejecuta tras escribir logger vía remoting.
         /// </summary>
-        event EventHandler OnDespuesEscribirRemotingLogger;
+        event System.EventHandler OnDespuesEscribirRemotingLogger;
         #endregion
 
         #region Constructores
@@ -247,7 +245,7 @@ namespace Orbita.Trazabilidad
                 // Añadir el item a la colección.
                 this.lista.Add(item);
                 // Activar la sincronización mediante un monitor.
-                Monitor.Pulse(this);
+                System.Threading.Monitor.Pulse(this);
                 // En C# debemos comprobar que el evento no sea null.
                 if (this.OnDespuesEscribirRemotingLogger != null)
                 {
@@ -286,11 +284,11 @@ namespace Orbita.Trazabilidad
                 // Registrar el canal de conexión con los servicios de canal.
                 ChannelServices.RegisterChannel(new TcpClientChannel(alias, null), false);
                 // Crea un proxy para el objeto conocido indicado por el tipo y dirección URL especificados.
-                this.cliente = (IRemotingLogger)Activator.GetObject(typeof(IRemotingLogger), url);
+                this.cliente = (IRemotingLogger)System.Activator.GetObject(typeof(IRemotingLogger), url);
                 // Crear la colección de items.
                 this.lista = new List<ItemLog>();
                 // Inicializar e iniciar el hilo de proceso de copias backup.
-                this.hilo = new Thread(new ThreadStart(Procesar));
+                this.hilo = new System.Threading.Thread(new System.Threading.ThreadStart(Procesar));
                 this.hilo.IsBackground = true;
                 this.hilo.Start();
             }
@@ -307,7 +305,7 @@ namespace Orbita.Trazabilidad
                 {
                     while (this.lista.Count == 0)
                     {
-                        Monitor.Wait(this);
+                        System.Threading.Monitor.Wait(this);
                     }
                     mensajes = this.lista.ToArray();
                     this.lista.Clear();

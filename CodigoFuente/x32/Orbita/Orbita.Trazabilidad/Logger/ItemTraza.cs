@@ -9,15 +9,13 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.Collections;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
     /// Item Traza.
     /// </summary>
-    [Serializable]
-    public class ItemTraza : IDisposable
+    [System.Serializable]
+    public class ItemTraza : System.IDisposable
     {
         #region Atributos privados
         /// <summary>
@@ -27,7 +25,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Dia y hora de entrada en el registro. Si no  explicitamente esta propiedad ofrece la marca de tiempo de la creación del objeto.
         /// </summary>
-        DateTime fecha;
+        System.DateTime fecha;
         /// <summary>
         /// El procedimiento almacenado. Por defecto, <c>string.Empty</c>.
         /// </summary>
@@ -39,7 +37,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
         /// </summary>
-        ArrayList args;
+        System.Collections.ArrayList args;
         #endregion
 
         #region Constructores
@@ -48,7 +46,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         public ItemTraza()
         {
-            this.fecha = DateTime.Now;
+            this.fecha = System.DateTime.Now;
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.ItemTraza.
@@ -75,7 +73,7 @@ namespace Orbita.Trazabilidad
         /// <param name="nivelTraza">El nivel de registro de traza.</param>
         /// <param name="procedimiento">El procedimiento almacenado.</param>
         /// <param name="args">Argumentos del procedimiento almacenado.</param>
-        public ItemTraza(NivelTraza nivelTraza, string procedimiento, ArrayList args)
+        public ItemTraza(NivelTraza nivelTraza, string procedimiento, System.Collections.ArrayList args)
             : this(nivelTraza, procedimiento)
         {
             this.args = args;
@@ -98,7 +96,7 @@ namespace Orbita.Trazabilidad
             Dispose(true);
             // Este objeto será limpiado por el método Dispose.
             // Llama al método del recolector de basura, GC.SuppressFinalize.
-            GC.SuppressFinalize(this);
+            System.GC.SuppressFinalize(this);
         }
         /// <summary>
         /// Método  sobrecargado de  Dispose que será  el que
@@ -145,7 +143,7 @@ namespace Orbita.Trazabilidad
         /// esta propiedad ofrece la marca de tiempo de la creación del
         /// objeto.
         /// </summary>
-        public DateTime Fecha
+        public System.DateTime Fecha
         {
             get { return this.fecha; }
             set { this.fecha = value; }
@@ -169,7 +167,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
         /// </summary>
-        public ArrayList Argumentos
+        public System.Collections.ArrayList Argumentos
         {
             get { return this.args; }
         }
@@ -179,7 +177,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
         /// </summary>
-        public void SetArgumentos(ArrayList argumentos)
+        public void SetArgumentos(System.Collections.ArrayList argumentos)
         {
             this.args = argumentos;
         }

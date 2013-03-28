@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.IO;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -65,14 +64,14 @@ namespace Orbita.Trazabilidad
         /// <returns>True/False.</returns>
         public bool Existe()
         {
-            return Directory.Exists(this.path);
+            return System.IO.Directory.Exists(this.path);
         }
         /// <summary>
         /// Crear el directorio en la ruta del objeto.
         /// </summary>
         public void Crear()
         {
-            Directory.CreateDirectory(this.path);
+            System.IO.Directory.CreateDirectory(this.path);
         }
         #endregion
     }

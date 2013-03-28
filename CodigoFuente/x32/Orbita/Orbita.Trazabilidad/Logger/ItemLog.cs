@@ -9,15 +9,13 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.Globalization;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
     /// Item Log.
     /// </summary>
-    [Serializable]
-    public class ItemLog : IDisposable
+    [System.Serializable]
+    public class ItemLog : System.IDisposable
     {
         #region Atributos privados
         /// <summary>
@@ -27,7 +25,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Dia y hora de entrada en el registro. Si no  explicitamente esta propiedad ofrece la marca de tiempo de la creación del objeto.
         /// </summary>
-        DateTime fecha;
+        System.DateTime fecha;
         /// <summary>
         /// Cuerpo del mensaje. Por defecto <c>string.Empty</c>.
         /// </summary>
@@ -56,7 +54,7 @@ namespace Orbita.Trazabilidad
         public ItemLog(NivelLog nivelLog)
         {
             this.nivelLog = nivelLog;
-            this.fecha = DateTime.Now;
+            this.fecha = System.DateTime.Now;
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.ItemLog.
@@ -73,11 +71,11 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="nivelLog">El nivel de registro.</param>
         /// <param name="excepcion">Excepción.</param>
-        public ItemLog(NivelLog nivelLog, Exception excepcion)
+        public ItemLog(NivelLog nivelLog, System.Exception excepcion)
             : this(nivelLog)
         {
             // Convertir la excepción a .ToString(), ya que, pasar por remoting la excepción produce errores.
-            this.mensaje = string.Format(CultureInfo.CurrentCulture, "[{0}] {1}", Orbita.Trazabilidad.Estado.Excepcion, excepcion.ToString());
+            this.mensaje = string.Format(System.Globalization.CultureInfo.CurrentCulture, "[{0}] {1}", Orbita.Trazabilidad.Estado.Excepcion, excepcion.ToString());
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.ItemLog.
@@ -85,12 +83,12 @@ namespace Orbita.Trazabilidad
         /// <param name="nivelLog">El nivel de registro.</param>
         /// <param name="excepcion">Excepción.</param>
         /// <param name="mensaje">Cuerpo del mensaje.</param>
-        public ItemLog(NivelLog nivelLog, Exception excepcion, string mensaje)
+        public ItemLog(NivelLog nivelLog, System.Exception excepcion, string mensaje)
             : this(nivelLog)
         {
             this.mensaje = mensaje;
             // Convertir la excepción a string, ya que, pasar por remoting la excepción produce errores.
-            this.mensaje += string.Format(CultureInfo.CurrentCulture, " [{0}] {1}", Orbita.Trazabilidad.Estado.Excepcion, excepcion.ToString());
+            this.mensaje += string.Format(System.Globalization.CultureInfo.CurrentCulture, " [{0}] {1}", Orbita.Trazabilidad.Estado.Excepcion, excepcion.ToString());
         }
         #endregion
 
@@ -110,7 +108,7 @@ namespace Orbita.Trazabilidad
             Dispose(true);
             // Este objeto será limpiado por el método Dispose.
             // Llama al método del recolector de basura, GC.SuppressFinalize.
-            GC.SuppressFinalize(this);
+            System.GC.SuppressFinalize(this);
         }
         /// <summary>
         /// Método  sobrecargado de  Dispose que será  el que
@@ -160,14 +158,14 @@ namespace Orbita.Trazabilidad
         /// </summary>
         public string SNivelLog
         {
-            get { return this.nivelLog.ToString().PadRight(5).ToUpper(CultureInfo.CurrentCulture); }
+            get { return this.nivelLog.ToString().PadRight(5).ToUpper(System.Globalization.CultureInfo.CurrentCulture); }
         }
         /// <summary>
         /// Dia y hora de entrada en el registro. Si no  explicitamente
         /// esta propiedad ofrece la marca de tiempo de la creación del
         /// objeto.
         /// </summary>
-        public DateTime Fecha
+        public System.DateTime Fecha
         {
             get { return this.fecha; }
             set { this.fecha = value; }
@@ -177,7 +175,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         public string SFecha
         {
-            get { return this.fecha.ToString(Orbita.Trazabilidad.Formato.FechaLarga, CultureInfo.CurrentCulture); }
+            get { return this.fecha.ToString(Orbita.Trazabilidad.Formato.FechaLarga, System.Globalization.CultureInfo.CurrentCulture); }
         }
         /// <summary>
         /// El cuerpo del mensaje. Por defecto <c>string.Empty</c>.

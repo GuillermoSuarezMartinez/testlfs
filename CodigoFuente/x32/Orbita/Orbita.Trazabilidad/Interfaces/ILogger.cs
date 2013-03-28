@@ -7,14 +7,8 @@
 // Last Modified On : 02-21-2011
 // Description      : 
 //
-// Last Modified By : aibañez
-// Last Modified On : 28-03-2013
-// Description      : Añadido evento de AntesEscribirLogger
-//
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.Diagnostics.CodeAnalysis;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -31,10 +25,6 @@ namespace Orbita.Trazabilidad
 
         #region Eventos
         /// <summary>
-        /// Evento que se ejecuta antes de escribir en el fichero de logger.
-        /// </summary>
-        event System.EventHandler<LoggerEventArgs> AntesEscribirLogger;
-        /// <summary>
         /// Evento que se ejecuta tras escribir en el fichero de logger.
         /// </summary>
         event System.EventHandler<LoggerEventArgs> DespuesEscribirLogger;
@@ -42,7 +32,7 @@ namespace Orbita.Trazabilidad
         /// Evento que se ejecuta tras producirse un error en la escritura en el fichero de logger.
         /// </summary>
         event System.EventHandler<LoggerEventArgs> ErrorLogger;
-        #endregion
+        #endregion Eventos
 
         #region Métodos privados
 
@@ -67,21 +57,21 @@ namespace Orbita.Trazabilidad
         /// Registra una excepción con el <see cref="NivelLog.Debug"/>.
         /// </summary>
         /// <param name="excepcion">La excepción a registrar.</param>
-        void Debug(Exception excepcion);
+        void Debug(System.Exception excepcion);
         /// <summary>
         /// Registra una excepción y un mensaje adicional con el <see cref="NivelLog.Debug"/>.
         /// </summary>
         /// <param name="excepcion"> La excepción a registrar.</param>
         /// <param name="mensaje">Información adicional con respecto a la excepción a registrar.</param>
-        void Debug(Exception excepcion, string mensaje);
+        void Debug(System.Exception excepcion, string mensaje);
         /// <summary>
         /// Registra un mensaje formateado en string con el nivel <see cref="NivelLog.Debug"/>. 
         /// </summary>
         /// <param name="excepcion">La excepción a registrar. </param>
         /// <param name="mensaje">Una cadena con mensaje que contiene marcadores de posición.</param>
         /// <param name="args">Un <see cref="object"/> array que contiene cero o mas objetos.</param>
-        void Debug(Exception excepcion, string mensaje, params object[] args);
-        #endregion
+        void Debug(System.Exception excepcion, string mensaje, params object[] args);
+        #endregion Debug
 
         #region Info
         /// <summary>
@@ -104,21 +94,21 @@ namespace Orbita.Trazabilidad
         /// Registra una excepción con el <see cref="NivelLog.Info"/>.
         /// </summary>
         /// <param name="excepcion">La excepción a registrar.</param>
-        void Info(Exception excepcion);
+        void Info(System.Exception excepcion);
         /// <summary>
         /// Registra una excepción y un mensaje adicional con el <see cref="NivelLog.Info"/>.
         /// </summary>
         /// <param name="excepcion"> La excepción a registrar.</param>
         /// <param name="mensaje">Información adicional con respecto a la excepción a registrar.</param>
-        void Info(Exception excepcion, string mensaje);
+        void Info(System.Exception excepcion, string mensaje);
         /// <summary>
         /// Registra un mensaje formateado en string con el nivel <see cref="NivelLog.Info"/>. 
         /// </summary>
         /// <param name="excepcion">La excepción a registrar.</param>
         /// <param name="mensaje">Una cadena con mensaje que contiene marcadores de posición.</param>
         /// <param name="args">Un <see cref="object"/> array que contiene cero o mas objetos.</param>
-        void Info(Exception excepcion, string mensaje, params object[] args);
-        #endregion
+        void Info(System.Exception excepcion, string mensaje, params object[] args);
+        #endregion Info
 
         #region Warn
         /// <summary>
@@ -141,35 +131,35 @@ namespace Orbita.Trazabilidad
         /// Registra una excepción con el <see cref="NivelLog.Warn"/>.
         /// </summary>
         /// <param name="excepcion">La excepción a registrar.</param>
-        void Warn(Exception excepcion);
+        void Warn(System.Exception excepcion);
         /// <summary>
         /// Registra una excepción y un mensaje adicional con el <see cref="NivelLog.Warn"/>.
         /// </summary>
         /// <param name="excepcion"> La excepción a registrar.</param>
         /// <param name="mensaje">Información adicional con respecto a la excepción a registrar.</param>
-        void Warn(Exception excepcion, string mensaje);
+        void Warn(System.Exception excepcion, string mensaje);
         /// <summary>
         /// Registra un mensaje formateado en string con el nivel <see cref="NivelLog.Warn"/>. 
         /// </summary>
         /// <param name="excepcion">La excepción a registrar. </param>
         /// <param name="mensaje">Una cadena con mensaje que contiene marcadores de posición.</param>
         /// <param name="args">Un <see cref="object"/> array que contiene cero o mas objetos.</param>
-        void Warn(Exception excepcion, string mensaje, params object[] args);
-        #endregion
+        void Warn(System.Exception excepcion, string mensaje, params object[] args);
+        #endregion Warn
 
         #region Error
         /// <summary>
         /// Registra un objeto arbitrario con el <see cref="NivelLog.Error"/>. 
         /// </summary>
         /// <param name="objeto">El objeto mensaje a registrar, el cual será convertido en un string durante el registro.</param>
-        [SuppressMessageAttribute("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords",
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords",
          Justification = "Error necesario para identificar este nivel de log.")]
         void Error(object objeto);
         /// <summary>
         /// Registra un mensaje de error (<see cref="NivelLog.Error"/>).
         /// </summary>
         /// <param name="mensaje">El mensaje a registrar.</param>
-        [SuppressMessageAttribute("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords",
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords",
          Justification = "Error necesario para identificar este nivel de log.")]
         void Error(string mensaje);
         /// <summary>
@@ -177,34 +167,34 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="mensaje">Una cadena con mensaje que contiene marcadores de posición.</param>
         /// <param name="args">Un <see cref="object"/> array que contiene cero o mas objetos.</param>
-        [SuppressMessageAttribute("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords",
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords",
          Justification = "Error necesario para identificar este nivel de log.")]
         void Error(string mensaje, params object[] args);
         /// <summary>
         /// Registra una excepción con el <see cref="NivelLog.Error"/>.
         /// </summary>
         /// <param name="excepcion">La excepción a registrar.</param>
-        [SuppressMessageAttribute("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords",
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords",
          Justification = "Error necesario para identificar este nivel de log.")]
-        void Error(Exception excepcion);
+        void Error(System.Exception excepcion);
         /// <summary>
         /// Registra una excepción y un mensaje adicional con el <see cref="NivelLog.Error"/>.
         /// </summary>
         /// <param name="excepcion"> La excepción a registrar.</param>
         /// <param name="mensaje">Información adicional con respecto a la excepción a registrar.</param>
-        [SuppressMessageAttribute("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords",
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords",
          Justification = "Error necesario para identificar este nivel de log.")]
-        void Error(Exception excepcion, string mensaje);
+        void Error(System.Exception excepcion, string mensaje);
         /// <summary>
         /// Registra un mensaje formateado en string con el nivel <see cref="NivelLog.Error"/>. 
         /// </summary>
         /// <param name="excepcion">La excepción a registrar.</param>
         /// <param name="mensaje">Una cadena con mensaje que contiene marcadores de posición.</param>
         /// <param name="args">Un <see cref="object"/> array que contiene cero o mas objetos.</param>
-        [SuppressMessageAttribute("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords",
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords",
          Justification = "Error necesario para identificar este nivel de log.")]
-        void Error(Exception excepcion, string mensaje, params object[] args);
-        #endregion
+        void Error(System.Exception excepcion, string mensaje, params object[] args);
+        #endregion Error
 
         #region Fatal
         /// <summary>
@@ -227,21 +217,21 @@ namespace Orbita.Trazabilidad
         /// Registra una excepción con el <see cref="NivelLog.Fatal"/>.
         /// </summary>
         /// <param name="excepcion">La excepción a registrar.</param>
-        void Fatal(Exception excepcion);
+        void Fatal(System.Exception excepcion);
         /// <summary>
         /// Registra una excepción y un mensaje adicional con el <see cref="NivelLog.Fatal"/>.
         /// </summary>
         /// <param name="excepcion"> La excepción a registrar.</param>
         /// <param name="mensaje">Información adicional con respecto a la excepción a registrar.</param>
-        void Fatal(Exception excepcion, string mensaje);
+        void Fatal(System.Exception excepcion, string mensaje);
         /// <summary>
         /// Registra un mensaje formateado en string con el nivel <see cref="NivelLog.Fatal"/>. 
         /// </summary>
         /// <param name="excepcion">La excepción a registrar.</param>
         /// <param name="mensaje">Una cadena con mensaje que contiene marcadores de posición.</param>
         /// <param name="args">Un <see cref="object"/> array que contiene cero o mas objetos.</param>
-        void Fatal(Exception excepcion, string mensaje, params object[] args);
-        #endregion
+        void Fatal(System.Exception excepcion, string mensaje, params object[] args);
+        #endregion Fatal
 
         #region Log
         /// <summary>
@@ -255,8 +245,8 @@ namespace Orbita.Trazabilidad
         /// <param name="item">Encapsula información de registro.</param>
         /// <param name="args">Argumentos adicionales.</param>
         void Log(ItemLog item, object[] args);
-        #endregion
+        #endregion Log
 
-        #endregion
+        #endregion Métodos privados
     }
 }

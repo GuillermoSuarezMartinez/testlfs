@@ -9,8 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.Globalization;
-using System.Windows.Forms;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -34,7 +32,7 @@ namespace Orbita.Trazabilidad
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.PathLogger.
         /// </summary>
         public PathLogger()
-            : this(string.Format(CultureInfo.CurrentCulture, @"{0}\{1}", Application.StartupPath, Orbita.Trazabilidad.Ruta.Debug)) { }
+            : this(string.Format(System.Globalization.CultureInfo.CurrentCulture, @"{0}\{1}", System.Windows.Forms.Application.StartupPath, Orbita.Trazabilidad.Ruta.Debug)) { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.PathLogger.
         /// </summary>
@@ -88,7 +86,7 @@ namespace Orbita.Trazabilidad
         /// <returns>string.</returns>
         public override string ToString()
         {
-            return string.Format(CultureInfo.CurrentCulture, @"{0}\{1}.{2}", this.Path, this.Fichero, this.Extension);
+            return string.Format(System.Globalization.CultureInfo.CurrentCulture, @"{0}\{1}.{2}", this.Path, this.Fichero, this.Extension);
         }
         /// <summary>
         /// Comprobar la existencia del fichero.

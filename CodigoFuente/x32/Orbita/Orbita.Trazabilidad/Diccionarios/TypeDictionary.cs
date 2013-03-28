@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -31,9 +30,9 @@ namespace Orbita.Trazabilidad
         /// <param name="key">
         /// The string whose value to get or set.
         /// </param>
-        public virtual Type this[string key]
+        public virtual System.Type this[string key]
         {
-            get { return (Type)this.Dictionary[key]; }
+            get { return (System.Type)this.Dictionary[key]; }
             set { this.Dictionary[key] = value; }
         }
         #endregion
@@ -48,7 +47,7 @@ namespace Orbita.Trazabilidad
         /// <param name="value">
         /// The Type value of the element to add.
         /// </param>
-        public virtual void Add(string key, Type value)
+        public virtual void Add(string key, System.Type value)
         {
             this.Dictionary.Add(key, value);
         }
@@ -76,9 +75,9 @@ namespace Orbita.Trazabilidad
         /// true if this TypeDictionary contains an element with the specified value;
         /// otherwise, false.
         /// </returns>
-        public virtual bool ContainsValue(Type value)
+        public virtual bool ContainsValue(System.Type value)
         {
-            foreach (Type item in this.Dictionary.Values)
+            foreach (System.Type item in this.Dictionary.Values)
             {
                 if (item == value)
                     return true;

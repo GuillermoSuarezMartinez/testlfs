@@ -9,8 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.Globalization;
-using System.IO;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -234,7 +232,7 @@ namespace Orbita.Trazabilidad
         /// <returns>Cadena de entrada formateada.</returns>
         string Formatear(ItemLog item)
         {
-            return string.Format(CultureInfo.CurrentCulture, "{0}  {1} {2} {3}", item.SFecha, this.TrazarNivel(item), this.Separador, this.Formatear(item.Mensaje));
+            return string.Format(System.Globalization.CultureInfo.CurrentCulture, "{0}  {1} {2} {3}", item.SFecha, this.TrazarNivel(item), this.Separador, this.Formatear(item.Mensaje));
         }
         /// <summary>
         /// Escribir en disco la cadena de texto.
@@ -247,12 +245,12 @@ namespace Orbita.Trazabilidad
             lock (Bloqueo)
             {
                 // Escribir el texto en el fichero de datos de disco.
-                FileStream fs = null;
+                System.IO.FileStream fs = null;
                 try
                 {
                     // Abrir el Fichero=Nombre del fichero, en modo escritura con lectura compartida y modo de creacion.
-                    fs = new FileStream(this.Fichero, FileMode.Append, FileAccess.Write, FileShare.Read);
-                    using (StreamWriter sw = new StreamWriter(fs))
+                    fs = new System.IO.FileStream(this.Fichero, System.IO.FileMode.Append, System.IO.FileAccess.Write, System.IO.FileShare.Read);
+                    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(fs))
                     {
                         // Obtiene un valor que indica si la secuencia actual admite escritura.
                         while (!fs.CanWrite) { }
