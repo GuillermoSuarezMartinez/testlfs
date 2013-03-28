@@ -2569,7 +2569,7 @@ namespace Orbita.Utiles
         /// </summary>
         /// <param name="valor">Valor del objeto a comprobar</param>
         /// <returns>Verdadero si el valor es correcto</returns>
-        public static EnumEstadoRobusto ValidaFechaHora(this object valor, string codigo, DateTime min, DateTime max, DateTime defecto, bool lanzarExcepcionSiValorNoValido)
+        public static EnumEstadoRobusto ValidarFechaHora(this object valor, string codigo, DateTime min, DateTime max, DateTime defecto, bool lanzarExcepcionSiValorNoValido)
         {
             return OFechaHora.Validar(valor, codigo, min, max, defecto, lanzarExcepcionSiValorNoValido);
         }
