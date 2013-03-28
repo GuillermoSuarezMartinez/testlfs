@@ -134,7 +134,7 @@ namespace Orbita.VA.Funciones
             try
             {
                 Emgu.CV.Image<TColor, TDepth> imgResut = new Image<TColor, TDepth>(anchoDestino, altoDestino, default(TColor));
-                imgResut.ROI = new Rectangle(offsetX, OffsetY, anchoDestino, altoDestino);
+                imgResut.ROI = new Rectangle(offsetX, OffsetY, imagenOriginal.Width, imagenOriginal.Height);
                 imagenOriginal.Image.CopyTo(imgResut);
 
                 resultado = new OImagenOpenCV<TColor, TDepth>(imagenOriginal.Codigo, imgResut);

@@ -325,10 +325,6 @@ namespace Orbita.VA.Funciones
         /// </summary>
         private OParametrosCCR ParametrosCCR;
         /// <summary>
-        /// Lista de imagenes pendientes de ejecutar
-        /// </summary>
-        private List<Bitmap> ListaImagenesPendientes;
-        /// <summary>
         /// Siguiente imágen a procesar en el CCR
         /// </summary>
         private OImagenBitmap Imagen;
@@ -381,19 +377,10 @@ namespace Orbita.VA.Funciones
                     this.ParametrosCCR.AlturaVentanaBusqueda = OEntero.Validar(dtFuncionVision.Rows[0]["NL_AlturaVentanaBusqueda"], 0, 10000, 0);
                     this.ParametrosCCR.AnchuraVentanaBusqueda = OEntero.Validar(dtFuncionVision.Rows[0]["NL_AnchuraVentanaBusqueda"], 0, 10000, 0);
                     this.ParametrosCCR.ActivadaMasInformacion = OEntero.Validar(dtFuncionVision.Rows[0]["NL_ActivadaMasInformacion"], 0, 10000, 1);
-                    // Columnas añadidas posteriormente
-                    try
-                    {
-                        this.ParametrosCCR.Escala = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_Escala"], 0, +100000, 0);
-                        this.ParametrosCCR.Param1 = OEntero.Validar(dtFuncionVision.Rows[0]["NL_Param1"], 0, 10000, 1);
-                        this.ParametrosCCR.Param2 = OEntero.Validar(dtFuncionVision.Rows[0]["NL_Param2"], 0, 10000, 1);
-                    }
-                    catch (Exception ex)
-                    {
-                        OLogsVAFunciones.CCR.Error("FuncionCCR", ex);
-                    }
+                    this.ParametrosCCR.Escala = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_Escala"], 0, +100000, 0);
+                    this.ParametrosCCR.Param1 = OEntero.Validar(dtFuncionVision.Rows[0]["NL_Param1"], 0, 10000, 1);
+                    this.ParametrosCCR.Param2 = OEntero.Validar(dtFuncionVision.Rows[0]["NL_Param2"], 0, 10000, 1);
                 }
-                this.ListaImagenesPendientes = new List<Bitmap>();
             }
             catch (Exception exception)
             {
@@ -528,7 +515,6 @@ namespace Orbita.VA.Funciones
                     else
                     {
                         // Temporal hasta que lo soluccionen
-                        //this.ListaImagenesPendientes.Add(this.Imagen.Image);
                         OLogsVAFunciones.CCR.Info("FuncionCCR: Sobrepasado el limite de imagenes en cola", "");
                     }
                 }
