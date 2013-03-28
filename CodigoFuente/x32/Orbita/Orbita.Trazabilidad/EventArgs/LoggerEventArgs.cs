@@ -9,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System;
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -21,6 +22,10 @@ namespace Orbita.Trazabilidad
         /// Item de entrada.
         /// </summary>
         ItemLog item;
+        /// <summary>
+        /// Excepción.
+        /// </summary>
+        Exception excepcion;
         #endregion
 
         #region Constructores
@@ -38,6 +43,16 @@ namespace Orbita.Trazabilidad
         {
             this.item = item;
         }
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.LoggerEventArgs.
+        /// </summary>
+        /// <param name="item">Item de entrada.</param>
+        /// <param name="excepcion">Excepción.</param>
+        public LoggerEventArgs(ItemLog item, Exception excepcion)
+            : this(item)
+        {
+            this.excepcion = excepcion;
+        }
         #endregion
 
         #region Propiedades
@@ -47,6 +62,15 @@ namespace Orbita.Trazabilidad
         public ItemLog Item
         {
             get { return this.item; }
+            set { this.item = value; }
+        }
+        /// <summary>
+        /// Excepción.
+        /// </summary>
+        public Exception Excepcion
+        {
+            get { return this.excepcion; }
+            set { this.excepcion = value; }
         }
         #endregion
     }

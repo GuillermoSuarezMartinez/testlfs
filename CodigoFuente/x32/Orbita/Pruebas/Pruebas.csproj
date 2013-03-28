@@ -77,6 +77,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Orbita.Trazabilidad\Orbita.Trazabilidad.csproj">
+      <Project>{1A2EEC44-A494-4BA6-A591-267B73A55CD1}</Project>
+      <Name>Orbita.Trazabilidad</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

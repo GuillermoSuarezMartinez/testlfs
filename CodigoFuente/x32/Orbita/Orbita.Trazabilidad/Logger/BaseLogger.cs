@@ -50,6 +50,10 @@ namespace Orbita.Trazabilidad
 
         #region Eventos
         /// <summary>
+        /// Evento que se ejecuta antes de escribir en el fichero de logger.
+        /// </summary>
+        public event EventHandler<LoggerEventArgs> AntesEscribirLogger;
+        /// <summary>
         /// Evento que se ejecuta tras escribir en el fichero de logger.
         /// </summary>
         public event EventHandler<LoggerEventArgs> DespuesEscribirLogger;
@@ -122,7 +126,6 @@ namespace Orbita.Trazabilidad
         #region Métodos públicos
 
         #region Debug
-
         /// <summary>
         /// Logger de tipo debug.
         /// </summary>
@@ -193,11 +196,9 @@ namespace Orbita.Trazabilidad
                 Log(NivelLog.Debug, excepcion, mensaje, args);
             }
         }
-
-        #endregion
+        #endregion Debug
 
         #region Info
-
         /// <summary>
         /// Logger de tipo info.
         /// </summary>
@@ -268,11 +269,9 @@ namespace Orbita.Trazabilidad
                 Log(NivelLog.Info, excepcion, mensaje, args);
             }
         }
-
-        #endregion
+        #endregion Info
 
         #region Warn
-
         /// <summary>
         /// Logger de tipo Warn.
         /// </summary>
@@ -343,11 +342,9 @@ namespace Orbita.Trazabilidad
                 Log(NivelLog.Warn, excepcion, mensaje, args);
             }
         }
-
-        #endregion
+        #endregion Warn
 
         #region Error
-
         /// <summary>
         /// Logger de tipo error.
         /// </summary>
@@ -418,11 +415,9 @@ namespace Orbita.Trazabilidad
                 Log(NivelLog.Error, excepcion, mensaje, args);
             }
         }
-
-        #endregion
+        #endregion Error
 
         #region Fatal
-
         /// <summary>
         /// Logger de tipo error fatal.
         /// </summary>
@@ -493,11 +488,9 @@ namespace Orbita.Trazabilidad
                 Log(NivelLog.Fatal, excepcion, mensaje, args);
             }
         }
-
-        #endregion
+        #endregion Fatal
 
         #region Log
-
         /// <summary>
         /// Crea una entrada de registro nuevo basado en un elemento de inicio de sesión dado.
         /// </summary>
@@ -518,6 +511,10 @@ namespace Orbita.Trazabilidad
         public virtual void Log(NivelLog nivel, string mensaje)
         {
             ItemLog item = new ItemLog(nivel, mensaje);
+            // Argumentos relativos al evento de escritura.
+            LoggerEventArgs e = new LoggerEventArgs(item);
+            // El evento se lanza como cualquier delegado.
+            this.OnAntesEscribirLogger(this, e);
             Log(item);
         }
         /// <summary>
@@ -542,6 +539,10 @@ namespace Orbita.Trazabilidad
         public virtual void Log(NivelLog nivel, Exception excepcion)
         {
             ItemLog item = new ItemLog(nivel, excepcion);
+            // Argumentos relativos al evento de escritura.
+            LoggerEventArgs e = new LoggerEventArgs(item, excepcion);
+            // El evento se lanza como cualquier delegado.
+            this.OnAntesEscribirLogger(this, e);
             Log(item);
         }
         /// <summary>
@@ -554,6 +555,10 @@ namespace Orbita.Trazabilidad
         public virtual void Log(NivelLog nivel, Exception excepcion, string mensaje)
         {
             ItemLog item = new ItemLog(nivel, excepcion, mensaje);
+            // Argumentos relativos al evento de escritura.
+            LoggerEventArgs e = new LoggerEventArgs(item, excepcion);
+            // El evento se lanza como cualquier delegado.
+            this.OnAntesEscribirLogger(this, e);
             Log(item);
         }
         /// <summary>
@@ -570,11 +575,10 @@ namespace Orbita.Trazabilidad
             item.SetArgumentos(args);
             Log(item, args);
         }
-        
-        #endregion
+        #endregion Log
 
-        #endregion
-        
+        #endregion Métodos públicos
+
         #region Métodos protegidos
         /// <summary>
         /// Método escalable de inclusión de logger.
@@ -586,15 +590,27 @@ namespace Orbita.Trazabilidad
             return nivel >= this.NivelLog;
         }
         /// <summary>
+        /// Evento que se ejecuta antes de escribir en el fichero de logger.
+        /// </summary>
+        /// <param name="sender">Objeto que lanza el evento.</param>
+        /// <param name="e">Orbita.Trazabilidad.LoggerEventArgs es la clase base para las clases que contienen datos de eventos.</param>
+        protected virtual void OnAntesEscribirLogger(object sender, LoggerEventArgs e)
+        {
+            if (this.AntesEscribirLogger != null)
+            {
+                this.AntesEscribirLogger(this, e);
+            }
+        }
+        /// <summary>
         /// Evento que se ejecuta tras escribir en el fichero de logger.
         /// </summary>
         /// <param name="sender">Objeto que lanza el evento.</param>
         /// <param name="e">Orbita.Trazabilidad.LoggerEventArgs es la clase base para las clases que contienen datos de eventos.</param>
         protected virtual void OnDespuesEscribirLogger(object sender, LoggerEventArgs e)
         {
-            if (DespuesEscribirLogger != null)
+            if (this.DespuesEscribirLogger != null)
             {
-                DespuesEscribirLogger(this, e);
+                this.DespuesEscribirLogger(this, e);
             }
         }
         /// <summary>

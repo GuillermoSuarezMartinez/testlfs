@@ -320,7 +320,7 @@ namespace Orbita.Trazabilidad
                     // Vacía el búfer de resultados de la propiedad System.Diagnostics.TextWriterTraceListener.Writer.
                     this.listener.Flush();
                     // Argumentos relativos al evento de escritura.
-                    LoggerEventArgs e = new LoggerEventArgs(item);
+                    LoggerEventArgs e = new LoggerEventArgs(item, ex);
                     // El evento se lanza como cualquier delegado.
                     this.OnErrorLogger(this, e);
                 }

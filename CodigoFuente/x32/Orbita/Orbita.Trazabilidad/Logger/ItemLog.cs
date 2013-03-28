@@ -76,11 +76,8 @@ namespace Orbita.Trazabilidad
         public ItemLog(NivelLog nivelLog, Exception excepcion)
             : this(nivelLog)
         {
-            if (excepcion != null)
-            {
-                // Convertir la excepción a string, ya que, pasar por remoting la excepción produce errores.
-                this.mensaje = string.Format(CultureInfo.CurrentCulture, "[{0}] {1}", Orbita.Trazabilidad.Estado.Excepcion, excepcion.ToString());
-            }
+            // Convertir la excepción a .ToString(), ya que, pasar por remoting la excepción produce errores.
+            this.mensaje = string.Format(CultureInfo.CurrentCulture, "[{0}] {1}", Orbita.Trazabilidad.Estado.Excepcion, excepcion.ToString());
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.ItemLog.
@@ -91,11 +88,9 @@ namespace Orbita.Trazabilidad
         public ItemLog(NivelLog nivelLog, Exception excepcion, string mensaje)
             : this(nivelLog)
         {
-            if (excepcion != null)
-            {
-                // Convertir la excepción a string, ya que, pasar por remoting la excepción produce errores.
-                this.mensaje = string.Format(CultureInfo.CurrentCulture, "{0} [{1}] {2}", mensaje, Orbita.Trazabilidad.Estado.Excepcion, excepcion.ToString());
-            }
+            this.mensaje = mensaje;
+            // Convertir la excepción a string, ya que, pasar por remoting la excepción produce errores.
+            this.mensaje += string.Format(CultureInfo.CurrentCulture, " [{0}] {1}", Orbita.Trazabilidad.Estado.Excepcion, excepcion.ToString());
         }
         #endregion
 
