@@ -33,10 +33,18 @@
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
             this.orbitaTableLayoutPanel1 = new Orbita.Controles.Contenedores.OrbitaTableLayoutPanel();
             this.VisorBitmapOriginal = new Orbita.Controles.VA.OrbitaVisorBitmap();
             this.VisorBitmapDestino = new Orbita.Controles.VA.OrbitaVisorBitmap();
             this.PnlParametrosOrigen = new Orbita.Controles.Contenedores.OrbitaPanel();
+            this.PnlConfiguracionOrigen = new Orbita.Controles.Contenedores.OrbitaPanel();
+            this.GroupBoxAmpliacion = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
+            this.NumericEditorYAmpliacion = new Orbita.Controles.Comunes.OrbitaUltraNumericEditor();
+            this.NumericEditorXAmpliacion = new Orbita.Controles.Comunes.OrbitaUltraNumericEditor();
+            this.LabelYAmpliacion = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.LabelXAmpliacion = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.GroupBoxAreaOrigen = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
             this.RadioButtonPuntoOriginal4 = new System.Windows.Forms.RadioButton();
             this.RadioButtonPuntoOriginal3 = new System.Windows.Forms.RadioButton();
@@ -60,6 +68,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.ChkToolTip)).BeginInit();
             this.orbitaTableLayoutPanel1.SuspendLayout();
             this.PnlParametrosOrigen.SuspendLayout();
+            this.PnlConfiguracionOrigen.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GroupBoxAmpliacion)).BeginInit();
+            this.GroupBoxAmpliacion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericEditorYAmpliacion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericEditorXAmpliacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GroupBoxAreaOrigen)).BeginInit();
             this.GroupBoxAreaOrigen.SuspendLayout();
             this.PnlParametrosDestino.SuspendLayout();
@@ -186,12 +199,90 @@
             // 
             // PnlParametrosOrigen
             // 
-            this.PnlParametrosOrigen.Controls.Add(this.GroupBoxAreaOrigen);
+            this.PnlParametrosOrigen.Controls.Add(this.PnlConfiguracionOrigen);
             this.PnlParametrosOrigen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlParametrosOrigen.Location = new System.Drawing.Point(3, 318);
             this.PnlParametrosOrigen.Name = "PnlParametrosOrigen";
             this.PnlParametrosOrigen.Size = new System.Drawing.Size(465, 135);
             this.PnlParametrosOrigen.TabIndex = 34;
+            // 
+            // PnlConfiguracionOrigen
+            // 
+            this.PnlConfiguracionOrigen.Controls.Add(this.GroupBoxAmpliacion);
+            this.PnlConfiguracionOrigen.Controls.Add(this.GroupBoxAreaOrigen);
+            this.PnlConfiguracionOrigen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlConfiguracionOrigen.Location = new System.Drawing.Point(0, 0);
+            this.PnlConfiguracionOrigen.Name = "PnlConfiguracionOrigen";
+            this.PnlConfiguracionOrigen.Size = new System.Drawing.Size(465, 135);
+            this.PnlConfiguracionOrigen.TabIndex = 33;
+            // 
+            // GroupBoxAmpliacion
+            // 
+            this.GroupBoxAmpliacion.Controls.Add(this.NumericEditorYAmpliacion);
+            this.GroupBoxAmpliacion.Controls.Add(this.NumericEditorXAmpliacion);
+            this.GroupBoxAmpliacion.Controls.Add(this.LabelYAmpliacion);
+            this.GroupBoxAmpliacion.Controls.Add(this.LabelXAmpliacion);
+            this.GroupBoxAmpliacion.Dock = System.Windows.Forms.DockStyle.Left;
+            this.GroupBoxAmpliacion.Location = new System.Drawing.Point(92, 0);
+            this.GroupBoxAmpliacion.Name = "GroupBoxAmpliacion";
+            this.GroupBoxAmpliacion.Size = new System.Drawing.Size(160, 135);
+            this.GroupBoxAmpliacion.TabIndex = 34;
+            this.GroupBoxAmpliacion.Text = "Ampliación";
+            // 
+            // NumericEditorYAmpliacion
+            // 
+            this.NumericEditorYAmpliacion.AlwaysInEditMode = true;
+            this.NumericEditorYAmpliacion.Location = new System.Drawing.Point(56, 44);
+            this.NumericEditorYAmpliacion.MaskDisplayMode = Infragistics.Win.UltraWinMaskedEdit.MaskMode.IncludeLiteralsWithPadding;
+            this.NumericEditorYAmpliacion.MaskInput = "{double:-9.4}";
+            this.NumericEditorYAmpliacion.MaxValue = 10000;
+            this.NumericEditorYAmpliacion.MinValue = -10000;
+            this.NumericEditorYAmpliacion.Name = "NumericEditorYAmpliacion";
+            this.NumericEditorYAmpliacion.NumericType = Infragistics.Win.UltraWinEditors.NumericType.Double;
+            this.NumericEditorYAmpliacion.PromptChar = ' ';
+            this.NumericEditorYAmpliacion.Size = new System.Drawing.Size(84, 21);
+            this.NumericEditorYAmpliacion.SpinButtonDisplayStyle = Infragistics.Win.ButtonDisplayStyle.Always;
+            this.NumericEditorYAmpliacion.SpinIncrement = 1;
+            this.NumericEditorYAmpliacion.TabIndex = 5;
+            // 
+            // NumericEditorXAmpliacion
+            // 
+            this.NumericEditorXAmpliacion.AlwaysInEditMode = true;
+            this.NumericEditorXAmpliacion.Location = new System.Drawing.Point(56, 17);
+            this.NumericEditorXAmpliacion.MaskInput = "{double:-9.4}";
+            this.NumericEditorXAmpliacion.MaxValue = 10000;
+            this.NumericEditorXAmpliacion.MinValue = -10000;
+            this.NumericEditorXAmpliacion.Name = "NumericEditorXAmpliacion";
+            this.NumericEditorXAmpliacion.NumericType = Infragistics.Win.UltraWinEditors.NumericType.Double;
+            this.NumericEditorXAmpliacion.PromptChar = ' ';
+            this.NumericEditorXAmpliacion.Size = new System.Drawing.Size(84, 21);
+            this.NumericEditorXAmpliacion.SpinButtonDisplayStyle = Infragistics.Win.ButtonDisplayStyle.Always;
+            this.NumericEditorXAmpliacion.SpinIncrement = 1;
+            this.NumericEditorXAmpliacion.TabIndex = 4;
+            // 
+            // LabelYAmpliacion
+            // 
+            appearance1.TextHAlignAsString = "Right";
+            this.LabelYAmpliacion.Appearance = appearance1;
+            this.LabelYAmpliacion.Location = new System.Drawing.Point(6, 48);
+            this.LabelYAmpliacion.Name = "LabelYAmpliacion";
+            this.LabelYAmpliacion.OI.Apariencia.AlineacionTextoHorizontal = Orbita.Controles.Comunes.AlineacionHorizontal.Derecha;
+            this.LabelYAmpliacion.Size = new System.Drawing.Size(44, 15);
+            this.LabelYAmpliacion.TabIndex = 1;
+            this.LabelYAmpliacion.Text = "Y";
+            this.LabelYAmpliacion.UseMnemonic = false;
+            // 
+            // LabelXAmpliacion
+            // 
+            appearance2.TextHAlignAsString = "Right";
+            this.LabelXAmpliacion.Appearance = appearance2;
+            this.LabelXAmpliacion.Location = new System.Drawing.Point(6, 21);
+            this.LabelXAmpliacion.Name = "LabelXAmpliacion";
+            this.LabelXAmpliacion.OI.Apariencia.AlineacionTextoHorizontal = Orbita.Controles.Comunes.AlineacionHorizontal.Derecha;
+            this.LabelXAmpliacion.Size = new System.Drawing.Size(44, 15);
+            this.LabelXAmpliacion.TabIndex = 0;
+            this.LabelXAmpliacion.Text = "X";
+            this.LabelXAmpliacion.UseMnemonic = false;
             // 
             // GroupBoxAreaOrigen
             // 
@@ -199,10 +290,10 @@
             this.GroupBoxAreaOrigen.Controls.Add(this.RadioButtonPuntoOriginal3);
             this.GroupBoxAreaOrigen.Controls.Add(this.RadioButtonPuntoOriginal2);
             this.GroupBoxAreaOrigen.Controls.Add(this.RadioButtonPuntoOriginal1);
-            this.GroupBoxAreaOrigen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GroupBoxAreaOrigen.Dock = System.Windows.Forms.DockStyle.Left;
             this.GroupBoxAreaOrigen.Location = new System.Drawing.Point(0, 0);
             this.GroupBoxAreaOrigen.Name = "GroupBoxAreaOrigen";
-            this.GroupBoxAreaOrigen.Size = new System.Drawing.Size(465, 135);
+            this.GroupBoxAreaOrigen.Size = new System.Drawing.Size(92, 135);
             this.GroupBoxAreaOrigen.TabIndex = 32;
             this.GroupBoxAreaOrigen.Text = "Área origen";
             // 
@@ -267,10 +358,10 @@
             this.GroupBoxAreaDestino.Controls.Add(this.LabelAncho);
             this.GroupBoxAreaDestino.Controls.Add(this.LabelY);
             this.GroupBoxAreaDestino.Controls.Add(this.LabelX);
-            this.GroupBoxAreaDestino.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GroupBoxAreaDestino.Dock = System.Windows.Forms.DockStyle.Left;
             this.GroupBoxAreaDestino.Location = new System.Drawing.Point(0, 0);
             this.GroupBoxAreaDestino.Name = "GroupBoxAreaDestino";
-            this.GroupBoxAreaDestino.Size = new System.Drawing.Size(465, 135);
+            this.GroupBoxAreaDestino.Size = new System.Drawing.Size(161, 135);
             this.GroupBoxAreaDestino.TabIndex = 33;
             this.GroupBoxAreaDestino.Text = "Destino";
             // 
@@ -341,8 +432,8 @@
             // 
             // LabelAlto
             // 
-            appearance1.TextHAlignAsString = "Right";
-            this.LabelAlto.Appearance = appearance1;
+            appearance3.TextHAlignAsString = "Right";
+            this.LabelAlto.Appearance = appearance3;
             this.LabelAlto.Location = new System.Drawing.Point(6, 102);
             this.LabelAlto.Name = "LabelAlto";
             this.LabelAlto.OI.Apariencia.AlineacionTextoHorizontal = Orbita.Controles.Comunes.AlineacionHorizontal.Derecha;
@@ -353,8 +444,8 @@
             // 
             // LabelAncho
             // 
-            appearance2.TextHAlignAsString = "Right";
-            this.LabelAncho.Appearance = appearance2;
+            appearance4.TextHAlignAsString = "Right";
+            this.LabelAncho.Appearance = appearance4;
             this.LabelAncho.Location = new System.Drawing.Point(6, 75);
             this.LabelAncho.Name = "LabelAncho";
             this.LabelAncho.OI.Apariencia.AlineacionTextoHorizontal = Orbita.Controles.Comunes.AlineacionHorizontal.Derecha;
@@ -365,8 +456,8 @@
             // 
             // LabelY
             // 
-            appearance3.TextHAlignAsString = "Right";
-            this.LabelY.Appearance = appearance3;
+            appearance5.TextHAlignAsString = "Right";
+            this.LabelY.Appearance = appearance5;
             this.LabelY.Location = new System.Drawing.Point(6, 48);
             this.LabelY.Name = "LabelY";
             this.LabelY.OI.Apariencia.AlineacionTextoHorizontal = Orbita.Controles.Comunes.AlineacionHorizontal.Derecha;
@@ -377,8 +468,8 @@
             // 
             // LabelX
             // 
-            appearance4.TextHAlignAsString = "Right";
-            this.LabelX.Appearance = appearance4;
+            appearance6.TextHAlignAsString = "Right";
+            this.LabelX.Appearance = appearance6;
             this.LabelX.Location = new System.Drawing.Point(6, 21);
             this.LabelX.Name = "LabelX";
             this.LabelX.OI.Apariencia.AlineacionTextoHorizontal = Orbita.Controles.Comunes.AlineacionHorizontal.Derecha;
@@ -389,8 +480,8 @@
             // 
             // BtnProcesar
             // 
-            appearance5.Image = global::Orbita.Controles.VA.Properties.Resources.BtnAplicar24;
-            this.BtnProcesar.Appearance = appearance5;
+            appearance7.Image = global::Orbita.Controles.VA.Properties.Resources.BtnAplicar24;
+            this.BtnProcesar.Appearance = appearance7;
             this.BtnProcesar.ImageSize = new System.Drawing.Size(24, 24);
             this.BtnProcesar.Location = new System.Drawing.Point(0, 10);
             this.BtnProcesar.Name = "BtnProcesar";
@@ -416,6 +507,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.ChkToolTip)).EndInit();
             this.orbitaTableLayoutPanel1.ResumeLayout(false);
             this.PnlParametrosOrigen.ResumeLayout(false);
+            this.PnlConfiguracionOrigen.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GroupBoxAmpliacion)).EndInit();
+            this.GroupBoxAmpliacion.ResumeLayout(false);
+            this.GroupBoxAmpliacion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericEditorYAmpliacion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericEditorXAmpliacion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GroupBoxAreaOrigen)).EndInit();
             this.GroupBoxAreaOrigen.ResumeLayout(false);
             this.GroupBoxAreaOrigen.PerformLayout();
@@ -453,5 +550,11 @@
         private Comunes.OrbitaUltraNumericEditor NumericEditorAlto;
         private Comunes.OrbitaUltraNumericEditor NumericEditorAncho;
         private Comunes.OrbitaUltraNumericEditor NumericEditorY;
+        private Contenedores.OrbitaPanel PnlConfiguracionOrigen;
+        private Contenedores.OrbitaUltraGroupBox GroupBoxAmpliacion;
+        private Comunes.OrbitaUltraNumericEditor NumericEditorYAmpliacion;
+        private Comunes.OrbitaUltraNumericEditor NumericEditorXAmpliacion;
+        private Comunes.OrbitaUltraLabel LabelYAmpliacion;
+        private Comunes.OrbitaUltraLabel LabelXAmpliacion;
     }
 }

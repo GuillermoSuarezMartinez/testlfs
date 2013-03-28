@@ -86,11 +86,11 @@ namespace Orbita.Controles.VA
         /// Muestra el mensaje de error
         /// </summary>
         /// <param name="informacion">Informacion a mostrar</param>
-        public static void MostrarInfo(bool dialogo, string informacion)
+        public static void MostrarInfo(bool dialogo, string informacion, int ordenLlamada)
         {
             using (MensajeError frmExcepcion = new MensajeError())
             {
-                frmExcepcion.MostrarInfoInterna(dialogo, informacion);
+                frmExcepcion.MostrarInfoInterna(dialogo, informacion, ordenLlamada);
             }
         }
 
@@ -114,11 +114,11 @@ namespace Orbita.Controles.VA
         /// Muestra el mensaje de error
         /// </summary>
         /// <param name="Excepcion">Excepción a mostrar</param>
-        private void MostrarInfoInterna(bool dialogo, string informacion)
+        private void MostrarInfoInterna(bool dialogo, string informacion, int ordenLlamada)
         {
                 this.Mensaje = informacion;
                 this.Excepcion = "";
-                ODebug.GetCallingMethod(6, out this.Assembly, out this.File, out this.ClassName, out this.Methode, out this.Line, out this.PilaLlamadas);
+                ODebug.GetCallingMethod(ordenLlamada, out this.Assembly, out this.File, out this.ClassName, out this.Methode, out this.Line, out this.PilaLlamadas);
 
                 this.Mostrar(dialogo);
         }

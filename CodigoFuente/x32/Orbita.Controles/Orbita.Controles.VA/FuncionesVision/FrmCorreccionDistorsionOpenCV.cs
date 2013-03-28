@@ -56,17 +56,34 @@ namespace Orbita.Controles.VA
         {
             try
             {
+                // Conversión de tipo
+                OImagen imgVisualizada = this.VisorBitmapOriginal.ImagenActual;
+                OImagenOpenCV<Emgu.CV.Structure.Rgb, byte> imgOriginal;
+                imgVisualizada.Convert<OImagenOpenCV<Emgu.CV.Structure.Rgb, byte>>(out imgOriginal);
+
+                // Extracción de información de ampliación del lienzo
+                int xAmpliacion = this.NumericEditorXAmpliacion.Value.ValidarEntero(-10000, 10000, 0);
+                int yAmpliacion = this.NumericEditorYAmpliacion.Value.ValidarEntero(-10000, 10000, 0);
+
+                // Ampliación del lienzo
+                OImagenOpenCV<Emgu.CV.Structure.Rgb, byte> imgAmpliada;
+                imgAmpliada = imgOriginal.CrearBorde(xAmpliacion, yAmpliacion);
+
+                // Extracción de información de la imagen original
+                PointF puntoOriginal1Offset = new PointF(PuntoOriginal1.X + xAmpliacion, PuntoOriginal1.Y + yAmpliacion);
+                PointF puntoOriginal2Offset = new PointF(PuntoOriginal2.X + xAmpliacion, PuntoOriginal2.Y + yAmpliacion);
+                PointF puntoOriginal3Offset = new PointF(PuntoOriginal3.X + xAmpliacion, PuntoOriginal3.Y + yAmpliacion);
+                PointF puntoOriginal4Offset = new PointF(PuntoOriginal4.X + xAmpliacion, PuntoOriginal4.Y + yAmpliacion);
+
+                // Extracción de información de la imagen destino
                 float x = (float)ODecimal.Validar(this.NumericEditorX.Value, -10000, 10000, 0);
                 float y = (float)ODecimal.Validar(this.NumericEditorY.Value, -10000, 10000, 0);
                 float ancho = (float)ODecimal.Validar(this.NumericEditorAncho.Value, 1, 10000, 800);
                 float alto = (float)ODecimal.Validar(this.NumericEditorAlto.Value, 1, 10000, 600);
 
-                OImagen imgVisualizada = this.VisorBitmapOriginal.ImagenActual;
-                OImagenOpenCV<Emgu.CV.Structure.Rgb, byte> imgOriginal;
-                imgVisualizada.Convert<OImagenOpenCV<Emgu.CV.Structure.Rgb, byte>>(out imgOriginal);
-
+                // Corrección de perspectiva
                 OImagenOpenCV<Emgu.CV.Structure.Rgb, byte> imgDestino;
-                imgDestino = imgOriginal.CorregirPerspectiva(PuntoOriginal1, PuntoOriginal2, PuntoOriginal3, PuntoOriginal4, x, y, ancho, alto);
+                imgDestino = imgAmpliada.CorregirPerspectiva(puntoOriginal1Offset, puntoOriginal2Offset, puntoOriginal3Offset, puntoOriginal4Offset, x, y, ancho, alto);
 
                 this.VisorBitmapDestino.Visualizar(imgDestino);
             }
