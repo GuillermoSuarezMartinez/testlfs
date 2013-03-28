@@ -528,6 +528,11 @@ namespace Orbita.Trazabilidad
         {
             ItemLog item = new ItemLog(nivel, mensaje);
             item.SetArgumentos(args);
+            // Argumentos relativos al evento de escritura.
+            LoggerArgsEventArgs e = new LoggerArgsEventArgs(item);
+            e.SetArgumentos(args);
+            // El evento se lanza como cualquier delegado.
+            this.OnAntesEscribirLogger(this, e);
             Log(item, args);
         }
         /// <summary>
@@ -573,6 +578,11 @@ namespace Orbita.Trazabilidad
         {
             ItemLog item = new ItemLog(nivel, excepcion, mensaje);
             item.SetArgumentos(args);
+            // Argumentos relativos al evento de escritura.
+            LoggerArgsEventArgs e = new LoggerArgsEventArgs(item, excepcion);
+            e.SetArgumentos(args);
+            // El evento se lanza como cualquier delegado.
+            this.OnAntesEscribirLogger(this, e);
             Log(item, args);
         }
         #endregion Log

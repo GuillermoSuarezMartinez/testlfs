@@ -94,6 +94,7 @@
     <Compile Include="Estructuras\Formato.cs" />
     <Compile Include="Estructuras\Logger.cs" />
     <Compile Include="Estructuras\Ruta.cs" />
+    <Compile Include="EventArgs\LoggerArgsEventArgs.cs" />
     <Compile Include="EventArgs\LoggerEventArgs.cs" />
     <Compile Include="EventArgs\RemotingEventArgs.cs" />
     <Compile Include="Factorias\FactoryLogger.cs" />
