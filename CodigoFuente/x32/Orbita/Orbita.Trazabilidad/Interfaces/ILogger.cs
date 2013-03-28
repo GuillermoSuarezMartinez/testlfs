@@ -7,6 +7,10 @@
 // Last Modified On : 02-21-2011
 // Description      : 
 //
+// Last Modified By : aibañez
+// Last Modified On : 28-03-2013
+// Description      : Añadido evento de AntesEscribirLogger
+//
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 namespace Orbita.Trazabilidad
@@ -24,6 +28,10 @@ namespace Orbita.Trazabilidad
         #endregion
 
         #region Eventos
+        /// <summary>
+        /// Evento que se ejecuta antes de escribir en el fichero de logger.
+        /// </summary>
+        event System.EventHandler<LoggerEventArgs> AntesEscribirLogger;
         /// <summary>
         /// Evento que se ejecuta tras escribir en el fichero de logger.
         /// </summary>

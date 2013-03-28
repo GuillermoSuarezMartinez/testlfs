@@ -64,6 +64,15 @@ namespace Orbita.Trazabilidad
             return Repositorio.Cast<System.Collections.DictionaryEntry>().ToDictionary(kvp => (string)kvp.Key, kvp => (ILogger)((SimpleLogger)kvp.Value).Logger);
         }
         /// <summary>
+        /// Colección de loggers.
+        /// </summary>
+        /// <returns></returns>
+        public static System.Collections.Generic.Dictionary<string, ILogger> GetLoggers<TLogger>()
+            where TLogger : ILogger
+        {
+            return (System.Collections.Generic.Dictionary<string, ILogger>)GetLoggers().Where(kvp => kvp.Value is TLogger).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        }
+        /// <summary>
         /// Asignar logger al repositorio.
         /// </summary>
         /// <param name="logger">Interface de logger.</param>
