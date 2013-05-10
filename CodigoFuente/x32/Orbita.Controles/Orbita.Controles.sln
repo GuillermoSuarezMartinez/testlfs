@@ -49,17 +49,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Framework.Core", "Or
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Controles.Autenticacion", "Orbita.Controles.Autenticacion\Orbita.Controles.Autenticacion.csproj", "{298D55EA-3C54-4D2F-9CF9-DA76531931EC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GateSuite", "GateSuite", "{9D6BACB7-EDE3-4EC8-9F69-44FAA7C95838}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Controles.GateSuite", "Orbita.Controles.GateSuite\Orbita.Controles.GateSuite.csproj", "{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Test", "..\Pruebas\Orbita.Test\Orbita.Test.csproj", "{5A389901-6ECF-48D6-8DDC-0A83AE46925C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Test.Framework", "Orbita.Test.Framework\Orbita.Test.Framework.csproj", "{A7526AF5-1073-4376-B521-75FA3665868C}"
-EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 16
+		SccNumberOfProjects = 15
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://01x0019:8080/tfs/orbitasoftware
 		SccLocalPath0 = .
@@ -103,26 +95,22 @@ Global
 		SccProjectTopLevelParentUniqueName10 = Orbita.Controles.sln
 		SccProjectName10 = Orbita.Controles.Shared
 		SccLocalPath10 = Orbita.Controles.Shared
-		SccProjectUniqueName11 = Orbita.Controles.GateSuite\\Orbita.Controles.GateSuite.csproj
+		SccProjectUniqueName11 = Orbita.Controles.Combo\\Orbita.Controles.Combo.csproj
 		SccProjectTopLevelParentUniqueName11 = Orbita.Controles.sln
-		SccProjectName11 = Orbita.Controles.GateSuite
-		SccLocalPath11 = Orbita.Controles.GateSuite
-		SccProjectUniqueName12 = Orbita.Controles.Combo\\Orbita.Controles.Combo.csproj
+		SccProjectName11 = Orbita.Controles.Combo
+		SccLocalPath11 = Orbita.Controles.Combo
+		SccProjectUniqueName12 = Orbita.Framework\\Orbita.Framework.csproj
 		SccProjectTopLevelParentUniqueName12 = Orbita.Controles.sln
-		SccProjectName12 = Orbita.Controles.Combo
-		SccLocalPath12 = Orbita.Controles.Combo
-		SccProjectUniqueName13 = Orbita.Framework\\Orbita.Framework.csproj
+		SccProjectName12 = Orbita.Framework
+		SccLocalPath12 = Orbita.Framework
+		SccProjectUniqueName13 = Orbita.Framework.Core\\Orbita.Framework.Core.csproj
 		SccProjectTopLevelParentUniqueName13 = Orbita.Controles.sln
-		SccProjectName13 = Orbita.Framework
-		SccLocalPath13 = Orbita.Framework
-		SccProjectUniqueName14 = Orbita.Framework.Core\\Orbita.Framework.Core.csproj
+		SccProjectName13 = Orbita.Framework.Core
+		SccLocalPath13 = Orbita.Framework.Core
+		SccProjectUniqueName14 = Orbita.Controles.Autenticacion\\Orbita.Controles.Autenticacion.csproj
 		SccProjectTopLevelParentUniqueName14 = Orbita.Controles.sln
-		SccProjectName14 = Orbita.Framework.Core
-		SccLocalPath14 = Orbita.Framework.Core
-		SccProjectUniqueName15 = Orbita.Controles.Autenticacion\\Orbita.Controles.Autenticacion.csproj
-		SccProjectTopLevelParentUniqueName15 = Orbita.Controles.sln
-		SccProjectName15 = Orbita.Controles.Autenticacion
-		SccLocalPath15 = Orbita.Controles.Autenticacion
+		SccProjectName14 = Orbita.Controles.Autenticacion
+		SccLocalPath14 = Orbita.Controles.Autenticacion
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -320,6 +308,7 @@ Global
 		{7E7DAFD4-3823-46B8-917C-FCEA9431A1A9}.Release|x86.ActiveCfg = Release|x86
 		{7E7DAFD4-3823-46B8-917C-FCEA9431A1A9}.Release|x86.Build.0 = Release|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Debug|Any CPU.ActiveCfg = Release|x86
+		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Debug|Any CPU.Build.0 = Release|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Debug|x64.ActiveCfg = Debug|x86
@@ -334,7 +323,7 @@ Global
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Release|Mixed Platforms.Build.0 = Release|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Release|x64.ActiveCfg = Release|x86
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192}.Release|x86.ActiveCfg = Release|x86
-		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Debug|Any CPU.ActiveCfg = Release|x86
 		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Debug|x64.ActiveCfg = Debug|x86
@@ -352,7 +341,7 @@ Global
 		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Release|x64.ActiveCfg = Release|x86
 		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Release|x86.ActiveCfg = Release|x86
 		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Release|x86.Build.0 = Release|x86
-		{B9B780FC-3924-47C9-A276-8957E0164BF0}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B9B780FC-3924-47C9-A276-8957E0164BF0}.Debug|Any CPU.ActiveCfg = Release|x86
 		{B9B780FC-3924-47C9-A276-8957E0164BF0}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{B9B780FC-3924-47C9-A276-8957E0164BF0}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{B9B780FC-3924-47C9-A276-8957E0164BF0}.Debug|x64.ActiveCfg = Debug|x86
@@ -387,58 +376,6 @@ Global
 		{298D55EA-3C54-4D2F-9CF9-DA76531931EC}.Release|x64.ActiveCfg = Release|x86
 		{298D55EA-3C54-4D2F-9CF9-DA76531931EC}.Release|x86.ActiveCfg = Release|x86
 		{298D55EA-3C54-4D2F-9CF9-DA76531931EC}.Release|x86.Build.0 = Release|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Debug|x64.ActiveCfg = Debug|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Debug|x86.ActiveCfg = Debug|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Framework|Any CPU.ActiveCfg = Release|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Framework|Mixed Platforms.ActiveCfg = Release|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Framework|Mixed Platforms.Build.0 = Release|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Framework|x64.ActiveCfg = Release|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Framework|x86.ActiveCfg = Release|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Framework|x86.Build.0 = Release|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Release|Any CPU.ActiveCfg = Release|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Release|Mixed Platforms.Build.0 = Release|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Release|x64.ActiveCfg = Release|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Release|x86.ActiveCfg = Release|x86
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333}.Release|x86.Build.0 = Release|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Debug|x64.ActiveCfg = Debug|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Debug|x86.ActiveCfg = Debug|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Framework|Any CPU.ActiveCfg = Release|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Framework|Mixed Platforms.ActiveCfg = Release|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Framework|Mixed Platforms.Build.0 = Release|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Framework|x64.ActiveCfg = Release|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Framework|x86.ActiveCfg = Release|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Framework|x86.Build.0 = Release|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|Any CPU.ActiveCfg = Release|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|Mixed Platforms.Build.0 = Release|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|x64.ActiveCfg = Release|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|x86.ActiveCfg = Release|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|x86.Build.0 = Release|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Debug|x64.ActiveCfg = Debug|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Debug|x86.ActiveCfg = Debug|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Debug|x86.Build.0 = Debug|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Framework|Any CPU.ActiveCfg = Release|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Framework|Mixed Platforms.ActiveCfg = Release|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Framework|Mixed Platforms.Build.0 = Release|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Framework|x64.ActiveCfg = Release|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Framework|x86.ActiveCfg = Release|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Framework|x86.Build.0 = Release|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Release|Any CPU.ActiveCfg = Release|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Release|Mixed Platforms.Build.0 = Release|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Release|x64.ActiveCfg = Release|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Release|x86.ActiveCfg = Release|x86
-		{A7526AF5-1073-4376-B521-75FA3665868C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -458,6 +395,5 @@ Global
 		{675AADC6-EC8B-47F8-966E-882FACCCDB41} = {78CDE09F-A15A-442E-90BD-80A70D81195B}
 		{B9B780FC-3924-47C9-A276-8957E0164BF0} = {78CDE09F-A15A-442E-90BD-80A70D81195B}
 		{298D55EA-3C54-4D2F-9CF9-DA76531931EC} = {0AFDFFEE-25F2-4CA4-AA57-A3DCD3C7CAFB}
-		{49E43B64-7B18-4BFE-BF93-4B0ABB08C333} = {9D6BACB7-EDE3-4EC8-9F69-44FAA7C95838}
 	EndGlobalSection
 EndGlobal
