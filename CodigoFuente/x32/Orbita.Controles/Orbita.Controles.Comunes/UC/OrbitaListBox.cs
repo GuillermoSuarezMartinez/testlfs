@@ -11,14 +11,23 @@
 //***********************************************************************
 namespace Orbita.Controles.Comunes
 {
+    /// <summary>
+    /// Representa un control para mostrar una lista de elementos.
+    /// </summary>
     public partial class OrbitaListBox : System.Windows.Forms.ListBox
     {
         #region Nueva definición
         public class ControlNuevaDefinicion : OListBox
         {
+            #region Constructor
+            /// <summary>
+            /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.ControlNuevaDefinicion.
+            /// </summary>
+            /// <param name="sender">Representa un control para mostrar una lista de elementos.</param>
             public ControlNuevaDefinicion(OrbitaListBox sender)
                 : base(sender) { }
-        };
+            #endregion
+        }
         #endregion
 
         #region Atributos

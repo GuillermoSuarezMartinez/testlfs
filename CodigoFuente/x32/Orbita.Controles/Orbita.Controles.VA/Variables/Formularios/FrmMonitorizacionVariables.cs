@@ -24,6 +24,13 @@ namespace Orbita.Controles.VA
     /// </summary>
     public partial class FrmMonitorizacionVariables : FrmBase
     {
+        #region Constante(s)
+        /// <summary>
+        /// Intervalo entre muestreo
+        /// </summary>
+        private const int CadenciaMonitorizacionMs = 100;
+        #endregion
+
         #region Atributo(s)
         /// <summary>
         /// Momento en el que se produjo el último refresco de las variables
@@ -114,7 +121,7 @@ namespace Orbita.Controles.VA
 
             // Inicializamos el timer de refresco
             this.MomentoUltimoRefresco = DateTime.Now;
-            this.TimerRefresco.Interval = OSistemaManager.Configuracion.CadenciaMonitorizacionMilisegundos;
+            this.TimerRefresco.Interval = CadenciaMonitorizacionMs;
         }
         /// <summary>
         /// Carga y muestra datos del formulario en modo nuevo. Se cargan todos datos que se muestran en 
@@ -211,7 +218,7 @@ namespace Orbita.Controles.VA
             string codigo = variable.Codigo.ToString();
             string descripcion = variable.Descripcion.ToString();
             string habilitado = variable.Habilitado.ToString();
-            string guardarTrazabilidad = variable.GuardarTrazabilidad.ToString();
+            //string guardarTrazabilidad = variable.GuardarTrazabilidad.ToString();
             string grupo = variable.Grupo.ToString();
 
             ListViewItem item = new ListViewItem();
@@ -248,10 +255,10 @@ namespace Orbita.Controles.VA
             subItemHabilitadoVariable.Text = habilitado;
             item.SubItems.Add(subItemHabilitadoVariable);
 
-            ListViewItem.ListViewSubItem subItemGuardarTrazabilidad = new ListViewItem.ListViewSubItem();
-            subItemGuardarTrazabilidad.Name = "GuardarTrazabilidad";
-            subItemGuardarTrazabilidad.Text = guardarTrazabilidad;
-            item.SubItems.Add(subItemGuardarTrazabilidad);
+            //ListViewItem.ListViewSubItem subItemGuardarTrazabilidad = new ListViewItem.ListViewSubItem();
+            //subItemGuardarTrazabilidad.Name = "GuardarTrazabilidad";
+            //subItemGuardarTrazabilidad.Text = guardarTrazabilidad;
+            //item.SubItems.Add(subItemGuardarTrazabilidad);
 
             this.ListView.Items.Add(item);
         }
@@ -269,11 +276,12 @@ namespace Orbita.Controles.VA
             if (valor != null)
             {
                 textoValor = valor.ToString();
-                activo = true;
-                if (valor is bool)
-                {
-                    activo = (bool)valor;
-                }
+                activo = OBooleano.Validar(valor, false);
+                //activo = true;
+                //if (valor is bool)
+                //{
+                //    activo = (bool)valor;
+                //}
             }
         }
 
@@ -489,7 +497,7 @@ namespace Orbita.Controles.VA
                                 }
                                 catch (Exception exception)
                                 {
-                                    OLogsControlesVA.ControlesVA.Fatal(this.Name, exception);
+                                    OLogsControlesVA.ControlesVA.Fatal(exception, this.Name);
                                 }
                             }
                         }
@@ -508,7 +516,7 @@ namespace Orbita.Controles.VA
             try
             {
                 TimeSpan tiempoSinRefrescar = DateTime.Now - MomentoUltimoRefresco;
-                if (tiempoSinRefrescar > OVariablesManager.CadenciaMonitorizacion)
+                if (tiempoSinRefrescar.TotalMilliseconds > CadenciaMonitorizacionMs)
                 {
                     // Si hace más de x tiempo que se refresco, volvemos a referescar
                     ListViewItem[] items = this.ListView.Items.Find(codigo, false);
@@ -565,16 +573,17 @@ namespace Orbita.Controles.VA
                     object valor = OVariablesManager.GetValue(codigo);
                     OVariable variable = (OVariable)item.Tag;
 
-                    switch (variable.Tipo)
-                    {
-                        case OEnumTipoDato.Bit:
-                        case OEnumTipoDato.Entero:
-                        case OEnumTipoDato.Texto:
-                        case OEnumTipoDato.Decimal:
-                        case OEnumTipoDato.Fecha:
-                            this.RefrescarVariables(codigo, valor, item);
-                            break;
-                    }
+                    //switch (variable.Tipo)
+                    //{
+                    //    case OEnumTipoDato.Bit:
+                    //    case OEnumTipoDato.Entero:
+                    //    case OEnumTipoDato.Texto:
+                    //    case OEnumTipoDato.Decimal:
+                    //    case OEnumTipoDato.Fecha:
+                    //        this.RefrescarVariables(codigo, valor, item);
+                    //        break;
+                    //}
+                    this.RefrescarVariables(codigo, valor, item);
                 }
             }
             catch (Exception exception)

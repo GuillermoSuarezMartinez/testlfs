@@ -1,5 +1,8 @@
 ﻿namespace Orbita.Controles.Comunicaciones
 {
+    /// <summary>
+    /// Configuración del logger usado
+    /// </summary>
     partial class FrmConfigLogger
     {
         /// <summary>

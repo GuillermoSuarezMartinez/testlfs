@@ -1,5 +1,4 @@
-﻿using System;
-//***********************************************************************
+﻿//***********************************************************************
 // Assembly         : Orbita.Controles
 // Author           : crodriguez
 // Created          : 19-01-2012
@@ -147,10 +146,10 @@ namespace Orbita.Controles.Combo
                 if (this.filas == null)
                 {
                     this.filas = new OFilas(this.Control);
-                    this.filas.PropertyChanged += new EventHandler<OPropiedadEventArgs>(FilasChanged);
-                    this.filas.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaFilasChanged);
-                    this.filas.Activas.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaFilasActivasChanged);
-                    this.filas.Alternas.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaFilasAlternasChanged);
+                    this.filas.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(FilasChanged);
+                    this.filas.Apariencia.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(AparienciaFilasChanged);
+                    this.filas.Activas.Apariencia.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(AparienciaFilasActivasChanged);
+                    this.filas.Alternas.Apariencia.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(AparienciaFilasAlternasChanged);
                     this.filas.Alto = Configuracion.DefectoAlto;
                     this.filas.MostrarIndicador = Configuracion.DefectoMostrarIndicador;
                 }
@@ -167,7 +166,7 @@ namespace Orbita.Controles.Combo
                 if (this.cabecera == null)
                 {
                     this.cabecera = new OCabecera();
-                    this.cabecera.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaCabeceraChanged);
+                    this.cabecera.Apariencia.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(AparienciaCabeceraChanged);
                     this.cabecera.Estilo = Configuracion.DefectoEstiloCabecera;
                     this.cabecera.Multilinea = Configuracion.DefectoCabeceraMultilinea;
                 }
@@ -184,7 +183,7 @@ namespace Orbita.Controles.Combo
                 if (this.columnas == null)
                 {
                     this.columnas = new OColumnas(this.Control);
-                    this.columnas.PropertyChanged += new EventHandler<OPropiedadEventArgs>(ColumnasChanged);
+                    this.columnas.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(ColumnasChanged);
                     this.columnas.PermitirOrdenar = Configuracion.DefectoPermitirOrdenar;
                     this.columnas.Estilo = Configuracion.DefectoAutoAjustarEstilo;
                     this.columnas.TipoSeleccion = Configuracion.DefectoTipoSeleccionColumna;
@@ -202,7 +201,7 @@ namespace Orbita.Controles.Combo
                 if (this.celdas == null)
                 {
                     this.celdas = new OCeldas();
-                    this.celdas.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaCeldasChanged);
+                    this.celdas.Apariencia.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(AparienciaCeldasChanged);
                 }
                 return this.celdas;
             }
@@ -237,7 +236,7 @@ namespace Orbita.Controles.Combo
                 switch (e.Nombre)
                 {
                     case "MostrarIndicador":
-                        this.Control.DisplayLayout.Override.RowSelectors = (DefaultableBoolean)Enum.Parse(typeof(DefaultableBoolean), this.Filas.MostrarIndicador.ToString(), true);
+                        this.Control.DisplayLayout.Override.RowSelectors = (DefaultableBoolean)System.Enum.Parse(typeof(DefaultableBoolean), this.Filas.MostrarIndicador.ToString(), true);
                         break;
                     case "Alto":
                         int alto = this.Filas.Alto;
@@ -421,16 +420,28 @@ namespace Orbita.Controles.Combo
             this.Valor = Configuracion.DefectoValor;
             this.Texto = Configuracion.DefectoTexto;
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeEditable()
         {
             return (this.Editable != Configuracion.DefectoEditable);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeNullablePorTeclado()
         {
             return (this.AnulablePorTeclado != Configuracion.DefectoNullablePorTeclado);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeTexto()
         {

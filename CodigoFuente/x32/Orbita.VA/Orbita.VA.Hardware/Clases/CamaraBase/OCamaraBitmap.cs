@@ -17,7 +17,7 @@ namespace Orbita.VA.Hardware
     /// <summary>
     /// Clase base que implementa las funciones de trabajo sobre bitmaps
     /// </summary>
-    public class OCamaraBitmap : OCamaraBase
+    public class OCamaraBitmap : OCamaraServidor
     {
         #region Atributo(s)
         /// <summary>

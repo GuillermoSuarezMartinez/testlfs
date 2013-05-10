@@ -9,16 +9,22 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Comunes
 {
+    /// <summary>
+    /// Componente para la gestión del acoplamiento y la flotación de los controles de un formulario.
+    /// </summary>
     public partial class OrbitaUltraDockManager : Infragistics.Win.UltraWinDock.UltraDockManager
     {
+        #region Nueva definición
         public class ControlNuevaDefinicion : OUltraDockManager
         {
+            #region Constructor
             public ControlNuevaDefinicion(OrbitaUltraDockManager sender)
                 : base(sender) { }
-        };
+            #endregion
+        }
+        #endregion
 
         #region Atributos
         ControlNuevaDefinicion definicion;
@@ -26,7 +32,7 @@ namespace Orbita.Controles.Comunes
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraDockManager.
         /// </summary>
         public OrbitaUltraDockManager()
             : base()
@@ -34,7 +40,7 @@ namespace Orbita.Controles.Comunes
             InitializeComponent();
             InitializeAttributes();
         }
-               /// <summary>
+        /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraDockManager.
         /// </summary>
         /// <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
@@ -65,7 +71,7 @@ namespace Orbita.Controles.Comunes
 
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }

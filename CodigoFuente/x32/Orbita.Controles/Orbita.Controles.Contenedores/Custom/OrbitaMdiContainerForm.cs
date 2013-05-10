@@ -59,7 +59,7 @@ namespace Orbita.Controles.Contenedores
         void InitializeProperties()
         {
             this.toolTip.Active = Configuracion.DefectoVerToolTips;
-            this.OI.NumeroMaximoFormulariosAbiertos = Configuracion.DefectoNumeroMaximoFormulariosAbiertos;
+            this.OI.NumeroMaximoFormulariosAbiertos = Configuracion.DefectoNumeroMaximoFormulariosAbiertosEnMdi;
         }
         #endregion
     }

@@ -26,6 +26,13 @@ namespace Orbita.Controles.VA
     /// </summary>
     public partial class OrbitaVisorMaquinaEstados : UserControl
     {
+        #region Constante(s)
+        /// <summary>
+        /// Intervalo entre muestreo
+        /// </summary>
+        private const int CadenciaMonitorizacionMs = 100;
+        #endregion
+
         #region Atributo(s)
 
         /// <summary>
@@ -70,7 +77,7 @@ namespace Orbita.Controles.VA
         {
             // Inicializamos el timer de refresco
             this.MomentoUltimoRefresco = DateTime.Now;
-            this.timerRefresco.Interval = Convert.ToInt32(OVariablesManager.CadenciaMonitorizacion.TotalMilliseconds);
+            this.timerRefresco.Interval = CadenciaMonitorizacionMs;
 
             // Inicializar variables
             this.MaquinaEstadosVisual = new OMaquinaEstadosVisual(codigo, online);
@@ -145,7 +152,7 @@ namespace Orbita.Controles.VA
 
                 // Refrescamos el layout si ha pasado un tiempo prudencial para no saturar la cpu
                 TimeSpan tiempoSinRefrescar = DateTime.Now - MomentoUltimoRefresco;
-                if (tiempoSinRefrescar > OVariablesManager.CadenciaMonitorizacion)
+                if (tiempoSinRefrescar.TotalMilliseconds > CadenciaMonitorizacionMs)
                 {
                     // Si hace más de x tiempo que se refresco, volvemos a referescar
                     this.RefrescarEstadoActual(e.CodEstado);

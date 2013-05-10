@@ -30,7 +30,13 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Eventos
+        /// <summary>
+        /// Propiedad cambiando.
+        /// </summary>
         public event System.EventHandler<OPropiedadEventArgs> PropertyChanging;
+        /// <summary>
+        /// Propiedad cambio.
+        /// </summary>
         public event System.EventHandler<OPropiedadEventArgs> PropertyChanged;
         #endregion
 
@@ -50,7 +56,7 @@ namespace Orbita.Controles.Grid
             get { return base.Apariencia; }
             set { base.Apariencia = value; }
         }
-        [System.ComponentModel.Description("Determina la configuración de la celda activa.")]
+        [System.ComponentModel.Description("Determina la configuración de las celdas activas.")]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content), System.ComponentModel.Category("Fila")]
         public OCeldasActivas Activas
         {
@@ -64,7 +70,7 @@ namespace Orbita.Controles.Grid
             }
             set { this.activas = value; }
         }
-        [System.ComponentModel.Description("Determina la configuración de la celda activa.")]
+        [System.ComponentModel.Description("Determina la configuración de las celdas agrupadas.")]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content), System.ComponentModel.Category("Fila")]
         public OCeldasAgrupadas Agrupadas
         {
@@ -78,7 +84,7 @@ namespace Orbita.Controles.Grid
             }
             set { this.agrupadas = value; }
         }
-        [System.ComponentModel.Description("Especifica el estilo de columnas.")]
+        [System.ComponentModel.Description("")]
         public TipoSeleccion TipoSeleccion
         {
             get { return this.tipoSeleccion; }
@@ -103,6 +109,10 @@ namespace Orbita.Controles.Grid
         {
             this.TipoSeleccion = Configuracion.DefectoTipoSeleccionCelda;
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeTipoSeleccion()
         {
@@ -112,9 +122,9 @@ namespace Orbita.Controles.Grid
 
         #region Métodos públicos
         /// <summary>
-        /// Determina el número de propiedades modificadas.
+        /// Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>El nombre de tipo completo del objeto.</returns>
         public override string ToString()
         {
             return null;

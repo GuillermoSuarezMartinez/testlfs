@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using Orbita.Trazabilidad;
-
-
 namespace Orbita.Controles.Comunicaciones
 {
     public partial class FrmDetalle : Form

@@ -71,6 +71,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -80,6 +81,7 @@
     <Compile Include="Colecciones\OCola.cs" />
     <Compile Include="Colecciones\OColaSincronizada.cs" />
     <Compile Include="Colecciones\OColecciones.cs" />
+    <Compile Include="Colecciones\OExtensionesColecciones.cs" />
     <Compile Include="Colecciones\OHashtable.cs" />
     <Compile Include="Colecciones\OPriorityQueue.cs" />
     <Compile Include="Comunicaciones\OComm.cs" />
@@ -95,7 +97,9 @@
     <Compile Include="Enumerados\OAtributoEnumerado.cs" />
     <Compile Include="Estructuras\OCronometros.cs" />
     <Compile Include="Estructuras\OFichero.cs" />
+    <Compile Include="Estructuras\OSingleton.cs" />
     <Compile Include="Estructuras\OObjetos.cs" />
+    <Compile Include="Estructuras\OTipoDato.cs" />
     <Compile Include="Excepciones\OExcepcion.cs" />
     <Compile Include="Interfaces\ICola.cs" />
     <Compile Include="Matematicas\OMath.cs" />

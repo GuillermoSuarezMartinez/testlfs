@@ -35,6 +35,11 @@ namespace Orbita.VA.GeneradorEscenarios
         /// Indica si se han de generar el hardware
         /// </summary>
         public static bool HabilitadoHardware;
+
+        /// <summary>
+        /// Indica si se han de generar las funciones de visión
+        /// </summary>
+        public static bool HabilitadoVision;
         #endregion
 
         #region Punto de entrada
@@ -64,6 +69,12 @@ namespace Orbita.VA.GeneradorEscenarios
                 if (HabilitadoHardware)
                 {
                     listaUsing.Add(typeof(Orbita.VA.Hardware.OCamaraBase).Namespace);
+                }
+
+                HabilitadoVision = string.Equals(args[5], "Vision", StringComparison.InvariantCultureIgnoreCase);
+                if (HabilitadoVision)
+                {
+                    listaUsing.Add(typeof(Orbita.VA.Funciones.OFuncionVisionBase).Namespace);
                 }
 
                 generador.GenerarUnit(args[0], listaUsing.ToArray());
@@ -127,13 +138,19 @@ namespace Orbita.VA.GeneradorEscenarios
                 if (HabilitadoVariables)
                 {
                     CodeTypeDeclaration claseImplementacionVariables;
-                    GenerarImplementadorVariables(generador, "OImplementacionVariables", "Mapeado de las variables", out claseImplementacionVariables);
+                    GenerarImplementadorVariables(generador, "OListaVariables", "Mapeado de las variables", out claseImplementacionVariables);
                 }
 
                 if (HabilitadoHardware)
                 {
                     CodeTypeDeclaration claseImplementacionHardware;
-                    GenerarImplementadorHardware(generador, "OImplementacionHardware", "Mapeado del hardware", out claseImplementacionHardware);
+                    GenerarImplementadorHardware(generador, "OListaHardware", "Mapeado del hardware", out claseImplementacionHardware);
+                }
+
+                if (HabilitadoVision)
+                {
+                    CodeTypeDeclaration claseImplementacionVision;
+                    GenerarImplementadorVision(generador, "OListaVision", "Mapeado de las funciones de visión", out claseImplementacionVision);
                 }
 
                 // Guardar el fichero
@@ -497,6 +514,36 @@ namespace Orbita.VA.GeneradorEscenarios
                 string descHardware = drHw["DescHardware"].ToString();
                 string claseImplementadoraHw = drHw["ClaseImplementadora"].ToString();
                 generador.GenerarPropiedadReadOnlyRuntime(ref clase, codHardware, claseImplementadoraHw, descHardware, MemberAttributes.Public | MemberAttributes.Static, claseImplementadoraHw, "OHardwareManager", "GetHardware", new CodeExpression[] { new CodePrimitiveExpression(codHardware) });
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Generador de la clase estática de implementación del hardware
+        /// </summary>
+        /// <param name="generador"></param>
+        /// <param name="codMaquinaEstados"></param>
+        private static bool GenerarImplementadorVision(OGeneradorAccesoRapido generador, string claseImplementadora, string descripcion, out CodeTypeDeclaration clase)
+        {
+            // Generación de la clase parcial de la máquina de estados
+            string clasePadre = typeof(Object).Name;
+            clase = generador.GenerarClase(claseImplementadora, string.Empty, descripcion, MemberAttributes.Public | MemberAttributes.Static, false);
+            if (clase == null)
+            {
+                return false;
+            }
+            generador.Region(descripcion, clase);
+
+            // Lectura de los alias de la base de datos
+            DataTable dtVision = Orbita.VA.Funciones.AppBD.GetFuncionesVision();
+            foreach (DataRow drHw in dtVision.Rows)
+            {
+                // Creamos una propiedad con cada uno de los alias
+                string codVision = drHw["CodFuncionVision"].ToString();
+                string descVision = drHw["DescFuncionVision"].ToString();
+                string claseImplementadoraVis = drHw["ClaseImplementadora"].ToString();
+                generador.GenerarPropiedadReadOnlyRuntime(ref clase, codVision, claseImplementadoraVis, descVision, MemberAttributes.Public | MemberAttributes.Static, claseImplementadoraVis, "OFuncionesVisionManager", "GetFuncionVision", new CodeExpression[] { new CodePrimitiveExpression(codVision) });
             }
 
             return true;

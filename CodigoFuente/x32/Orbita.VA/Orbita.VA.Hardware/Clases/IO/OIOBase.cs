@@ -285,7 +285,7 @@ namespace Orbita.VA.Hardware
         }
         #endregion
 
-        #region Declaración(es) de evento(s)
+        #region Declaración(es) de eventos(s)
         /// <summary>
         /// Delegado de mensaje del módulo de Entrada / salida
         /// </summary>
@@ -398,7 +398,7 @@ namespace Orbita.VA.Hardware
 
             if (this.OnMensaje != null)
             {
-                this.OnMensaje(new OMessageEventArgs(codigo, mensaje));
+                this.OnMensaje(null, new OMessageEventArgs(codigo, mensaje));
             }
         }
         #endregion
@@ -590,7 +590,7 @@ namespace Orbita.VA.Hardware
 
                 this._TipoDato = (OEnumTipoDato)OEntero.Validar(dtTerminalIO.Rows[0]["IdTipoVariable"], 0, 99, 0);
 
-                this._Valor = Orbita.VA.Comun.OTipoDato.DevaultValue(this._TipoDato);
+                this._Valor = OTipoDato.DevaultValue(this._TipoDato);
             }
         }
         #endregion
@@ -649,11 +649,11 @@ namespace Orbita.VA.Hardware
         /// </summary>
         protected void LanzarCambioValor()
         {
-            if (!OThreadManager.EjecucionEnTrheadPrincipal())
-            {
-                OThreadManager.SincronizarConThreadPrincipal(new OSimpleMethod(this.LanzarCambioValor), new object[] { });
-                return;
-            }
+            //if (!OThreadManager.EjecucionEnTrheadPrincipal())
+            //{
+            //    OThreadManager.SincronizarConThreadPrincipal(new OSimpleMethod(this.LanzarCambioValor), new object[] { });
+            //    return;
+            //}
 
             this.EstablecerValorVariable();
 
@@ -688,7 +688,7 @@ namespace Orbita.VA.Hardware
         public virtual void LeerEntrada()
         {
             // Información extra
-            OLogsVAHardware.Camaras.Debug(this.Codigo, string.Format("Lectura de entrada del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(this.Valor)));
+            OLogsVAHardware.EntradasSalidas.Debug(this.Codigo, string.Format("Lectura de entrada del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(this.Valor)));
         }
 
         /// <summary>
@@ -697,7 +697,7 @@ namespace Orbita.VA.Hardware
         public virtual void EscribirEntrada(string codigoVariable, object valor)
         {
             // Información extra
-            OLogsVAHardware.Camaras.Debug(this.Codigo, string.Format("Escritura de entrada del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(this.Valor)));
+            OLogsVAHardware.EntradasSalidas.Debug(this.Codigo, string.Format("Escritura de entrada del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(this.Valor)));
         }
 
         /// <summary>
@@ -706,7 +706,7 @@ namespace Orbita.VA.Hardware
         public virtual void EscribirSalida(string codigoVariable, object valor)
         {
             // Información extra
-            OLogsVAHardware.Camaras.Debug(this.Codigo, string.Format("Escritura de salida del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(this.Valor)));
+            OLogsVAHardware.EntradasSalidas.Debug(this.Codigo, string.Format("Escritura de salida del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(this.Valor)));
         }
 
         /// <summary>
@@ -715,7 +715,7 @@ namespace Orbita.VA.Hardware
         public virtual void LeerSalida()
         {
             // Información extra
-            OLogsVAHardware.Camaras.Debug(this.Codigo, string.Format("Lectura de salida del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(this.Valor)));
+            OLogsVAHardware.EntradasSalidas.Debug(this.Codigo, string.Format("Lectura de salida del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(this.Valor)));
         }
         #endregion
     }
@@ -734,9 +734,9 @@ namespace Orbita.VA.Hardware
         /// </summary>
         Axis223M = 2,
         /// <summary>
-        /// Cliente SCED
+        /// Cliente del servidor de comunicaciones
         /// </summary>
-        SCED = 3,
+        ClienteComunicaciones = 3,
     }
 
     /// <summary>

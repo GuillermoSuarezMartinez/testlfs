@@ -44,7 +44,7 @@ namespace Orbita.VA.Hardware
     /// <summary>
     /// Clase que implementa las funciones de manejo de la cámara BaslerVPro
     /// </summary>
-    public class OCamaraBaslerVPro : OCamaraBase
+    public class OCamaraBaslerVPro : OCamaraServidor
     {
         #region Atributo(s) estático(s)
         /// <summary>
@@ -175,7 +175,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Fatal(this.Codigo, exception);
+                OLogsVAHardware.Camaras.Fatal(exception, this.Codigo);
                 throw new Exception("Imposible iniciar la cámara " + this.Codigo);
             }
         }
@@ -558,11 +558,12 @@ namespace Orbita.VA.Hardware
         /// <param name="e"></param>
         private void CompleteAcquisition(object sender, CogCompleteEventArgs e)
         {
-            if (!OThreadManager.EjecucionEnTrheadPrincipal())
-            {
-                OThreadManager.SincronizarConThreadPrincipal(new CogCompleteEventHandler(this.CompleteAcquisition), new object[] { sender, e });
-                return;
-            }
+            // Se realiza la tarea asíncronamente
+            //if (!OThreadManager.EjecucionEnTrheadPrincipal())
+            //{
+            //    OThreadManager.SincronizarConThreadPrincipal(new CogCompleteEventHandler(this.CompleteAcquisition), new object[] { sender, e });
+            //    return;
+            //}
 
             // indicamos que se está procesando una adquisición
             this.AdquisicionEnProceso = true;
@@ -594,20 +595,8 @@ namespace Orbita.VA.Hardware
                         throw new Exception(string.Format("La imagen recibida de la cámara {0} está corrupta.", this.Codigo));
                     }
 
-                    //// Actualizo la conectividad
-                    //this.Conectividad.EstadoConexion = EstadoConexion.Conectado;
-
-                    //// Actualizo el Frame Rate
-                    //this.MedidorVelocidadAdquisicion.NuevaCaptura();
-
                     // Lanamos el evento de adquisición
                     this.AdquisicionCompletada(this.ImagenActual);
-
-                    //// Se asigna el valor de la variable asociada
-                    //if (this.LanzarEventoAlSnap && (ImagenActual.EsValida()))
-                    //{
-                    //    this.EstablecerVariableImagenAsociada(ImagenActual);
-                    //}
                 }
             }
             catch (OCameraConectionException exception)
@@ -1296,7 +1285,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("InitializeForCompatibility", exception);
+                OLogsVAHardware.Camaras.Error(exception, "InitializeForCompatibility");
             }
         }
 
@@ -1480,7 +1469,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "SendFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -1506,7 +1495,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "ReceiveFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -1612,7 +1601,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "SendFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -1638,7 +1627,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "ReceiveFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -1744,7 +1733,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "SendFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -1770,7 +1759,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "ReceiveFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -1876,7 +1865,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "SendFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -1902,7 +1891,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "ReceiveFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -2012,7 +2001,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "SendFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -2039,7 +2028,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "ReceiveFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -2123,7 +2112,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "SendFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -2149,7 +2138,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "ReceiveFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -2225,7 +2214,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "SendFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -2251,7 +2240,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "ReceiveFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -2341,7 +2330,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "SendFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -2366,7 +2355,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "ReceiveFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -2469,7 +2458,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "SendFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -2495,7 +2484,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "ReceiveFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -2614,7 +2603,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "SendFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -2652,7 +2641,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "ReceiveFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -2734,7 +2723,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("SendFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "SendFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -2758,7 +2747,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("ReceiveFeature:" + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "ReceiveFeature:" + this.Codigo);
             }
 
             return resultado;
@@ -3005,7 +2994,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("SendBandwidth", exception);
+                OLogsVAHardware.Camaras.Error(exception, "SendBandwidth");
             }
 
             return resultado;

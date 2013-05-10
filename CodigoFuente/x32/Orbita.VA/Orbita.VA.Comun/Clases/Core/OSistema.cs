@@ -58,14 +58,6 @@ namespace Orbita.VA.Comun
         }
 
         /// <summary>
-        /// Parámetros de la aplicación
-        /// </summary>
-        public static ConfiguracionSistema Configuracion
-        {
-            get { return _Sistema.Configuracion; }
-        }
-
-        /// <summary>
         /// Modo de inicio del sistema
         /// </summary>
         private static ModoInicio _ModoInicio;
@@ -293,13 +285,6 @@ namespace Orbita.VA.Comun
     /// </summary>
     public class OSistema
     {
-        #region Atributo(s)
-        /// <summary>
-        /// Parámetros de la aplicación
-        /// </summary>
-        public ConfiguracionSistema Configuracion;
-        #endregion
-
         #region Definicion(es) de evento(s)
         /// <summary>
         /// Evento de referesco de visualización
@@ -336,27 +321,8 @@ namespace Orbita.VA.Comun
         /// Constructor de la clase
         /// </summary>
         public OSistema()
-            : this(ConfiguracionSistema.ConfFile)
-        {
-        }
-
-        /// <summary>
-        /// Constructor de la clase
-        /// </summary>
-        public OSistema(string configFile)
         {
             this.EstadoSistema = EstadoSistema.Detenido;
-
-            try
-            {
-                this.Configuracion = (ConfiguracionSistema)(new ConfiguracionSistema(configFile).CargarDatos());
-            }
-            catch (FileNotFoundException)
-            {
-                this.MensajeInfoArranqueAplicacion("Imposible abrir el fichero de configuración: " + configFile, true, OTipoMensaje.Error);
-                this.Configuracion = new ConfiguracionSistema();
-                this.Configuracion.Guardar();
-            }
         }
 
         #endregion
@@ -417,83 +383,6 @@ namespace Orbita.VA.Comun
         /// El sistema se encuentra iniciado
         /// </summary>
         Iniciado
-    }
-
-    /// <summary>
-    /// Parámetros de la aplicación
-    /// </summary>
-    [Serializable]
-    public class ConfiguracionSistema: OAlmacenXML
-    {
-        #region Atributo(s) estáticos
-        /// <summary>
-        /// Ruta por defecto del fichero xml de configuración
-        /// </summary>
-        public static string ConfFile = Path.Combine(ORutaParametrizable.AppFolder, "Configuracion" + Application.ProductName + ".xml");
-        #endregion
-
-        #region Atributo(s)
-        /// <summary>
-        /// Tiempo entre refresco de monitorización
-        /// </summary>
-        [XmlIgnore]
-        public TimeSpan CadenciaMonitorizacion = TimeSpan.FromMilliseconds(200);
-
-        /// <summary>
-        /// Tiempo entre refresco de monitorización
-        /// </summary>
-        public int CadenciaMonitorizacionMilisegundos
-        {
-            get { return (int)Math.Round(this.CadenciaMonitorizacion.TotalMilliseconds); }
-            set { this.CadenciaMonitorizacion = TimeSpan.FromMilliseconds(value); }
-        }
-
-        /// <summary>
-        /// Indica si el sistema utiliza o no base de datos SQLServer o por el contrario ataca a ficheros XML
-        /// </summary>
-        public bool UtilizaBaseDeDatos = true;
-
-        /// <summary>
-        /// Lista de informaciones de las bases de datos existentes en el sistema
-        /// </summary>
-        public List<InformacionBasesDatos> ListaInformacionBasesDatos;
-        #endregion
-
-        #region Constructor
-        /// <summary>
-        /// Contructor de la clase
-        /// </summary>
-        public ConfiguracionSistema()
-            : base(ConfFile)
-        {
-            this.ListaInformacionBasesDatos = new List<InformacionBasesDatos>();
-        }
-
-        /// <summary>
-        /// Contructor de la clase
-        /// </summary>
-        public ConfiguracionSistema(string rutaFichero)
-            : base(rutaFichero)
-        {
-        }
-        #endregion Constructor
-    }
-
-    /// <summary>
-    /// Informa del origen de los datos
-    /// </summary>
-    public enum OrigenDatos
-    {
-        /// <summary>
-        /// Los datos perteneces a una base de datos
-        /// </summary>
-        [OAtributoEnumerado("Origen de base de datos")]
-        OrigenBBDD = 0,
-        /// <summary>
-        /// Los datos pertenecen a un archivo xml
-        /// </summary>
-        [OAtributoEnumerado("Origen de fichero XML")]
-        OrigenXML = 1
     }
 
     /// <summary>

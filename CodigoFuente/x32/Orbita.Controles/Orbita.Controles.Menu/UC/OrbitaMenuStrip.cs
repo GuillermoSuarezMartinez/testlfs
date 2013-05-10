@@ -9,16 +9,20 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Menu
 {
+    /// <summary>
+    /// Proporciona una estructura de menú para un formulario.
+    /// </summary>
     public partial class OrbitaMenuStrip : System.Windows.Forms.MenuStrip
     {
+        #region Nueva definición
         public class ControlNuevaDefinicion : OMenuStrip
         {
             public ControlNuevaDefinicion(OrbitaMenuStrip sender)
                 : base(sender) { }
-        };
+        }
+        #endregion
 
         #region Atributos
         ControlNuevaDefinicion definicion;
@@ -38,7 +42,7 @@ namespace Orbita.Controles.Menu
 
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }

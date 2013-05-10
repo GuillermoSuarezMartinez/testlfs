@@ -113,7 +113,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Fatal(this.Codigo, exception);
+                OLogsVAHardware.Camaras.Fatal(exception, this.Codigo);
                 throw new Exception("Imposible iniciar la cámara " + this.Codigo);
             }
         }
@@ -326,21 +326,17 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                if (!OThreadManager.EjecucionEnTrheadPrincipal())
-                {
-                    OThreadManager.SincronizarConThreadPrincipal(new CameraEventHandler(this.ImagenAdquirida), new object[] { sender, e });
-                    return;
-                }
-
-                this.HayNuevaImagen = true;
+                // Se realiza la tarea asíncronamente
+                //if (!OThreadManager.EjecucionEnTrheadPrincipal())
+                //{
+                    //OThreadManager.SincronizarConThreadPrincipal(new CameraEventHandler(this.ImagenAdquirida), new object[] { sender, e });
+                    //return;
+                //}
 
                 if (this.EstadoConexion == EstadoConexion.Conectado)
                 {
-                    //OImagenBitmap imgAux = new OImagenBitmap(this.Codigo);
-                    //imgAux.Image = e.Bitmap;
-
-                    //this.ImagenActual = (OImagenBitmap)imgAux.Clone();
                     this.ImagenActual = new OImagenBitmap(this.Codigo, e.Bitmap);
+                    this.HayNuevaImagen = true;
 
                     // Lanamos el evento de adquisición
                     this.AdquisicionCompletada(this.ImagenActual);
@@ -352,35 +348,6 @@ namespace Orbita.VA.Hardware
             }
         }
 
-        //private void ImagenAdquirida(object sender, CameraEventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (!OThreadManager.EjecucionEnTrheadPrincipal())
-        //        {
-        //            OThreadManager.SincronizarConThreadPrincipal(new CameraEventHandler(this.ImagenAdquirida), new object[] { sender, e });
-        //            return;
-        //        }
-
-        //        this.HayNuevaImagen = true;
-            
-        //        if (this.EstadoConexion == EstadoConexion.Conectado)
-        //        {
-        //            OImagenBitmap imgAux = new OImagenBitmap(this.Codigo);
-        //            imgAux.Image = e.Bitmap;
-
-        //            this.ImagenActual = (OImagenBitmap)imgAux.Clone();
-
-        //            // Lanamos el evento de adquisición
-        //            this.AdquisicionCompletada(this.ImagenActual);
-        //        }
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        OLogsVAHardware.Camaras.Error(exception, this.Codigo);
-        //    }
-        //}
-
         /// <summary>
         /// Evento de recepción de nueva imagen
         /// </summary>
@@ -389,7 +356,6 @@ namespace Orbita.VA.Hardware
         private void ErrorAdquisicion(object sender, CameraErrorEventArgs e)
         {
             this.EstadoConexion = EstadoConexion.ErrorConexion;
-            //this.LanzarEventoCambioEstadoConexionCamara(EstadoConexion.ErrorConexion);
         }
         #endregion
 
@@ -399,24 +365,24 @@ namespace Orbita.VA.Hardware
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected override void OnCambioEstadoConectividadCamara(string codigo, EstadoConexion estadoConexionActal, EstadoConexion estadoConexionAnterior)
+        protected override void OnCambioEstadoConectividadCamara(string codigo, EstadoConexion estadoConexionActual, EstadoConexion estadoConexionAnterior)
         {
             try
             {
-                if (!OThreadManager.EjecucionEnTrheadPrincipal())
-                {
-                    OThreadManager.SincronizarConThreadPrincipal(new DelegadoCambioEstadoConexionCamara(this.OnCambioEstadoConectividadCamara), new object[] {codigo, estadoConexionActal, estadoConexionAnterior});
-                    return;
-                }
+                // Se realiza la tarea asíncronamente
+                //if (!OThreadManager.EjecucionEnTrheadPrincipal())
+                //{
+                //    OThreadManager.SincronizarConThreadPrincipal(new DelegadoCambioEstadoConexionCamara(this.OnCambioEstadoConectividadCamara), new object[] {codigo, estadoConexionActal, estadoConexionAnterior});
+                //    return;
+                //}
+                base.OnCambioEstadoConectividadCamara(codigo, estadoConexionActual, estadoConexionAnterior);
 
-                base.OnCambioEstadoConectividadCamara(codigo, estadoConexionActal, estadoConexionAnterior);
-
-                if ((estadoConexionActal == EstadoConexion.Reconectado) && (estadoConexionAnterior == EstadoConexion.Reconectando))
+                if ((estadoConexionActual == EstadoConexion.Reconectado) && (estadoConexionAnterior == EstadoConexion.Reconectando))
                 {
                     this.Conectar(true);
                 }
                 else 
-                if ((estadoConexionActal == EstadoConexion.ErrorConexion) && (estadoConexionAnterior == EstadoConexion.Conectado))
+                if ((estadoConexionActual == EstadoConexion.ErrorConexion) && (estadoConexionAnterior == EstadoConexion.Conectado))
                 {
                     this.Stop();
                     this.Desconectar(true);

@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
 namespace Orbita.Controles.Grid
 {
     [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
@@ -21,8 +20,8 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Eventos
-        public event EventHandler<OPropiedadEventArgs> PropertyChanging;
-        public event EventHandler<OPropiedadEventArgs> PropertyChanged;
+        public event System.EventHandler<OPropiedadEventArgs> PropertyChanging;
+        public event System.EventHandler<OPropiedadEventArgs> PropertyChanged;
         #endregion
 
         #region Constructor
@@ -81,11 +80,19 @@ namespace Orbita.Controles.Grid
         {
             this.MostrarRecuentoFilas = Configuracion.DefectoMostrarRecuentoFilas;
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializePosicion()
         {
             return (this.Posicion != Configuracion.DefectoPosicionSumario);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeMostrarRecuentoFilas()
         {
@@ -95,9 +102,9 @@ namespace Orbita.Controles.Grid
 
         #region Métodos públicos
         /// <summary>
-        /// Determina el número de propiedades modificadas.
+        /// Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>El nombre de tipo completo del objeto.</returns>
         public override string ToString()
         {
             return null;

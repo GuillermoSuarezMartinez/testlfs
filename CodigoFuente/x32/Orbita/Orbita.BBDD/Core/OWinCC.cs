@@ -22,7 +22,7 @@ namespace Orbita.BBDD
     /// Clase tipo para instanciar objetos de base de datos SQLServer,
     /// asignadas a WinCC. Acceso a través de Connectivity Pack.
     /// </summary>
-    public class OWinCC : OCore
+    public class OWinCC : OCoreBBDD
     {
         #region Enumerados
         /// <summary>

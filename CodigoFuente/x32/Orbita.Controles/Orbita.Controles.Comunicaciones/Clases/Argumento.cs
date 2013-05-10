@@ -1,12 +1,11 @@
-﻿
-namespace Orbita.Controles.Comunicaciones
+﻿namespace Orbita.Controles.Comunicaciones
 {
     /// <summary>
     /// Clase para gestión de argumentos (de log) desde fichero de configuración.
     /// </summary>
     public class Argumento
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Identificador del argumento.
         /// </summary>
@@ -35,10 +34,9 @@ namespace Orbita.Controles.Comunicaciones
         /// Alineación de columna en grid.
         /// </summary>
         Orbita.Controles.Grid.Alineacion _alineacion;
-
         #endregion
 
-        #region Constructor(es)
+        #region Constructores
         /// <summary>
         /// Constructor por defecto.
         /// </summary>
@@ -73,7 +71,7 @@ namespace Orbita.Controles.Comunicaciones
         }
         #endregion
 
-        #region Propiedad(es)
+        #region Propiedades
         /// <summary>
         /// Identificador del argumento.
         /// </summary>
@@ -132,7 +130,7 @@ namespace Orbita.Controles.Comunicaciones
         }
         #endregion
 
-        #region Método(s) Privado(s)
+        #region Métodos privados
         /// <summary>
         /// Obtiene el estilo de una columna a partir del identificador.
         /// </summary>
@@ -176,7 +174,7 @@ namespace Orbita.Controles.Comunicaciones
         }
         #endregion
 
-        #region Método(s) Públicos
+        #region Métodos públicos
         /// <summary>
         /// Asigna los estilos de columna.
         /// </summary>

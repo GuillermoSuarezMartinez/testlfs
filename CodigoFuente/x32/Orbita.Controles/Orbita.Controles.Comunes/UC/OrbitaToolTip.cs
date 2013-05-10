@@ -9,16 +9,19 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Comunes
 {
     public partial class OrbitaToolTip : System.Windows.Forms.ToolTip
     {
+        #region Nueva definición
         public class ControlNuevaDefinicion : OToolTip
         {
+            #region Constructor
             public ControlNuevaDefinicion(OrbitaToolTip sender)
                 : base(sender) { }
-        };
+            #endregion
+        }
+        #endregion
 
         #region Atributos
         ControlNuevaDefinicion definicion;
@@ -26,7 +29,7 @@ namespace Orbita.Controles.Comunes
 
         #region Constructores
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraLabel.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaToolTip.
         /// </summary>
         public OrbitaToolTip()
             : base()
@@ -36,7 +39,7 @@ namespace Orbita.Controles.Comunes
             InitializeProperties();
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraDockManager.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaToolTip.
         /// </summary>
         /// <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
         /// que contienen cero o más componentes de forma lógica.</param>
@@ -56,7 +59,7 @@ namespace Orbita.Controles.Comunes
 
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }

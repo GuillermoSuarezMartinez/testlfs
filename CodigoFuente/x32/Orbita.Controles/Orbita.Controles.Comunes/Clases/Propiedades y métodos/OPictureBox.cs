@@ -22,7 +22,7 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OPictureBox.
         /// </summary>
-        /// <param name="control"></param>
+        /// <param name="control">Control Orbita asociado a la clase actual.</param>
         public OPictureBox(object control)
             : base()
         {
@@ -31,6 +31,9 @@ namespace Orbita.Controles.Comunes
         #endregion
 
         #region Propiedades
+        /// <summary>
+        /// Control Orbita asociado a la clase actual.
+        /// </summary>
         internal OrbitaPictureBox Control
         {
             get { return this.control; }
@@ -38,6 +41,10 @@ namespace Orbita.Controles.Comunes
         #endregion
 
         #region Métodos públicos
+        /// <summary>
+        /// Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+        /// </summary>
+        /// <returns>El nombre de tipo completo del objeto.</returns>
         public override string ToString()
         {
             return null;

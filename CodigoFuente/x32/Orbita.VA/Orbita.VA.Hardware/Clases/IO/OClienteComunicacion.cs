@@ -16,19 +16,25 @@ using System.Data;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Orbita.Comunicaciones;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
+using System.Diagnostics;
 
 namespace Orbita.VA.Hardware
 {
     /// <summary>
-    /// Clase que implementa las funciones para el control de Entradas/Salidas del SCED
+    /// Clase que implementa las funciones para el control de Entradas/Salidas del Servidor de comunicaciones
     /// </summary>
     public class OClienteComunicacion : OModuloIOBase
     {
+        #region Constante(s)
+        private const int NumMaxLlamadasSimultaneas = 5;
+        #endregion
+
         #region Atributo(s)
         /// <summary>
         /// Si están o no configurados los terminales
@@ -38,20 +44,45 @@ namespace Orbita.VA.Hardware
         /// Servidor de comunicaciones.
         /// </summary>
         private IOCommRemoting Servidor;
+        /// <summary>
+        /// <summary>
+        /// Wrapper de comunicaciones
+        /// </summary>
+        private OBroadcastEventWrapper EventWrapper;
+        /// <summary>
+        /// Informa del número de llamadas simultáneas al evento de cambio de dato
+        /// </summary>
+        private int ContLlamadasSimultaneasCambioDato;
+        /// <summary>
+        /// Informa del número de llamadas simultáneas al evento de conectividad
+        /// </summary>
+        private int ContLlamadasSimultaneasComm;
+        /// <summary>
+        /// Informa del número de llamadas simultáneas al evento de alarma
+        /// </summary>
+        private int ContLlamadasSimultaneasAlarma;
+        /// <summary>
+        /// Timer de comprobación del estado de la conexión
+        /// </summary>
+        private Timer TimerComprobacionConexion;
+        /// <summary>
+        /// Cronómetro del tiempo sin respuesta
+        /// </summary>
+        private Stopwatch CronometroTiempoSinRespuesta;
         #endregion
 
         #region Propiedad(es)
         /// <summary>
-        /// Dirección del servidor SCED
+        /// Dirección del Servidor de comunicaciones
         /// </summary>
-        private string _ServidorSced;
+        private string _HostServidor;
         /// <summary>
-        /// Dirección del servidor SCED
+        /// Dirección del servidor de comunicaciones
         /// </summary>
-        public string ServidorSced
+        public string HostServidor
         {
-            get { return this._ServidorSced; }
-            set { this._ServidorSced = value; }
+            get { return this._HostServidor; }
+            set { this._HostServidor = value; }
         }
 
         /// <summary>
@@ -66,6 +97,19 @@ namespace Orbita.VA.Hardware
             get { return this._PuertoRemoto; }
             set { this._PuertoRemoto = value; }
         }
+
+        /// <summary>
+        /// Inervalo entre comprobaciones
+        /// </summary>
+        private TimeSpan _IntervaloComprabacion;
+        /// <summary>
+        /// Inervalo entre comprobaciones
+        /// </summary>
+        public TimeSpan IntervaloComprabacion
+        {
+            get { return _IntervaloComprabacion; }
+            set { _IntervaloComprabacion = value; }
+        }
         #endregion
 
         #region Contructores
@@ -76,12 +120,27 @@ namespace Orbita.VA.Hardware
         public OClienteComunicacion(string codHardware)
             : base(codHardware)
         {
+            // Inicialización de variables
+            this.ContLlamadasSimultaneasCambioDato = 0;
+            this.ContLlamadasSimultaneasComm = 0;
+            this.ContLlamadasSimultaneasAlarma = 0;
+
             // Cargamos valores de la base de datos
             DataTable dtTarjetaIO = AppBD.GetTarjetaIO(codHardware);
             if (dtTarjetaIO.Rows.Count == 1)
             {
-                this._ServidorSced = dtTarjetaIO.Rows[0]["SCED_Server"].ToString();
-                this._PuertoRemoto = OEntero.Validar(dtTarjetaIO.Rows[0]["SCED_Puerto"], 0, int.MaxValue, 1851);
+                this._HostServidor = dtTarjetaIO.Rows[0]["COM_Host"].ToString();
+                this._PuertoRemoto = OEntero.Validar(dtTarjetaIO.Rows[0]["COM_Puerto"], 0, int.MaxValue, 1851);
+                this._IntervaloComprabacion = OIntervaloTiempo.Validar(dtTarjetaIO.Rows[0]["COM_TimeOut"], TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(int.MaxValue), TimeSpan.FromSeconds(10));
+
+                // Creación del timer de comprobación de la conexión
+                this.TimerComprobacionConexion = new Timer();
+                this.TimerComprobacionConexion.Interval = (int)this._IntervaloComprabacion.TotalMilliseconds;
+                this.TimerComprobacionConexion.Enabled = false;
+
+                // Creación del cronómetro de tiempo de espera sin respuesta de la cámara
+                this.CronometroTiempoSinRespuesta = new Stopwatch();
+
             }
 
             // Cargamos valores de la base de datos buscamos terminales IO
@@ -95,7 +154,7 @@ namespace Orbita.VA.Hardware
                     {
                         OTerminalClienteComunicacion terminal;
 
-                        OEnumTipoDispositivoClienteComunicacion tipoDispositivo = (OEnumTipoDispositivoClienteComunicacion)OAtributoEnumerado.FindStringValue(typeof(OEnumTipoDispositivoClienteComunicacion), dr["SCED_TipoDispositivo"].ToString(), OEnumTipoDispositivoClienteComunicacion.OPC_SimaticNET);
+                        OEnumTipoDispositivoClienteComunicacion tipoDispositivo = (OEnumTipoDispositivoClienteComunicacion)OAtributoEnumerado.FindStringValue(typeof(OEnumTipoDispositivoClienteComunicacion), dr["COM_TipoDispositivo"].ToString(), OEnumTipoDispositivoClienteComunicacion.OPC_SimaticNET);
                         int intTipoTerminalIO = OEntero.Validar(dr["IdTipoTerminalIO"], 1, 4, 1);
 
                         OTipoTerminalIO tipoTerminalIO = (OTipoTerminalIO)intTipoTerminalIO;
@@ -136,7 +195,7 @@ namespace Orbita.VA.Hardware
 
                 if ((this.Habilitado) && (this._Valido))
                 {
-                    //Conectamos con el servicio SCEDServidor
+                    //Conectamos con el servicio del servidor de comunicaciones
                     this.Conectar();
 
                     // Se inicializan los terminales
@@ -148,7 +207,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
+                OLogsVAHardware.EntradasSalidas.Error(exception, this.Codigo);
             }
 
         }
@@ -170,26 +229,18 @@ namespace Orbita.VA.Hardware
 
                 if ((this.Habilitado) && (this._Valido))
                 {
-                    // Desconectamos del servicio SCEDServidor
+                    // Desconectamos del servicio del servidor de comunicaciones
                     this.Desconectar();
                 }
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
+                OLogsVAHardware.EntradasSalidas.Error(exception, this.Codigo);
             }
         }
         #endregion
 
         #region Método(s) privado(s)
-        /// <summary>
-        /// Desconectar del servidor vía Remoting.
-        /// </summary>
-        private void Desconectar()
-        {
-            Conectar(false);
-            OLogsVAHardware.Camaras.Info(this.Servidor.ToString(), "Desconectado del Servicio");
-        }
         /// <summary>
         /// Conectar al servidor vía Remoting.
         /// </summary>
@@ -198,48 +249,125 @@ namespace Orbita.VA.Hardware
             try
             {
                 // Establecer la configuración Remoting entre procesos.
-                try
-                {
-                    ORemoting.InicConfiguracionCliente(this.PuertoRemoto, this.ServidorSced);
-                }
-                catch (Exception)
-                {
-                    // No hacer nada, canal ya registrado
-                }
-                this.Servidor = (IOCommRemoting)ORemoting.GetObject(typeof(IOCommRemoting));
+                ORemoting.InicConfiguracionCliente(this.PuertoRemoto, this.HostServidor);
+                this.Servidor = (Orbita.Comunicaciones.IOCommRemoting)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting));
 
                 // Eventwrapper de comunicaciones.
-                OBroadcastEventWrapper eventWrapper = new OBroadcastEventWrapper();
+                this.ConectarEventWrapper();
 
-                // Eventos locales.
-                // ...cambio de dato.
-                eventWrapper.OrbitaCambioDato += new OManejadorEventoComm(eventWrapper_OrbitaCambioDato);
-                // ...comunicaciones.
-                eventWrapper.OrbitaComm += new OManejadorEventoComm(eventWrapper_OrbitaComm);
+                // Iniciamos la comprobación de la conectividad con la cámara
+                this.CronometroTiempoSinRespuesta.Start();
+                this.TimerComprobacionConexion.Start();
 
-                // Eventos del servidor.
-                // ...cambio de dato.
-                this.Servidor.OrbitaCambioDato += new OManejadorEventoComm(eventWrapper.OnCambioDato);
-                // ...comunicaciones.
-                this.Servidor.OrbitaComm += new OManejadorEventoComm(eventWrapper.OnComm);
-
-                // Establecer conexión con el servidor.
-                Conectar(true);
-
-                OLogsVAHardware.Camaras.Info(this.Servidor.ToString(), "Conectado al servicio");
+                OLogsVAHardware.EntradasSalidas.Info(this.Codigo, "Conectado al servicio");
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
+                OLogsVAHardware.EntradasSalidas.Error(exception, this.Codigo);
             }
         }
+        /// <summary>
+        /// Desconectar del servidor vía Remoting.
+        /// </summary>
+        private void Desconectar()
+        {
+            this.DesconectarEventWrapper();
+
+            // Finalizamos la comprobación de la conectividad con la cámara
+            this.TimerComprobacionConexion.Stop();
+            this.CronometroTiempoSinRespuesta.Stop();
+
+            OLogsVAHardware.EntradasSalidas.Info(this.Codigo, "Desconectado del Servicio");
+        }
+
+        /// <summary>
+        /// Conectar los eventos
+        /// </summary>
+        private void ConectarEventWrapper()
+        {
+            try
+            {
+                // Eventwrapper de comunicaciones.
+                this.EventWrapper = new Orbita.Comunicaciones.OBroadcastEventWrapper();
+
+                //Eventos locales.
+                //...cambio de dato.
+                this.ContLlamadasSimultaneasCambioDato = 0;
+                this.EventWrapper.OrbitaCambioDato += new OManejadorEventoComm(eventWrapper_OrbitaCambioDato);
+                //...conectividad.
+                this.ContLlamadasSimultaneasComm = 0;
+                this.EventWrapper.OrbitaComm += new OManejadorEventoComm(eventWrapper_OrbitaComm);
+                // ...alarma
+                this.ContLlamadasSimultaneasAlarma = 0;
+                this.EventWrapper.OrbitaAlarma += new OManejadorEventoComm(eventWrapper_OrbitaAlarma);
+
+                // Eventos del servidor.
+                //...cambio de dato.
+                this.Servidor.OrbitaCambioDato += new OManejadorEventoComm(this.EventWrapper.OnCambioDato);
+                //...conectividad.
+                this.Servidor.OrbitaComm += new OManejadorEventoComm(this.EventWrapper.OnComm);
+                // ...alarma
+                this.Servidor.OrbitaAlarma += new OManejadorEventoComm(this.EventWrapper.OnAlarma);
+
+                // Establecer conexión con el servidor.
+                this.ConectarCanal(true);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.EntradasSalidas.Error(exception, "Excepción al conectar eventos del cliente de comunicaciones", this.Codigo);
+            }
+        }
+        /// <summary>
+        /// Desconectar los eventos
+        /// </summary>
+        private void DesconectarEventWrapper()
+        {
+            try
+            {
+                // Eventwrapper de comunicaciones.
+                this.EventWrapper = new Orbita.Comunicaciones.OBroadcastEventWrapper();
+
+                //Eventos locales.
+                //...cambio de dato.
+                this.EventWrapper.OrbitaCambioDato -= new OManejadorEventoComm(eventWrapper_OrbitaCambioDato);
+                this.ContLlamadasSimultaneasCambioDato = 0;
+                //...conectividad.
+                this.EventWrapper.OrbitaComm -= new OManejadorEventoComm(eventWrapper_OrbitaComm);
+                this.ContLlamadasSimultaneasComm = 0;
+                // ...alarma
+                this.EventWrapper.OrbitaAlarma -= new OManejadorEventoComm(eventWrapper_OrbitaAlarma);
+                this.ContLlamadasSimultaneasAlarma = 0;
+
+                // Eventos del servidor.
+                //...cambio de dato.
+                this.Servidor.OrbitaCambioDato -= new OManejadorEventoComm(this.EventWrapper.OnCambioDato);
+                //...conectividad.
+                this.Servidor.OrbitaComm -= new OManejadorEventoComm(this.EventWrapper.OnComm);
+                // ...alarma
+                this.Servidor.OrbitaAlarma -= new OManejadorEventoComm(this.EventWrapper.OnAlarma);
+
+                // Establecer conexión con el servidor.
+                this.ConectarCanal(false);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.EntradasSalidas.Error(exception, "Excepción al desconectar eventos del cliente de comunicaciones", this.Codigo);
+            }
+        }
+
         /// <summary>
         /// Conectar al servidor vía Remoting.
         /// </summary>
         /// <param name="estado">Estado de conexión.</param>
-        void Conectar(bool estado)
+        private void ConectarCanal(bool estado)
         {
-            this.Servidor.OrbitaConectar("canal" + this.PuertoRemoto, estado);
+
+            //string strHostName = "";
+            //strHostName = System.Net.Dns.GetHostName();
+            //string canal = "canal" + strHostName + ":" + this._PuertoRemoto.ToString();
+
+            string canal = "canal" + this._PuertoRemoto.ToString();
+            this.Servidor.OrbitaConectar(canal, estado);
         }
         #endregion
 
@@ -248,52 +376,126 @@ namespace Orbita.VA.Hardware
         /// Evento de cambio de dato.
         /// </summary>
         /// <param name="e"></param>
-        void eventWrapper_OrbitaCambioDato(OEventArgs e)
+        private void eventWrapper_OrbitaCambioDato(OEventArgs e)
         {
             try
             {
                 // Recogemos el código del terminal
                 string codigoCambioEstado = ((OInfoDato)e.Argumento).Texto;
 
-                // Recogemos el dispositivo al que pertenece el terminal
-                int dispositivo = ((OInfoDato)e.Argumento).Dispositivo;
-
-                // Búsqueda del terminal
-                //OTerminalIOSCED terminal = (this.ListaTerminales.Find(delegate(OTerminalIOBase t) { return (((OTerminalIOSCED)t).CodigoVariableSCED == codigoCambioEstado) && (((OTerminalIOSCED)t).IdDispositivo == dispositivo); }) as OTerminalIOSCED);
-                OTerminalClienteComunicacion terminal = this.ListaTerminales.Values.OfType<OTerminalClienteComunicacion>().Single(t => (t.CodigoVariableSCED == codigoCambioEstado) && (t.IdDispositivo == dispositivo));
-                if (terminal != null)
+                this.ContLlamadasSimultaneasCambioDato++;
+                if (this.ContLlamadasSimultaneasCambioDato <= NumMaxLlamadasSimultaneas)
                 {
-                    // Extraemos el valor
-                    terminal.LeerEntrada(e);                    
+                    // Recogemos el dispositivo al que pertenece el terminal
+                    int dispositivo = ((OInfoDato)e.Argumento).Dispositivo;
+
+                    // Búsqueda del terminal
+                    OTerminalClienteComunicacion terminal = this.ListaTerminales.Values.OfType<OTerminalClienteComunicacion>().Single(t => (t.CodigoVariableCOM == codigoCambioEstado) && (t.IdDispositivo == dispositivo));
+                    if (terminal != null)
+                    {
+                        // Extraemos el valor
+                        terminal.LeerEntrada(e);
+                    }
                 }
+                else
+                {
+                    OLogsVAHardware.EntradasSalidas.Info("Número máximo de llamadas al cambio dato superado: " + this.ContLlamadasSimultaneasCambioDato, "Variable del servidor de comunicaciones: " + codigoCambioEstado, this.Codigo);
+                }
+
+                this.ContLlamadasSimultaneasCambioDato--;
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
+                OLogsVAHardware.EntradasSalidas.Error(exception, this.Codigo);
             }
         }
-
         /// <summary>
-        /// Evento de comunicaciones.
+        /// Evento de conectividad
         /// </summary>
         /// <param name="e"></param>
-        void eventWrapper_OrbitaComm(OEventArgs e)
+        private void eventWrapper_OrbitaComm(OEventArgs e)
         {
-            // No implementado
+            try
+            {
+                this.ContLlamadasSimultaneasComm++;
+                if (this.ContLlamadasSimultaneasComm <= NumMaxLlamadasSimultaneas)
+                {
+                }
+                else
+                {
+                    OLogsVAHardware.EntradasSalidas.Info("Número máximo de llamadas de conectividad: " + this.ContLlamadasSimultaneasComm, this.Codigo);
+                }
+
+                this.ContLlamadasSimultaneasComm--;
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.EntradasSalidas.Error(exception, this.Codigo);
+            }
+        }
+        /// <summary>
+        /// Evento de alarma
+        /// </summary>
+        /// <param name="e"></param>
+        private void eventWrapper_OrbitaAlarma(OEventArgs e)
+        {
+            try
+            {
+                this.ContLlamadasSimultaneasAlarma++;
+                if (this.ContLlamadasSimultaneasAlarma <= NumMaxLlamadasSimultaneas)
+                {
+                }
+                else
+                {
+                    OLogsVAHardware.EntradasSalidas.Info("Número máximo de llamadas de alarma: " + this.ContLlamadasSimultaneasAlarma, this.Codigo);
+                }
+
+                this.ContLlamadasSimultaneasAlarma--;
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.EntradasSalidas.Error(exception, this.Codigo);
+            }
+        }
+        /// <summary>
+        /// Evento del timer de comprobación de la conexión
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TimerComprobacionConexion_Tick(object sender, EventArgs e)
+        {
+            this.TimerComprobacionConexion.Stop();
+            try
+            {
+                // TimeOut de conectividad
+                if (this.Habilitado && (this.CronometroTiempoSinRespuesta.Elapsed > this.IntervaloComprabacion))
+                {
+                    this.DesconectarEventWrapper();
+                    this.ConectarEventWrapper();
+                }
+                this.CronometroTiempoSinRespuesta.Stop();
+                this.CronometroTiempoSinRespuesta.Reset();
+                this.CronometroTiempoSinRespuesta.Start();
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.EntradasSalidas.Error(exception, "Conectividad " + this.Codigo);
+            }
+            this.TimerComprobacionConexion.Start();
         }
         #endregion
     }
 
     /// <summary>
-    /// Terminal del SCED
+    /// Terminal del Servidor de comunicaciones
     /// </summary>
     internal class OTerminalClienteComunicacion : OTerminalIOBase
     {
         #region Atributo(s)
         /// <summary>
-        /// Código de la variable del SCED contra la que trabaja el terminal
+        /// Código de la variable contra la que trabaja el terminal
         /// </summary>
-        internal string CodigoVariableSCED;
+        internal string CodigoVariableCOM;
 
         /// <summary>
         /// Servidor de comunicación
@@ -306,7 +508,7 @@ namespace Orbita.VA.Hardware
         internal int IdDispositivo;
 
         /// <summary>
-        /// Tipo de dispositivo controlado por el SCED
+        /// Tipo de dispositivo controlado por el servidor de comunicaciones
         /// </summary>
         protected OEnumTipoDispositivoClienteComunicacion TipoDispositivo;
 
@@ -320,7 +522,7 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Contructor de la clase
         /// </summary>
-        public OTerminalClienteComunicacion(string codTarjetaIO, string codTerminalIO, OEnumTipoDispositivoClienteComunicacion tipoDispositivoSCED)
+        public OTerminalClienteComunicacion(string codTarjetaIO, string codTerminalIO, OEnumTipoDispositivoClienteComunicacion tipoDispositivoCOM)
             : base(codTarjetaIO, codTerminalIO)
         {
             this.Valor = null;
@@ -329,21 +531,21 @@ namespace Orbita.VA.Hardware
             DataTable dtTerminalIO = AppBD.GetTerminalIO(codTarjetaIO, codTerminalIO);
             if (dtTerminalIO.Rows.Count == 1)
             {
-                this.IdDispositivo = OEntero.Validar(dtTerminalIO.Rows[0]["SCED_ID"], 0, 999, 0);
-                this.EscrituraInmediata = OBooleano.Validar(dtTerminalIO.Rows[0]["SCED_EscrituraInmediata"], true);
-                this.CodigoVariableSCED = dtTerminalIO.Rows[0]["SCED_CodVariable"].ToString();
+                this.IdDispositivo = OEntero.Validar(dtTerminalIO.Rows[0]["COM_ID"], 0, 999, 0);
+                this.EscrituraInmediata = OBooleano.Validar(dtTerminalIO.Rows[0]["COM_EscrituraInmediata"], true);
+                this.CodigoVariableCOM = dtTerminalIO.Rows[0]["COM_CodVariable"].ToString();
             }
-            this.TipoDispositivo = tipoDispositivoSCED;
+            this.TipoDispositivo = tipoDispositivoCOM;
         }
         #endregion
 
         #region Método(s) privado(s)
         /// <summary>
-        /// Convierte el string devuelto por el servidor de sced al formato correcto de trabajo
+        /// Convierte el string devuelto por el servidor de comunicaciones al formato correcto de trabajo
         /// </summary>
-        /// <param name="valorSCED"></param>
+        /// <param name="valorCOM"></param>
         /// <returns></returns>
-        internal static object SCEDAFormatoCorrecto(object valorSCED, OEnumTipoDato tipoDato)
+        internal static object COMAFormatoCorrecto(object valorCOM, OEnumTipoDato tipoDato)
         {
             object resultado = null;
 
@@ -355,7 +557,7 @@ namespace Orbita.VA.Hardware
                 case OEnumTipoDato.Decimal:
                 case OEnumTipoDato.Fecha:
                 case OEnumTipoDato.Flag:
-                    resultado = valorSCED;
+                    resultado = valorCOM;
                     break;
                 case OEnumTipoDato.SinDefinir:
                 case OEnumTipoDato.Grafico: // Todavía no implementado
@@ -363,7 +565,7 @@ namespace Orbita.VA.Hardware
                     resultado = null;
                     try
                     {
-                        byte[] valorByte = (byte[])valorSCED;
+                        byte[] valorByte = (byte[])valorCOM;
 
                         IFormatter formatter = new BinaryFormatter();
                         MemoryStream stream = new MemoryStream(valorByte);
@@ -379,10 +581,10 @@ namespace Orbita.VA.Hardware
                     try
                     {
                         // Por probar
-                        OByteArrayImage img = (OByteArrayImage)valorSCED;
+                        OByteArrayImage img = (OByteArrayImage)valorCOM;
                         resultado = img.Desserializar();
 
-                        //byte[] valorByte = (byte[])valorSCED;
+                        //byte[] valorByte = (byte[])valorCOM;
                         //OImagenBitmap bmp = new OImagenBitmap();
 
                         //resultado = bmp.FromArray(valorByte);
@@ -398,11 +600,11 @@ namespace Orbita.VA.Hardware
         }
 
         /// <summary>
-        /// Convierte el string devuelto por el servidor de sced al formato correcto de trabajo
+        /// Convierte el string devuelto por el servidor de comuniaciones al formato correcto de trabajo
         /// </summary>
         /// <param name="valorObj"></param>
         /// <returns></returns>
-        internal static object FormatoCorrectoASCED(object valorObj, OEnumTipoDato tipoDato)
+        internal static object FormatoCorrectoACOM(object valorObj, OEnumTipoDato tipoDato)
         {
             object resultado = null;
 
@@ -432,7 +634,7 @@ namespace Orbita.VA.Hardware
                     {
                         OImagen imagen = (OImagen)valorObj;
 
-                        resultado = imagen.ToArray(ImageFormat.Jpeg, 1);
+                        resultado = imagen.ToDataArray(ImageFormat.Jpeg, 1);
                     }
                     break;
             }
@@ -453,33 +655,36 @@ namespace Orbita.VA.Hardware
                 if (this.TipoTerminalIO == OTipoTerminalIO.EntradaDigital)
                 {
                     // Se devuelve el objeto tal cual
-                    object valorSCED = ((OInfoDato)eventArgs.Argumento).Valor;
+                    object valorCOM = ((OInfoDato)eventArgs.Argumento).Valor;
 
-                    if (!OObjeto.CompararObjetos(this.Valor, valorSCED))
+                    if (!OObjeto.CompararObjetos(this.Valor, valorCOM))
                     {
                         // Conversión
-                        this.Valor = SCEDAFormatoCorrecto(valorSCED, this.TipoDato);
+                        this.Valor = COMAFormatoCorrecto(valorCOM, this.TipoDato);
+
+                        // Se lanza el cambio de valor
+                        this.LanzarCambioValor();
 
                         // Se lanza desde un thread distino.
-                        OSimpleMethod setVariableEnThread = new OSimpleMethod(this.LanzarCambioValor);
-                        setVariableEnThread.BeginInvoke(null, null);
+                        //OSimpleMethod setVariableEnThread = new OSimpleMethod(this.LanzarCambioValor);
+                        //setVariableEnThread.BeginInvoke(null, null);
                     }
                 }
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
+                OLogsVAHardware.EntradasSalidas.Error(exception, this.Codigo);
             }
         }
 
         /// <summary>
-        /// Devuelve el valor listo para ser enviado al SCED
+        /// Devuelve el valor listo para ser enviado al servidor de comunicaciones
         /// </summary>
         /// <param name="valorObj"></param>
         /// <returns></returns>
         internal object ValorFormateado()
         {
-            return FormatoCorrectoASCED(this.Valor, this.TipoDato);
+            return FormatoCorrectoACOM(this.Valor, this.TipoDato);
         }
         #endregion
 
@@ -499,7 +704,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
+                OLogsVAHardware.EntradasSalidas.Error(exception, this.Codigo);
             }
         }
 
@@ -525,16 +730,16 @@ namespace Orbita.VA.Hardware
                     if (this.EscrituraInmediata)
                     {
                         // Conversión
-                        this.Valor = FormatoCorrectoASCED(valor, this.TipoDato);
+                        this.Valor = FormatoCorrectoACOM(valor, this.TipoDato);
 
-                        // Escritura en el sced
-                        this.Servidor.OrbitaEscribir(this.IdDispositivo, new string[1] { this.CodigoVariableSCED }, new object[1] { this.Valor });
+                        // Escritura en el servidor de comunicaciones
+                        this.Servidor.OrbitaEscribir(this.IdDispositivo, new string[1] { this.CodigoVariableCOM }, new object[1] { this.Valor });
                     }
                 }
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
+                OLogsVAHardware.EntradasSalidas.Error(exception, this.Codigo);
             }
         }
         
@@ -550,18 +755,18 @@ namespace Orbita.VA.Hardware
                 {
                     base.LeerEntrada();
 
-                    // Lectura del sced
-                    object[] infoDato = this.Servidor.OrbitaLeer(this.IdDispositivo, new string[1] { this.CodigoVariableSCED }, true);
+                    // Lectura del servidor de comunicaciones
+                    object[] infoDato = this.Servidor.OrbitaLeer(this.IdDispositivo, new string[1] { this.CodigoVariableCOM }, true);
                     if (infoDato.Length == 1)
                     {
                         if (infoDato[0] != null)
                         {
-                            object valorSCED = infoDato[0];
+                            object valorCOM = infoDato[0];
 
-                            if (!OObjeto.CompararObjetos(this.Valor, valorSCED))
+                            if (!OObjeto.CompararObjetos(this.Valor, valorCOM))
                             {
                                 // Conversión
-                                this.Valor = SCEDAFormatoCorrecto(valorSCED, this.TipoDato);
+                                this.Valor = COMAFormatoCorrecto(valorCOM, this.TipoDato);
 
                                 // Se lanza desde un thread distino.
                                 OSimpleMethod setVariableEnThread = new OSimpleMethod(this.LanzarCambioValor);
@@ -573,14 +778,14 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
+                OLogsVAHardware.EntradasSalidas.Error(exception, this.Codigo);
             }
         }
         #endregion
     }
 
     /// <summary>
-    /// Terminal del SCED para trabajo con texto
+    /// Terminal del servidor de comunicaciones para trabajo con texto
     /// </summary>
     internal class OTerminalClienteComunicacionWriteCommand : OTerminalClienteComunicacion
     {
@@ -600,14 +805,14 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Contructor de la clase
         /// </summary>
-        public OTerminalClienteComunicacionWriteCommand(string codTarjetaIO, string codTerminalIO, OEnumTipoDispositivoClienteComunicacion tipoDispositivoSCED)
-            : base(codTarjetaIO, codTerminalIO, tipoDispositivoSCED)
+        public OTerminalClienteComunicacionWriteCommand(string codTarjetaIO, string codTerminalIO, OEnumTipoDispositivoClienteComunicacion tipoDispositivoCOM)
+            : base(codTarjetaIO, codTerminalIO, tipoDispositivoCOM)
         {
             this.ListaCodigosTerminalesAsociados = new List<string>();
             this.ListaTerminalesAsociados = new List<OTerminalClienteComunicacion>();
 
             // Cargamos valores de la base de datos
-            DataTable dtTerminalIO = AppBD.GetTerminalesIO_EscrituraSCED(codTarjetaIO, codTerminalIO);
+            DataTable dtTerminalIO = AppBD.GetTerminalesIO_EscrituraCOM(codTarjetaIO, codTerminalIO);
             if (dtTerminalIO.Rows.Count > 0)
             {
                 foreach (DataRow drTerminalIOAsociado in dtTerminalIO.Rows)
@@ -630,7 +835,7 @@ namespace Orbita.VA.Hardware
             OModuloIOBase tarjetaTerminal = OIOManager.ListaTarjetasIO.Find(delegate(OModuloIOBase t) { return t.Codigo == this.CodTarjeta; });
             foreach (string codTerminalIOAsociado in this.ListaCodigosTerminalesAsociados)
             {
-                //OTerminalIOSCED terminalAsociado = (OTerminalIOSCED)tarjetaTerminal.ListaTerminales.Find(delegate(OTerminalIOBase t) { return t.Codigo == codTerminalIOAsociado; });
+                //OTerminalIOCOM terminalAsociado = (OTerminalIOCOM)tarjetaTerminal.ListaTerminales.Find(delegate(OTerminalIOBase t) { return t.Codigo == codTerminalIOAsociado; });
                 OTerminalIOBase terminalAsociado;
                 if (tarjetaTerminal.ListaTerminales.TryGetValue(codTerminalIOAsociado, out terminalAsociado))
                 {
@@ -656,30 +861,30 @@ namespace Orbita.VA.Hardware
 
                     foreach (OTerminalClienteComunicacion terminalAsociado in this.ListaTerminalesAsociados)
                     {
-                        variables.Add(terminalAsociado.CodigoVariableSCED);
+                        variables.Add(terminalAsociado.CodigoVariableCOM);
                         valores.Add(terminalAsociado.ValorFormateado());
                     }
 
-                    // Escritura en el sced de las variables asocidas a este terminal tipo Comando salida
+                    // Escritura en el servidor de comunicaciones de las variables asocidas a este terminal tipo Comando salida
                     bool resultado = this.Servidor.OrbitaEscribir(this.IdDispositivo, variables.ToArray(), valores.ToArray());
 
                     // Conversión a string
-                    object valorSCED = FormatoCorrectoASCED(valor, this.TipoDato);
+                    object valorCOM = FormatoCorrectoACOM(valor, this.TipoDato);
                     
-                    // Escritura en el sced de la variable tipo Comando Salida, para que sea escrita en ultimo lugar
-                    resultado = this.Servidor.OrbitaEscribir(this.IdDispositivo, new string[1] { this.CodigoVariableSCED }, new object[1] { valorSCED });
+                    // Escritura en el servidor de comunicaciones de la variable tipo Comando Salida, para que sea escrita en ultimo lugar
+                    resultado = this.Servidor.OrbitaEscribir(this.IdDispositivo, new string[1] { this.CodigoVariableCOM }, new object[1] { valorCOM });
                 }
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, this.Servidor.ToString());
+                OLogsVAHardware.EntradasSalidas.Error(exception, this.Codigo);
             }
         }
         #endregion
     }
 
     /// <summary>
-    /// Tipo de dispositivo controlado por el SCED
+    /// Tipo de dispositivo controlado por el servidor de comunicaciones
     /// </summary>
     internal enum OEnumTipoDispositivoClienteComunicacion
     {

@@ -57,20 +57,31 @@ namespace Orbita.Controles.Combo
 
         #region Métodos protegidos
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
-        protected bool ShouldSerializeApariencia()
-        {
-            return this.apariencia.ShouldSerialize();
-        }
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetApariencia()
         {
             this.apariencia.Reset();
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+        protected bool ShouldSerializeApariencia()
+        {
+            return this.apariencia.ShouldSerialize();
+        }
+        #endregion
+
+        #region Métodos protegidos virtuales
         protected virtual void AparienciaChanging(object sender, OPropiedadEventArgs e) { }
         protected virtual void AparienciaChanged(object sender, OPropiedadEventArgs e) { }
         #endregion
 
         #region Métodos públicos
+        /// <summary>
+        /// Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+        /// </summary>
+        /// <returns>El nombre de tipo completo del objeto.</returns>
         public override string ToString()
         {
             return null;

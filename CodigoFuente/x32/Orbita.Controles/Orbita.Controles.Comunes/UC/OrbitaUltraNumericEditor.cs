@@ -9,16 +9,19 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Comunes
 {
     public partial class OrbitaUltraNumericEditor : Infragistics.Win.UltraWinEditors.UltraNumericEditor
     {
+        #region Nueva definición
         public class ControlNuevaDefinicion : OUltraNumericEditor
         {
+            #region Constructor
             public ControlNuevaDefinicion(OrbitaUltraNumericEditor sender)
                 : base(sender) { }
-        };
+            #endregion
+        }
+        #endregion
 
         #region Atributos
         ControlNuevaDefinicion definicion;
@@ -39,7 +42,7 @@ namespace Orbita.Controles.Comunes
 
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }
@@ -48,6 +51,9 @@ namespace Orbita.Controles.Comunes
         #endregion
 
         #region Métodos privados
+        /// <summary>
+        /// Inicializar atributos de la clase.
+        /// </summary>
         void InitializeAttributes()
         {
             if (this.definicion == null)
@@ -56,7 +62,7 @@ namespace Orbita.Controles.Comunes
             }
         }
         /// <summary>
-        /// Inicializar propiedades.
+        /// Inicializar propiedades del control.
         /// </summary>
         void InicializeProperties()
         {

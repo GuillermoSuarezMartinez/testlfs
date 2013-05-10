@@ -15,12 +15,24 @@ namespace Orbita.Controles.Grid
     public class OCabecera : OControlBase
     {
         #region Atributos
+        /// <summary>
+        /// Estilo de cabecera.
+        /// </summary>
         EstiloCabecera estilo;
+        /// <summary>
+        /// Estilo multilínea de la cabecera.
+        /// </summary>
         bool multilinea;
         #endregion
 
         #region Eventos
+        /// <summary>
+        /// Propiedad cambiando.
+        /// </summary>
         public event System.EventHandler<OPropiedadEventArgs> PropertyChanging;
+        /// <summary>
+        /// Propiedad cambio.
+        /// </summary>
         public event System.EventHandler<OPropiedadEventArgs> PropertyChanged;
         #endregion
 
@@ -87,11 +99,19 @@ namespace Orbita.Controles.Grid
         {
             this.Multilinea = Configuracion.DefectoCabeceraMultilinea;
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeEstilo()
         {
             return (this.Estilo != Configuracion.DefectoEstiloCabecera);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeMultilinea()
         {

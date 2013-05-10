@@ -21,6 +21,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Text.RegularExpressions;
 using Orbita.Xml;
+using Orbita.BBDD;
 
 namespace Orbita.VA.Comun
 {
@@ -30,11 +31,6 @@ namespace Orbita.VA.Comun
     public static class AppBD
     {
         #region Constante(s)
-        /// <summary>
-        /// Ruta por defecto del fichero xml de configuración
-        /// </summary>
-        public static string DataFile = Path.Combine(ORutaParametrizable.AppFolder, "Configuracion_Datos.xml");
-
         /// <summary>
         /// Ruta por defecto del fichero xml de configuración
         /// </summary>
@@ -63,14 +59,14 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Extrae un dataset con el esquema de la base de datos seleccionada. Tablas y procedimientos
         /// </summary>
-        public static void ExtraerEsquemaBBDD(EnumOrigenBaseDatos origenBaseDatos, ref DataSet ds)
+        public static void ExtraerEsquemaBBDD(OSqlServer sqlServer, ref DataSet ds)
         {
-            DataTable dtTablas = OBaseDatosManager.SQLServer(origenBaseDatos).SeleccionProcedimientoAlmacenado("VA_APP_GET_ESQUEMA_TABLAS");
-            dtTablas.TableName = "TABLAS_" + origenBaseDatos.Nombre;
+            DataTable dtTablas = sqlServer.SeleccionProcedimientoAlmacenado("VA_APP_GET_ESQUEMA_TABLAS");
+            dtTablas.TableName = "TABLAS_" + sqlServer.Instancia;
             ds.Tables.Add(dtTablas);
 
-            DataTable dtProcedimientos = OBaseDatosManager.SQLServer(origenBaseDatos).SeleccionProcedimientoAlmacenado("VA_APP_GET_PROCEDIMIENTOS");
-            dtProcedimientos.TableName = "PROCEDIMIENTOS_" + origenBaseDatos.Nombre;
+            DataTable dtProcedimientos = sqlServer.SeleccionProcedimientoAlmacenado("VA_APP_GET_PROCEDIMIENTOS");
+            dtProcedimientos.TableName = "PROCEDIMIENTOS_" + sqlServer.Instancia;
             ds.Tables.Add(dtProcedimientos);
 
             //ds.WriteXml(xmlFile, XmlWriteMode.WriteSchema);
@@ -79,7 +75,7 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Compara los esquemas de las bases de datos seleccionadas. Tanto los campos de las tablas como los procedimientos almacenados
         /// </summary>
-        public static bool CompararEsquemaBBDD(List<EnumOrigenBaseDatos> origenesBaseDatos, out string explicacion)
+        public static bool CompararEsquemaBBDD(List<OSqlServer> basesDatos, out string explicacion)
         {
             bool resultado = false;
             explicacion = string.Empty;
@@ -87,18 +83,18 @@ namespace Orbita.VA.Comun
             DataSet dsActual = new DataSet();
             DataSet dsReferencia = new DataSet();
 
-            ExtraerEsquemaBBDD(OrigenBaseDatos.Parametrizacion, ref dsActual);
-            ExtraerEsquemaBBDD(OrigenBaseDatos.Almacen, ref dsActual);
+            //ExtraerEsquemaBBDD(OrigenBaseDatos.Parametrizacion, ref dsActual);
+            //ExtraerEsquemaBBDD(OrigenBaseDatos.Almacen, ref dsActual);
             //dsActual.WriteXml(xmlFile, XmlWriteMode.WriteSchema);
 
             dsReferencia.ReadXml(XmlSchemaFile);
 
             // Comparación de BBDD
             resultado = true;
-            foreach (EnumOrigenBaseDatos origenBBDD in origenesBaseDatos)
+            foreach (OSqlServer origenBBDD in basesDatos)
             {
                 // Compración de tablas
-                string nombreTabla = "TABLAS_" + origenBBDD.Nombre;
+                string nombreTabla = "TABLAS_" + origenBBDD.Instancia;
                 DataTable dtReferencia = dsReferencia.Tables[nombreTabla];
                 DataTable dtActual = dsActual.Tables[nombreTabla];
                 foreach (DataRow drReferencia in dtReferencia.Rows)
@@ -109,7 +105,7 @@ namespace Orbita.VA.Comun
                     if (drActuales.Length != 1)
 	                {
                         resultado = false;
-                        explicacion += string.Format("La columna {0} de la tabla {1} no existe en la BBDD {2}.", nomColumna, nomTabla, origenBBDD.Nombre) + Environment.NewLine;
+                        explicacion += string.Format("La columna {0} de la tabla {1} no existe en la BBDD {2}.", nomColumna, nomTabla, origenBBDD.BaseDatos) + Environment.NewLine;
 	                }
                     else
                     {
@@ -120,7 +116,7 @@ namespace Orbita.VA.Comun
                         if (tipoReferencia != tipoActual)
 	                    {
                             resultado = false;
-                            explicacion += string.Format("La columna {0} de la tabla {1} de la BBDD {2} no es del tipo {3}.", nomColumna, nomTabla, origenBBDD.Nombre, tipoReferencia) + Environment.NewLine;
+                            explicacion += string.Format("La columna {0} de la tabla {1} de la BBDD {2} no es del tipo {3}.", nomColumna, nomTabla, origenBBDD.BaseDatos, tipoReferencia) + Environment.NewLine;
 	                    }
 
                         short longReferencia = (short)drReferencia["max_length"];
@@ -128,7 +124,7 @@ namespace Orbita.VA.Comun
                         if (longReferencia != longActual)
 	                    {
                             resultado = false;
-                            explicacion += string.Format("La columna {0} de la tabla {1} de la BBDD {2} no es de la longitud {3}.", nomColumna, nomTabla, origenBBDD.Nombre, longReferencia) + Environment.NewLine;
+                            explicacion += string.Format("La columna {0} de la tabla {1} de la BBDD {2} no es de la longitud {3}.", nomColumna, nomTabla, origenBBDD.BaseDatos, longReferencia) + Environment.NewLine;
 	                    }
 
                         byte precisionReferencia = (byte)drReferencia["precision"];
@@ -136,7 +132,7 @@ namespace Orbita.VA.Comun
                         if (precisionReferencia != precisionActual)
 	                    {
                             resultado = false;
-                            explicacion += string.Format("La columna {0} de la tabla {1} de la BBDD {2} no es de la precisión {3}.", nomColumna, nomTabla, origenBBDD.Nombre, precisionReferencia) + Environment.NewLine;
+                            explicacion += string.Format("La columna {0} de la tabla {1} de la BBDD {2} no es de la precisión {3}.", nomColumna, nomTabla, origenBBDD.BaseDatos, precisionReferencia) + Environment.NewLine;
 	                    }
 
                         byte escalaReferencia = (byte)drReferencia["scale"];
@@ -144,7 +140,7 @@ namespace Orbita.VA.Comun
                         if (escalaReferencia != escalaActual)
 	                    {
                             resultado = false;
-                            explicacion += string.Format("La columna {0} de la tabla {1} de la BBDD {2} no es de la escala {3}.", nomColumna, nomTabla, origenBBDD.Nombre, escalaReferencia) + Environment.NewLine;
+                            explicacion += string.Format("La columna {0} de la tabla {1} de la BBDD {2} no es de la escala {3}.", nomColumna, nomTabla, origenBBDD.BaseDatos, escalaReferencia) + Environment.NewLine;
 	                    }
 
                         bool nullableReferencia = (bool)drReferencia["is_nullable"];
@@ -152,7 +148,7 @@ namespace Orbita.VA.Comun
                         if (nullableReferencia != nullableActual)
 	                    {
                             resultado = false;
-                            explicacion += string.Format("La columna {0} de la tabla {1} de la BBDD {2} debe tener la opción 'permitir valores NULL' a {3}.", nomColumna, nomTabla, origenBBDD.Nombre, nullableReferencia) + Environment.NewLine;
+                            explicacion += string.Format("La columna {0} de la tabla {1} de la BBDD {2} debe tener la opción 'permitir valores NULL' a {3}.", nomColumna, nomTabla, origenBBDD.BaseDatos, nullableReferencia) + Environment.NewLine;
 	                    }
 
                         bool identidadReferencia = (bool)drReferencia["is_identity"];
@@ -160,14 +156,14 @@ namespace Orbita.VA.Comun
                         if (identidadReferencia != identidadActual)
 	                    {
                             resultado = false;
-                            explicacion += string.Format("La columna {0} de la tabla {1} de la BBDD {2} debe tener la opción 'identidad' a {3}.", nomColumna, nomTabla, origenBBDD.Nombre, identidadReferencia) + Environment.NewLine;
+                            explicacion += string.Format("La columna {0} de la tabla {1} de la BBDD {2} debe tener la opción 'identidad' a {3}.", nomColumna, nomTabla, origenBBDD.BaseDatos, identidadReferencia) + Environment.NewLine;
 	                    }
                     }
                 }
 
 
                 // Compración de procedimientos
-                nombreTabla = "PROCEDIMIENTOS_" + origenBBDD.Nombre;
+                nombreTabla = "PROCEDIMIENTOS_" + origenBBDD.Instancia;
                 dtReferencia = dsReferencia.Tables[nombreTabla];
                 dtActual = dsActual.Tables[nombreTabla];
                 foreach (DataRow drReferencia in dtReferencia.Rows)
@@ -177,7 +173,7 @@ namespace Orbita.VA.Comun
                     if (drActuales.Length != 1)
 	                {
                         resultado = false;
-                        explicacion += string.Format("El procedimiento {0} no existe en la BBDD {1}.", nomProcedimiento, origenBBDD.Nombre) + Environment.NewLine;
+                        explicacion += string.Format("El procedimiento {0} no existe en la BBDD {1}.", nomProcedimiento, origenBBDD.BaseDatos) + Environment.NewLine;
 	                }
                     else
                     {
@@ -194,7 +190,7 @@ namespace Orbita.VA.Comun
                         if (!ok)
 	                    {
                             resultado = false;
-                            explicacion += string.Format("El procedimiento almacenado {0} de la BBDD {1} difiere del correcto.", nomProcedimiento, origenBBDD.Nombre) + Environment.NewLine;
+                            explicacion += string.Format("El procedimiento almacenado {0} de la BBDD {1} difiere del correcto.", nomProcedimiento, origenBBDD.BaseDatos) + Environment.NewLine;
 	                    }
                     }
                 }
@@ -316,77 +312,6 @@ namespace Orbita.VA.Comun
         #endregion
 
         #region TAB Insert: funciones Add -> AddX(...)
-        /// <summary>
-        /// Añade el historico de la inspección de la pieza
-        /// </summary>
-        /// <returns></returns>        
-        public static int AddHistoricoSerie(bool resultado, DateTime fecha, bool inspeccionado, string excepcion, bool rechazado, TimeSpan tiempoProceso, int IdTipoHistorico, OXml xMLDetalle, OXml xMLClaves)
-        {
-            ArrayList list = new ArrayList();
-
-            list.Add(new SqlParameter("@Resultado", resultado));
-            list.Add(new SqlParameter("@Fecha", fecha));
-            list.Add(new SqlParameter("@Inspeccionado", inspeccionado));
-            list.Add(new SqlParameter("@Excepcion", excepcion));
-            list.Add(new SqlParameter("@Rechazado", rechazado));
-            list.Add(new SqlParameter("@TiempoProceso", (int)Math.Round(tiempoProceso.TotalMilliseconds)));
-            list.Add(new SqlParameter("@IdTipoHistorico", IdTipoHistorico));
-
-            list.Add(new SqlParameter("@DETALLE_HISTORICO_ADD", (xMLDetalle == null) ? null : xMLDetalle.SWXml.ToString()));
-            list.Add(new SqlParameter("@CLAVES_HISTORICO_ADD", (xMLClaves == null) ? null : xMLClaves.SWXml.ToString()));
-
-            return OBaseDatosAlmacen.SQLServer.EjecutarProcedimientoAlmacenado("HIS_ADD_HISTORICO_SERIE_XML", list);
-        }
-
-        /// <summary>
-        /// Añade el historico de la inspección de la pieza
-        /// </summary>
-        /// <returns></returns>        
-        public static int AddHistoricoSubInspeccionSerie(int idHistorico, bool resultado, bool inspeccionado, string excepcion, TimeSpan tiempoProceso, OXml xMLDetalle)
-        {
-            ArrayList list = new ArrayList();
-
-            list.Add(new SqlParameter("@IdHistorico", idHistorico));
-            list.Add(new SqlParameter("@Resultado", resultado));
-            list.Add(new SqlParameter("@Inspeccionado", inspeccionado));
-            list.Add(new SqlParameter("@Excepcion", excepcion));
-            list.Add(new SqlParameter("@TiempoProceso", (int)Math.Round(tiempoProceso.TotalMilliseconds)));
-
-            list.Add(new SqlParameter("@DETALLE_HISTORICO_ADD", (xMLDetalle == null) ? null : xMLDetalle.SWXml.ToString()));
-
-            return OBaseDatosAlmacen.SQLServer.EjecutarProcedimientoAlmacenado("HIS_ADD_HISTORICO_SUBINSPECCION_SERIE_XML", list);
-        }
-
-        /// <summary>
-        /// Añade el historico de la inspección de la pieza
-        /// </summary>
-        /// <returns></returns>        
-        public static int AddHistoricoParalelo(int IdTipoHistorico, OXml xMLDetalle, OXml xMLClaves, OXml xMLSubDetalle)
-        {
-            ArrayList list = new ArrayList();
-
-            list.Add(new SqlParameter("@IdTipoHistorico", IdTipoHistorico));
-            list.Add(new SqlParameter("@DETALLE_HISTORICO_ADD", (xMLDetalle == null) ? null : xMLDetalle.SWXml.ToString()));
-            list.Add(new SqlParameter("@CLAVES_HISTORICO_ADD", (xMLClaves == null) ? null : xMLClaves.SWXml.ToString()));
-            list.Add(new SqlParameter("@SUB_DETALLE_HISTORICO_ADD", (xMLSubDetalle == null) ? null : xMLSubDetalle.SWXml.ToString()));
-
-            return OBaseDatosAlmacen.SQLServer.EjecutarProcedimientoAlmacenado("HIS_ADD_HISTORICO_PARALELO_XML", list);
-        }
-
-        /// <summary>
-        /// Añade información de las trazas a la base de datos
-        /// </summary>
-        /// <param name="datosTrazas">Objeto CXML con los datos de las trazas</param>
-        /// <returns>Menor que 0 si ha habido algún error (devuleve un código de errores ente -1 y -7 en función de donde se ha producido)</returns>
-        public static int AddTrazas(OXml datosTrazas)
-        {
-            ArrayList list = new ArrayList();
-
-            list.Add(new SqlParameter("@DATOS_TRAZAS_ADD", (datosTrazas == null) ? null : datosTrazas.SWXml.ToString()));
-
-            return OBaseDatosAlmacen.SQLServer.EjecutarProcedimientoAlmacenado("VAR_ADD_TRAZAS_XML", list);
-        }
-
         /// <summary>
         /// Guarda nueva variable
         /// </summary>

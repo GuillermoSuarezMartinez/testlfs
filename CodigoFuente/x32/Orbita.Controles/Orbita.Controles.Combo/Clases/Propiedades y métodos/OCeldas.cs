@@ -79,9 +79,9 @@ namespace Orbita.Controles.Combo
 
         #region Métodos públicos
         /// <summary>
-        /// Determina el número de propiedades modificadas.
+        /// Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>El nombre de tipo completo del objeto.</returns>
         public override string ToString()
         {
             return null;

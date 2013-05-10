@@ -31,6 +31,184 @@
             </summary>
             <param name="control"></param>
         </member>
+        <member name="M:Orbita.Controles.Comunes.OUltraStatusBar.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaTeclado._ListaTexto">
+            <summary>
+            Lista de seleccion
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTeclado.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTeclado.RellenarDesplegable">
+            <summary>
+            Método para rellenar la lista desplegable de los carins
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTeclado.OrbitaControlTeclado_Load(System.Object,System.EventArgs)">
+            <summary>
+            Carga del control
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTeclado.btn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Evento de clic sobre alguna tecla
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTeclado.btnRetrocede_Click(System.Object,System.EventArgs)">
+            <summary>
+            Evento de borrado de caracter
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTeclado.btnIntro_Click(System.Object,System.EventArgs)">
+            <summary>
+            Clic en Intro
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTeclado.BtnEsc_Click(System.Object,System.EventArgs)">
+            <summary>
+            Evento de pulsación de la telca de escape
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTeclado.BtnDropDown_Click(System.Object,System.EventArgs)">
+            <summary>
+            Pulsación de la tecla de desplegable
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTeclado.BtnDropDown_Leave(System.Object,System.EventArgs)">
+            <summary>
+            Evento de salida del botón de desplegar
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTeclado.GridView_CellClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            Evento de clic en una celda del grid
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaTeclado.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTeclado.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTeclado.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunes.OrbitaTeclado.BotonIntroClick">
+            <summary>
+            Evento de aceptación
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunes.OrbitaTeclado.BotonClick">
+            <summary>
+            Evento de aceptación
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunes.OrbitaTeclado.BotonEscClick">
+            <summary>
+            Evento de cancelación
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTeclado.Resultado">
+            <summary>
+            Resultado de la introducción de texto
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTeclado.VisualizarEditor">
+            <summary>
+            Indica que se ha de visualizar el editor
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTeclado.VisualizarIntro">
+            <summary>
+            Indica que se ha de visualizar la tecla de intro
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTeclado.VisualizarSpace">
+            <summary>
+            Indica que se ha de visualizar la tecla de espacio
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTeclado.VisualizarEsc">
+            <summary>
+            Indica que se ha de visualizar la tecla de escape
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTeclado.VisualizarRet">
+            <summary>
+            Indica que se ha de visualizar la tecla de retroceso
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTeclado.VisualizarDropDown">
+            <summary>
+            Indica que se ha de visualizar la tecla del desplegable
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTeclado.ListaTexto">
+            <summary>
+            Lista de seleccion
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunes.TextEventHandler">
+            <summary>
+            Evento de devolución de texto
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.Comunes.TextEventArgs">
+            <summary>
+            Argumentos del evento de devolución de texto
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.TextEventArgs._Texto">
+            <summary>
+            Nueva imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.TextEventArgs.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigo">Código identificativo de la variable</param>
+            <param name="valor">Valor de la variable</param>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.TextEventArgs.Texto">
+            <summary>
+            Nueva imagen
+            </summary>
+        </member>
         <member name="T:Orbita.Controles.Comunes.OColumnHeader">
             <summary>
             Esta clase de objeto representa un encabezado de columna en un control Orbita.Controles.Comunes.OrbitaListView.
@@ -144,11 +322,27 @@
             <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
             que contienen cero o más componentes de forma lógica.</param>
         </member>
+        <member name="F:Orbita.Controles.Comunes.OTimer.control">
+            <summary>
+            Control Orbita asociado a la clase actual.
+            </summary>
+        </member>
         <member name="M:Orbita.Controles.Comunes.OTimer.#ctor(System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OTimer.
             </summary>
-            <param name="control"></param>
+            <param name="control">Control Orbita asociado a la clase actual.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OTimer.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OTimer.Control">
+            <summary>
+            Control Orbita asociado a la clase actual.
+            </summary>
         </member>
         <member name="F:Orbita.Controles.Comunes.OrbitaListBox.components">
             <summary>
@@ -171,11 +365,27 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
             </summary>
         </member>
+        <member name="F:Orbita.Controles.Comunes.OListBox.control">
+            <summary>
+            Control Orbita.Controles.Comunes.OrbitaListBox vinculado a la clase actual.
+            </summary>
+        </member>
         <member name="M:Orbita.Controles.Comunes.OListBox.#ctor(System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OListBox.
             </summary>
-            <param name="control"></param>
+            <param name="control">Control Orbita.Controles.Comunes.OrbitaListBox vinculado a la clase actual.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OListBox.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OListBox.Control">
+            <summary>
+            Control Orbita.Controles.Comunes.OrbitaListBox vinculado a la clase actual.
+            </summary>
         </member>
         <member name="T:Orbita.Controles.Comunes.OrbitaUltraCheckEditor">
             <summary>
@@ -208,7 +418,13 @@
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OUltraCheckEditor.
             </summary>
-            <param name="control"></param>
+            <param name="control">Control Orbita asociado a la clase actual.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OUltraCheckEditor.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
         </member>
         <member name="F:Orbita.Controles.Comunes.OUltraButton.control">
             <summary>
@@ -220,11 +436,22 @@
             Tipo de botón.
             </summary>
         </member>
+        <member name="F:Orbita.Controles.Comunes.OUltraButton.estilo">
+            <summary>
+            Estilo de botón.
+            </summary>
+        </member>
         <member name="M:Orbita.Controles.Comunes.OUltraButton.#ctor(System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OUltraButton.
             </summary>
-            <param name="control"></param>
+            <param name="control">Control Orbita asociado a la clase actual.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OUltraButton.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
         </member>
         <member name="M:Orbita.Controles.Comunes.OrbitaUltraMaskedEdit.#ctor">
             <summary>
@@ -260,6 +487,12 @@
             </summary>
             <param name="control"></param>
         </member>
+        <member name="M:Orbita.Controles.Comunes.OUltraMaskedEdit.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
         <member name="F:Orbita.Controles.Comunes.OrbitaListView.components">
             <summary>
             Variable del diseñador requerida.
@@ -290,7 +523,13 @@
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OListView.
             </summary>
-            <param name="control"></param>
+            <param name="control">Control Orbita asociado a la clase actual.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OListView.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
         </member>
         <member name="P:Orbita.Controles.Comunes.OListView.Columnas">
             <summary>
@@ -343,7 +582,18 @@
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OUltraDockManager.
             </summary>
-            <param name="control"></param>
+            <param name="control">Control Orbita asociado a la clase actual.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OUltraDockManager.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OUltraDockManager.Control">
+            <summary>
+            Control Orbita asociado a la clase actual.
+            </summary>
         </member>
         <member name="F:Orbita.Controles.Comunes.OrbitaUltraNumericEditorWithFilter.components">
             <summary> 
@@ -540,13 +790,30 @@
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OToolTip.
             </summary>
-            <param name="control"></param>
+            <param name="control">Control Orbita asociado a la clase actual.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OToolTip.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
         </member>
         <member name="M:Orbita.Controles.Comunes.OTextBox.#ctor(System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OTextBox.
             </summary>
-            <param name="control"></param>
+            <param name="control">Control Orbita asociado a la clase actual.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OTextBox.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OTextBox.Control">
+            <summary>
+            Control Orbita asociado a la clase actual.
+            </summary>
         </member>
         <member name="T:Orbita.Controles.Comunes.OColumnHeaderCollection">
             <summary>
@@ -739,6 +1006,12 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OControlBase.
             </summary>
         </member>
+        <member name="M:Orbita.Controles.Comunes.OControlBase.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
         <member name="F:Orbita.Controles.Comunes.OUltraLabel.control">
             <summary>
             Control (sender).
@@ -748,7 +1021,18 @@
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OUltraLabel.
             </summary>
-            <param name="control"></param>
+            <param name="control">Control Orbita asociado a la clase actual.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OUltraLabel.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OUltraLabel.Control">
+            <summary>
+            Control Orbita asociado a la clase actual.
+            </summary>
         </member>
         <member name="T:Orbita.Controles.Comunes.OrbitaUltraNumericEditor">
             <summary>
@@ -792,6 +1076,17 @@
             </summary>
             <param name="control"></param>
         </member>
+        <member name="M:Orbita.Controles.Comunes.OUltraNumericEditor.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="T:Orbita.Controles.Comunes.OAparienciaBase">
+            <summary>
+            Clase base abstracta de apariencia.
+            </summary>
+        </member>
         <member name="M:Orbita.Controles.Comunes.OAparienciaBase.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OAparienciaBase.
@@ -799,38 +1094,80 @@
         </member>
         <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ResetColorBorde">
             <summary>
-            Resetear color de borde.
+            Resetear color de borde con el valor predeterminado.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ResetColorFondo">
             <summary>
-            Resetear color de fondo.
+            Resetear color de fondo con el valor predeterminado.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ResetColorTexto">
             <summary>
-            Resetear color de texto.
+            Resetear color de texto con el valor predeterminado.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ResetEstiloBorde">
             <summary>
-            Resetear estilo de borde.
+            Resetear estilo de borde con el valor predeterminado.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ResetAlineacionTextoHorizontal">
             <summary>
-            Resetear alineación de texto horizontal.
+            Resetear alineación de texto horizontal con el valor predeterminado.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ResetAlineacionTextoVertical">
             <summary>
-            Resetear alineación de texto vertical.
+            Resetear alineación de texto vertical con el valor predeterminado.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ResetAdornoTexto">
             <summary>
-            Resetear adorno de texto.
+            Resetear adorno de texto con el valor predeterminado.
             </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ShouldSerializeColorBorde">
+            <summary>
+            Comprueba si el color de borde ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns>True si el color de borde ha cambiado; en otro caso, retorna false.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ShouldSerializeColorFondo">
+            <summary>
+            Comprueba si el color de fondo ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns>True si el color de fondo ha cambiado; en otro caso, retorna false.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ShouldSerializeColorTexto">
+            <summary>
+            Comprueba si el color de texto ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns>True si el color de texto ha cambiado; en otro caso, retorna false.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ShouldSerializeEstiloBorde">
+            <summary>
+            Comprueba si el estilo de borde ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns>True si el estilo de borde ha cambiado; en otro caso, retorna false.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ShouldSerializeAlineacionTextoHorizontal">
+            <summary>
+            Comprueba si la alineación de texto horizontal ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns>True si la alineación de texto horizontal ha cambiado; en otro caso, retorna false.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ShouldSerializeAlineacionTextoVertical">
+            <summary>
+            Comprueba si la alineación de texto vertical ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns>True si la alineación de texto vertical ha cambiado; en otro caso, retorna false.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OAparienciaBase.ShouldSerializeAdornoTexto">
+            <summary>
+            Comprueba si el adorno de texto ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns>True si el adorno de texto ha cambiado; en otro caso, retorna false.</returns>
         </member>
         <member name="P:Orbita.Controles.Comunes.OAparienciaBase.ColorBorde">
             <summary>
@@ -892,7 +1229,13 @@
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OTreeView.
             </summary>
-            <param name="control"></param>
+            <param name="control">Control Orbita asociado a la clase actual.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OTreeView.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
         </member>
         <member name="F:Orbita.Controles.Comunes.OrbitaTextBox.components">
             <summary> 
@@ -919,7 +1262,13 @@
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OUltraDateTimeEditor.
             </summary>
-            <param name="control"></param>
+            <param name="control">Control Orbita asociado a la clase actual.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OUltraDateTimeEditor.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
         </member>
         <member name="F:Orbita.Controles.Comunes.OPropiedadEventArgs.nombre">
             <summary>
@@ -968,7 +1317,33 @@
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OPictureBox.
             </summary>
-            <param name="control"></param>
+            <param name="control">Control Orbita asociado a la clase actual.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OPictureBox.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OPictureBox.Control">
+            <summary>
+            Control Orbita asociado a la clase actual.
+            </summary>
+        </member>
+        <member name="T:Orbita.OrbitaClaseAplicacionUnica">
+            <summary>
+            Clase que se encarga de verificar si hay otro servicio o proceso abierto con el mismo nombre
+            </summary>
+        </member>
+        <member name="F:Orbita.OrbitaClaseAplicacionUnica.SW_RESTORE">
+            <summary>
+            Constante
+            </summary>
+        </member>
+        <member name="F:Orbita.OrbitaClaseAplicacionUnica.mutex">
+            <summary>
+            Metex de aplicacion
+            </summary>
         </member>
         <member name="M:Orbita.Controles.Comunes.OrbitaUltraSplitter.#ctor">
             <summary>
@@ -998,6 +1373,12 @@
             </summary>
             <param name="control"></param>
         </member>
+        <member name="M:Orbita.Controles.Comunes.OUltraSplitter.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
         <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditor.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
@@ -1024,6 +1405,12 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OUltraOptionSet.
             </summary>
             <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OUltraOptionSet.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
         </member>
         <member name="F:Orbita.Controles.Comunes.OrbitaUltraOptionSet.components">
             <summary> 
@@ -1273,6 +1660,11 @@
         <member name="E:Orbita.Controles.Comunes.OApariencia.PropertyChanged">
             <summary>
             Cambio la propiedad.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunes.AdornoTexto">
+            <summary>
+            AdornoTexto.
             </summary>
         </member>
     </members>

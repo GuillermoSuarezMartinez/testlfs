@@ -14,6 +14,9 @@ namespace Orbita.Controles.Grid
     public class OTimerEventArgs : System.EventArgs
     {
         #region Atributos privados
+        /// <summary>
+        /// Intervalo de tiempo.
+        /// </summary>
         int intervalo;
         #endregion
 
@@ -29,6 +32,9 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Propiedades
+        /// <summary>
+        /// Intervalo de tiempo.
+        /// </summary>
         public int Intervalo
         {
             get { return this.intervalo; }

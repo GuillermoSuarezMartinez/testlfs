@@ -190,16 +190,26 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Imagen\OArrayImagen.cs" />
     <Compile Include="Clases\Imagen\BitmapFactory.cs" />
+    <Compile Include="Clases\Imagen\OCacheImagenes.cs" />
+    <Compile Include="Clases\Imagen\OImagenMemoriaMapeada.cs" />
     <Compile Include="Clases\Imagen\OImagenOpenCV.cs" />
     <Compile Include="Clases\Imagen\OImagenVisionPro.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Clases\MemoriaMapeada\OMemoriaMapeada.cs" />
+    <Compile Include="Clases\MemoriaMapeada\OMemoriaMapeadaMultiBuffer.cs" />
+    <Compile Include="Clases\Remoting\ORemotingClient.cs" />
+    <Compile Include="Clases\Remoting\ORemotingEvent.cs" />
+    <Compile Include="Clases\Remoting\ORemotingServer.cs" />
+    <Compile Include="Clases\Remoting\ORemotingUtils.cs" />
+    <Compile Include="Clases\Utiles\OResultadoVA.cs" />
     <Compile Include="Clases\Variables\OVariables.cs" />
     <Compile Include="Clases\Imagen\OAlmacenImagenes.cs" />
     <Compile Include="Clases\Utiles\App.cs" />
     <Compile Include="Clases\BaseDatos\AppBD.cs" />
-    <Compile Include="Clases\BaseDatos\OBaseDatos.cs" />
+    <Compile Include="Clases\BaseDatos\BBDD.cs" />
     <Compile Include="Clases\Utiles\ODebug.cs" />
     <Compile Include="Clases\Utiles\OFicheros.cs" />
     <Compile Include="Clases\Imagen\OImagenBitmap.cs" />

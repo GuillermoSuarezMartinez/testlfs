@@ -26,7 +26,7 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OListView.
         /// </summary>
-        /// <param name="control"></param>
+        /// <param name="control">Control Orbita asociado a la clase actual.</param>
         public OListView(object control)
             : base()
         {
@@ -51,6 +51,10 @@ namespace Orbita.Controles.Comunes
         #endregion
 
         #region Métodos públicos
+        /// <summary>
+        /// Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+        /// </summary>
+        /// <returns>El nombre de tipo completo del objeto.</returns>
         public override string ToString()
         {
             return null;

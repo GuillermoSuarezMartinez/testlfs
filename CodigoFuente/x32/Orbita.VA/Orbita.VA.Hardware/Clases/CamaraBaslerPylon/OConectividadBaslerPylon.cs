@@ -204,7 +204,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("Conectividad " + this.Codigo, exception);
+                OLogsVAHardware.Camaras.Error(exception, "Conectividad " + this.Codigo);
             }
             this.TimerComprobacionConexion.Start();
         }

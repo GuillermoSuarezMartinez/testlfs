@@ -105,7 +105,7 @@ namespace Orbita.Controles.Grid
         // Omitting Equals violates rule: OverrideMethodsOnComparableTypes.
         public override bool Equals(object obj)
         {
-            OColumnaInfo other = obj as OColumnaInfo; //avoid double casting
+            OColumnaInfo other = obj as OColumnaInfo; // avoid double casting.
             if (object.ReferenceEquals(other, null))
             {
                 return false;

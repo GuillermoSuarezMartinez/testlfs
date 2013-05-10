@@ -17,6 +17,17 @@ namespace Orbita.Controles.VA
 {
     public partial class OrbitaGraficaVariableBase : UserControl
     {
+        #region Constante(s)
+        /// <summary>
+        /// Tiempo de permanencia de las información visualizada
+        /// </summary>
+        protected const int TiempoPermanenciaMS = 60000;
+        /// <summary>
+        /// Intervalo entre muestreo
+        /// </summary>
+        protected const int CadenciaMonitorizacionMs = 100;
+        #endregion
+
         #region Atributo(s)
         /// <summary>
         /// Código de la variable
@@ -59,7 +70,8 @@ namespace Orbita.Controles.VA
                 this.Descripcion = variable.Descripcion;
             }
 
-            this.TimerRefresco.Interval = Convert.ToInt32(OVariablesManager.CadenciaMonitorizacion.TotalMilliseconds) * 2;
+            //this.TimerRefresco.Interval = Convert.ToInt32(OVariablesManager.CadenciaMonitorizacion.TotalMilliseconds) * 2;
+            this.TimerRefresco.Interval = CadenciaMonitorizacionMs;
             this.TimerRefresco.Tick += new EventHandler(this.TimerRefresco_Tick);
             this.TimerRefresco.Enabled = true;
         }

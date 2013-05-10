@@ -16,6 +16,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Emgu.CV;
 using Orbita.Utiles;
+using System.Runtime.InteropServices;
 
 namespace Orbita.VA.Comun
 {
@@ -74,7 +75,46 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Retorna el tipo de color de la imagen
         /// </summary>
-        public Type Color
+        public override bool Color
+        {
+            get
+            {
+                return this.ColorOpenCV != typeof(Emgu.CV.Structure.Gray);
+            }
+        }
+
+        /// <summary>
+        /// Retorna la profundidad imagen
+        /// </summary>
+        public override int Profundidad
+        {
+            get
+            {
+                int resultado = base.Profundidad;
+                if (this.ColorOpenCV == typeof(byte) || this.ColorOpenCV == typeof(Byte) || this.ColorOpenCV == typeof(sbyte) || this.ColorOpenCV == typeof(SByte))
+                {
+                    resultado = 1;
+                }
+                else if (this.ColorOpenCV == typeof(short) || this.ColorOpenCV == typeof(Int16) || this.ColorOpenCV == typeof(ushort) || this.ColorOpenCV == typeof(UInt16))
+                {
+                    resultado = 2;
+                }
+                else if (this.ColorOpenCV == typeof(float) || this.ColorOpenCV == typeof(Single) || this.ColorOpenCV == typeof(int) || this.ColorOpenCV == typeof(Int32))
+                {
+                    resultado = 4;
+                }
+                else if (this.ColorOpenCV == typeof(double) || this.ColorOpenCV == typeof(Double))
+                {
+                    resultado = 8;
+                }
+                return resultado;
+            }
+        }
+
+        /// <summary>
+        /// Retorna el tipo de color de la imagen
+        /// </summary>
+        public Type ColorOpenCV
         {
             get
             {
@@ -85,7 +125,7 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Retorna la profundidad imagen
         /// </summary>
-        public Type Profundidad
+        public Type ProfundidadOpenCV
         {
             get
             {
@@ -232,7 +272,7 @@ namespace Orbita.VA.Comun
         /// <param name="imagenBitmap">Imagen de tipo bitmap desde el cual se va a importar la imagen</param>
         public override OImagen ConvertFromBitmap(Bitmap imagenBitmap)
         {
-            Emgu.CV.Image<TColor, TDepth> img = new Image<TColor, TDepth>(imagenBitmap);
+            Emgu.CV.Image<TColor, TDepth> img = new Emgu.CV.Image<TColor, TDepth>(imagenBitmap);
             return new OImagenOpenCV<TColor, TDepth>(img);
         }
 
@@ -265,7 +305,7 @@ namespace Orbita.VA.Comun
         /// Método que realiza el empaquetado de un objeto para ser enviado por remoting
         /// </summary>
         /// <returns></returns>
-        public override byte[] ToArray()
+        public override byte[] ToDataArray()
         {
             return Image.Bytes;
         }
@@ -274,7 +314,7 @@ namespace Orbita.VA.Comun
         /// Método que realiza el empaquetado de un objeto para ser enviado por remoting
         /// </summary>
         /// <returns></returns>
-        public override byte[] ToArray(ImageFormat formato, double escalado)
+        public override byte[] ToDataArray(ImageFormat formato, double escalado)
         {
             byte[] resultado = new byte[0];
             if (this.Image is Emgu.CV.Image<TColor, TDepth>)
@@ -298,9 +338,9 @@ namespace Orbita.VA.Comun
         /// Método que realiza el desempaquetado de un objeto recibido por remoting
         /// </summary>
         /// <returns></returns>
-        public override OImagen FromArray(byte[] arrayValue, int width, int height, int profundidad)
+        public override bool FromDataArray(byte[] arrayValue, ref OImagen imagen)
         {
-            OImagenOpenCV<TColor, TDepth> resultado = null;
+            bool resultado = false;
 
             if (arrayValue.Length > 0)
             {
@@ -313,22 +353,50 @@ namespace Orbita.VA.Comun
                     try
                     {
                         imgCV = (Emgu.CV.Image<TColor, TDepth>)formateador.Deserialize(stream);
-                        resultado = new OImagenOpenCV<TColor, TDepth>(this.Codigo, imgCV);
+                        imagen = new OImagenOpenCV<TColor, TDepth>(this.Codigo, imgCV);
+
+                        resultado = true;
                     }
                     catch (Exception exception)
                     {
                         OLogsVAComun.ImagenGraficos.Error(exception, "ImagenOpenCV_FromArray");
-                        resultado = null;
                     }
                     stream.Close();
                 }
                 catch
                 {
-                    resultado = null;
+                    resultado = false;
                 }
             }
 
             return resultado;
+        }
+
+        /// <summary>
+        /// Método que realiza el empaquetado de un objeto para ser enviado por remoting
+        /// </summary>
+        /// <returns></returns>
+        public override byte[] ToPixelArray()
+        {
+            return this.ToDataArray();
+        }
+
+        /// <summary>
+        /// Método que realiza el empaquetado de un objeto para ser enviado por remoting
+        /// </summary>
+        /// <returns></returns>
+        public override byte[] ToPixelArray(ImageFormat formato, double escalado)
+        {
+            return this.ToPixelArray(formato, escalado);
+        }
+
+        /// <summary>
+        /// Método que realiza el desempaquetado de un objeto recibido por remoting
+        /// </summary>
+        /// <returns></returns>
+        public override bool FromPixelArray(byte[] arrayValue, ref OImagen imagen, int width, int height, int profundidad)
+        {
+            return this.FromDataArray(arrayValue, ref imagen);
         }
 
         /// <summary>
@@ -340,6 +408,20 @@ namespace Orbita.VA.Comun
             return new OImagenOpenCV<TColor, TDepth>(this.Codigo);
         }
         #endregion
+    }
+
+    /// <summary>
+    /// Imagen a color de OpenCV
+    /// </summary>
+    public class OImagenOpenCVColor : OImagenOpenCV<Emgu.CV.Structure.Bgr, byte>
+    {
+    }
+
+    /// <summary>
+    /// Imagen monocromo de OpenCV
+    /// </summary>
+    public class OImagenOpenCVMonocromo : OImagenOpenCV<Emgu.CV.Structure.Gray, byte>
+    {
     }
 
     /// <summary>
@@ -386,5 +468,27 @@ namespace Orbita.VA.Comun
         Int16 = 6,
         [OAtributoEnumerado("Información de tipo entero de 32 bits con signo")]
         Int32 = 7// (int) 
+    }
+
+    /// <summary>
+    /// Tipos de planos disponibles en imágenes en el plano BGR
+    /// </summary>
+    public enum OPlanoBGR
+    {
+        /// <summary>
+        /// Plano azul
+        /// </summary>
+        [OAtributoEnumerado("Plano azul en una imagen BGR")]
+        Azul = 0,
+        /// <summary>
+        /// Plano verde
+        /// </summary>
+        [OAtributoEnumerado("Plano verde en una imagen BGR")]
+        Verde = 1,
+        /// <summary>
+        /// Plano rojo
+        /// </summary>
+        [OAtributoEnumerado("Plano rojo en una imagen BGR")]
+        Rojo = 2
     }
 }

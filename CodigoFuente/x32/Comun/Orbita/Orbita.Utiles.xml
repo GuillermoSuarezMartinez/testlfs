@@ -222,32 +222,32 @@
             Pila de llamadas.
             </summary>
         </member>
-        <member name="F:Orbita.Utiles.OFichero._identificador">
+        <member name="F:Orbita.Utiles.OFichero.identificador">
             <summary>
             Identificador de fichero.
             </summary>
         </member>
-        <member name="F:Orbita.Utiles.OFichero._nombre">
+        <member name="F:Orbita.Utiles.OFichero.nombre">
             <summary>
             Nombre de fichero.
             </summary>
         </member>
-        <member name="F:Orbita.Utiles.OFichero._ruta">
+        <member name="F:Orbita.Utiles.OFichero.ruta">
             <summary>
             Ruta de fichero.
             </summary>
         </member>
-        <member name="F:Orbita.Utiles.OFichero._extension">
+        <member name="F:Orbita.Utiles.OFichero.extension">
             <summary>
             Extensión de fichero.
             </summary>
         </member>
-        <member name="F:Orbita.Utiles.OFichero._copiarENdisco">
+        <member name="F:Orbita.Utiles.OFichero.copiarENdisco">
             <summary>
             Indica si debe ser copiado en disco.
             </summary>
         </member>
-        <member name="F:Orbita.Utiles.OFichero._copiarENbaseDEdatos">
+        <member name="F:Orbita.Utiles.OFichero.copiarENbaseDEdatos">
             <summary>
             Indica si debe ser copiado en Base
             de datos.
@@ -337,37 +337,6 @@
             <param name="directorio">Directorio origen.</param> 
             <returns>Ruta destino del stream.</returns>
         </member>
-        <member name="T:Orbita.Utiles.OEnumeradosHeredable">
-            <summary>
-            Clase que agrupa a un conjunto de enumerados
-            </summary>
-        </member>
-        <member name="F:Orbita.Utiles.OEnumeradosHeredable.ListaEnumerados">
-            <summary>
-            Lista de los enumerados que contiene
-            </summary>
-        </member>
-        <member name="M:Orbita.Utiles.OEnumeradosHeredable.#ctor">
-            <summary>
-            Constructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.Utiles.OEnumeradosHeredable.Parse``1(System.String)">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="nombre"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Utiles.OEnumeradosHeredable.Parse``1(System.Int32)">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="codigo"></param>
-            <returns></returns>
-        </member>
         <member name="T:Orbita.Utiles.OEnumeradoHeredable">
             <summary>
             Clase utilizada para permitir la herencia de enumerados
@@ -398,7 +367,7 @@
             Clases para dotar de atributos a los tipos enumerados.
             </summary>
         </member>
-        <member name="F:Orbita.Utiles.OAtributoEnumerado._valor">
+        <member name="F:Orbita.Utiles.OAtributoEnumerado.valor">
             <summary>
             Valor del enumerado.
             </summary>
@@ -432,7 +401,8 @@
             <summary>
             Busca si el texto coincide con un enumerado
             </summary>
-            <param name="stringValue"></param>
+            <param name="enumType"></param>
+            <param name="DefaultValue"></param>
             <returns></returns>
         </member>
         <member name="P:Orbita.Utiles.OAtributoEnumerado.Valor">
@@ -623,6 +593,37 @@
             Define el conjunto de módulos del sistema
             </summary>
         </member>
+        <member name="T:Orbita.Utiles.OEnumeradosHeredable">
+            <summary>
+            Clase que agrupa a un conjunto de enumerados
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OEnumeradosHeredable.ListaEnumerados">
+            <summary>
+            Lista de los enumerados que contiene
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OEnumeradosHeredable.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OEnumeradosHeredable.Parse``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="nombre"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEnumeradosHeredable.Parse``1(System.Int32)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="codigo"></param>
+            <returns></returns>
+        </member>
         <member name="F:Orbita.Utiles.EnumEstadoObjetoRobusto.ResultadoCorrecto">
             <summary>
             Módulo de funciones comunes del sistema. 
@@ -703,7 +704,51 @@
             <param name="valor">Valor del objeto a comprobar</param>
             <returns>Verdadero si el valor es correcto</returns>
         </member>
-        <member name="M:Orbita.Utiles.OTexto.StringReplace(System.String,System.String,System.String,System.StringComparison)">
+        <member name="M:Orbita.Utiles.OTexto.ValidarTexto(System.Object,System.String,System.Int32,System.Boolean,System.Boolean,System.String,System.Boolean)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="valor">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OTexto.Reemplazar(System.String,System.String,System.String,System.StringComparison)">
+            <summary>
+            Case insensitive version of String.Replace().
+            </summary>
+            <param name="s">String that contains patterns to replace</param>
+            <param name="oldValue">Pattern to find</param>
+            <param name="newValue">New pattern to replaces old</param>
+            <param name="comparisonType">String comparison type</param>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.Utiles.OTextoExtension">
+            <summary>
+            Asignación de una variable a un campo de tipo texto
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OTextoExtension.ValidarTexto(System.Object,Orbita.Utiles.EnumEstadoRobusto@,System.Int32,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Evalua si el parámetro es texto
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OTextoExtension.ValidarTexto(System.Object,System.Int32,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Evalua si el parámetro es texto
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OTextoExtension.ValidarTexto(System.Object)">
+            <summary>
+            Evalua si el parámetro es texto
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OTextoExtension.ValidarTexto(System.Object,System.String,System.Int32,System.Boolean,System.Boolean,System.String,System.Boolean)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="valor">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OTextoExtension.Reemplazar(System.String,System.String,System.String,System.StringComparison)">
             <summary>
             Case insensitive version of String.Replace().
             </summary>
@@ -773,6 +818,28 @@
             <param name="valor">Valor del objeto a comprobar</param>
             <returns>Verdadero si el valor es correcto</returns>
         </member>
+        <member name="T:Orbita.Utiles.OEnumeradoTextoExtension">
+            <summary>
+            Asignación de una variable a un campo de tipo enumerado (aunque internamente trabaja como un string)
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OEnumeradoTextoExtension.ValidarEnumeradoTexto(System.Object,Orbita.Utiles.EnumEstadoRobusto@,System.String[],System.String)">
+            <summary>
+            Evalua si el parámetro es texto
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OEnumeradoTextoExtension.ValidarEnumeradoTexto(System.Object,System.String[],System.String)">
+            <summary>
+            Evalua si el parámetro es texto
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OEnumeradoTextoExtension.ValidarEnumeradoTexto(System.Object,System.String,System.String[],System.String,System.Boolean)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="valor">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
+        </member>
         <member name="T:Orbita.Utiles.OEnumerado`1">
             <summary>
             Asignación de una variable a un campo de tipo enumerado (aunque internamente trabaja como un string)
@@ -813,15 +880,7 @@
             <param name="valor">Valor del objeto a comprobar</param>
             <returns>Verdadero si el valor es correcto</returns>
         </member>
-        <member name="M:Orbita.Utiles.OEnumerado`1.EnumContains(System.Int32,System.Int32[])">
-            <summary>
-            Se utiliza con enumerados y devuelve verdadero si el enumerado está contenido en el valor
-            </summary>
-            <param name="valor">Valor del cual se quiere saber si contiene cieto enumerado</param>
-            <param name="enumerate">Enumerado que deseamos comparar con el valor</param>
-            <returns>Devuelve verdadero si el enumerado está contenido en el valor</returns>
-        </member>
-        <member name="M:Orbita.Utiles.OEnumerado`1.EnumParse(System.Type,System.String,System.Object)">
+        <member name="M:Orbita.Utiles.OEnumerado`1.AnalizaEnumerado(System.Type,System.String,System.Object)">
             <summary>
             Se utiliza con enumerados para convertir un valor de texto en un enumerado del tipo indicado
             </summary>
@@ -829,6 +888,53 @@
             <param name="valor">Texto que queremos convertir a enumerado</param>
             <param name="defecto">Valor por defecto en el caso que el texto no coincida con ningun elemento del enumerado</param>
             <returns>Devuelve el enumerado correspondiente con el texto</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEnumerado`1.EnColeccion(System.Int32,System.Int32[])">
+            <summary>
+            Se utiliza con enumerados y devuelve verdadero si el enumerado está contenido en el valor
+            </summary>
+            <param name="valor">Valor del cual se quiere saber si contiene cieto enumerado</param>
+            <param name="coleccion">Enumerado que deseamos comparar con el valor</param>
+            <returns>Devuelve verdadero si el enumerado está contenido en el valor</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEnumerado`1.ValidarEnumerado(System.Object,Orbita.Utiles.EnumEstadoRobusto@,`0)">
+            <summary>
+            Evalua si el parámetro es texto
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OEnumerado`1.ValidarEnumerado(System.Object,`0)">
+            <summary>
+            Evalua si el parámetro es texto
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OEnumerado`1.ValidarEnumerado(System.Object,System.String,`0,System.Boolean)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="valor">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
+        </member>
+        <member name="T:Orbita.Utiles.OEnumeradoExtension">
+            <summary>
+            Asignación de una variable a un campo de tipo enumerado (aunque internamente trabaja como un string)
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OEnumeradoExtension.ValidarEnumerado``1(System.Object,Orbita.Utiles.EnumEstadoRobusto@,``0)">
+            <summary>
+            Evalua si el parámetro es texto
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OEnumeradoExtension.ValidarEnumerado``1(System.Object,``0)">
+            <summary>
+            Evalua si el parámetro es texto
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OEnumeradoExtension.ValidarEnumerado``1(System.Object,System.String,``0,System.Boolean)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="valor">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
         </member>
         <member name="T:Orbita.Utiles.EnumEstadoEnumRobusto">
             <summary>
@@ -897,20 +1003,93 @@
             <param name="value">Valor del objeto a comprobar</param>
             <returns>Verdadero si el valor es correcto</returns>
         </member>
-        <member name="M:Orbita.Utiles.OEntero.IsNumericInt(System.Object)">
+        <member name="M:Orbita.Utiles.OEntero.EsEntero(System.Object)">
             <summary>
             Indica si el objeto pasado es de tipo entero
             </summary>
             <param name="o">Objeto que se quiere conocer si es de tipo entero</param>
             <returns>Verdadero si el tipo del objeto es entero</returns>
         </member>
-        <member name="M:Orbita.Utiles.OEntero.InRange(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Orbita.Utiles.OEntero.EnRango(System.Int32,System.Int32,System.Int32)">
             <summary>
             Evalúa si el parámetro está dentro del rango determinado
             </summary>
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
-        <member name="M:Orbita.Utiles.OEntero.EnsureRange(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Orbita.Utiles.OEntero.AsegurarRango(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+            </summary>
+            <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEntero.EnTolerancia(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEntero.AsegurarTolerancia(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+            </summary>
+            <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        </member>
+        <member name="T:Orbita.Utiles.OEnteroExtension">
+            <summary>
+            Asignación de una variable a un campo de tipo entero
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OEnteroExtension.ValidarEntero(System.Object,Orbita.Utiles.EnumEstadoRobusto@,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEnteroExtension.ValidarEntero(System.Object,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEnteroExtension.ValidarEntero(System.Object)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEnteroExtension.ValidarEntero(System.Object,System.String,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="value">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEnteroExtension.EsEntero(System.Object)">
+            <summary>
+            Indica si el objeto pasado es de tipo entero
+            </summary>
+            <param name="o">Objeto que se quiere conocer si es de tipo entero</param>
+            <returns>Verdadero si el tipo del objeto es entero</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEnteroExtension.EnRango(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEnteroExtension.AsegurarRango(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+            </summary>
+            <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEnteroExtension.EnTolerancia(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEnteroExtension.AsegurarTolerancia(System.Int32,System.Int32,System.Int32)">
             <summary>
             Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
             </summary>
@@ -989,33 +1168,103 @@
             <param name="value">Valor del objeto a comprobar</param>
             <returns>Verdadero si el valor es correcto</returns>
         </member>
-        <member name="M:Orbita.Utiles.ODecimal.IsNumericFloat(System.Object)">
+        <member name="M:Orbita.Utiles.ODecimal.EsDecimal(System.Object)">
             <summary>
             Indica si el objeto pasado es de tipo decimal
             </summary>
             <param name="o">Objeto que se quiere conocer si es de tipo decimal</param>
             <returns>Verdadero si el tipo del objeto es decimal</returns>
         </member>
-        <member name="M:Orbita.Utiles.ODecimal.InRange(System.Double,System.Double,System.Double)">
+        <member name="M:Orbita.Utiles.ODecimal.EnRango(System.Double,System.Double,System.Double)">
             <summary>
             Evalúa si el parámetro está dentro del rango determinado
             </summary>
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
-        <member name="M:Orbita.Utiles.ODecimal.EnsureRange(System.Double,System.Double,System.Double)">
+        <member name="M:Orbita.Utiles.ODecimal.AsegurarRango(System.Double,System.Double,System.Double)">
             <summary>
             Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
             </summary>
             <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
         </member>
-        <member name="M:Orbita.Utiles.ODecimal.Similar(System.Double,System.Double,System.Double)">
+        <member name="M:Orbita.Utiles.ODecimal.EnTolerancia(System.Double,System.Double,System.Double)">
             <summary>
             Compara dos valores decimales para definir si son similares, con una diferencia menor que sigma
             </summary>
-            <param name="valor1">Primer valor a comparar</param>
-            <param name="valor2">Segundo valor a comparar</param>
-            <param name="sigma">Diferencia máxima entre ambos valores</param>
+            <param name="valor">Primer valor a comparar</param>
+            <param name="media">Segundo valor a comparar</param>
+            <param name="tolerancia">Diferencia máxima entre ambos valores</param>
             <returns>Verdadero si los valores son menores que sigma</returns>
+        </member>
+        <member name="M:Orbita.Utiles.ODecimal.AsegurarTolerancia(System.Double,System.Double,System.Double)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+            </summary>
+            <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        </member>
+        <member name="T:Orbita.Utiles.ODecimalExtension">
+            <summary>
+            Asignación de una variable a un campo de tipo decimal
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.ODecimalExtension.ValidarDecimal(System.Object,Orbita.Utiles.EnumEstadoRobusto@,System.Double,System.Double,System.Double)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.ODecimalExtension.ValidarDecimal(System.Object,System.Double,System.Double,System.Double)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.ODecimalExtension.ValidarDecimal(System.Object)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.ODecimalExtension.ValidarDecimal(System.Object,System.String,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="value">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
+        </member>
+        <member name="M:Orbita.Utiles.ODecimalExtension.EsDecimal(System.Object)">
+            <summary>
+            Indica si el objeto pasado es de tipo decimal
+            </summary>
+            <param name="o">Objeto que se quiere conocer si es de tipo decimal</param>
+            <returns>Verdadero si el tipo del objeto es decimal</returns>
+        </member>
+        <member name="M:Orbita.Utiles.ODecimalExtension.EnRango(System.Double,System.Double,System.Double)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.ODecimalExtension.AsegurarRango(System.Double,System.Double,System.Double)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+            </summary>
+            <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.ODecimalExtension.EnTolerancia(System.Double,System.Double,System.Double)">
+            <summary>
+            Compara dos valores decimales para definir si son similares, con una diferencia menor que sigma
+            </summary>
+            <param name="valor">Primer valor a comparar</param>
+            <param name="media">Segundo valor a comparar</param>
+            <param name="tolerancia">Diferencia máxima entre ambos valores</param>
+            <returns>Verdadero si los valores son menores que sigma</returns>
+        </member>
+        <member name="M:Orbita.Utiles.ODecimalExtension.AsegurarTolerancia(System.Double,System.Double,System.Double)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+            </summary>
+            <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
         </member>
         <member name="T:Orbita.Utiles.EnumEstadoDecimalRobusto">
             <summary>
@@ -1072,6 +1321,35 @@
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
         <member name="M:Orbita.Utiles.OBooleano.Validar(System.Object,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="valor">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
+        </member>
+        <member name="T:Orbita.Utiles.OBooleanoExtension">
+            <summary>
+            Asignación de una variable a un campo de tipo booleano
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OBooleanoExtension.ValidarBooleano(System.Object,Orbita.Utiles.EnumEstadoRobusto@,System.Boolean)">
+            <summary>
+            Evalúa si el parámetro es booleano
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OBooleanoExtension.ValidarBooleano(System.Object,System.Boolean)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OBooleanoExtension.ValidarBooleano(System.Object)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OBooleanoExtension.ValidarBooleano(System.Object,System.String,System.Boolean,System.Boolean)">
             <summary>
             Comprueba que el valor del objeto es correcto
             </summary>
@@ -1147,13 +1425,85 @@
             <param name="valor">Valor del objeto a comprobar</param>
             <returns>Verdadero si el valor es correcto</returns>
         </member>
-        <member name="M:Orbita.Utiles.OIntervaloTiempo.InRange(System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+        <member name="M:Orbita.Utiles.OIntervaloTiempo.EnRango(System.TimeSpan,System.TimeSpan,System.TimeSpan)">
             <summary>
             Evalúa si el parámetro está dentro del rango determinado
             </summary>
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
-        <member name="M:Orbita.Utiles.OIntervaloTiempo.EnsureRange(System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+        <member name="M:Orbita.Utiles.OIntervaloTiempo.AseguraRango(System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+            </summary>
+            <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OIntervaloTiempo.EnTolerancia(System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OIntervaloTiempo.AseguraTolerancia(System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+            </summary>
+            <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        </member>
+        <member name="T:Orbita.Utiles.OIntervaloTiempoExtension">
+            <summary>
+            Asignación de una variable a un campo de tipo intervalo de tiempo
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OIntervaloTiempoExtension.ValidarIntervaloTiempo(System.Object,Orbita.Utiles.EnumEstadoRobusto@,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OIntervaloTiempoExtension.ValidarIntervaloTiempo(System.Object,System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OIntervaloTiempoExtension.ValidarIntervaloTiempo(System.Object,System.TimeSpan)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OIntervaloTiempoExtension.ValidarIntervaloTiempo(System.Object)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OIntervaloTiempoExtension.ValidarIntervaloTiempo(System.Object,System.String,System.TimeSpan,System.TimeSpan,System.TimeSpan,System.Boolean)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="valor">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OIntervaloTiempoExtension.EnRango(System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OIntervaloTiempoExtension.AseguraRango(System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+            </summary>
+            <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OIntervaloTiempoExtension.EnTolerancia(System.TimeSpan,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OIntervaloTiempoExtension.AseguraTolerancia(System.TimeSpan,System.TimeSpan,System.TimeSpan)">
             <summary>
             Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
             </summary>
@@ -1252,25 +1602,108 @@
             <param name="jdia">Día juliano</param>
             <returns>Fecha gregoriana</returns>
         </member>
-        <member name="M:Orbita.Utiles.OFechaHora.DateString(System.DateTime)">
+        <member name="M:Orbita.Utiles.OFechaHora.FechaATextoSimple(System.DateTime)">
             <summary>
             Devuelve una cadena de texto identificativa del día actual (utilizada para indexar ficheros)
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.Utiles.OFechaHora.DateTimeString(System.DateTime)">
+        <member name="M:Orbita.Utiles.OFechaHora.FechaHoraATextoSimple(System.DateTime)">
             <summary>
             Devuelve una cadena de texto identificativa del momento actual (utilizada para indexar ficheros)
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.Utiles.OFechaHora.InRange(System.DateTime,System.DateTime,System.DateTime)">
+        <member name="M:Orbita.Utiles.OFechaHora.EnRango(System.DateTime,System.DateTime,System.DateTime)">
             <summary>
             Evalúa si el parámetro está dentro del rango determinado
             </summary>
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
-        <member name="M:Orbita.Utiles.OFechaHora.EnsureRange(System.DateTime,System.DateTime,System.DateTime)">
+        <member name="M:Orbita.Utiles.OFechaHora.AseguraRango(System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+            </summary>
+            <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHora.EnTolerancia(System.DateTime,System.DateTime,System.TimeSpan)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHora.AseguraTolerancia(System.DateTime,System.DateTime,System.TimeSpan)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+            </summary>
+            <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        </member>
+        <member name="T:Orbita.Utiles.OFechaHoraExtension">
+            <summary>
+            Asignación de una variable a un campo de tipo fecha
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHoraExtension.ValidarFechaHora(System.Object,Orbita.Utiles.EnumEstadoRobusto@,System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Evalúa si el parámetro es booleano
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHoraExtension.ValidarFechaHora(System.Object,System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHoraExtension.ValidarFechaHora(System.Object,System.DateTime)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHoraExtension.ValidarFechaHora(System.Object)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHoraExtension.ValidarFechaHora(System.Object,System.String,System.DateTime,System.DateTime,System.DateTime,System.Boolean)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="valor">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHoraExtension.FechaATextoSimple(System.DateTime)">
+            <summary>
+            Devuelve una cadena de texto identificativa del día actual (utilizada para indexar ficheros)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHoraExtension.FechaHoraATextoSimple(System.DateTime)">
+            <summary>
+            Devuelve una cadena de texto identificativa del momento actual (utilizada para indexar ficheros)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHoraExtension.EnRango(System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHoraExtension.AseguraRango(System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
+            </summary>
+            <returns>Devuelve el número obligando a que esté dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHoraExtension.EnTolerancia(System.DateTime,System.DateTime,System.TimeSpan)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHoraExtension.AseguraTolerancia(System.DateTime,System.DateTime,System.TimeSpan)">
             <summary>
             Evalúa si el parámetro está dentro del rango determinado y en caso contrario lo modifica para que cumpla la condición
             </summary>
@@ -1343,6 +1776,82 @@
             <param name="numero">Valor al cual queremos establecer el bit</param>
             <param name="posicion">Posición del bit a establecer</param>
             <param name="valor">Booleano con el valor del bit a establecer</param>
+        </member>
+        <member name="M:Orbita.Utiles.OBinario.SetBit(System.Byte,System.Int32,System.Boolean)">
+            <summary>
+            Establece un bit en la posición indicada
+            </summary>
+            <param name="numero">Valor al cual queremos establecer el bit</param>
+            <param name="posicion">Posición del bit a establecer</param>
+            <param name="valor">Booleano con el valor del bit a establecer</param>
+        </member>
+        <member name="M:Orbita.Utiles.OBinario.SetBit(System.UInt16,System.Int32,System.Boolean)">
+            <summary>
+            Establece un bit en la posición indicada
+            </summary>
+            <param name="numero">Valor al cual queremos establecer el bit</param>
+            <param name="posicion">Posición del bit a establecer</param>
+            <param name="valor">Booleano con el valor del bit a establecer</param>
+        </member>
+        <member name="M:Orbita.Utiles.OBinario.SetBit(System.UInt32,System.Int32,System.Boolean)">
+            <summary>
+            Establece un bit en la posición indicada
+            </summary>
+            <param name="numero">Valor al cual queremos establecer el bit</param>
+            <param name="posicion">Posición del bit a establecer</param>
+            <param name="valor">Booleano con el valor del bit a establecer</param>
+        </member>
+        <member name="T:Orbita.Utiles.Extension">
+            <summary>
+            Enumeración que representa las posibles 
+            extensiones que puede tener un fichero.
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.Extension.Xml">
+            <summary>
+            Extensión .XML.
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.Extension.Jpg">
+            <summary>
+            Extensión .JPG.
+            </summary>
+        </member>
+        <member name="T:Orbita.Utiles.Accion">
+            <summary>
+            Enumeración que representa las acciones
+            propias correspondientes a hilos.
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.Accion.Inicializado">
+            <summary>
+            Hilo inicializado.
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.Accion.Iniciado">
+            <summary>
+            Hilo iniciado.
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.Accion.Suspendido">
+            <summary>
+            Hilo suspendido.
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.Accion.Reanudado">
+            <summary>
+            Hilo reanudado.
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.Accion.Terminado">
+            <summary>
+            Hilo terminado.
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.Accion.EnEspera">
+            <summary>
+            Join.
+            </summary>
         </member>
         <member name="T:Orbita.Utiles.OHilos">
             <summary>
@@ -1544,35 +2053,60 @@
             </summary>
             <param name="contador">Contador de eventos.</param>
         </member>
+        <member name="T:Orbita.Utiles.Tiempo">
+            <summary>
+            Enumeración que representa la sobrecarga del
+            método de tiempo restante de la clase OTimer.
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.Tiempo.Hora">
+            <summary>
+            Hora.
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.Tiempo.Minuto">
+            <summary>
+            Minuto.
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.Tiempo.Segundo">
+            <summary>
+            Segundo.
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.Tiempo.Milisegundo">
+            <summary>
+            Milisegundo.
+            </summary>
+        </member>
         <member name="T:Orbita.Utiles.OServicioWindows">
             <summary>
             OServicioWindows.
             </summary>
         </member>
-        <member name="F:Orbita.Utiles.OServicioWindows.Nombre">
+        <member name="F:Orbita.Utiles.OServicioWindows.nombre">
             <summary>
-            Nombre del servicio
+            Nombre del servicio.
             </summary>
         </member>
-        <member name="F:Orbita.Utiles.OServicioWindows.Ruta">
+        <member name="F:Orbita.Utiles.OServicioWindows.ruta">
             <summary>
-            Ruta del ejecutable
+            Ruta del ejecutable.
             </summary>
         </member>
-        <member name="F:Orbita.Utiles.OServicioWindows.Maquina">
+        <member name="F:Orbita.Utiles.OServicioWindows.maquina">
             <summary>
             Máquina donde se encuentra el servicio Windows.
             </summary>
         </member>
-        <member name="F:Orbita.Utiles.OServicioWindows.TimeOutMilisegundos">
+        <member name="F:Orbita.Utiles.OServicioWindows.timeOutMilisegundos">
             <summary>
-            TimeOut de espera hasta el inicio/paro
-            del servicio Windows.
+            TimeOut de espera hasta el inicio/paro del servicio Windows.
             </summary>
         </member>
-        <member name="F:Orbita.Utiles.OServicioWindows.Controlador">
+        <member name="F:Orbita.Utiles.OServicioWindows.controlador">
             <summary>
-            Controlador del servicio instalado
+            Controlador del servicio instalado.
             </summary>
         </member>
         <member name="M:Orbita.Utiles.OServicioWindows.#ctor(System.String,System.String)">
@@ -1681,12 +2215,12 @@
             Clases para dotar de atributos a los tipos enumerados.
             </summary>
         </member>
-        <member name="F:Orbita.Utiles.OStringEnumerado._tipo">
+        <member name="F:Orbita.Utiles.OStringEnumerado.tipo">
             <summary>
             Tipo.
             </summary>
         </member>
-        <member name="F:Orbita.Utiles.OStringEnumerado._valores">
+        <member name="F:Orbita.Utiles.OStringEnumerado.valores">
             <summary>
             Valores.
             </summary>
@@ -1778,91 +2312,13 @@
             </summary>
             <value></value>
         </member>
-        <member name="T:Orbita.Utiles.Tiempo">
-            <summary>
-            Enumeración que representa la sobrecarga del
-            método de tiempo restante de la clase OTimer.
-            </summary>
-        </member>
-        <member name="F:Orbita.Utiles.Tiempo.Hora">
-            <summary>
-            Hora.
-            </summary>
-        </member>
-        <member name="F:Orbita.Utiles.Tiempo.Minuto">
-            <summary>
-            Minuto.
-            </summary>
-        </member>
-        <member name="F:Orbita.Utiles.Tiempo.Segundo">
-            <summary>
-            Segundo.
-            </summary>
-        </member>
-        <member name="F:Orbita.Utiles.Tiempo.Milisegundo">
-            <summary>
-            Milisegundo.
-            </summary>
-        </member>
-        <member name="T:Orbita.Utiles.Extension">
-            <summary>
-            Enumeración que representa las posibles 
-            extensiones que puede tener un fichero.
-            </summary>
-        </member>
-        <member name="F:Orbita.Utiles.Extension.Xml">
-            <summary>
-            Extensión .XML.
-            </summary>
-        </member>
-        <member name="F:Orbita.Utiles.Extension.Jpg">
-            <summary>
-            Extensión .JPG.
-            </summary>
-        </member>
-        <member name="T:Orbita.Utiles.Accion">
-            <summary>
-            Enumeración que representa las acciones
-            propias correspondientes a hilos.
-            </summary>
-        </member>
-        <member name="F:Orbita.Utiles.Accion.Inicializado">
-            <summary>
-            Hilo inicializado.
-            </summary>
-        </member>
-        <member name="F:Orbita.Utiles.Accion.Iniciado">
-            <summary>
-            Hilo iniciado.
-            </summary>
-        </member>
-        <member name="F:Orbita.Utiles.Accion.Suspendido">
-            <summary>
-            Hilo suspendido.
-            </summary>
-        </member>
-        <member name="F:Orbita.Utiles.Accion.Reanudado">
-            <summary>
-            Hilo reanudado.
-            </summary>
-        </member>
-        <member name="F:Orbita.Utiles.Accion.Terminado">
-            <summary>
-            Hilo terminado.
-            </summary>
-        </member>
-        <member name="F:Orbita.Utiles.Accion.EnEspera">
-            <summary>
-            Join.
-            </summary>
-        </member>
         <member name="T:Orbita.Utiles.OEventArgs">
             <summary>
             Clase que representa eventos con argumentos
             adicionales tipados (EventArgs).
             </summary>
         </member>
-        <member name="F:Orbita.Utiles.OEventArgs._arg">
+        <member name="F:Orbita.Utiles.OEventArgs.arg">
             <summary>
             Argumento adicional desarrollado en el evento.
             </summary>
@@ -1894,6 +2350,32 @@
             </summary>
             <param name="puerto">Número de puerto.</param>
             <returns>Si es no disponible.</returns>
+        </member>
+        <member name="T:Orbita.Utiles.OSingleton`1">
+            <summary>
+            Clase que implementa la estructura tipo patrón singelton
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OSingleton`1._Instancia">
+            <summary>
+            Instancia única del objeto
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OSingleton`1.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OSingleton`1.Constructor">
+            <summary>
+            Constructror de los logs
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Utiles.OSingleton`1.Instancia">
+            <summary>
+            Instancia única del objeto
+            </summary>
         </member>
         <member name="T:Orbita.Utiles.OPriorityQueue`1">
             <summary>
@@ -1979,6 +2461,23 @@
             </summary>
             <param name="angle">Ángulo en radianes</param>
             <returns>Ángulo en grados</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OMath.Angulo(System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+            Calcula el ángulo (en grados) entre 3 puntos (que definen dos rectas)
+            </summary>
+            <param name="punto a">end point</param>
+            <param name="interseccion">Punto central</param>
+            <param name="punto b">end point</param>
+            <returns>angulo (0 a 180)</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OMath.Distancia(System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+            Calcula la distancia euclídea entre dos puntos
+            </summary>
+            <param name="a">Punto de origen</param>
+            <param name="b">Punto de destino</param>
+            <returns>Distancia entre los puntos</returns>
         </member>
         <member name="T:Orbita.Utiles.OCola">
             <summary>
@@ -2163,6 +2662,107 @@
             Enumerado que describe el tipo de mensaje a mostrar
             </summary>
         </member>
+        <member name="T:Orbita.Utiles.OExtensionesColecciones">
+            <summary>
+            Clase estática que extiende los métodos de las colecciones
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OExtensionesColecciones.AddRange``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}})">
+            <summary>
+            Añade items a un diccionario
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="U"></typeparam>
+            <param name="Diccionario"></param>
+            <param name="Valores"></param>
+        </member>
+        <member name="M:Orbita.Utiles.OExtensionesColecciones.Colection2String(System.Collections.ICollection,System.Char)">
+            <summary>
+            Convierte una colección en una cadena de texto
+            </summary>
+            <param name="coleccion">Colección que se desea convertir en texto</param>
+            <param name="separador">Caracter separador de cada uno de los valores de la colección</param>
+            <returns>Cadena de texto con todos los valores de la colección separados por el carácter separador</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OExtensionesColecciones.String2Collection``1(System.String,System.Char,Orbita.Utiles.OExtensionesColecciones.ConvertFromString{``0})">
+            <summary>
+            Convierte una cadena de texto en una colección
+            </summary>
+            <typeparam name="T">Tipo de colección que se desea devolver</typeparam>
+            <param name="texto">Texto que se convertira en colección</param>
+            <param name="separador">Caracter separador de cada uno de los valores de la colección</param>
+            <returns>Objeto de tipo colección con todos los valores que contiene el texto separados por el carácter separador</returns>
+        </member>
+        <member name="T:Orbita.Utiles.OExtensionesColecciones.ConvertFromString`1">
+            <summary>
+            Delegado para la conversión del tipo string a cualquier tipo
+            </summary>
+            <typeparam name="T">Tipo que se desea devolver</typeparam>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.Utiles.OTipoDato">
+            <summary>
+            Clase estática encargada de devolver el valor por defecto de un determinado tipo de dato
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OTipoDato.DevaultValue(Orbita.Utiles.OEnumTipoDato)">
+            <summary>
+            Valor por defecto de un determinado tipo de datos
+            </summary>
+            <param name="tipoDato"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.Utiles.OEnumTipoDato">
+            <summary>
+            Enumerado que implementa el enumerado de los módulos del sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OEnumTipoDato.SinDefinir">
+            <summary>
+            Tipo no definido
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OEnumTipoDato.Bit">
+            <summary>
+            Tipo booleano o bit
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OEnumTipoDato.Entero">
+            <summary>
+            Tipo entero
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OEnumTipoDato.Texto">
+            <summary>
+            Tipo texto
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OEnumTipoDato.Decimal">
+            <summary>
+            Tipo decimal
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OEnumTipoDato.Fecha">
+            <summary>
+            Tipo fecha
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OEnumTipoDato.Imagen">
+            <summary>
+            Tipo imagen
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OEnumTipoDato.Grafico">
+            <summary>
+            Tipo gráfico
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OEnumTipoDato.Flag">
+            <summary>
+            Tipo Evento
+            </summary>
+        </member>
         <member name="T:Orbita.Utiles.ODataTableEnumerado">
             <summary>
             Clase para obtener datatables con los valores de un enumerado
@@ -2197,8 +2797,8 @@
             <summary>
             Clase utilizada para almacenar un par de valores
             </summary>
-            <typeparam name="TFirst">Tipo del primer valor</typeparam>
-            <typeparam name="TSecond">Tipo del segundo valor</typeparam>
+            <typeparam name="TFirst">Tipo del primer valor.</typeparam>
+            <typeparam name="TSecond">Tipo del segundo valor.</typeparam>
         </member>
         <member name="F:Orbita.Utiles.OPair`2.First">
             <summary>
@@ -2222,7 +2822,7 @@
         </member>
         <member name="T:Orbita.Utiles.OTriplet`3">
             <summary>
-            Clase utilizada para almacenar un trío de valores
+            Clase utilizada para almacenar un trío de valores.
             </summary>
             <typeparam name="TFirst">Tipo del primer valor</typeparam>
             <typeparam name="TSecond">Tipo del segundo valor</typeparam>
@@ -2750,6 +3350,13 @@
             </summary>
         </member>
         <member name="T:Orbita.Utiles.ManejadorEvento">
+            <summary>
+            Delegado asociado al evento.
+            </summary>
+            <param name="sender">Objeto que lanza el evento.</param>
+            <param name="e">Dato que puede ser usado en el manejador de evento.</param>
+        </member>
+        <member name="T:Orbita.Utiles.ManejadorEvento`1">
             <summary>
             Delegado asociado al evento.
             </summary>

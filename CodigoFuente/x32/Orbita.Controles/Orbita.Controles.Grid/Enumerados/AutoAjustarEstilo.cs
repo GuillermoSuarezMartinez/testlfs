@@ -13,8 +13,17 @@ namespace Orbita.Controles.Grid
 {
     public enum AutoAjustarEstilo
     {
+        /// <summary>
+        /// Extender la última columna.
+        /// </summary>
         ExtenderUltimaColumna,
+        /// <summary>
+        /// Redimensionar todas las columnas.
+        /// </summary>
         RedimensionarTodasLasColumnas,
+        /// <summary>
+        /// No establecer autoajuste de columnas.
+        /// </summary>
         SinAutoajusteColumnas
     }
 }

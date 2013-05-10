@@ -53,6 +53,9 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <DocumentationFile>bin\Release\Orbita.Controles.Contenedores.XML</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Framework|x86'">
+    <OutputPath>bin\x86\Framework\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Infragistics2.Shared.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -170,10 +173,6 @@
     <ProjectReference Include="..\Orbita.Controles.Comunes\Orbita.Controles.Comunes.csproj">
       <Project>{D66C367A-47B7-4464-93D6-92794E4A57C8}</Project>
       <Name>Orbita.Controles.Comunes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orbita.Controles.Shared\Orbita.Controles.Shared.csproj">
-      <Project>{D104B7D1-93CB-46AE-8F84-AA68BB3B2C5E}</Project>
-      <Name>Orbita.Controles.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

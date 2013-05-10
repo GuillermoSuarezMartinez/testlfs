@@ -41,17 +41,12 @@ namespace Orbita.VA.Comun
             int bytesPerPixel = (bitsPerPixel + 7) / 8;
 
             return bytesPerPixel;
+        }
 
-            //switch (pixelFormat)
-            //{
-            //    case PixelFormat.Format24bppRgb:
-            //        return 3;
-            //    case PixelFormat.Format32bppRgb:
-            //        return 4;
-            //    case PixelFormat.Format8bppIndexed:
-            //    default:
-            //        return 1;
-            //}
+        /* Returns if the bitmap is in color. */
+        public static bool GetColor(PixelFormat pixelFormat)
+        {
+            return GetProfundidad(pixelFormat) > 1;
         }
 
         /* Calculates the length of one line in byte. */
@@ -73,6 +68,21 @@ namespace Orbita.VA.Comun
             }
             return true;
         }
+
+        /* Compares the properties of the bitmap with the supplied image data. Returns true if the properties are compatible. */
+        public static bool IsCompatible(Bitmap bitmap1, Bitmap bitmap2)
+        {
+            if (bitmap1 == null
+                || bitmap2 == null
+                || bitmap1.Height != bitmap2.Height
+                || bitmap1.Width != bitmap2.Width
+                || bitmap1.PixelFormat != bitmap2.PixelFormat)
+            {
+                return false;
+            }
+            return true;
+        }
+
 
         /* Creates a new bitmap object with the supplied properties. */
         public static void CreateBitmap(out Bitmap bitmap, int width, int height, int profundidad)

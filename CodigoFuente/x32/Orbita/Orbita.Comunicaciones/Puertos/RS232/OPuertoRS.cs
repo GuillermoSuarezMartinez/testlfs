@@ -393,6 +393,10 @@ namespace Orbita.Comunicaciones
                 OMensajes.MostrarError(ex.ToString());
             }
         }
+        /// <summary>
+        /// Actualiza el estado del buffer en el puerto
+        /// </summary>
+        /// <param name="e"></param>
         protected void OnCambioDato(OEventArgs e)
         {
             // Hacer una copia temporal del evento para evitar una condición

@@ -23,7 +23,7 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Propiedades
-        [System.ComponentModel.Description("Determina la apariencia de celda activa.")]
+        [System.ComponentModel.Description("Determina la apariencia de las celdas activas.")]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public override OApariencia Apariencia
         {

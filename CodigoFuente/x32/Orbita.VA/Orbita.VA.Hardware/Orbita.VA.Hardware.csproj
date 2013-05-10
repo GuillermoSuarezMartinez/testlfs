@@ -189,8 +189,9 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="PylonC.NET, Version=3.2.2.3032, Culture=neutral, PublicKeyToken=a77e8471c5919d5a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\OrbitaAplicacionDemo\Codigo Fuente\x32\Comun\VA\Pylon\PylonC.NET.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\VA\Pylon\PylonC.NET.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data">
@@ -210,18 +211,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\BaseDatos\AppBD.cs" />
+    <Compile Include="Clases\CamaraBase\OCamaraServidor.cs" />
     <Compile Include="Clases\CamaraBaslerPylon\OConectividadBaslerPylon.cs" />
     <Compile Include="Clases\CamaraBaslerPylon\OCamaraBaslerPylon.cs" />
     <Compile Include="Clases\CamaraAxis\OCamaraAxisCGI.cs" />
     <Compile Include="Clases\CamaraBaslerVPro\OCamaraBaslerVPro.cs" />
     <Compile Include="Clases\CamaraBase\OCamaraBitmap.cs" />
-    <Compile Include="Clases\CamaraBase\OCamaras.cs" />
+    <Compile Include="Clases\CamaraBase\OCamara.cs" />
     <Compile Include="Clases\CamaraIP\OCamaraIP.cs" />
-    <Compile Include="Clases\CamaraBase\OConectividad.cs" />
+    <Compile Include="Clases\Conectividad\OConectividad.cs" />
     <Compile Include="Clases\CamaraBaslerVPro\OConectividadGigEVPro.cs" />
     <Compile Include="Clases\CamaraIP\OConectividadIP.cs" />
     <Compile Include="Clases\CamaraRemota\OCamaraRemota.cs" />
     <Compile Include="Clases\CamaraVirtual\OCamaraVirtual.cs" />
+    <Compile Include="Clases\Conectividad\OConectividadBitVida.cs" />
     <Compile Include="Clases\PTZ\OPTZAxis.cs" />
     <Compile Include="Clases\PTZ\OPTZBase.cs" />
     <Compile Include="Clases\IO\OIO_MeasurementComputing.cs" />
@@ -237,7 +240,7 @@
     <Compile Include="Clases\CamaraIP\VideoSource\VideoSource.cs" />
     <Compile Include="Clases\IO\OIOBase.cs" />
     <Compile Include="Clases\CamaraIP\VideoSource\Win32Utils.cs" />
-    <Compile Include="Clases\ServidorCamaras\OServidorCamaras.cs" />
+    <Compile Include="Clases\CamaraRemota\ORemotingServidorCamaras.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

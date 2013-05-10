@@ -909,12 +909,12 @@
             Clase que encapsula información de un puerto de comunicaciones
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OInformacionPuerto._idPuerto">
+        <member name="F:Orbita.Comunicaciones.OInformacionPuerto.idPuerto">
             <summary>
             Identificador númerico del puerto de comunicaciones
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OInformacionPuerto._tipoPuerto">
+        <member name="F:Orbita.Comunicaciones.OInformacionPuerto.tipoPuerto">
             <summary>
             Tipo del puerto de comunicaciones
             </summary>
@@ -934,6 +934,141 @@
         <member name="P:Orbita.Comunicaciones.OInformacionPuerto.TipoPuerto">
             <summary>
             Identificador textual del puerto de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.OTCPListener._winsockListener">
+            <summary>
+            Objeto para establecer el canal TCP principal
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.OTCPListener._log">
+            <summary>
+            Log de la aplicación
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.OTCPListener._poolCliente">
+            <summary>
+            Pool de clientes
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.OTCPListener._puerto">
+            <summary>
+            Puerto TCP
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.OTCPListener._nombre">
+            <summary>
+            Nombre del canal
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.OTCPListener._estadoListener">
+            <summary>
+            Estado del listener
+            </summary>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OTCPListener.#ctor(Orbita.Trazabilidad.ILogger,System.Int32,System.String)">
+            <summary>
+            Constructor del formulario
+            </summary>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OTCPListener.Inicializar">
+            <summary>
+            Inicializa las variables de la comunicación TCP
+            </summary>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OTCPListener._wskListener_StateChanged(System.Object,Orbita.Winsock.WinsockStateChangedEventArgs)">
+            <summary>
+            Indica que el objeto winsock principal ha cambiado de estado. Trazabilidad del canal.
+            </summary>
+            <param name="sender">Objeto que lanza el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OTCPListener._wskListener_ConnectionRequest(System.Object,Orbita.Winsock.WinsockConnectionRequestEventArgs)">
+            <summary>
+            Indica que se ha conectado un cliente al canal principal
+            </summary>
+            <param name="sender">Objeto que lanza el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OTCPListener._wskListener_ErrorReceived(System.Object,Orbita.Winsock.WinsockErrorReceivedEventArgs)">
+            <summary>
+            Evento de errores en la comunicación TCP
+            </summary>
+            <param name="sender">Objeto que lanza el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OTCPListener._winsockCliente_OStateChanged(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambio de estado en el canal TCP
+            </summary>
+            <param name="e">Argumento del objeto cliente</param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OTCPListener._winsockCliente_OSendComplete(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Envío de datos en el canal TCP
+            </summary>
+            <param name="e">Argumento del objeto cliente</param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OTCPListener._winsockCliente_OErrorReceived(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Error en el canal TCP
+            </summary>
+            <param name="e">Argumento del objeto cliente</param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OTCPListener._winsockCliente_ODataArrival(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Datos de recepción en el canal TCP
+            </summary>
+            <param name="e">Argumento del objeto cliente</param>
+        </member>
+        <member name="E:Orbita.Comunicaciones.OTCPListener.WskConnectionRequest">
+            <summary>
+            Evento Listener para petición de conexión
+            </summary>
+        </member>
+        <member name="E:Orbita.Comunicaciones.OTCPListener.WskStateChanged">
+            <summary>
+            Evento Listener para canvio de estado
+            </summary>
+        </member>
+        <member name="E:Orbita.Comunicaciones.OTCPListener.WskErrorReceived">
+            <summary>
+            Evento Listener para error de recepción
+            </summary>
+        </member>
+        <member name="E:Orbita.Comunicaciones.OTCPListener.WskClientDataArrival">
+            <summary>
+            Evento Cliente Listener para recepción de datos
+            </summary>
+        </member>
+        <member name="E:Orbita.Comunicaciones.OTCPListener.WskClientErrorReceived">
+            <summary>
+            Evento Cliente Listener para error de recepción
+            </summary>
+        </member>
+        <member name="E:Orbita.Comunicaciones.OTCPListener.WskClientSendComplete">
+            <summary>
+            Evento Cliente Listener para send complete
+            </summary>
+        </member>
+        <member name="E:Orbita.Comunicaciones.OTCPListener.WskClientStateChanged">
+            <summary>
+            Evento Cliente Listener para cambio de estado
+            </summary>
+        </member>
+        <member name="P:Orbita.Comunicaciones.OTCPListener.PoolCliente">
+            <summary>
+            Colección de canales
+            </summary>
+        </member>
+        <member name="P:Orbita.Comunicaciones.OTCPListener.Puerto">
+            <summary>
+            Puerto TCP
+            </summary>
+        </member>
+        <member name="P:Orbita.Comunicaciones.OTCPListener.Nombre">
+            <summary>
+            Nombre del canal
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTrafficES">
@@ -1602,6 +1737,108 @@
             Indica si la variable es una entrada.
             </summary>
         </member>
+        <member name="F:Orbita.Comunicaciones.OWinSockCliente._winsock">
+            <summary>
+            objeto para establecer el canal TCP
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.OWinSockCliente.log">
+            <summary>
+            Log de la aplicación
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.OWinSockCliente._nombre">
+            <summary>
+            nombre del canal
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.OWinSockCliente._listener">
+            <summary>
+            Nombre del listener
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.OWinSockCliente._estado">
+            <summary>
+            Estado del canal
+            </summary>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OWinSockCliente.#ctor(System.String,System.String,Orbita.Trazabilidad.ILogger)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="nombre">nombre del canal</param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OWinSockCliente.AceptarConexion(System.Net.Sockets.Socket)">
+            <summary>
+            Conexión del canal
+            </summary>
+            <param name="cliente">socket del cliente</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OWinSockCliente.Enviar(System.Object)">
+            <summary>
+            Envia los datos por el canal
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OWinSockCliente._winsock_DataArrival(System.Object,Orbita.Winsock.WinsockDataArrivalEventArgs)">
+            <summary>
+            Evento de recepción de datos
+            </summary>
+            <param name="sender">Objeto que lanza el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OWinSockCliente._winsock_StateChanged(System.Object,Orbita.Winsock.WinsockStateChangedEventArgs)">
+            <summary>
+            Indica que el objeto winsock ha cambiado de estado. Trazabilidad del canal.
+            </summary>
+            <param name="sender">Objeto que lanza el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OWinSockCliente._winsock_ErrorReceived(System.Object,Orbita.Winsock.WinsockErrorReceivedEventArgs)">
+            <summary>
+            Evento de errores en la comunicación TCP
+            </summary>
+            <param name="sender">Objeto que lanza el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OWinSockCliente._winsock_SendComplete(System.Object,Orbita.Winsock.WinsockSendEventArgs)">
+            <summary>
+            Indica que el objeto winsock ha enviado toda la información
+            </summary>
+            <param name="sender">Objeto que lanza el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="E:Orbita.Comunicaciones.OWinSockCliente.ODataArrival">
+            <summary>
+            evento para la recepción de datos en el canal
+            </summary>
+        </member>
+        <member name="E:Orbita.Comunicaciones.OWinSockCliente.OErrorReceived">
+            <summary>
+            evento para la recepción de errores en el canal
+            </summary>
+        </member>
+        <member name="E:Orbita.Comunicaciones.OWinSockCliente.OSendComplete">
+            <summary>
+            evento para el envío de datos en el canal
+            </summary>
+        </member>
+        <member name="E:Orbita.Comunicaciones.OWinSockCliente.OStateChanged">
+            <summary>
+            evento para el cambio de estado en el canal
+            </summary>
+        </member>
+        <member name="P:Orbita.Comunicaciones.OWinSockCliente.Listener">
+            <summary>
+            nombre del listener
+            </summary>
+        </member>
+        <member name="P:Orbita.Comunicaciones.OWinSockCliente.Estado">
+            <summary>
+            Estado del canal
+            </summary>
+        </member>
         <member name="T:Orbita.Comunicaciones.OConfigDispositivo">
             <summary>
             Configuración del dispositivo
@@ -1673,6 +1910,59 @@
         <member name="E:Orbita.Comunicaciones.OBroadcastEventWrapper.OrbitaComm">
             <summary>
             Evento de comunicaciones.
+            </summary>
+        </member>
+        <member name="T:Orbita.Comunicaciones.OMensajeCanalTCP">
+            <summary>
+            Mensaje para las comunicaciones TCP
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.OMensajeCanalTCP._listener">
+            <summary>
+            nombre del listener
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.OMensajeCanalTCP._canal">
+            <summary>
+            nombre del canal
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.OMensajeCanalTCP._mensaje">
+            <summary>
+            mensaje
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.OMensajeCanalTCP._data">
+            <summary>
+            datos del mensaje
+            </summary>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OMensajeCanalTCP.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Constructor de clase
+            </summary>
+            <param name="listener"></param>
+            <param name="canal"></param>
+            <param name="mensaje"></param>
+        </member>
+        <member name="P:Orbita.Comunicaciones.OMensajeCanalTCP.Listener">
+            <summary>
+            nombre del listener
+            </summary>
+        </member>
+        <member name="P:Orbita.Comunicaciones.OMensajeCanalTCP.Canal">
+            <summary>
+            nombre del canal
+            </summary>
+        </member>
+        <member name="P:Orbita.Comunicaciones.OMensajeCanalTCP.Mensaje">
+            <summary>
+            mensaje
+            </summary>
+        </member>
+        <member name="P:Orbita.Comunicaciones.OMensajeCanalTCP.Data">
+            <summary>
+            datos del mensaje
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.OProtocoloHttp">
@@ -2672,6 +2962,12 @@
             <param name="sender">Objeto que lanza el evento</param>
             <param name="e">Argumentos del evento</param>
         </member>
+        <member name="M:Orbita.Comunicaciones.OPuertoRS.OnCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Actualiza el estado del buffer en el puerto
+            </summary>
+            <param name="e"></param>
+        </member>
         <member name="E:Orbita.Comunicaciones.OPuertoRS.OrbitaRX">
             <summary>
             Evento para la recepción de datos
@@ -2970,6 +3266,12 @@
             Obtener la colección de alarmas.
             </summary>
             <returns>Colección de alarmas.</returns>
+        </member>
+        <member name="M:Orbita.Comunicaciones.IOCommRemoting.OrbitaGetDispositivos">
+            <summary>
+            Obtener los dispositivos del servicio
+            </summary>
+            <returns></returns>
         </member>
         <member name="E:Orbita.Comunicaciones.IOCommRemoting.OrbitaCambioDato">
             <summary>

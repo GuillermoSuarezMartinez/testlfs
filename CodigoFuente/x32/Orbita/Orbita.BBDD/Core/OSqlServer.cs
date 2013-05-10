@@ -20,7 +20,7 @@ namespace Orbita.BBDD
     /// <summary>
     /// Clase tipo para instanciar objetos de base de datos OSQLServer.
     /// </summary>
-    public class OSqlServer : OCore
+    public class OSqlServer : OCoreBBDD
     {
         #region Clases internas
         /// <summary>

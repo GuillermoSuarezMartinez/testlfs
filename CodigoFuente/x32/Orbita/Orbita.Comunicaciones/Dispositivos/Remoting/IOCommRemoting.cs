@@ -65,6 +65,11 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <returns>Colección de alarmas.</returns>
         ArrayList OrbitaGetAlarmasActivas(int dispositivo);
+        /// <summary>
+        /// Obtener los dispositivos del servicio
+        /// </summary>
+        /// <returns></returns>
+        int[] OrbitaGetDispositivos();
         #endregion
     }
 }

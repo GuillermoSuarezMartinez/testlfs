@@ -12,7 +12,7 @@
 namespace Orbita.Controles.Grid
 {
     /// <summary>
-    /// Orbita.Controles.Combo.Configuracion.
+    /// Orbita.Controles.Grid.Configuracion.
     /// </summary>
     internal static class Configuracion
     {

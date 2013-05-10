@@ -4,7 +4,6 @@ using System.IO;
 using System.Windows.Forms;
 using System.Xml;
 using Orbita.Utiles;
-
 namespace Orbita.Controles.Comunicaciones
 {
     public partial class FrmConfigLogger : Form

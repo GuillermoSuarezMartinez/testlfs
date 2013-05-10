@@ -16,6 +16,7 @@ using System.IO;
 using Orbita.VA.Comun;
 using System.Windows.Forms;
 using Orbita.Utiles;
+using System.Threading;
 
 namespace Orbita.VA.Comun
 {
@@ -193,6 +194,65 @@ namespace Orbita.VA.Comun
             catch (Exception exception)
             {
                 OLogsVAComun.Comun.Error(exception, "DirectoryMove");
+            }
+            return resultado;
+        }
+
+        /// <summary>
+        /// Comprueba que el archivo no este en uso
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        public static bool FicheroBloqueado(FileInfo file)
+        {
+            FileStream stream = null;
+
+            try
+            {
+                stream = file.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+            }
+            catch (IOException)
+            {
+                //still being written to
+                //or being processed by another thread
+                //or does not exist (has already been processed)
+                return true;
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
+
+            //file is not locked
+            return false;
+        }
+
+        /// <summary>
+        /// Comprueba que el archivo no este en uso
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        public static bool FicheroBloqueado(string ruta, int timeOutMs)
+        {
+            bool resultado = false;
+
+            try
+            {
+                if (File.Exists(ruta))
+                {
+                    bool bloqueado = true;
+                    FileInfo fileInfo = new FileInfo(ruta);
+                    OThreadManager.Espera(delegate()
+                    {
+                        bloqueado = FicheroBloqueado(fileInfo);
+                        return !bloqueado;
+                    }, timeOutMs);
+                    resultado = bloqueado;
+                }
+            }
+            catch
+            {
             }
             return resultado;
         }

@@ -9,16 +9,19 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Comunes
 {
     public partial class OrbitaTimer : System.Windows.Forms.Timer
     {
+        #region Nueva definición
         public class ControlNuevaDefinicion : OTimer
         {
+            #region Constructor
             public ControlNuevaDefinicion(OrbitaTimer sender)
                 : base(sender) { }
-        };
+            #endregion
+        }
+        #endregion
 
         #region Atributos
         ControlNuevaDefinicion definicion;
@@ -26,7 +29,7 @@ namespace Orbita.Controles.Comunes
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaTimer.
         /// </summary>
         public OrbitaTimer()
             : base()
@@ -35,7 +38,7 @@ namespace Orbita.Controles.Comunes
             InitializeAttributes();
         }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraDockManager.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaTimer.
         /// </summary>
         /// <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
         /// que contienen cero o más componentes de forma lógica.</param>
@@ -54,7 +57,7 @@ namespace Orbita.Controles.Comunes
 
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }

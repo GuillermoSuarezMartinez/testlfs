@@ -24,16 +24,6 @@ namespace Orbita.Controles.VA
         /// Codigo identificativo de la camara
         /// </summary>
         protected string Codigo;
-
-        /// <summary>
-        /// Fichero XML de carga de datos
-        /// </summary>
-        protected string XmlFile;
-
-        /// <summary>
-        /// Origen de los datos
-        /// </summary>
-        protected OrigenDatos OrigenDatos;
         #endregion
 
         #region Constructor
@@ -50,21 +40,10 @@ namespace Orbita.Controles.VA
         /// Constructor de la clase
         /// </summary>
         /// <param name="codigoCamara"></param>
-        public FrmDetalleVisor(string codigoCamara) :
-            this(codigoCamara, string.Empty, OrigenDatos.OrigenBBDD)
-        {
-        }
-
-        /// <summary>
-        /// Constructor de la clase
-        /// </summary>
-        /// <param name="codigoCamara"></param>
-        public FrmDetalleVisor(string codigoCamara, string xmlFile, OrigenDatos origenDatos)
+        public FrmDetalleVisor(string codigoCamara) 
         {
             InitializeComponent();
             this.Codigo = codigoCamara;
-            this.XmlFile = xmlFile;
-            this.OrigenDatos = origenDatos;
         }
         #endregion
 
@@ -89,7 +68,7 @@ namespace Orbita.Controles.VA
         }
 
         /// <summary>
-        /// Cerramos la ventana auromáticamente despues de 10 segundos
+        /// Cerramos la ventana automáticamente despues de 10 segundos
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

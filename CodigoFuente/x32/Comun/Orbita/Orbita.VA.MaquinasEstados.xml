@@ -1003,25 +1003,34 @@
             Finaliza la clase
             </summary>
         </member>
-        <member name="T:Orbita.VA.MaquinasEstados.OModulosControl">
+        <member name="T:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados">
             <summary>
             Define el conjunto de módulos del sistema
             </summary>
         </member>
-        <member name="F:Orbita.VA.MaquinasEstados.OModulosControl.MaquinasEstado">
+        <member name="F:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados.MaquinasEstados">
             <summary>
             Módulo de las máquinas de estado
             </summary>
         </member>
-        <member name="F:Orbita.VA.MaquinasEstados.OModulosControl.MonitorizacionMaquinasEstado">
+        <member name="F:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados.Valido">
             <summary>
-            Módulo de las máquinas de estado
+            Indica que la creación de los logs ha sido válida
             </summary>
         </member>
-        <member name="F:Orbita.VA.MaquinasEstados.OModulosControl.GestionMaquinasEstado">
+        <member name="M:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados.Constructor">
             <summary>
-            Módulo de edición y gestión de las máquinas de estado
+            Constructror de los logs
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados.ValidarLog(System.String,Orbita.Trazabilidad.ILogger)">
+            <summary>
+            Validación del log
+            </summary>
+            <param name="identificador"></param>
+            <param name="log"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

@@ -25,10 +25,6 @@ namespace Orbita.Controles.VA
     {
         #region Atributo(s)
         /// <summary>
-        /// Indica si se trata de la primera vez que cargamos una imagen en el control
-        /// </summary>
-        private bool PrimeraCarga = true;
-        /// <summary>
         /// Indica la posición actual del scroll
         /// </summary>
         private Point CurrentScrollPosition;
@@ -650,7 +646,6 @@ namespace Orbita.Controles.VA
         {
             InitializeComponent();
 
-            this.PrimeraCarga = true;
             this._CurrentCursorPosition = new PointF();
             this.CurrentScrollPosition = new Point();
         }
@@ -666,7 +661,6 @@ namespace Orbita.Controles.VA
             // Título del display
             this.lblTituloDisplay.Text = titulo;
 
-            this.PrimeraCarga = true;
             this._CurrentCursorPosition = new PointF();
             this.CurrentScrollPosition = new Point();
         }
@@ -893,15 +887,20 @@ namespace Orbita.Controles.VA
             // Se carga la imagen y los gráficos siguiendo las recomendaciones de cognex para optimizar el rendimiento
             if (this.ImagenActual is OImagenBitmap)
             {
-                this.VisorImagenes.Image = ((OImagenBitmap)this.ImagenActual).Image;
+                Bitmap bmpAnterior = this.VisorImagenes.Image as Bitmap;
+                Bitmap bmpNuevo = ((OImagenBitmap)this.ImagenActual).Image;
 
-                if (PrimeraCarga)
+                bool debeAjustar = !BitmapFactory.IsCompatible(bmpAnterior, bmpNuevo);
+
+                this.VisorImagenes.Image = ((OImagenBitmap)this.ImagenActual).Image;
+                //this.VisorImagenes.Refresh();
+
+                if (debeAjustar)
                 {
                     this.ZoomFit();
                     this.TimerUpdateAutoScrollPosition.Start();
                     this.TimerUpdateViewSize.Start();
                     this.TimerUpdateZoomLevel.Start();
-                    PrimeraCarga = false;
                 }
             }
         }
@@ -975,7 +974,7 @@ namespace Orbita.Controles.VA
         /// Método que indica que la cámara ha cambiado su modo de reproducción
         /// </summary>
         /// <param name="modoReproduccionContinua"></param>
-        protected override void CambioModoReproduccionCamara(CambioEstadoReproduccionCamaraEventArgs e)
+        protected override void CambioModoReproduccionCamara(object sender, CambioEstadoReproduccionCamaraEventArgs e)
         {
             this.btnPlayStop.Image = e.ModoReproduccionContinua ? Properties.Resources.ImgStop16 : Properties.Resources.ImgPlay16;
         }
@@ -1265,6 +1264,7 @@ namespace Orbita.Controles.VA
                 this.TimerUpdateViewSize.Start();
                 this.CurrentScrollPosition = this.VisorImagenes.AutoScrollPosition;
                 this.TimerUpdateAutoScrollPosition.Start();
+                //this.ZoomFit();
             }
             catch (Exception exception)
             {
@@ -1439,9 +1439,9 @@ namespace Orbita.Controles.VA
         /// Delegado de cambio de estaco de conexión de la cámara
         /// </summary>
         /// <param name="estadoConexion"></param>
-        public override void OnCambioEstadoConexionCamara(CambioEstadoConexionCamaraEventArgs e)
+        public override void OnCambioEstadoConexionCamara(object sender, CambioEstadoConexionCamaraEventArgs e)
         {
-            base.OnCambioEstadoConexionCamara(e);
+            base.OnCambioEstadoConexionCamara(sender, e);
 
             try
             {

@@ -23,7 +23,24 @@ namespace Orbita.VA.GeneradorEscenarios
         /// <summary>
         /// Módulo de las funciones de visión
         /// </summary>
-        public static ILogger GeneradorCodigo = new DebugLogger("GeneradorCodigo");
+        public static ILogger GeneradorCodigo;
+        /// <summary>
+        /// Indica que la creación de los logs ha sido válida
+        /// </summary>
+        private static bool Valido = Constructor();
+        #endregion
+
+        #region Método(s) privado(s)
+        /// <summary>
+        /// Constructror de los logs
+        /// </summary>
+        /// <returns></returns>
+        private static bool Constructor()
+        {
+            GeneradorCodigo = new DebugLogger("GeneradorCodigo");
+
+            return true;
+        }
         #endregion
     }
 }

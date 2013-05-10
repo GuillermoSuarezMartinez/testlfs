@@ -16,7 +16,7 @@ namespace Orbita.BBDD
     /// usa para  indicar que la  clase sólo se  puede utilizar
     /// como clase base de otras clases.
     /// </summary>
-    public abstract class OCore
+    public abstract class OCoreBBDD
     {
         #region Atributos privados
         /// <summary>
@@ -42,7 +42,7 @@ namespace Orbita.BBDD
         /// <summary>
         /// Inicializar una nueva instancia de la clase Core.
         /// </summary>
-        OCore()
+        OCoreBBDD()
         {
             // Establecer el timeout por defecto en 120s.
             this.timeout = 120;
@@ -54,7 +54,7 @@ namespace Orbita.BBDD
         /// Inicializar una nueva instancia de la clase Core.
         /// </summary>
         /// <param name="infoConexion">Información de la conexión actual.</param>
-        protected OCore(OInfoConexion infoConexion)
+        protected OCoreBBDD(OInfoConexion infoConexion)
             : this()
         {
             this.infoConexion = infoConexion;

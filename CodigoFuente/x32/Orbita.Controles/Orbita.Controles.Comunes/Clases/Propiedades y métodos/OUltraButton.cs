@@ -23,6 +23,9 @@ namespace Orbita.Controles.Comunes
         /// Tipo de botón.
         /// </summary>
         TipoBoton tipo;
+        /// <summary>
+        /// Estilo de botón.
+        /// </summary>
         EstiloBoton estilo;
         #endregion
 
@@ -30,7 +33,7 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OUltraButton.
         /// </summary>
-        /// <param name="control"></param>
+        /// <param name="control">Control Orbita asociado a la clase actual.</param>
         public OUltraButton(object control)
             : base()
         {
@@ -39,7 +42,7 @@ namespace Orbita.Controles.Comunes
         #endregion
 
         #region Propiedades
-        [System.ComponentModel.Description("")]
+        [System.ComponentModel.Description("Tipo de botón.")]
         public TipoBoton Tipo
         {
             get { return this.tipo; }
@@ -76,7 +79,7 @@ namespace Orbita.Controles.Comunes
                 }
             }
         }
-        [System.ComponentModel.Description("")]
+        [System.ComponentModel.Description("Estilo de botón.")]
         public EstiloBoton Estilo
         {
             get { return this.estilo; }
@@ -115,16 +118,6 @@ namespace Orbita.Controles.Comunes
 
         #region Métodos protegidos
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
-        protected bool ShouldSerializeTipo()
-        {
-            return (this.Tipo != TipoBoton.Normal);
-        }
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
-        protected bool ShouldSerializeEstilo()
-        {
-            return (this.Estilo != EstiloBoton.Pequeño);
-        }
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetTipo()
         {
             this.Tipo = TipoBoton.Normal;
@@ -134,9 +127,31 @@ namespace Orbita.Controles.Comunes
         {
             this.Estilo = EstiloBoton.Pequeño;
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+        protected bool ShouldSerializeTipo()
+        {
+            return (this.Tipo != TipoBoton.Normal);
+        }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+        protected bool ShouldSerializeEstilo()
+        {
+            return (this.Estilo != EstiloBoton.Pequeño);
+        }
         #endregion
 
         #region Métodos públicos
+        /// <summary>
+        /// Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+        /// </summary>
+        /// <returns>El nombre de tipo completo del objeto.</returns>
         public override string ToString()
         {
             return null;

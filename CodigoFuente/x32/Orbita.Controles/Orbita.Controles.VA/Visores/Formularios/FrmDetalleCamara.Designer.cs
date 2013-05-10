@@ -29,6 +29,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDetalleCamara));
             this.pnlPadre = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.lblSerial = new Orbita.Controles.Comunes.OrbitaUltraLabel();
@@ -39,6 +40,8 @@ namespace Orbita.Controles.VA
             this.lblFabricante = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.lblColor = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.lblResolucion = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.lblContFotografias = new Orbita.Controles.Comunes.OrbitaUltraLabel();
+            this.TimerRefresco = new System.Windows.Forms.Timer(this.components);
             this.pbCamara = new Orbita.Controles.Comunes.OrbitaPictureBox();
             this.pnlPadre.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbCamara)).BeginInit();
@@ -54,10 +57,11 @@ namespace Orbita.Controles.VA
             this.pnlPadre.Controls.Add(this.lblFabricante);
             this.pnlPadre.Controls.Add(this.lblColor);
             this.pnlPadre.Controls.Add(this.lblResolucion);
+            this.pnlPadre.Controls.Add(this.lblContFotografias);
             this.pnlPadre.Controls.Add(this.pbCamara);
             this.pnlPadre.Location = new System.Drawing.Point(9, 12);
             this.pnlPadre.Name = "pnlPadre";
-            this.pnlPadre.Size = new System.Drawing.Size(516, 207);
+            this.pnlPadre.Size = new System.Drawing.Size(516, 238);
             this.pnlPadre.TabIndex = 9;
             // 
             // lblSerial
@@ -143,6 +147,17 @@ namespace Orbita.Controles.VA
             this.lblResolucion.Text = "Resolucion";
             this.lblResolucion.UseMnemonic = false;
             // 
+            // lblContFotografias
+            // 
+            this.lblContFotografias.AutoSize = true;
+            this.lblContFotografias.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContFotografias.Location = new System.Drawing.Point(316, 204);
+            this.lblContFotografias.Name = "lblContFotografias";
+            this.lblContFotografias.Size = new System.Drawing.Size(91, 14);
+            this.lblContFotografias.TabIndex = 17;
+            this.lblContFotografias.Text = "Contador de fotografías:";
+            this.lblContFotografias.UseMnemonic = false;
+            // 
             // pbCamara
             // 
             this.pbCamara.Location = new System.Drawing.Point(3, 35);
@@ -152,12 +167,17 @@ namespace Orbita.Controles.VA
             this.pbCamara.TabIndex = 8;
             this.pbCamara.TabStop = false;
             // 
+            // TimerRefresco
+            // 
+            this.TimerRefresco.Interval = 500;
+            this.TimerRefresco.Tick += new System.EventHandler(this.TimerRefresco_Tick);
+            // 
             // FrmDetalleCamara
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(535, 231);
+            this.ClientSize = new System.Drawing.Size(535, 262);
             this.Controls.Add(this.pnlPadre);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmDetalleCamara";
@@ -167,7 +187,6 @@ namespace Orbita.Controles.VA
             this.ResumeLayout(false);
 
         }
-
         #endregion
 
         private Orbita.Controles.Contenedores.OrbitaPanel pnlPadre;
@@ -178,8 +197,9 @@ namespace Orbita.Controles.VA
         private Orbita.Controles.Comunes.OrbitaUltraLabel lblFabricante;
         private Orbita.Controles.Comunes.OrbitaUltraLabel lblColor;
         private Orbita.Controles.Comunes.OrbitaUltraLabel lblResolucion;
-        private Orbita.Controles.Comunes.OrbitaPictureBox pbCamara;
         private Orbita.Controles.Comunes.OrbitaUltraLabel lblSerial;
-
+        private Orbita.Controles.Comunes.OrbitaUltraLabel lblContFotografias;
+        private Orbita.Controles.Comunes.OrbitaPictureBox pbCamara;
+        private System.Windows.Forms.Timer TimerRefresco;
     }
 }

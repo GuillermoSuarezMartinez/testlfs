@@ -101,7 +101,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Fatal(this.Codigo, exception);
+                OLogsVAHardware.Camaras.Fatal(exception, this.Codigo);
                 throw new Exception("Imposible iniciar el PTZ " + this.Codigo);
             }
         }

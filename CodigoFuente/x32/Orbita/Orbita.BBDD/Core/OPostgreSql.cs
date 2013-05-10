@@ -18,7 +18,7 @@ namespace Orbita.BBDD
     /// <summary>
     /// Clase tipo para instanciar objetos de base de datos OPostgreSQL.
     /// </summary>
-    public class OPostgreSql : OCore
+    public class OPostgreSql : OCoreBBDD
     {
         #region Constructores
         /// <summary>

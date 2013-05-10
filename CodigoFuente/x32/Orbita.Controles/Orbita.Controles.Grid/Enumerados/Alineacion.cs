@@ -11,22 +11,25 @@
 //***********************************************************************
 namespace Orbita.Controles.Grid
 {
+    /// <summary>
+    /// Alineación de texto.
+    /// </summary>
     public enum Alineacion
     {
         /// <summary>
-        /// Defecto.
+        /// Alineación por defecto. Sin alineación.
         /// </summary>
         None = Infragistics.Win.HAlign.Default,
         /// <summary>
-        /// Centrado.
+        /// Alineación de texto centrada.
         /// </summary>
         Centrado = Infragistics.Win.HAlign.Center,
         /// <summary>
-        /// Izquierda.
+        /// Alineación de texto izquierda.
         /// </summary>
         Izquierda = Infragistics.Win.HAlign.Left,
         /// <summary>
-        /// Derecha.
+        /// Alineación de texto derecha.
         /// </summary>
         Derecha = Infragistics.Win.HAlign.Right
     }

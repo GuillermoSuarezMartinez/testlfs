@@ -7,7 +7,7 @@ namespace Orbita.Comunicaciones
     /// <summary>
     /// Clase para la sincronización NTP
     /// </summary>
-    public class OProcoloNTP : Protocolo
+    public class OProtocoloNTP : Protocolo
     {
         /// <summary>
         /// Leap indicator field values

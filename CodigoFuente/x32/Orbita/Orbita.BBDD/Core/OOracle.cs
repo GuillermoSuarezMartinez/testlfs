@@ -20,7 +20,7 @@ namespace Orbita.BBDD
     /// <summary>
     /// Clase tipo para instanciar objetos de base de datos OOracle.
     /// </summary>
-    public class OOracle : OCore
+    public class OOracle : OCoreBBDD
     {
         #region Constructores
         /// <summary>

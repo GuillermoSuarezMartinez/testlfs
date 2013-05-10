@@ -37,20 +37,6 @@
             SetResourceStrings.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Combo.OrbitaUltraCombo.OrbitaUltraCombo_AfterSortChange(System.Object,Infragistics.Win.UltraWinGrid.BandEventArgs)">
-            <summary>
-            AfterSortChange.
-            </summary>
-            <param name="sender">Objeto que lanza el evento.</param>
-            <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
-        </member>
-        <member name="M:Orbita.Controles.Combo.OrbitaUltraCombo.OrbitaUltraCombo_Validating(System.Object,System.ComponentModel.CancelEventArgs)">
-            <summary>
-            Validating.
-            </summary>
-            <param name="sender">Objeto que lanza el evento.</param>
-            <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
-        </member>
         <member name="F:Orbita.Controles.Combo.OrbitaUltraCombo.components">
             <summary>
             Variable del diseñador requerida.
@@ -66,11 +52,6 @@
             <summary>
             Método necesario para admitir el Diseñador. No se puede modificar
             el contenido del método con el editor de código.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Combo.OUltraCombo.control">
-            <summary>
-            Control (sender).
             </summary>
         </member>
         <member name="F:Orbita.Controles.Combo.OUltraCombo.filas">
@@ -98,24 +79,40 @@
             Indica el tipo de control.
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Combo.OUltraCombo.valor">
-            <summary>
-            El valor que ha sido seleccionado de la lista.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Combo.OUltraCombo.texto">
-            <summary>
-            El texto mostrado en la posición editable del control.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Combo.OUltraCombo.nullablePorTeclado">
+        <member name="F:Orbita.Controles.Combo.OUltraCombo.anulablePorTeclado">
             <summary>
             Permite suprimir el valor del combo con las teclas backspace ó supresión.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OUltraCombo.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OUltraCombo.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Combo.OUltraCombo.#ctor(System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OUltraCombo.
+            </summary>
+            <param name="control"> Orbita.Controles.Combo.OrbitaUltraCombo.</param>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OFilas.activas">
+            <summary>
+            Filas activas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OFilas.alternas">
+            <summary>
+            Filas alternas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OFilas.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilas.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Combo.OFilas.TipoSeleccionFila">
+            <summary>
+            Delegado útil para que el manejador de evento eliminar ejecute el método de clase adecuado.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Combo.OrbitaUltraDropDown.components">
@@ -162,6 +159,32 @@
         <member name="T:Orbita.Controles.Combo.Configuracion">
             <summary>
             Orbita.Controles.Combo.Configuracion.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OCeldas.activas">
+            <summary>
+            Celdas activas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Combo.OCeldas.agrupadas">
+            <summary>
+            Celdas agrupadas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OCeldas.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OCeldas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OCeldas.ToString">
+            <summary>
+            Determina el número de propiedades modificadas.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Combo.OFilasActivas.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OFilasActivas.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Combo.OCabecera.#ctor">
@@ -264,55 +287,9 @@
             ColorCabecera.
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Combo.OFilas.activas">
-            <summary>
-            Filas activas.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Combo.OFilas.alternas">
-            <summary>
-            Filas alternas.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Combo.OFilas.#ctor(System.Object)">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilas.
-            </summary>
-        </member>
-        <member name="T:Orbita.Controles.Combo.OFilas.TipoSeleccionFila">
-            <summary>
-            Delegado útil para que el manejador de evento eliminar ejecute el método de clase adecuado.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Combo.OCeldas.activas">
-            <summary>
-            Celdas activas.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Combo.OCeldas.agrupadas">
-            <summary>
-            Celdas agrupadas.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Combo.OCeldas.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OCeldas.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Combo.OCeldas.ToString">
-            <summary>
-            Determina el número de propiedades modificadas.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:Orbita.Controles.Combo.OFilasAlternas.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OFilasAlternas.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Combo.OFilasActivas.#ctor(System.Object)">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OFilasActivas.
             </summary>
         </member>
     </members>

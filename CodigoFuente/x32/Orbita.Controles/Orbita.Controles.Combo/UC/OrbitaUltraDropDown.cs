@@ -1,6 +1,5 @@
-﻿using Orbita.Controles.Grid;
-using Orbita.Controles.Shared;
-using System;
+﻿using System;
+using Orbita.Controles.Grid;
 namespace Orbita.Controles.Combo
 {
     public partial class OrbitaUltraDropDown : Infragistics.Win.UltraWinGrid.UltraDropDown
@@ -91,9 +90,9 @@ namespace Orbita.Controles.Combo
                     throw new Exception("Error en FormatearDropDown. La tabla es nula.");
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                throw new Exception("Error en FormatearDropDown.", ex);
+                throw;
             }
         }
         #endregion

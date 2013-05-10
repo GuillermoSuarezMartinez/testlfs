@@ -19,7 +19,7 @@ namespace Orbita.BBDD
     /// Clase tipo para instanciar objetos de base de datos ODB2.
     /// </summary>
     [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", Justification = "El origen del nombre abreviado.")]
-    public class ODB2 : OCore
+    public class ODB2 : OCoreBBDD
     {
         #region Constructores
         /// <summary>

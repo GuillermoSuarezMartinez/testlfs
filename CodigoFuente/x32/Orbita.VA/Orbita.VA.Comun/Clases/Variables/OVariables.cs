@@ -54,17 +54,12 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Variable que almacena la trazabilidad de las variables
         /// </summary>
-        private static OTrazabilidadVariables Trazabilidad;
+        //private static OTrazabilidadVariables Trazabilidad;
 
         /// <summary>
         /// Tiempo que permanecen las trazas en memoria
         /// </summary>
-        public static TimeSpan TiempoPermanenciaTrazasEnMemoria;
-
-        /// <summary>
-        /// Indica la frecuencia con la que se monitorizan las variables (la variable ha de ser divisible por TiempoPermanenciaTrazasEnMemoria)
-        /// </summary>
-        public static TimeSpan CadenciaMonitorizacion;
+        //public static TimeSpan TiempoPermanenciaTrazasEnMemoria;
 
         /// <summary>
         /// Puerto de comunicación con la variable remota
@@ -74,7 +69,12 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Canal de Servidor de remoting
         /// </summary>
-        internal static TcpChannel CanalServidor; //channel to communicate
+        internal static TcpChannel CanalServidor; // channel to communicate
+
+        /// <summary>
+        /// Indica que existen variables que se comparten por remoting
+        /// </summary>
+        internal static bool CompartirRemotamente;
         #endregion
 
         #region Método(s) público(s)
@@ -89,18 +89,17 @@ namespace Orbita.VA.Comun
             {
                 Escenarios = new Dictionary<string, OEscenarioVariable>();
             }
-            Trazabilidad = new OTrazabilidadVariables();
-
-            CadenciaMonitorizacion = OSistemaManager.Configuracion.CadenciaMonitorizacion;
-            TiempoPermanenciaTrazasEnMemoria = TimeSpan.FromMilliseconds(60000); //¿?¿?¿?
+            //Trazabilidad = new OTrazabilidadVariables();
+            //TiempoPermanenciaTrazasEnMemoria = TimeSpan.FromMilliseconds(60000); //¿?¿?¿?
             PuertoRemoto = 8085;
+            CompartirRemotamente = false;
 
             // Consulta a la base de datos
             DataTable dtSistema = Orbita.VA.Comun.AppBD.GetParametrosAplicacion();
             if (dtSistema.Rows.Count > 0)
             {
-                object objTiempoPermanenciaTrazasEnMemoria = dtSistema.Rows[0]["VarsPermanenciaTrazaMemoria"];
-                TiempoPermanenciaTrazasEnMemoria = TimeSpan.FromMilliseconds(OEntero.Validar(objTiempoPermanenciaTrazasEnMemoria, 1, 86400000, 60000));
+                //object objTiempoPermanenciaTrazasEnMemoria = dtSistema.Rows[0]["VarsPermanenciaTrazaMemoria"];
+                //TiempoPermanenciaTrazasEnMemoria = TimeSpan.FromMilliseconds(OEntero.Validar(objTiempoPermanenciaTrazasEnMemoria, 1, 86400000, 60000));
 
                 PuertoRemoto = (int)OEntero.Validar(dtSistema.Rows[0]["VarsPuertoRemoting"], 1, 65535, 8085);
             }
@@ -108,18 +107,6 @@ namespace Orbita.VA.Comun
             {
                 throw new Exception("No existe nigún registro de parametrización de la aplicación en la base de datos");
             }
-
-            // Registro del canal de servidor
-            BinaryClientFormatterSinkProvider clientProvider = null;
-            BinaryServerFormatterSinkProvider serverProvider = new BinaryServerFormatterSinkProvider();
-            serverProvider.TypeFilterLevel = TypeFilterLevel.Full;
-            IDictionary props = new Hashtable();
-            props["port"] = PuertoRemoto;
-            props["typeFilterLevel"] = TypeFilterLevel.Full;
-            props["name"] = "VarsServidor";
-            CanalServidor = new TcpChannel(props, clientProvider, serverProvider); //channel to communicate
-            ChannelServices.RegisterChannel(CanalServidor, false);  //register channel
-            RemotingConfiguration.RegisterWellKnownServiceType(typeof(OGetRemoteVariableCore), "Vars", WellKnownObjectMode.Singleton); //register remote object
 
             // Consulta de todas las variables existentes en el sistema
             DataTable dtVar = AppBD.GetVariables();
@@ -133,6 +120,7 @@ namespace Orbita.VA.Comun
                     string codVariable = drVar["CodVariable"].ToString();
                     varItem = new OVariable(codVariable);
                     ListaVariables.Add(codVariable, varItem);
+                    CompartirRemotamente |= OBooleano.Validar(drVar["CompartirRemotamente"], false);
                 }
             }
 
@@ -153,6 +141,21 @@ namespace Orbita.VA.Comun
                     }
                 }
             }
+
+            if (CompartirRemotamente)
+            {
+                // Registro del canal de servidor
+                BinaryClientFormatterSinkProvider clientProvider = null;
+                BinaryServerFormatterSinkProvider serverProvider = new BinaryServerFormatterSinkProvider();
+                serverProvider.TypeFilterLevel = TypeFilterLevel.Full;
+                IDictionary props = new Hashtable();
+                props["port"] = PuertoRemoto;
+                props["typeFilterLevel"] = TypeFilterLevel.Full;
+                props["name"] = "VarsServidor";
+                CanalServidor = new TcpChannel(props, clientProvider, serverProvider); //channel to communicate
+                ChannelServices.RegisterChannel(CanalServidor, false);  //register channel
+                RemotingConfiguration.RegisterWellKnownServiceType(typeof(OGetRemoteVariableCore), "Vars", WellKnownObjectMode.Singleton); //register remote object
+            }
         }
 
         /// <summary>
@@ -162,8 +165,14 @@ namespace Orbita.VA.Comun
         {
             // Destrucción de los objetos
             ListaVariables = null;
-            Trazabilidad = null;
-            ChannelServices.UnregisterChannel(CanalServidor);
+            //Trazabilidad = null;
+
+            if (CompartirRemotamente)
+            {
+                // Destrucción de los objetos
+                ChannelServices.UnregisterChannel(CanalServidor);
+            }
+
         }
 
         /// <summary>
@@ -176,7 +185,7 @@ namespace Orbita.VA.Comun
                 varItem.Inicializar();
             }
 
-            Trazabilidad.Inicializar();
+            //Trazabilidad.Inicializar();
 
             Iniciado = true;
         }
@@ -188,7 +197,7 @@ namespace Orbita.VA.Comun
         {
             Iniciado = false;
 
-            Trazabilidad.Finalizar();
+            //Trazabilidad.Finalizar();
 
             foreach (OVariable varItem in ListaVariables.Values)
             {
@@ -478,9 +487,9 @@ namespace Orbita.VA.Comun
         /// <param name="valor">Nuevo valor de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void SetValue(string codigo, object valor, string codigoModuloLlamada, string descripcionLlamada)
+        public static void SetValue(string codigo, object valor, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false)
         {
-            SetValue(string.Empty, codigo, valor, codigoModuloLlamada, descripcionLlamada);
+            SetValue(string.Empty, codigo, valor, codigoModuloLlamada, descripcionLlamada, forzarRefresco);
         }
         /// <summary>
         /// Método para modificar el valor de una variable a de forma registrada
@@ -489,12 +498,12 @@ namespace Orbita.VA.Comun
         /// <param name="valor">Nuevo valor de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void SetValue(string escenario, string codigo, object valor, string codigoModuloLlamada, string descripcionLlamada)
+        public static void SetValue(string escenario, string codigo, object valor, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false)
         {
             OVariable variable;
             if (TryGetVariable(escenario, codigo, out variable))
             {
-                variable.SetValor(valor, codigoModuloLlamada, descripcionLlamada);
+                variable.SetValor(valor, codigoModuloLlamada, descripcionLlamada, forzarRefresco);
             }
         }
 
@@ -811,10 +820,10 @@ namespace Orbita.VA.Comun
         /// Añade una nueva traza a la cola
         /// </summary>
         /// <param name="traza"></param>
-        internal static void NuevaTraza(OTrazaVariable traza)
-        {
-            Trazabilidad.NuevaTraza(traza);
-        }
+        //internal static void NuevaTraza(OTrazaVariable traza)
+        //{
+        //    Trazabilidad.NuevaTraza(traza);
+        //}
         #endregion
 
         #region Método(s) privado(s)
@@ -931,6 +940,10 @@ namespace Orbita.VA.Comun
         /// Objeto utilizado para enlazar con los eventos del variablecore de forma remota
         /// </summary>
         private OVariableBroadcastEventWraper EventWrapper;
+        /// <summary>
+        /// Indica que la variable puede compartirse remotamente
+        /// </summary>
+        internal bool CompartirRemotamente;
         #endregion
 
         #region Propiedad(es)
@@ -1070,11 +1083,11 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Indica que se ha de guardar la trazabilidad en la base de datos
         /// </summary>
-        public bool GuardarTrazabilidad
-        {
-            get { return this.VariableCore.GuardarTrazabilidad; }
-            set { this.VariableCore.GuardarTrazabilidad = value; }
-        }
+        //public bool GuardarTrazabilidad
+        //{
+        //    get { return this.VariableCore.GuardarTrazabilidad; }
+        //    set { this.VariableCore.GuardarTrazabilidad = value; }
+        //}
 
         /// <summary>
         /// Tipo de la variable
@@ -1111,8 +1124,8 @@ namespace Orbita.VA.Comun
 
                 bool habilitado = (bool)dtVariable.Rows[0]["HabilitadoVariable"];
                 OEnumTipoDato tipo = (OEnumTipoDato)OEntero.Validar(dtVariable.Rows[0]["IdTipoVariable"], 0, 99, 0);
-
-                bool guardarTrazabilidad = (bool)dtVariable.Rows[0]["GuardarTrazabilidad"];
+                this.CompartirRemotamente = OBooleano.Validar(dtVariable.Rows[0]["CompartirRemotamente"], false);
+                //bool guardarTrazabilidad = (bool)dtVariable.Rows[0]["GuardarTrazabilidad"];
 
                 if (this.Remoto) // Cliente Remoting
                 {
@@ -1151,7 +1164,8 @@ namespace Orbita.VA.Comun
                 }
                 else // Servidor Remoting
                 {
-                    this.VariableCore = new VariableCore(this._Codigo, habilitado, tipo, guardarTrazabilidad);
+                    //this.VariableCore = new VariableCore(this._Codigo, habilitado, tipo, guardarTrazabilidad);
+                    this.VariableCore = new VariableCore(this._Codigo, habilitado, this.CompartirRemotamente, tipo, false);
                     this.VariableCore.CambioValor += this.EjecutaEventos;
                 }
             }
@@ -1331,19 +1345,19 @@ namespace Orbita.VA.Comun
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public void SetValor(object valor, string codigoModuloLlamada, string descripcionLlamada)
+        public void SetValor(object valor, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false)
         {
             if (OVariablesManager.Iniciado)
             {
                 if (!this.Remoto)
                 {
-                    this.VariableCore.SetValor(valor, codigoModuloLlamada, descripcionLlamada);
+                    this.VariableCore.SetValor(valor, codigoModuloLlamada, descripcionLlamada, forzarRefresco);
                 }
                 else
                 {
                     // Se lanza desde un thread distino.
                     CambiaValorEnThread cambioValorEnThread = new CambiaValorEnThread(this.VariableCore.SetValor);
-                    cambioValorEnThread.BeginInvoke(valor, codigoModuloLlamada, descripcionLlamada, null, null);
+                    cambioValorEnThread.BeginInvoke(valor, codigoModuloLlamada, descripcionLlamada, forzarRefresco, null, null);
                 }
             }
         }
@@ -1432,19 +1446,19 @@ namespace Orbita.VA.Comun
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public void ForzarValor(object value, string codigoModuloLlamada, string descripcionLlamada)
+        public void ForzarValor(object value, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false)
         {
             if (OVariablesManager.Iniciado)
             {
                 if (!this.Remoto)
                 {
-                    this.VariableCore.ForzarValor(value, codigoModuloLlamada, descripcionLlamada);
+                    this.VariableCore.ForzarValor(value, codigoModuloLlamada, descripcionLlamada, forzarRefresco);
                 }
                 else
                 {
                     // Se lanza desde un thread distino.
                     CambiaValorEnThread cambioValorEnThread = new CambiaValorEnThread(this.VariableCore.ForzarValor);
-                    cambioValorEnThread.BeginInvoke(value, codigoModuloLlamada, descripcionLlamada, null, null);
+                    cambioValorEnThread.BeginInvoke(value, codigoModuloLlamada, descripcionLlamada, forzarRefresco, null, null);
                 }
             }
         }
@@ -1590,7 +1604,7 @@ namespace Orbita.VA.Comun
         /// <param name="valor">Nuevo valor de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        private delegate void CambiaValorEnThread(object value, string codigoModuloLlamada, string descripcionLlamada);
+        private delegate void CambiaValorEnThread(object value, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false);
         #endregion
     }
 
@@ -1670,17 +1684,31 @@ namespace Orbita.VA.Comun
         }
 
         /// <summary>
-        /// Indica que se ha de guardar la trazabilidad en la base de datos
+        /// Indica que la variable puede compartirse remotamente
         /// </summary>
-        private bool _GuardarTrazabilidad;
+        private bool _CompartirRemotamente;
+        /// <summary>
+        /// Indica que la variable puede compartirse remotamente
+        /// </summary>
+        public bool CompartirRemotamente
+        {
+            get { return _CompartirRemotamente; }
+            set { _CompartirRemotamente = value; }
+
+        }
+
         /// <summary>
         /// Indica que se ha de guardar la trazabilidad en la base de datos
         /// </summary>
-        public bool GuardarTrazabilidad
-        {
-            get { return _GuardarTrazabilidad; }
-            set { _GuardarTrazabilidad = value; }
-        }
+        //private bool _GuardarTrazabilidad;
+        ///// <summary>
+        ///// Indica que se ha de guardar la trazabilidad en la base de datos
+        ///// </summary>
+        //public bool GuardarTrazabilidad
+        //{
+        //    get { return _GuardarTrazabilidad; }
+        //    set { _GuardarTrazabilidad = value; }
+        //}
 
         /// <summary>
         /// Tipo de la variable
@@ -1714,24 +1742,28 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public VariableCore(string codigo, bool habilitado, OEnumTipoDato tipo, bool guardarTrazabilidad)
+        public VariableCore(string codigo, bool habilitado, bool compartirRemotamente, OEnumTipoDato tipo, bool guardarTrazabilidad)
         {
             // Inicialiamos los valores
             this._Bloqueo = false;
 
             this.Codigo = codigo;
             this._Habilitado = habilitado;
+            this._CompartirRemotamente = compartirRemotamente;
             this._Tipo = tipo;
-            this._GuardarTrazabilidad = guardarTrazabilidad;
+            //this._GuardarTrazabilidad = guardarTrazabilidad;
             this._Cronometro = new Stopwatch();
             this.Cronometro.Reset();
             this.ListaConsultasCambioValor = new List<string>();
 
+            if (this.CompartirRemotamente)
+            {
             this.HiloEjecucionDelegadoRemoto = new Thread(new ThreadStart(EjecutaDelegadoRemotoThread));
             this.HiloEjecucionDelegadoRemoto.IsBackground = true;
             this.HiloEjecucionDelegadoRemoto.Start();
+            }
 
-            this.Valor = Orbita.VA.Comun.OTipoDato.DevaultValue(this.Tipo);
+            this.Valor = OTipoDato.DevaultValue(this.Tipo);
         }
 
         #endregion
@@ -1759,7 +1791,7 @@ namespace Orbita.VA.Comun
                 {
                     try
                     {
-                            this.CambioValor(new OCambioValorEventArgs(this.Codigo, this.Valor));
+                        this.CambioValor(new OCambioValorEventArgs(this.Codigo, this.Valor));
                     }
                     catch (Exception exception)
                     {
@@ -1792,15 +1824,15 @@ namespace Orbita.VA.Comun
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         /// <param name="tipoTraza">Tipo de evento que provocó la traza</param>
-        private void NuevaTraza(string codigoModuloLlamada, string descripcionLlamada, TipoTraza tipoTraza)
-        {
-            // Trazabilidad en BBDD
-            if (this._GuardarTrazabilidad)
-            {
-                OTrazaVariable trazaTrazabilidad = new OTrazaVariable(this.Codigo, this.Valor, tipoTraza, codigoModuloLlamada, descripcionLlamada);
-                OVariablesManager.NuevaTraza(trazaTrazabilidad);
-            }
-        }
+        //private void NuevaTraza(string codigoModuloLlamada, string descripcionLlamada, TipoTraza tipoTraza)
+        //{
+        //    // Trazabilidad en BBDD
+        //    if (this._GuardarTrazabilidad)
+        //    {
+        //        OTrazaVariable trazaTrazabilidad = new OTrazaVariable(this.Codigo, this.Valor, tipoTraza, codigoModuloLlamada, descripcionLlamada);
+        //        OVariablesManager.NuevaTraza(trazaTrazabilidad);
+        //    }
+        //}
 
         /// <summary>
         /// Acciones a realizar tras establecer un determinado valor a la variable
@@ -1823,6 +1855,15 @@ namespace Orbita.VA.Comun
         #endregion
 
         #region Método(s) público(s)
+        /// <summary>
+        /// Inicializa el tiempo de vida para que el objeto no pueda morir
+        /// </summary>
+        /// <returns></returns>
+        public override object InitializeLifetimeService()
+        {
+            // Este objeto no puede morir.
+            return null;
+        }
 
         /// <summary>
         /// Carga los valores de la variable
@@ -1964,12 +2005,12 @@ namespace Orbita.VA.Comun
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public void SetValor(object valor, string codigoModuloLlamada, string descripcionLlamada)
+        public void SetValor(object valor, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false)
         {
-            if ((this._Habilitado) && (this.Valor != valor) && (!this._Bloqueo) && (!this._Inhibido))
+            if ((this._Habilitado) && (forzarRefresco || (this.Valor != valor)) && (!this._Bloqueo) && (!this._Inhibido))
             {
                 // Insertamos la traza
-                this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.CambioValor);
+                //this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.CambioValor);
                 OLogsVAComun.Variables.Debug("SetValor", "La variable " + this.Codigo + " cambia su valor a " + OObjeto.ToString(valor));
 
                 // Establecimiento del valor
@@ -1987,13 +2028,13 @@ namespace Orbita.VA.Comun
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public void SetValorRetrasado(object valor, TimeSpan retraso, string codigoModuloLlamada, string descripcionLlamada)
+        public void SetValorRetrasado(object valor, TimeSpan retraso, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false)
         {
-            if ((this._Habilitado) && (this.Valor != valor) && (!this._Bloqueo) && (!this._Inhibido))
+            if ((this._Habilitado) && (forzarRefresco || (this.Valor != valor)) && (!this._Bloqueo) && (!this._Inhibido))
             {
                 // creo ua secuencia para el valor momentaneo
                 OSecuencia secuencia = new OSecuencia(this.Codigo + "-Retrasado", System.Threading.ThreadPriority.BelowNormal, 1);
-                secuencia.Add(new OSecuenciaItemValor(this.Codigo, valor, retraso));
+                secuencia.Add(new OSecuenciaItemValor(this.Codigo, valor, retraso, forzarRefresco));
                 secuencia.Start();
             }
         }
@@ -2014,7 +2055,7 @@ namespace Orbita.VA.Comun
                     this._Bloqueo = true;
 
                     // Insertamos la traza
-                    this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.Bloqueo);
+                    //this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.Bloqueo);
                 }
             }
         }
@@ -2035,7 +2076,7 @@ namespace Orbita.VA.Comun
                     this._Bloqueo = false;
 
                     // Insertamos la traza
-                    this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.Desbloqueo);
+                    //this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.Desbloqueo);
                 }
             }
         }
@@ -2056,7 +2097,7 @@ namespace Orbita.VA.Comun
                     this._Inhibido = true;
 
                     // Insertamos la traza
-                    this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.Inhibicion);
+                    //this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.Inhibicion);
                 }
             }
         }
@@ -2077,7 +2118,7 @@ namespace Orbita.VA.Comun
                     this._Inhibido = false;
 
                     // Insertamos la traza
-                    this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.DesInhibicion);
+                    //this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.DesInhibicion);
                 }
             }
         }
@@ -2089,12 +2130,12 @@ namespace Orbita.VA.Comun
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public void ForzarValor(object valor, string codigoModuloLlamada, string descripcionLlamada)
+        public void ForzarValor(object valor, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false)
         {
-            if ((this._Habilitado) && (this.Valor != valor) && (this._Bloqueo))
+            if ((this._Habilitado) && (forzarRefresco || (this.Valor != valor)) && (this._Bloqueo))
             {
                 // Insertamos la traza
-                this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.ForzarValor);
+                //this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.ForzarValor);
                 OLogsVAComun.Variables.Info("SetValor", "La variable " + this.Codigo + " cambia su valor a " + OObjeto.ToString(valor));
 
                 // Establecimiento del valor
@@ -2124,7 +2165,7 @@ namespace Orbita.VA.Comun
             if (this._Habilitado)
             {
                 // Insertamos la traza
-                this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.DisparoSuscripciones);
+                //this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.DisparoSuscripciones);
                 OLogsVAComun.Variables.Debug("SetValor", "La variable " + this.Codigo + " realiza un disparo");
 
                 // Establecimiento del valor
@@ -2189,6 +2230,16 @@ namespace Orbita.VA.Comun
 
         #region Método(s) público(s)
         /// <summary>
+        /// Inicializa el tiempo de vida para que el objeto no pueda morir
+        /// </summary>
+        /// <returns></returns>
+        public override object InitializeLifetimeService()
+        {
+            // Este objeto no puede morir.
+            return null;
+        }
+
+        /// <summary>
         /// Evento de cambio de dato.
         /// </summary>
         /// <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
@@ -2218,6 +2269,16 @@ namespace Orbita.VA.Comun
     {
         #region Método(s) público(s)
         /// <summary>
+        /// Inicializa el tiempo de vida para que el objeto no pueda morir
+        /// </summary>
+        /// <returns></returns>
+        public override object InitializeLifetimeService()
+        {
+            // Este objeto no puede morir.
+            return null;
+        }
+
+        /// <summary>
         /// Método para la adquisición de la VariableCore por remoting
         /// </summary>
         /// <param name="codigo">Código de la varible</param>
@@ -2227,7 +2288,10 @@ namespace Orbita.VA.Comun
             OVariable variable;
             if (OVariablesManager.ListaVariables.TryGetValue(codigo, out variable))
             {
-                return variable.VariableCore;
+                if (variable.CompartirRemotamente)
+                {
+                    return variable.VariableCore;
+                }
             }
 
             return null;
@@ -2474,8 +2538,8 @@ namespace Orbita.VA.Comun
         /// </summary>
         /// <param name="valor">Valor a establecer en la variable</param>
         /// <param name="momentoEjecucion"></param>
-        public OSecuenciaItemValor(string codVariable, object valor, TimeSpan momentoEjecucion)
-            : base(codVariable, momentoEjecucion)
+        public OSecuenciaItemValor(string codVariable, object valor, TimeSpan momentoEjecucion, bool forzarRefresco = false)
+            : base(codVariable, momentoEjecucion, forzarRefresco)
         {
             this.Valor = valor;
         }
@@ -2485,15 +2549,15 @@ namespace Orbita.VA.Comun
         /// <param name="valor">Valor a establecer en la variable</param>
         /// <param name="momentoMinimoEjecucionAleatoria">Momento mínimo de la ejecución aleatoria</param>
         /// <param name="momentoMaximoEjecucionAleatoria">Momento máximio de la ejecución aleatoria</param>
-        public OSecuenciaItemValor(string codVariable, object valor, TimeSpan momentoMinimoEjecucionAleatorio, TimeSpan momentoMaximoEjecucionAleatorio)
-            : base(codVariable, momentoMinimoEjecucionAleatorio, momentoMaximoEjecucionAleatorio)
+        public OSecuenciaItemValor(string codVariable, object valor, TimeSpan momentoMinimoEjecucionAleatorio, TimeSpan momentoMaximoEjecucionAleatorio, bool forzarRefresco = false)
+            : base(codVariable, momentoMinimoEjecucionAleatorio, momentoMaximoEjecucionAleatorio, forzarRefresco)
         {
             this.Valor = valor;
         }
 
         #endregion
 
-        #region Método(s) virtual(es)
+        #region Método(s) heredado(s)
         /// <summary>
         /// Evento de ejecución del elemento de la secuencia
         /// </summary>
@@ -2502,7 +2566,7 @@ namespace Orbita.VA.Comun
         /// <param name="esComando"></param>
         protected override void OnEjecuta()
         {
-            OVariablesManager.SetValue(this.CodVariable, this.Valor, "Secuencia", this.CodVariable);
+            OVariablesManager.SetValue(this.CodVariable, this.Valor, "Secuencia", this.CodVariable, this.ForzarRefresco);
         }
         #endregion
     }
@@ -2534,7 +2598,7 @@ namespace Orbita.VA.Comun
         }
         #endregion
 
-        #region Método(s) virtual(es)
+        #region Método(s) heredado(s)
         /// <summary>
         /// Evento de ejecución del elemento de la secuencia
         /// </summary>
@@ -2575,10 +2639,14 @@ namespace Orbita.VA.Comun
         public TimeSpan MomentoMaximoEjecucionAleatorio;
 
         /// <summary>
+        /// Indica que se ha de forzar el refresco de la variable
+        /// </summary>
+        public bool ForzarRefresco;
+
+        /// <summary>
         /// Indica que la secuencia ya ha sido ejecutada
         /// </summary>
         public bool Ejecutado;
-
         #endregion
 
         #region Propiedad(es)
@@ -2611,11 +2679,12 @@ namespace Orbita.VA.Comun
         /// Constructor de la clase
         /// </summary>
         /// <param name="momentoEjecucion"></param>
-        public OSecuenciaItemBase(string codVariable, TimeSpan momentoEjecucion)
+        public OSecuenciaItemBase(string codVariable, TimeSpan momentoEjecucion, bool forzarRefresco = false)
         {
             this.CodVariable = codVariable;
             this.MomentoEjecucion = momentoEjecucion;
             this.MomentoEjecucionAleatorio = false;
+            this.ForzarRefresco = forzarRefresco;
             this.EjecutaElementoSecuencia += OnEjecuta;
         }
 
@@ -2624,13 +2693,14 @@ namespace Orbita.VA.Comun
         /// </summary>
         /// <param name="momentoMinimoEjecucionAleatoria">Momento mínimo de la ejecución aleatoria</param>
         /// <param name="momentoMaximoEjecucionAleatoria">Momento máximio de la ejecución aleatoria</param>
-        public OSecuenciaItemBase(string codVariable, TimeSpan momentoMinimoEjecucionAleatorio, TimeSpan momentoMaximoEjecucionAleatorio)
+        public OSecuenciaItemBase(string codVariable, TimeSpan momentoMinimoEjecucionAleatorio, TimeSpan momentoMaximoEjecucionAleatorio, bool forzarRefresco = false)
         {
             this.CodVariable = codVariable;
 
             this.MomentoEjecucionAleatorio = true;
             this.MomentoMinimoEjecucionAleatorio = momentoMinimoEjecucionAleatorio;
             this.MomentoMaximoEjecucionAleatorio = momentoMaximoEjecucionAleatorio;
+            this.ForzarRefresco = forzarRefresco;
             this.EjecutaElementoSecuencia += OnEjecuta;
         }
         #endregion
@@ -2662,239 +2732,239 @@ namespace Orbita.VA.Comun
 
     #endregion
 
-    #region Trazabilidad de variables
-    internal class OTrazabilidadVariables
-    {
-        #region Atributo(s)
+    //#region Trazabilidad de variables (Por implmentar)
+    //internal class OTrazabilidadVariables
+    //{
+    //    #region Atributo(s)
 
-        /// <summary>
-        /// Cola de las trazas
-        /// </summary>
-        private Queue<OTrazaVariable> ColaTrazas;
-        /// <summary>
-        /// Timer de guardado de las trazas
-        /// </summary>
-        private System.Windows.Forms.Timer TimerEjecucion;
+    //    /// <summary>
+    //    /// Cola de las trazas
+    //    /// </summary>
+    //    private Queue<OTrazaVariable> ColaTrazas;
+    //    /// <summary>
+    //    /// Timer de guardado de las trazas
+    //    /// </summary>
+    //    private System.Windows.Forms.Timer TimerEjecucion;
 
-        #endregion
+    //    #endregion
 
-        #region Constructor
-        public OTrazabilidadVariables()
-        {
-            this.ColaTrazas = new Queue<OTrazaVariable>();
-        }
-        #endregion
+    //    #region Constructor
+    //    public OTrazabilidadVariables()
+    //    {
+    //        this.ColaTrazas = new Queue<OTrazaVariable>();
+    //    }
+    //    #endregion
 
-        #region Método(s) público(s)
+    //    #region Método(s) público(s)
 
-        /// <summary>
-        /// Carga las propiedades de la base de datos
-        /// </summary>
-        public void Inicializar()
-        {
-            // Parametrización del timer
-            this.TimerEjecucion = new System.Windows.Forms.Timer();
-            this.TimerEjecucion.Interval = Convert.ToInt32(Math.Round(OVariablesManager.TiempoPermanenciaTrazasEnMemoria.TotalMilliseconds));
-            this.TimerEjecucion.Tick += new EventHandler(EventoTimerEjecucion);
-            this.TimerEjecucion.Start();
-        }
+    //    /// <summary>
+    //    /// Carga las propiedades de la base de datos
+    //    /// </summary>
+    //    public void Inicializar()
+    //    {
+    //        // Parametrización del timer
+    //        this.TimerEjecucion = new System.Windows.Forms.Timer();
+    //        this.TimerEjecucion.Interval = Convert.ToInt32(Math.Round(OVariablesManager.TiempoPermanenciaTrazasEnMemoria.TotalMilliseconds));
+    //        this.TimerEjecucion.Tick += new EventHandler(EventoTimerEjecucion);
+    //        this.TimerEjecucion.Start();
+    //    }
 
-        /// <summary>
-        /// Se para la ejecución
-        /// </summary>
-        public void Finalizar()
-        {
-            // Finalización del timer
-            this.TimerEjecucion.Stop();
-            this.TimerEjecucion.Tick -= new EventHandler(EventoTimerEjecucion);
-            this.TimerEjecucion = null;
-        }
+    //    /// <summary>
+    //    /// Se para la ejecución
+    //    /// </summary>
+    //    public void Finalizar()
+    //    {
+    //        // Finalización del timer
+    //        this.TimerEjecucion.Stop();
+    //        this.TimerEjecucion.Tick -= new EventHandler(EventoTimerEjecucion);
+    //        this.TimerEjecucion = null;
+    //    }
 
-        /// <summary>
-        /// Añade una nueva traza a la cola
-        /// </summary>
-        /// <param name="traza"></param>
-        public void NuevaTraza(OTrazaVariable traza)
-        {
-            lock (this.ColaTrazas)
-            {
-                this.ColaTrazas.Enqueue(traza);
-            }
+    //    /// <summary>
+    //    /// Añade una nueva traza a la cola
+    //    /// </summary>
+    //    /// <param name="traza"></param>
+    //    public void NuevaTraza(OTrazaVariable traza)
+    //    {
+    //        lock (this.ColaTrazas)
+    //        {
+    //            this.ColaTrazas.Enqueue(traza);
+    //        }
 
-            // Guardamos la traza de registros
-            string info = string.Empty;
-            info += "Modulo: " + traza.CodModuloLlamada + "; ";
-            info += "Descripción: " + traza.DescripcionLlamada + "; ";
-            switch (traza.TipoTraza)
-            {
-                case TipoTraza.CambioValor:
-                    info += "Tipo: Cambio de valor; ";
-                    break;
-                case TipoTraza.DisparoSuscripciones:
-                    info += "Tipo: Disparo suscripciones; ";
-                    break;
-            }
-            if (traza.Valor != null)
-            {
-                info += "Valor: " + OObjeto.ToString(traza.Valor) + "; ";
-            }
-            else
-            {
-                info += "Valor: (vacio); ";
-            }
-            OLogsVAComun.Variables.Debug(traza.CodVariable, info);
-        }
+    //        // Guardamos la traza de registros
+    //        string info = string.Empty;
+    //        info += "Modulo: " + traza.CodModuloLlamada + "; ";
+    //        info += "Descripción: " + traza.DescripcionLlamada + "; ";
+    //        switch (traza.TipoTraza)
+    //        {
+    //            case TipoTraza.CambioValor:
+    //                info += "Tipo: Cambio de valor; ";
+    //                break;
+    //            case TipoTraza.DisparoSuscripciones:
+    //                info += "Tipo: Disparo suscripciones; ";
+    //                break;
+    //        }
+    //        if (traza.Valor != null)
+    //        {
+    //            info += "Valor: " + OObjeto.ToString(traza.Valor) + "; ";
+    //        }
+    //        else
+    //        {
+    //            info += "Valor: (vacio); ";
+    //        }
+    //        OLogsVAComun.Variables.Debug(traza.CodVariable, info);
+    //    }
 
-        #endregion
+    //    #endregion
 
-        #region Método(s) privado(s)
+    //    #region Método(s) privado(s)
 
-        /// <summary>
-        /// Extrae las trazas que han de ser almacenadas en la base de datos
-        /// </summary>
-        /// <returns>Cola con las trazas a almacenar en la BBDD.</returns>
-        private Queue<OTrazaVariable> ObtenerTrazasAGuardar()
-        {
-            Queue<OTrazaVariable> colaTrazas = new Queue<OTrazaVariable>();
+    //    /// <summary>
+    //    /// Extrae las trazas que han de ser almacenadas en la base de datos
+    //    /// </summary>
+    //    /// <returns>Cola con las trazas a almacenar en la BBDD.</returns>
+    //    private Queue<OTrazaVariable> ObtenerTrazasAGuardar()
+    //    {
+    //        Queue<OTrazaVariable> colaTrazas = new Queue<OTrazaVariable>();
 
-            bool salirBucle = false;
-            while (!salirBucle)
-            {
-                salirBucle = (this.ColaTrazas.Count == 0);
+    //        bool salirBucle = false;
+    //        while (!salirBucle)
+    //        {
+    //            salirBucle = (this.ColaTrazas.Count == 0);
 
-                if (!salirBucle)
-                {
-                    OTrazaVariable traza = this.ColaTrazas.Peek();
+    //            if (!salirBucle)
+    //            {
+    //                OTrazaVariable traza = this.ColaTrazas.Peek();
 
-                    salirBucle = (traza.Fecha > DateTime.Now - OVariablesManager.TiempoPermanenciaTrazasEnMemoria);
+    //                salirBucle = (traza.Fecha > DateTime.Now - OVariablesManager.TiempoPermanenciaTrazasEnMemoria);
 
-                    if (!salirBucle)
-                    {
-                        OVariable variable = OVariablesManager.GetVariable(traza.CodVariable);
-                        salirBucle = (variable == null) || (!variable.GuardarTrazabilidad);
-                    }
+    //                if (!salirBucle)
+    //                {
+    //                    OVariable variable = OVariablesManager.GetVariable(traza.CodVariable);
+    //                    salirBucle = (variable == null) || (!variable.GuardarTrazabilidad);
+    //                }
 
-                    if (!salirBucle)
-                    {
-                        lock (this.ColaTrazas)
-                        {
-                            colaTrazas.Enqueue(this.ColaTrazas.Dequeue());
-                        }
-                    }
-                }
-            }
+    //                if (!salirBucle)
+    //                {
+    //                    lock (this.ColaTrazas)
+    //                    {
+    //                        colaTrazas.Enqueue(this.ColaTrazas.Dequeue());
+    //                    }
+    //                }
+    //            }
+    //        }
 
-            return colaTrazas;
-        }
+    //        return colaTrazas;
+    //    }
 
-        /// <summary>
-        /// Formatea las trazas que necesiten ser guardadas en un XML
-        /// </summary>
-        /// <returns>Objeto de la clase CXML con los datos formateados.</returns>
-        private OXml ConvertirTrazasXML(Queue<OTrazaVariable> colaTrazas)
-        {
-            OXml oXML = new OXml();
-            while (colaTrazas.Count > 0)
-            {
-                OTrazaVariable traza = colaTrazas.Dequeue();
+    //    /// <summary>
+    //    /// Formatea las trazas que necesiten ser guardadas en un XML
+    //    /// </summary>
+    //    /// <returns>Objeto de la clase CXML con los datos formateados.</returns>
+    //    private OXml ConvertirTrazasXML(Queue<OTrazaVariable> colaTrazas)
+    //    {
+    //        OXml oXML = new OXml();
+    //        while (colaTrazas.Count > 0)
+    //        {
+    //            OTrazaVariable traza = colaTrazas.Dequeue();
 
-                oXML.AbrirEtiqueta("TrazaAdd");
-                oXML.Add("CodVariable", traza.CodVariable);
-                oXML.Add("CodModulo", traza.CodModuloLlamada);
-                oXML.Add("Descripcion", traza.DescripcionLlamada);
-                if (traza.TipoTraza == TipoTraza.CambioValor)
-                {
-                    oXML.Add("Valor", OObjeto.ToString(traza.Valor));
-                }
-                else
-                {
-                    oXML.Add("Valor", string.Empty);
-                }
-                oXML.Add("Tipo", (int)traza.TipoTraza);
-                oXML.Add("Fecha", traza.Fecha.ToString("dd/MM/yyyy HH:mm:ss.FFF")); // Es necesario utilizar este formato para añadir decimales a los segundos
-                oXML.CerrarEtiqueta();
-            }
+    //            oXML.AbrirEtiqueta("TrazaAdd");
+    //            oXML.Add("CodVariable", traza.CodVariable);
+    //            oXML.Add("CodModulo", traza.CodModuloLlamada);
+    //            oXML.Add("Descripcion", traza.DescripcionLlamada);
+    //            if (traza.TipoTraza == TipoTraza.CambioValor)
+    //            {
+    //                oXML.Add("Valor", OObjeto.ToString(traza.Valor));
+    //            }
+    //            else
+    //            {
+    //                oXML.Add("Valor", string.Empty);
+    //            }
+    //            oXML.Add("Tipo", (int)traza.TipoTraza);
+    //            oXML.Add("Fecha", traza.Fecha.ToString("dd/MM/yyyy HH:mm:ss.FFF")); // Es necesario utilizar este formato para añadir decimales a los segundos
+    //            oXML.CerrarEtiqueta();
+    //        }
 
-            oXML.CerrarDocumento();
+    //        oXML.CerrarDocumento();
 
-            return oXML;
-        }
+    //        return oXML;
+    //    }
 
-        #endregion
+    //    #endregion
 
-        #region Eventos
+    //    #region Eventos
 
-        /// <summary>
-        /// Evento del timer de ejecución
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="e"></param>
-        public void EventoTimerEjecucion(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.ColaTrazas.Count > 0)
-                {
-                    Queue<OTrazaVariable> colaTrazas = this.ObtenerTrazasAGuardar();
+    //    /// <summary>
+    //    /// Evento del timer de ejecución
+    //    /// </summary>
+    //    /// <param name="source"></param>
+    //    /// <param name="e"></param>
+    //    public void EventoTimerEjecucion(object sender, EventArgs e)
+    //    {
+    //        try
+    //        {
+    //            if (this.ColaTrazas.Count > 0)
+    //            {
+    //                Queue<OTrazaVariable> colaTrazas = this.ObtenerTrazasAGuardar();
 
-                    if (colaTrazas.Count > 0)
-                    {
-                        OXml oXML = this.ConvertirTrazasXML(colaTrazas);
+    //                if (colaTrazas.Count > 0)
+    //                {
+    //                    OXml oXML = this.ConvertirTrazasXML(colaTrazas);
 
-                        int ret = AppBD.AddTrazas(oXML);
+    //                    int ret = AppBD.AddTrazas(oXML);
 
-                        if (ret != 0)
-                        {
-                            throw new Exception("Ha sido imposible enviar información de trazabilidad de variables a la base de datos.");
-                        }
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                OLogsVAComun.Variables.Error(exception, "Trazabilidad");
-            }
-        }
+    //                    if (ret != 0)
+    //                    {
+    //                        throw new Exception("Ha sido imposible enviar información de trazabilidad de variables a la base de datos.");
+    //                    }
+    //                }
+    //            }
+    //        }
+    //        catch (Exception exception)
+    //        {
+    //            OLogsVAComun.Variables.Error(exception, "Trazabilidad");
+    //        }
+    //    }
 
-        #endregion
-    }
+    //    #endregion
+    //}
 
-    internal struct OTrazaVariable
-    {
-        #region Atributo(s)
-        public string CodVariable;
-        public string CodModuloLlamada;
-        public string DescripcionLlamada;
-        public object Valor;
-        public TipoTraza TipoTraza;
-        public DateTime Fecha;
-        #endregion
+    //internal struct OTrazaVariable
+    //{
+    //    #region Atributo(s)
+    //    public string CodVariable;
+    //    public string CodModuloLlamada;
+    //    public string DescripcionLlamada;
+    //    public object Valor;
+    //    public TipoTraza TipoTraza;
+    //    public DateTime Fecha;
+    //    #endregion
 
-        #region Constructor
-        public OTrazaVariable(string codVariable, object valor, TipoTraza tipoTraza, string codModuloLlamada, string descripcionLlamada)
-        {
-            this.CodVariable = codVariable;
-            this.Valor = valor;
-            this.TipoTraza = tipoTraza;
-            this.CodModuloLlamada = codModuloLlamada;
-            this.DescripcionLlamada = descripcionLlamada;
-            this.Fecha = DateTime.Now;
-        }
-        #endregion
-    }
+    //    #region Constructor
+    //    public OTrazaVariable(string codVariable, object valor, TipoTraza tipoTraza, string codModuloLlamada, string descripcionLlamada)
+    //    {
+    //        this.CodVariable = codVariable;
+    //        this.Valor = valor;
+    //        this.TipoTraza = tipoTraza;
+    //        this.CodModuloLlamada = codModuloLlamada;
+    //        this.DescripcionLlamada = descripcionLlamada;
+    //        this.Fecha = DateTime.Now;
+    //    }
+    //    #endregion
+    //}
 
-    /// <summary>
-    /// Indica el origen de la inserción de la traza
-    /// </summary>
-    internal enum TipoTraza
-    {
-        CambioValor = 1,
-        DisparoSuscripciones = 2,
-        Bloqueo = 3,
-        Desbloqueo = 4,
-        ForzarValor = 5,
-        Inhibicion = 6,
-        DesInhibicion = 7
-    }
-    #endregion
+    ///// <summary>
+    ///// Indica el origen de la inserción de la traza
+    ///// </summary>
+    //internal enum TipoTraza
+    //{
+    //    CambioValor = 1,
+    //    DisparoSuscripciones = 2,
+    //    Bloqueo = 3,
+    //    Desbloqueo = 4,
+    //    ForzarValor = 5,
+    //    Inhibicion = 6,
+    //    DesInhibicion = 7
+    //}
+    //#endregion
 }

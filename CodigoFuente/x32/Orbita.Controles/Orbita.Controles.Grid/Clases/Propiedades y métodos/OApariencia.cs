@@ -180,6 +180,20 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Métodos públicos
+        /// <summary>
+        /// Resetear color de borde, color de fondo, color de texto, estilo de borde, alineación de texto horizontal,
+        /// alineación de texto vertical y adorno de texto.
+        /// </summary>
+        public void Reset()
+        {
+            this.ResetColorBorde();
+            this.ResetColorFondo();
+            this.ResetColorTexto();
+            this.ResetEstiloBorde();
+            this.ResetAlineacionTextoHorizontal();
+            this.ResetAlineacionTextoVertical();
+            this.ResetAdornoTexto();
+        }
         public bool ShouldSerialize()
         {
             return
@@ -190,16 +204,6 @@ namespace Orbita.Controles.Grid
                 this.ShouldSerializeAlineacionTextoHorizontal() ||
                 this.ShouldSerializeAlineacionTextoVertical() ||
                 this.ShouldSerializeAdornoTexto());
-        }
-        public void Reset()
-        {
-            this.ResetColorBorde();
-            this.ResetColorFondo();
-            this.ResetColorTexto();
-            this.ResetEstiloBorde();
-            this.ResetAlineacionTextoHorizontal();
-            this.ResetAlineacionTextoVertical();
-            this.ResetAdornoTexto();
         }
         #endregion
     }

@@ -54,6 +54,9 @@
     <DocumentationFile>bin\Release\Orbita.Controles.Menu.XML</DocumentationFile>
     <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Framework|x86'">
+    <OutputPath>bin\x86\Framework\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Infragistics2.Shared.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

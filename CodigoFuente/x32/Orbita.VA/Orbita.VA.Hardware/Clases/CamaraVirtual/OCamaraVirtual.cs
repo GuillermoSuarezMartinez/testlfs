@@ -16,6 +16,8 @@ using System.IO;
 using System.Windows.Forms;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
+using System.Timers;
+using System.Threading;
 
 namespace Orbita.VA.Hardware
 {
@@ -34,9 +36,17 @@ namespace Orbita.VA.Hardware
         /// </summary>
         private int IndiceFotografia;
         /// <summary>
+        /// Indica la repetición actual
+        /// </summary>
+        private int ContRepeticiones;
+        /// <summary>
         /// Timer que se utiliza para realizar la simulación de la grabación
         /// </summary>
-        private Timer TimerSimulacionGrab;
+        private OThreadLoop ThreadSimulacionGrab;
+        /// <summary>
+        /// Cache de imagenes cargadas de disco
+        /// </summary>
+        private OCacheImagenes<OImagenBitmap> CacheImagenes;
         #endregion
 
         #region Propiedad(es)
@@ -91,6 +101,45 @@ namespace Orbita.VA.Hardware
             get { return _Filtro; }
             set { _Filtro = value; }
         }
+
+        /// <summary>
+        /// Número de repeticiones de la secuencia
+        /// </summary>
+        private int _Repeticiones;
+        /// <summary>
+        /// Número de repeticiones de la secuencia
+        /// </summary>
+        public int Repeticiones
+        {
+            get { return _Repeticiones; }
+            set { _Repeticiones = value; }
+        }
+
+        /// <summary>
+        /// Indica que se ha de usar la cache de fotos cargadas
+        /// </summary>
+        private bool _UsaCache;
+        /// <summary>
+        /// Indica que se ha de usar la cache de fotos cargadas
+        /// </summary>
+        public bool UsaCache
+        {
+            get { return _UsaCache; }
+            set { _UsaCache = value; }
+        }
+
+        /// <summary>
+        /// Número de fotos máximas almacenadas en cache.
+        /// </summary>
+        private int _CapacidadCache;
+        /// <summary>
+        /// Número de fotos máximas almacenadas en cache.
+        /// </summary>
+        public int CapacidadCache
+        {
+            get { return _CapacidadCache; }
+            set { _CapacidadCache = value; }
+        }
         #endregion
 
         #region Constructor(es)
@@ -110,14 +159,20 @@ namespace Orbita.VA.Hardware
                     this._RutaFotografias = dt.Rows[0]["CamVirtual_RutaFotografias"].ToString();
                     this._Filtro = dt.Rows[0]["CamVirtual_Filtro"].ToString();
                     this._IntervaloEntreSnaps = OEntero.Validar(dt.Rows[0]["CamVirtual_IntervaloEntreSnapsMs"], 1, int.MaxValue, 1000);
+                    this._Repeticiones = OEntero.Validar(dt.Rows[0]["CamVirtual_Repeticiones"], -1, int.MaxValue, 1);
+                    this._CapacidadCache = OEntero.Validar(dt.Rows[0]["CamVirtual_CapacidadCache"], -1, int.MaxValue, 0);
+                    this._UsaCache = this._CapacidadCache > 0;
 
                     this.IndiceFotografia = -1;
+                    this.ContRepeticiones = -1;
                     this.ListaRutaFotografias = new List<string>();
 
-                    this.TimerSimulacionGrab = new Timer();
-                    this.TimerSimulacionGrab.Interval = this._IntervaloEntreSnaps;
-                    this.TimerSimulacionGrab.Enabled = false;
-                    this.TimerSimulacionGrab.Tick += EventoGrabSimulado;
+                    this.ThreadSimulacionGrab = new OThreadLoop("Simulacion_" + this.Codigo, this._IntervaloEntreSnaps, ThreadPriority.Normal);
+
+                    if (this._UsaCache)
+                    {
+                        this.CacheImagenes = new OCacheImagenes<OImagenBitmap>(this._CapacidadCache);
+                    }
                 }
                 else
                 {
@@ -128,7 +183,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Fatal(this.Codigo, exception);
+                OLogsVAHardware.Camaras.Fatal(exception, this.Codigo);
                 throw new Exception("Imposible iniciar la cámara " + this.Codigo);
             }
         }
@@ -144,6 +199,7 @@ namespace Orbita.VA.Hardware
             bool resultado = base.ConectarInterno(reconexion);
             try
             {
+                this.ContRepeticiones = -1;
                 switch (this._TipoSimulacion)
                 {
                     case TipoSimulacionCamara.FotografiaSimple:
@@ -161,7 +217,7 @@ namespace Orbita.VA.Hardware
                             string[] arrayFotografias = Directory.GetFiles(this._RutaFotografias, this._Filtro, SearchOption.TopDirectoryOnly);
                             this.ListaRutaFotografias.AddRange(arrayFotografias);
 
-                            this.TimerSimulacionGrab.Interval = this._IntervaloEntreSnaps;
+                            this.ThreadSimulacionGrab.CrearSuscripcionRun(EventoGrabSimulado, true);
 
                             resultado = this.ListaRutaFotografias.Count > 0;
                         }
@@ -190,7 +246,8 @@ namespace Orbita.VA.Hardware
                 {
                     base.StartInterno();
 
-                    this.TimerSimulacionGrab.Enabled = true;
+                    this.IndiceFotografia = -1;
+                    this.ThreadSimulacionGrab.Start();
 
                     resultado = true;
                 }
@@ -216,7 +273,7 @@ namespace Orbita.VA.Hardware
 
                 if (this.EstadoConexion != EstadoConexion.Desconectado)
                 {
-                    this.TimerSimulacionGrab.Enabled = false;
+                    this.ThreadSimulacionGrab.Stop();
 
                     resultado = true;
 
@@ -270,15 +327,12 @@ namespace Orbita.VA.Hardware
         /// </summary>
         /// <param name="source"></param>
         /// <param name="e"></param>
-        public void EventoGrabSimulado(object sender, EventArgs e)
+        public void EventoGrabSimulado(ref bool finalize)
         {
-            try
+            finalize = !this.Play;
+            if (!finalize)
             {
                 this.EjecutarSimulacion();
-            }
-            catch (Exception exception)
-            {
-                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
             }
         }
 
@@ -292,20 +346,33 @@ namespace Orbita.VA.Hardware
 
             try
             {
+                bool cargarFoto = false;
                 string rutaFotografiaActual = "";
 
                 switch (this.TipoSimulacion)
                 {
                     case TipoSimulacionCamara.FotografiaSimple:
-                        rutaFotografiaActual = this.RutaFotografias;
-                        resultado = true;
+                        this.ContRepeticiones ++;
+                        cargarFoto = (this.Repeticiones <= 0) || (OEntero.EnRango(this.ContRepeticiones, 0, this.Repeticiones));
+                        if (cargarFoto)
+                        {
+                            rutaFotografiaActual = this.RutaFotografias;
+                        }
                         break;
                     case TipoSimulacionCamara.DirectorioFotografias:
                         if (this.ListaRutaFotografias.Count > 0)
                         {
                             this.IndiceFotografia++;
-                            resultado = OEntero.EnRango(this.IndiceFotografia, 0, this.ListaRutaFotografias.Count - 1);
-                            if (resultado)
+                            cargarFoto = OEntero.EnRango(this.IndiceFotografia, 0, this.ListaRutaFotografias.Count - 1);
+
+                            if (!cargarFoto)
+                            {
+                                this.ContRepeticiones++;
+                                cargarFoto = (this.Repeticiones <= 0) || (OEntero.EnRango(this.ContRepeticiones, 0, this.Repeticiones));
+                                this.IndiceFotografia = 0;
+                            }
+
+                            if (cargarFoto)
                             {
                                 rutaFotografiaActual = this.ListaRutaFotografias[this.IndiceFotografia];
                             }
@@ -313,16 +380,34 @@ namespace Orbita.VA.Hardware
                         break;
                 }
 
-                if (resultado)
+                if (cargarFoto)
                 {
-                    // Se carga la fotografía de disco
-                    this.ImagenActual = (OImagenBitmap)this.NuevaImagen();
-                    resultado = this.ImagenActual.Cargar(rutaFotografiaActual);
+                    if (this._UsaCache)
+                    {
+                        // Se carga la fotografía de cache
+                        OImagenBitmap nuevaImagen;
+                        resultado = this.CacheImagenes.Cargar(rutaFotografiaActual, out nuevaImagen);
+                        if (resultado)
+                        {
+                            this.ImagenActual = nuevaImagen;
+                            this.ImagenActual.MomentoCreacion = DateTime.Now; // Se actualiza el momento de creación para evitar usar el de la imagen en cache
+                        }
+                    }
+                    else
+                    {
+                        // Se carga la fotografía de disco
+                        this.ImagenActual = (OImagenBitmap)this.NuevaImagen();
+                        resultado = this.ImagenActual.Cargar(rutaFotografiaActual);
+                    }
 
                     if (resultado)
                     {
                         // Lanamos el evento de adquisición
                         this.AdquisicionCompletada(this.ImagenActual);
+                    }
+                    else
+                    {
+                        OLogsVAHardware.Camaras.Error(this.Codigo, "Imposible cargar fotografía para simulación.", "Ruta: " + rutaFotografiaActual);
                     }
                 }
             }

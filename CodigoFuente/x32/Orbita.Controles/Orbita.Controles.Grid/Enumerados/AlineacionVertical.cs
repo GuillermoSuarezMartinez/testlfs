@@ -13,8 +13,17 @@ namespace Orbita.Controles.Grid
 {
     public enum AlineacionVertical
     {
+        /// <summary>
+        /// Alineación vertical superior.
+        /// </summary>
         Arriba = Infragistics.Win.VAlign.Default,
+        /// <summary>
+        /// Alineación vertical media.
+        /// </summary>
         Medio = Infragistics.Win.VAlign.Middle,
+        /// <summary>
+        /// Alineación vertical inferior.
+        /// </summary>
         Abajo = Infragistics.Win.VAlign.Bottom,
     }
 }

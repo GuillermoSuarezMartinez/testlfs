@@ -26,13 +26,8 @@ namespace Orbita.Controles.VA
         /// Constructor de la cámara
         /// </summary>
         /// <param name="codigoCamara"></param>
-        public FrmDetalleCamara(string codigoCamara) :
-            this(codigoCamara, string.Empty, OrigenDatos.OrigenBBDD)
-        {
-        }
-
-        public FrmDetalleCamara(string codigoCamara, string xmlFile, OrigenDatos origenDatos) :
-            base(codigoCamara, xmlFile, origenDatos)
+        public FrmDetalleCamara(string codigoCamara):
+            base(codigoCamara)
         {
             InitializeComponent();
         }
@@ -68,12 +63,35 @@ namespace Orbita.Controles.VA
                 {
                     this.pbCamara.Load(fileName);
                 }
+
+                this.TimerRefresco.Start();
             }
             catch (Exception exception)
             {
                 OLogsControlesVA.ControlesVA.Error(exception, this.Codigo);
             }
         }
+        #endregion
+
+        #region Evento(s)
+        /// <summary>
+        /// Cerramos la ventana automáticamente despues de 10 segundos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TimerRefresco_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                OCamaraBase camara = OCamaraManager.GetCamara(this.Codigo);
+                long contador = camara.ContadorFotografiasTotal;
+                this.lblContFotografias.Text = "Contador de fotografías: " + contador.ToString();
+            }
+            catch (Exception exception)
+            {
+                OLogsControlesVA.ControlesVA.Error(exception, "Apertura de formulario");
+            }
+        }        
         #endregion
     }
 }

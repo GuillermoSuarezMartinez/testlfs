@@ -30,6 +30,31 @@ namespace Orbita.VA.Funciones
     {
         #region Atributo(s)
         /// <summary>
+        /// Constante que indica si se limitan los núcleos a utilizar
+        /// </summary>
+        public static bool LimitCores = false;
+        /// <summary>
+        /// Constante que indica el número máximo de núcleos a utilizar
+        /// </summary>
+        public static int Cores = 12;
+        /// <summary>
+        /// Constante de altura del caracter
+        /// </summary>
+        public static int AvCharHeight = -1;
+        /// <summary>
+        /// Parámetro de cidar
+        /// </summary>
+        public static int DuplicateLines = 0;
+        /// <summary>
+        /// Constante que indica si se ha de realizar una traza del CCR
+        /// </summary>
+        public static bool TraceWrapper = false;
+        /// <summary>
+        /// Trazabilidad
+        /// </summary>
+        public static int Trace = 0;
+
+        /// <summary>
         /// Thread de ejecución continua del módulo CCR
         /// </summary>
         public static ThreadEjecucionCCR ThreadEjecucionCCR;
@@ -38,11 +63,6 @@ namespace Orbita.VA.Funciones
         /// Indica si alguna función de visión ha demandado el uso del CCR
         /// </summary>
         private static bool UsoDemandado = false;
-
-        /// <summary>
-        /// Parámetros de configuración del CCR
-        /// </summary>
-        private static ConfiguracionCCR Configuracion;
         #endregion
 
         #region Método(s) privado(s)
@@ -52,6 +72,18 @@ namespace Orbita.VA.Funciones
         private static void Constructor()
         {
             ThreadEjecucionCCR = new ThreadEjecucionCCR("CCR", ThreadPriority.Normal);
+
+            // Cargamos valores de la base de datos
+            DataTable dtCCR = AppBD.GetConfiguracionCCR();
+            if (dtCCR.Rows.Count == 1)
+            {
+                LimitCores = OBooleano.Validar(dtCCR.Rows[0]["LimitCores"], false);
+                Cores = OEntero.Validar(dtCCR.Rows[0]["Cores"], 1, 10000, 12);
+                AvCharHeight = OEntero.Validar(dtCCR.Rows[0]["AvCharHeight"], -1, 10000, -1);
+                DuplicateLines = OEntero.Validar(dtCCR.Rows[0]["DuplicateLines"], 0, 10000, 0);
+                TraceWrapper = OBooleano.Validar(dtCCR.Rows[0]["TraceWrapper"], false);
+                Trace = OEntero.Validar(dtCCR.Rows[0]["Trace"], 0, 1, 0);
+            }
         }
 
         /// <summary>
@@ -70,19 +102,8 @@ namespace Orbita.VA.Funciones
         {
             try
             {
-                try
-                {
-                    OCCRManager.Configuracion = (ConfiguracionCCR)(new ConfiguracionCCR().CargarDatos());
-                }
-                catch (FileNotFoundException exception)
-                {
-                    OLogsVAFunciones.CCR.Error(exception, "CCR");
-                    OCCRManager.Configuracion = new ConfiguracionCCR();
-                    OCCRManager.Configuracion.Guardar();
-                }
-
                 // Inicializamos el motor de búsqueda de CCR
-                int id = MTInterface.Init(OCCRManager.Configuracion.AvCharHeight, OCCRManager.Configuracion.DuplicateLines, OCCRManager.Configuracion.Trace, OCCRManager.Configuracion.TraceWrapper);
+                int id = MTInterface.Init(OCCRManager.AvCharHeight, OCCRManager.DuplicateLines, OCCRManager.Trace, OCCRManager.TraceWrapper);
                 // Almacenamos el valor de incio
                 if (id == 1)
                 {
@@ -93,9 +114,9 @@ namespace Orbita.VA.Funciones
                     OLogsVAFunciones.CCR.Error("CCR", "Error de inicialización");
                 }
                 // Si hemos de limitar los núcleos los limitamos
-                if (OCCRManager.Configuracion.LimitCores)
+                if (OCCRManager.LimitCores)
                 {
-                    id = MTInterface.LimitCores(OCCRManager.Configuracion.Cores);
+                    id = MTInterface.LimitCores(OCCRManager.Cores);
                     // Almacenamos el valor de incio
                     if (id == 0)
                     {
@@ -108,7 +129,8 @@ namespace Orbita.VA.Funciones
                 OLogsVAFunciones.CCR.Error(exception, "CCR");
             }
 
-            ThreadEjecucionCCR.Start();
+            //ThreadEjecucionCCR.Start();
+            ThreadEjecucionCCR.StartPaused();
         }
 
         /// <summary>
@@ -127,11 +149,11 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Resetea la función de visión CCR
         /// </summary>
-        public static void Reset()
+        internal static void Reset()
         {
             // Detenemos el Hilo
             ThreadEjecucionCCR.Pause();
-            
+
             int id = MTInterface.Reset();
             // Almacenamos el valor de incio
             if (id == 0)
@@ -141,7 +163,7 @@ namespace Orbita.VA.Funciones
                 // Liberamos memoria reservada para la libreria de CCR, cuando termina de procesar las imagenes
                 MTInterface.QueryEnd();
                 // Inicializamos el motor de búsqueda de CCR
-                MTInterface.Init(OCCRManager.Configuracion.AvCharHeight, OCCRManager.Configuracion.DuplicateLines, OCCRManager.Configuracion.Trace, OCCRManager.Configuracion.TraceWrapper);
+                MTInterface.Init(OCCRManager.AvCharHeight, OCCRManager.DuplicateLines, OCCRManager.Trace, OCCRManager.TraceWrapper);
             }
             // Reiniciamos el hilo
             ThreadEjecucionCCR.Resume();
@@ -150,7 +172,7 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Se demanda el uso del CCR, por lo que se necesita iniciar las librerías correspondientes
         /// </summary>
-        public static void DemandaUso()
+        internal static void DemandaUso()
         {
             if (!UsoDemandado)
             {
@@ -167,7 +189,7 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Se elimina la demanda el uso del CCR, por lo que se necesita finalizar las librerías correspondientes
         /// </summary>
-        public static void FinDemandaUso()
+        internal static void FinDemandaUso()
         {
             if (UsoDemandado)
             {
@@ -245,7 +267,7 @@ namespace Orbita.VA.Funciones
 
         #region Método(s) heredado(s)
         /// <summary>
-        /// Método a heredar para implementar la ejecución del thread.
+        /// Método heredado para implementar la ejecución del thread.
         /// Este método se está ejecutando en un bucle. Para salir del bucle hay que devolver finalize a true.
         /// </summary>
         protected override void Ejecucion(ref bool finalize)
@@ -261,7 +283,7 @@ namespace Orbita.VA.Funciones
                     if (element != null)
                     {
                         // Guardamos la traza
-                        OLogsVAFunciones.Vision.Debug(this.Codigo, "Ejecución de la función LPR " + this.Codigo);
+                        OLogsVAFunciones.Vision.Debug(this.Codigo, "Ejecución de la función LPR " + this.Codigo, "Número de elementos pendientes: " + MTInterface.GetNumberOfElements);
 
                         CodeInfo info = element.GetFirstItem;
                         OInfoInspeccionCCR infoInspeccionCCR = (OInfoInspeccionCCR)element.ImageInformation.GetObject; // Obtengo la información de entrada de la inspección
@@ -288,6 +310,13 @@ namespace Orbita.VA.Funciones
                         element.ImageInformation.ClearImage();
                         element.ImageInformation.Dispose();
                         element.Dispose();
+                    }
+
+                    // Se suspende el thread si no hay más elementos que inspeccionar
+                    if ((MTInterface.GetNumberOfElements == 0) && (MTInterface.GetQueueSize == 0) && (MTInterface.GetUsedCores == 0))
+                    {
+                        OLogsVAFunciones.CCR.Debug("Thread de procesado de CCR pausado por no haber imagenes que procesar");
+                        this.Pause();
                     }
                 }
             }
@@ -331,7 +360,7 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Siguiente ruta de imágen a procesar en el CCR
         /// </summary>
-        private string RutaImagen;
+        private string RutaImagenTemporal;
         /// <summary>
         /// Lista de información adicional incorporada por el controlador externo
         /// </summary>
@@ -380,6 +409,7 @@ namespace Orbita.VA.Funciones
                     this.ParametrosCCR.Escala = (float)ODecimal.Validar(dtFuncionVision.Rows[0]["NL_Escala"], 0, +100000, 0);
                     this.ParametrosCCR.Param1 = OEntero.Validar(dtFuncionVision.Rows[0]["NL_Param1"], 0, 10000, 1);
                     this.ParametrosCCR.Param2 = OEntero.Validar(dtFuncionVision.Rows[0]["NL_Param2"], 0, 10000, 1);
+                    this.ParametrosCCR.OrbitaCorreccionPerspectiva = new OCorreccionPerspectiva(dtFuncionVision.Rows[0]);
                 }
             }
             catch (Exception exception)
@@ -400,14 +430,14 @@ namespace Orbita.VA.Funciones
                     parametros.Distancia, parametros.CoeficienteVertical, parametros.CoeficienteHorizontal, parametros.CoeficienteRadial,
                     parametros.AnguloRotacion, parametros.InclinacionVertical, parametros.InclinacionHorizontal, parametros.CoordIzq, parametros.CoordArriba,
                     parametros.AnchuraVentanaBusqueda, parametros.AlturaVentanaBusqueda, parametros.ActivadoRangoAlturas,
-                    parametros.VectorAlturas, parametros.ActivadaMasInformacion,parametros.Escala,parametros.Param1,parametros.Param2);
+                    parametros.VectorAlturas, parametros.ActivadaMasInformacion, parametros.Escala, parametros.Param1, parametros.Param2);
         }
         /// <summary>
         /// Comprueba que el archivo no este en uso
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        private  bool IsFileLocked(FileInfo file)
+        private bool IsFileLocked(FileInfo file)
         {
             FileStream stream = null;
 
@@ -480,42 +510,50 @@ namespace Orbita.VA.Funciones
 
                         // Creamos el objeto con la información que nos interesa, no le pasamos la imagen para que no crezca la memoria
                         OInfoInspeccionCCR infoInspeccionCCR = new OInfoInspeccionCCR(
-                                null,
-                                new OInfoImagenCCR(this.IdEjecucionActual, this.Codigo, this.IndiceFotografia, DateTime.Now, AñadirResultadoParcial),
+                                this.Imagen,
                                 this.ParametrosCCR,
+                                new OInfoImagenCCR(this.IdEjecucionActual, this.Codigo, this.IndiceFotografia, DateTime.Now, this.RutaImagenTemporal, AñadirResultadoParcial),
                                 new OResultadoCCR(),
                                 this.InformacionAdicional);
 
                         // Se carga la configuración
                         this.EstablecerConfiguracion((OParametrosCCR)this.ParametrosCCR);
-
-                        // Se carga la imagen
                         object info = infoInspeccionCCR;
 
+                        // Se carga la imagen
                         //  Si tenemos ruta y imagenes es null, pasamos la ruta y sino viceversa
                         if (this.Imagen == null)
                         {
-                            if (File.Exists(this.RutaImagen))
+                            // Corrección de distorsión
+                            ONerualLabsUtils.CorreccionPerspectivaDisco(this.RutaImagenTemporal, this.ParametrosCCR.OrbitaCorreccionPerspectiva);
+
+                            // adición de imagen
+                            if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                             {
-                                FileInfo fileInfo = new FileInfo(this.RutaImagen);
-                                while (this.IsFileLocked(fileInfo))
-                                {
-                                    // Esperamos a poder utilizar el archivo
-                                    Application.DoEvents();
-                                    Thread.Sleep(1);
-                                }
-                                MTInterface.Add(this.RutaImagen, info);
+                                MTInterface.Add(this.RutaImagenTemporal, info);
+                            }
+                            else
+                            {
+                                OLogsVAFunciones.CCR.Info("FuncionCCR: Fichero de imagen bloqueada");
                             }
                         }
                         else
                         {
-                            MTInterface.Add(this.Imagen.Image, info);
+                            // Corrección de distorsión
+                            OImagenBitmap imagenTrabajo = ONerualLabsUtils.CorreccionPerspectivaMemoria(this.Imagen, this.ParametrosCCR.OrbitaCorreccionPerspectiva);
+
+                            // adición de imagen
+                            MTInterface.Add(imagenTrabajo.Image, false, info);
                         }
+
+                        // Se despierta el thread
+                        OLogsVAFunciones.CCR.Debug("Imagen añadida", "Número de imagenes encoladas: " + MTInterface.GetQueueSize);
+                        OCCRManager.ThreadEjecucionCCR.Resume();
                     }
                     else
                     {
                         // Temporal hasta que lo soluccionen
-                        OLogsVAFunciones.CCR.Info("FuncionCCR: Sobrepasado el limite de imagenes en cola", "");
+                        OLogsVAFunciones.CCR.Info("FuncionCCR: Sobrepasado el limite de imagenes en cola");
                     }
                 }
             }
@@ -523,6 +561,9 @@ namespace Orbita.VA.Funciones
             {
                 OLogsVAFunciones.CCR.Error(exception, "FuncionCCR");
             }
+
+            // Se reseta el diccionario de informacción adicional
+            this.InformacionAdicional = new Dictionary<string, object>();
 
             return resultado;
         }
@@ -542,6 +583,15 @@ namespace Orbita.VA.Funciones
         }
 
         /// <summary>
+        /// Resetea la cola de ejecución
+        /// </summary>
+        public override void ResetearColaEjecucion()
+        {
+            base.ResetearColaEjecucion();
+            this.InformacionAdicional = new Dictionary<string, object>();
+        }
+
+        /// <summary>
         /// Función para la actualización de parámetros de entrada
         /// </summary>
         /// <param name="ParamName">Nombre identificador del parámetro</param>
@@ -554,7 +604,7 @@ namespace Orbita.VA.Funciones
 
             try
             {
-                if (tipoVariable == OEnumTipoDato.Imagen)
+                if (codigo == "Imagen")
                 {
                     this.Imagen = (OImagenBitmap)valor;
                 }
@@ -564,7 +614,7 @@ namespace Orbita.VA.Funciones
                 }
                 else if (codigo == "RutaImagen")
                 {
-                    this.RutaImagen = (string)valor;
+                    this.RutaImagenTemporal = (string)valor;
                 }
                 else
                 {
@@ -587,39 +637,13 @@ namespace Orbita.VA.Funciones
         /// <param name="ParamValue">Nuevo valor del parámetro</param>
         /// <returns></returns>
         /// <remarks></remarks>
-        public override bool SetEntrada(EnumEntradaFuncionVision entrada, object valor, OEnumTipoDato tipoVariable)
+        public override bool SetEntrada(EnumTipoEntradaFuncionVision tipoEntrada, object valor, OEnumTipoDato tipoVariable)
         {
-            bool resultado = false;
-
-            try
-            {
-                if (entrada == EntradasFuncionesVisionCCR.Imagen)
-                {
-                    this.Imagen = (OImagenBitmap)valor;
-                }
-                else if (entrada == EntradasFuncionesVisionCCR.ParametrosCCR)
-                {
-                    this.ParametrosCCR = (OParametrosCCR)valor;
-                }
-                else if (entrada == EntradasFuncionesVisionCCR.RutaImagen)
-                {
-                    this.RutaImagen = (string)valor;
-                }
-                else
-                {
-                    this.InformacionAdicional[entrada.Nombre] = valor;
-                    //throw new Exception("Error en la asignación del parámetro '" + entrada.Nombre + "' a la función '" + this.Codigo + "'. No se admite este tipo de parámetros.");
-                }
-                resultado = true;
-            }
-            catch (Exception exception)
-            {
-                OLogsVAFunciones.CCR.Error(exception, this.Codigo);
-            }
-            return resultado;
+            return SetEntrada(tipoEntrada.Nombre, valor, tipoVariable);
         }
         #endregion
     }
+
 
     /// <summary>
     /// Clase que contiene la información referente a la inspección
@@ -627,7 +651,7 @@ namespace Orbita.VA.Funciones
     /// <typeparam name="TInfo"></typeparam>
     /// <typeparam name="TParametros"></typeparam>
     /// <typeparam name="TResultados"></typeparam>
-    public class OInfoInspeccionCCR : OInfoInspeccion<OImagenBitmap, OInfoImagenCCR, OParametrosCCR, OResultadoCCR>
+    public class OInfoInspeccionCCR : OInfoInspeccion<OImagenBitmap, OParametrosCCR, OInfoImagenCCR, OResultadoCCR>
     {
         #region Constructor
         /// <summary>
@@ -643,66 +667,11 @@ namespace Orbita.VA.Funciones
         /// <param name="info"></param>
         /// <param name="parametros"></param>
         /// <param name="resultados"></param>
-        public OInfoInspeccionCCR(OImagenBitmap imagen, OInfoImagenCCR info, OParametrosCCR parametros, OResultadoCCR resultados, Dictionary<string, object> informacionAdicional)
-            : base(imagen, info, parametros, resultados, informacionAdicional)
+        public OInfoInspeccionCCR(OImagenBitmap imagen, OParametrosCCR parametros, OInfoImagenCCR info, OResultadoCCR resultados, Dictionary<string, object> informacionAdicional)
+            : base(imagen, parametros, info, resultados, informacionAdicional)
         {
         }
         #endregion
-    }
-
-    /// <summary>
-    /// Esta clase contendra la información que queremos pasar con la imagen al CCR para recogerla cuando tengamos el resultado
-    /// </summary>
-    public class OInfoImagenCCR
-    {
-        #region Atributo(s)
-        /// <summary>
-        /// Contiene la información de la identificacion a la que pertenece
-        /// </summary>
-        public long IdEjecucionActual;
-        /// <summary>
-        /// Contiene la información de la cámara que se le pasa en la imagen
-        /// </summary>
-        public string CodigoCamara;
-        /// <summary>
-        /// Contiene el indice de la imagen añadida
-        /// </summary>
-        public int IndiceImagen;
-        /// <summary>
-        /// Contiene la fecha exacta en la que se adquirio la imagen
-        /// </summary>
-        public DateTime MomentoImagen;
-        /// <summary>
-        /// CallBack donde mandar el resultado parcial
-        /// </summary>
-        internal CallBackResultadoParcial CallBackResultadoParcial;
-        #endregion
-
-        #region Constructor(es)
-        /// <summary>
-        /// Constructor sin parametros
-        /// </summary>
-        public OInfoImagenCCR()
-        {
-            this.IdEjecucionActual = 0;
-            this.CodigoCamara = "";
-            this.IndiceImagen = 0;
-            this.MomentoImagen = DateTime.Now;
-        }
-        /// <summary>
-        /// Constructor con parametros
-        /// </summary>
-        /// <param name="camara">camara que adquiere la imagen</param>
-        public OInfoImagenCCR(long idEjecucionActual,string codCamara, int indice, DateTime momentoImagen, CallBackResultadoParcial callBackResultadoParcial)
-        {
-            this.IdEjecucionActual = idEjecucionActual;
-            this.CodigoCamara = codCamara;
-            this.IndiceImagen = indice;
-            this.MomentoImagen = momentoImagen;
-            this.CallBackResultadoParcial = callBackResultadoParcial;
-        }
-        #endregion
-
     }
 
     /// <summary>
@@ -799,6 +768,10 @@ namespace Orbita.VA.Funciones
         /// Parámetro2
         /// </summary>
         public int Param2;
+        /// <summary>
+        /// Parámetros de corrección de perspectiva de Orbita
+        /// </summary>
+        public OCorreccionPerspectiva OrbitaCorreccionPerspectiva;
         #endregion Campos
 
         #region Constructor(es)
@@ -831,52 +804,294 @@ namespace Orbita.VA.Funciones
             this.Escala = 0;
             this.Param1 = 0;
             this.Param2 = 0;
+            this.OrbitaCorreccionPerspectiva = new OCorreccionPerspectiva();
         }
         #endregion Constructores
     }
 
     /// <summary>
+    /// Esta clase contendra la información que queremos pasar con la imagen al CCR para recogerla cuando tengamos el resultado
+    /// </summary>
+    public class OInfoImagenCCR : OConvertibleXML
+    {
+        #region Propiedades(s)
+        /// <summary>
+        /// Contiene la información de la identificacion a la que pertenece
+        /// </summary>
+        private long _IdEjecucionActual;
+        /// <summary>
+        /// Contiene la información de la identificacion a la que pertenece
+        /// </summary>
+        public long IdEjecucionActual
+        {
+            get { return _IdEjecucionActual; }
+            set
+            {
+                this._IdEjecucionActual = value;
+                this.Propiedades["IdEjecucionActual"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Contiene la información de la cámara que se le pasa en la imagen
+        /// </summary>
+        private string _Codigo;
+        /// <summary>
+        /// Contiene la información de la cámara que se le pasa en la imagen
+        /// </summary>
+        public string Codigo
+        {
+            get { return _Codigo; }
+            set
+            {
+                this._Codigo = value;
+                this.Propiedades["CodigoCamara"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Contiene el indice de la imagen añadida
+        /// </summary>
+        private int _IndiceImagen;
+        /// <summary>
+        /// Contiene el indice de la imagen añadida
+        /// </summary>
+        public int IndiceImagen
+        {
+            get { return _IndiceImagen; }
+            set
+            {
+                this._IndiceImagen = value;
+                this.Propiedades["IndiceImagen"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Contiene la fecha exacta en la que se adquirio la imagen
+        /// </summary>
+        private DateTime _MomentoImagen;
+        /// <summary>
+        /// Contiene la fecha exacta en la que se adquirio la imagen
+        /// </summary>
+        public DateTime MomentoImagen
+        {
+            get { return _MomentoImagen; }
+            set
+            {
+                this._MomentoImagen = value;
+                this.Propiedades["MomentoImagen"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Ruta de la imagen temporal
+        /// </summary>
+        private string _RutaImagenTemporal;
+        /// <summary>
+        /// Ruta de la imagen temporal
+        /// </summary>
+        public string RutaImagenTemporal
+        {
+            get { return _RutaImagenTemporal; }
+            set
+            {
+                this._RutaImagenTemporal = value;
+                this.Propiedades["RutaImagenTemporal"] = value;
+            }
+        }
+
+        /// <summary>
+        /// CallBack donde mandar el resultado parcial
+        /// </summary>
+        internal CallBackResultadoParcial CallBackResultadoParcial;
+        #endregion
+
+        #region Constructor(es)
+        /// <summary>
+        /// Constructor sin parametros
+        /// </summary>
+        public OInfoImagenCCR()
+        {
+            this.IdEjecucionActual = 0;
+            this.Codigo = string.Empty;
+            this.IndiceImagen = 0;
+            this.MomentoImagen = DateTime.Now;
+            this.RutaImagenTemporal = string.Empty;
+            this.CallBackResultadoParcial = null;
+        }
+        /// <summary>
+        /// Constructor con parametros
+        /// </summary>
+        /// <param name="camara">camara que adquiere la imagen</param>
+        public OInfoImagenCCR(long idEjecucionActual, string codCamara, int indice, DateTime momentoImagen, string rutaImagenTemporal, CallBackResultadoParcial callBackResultadoParcial)
+        {
+            this.IdEjecucionActual = idEjecucionActual;
+            this.Codigo = codCamara;
+            this.IndiceImagen = indice;
+            this.MomentoImagen = momentoImagen;
+            this.RutaImagenTemporal = rutaImagenTemporal;
+            this.CallBackResultadoParcial = callBackResultadoParcial;
+        }
+        #endregion
+    }
+
+    /// <summary>
     /// Clase que contiene los resultados que se reciben del CCR para una imagen pasada anteriormente
     /// </summary>
-    public class OResultadoCCR
+    public class OResultadoCCR : OConvertibleXML
     {
-        #region Atributo(s)
+        #region Propiedades(s)
         /// <summary>
         /// Contiene la cadena del codigo del contenedor
         /// </summary>
-        public string CodigoContenedor;
+        private string _CodigoContenedor;
+        /// <summary>
+        /// Contiene la cadena del codigo del contenedor
+        /// </summary>
+        public string CodigoContenedor
+        {
+            get { return _CodigoContenedor; }
+            set
+            {
+                this._CodigoContenedor = value;
+                this.Propiedades["CodigoContenedor"] = value;
+            }
+        }
+
         /// <summary>
         /// Contiene la información extra del código del contenedor
         /// </summary>
-        public string ExtaInfoCodigo;
+        private string _ExtaInfoCodigo;
+        /// <summary>
+        /// Contiene la información extra del código del contenedor
+        /// </summary>
+        public string ExtaInfoCodigo
+        {
+            get { return _ExtaInfoCodigo; }
+            set
+            {
+                this._ExtaInfoCodigo = value;
+                this.Propiedades["ExtaInfoCodigo"] = value;
+            }
+        }
+
         /// <summary>
         /// Si esta verificado el digito de control
         /// </summary>
-        public bool CodigoVerificado;
+        private bool _CodigoVerificado;
+        /// <summary>
+        /// Si esta verificado el digito de control
+        /// </summary>
+        public bool CodigoVerificado
+        {
+            get { return _CodigoVerificado; }
+            set
+            {
+                this._CodigoVerificado = value;
+                this.Propiedades["CodigoVerificado"] = value;
+            }
+        }
+
         /// <summary>
         /// Fiabilidad Código
         /// </summary>
-        public int FiabilidadCodigo;
+        private int _FiabilidadCodigo;
+        /// <summary>
+        /// Fiabilidad Código
+        /// </summary>
+        public int FiabilidadCodigo
+        {
+            get { return _FiabilidadCodigo; }
+            set
+            {
+                this._FiabilidadCodigo = value;
+                this.Propiedades["FiabilidadCodigo"] = value;
+            }
+        }
+
         /// <summary>
         /// Fiabilidad ExtraInfo
         /// </summary>
-        public int FiabilidadExtraInfo;
+        private int _FiabilidadExtraInfo;
+        /// <summary>
+        /// Fiabilidad ExtraInfo
+        /// </summary>
+        public int FiabilidadExtraInfo
+        {
+            get { return _FiabilidadExtraInfo; }
+            set
+            {
+                this._FiabilidadExtraInfo = value;
+                this.Propiedades["FiabilidadExtraInfo"] = value;
+            }
+        }
+
         /// <summary>
         /// Altura letras
         /// </summary>
-        public int AlturaLetrasCodigo;       
+        private int _AlturaLetrasCodigo;
+        /// <summary>
+        /// Altura letras
+        /// </summary>
+        public int AlturaLetrasCodigo
+        {
+            get { return _AlturaLetrasCodigo; }
+            set
+            {
+                this._AlturaLetrasCodigo = value;
+                this.Propiedades["AlturaLetrasCodigo"] = value;
+            }
+        }
         /// <summary>
         /// Fecha en la que se encolo a la cola de CCR (dada por él)
         /// </summary>
-        public DateTime FechaEncolamiento;
+        private DateTime _FechaEncolamiento;
+        /// <summary>
+        /// Fecha en la que se encolo a la cola de CCR (dada por él)
+        /// </summary>
+        public DateTime FechaEncolamiento
+        {
+            get { return _FechaEncolamiento; }
+            set
+            {
+                this._FechaEncolamiento = value;
+                this.Propiedades["FechaEncolamiento"] = value;
+            }
+        }
+
         /// <summary>
         /// Tiempo de proceso
         /// </summary>
-        public int TiempoDeProceso;
+        private int _TiempoDeProceso;
+        /// <summary>
+        /// Tiempo de proceso
+        /// </summary>
+        public int TiempoDeProceso
+        {
+            get { return _TiempoDeProceso; }
+            set
+            {
+                this._TiempoDeProceso = value;
+                this.Propiedades["TiempoDeProceso"] = value;
+            }
+        }
+
         /// <summary>
         /// Contiene las fiabilidades de cada letra individual
         /// </summary>
-        public int[] FiabilidadesLetras;
+        private float[] _FiabilidadesLetras;
+        /// <summary>
+        /// Contiene las fiabilidades de cada letra individual
+        /// </summary>
+        public float[] FiabilidadesLetras
+        {
+            get { return _FiabilidadesLetras; }
+            set
+            {
+                this._FiabilidadesLetras = value;
+                this.Propiedades["FiabilidadesLetras"] = value;
+            }
+        }
         #endregion
 
         #region Constructor(es)
@@ -893,7 +1108,7 @@ namespace Orbita.VA.Funciones
             this.AlturaLetrasCodigo = 0;
             this.TiempoDeProceso = 0;
             this.FechaEncolamiento = new DateTime();
-            this.FiabilidadesLetras = new int[11];
+            this.FiabilidadesLetras = new float[11];
             for (int i = 0; i < this.FiabilidadesLetras.Length; i++)
             {
                 this.FiabilidadesLetras[i] = 0;
@@ -906,44 +1121,37 @@ namespace Orbita.VA.Funciones
         {
             try
             {
-                // Inicializamos el vector de fiabilidades de las letras
-                this.FiabilidadesLetras = new int[11];
-                for (int i = 0; i < this.FiabilidadesLetras.Length; i++)
-                {
-                    this.FiabilidadesLetras[i] = 0;
-                }
-                this.CodigoContenedor = (string)resultadoImagen.GetCodeNumber.ToString().Clone();
+                // Código del contenedor
+                this.CodigoContenedor = OTexto.Validar(resultadoImagen.GetCodeNumber);
+
                 // Si tenemos código identificado , obtenemos las fiabilidades de cada una de las letras
-                if (this.CodigoContenedor != "")
+                float[] fiabilidadesLetras = new float[11] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+                if (!string.IsNullOrEmpty(this.CodigoContenedor) && (resultadoImagen.GetCharConfidence != null) && (resultadoImagen.GetCharConfidence.Length > 0) && (resultadoImagen.GetCharConfidence.Length <= fiabilidadesLetras.Length))
                 {
                     float[] fiabilidades = resultadoImagen.GetCharConfidence;
                     for (int i = 0; i < fiabilidades.Length; i++)
                     {
-                        this.FiabilidadesLetras[i] = Convert.ToInt32(fiabilidades[i]);
+                        fiabilidadesLetras[i] = (float)ODecimal.Validar(fiabilidades[i]);
                     }
                 }
+                this.FiabilidadesLetras = fiabilidadesLetras;
+
                 // Si tenemos información extra la obtenemos
-                if (resultadoImagen.GetExtraInfoCodeNumber != null)
-                {
-                    this.ExtaInfoCodigo = (string)resultadoImagen.GetExtraInfoCodeNumber.ToString().Clone();
-                    this.FiabilidadExtraInfo = Convert.ToInt32((Convert.ToInt32(resultadoImagen.GetExtraInfoConfidence)).ToString().Clone());
-                }
-                else
-                {
-                    this.ExtaInfoCodigo = "";
-                }
+                this.ExtaInfoCodigo = OTexto.Validar(resultadoImagen.GetExtraInfoCodeNumber);
+                this.FiabilidadExtraInfo = OEntero.Validar(resultadoImagen.GetExtraInfoConfidence);
+
                 // Obtenemos el resto de resultados independientes
-                this.CodigoVerificado = Convert.ToBoolean((Convert.ToBoolean(resultadoImagen.IsCodeVerified)).ToString().Clone());
-                this.FiabilidadCodigo = Convert.ToInt32((Convert.ToInt32(resultadoImagen.GetGlobalConfidence)).ToString().Clone());
-                this.AlturaLetrasCodigo = Convert.ToInt32((Convert.ToInt32(resultadoImagen.GetAverageCharacterHeigth)).ToString().Clone());
-                this.TiempoDeProceso = Convert.ToInt32((Convert.ToInt32(resultadoImagen.GetProcessingTime)).ToString().Clone());
+                this.CodigoVerificado = OBooleano.Validar(resultadoImagen.IsCodeVerified);
+                this.FiabilidadCodigo = OEntero.Validar(resultadoImagen.GetGlobalConfidence);
+                this.AlturaLetrasCodigo = OEntero.Validar(resultadoImagen.GetAverageCharacterHeigth);
+                this.TiempoDeProceso = OEntero.Validar(resultadoImagen.GetProcessingTime);
                 this.FechaEncolamiento = fechaEncola;
             }
             catch (Exception exception)
             {
                 // En caso de que se produzca cualquier error no contemplado, descartaremos el resultado recibido permitiendo continuar la ejecución
-                this.CodigoContenedor = "";
-                this.ExtaInfoCodigo = "";
+                this.CodigoContenedor = string.Empty;
+                this.ExtaInfoCodigo = string.Empty;
                 this.CodigoVerificado = false;
                 this.FiabilidadCodigo = 0;
                 this.FiabilidadExtraInfo = 0;
@@ -951,91 +1159,30 @@ namespace Orbita.VA.Funciones
                 this.TiempoDeProceso = 0;
                 this.FechaEncolamiento = new DateTime();
                 this.FechaEncolamiento = DateTime.Now;
-                for (int i = 0; i < this.FiabilidadesLetras.Length; i++)
-                {
-                    this.FiabilidadesLetras[i] = 0;
-                }
-                OLogsVAFunciones.CCR.Info("FuncionCCR:" + resultadoImagen.GetAverageCharacterHeigth.ToString()
-                     + " " + resultadoImagen.GetGlobalConfidence.ToString()
-                        + " " + resultadoImagen.GetExtraInfoConfidence.ToString(), exception);
+                this.FiabilidadesLetras = new float[11] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+                OLogsVAFunciones.CCR.Info(exception, "FuncionCCR:" + resultadoImagen.GetAverageCharacterHeigth
+                     + " " + resultadoImagen.GetGlobalConfidence
+                        + " " + resultadoImagen.GetExtraInfoConfidence);
             }
         }
         #endregion
     }
 
     /// <summary>
-    /// Parámetros de la aplicación
-    /// </summary>
-    [Serializable]
-    public class ConfiguracionCCR : OAlmacenXML
-    {
-        #region Atributo(s) estáticos
-        /// <summary>
-        /// Ruta por defecto del fichero xml de configuración
-        /// </summary>
-        public static string ConfFile = Path.Combine(ORutaParametrizable.AppFolder, "ConfiguracionCCR.xml");
-        #endregion
-
-        #region Atributo(s)
-        /// <summary>
-        /// Constante que indica si se ha de realizar una traza del CCR
-        /// </summary>
-        public bool TraceWrapper = true;
-        /// <summary>
-        /// Constante que indica si se limitan los núcleos a utilizar
-        /// </summary>
-        public bool LimitCores = false;
-        /// <summary>
-        /// Constante que indica el número máximo de núcleos a utilizar
-        /// </summary>
-        public int Cores = 12;
-        /// <summary>
-        /// Constante de altura del caracter
-        /// </summary>
-        public int AvCharHeight = -1;
-        /// <summary>
-        /// Parámetro de cidar
-        /// </summary>
-        public int DuplicateLines = 0;
-        /// <summary>
-        /// Trazabilidad
-        /// </summary>
-        public int Trace = 1;
-        #endregion
-
-        #region Constructor
-        /// <summary>
-        /// Contructor de la clase
-        /// </summary>
-        public ConfiguracionCCR()
-            : base(ConfFile)
-        {
-        }
-
-        /// <summary>
-        /// Contructor de la clase
-        /// </summary>
-        public ConfiguracionCCR(string rutaFichero)
-            : base(rutaFichero)
-        {
-        }
-        #endregion Constructor
-    }
-
-    /// <summary>
     /// Define el conjunto de tipos de entradas de las funciones de visión CCR
     /// </summary>
-    public class EntradasFuncionesVisionCCR : EntradasFuncionesVision
+    public class EntradasFuncionesVisionCCR : TipoEntradasFuncionesVision
     {
         #region Atributo(s)
-        /// <summary>
-        /// Parametros de configuración del CCR
-        /// </summary>
-        public static EnumEntradaFuncionVision ParametrosCCR = new EnumEntradaFuncionVision("ParametrosLPR", "Parametros de configuración del CCR", 201);
         /// <summary>
         /// Ruta en disco de la imagen de entrada
         /// </summary>
-        public static EnumEntradaFuncionVision RutaImagen = new EnumEntradaFuncionVision("RutaImagen", "Ruta en disco de la imagen de entrada", 202);
+        public static EnumTipoEntradaFuncionVision RutaImagen = new EnumTipoEntradaFuncionVision("RutaImagen", "Ruta en disco de la imagen de entrada", 202);
         #endregion
     }
 }
+
+
+
+

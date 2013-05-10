@@ -9,9 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using Infragistics.Win.UltraWinGrid;
-using System.ComponentModel;
 namespace Orbita.Controles.Grid
 {
     [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
@@ -50,8 +47,8 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Eventos
-        public event EventHandler<OPropiedadEventArgs> PropertyChanging;
-        public event EventHandler<OPropiedadEventArgs> PropertyChanged;
+        public event System.EventHandler<OPropiedadEventArgs> PropertyChanging;
+        public event System.EventHandler<OPropiedadEventArgs> PropertyChanged;
         #endregion
 
         #region Constructor
@@ -63,14 +60,14 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Propiedades
-        [System.ComponentModel.Description("Determina la apariencia de fila.")]
+        [System.ComponentModel.Description("Determina la apariencia de filas.")]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public override OApariencia Apariencia
         {
             get { return base.Apariencia; }
             set { base.Apariencia = value; }
         }
-        [System.ComponentModel.Description("Determina la configuración de la fila activa.")]
+        [System.ComponentModel.Description("Determina la configuración de las filas activas.")]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content), System.ComponentModel.Category("Fila")]
         public OFilasActivas Activas
         {
@@ -84,7 +81,7 @@ namespace Orbita.Controles.Grid
             }
             set { this.activas = value; }
         }
-        [System.ComponentModel.Description("Determina la configuración de la fila alterna.")]
+        [System.ComponentModel.Description("Determina la configuración de las filas alternas.")]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content), System.ComponentModel.Category("Fila")]
         public OFilasAlternas Alternas
         {
@@ -98,7 +95,7 @@ namespace Orbita.Controles.Grid
             }
             set { this.alternas = value; }
         }
-        [System.ComponentModel.Description("Determina la configuración de la fila nueva.")]
+        [System.ComponentModel.Description("Determina la configuración de las filas nuevas.")]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content), System.ComponentModel.Category("Fila")]
         public OFilasNuevas Nuevas
         {
@@ -112,7 +109,7 @@ namespace Orbita.Controles.Grid
             }
             set { this.nuevas = value; }
         }
-        [System.ComponentModel.Description("Determina la configuración de la fila seleccionada.")]
+        [System.ComponentModel.Description("Determina la configuración de las filas seleccionadas.")]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content), System.ComponentModel.Category("Fila")]
         public OFilasSeleccionadas Seleccionadas
         {
@@ -160,7 +157,7 @@ namespace Orbita.Controles.Grid
                 }
             }
         }
-        [System.ComponentModel.Description("Confirmar borrado de fila.")]
+        [System.ComponentModel.Description("Confirmar borrado de filas.")]
         public bool ConfirmarBorrado
         {
             get { return this.confirmarBorrado; }
@@ -200,7 +197,7 @@ namespace Orbita.Controles.Grid
                 }
             }
         }
-        [Browsable(false)]
+        [System.ComponentModel.Browsable(false)]
         public TipoSeleccionFila TipoSeleccion
         {
             get { return this.tipoSeleccion; }
@@ -234,26 +231,46 @@ namespace Orbita.Controles.Grid
         {
             this.PermitirBorrar = Configuracion.DefectoPermitirBorrar;
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeMostrarIndicador()
         {
             return (this.MostrarIndicador != Configuracion.DefectoMostrarIndicador);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeMultiseleccion()
         {
             return (this.Multiseleccion != Configuracion.DefectoMultiseleccion);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeConfirmarBorrado()
         {
             return (this.ConfirmarBorrado != Configuracion.DefectoConfirmarBorrado);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeAlto()
         {
             return (this.Alto != Configuracion.DefectoAlto);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializePermitirBorrar()
         {
@@ -303,7 +320,7 @@ namespace Orbita.Controles.Grid
         }
         public void Actualizar()
         {
-            UltraGridRow fila = this.Control.ActiveRow;
+            Infragistics.Win.UltraWinGrid.UltraGridRow fila = this.Control.ActiveRow;
             if (fila != null && fila.IsDataRow && !fila.IsFilteredOut && fila.IsAddRow)
             {
                 fila.Update();

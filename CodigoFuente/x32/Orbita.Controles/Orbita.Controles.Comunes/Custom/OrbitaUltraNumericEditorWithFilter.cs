@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
 namespace Orbita.Controles.Comunes
 {
     public partial class OrbitaUltraNumericEditorWithFilter : Orbita.Controles.Shared.OrbitaUserControl
@@ -18,27 +17,27 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Valor mínimo del año A.
         /// </summary>
-        int _minAnyoA;
+        int minAnyoA;
         /// <summary>
         /// Valor máximo del año A.
         /// </summary>
-        int _maxAnyoA;
+        int maxAnyoA;
         /// <summary>
         /// Valor del año A.
         /// </summary>
-        int _valorAnyoA;
+        int valorAnyoA;
         /// <summary>
         /// Valor mínimo del año B.
         /// </summary>
-        int _minAnyoB;
+        int minAnyoB;
         /// <summary>
         /// Valor máximo del año B.
         /// </summary>
-        int _maxAnyoB;
+        int maxAnyoB;
         /// <summary>
         /// Valor del año B.
         /// </summary>
-        int _valorAnyoB;
+        int valorAnyoB;
         #endregion
 
         #region Constructor
@@ -61,8 +60,8 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.DefaultValue(0)]
         public int OrbMinAnyoA
         {
-            get { return this._minAnyoA; }
-            set { this._minAnyoA = value; }
+            get { return this.minAnyoA; }
+            set { this.minAnyoA = value; }
         }
         /// <summary>
         /// Valor máximo del año A.
@@ -72,8 +71,8 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.DefaultValue(0)]
         public int OrbMaxAnyoA
         {
-            get { return this._maxAnyoA; }
-            set { this._maxAnyoA = value; }
+            get { return this.maxAnyoA; }
+            set { this.maxAnyoA = value; }
         }
         /// <summary>
         /// Valor del año A.
@@ -85,13 +84,13 @@ namespace Orbita.Controles.Comunes
         {
             get
             {
-                this._valorAnyoA = System.Convert.ToInt32(this.neAnyoA.Value, System.Globalization.CultureInfo.CurrentCulture);
-                return this._valorAnyoA;
+                this.valorAnyoA = System.Convert.ToInt32(this.neAnyoA.Value, System.Globalization.CultureInfo.CurrentCulture);
+                return this.valorAnyoA;
             }
             set
             {
-                this._valorAnyoA = value;
-                this.neAnyoA.Value = this._valorAnyoA;
+                this.valorAnyoA = value;
+                this.neAnyoA.Value = this.valorAnyoA;
             }
         }
         /// <summary>
@@ -102,8 +101,8 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.DefaultValue(0)]
         public int OrbMinAnyoB
         {
-            get { return this._minAnyoB; }
-            set { this._minAnyoB = value; }
+            get { return this.minAnyoB; }
+            set { this.minAnyoB = value; }
         }
         /// <summary>
         /// Valor máximo del año B.
@@ -113,8 +112,8 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.DefaultValue(0)]
         public int OrbMaxAnyoB
         {
-            get { return this._maxAnyoB; }
-            set { this._maxAnyoB = value; }
+            get { return this.maxAnyoB; }
+            set { this.maxAnyoB = value; }
         }
         /// <summary>
         /// Valor del año B.
@@ -126,13 +125,13 @@ namespace Orbita.Controles.Comunes
         {
             get
             {
-                this._valorAnyoB = System.Convert.ToInt32(this.neAnyoB.Value, System.Globalization.CultureInfo.CurrentCulture);
-                return this._valorAnyoB;
+                this.valorAnyoB = System.Convert.ToInt32(this.neAnyoB.Value, System.Globalization.CultureInfo.CurrentCulture);
+                return this.valorAnyoB;
             }
             set
             {
-                this._valorAnyoB = value;
-                this.neAnyoB.Value = this._valorAnyoB;
+                this.valorAnyoB = value;
+                this.neAnyoB.Value = this.valorAnyoB;
             }
         }
         #endregion
@@ -184,8 +183,9 @@ namespace Orbita.Controles.Comunes
             {
                 this.CompruebaAnyos();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
+                throw;
             }
         }
         #endregion

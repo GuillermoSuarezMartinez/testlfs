@@ -170,8 +170,10 @@ namespace Orbita.Controles.Comunes
         /// where the item was added.</returns>
         public int Add(OColumnHeader columna)
         {
-            if (columna == null) return 0;
-
+            if (columna == null)
+            {
+                return 0;
+            }
             // Add the column to the base
             int retValue = base.Add(columna);
             // Keep a refrence in columnList

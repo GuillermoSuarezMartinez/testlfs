@@ -144,7 +144,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionBase.SetEntrada(System.String,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionBase.SetEntrada(System.String,System.Object,Orbita.Utiles.OEnumTipoDato)">
             <summary>
             Función para la actualización de parámetros de entrada
             </summary>
@@ -153,16 +153,16 @@
             <returns></returns>
             <remarks></remarks>
         </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionBase.SetEntrada(Orbita.VA.Funciones.EnumEntradaFuncionVision,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionBase.SetEntrada(Orbita.VA.Funciones.EnumTipoEntradaFuncionVision,System.Object,Orbita.Utiles.OEnumTipoDato)">
             <summary>
             Función para la actualización de parámetros de entrada
             </summary>
-            <param name="entrada">Nombre identificador del parámetro</param>
+            <param name="tipoEntrada">Nombre identificador del parámetro</param>
             <param name="ParamValue">Nuevo valor del parámetro</param>
             <returns></returns>
             <remarks></remarks>
         </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionBase.GetSalida(System.String,System.Object@,Orbita.VA.Comun.OEnumTipoDato)">
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionBase.GetSalida(System.String,System.Object@,Orbita.Utiles.OEnumTipoDato)">
             <summary>
             Función para la consulta de parámetros de salida
             </summary>
@@ -171,7 +171,7 @@
             <returns></returns>
             <remarks></remarks>
         </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionBase.GetSalida(Orbita.VA.Funciones.EnumSalidaFuncionVision,System.Object@,Orbita.VA.Comun.OEnumTipoDato)">
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionBase.GetSalida(Orbita.VA.Funciones.EnumTipoSalidaFuncionVision,System.Object@,Orbita.Utiles.OEnumTipoDato)">
             <summary>
             Función para la consulta de parámetros de salida
             </summary>
@@ -289,7 +289,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.SetEntrada(System.String,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.SetEntrada(System.String,System.Object,Orbita.Utiles.OEnumTipoDato)">
             <summary>
             Función para la actualización de parámetros de entrada
             </summary>
@@ -298,7 +298,7 @@
             <returns></returns>
             <remarks></remarks>
         </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.GetSalida(System.String,System.Object@,Orbita.VA.Comun.OEnumTipoDato)">
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionPro.GetSalida(System.String,System.Object@,Orbita.Utiles.OEnumTipoDato)">
             <summary>
             Función para la consulta de parámetros de salida
             </summary>
@@ -307,9 +307,116 @@
             <returns></returns>
             <remarks></remarks>
         </member>
+        <member name="T:Orbita.VA.Funciones.ONerualLabsUtils">
+            <summary>
+            Clase estática con utilidades para el procesado de neural labs
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.ONerualLabsUtils.CorreccionPerspectivaDisco(System.String,Orbita.VA.Funciones.OCorreccionPerspectiva)">
+            <summary>
+            Corrección de la perspectiva
+            </summary>
+            <param name="parametros"></param>
+        </member>
+        <member name="M:Orbita.VA.Funciones.ONerualLabsUtils.CorreccionPerspectivaMemoria(Orbita.VA.Comun.OImagenBitmap,Orbita.VA.Funciones.OCorreccionPerspectiva)">
+            <summary>
+            Corrección de la perspectiva
+            </summary>
+            <param name="parametros"></param>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OCorreccionPerspectiva">
+            <summary>
+            Clase con la parametrización de corrección de perspectiva
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCorreccionPerspectiva.Activada">
+            <summary>
+            Activada la corrección de perspectiva de Orbita
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCorreccionPerspectiva.PuntoOrigen1">
+            <summary>
+            Coordenadas del punto de origen número 1
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCorreccionPerspectiva.PuntoOrigen2">
+            <summary>
+            Coordenadas del punto de origen número 2
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCorreccionPerspectiva.PuntoOrigen3">
+            <summary>
+            Coordenadas del punto de origen número 3
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCorreccionPerspectiva.PuntoOrigen4">
+            <summary>
+            Coordenadas del punto de origen número 4
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCorreccionPerspectiva.OffsetOrigen">
+            <summary>
+            Offset del marco rectangular
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCorreccionPerspectiva.AreaDestino">
+            <summary>
+            Región destino
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OCorreccionPerspectiva.#ctor">
+            <summary>
+            Constructor de la clase sin parámetros
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OCorreccionPerspectiva.#ctor(System.Data.DataRow)">
+            <summary>
+            Constructor de la clase configurandose a partir de un datarow
+            </summary>
+        </member>
         <member name="T:Orbita.VA.Funciones.OLPRManager">
             <summary>
             Clase que ejecuta continuamente el
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OLPRManager._AsignacionPaisesNL">
+            <summary>
+            Asignación de paises de NL con la ISO3166-2
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OLPRManager.CountryCode">
+            <summary>
+            Constante que indica el pais o paises a identificar la matricula
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OLPRManager.AvCharHeight">
+            <summary>
+            Constante de altura del caracter
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OLPRManager.DuplicateLines">
+            <summary>
+            Parámetro de Vpar
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OLPRManager.Reordenar">
+            <summary>
+            Parametro de Vpar
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OLPRManager.FilterColor">
+            <summary>
+            Parametro de Vpar
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OLPRManager.TraceVpar">
+            <summary>
+            Trazabilidad
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OLPRManager.TraceWrapper">
+            <summary>
+            Indica si se ha de realizar una traza del LPR
             </summary>
         </member>
         <member name="F:Orbita.VA.Funciones.OLPRManager.ThreadEjecucionLPR">
@@ -320,11 +427,6 @@
         <member name="F:Orbita.VA.Funciones.OLPRManager.UsoDemandado">
             <summary>
             Indica si alguna función de visión ha demandado el uso del LPR
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OLPRManager.Configuracion">
-            <summary>
-            Parámetros de configuración del LPR
             </summary>
         </member>
         <member name="M:Orbita.VA.Funciones.OLPRManager.Constructor">
@@ -362,6 +464,11 @@
             Se elimina la demanda el uso del LPR, por lo que se necesita finalizar las librerías correspondientes
             </summary>
         </member>
+        <member name="P:Orbita.VA.Funciones.OLPRManager.AsignacionPaisesNL">
+            <summary>
+            Asignación de paises de NL con la ISO3166-2
+            </summary>
+        </member>
         <member name="T:Orbita.VA.Funciones.ThreadEjecucionLPR">
             <summary>
             Clase que ejecuta el reconocimiento de las matrículas en un thread
@@ -390,6 +497,12 @@
         <member name="M:Orbita.VA.Funciones.ThreadEjecucionLPR.CallBack(Orbita.VA.Funciones.OInfoInspeccionLPR)">
             <summary>
             Ejecuta el callback en el mismo thread que la Applicación principal
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.ThreadEjecucionLPR.Ejecucion(System.Boolean@)">
+            <summary>
+            Método heredado para implementar la ejecución del thread.
+            Este método se está ejecutando en un bucle. Para salir del bucle hay que devolver finalize a true.
             </summary>
         </member>
         <member name="T:Orbita.VA.Funciones.ThreadEjecucionLPR.DelegadoCallBack">
@@ -445,6 +558,11 @@
             </summary>
         </member>
         <member name="M:Orbita.VA.Funciones.OFuncionVisionEncolada.IniciarEjecucion">
+            <summary>
+            Llamada a la ejecución de la función
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionEncolada.IniciarEjecucion(Orbita.VA.Funciones.EntradasFuncionesVision)">
             <summary>
             Llamada a la ejecución de la función
             </summary>
@@ -514,7 +632,7 @@
             Siguiente imágen a procesar en el LPR
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OFuncionVisionLPR.RutaImagen">
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionLPR.RutaImagenTemporal">
             <summary>
             Siguiente ruta de imágen a procesar en el LPR
             </summary>
@@ -558,7 +676,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.SetEntrada(System.String,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.ResetearColaEjecucion">
+            <summary>
+            Resetea la cola de ejecución
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.SetEntrada(System.String,System.Object,Orbita.Utiles.OEnumTipoDato)">
             <summary>
             Función para la actualización de parámetros de entrada
             </summary>
@@ -567,7 +690,7 @@
             <returns></returns>
             <remarks></remarks>
         </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.SetEntrada(Orbita.VA.Funciones.EnumEntradaFuncionVision,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionLPR.SetEntrada(Orbita.VA.Funciones.EnumTipoEntradaFuncionVision,System.Object,Orbita.Utiles.OEnumTipoDato)">
             <summary>
             Función para la actualización de parámetros de entrada
             </summary>
@@ -632,54 +755,13 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.OInfoInspeccionLPR.#ctor(Orbita.VA.Comun.OImagenBitmap,Orbita.VA.Funciones.OInfoImagenLPR,Orbita.VA.Funciones.OParametrosLPR,Orbita.VA.Funciones.OResultadoLPR,System.Collections.Generic.Dictionary{System.String,System.Object})">
+        <member name="M:Orbita.VA.Funciones.OInfoInspeccionLPR.#ctor(Orbita.VA.Comun.OImagenBitmap,Orbita.VA.Funciones.OParametrosLPR,Orbita.VA.Funciones.OInfoImagenLPR,Orbita.VA.Funciones.OResultadoLPR,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Constructor de la clase
             </summary>
             <param name="info"></param>
             <param name="parametros"></param>
             <param name="resultados"></param>
-        </member>
-        <member name="T:Orbita.VA.Funciones.OInfoImagenLPR">
-            <summary>
-            Esta clase contendra la información que queremos pasar con la imagen a la función LPR para recogerla cuando tengamos el resultado
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR.IdEjecucionActual">
-            <summary>
-            Contiene la información de la identificacion a la que pertenece
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR.Codigo">
-            <summary>
-            Contiene la información de la cámara que se le pasa en la imagen
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR.IndiceImagen">
-            <summary>
-            Contiene el indice de la imagen añadida
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR.MomentoImagen">
-            <summary>
-            Contiene la fecha exacta en la que se adquirio la imagen
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR.CallBackResultadoParcial">
-            <summary>
-            CallBack donde mandar el resultado parcial
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OInfoImagenLPR.#ctor">
-            <summary>
-            Constructor sin parametros
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OInfoImagenLPR.#ctor(System.Int64,System.String,System.Int32,System.DateTime,Orbita.VA.Funciones.CallBackResultadoParcial)">
-            <summary>
-            Constructor con parametros
-            </summary>
-            <param name="codigo">camara que adquiere la imagen</param>
         </member>
         <member name="T:Orbita.VA.Funciones.OParametrosLPR">
             <summary>
@@ -776,9 +858,85 @@
             Para saber si han habido modificaciones
             </summary>
         </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosLPR.OrbitaCorreccionPerspectiva">
+            <summary>
+            Parámetros de corrección de perspectiva de Orbita
+            </summary>
+        </member>
         <member name="M:Orbita.VA.Funciones.OParametrosLPR.#ctor">
             <summary>
             Constructor de la clase sin parámetros
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OInfoImagenLPR">
+            <summary>
+            Esta clase contendra la información que queremos pasar con la imagen a la función LPR para recogerla cuando tengamos el resultado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR._IdEjecucionActual">
+            <summary>
+            Contiene la información de la identificacion a la que pertenece
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR._Codigo">
+            <summary>
+            Contiene la información de la cámara que se le pasa en la imagen
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR._IndiceImagen">
+            <summary>
+            Contiene el indice de la imagen añadida
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR._MomentoImagen">
+            <summary>
+            Contiene la fecha exacta en la que se adquirio la imagen
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR._RutaImagenTemporal">
+            <summary>
+            Ruta de la imagen temporal
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenLPR.CallBackResultadoParcial">
+            <summary>
+            CallBack donde mandar el resultado parcial
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OInfoImagenLPR.#ctor">
+            <summary>
+            Constructor sin parametros
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OInfoImagenLPR.#ctor(System.Int64,System.String,System.Int32,System.DateTime,System.String,Orbita.VA.Funciones.CallBackResultadoParcial)">
+            <summary>
+            Constructor con parametros
+            </summary>
+            <param name="codigo">camara que adquiere la imagen</param>
+        </member>
+        <member name="P:Orbita.VA.Funciones.OInfoImagenLPR.IdEjecucionActual">
+            <summary>
+            Contiene la información de la identificacion a la que pertenece
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.OInfoImagenLPR.Codigo">
+            <summary>
+            Contiene la información de la cámara que se le pasa en la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.OInfoImagenLPR.IndiceImagen">
+            <summary>
+            Contiene el indice de la imagen añadida
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.OInfoImagenLPR.MomentoImagen">
+            <summary>
+            Contiene la fecha exacta en la que se adquirio la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.OInfoImagenLPR.RutaImagenTemporal">
+            <summary>
+            Ruta de la imagen temporal
             </summary>
         </member>
         <member name="T:Orbita.VA.Funciones.OResultadoLPR">
@@ -791,59 +949,59 @@
             Clase que contiene los resultados que se reciben de la funcion LPR para una imagen pasada 
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.Matricula">
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR._Matricula">
             <summary>
             Contiene la cadena la matrícula del vehículo
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.FiabilidadMatricula">
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR._FiabilidadMatricula">
             <summary>
             Fiabilidad de la matrícula
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.AlturaLetrasMatricula">
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR._AlturaLetrasMatricula">
             <summary>
             Altura letras
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.FechaEncolamiento">
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR._FechaEncolamiento">
             <summary>
             Fecha en la que se encolo a la cola de LPR (dada por él)
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.TiempoDeProceso">
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR._TiempoDeProceso">
             <summary>
             Tiempo de proceso
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.TopPosicionMatricula">
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR._TopPosicionMatricula">
             <summary>
             Posicion Top matricula
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.BottomPosicionMatricula">
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR._BottomPosicionMatricula">
             <summary>
             Posicion Bottom matricula
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.RightPosicionMatricula">
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR._RightPosicionMatricula">
             <summary>
             Posicion Right matricula
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.LeftPosicionMatricula">
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR._LeftPosicionMatricula">
             <summary>
             Posicion Left matricula
             </summary>
         </member>
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.VA.Funciones.OResultadoSimpleLPR.CodigoPais" -->
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.VA.Funciones.OResultadoSimpleLPR.PaisSintaxis" -->
-        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.NumCaracteres">
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.VA.Funciones.OResultadoSimpleLPR._CodigoPais" -->
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.VA.Funciones.OResultadoSimpleLPR._PaisSintaxis" -->
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR._NumCaracteres">
             <summary>
             Número de carácters de la matrícula
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR.FiabilidadesLetras">
+        <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR._FiabilidadesLetras">
             <summary>
             Contiene las fiabilidades de cada letra individual
             </summary>
@@ -858,59 +1016,68 @@
             Constructor con parametros
             </summary>
         </member>
-        <member name="T:Orbita.VA.Funciones.ConfiguracionLPR">
+        <member name="M:Orbita.VA.Funciones.OResultadoSimpleLPR.ConversionCodigoPais(System.Int32)">
             <summary>
-            Parámetros de la aplicación
+            
+            </summary>
+            <param name="codigoPaisNL"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.VA.Funciones.OResultadoSimpleLPR.Matricula">
+            <summary>
+            Contiene la cadena la matrícula del vehículo
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.ConfFile">
+        <member name="P:Orbita.VA.Funciones.OResultadoSimpleLPR.FiabilidadMatricula">
             <summary>
-            Ruta por defecto del fichero xml de configuración
+            Fiabilidad de la matrícula
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.CountryCode">
+        <member name="P:Orbita.VA.Funciones.OResultadoSimpleLPR.AlturaLetrasMatricula">
             <summary>
-            Constante que indica el pais o paises a identificar la matricula
+            Altura letras
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.AvCharHeight">
+        <member name="P:Orbita.VA.Funciones.OResultadoSimpleLPR.FechaEncolamiento">
             <summary>
-            Constante de altura del caracter
+            Fecha en la que se encolo a la cola de CCR (dada por él)
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.DuplicateLines">
+        <member name="P:Orbita.VA.Funciones.OResultadoSimpleLPR.TiempoDeProceso">
             <summary>
-            Parámetro de Vpar
+            Tiempo de proceso
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.Reordenar">
+        <member name="P:Orbita.VA.Funciones.OResultadoSimpleLPR.TopPosicionMatricula">
             <summary>
-            Parametro de Vpar
+            Posicion Top matricula
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.filterColor">
+        <member name="P:Orbita.VA.Funciones.OResultadoSimpleLPR.BottomPosicionMatricula">
             <summary>
-            Parametro de Vpar
+            Posicion Bottom matricula
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.TraceVpar">
+        <member name="P:Orbita.VA.Funciones.OResultadoSimpleLPR.RightPosicionMatricula">
             <summary>
-            Trazabilidad
+            Posicion Right matricula
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionLPR.TraceWrapper">
+        <member name="P:Orbita.VA.Funciones.OResultadoSimpleLPR.LeftPosicionMatricula">
             <summary>
-            Indica si se ha de realizar una traza del LPR
+            Posicion Left matricula
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.ConfiguracionLPR.#ctor">
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "P:Orbita.VA.Funciones.OResultadoSimpleLPR.CodigoPais" -->
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "P:Orbita.VA.Funciones.OResultadoSimpleLPR.PaisSintaxis" -->
+        <member name="P:Orbita.VA.Funciones.OResultadoSimpleLPR.NumCaracteres">
             <summary>
-            Contructor de la clase
+            Número de carácters de la matrícula
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.ConfiguracionLPR.#ctor(System.String)">
+        <member name="P:Orbita.VA.Funciones.OResultadoSimpleLPR.FiabilidadesLetras">
             <summary>
-            Contructor de la clase
+            Número de carácters de la matrícula
             </summary>
         </member>
         <member name="T:Orbita.VA.Funciones.EntradasFuncionesVisionLPR">
@@ -918,19 +1085,19 @@
             Define el conjunto de tipos de entradas de las funciones de visión LPR
             </summary>
         </member>
-        <member name="T:Orbita.VA.Funciones.EntradasFuncionesVision">
+        <member name="T:Orbita.VA.Funciones.TipoEntradasFuncionesVision">
             <summary>
             Define el conjunto de tipos de entradas de las funciones de visión
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.EntradasFuncionesVision.Imagen">
+        <member name="F:Orbita.VA.Funciones.TipoEntradasFuncionesVision.Imagen">
             <summary>
             Imagen de entrada
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.EntradasFuncionesVisionLPR.ParametrosLPR">
+        <member name="F:Orbita.VA.Funciones.TipoEntradasFuncionesVision.Parametros">
             <summary>
-            Parametros de configuración del LPR
+            Parametros de configuración
             </summary>
         </member>
         <member name="F:Orbita.VA.Funciones.EntradasFuncionesVisionLPR.RutaImagen">
@@ -938,44 +1105,306 @@
             Ruta en disco de la imagen de entrada
             </summary>
         </member>
-        <member name="T:Orbita.VA.Funciones.ModulosFunciones">
+        <member name="T:Orbita.VA.Funciones.OLogsVAFunciones">
             <summary>
             Define el conjunto de módulos del sistema
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ModulosFunciones.Vision">
+        <member name="F:Orbita.VA.Funciones.OLogsVAFunciones.Vision">
             <summary>
             Módulo de las funciones de visión
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ModulosFunciones.VisionPro">
+        <member name="F:Orbita.VA.Funciones.OLogsVAFunciones.VisionPro">
             <summary>
             Módulo de Vision Pro
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ModulosFunciones.CCR">
+        <member name="F:Orbita.VA.Funciones.OLogsVAFunciones.CCR">
             <summary>
             Módulo de CCR. Lectura de mátriculas de contenedores
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ModulosFunciones.LPR">
+        <member name="F:Orbita.VA.Funciones.OLogsVAFunciones.LPR">
             <summary>
             Módulo de LPR de vehículos
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ModulosFunciones.OpenCV">
+        <member name="F:Orbita.VA.Funciones.OLogsVAFunciones.OpenCV">
             <summary>
             Módulo de trabajo con las funciones de OpenCV
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ModulosFunciones.Mantenimientos">
+        <member name="F:Orbita.VA.Funciones.OLogsVAFunciones.Valido">
             <summary>
-            Módulo de los mantenimientos de las funciones de visión
+            Indica que la creación de los logs ha sido válida
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ModulosFunciones.Inspeccion">
+        <member name="M:Orbita.VA.Funciones.OLogsVAFunciones.Constructor">
             <summary>
-            Módulo de las inspecciones del sistema
+            Constructror de los logs
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OLogsVAFunciones.ValidarLog(System.String,Orbita.Trazabilidad.ILogger)">
+            <summary>
+            Validación del log
+            </summary>
+            <param name="identificador"></param>
+            <param name="log"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper">
+            <summary>
+            Clase que implementa la detección y medición de edges en la region determinada de una imagen
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.inputSource">
+            <summary>
+            Imagen de entrada
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.edges">
+            <summary>
+            Listado de resultados
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.threshold">
+            <summary>
+            Umbral de detección
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.kernel">
+            <summary>
+            Kernel de convolución (filtrado)
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.tipo1">
+            <summary>
+            Polaridad del primer edge (o del single edge)
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.tipo2">
+            <summary>
+            Polaridad del segundo edge (para pares de edges)
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.metodos">
+            <summary>
+            Listado de métodos de puntuación del OrbitaCaliper
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.MaxResultados">
+            <summary>
+            Máximo de resultados devueltos (calcula siempre todos, es el máximo que devuelve)
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.inverseMatrix">
+            <summary>
+            Matriz de transformación inversa (para devolver a las coordenadas originales)
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.proyeccion">
+            <summary>
+            Area de interés
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.contrastes">
+            <summary>
+            Proyección rectangular del AOI
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.contrastesFiltrados">
+            <summary>
+            Datos de contraste filtrados (datos a procesar)
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.#ctor(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.PolaridadEdges,System.Double,Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize,System.Int32)">
+            <summary>
+            Constructor de OrbitaCaliper con SingleEdge. Por defecto añade el método de puntuación por contraste
+            </summary>
+            <param name="polaridad">Polaridad de los edges a buscar</param>
+            <param name="threshold">Umbral de contraste para la detección de un edge</param>
+            <param name="kernel">Tamaño del filtro</param>
+            <param name="maxResultados">Máximo de resultados a devolver</param>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.#ctor(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.PolaridadEdges,Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.PolaridadEdges,System.Double,System.Double,Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize,System.Int32)">
+            <summary>
+            Constructor de OrbitaCaliper con PairEdge. Por defecto añade el método de puntuación por distancia entre edges
+            </summary>
+            <param name="polaridad1">Polaridad del primer edge de cada par</param>
+            <param name="polaridad2">Polaridad del segundo edge de cada par</param>
+            <param name="threshold">Umbral para considerar un edge</param>
+            <param name="distance">Distancia esperada entre el par de edges</param>
+            <param name="kernel">Tamaño del filtro</param>
+            <param name="maxResultados">Máximo de resultados a devolver</param>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.BuscarEdges(Orbita.VA.Comun.OImagenOpenCVMonocromo,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+            Obtiene y devuelve un listado de edges en el área de interes de la imagen pasada como parámetro (en formato de 3 puntos)
+            </summary>
+            <param name="input">Imagen sobre la que buscar</param>
+            <param name="origen">Punto de origen del AOI</param>
+            <param name="extremoX">Extremo en anchura del AOI</param>
+            <param name="extremoY">Extremo en altura del AOI</param>
+            <returns>Listado de resultados</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.AgregarContraste">
+            <summary>
+            Agrega un método de puntuación por contraste (método individual)
+            </summary>
+            <returns>True si se añadió correctamente</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.AgregarDistancia(System.Double)">
+            <summary>
+            Agrega un método de puntuación por distancia (método de pares)
+            </summary>
+            <param name="distance">Ancho esperado entre los edges</param>
+            <returns>True si se añadió correctamente</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.PintarEdges(System.Drawing.Color,System.Int32,System.Boolean)">
+            <summary>
+            Pinta los edges encontrados por el caliper
+            </summary>
+            <param name="color">Color para pintar los edges</param>
+            <param name="grosor">Grosor del marcado de edges</param>
+            <param name="todos">Indica si se debe buscar sobre todos los edges, o solo sobre los resultados devueltos</param>
+            <returns>Imagen del caliper con los edges marcados</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.EliminarMetodosPuntuacion">
+            <summary>
+            Limpia la lista de métodos de puntuación
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.algoritmoBusquedaMaxMin(Orbita.VA.Comun.OImagenOpenCV{Emgu.CV.Structure.Gray,System.Single})">
+            <summary>
+            Encuentra los máximos y mínimos de una función discretizada en un array
+            </summary>
+            <param name="filteredData">Datos de la imagen filtrada</param>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.EvaluarCandidatoPares(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge,System.Collections.Generic.List{Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge})">
+            <summary>
+            Decide si un edge candidato es válido y su puntuación, con cada uno de los edges del array candidatos. En caso afirmativo lo añade.
+            </summary>
+            <param name="candidato">Edge candidato</param>
+            <param name="listaCandidatos">Lista de candidatos previos</param>
+            <returns>Número de resultados añadidos</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.EvaluarCandidatoSingle(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge)">
+            <summary>
+            Decide si un edge candidato es válido y su puntuación. En caso afirmativo lo añade
+            </summary>
+            <param name="candidato">Edge candidato</param>
+            <returns>Cierto si el edge se ha añadido</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.Puntuar(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult)">
+            <summary>
+            Puntua un candidato a edge en función de los parámetros de puntuación activos del algoritmo
+            </summary>
+            <param name="resultado">Resultado a puntuar</param>
+            <returns>Puntuación según todos los métodos activos</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.Centroide(System.Int32,System.Int32,Emgu.CV.Image{Emgu.CV.Structure.Gray,System.Single})">
+            <summary>
+            Obtiene el centroide (promedio) en x, en un intervalo dado
+            </summary>
+            <param name="ini">Inicio del intervalo</param>
+            <param name="fin">Final del intervalo</param>
+            <returns>Punto en X donde se encuentra el centroide</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.InterpolacionLineal(System.Single,Emgu.CV.Image{Emgu.CV.Structure.Gray,System.Single})">
+            <summary>
+            Devuelve el valor interpolado para xPos en el array
+            </summary>
+            <param name="xPos">Posición a interpolar</param>
+            <param name="array">Función</param>
+            <returns>Valor interpolado en Y</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.AgregarMetodoPuntuacion(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OMetodoPuntuacion)">
+            <summary>
+            Intenta añadir un nuevo método de puntuación a la lista
+            </summary>
+            <param name="met">Método de puntuación a añadir</param>
+            <returns>Cierto si se pudo añadir</returns>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.EdgeResults">
+            <summary>
+            Obtiene el listado de resultados
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.BuscaPares">
+            <summary>
+            Obtiene si el OrbitaCaliper está configurado para encontrar pares de edges
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.NumeroDatos">
+            <summary>
+            Obtiene la cantidad de puntos del caliper
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.DatosFiltrados">
+            <summary>
+            Obtiene los puntos del OrbitaCaliper
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.DatosContraste">
+            <summary>
+            Obtiene los puntos de la proyección
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize">
+            <summary>
+            Tipos de filtro para detección de edges disponibles. Los filtros son simétricos del tipo -1,0,+1
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter3">
+            <summary>
+            Filtro de tamaño 3: -1,0,+1
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter5">
+            <summary>
+            Filtro de tamaño 5: -1,-1,0,+1,+1
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter7">
+            <summary>
+            Filtro de tamaño 7: -1,-1,-1,0,+1,+1,+1
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter9">
+            <summary>
+            Filtro de tamaño 9: -1,-1,-1,-1,0,+1,+1,+1,+1
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter11">
+            <summary>
+            Filtro de tamaño 11: -1,-1,-1,-1,-1,0,+1,+1,+1,+1,+1
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter13">
+            <summary>
+            Filtro de tamaño 13: -1,-1,-1,-1,-1,-1,0,+1,+1,+1,+1,+1,+1
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter15">
+            <summary>
+            Filtro de tamaño 15: -1,-1,-1,-1,-1,-1,-1,0,+1,+1,+1,+1,+1,+1,+1
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter17">
+            <summary>
+            Filtro de tamaño 17: -1,-1,-1,-1,-1,-1,-1,-1,0,+1,+1,+1,+1,+1,+1,+1,+1
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter19">
+            <summary>
+            Filtro de tamaño 19: -1,-1,-1,-1,-1,-1,-1,-1,-1,0,+1,+1,+1,+1,+1,+1,+1,+1,+1
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter21">
+            <summary>
+            Filtro de tamaño 21: -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,+1,+1,+1,+1,+1,+1,+1,+1,+1,+1
             </summary>
         </member>
         <member name="M:Orbita.VA.Funciones.AppBD.GetParametrosFuncionesVision(System.String,System.Boolean)">
@@ -1007,6 +1436,161 @@
             Consulta las claves de una determinada escenario
             </summary>
             <param name="codEscenario"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.AppBD.GetConfiguracionCCR">
+            <summary>
+            Consulta la configuración del motor CCR
+            </summary>
+            <param name="codEscenario"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.AppBD.GetConfiguracionLPR">
+            <summary>
+            Consulta la configuración del motor LPR
+            </summary>
+            <param name="codEscenario"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OFiltradoOpenCV">
+            <summary>
+            Clase estática con herramientas de OpenCV
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.CorregirPerspectiva``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF)">
+            <summary>
+            Corección de distorsión para imagenes de tipo OpenCV
+            </summary>
+            <typeparam name="TColor">Tipo de color de la imagen</typeparam>
+            <typeparam name="TDepth">Tipo de profundidad de la imagen</typeparam>
+            <param name="imagenOriginal">Imagen original</param>
+            <param name="puntoOriginal1">Punto origen 1</param>
+            <param name="puntoOriginal2">Punto origen 2</param>
+            <param name="puntoOriginal3">Punto origen 3</param>
+            <param name="puntoOriginal4">Punto origen 4</param>
+            <param name="puntoDestino1">Punto destino 1</param>
+            <param name="puntoDestino2">Punto destino 2</param>
+            <param name="puntoDestino3">Punto destino 3</param>
+            <param name="puntoDestino4">Punto destino 4</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.CorregirPerspectiva``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Corección de distorsión para imagenes de tipo OpenCV
+            </summary>
+            <typeparam name="TColor">Tipo de color de la imagen</typeparam>
+            <typeparam name="TDepth">Tipo de profundidad de la imagen</typeparam>
+            <param name="imagenOriginal">Imagen original</param>
+            <param name="puntoOriginal1">Punto origen 1</param>
+            <param name="puntoOriginal2">Punto origen 2</param>
+            <param name="puntoOriginal3">Punto origen 3</param>
+            <param name="puntoOriginal4">Punto origen 4</param>
+            <param name="xDestino">Coordenada X destino</param>
+            <param name="yDestino">Coordenada Y destino</param>
+            <param name="anchoDestino">Ancho destino</param>
+            <param name="altoDestino">Alto destino</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.CorregirPerspectiva``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.RectangleF)">
+            <summary>
+            Corección de distorsión para imagenes de tipo OpenCV
+            </summary>
+            <typeparam name="TColor">Tipo de color de la imagen</typeparam>
+            <typeparam name="TDepth">Tipo de profundidad de la imagen</typeparam>
+            <param name="imagenOriginal">Imagen original</param>
+            <param name="puntoOriginal1">Punto origen 1</param>
+            <param name="puntoOriginal2">Punto origen 2</param>
+            <param name="puntoOriginal3">Punto origen 3</param>
+            <param name="puntoOriginal4">Punto origen 4</param>
+            <param name="areaDestino">Area destino</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.CorregirPerspectiva``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.Point,System.Drawing.RectangleF)">
+            <summary>
+            Corección de distorsión para imagenes de tipo OpenCV
+            </summary>
+            <typeparam name="TColor">Tipo de color de la imagen</typeparam>
+            <typeparam name="TDepth">Tipo de profundidad de la imagen</typeparam>
+            <param name="imagenOriginal">Imagen original</param>
+            <param name="puntoOriginal1">Punto origen 1</param>
+            <param name="puntoOriginal2">Punto origen 2</param>
+            <param name="puntoOriginal3">Punto origen 3</param>
+            <param name="puntoOriginal4">Punto origen 4</param>
+            <param name="areaDestino">Area destino</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Proyeccion``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,Emgu.CV.Matrix{System.Single}@)">
+            <summary>
+            Realiza una proyección de un area de la imagen en un rectangulo
+            </summary>
+            <typeparam name="TColor">Espacio de color</typeparam>
+            <typeparam name="TDepth">Profundidad de color</typeparam>
+            <param name="input">Imagen sobre la que se hace la proyección</param>
+            <param name="puntoO">Punto de origen de la proyección</param>
+            <param name="puntoX">Punto extremo en ancho de la proyección</param>
+            <param name="puntoY">Punto extremo en alto de la proyección</param>
+            <param name="sourceMat">Matriz de transformación utilizada para realiar la proyección. Sirve para deshacer la proyección</param>
+            <returns>Proyección rectangular del area especificada</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Proyeccion``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},Emgu.CV.Matrix{System.Single})">
+            <summary>
+            Realiza una proyección de un area de la imagen en un rectangulo
+            </summary>
+            <typeparam name="TColor">Espacio de color</typeparam>
+            <typeparam name="TDepth">Profundidad de color</typeparam>
+            <param name="input">Imagen sobre la que se hace la proyección</param>
+            <param name="sourceMat">Matriz de transformación a utilizar en la transformación</param>
+            <returns>Proyección rectangular del area especificada</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.ProyeccionInversa``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},Emgu.CV.Matrix{System.Single})">
+            <summary>
+            Realiza una proyección de un area de la imagen en un rectangulo
+            </summary>
+            <typeparam name="TColor">Espacio de color</typeparam>
+            <typeparam name="TDepth">Profundidad de color</typeparam>
+            <param name="input">Imagen sobre la que se hace la proyección</param>
+            <param name="sourceMat">Matriz de transformación utilizada para la transformación original. Se calculará su inversa</param>
+            <returns>Proyección rectangular del area especificada</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.ObtenerPlano``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},Orbita.VA.Comun.OPlanoBGR)">
+            <summary>
+            Obtiene el plano (del espacio BGR) pasado como parámetro
+            </summary>
+            <param name="input">Imagen de entrada</param>
+            <param name="plano">Plano a extraer</param>
+            <returns>Plano de la imagen indicado</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Reducir(Orbita.VA.Comun.OImagenOpenCVMonocromo)">
+            <summary>
+            Calcula la media de los contrastes de la imagen obteniendo una única fila
+            </summary>
+            <param name="input">Imagen de origen</param>
+            <returns>Estructura imagen con una única fila que almacena los valores de contraste medios</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Redimensionar``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},System.Double)">
+            <summary>
+            Redimensiona una imagen interpolando mediante el vecino más próximo
+            </summary>
+            <typeparam name="TColor">Espacio de color</typeparam>
+            <typeparam name="TDepth">Profundidad de color</typeparam>
+            <param name="input">Imagen de entrada</param>
+            <param name="factor">Factor de redimensionado. Mayor que uno agranda, menor que uno reduce; menor o igual que 0 no hace nada</param>
+            <returns>Imagen redimensionada</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Dilate(Orbita.VA.Comun.OImagenOpenCVMonocromo,System.Int32)">
+            <summary>
+            Dilata una imagen mediante una matriz 3x3, las veces indicadas
+            </summary>
+            <param name="input">Imagen de entrada</param>
+            <param name="iteraciones">Iteraciones de dilatación con matriz 3x3</param>
+            <returns>Imagen dilatada</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Binarizar(Orbita.VA.Comun.OImagenOpenCVColor,System.Int32)">
+            <summary>
+            Binariza una imagen utilizando un umbral
+            </summary>
+            <param name="input">Imagen de entrada</param>
+            <param name="umbral">Umbral de binarización</param>
             <returns></returns>
         </member>
         <member name="T:Orbita.VA.Funciones.OFuncionesVisionManager">
@@ -1058,7 +1642,7 @@
             </summary>
             
         </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.SetEntrada(System.String,System.String,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
+        <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.SetEntrada(System.String,System.String,System.Object,Orbita.Utiles.OEnumTipoDato)">
             <summary>
             Función para la actualización de parámetros de entrada
             </summary>
@@ -1069,7 +1653,7 @@
             <param name="tipoVariable">Tipo del parámetro</param>
             <returns>Verdadero si la función se ha ejecutado correctamente</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.GetSalida(System.String,System.String,System.Object@,Orbita.VA.Comun.OEnumTipoDato)">
+        <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.GetSalida(System.String,System.String,System.Object@,Orbita.Utiles.OEnumTipoDato)">
             <summary>
             Función para la consulta de parámetros de salida
             </summary>
@@ -1088,6 +1672,12 @@
             <returns></returns>
         </member>
         <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.GetFuncionVision(Orbita.VA.Comun.OClaves)">
+            <summary>
+            Obtiene la función de visión mediante las claves
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.GetFuncionVision(System.String)">
             <summary>
             Obtiene la función de visión mediante las claves
             </summary>
@@ -1204,7 +1794,7 @@
             Función de las librerías VisionPro de Cognex
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.TipoFuncionVision.OCRContainer">
+        <member name="F:Orbita.VA.Funciones.TipoFuncionVision.CCR">
             <summary>
             Función de las librerías de reconocimiento de la matricula de los contenedores
             </summary>
@@ -1281,92 +1871,237 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="T:Orbita.VA.Funciones.EnumEntradaFuncionVision">
+        <member name="M:Orbita.VA.Funciones.EntradasFuncionesVision.Add(System.String,System.Object,Orbita.Utiles.OEnumTipoDato)">
+            <summary>
+            Añade un parámetro de entrada
+            </summary>
+            <param name="codigo"></param>
+            <param name="valor"></param>
+            <param name="tipoVariable"></param>
+        </member>
+        <member name="M:Orbita.VA.Funciones.EntradasFuncionesVision.Add(Orbita.VA.Funciones.EnumTipoEntradaFuncionVision,System.Object,Orbita.Utiles.OEnumTipoDato)">
+            <summary>
+            Añade un parámetro de entrada
+            </summary>
+            <param name="codigo"></param>
+            <param name="valor"></param>
+            <param name="tipoVariable"></param>
+        </member>
+        <member name="T:Orbita.VA.Funciones.EnumTipoEntradaFuncionVision">
             <summary>
             Clase que implementa el enumerado de las entradas de las funciones de visión
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.EnumEntradaFuncionVision.#ctor(System.String,System.String,System.Int32)">
+        <member name="M:Orbita.VA.Funciones.EnumTipoEntradaFuncionVision.#ctor(System.String,System.String,System.Int32)">
             <summary>
             Constuctor de la clase
             </summary>
         </member>
-        <member name="T:Orbita.VA.Funciones.SalidasFuncionesVision">
+        <member name="T:Orbita.VA.Funciones.TipoSalidasFuncionesVision">
             <summary>
             Define el conjunto de tipos de salidas de las funciones de visión
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.SalidasFuncionesVision.Imagen">
+        <member name="F:Orbita.VA.Funciones.TipoSalidasFuncionesVision.Imagen">
             <summary>
             Imagen de salida
             </summary>
         </member>
-        <member name="T:Orbita.VA.Funciones.EnumSalidaFuncionVision">
+        <member name="T:Orbita.VA.Funciones.EnumTipoSalidaFuncionVision">
             <summary>
             Clase que implementa el enumerado de las salidas de las funciones de visión
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.EnumSalidaFuncionVision.#ctor(System.String,System.String,System.Int32)">
+        <member name="M:Orbita.VA.Funciones.EnumTipoSalidaFuncionVision.#ctor(System.String,System.String,System.Int32)">
             <summary>
             Constuctor de la clase
             </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OScoringFunction">
+            <summary>
+            Interfaz de puntuación de una variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OScoringFunction.MapScore(System.Double)">
+            <summary>
+            Mapeo de una puntuación en crudo
+            </summary>
+            <param name="rawScore">Puntuación en crudo</param>
+            <returns>Puntuación mapeada</returns>
+        </member>
+        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.SingleSideScoringFunction">
+            <summary>
+            Clase que implementa una función de puntuación simple
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.SingleSideScoringFunction.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Constructor de la clase, y0 e y1 deben encontrarse entre 0 y 1. X1 se debe encontrar entre Xc y X0
+            </summary>
+            <param name="xc">Valor límite entre devolver 0 o y1</param>
+            <param name="x0">Valor límite entre devolver y1 o la función de puntuación</param>
+            <param name="x1">Valor límite entre devolver la función de puntuación o devolver y0</param>
+            <param name="y0">Puntuación máxima</param>
+            <param name="y1">Puntuación mínima</param>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.SingleSideScoringFunction.MapScore(System.Double)">
+            <summary>
+            Mapea un valor crudo según la función de puntuación definida
+            </summary>
+            <param name="rawScore">Valor crudo</param>
+            <returns>Puntuación mapeada</returns>
+        </member>
+        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.TwoSidedScoringFunction">
+            <summary>
+            Clase que implementa una función de puntuación de dos lados
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.TwoSidedScoringFunction.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="xcs">Parámetro Xc de la parte izquierda</param>
+            <param name="x0s">Parámetro X0 de la parte izquierda</param>
+            <param name="x1s">Parámetro X1 de la parte izquierda</param>
+            <param name="y0"> Parámetro Y0 de la parte izquierda</param>
+            <param name="y1"> Parámetro Y1 de la parte izquierda</param>
+            <param name="xcb">Parámetro Xc de la parte derecha</param>
+            <param name="x0b">Parámetro X0 de la parte derecha</param>
+            <param name="x1b">Parámetro X1 de la parte derecha</param>
+            <param name="y0h">Parámetro Y0 de la parte derecha</param>
+            <param name="y1h">Parámetro Y1 de la parte derecha</param>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.TwoSidedScoringFunction.MapScore(System.Double)">
+            <summary>
+            Mapea un valor crudo según una función de puntuación
+            
+            If the edge pattern candidate is exactly the same size as the edge model, the raw score must be 0.0; 
+            if the edge pattern candidate is smaller than the edge model, the raw score must be less than 0; 
+            if the edge pattern candidate is larger than the edge model, the raw score must be greater than 0.
+            </summary>
+            <param name="rawScore">Puntuación a mapear</param>
+            <returns>Puntuación mapeada</returns>
         </member>
         <member name="T:Orbita.VA.Funciones.OHerramientasOpenCV">
             <summary>
             Clase estática con herramientas de OpenCV
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.OHerramientasOpenCV.CorregirDistorsion``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF)">
+        <member name="M:Orbita.VA.Funciones.OHerramientasOpenCV.Invertir(Emgu.CV.Matrix{System.Single})">
             <summary>
-            Corección de distorsión para imagenes de tipo OpenCV
+            Devuelve la inversa de una matriz (si la matriz no tiene inversa o no es cuadrada devuelve una matriz 0)
             </summary>
-            <typeparam name="TColor">Tipo de color de la imagen</typeparam>
-            <typeparam name="TDepth">Tipo de profundidad de la imagen</typeparam>
-            <param name="imagenOriginal">Imagen original</param>
-            <param name="puntoOriginal1">Punto origen 1</param>
-            <param name="puntoOriginal2">Punto origen 2</param>
-            <param name="puntoOriginal3">Punto origen 3</param>
-            <param name="puntoOriginal4">Punto origen 4</param>
-            <param name="puntoDestino1">Punto destino 1</param>
-            <param name="puntoDestino2">Punto destino 2</param>
-            <param name="puntoDestino3">Punto destino 3</param>
-            <param name="puntoDestino4">Punto destino 4</param>
-            <returns></returns>
+            <param name="sourceMat">Matriz a invertir</param>
+            <returns>Matriz inversa</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.OHerramientasOpenCV.CorregirDistorsion``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:Orbita.VA.Funciones.OHerramientasOpenCV.Proyeccion(System.Drawing.PointF,Emgu.CV.Matrix{System.Single})">
             <summary>
-            Corección de distorsión para imagenes de tipo OpenCV
+            Devuelve las coordenadas de un punto al aplicar una transformación
             </summary>
-            <typeparam name="TColor">Tipo de color de la imagen</typeparam>
-            <typeparam name="TDepth">Tipo de profundidad de la imagen</typeparam>
-            <param name="imagenOriginal">Imagen original</param>
-            <param name="puntoOriginal1">Punto origen 1</param>
-            <param name="puntoOriginal2">Punto origen 2</param>
-            <param name="puntoOriginal3">Punto origen 3</param>
-            <param name="puntoOriginal4">Punto origen 4</param>
-            <param name="xDestino">Coordenada X destino</param>
-            <param name="yDestino">Coordenada Y destino</param>
-            <param name="anchoDestino">Ancho destino</param>
-            <param name="altoDestino">Alto destino</param>
-            <returns></returns>
+            <param name="input">Coordenadas de origen</param>
+            <param name="sourceMat">Matriz de transformación</param>
+            <returns>Coordenadas en destino</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.OHerramientasOpenCV.CorregirDistorsion``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.RectangleF)">
+        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OMetodoPuntuacion">
             <summary>
-            Corección de distorsión para imagenes de tipo OpenCV
+            Clase abstracta que define la interfaz de un método de puntuación
             </summary>
-            <typeparam name="TColor">Tipo de color de la imagen</typeparam>
-            <typeparam name="TDepth">Tipo de profundidad de la imagen</typeparam>
-            <param name="imagenOriginal">Imagen original</param>
-            <param name="puntoOriginal1">Punto origen 1</param>
-            <param name="puntoOriginal2">Punto origen 2</param>
-            <param name="puntoOriginal3">Punto origen 3</param>
-            <param name="puntoOriginal4">Punto origen 4</param>
-            <param name="areaDestino">Area destino</param>
-            <returns></returns>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OMetodoPuntuacion.onlyPairMethod">
+            <summary>
+            Indica si el método de puntuación se aplica sólamente a pares de edges
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OMetodoPuntuacion.funcionPuntuacion">
+            <summary>
+            Función de puntuación del método
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OMetodoPuntuacion.Puntuar(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult)">
+            <summary>
+            Método que devuelve la puntuación de un candidato
+            </summary>
+            <param name="candidato">Resultado a puntuar</param>
+            <returns>Puntuación numérica del resultado</returns>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OMetodoPuntuacion.OnlyPairMethod">
+            <summary>
+            Obtiene si se trata de un método para puntuar únicamente pares de edges
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.SizeDiffNormMethod">
+            <summary>
+            Método de puntuación por tamaño. Se basa en el ancho entre un par de edge 
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.SizeDiffNormMethod.edgePairWidth">
+            <summary>
+            Ancho del par de edges
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.SizeDiffNormMethod.#ctor(System.Double)">
+            <summary>
+            Constructor del método de puntuación
+            </summary>
+            <param name="edgePairWidth">Ancho de máxima puntuación</param>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.SizeDiffNormMethod.Puntuar(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult)">
+            <summary>
+            Sobreescritura del método de puntuación
+            </summary>
+            <param name="candidato">Resultado candidato</param>
+            <returns>Puntuación numérica</returns>
+        </member>
+        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.ContrastMethod">
+            <summary>
+            Método de puntuación por contraste. Se basa en el contraste normalizado de un edge
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.ContrastMethod.#ctor">
+            <summary>
+            Constructor del método de puntuación
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.ContrastMethod.Puntuar(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult)">
+            <summary>
+            Método sobreescrito de puntuación
+            </summary>
+            <param name="candidato">Resultado a puntuar</param>
+            <returns>Puntuación numérica del resultado</returns>
         </member>
         <member name="T:Orbita.VA.Funciones.OCCRManager">
             <summary>
             Clase que ejecuta continuamente el
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCCRManager.LimitCores">
+            <summary>
+            Constante que indica si se limitan los núcleos a utilizar
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCCRManager.Cores">
+            <summary>
+            Constante que indica el número máximo de núcleos a utilizar
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCCRManager.AvCharHeight">
+            <summary>
+            Constante de altura del caracter
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCCRManager.DuplicateLines">
+            <summary>
+            Parámetro de cidar
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCCRManager.TraceWrapper">
+            <summary>
+            Constante que indica si se ha de realizar una traza del CCR
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCCRManager.Trace">
+            <summary>
+            Trazabilidad
             </summary>
         </member>
         <member name="F:Orbita.VA.Funciones.OCCRManager.ThreadEjecucionCCR">
@@ -1377,11 +2112,6 @@
         <member name="F:Orbita.VA.Funciones.OCCRManager.UsoDemandado">
             <summary>
             Indica si alguna función de visión ha demandado el uso del CCR
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OCCRManager.Configuracion">
-            <summary>
-            Parámetros de configuración del CCR
             </summary>
         </member>
         <member name="M:Orbita.VA.Funciones.OCCRManager.Constructor">
@@ -1446,7 +2176,7 @@
         </member>
         <member name="M:Orbita.VA.Funciones.ThreadEjecucionCCR.Ejecucion(System.Boolean@)">
             <summary>
-            Método a heredar para implementar la ejecución del thread.
+            Método heredado para implementar la ejecución del thread.
             Este método se está ejecutando en un bucle. Para salir del bucle hay que devolver finalize a true.
             </summary>
         </member>
@@ -1472,17 +2202,12 @@
             Siguiente parametros de entrada a procesar en el CCR
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OFuncionVisionCCR.ListaImagenesPendientes">
-            <summary>
-            Lista de imagenes pendientes de ejecutar
-            </summary>
-        </member>
         <member name="F:Orbita.VA.Funciones.OFuncionVisionCCR.Imagen">
             <summary>
             Siguiente imágen a procesar en el CCR
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OFuncionVisionCCR.RutaImagen">
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionCCR.RutaImagenTemporal">
             <summary>
             Siguiente ruta de imágen a procesar en el CCR
             </summary>
@@ -1526,7 +2251,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionCCR.SetEntrada(System.String,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionCCR.ResetearColaEjecucion">
+            <summary>
+            Resetea la cola de ejecución
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionCCR.SetEntrada(System.String,System.Object,Orbita.Utiles.OEnumTipoDato)">
             <summary>
             Función para la actualización de parámetros de entrada
             </summary>
@@ -1535,7 +2265,7 @@
             <returns></returns>
             <remarks></remarks>
         </member>
-        <member name="M:Orbita.VA.Funciones.OFuncionVisionCCR.SetEntrada(Orbita.VA.Funciones.EnumEntradaFuncionVision,System.Object,Orbita.VA.Comun.OEnumTipoDato)">
+        <member name="M:Orbita.VA.Funciones.OFuncionVisionCCR.SetEntrada(Orbita.VA.Funciones.EnumTipoEntradaFuncionVision,System.Object,Orbita.Utiles.OEnumTipoDato)">
             <summary>
             Función para la actualización de parámetros de entrada
             </summary>
@@ -1557,54 +2287,13 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.OInfoInspeccionCCR.#ctor(Orbita.VA.Comun.OImagenBitmap,Orbita.VA.Funciones.OInfoImagenCCR,Orbita.VA.Funciones.OParametrosCCR,Orbita.VA.Funciones.OResultadoCCR,System.Collections.Generic.Dictionary{System.String,System.Object})">
+        <member name="M:Orbita.VA.Funciones.OInfoInspeccionCCR.#ctor(Orbita.VA.Comun.OImagenBitmap,Orbita.VA.Funciones.OParametrosCCR,Orbita.VA.Funciones.OInfoImagenCCR,Orbita.VA.Funciones.OResultadoCCR,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Constructor de la clase
             </summary>
             <param name="info"></param>
             <param name="parametros"></param>
             <param name="resultados"></param>
-        </member>
-        <member name="T:Orbita.VA.Funciones.OInfoImagenCCR">
-            <summary>
-            Esta clase contendra la información que queremos pasar con la imagen al CCR para recogerla cuando tengamos el resultado
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OInfoImagenCCR.IdEjecucionActual">
-            <summary>
-            Contiene la información de la identificacion a la que pertenece
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OInfoImagenCCR.CodigoCamara">
-            <summary>
-            Contiene la información de la cámara que se le pasa en la imagen
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OInfoImagenCCR.IndiceImagen">
-            <summary>
-            Contiene el indice de la imagen añadida
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OInfoImagenCCR.MomentoImagen">
-            <summary>
-            Contiene la fecha exacta en la que se adquirio la imagen
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OInfoImagenCCR.CallBackResultadoParcial">
-            <summary>
-            CallBack donde mandar el resultado parcial
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OInfoImagenCCR.#ctor">
-            <summary>
-            Constructor sin parametros
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OInfoImagenCCR.#ctor(System.Int64,System.String,System.Int32,System.DateTime,Orbita.VA.Funciones.CallBackResultadoParcial)">
-            <summary>
-            Constructor con parametros
-            </summary>
-            <param name="camara">camara que adquiere la imagen</param>
         </member>
         <member name="T:Orbita.VA.Funciones.OParametrosCCR">
             <summary>
@@ -1721,9 +2410,85 @@
             Parámetro2
             </summary>
         </member>
+        <member name="F:Orbita.VA.Funciones.OParametrosCCR.OrbitaCorreccionPerspectiva">
+            <summary>
+            Parámetros de corrección de perspectiva de Orbita
+            </summary>
+        </member>
         <member name="M:Orbita.VA.Funciones.OParametrosCCR.#ctor">
             <summary>
             Constructor de la clase sin parámetros
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OInfoImagenCCR">
+            <summary>
+            Esta clase contendra la información que queremos pasar con la imagen al CCR para recogerla cuando tengamos el resultado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenCCR._IdEjecucionActual">
+            <summary>
+            Contiene la información de la identificacion a la que pertenece
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenCCR._Codigo">
+            <summary>
+            Contiene la información de la cámara que se le pasa en la imagen
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenCCR._IndiceImagen">
+            <summary>
+            Contiene el indice de la imagen añadida
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenCCR._MomentoImagen">
+            <summary>
+            Contiene la fecha exacta en la que se adquirio la imagen
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenCCR._RutaImagenTemporal">
+            <summary>
+            Ruta de la imagen temporal
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OInfoImagenCCR.CallBackResultadoParcial">
+            <summary>
+            CallBack donde mandar el resultado parcial
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OInfoImagenCCR.#ctor">
+            <summary>
+            Constructor sin parametros
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OInfoImagenCCR.#ctor(System.Int64,System.String,System.Int32,System.DateTime,System.String,Orbita.VA.Funciones.CallBackResultadoParcial)">
+            <summary>
+            Constructor con parametros
+            </summary>
+            <param name="camara">camara que adquiere la imagen</param>
+        </member>
+        <member name="P:Orbita.VA.Funciones.OInfoImagenCCR.IdEjecucionActual">
+            <summary>
+            Contiene la información de la identificacion a la que pertenece
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.OInfoImagenCCR.Codigo">
+            <summary>
+            Contiene la información de la cámara que se le pasa en la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.OInfoImagenCCR.IndiceImagen">
+            <summary>
+            Contiene el indice de la imagen añadida
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.OInfoImagenCCR.MomentoImagen">
+            <summary>
+            Contiene la fecha exacta en la que se adquirio la imagen
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.OInfoImagenCCR.RutaImagenTemporal">
+            <summary>
+            Ruta de la imagen temporal
             </summary>
         </member>
         <member name="T:Orbita.VA.Funciones.OResultadoCCR">
@@ -1731,47 +2496,47 @@
             Clase que contiene los resultados que se reciben del CCR para una imagen pasada anteriormente
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoCCR.CodigoContenedor">
+        <member name="F:Orbita.VA.Funciones.OResultadoCCR._CodigoContenedor">
             <summary>
             Contiene la cadena del codigo del contenedor
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoCCR.ExtaInfoCodigo">
+        <member name="F:Orbita.VA.Funciones.OResultadoCCR._ExtaInfoCodigo">
             <summary>
             Contiene la información extra del código del contenedor
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoCCR.CodigoVerificado">
+        <member name="F:Orbita.VA.Funciones.OResultadoCCR._CodigoVerificado">
             <summary>
             Si esta verificado el digito de control
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoCCR.FiabilidadCodigo">
+        <member name="F:Orbita.VA.Funciones.OResultadoCCR._FiabilidadCodigo">
             <summary>
             Fiabilidad Código
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoCCR.FiabilidadExtraInfo">
+        <member name="F:Orbita.VA.Funciones.OResultadoCCR._FiabilidadExtraInfo">
             <summary>
             Fiabilidad ExtraInfo
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoCCR.AlturaLetrasCodigo">
+        <member name="F:Orbita.VA.Funciones.OResultadoCCR._AlturaLetrasCodigo">
             <summary>
             Altura letras
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoCCR.FechaEncolamiento">
+        <member name="F:Orbita.VA.Funciones.OResultadoCCR._FechaEncolamiento">
             <summary>
             Fecha en la que se encolo a la cola de CCR (dada por él)
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoCCR.TiempoDeProceso">
+        <member name="F:Orbita.VA.Funciones.OResultadoCCR._TiempoDeProceso">
             <summary>
             Tiempo de proceso
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OResultadoCCR.FiabilidadesLetras">
+        <member name="F:Orbita.VA.Funciones.OResultadoCCR._FiabilidadesLetras">
             <summary>
             Contiene las fiabilidades de cada letra individual
             </summary>
@@ -1786,54 +2551,49 @@
             Constructor con parametros
             </summary>
         </member>
-        <member name="T:Orbita.VA.Funciones.ConfiguracionCCR">
+        <member name="P:Orbita.VA.Funciones.OResultadoCCR.CodigoContenedor">
             <summary>
-            Parámetros de la aplicación
+            Contiene la cadena del codigo del contenedor
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionCCR.ConfFile">
+        <member name="P:Orbita.VA.Funciones.OResultadoCCR.ExtaInfoCodigo">
             <summary>
-            Ruta por defecto del fichero xml de configuración
+            Contiene la información extra del código del contenedor
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionCCR.TraceWrapper">
+        <member name="P:Orbita.VA.Funciones.OResultadoCCR.CodigoVerificado">
             <summary>
-            Constante que indica si se ha de realizar una traza del CCR
+            Si esta verificado el digito de control
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionCCR.LimitCores">
+        <member name="P:Orbita.VA.Funciones.OResultadoCCR.FiabilidadCodigo">
             <summary>
-            Constante que indica si se limitan los núcleos a utilizar
+            Fiabilidad Código
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionCCR.Cores">
+        <member name="P:Orbita.VA.Funciones.OResultadoCCR.FiabilidadExtraInfo">
             <summary>
-            Constante que indica el número máximo de núcleos a utilizar
+            Fiabilidad ExtraInfo
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionCCR.AvCharHeight">
+        <member name="P:Orbita.VA.Funciones.OResultadoCCR.AlturaLetrasCodigo">
             <summary>
-            Constante de altura del caracter
+            Altura letras
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionCCR.DuplicateLines">
+        <member name="P:Orbita.VA.Funciones.OResultadoCCR.FechaEncolamiento">
             <summary>
-            Parámetro de cidar
+            Fecha en la que se encolo a la cola de CCR (dada por él)
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ConfiguracionCCR.Trace">
+        <member name="P:Orbita.VA.Funciones.OResultadoCCR.TiempoDeProceso">
             <summary>
-            Trazabilidad
+            Tiempo de proceso
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.ConfiguracionCCR.#ctor">
+        <member name="P:Orbita.VA.Funciones.OResultadoCCR.FiabilidadesLetras">
             <summary>
-            Contructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.ConfiguracionCCR.#ctor(System.String)">
-            <summary>
-            Contructor de la clase
+            Contiene las fiabilidades de cada letra individual
             </summary>
         </member>
         <member name="T:Orbita.VA.Funciones.EntradasFuncionesVisionCCR">
@@ -1841,14 +2601,207 @@
             Define el conjunto de tipos de entradas de las funciones de visión CCR
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.EntradasFuncionesVisionCCR.ParametrosCCR">
-            <summary>
-            Parametros de configuración del CCR
-            </summary>
-        </member>
         <member name="F:Orbita.VA.Funciones.EntradasFuncionesVisionCCR.RutaImagen">
             <summary>
             Ruta en disco de la imagen de entrada
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult">
+            <summary>
+            Implementa el resultado de una detección de edges por parte de OrbitaCaliper
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.edge1">
+            <summary>
+            Edge detectado (o primer edge del par)
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.edge2">
+            <summary>
+            Segundo edge del par
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.pair">
+            <summary>
+            Determina si se trata de un par de edges o de un sigle edge
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.resultScore">
+            <summary>
+            Puntuación del resultado
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.#ctor(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge)">
+            <summary>
+            Constructor para un resultado single edge
+            </summary>
+            <param name="edge">Edge a incluir en el resultado</param>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.ToString">
+            <summary>
+            Sobreescritura del método ToString
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.Edge1">
+            <summary>
+            Obtiene el edge resultado (primer edge en caso de ser un par)
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.Edge2">
+            <summary>
+            Obtiene o establece el segundo edge del par
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.IsPair">
+            <summary>
+            Obtiene si el resultado es un par de edges
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.ResultScore">
+            <summary>
+            Obtiene la puntuación del resultado
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.MeasuredWidth">
+            <summary>
+            Obtiene el ancho del par
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.Position">
+            <summary>
+            Obtiene la posición del resultado
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.ContrasteAbsoluto">
+            <summary>
+            Obtiene el contraste del resultado (en valor absoluto)
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge">
+            <summary>
+            Estructura que almacena datos de un Edge
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.indice">
+            <summary>
+            Índice del edge
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.score">
+            <summary>
+            Puntuación del edge
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.position">
+            <summary>
+            Posición del edge respecto al centro del caliper
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.x">
+            <summary>
+            Posición del edge sobre el eje x
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.y">
+            <summary>
+            Posición del edge sobre el eje y
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.contraste">
+            <summary>
+            Contraste medido del edge
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.#ctor(System.Int32,System.Single,System.Drawing.PointF,System.Double)">
+            <summary>
+            Crea un nuevo edge con la puntuación vacia
+            </summary>
+            <param name="indice">Indice del caliper, para identificarlo dentro de la colección</param>
+            <param name="posicion">Posición respecto al centro del caliper</param>
+            <param name="coordenadas">Coordenadas donde se encuentra el edge</param>
+            <param name="contraste">Contraste encontrado</param>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.#ctor(System.Int32,System.Single,System.Drawing.PointF,System.Single,System.Single)">
+            <summary>
+            Crea un nuevo edge con la puntuación
+            </summary>
+            <param name="indice">Indice del caliper, para identificarlo dentro de la colección</param>
+            <param name="posicion">Posición respecto al centro del caliper</param>
+            <param name="coordenadas">Coordenadas donde se encuentra el edge</param>
+            <param name="contraste">Contraste encontrado</param>
+            <param name="score">Puntuación del edge</param>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.#ctor(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge)">
+            <summary>
+            Crea un nuevo edge en base a otro
+            </summary>
+            <param name="origen">Edge a copiar</param>
+        </member>
+        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.ToString">
+            <summary>
+            Método ToString sobreescrito
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.Score">
+            <summary>
+            Obtiene o establece la puntuación del edge
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.Position">
+            <summary>
+            Obtiene la posición del edge respecto al centro del OrbitaCaliper
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.X">
+            <summary>
+            Obtiene la posición sobre el eje X del edge
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.Y">
+            <summary>
+            Obtiene la posición sobre el eje Y del edge
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.NegroBlanco">
+            <summary>
+            Obtiene si el edge está en una transición negro a blanco
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.Contraste">
+            <summary>
+            Obtiene el contraste medido del edge
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.Indice">
+            <summary>
+            Obtiene el índice del edge
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.PolaridadEdges">
+            <summary>
+            Enumera los tipos de edges disponibles
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.PolaridadEdges.NegroBlanco">
+            <summary>
+            Contraste positivo, pasa de negro a blanco
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.PolaridadEdges.BlancoNegro">
+            <summary>
+            Contraste negativo, pasa de blanco a negro
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.PolaridadEdges.Cualquiera">
+            <summary>
+            Cualquier signo de contraste, sirve para cualquier edge sea cual sea su signo
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.PolaridadEdges.Ninguno">
+            <summary>
+            Edge no definido, se utiliza para indicar la no existencia de un edge
             </summary>
         </member>
     </members>

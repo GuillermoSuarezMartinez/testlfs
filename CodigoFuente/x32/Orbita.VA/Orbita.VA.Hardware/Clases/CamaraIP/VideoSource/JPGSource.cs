@@ -28,12 +28,14 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Tamaño del buffer
         /// </summary>
-        private const int bufSize = 512 * 1024;	// buffer size
+        //private const int bufSize = 512 * 1024;	// buffer size
+        private const int bufSize = 2 * 1024 * 1024;	// buffer size
 
         /// <summary>
         /// Tamaño de la lectura
         /// </summary>
-        private const int readSize = 1024;		// portion size to read
+        //private const int readSize = 1024;		// portion size to read
+        private const int readSize = 512 * 1024;		// portion size to read
         #endregion
 
         #region Atributo(s)
@@ -46,6 +48,11 @@ namespace Orbita.VA.Hardware
         /// Evento de stop del thread de captura de datos
         /// </summary>
         private ManualResetEvent stopEvent = null;
+
+        /// <summary>
+        /// Buffer interno
+        /// </summary>
+        private byte[] BufferInterno;
         #endregion
 
         #region Propiedad(es)
@@ -138,7 +145,7 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Uso de grupo de conexión separada
         /// </summary>
-        private bool _SeparateConnectionGroup = false;
+        private bool _SeparateConnectionGroup = true;
         /// <summary>
         /// SeparateConnectioGroup property indicates to open WebRequest in separate connection group
         /// </summary>
@@ -245,6 +252,7 @@ namespace Orbita.VA.Hardware
         /// </summary>
         public JPEGSource()
         {
+            this.BufferInterno = new byte[bufSize];
         } 
         #endregion
 
@@ -321,7 +329,9 @@ namespace Orbita.VA.Hardware
         /// </summary>
         private void WorkerThread()
         {
-            byte[] buffer = new byte[bufSize];	// buffer to read stream
+            //byte[] buffer = new byte[bufSize];	// buffer to read stream
+            byte[] buffer = this.BufferInterno;
+            bool excepcionConexion = false;
 
             Random rnd = new Random((int)DateTime.Now.Ticks);
             DateTime start;
@@ -349,7 +359,7 @@ namespace Orbita.VA.Hardware
                             localSource = Source + ((Source.IndexOf('?') == -1) ? '?' : '&') + "fake=" + rnd.Next().ToString();
                         }
 
-                        if (!comunicacionCGI.Start())
+                        if (!comunicacionCGI.Start(excepcionConexion))
                             throw new ApplicationException("Invalid URL");
 
                         if (comunicacionCGI.TipoContenido != OComunicacionCGI.TipoContenidoRespuestaCGI.ImageJpeg)
@@ -418,25 +428,30 @@ namespace Orbita.VA.Hardware
                                 msec -= 100;
                             }
                         }
+
+                        excepcionConexion = false;
                     }
-                    catch (WebException ex)
+                    catch (WebException exception)
                     {
-                        OLogsVAHardware.Camaras.Info("Thread de JPG", ex);
+                        OLogsVAHardware.Camaras.Info(exception, "Thread de JPG", this.Source);
+                        excepcionConexion = true;
                         // wait for a while before the next try
                         Thread.Sleep(250);
                     }
-                    catch (ApplicationException ex)
+                    catch (ApplicationException exception)
                     {
-                        OLogsVAHardware.Camaras.Info("Thread de JPG", ex);
+                        OLogsVAHardware.Camaras.Info(exception, "Thread de JPG", this.Source);
+                        excepcionConexion = true;
                         // wait for a while before the next try
                         Thread.Sleep(250);
                     }
                     catch (ThreadAbortException)
                     {
                     }
-                    catch (Exception ex)
+                    catch (Exception exception)
                     {
-                        OLogsVAHardware.Camaras.Info("Thread de JPG", ex);
+                        OLogsVAHardware.Camaras.Info(exception, "Thread de JPG", this.Source);
+                        excepcionConexion = true;
                         // wait for a while before the next try
                         Thread.Sleep(250);
                     }
@@ -453,9 +468,9 @@ namespace Orbita.VA.Hardware
                     if (stopEvent.WaitOne(0, true))
                         break;
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
-                    OLogsVAHardware.Camaras.Info("Thread de JPG", ex);
+                    OLogsVAHardware.Camaras.Info(exception, "Thread de JPG", this.Source);
                 }
             }
         }

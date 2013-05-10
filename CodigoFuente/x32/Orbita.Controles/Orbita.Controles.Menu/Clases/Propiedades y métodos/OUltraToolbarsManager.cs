@@ -15,6 +15,9 @@ namespace Orbita.Controles.Menu
     public class OUltraToolbarsManager
     {
         #region Atributos
+        /// <summary>
+        /// Objecto de control de tipo Orbita.Controles.Menu.OrbitaUltraToolbarsManager.
+        /// </summary>
         OrbitaUltraToolbarsManager control;
         #endregion
 
@@ -22,7 +25,7 @@ namespace Orbita.Controles.Menu
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OUltraToolbarsManager.
         /// </summary>
-        /// <param name="control">Orbita.Controles.Menu.OrbitaUltraToolbarsManager.</param>
+        /// <param name="control">Objecto de control de tipo Orbita.Controles.Menu.OrbitaUltraToolbarsManager.</param>
         public OUltraToolbarsManager(object control)
             : base()
         {
@@ -31,6 +34,9 @@ namespace Orbita.Controles.Menu
         #endregion
 
         #region Propiedades
+        /// <summary>
+        /// Objecto de control de tipo Orbita.Controles.Menu.OrbitaUltraToolbarsManager.
+        /// </summary>
         internal OrbitaUltraToolbarsManager Control
         {
             get { return this.control; }
@@ -38,7 +44,10 @@ namespace Orbita.Controles.Menu
         #endregion
 
         #region Métodos públicos
-
+        /// <summary>
+        /// Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+        /// </summary>
+        /// <returns>El nombre de tipo completo del objeto.</returns>
         public override string ToString()
         {
             return null;

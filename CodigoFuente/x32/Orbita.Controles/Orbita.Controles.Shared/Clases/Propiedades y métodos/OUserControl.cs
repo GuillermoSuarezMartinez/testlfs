@@ -35,6 +35,10 @@ namespace Orbita.Controles.Shared
         #endregion
 
         #region Métodos públicos
+        /// <summary>
+        /// Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+        /// </summary>
+        /// <returns>El nombre de tipo completo del objeto.</returns>
         public override string ToString()
         {
             return null;

@@ -6,7 +6,7 @@
     <members>
         <member name="T:Orbita.Trazabilidad.LogManager">
             <summary>
-            LogManager.
+            Log manager.
             </summary>
         </member>
         <member name="F:Orbita.Trazabilidad.LogManager.Repositorio">
@@ -26,6 +26,18 @@
             </summary>
             <param name="identificador">Identificador de logger.</param>
             <returns>ILogger.</returns>
+        </member>
+        <member name="M:Orbita.Trazabilidad.LogManager.GetLoggers">
+            <summary>
+            Colección de loggers.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Trazabilidad.LogManager.GetLoggers``1">
+            <summary>
+            Colección de loggers.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Orbita.Trazabilidad.LogManager.SetLogger(Orbita.Trazabilidad.ILogger)">
             <summary>
@@ -786,6 +798,11 @@
             Identificador de logger.
             </summary>
         </member>
+        <member name="E:Orbita.Trazabilidad.ILogger.AntesEscribirLogger">
+            <summary>
+            Evento que se ejecuta antes de escribir en el fichero de logger.
+            </summary>
+        </member>
         <member name="E:Orbita.Trazabilidad.ILogger.DespuesEscribirLogger">
             <summary>
             Evento que se ejecuta tras escribir en el fichero de logger.
@@ -1088,6 +1105,13 @@
             <param name="nivel">Nivel de logger.</param>
             <returns>Indica si el nivel de logger se incluye en el tipo de definido.</returns>
         </member>
+        <member name="M:Orbita.Trazabilidad.BaseLogger.OnAntesEscribirLogger(System.Object,Orbita.Trazabilidad.LoggerEventArgs)">
+            <summary>
+            Evento que se ejecuta antes de escribir en el fichero de logger.
+            </summary>
+            <param name="sender">Objeto que lanza el evento.</param>
+            <param name="e">Orbita.Trazabilidad.LoggerEventArgs es la clase base para las clases que contienen datos de eventos.</param>
+        </member>
         <member name="M:Orbita.Trazabilidad.BaseLogger.OnDespuesEscribirLogger(System.Object,Orbita.Trazabilidad.LoggerEventArgs)">
             <summary>
             Evento que se ejecuta tras escribir en el fichero de logger.
@@ -1108,6 +1132,11 @@
             </summary>
             <param name="item">Item de entrada.</param>
             <returns>Nivel de log + SID formateado.</returns>
+        </member>
+        <member name="E:Orbita.Trazabilidad.BaseLogger.AntesEscribirLogger">
+            <summary>
+            Evento que se ejecuta antes de escribir en el fichero de logger.
+            </summary>
         </member>
         <member name="E:Orbita.Trazabilidad.BaseLogger.DespuesEscribirLogger">
             <summary>
@@ -1259,11 +1288,12 @@
             <param name="item">Item de entrada.</param>
             <returns>Cadena de entrada formateada.</returns>
         </member>
-        <member name="M:Orbita.Trazabilidad.TraceLogger.Escribir(System.String)">
+        <member name="M:Orbita.Trazabilidad.TraceLogger.Escribir(System.String,Orbita.Trazabilidad.ItemLog)">
             <summary>
             Escribir en disco la cadena de texto.
             </summary>
             <param name="cadena">Cadena de texto.</param>
+            <param name="item">Item de entrada.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.TraceLogger.Escribir(System.Exception)">
             <summary>
@@ -1639,7 +1669,7 @@
         </member>
         <member name="T:Orbita.Trazabilidad.ExtensionUtiles">
             <summary>
-            Extensión útiles.
+            Extensiones útiles.
             </summary>
         </member>
         <member name="F:Orbita.Trazabilidad.ExtensionUtiles.Ensamblados">
@@ -1647,7 +1677,7 @@
             Colección de ensamblados.
             </summary>
         </member>
-        <member name="M:Orbita.Trazabilidad.ExtensionUtiles.InicializarExtensionUtiles">
+        <member name="M:Orbita.Trazabilidad.ExtensionUtiles.Inicializar">
             <summary>
             Inicializar el atributo de tipo colección de ensamblados.
             </summary>
@@ -1661,7 +1691,7 @@
         </member>
         <member name="T:Orbita.Trazabilidad.DictionaryLogger">
             <summary>
-            A dictionary with keys of type string and values of type Target.
+            A dictionary with keys of type string and values of type Logger.
             </summary>
         </member>
         <member name="M:Orbita.Trazabilidad.DictionaryLogger.#ctor">
@@ -1671,7 +1701,7 @@
         </member>
         <member name="M:Orbita.Trazabilidad.DictionaryLogger.Add(System.String,Orbita.Trazabilidad.ILogger)">
             <summary>
-            Adds an element with the specified key and value to this TargetDictionary.
+            Adds an element with the specified key and value to this DictionaryLogger.
             </summary>
             <param name="key">
             The string key of the element to add.
@@ -1682,31 +1712,19 @@
         </member>
         <member name="M:Orbita.Trazabilidad.DictionaryLogger.Contains(System.String)">
             <summary>
-            Determines whether this TargetDictionary contains a specific key.
+            Determines whether this DictionaryLogger contains a specific key.
             </summary>
             <param name="key">
-            The string key to locate in this TargetDictionary.
+            The string key to locate in this DictionaryLogger.
             </param>
             <returns>
-            true if this TargetDictionary contains an element with the specified key;
-            otherwise, false.
-            </returns>
-        </member>
-        <member name="M:Orbita.Trazabilidad.DictionaryLogger.ContainsKey(System.String)">
-            <summary>
-            Determines whether this TargetDictionary contains a specific key.
-            </summary>
-            <param name="key">
-            The string key to locate in this TargetDictionary.
-            </param>
-            <returns>
-            true if this TargetDictionary contains an element with the specified key;
+            true if this DictionaryLogger contains an element with the specified key;
             otherwise, false.
             </returns>
         </member>
         <member name="M:Orbita.Trazabilidad.DictionaryLogger.ContainsValue(Orbita.Trazabilidad.ILogger)">
             <summary>
-            Determines whether this TargetDictionary contains a specific value.
+            Determines whether this DictionaryLogger contains a specific value.
             </summary>
             <param name="value">
             The Target value to locate in this TargetDictionary.
@@ -1785,121 +1803,6 @@
         <member name="F:Orbita.Trazabilidad.Mascara.AñoMesDia">
             <summary>
             Máscara de subpath de backup logger con formato 'aaaaMMdd'.
-            </summary>
-        </member>
-        <member name="T:Orbita.Trazabilidad.ItemTraza">
-            <summary>
-            Item Traza.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.ItemTraza.nivelTraza">
-            <summary>
-            El nivel de registro de traza.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.ItemTraza.fecha">
-            <summary>
-            Dia y hora de entrada en el registro. Si no  explicitamente esta propiedad ofrece la marca de tiempo de la creación del objeto.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.ItemTraza.procedimiento">
-            <summary>
-            El procedimiento almacenado. Por defecto, <c>string.Empty</c>.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.ItemTraza.identificador">
-            <summary>
-            Identificador de evento. Por defecto, <c>null</c>.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.ItemTraza.args">
-            <summary>
-            Argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
-            </summary>
-        </member>
-        <member name="M:Orbita.Trazabilidad.ItemTraza.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.ItemTraza.
-            </summary>
-        </member>
-        <member name="M:Orbita.Trazabilidad.ItemTraza.#ctor(Orbita.Trazabilidad.NivelTraza)">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.ItemTraza.
-            </summary>
-            <param name="nivelTraza">El nivel de registro de traza.</param>
-        </member>
-        <member name="M:Orbita.Trazabilidad.ItemTraza.#ctor(Orbita.Trazabilidad.NivelTraza,System.String)">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.ItemTraza.
-            </summary>
-            <param name="nivelTraza">El nivel de registro de traza.</param>
-            <param name="procedimiento">El procedimiento almacenado.</param>
-        </member>
-        <member name="M:Orbita.Trazabilidad.ItemTraza.#ctor(Orbita.Trazabilidad.NivelTraza,System.String,System.Collections.ArrayList)">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.ItemTraza.
-            </summary>
-            <param name="nivelTraza">El nivel de registro de traza.</param>
-            <param name="procedimiento">El procedimiento almacenado.</param>
-            <param name="args">Argumentos del procedimiento almacenado.</param>
-        </member>
-        <member name="F:Orbita.Trazabilidad.ItemTraza.disposed">
-            <summary>
-            Indica si ya se llamo al método Dispose. (default = false)
-            </summary>
-        </member>
-        <member name="M:Orbita.Trazabilidad.ItemTraza.Dispose">
-            <summary>
-            Implementa IDisposable.
-            No  hacer  este  método  virtual.
-            Una clase derivada no debería ser capaz de  reemplazar este método.
-            </summary>
-        </member>
-        <member name="M:Orbita.Trazabilidad.ItemTraza.Dispose(System.Boolean)">
-            <summary>
-            Método  sobrecargado de  Dispose que será  el que
-            libera los recursos. Controla que solo se ejecute
-            dicha lógica una  vez y evita que el GC tenga que
-            llamar al destructor de clase.
-            </summary>
-            <param name="disposing">Indica si llama al método Dispose.</param>
-        </member>
-        <member name="M:Orbita.Trazabilidad.ItemTraza.Finalize">
-            <summary>
-            Destructor(es) de clase.
-            En caso de que se nos olvide “desechar” la clase, el GC llamará al destructor, que tambén ejecuta la lógica anterior para liberar los recursos.
-            </summary>
-        </member>
-        <member name="M:Orbita.Trazabilidad.ItemTraza.SetArgumentos(System.Collections.ArrayList)">
-            <summary>
-            Argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
-            </summary>
-        </member>
-        <member name="P:Orbita.Trazabilidad.ItemTraza.NivelTraza">
-            <summary>
-            El nivel de registro de traza.
-            </summary>
-        </member>
-        <member name="P:Orbita.Trazabilidad.ItemTraza.Fecha">
-            <summary>
-            Día y hora de entrada en el registro. Si no  explicitamente
-            esta propiedad ofrece la marca de tiempo de la creación del
-            objeto.
-            </summary>
-        </member>
-        <member name="P:Orbita.Trazabilidad.ItemTraza.Procedimiento">
-            <summary>
-            El procedimiento almacenado. Por defecto <c>string.Empty</c>.
-            </summary>
-        </member>
-        <member name="P:Orbita.Trazabilidad.ItemTraza.Identificador">
-            <summary>
-            Identificador de evento. Por defecto <c>null</c>.
-            </summary>
-        </member>
-        <member name="P:Orbita.Trazabilidad.ItemTraza.Argumentos">
-            <summary>
-            Argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
             </summary>
         </member>
         <member name="T:Orbita.Trazabilidad.SimpleLogger">
@@ -2031,7 +1934,7 @@
         </member>
         <member name="T:Orbita.Trazabilidad.IRemotingLogger">
             <summary>
-            IRemotingLogger.
+            Interface de RemotingLogger.
             </summary>
         </member>
         <member name="M:Orbita.Trazabilidad.IRemotingLogger.Log(Orbita.Trazabilidad.ItemLog[])">
@@ -2043,7 +1946,7 @@
         </member>
         <member name="T:Orbita.Trazabilidad.ItemLog">
             <summary>
-            Item Log.
+            Representa un evento de logger.
             </summary>
         </member>
         <member name="F:Orbita.Trazabilidad.ItemLog.nivelLog">
@@ -2063,12 +1966,22 @@
         </member>
         <member name="F:Orbita.Trazabilidad.ItemLog.identificador">
             <summary>
-            Identificador de evento. Por defecto <c>null</c>.
+            Identificador de secuencia. Por defecto <c>null</c>.
             </summary>
         </member>
         <member name="F:Orbita.Trazabilidad.ItemLog.args">
             <summary>
             Argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
+            </summary>
+        </member>
+        <member name="F:Orbita.Trazabilidad.ItemLog.identificadorGlobal">
+            <summary>
+            Identificador de secuencia global.
+            </summary>
+        </member>
+        <member name="F:Orbita.Trazabilidad.ItemLog.FechaCero">
+            <summary>
+            Fecha del primer evento creado de logger.
             </summary>
         </member>
         <member name="M:Orbita.Trazabilidad.ItemLog.#ctor">
@@ -2498,6 +2411,7 @@
         </member>
         <member name="M:Orbita.Trazabilidad.ConfiguracionLogger.#ctor">
             <summary>
+            
             </summary>
         </member>
         <member name="M:Orbita.Trazabilidad.ConfiguracionLogger.AddLogger(System.String,Orbita.Trazabilidad.ILogger)">
@@ -3018,7 +2932,7 @@
         </member>
         <member name="T:Orbita.Trazabilidad.TypeDictionary">
             <summary>
-            A dictionary with keys of type string and values of type Type
+            A dictionary with keys of type string and values of type Type.
             </summary>
         </member>
         <member name="M:Orbita.Trazabilidad.TypeDictionary.#ctor">
@@ -3038,18 +2952,6 @@
             </param>
         </member>
         <member name="M:Orbita.Trazabilidad.TypeDictionary.Contains(System.String)">
-            <summary>
-            Determines whether this TypeDictionary contains a specific key.
-            </summary>
-            <param name="key">
-            The string key to locate in this TypeDictionary.
-            </param>
-            <returns>
-            true if this TypeDictionary contains an element with the specified key;
-            otherwise, false.
-            </returns>
-        </member>
-        <member name="M:Orbita.Trazabilidad.TypeDictionary.ContainsKey(System.String)">
             <summary>
             Determines whether this TypeDictionary contains a specific key.
             </summary>
@@ -3135,9 +3037,14 @@
             Contiene datos de eventos relativos a escritura en logger.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.LoggerEventArgs.cadena">
+        <member name="F:Orbita.Trazabilidad.LoggerEventArgs.item">
             <summary>
-            Cadena de entrada a escribir en logger.
+            Item de entrada.
+            </summary>
+        </member>
+        <member name="F:Orbita.Trazabilidad.LoggerEventArgs.excepcion">
+            <summary>
+            Excepción.
             </summary>
         </member>
         <member name="M:Orbita.Trazabilidad.LoggerEventArgs.#ctor">
@@ -3145,15 +3052,66 @@
             Inicializar una nueva instancia de la clase Orbita.Trazabilidad.LoggerEventArgs.
             </summary>
         </member>
-        <member name="M:Orbita.Trazabilidad.LoggerEventArgs.#ctor(System.String)">
+        <member name="M:Orbita.Trazabilidad.LoggerEventArgs.#ctor(Orbita.Trazabilidad.ItemLog)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Trazabilidad.LoggerEventArgs.
             </summary>
-            <param name="cadena">Cadena de entrada a escribir en logger.</param>
+            <param name="item">Item de entrada.</param>
         </member>
-        <member name="P:Orbita.Trazabilidad.LoggerEventArgs.Cadena">
+        <member name="M:Orbita.Trazabilidad.LoggerEventArgs.#ctor(Orbita.Trazabilidad.ItemLog,System.Exception)">
             <summary>
-            Cadena de entrada a escribir en logger.
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.LoggerEventArgs.
+            </summary>
+            <param name="item">Item de entrada.</param>
+            <param name="excepcion">Excepción.</param>
+        </member>
+        <member name="P:Orbita.Trazabilidad.LoggerEventArgs.Item">
+            <summary>
+            Item de entrada.
+            </summary>
+        </member>
+        <member name="P:Orbita.Trazabilidad.LoggerEventArgs.Excepcion">
+            <summary>
+            Excepción.
+            </summary>
+        </member>
+        <member name="T:Orbita.Trazabilidad.LoggerArgsEventArgs">
+            <summary>
+            Contiene datos de eventos relativos a escritura en logger más argumentos.
+            </summary>
+        </member>
+        <member name="F:Orbita.Trazabilidad.LoggerArgsEventArgs.args">
+            <summary>
+            Argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
+            </summary>
+        </member>
+        <member name="M:Orbita.Trazabilidad.LoggerArgsEventArgs.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.LoggerEventArgs.
+            </summary>
+        </member>
+        <member name="M:Orbita.Trazabilidad.LoggerArgsEventArgs.#ctor(Orbita.Trazabilidad.ItemLog)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.LoggerEventArgs.
+            </summary>
+            <param name="item">Item de entrada.</param>
+        </member>
+        <member name="M:Orbita.Trazabilidad.LoggerArgsEventArgs.#ctor(Orbita.Trazabilidad.ItemLog,System.Exception)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.LoggerEventArgs.
+            </summary>
+            <param name="item">Item de entrada.</param>
+            <param name="excepcion">Excepción.</param>
+        </member>
+        <member name="M:Orbita.Trazabilidad.LoggerArgsEventArgs.GetArgumentos">
+            <summary>
+            Obtener argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
+            </summary>
+            <returns>Colección de object.</returns>
+        </member>
+        <member name="M:Orbita.Trazabilidad.LoggerArgsEventArgs.SetArgumentos(System.Object[])">
+            <summary>
+            Asignar argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
             </summary>
         </member>
         <member name="T:Orbita.Trazabilidad.TimerLogger">

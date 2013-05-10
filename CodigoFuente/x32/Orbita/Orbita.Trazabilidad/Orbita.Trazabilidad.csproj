@@ -111,7 +111,6 @@
     <Compile Include="Core\TraceLogger.cs" />
     <Compile Include="Logger\BaseLogger.cs" />
     <Compile Include="Logger\ItemLog.cs" />
-    <Compile Include="Logger\ItemTraza.cs" />
     <Compile Include="Enumerados\NivelLog.cs" />
     <Compile Include="Enumerados\NivelTraza.cs" />
     <Compile Include="Logger\TimerBackup.cs" />

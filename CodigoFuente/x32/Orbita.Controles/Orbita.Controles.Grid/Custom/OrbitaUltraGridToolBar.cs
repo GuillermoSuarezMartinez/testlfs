@@ -9,89 +9,65 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using Infragistics.Win.UltraWinGrid;
-using Infragistics.Win.UltraWinToolbars;
-using Orbita.Controles.Menu;
-using Orbita.Controles.Shared;
-using Orbita.Controles.Comunes;
+using System.Linq;
 namespace Orbita.Controles.Grid
 {
-    public partial class OrbitaUltraGridToolBar : OrbitaUserControl
+    public partial class OrbitaUltraGridToolBar : Orbita.Controles.Shared.OrbitaUserControl
     {
-        #region Nueva definicion
+        #region Nueva definición
         public class ControlNuevaDefinicion : OUltraGridToolBar
         {
             public ControlNuevaDefinicion(OrbitaUltraGridToolBar sender)
                 : base(sender) { }
         }
-        #endregion Nueva definicion
+        #endregion Nueva definición
 
-        #region Atributos
-        /// <summary>
-        /// Proporciona un acceso a los recursos específicos de cada referencia cultural en tiempo de ejecución.
-        /// </summary>
+        #region Atributos privados
         System.Resources.ResourceManager stringManager;
         ControlNuevaDefinicion definicion;
         FrmBuscar frmBuscar;
-        UltraGridRow fila = null;
+        Infragistics.Win.UltraWinGrid.UltraGridRow fila = null;
         object customNodoSeleccionado = null;
         OTimerEventArgs ciclo;
-        #endregion Atributos
+
+        #region Atributos privados Toolbar
+        ToolGestionarClickEventHandler onToolGestionarClick;
+        ToolVerClickEventHandler onToolVerClick;
+        ToolModificarClickEventHandler onToolModificarClick;
+        ToolAñadirClickEventHandler onToolAñadirClick;
+        ToolEliminarClickEventHandler onToolEliminarClick;
+        ToolExportarClickEventHandler onToolExportarClick;
+        ToolImprimirClickEventHandler onToolImprimirClick;
+        ToolRefrescarClickEventHandler onToolRefrescarClick;
+        ToolCiclicoClickEventHandler onToolCiclicoClick;
+        ToolEditarBeforeToolDropDownEventHandler onToolEditarBeforeToolDropDown;
+        ToolEstiloBeforeToolDropDownEventHandler onToolEstiloBeforeToolDropDown;
+        #endregion Atributos privados Toolbar
+
+        #endregion Atributos privados
+
+        #region Atributos internos
+        internal OCollectionEventHandler eventos;
+        #endregion Atributos internos
 
         #region Delegados
-        public delegate void ToolGestionarClickEventHandler(object sender, ToolClickEventArgs e);
+        public delegate void ToolGestionarClickEventHandler(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e);
         public delegate void ToolVerClickEventHandler(object sender, OToolClickEventArgs e);
         public delegate void ToolModificarClickEventHandler(object sender, OToolClickEventArgs e);
-        public delegate void ToolAñadirClickEventHandler(object sender, ToolClickEventArgs e);
+        public delegate void ToolAñadirClickEventHandler(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e);
         public delegate void ToolEliminarClickEventHandler(object sender, OToolClickCollectionEventArgs e);
-        public delegate void ToolExportarClickEventHandler(object sender, ToolClickEventArgs e);
-        public delegate void ToolImprimirClickEventHandler(object sender, ToolClickEventArgs e);
-        public delegate void ToolRefrescarClickEventHandler(object sender, ToolClickEventArgs e);
+        public delegate void ToolExportarClickEventHandler(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e);
+        public delegate void ToolImprimirClickEventHandler(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e);
+        public delegate void ToolRefrescarClickEventHandler(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e);
         public delegate void ToolCiclicoClickEventHandler(object sender, OTimerEventArgs e);
-        public delegate void ToolEditarBeforeToolDropDownEventHandler(object sender, BeforeToolDropdownEventArgs e);
-        public delegate void ToolEstiloBeforeToolDropDownEventHandler(object sender, BeforeToolDropdownEventArgs e);
+        public delegate void ToolEditarBeforeToolDropDownEventHandler(object sender, Infragistics.Win.UltraWinToolbars.BeforeToolDropdownEventArgs e);
+        public delegate void ToolEstiloBeforeToolDropDownEventHandler(object sender, Infragistics.Win.UltraWinToolbars.BeforeToolDropdownEventArgs e);
         #endregion Delegados
 
-        #region Eventos
-        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
-        [System.ComponentModel.Description("Gestionar.")]
-        public event ToolGestionarClickEventHandler ToolGestionarClick;
-        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
-        [System.ComponentModel.Description("Ver.")]
-        public event ToolVerClickEventHandler ToolVerClick;
-        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
-        [System.ComponentModel.Description("Modificar.")]
-        public event ToolModificarClickEventHandler ToolModificarClick;
-        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
-        [System.ComponentModel.Description("Añadir.")]
-        public event ToolAñadirClickEventHandler ToolAñadirClick;
-        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
-        [System.ComponentModel.Description("Eliminar.")]
-        public event ToolEliminarClickEventHandler ToolEliminarClick;
-        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
-        [System.ComponentModel.Description("Exportar.")]
-        public event ToolExportarClickEventHandler ToolExportarClick;
-        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
-        [System.ComponentModel.Description("Imprimir.")]
-        public event ToolImprimirClickEventHandler ToolImprimirClick;
-        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
-        [System.ComponentModel.Description("Refrescar.")]
-        public event ToolRefrescarClickEventHandler ToolRefrescarClick;
-        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
-        [System.ComponentModel.Description("Refrescar cíclico.")]
-        public event ToolCiclicoClickEventHandler ToolCiclicoClick;
-        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
-        [System.ComponentModel.Description("Editar.")]
-        public event ToolEditarBeforeToolDropDownEventHandler ToolEditarBeforeToolDropDown;
-        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
-        [System.ComponentModel.Description("Estilo.")]
-        public event ToolEstiloBeforeToolDropDownEventHandler ToolEstiloBeforeToolDropDown;
-        #endregion Eventos
-
         #region Constructor
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OrbitaUltraGridToolBar.
+        /// </summary>
         public OrbitaUltraGridToolBar()
         {
             InitializeComponent();
@@ -103,23 +79,23 @@ namespace Orbita.Controles.Grid
         #endregion Constructor
 
         #region Propiedades
-        [Description("El control interno OrbitaUltraToolBarsManager.")]
-        [Category("Controles internos")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public OrbitaUltraToolbarsManager Toolbar
+        [System.ComponentModel.Description("El control interno OrbitaUltraToolBarsManager.")]
+        [System.ComponentModel.Category("Controles internos")]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Visible)]
+        public Orbita.Controles.Menu.OrbitaUltraToolbarsManager Toolbar
         {
             get { return this.toolbar; }
         }
-        [Description("El control interno OrbitaUltraGrid.")]
-        [Category("Controles internos")]
-        [Browsable(true)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [System.ComponentModel.Description("El control interno OrbitaUltraGrid.")]
+        [System.ComponentModel.Category("Controles internos")]
+        [System.ComponentModel.Browsable(true)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public OrbitaUltraGrid Grid
         {
             get { return this.grid; }
         }
         [System.ComponentModel.Category("Gestión de controles")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }
@@ -136,7 +112,8 @@ namespace Orbita.Controles.Grid
             {
                 this.definicion = new ControlNuevaDefinicion(this);
             }
-            this.stringManager = new System.Resources.ResourceManager("es-ES", System.Reflection.Assembly.GetExecutingAssembly());
+            //this.stringManager = new System.Resources.ResourceManager("es-ES", System.Reflection.Assembly.GetExecutingAssembly());
+            this.eventos = new OCollectionEventHandler();
         }
         void InitializeProperties()
         {
@@ -160,8 +137,8 @@ namespace Orbita.Controles.Grid
         }
         void InitializeEvents()
         {
-            this.definicion.PropertyChanged += new EventHandler<OPropertyExtendedChangedEventArgs>(ControlChanged);
-            this.definicion.Filas.PropertyChanged += new EventHandler<OPropiedadEventArgs>(FilasChanged);
+            this.definicion.PropertyChanged += new System.EventHandler<OPropertyExtendedChangedEventArgs>(ControlChanged);
+            this.definicion.Filas.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(FilasChanged);
         }
         void InitializeEventsToolbar()
         {
@@ -169,28 +146,28 @@ namespace Orbita.Controles.Grid
             {
                 foreach (Infragistics.Win.UltraWinToolbars.ToolBase tool in this.toolbar.Toolbars[item.Index].Tools)
                 {
-                    if (tool is PopupMenuTool)
+                    if (tool is Infragistics.Win.UltraWinToolbars.PopupMenuTool)
                     {
                         this.ToolbarAsignarEventoPorReflexion(tool, "BeforeToolDropdown", "_BeforeToolDropdown");
-                        this.InitializeEventsToolbar((PopupMenuTool)tool);
+                        this.InitializeEventsToolbar((Infragistics.Win.UltraWinToolbars.PopupMenuTool)tool);
                     }
-                    else if (tool is ButtonTool)
+                    else if (tool is Infragistics.Win.UltraWinToolbars.ButtonTool)
                     {
                         this.ToolbarAsignarEventoPorReflexion(tool, "ToolClick", "_Click");
                     }
                 }
             }
         }
-        void InitializeEventsToolbar(PopupMenuTool toolPopup)
+        void InitializeEventsToolbar(Infragistics.Win.UltraWinToolbars.PopupMenuTool toolPopup)
         {
             foreach (Infragistics.Win.UltraWinToolbars.ToolBase tool in toolPopup.Tools)
             {
-                if (tool is PopupMenuTool)
+                if (tool is Infragistics.Win.UltraWinToolbars.PopupMenuTool)
                 {
                     this.ToolbarAsignarEventoPorReflexion(tool, "BeforeToolDropdown", "_BeforeToolDropdown");
-                    this.InitializeEventsToolbar((PopupMenuTool)tool);
+                    this.InitializeEventsToolbar((Infragistics.Win.UltraWinToolbars.PopupMenuTool)tool);
                 }
-                else if (tool is ButtonTool)
+                else if (tool is Infragistics.Win.UltraWinToolbars.ButtonTool)
                 {
                     this.ToolbarAsignarEventoPorReflexion(tool, "ToolClick", "_Click");
                 }
@@ -199,7 +176,7 @@ namespace Orbita.Controles.Grid
         #endregion Initialize
 
         #region Toolbar
-        void ToolbarAsignarEventoPorReflexion(ToolBase tool, string evento, string metodo)
+        void ToolbarAsignarEventoPorReflexion(Infragistics.Win.UltraWinToolbars.ToolBase tool, string evento, string metodo)
         {
             System.Reflection.EventInfo infoEvento = typeof(Infragistics.Win.UltraWinToolbars.ToolBase).GetEvent(evento);
             System.Reflection.MethodInfo infoMetodo = typeof(OrbitaUltraGridToolBar).GetMethod(tool.Key + metodo, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
@@ -251,7 +228,7 @@ namespace Orbita.Controles.Grid
         }
         void ToolbarToolEditarSeleccionarTodo()
         {
-            this.grid.Selected.Rows.AddRange((UltraGridRow[])this.grid.Rows.All);
+            this.grid.Selected.Rows.AddRange((Infragistics.Win.UltraWinGrid.UltraGridRow[])this.grid.Rows.All);
         }
         void ToolbarToolEditarDeseleccionarTodo()
         {
@@ -343,7 +320,7 @@ namespace Orbita.Controles.Grid
                             banda.SortedColumns.Add(banda.Columns[this.OI.CampoPosicionable], false);
                             this.OI.Columnas.PermitirOrdenar = true;
                         }
-                        UltraGridRow filaActiva = this.grid.ActiveRow;
+                        Infragistics.Win.UltraWinGrid.UltraGridRow filaActiva = this.grid.ActiveRow;
                         int contador = 0;
                         bool fin = false;
                         while (!fin && (contador < x || principio))
@@ -367,7 +344,7 @@ namespace Orbita.Controles.Grid
                                     }
                                     if (indiceMayor > ajusteFilas)
                                     {
-                                        UltraGridRow fila = this.grid.Rows.GetRowAtVisibleIndex(indiceMayor - 1);
+                                        Infragistics.Win.UltraWinGrid.UltraGridRow fila = this.grid.Rows.GetRowAtVisibleIndex(indiceMayor - 1);
                                         if (fila != null)
                                         {
                                             fila.Cells[this.OI.CampoPosicionable].Value = ordenFila;
@@ -437,7 +414,7 @@ namespace Orbita.Controles.Grid
                             banda.SortedColumns.Add(banda.Columns[this.OI.CampoPosicionable], false);
                             this.OI.Columnas.PermitirOrdenar = true;
                         }
-                        UltraGridRow filaActiva = this.grid.ActiveRow;
+                        Infragistics.Win.UltraWinGrid.UltraGridRow filaActiva = this.grid.ActiveRow;
                         int contador = 0;
                         bool fin = false;
                         while (!fin && (contador < x || final))
@@ -460,7 +437,7 @@ namespace Orbita.Controles.Grid
                                     }
                                     if (indiceMayor < this.grid.Rows.Count - ajusteFilas)
                                     {
-                                        UltraGridRow fila = this.grid.Rows.GetRowAtVisibleIndex(indiceMayor + 1);
+                                        Infragistics.Win.UltraWinGrid.UltraGridRow fila = this.grid.Rows.GetRowAtVisibleIndex(indiceMayor + 1);
                                         if (fila != null)
                                         {
                                             fila.Cells[this.OI.CampoPosicionable].Value = ordenFila;
@@ -563,99 +540,284 @@ namespace Orbita.Controles.Grid
         #region Eventos Toolbar
 
         #region Toolbar Base
-        [Category("OrbitaUltraToolbarsManager")]
-        public event ToolClickEventHandler ToolClick
+        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
+        public event Infragistics.Win.UltraWinToolbars.ToolClickEventHandler ToolClick
         {
-            add { this.Toolbar.ToolClick += value; }
-            remove { this.Toolbar.ToolClick -= value; }
+            add
+            {
+                this.Toolbar.ToolClick += value;
+                OEventHandler handler = new OEventHandler("ToolClick", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.Toolbar.ToolClick -= value;
+                this.eventos.Remove("ToolClick");
+            }
+        }
+        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
+        [System.ComponentModel.Description("Gestionar.")]
+        public event ToolGestionarClickEventHandler ToolGestionarClick
+        {
+            add
+            {
+                this.onToolGestionarClick += value;
+                OEventHandler handler = new OEventHandler("ToolGestionarClick", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.onToolGestionarClick -= value;
+                this.eventos.Remove("ToolGestionarClick");
+            }
+        }
+        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
+        [System.ComponentModel.Description("Ver.")]
+        public event ToolVerClickEventHandler ToolVerClick
+        {
+            add
+            {
+                this.onToolVerClick += value;
+                OEventHandler handler = new OEventHandler("ToolVerClick", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.onToolVerClick -= value;
+                this.eventos.Remove("ToolVerClick");
+            }
+        }
+        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
+        [System.ComponentModel.Description("Modificar.")]
+        public event ToolModificarClickEventHandler ToolModificarClick
+        {
+            add
+            {
+                this.onToolModificarClick += value;
+                OEventHandler handler = new OEventHandler("ToolModificarClick", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.onToolModificarClick -= value;
+                this.eventos.Remove("ToolModificarClick");
+            }
+        }
+        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
+        [System.ComponentModel.Description("Añadir.")]
+        public event ToolAñadirClickEventHandler ToolAñadirClick
+        {
+            add
+            {
+                this.onToolAñadirClick += value;
+                OEventHandler handler = new OEventHandler("ToolAñadirClick", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.onToolAñadirClick -= value;
+                this.eventos.Remove("ToolAñadirClick");
+            }
+        }
+        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
+        [System.ComponentModel.Description("Eliminar.")]
+        public event ToolEliminarClickEventHandler ToolEliminarClick
+        {
+            add
+            {
+                this.onToolEliminarClick += value;
+                OEventHandler handler = new OEventHandler("ToolEliminarClick", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.onToolEliminarClick -= value;
+                this.eventos.Remove("ToolEliminarClick");
+            }
+        }
+        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
+        [System.ComponentModel.Description("Exportar.")]
+        public event ToolExportarClickEventHandler ToolExportarClick
+        {
+            add
+            {
+                this.onToolExportarClick += value;
+                OEventHandler handler = new OEventHandler("ToolExportarClick", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.onToolExportarClick -= value;
+                this.eventos.Remove("ToolExportarClick");
+            }
+        }
+        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
+        [System.ComponentModel.Description("Imprimir.")]
+        public event ToolImprimirClickEventHandler ToolImprimirClick
+        {
+            add
+            {
+                this.onToolImprimirClick += value;
+                OEventHandler handler = new OEventHandler("ToolImprimirClick", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.onToolImprimirClick -= value;
+                this.eventos.Remove("ToolImprimirClick");
+            }
+        }
+        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
+        [System.ComponentModel.Description("Refrescar.")]
+        public event ToolRefrescarClickEventHandler ToolRefrescarClick
+        {
+            add
+            {
+                this.onToolRefrescarClick += value;
+                OEventHandler handler = new OEventHandler("ToolRefrescarClick", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.onToolRefrescarClick -= value;
+                this.eventos.Remove("ToolRefrescarClick");
+            }
+        }
+        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
+        [System.ComponentModel.Description("Refrescar cíclico.")]
+        public event ToolCiclicoClickEventHandler ToolCiclicoClick
+        {
+            add
+            {
+                this.onToolCiclicoClick += value;
+                OEventHandler handler = new OEventHandler("ToolCiclicoClick", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.onToolCiclicoClick -= value;
+                this.eventos.Remove("ToolCiclicoClick");
+            }
+        }
+        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
+        [System.ComponentModel.Description("Editar.")]
+        public event ToolEditarBeforeToolDropDownEventHandler ToolEditarBeforeToolDropDown
+        {
+            add
+            {
+                this.onToolEditarBeforeToolDropDown += value;
+                OEventHandler handler = new OEventHandler("ToolEditarBeforeToolDropDown", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.onToolEditarBeforeToolDropDown -= value;
+                this.eventos.Remove("ToolEditarBeforeToolDropDown");
+            }
+        }
+        [System.ComponentModel.Category("OrbitaUltraToolbarsManager")]
+        [System.ComponentModel.Description("Estilo.")]
+        public event ToolEstiloBeforeToolDropDownEventHandler ToolEstiloBeforeToolDropDown
+        {
+            add
+            {
+                this.onToolEstiloBeforeToolDropDown += value;
+                OEventHandler handler = new OEventHandler("ToolEstiloBeforeToolDropDown", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.onToolEstiloBeforeToolDropDown -= value;
+                this.eventos.Remove("ToolEstiloBeforeToolDropDown");
+            }
         }
         #endregion Toolbar Base
 
         #region Toolbar Principal
-        protected void Gestionar_Click(object sender, ToolClickEventArgs e)
+        protected void Gestionar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
-                if (this.ToolGestionarClick != null)
+                if (this.onToolGestionarClick != null)
                 {
-                    this.ToolGestionarClick(this, e);
+                    this.onToolGestionarClick(this, e);
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Ver_Click(object sender, ToolClickEventArgs e)
+        protected void Ver_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
-                UltraGridRow filaActiva = this.grid.ActiveRow;
+                Infragistics.Win.UltraWinGrid.UltraGridRow filaActiva = this.grid.ActiveRow;
                 if (!filaActiva.IsDataRow)
                 {
                     return;
                 }
-                if (this.ToolVerClick != null)
+                if (this.onToolVerClick != null)
                 {
                     OToolClickEventArgs nuevoEventArgs = new OToolClickEventArgs(e.Tool, e.ListToolItem);
                     nuevoEventArgs.Fila = filaActiva;
-                    this.ToolVerClick(this, nuevoEventArgs);
+                    this.onToolVerClick(this, nuevoEventArgs);
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Modificar_Click(object sender, ToolClickEventArgs e)
+        protected void Modificar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
-                UltraGridRow filaActiva = this.grid.ActiveRow;
+                Infragistics.Win.UltraWinGrid.UltraGridRow filaActiva = this.grid.ActiveRow;
                 if (!filaActiva.IsDataRow)
                 {
                     return;
                 }
-                if (this.ToolModificarClick != null)
+                if (this.onToolModificarClick != null)
                 {
                     OToolClickEventArgs nuevoEventArgs = new OToolClickEventArgs(e.Tool, e.ListToolItem);
                     nuevoEventArgs.Fila = filaActiva;
-                    this.ToolModificarClick(this, nuevoEventArgs);
+                    this.onToolModificarClick(this, nuevoEventArgs);
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Añadir_Click(object sender, ToolClickEventArgs e)
+        protected void Añadir_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
-                if (this.ToolAñadirClick != null)
+                if (this.onToolAñadirClick != null)
                 {
-                    this.ToolAñadirClick(this, e);
+                    this.onToolAñadirClick(this, e);
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Eliminar_Click(object sender, ToolClickEventArgs e)
+        protected void Eliminar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 // Colección de filas que se van a eliminar y que se va a pasar como argumento del evento.
-                List<UltraGridRow> lista = null;
+                System.Collections.Generic.List<Infragistics.Win.UltraWinGrid.UltraGridRow> lista = null;
                 // Recorrer la colección de filas seleccionadas, que es diferente a la fila activa.
                 // Filas seleccionadas = Selected.Rows.
                 // Fila activa = ActiveRow.
                 if (this.grid.Selected.Rows.Count > 0)
                 {
-                    foreach (UltraGridRow fila in this.grid.Selected.Rows)
+                    foreach (Infragistics.Win.UltraWinGrid.UltraGridRow fila in this.grid.Selected.Rows)
                     {
                         if (fila.IsDataRow)
                         {
                             if (lista == null)
                             {
-                                lista = new List<UltraGridRow>();
+                                lista = new System.Collections.Generic.List<Infragistics.Win.UltraWinGrid.UltraGridRow>();
                             }
                             if (!lista.Contains(fila))
                             {
@@ -665,14 +827,14 @@ namespace Orbita.Controles.Grid
                     }
                 }
                 // Añadir a la colección la fila activa.
-                UltraGridRow filaActiva = this.grid.ActiveRow;
+                Infragistics.Win.UltraWinGrid.UltraGridRow filaActiva = this.grid.ActiveRow;
                 if (filaActiva != null)
                 {
                     if (fila.IsDataRow)
                     {
                         if (lista == null)
                         {
-                            lista = new List<UltraGridRow>();
+                            lista = new System.Collections.Generic.List<Infragistics.Win.UltraWinGrid.UltraGridRow>();
                         }
                         if (!lista.Contains(filaActiva))
                         {
@@ -701,87 +863,87 @@ namespace Orbita.Controles.Grid
                     }
                     if (this.definicion.Filas.TipoSeleccion())
                     {
-                        if (this.ToolEliminarClick != null)
+                        if (this.onToolEliminarClick != null)
                         {
                             OToolClickCollectionEventArgs nuevoEventArgs = new OToolClickCollectionEventArgs(e.Tool, e.ListToolItem);
                             nuevoEventArgs.Filas = lista.ToArray();
-                            this.ToolEliminarClick(this, nuevoEventArgs);
+                            this.onToolEliminarClick(this, nuevoEventArgs);
                         }
                     }
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void LimpiarFiltros_Click(object sender, ToolClickEventArgs e)
+        protected void LimpiarFiltros_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolLimpiarFiltros();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Exportar_Click(object sender, ToolClickEventArgs e)
+        protected void Exportar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
-                if (this.ToolExportarClick != null)
+                if (this.onToolExportarClick != null)
                 {
-                    this.ToolExportarClick(this, e);
+                    this.onToolExportarClick(this, e);
                 }
                 else
                 {
                     this.ToolbarToolExportar();
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Imprimir_Click(object sender, ToolClickEventArgs e)
+        protected void Imprimir_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
-                if (this.ToolImprimirClick != null)
+                if (this.onToolImprimirClick != null)
                 {
-                    this.ToolImprimirClick(this, e);
+                    this.onToolImprimirClick(this, e);
                 }
                 else
                 {
                     this.ToolbarToolImprimir();
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Refrescar_Click(object sender, ToolClickEventArgs e)
+        protected void Refrescar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
-                if (this.ToolRefrescarClick != null)
+                if (this.onToolRefrescarClick != null)
                 {
-                    this.ToolRefrescarClick(this, e);
+                    this.onToolRefrescarClick(this, e);
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Ciclico_Click(object sender, ToolClickEventArgs e)
+        protected void Ciclico_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
-                if (this.ToolCiclicoClick != null)
+                if (this.onToolCiclicoClick != null)
                 {
                     bool activo = (e.Tool as Infragistics.Win.UltraWinToolbars.StateButtonTool).Checked;
                     if (activo)
                     {
-                        Infragistics.Win.UltraWinToolbars.ControlContainerTool tool = this.Toolbar.Tools["PeriodoCiclico"] as ControlContainerTool;
-                        OrbitaUltraNumericEditor periodo = tool.Control as OrbitaUltraNumericEditor;
+                        Infragistics.Win.UltraWinToolbars.ControlContainerTool tool = this.Toolbar.Tools["PeriodoCiclico"] as Infragistics.Win.UltraWinToolbars.ControlContainerTool;
+                        Orbita.Controles.Comunes.OrbitaUltraNumericEditor periodo = tool.Control as Orbita.Controles.Comunes.OrbitaUltraNumericEditor;
                         object valor = string.IsNullOrEmpty(periodo.Value.ToString()) ? periodo.NullText : periodo.Value;
                         ciclo = new OTimerEventArgs((int)valor);
                         timer.Interval = ciclo.Intervalo * 1000;
@@ -789,61 +951,61 @@ namespace Orbita.Controles.Grid
                     timer.Enabled = activo;
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Deshacer_Click(object sender, ToolClickEventArgs e)
+        protected void Deshacer_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolEditarDeshacer();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Rehacer_Click(object sender, ToolClickEventArgs e)
+        protected void Rehacer_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolEditarRehacer();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Cortar_Click(object sender, ToolClickEventArgs e)
+        protected void Cortar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolEditarCortar();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Copiar_Click(object sender, ToolClickEventArgs e)
+        protected void Copiar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolEditarCopiar();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Pegar_Click(object sender, ToolClickEventArgs e)
+        protected void Pegar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolEditarPegar();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Primero_Click(object sender, ToolClickEventArgs e)
+        protected void Primero_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             this.grid.SuspendLayout();
             try
@@ -854,7 +1016,7 @@ namespace Orbita.Controles.Grid
                     this.ToolbarToolEditarSiguiente();
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
             finally
@@ -862,154 +1024,154 @@ namespace Orbita.Controles.Grid
                 this.grid.ResumeLayout();
             }
         }
-        protected void Anterior_Click(object sender, ToolClickEventArgs e)
+        protected void Anterior_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolEditarAnterior();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Siguiente_Click(object sender, ToolClickEventArgs e)
+        protected void Siguiente_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolEditarSiguiente();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Ultimo_Click(object sender, ToolClickEventArgs e)
+        protected void Ultimo_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolEditarUltimo();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void SeleccionarTodo_Click(object sender, ToolClickEventArgs e)
+        protected void SeleccionarTodo_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolEditarSeleccionarTodo();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void DeseleccionarTodo_Click(object sender, ToolClickEventArgs e)
+        protected void DeseleccionarTodo_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolEditarDeseleccionarTodo();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Buscar_Click(object sender, ToolClickEventArgs e)
+        protected void Buscar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolEditarBuscar();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Personalizar_Click(object sender, ToolClickEventArgs e)
+        protected void Personalizar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolPersonalizar();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void GuardarPlantilla_Click(object sender, ToolClickEventArgs e)
+        protected void GuardarPlantilla_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void GuardarPlantillaComo_Click(object sender, ToolClickEventArgs e)
+        protected void GuardarPlantillaComo_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void EliminarPlantillasLocales_Click(object sender, ToolClickEventArgs e)
+        protected void EliminarPlantillasLocales_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void EliminarPlantillasPublicas_Click(object sender, ToolClickEventArgs e)
+        protected void EliminarPlantillasPublicas_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void PublicarPlantillaPublicas_Click(object sender, ToolClickEventArgs e)
+        protected void PublicarPlantillaPublicas_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void ImportarPlantillaPublicas_Click(object sender, ToolClickEventArgs e)
+        protected void ImportarPlantillaPublicas_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Editar_BeforeToolDropdown(object sender, BeforeToolDropdownEventArgs e)
+        protected void Editar_BeforeToolDropdown(object sender, Infragistics.Win.UltraWinToolbars.BeforeToolDropdownEventArgs e)
         {
             try
             {
                 this.ToolbarActualizarEstadoToolEditar();
-                if (this.ToolEditarBeforeToolDropDown != null)
+                if (this.onToolEditarBeforeToolDropDown != null)
                 {
-                    this.ToolEditarBeforeToolDropDown(this, e);
+                    this.onToolEditarBeforeToolDropDown(this, e);
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void Estilo_BeforeToolDropdown(object sender, BeforeToolDropdownEventArgs e)
+        protected void Estilo_BeforeToolDropdown(object sender, Infragistics.Win.UltraWinToolbars.BeforeToolDropdownEventArgs e)
         {
             try
             {
-                if (this.ToolEstiloBeforeToolDropDown != null)
+                if (this.onToolEstiloBeforeToolDropDown != null)
                 {
-                    this.ToolEstiloBeforeToolDropDown(this, e);
+                    this.onToolEstiloBeforeToolDropDown(this, e);
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
@@ -1037,11 +1199,11 @@ namespace Orbita.Controles.Grid
                             else
                             {
                                 this.Toolbar.Toolbars["ToolBarNavegacion"].Visible = true;
-                                Infragistics.Win.UltraWinToolbars.PopupControlContainerTool tool = this.Toolbar.Toolbars["ToolBarNavegacion"].Tools["IrAposicion"] as PopupControlContainerTool;
+                                Infragistics.Win.UltraWinToolbars.PopupControlContainerTool tool = this.Toolbar.Toolbars["ToolBarNavegacion"].Tools["IrAposicion"] as Infragistics.Win.UltraWinToolbars.PopupControlContainerTool;
                                 if (tool.Control == null)
                                 {
                                     Posicion posicion = new Posicion();
-                                    posicion.AceptarClick += new EventHandler<OPropiedadEventArgs>(PosicionAceptar_Click);
+                                    posicion.AceptarClick += new System.EventHandler<OPropiedadEventArgs>(PosicionAceptar_Click);
                                     tool.Control = posicion;
                                 }
                             }
@@ -1050,43 +1212,43 @@ namespace Orbita.Controles.Grid
                 }
             }
         }
-        protected void IrPrimero_Click(object sender, ToolClickEventArgs e)
+        protected void IrPrimero_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolIrPrimero();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void IrAnterior_Click(object sender, ToolClickEventArgs e)
+        protected void IrAnterior_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolIrAnterior();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void IrSiguiente_Click(object sender, ToolClickEventArgs e)
+        protected void IrSiguiente_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolIrSiguiente();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        protected void IrUltimo_Click(object sender, ToolClickEventArgs e)
+        protected void IrUltimo_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
                 this.ToolbarToolIrUltimo();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
@@ -1105,7 +1267,7 @@ namespace Orbita.Controles.Grid
                     if (posicion < this.grid.Rows.VisibleRowCount)
                     {
                         posicion += ajusteFila;
-                        UltraGridRow filaActiva = this.grid.ActiveRow;
+                        Infragistics.Win.UltraWinGrid.UltraGridRow filaActiva = this.grid.ActiveRow;
                         if (posicion > filaActiva.VisibleIndex)
                         {
                             this.ToolbarToolIrSiguiente(posicion - filaActiva.VisibleIndex, false);
@@ -1117,7 +1279,7 @@ namespace Orbita.Controles.Grid
                     }
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
@@ -1140,15 +1302,14 @@ namespace Orbita.Controles.Grid
                 }
             }
         }
-        private void timer_Tick(object sender, EventArgs e)
+        private void timer_Tick(object sender, System.EventArgs e)
         {
-            this.ToolCiclicoClick(this, ciclo);
+            this.onToolCiclicoClick(this, ciclo);
         }
 
         #region Grid Base
 
-        #region Eventos After
-        void grid_AfterDataRowActivate(object sender, RowEventArgs e)
+        void grid_AfterDataRowActivate(object sender, Infragistics.Win.UltraWinGrid.RowEventArgs e)
         {
             if (fila == null || !fila.IsDataRow)
             {
@@ -1158,7 +1319,7 @@ namespace Orbita.Controles.Grid
             }
             this.fila = e.Row;
         }
-        void grid_AfterFilterRowActivate(object sender, RowEventArgs e)
+        void grid_AfterFilterRowActivate(object sender, Infragistics.Win.UltraWinGrid.RowEventArgs e)
         {
             if (fila == null || !fila.IsFilterRow)
             {
@@ -1168,650 +1329,1579 @@ namespace Orbita.Controles.Grid
             }
             this.fila = e.Row;
         }
-        [Category("OrbitaUltraGrid")]
-        public event AfterBandHiddenChangedEventHandler AfterBandHiddenChanged
+
+        #region Eventos After
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.AfterBandHiddenChangedEventHandler AfterBandHiddenChanged
         {
-            add { this.grid.AfterBandHiddenChanged += value; }
-            remove { this.grid.AfterBandHiddenChanged -= value; }
+            add
+            {
+                this.grid.AfterBandHiddenChanged += value;
+                OEventHandler handler = new OEventHandler("AfterBandHiddenChanged", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterBandHiddenChanged -= value;
+                this.eventos.Remove("AfterBandHiddenChanged");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event AfterCardCompressedStateChangedEventHandler AfterCardCompressedStateChanged
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.AfterCardCompressedStateChangedEventHandler AfterCardCompressedStateChanged
         {
-            add { this.grid.AfterCardCompressedStateChanged += value; }
-            remove { this.grid.AfterCardCompressedStateChanged -= value; }
+            add
+            {
+                this.grid.AfterCardCompressedStateChanged += value;
+                OEventHandler handler = new OEventHandler("AfterCardCompressedStateChanged", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterCardCompressedStateChanged -= value;
+                this.eventos.Remove("AfterCardCompressedStateChanged");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event AfterCardsScrollEventHandler AfterCardsScroll
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.AfterCardsScrollEventHandler AfterCardsScroll
         {
-            add { this.grid.AfterCardsScroll += value; }
-            remove { this.grid.AfterCardsScroll -= value; }
+            add
+            {
+                this.grid.AfterCardsScroll += value;
+                OEventHandler handler = new OEventHandler("AfterCardsScroll", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterCardsScroll -= value;
+                this.eventos.Remove("AfterCardsScroll");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event EventHandler AfterCellActivate
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event System.EventHandler AfterCellActivate
         {
-            add { this.grid.AfterCellActivate += value; }
-            remove { this.grid.AfterCellActivate -= value; }
+            add
+            {
+                this.grid.AfterCellActivate += value;
+                OEventHandler handler = new OEventHandler("AfterCellActivate", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterCellActivate -= value;
+                this.eventos.Remove("AfterCellActivate");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event CellEventHandler AfterCellCancelUpdate
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.CellEventHandler AfterCellCancelUpdate
         {
-            add { this.grid.AfterCellCancelUpdate += value; }
-            remove { this.grid.AfterCellCancelUpdate -= value; }
+            add
+            {
+                this.grid.AfterCellCancelUpdate += value;
+                OEventHandler handler = new OEventHandler("AfterCellCancelUpdate", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterCellCancelUpdate -= value;
+                this.eventos.Remove("AfterCellCancelUpdate");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event CellEventHandler AfterCellListCloseUp
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.CellEventHandler AfterCellListCloseUp
         {
-            add { this.grid.AfterCellListCloseUp += value; }
-            remove { this.grid.AfterCellListCloseUp -= value; }
+            add
+            {
+                this.grid.AfterCellListCloseUp += value;
+                OEventHandler handler = new OEventHandler("AfterCellListCloseUp", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterCellListCloseUp -= value;
+                this.eventos.Remove("AfterCellListCloseUp");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event CellEventHandler AfterCellUpdate
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.CellEventHandler AfterCellUpdate
         {
-            add { this.grid.AfterCellUpdate += value; }
-            remove { this.grid.AfterCellUpdate -= value; }
+            add
+            {
+                this.grid.AfterCellUpdate += value;
+                OEventHandler handler = new OEventHandler("AfterCellUpdate", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterCellUpdate -= value;
+                this.eventos.Remove("AfterCellUpdate");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event AfterColPosChangedEventHandler AfterColPosChanged
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.AfterColPosChangedEventHandler AfterColPosChanged
         {
-            add { this.grid.AfterColPosChanged += value; }
-            remove { this.grid.AfterColPosChanged -= value; }
+            add
+            {
+                this.grid.AfterColPosChanged += value;
+                OEventHandler handler = new OEventHandler("AfterColPosChanged", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterColPosChanged -= value;
+                this.eventos.Remove("AfterColPosChanged");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event ColScrollRegionEventHandler AfterColRegionScroll
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.ColScrollRegionEventHandler AfterColRegionScroll
         {
-            add { this.grid.AfterColRegionScroll += value; }
-            remove { this.grid.AfterColRegionScroll -= value; }
+            add
+            {
+                this.grid.AfterColRegionScroll += value;
+                OEventHandler handler = new OEventHandler("AfterColRegionScroll", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterColRegionScroll -= value;
+                this.eventos.Remove("AfterColRegionScroll");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event ColScrollRegionEventHandler AfterColRegionSize
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.ColScrollRegionEventHandler AfterColRegionSize
         {
-            add { this.grid.AfterColRegionSize += value; }
-            remove { this.grid.AfterColRegionSize -= value; }
+            add
+            {
+                this.grid.AfterColRegionSize += value;
+                OEventHandler handler = new OEventHandler("AfterColRegionSize", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterColRegionSize -= value;
+                this.eventos.Remove("AfterColRegionSize");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event EventHandler AfterEnterEditMode
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event System.EventHandler AfterEnterEditMode
         {
-            add { this.grid.AfterEnterEditMode += value; }
-            remove { this.grid.AfterEnterEditMode -= value; }
+            add
+            {
+                this.grid.AfterEnterEditMode += value;
+                OEventHandler handler = new OEventHandler("AfterEnterEditMode", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterEnterEditMode -= value;
+                this.eventos.Remove("AfterEnterEditMode");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event EventHandler AfterExitEditMode
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event System.EventHandler AfterExitEditMode
         {
-            add { this.grid.AfterExitEditMode += value; }
-            remove { this.grid.AfterExitEditMode -= value; }
+            add
+            {
+                this.grid.AfterExitEditMode += value;
+                OEventHandler handler = new OEventHandler("AfterExitEditMode", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterExitEditMode -= value;
+                this.eventos.Remove("AfterExitEditMode");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event AfterGroupPosChangedEventHandler AfterGroupPosChanged
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.AfterGroupPosChangedEventHandler AfterGroupPosChanged
         {
-            add { this.grid.AfterGroupPosChanged += value; }
-            remove { this.grid.AfterGroupPosChanged -= value; }
+            add
+            {
+                this.grid.AfterGroupPosChanged += value;
+                OEventHandler handler = new OEventHandler("AfterGroupPosChanged", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterGroupPosChanged -= value;
+                this.eventos.Remove("AfterGroupPosChanged");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event AfterHeaderCheckStateChangedEventHandler AfterHeaderCheckStateChanged
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.AfterHeaderCheckStateChangedEventHandler AfterHeaderCheckStateChanged
         {
-            add { this.grid.AfterHeaderCheckStateChanged += value; }
-            remove { this.grid.AfterHeaderCheckStateChanged -= value; }
+            add
+            {
+                this.grid.AfterHeaderCheckStateChanged += value;
+                OEventHandler handler = new OEventHandler("AfterHeaderCheckStateChanged", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterHeaderCheckStateChanged -= value;
+                this.eventos.Remove("AfterHeaderCheckStateChanged");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event AfterUltraGridPerformActionEventHandler AfterPerformAction
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.AfterUltraGridPerformActionEventHandler AfterPerformAction
         {
-            add { this.grid.AfterPerformAction += value; }
-            remove { this.grid.AfterPerformAction -= value; }
+            add
+            {
+                this.grid.AfterPerformAction += value;
+                OEventHandler handler = new OEventHandler("AfterPerformAction", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterPerformAction -= value;
+                this.eventos.Remove("AfterPerformAction");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event EventHandler AfterRowActivate
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event System.EventHandler AfterRowActivate
         {
-            add { this.grid.AfterRowActivate += value; }
-            remove { this.grid.AfterRowActivate -= value; }
+            add
+            {
+                this.grid.AfterRowActivate += value;
+                OEventHandler handler = new OEventHandler("AfterRowActivate", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterRowActivate -= value;
+                this.eventos.Remove("AfterRowActivate");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event RowEventHandler AfterRowCancelUpdate
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.RowEventHandler AfterRowCancelUpdate
         {
-            add { this.grid.AfterRowCancelUpdate += value; }
-            remove { this.grid.AfterRowCancelUpdate -= value; }
+            add
+            {
+                this.grid.AfterRowCancelUpdate += value;
+                OEventHandler handler = new OEventHandler("AfterRowCancelUpdate", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterRowCancelUpdate -= value;
+                this.eventos.Remove("AfterRowCancelUpdate");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event RowEventHandler AfterRowCollapsed
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.RowEventHandler AfterRowCollapsed
         {
-            add { this.grid.AfterRowCollapsed += value; }
-            remove { this.grid.AfterRowCollapsed -= value; }
+            add
+            {
+                this.grid.AfterRowCollapsed += value;
+                OEventHandler handler = new OEventHandler("AfterRowCollapsed", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterRowCollapsed -= value;
+                this.eventos.Remove("AfterRowCollapsed");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event AfterRowEditTemplateClosedEventHandler AfterRowEditTemplateClosed
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.AfterRowEditTemplateClosedEventHandler AfterRowEditTemplateClosed
         {
-            add { this.grid.AfterRowEditTemplateClosed += value; }
-            remove { this.grid.AfterRowEditTemplateClosed -= value; }
+            add
+            {
+                this.grid.AfterRowEditTemplateClosed += value;
+                OEventHandler handler = new OEventHandler("AfterRowEditTemplateClosed", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterRowEditTemplateClosed -= value;
+                this.eventos.Remove("AfterRowEditTemplateClosed");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event AfterRowEditTemplateDisplayedEventHandler AfterRowEditTemplateDisplayed
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.AfterRowEditTemplateDisplayedEventHandler AfterRowEditTemplateDisplayed
         {
-            add { this.grid.AfterRowEditTemplateDisplayed += value; }
-            remove { this.grid.AfterRowEditTemplateDisplayed -= value; }
+            add
+            {
+                this.grid.AfterRowEditTemplateDisplayed += value;
+                OEventHandler handler = new OEventHandler("AfterRowEditTemplateDisplayed", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterRowEditTemplateDisplayed -= value;
+                this.eventos.Remove("AfterRowEditTemplateDisplayed");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event RowEventHandler AfterRowExpanded
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.RowEventHandler AfterRowExpanded
         {
-            add { this.grid.AfterRowExpanded += value; }
-            remove { this.grid.AfterRowExpanded -= value; }
+            add
+            {
+                this.grid.AfterRowExpanded += value;
+                OEventHandler handler = new OEventHandler("AfterRowExpanded", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterRowExpanded -= value;
+                this.eventos.Remove("AfterRowExpanded");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event AfterRowFilterChangedEventHandler AfterRowFilterChanged
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.AfterRowFilterChangedEventHandler AfterRowFilterChanged
         {
-            add { this.grid.AfterRowFilterChanged += value; }
-            remove { this.grid.AfterRowFilterChanged -= value; }
+            add
+            {
+                this.grid.AfterRowFilterChanged += value;
+                OEventHandler handler = new OEventHandler("AfterRowFilterChanged", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterRowFilterChanged -= value;
+                this.eventos.Remove("AfterRowFilterChanged");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event AfterRowFilterDropDownPopulateEventHandler AfterRowFilterDropDownPopulated
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.AfterRowFilterDropDownPopulateEventHandler AfterRowFilterDropDownPopulated
         {
-            add { this.grid.AfterRowFilterDropDownPopulate += value; }
-            remove { this.grid.AfterRowFilterDropDownPopulate -= value; }
+            add
+            {
+                this.grid.AfterRowFilterDropDownPopulate += value;
+                OEventHandler handler = new OEventHandler("AfterRowFilterDropDownPopulated", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterRowFilterDropDownPopulate -= value;
+                this.eventos.Remove("AfterRowFilterDropDownPopulated");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event AfterRowFixedStateChangedEventHandler AfterRowFixedStateChanged
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.AfterRowFixedStateChangedEventHandler AfterRowFixedStateChanged
         {
-            add { this.grid.AfterRowFixedStateChanged += value; }
-            remove { this.grid.AfterRowFixedStateChanged -= value; }
+            add
+            {
+                this.grid.AfterRowFixedStateChanged += value;
+                OEventHandler handler = new OEventHandler("AfterRowFixedStateChanged", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterRowFixedStateChanged -= value;
+                this.eventos.Remove("AfterRowFixedStateChanged");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event RowEventHandler AfterRowInsert
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.RowEventHandler AfterRowInsert
         {
-            add { this.grid.AfterRowInsert += value; }
-            remove { this.grid.AfterRowInsert -= value; }
+            add
+            {
+                this.grid.AfterRowInsert += value;
+                OEventHandler handler = new OEventHandler("AfterRowInsert", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterRowInsert -= value;
+                this.eventos.Remove("AfterRowInsert");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event AfterRowLayoutItemResizedEventHandler AfterRowLayoutItemResized
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.AfterRowLayoutItemResizedEventHandler AfterRowLayoutItemResized
         {
-            add { this.grid.AfterRowLayoutItemResized += value; }
-            remove { this.grid.AfterRowLayoutItemResized -= value; }
+            add
+            {
+                this.grid.AfterRowLayoutItemResized += value;
+                OEventHandler handler = new OEventHandler("AfterRowLayoutItemResized", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterRowLayoutItemResized -= value;
+                this.eventos.Remove("AfterRowLayoutItemResized");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event RowScrollRegionEventHandler AfterRowRegionScroll
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.RowScrollRegionEventHandler AfterRowRegionScroll
         {
-            add { this.grid.AfterRowRegionScroll += value; }
-            remove { this.grid.AfterRowRegionScroll -= value; }
+            add
+            {
+                this.grid.AfterRowRegionScroll += value;
+                OEventHandler handler = new OEventHandler("AfterRowRegionScroll", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterRowRegionScroll -= value;
+                this.eventos.Remove("AfterRowRegionScroll");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event RowScrollRegionEventHandler AfterRowRegionSize
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.RowScrollRegionEventHandler AfterRowRegionSize
         {
-            add { this.grid.AfterRowRegionSize += value; }
-            remove { this.grid.AfterRowRegionSize -= value; }
+            add
+            {
+                this.grid.AfterRowRegionSize += value;
+                OEventHandler handler = new OEventHandler("AfterRowRegionSize", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterRowRegionSize -= value;
+                this.eventos.Remove("AfterRowRegionSize");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event RowEventHandler AfterRowResize
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.RowEventHandler AfterRowResize
         {
-            add { this.grid.AfterRowResize += value; }
-            remove { this.grid.AfterRowResize -= value; }
+            add
+            {
+                this.grid.AfterRowResize += value;
+                OEventHandler handler = new OEventHandler("AfterRowResize", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterRowResize -= value;
+                this.eventos.Remove("AfterRowResize");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event EventHandler AfterRowsDeleted
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event System.EventHandler AfterRowsDeleted
         {
-            add { this.grid.AfterRowsDeleted += value; }
-            remove { this.grid.AfterRowsDeleted -= value; }
+            add
+            {
+                this.grid.AfterRowsDeleted += value;
+                OEventHandler handler = new OEventHandler("AfterRowsDeleted", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterRowsDeleted -= value;
+                this.eventos.Remove("AfterRowsDeleted");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event RowEventHandler AfterRowUpdate
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.RowEventHandler AfterRowUpdate
         {
-            add { this.grid.AfterRowUpdate += value; }
-            remove { this.grid.AfterRowUpdate -= value; }
+            add
+            {
+                this.grid.AfterRowUpdate += value;
+                OEventHandler handler = new OEventHandler("AfterRowUpdate", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterRowUpdate -= value;
+                this.eventos.Remove("AfterRowUpdate");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event AfterSelectChangeEventHandler AfterSelectChange
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.AfterSelectChangeEventHandler AfterSelectChange
         {
-            add { this.grid.AfterSelectChange += value; }
-            remove { this.grid.AfterSelectChange -= value; }
+            add
+            {
+                this.grid.AfterSelectChange += value;
+                OEventHandler handler = new OEventHandler("AfterSelectChange", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterSelectChange -= value;
+                this.eventos.Remove("AfterSelectChange");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BandEventHandler AfterSortChange
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BandEventHandler AfterSortChange
         {
-            add { this.grid.AfterSortChange += value; }
-            remove { this.grid.AfterSortChange -= value; }
+            add
+            {
+                this.grid.AfterSortChange += value;
+                OEventHandler handler = new OEventHandler("AfterSortChange", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterSortChange -= value;
+                this.eventos.Remove("AfterSortChange");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event AfterSummaryDialogEventHandler AfterSummaryDialog
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.AfterSummaryDialogEventHandler AfterSummaryDialog
         {
-            add { this.grid.AfterSummaryDialog += value; }
-            remove { this.grid.AfterSummaryDialog -= value; }
+            add
+            {
+                this.grid.AfterSummaryDialog += value;
+                OEventHandler handler = new OEventHandler("AfterSummaryDialog", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.AfterSummaryDialog -= value;
+                this.eventos.Remove("AfterSummaryDialog");
+            }
         }
-        #endregion
+        #endregion Eventos After
 
         #region Eventos Before
-        [Category("OrbitaUltraGrid")]
-        public event CancelableAutoSizeEditEventHandler BeforeAutoSizeEdit
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.CancelableAutoSizeEditEventHandler BeforeAutoSizeEdit
         {
-            add { this.grid.BeforeAutoSizeEdit += value; }
-            remove { this.grid.BeforeAutoSizeEdit -= value; }
+            add
+            {
+                this.grid.BeforeAutoSizeEdit += value;
+                OEventHandler handler = new OEventHandler("BeforeAutoSizeEdit", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeAutoSizeEdit -= value;
+                this.eventos.Remove("BeforeAutoSizeEdit");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeBandHiddenChangedEventHandler BeforeBandHiddenChanged
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeBandHiddenChangedEventHandler BeforeBandHiddenChanged
         {
-            add { this.grid.BeforeBandHiddenChanged += value; }
-            remove { this.grid.BeforeBandHiddenChanged -= value; }
+            add
+            {
+                this.grid.BeforeBandHiddenChanged += value;
+                OEventHandler handler = new OEventHandler("BeforeBandHiddenChanged", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeBandHiddenChanged -= value;
+                this.eventos.Remove("BeforeBandHiddenChanged");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeCardCompressedStateChangedEventHandler BeforeCardCompressedStateChanged
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeCardCompressedStateChangedEventHandler BeforeCardCompressedStateChanged
         {
-            add { this.grid.BeforeCardCompressedStateChanged += value; }
-            remove { this.grid.BeforeCardCompressedStateChanged -= value; }
+            add
+            {
+                this.grid.BeforeCardCompressedStateChanged += value;
+                OEventHandler handler = new OEventHandler("BeforeCardCompressedStateChanged", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeCardCompressedStateChanged -= value;
+                this.eventos.Remove("BeforeCardCompressedStateChanged");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event CancelableCellEventHandler BeforeCellActivate
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.CancelableCellEventHandler BeforeCellActivate
         {
-            add { this.grid.BeforeCellActivate += value; }
-            remove { this.grid.BeforeCellActivate -= value; }
+            add
+            {
+                this.grid.BeforeCellActivate += value;
+                OEventHandler handler = new OEventHandler("BeforeCellActivate", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeCellActivate -= value;
+                this.eventos.Remove("BeforeCellActivate");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event CancelableCellEventHandler BeforeCellCancelUpdate
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.CancelableCellEventHandler BeforeCellCancelUpdate
         {
-            add { this.grid.BeforeCellCancelUpdate += value; }
-            remove { this.grid.BeforeCellCancelUpdate -= value; }
+            add
+            {
+                this.grid.BeforeCellCancelUpdate += value;
+                OEventHandler handler = new OEventHandler("BeforeCellCancelUpdate", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeCellCancelUpdate -= value;
+                this.eventos.Remove("BeforeCellCancelUpdate");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event CancelEventHandler BeforeCellDeactivate
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event System.ComponentModel.CancelEventHandler BeforeCellDeactivate
         {
-            add { this.grid.BeforeCellDeactivate += value; }
-            remove { this.grid.BeforeCellDeactivate -= value; }
+            add
+            {
+                this.grid.BeforeCellDeactivate += value;
+                OEventHandler handler = new OEventHandler("BeforeCellDeactivate", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeCellDeactivate -= value;
+                this.eventos.Remove("BeforeCellDeactivate");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event CancelableCellEventHandler BeforeCellListDropDown
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.CancelableCellEventHandler BeforeCellListDropDown
         {
-            add { this.grid.BeforeCellListDropDown += value; }
-            remove { this.grid.BeforeCellListDropDown -= value; }
+            add
+            {
+                this.grid.BeforeCellListDropDown += value;
+                OEventHandler handler = new OEventHandler("BeforeCellListDropDown", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeCellListDropDown -= value;
+                this.eventos.Remove("BeforeCellListDropDown");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeCellUpdateEventHandler BeforeCellUpdate
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeCellUpdateEventHandler BeforeCellUpdate
         {
-            add { this.grid.BeforeCellUpdate += value; }
-            remove { this.grid.BeforeCellUpdate -= value; }
+            add
+            {
+                this.grid.BeforeCellUpdate += value;
+                OEventHandler handler = new OEventHandler("BeforeCellUpdate", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeCellUpdate -= value;
+                this.eventos.Remove("BeforeCellUpdate");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeColPosChangedEventHandler BeforeColPosChanged
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeColPosChangedEventHandler BeforeColPosChanged
         {
-            add { this.grid.BeforeColPosChanged += value; }
-            remove { this.grid.BeforeColPosChanged -= value; }
+            add
+            {
+                this.grid.BeforeColPosChanged += value;
+                OEventHandler handler = new OEventHandler("BeforeColPosChanged", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeColPosChanged -= value;
+                this.eventos.Remove("BeforeColPosChanged");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeColRegionRemovedEventHandler BeforeColRegionRemoved
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeColRegionRemovedEventHandler BeforeColRegionRemoved
         {
-            add { this.grid.BeforeColRegionRemoved += value; }
-            remove { this.grid.BeforeColRegionRemoved -= value; }
+            add
+            {
+                this.grid.BeforeColRegionRemoved += value;
+                OEventHandler handler = new OEventHandler("BeforeColRegionRemoved", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeColRegionRemoved -= value;
+                this.eventos.Remove("BeforeColRegionRemoved");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeColRegionScrollEventHandler BeforeColRegionScroll
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeColRegionScrollEventHandler BeforeColRegionScroll
         {
-            add { this.grid.BeforeColRegionScroll += value; }
-            remove { this.grid.BeforeColRegionScroll -= value; }
+            add
+            {
+                this.grid.BeforeColRegionScroll += value;
+                OEventHandler handler = new OEventHandler("BeforeColRegionScroll", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeColRegionScroll -= value;
+                this.eventos.Remove("BeforeColRegionScroll");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeColRegionSizeEventHandler BeforeColRegionSize
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeColRegionSizeEventHandler BeforeColRegionSize
         {
-            add { this.grid.BeforeColRegionSize += value; }
-            remove { this.grid.BeforeColRegionSize -= value; }
+            add
+            {
+                this.grid.BeforeColRegionSize += value;
+                OEventHandler handler = new OEventHandler("BeforeColRegionSize", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeColRegionSize -= value;
+                this.eventos.Remove("BeforeColRegionSize");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeColRegionSplitEventHandler BeforeColRegionSplit
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeColRegionSplitEventHandler BeforeColRegionSplit
         {
-            add { this.grid.BeforeColRegionSplit += value; }
-            remove { this.grid.BeforeColRegionSplit -= value; }
+            add
+            {
+                this.grid.BeforeColRegionSplit += value;
+                OEventHandler handler = new OEventHandler("BeforeColRegionSplit", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeColRegionSplit -= value;
+                this.eventos.Remove("BeforeColRegionSplit");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeColumnChooserDisplayedEventHandler BeforeColumnChooserDisplayed
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeColumnChooserDisplayedEventHandler BeforeColumnChooserDisplayed
         {
-            add { this.grid.BeforeColumnChooserDisplayed += value; }
-            remove { this.grid.BeforeColumnChooserDisplayed -= value; }
+            add
+            {
+                this.grid.BeforeColumnChooserDisplayed += value;
+                OEventHandler handler = new OEventHandler("BeforeColumnChooserDisplayed", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeColumnChooserDisplayed -= value;
+                this.eventos.Remove("BeforeColumnChooserDisplayed");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeCustomRowFilterDialogEventHandler BeforeCustomRowFilterDialog
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeCustomRowFilterDialogEventHandler BeforeCustomRowFilterDialog
         {
-            add { this.grid.BeforeCustomRowFilterDialog += value; }
-            remove { this.grid.BeforeCustomRowFilterDialog -= value; }
+            add
+            {
+                this.grid.BeforeCustomRowFilterDialog += value;
+                OEventHandler handler = new OEventHandler("BeforeCustomRowFilterDialog", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeCustomRowFilterDialog -= value;
+                this.eventos.Remove("BeforeCustomRowFilterDialog");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeDisplayDataErrorTooltipEventHandler BeforeDisplayDataErrorTooltip
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeDisplayDataErrorTooltipEventHandler BeforeDisplayDataErrorTooltip
         {
-            add { this.grid.BeforeDisplayDataErrorTooltip += value; }
-            remove { this.grid.BeforeDisplayDataErrorTooltip -= value; }
+            add
+            {
+                this.grid.BeforeDisplayDataErrorTooltip += value;
+                OEventHandler handler = new OEventHandler("BeforeDisplayDataErrorTooltip", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeDisplayDataErrorTooltip -= value;
+                this.eventos.Remove("BeforeDisplayDataErrorTooltip");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event CancelEventHandler BeforeEnterEditMode
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event System.ComponentModel.CancelEventHandler BeforeEnterEditMode
         {
-            add { this.grid.BeforeEnterEditMode += value; }
-            remove { this.grid.BeforeEnterEditMode -= value; }
+            add
+            {
+                this.grid.BeforeEnterEditMode += value;
+                OEventHandler handler = new OEventHandler("BeforeEnterEditMode", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeEnterEditMode -= value;
+                this.eventos.Remove("BeforeEnterEditMode");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeExitEditModeEventHandler BeforeExitEditMode
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeExitEditModeEventHandler BeforeExitEditMode
         {
-            add { this.grid.BeforeExitEditMode += value; }
-            remove { this.grid.BeforeExitEditMode -= value; }
+            add
+            {
+                this.grid.BeforeExitEditMode += value;
+                OEventHandler handler = new OEventHandler("BeforeExitEditMode", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeExitEditMode -= value;
+                this.eventos.Remove("BeforeExitEditMode");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeGroupPosChangedEventHandler BeforeGroupPosChanged
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeGroupPosChangedEventHandler BeforeGroupPosChanged
         {
-            add { this.grid.BeforeGroupPosChanged += value; }
-            remove { this.grid.BeforeGroupPosChanged -= value; }
+            add
+            {
+                this.grid.BeforeGroupPosChanged += value;
+                OEventHandler handler = new OEventHandler("BeforeGroupPosChanged", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeGroupPosChanged -= value;
+                this.eventos.Remove("BeforeGroupPosChanged");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeHeaderCheckStateChangedEventHandler BeforeHeaderCheckStateChanged
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeHeaderCheckStateChangedEventHandler BeforeHeaderCheckStateChanged
         {
-            add { this.grid.BeforeHeaderCheckStateChanged += value; }
-            remove { this.grid.BeforeHeaderCheckStateChanged -= value; }
+            add
+            {
+                this.grid.BeforeHeaderCheckStateChanged += value;
+                OEventHandler handler = new OEventHandler("BeforeHeaderCheckStateChanged", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeHeaderCheckStateChanged -= value;
+                this.eventos.Remove("BeforeHeaderCheckStateChanged");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeMultiCellOperationEventHandler BeforeMultiCellOperation
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeMultiCellOperationEventHandler BeforeMultiCellOperation
         {
-            add { this.grid.BeforeMultiCellOperation += value; }
-            remove { this.grid.BeforeMultiCellOperation -= value; }
+            add
+            {
+                this.grid.BeforeMultiCellOperation += value;
+                OEventHandler handler = new OEventHandler("BeforeMultiCellOperation", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeMultiCellOperation -= value;
+                this.eventos.Remove("BeforeMultiCellOperation");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeUltraGridPerformActionEventHandler BeforePerformAction
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeUltraGridPerformActionEventHandler BeforePerformAction
         {
-            add { this.grid.BeforePerformAction += value; }
-            remove { this.grid.BeforePerformAction -= value; }
+            add
+            {
+                this.grid.BeforePerformAction += value;
+                OEventHandler handler = new OEventHandler("BeforePerformAction", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforePerformAction -= value;
+                this.eventos.Remove("BeforePerformAction");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforePrintEventHandler BeforePrint
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforePrintEventHandler BeforePrint
         {
-            add { this.grid.BeforePrint += value; }
-            remove { this.grid.BeforePrint -= value; }
+            add
+            {
+                this.grid.BeforePrint += value;
+                OEventHandler handler = new OEventHandler("BeforePrint", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforePrint -= value;
+                this.eventos.Remove("BeforePrint");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event RowEventHandler BeforeRowActivate
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.RowEventHandler BeforeRowActivate
         {
-            add { this.grid.BeforeRowActivate += value; }
-            remove { this.grid.BeforeRowActivate -= value; }
+            add
+            {
+                this.grid.BeforeRowActivate += value;
+                OEventHandler handler = new OEventHandler("BeforeRowActivate", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowActivate -= value;
+                this.eventos.Remove("BeforeRowActivate");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event CancelableRowEventHandler BeforeRowCancelUpdate
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.CancelableRowEventHandler BeforeRowCancelUpdate
         {
-            add { this.grid.BeforeRowCancelUpdate += value; }
-            remove { this.grid.BeforeRowCancelUpdate -= value; }
+            add
+            {
+                this.grid.BeforeRowCancelUpdate += value;
+                OEventHandler handler = new OEventHandler("BeforeRowCancelUpdate", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowCancelUpdate -= value;
+                this.eventos.Remove("BeforeRowCancelUpdate");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event CancelableRowEventHandler BeforeRowCollapsed
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.CancelableRowEventHandler BeforeRowCollapsed
         {
-            add { this.grid.BeforeRowCollapsed += value; }
-            remove { this.grid.BeforeRowCollapsed -= value; }
+            add
+            {
+                this.grid.BeforeRowCollapsed += value;
+                OEventHandler handler = new OEventHandler("BeforeRowCollapsed", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowCollapsed -= value;
+                this.eventos.Remove("BeforeRowCollapsed");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event CancelEventHandler BeforeRowDeactivate
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event System.ComponentModel.CancelEventHandler BeforeRowDeactivate
         {
-            add { this.grid.BeforeRowDeactivate += value; }
-            remove { this.grid.BeforeRowDeactivate -= value; }
+            add
+            {
+                this.grid.BeforeRowDeactivate += value;
+                OEventHandler handler = new OEventHandler("BeforeRowDeactivate", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowDeactivate -= value;
+                this.eventos.Remove("BeforeRowDeactivate");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeRowEditTemplateClosedEventHandler BeforeRowEditTemplateClosed
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeRowEditTemplateClosedEventHandler BeforeRowEditTemplateClosed
         {
-            add { this.grid.BeforeRowEditTemplateClosed += value; }
-            remove { this.grid.BeforeRowEditTemplateClosed -= value; }
+            add
+            {
+                this.grid.BeforeRowEditTemplateClosed += value;
+                OEventHandler handler = new OEventHandler("BeforeRowEditTemplateClosed", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowEditTemplateClosed -= value;
+                this.eventos.Remove("BeforeRowEditTemplateClosed");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeRowEditTemplateDisplayedEventHandler BeforeRowEditTemplateDisplayed
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeRowEditTemplateDisplayedEventHandler BeforeRowEditTemplateDisplayed
         {
-            add { this.grid.BeforeRowEditTemplateDisplayed += value; }
-            remove { this.grid.BeforeRowEditTemplateDisplayed -= value; }
+            add
+            {
+                this.grid.BeforeRowEditTemplateDisplayed += value;
+                OEventHandler handler = new OEventHandler("BeforeRowEditTemplateDisplayed", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowEditTemplateDisplayed -= value;
+                this.eventos.Remove("BeforeRowEditTemplateDisplayed");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event CancelableRowEventHandler BeforeRowExpanded
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.CancelableRowEventHandler BeforeRowExpanded
         {
-            add { this.grid.BeforeRowExpanded += value; }
-            remove { this.grid.BeforeRowExpanded -= value; }
+            add
+            {
+                this.grid.BeforeRowExpanded += value;
+                OEventHandler handler = new OEventHandler("BeforeRowExpanded", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowExpanded -= value;
+                this.eventos.Remove("BeforeRowExpanded");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeRowFilterChangedEventHandler BeforeRowFilterChanged
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeRowFilterChangedEventHandler BeforeRowFilterChanged
         {
-            add { this.grid.BeforeRowFilterChanged += value; }
-            remove { this.grid.BeforeRowFilterChanged -= value; }
+            add
+            {
+                this.grid.BeforeRowFilterChanged += value;
+                OEventHandler handler = new OEventHandler("BeforeRowFilterChanged", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowFilterChanged -= value;
+                this.eventos.Remove("BeforeRowFilterChanged");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeRowFilterDropDownEventHandler BeforeRowFilterDropDown
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeRowFilterDropDownEventHandler BeforeRowFilterDropDown
         {
-            add { this.grid.BeforeRowFilterDropDown += value; }
-            remove { this.grid.BeforeRowFilterDropDown -= value; }
+            add
+            {
+                this.grid.BeforeRowFilterDropDown += value;
+                OEventHandler handler = new OEventHandler("BeforeRowFilterDropDown", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowFilterDropDown -= value;
+                this.eventos.Remove("BeforeRowFilterDropDown");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeRowFilterDropDownPopulateEventHandler BeforeRowFilterDropDownPopulate
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeRowFilterDropDownPopulateEventHandler BeforeRowFilterDropDownPopulate
         {
-            add { this.grid.BeforeRowFilterDropDownPopulate += value; }
-            remove { this.grid.BeforeRowFilterDropDownPopulate -= value; }
+            add
+            {
+                this.grid.BeforeRowFilterDropDownPopulate += value;
+                OEventHandler handler = new OEventHandler("BeforeRowFilterDropDownPopulate", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowFilterDropDownPopulate -= value;
+                this.eventos.Remove("BeforeRowFilterDropDownPopulate");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeRowFixedStateChangedEventHandler BeforeRowFixedStateChanged
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeRowFixedStateChangedEventHandler BeforeRowFixedStateChanged
         {
-            add { this.grid.BeforeRowFixedStateChanged += value; }
-            remove { this.grid.BeforeRowFixedStateChanged -= value; }
+            add
+            {
+                this.grid.BeforeRowFixedStateChanged += value;
+                OEventHandler handler = new OEventHandler("BeforeRowFixedStateChanged", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowFixedStateChanged -= value;
+                this.eventos.Remove("BeforeRowFixedStateChanged");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeRowInsertEventHandler BeforeRowInsert
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeRowInsertEventHandler BeforeRowInsert
         {
-            add { this.grid.BeforeRowInsert += value; }
-            remove { this.grid.BeforeRowInsert -= value; }
+            add
+            {
+                this.grid.BeforeRowInsert += value;
+                OEventHandler handler = new OEventHandler("BeforeRowInsert", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowInsert -= value;
+                this.eventos.Remove("BeforeRowInsert");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeRowLayoutItemResizedEventHandler BeforeRowLayoutItemResized
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeRowLayoutItemResizedEventHandler BeforeRowLayoutItemResized
         {
-            add { this.grid.BeforeRowLayoutItemResized += value; }
-            remove { this.grid.BeforeRowLayoutItemResized -= value; }
+            add
+            {
+                this.grid.BeforeRowLayoutItemResized += value;
+                OEventHandler handler = new OEventHandler("BeforeRowLayoutItemResized", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowLayoutItemResized -= value;
+                this.eventos.Remove("BeforeRowLayoutItemResized");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeRowRegionRemovedEventHandler BeforeRowRegionRemoved
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeRowRegionRemovedEventHandler BeforeRowRegionRemoved
         {
-            add { this.grid.BeforeRowRegionRemoved += value; }
-            remove { this.grid.BeforeRowRegionRemoved -= value; }
+            add
+            {
+                this.grid.BeforeRowRegionRemoved += value;
+                OEventHandler handler = new OEventHandler("BeforeRowRegionRemoved", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowRegionRemoved -= value;
+                this.eventos.Remove("BeforeRowRegionRemoved");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeRowRegionScrollEventHandler BeforeRowRegionScroll
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeRowRegionScrollEventHandler BeforeRowRegionScroll
         {
-            add { this.grid.BeforeRowRegionScroll += value; }
-            remove { this.grid.BeforeRowRegionScroll -= value; }
+            add
+            {
+                this.grid.BeforeRowRegionScroll += value;
+                OEventHandler handler = new OEventHandler("BeforeRowRegionScroll", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowRegionScroll -= value;
+                this.eventos.Remove("BeforeRowRegionScroll");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeRowRegionSizeEventHandler BeforeRowRegionSize
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeRowRegionSizeEventHandler BeforeRowRegionSize
         {
-            add { this.grid.BeforeRowRegionSize += value; }
-            remove { this.grid.BeforeRowRegionSize -= value; }
+            add
+            {
+                this.grid.BeforeRowRegionSize += value;
+                OEventHandler handler = new OEventHandler("BeforeRowRegionSize", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowRegionSize -= value;
+                this.eventos.Remove("BeforeRowRegionSize");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeRowRegionSplitEventHandler BeforeRowRegionSplit
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeRowRegionSplitEventHandler BeforeRowRegionSplit
         {
-            add { this.grid.BeforeRowRegionSplit += value; }
-            remove { this.grid.BeforeRowRegionSplit -= value; }
+            add
+            {
+                this.grid.BeforeRowRegionSplit += value;
+                OEventHandler handler = new OEventHandler("BeforeRowRegionSplit", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowRegionSplit -= value;
+                this.eventos.Remove("BeforeRowRegionSplit");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeRowResizeEventHandler BeforeRowResize
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeRowResizeEventHandler BeforeRowResize
         {
-            add { this.grid.BeforeRowResize += value; }
-            remove { this.grid.BeforeRowResize -= value; }
+            add
+            {
+                this.grid.BeforeRowResize += value;
+                OEventHandler handler = new OEventHandler("BeforeRowResize", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowResize -= value;
+                this.eventos.Remove("BeforeRowResize");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeRowsDeletedEventHandler BeforeRowsDeleted
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeRowsDeletedEventHandler BeforeRowsDeleted
         {
-            add { this.grid.BeforeRowsDeleted += value; }
-            remove { this.grid.BeforeRowsDeleted -= value; }
+            add
+            {
+                this.grid.BeforeRowsDeleted += value;
+                OEventHandler handler = new OEventHandler("BeforeRowsDeleted", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowsDeleted -= value;
+                this.eventos.Remove("BeforeRowsDeleted");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event CancelableRowEventHandler BeforeRowUpdate
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.CancelableRowEventHandler BeforeRowUpdate
         {
-            add { this.grid.BeforeRowUpdate += value; }
-            remove { this.grid.BeforeRowUpdate -= value; }
+            add
+            {
+                this.grid.BeforeRowUpdate += value;
+                OEventHandler handler = new OEventHandler("BeforeRowUpdate", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeRowUpdate -= value;
+                this.eventos.Remove("BeforeRowUpdate");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeSelectChangeEventHandler BeforeSelectChange
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeSelectChangeEventHandler BeforeSelectChange
         {
-            add { this.grid.BeforeSelectChange += value; }
-            remove { this.grid.BeforeSelectChange -= value; }
+            add
+            {
+                this.grid.BeforeSelectChange += value;
+                OEventHandler handler = new OEventHandler("BeforeSelectChange", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeSelectChange -= value;
+                this.eventos.Remove("BeforeSelectChange");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeSortChangeEventHandler BeforeSortChange
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeSortChangeEventHandler BeforeSortChange
         {
-            add { this.grid.BeforeSortChange += value; }
-            remove { this.grid.BeforeSortChange -= value; }
+            add
+            {
+                this.grid.BeforeSortChange += value;
+                OEventHandler handler = new OEventHandler("BeforeSortChange", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeSortChange -= value;
+                this.eventos.Remove("BeforeSortChange");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event BeforeSummaryDialogEventHandler BeforeSummaryDialog
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.BeforeSummaryDialogEventHandler BeforeSummaryDialog
         {
-            add { this.grid.BeforeSummaryDialog += value; }
-            remove { this.grid.BeforeSummaryDialog -= value; }
+            add
+            {
+                this.grid.BeforeSummaryDialog += value;
+                OEventHandler handler = new OEventHandler("BeforeSummaryDialog", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.BeforeSummaryDialog -= value;
+                this.eventos.Remove("BeforeSummaryDialog");
+            }
         }
-        #endregion
+        #endregion Eventos Before
 
         #region Eventos Cell
-        [Category("OrbitaUltraGrid")]
-        public event CellEventHandler CellChange
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.CellEventHandler CellChange
         {
-            add { this.grid.CellChange += value; }
-            remove { this.grid.CellChange -= value; }
+            add
+            {
+                this.grid.CellChange += value;
+                OEventHandler handler = new OEventHandler("CellChange", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.CellChange -= value;
+                this.eventos.Remove("CellChange");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event CellDataErrorEventHandler CellDataError
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.CellDataErrorEventHandler CellDataError
         {
-            add { this.grid.CellDataError += value; }
-            remove { this.grid.CellDataError -= value; }
+            add
+            {
+                this.grid.CellDataError += value;
+                OEventHandler handler = new OEventHandler("CellDataError", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.CellDataError -= value;
+                this.eventos.Remove("CellDataError");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event CellEventHandler CellListSelect
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.CellEventHandler CellListSelect
         {
-            add { this.grid.CellListSelect += value; }
-            remove { this.grid.CellListSelect -= value; }
+            add
+            {
+                this.grid.CellListSelect += value;
+                OEventHandler handler = new OEventHandler("CellListSelect", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.CellListSelect -= value;
+                this.eventos.Remove("CellListSelect");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event ClickCellEventHandler ClickCell
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.ClickCellEventHandler ClickCell
         {
-            add { this.grid.ClickCell += value; }
-            remove { this.grid.ClickCell -= value; }
+            add
+            {
+                this.grid.ClickCell += value;
+                OEventHandler handler = new OEventHandler("ClickCell", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.ClickCell -= value;
+                this.eventos.Remove("ClickCell");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event CellEventHandler ClickCellButton
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.CellEventHandler ClickCellButton
         {
-            add { this.grid.ClickCellButton += value; }
-            remove { this.grid.ClickCellButton -= value; }
+            add
+            {
+                this.grid.ClickCellButton += value;
+                OEventHandler handler = new OEventHandler("ClickCellButton", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.ClickCellButton -= value;
+                this.eventos.Remove("ClickCellButton");
+            }
         }
-        #endregion
+        #endregion Eventos Cell
 
         #region Eventos DoubleClick
-        [Category("OrbitaUltraGrid")]
-        public new event EventHandler DoubleClick
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public new event System.EventHandler DoubleClick
         {
-            add { this.grid.DoubleClick += value; }
-            remove { this.grid.DoubleClick -= value; }
+            add
+            {
+                this.grid.DoubleClick += value;
+                OEventHandler handler = new OEventHandler("DoubleClick", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.DoubleClick -= value;
+                this.eventos.Remove("DoubleClick");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event DoubleClickCellEventHandler DoubleClickCell
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.DoubleClickCellEventHandler DoubleClickCell
         {
-            add { this.grid.DoubleClickCell += value; }
-            remove { this.grid.DoubleClickCell -= value; }
+            add
+            {
+                this.grid.DoubleClickCell += value;
+                OEventHandler handler = new OEventHandler("DoubleClickCell", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.DoubleClickCell -= value;
+                this.eventos.Remove("DoubleClickCell");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event DoubleClickHeaderEventHandler DoubleClickHeader
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.DoubleClickHeaderEventHandler DoubleClickHeader
         {
-            add { this.grid.DoubleClickHeader += value; }
-            remove { this.grid.DoubleClickHeader -= value; }
+            add
+            {
+                this.grid.DoubleClickHeader += value;
+                OEventHandler handler = new OEventHandler("DoubleClickHeader", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.DoubleClickHeader -= value;
+                this.eventos.Remove("DoubleClickHeader");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event DoubleClickRowEventHandler DoubleClickRow
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.DoubleClickRowEventHandler DoubleClickRow
         {
-            add { this.grid.DoubleClickRow += value; }
-            remove { this.grid.DoubleClickRow -= value; }
+            add
+            {
+                this.grid.DoubleClickRow += value;
+                OEventHandler handler = new OEventHandler("DoubleClickRow", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.DoubleClickRow -= value;
+                this.eventos.Remove("DoubleClickRow");
+            }
         }
-        #endregion
+        #endregion Eventos DoubleClick
 
         #region Evento Error
-        [Category("OrbitaUltraGrid")]
-        public event ErrorEventHandler Error
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.ErrorEventHandler Error
         {
-            add { this.grid.Error += value; }
-            remove { this.grid.Error -= value; }
+            add
+            {
+                this.grid.Error += value;
+                OEventHandler handler = new OEventHandler("Error", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.Error -= value;
+                this.eventos.Remove("Error");
+            }
         }
-        #endregion
+        #endregion Evento Error
 
         #region Eventos Filter
-        [Category("OrbitaUltraGrid")]
-        public event FilterCellValueChangedEventHandler FilterCellValueChanged
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.FilterCellValueChangedEventHandler FilterCellValueChanged
         {
-            add { this.grid.FilterCellValueChanged += value; }
-            remove { this.grid.FilterCellValueChanged -= value; }
+            add
+            {
+                this.grid.FilterCellValueChanged += value;
+                OEventHandler handler = new OEventHandler("FilterCellValueChanged", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.FilterCellValueChanged -= value;
+                this.eventos.Remove("FilterCellValueChanged");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event FilterRowEventHandler FilterRow
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.FilterRowEventHandler FilterRow
         {
-            add { this.grid.FilterRow += value; }
-            remove { this.grid.FilterRow -= value; }
+            add
+            {
+                this.grid.FilterRow += value;
+                OEventHandler handler = new OEventHandler("FilterRow", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.FilterRow -= value;
+                this.eventos.Remove("FilterRow");
+            }
         }
-        #endregion
+        #endregion Eventos Filter
 
         #region Eventos Initialize
-        [Category("OrbitaUltraGrid")]
-        public event InitializeGroupByRowEventHandler InitializeGroupByRow
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.InitializeGroupByRowEventHandler InitializeGroupByRow
         {
-            add { this.grid.InitializeGroupByRow += value; }
-            remove { this.grid.InitializeGroupByRow -= value; }
+            add
+            {
+                this.grid.InitializeGroupByRow += value;
+                OEventHandler handler = new OEventHandler("InitializeGroupByRow", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.InitializeGroupByRow -= value;
+                this.eventos.Remove("InitializeGroupByRow");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event InitializeLayoutEventHandler InitializeLayout
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.InitializeLayoutEventHandler InitializeLayout
         {
-            add { this.grid.InitializeLayout += value; }
-            remove { this.grid.InitializeLayout -= value; }
+            add
+            {
+                this.grid.InitializeLayout += value;
+                OEventHandler handler = new OEventHandler("InitializeLayout", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.InitializeLayout -= value;
+                this.eventos.Remove("InitializeLayout");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event InitializeLogicalPrintPageEventHandler InitializeLogicalPrintPage
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.InitializeLogicalPrintPageEventHandler InitializeLogicalPrintPage
         {
-            add { this.grid.InitializeLogicalPrintPage += value; }
-            remove { this.grid.InitializeLogicalPrintPage -= value; }
+            add
+            {
+                this.grid.InitializeLogicalPrintPage += value;
+                OEventHandler handler = new OEventHandler("InitializeLogicalPrintPage", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.InitializeLogicalPrintPage -= value;
+                this.eventos.Remove("InitializeLogicalPrintPage");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event InitializePrintEventHandler InitializePrint
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.InitializePrintEventHandler InitializePrint
         {
-            add { this.grid.InitializePrint += value; }
-            remove { this.grid.InitializePrint -= value; }
+            add
+            {
+                this.grid.InitializePrint += value;
+                OEventHandler handler = new OEventHandler("InitializePrint", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.InitializePrint -= value;
+                this.eventos.Remove("InitializePrint");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event InitializePrintPreviewEventHandler InitializePrintPreview
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.InitializePrintPreviewEventHandler InitializePrintPreview
         {
-            add { this.grid.InitializePrintPreview += value; }
-            remove { this.grid.InitializePrintPreview -= value; }
+            add
+            {
+                this.grid.InitializePrintPreview += value;
+                OEventHandler handler = new OEventHandler("InitializePrintPreview", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.InitializePrintPreview -= value;
+                this.eventos.Remove("InitializePrintPreview");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event InitializeRowEventHandler InitializeRow
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.InitializeRowEventHandler InitializeRow
         {
-            add { this.grid.InitializeRow += value; }
-            remove { this.grid.InitializeRow -= value; }
+            add
+            {
+                this.grid.InitializeRow += value;
+                OEventHandler handler = new OEventHandler("InitializeRow", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.InitializeRow -= value;
+                this.eventos.Remove("InitializeRow");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event InitializeRowsCollectionEventHandler InitializeRowsCollection
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.InitializeRowsCollectionEventHandler InitializeRowsCollection
         {
-            add { this.grid.InitializeRowsCollection += value; }
-            remove { this.grid.InitializeRowsCollection -= value; }
+            add
+            {
+                this.grid.InitializeRowsCollection += value;
+                OEventHandler handler = new OEventHandler("InitializeRowsCollection", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.InitializeRowsCollection -= value;
+                this.eventos.Remove("InitializeRowsCollection");
+            }
         }
-        [Category("OrbitaUltraGrid")]
-        public event InitializeTemplateAddRowEventHandler InitializeTemplateAddRow
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.InitializeTemplateAddRowEventHandler InitializeTemplateAddRow
         {
-            add { this.grid.InitializeTemplateAddRow += value; }
-            remove { this.grid.InitializeTemplateAddRow -= value; }
+            add
+            {
+                this.grid.InitializeTemplateAddRow += value;
+                OEventHandler handler = new OEventHandler("InitializeTemplateAddRow", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.InitializeTemplateAddRow -= value;
+                this.eventos.Remove("InitializeTemplateAddRow");
+            }
         }
-        #endregion
+        #endregion Eventos Initialize
 
         #region Evento RowEdit
-        [Category("OrbitaUltraGrid")]
-        public event RowEditTemplateRequestedEventHandler RowEditTemplateRequested
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.RowEditTemplateRequestedEventHandler RowEditTemplateRequested
         {
-            add { this.grid.RowEditTemplateRequested += value; }
-            remove { this.grid.RowEditTemplateRequested -= value; }
+            add
+            {
+                this.grid.RowEditTemplateRequested += value;
+                OEventHandler handler = new OEventHandler("RowEditTemplateRequested", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.RowEditTemplateRequested -= value;
+                this.eventos.Remove("RowEditTemplateRequested");
+            }
         }
-        #endregion
+        #endregion Evento RowEdit
 
         #region Evento Selection
-        [Category("OrbitaUltraGrid")]
-        public event CancelEventHandler SelectionDrag
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event System.ComponentModel.CancelEventHandler SelectionDrag
         {
-            add { this.grid.SelectionDrag += value; }
-            remove { this.grid.SelectionDrag -= value; }
+            add
+            {
+                this.grid.SelectionDrag += value;
+                OEventHandler handler = new OEventHandler("SelectionDrag", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.SelectionDrag -= value;
+                this.eventos.Remove("SelectionDrag");
+            }
         }
-        #endregion
+        #endregion Evento Selection
 
         #region Evento Summary
-        [Category("OrbitaUltraGrid")]
-        public event SummaryValueChangedEventHandler SummaryValueChanged
+        [System.ComponentModel.Category("OrbitaUltraGrid")]
+        public event Infragistics.Win.UltraWinGrid.SummaryValueChangedEventHandler SummaryValueChanged
         {
-            add { this.grid.SummaryValueChanged += value; }
-            remove { this.grid.SummaryValueChanged -= value; }
+            add
+            {
+                this.grid.SummaryValueChanged += value;
+                OEventHandler handler = new OEventHandler("SummaryValueChanged", value);
+                this.eventos.Add(handler.Evento, handler);
+            }
+            remove
+            {
+                this.grid.SummaryValueChanged -= value;
+                this.eventos.Remove("SummaryValueChanged");
+            }
         }
         #endregion
 
@@ -1820,5 +2910,20 @@ namespace Orbita.Controles.Grid
         #endregion Eventos Grid
 
         #endregion Manejadores de eventos
+
+        #region Métodos internos
+        public void FlushAllEvents()
+        {
+            if (this.eventos.Keys.Count > 0)
+            {
+                var claves = this.eventos.Keys.ToList();
+                foreach (string item in claves)
+                {
+                    this.GetType().GetEvent(this.eventos[item].Evento).RemoveEventHandler(this, this.eventos[item].Delegado);
+                }
+                claves.Clear();
+            }
+        }
+        #endregion
     }
 }

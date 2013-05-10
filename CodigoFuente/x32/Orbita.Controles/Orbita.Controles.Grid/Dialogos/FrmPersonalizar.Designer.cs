@@ -137,9 +137,9 @@
             // orbitaTabPageControl1
             // 
             this.orbitaTabPageControl1.Controls.Add(this.grpEntornoMostrar);
-            this.orbitaTabPageControl1.Location = new System.Drawing.Point(-10000, -10000);
+            this.orbitaTabPageControl1.Location = new System.Drawing.Point(0, 0);
             this.orbitaTabPageControl1.Name = "orbitaTabPageControl1";
-            this.orbitaTabPageControl1.Size = new System.Drawing.Size(375, 305);
+            this.orbitaTabPageControl1.Size = new System.Drawing.Size(418, 305);
             // 
             // grpEntornoMostrar
             // 
@@ -167,7 +167,7 @@
             this.orbitaTabPageControl2.Controls.Add(this.grpFilasConfiguracion);
             this.orbitaTabPageControl2.Location = new System.Drawing.Point(-10000, -10000);
             this.orbitaTabPageControl2.Name = "orbitaTabPageControl2";
-            this.orbitaTabPageControl2.Size = new System.Drawing.Size(375, 305);
+            this.orbitaTabPageControl2.Size = new System.Drawing.Size(418, 305);
             // 
             // grpFilasApariencia
             // 
@@ -244,7 +244,7 @@
             this.orbitaTabPageControl3.Controls.Add(this.grpColumnasAutoajustar);
             this.orbitaTabPageControl3.Controls.Add(this.lblColumnasMostrar);
             this.orbitaTabPageControl3.Controls.Add(this.grpColumnasMostrar);
-            this.orbitaTabPageControl3.Location = new System.Drawing.Point(0, 0);
+            this.orbitaTabPageControl3.Location = new System.Drawing.Point(-10000, -10000);
             this.orbitaTabPageControl3.Name = "orbitaTabPageControl3";
             this.orbitaTabPageControl3.Size = new System.Drawing.Size(418, 305);
             // 
@@ -395,7 +395,7 @@
             this.orbitaTabPageControl4.Controls.Add(this.pnlListView);
             this.orbitaTabPageControl4.Location = new System.Drawing.Point(-10000, -10000);
             this.orbitaTabPageControl4.Name = "orbitaTabPageControl4";
-            this.orbitaTabPageControl4.Size = new System.Drawing.Size(375, 305);
+            this.orbitaTabPageControl4.Size = new System.Drawing.Size(418, 305);
             // 
             // pnlListView
             // 
@@ -406,7 +406,7 @@
             this.pnlListView.Location = new System.Drawing.Point(0, 0);
             this.pnlListView.Name = "pnlListView";
             this.pnlListView.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
-            this.pnlListView.Size = new System.Drawing.Size(375, 305);
+            this.pnlListView.Size = new System.Drawing.Size(418, 305);
             this.pnlListView.TabIndex = 0;
             // 
             // lsvColumnas
@@ -420,7 +420,7 @@
             this.lsvColumnas.Location = new System.Drawing.Point(6, 19);
             this.lsvColumnas.MultiSelect = false;
             this.lsvColumnas.Name = "lsvColumnas";
-            this.lsvColumnas.Size = new System.Drawing.Size(337, 286);
+            this.lsvColumnas.Size = new System.Drawing.Size(380, 286);
             this.lsvColumnas.TabIndex = 15;
             this.lsvColumnas.UseCompatibleStateImageBehavior = false;
             this.lsvColumnas.View = System.Windows.Forms.View.Details;
@@ -431,7 +431,7 @@
             this.pnlMoverColumnas.Controls.Add(this.btnBajar);
             this.pnlMoverColumnas.Controls.Add(this.btnSubir);
             this.pnlMoverColumnas.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlMoverColumnas.Location = new System.Drawing.Point(343, 19);
+            this.pnlMoverColumnas.Location = new System.Drawing.Point(386, 19);
             this.pnlMoverColumnas.Name = "pnlMoverColumnas";
             this.pnlMoverColumnas.Size = new System.Drawing.Size(32, 286);
             this.pnlMoverColumnas.TabIndex = 17;
@@ -475,7 +475,7 @@
             this.lblColumnaAgregarQuitar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.lblColumnaAgregarQuitar.Location = new System.Drawing.Point(6, 0);
             this.lblColumnaAgregarQuitar.Name = "lblColumnaAgregarQuitar";
-            this.lblColumnaAgregarQuitar.Size = new System.Drawing.Size(369, 19);
+            this.lblColumnaAgregarQuitar.Size = new System.Drawing.Size(412, 19);
             this.lblColumnaAgregarQuitar.TabIndex = 16;
             this.lblColumnaAgregarQuitar.Text = "Columnas:";
             this.lblColumnaAgregarQuitar.UseMnemonic = false;
@@ -485,7 +485,7 @@
             this.orbitaTabPageControl5.Controls.Add(this.orbitaPanel1);
             this.orbitaTabPageControl5.Location = new System.Drawing.Point(-10000, -10000);
             this.orbitaTabPageControl5.Name = "orbitaTabPageControl5";
-            this.orbitaTabPageControl5.Size = new System.Drawing.Size(375, 305);
+            this.orbitaTabPageControl5.Size = new System.Drawing.Size(418, 305);
             // 
             // orbitaPanel1
             // 
@@ -495,7 +495,7 @@
             this.orbitaPanel1.Location = new System.Drawing.Point(0, 0);
             this.orbitaPanel1.Name = "orbitaPanel1";
             this.orbitaPanel1.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
-            this.orbitaPanel1.Size = new System.Drawing.Size(375, 305);
+            this.orbitaPanel1.Size = new System.Drawing.Size(418, 305);
             this.orbitaPanel1.TabIndex = 18;
             // 
             // lsvColumnasAgrupadas
@@ -509,7 +509,7 @@
             this.lsvColumnasAgrupadas.Location = new System.Drawing.Point(6, 19);
             this.lsvColumnasAgrupadas.MultiSelect = false;
             this.lsvColumnasAgrupadas.Name = "lsvColumnasAgrupadas";
-            this.lsvColumnasAgrupadas.Size = new System.Drawing.Size(369, 286);
+            this.lsvColumnasAgrupadas.Size = new System.Drawing.Size(412, 286);
             this.lsvColumnasAgrupadas.TabIndex = 15;
             this.lsvColumnasAgrupadas.UseCompatibleStateImageBehavior = false;
             this.lsvColumnasAgrupadas.View = System.Windows.Forms.View.Details;
@@ -522,7 +522,7 @@
             this.orbitaUltraLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.orbitaUltraLabel2.Location = new System.Drawing.Point(6, 0);
             this.orbitaUltraLabel2.Name = "orbitaUltraLabel2";
-            this.orbitaUltraLabel2.Size = new System.Drawing.Size(369, 19);
+            this.orbitaUltraLabel2.Size = new System.Drawing.Size(412, 19);
             this.orbitaUltraLabel2.TabIndex = 16;
             this.orbitaUltraLabel2.Text = "Columnas agrupadas:";
             this.orbitaUltraLabel2.UseMnemonic = false;

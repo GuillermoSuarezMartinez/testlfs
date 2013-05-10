@@ -20,6 +20,13 @@ namespace Orbita.VA.Comun
     /// </summary>
     public static class OGestionMemoriaManager
     {
+        #region Constante(s)
+        /// <summary>
+        /// Intervalo de tiempo mínimo que ha de pasar entre llamadas al recolector de basura
+        /// </summary>
+        private const int IntervaloMinEntreRecoleccionesBasuraMs = 1000;
+        #endregion
+
         #region Atributo(s)
         /// <summary>
         /// Diccionario de objetos grandes. Clave: Código Hash del objeto. Valor: Triplete de Tipo y código inerno
@@ -30,6 +37,11 @@ namespace Orbita.VA.Comun
         /// Objeto de bloqueo. Utilizado para el bloqueo multihilo
         /// </summary>
         private static object BlockObject = new object();
+
+        /// <summary>
+        /// Informa del momento de la última ejecución del recolector de basura
+        /// </summary>
+        private static DateTime MomentoUltimaRecoleccionBasura;
         #endregion
 
         #region Propiedad(es)
@@ -62,6 +74,7 @@ namespace Orbita.VA.Comun
         {
             ListaObjetos = new Dictionary<int, OPair<Type, string>>();
             BlockObject = new object();
+            MomentoUltimaRecoleccionBasura = DateTime.Now;
         }
 
         /// <summary>
@@ -191,26 +204,30 @@ namespace Orbita.VA.Comun
         /// Este proceso puede ser costoso, por lo que se recomienda utilizarlo en momentos de latencia</param>
         public static void ColectorBasura(bool esperaFinalizacion)
         {
-            OCronometrosManager.Start("GarbageCollector");
-
-            //Force garbage collection.
-            GC.Collect();
-
-            // Wait for all finalizers to complete before continuing.
-            // Without this call to GC.WaitForPendingFinalizers, 
-            // the worker loop below might execute at the same time 
-            // as the finalizers.
-            // With this call, the worker loop executes only after
-            // all finalizers have been called.
-            if (esperaFinalizacion)
+            DateTime ahora = DateTime.Now;
+            if (MomentoUltimaRecoleccionBasura + TimeSpan.FromMilliseconds(IntervaloMinEntreRecoleccionesBasuraMs) <= ahora)
             {
-                GC.WaitForPendingFinalizers();
-                OLogsVAComun.GestionMemoria.Info("Colector de basura", "Duración: " + OCronometrosManager.DuracionUltimaEjecucion("GarbageCollector").TotalMilliseconds.ToString());
+                MomentoUltimaRecoleccionBasura = ahora;
+
+                OCronometrosManager.Start("GarbageCollector");
+
+                //Force garbage collection.
+                GC.Collect();
+
+                // Wait for all finalizers to complete before continuing.
+                // Without this call to GC.WaitForPendingFinalizers, 
+                // the worker loop below might execute at the same time 
+                // as the finalizers.
+                // With this call, the worker loop executes only after
+                // all finalizers have been called.
+                if (esperaFinalizacion)
+                {
+                    GC.WaitForPendingFinalizers();
+                    OLogsVAComun.GestionMemoria.Info("Colector de basura", "Duración: " + OCronometrosManager.DuracionUltimaEjecucion("GarbageCollector").TotalMilliseconds.ToString());
+                }
+                OCronometrosManager.Stop("GarbageCollector");
             }
-
-            OCronometrosManager.Stop("GarbageCollector");
         }
-
 	    #endregion    
     }
 

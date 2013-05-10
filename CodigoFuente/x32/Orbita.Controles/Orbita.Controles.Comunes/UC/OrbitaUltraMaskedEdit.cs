@@ -9,30 +9,32 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
-using System;
 namespace Orbita.Controles.Comunes
 {
     public partial class OrbitaUltraMaskedEdit : Infragistics.Win.UltraWinMaskedEdit.UltraMaskedEdit
     {
+        #region Nueva definición
         public class ControlNuevaDefinicion : OUltraMaskedEdit
         {
+            #region Constructor
             public ControlNuevaDefinicion(OrbitaUltraMaskedEdit sender)
                 : base(sender) { }
-        };
+            #endregion
+        }
+        #endregion
 
         #region Atributos
         ControlNuevaDefinicion definicion;
         #endregion
 
         #region Eventos
-        public new event EventHandler Enter;
-        public new event EventHandler Click;
+        public new event System.EventHandler Enter;
+        public new event System.EventHandler Click;
         #endregion
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraMaskedEdit.
         /// </summary>
         public OrbitaUltraMaskedEdit()
             : base()
@@ -57,7 +59,7 @@ namespace Orbita.Controles.Comunes
 
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }
@@ -81,7 +83,7 @@ namespace Orbita.Controles.Comunes
         #endregion
 
         #region Manejadores de eventos
-        private void ControlEnter(object sender, EventArgs e)
+        private void ControlEnter(object sender, System.EventArgs e)
         {
             try
             {
@@ -91,11 +93,11 @@ namespace Orbita.Controles.Comunes
                     this.Enter(sender, e);
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        private void ControlClick(object sender, EventArgs e)
+        private void ControlClick(object sender, System.EventArgs e)
         {
             try
             {
@@ -108,7 +110,7 @@ namespace Orbita.Controles.Comunes
                     this.Click(sender, e);
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }

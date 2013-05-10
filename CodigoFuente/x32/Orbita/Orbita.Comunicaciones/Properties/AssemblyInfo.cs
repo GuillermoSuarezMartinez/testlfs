@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Órbita Ingenieria")]
 [assembly: AssemblyProduct("Orbita.Comunicaciones")]
-[assembly: AssemblyCopyright("Copyright © Orbita Ingenieria 2011")]
+[assembly: AssemblyCopyright("Copyright © Orbita Ingenieria 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -28,5 +28,5 @@ using System.Runtime.InteropServices;
 //      Programador.
 //      Versión del día.
 //
-[assembly: AssemblyVersion("13.70.5.1")]
-[assembly: AssemblyFileVersion("13.70.5.1")]
+[assembly: AssemblyVersion("13.120.3.1")]
+[assembly: AssemblyFileVersion("13.120.3.1")]

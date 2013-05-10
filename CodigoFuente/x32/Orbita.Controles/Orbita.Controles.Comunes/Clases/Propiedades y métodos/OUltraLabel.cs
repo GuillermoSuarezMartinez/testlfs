@@ -25,7 +25,7 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OUltraLabel.
         /// </summary>
-        /// <param name="control"></param>
+        /// <param name="control">Control Orbita asociado a la clase actual.</param>
         public OUltraLabel(object control)
             : base()
         {
@@ -34,16 +34,19 @@ namespace Orbita.Controles.Comunes
         #endregion
 
         #region Propiedades
-        [System.ComponentModel.Description("Determina la apariencia de OrbitaUltraCombo.")]
+        /// <summary>
+        /// Control Orbita asociado a la clase actual.
+        /// </summary>
+        internal OrbitaUltraLabel Control
+        {
+            get { return this.control; }
+        }
+        [System.ComponentModel.Description("Determina la apariencia de Orbita.Controles.Comunes.OUltraLabel.")]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public override OApariencia Apariencia
         {
             get { return base.Apariencia; }
             set { base.Apariencia = value; }
-        }
-        internal OrbitaUltraLabel Control
-        {
-            get { return this.control; }
         }
         #endregion
 
@@ -60,6 +63,10 @@ namespace Orbita.Controles.Comunes
         #endregion
 
         #region Métodos públicos
+        /// <summary>
+        /// Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+        /// </summary>
+        /// <returns>El nombre de tipo completo del objeto.</returns>
         public override string ToString()
         {
             return null;

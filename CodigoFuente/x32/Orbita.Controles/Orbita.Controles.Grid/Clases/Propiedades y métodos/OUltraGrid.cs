@@ -9,13 +9,9 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.ComponentModel;
-using Infragistics.Win;
-using Infragistics.Win.UltraWinGrid;
 namespace Orbita.Controles.Grid
 {
-    [TypeConverter(typeof(ExpandableObjectConverter))]
+    [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
     public class OUltraGrid : OControlBase
     {
         #region Atributos
@@ -76,13 +72,13 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Propiedades
-        [Browsable(false)]
+        [System.ComponentModel.Browsable(false)]
         public bool Formateado
         {
             get { return this.formateado; }
             set { this.formateado = value; }
         }
-        [Browsable(false)]
+        [System.ComponentModel.Browsable(false)]
         public object DataSource
         {
             get { return this.Control.DataSource; }
@@ -149,14 +145,14 @@ namespace Orbita.Controles.Grid
             }
         }
         [System.ComponentModel.Description("Determina la apariencia de OrbitaUltraCombo.")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public override OApariencia Apariencia
         {
             get { return base.Apariencia; }
             set { base.Apariencia = value; }
         }
         [System.ComponentModel.Description("Determina la configuración de las filas.")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public OFilas Filas
         {
             get
@@ -164,12 +160,12 @@ namespace Orbita.Controles.Grid
                 if (this.filas == null)
                 {
                     this.filas = new OFilas(this.Control);
-                    this.filas.PropertyChanged += new EventHandler<OPropiedadEventArgs>(FilasChanged);
-                    this.filas.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaFilasChanged);
-                    this.filas.Activas.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaFilasActivasChanged);
-                    this.filas.Alternas.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaFilasAlternasChanged);
-                    this.filas.Nuevas.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaFilasNuevasChanged);
-                    this.filas.Seleccionadas.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaFilasSeleccionadasChanged);
+                    this.filas.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(FilasChanged);
+                    this.filas.Apariencia.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(AparienciaFilasChanged);
+                    this.filas.Activas.Apariencia.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(AparienciaFilasActivasChanged);
+                    this.filas.Alternas.Apariencia.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(AparienciaFilasAlternasChanged);
+                    this.filas.Nuevas.Apariencia.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(AparienciaFilasNuevasChanged);
+                    this.filas.Seleccionadas.Apariencia.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(AparienciaFilasSeleccionadasChanged);
                     this.filas.Alto = Configuracion.DefectoAlto;
                     this.filas.ConfirmarBorrado = Configuracion.DefectoConfirmarBorrado;
                     this.filas.Activas.ConfirmarBorrado = Configuracion.DefectoConfirmarBorrado;
@@ -183,7 +179,7 @@ namespace Orbita.Controles.Grid
             set { this.filas = value; }
         }
         [System.ComponentModel.Description("Determina la configuración de la cabecera.")]
-        [System.ComponentModel.DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public OCabecera Cabecera
         {
             get
@@ -191,8 +187,8 @@ namespace Orbita.Controles.Grid
                 if (this.cabecera == null)
                 {
                     this.cabecera = new OCabecera();
-                    this.cabecera.PropertyChanged += new EventHandler<OPropiedadEventArgs>(CabeceraChanged);
-                    this.cabecera.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaCabeceraChanged);
+                    this.cabecera.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(CabeceraChanged);
+                    this.cabecera.Apariencia.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(AparienciaCabeceraChanged);
                     this.cabecera.Estilo = Configuracion.DefectoEstiloCabecera;
                     this.cabecera.Multilinea = Configuracion.DefectoCabeceraMultilinea;
                 }
@@ -201,7 +197,7 @@ namespace Orbita.Controles.Grid
             set { this.cabecera = value; }
         }
         [System.ComponentModel.Description("Determina la configuración de las celdas.")]
-        [System.ComponentModel.DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public OCeldas Celdas
         {
             get
@@ -209,8 +205,8 @@ namespace Orbita.Controles.Grid
                 if (this.celdas == null)
                 {
                     this.celdas = new OCeldas();
-                    this.celdas.PropertyChanged += new EventHandler<OPropiedadEventArgs>(CeldasChanged);
-                    this.celdas.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaCeldasChanged);
+                    this.celdas.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(CeldasChanged);
+                    this.celdas.Apariencia.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(AparienciaCeldasChanged);
                     this.celdas.TipoSeleccion = Configuracion.DefectoTipoSeleccionCelda;
                 }
                 return this.celdas;
@@ -218,7 +214,7 @@ namespace Orbita.Controles.Grid
             set { this.celdas = value; }
         }
         [System.ComponentModel.Description("Determina la configuración de las columnas.")]
-        [System.ComponentModel.DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public OColumnas Columnas
         {
             get
@@ -226,7 +222,7 @@ namespace Orbita.Controles.Grid
                 if (this.columnas == null)
                 {
                     this.columnas = new OColumnas(this.Control);
-                    this.columnas.PropertyChanged += new EventHandler<OPropiedadEventArgs>(ColumnasChanged);
+                    this.columnas.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(ColumnasChanged);
                     this.columnas.PermitirOrdenar = Configuracion.DefectoPermitirOrdenar;
                     this.columnas.Estilo = Configuracion.DefectoAutoAjustarEstilo;
                     this.columnas.TipoSeleccion = Configuracion.DefectoTipoSeleccionColumna;
@@ -236,7 +232,7 @@ namespace Orbita.Controles.Grid
             set { this.columnas = value; }
         }
         [System.ComponentModel.Description("Determina la configuración de la fila de filtros.")]
-        [System.ComponentModel.DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public OFiltros Filtros
         {
             get
@@ -244,8 +240,8 @@ namespace Orbita.Controles.Grid
                 if (this.filtros == null)
                 {
                     this.filtros = new OFiltros();
-                    this.filtros.PropertyChanged += new EventHandler<OPropiedadEventArgs>(FiltrosChanged);
-                    this.filtros.Apariencia.PropertyChanged += new EventHandler<OPropiedadEventArgs>(AparienciaFiltrosChanged);
+                    this.filtros.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(FiltrosChanged);
+                    this.filtros.Apariencia.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(AparienciaFiltrosChanged);
                     this.filtros.Mostrar = Configuracion.DefectoMostrarFiltros;
                     this.filtros.Tipo = Configuracion.DefectoTipoFiltro;
                 }
@@ -254,7 +250,7 @@ namespace Orbita.Controles.Grid
             set { this.filtros = value; }
         }
         [System.ComponentModel.Description("Determina la configuración de la fila de filtros.")]
-        [System.ComponentModel.DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public OSumario Sumario
         {
             get
@@ -262,7 +258,7 @@ namespace Orbita.Controles.Grid
                 if (this.sumario == null)
                 {
                     this.sumario = new OSumario();
-                    this.sumario.PropertyChanged += new EventHandler<OPropiedadEventArgs>(SumarioChanged);
+                    this.sumario.PropertyChanged += new System.EventHandler<OPropiedadEventArgs>(SumarioChanged);
                     this.sumario.MostrarRecuentoFilas = Configuracion.DefectoMostrarRecuentoFilas;
                     this.sumario.Posicion = Configuracion.DefectoPosicionSumario;
                 }
@@ -272,7 +268,7 @@ namespace Orbita.Controles.Grid
         }
         #endregion
 
-        #region Manejadores de eventos
+        #region Manejadores de eventos virtuales protegidos
         protected virtual void OnChanged(OPropiedadEventArgs e)
         {
             if (e != null)
@@ -324,7 +320,7 @@ namespace Orbita.Controles.Grid
                         }
                         break;
                     case "MostrarTitulo":
-                        this.Control.DisplayLayout.CaptionVisible = (DefaultableBoolean)Enum.Parse(typeof(DefaultableBoolean), this.MostrarTitulo.ToString(), true);
+                        this.Control.DisplayLayout.CaptionVisible = (Infragistics.Win.DefaultableBoolean)System.Enum.Parse(typeof(Infragistics.Win.DefaultableBoolean), this.MostrarTitulo.ToString(), true);
                         break;
                 }
             }
@@ -336,7 +332,7 @@ namespace Orbita.Controles.Grid
                 switch (e.Nombre)
                 {
                     case "MostrarIndicador":
-                        this.Control.DisplayLayout.Override.RowSelectors = (DefaultableBoolean)Enum.Parse(typeof(DefaultableBoolean), this.Filas.MostrarIndicador.ToString(), true);
+                        this.Control.DisplayLayout.Override.RowSelectors = (Infragistics.Win.DefaultableBoolean)System.Enum.Parse(typeof(Infragistics.Win.DefaultableBoolean), this.Filas.MostrarIndicador.ToString(), true);
                         break;
                     case "Multiseleccion":
                         if (this.Filas.Multiseleccion)
@@ -358,7 +354,7 @@ namespace Orbita.Controles.Grid
                         }
                         break;
                     case "PermitirBorrar":
-                        this.Control.DisplayLayout.Override.AllowDelete = (DefaultableBoolean)Enum.Parse(typeof(DefaultableBoolean), this.Filas.PermitirBorrar.ToString(), true);
+                        this.Control.DisplayLayout.Override.AllowDelete = (Infragistics.Win.DefaultableBoolean)System.Enum.Parse(typeof(Infragistics.Win.DefaultableBoolean), this.Filas.PermitirBorrar.ToString(), true);
                         break;
                 }
             }
@@ -373,7 +369,7 @@ namespace Orbita.Controles.Grid
                         this.Control.DisplayLayout.Override.HeaderStyle = (Infragistics.Win.HeaderStyle)(int)this.Cabecera.Estilo;
                         break;
                     case "Multilinea":
-                        this.Control.DisplayLayout.Override.WrapHeaderText = (DefaultableBoolean)Enum.Parse(typeof(DefaultableBoolean), this.Cabecera.Multilinea.ToString(), true);
+                        this.Control.DisplayLayout.Override.WrapHeaderText = (Infragistics.Win.DefaultableBoolean)System.Enum.Parse(typeof(Infragistics.Win.DefaultableBoolean), this.Cabecera.Multilinea.ToString(), true);
                         break;
                 }
             }
@@ -416,7 +412,7 @@ namespace Orbita.Controles.Grid
                 switch (e.Nombre)
                 {
                     case "Mostrar":
-                        this.Control.DisplayLayout.Override.AllowRowFiltering = (DefaultableBoolean)Enum.Parse(typeof(DefaultableBoolean), this.Filtros.Mostrar.ToString(), true);
+                        this.Control.DisplayLayout.Override.AllowRowFiltering = (Infragistics.Win.DefaultableBoolean)System.Enum.Parse(typeof(Infragistics.Win.DefaultableBoolean), this.Filtros.Mostrar.ToString(), true);
                         break;
                     case "Tipo":
                         if (this.Filtros.Tipo == TipoFiltro.Cabecera)
@@ -440,23 +436,23 @@ namespace Orbita.Controles.Grid
                     case "Posicion":
                         if (this.Sumario.Posicion == AreaSumario.Abajo)
                         {
-                            this.Control.DisplayLayout.Override.SummaryDisplayArea = SummaryDisplayAreas.Bottom;
+                            this.Control.DisplayLayout.Override.SummaryDisplayArea = Infragistics.Win.UltraWinGrid.SummaryDisplayAreas.Bottom;
                         }
                         else if (this.Sumario.Posicion == AreaSumario.AbajoFijo)
                         {
-                            this.Control.DisplayLayout.Override.SummaryDisplayArea = SummaryDisplayAreas.BottomFixed;
+                            this.Control.DisplayLayout.Override.SummaryDisplayArea = Infragistics.Win.UltraWinGrid.SummaryDisplayAreas.BottomFixed;
                         }
                         else if (this.Sumario.Posicion == AreaSumario.Arriba)
                         {
-                            this.Control.DisplayLayout.Override.SummaryDisplayArea = SummaryDisplayAreas.Top;
+                            this.Control.DisplayLayout.Override.SummaryDisplayArea = Infragistics.Win.UltraWinGrid.SummaryDisplayAreas.Top;
                         }
                         else if (this.Sumario.Posicion == AreaSumario.ArribaFijo)
                         {
-                            this.Control.DisplayLayout.Override.SummaryDisplayArea = SummaryDisplayAreas.TopFixed;
+                            this.Control.DisplayLayout.Override.SummaryDisplayArea = Infragistics.Win.UltraWinGrid.SummaryDisplayAreas.TopFixed;
                         }
                         else if (this.Sumario.Posicion == AreaSumario.Ninguna)
                         {
-                            this.Control.DisplayLayout.Override.SummaryDisplayArea = SummaryDisplayAreas.None;
+                            this.Control.DisplayLayout.Override.SummaryDisplayArea = Infragistics.Win.UltraWinGrid.SummaryDisplayAreas.None;
                         }
                         break;
                 }
@@ -471,25 +467,25 @@ namespace Orbita.Controles.Grid
                     case "PermitirOrdenar":
                         if (this.columnas.PermitirOrdenar)
                         {
-                            this.Control.DisplayLayout.Override.HeaderClickAction = HeaderClickAction.SortMulti;
+                            this.Control.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
                         }
                         else
                         {
-                            this.Control.DisplayLayout.Override.HeaderClickAction = HeaderClickAction.Select;
+                            this.Control.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.Select;
                         }
                         break;
                     case "Estilo":
                         if (this.columnas.Estilo == AutoAjustarEstilo.ExtenderUltimaColumna)
                         {
-                            this.Control.DisplayLayout.AutoFitStyle = AutoFitStyle.ExtendLastColumn;
+                            this.Control.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ExtendLastColumn;
                         }
                         else if (this.columnas.Estilo == AutoAjustarEstilo.RedimensionarTodasLasColumnas)
                         {
-                            this.Control.DisplayLayout.AutoFitStyle = AutoFitStyle.ResizeAllColumns;
+                            this.Control.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
                         }
                         else if (this.columnas.Estilo == AutoAjustarEstilo.SinAutoajusteColumnas)
                         {
-                            this.Control.DisplayLayout.AutoFitStyle = AutoFitStyle.None;
+                            this.Control.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.None;
                         }
                         break;
 
@@ -517,16 +513,6 @@ namespace Orbita.Controles.Grid
                         break;
                 }
             }
-        }
-        protected override void AparienciaChanged(object sender, OPropiedadEventArgs e)
-        {
-            this.Control.DisplayLayout.Appearance.BackColor = this.Apariencia.ColorFondo;
-            this.Control.DisplayLayout.Appearance.BorderColor = this.Apariencia.ColorBorde;
-            this.Control.DisplayLayout.Appearance.ForeColor = this.Apariencia.ColorTexto;
-            this.Control.DisplayLayout.Appearance.TextHAlign = (Infragistics.Win.HAlign)(int)this.Apariencia.AlineacionTextoHorizontal;
-            this.Control.DisplayLayout.Appearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.Apariencia.AlineacionTextoVertical;
-            this.Control.DisplayLayout.Appearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.Apariencia.AdornoTexto;
-            //this.Control.DisplayLayout.BorderStyle = (Infragistics.Win.UIElementBorderStyle)(int)this.Apariencia.EstiloBorde;
         }
         protected virtual void AparienciaCeldasChanged(object sender, OPropiedadEventArgs e)
         {
@@ -604,6 +590,19 @@ namespace Orbita.Controles.Grid
             this.Control.DisplayLayout.Override.FilterCellAppearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.filas.Activas.Apariencia.AlineacionTextoVertical;
             this.Control.DisplayLayout.Override.FilterCellAppearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.filas.Activas.Apariencia.AdornoTexto;
 
+        }
+        #endregion
+
+        #region Manejadores de eventos sobreescritos protegidos
+        protected override void AparienciaChanged(object sender, OPropiedadEventArgs e)
+        {
+            this.Control.DisplayLayout.Appearance.BackColor = this.Apariencia.ColorFondo;
+            this.Control.DisplayLayout.Appearance.BorderColor = this.Apariencia.ColorBorde;
+            this.Control.DisplayLayout.Appearance.ForeColor = this.Apariencia.ColorTexto;
+            this.Control.DisplayLayout.Appearance.TextHAlign = (Infragistics.Win.HAlign)(int)this.Apariencia.AlineacionTextoHorizontal;
+            this.Control.DisplayLayout.Appearance.TextVAlign = (Infragistics.Win.VAlign)(int)this.Apariencia.AlineacionTextoVertical;
+            this.Control.DisplayLayout.Appearance.TextTrimming = (Infragistics.Win.TextTrimming)(int)this.Apariencia.AdornoTexto;
+            //this.Control.DisplayLayout.BorderStyle = (Infragistics.Win.UIElementBorderStyle)(int)this.Apariencia.EstiloBorde;
         }
         #endregion
 
@@ -727,41 +726,73 @@ namespace Orbita.Controles.Grid
         {
             this.ModoActualizacion = Configuracion.DefectoModoActualizacion;
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeEditable()
         {
             return (this.Editable != Configuracion.DefectoEditable);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeOcultarAgrupadorFilas()
         {
             return (this.OcultarAgrupadorFilas != Configuracion.DefectoOcultarAgrupadorFilas);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeCancelarTeclaReturn()
         {
             return (this.CancelarTeclaReturn != Configuracion.DefectoCancelarTeclaReturn);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeModoActualizacion()
         {
             return (this.ModoActualizacion != Configuracion.DefectoModoActualizacion);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeMostrarTitulo()
         {
             return (this.MostrarTitulo != Configuracion.DefectoMostrarTitulo);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeActivarPrimeraFilaAlFormatear()
         {
             return (this.ActivarPrimeraFilaAlFormatear != true);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeFormateado()
         {
             return (this.Formateado != false);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeDataSource()
         {
@@ -769,14 +800,10 @@ namespace Orbita.Controles.Grid
         }
         #endregion
 
-        #region Métodos privados
+        #region Métodos privados estáticos
         static void AsignarEstiloColumna(Infragistics.Win.UltraWinGrid.UltraGridBand banda, OEstiloColumna columna, int posicionColumna)
         {
             OColumnas.AsignarEstilo(banda, columna, posicionColumna);
-        }
-        void AsignarEstiloColumnaBloqueada(Infragistics.Win.UltraWinGrid.UltraGridBand banda, OEstiloColumna columna)
-        {
-            this.Columnas.Bloqueadas.AsignarEstilo(banda, columna);
         }
         static void AsignarMascaraColumna(Infragistics.Win.UltraWinGrid.UltraGridBand banda, OEstiloColumna columna)
         {
@@ -789,6 +816,13 @@ namespace Orbita.Controles.Grid
         static void AsignarSumarioRecuento(Infragistics.Win.UltraWinGrid.UltraGridBand banda, OEstiloColumna columna)
         {
             OColumnas.AsignarSumarioRecuento(banda, columna);
+        }
+        #endregion
+
+        #region Métodos privados
+        void AsignarEstiloColumnaBloqueada(Infragistics.Win.UltraWinGrid.UltraGridBand banda, OEstiloColumna columna)
+        {
+            this.Columnas.Bloqueadas.AsignarEstilo(banda, columna);
         }
         #endregion
     }

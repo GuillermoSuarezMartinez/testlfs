@@ -12,7 +12,7 @@
 namespace Orbita.Trazabilidad
 {
     /// <summary>
-    /// Item Log.
+    /// Representa un evento de logger.
     /// </summary>
     [System.Serializable]
     public class ItemLog : System.IDisposable
@@ -31,13 +31,27 @@ namespace Orbita.Trazabilidad
         /// </summary>
         string mensaje;
         /// <summary>
-        /// Identificador de evento. Por defecto <c>null</c>.
+        /// Identificador de secuencia. Por defecto <c>null</c>.
         /// </summary>
         int? identificador;
         /// <summary>
         /// Argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
         /// </summary>
         object[] args;
+        #endregion
+
+        #region Atributos privados estáticos
+        /// <summary>
+        /// Identificador de secuencia global.
+        /// </summary>
+        static int identificadorGlobal = 0;
+        #endregion
+
+        #region Atributos públicos estáticos
+        /// <summary>
+        /// Fecha del primer evento creado de logger.
+        /// </summary>
+        public static readonly System.DateTime FechaCero = System.DateTime.Now;
         #endregion
 
         #region Constructores
@@ -55,6 +69,7 @@ namespace Orbita.Trazabilidad
         {
             this.nivelLog = nivelLog;
             this.fecha = System.DateTime.Now;
+            this.identificador = System.Threading.Interlocked.Increment(ref identificadorGlobal);
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.ItemLog.

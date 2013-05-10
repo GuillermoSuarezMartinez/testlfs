@@ -34,7 +34,6 @@ namespace Orbita.VA.Hardware
 
             return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_HWR_GET_ALIAS_ESCENARIO", list);
         }
-
         /// <summary>
         /// Consulta todo el hardware del sistema
         /// </summary>
@@ -42,19 +41,18 @@ namespace Orbita.VA.Hardware
         /// <returns></returns>
         public static DataTable GetHardware()
         {
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_HWR_GET_HARDWARE");
+            string nombreProcedimientoAlmacenado = OHardwareManager.Servidor ? "CAMS_HWR_GET_HARDWARE" : "VA_HWR_GET_HARDWARE";
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado(nombreProcedimientoAlmacenado);
         }
-
-
         /// <summary>
         /// Consulta las cámaras del sistema
         /// </summary>
         /// <returns>DataTable con los códigos de las cámaras existentes en el sistema</returns>
         public static DataTable GetCamaras()
         {
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_CAM_GET_CAMARAS");
+            string nombreProcedimientoAlmacenado = OHardwareManager.Servidor ? "CAMS_CAM_GET_CAMARAS" : "VA_CAM_GET_CAMARAS";
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado(nombreProcedimientoAlmacenado);
         }
-
         /// <summary>
         /// Consulta la información de una determinada cámara
         /// </summary>
@@ -64,16 +62,17 @@ namespace Orbita.VA.Hardware
             ArrayList list = new ArrayList();
             list.Add(new SqlParameter("@CodCamara", codCamara));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_CAM_GET_CAMARA", list);
+            string nombreProcedimientoAlmacenado = OHardwareManager.Servidor ? "CAMS_CAM_GET_CAMARA" : "VA_CAM_GET_CAMARA";
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado(nombreProcedimientoAlmacenado, list);
         }
-
         /// <summary>
         /// Consulta las tarjetas IO del sistema
         /// </summary>
         /// <returns>DataTable con los códigos de las tarjetas IO existentes en el sistema</returns>
         public static DataTable GetTarjetasIO()
         {
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_IO_GET_TARJETAS");
+            string nombreProcedimientoAlmacenado = OHardwareManager.Servidor ? "CAMS_IO_GET_TARJETAS" : "VA_IO_GET_TARJETAS";
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado(nombreProcedimientoAlmacenado);
         }
         /// <summary>
         /// Consulta los terminales IO de una determinada tarjeta IO
@@ -84,7 +83,8 @@ namespace Orbita.VA.Hardware
             ArrayList list = new ArrayList();
             list.Add(new SqlParameter("@CodTarjetaIO", codTarjetaIO));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_IO_GET_TERMINALES", list);
+            string nombreProcedimientoAlmacenado = OHardwareManager.Servidor ? "CAMS_IO_GET_TERMINALES" : "VA_IO_GET_TERMINALES";
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado(nombreProcedimientoAlmacenado, list);
         }
         /// <summary>
         /// Consulta la información de una determinada tarjeta IO
@@ -95,9 +95,9 @@ namespace Orbita.VA.Hardware
             ArrayList list = new ArrayList();
             list.Add(new SqlParameter("@CodTarjetaIO", codTarjetaIO));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_IO_GET_TARJETA", list);
+            string nombreProcedimientoAlmacenado = OHardwareManager.Servidor ? "CAMS_IO_GET_TARJETA" : "VA_IO_GET_TARJETA";
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado(nombreProcedimientoAlmacenado, list);
         }
-
         /// <summary>
         /// Consulta la información de un determinado terminal de una tarjeta IO
         /// </summary>
@@ -108,20 +108,30 @@ namespace Orbita.VA.Hardware
             list.Add(new SqlParameter("@CodTarjetaIO", codTarjetaIO));
             list.Add(new SqlParameter("@CodTerminalIO", codTerminalIO));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_IO_GET_TERMINAL", list);
+            string nombreProcedimientoAlmacenado = OHardwareManager.Servidor ? "CAMS_IO_GET_TERMINAL" : "VA_IO_GET_TERMINAL";
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado(nombreProcedimientoAlmacenado, list);
         }
-
         /// <summary>
         /// Consulta la información de todos los terminales que están vinculados a cierto terminal de escritura
         /// </summary>
         /// <returns>DataTable con los terminales IO  de una determinada tarjeta IO</returns>
-        public static DataTable GetTerminalesIO_EscrituraSCED(string codTarjetaIO, string codTerminalIOEscritura)
+        public static DataTable GetTerminalesIO_EscrituraCOM(string codTarjetaIO, string codTerminalIOEscritura)
         {
             ArrayList list = new ArrayList();
             list.Add(new SqlParameter("@CodTarjetaIO", codTarjetaIO));
             list.Add(new SqlParameter("@CodTerminalIO", codTerminalIOEscritura));
 
-            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_IO_GET_SCED_TERMINALES_ESCRITURA", list);
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_IO_GET_COM_TERMINALES_ESCRITURA", list);
+        }
+        /// <summary>
+        /// Consulta los canales a abrir para servir las cámaras
+        /// </summary>
+        /// <returns>DataTable con canales a abrir para servir las cámaras</returns>
+        public static DataTable GetConfiguracionCanales()
+        {
+            ArrayList list = new ArrayList();
+
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("CAMS_CAM_GET_CANALES", list);
         }
         #endregion
 

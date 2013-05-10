@@ -43,8 +43,12 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.orbitaUltraNumericEditor1 = new Orbita.Controles.Comunes.OrbitaUltraNumericEditor();
+            this.orbitaConfiguracionCanal1 = new Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal();
+            this.orbitaConfiguracionCanal2 = new Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal();
             ((System.ComponentModel.ISupportInitialize)(this.orbitaUltraToolbarsManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orbitaUltraCombo1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orbitaUltraNumericEditor1)).BeginInit();
             this.SuspendLayout();
             // 
             // orbitaUltraGridToolBar1
@@ -54,8 +58,11 @@
             this.orbitaUltraGridToolBar1.OI.CampoPosicionable = null;
             this.orbitaUltraGridToolBar1.OI.Filas.TipoSeleccion = null;
             this.orbitaUltraGridToolBar1.OI.MostrarToolCiclico = true;
+            this.orbitaUltraGridToolBar1.OI.MostrarToolGestionar = true;
             this.orbitaUltraGridToolBar1.Size = new System.Drawing.Size(410, 175);
             this.orbitaUltraGridToolBar1.TabIndex = 0;
+            this.orbitaUltraGridToolBar1.ToolGestionarClick += new Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolGestionarClickEventHandler(this.orbitaUltraGridToolBar1_ToolGestionarClick);
+            this.orbitaUltraGridToolBar1.AfterBandHiddenChanged += new Infragistics.Win.UltraWinGrid.AfterBandHiddenChangedEventHandler(this.orbitaUltraGridToolBar1_AfterBandHiddenChanged);
             // 
             // button1
             // 
@@ -179,11 +186,24 @@
             this.button6.Text = "button6";
             this.button6.UseVisualStyleBackColor = true;
             // 
+            // orbitaUltraNumericEditor1
+            // 
+            this.orbitaUltraNumericEditor1.Location = new System.Drawing.Point(36, 73);
+            this.orbitaUltraNumericEditor1.Name = "orbitaUltraNumericEditor1";
+            this.orbitaUltraNumericEditor1.PromptChar = ' ';
+            this.orbitaUltraNumericEditor1.Size = new System.Drawing.Size(100, 21);
+            this.orbitaUltraNumericEditor1.TabIndex = 24;
+            // 
+            // orbitaConfiguracionCanal2
+            // 
+            this.orbitaConfiguracionCanal2.OI.Puerto = 0;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 433);
+            this.Controls.Add(this.orbitaUltraNumericEditor1);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -210,8 +230,10 @@
             this.Controls.SetChildIndex(this.button4, 0);
             this.Controls.SetChildIndex(this.button5, 0);
             this.Controls.SetChildIndex(this.button6, 0);
+            this.Controls.SetChildIndex(this.orbitaUltraNumericEditor1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.orbitaUltraToolbarsManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orbitaUltraCombo1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orbitaUltraNumericEditor1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,5 +254,8 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
+        private Controles.Comunes.OrbitaUltraNumericEditor orbitaUltraNumericEditor1;
+        private Controles.Comunicaciones.OrbitaConfiguracionCanal orbitaConfiguracionCanal1;
+        private Controles.Comunicaciones.OrbitaConfiguracionCanal orbitaConfiguracionCanal2;
     }
 }

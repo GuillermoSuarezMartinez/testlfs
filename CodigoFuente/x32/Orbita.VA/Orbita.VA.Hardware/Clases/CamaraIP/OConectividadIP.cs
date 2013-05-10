@@ -156,7 +156,7 @@ namespace Orbita.VA.Hardware
         public override bool ForzarVerificacionConectividad()
         {
             // Verificamos que la cámara está conectada
-            bool resultado = this.Ping.Send(this.IP).Status == IPStatus.Success;
+            bool resultado = this.Ping.Send(this.IP, (int)this.IntervaloComprabacion.TotalMilliseconds).Status == IPStatus.Success;
 
             // Lanzamos el evento de error de conexión
             if (!resultado)
@@ -188,7 +188,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("Conectividad " + this.IP.ToString(), exception);
+                OLogsVAHardware.Camaras.Error(exception, "Conectividad " + this.IP.ToString());
             }
             this.TimerComprobacionConexion.Start();
         }
@@ -228,7 +228,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error("Conectividad " + this.IP.ToString(), exception);
+                OLogsVAHardware.Camaras.Error(exception, "Conectividad " + this.IP.ToString());
             }
         }
         #endregion

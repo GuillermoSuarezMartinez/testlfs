@@ -82,7 +82,28 @@ namespace Orbita.VA.Funciones
             return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_VIS_GET_FUNCIONES_VISION_CLAVES", list);
 		}
 
-		#endregion
+        /// <summary>
+        /// Consulta la configuración del motor CCR
+        /// </summary>
+        /// <param name="codEscenario"></param>
+        /// <returns></returns>
+        public static DataTable GetConfiguracionCCR()
+        {
+            ArrayList list = new ArrayList();
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_VIS_GET_CONFIGURACION_CCR", list);
+        }
+
+        /// <summary>
+        /// Consulta la configuración del motor LPR
+        /// </summary>
+        /// <param name="codEscenario"></param>
+        /// <returns></returns>
+        public static DataTable GetConfiguracionLPR()
+        {
+            ArrayList list = new ArrayList();
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_VIS_GET_CONFIGURACION_LPR", list);
+        }
+        #endregion
 
 		#region TAB Add: funciones Add -> AddX(...)
 

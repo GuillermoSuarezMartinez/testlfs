@@ -119,8 +119,10 @@
     <Compile Include="Trazabilidad\Core\TrazaLogger.cs" />
     <Compile Include="Trazabilidad\Interfaces\ITraza.cs" />
     <Compile Include="Trazabilidad\Logger\BaseTraza.cs" />
+    <Compile Include="Trazabilidad\Logger\ItemTraza.cs" />
     <Compile Include="Trazabilidad\Repositorio\SimpleTraza.cs" />
     <Compile Include="Trazabilidad\Repositorio\TrazaManager.cs" />
+    <Compile Include="XML\OBBDDManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -144,6 +146,9 @@
       <Project>{1A2EEC44-A494-4BA6-A591-267B73A55CD1}</Project>
       <Name>Orbita.Trazabilidad</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="XML\ConfiguracionBBDD.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -9,16 +9,17 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Menu
 {
     public partial class OrbitaUltraToolbarsManager : Infragistics.Win.UltraWinToolbars.UltraToolbarsManager
     {
+        #region Nueva definición
         public class ControlNuevaDefinicion : OUltraToolbarsManager
         {
             public ControlNuevaDefinicion(OrbitaUltraToolbarsManager sender)
                 : base(sender) { }
-        };
+        }
+        #endregion
 
         #region Atributos
         ControlNuevaDefinicion definicion;
@@ -32,8 +33,8 @@ namespace Orbita.Controles.Menu
             : base()
         {
             InitializeComponent();
-            InitializeAttributes();
             InitializeResourceStrings();
+            InitializeAttributes();
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaUltraToolbarsManager.
@@ -56,7 +57,7 @@ namespace Orbita.Controles.Menu
 
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }
@@ -76,7 +77,7 @@ namespace Orbita.Controles.Menu
 
         #region Métodos privados estáticos
         /// <summary>
-        /// InitializeResourceStrings.
+        /// Inicializar recursos alfabéticos.
         /// </summary>
         static void InitializeResourceStrings()
         {

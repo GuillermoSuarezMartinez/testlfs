@@ -9,9 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.ComponentModel;
-using Infragistics.Win.UltraWinGrid;
 namespace Orbita.Controles.Grid
 {
     public partial class OrbitaUltraGrid : Infragistics.Win.UltraWinGrid.UltraGrid
@@ -30,9 +27,9 @@ namespace Orbita.Controles.Grid
 
         #region Eventos
         [System.ComponentModel.Category("OrbitaUltraGrid")]
-        public event RowEventHandler AfterDataRowActivate;
+        public event Infragistics.Win.UltraWinGrid.RowEventHandler AfterDataRowActivate;
         [System.ComponentModel.Category("OrbitaUltraGrid")]
-        public event RowEventHandler AfterFilterRowActivate;
+        public event Infragistics.Win.UltraWinGrid.RowEventHandler AfterFilterRowActivate;
         #endregion
 
         #region Constructor
@@ -52,7 +49,7 @@ namespace Orbita.Controles.Grid
 
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }
@@ -84,7 +81,7 @@ namespace Orbita.Controles.Grid
 
         #region Métodos estáticos
         /// <summary>
-        /// Inicializar recursos.
+        /// Inicializar recursos alfabéticos.
         /// </summary>
         static void InitializeResourceStrings()
         {
@@ -174,34 +171,34 @@ namespace Orbita.Controles.Grid
             resCustomizer2.SetCustomizedString("EditContextMenuCut", "Cortar");
             resCustomizer2.SetCustomizedString("EditContextMenuPaste", "Pegar");
             resCustomizer2.SetCustomizedString("EditContextMenuSelectAll", "Seleccionar todo");
-            // Recursor de la ToolBar.
+            // Recursor de la Toolbar.
             Infragistics.Shared.ResourceCustomizer resCustomizerToolbar = Infragistics.Win.UltraWinToolbars.Resources.Customizer;
             resCustomizerToolbar.SetCustomizedString("QuickCustomizeToolTipXP", "Opciones de la barra de tareas");
         }
         #endregion
 
         #region Manejadores de eventos
-        private void ControlAfterRowActivate(object sender, EventArgs e)
+        private void ControlAfterRowActivate(object sender, System.EventArgs e)
         {
             try
             {
-                UltraGridRow fila = this.ActiveRow;
+                Infragistics.Win.UltraWinGrid.UltraGridRow fila = this.ActiveRow;
                 if (fila.IsDataRow)
                 {
                     if (this.AfterDataRowActivate != null)
                     {
-                        this.AfterDataRowActivate(sender, new RowEventArgs(fila));
+                        this.AfterDataRowActivate(sender, new Infragistics.Win.UltraWinGrid.RowEventArgs(fila));
                     }
                 }
                 else if (fila.IsFilterRow)
                 {
                     if (this.AfterFilterRowActivate != null)
                     {
-                        this.AfterFilterRowActivate(sender, new RowEventArgs(fila));
+                        this.AfterFilterRowActivate(sender, new Infragistics.Win.UltraWinGrid.RowEventArgs(fila));
                     }
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }

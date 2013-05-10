@@ -55,6 +55,11 @@ namespace Orbita.VA.Comun
         /// Indica si la ejecución de la monitorización se ha de realizar en el thread o fuera de él
         /// </summary>
         private bool EjecutarMonitorizacionEnThread;
+
+        /// <summary>
+        /// Indica que el thread quedará pausado mientras no hayan elementos en la cola.
+        /// </summary>
+        private bool AutoParada;
         #endregion
 
         #region Propiedad(es)
@@ -101,6 +106,22 @@ namespace Orbita.VA.Comun
         }
 
         /// <summary>
+        /// Indica que la cola está llena y no puede ser insertado ningun elemento más
+        /// </summary>
+        public bool Lleno
+        {
+            get
+            {
+                bool resultado = false;
+                lock (this.LockObject)
+                {
+                    resultado = this.Cola.Count >= this.CapacidadMaxima;
+                }
+                return resultado;
+            }
+        }
+
+        /// <summary>
         /// Número de instancias totales añadidas a la cola
         /// </summary>
         private long _Total;
@@ -118,20 +139,13 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OProductorConsumidorThread(string codigo) :
-            this(codigo, 1, 1, ThreadPriority.Normal, 100)
-        {
-        }
-
-        /// <summary>
-        /// Constructor de la clase
-        /// </summary>
-        public OProductorConsumidorThread(string codigo, uint numeroThreads, int tiempoSleep, ThreadPriority threadPriority, int capacidadMaxima)
+        public OProductorConsumidorThread(string codigo, uint numeroThreads = 1, int tiempoSleep = 1, ThreadPriority threadPriority = ThreadPriority.Normal, int capacidadMaxima = 100, bool autoParada = false)
         {
             this.Codigo = codigo;
             this.Cola = new OPriorityQueue<T>();
             this._Total = 0;
             this.CapacidadMaxima = capacidadMaxima;
+            this.AutoParada = autoParada;
             this.LockObject = new object();
             this.Estado = EstadoProductorConsumidor.Detenido;
             this.Thread = new OThreadsLoop(codigo, numeroThreads, tiempoSleep, threadPriority);
@@ -164,6 +178,7 @@ namespace Orbita.VA.Comun
                     {
                         App.FormularioPrincipal.Invoke(this.OnEjecucionConsumidor, valor);
                     }
+                    OLogsVAComun.Threads.Debug(this.Codigo, "Invocado consumidor", "Total elementos: " + this.Count, valor.ToString());
                 }
             }
             catch (Exception exception)
@@ -196,6 +211,10 @@ namespace Orbita.VA.Comun
                         encolar = (bool)obj[0];
                         valor = (T)obj[1];
                     }
+                    if (encolar)
+                    {
+                        OLogsVAComun.Threads.Debug(this.Codigo, "Invocado productor", "Total elementos: " + this.Count, valor.ToString());
+                    }
                 }
             }
             catch (Exception exception)
@@ -225,6 +244,7 @@ namespace Orbita.VA.Comun
                         App.FormularioPrincipal.Invoke(this.OnMonitorizacion, obj);
                         finalize = (bool)obj[0];
                     }
+                    OLogsVAComun.Threads.Debug(this.Codigo, "Invocada monitorización", "Resultado: " + finalize);
                 }
             }
             catch (Exception exception)
@@ -239,19 +259,10 @@ namespace Orbita.VA.Comun
         /// Añade el valor a encolar
         /// </summary>
         /// <param name="valor"></param>
-        public bool Encolar(T valor)
-        {
-            return this.Encolar(valor, 0);
-        }
-
-        /// <summary>
-        /// Añade el valor a encolar
-        /// </summary>
-        /// <param name="valor"></param>
-        public bool Encolar(T valor, int prioridad)
+        public bool Encolar(T valor, int prioridad = 0)
         {
             bool resultado = false;
-            if ((this.Estado == EstadoProductorConsumidor.EnEjecucion) && (valor is T))
+            if (((this.Estado == EstadoProductorConsumidor.EnEjecucion) || (this.Estado == EstadoProductorConsumidor.Pausado)) && (valor is T))
             {
                 lock (this.LockObject)
                 {
@@ -259,7 +270,16 @@ namespace Orbita.VA.Comun
                     {
                         this.Cola.Enqueue(valor, prioridad);
                         this._Total++;
+                        OLogsVAComun.Threads.Debug(this.Codigo, "Encolado elemento", "Total elementos: " + this.Count, valor.ToString());
+                        if (this.AutoParada)
+                        {
+                            this.Resume(); // Se vuelve a iniciar la ejecución del thread
+                        }
                         resultado = true;
+                    }
+                    else
+                    {
+                        OLogsVAComun.Threads.Debug(this.Codigo, "Imposible encolar elemento", "Total elementos: " + this.Count, valor.ToString());
                     }
                 }
             }
@@ -282,6 +302,11 @@ namespace Orbita.VA.Comun
                     if (this.Cola.Count > 0)
                     {
                         valor = this.Cola.Dequeue();
+                        OLogsVAComun.Threads.Debug(this.Codigo, "Desencolado elemento", "Total elementos: " + this.Count, valor.ToString());
+                        if (this.AutoParada && (this.Count == 0))
+                        {
+                            this.Pause(); // Se vuelve a iniciar la ejecución del thread
+                        }
                         resultado = true;
                     }
                 }
@@ -304,13 +329,53 @@ namespace Orbita.VA.Comun
         }
 
         /// <summary>
+        /// Inicio del thread en modo pausado
+        /// </summary>
+        public void StartPaused()
+        {
+            if (this.Estado == EstadoProductorConsumidor.Detenido)
+            {
+                this.Estado = EstadoProductorConsumidor.Pausado;
+                this._Total = 0;
+                this.Thread.StartPaused();
+            }
+        }
+
+        /// <summary>
         /// Fin del thread
         /// </summary>
         public void Stop()
         {
-            if (this.Estado == EstadoProductorConsumidor.EnEjecucion)
+            if ((this.Estado == EstadoProductorConsumidor.EnEjecucion) || (this.Estado == EstadoProductorConsumidor.Pausado))
             {
                 this.Estado = EstadoProductorConsumidor.Deteniendo;
+                this.Thread.Stop();
+            }
+        }
+
+        /// <summary>
+        /// Pasua de la ejecución del thread. Este método no debe ser llamado desde el propio thread
+        /// </summary>
+        /// <returns>Verdadero si la acción ha resultado exitosa</returns>
+        public void Pause()
+        {
+            if (this.Estado == EstadoProductorConsumidor.EnEjecucion)
+            {
+                this.Estado = EstadoProductorConsumidor.Pausado;
+                this.Thread.Pause();                
+            }
+        }
+
+        /// <summary>
+        /// Pasua de la ejecución del thread. Este método no debe ser llamado desde el propio thread
+        /// </summary>
+        /// <returns>Verdadero si la acción ha resultado exitosa</returns>
+        public void Resume()
+        {
+            if (this.Estado == EstadoProductorConsumidor.Pausado)
+            {
+                this.Estado = EstadoProductorConsumidor.EnEjecucion;
+                this.Thread.Resume();
             }
         }
 
@@ -542,6 +607,11 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// En proceso de parada. La parada definitiva se realizará cuando se vacie la cola
         /// </summary>
-        Deteniendo = 2
+        Deteniendo = 2,
+
+        /// <summary>
+        /// En pausa
+        /// </summary>
+        Pausado = 3
     }
 }

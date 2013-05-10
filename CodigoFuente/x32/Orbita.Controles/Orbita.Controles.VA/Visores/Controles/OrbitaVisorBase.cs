@@ -31,7 +31,7 @@ namespace Orbita.Controles.VA
     /// <summary>
     /// Control base para todos los tipos de displays
     /// </summary>
-    public partial class OrbitaVisorBase : OrbitaUserControl
+    public partial class OrbitaVisorBase : UserControl
     {
         #region Atributos
         /// <summary>
@@ -514,16 +514,16 @@ namespace Orbita.Controles.VA
             if (this.CamaraAsociada is OCamaraBase)
             {
                 this.CamaraAsociada.OnMensaje += this.OnMensajeCamara;
-                this.CamaraAsociada.OnCambioEstadoConexionCamara += this.OnCambioEstadoConexionCamara;
-                this.CamaraAsociada.OnCambioEstadoReproduccionCamara += this.CambioModoReproduccionCamara;
+                this.CamaraAsociada.OnCambioEstadoConexionCamaraSincrono += this.OnCambioEstadoConexionCamara;
+                this.CamaraAsociada.OnCambioEstadoReproduccionCamaraSincrono += this.CambioModoReproduccionCamara;
                 if (this.VisualizarEnVivo)
                 {
-                    this.CamaraAsociada.OnNuevaFotografiaCamara += this.OnNuevaFotografiaCamara;
+                    this.CamaraAsociada.OnNuevaFotografiaCamaraSincrona += this.OnNuevaFotografiaCamara;
                 }
 
                 // Obtener las propiedades actuales de la cámara
-                this.OnCambioEstadoConexionCamara(new CambioEstadoConexionCamaraEventArgs(this.CamaraAsociada.Codigo, this.CamaraAsociada.EstadoConexion, this.CamaraAsociada.EstadoConexion));
-                this.CambioModoReproduccionCamara(new CambioEstadoReproduccionCamaraEventArgs(this.CamaraAsociada.Codigo, this.CamaraAsociada.Play));
+                this.OnCambioEstadoConexionCamara(null, new CambioEstadoConexionCamaraEventArgs(this.CamaraAsociada.Codigo, this.CamaraAsociada.EstadoConexion, this.CamaraAsociada.EstadoConexion));
+                this.CambioModoReproduccionCamara(null, new CambioEstadoReproduccionCamaraEventArgs(this.CamaraAsociada.Codigo, this.CamaraAsociada.Play));
             }
         }
 
@@ -535,11 +535,11 @@ namespace Orbita.Controles.VA
             if (this.CamaraAsociada is OCamaraBase)
             {
                 this.CamaraAsociada.OnMensaje -= this.OnMensajeCamara;
-                this.CamaraAsociada.OnCambioEstadoConexionCamara -= this.OnCambioEstadoConexionCamara;
-                this.CamaraAsociada.OnCambioEstadoReproduccionCamara -= this.CambioModoReproduccionCamara;
+                this.CamaraAsociada.OnCambioEstadoConexionCamaraSincrono -= this.OnCambioEstadoConexionCamara;
+                this.CamaraAsociada.OnCambioEstadoReproduccionCamaraSincrono -= this.CambioModoReproduccionCamara;
                 if (this.VisualizarEnVivo)
                 {
-                    this.CamaraAsociada.OnNuevaFotografiaCamara -= this.OnNuevaFotografiaCamara;
+                    this.CamaraAsociada.OnNuevaFotografiaCamaraSincrona -= this.OnNuevaFotografiaCamara;
                 }
             }
 
@@ -688,7 +688,7 @@ namespace Orbita.Controles.VA
         /// Método que indica que la cámara ha cambiado su modo de reproducción
         /// </summary>
         /// <param name="modoReproduccionContinua"></param>
-        protected virtual void CambioModoReproduccionCamara(CambioEstadoReproduccionCamaraEventArgs e)
+        protected virtual void CambioModoReproduccionCamara(object sender, CambioEstadoReproduccionCamaraEventArgs e)
         {
             // Implementado en heredados
         }
@@ -717,7 +717,7 @@ namespace Orbita.Controles.VA
         /// Delegado de nueva fotografía
         /// </summary>
         /// <param name="OEstadoConexion"></param>
-        public void OnNuevaFotografiaCamara(NuevaFotografiaCamaraEventArgs e)
+        public void OnNuevaFotografiaCamara(object sender, NuevaFotografiaCamaraEventArgs e)
         {
             try
             {
@@ -738,7 +738,7 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Muestra un mensaje de información sobre el dispositivo origen
         /// </summary>
-        public void OnMensajeCamara(OMessageEventArgs e)
+        public void OnMensajeCamara(object sender, OMessageEventArgs e)
         {
             this.MostrarMensaje(e.Mensaje);
         }
@@ -749,7 +749,7 @@ namespace Orbita.Controles.VA
         /// Delegado de cambio de estaco de conexión de la cámara
         /// </summary>
         /// <param name="estadoConexion"></param>
-        public virtual void OnCambioEstadoConexionCamara(CambioEstadoConexionCamaraEventArgs e)
+        public virtual void OnCambioEstadoConexionCamara(object sender, CambioEstadoConexionCamaraEventArgs e)
         {
             try
             {

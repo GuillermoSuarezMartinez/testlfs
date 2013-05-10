@@ -9,16 +9,13 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.Windows.Forms;
-using Infragistics.Win.UltraWinGrid;
 namespace Orbita.Controles.Grid
 {
     public partial class FrmBuscar : Orbita.Controles.Contenedores.OrbitaDialog
     {
         #region Atributos
         OrbitaUltraGridToolBar control;
-        UltraGridColumn columna;
+        Infragistics.Win.UltraWinGrid.UltraGridColumn columna;
         #endregion
 
         #region Constructores
@@ -43,7 +40,7 @@ namespace Orbita.Controles.Grid
             }
             // See if there is an active row; if there is, use it, otherwise
             // activate the first row and start the search from there
-            UltraGridRow filaActiva = grid.ActiveRow;
+            Infragistics.Win.UltraWinGrid.UltraGridRow filaActiva = grid.ActiveRow;
             if (filaActiva == null)
             {
                 filaActiva = grid.GetRow(Infragistics.Win.UltraWinGrid.ChildRow.First);
@@ -79,15 +76,15 @@ namespace Orbita.Controles.Grid
                 filaActiva = filaActiva.GetSibling(Infragistics.Win.UltraWinGrid.SiblingRow.Next);
             }
             // If we get this far, we didn//t find the string, so show a message box
-            MessageBox.Show("No se encontró '" + this.cboBuscar.Text + "'", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            System.Windows.Forms.MessageBox.Show("No se encontró '" + this.cboBuscar.Text + "'", "Información", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
         }
-        bool MatchText(UltraGridRow fila)
+        bool MatchText(Infragistics.Win.UltraWinGrid.UltraGridRow fila)
         {
             if (fila == null)
             {
                 return false;
             }
-            foreach (UltraGridColumn columna in this.control.Grid.DisplayLayout.Bands[0].Columns)
+            foreach (Infragistics.Win.UltraWinGrid.UltraGridColumn columna in this.control.Grid.DisplayLayout.Bands[0].Columns)
             {
                 if (fila.Cells[columna.Key].Value != null)
                 {
@@ -134,7 +131,7 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Manejadores de eventos
-        private void btnBuscarSiguiente_Click(object sender, EventArgs e)
+        private void btnBuscarSiguiente_Click(object sender, System.EventArgs e)
         {
             try
             {
@@ -150,17 +147,17 @@ namespace Orbita.Controles.Grid
                 }
                 this.Buscar();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }
-        void btnCancelar_Click(object sender, EventArgs e)
+        void btnCancelar_Click(object sender, System.EventArgs e)
         {
             try
             {
                 this.Hide();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
             }
         }

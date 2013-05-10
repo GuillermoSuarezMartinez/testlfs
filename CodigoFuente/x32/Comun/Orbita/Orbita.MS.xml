@@ -4,59 +4,6 @@
         <name>Orbita.MS</name>
     </assembly>
     <members>
-        <member name="T:Orbita.MS.OCifrado">
-            <summary>
-            Clase estática para encriptar y desencriptar textos con la clave y el vector de incio de la librería.
-            </summary>
-        </member>
-        <member name="M:Orbita.MS.OCifrado.ObtenerContraseñaLibreria">
-            <summary>
-            Clave de la librería para encriptar y desencriptar.
-            Está puesto como método porque si se pone como atributo o propiedad, a pesar de estar ofuscado, se desemambla y se obtiene su valor.
-            Además, si se devuelve directamente el string, también se desensambla y se obtiene su valor
-            ¡No se debe modificar nunca!
-            </summary>
-        </member>
-        <member name="M:Orbita.MS.OCifrado.ObtenerVectorInicioLibreria">
-            <summary>
-            Vector de inicio de la librería para encriptar y desencriptar.
-            Está puesto como método porque si se pone como atributo o propiedad, a pesar de estar ofuscado, se desemambla y se obtiene su valor.
-            Además, si se devuelve directamente el string, también se desensambla y se obtiene su valor
-            ¡No se debe modificar nunca!
-            </summary>
-        </member>
-        <member name="M:Orbita.MS.OCifrado.EncriptarTexto(System.String)">
-            <summary>
-            Encripta un texto con la contraseña y el vector de incio de la librería
-            </summary>
-            <param name="textoPlano">Texto a encriptar</param>
-            <returns>Texto encriptado</returns>
-        </member>
-        <member name="M:Orbita.MS.OCifrado.EncriptarTexto(System.String,System.String,System.String)">
-            <summary>
-            Realiza una encriptación personalizada con la contraseña y el vector de incio pasados por argumento
-            </summary>
-            <param name="textoPlano">Texto a encriptar</param>
-            <param name="clave">Clave para la encriptación</param>
-            <param name="vectorInicio">Vector de incio para la encriptación. Debe ser una cadena ASCII de 16 bytes de longitud</param>
-            <returns>El texto encriptado</returns>
-        </member>
-        <member name="M:Orbita.MS.OCifrado.DesencriptarTexto(System.String)">
-            <summary>
-            Desencripta un texto con la contraseña y el vector de incio de la librería
-            </summary>
-            <param name="plainText">Texto a desencriptar</param>
-            <returns>Texto desencriptado</returns>
-        </member>
-        <member name="M:Orbita.MS.OCifrado.DesencriptarTexto(System.String,System.String,System.String)">
-            <summary>
-            Realiza una desencriptación personalizada con la contraseña y el vector de incio pasados por argumento
-            </summary>
-            <param name="textoCifrado">Texto a desencriptar</param>
-            <param name="clave">Clave para la desencriptación</param>
-            <param name="vectorInicio">Vector de incio para la desencriptación. Debe ser una cadena ASCII de 16 bytes de longitud</param>
-            <returns>El texto desencriptado</returns>
-        </member>
         <member name="T:Orbita.MS.OEncriptacion">
             <summary>
             Clase que permite la encriptación y desencriptación de textos
@@ -563,15 +510,14 @@
             </summary>
             <param name="inputFile"></param>
             <param name="outputFile"></param>
-            <param name="key"></param>
+            <param name="passPhrase"></param>
         </member>
         <member name="M:Orbita.MS.OEncriptacion.DecryptFileToBytes(System.String,System.String)">
             <summary>
             Desencripta el fichero pasado
             </summary>
             <param name="inputFile"></param>
-            <param name="outputFile"></param>
-            <param name="key"></param>
+            <param name="passPhrase"></param>
         </member>
         <member name="M:Orbita.MS.OEncriptacion.AddSalt(System.Byte[])">
             <summary>
@@ -619,6 +565,161 @@
             class, which - when initialized multiple times within a very short
             period of time - can generate the same "random" number.
             </remarks>
+        </member>
+        <member name="T:Orbita.MS.OCifrado">
+            <summary>
+            Clase estática para encriptar y desencriptar textos con la clave y el vector de incio de la librería.
+            </summary>
+        </member>
+        <member name="M:Orbita.MS.OCifrado.ObtenerContraseñaLibreria">
+            <summary>
+            Clave de la librería para encriptar y desencriptar.
+            Está puesto como método porque si se pone como atributo o propiedad, a pesar de estar ofuscado, se desemambla y se obtiene su valor.
+            Además, si se devuelve directamente el string, también se desensambla y se obtiene su valor
+            ¡No se debe modificar nunca!
+            </summary>
+        </member>
+        <member name="M:Orbita.MS.OCifrado.ObtenerVectorInicioLibreria">
+            <summary>
+            Vector de inicio de la librería para encriptar y desencriptar.
+            Está puesto como método porque si se pone como atributo o propiedad, a pesar de estar ofuscado, se desemambla y se obtiene su valor.
+            Además, si se devuelve directamente el string, también se desensambla y se obtiene su valor
+            ¡No se debe modificar nunca!
+            </summary>
+        </member>
+        <member name="M:Orbita.MS.OCifrado.EncriptarTexto(System.String)">
+            <summary>
+            Encripta un texto con la contraseña y el vector de incio de la librería
+            </summary>
+            <param name="textoPlano">Texto a encriptar</param>
+            <returns>Texto encriptado</returns>
+        </member>
+        <member name="M:Orbita.MS.OCifrado.EncriptarTexto(System.String,System.String,System.String)">
+            <summary>
+            Realiza una encriptación personalizada con la contraseña y el vector de incio pasados por argumento
+            </summary>
+            <param name="textoPlano">Texto a encriptar</param>
+            <param name="clave">Clave para la encriptación</param>
+            <param name="vectorInicio">Vector de incio para la encriptación. Debe ser una cadena ASCII de 16 bytes de longitud</param>
+            <returns>El texto encriptado</returns>
+        </member>
+        <member name="M:Orbita.MS.OCifrado.DesencriptarTexto(System.String)">
+            <summary>
+            Desencripta un texto con la contraseña y el vector de incio de la librería
+            </summary>
+            <param name="plainText">Texto a desencriptar</param>
+            <returns>Texto desencriptado</returns>
+        </member>
+        <member name="M:Orbita.MS.OCifrado.DesencriptarTexto(System.String,System.String,System.String)">
+            <summary>
+            Realiza una desencriptación personalizada con la contraseña y el vector de incio pasados por argumento
+            </summary>
+            <param name="textoCifrado">Texto a desencriptar</param>
+            <param name="clave">Clave para la desencriptación</param>
+            <param name="vectorInicio">Vector de incio para la desencriptación. Debe ser una cadena ASCII de 16 bytes de longitud</param>
+            <returns>El texto desencriptado</returns>
+        </member>
+        <member name="T:Orbita.MS.OSeguridad">
+            <summary>
+            Clase OSeguridad.
+            </summary>
+        </member>
+        <member name="F:Orbita.MS.OSeguridad._servidor">
+            <summary>
+            Nombre del servidor.
+            </summary>
+        </member>
+        <member name="F:Orbita.MS.OSeguridad._usuario">
+            <summary>
+            Usuario del servidor.
+            </summary>
+        </member>
+        <member name="F:Orbita.MS.OSeguridad._password">
+            <summary>
+            Contraseña del servidor.
+            </summary>
+        </member>
+        <member name="F:Orbita.MS.OSeguridad._impersonalizacionWindows">
+            <summary>
+            Contexto de impersonalización.
+            </summary>
+        </member>
+        <member name="F:Orbita.MS.OSeguridad._identidadWindows">
+            <summary>
+            Identidad Windows.
+            </summary>
+        </member>
+        <member name="M:Orbita.MS.OSeguridad.LogonUser(System.String,System.String,System.String,System.Int32,System.Int32,System.IntPtr@)">
+            <summary>
+            Métodos externos de login.
+            </summary>
+            <param name="lpszUsuario">Usuario.</param>
+            <param name="lpszDominio">Dominio.</param>
+            <param name="lpszPassword">Contraseña.</param>
+            <param name="dwLogonType">Tipo de login.</param>
+            <param name="dwLogonProvider">Proveedor.</param>
+            <param name="phToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.MS.OSeguridad.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase OSeguridad.
+            </summary>
+        </member>
+        <member name="M:Orbita.MS.OSeguridad.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase OSeguridad.
+            </summary>
+            <param name="servidor">Nombre del servidor.</param>
+            <param name="usuario">Usuario de autenticación.</param>
+            <param name="password">Password de autenticación.</param>
+        </member>
+        <member name="F:Orbita.MS.OSeguridad.disposed">
+            <summary>
+            Indica si ya se llamo al método Dispose. (default = false)
+            </summary>
+        </member>
+        <member name="M:Orbita.MS.OSeguridad.Dispose">
+            <summary>
+            Implementa IDisposable.
+            No  hacer  este  método  virtual.
+            Una clase derivada no debería ser
+            capaz de  reemplazar este método.
+            </summary>
+        </member>
+        <member name="M:Orbita.MS.OSeguridad.Dispose(System.Boolean)">
+            <summary>
+            Método  sobrecargado de  Dispose que será  el que
+            libera los recursos. Controla que solo se ejecute
+            dicha lógica una  vez y evita que el GC tenga que
+            llamar al destructor de clase.
+            </summary>
+            <param name="disposing">Indica si llama al método Dispose.</param>
+        </member>
+        <member name="M:Orbita.MS.OSeguridad.Finalize">
+            <summary>
+            Destructor(es) de clase.
+            En caso de que se nos olvide “desechar” la clase,
+            el GC llamará al destructor, que tambén ejecuta 
+            la lógica anterior para liberar los recursos.
+            </summary>
+        </member>
+        <member name="M:Orbita.MS.OSeguridad.Abrir">
+            <summary>
+            Establecer la apertura de la impersonalización.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.MS.OSeguridad.Cerrar">
+            <summary>
+            Cerrar la impersonalización.
+            </summary>
+        </member>
+        <member name="M:Orbita.MS.OSeguridad.Impersonalizar">
+            <summary>
+            Impersonalizar el acceso al host.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:Orbita.MS.OHaspSN">
             <summary>
@@ -944,108 +1045,6 @@
             <summary>
             Mensaje.
             </summary>
-        </member>
-        <member name="T:Orbita.MS.OSeguridad">
-            <summary>
-            Clase OSeguridad.
-            </summary>
-        </member>
-        <member name="F:Orbita.MS.OSeguridad._servidor">
-            <summary>
-            Nombre del servidor.
-            </summary>
-        </member>
-        <member name="F:Orbita.MS.OSeguridad._usuario">
-            <summary>
-            Usuario del servidor.
-            </summary>
-        </member>
-        <member name="F:Orbita.MS.OSeguridad._password">
-            <summary>
-            Contraseña del servidor.
-            </summary>
-        </member>
-        <member name="F:Orbita.MS.OSeguridad._impersonalizacionWindows">
-            <summary>
-            Contexto de impersonalización.
-            </summary>
-        </member>
-        <member name="F:Orbita.MS.OSeguridad._identidadWindows">
-            <summary>
-            Identidad Windows.
-            </summary>
-        </member>
-        <member name="M:Orbita.MS.OSeguridad.LogonUser(System.String,System.String,System.String,System.Int32,System.Int32,System.IntPtr@)">
-            <summary>
-            Métodos externos de login.
-            </summary>
-            <param name="lpszUsuario">Usuario.</param>
-            <param name="lpszDominio">Dominio.</param>
-            <param name="lpszPassword">Contraseña.</param>
-            <param name="dwLogonType">Tipo de login.</param>
-            <param name="dwLogonProvider">Proveedor.</param>
-            <param name="phToken"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.MS.OSeguridad.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase OSeguridad.
-            </summary>
-        </member>
-        <member name="M:Orbita.MS.OSeguridad.#ctor(System.String,System.String,System.String)">
-            <summary>
-            Inicializar una nueva instancia de la clase OSeguridad.
-            </summary>
-            <param name="servidor">Nombre del servidor.</param>
-            <param name="usuario">Usuario de autenticación.</param>
-            <param name="password">Password de autenticación.</param>
-        </member>
-        <member name="F:Orbita.MS.OSeguridad.disposed">
-            <summary>
-            Indica si ya se llamo al método Dispose. (default = false)
-            </summary>
-        </member>
-        <member name="M:Orbita.MS.OSeguridad.Dispose">
-            <summary>
-            Implementa IDisposable.
-            No  hacer  este  método  virtual.
-            Una clase derivada no debería ser
-            capaz de  reemplazar este método.
-            </summary>
-        </member>
-        <member name="M:Orbita.MS.OSeguridad.Dispose(System.Boolean)">
-            <summary>
-            Método  sobrecargado de  Dispose que será  el que
-            libera los recursos. Controla que solo se ejecute
-            dicha lógica una  vez y evita que el GC tenga que
-            llamar al destructor de clase.
-            </summary>
-            <param name="disposing">Indica si llama al método Dispose.</param>
-        </member>
-        <member name="M:Orbita.MS.OSeguridad.Finalize">
-            <summary>
-            Destructor(es) de clase.
-            En caso de que se nos olvide “desechar” la clase,
-            el GC llamará al destructor, que tambén ejecuta 
-            la lógica anterior para liberar los recursos.
-            </summary>
-        </member>
-        <member name="M:Orbita.MS.OSeguridad.Abrir">
-            <summary>
-            Establecer la apertura de la impersonalización.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.MS.OSeguridad.Cerrar">
-            <summary>
-            Cerrar la impersonalización.
-            </summary>
-        </member>
-        <member name="M:Orbita.MS.OSeguridad.Impersonalizar">
-            <summary>
-            Impersonalizar el acceso al host.
-            </summary>
-            <returns></returns>
         </member>
     </members>
 </doc>

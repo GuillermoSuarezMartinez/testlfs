@@ -7,7 +7,7 @@
     <!--nivel = nivel de logger, por defecto debug-->
     <!--niveles = debug/info/warn/error/fatal-->
     <logger nombre="owrapper" xsi:type="Wrapper" nivel="debug">
-      <logger nombre="owrapperdebug" xsi:type="Debug" nivel="debug" />
+      <logger nombre="owrapperdebug" xsi:type="Debug" nivel="error" />
       <logger nombre="owrapperremoting" xsi:type="Remoting" nivel="debug" />
     </logger>
   </loggers>

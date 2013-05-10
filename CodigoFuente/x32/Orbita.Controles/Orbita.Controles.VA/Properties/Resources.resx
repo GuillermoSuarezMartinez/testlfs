@@ -154,8 +154,8 @@
   <data name="imgContadorInactivo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgContadorInactivo32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="imgVariableActiva24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\imgVariableActiva24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BtnAplicar24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BtnAplicar24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imgNumeroForzada32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgNumeroForzada32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -201,6 +201,9 @@
   </data>
   <data name="icono" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icono.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImgAccion24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImgAccion24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imgVariableActivaForzada32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgVariableActivaForzada32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -255,6 +258,9 @@
   </data>
   <data name="imgVariableInactiva24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgVariableInactiva24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgVariableActiva24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imgVariableActiva24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imgVariableInactiva32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgVariableInactiva32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -327,11 +333,5 @@
   </data>
   <data name="imgTextoForzada24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgTextoForzada24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ImgAccion24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImgAccion24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BtnAplicar24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BtnAplicar24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

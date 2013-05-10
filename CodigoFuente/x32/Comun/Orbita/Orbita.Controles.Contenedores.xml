@@ -84,6 +84,34 @@
             </summary>
             <param name="control"></param>
         </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaMdiParentForm.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OMdiContainerForm.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OMdiContainerForm.
+            </summary>
+            <param name="control"></param>
+        </member>
         <member name="M:Orbita.Controles.Contenedores.OTableLayoutPanel.#ctor(System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OTableLayoutPanel.
@@ -233,34 +261,6 @@
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaPanel.
             </summary>
-        </member>
-        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaMdiParentForm.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.components">
-            <summary>
-            Variable del diseñador requerida.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Contenedores.OMdiContainerForm.#ctor(System.Object)">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OMdiContainerForm.
-            </summary>
-            <param name="control"></param>
         </member>
     </members>
 </doc>

@@ -13,7 +13,13 @@ namespace Orbita.Controles.Grid
 {
     public enum TipoFiltro
     {
+        /// <summary>
+        /// Opción de filtro en la cabecera.
+        /// </summary>
         Cabecera,
+        /// <summary>
+        /// Opción de filtro por fila.
+        /// </summary>
         Fila
     }
 }

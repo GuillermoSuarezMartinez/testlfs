@@ -19,6 +19,7 @@ using System.Windows.Forms;
 using Orbita.VA.Comun;
 //using System.Windows.Media.Imaging;
 using System.Drawing.Imaging;
+using System.Collections.Generic;
 
 namespace Orbita.VA.Hardware
 {
@@ -31,12 +32,14 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Tamaño del buffer
         /// </summary>
-        private const int bufSize = 512 * 1024;	// buffer size
+        //private const int bufSize = 512 * 1024;	// buffer size
+        private const int bufSize = 2 * 1024 * 1024;	// buffer size
 
         /// <summary>
         /// Tamaño de la lectura
         /// </summary>
-        private const int readSize = 1024;		// portion size to read
+        //private const int readSize = 1024;		// portion size to read
+        private const int readSize = 512 * 1024;		// portion size to read
         #endregion
 
         #region Atributo(s)
@@ -54,6 +57,11 @@ namespace Orbita.VA.Hardware
         /// Evento de recarga del thread de captura de datos
         /// </summary>
         private ManualResetEvent reloadEvent = null;
+
+        /// <summary>
+        /// Buffer interno
+        /// </summary>
+        private byte[] BufferInterno;
         #endregion
 
         #region Propiedad(es)
@@ -228,6 +236,7 @@ namespace Orbita.VA.Hardware
         /// </summary>
         public MJPEGSource()
         {
+            this.BufferInterno = new byte[bufSize];
         } 
         #endregion
 
@@ -305,7 +314,9 @@ namespace Orbita.VA.Hardware
         /// </summary>
         private void WorkerThread()
         {
-            byte[] buffer = new byte[bufSize];	// buffer to read stream
+            //byte[] buffer = new byte[bufSize];	// buffer to read stream
+            byte[] buffer = this.BufferInterno;
+            bool excepcionConexion = false;
 
             OComunicacionCGI comunicacionCGI = new OComunicacionCGI(this.Source, this._Login, this._Password, this.GetHashCode().ToString(), this._SeparateConnectionGroup, this._ReadTimeOutMs, HttpStatusCode.OK);
 
@@ -331,7 +342,7 @@ namespace Orbita.VA.Hardware
                     //  2 = searching for image end
                     try
                     {
-                        if (!comunicacionCGI.Start())
+                        if (!comunicacionCGI.Start(excepcionConexion))
                             throw new ApplicationException("Invalid URL");
 
                         if (comunicacionCGI.TipoContenido != OComunicacionCGI.TipoContenidoRespuestaCGI.MultipartXMixedReplace)
@@ -365,7 +376,14 @@ namespace Orbita.VA.Hardware
                             if (delimiter == null)
                             {
                                 // find boundary
-                                pos = ByteArrayUtils.Find(buffer, boundary, pos, todo);
+                                try
+                                {
+                                    pos = ByteArrayUtils.Find(buffer, boundary, pos, todo);
+                                }
+                                catch (Exception exception)
+                                {
+                                    OLogsVAHardware.Camaras.Debug(exception, this.Source, String.Format("ByteArrayUtils.Find. BufferLengh={0} BoundaryLength={1} Pos={2} Todo={3}", buffer.Length, boundary.Length, pos, todo));
+                                }
 
                                 if (pos == -1)
                                 {
@@ -439,15 +457,6 @@ namespace Orbita.VA.Hardware
                                         byte[] bufferAux = new byte[stop - start];
                                         Buffer.BlockCopy(buffer, start, bufferAux, 0, stop - start);
                                         MemoryStream memStream = new MemoryStream(bufferAux, 0, stop - start);
-
-                                        // Sin copia
-                                        //MemoryStream memStream = new MemoryStream(buffer, start, stop - start);
-
-                                        // Decodificación JPG
-                                        //JpegBitmapDecoder decoder = new JpegBitmapDecoder(memStream, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.Default);
-                                        //BitmapSource bitmapSource = decoder.Frames[0];
-                                        //Bitmap bmp = GetBitmap(bitmapSource);
-
                                         Bitmap bmp = (Bitmap)Bitmap.FromStream(memStream);
 
                                         // notify client
@@ -480,25 +489,32 @@ namespace Orbita.VA.Hardware
                                 }
                             }
                         }
+
+                        excepcionConexion = false;
                     }
-                    catch (WebException ex)
+                    catch (WebException exception)
                     {
-                        OLogsVAHardware.Camaras.Info("Thread de MJPG", ex);
+                        OLogsVAHardware.Camaras.Info(exception, "Thread de MJPG", this.Source);
+                        excepcionConexion = true;
                         // wait for a while before the next try
                         Thread.Sleep(250);
                     }
-                    catch (ApplicationException ex)
+                    catch (ApplicationException exception)
                     {
-                        OLogsVAHardware.Camaras.Info("Thread de MJPG", ex);
+                        OLogsVAHardware.Camaras.Info(exception, "Thread de MJPG", this.Source);
+                        excepcionConexion = true;
                         // wait for a while before the next try
                         Thread.Sleep(250);
                     }
                     catch (ThreadAbortException)
                     {
                     }
-                    catch (Exception ex)
+                    catch (Exception exception)
                     {
-                        OLogsVAHardware.Camaras.Info("Thread de MJPG", ex);
+                        OLogsVAHardware.Camaras.Info(exception, "Thread de MJPG", this.Source);
+                        excepcionConexion = true;
+                        // wait for a while before the next try
+                        Thread.Sleep(250);
                     }
                     finally
                     {
@@ -513,9 +529,9 @@ namespace Orbita.VA.Hardware
                     if (stopEvent.WaitOne(0, true))
                         break;
                 }
-                catch (Exception ex)
+                catch (Exception exception)
                 {
-                    OLogsVAHardware.Camaras.Info("Thread de MJPG", ex);
+                    OLogsVAHardware.Camaras.Info(exception, "Thread de MJPG", this.Source);
                 }
             }
         }
@@ -547,14 +563,5 @@ namespace Orbita.VA.Hardware
             }
         }
         #endregion
-
-        //Bitmap GetBitmap(BitmapSource source)
-        //{
-        //    Bitmap bmp = new Bitmap(source.PixelWidth, source.PixelHeight, PixelFormat.Format32bppPArgb);
-        //    BitmapData data = bmp.LockBits(new Rectangle(System.Drawing.Point.Empty, bmp.Size), ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
-        //    source.CopyPixels(Int32Rect.Empty, data.Scan0, data.Height * data.Stride, data.Stride);
-        //    bmp.UnlockBits(data);
-        //    return bmp;
-        //}
     }
 }

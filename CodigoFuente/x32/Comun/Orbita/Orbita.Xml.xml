@@ -4,75 +4,132 @@
         <name>Orbita.Xml</name>
     </assembly>
     <members>
-        <member name="F:Orbita.Xml.OAlmacenXML._rutaFichero">
+        <member name="T:Orbita.Xml.OConvertibleXML">
             <summary>
-            Ruta del fichero xml.
+            Clase que incluye funcionalidad de conversión automática a XML compatible para su proceso por un 
+            procedimiento almacenado de base de datos
             </summary>
         </member>
-        <member name="M:Orbita.Xml.OAlmacenXML.#ctor">
+        <member name="F:Orbita.Xml.OConvertibleXML._Propiedades">
             <summary>
-            Inicializar una nueva instancia de la clase OAlmacenXML.
+            Propiedades a almacenar en XML
             </summary>
         </member>
-        <member name="M:Orbita.Xml.OAlmacenXML.#ctor(System.String)">
+        <member name="F:Orbita.Xml.OConvertibleXML._Detalles">
             <summary>
-            Inicializar una nueva instancia de la clase OAlmacenXML.
-            </summary>
-            <param name="rutaFichero">Ruta del fichero de configuracion xml.</param>
-        </member>
-        <member name="F:Orbita.Xml.OAlmacenXML.disposed">
-            <summary>
-            Indica si ya se llamo al método Dispose. (default = false)
+            Desglose de detalle
             </summary>
         </member>
-        <member name="M:Orbita.Xml.OAlmacenXML.Dispose">
+        <member name="M:Orbita.Xml.OConvertibleXML.#ctor">
             <summary>
-            Implementa IDisposable.
-            No  hacer  este  método  virtual.
-            Una clase derivada no debería ser
-            capaz de  reemplazar este método.
+            Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.Xml.OAlmacenXML.Dispose(System.Boolean)">
+        <member name="M:Orbita.Xml.OConvertibleXML.op_Addition(Orbita.Xml.OConvertibleXML,Orbita.Xml.OConvertibleXML)">
             <summary>
-            Método  sobrecargado de  Dispose que será  el que
-            libera los recursos. Controla que solo se ejecute
-            dicha lógica una  vez y evita que el GC tenga que
-            llamar al destructor de clase.
+            Operador de adición de propiedades. ¡No de detalles!
             </summary>
-            <param name="disposing">Indica si llama al método Dispose.</param>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
         </member>
-        <member name="M:Orbita.Xml.OAlmacenXML.Finalize">
+        <member name="M:Orbita.Xml.OConvertibleXML.AñadirNuevoDetalle">
             <summary>
-            Destructor(es) de clase.
-            En caso de que se nos olvide “desechar” la clase,
-            el GC llamará al destructor, que tambén ejecuta 
-            la lógica anterior para liberar los recursos.
+            Añade un detalle a la lista de detalles
             </summary>
         </member>
-        <member name="M:Orbita.Xml.OAlmacenXML.CargarDatos">
+        <member name="M:Orbita.Xml.OConvertibleXML.AñadirDetalle(Orbita.Xml.OConvertibleXML)">
             <summary>
-            Cargamos los datos del XML
-            </summary>
-            <returns>Objeto OAlmacenXML</returns>
-        </member>
-        <member name="M:Orbita.Xml.OAlmacenXML.Guardar">
-            <summary>
-            Guardamos los datos en el XML
+            Añade un detalle a la lista de detalles
             </summary>
         </member>
-        <member name="M:Orbita.Xml.OAlmacenXML.Clone">
+        <member name="M:Orbita.Xml.OConvertibleXML.AñadirPropiedad(System.String,System.Object)">
             <summary>
-            Clona el objeto OAlmacenXML.
+            Añade un detalle a la lista de detalles
             </summary>
-            <returns>Objeto OAlmacenXML clonado.</returns>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXML.ToXML(Orbita.Xml.ModoGeneracionXML,System.String,System.String)">
+            <summary>
+            Formatea el contenido para ser almacenado en un XML
+            </summary>
+            <param name="modoGeneracionXML"></param>
+            <param name="nombreDocumento"></param>
+            <param name="nombreEtiqueta"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXML.ToXMLDetalles(Orbita.Xml.ModoGeneracionXML,System.String,System.String)">
+            <summary>
+            Formatea el contenido para ser almacenado en un XML
+            </summary>
+            <param name="modoGeneracionXML"></param>
+            <param name="nombreDocumento"></param>
+            <param name="nombreEtiqueta"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Xml.OConvertibleXML.Propiedades">
+            <summary>
+            Propiedades a almacenar en XML
+            </summary>
+        </member>
+        <member name="P:Orbita.Xml.OConvertibleXML.PropiedadesDetalle">
+            <summary>
+            Resultados propios en serie
+            </summary>
+        </member>
+        <member name="P:Orbita.Xml.OConvertibleXML.Detalles">
+            <summary>
+            Desglose de detalle
+            </summary>
+        </member>
+        <member name="T:Orbita.Xml.ModoGeneracionXML">
+            <summary>
+            Indica la forma de generar el fichero XML a partir de un diccionario
+            </summary>
+        </member>
+        <member name="F:Orbita.Xml.ModoGeneracionXML.XMLNormal">
+            <summary>
+            El diccionario supondría un registro, y cada elemento del mismo correspondería a un campo de la base de datos
+            Ejemplo:
+              <NombreDocumento>
+                <NombreEtiqueta>Clave1=Valor1</NombreEtiqueta>
+                <NombreEtiqueta>Clave2=Valor2</NombreEtiqueta>
+                <NombreEtiqueta>Clave3=Valor3</NombreEtiqueta>
+                <NombreEtiqueta>Clave4=Valor4</NombreEtiqueta>
+              </NombreDocumento>
+            </summary>
+        </member>
+        <member name="F:Orbita.Xml.ModoGeneracionXML.XMLEnseriado">
+            <summary>
+            Cada elemento del diccionario correspondería a un registro de la base de datos
+            Ejemplo:
+              <NombreDocumento>
+                <NombreEtiqueta>
+                    Codigo=string
+                    IdTipo=OEnumTipoDato
+                    ValorBit=bool
+                    ValorEntero=int
+                    ValorDecimal=double
+                    ValorTexto=string
+                    ValorFecha=DateTime
+                </NombreEtiqueta>
+                <NombreEtiqueta>
+                    Codigo=string
+                    IdTipo=OEnumTipoDato
+                    ValorBit=bool
+                    ValorEntero=int
+                    ValorDecimal=double
+                    ValorTexto=string
+                    ValorFecha=DateTime
+                </NombreEtiqueta>
+              </NombreDocumento>
+            </summary>
         </member>
         <member name="T:Orbita.Xml.OXml">
             <summary>
             Clase Xml de Orbita.
             </summary>
         </member>
-        <member name="F:Orbita.Xml.OXml.m_swXml">
+        <member name="F:Orbita.Xml.OXml.swXml">
             <summary>
             Variable escrita en el Xml.
             NOTA: EL SIGUIENTE COMENTARIO SE HA MOVIDO DE OTRA UBICACIÓN, PERO CREO QUE SE REFIERE A ESTE ATRIBUTO (Vnicolau, 07/02/2011)
@@ -80,7 +137,7 @@
             es decir, contiene cada uno de los registros que se van a insertar.
             </summary>
         </member>
-        <member name="F:Orbita.Xml.OXml.m_escritorXml">
+        <member name="F:Orbita.Xml.OXml.escritorXml">
             <summary>
             Variable para escribir el XML
             </summary>
@@ -228,6 +285,116 @@
             <summary>
             Propiedad para acceder al XmlTextWriter.
             </summary>
+        </member>
+        <member name="F:Orbita.Xml.OAlmacenXML.rutaFichero">
+            <summary>
+            Ruta del fichero Xml.
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OAlmacenXML.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase OAlmacenXML.
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OAlmacenXML.#ctor(System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase OAlmacenXML.
+            </summary>
+            <param name="rutaFichero">Ruta del fichero de configuracion xml.</param>
+        </member>
+        <member name="F:Orbita.Xml.OAlmacenXML.disposed">
+            <summary>
+            Indica si ya se llamo al método Dispose. (default = false)
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OAlmacenXML.Dispose">
+            <summary>
+            Implementa IDisposable.
+            No  hacer  este  método  virtual.
+            Una clase derivada no debería ser
+            capaz de  reemplazar este método.
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OAlmacenXML.Dispose(System.Boolean)">
+            <summary>
+            Método  sobrecargado de  Dispose que será  el que
+            libera los recursos. Controla que solo se ejecute
+            dicha lógica una  vez y evita que el GC tenga que
+            llamar al destructor de clase.
+            </summary>
+            <param name="disposing">Indica si llama al método Dispose.</param>
+        </member>
+        <member name="M:Orbita.Xml.OAlmacenXML.Finalize">
+            <summary>
+            Destructor(es) de clase.
+            En caso de que se nos olvide “desechar” la clase,
+            el GC llamará al destructor, que tambén ejecuta 
+            la lógica anterior para liberar los recursos.
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OAlmacenXML.CargarDatos">
+            <summary>
+            Cargamos los datos del XML
+            </summary>
+            <returns>Objeto OAlmacenXML</returns>
+        </member>
+        <member name="M:Orbita.Xml.OAlmacenXML.Guardar">
+            <summary>
+            Guardamos los datos en el XML
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OAlmacenXML.Clone">
+            <summary>
+            Clona el objeto OAlmacenXML.
+            </summary>
+            <returns>Objeto OAlmacenXML clonado.</returns>
+        </member>
+        <member name="T:Orbita.Xml.OExtensionXML">
+            <summary>
+            Métodos de extensión de diccionarios a XML
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OExtensionXML.ToXML(System.Collections.Generic.Dictionary{System.String,System.Object},Orbita.Xml.ModoGeneracionXML,System.String,System.String)">
+            <summary>
+            Formatea el diccionario para ser almacenado en un XML
+            </summary>
+            <param name="listadoDatos">Listado de datos a almacenar en el XML</param>
+            <returns>Objeto de la clase OXml con los datos formateados.</returns>
+        </member>
+        <member name="M:Orbita.Xml.OExtensionXML.ToXML(System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.Object}},Orbita.Xml.ModoGeneracionXML,System.String,System.String)">
+            <summary>
+            Formatea el diccionario para ser almacenado en un XML
+            </summary>
+            <param name="listadoDatos">Listado de datos a almacenar en el XML</param>
+            <returns>Objeto de la clase OXml con los datos formateados.</returns>
+        </member>
+        <member name="M:Orbita.Xml.OExtensionXML.ToXMLNormal(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String)">
+            <summary>
+            Formatea el diccionario para ser almacenado en un XML
+            </summary>
+            <param name="listadoDatos">Listado de datos a almacenar en el XML</param>
+            <returns>Objeto de la clase OXml con los datos formateados.</returns>
+        </member>
+        <member name="M:Orbita.Xml.OExtensionXML.ToXMLNormal(System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.Object}},System.String,System.String)">
+            <summary>
+            Formatea el diccionario para ser almacenado en un XML
+            </summary>
+            <param name="listadoDatos">Listado de datos a almacenar en el XML</param>
+            <returns>Objeto de la clase OXml con los datos formateados.</returns>
+        </member>
+        <member name="M:Orbita.Xml.OExtensionXML.ToXMLEnseriado(System.Collections.Generic.Dictionary{System.String,System.Object},System.String,System.String)">
+            <summary>
+            Formatea el diccionario para ser almacenado en un XML
+            </summary>
+            <param name="listadoDatos">Listado de datos a almacenar en el XML</param>
+            <returns>Objeto de la clase OXml con los datos formateados.</returns>
+        </member>
+        <member name="M:Orbita.Xml.OExtensionXML.ToXMLEnseriado(System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.Object}},System.String,System.String)">
+            <summary>
+            Formatea el diccionario para ser almacenado en un XML
+            </summary>
+            <param name="listadoDatos">Listado de datos a almacenar en el XML</param>
+            <returns>Objeto de la clase OXml con los datos formateados.</returns>
         </member>
     </members>
 </doc>

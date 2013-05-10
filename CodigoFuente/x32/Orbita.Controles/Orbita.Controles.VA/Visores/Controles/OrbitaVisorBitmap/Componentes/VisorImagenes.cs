@@ -1005,6 +1005,16 @@ namespace Orbita.Controles.VA
         {
             return GetCurrentPosition(new Point(x, y));
         }
+        /// <summary>
+        /// Refresca la visualización de la imagen actual
+        /// </summary>
+        public void Refresh()
+        {
+            if (this._image != null)
+            {
+                this.OnImageChanged(EventArgs.Empty);
+            }
+        }
         #endregion
 
         #region Métodos estáticos

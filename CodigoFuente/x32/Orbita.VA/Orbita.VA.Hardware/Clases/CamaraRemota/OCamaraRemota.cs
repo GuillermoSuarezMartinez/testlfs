@@ -20,6 +20,8 @@ using System.Runtime.Serialization.Formatters;
 using System.Security.Permissions;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
+using System.Runtime.Remoting;
+using System.Threading;
 
 namespace Orbita.VA.Hardware
 {
@@ -39,7 +41,7 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Cámara remota
         /// </summary>
-        private OCamaraCliente CamaraCliente;
+        private ORemotingCamaraCliente CamaraCliente;
         /// <summary>
         /// Objeto utilizado para enlazar con los eventos del OCamaraCliente de forma remota
         /// </summary>
@@ -49,6 +51,10 @@ namespace Orbita.VA.Hardware
         /// </summary>
         private string CodigoRemoto;
         /// <summary>
+        /// Nombre del canal remoto
+        /// </summary>
+        private string NombreCanal;
+        /// <summary>
         /// Dirección IP de la cámara
         /// </summary>
         private IPAddress IP;
@@ -56,7 +62,15 @@ namespace Orbita.VA.Hardware
         /// Puerto de conexión con la cámara
         /// </summary>
         private int Puerto;
-	    #endregion
+        /// <summary>
+        /// Región de memoria mapeada con multibuffer
+        /// </summary>
+        protected OMemoriaMapeadaMultiBuffer MemoriaMapeada;
+        /// <summary>
+        /// Número de buffers del fichero mapeado
+        /// </summary>
+        private int NumBuffers;
+        #endregion
 
         #region Constructor(es)
         /// <summary>
@@ -72,21 +86,30 @@ namespace Orbita.VA.Hardware
                 if (dt.Rows.Count == 1)
                 {
                     this.CodigoRemoto = dt.Rows[0]["RemoteCam_CodigoRemoto"].ToString();
+                    this.NombreCanal = dt.Rows[0]["RemoteCam_NombreCanal"].ToString();
                     this.IP = IPAddress.Parse(dt.Rows[0]["RemoteCam_IP"].ToString());
                     this.Puerto = OEntero.Validar(dt.Rows[0]["RemoteCam_Puerto"], 0, int.MaxValue, 80);
+                    this.NumBuffers = OEntero.Validar(dt.Rows[0]["RemoteCam_NumBuffers"], 0, int.MaxValue, 10);
                 }
                 else
                 {
                     throw new Exception("No se ha podido cargar la información de la cámara " + codigo + " \r\nde la base de datos.");
                 }
 
-                this.CamaraCliente = new OCamaraCliente(this.CodigoRemoto, this.IP, this.Puerto);
+                if (this.Habilitado)
+                {
+                    //Defimos la definición del buffer, id de buffer de región = OrbCamara01 con 0 .. 4 
+                    this.MemoriaMapeada = new OMemoriaMapeadaMultiBuffer();
+                    OInfoBufferMemoriaMapeada bufferInfo = new OInfoBufferMemoriaMapeada(this.CodigoRemoto, this.NumBuffers);
+                    this.MemoriaMapeada.InicializarLectura(bufferInfo);
 
+                    this.CamaraCliente = new ORemotingCamaraCliente(this.CodigoRemoto, this.NombreCanal, this.IP, this.Puerto);
+                }
                 this.Existe = true;
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Fatal(this.Codigo, exception);
+                OLogsVAHardware.Camaras.Fatal(exception, this.Codigo);
                 throw new Exception("Imposible iniciar la cámara " + this.Codigo);
             }
         }
@@ -133,6 +156,19 @@ namespace Orbita.VA.Hardware
             if (this.EstadoConexion == EstadoConexion.Conectado)
             {
                 return this.CamaraCliente.GetAjuste(codAjuste, out valor);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Consulta si el PTZ está habilitado
+        /// </summary>
+        /// <returns>Verdadero si el PTZ está habilitado</returns>
+        public override bool PTZHabilitado()
+        {
+            if (this.EstadoConexion == EstadoConexion.Conectado)
+            {
+                return this.CamaraCliente.PTZHabilitado();
             }
             return false;
         }
@@ -223,6 +259,20 @@ namespace Orbita.VA.Hardware
         }
 
         /// <summary>
+        /// Consulta última posición leida del PTZ
+        /// </summary>
+        /// <returns></returns>
+        public override OPosicionesPTZ ConsultaUltimaPosicionPTZ()
+        {
+            if (this.EstadoConexion == EstadoConexion.Conectado)
+            {
+                return this.CamaraCliente.ConsultaPosicionPTZ();
+            }
+            return null;
+        }
+
+
+        /// <summary>
         /// Se toma el control de la cámara
         /// </summary>
         /// <returns>Verdadero si la operación ha funcionado correctamente</returns>
@@ -231,21 +281,28 @@ namespace Orbita.VA.Hardware
             bool resultado = base.ConectarInterno(reconexion);
             try
             {
-                resultado = this.CamaraCliente.Conectar();
+                bool conectado = this.CamaraCliente.Conectar();
 
-                // Eventos
-                this.EventWrapper = new OCamaraBroadcastEventWraper();
-                this.EventWrapper.NuevaFotografiaCamaraRemota += this.NuevaFotografiaCamaraRemota;
-                this.CamaraCliente.CrearSuscripcionNuevaFotografiaRemota(this.EventWrapper.OnNuevaFotografiaCamaraRemota);
-                this.EventWrapper.CambioEstadoConexionCamara += this.CambioEstadoConexionCamara;
-                this.CamaraCliente.CrearSuscripcionCambioEstadoConexion(this.EventWrapper.OnCambioEstadoConexionCamara);
-                this.EventWrapper.CambioEstadoReproduccionCamara += this.CambioEstadoReproduccionCamara;
-                this.CamaraCliente.CrearSuscripcionCambioEstadoReproduccion(this.EventWrapper.OnCambioEstadoReproduccionCamara);
-                this.EventWrapper.MensajeCamara += this.MensajeCamara;
-                this.CamaraCliente.CrearSuscripcionMensajes(this.EventWrapper.OnMensajeCamara);
+                if (conectado)
+                {
+                    // Eventos
+                    this.EventWrapper = new OCamaraBroadcastEventWraper();
+                    //this.EventWrapper.NuevaFotografiaCamaraRemota += this.NuevaFotografiaCamaraRemota;
+                    //this.CamaraCliente.CrearSuscripcionNuevaFotografiaRemota(this.EventWrapper.OnNuevaFotografiaCamaraRemota);
+                    this.EventWrapper.NuevaFotografiaCamaraMemoriaMapeada += this.NuevaFotografiaCamaraMemoriaMapeada;
+                    this.CamaraCliente.CrearSuscripcionNuevaFotografiaMemoriaMapeada(this.EventWrapper.OnNuevaFotografiaCamaraMemoriaMapeada);
+                    this.EventWrapper.CambioEstadoConexionCamara += this.CambioEstadoConexionCamara;
+                    this.CamaraCliente.CrearSuscripcionCambioEstadoConexion(this.EventWrapper.OnCambioEstadoConexionCamara);
+                    this.EventWrapper.CambioEstadoReproduccionCamara += this.CambioEstadoReproduccionCamara;
+                    this.CamaraCliente.CrearSuscripcionCambioEstadoReproduccion(this.EventWrapper.OnCambioEstadoReproduccionCamara);
+                    this.EventWrapper.MensajeCamaraRemoting += this.MensajeCamara;
+                    this.CamaraCliente.CrearSuscripcionMensajes(this.EventWrapper.OnMensajeCamara);
 
-                // Inicialización de variables
-                this._TipoImagen = this.CamaraCliente.TipoImagen;
+                    // Inicialización de variables
+                    this._TipoImagen = this.CamaraCliente.TipoImagen;
+
+                    resultado = true;
+                }
             }
             catch (Exception exception)
             {
@@ -265,13 +322,15 @@ namespace Orbita.VA.Hardware
 
             try
             {
-                this.EventWrapper.NuevaFotografiaCamaraRemota -= this.NuevaFotografiaCamaraRemota;
-                this.CamaraCliente.EliminarSuscripcionNuevaFotografiaRemota(this.EventWrapper.OnNuevaFotografiaCamaraRemota);
+                //this.EventWrapper.NuevaFotografiaCamaraRemota -= this.NuevaFotografiaCamaraRemota;
+                //this.CamaraCliente.EliminarSuscripcionNuevaFotografiaRemota(this.EventWrapper.OnNuevaFotografiaCamaraRemota);
+                this.EventWrapper.NuevaFotografiaCamaraMemoriaMapeada -= this.NuevaFotografiaCamaraMemoriaMapeada;
+                this.CamaraCliente.EliminarSuscripcionNuevaFotografiaMemoriaMapeada(this.EventWrapper.OnNuevaFotografiaCamaraMemoriaMapeada);
                 this.EventWrapper.CambioEstadoConexionCamara -= this.CambioEstadoConexionCamara;
                 this.CamaraCliente.EliminarSuscripcionCambioEstadoConexion(this.EventWrapper.OnCambioEstadoConexionCamara);
                 this.EventWrapper.CambioEstadoReproduccionCamara -= this.CambioEstadoReproduccionCamara;
                 this.CamaraCliente.EliminarSuscripcionCambioEstadoReproduccion(this.EventWrapper.OnCambioEstadoReproduccionCamara);
-                this.EventWrapper.MensajeCamara -= this.MensajeCamara;
+                this.EventWrapper.MensajeCamaraRemoting -= this.MensajeCamara;
                 this.CamaraCliente.EliminarSuscripcionMensajes(this.EventWrapper.OnMensajeCamara);
                 this.CamaraCliente.Desconectar();
 
@@ -439,34 +498,48 @@ namespace Orbita.VA.Hardware
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void NuevaFotografiaCamaraRemota(NuevaFotografiaCamaraRemotaEventArgs e)
+        private void NuevaFotografiaCamaraMemoriaMapeada(object sender, NuevaFotografiaCamaraMemoriaMapeadaEventArgs e)
         {
             try
             {
-                if (!OThreadManager.EjecucionEnTrheadPrincipal())
-                {
-                    OThreadManager.SincronizarConThreadPrincipal(new EventoNuevaFotografiaCamaraRemota(this.NuevaFotografiaCamaraRemota), new object[] { e });
-                    return;
-                }
-
                 if (this.EstadoConexion == EstadoConexion.Conectado)
                 {
-                    this.ImagenActual = e.Imagen.Desserializar();
-
-                    //// Actualizo la conectividad
-                    //this.Conectividad.EstadoConexion = EstadoConexion.Conectado;
-
-                    //// Actualizo el Frame Rate
-                    //this.MedidorVelocidadAdquisicion.NuevaCaptura();
+                    // Lectura de la memoria mapeada
+                    bool imagenLeida = e.ImagenMemoriaMapeada.LeerImagen(this.MemoriaMapeada, ref this._ImagenActual);
 
                     // Lanamos el evento de adquisición
-                    this.AdquisicionCompletada(this.ImagenActual);
+                    if (imagenLeida)
+                    {
+                        OLogsVAHardware.Camaras.Debug(this.Codigo, "Evento de recepción de cambio de fotografía", this._ImagenActual.ToString());
+                        this.AdquisicionCompletada(this.ImagenActual);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
+            }
+        }
+        /// <summary>
+        /// Evento de recepción de nueva imagen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NuevaFotografiaCamaraRemota(object sender, NuevaFotografiaCamaraRemotaEventArgs e)
+        {
+            try
+            {
+                if (this.EstadoConexion == EstadoConexion.Conectado)
+                {
+                    // Lectura del array de imagenes
+                    OImagen imagen = e.ImagenByteArray.Desserializar();
+                    this._ImagenActual = imagen;
 
-                    //// Se asigna el valor de la variable asociada
-                    //if (this.LanzarEventoAlSnap && this.ImagenActual.EsValida())
-                    //{
-                    //    this.EstablecerVariableImagenAsociada(this.ImagenActual);
-                    //}
+                    // Lanamos el evento de adquisición
+                    if (imagen.EsValida())
+                    {
+                        this.AdquisicionCompletada(this.ImagenActual);
+                    }
                 }
             }
             catch (Exception exception)
@@ -478,25 +551,25 @@ namespace Orbita.VA.Hardware
         /// Evento de cambio de estado de conexión
         /// </summary>
         /// <param name="estadoConexion"></param>
-        private void CambioEstadoConexionCamara(CambioEstadoConexionCamaraEventArgs e)
+        private void CambioEstadoConexionCamara(object sender, CambioEstadoConexionCamaraEventArgs e)
         {
-            this.OnCambioEstadoConectividadCamara(e.Codigo, e.EstadoConexionActual, e.EstadoConexionAnterior);
+            this.LanzarEventoCambioEstadoConexionCamaraSincrona(e.Codigo, e.EstadoConexionActual, e.EstadoConexionAnterior);
         }
         /// <summary>
         /// Evento de cambio de estado de reproducción
         /// </summary>
         /// <param name="estadoConexion"></param>
-        private void CambioEstadoReproduccionCamara(CambioEstadoReproduccionCamaraEventArgs e)
+        private void CambioEstadoReproduccionCamara(object sender, CambioEstadoReproduccionCamaraEventArgs e)
         {
-            this.LanzarEventoCambioReproduccionCamara(e.Codigo, e.ModoReproduccionContinua);
+            this.LanzarEventoCambioReproduccionCamaraSincrona(e.Codigo, e.ModoReproduccionContinua);
         }
         /// <summary>
         /// Evento de nuevo mensaje
         /// </summary>
         /// <param name="estadoConexion"></param>
-        private void MensajeCamara(OMessageEventArgs e)
+        private void MensajeCamara(object sender, OMessageEventArgs e)
         {
-            this.LanzarEventoMensajeCamara(e.Codigo, e.Mensaje);
+            this.LanzarEventoMensajeCamaraSincrona(e.Codigo, e.Mensaje);
         }
         #endregion
     }
@@ -505,29 +578,13 @@ namespace Orbita.VA.Hardware
     /// Clase para acceder a los objetos OCamaraBase remotos
     /// </summary>
     [Serializable]
-    internal class OCamaraCliente
+    internal class ORemotingCamaraCliente : ORemotingClient<ORemotingCamaraServidor>
     {
         #region Atributo(s)
-        /// <summary>
-        /// Clase remoting del servidor de cámaras
-        /// </summary>
-        private OServidorCamaras ServidorCamaras;
         /// <summary>
         /// Código identificador de la cámara remota
         /// </summary>
         private string CodigoRemoto;
-        /// <summary>
-        /// Dirección IP de la cámara
-        /// </summary>
-        private IPAddress IP;
-        /// <summary>
-        /// Puerto de conexión con la cámara
-        /// </summary>
-        private int Puerto;
-        /// <summary>
-        /// Canal del ciente
-        /// </summary>
-        private TcpChannel CanalCliente;
         #endregion
 
         #region Propiedad(es)
@@ -541,9 +598,9 @@ namespace Orbita.VA.Hardware
                 bool resultado = false;
                 try
                 {
-                    if (this.ServidorCamaras != null)
+                    if (this.Instancia != null)
                     {
-                        resultado = this.ServidorCamaras.GetExiste(this.CodigoRemoto);
+                        resultado = this.Instancia.GetExiste(this.CodigoRemoto);
                     }
                 }
                 catch { };
@@ -558,7 +615,7 @@ namespace Orbita.VA.Hardware
         {
             get 
             { 
-                return this.ServidorCamaras.GetTipoImagen(this.CodigoRemoto);
+                return this.Instancia.GetTipoImagen(this.CodigoRemoto);
             }
         }
         #endregion
@@ -567,75 +624,30 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OCamaraCliente(string codigoRemoto, IPAddress ip, int puerto)
+        public ORemotingCamaraCliente(string codigoRemoto, string nombreCanal, IPAddress ip, int puerto):
+            base(nombreCanal, ip, puerto)
         {
             // Cargamos valores de la base de datos
             this.CodigoRemoto = codigoRemoto;
-            this.IP = ip;
-            this.Puerto = puerto;
-        }
-        #endregion
-
-        #region Método(s) privado(s)
-        private bool CanalRegistrado()
-        {
-            bool resultado = false;
-            foreach (IChannel canal in ChannelServices.RegisteredChannels)
-            {
-                if (canal.ChannelName == "CamsCliente")
-                {
-                    resultado = true;
-                    break;
-                }
-            }
-            return resultado;
         }
         #endregion
 
         #region Método(s) público(s)
-        /// <summary>
-        /// Carga los valores de la cámara
-        /// </summary>
-        public bool Conectar()
-        {
-            if (!this.CanalRegistrado())
-            {
-                BinaryClientFormatterSinkProvider clientProvider2 = new BinaryClientFormatterSinkProvider();
-                BinaryServerFormatterSinkProvider serverProvider2 = new BinaryServerFormatterSinkProvider();
-                serverProvider2.TypeFilterLevel = TypeFilterLevel.Full;
-                IDictionary props2 = new Hashtable();
-                props2["port"] = 0;
-                props2["typeFilterLevel"] = TypeFilterLevel.Full;
-                props2["name"] = "CamsCliente";
-                this.CanalCliente = new TcpChannel(props2, clientProvider2, serverProvider2);
-                this.CanalCliente.StartListening(0);
-                ChannelServices.RegisterChannel(this.CanalCliente, false);  //register channel
-            }
-
-            string direccion = string.Format(@"tcp://{0}:{1}/{2}", this.IP, this.Puerto, "Cams"); // Dirección remota
-            this.ServidorCamaras = (OServidorCamaras)Activator.GetObject(typeof(OServidorCamaras), direccion);
-
-            return this.Existe;
-        }
-
-        /// <summary>
-        /// Finaliza la cámara
-        /// </summary>
-        public void Desconectar()
-        {
-            if (this.CanalRegistrado())
-            {
-                ChannelServices.UnregisterChannel(this.CanalCliente);
-            }
-        }
-
         /// <summary>
         /// Comienza una reproducción continua de la cámara
         /// </summary>
         /// <returns></returns>
         public bool Start()
         {
-            return this.ServidorCamaras.Start(this.CodigoRemoto);
+            try
+            {
+                return this.Instancia.Start(this.CodigoRemoto);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return false;
         }
 
         /// <summary>
@@ -644,7 +656,15 @@ namespace Orbita.VA.Hardware
         /// <returns></returns>
         public bool Stop()
         {
-            return this.ServidorCamaras.Stop(this.CodigoRemoto);
+            try
+            {
+                return this.Instancia.Stop(this.CodigoRemoto);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return false;
         }
 
         /// <summary>
@@ -653,7 +673,15 @@ namespace Orbita.VA.Hardware
         /// <returns></returns>
         public bool Snap()
         {
-            return this.ServidorCamaras.Snap(this.CodigoRemoto);
+            try
+            {
+                return this.Instancia.Snap(this.CodigoRemoto);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return false;
         }
 
         /// <summary>
@@ -663,7 +691,16 @@ namespace Orbita.VA.Hardware
         /// <returns></returns>
         public bool StartREC(string fichero)
         {
-            return this.ServidorCamaras.StartREC(this.CodigoRemoto, fichero);
+            bool resultado = false;
+            try
+            {
+                resultado = this.Instancia.StartREC(this.CodigoRemoto, fichero);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return resultado;
         }
 
         /// <summary>
@@ -672,7 +709,16 @@ namespace Orbita.VA.Hardware
         /// <returns></returns>
         public bool StopREC()
         {
-            return this.ServidorCamaras.StopREC(this.CodigoRemoto);
+            bool resultado = false;
+            try
+            {
+                resultado = this.Instancia.StopREC(this.CodigoRemoto);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return resultado;
         }
 
         /// <summary>
@@ -683,7 +729,16 @@ namespace Orbita.VA.Hardware
         /// <returns>Verdadero si la acción se ha realizado con éxito</returns>
         public bool SetAjuste(string codAjuste, object valor)
         {
-            return this.ServidorCamaras.SetAjuste(this.CodigoRemoto, codAjuste, valor);
+            bool resultado = false;
+            try
+            {
+                resultado = this.Instancia.SetAjuste(this.CodigoRemoto, codAjuste, valor);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return resultado;
         }
 
         /// <summary>
@@ -694,7 +749,35 @@ namespace Orbita.VA.Hardware
         /// <returns>Verdadero si la acción se ha realizado con éxito</returns>
         public bool GetAjuste(string codAjuste, out object valor)
         {
-            return this.ServidorCamaras.GetAjuste(this.CodigoRemoto, codAjuste, out valor);
+            bool resultado = false;
+            valor = null;
+            try
+            {
+                resultado = this.Instancia.GetAjuste(this.CodigoRemoto, codAjuste, out valor);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return resultado;
+        }
+
+        /// <summary>
+        /// Consulta si el PTZ está habilitado
+        /// </summary>
+        /// <returns>Verdadero si el PTZ está habilitado</returns>
+        public bool PTZHabilitado()
+        {
+            bool resultado = false;
+            try
+            {
+                resultado = this.Instancia.PTZHabilitado(this.CodigoRemoto);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return resultado;
         }
 
         /// <summary>
@@ -706,7 +789,16 @@ namespace Orbita.VA.Hardware
         /// <returns>Verdadero si se ha ejecutado correctamente</returns>
         public bool EjecutaMovimientoPTZ(OEnumTipoMovimientoPTZ tipo, OEnumModoMovimientoPTZ modo, double valor)
         {
-            return this.ServidorCamaras.EjecutaMovimientoPTZ(this.CodigoRemoto, tipo, modo, valor);
+            bool resultado = false;
+            try
+            {
+                resultado = this.Instancia.EjecutaMovimientoPTZ(this.CodigoRemoto, tipo, modo, valor);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return resultado;
         }
 
         /// <summary>
@@ -717,7 +809,16 @@ namespace Orbita.VA.Hardware
         /// <returns>Verdadero si se ha ejecutado correctamente</returns>
         public bool EjecutaMovimientoPTZ(OMovimientoPTZ movimiento, double valor)
         {
-            return this.ServidorCamaras.EjecutaMovimientoPTZ(this.CodigoRemoto, movimiento, valor);
+            bool resultado = false;
+            try
+            {
+                resultado = this.Instancia.EjecutaMovimientoPTZ(this.CodigoRemoto, movimiento, valor);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return resultado;
         }
 
         /// <summary>
@@ -727,7 +828,16 @@ namespace Orbita.VA.Hardware
         /// <returns>Verdadero si se ha ejecutado correctamente</returns>
         public bool EjecutaMovimientoPTZ(OComandoPTZ comando)
         {
-            return this.ServidorCamaras.EjecutaMovimientoPTZ(this.CodigoRemoto, comando);
+            bool resultado = false;
+            try
+            {
+                resultado = this.Instancia.EjecutaMovimientoPTZ(this.CodigoRemoto, comando);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return resultado;
         }
 
         /// <summary>
@@ -737,7 +847,16 @@ namespace Orbita.VA.Hardware
         /// <returns>Verdadero si se ha ejecutado correctamente</returns>
         public bool EjecutaMovimientoPTZ(OComandosPTZ valores)
         {
-            return this.ServidorCamaras.EjecutaMovimientoPTZ(this.CodigoRemoto, valores);
+            bool resultado = false;
+            try
+            {
+                resultado = this.Instancia.EjecutaMovimientoPTZ(this.CodigoRemoto, valores);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return resultado;
         }
 
         /// <summary>
@@ -746,7 +865,16 @@ namespace Orbita.VA.Hardware
         /// <returns></returns>
         public OPosicionesPTZ ConsultaPosicionPTZ()
         {
-            return this.ServidorCamaras.ConsultaPosicionPTZ(this.CodigoRemoto);
+            OPosicionesPTZ resultado = new OPosicionesPTZ();
+            try
+            {
+                resultado = this.Instancia.ConsultaPosicionPTZ(this.CodigoRemoto);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return resultado;
         }
 
         /// <summary>
@@ -755,7 +883,34 @@ namespace Orbita.VA.Hardware
         /// <returns>Listado de posiciones actuales</returns>
         public OPosicionPTZ ConsultaPosicionPTZ(OEnumTipoMovimientoPTZ movimiento)
         {
-            return this.ServidorCamaras.ConsultaPosicionPTZ(this.CodigoRemoto, movimiento);
+            OPosicionPTZ resultado = new OPosicionPTZ();
+            try
+            {
+                resultado = this.Instancia.ConsultaPosicionPTZ(this.CodigoRemoto, movimiento);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return resultado;
+        }
+
+        /// <summary>
+        /// Consulta última posición leida del PTZ
+        /// </summary>
+        /// <returns></returns>
+        public OPosicionesPTZ ConsultaUltimaPosicionPTZ()
+        {
+            OPosicionesPTZ resultado = new OPosicionesPTZ();
+            try
+            {
+                resultado = this.Instancia.ConsultaUltimaPosicionPTZ(this.CodigoRemoto);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return resultado;
         }
 
         /// <summary>
@@ -765,7 +920,49 @@ namespace Orbita.VA.Hardware
         /// <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
         public bool GuardarImagenADisco(string ruta)
         {
-            return this.ServidorCamaras.GuardarImagenADisco(this.CodigoRemoto, ruta);
+            bool resultado = false;
+            try
+            {
+                resultado = this.Instancia.GuardarImagenADisco(this.CodigoRemoto, ruta);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return resultado;
+        }
+
+        /// <summary>
+        /// Suscribe el cambio de fotografía de una determinada cámara
+        /// </summary>
+        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
+        public void CrearSuscripcionNuevaFotografiaMemoriaMapeada(EventoNuevaFotografiaCamaraMemoriaMapeada delegadoNuevaFotografiaCamaraMemoriaMapeada)
+        {
+            try
+            {
+                this.Instancia.CrearSuscripcionNuevaFotografiaMemoriaMapeada(this.CodigoRemoto, delegadoNuevaFotografiaCamaraMemoriaMapeada);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+        }
+        /// <summary>
+        /// Elimina la suscripción del cambio de fotografía de una determinada cámara
+        /// </summary>
+        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
+        public void EliminarSuscripcionNuevaFotografiaMemoriaMapeada(EventoNuevaFotografiaCamaraMemoriaMapeada delegadoNuevaFotografiaCamaraMemoriaMapeada)
+        {
+            try
+            {
+                this.Instancia.EliminarSuscripcionNuevaFotografiaMemoriaMapeada(this.CodigoRemoto, delegadoNuevaFotografiaCamaraMemoriaMapeada);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
         }
 
         /// <summary>
@@ -775,7 +972,14 @@ namespace Orbita.VA.Hardware
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
         public void CrearSuscripcionNuevaFotografiaRemota(EventoNuevaFotografiaCamaraRemota delegadoNuevaFotografiaCamaraRemota)
         {
-            this.ServidorCamaras.CrearSuscripcionNuevaFotografiaRemota(this.CodigoRemoto, delegadoNuevaFotografiaCamaraRemota);
+            try
+            {
+                this.Instancia.CrearSuscripcionNuevaFotografiaRemota(this.CodigoRemoto, delegadoNuevaFotografiaCamaraRemota);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
         }
         /// <summary>
         /// Elimina la suscripción del cambio de fotografía de una determinada cámara
@@ -784,7 +988,14 @@ namespace Orbita.VA.Hardware
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
         public void EliminarSuscripcionNuevaFotografiaRemota(EventoNuevaFotografiaCamaraRemota delegadoNuevaFotografiaCamaraRemota)
         {
-            this.ServidorCamaras.EliminarSuscripcionNuevaFotografiaRemotaRemota(this.CodigoRemoto, delegadoNuevaFotografiaCamaraRemota);
+            try
+            {
+                this.Instancia.EliminarSuscripcionNuevaFotografiaRemota(this.CodigoRemoto, delegadoNuevaFotografiaCamaraRemota);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
         }
 
         /// <summary>
@@ -794,7 +1005,14 @@ namespace Orbita.VA.Hardware
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
         public void CrearSuscripcionCambioEstadoConexion(EventoCambioEstadoConexionCamara delegadoCambioEstadoConexionCamara)
         {
-            this.ServidorCamaras.CrearSuscripcionCambioEstadoConexion(this.CodigoRemoto, delegadoCambioEstadoConexionCamara);
+            try
+            {
+                this.Instancia.CrearSuscripcionCambioEstadoConexion(this.CodigoRemoto, delegadoCambioEstadoConexionCamara);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
         }
         /// <summary>
         /// Elimina la suscripción del cambio de estado de una determinada cámara
@@ -803,7 +1021,14 @@ namespace Orbita.VA.Hardware
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
         public void EliminarSuscripcionCambioEstadoConexion(EventoCambioEstadoConexionCamara delegadoCambioEstadoConexionCamara)
         {
-            this.ServidorCamaras.EliminarSuscripcionCambioEstadoConexion(this.CodigoRemoto, delegadoCambioEstadoConexionCamara);
+            try
+            {
+                this.Instancia.EliminarSuscripcionCambioEstadoConexion(this.CodigoRemoto, delegadoCambioEstadoConexionCamara);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
         }
 
         /// <summary>
@@ -813,7 +1038,14 @@ namespace Orbita.VA.Hardware
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
         public void CrearSuscripcionCambioEstadoReproduccion(EventoCambioEstadoReproduccionCamara delegadoCambioEstadoReproduccionCamara)
         {
-            this.ServidorCamaras.CrearSuscripcionCambioEstadoReproduccion(this.CodigoRemoto, delegadoCambioEstadoReproduccionCamara);
+            try
+            {
+                this.Instancia.CrearSuscripcionCambioEstadoReproduccion(this.CodigoRemoto, delegadoCambioEstadoReproduccionCamara);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
         }
         /// <summary>
         /// Elimina la suscripción del cambio de estado de reproducción de una determinada cámara
@@ -822,7 +1054,14 @@ namespace Orbita.VA.Hardware
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
         public void EliminarSuscripcionCambioEstadoReproduccion(EventoCambioEstadoReproduccionCamara delegadoCambioEstadoReproduccionCamara)
         {
-            this.ServidorCamaras.EliminarSuscripcionCambioEstadoReproduccion(this.CodigoRemoto, delegadoCambioEstadoReproduccionCamara);
+            try
+            {
+                this.Instancia.EliminarSuscripcionCambioEstadoReproduccion(this.CodigoRemoto, delegadoCambioEstadoReproduccionCamara);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
         }
 
         /// <summary>
@@ -832,7 +1071,14 @@ namespace Orbita.VA.Hardware
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
         public void CrearSuscripcionMensajes(OMessageEvent messageDelegate)
         {
-            this.ServidorCamaras.CrearSuscripcionMensajes(this.CodigoRemoto, messageDelegate);
+            try
+            {
+                this.Instancia.CrearSuscripcionMensajes(this.CodigoRemoto, messageDelegate);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
         }
         /// <summary>
         /// Elimina la suscripción de mensajes de una determinada cámara
@@ -841,7 +1087,14 @@ namespace Orbita.VA.Hardware
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
         public void EliminarSuscripcionMensajes(OMessageEvent messageDelegate)
         {
-            this.ServidorCamaras.EliminarSuscripcionMensajes(this.CodigoRemoto, messageDelegate);
+            try
+            {
+                this.Instancia.EliminarSuscripcionMensajes(this.CodigoRemoto, messageDelegate);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
         }
         #endregion
     }
@@ -850,9 +1103,14 @@ namespace Orbita.VA.Hardware
     /// Clase utilizada para enlazar con los eventos del variablecore de forma remota
     /// </summary>
     [Serializable]
-    public class OCamaraBroadcastEventWraper : MarshalByRefObject
+    public class OCamaraBroadcastEventWraper : ORemotingObject
     {
         #region Evento(s)
+        /// <summary>
+        /// Evento de cambio de fotografía.
+        /// </summary>
+        public event EventoNuevaFotografiaCamaraMemoriaMapeada NuevaFotografiaCamaraMemoriaMapeada;
+
         /// <summary>
         /// Evento de cambio de fotografía.
         /// </summary>
@@ -871,23 +1129,51 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Nuevo Mensaje.
         /// </summary>
-        public event OMessageEvent MensajeCamara;
+        public event OMessageEvent MensajeCamaraRemoting;
         #endregion
 
         #region Método(s) público(s)
         /// <summary>
+        /// Inicializa el tiempo de vida para que el objeto no pueda morir
+        /// </summary>
+        /// <returns></returns>
+        public override object InitializeLifetimeService()
+        {
+            // Este objeto no puede morir.
+            return null;
+        }
+
+        /// <summary>
         /// Evento de cambio de fotografía.
         /// </summary>
         /// <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
-        [OneWay]
+        //[OneWay]
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public void OnNuevaFotografiaCamaraRemota(NuevaFotografiaCamaraRemotaEventArgs e)
+        public void OnNuevaFotografiaCamaraMemoriaMapeada(object sender, NuevaFotografiaCamaraMemoriaMapeadaEventArgs e)
+        {
+            try
+            {
+                if (NuevaFotografiaCamaraMemoriaMapeada != null)
+                {
+                    this.NuevaFotografiaCamaraMemoriaMapeada(null, e);
+                }
+            }
+            catch { }
+        }
+
+        /// <summary>
+        /// Evento de cambio de fotografía.
+        /// </summary>
+        /// <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
+        //[OneWay]
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public void OnNuevaFotografiaCamaraRemota(object sender, NuevaFotografiaCamaraRemotaEventArgs e)
         {
             try
             {
                 if (NuevaFotografiaCamaraRemota != null)
                 {
-                    this.NuevaFotografiaCamaraRemota(e);
+                    this.NuevaFotografiaCamaraRemota(null, e);
                 }
             }
             catch { }
@@ -897,15 +1183,15 @@ namespace Orbita.VA.Hardware
         /// Evento de cambio de conexión.
         /// </summary>
         /// <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
-        [OneWay]
+        //[OneWay]
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public void OnCambioEstadoConexionCamara(CambioEstadoConexionCamaraEventArgs e)
+        public void OnCambioEstadoConexionCamara(object sender, CambioEstadoConexionCamaraEventArgs e)
         {
             try
             {
                 if (CambioEstadoConexionCamara != null)
                 {
-                    this.CambioEstadoConexionCamara(e);
+                    this.CambioEstadoConexionCamara(null, e);
                 }
             }
             catch { }
@@ -915,15 +1201,15 @@ namespace Orbita.VA.Hardware
         /// Evento de cambio de Reproducción.
         /// </summary>
         /// <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
-        [OneWay]
+        //[OneWay]
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public void OnCambioEstadoReproduccionCamara(CambioEstadoReproduccionCamaraEventArgs e)
+        public void OnCambioEstadoReproduccionCamara(object sender, CambioEstadoReproduccionCamaraEventArgs e)
         {
             try
             {
                 if (CambioEstadoReproduccionCamara != null)
                 {
-                    this.CambioEstadoReproduccionCamara(e);
+                    this.CambioEstadoReproduccionCamara(null, e);
                 }
             }
             catch { }
@@ -933,15 +1219,15 @@ namespace Orbita.VA.Hardware
         /// Evento de nuevo mensaje
         /// </summary>
         /// <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
-        [OneWay]
+        //[OneWay]
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public void OnMensajeCamara(OMessageEventArgs e)
+        public void OnMensajeCamara(object sender, OMessageEventArgs e)
         {
             try
             {
-                if (MensajeCamara != null)
+                if (MensajeCamaraRemoting != null)
                 {
-                    this.MensajeCamara(e);
+                    this.MensajeCamaraRemoting(null, e);
                 }
             }
             catch { }

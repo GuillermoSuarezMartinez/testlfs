@@ -186,7 +186,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Fatal(this.Codigo, exception);
+                OLogsVAHardware.Camaras.Fatal(exception, this.Codigo);
                 throw new Exception("Imposible iniciar la cámara " + this.Codigo);
             }
         }
@@ -460,24 +460,15 @@ namespace Orbita.VA.Hardware
         /// </summary>
         private void OnDeviceRemovedEventCallback()
         {
-            if (!OThreadManager.EjecucionEnTrheadPrincipal())
-            {
-                /* If called from a different thread, we must use the Invoke method to marshal the call to the proper thread. */
-                OThreadManager.SincronizarConThreadPrincipal(new ImageProvider.DeviceRemovedEventHandler(OnDeviceRemovedEventCallback), null);
-                return;
-            }
+            // Se realiza la tarea asíncronamente
+            //if (!OThreadManager.EjecucionEnTrheadPrincipal())
+            //{
+            //    OThreadManager.SincronizarConThreadPrincipal(new ImageProvider.DeviceRemovedEventHandler(OnDeviceRemovedEventCallback), null);
+            //    return;
+            //}
 
             OLogsVAHardware.Camaras.Error(this.Codigo, "Problema de conexión con la cámara " + this.Codigo);
             this.EstadoConexion = EstadoConexion.ErrorConexion;
-
-            ///* Disable the buttons. */
-            //EnableButtons(false, false);
-            ///* Stops the grabbing of images. */
-            //Stop();
-            ///* Close the image provider. */
-            //CloseTheImageProvider();
-            ///* Since one device is gone, the list needs to be updated. */
-            //UpdateDeviceList();
         }
 
         /// <summary>
@@ -509,14 +500,12 @@ namespace Orbita.VA.Hardware
         /// </summary>
         private void OnImageReadyEventCallback()
         {
-            if (!OThreadManager.EjecucionEnTrheadPrincipal())
-            {
-                /* Suspend the grab thread for a while to avoid blocking the computer by using up all processor resources. */
-                //System.Threading.Thread.Sleep(20); /* This is only required for this sample. */
-                /* If called from a different thread, we must use the Invoke method to marshal the call to the proper thread. */
-                OThreadManager.SincronizarConThreadPrincipal(new ImageProvider.ImageReadyEventHandler(OnImageReadyEventCallback), null);
-                return;
-            }
+            // Se realiza la tarea asíncronamente
+            //if (!OThreadManager.EjecucionEnTrheadPrincipal())
+            //{
+            //    OThreadManager.SincronizarConThreadPrincipal(new ImageProvider.ImageReadyEventHandler(OnImageReadyEventCallback), null);
+            //    return;
+            //}
 
             try
             {
@@ -529,15 +518,15 @@ namespace Orbita.VA.Hardware
                     //if (image != null)
                     //{
                     //    /* Check if the image is compatible with the currently used bitmap. */
-                    //    if (BitmapFactory.IsCompatible(this.TempBitmap, image.Width, image.Height, image.Color))
+                    //    if (BitmapFactory.IsCompatible(this.TempBitmap, image.Width, image.Height, image.Profundidad))
                     //    {
                     //        /* Update the bitmap with the image data. */
-                    //        BitmapFactory.UpdateBitmap(this.TempBitmap, image.Buffer, image.Width, image.Height, image.Color);
+                    //        BitmapFactory.UpdateBitmap(this.TempBitmap, image.Buffer, image.Width, image.Height, image.Profundidad);
                     //    }
                     //    else /* A new bitmap is required. */
                     //    {
-                    //        BitmapFactory.CreateBitmap(out this.TempBitmap, image.Width, image.Height, image.Color);
-                    //        BitmapFactory.UpdateBitmap(this.TempBitmap, image.Buffer, image.Width, image.Height, image.Color);
+                    //        BitmapFactory.CreateBitmap(out this.TempBitmap, image.Width, image.Height, image.Profundidad);
+                    //        BitmapFactory.UpdateBitmap(this.TempBitmap, image.Buffer, image.Width, image.Height, image.Profundidad);
                     //    }
                     //    /* The processing of the image is done. Release the image buffer. */
                     //    this.ImageProvider.ReleaseImage();
@@ -567,20 +556,8 @@ namespace Orbita.VA.Hardware
                         throw new Exception(string.Format("La imagen recibida de la cámara {0} está corrupta.", this.Codigo));
                     }
 
-                    //// Actualizo la conectividad
-                    //this.Conectividad.EstadoConexion = EstadoConexion.Conectado;
-
-                    //// Actualizo el Frame Rate
-                    //this.MedidorVelocidadAdquisicion.NuevaCaptura();
-
                     // Lanamos el evento de adquisición
                     this.AdquisicionCompletada(this.ImagenActual);
-
-                    //// Se asigna el valor de la variable asociada
-                    //if (this.LanzarEventoAlSnap && (ImagenActual.EsValida()))
-                    //{
-                    //    this.EstablecerVariableImagenAsociada(ImagenActual);
-                    //}
                 }
             }
             catch (Exception exception)

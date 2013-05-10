@@ -209,9 +209,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\BaseDatos\AppBD.cs" />
-    <Compile Include="Clases\OpenCV\OHerramientasOpenCV.cs" />
+    <Compile Include="Clases\NeuralLabs\ONerualLabsUtils.cs" />
+    <Compile Include="Clases\OpenCV\Herramientas\OrbitaCaliper\OEdge.cs" />
+    <Compile Include="Clases\OpenCV\Herramientas\OrbitaCaliper\OMetodoPuntuacion.cs" />
+    <Compile Include="Clases\OpenCV\Herramientas\OrbitaCaliper\OrbitaCaliper.cs" />
+    <Compile Include="Clases\OpenCV\Herramientas\OrbitaCaliper\OScoringFunction.cs" />
+    <Compile Include="Clases\OpenCV\OFiltradoOpenCV.cs" />
     <Compile Include="Clases\Logs\OExtensionLogs.cs" />
     <Compile Include="Clases\FuncionVision\OFuncionVision.cs" />
+    <Compile Include="Clases\OpenCV\OHerramientasOpenCV.cs" />
+    <Compile Include="Clases\OpenCV\OSegmentacionOpenCV.cs" />
     <Compile Include="Clases\VisionPro\OFuncionVisionPro.cs" />
     <Compile Include="Clases\NeuralLabs\OFuncionVisionLPR.cs" />
     <Compile Include="Clases\NeuralLabs\OFuncionVisionCCR.cs" />

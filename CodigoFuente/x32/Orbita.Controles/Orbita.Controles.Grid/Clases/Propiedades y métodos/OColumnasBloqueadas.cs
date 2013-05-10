@@ -47,7 +47,9 @@ namespace Orbita.Controles.Grid
                 // Columnas no accesibles mediante el ratón.
                 banda.Columns[columna].CellActivation = Infragistics.Win.UltraWinGrid.Activation.NoEdit;
                 // Estilos: colores.
+                // Apariencia de celdas.
                 banda.Columns[columna].CellAppearance.BackColor = this.Apariencia.ColorFondo;
+                // Apariencia de celdas de filtros. Aplicar estilo transparente adecuado cuando se aplica .isl.
                 banda.Columns[columna].FilterCellAppearance.BackColor = System.Drawing.Color.Transparent;
             }
         }

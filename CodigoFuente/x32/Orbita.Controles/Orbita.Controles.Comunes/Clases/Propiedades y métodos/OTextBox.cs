@@ -23,7 +23,7 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OTextBox.
         /// </summary>
-        /// <param name="control"></param>
+        /// <param name="control">Control Orbita asociado a la clase actual.</param>
         public OTextBox(object control)
             : base()
         {
@@ -32,6 +32,9 @@ namespace Orbita.Controles.Comunes
         #endregion
 
         #region Propiedades
+        /// <summary>
+        /// Control Orbita asociado a la clase actual.
+        /// </summary>
         internal OrbitaTextBox Control
         {
             get { return this.control; }
@@ -46,18 +49,26 @@ namespace Orbita.Controles.Comunes
 
         #region Métodos protegidos
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
-        protected bool ShouldSerializeAutoScrollBar()
-        {
-            return (this.AutoScrollBar != Configuracion.DefectoAutoScrollBar);
-        }
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetAutoScrollBar()
         {
             this.AutoScrollBar = Configuracion.DefectoAutoScrollBar;
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+        protected bool ShouldSerializeAutoScrollBar()
+        {
+            return (this.AutoScrollBar != Configuracion.DefectoAutoScrollBar);
+        }
         #endregion
 
         #region Métodos públicos
+        /// <summary>
+        /// Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+        /// </summary>
+        /// <returns>El nombre de tipo completo del objeto.</returns>
         public override string ToString()
         {
             return null;

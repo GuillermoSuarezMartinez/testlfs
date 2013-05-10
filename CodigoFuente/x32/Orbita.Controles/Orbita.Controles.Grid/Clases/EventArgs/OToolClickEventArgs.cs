@@ -15,7 +15,7 @@ namespace Orbita.Controles.Grid
     {
         #region Atributos privados
         /// <summary>
-        /// Nombre de la propiedad.
+        /// Fila seleccionada.
         /// </summary>
         Infragistics.Win.UltraWinGrid.UltraGridRow fila;
         #endregion
@@ -30,7 +30,7 @@ namespace Orbita.Controles.Grid
 
         #region Propiedades
         /// <summary>
-        /// Nombre de la propiedad.
+        /// Fila seleccionada.
         /// </summary>
         public Infragistics.Win.UltraWinGrid.UltraGridRow Fila
         {

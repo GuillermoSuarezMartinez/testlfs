@@ -94,7 +94,7 @@ namespace Orbita.Controles.VA
             }
             catch (Exception exception)
             {
-                OLogsControlesVA.ControlesVA.Fatal("Eliminación", exception);
+                OLogsControlesVA.ControlesVA.Fatal(exception, "Eliminación");
             }
         }
         /// <summary>

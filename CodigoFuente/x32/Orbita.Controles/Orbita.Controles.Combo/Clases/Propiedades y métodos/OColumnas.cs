@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 using Orbita.Controles.Grid;
 namespace Orbita.Controles.Combo
 {
@@ -40,7 +39,7 @@ namespace Orbita.Controles.Combo
         #endregion
 
         #region Propiedades
-        [Browsable(false)]
+        [System.ComponentModel.Browsable(false)]
         public System.Collections.ArrayList Visibles
         {
             get { return this.visibles; }
@@ -161,26 +160,46 @@ namespace Orbita.Controles.Combo
         {
             this.TipoSeleccion = Configuracion.DefectoTipoSeleccionColumna;
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializePermitirOrdenar()
         {
             return (this.PermitirOrdenar != Configuracion.DefectoPermitirOrdenar);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeEstilo()
         {
             return (this.Estilo != Configuracion.DefectoAutoAjustarEstilo);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeTipoSeleccion()
         {
             return (this.TipoSeleccion != Configuracion.DefectoTipoSeleccionColumna);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeVisibles()
         {
             return (this.Visibles != null);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeMostrarFiltro()
         {
@@ -190,9 +209,9 @@ namespace Orbita.Controles.Combo
 
         #region Métodos públicos
         /// <summary>
-        /// Determina el número de propiedades modificadas.
+        /// Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>El nombre de tipo completo del objeto.</returns>
         public override string ToString()
         {
             return null;

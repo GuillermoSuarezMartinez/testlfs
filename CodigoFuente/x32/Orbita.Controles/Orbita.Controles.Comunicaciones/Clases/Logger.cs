@@ -1,6 +1,5 @@
 ﻿using System;
 using Orbita.Trazabilidad;
-
 namespace Orbita.Controles.Comunicaciones
 {
     /// <summary>
@@ -8,7 +7,7 @@ namespace Orbita.Controles.Comunicaciones
     /// </summary>
     public class Logger : MarshalByRefObject, IRemotingLogger
     {
-        #region Método(s) Público(s)
+        #region Métodos públicos
         /// <summary>
         /// Entrada de logs.
         /// </summary>

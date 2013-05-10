@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Orbita Ingenieria")]
 [assembly: AssemblyProduct("Orbita.BBDD")]
-[assembly: AssemblyCopyright("Copyright © Orbita Ingenieria 2011")]
+[assembly: AssemblyCopyright("Copyright © Orbita Ingenieria 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", Scope = "namespace", Target = "Orbita.BBDD", Justification = "El origen del nombre abreviado.")]
@@ -26,6 +26,6 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("13.80.5.1")]
-[assembly: AssemblyFileVersion("13.80.5.1")]
+[assembly: AssemblyVersion("13.120.3.1")]
+[assembly: AssemblyFileVersion("13.120.3.1")]
 [assembly: ComVisibleAttribute(false)]

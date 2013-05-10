@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")> 
 <Assembly: AssemblyCompany("Orbita Ingenieria")> 
 <Assembly: AssemblyProduct("Orbita.Winsock")> 
-<Assembly: AssemblyCopyright("Copyright © Orbita Ingenieria 2011")> 
+<Assembly: AssemblyCopyright("Copyright © Orbita Ingenieria 2013")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)> 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("13.70.5.1")> 
-<Assembly: AssemblyFileVersion("13.70.5.1")> 
+<Assembly: AssemblyVersion("13.120.3.1")> 
+<Assembly: AssemblyFileVersion("13.120.3.1")> 

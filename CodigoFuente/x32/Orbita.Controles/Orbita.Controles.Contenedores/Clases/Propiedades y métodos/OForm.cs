@@ -16,6 +16,10 @@ namespace Orbita.Controles.Contenedores
     {
         #region Atributos
         OrbitaForm control;
+        /// <summary>
+        /// Número máximo de formularios abiertos.
+        /// </summary>
+        int numeroMaximoFormulariosAbiertos;
         #endregion
 
         #region Constructor
@@ -35,20 +39,42 @@ namespace Orbita.Controles.Contenedores
         {
             get { return this.control; }
         }
+        [System.ComponentModel.Description("Número máximo de formularios abiertos del tipo actual.")]
+        public int NumeroMaximoFormulariosAbiertos
+        {
+            get { return this.numeroMaximoFormulariosAbiertos; }
+            set { this.numeroMaximoFormulariosAbiertos = value; }
+        }
         #endregion
 
         #region Métodos públicos
+        /// <summary>
+        /// Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+        /// </summary>
+        /// <returns>El nombre de tipo completo del objeto.</returns>
         public override string ToString()
         {
             return null;
         }
-        public void MostrarFormulario(OrbitaForm form)
+        #endregion
+
+        #region Métodos protegidos
+        /// <summary>
+        /// El método ResetnombreDePropiedad establece una propiedad en su valor predeterminado.
+        /// </summary>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+        protected void ResetNumeroMaximoFormulariosAbiertos()
         {
-            if (form == null)
-            {
-                return;
-            }
-            form.Show();
+            this.NumeroMaximoFormulariosAbiertos = Configuracion.DefectoNumeroMaximoFormulariosAbiertos;
+        }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+        protected bool ShouldSerializeNumeroMaximoFormulariosAbiertos()
+        {
+            return (this.NumeroMaximoFormulariosAbiertos != Configuracion.DefectoNumeroMaximoFormulariosAbiertos);
         }
         #endregion
     }

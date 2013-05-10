@@ -32,8 +32,8 @@ namespace Orbita.Controles.Contenedores
             : base()
         {
             InitializeComponent();
-            InitializeAttributes();
             InitializeResourceStrings();
+            InitializeAttributes();
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.
@@ -76,7 +76,7 @@ namespace Orbita.Controles.Contenedores
 
         #region Métodos privados estáticos
         /// <summary>
-        /// Inicializar recursos.
+        /// Inicializar recursos alfabéticos.
         /// </summary>
         static void InitializeResourceStrings()
         {

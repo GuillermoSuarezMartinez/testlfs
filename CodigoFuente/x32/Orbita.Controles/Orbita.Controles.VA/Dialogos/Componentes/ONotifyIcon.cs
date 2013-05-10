@@ -56,7 +56,7 @@ namespace Orbita.Controles.VA
         {
             if (ODebug.IsWinForms() && (NotifyIcon != null))
             {
-                NotifyIcon.ShowBalloonTip(TimeOut, Application.ProductName, mensaje, ToolTipIcon.Info);
+                NotifyIcon.ShowBalloonTip(TimeOut, App.FormularioPrincipal.Text, mensaje, ToolTipIcon.Info);
             }
         }
         #endregion

@@ -9,6 +9,16 @@
             Control para la monitorización en el tiempo de variables de tipo bool
             </summary>
         </member>
+        <member name="F:Orbita.Controles.VA.OrbitaGraficaVariableBase.TiempoPermanenciaMS">
+            <summary>
+            Tiempo de permanencia de las información visualizada
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaGraficaVariableBase.CadenciaMonitorizacionMs">
+            <summary>
+            Intervalo entre muestreo
+            </summary>
+        </member>
         <member name="F:Orbita.Controles.VA.OrbitaGraficaVariableBase.Codigo">
             <summary>
             Código de la variable
@@ -1288,6 +1298,11 @@
             <param name="y">Posición Y actual</param>
             <returns></returns>
         </member>
+        <member name="M:Orbita.Controles.VA.VisorImagenes.Refresh">
+            <summary>
+            Refresca la visualización de la imagen actual
+            </summary>
+        </member>
         <member name="M:Orbita.Controles.VA.VisorImagenes.CreateCheckerBoxTile(System.Int32,System.Drawing.Color,System.Drawing.Color)">
             <summary>
             Creates a bitmap image containing a 2x2 grid using the specified cell size and colors.
@@ -2211,16 +2226,6 @@
             Codigo identificativo de la camara
             </summary>
         </member>
-        <member name="F:Orbita.Controles.VA.FrmDetalleVisor.XmlFile">
-            <summary>
-            Fichero XML de carga de datos
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.VA.FrmDetalleVisor.OrigenDatos">
-            <summary>
-            Origen de los datos
-            </summary>
-        </member>
         <member name="M:Orbita.Controles.VA.FrmDetalleVisor.#ctor">
             <summary>
             Constructor de la clase
@@ -2228,12 +2233,6 @@
             <param name="codigoCamara"></param>
         </member>
         <member name="M:Orbita.Controles.VA.FrmDetalleVisor.#ctor(System.String)">
-            <summary>
-            Constructor de la clase
-            </summary>
-            <param name="codigoCamara"></param>
-        </member>
-        <member name="M:Orbita.Controles.VA.FrmDetalleVisor.#ctor(System.String,System.String,Orbita.VA.Comun.OrigenDatos)">
             <summary>
             Constructor de la clase
             </summary>
@@ -2253,7 +2252,7 @@
         </member>
         <member name="M:Orbita.Controles.VA.FrmDetalleVisor.timerCierre_Tick(System.Object,System.EventArgs)">
             <summary>
-            Cerramos la ventana auromáticamente despues de 10 segundos
+            Cerramos la ventana automáticamente despues de 10 segundos
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
@@ -2372,6 +2371,11 @@
         <member name="T:Orbita.Controles.VA.OrbitaVisorMaquinaEstados">
             <summary>
             Control para la visualización de una máquina de estados
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaVisorMaquinaEstados.CadenciaMonitorizacionMs">
+            <summary>
+            Intervalo entre muestreo
             </summary>
         </member>
         <member name="F:Orbita.Controles.VA.OrbitaVisorMaquinaEstados.components">
@@ -3797,7 +3801,7 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.VA.OrbitaVisorBase.CambioModoReproduccionCamara(Orbita.VA.Hardware.CambioEstadoReproduccionCamaraEventArgs)">
+        <member name="M:Orbita.Controles.VA.OrbitaVisorBase.CambioModoReproduccionCamara(System.Object,Orbita.VA.Hardware.CambioEstadoReproduccionCamaraEventArgs)">
             <summary>
             Método que indica que la cámara ha cambiado su modo de reproducción
             </summary>
@@ -3810,18 +3814,18 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.VA.OrbitaVisorBase.OnNuevaFotografiaCamara(Orbita.VA.Hardware.NuevaFotografiaCamaraEventArgs)">
+        <member name="M:Orbita.Controles.VA.OrbitaVisorBase.OnNuevaFotografiaCamara(System.Object,Orbita.VA.Hardware.NuevaFotografiaCamaraEventArgs)">
             <summary>
             Delegado de nueva fotografía
             </summary>
             <param name="OEstadoConexion"></param>
         </member>
-        <member name="M:Orbita.Controles.VA.OrbitaVisorBase.OnMensajeCamara(Orbita.VA.Comun.OMessageEventArgs)">
+        <member name="M:Orbita.Controles.VA.OrbitaVisorBase.OnMensajeCamara(System.Object,Orbita.VA.Comun.OMessageEventArgs)">
             <summary>
             Muestra un mensaje de información sobre el dispositivo origen
             </summary>
         </member>
-        <member name="M:Orbita.Controles.VA.OrbitaVisorBase.OnCambioEstadoConexionCamara(Orbita.VA.Hardware.CambioEstadoConexionCamaraEventArgs)">
+        <member name="M:Orbita.Controles.VA.OrbitaVisorBase.OnCambioEstadoConexionCamara(System.Object,Orbita.VA.Hardware.CambioEstadoConexionCamaraEventArgs)">
             <summary>
             Delegado de cambio de estaco de conexión de la cámara
             </summary>
@@ -4073,7 +4077,7 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.VA.OrbitaVisorVPro.CambioModoReproduccionCamara(Orbita.VA.Hardware.CambioEstadoReproduccionCamaraEventArgs)">
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVPro.CambioModoReproduccionCamara(System.Object,Orbita.VA.Hardware.CambioEstadoReproduccionCamaraEventArgs)">
             <summary>
             Método que indica que la cámara ha cambiado su modo de reproducción
             </summary>
@@ -4142,7 +4146,7 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.VA.OrbitaVisorVPro.OnCambioEstadoConexionCamara(Orbita.VA.Hardware.CambioEstadoConexionCamaraEventArgs)">
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVPro.OnCambioEstadoConexionCamara(System.Object,Orbita.VA.Hardware.CambioEstadoConexionCamaraEventArgs)">
             <summary>
             Delegado de cambio de estaco de conexión de la cámara
             </summary>
@@ -4216,6 +4220,11 @@
         <member name="T:Orbita.Controles.VA.FrmMonitorizacionIO">
             <summary>
             Formulario de monitorización de un módulo de Entradas / Salidas
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmMonitorizacionIO.CadenciaMonitorizacionMs">
+            <summary>
+            Intervalo entre muestreo
             </summary>
         </member>
         <member name="F:Orbita.Controles.VA.FrmMonitorizacionIO.components">
@@ -4319,6 +4328,11 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="T:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV">
+            <summary>
+            Formulario de test de corrección de distorsión
+            </summary>
+        </member>
         <member name="F:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.components">
             <summary>
             Required designer variable.
@@ -4335,6 +4349,25 @@
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.BtnProcesar_Click(System.Object,System.EventArgs)">
+            <summary>
+            Evento de procesado de la imagen
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.VisorBitmapOriginal_MouseClick(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Evento de clic con el ratón en la imagen original
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
         </member>
         <member name="T:Orbita.Controles.VA.MensajeError">
             <summary>
@@ -4392,7 +4425,7 @@
             </summary>
             <param name="Excepcion">Excepción a mostrar</param>
         </member>
-        <member name="M:Orbita.Controles.VA.MensajeError.MostrarInfo(System.Boolean,System.String)">
+        <member name="M:Orbita.Controles.VA.MensajeError.MostrarInfo(System.Boolean,System.String,System.Int32)">
             <summary>
             Muestra el mensaje de error
             </summary>
@@ -4404,7 +4437,7 @@
             </summary>
             <param name="Excepcion">Excepción a mostrar</param>
         </member>
-        <member name="M:Orbita.Controles.VA.MensajeError.MostrarInfoInterna(System.Boolean,System.String)">
+        <member name="M:Orbita.Controles.VA.MensajeError.MostrarInfoInterna(System.Boolean,System.String,System.Int32)">
             <summary>
             Muestra el mensaje de error
             </summary>
@@ -4619,6 +4652,11 @@
             Formulario para la monitorización de Tiempos de proceso
             </summary>
         </member>
+        <member name="F:Orbita.Controles.VA.FrmMonitorizacionCronometros.CadenciaMonitorizacionMs">
+            <summary>
+            Intervalo entre muestreo
+            </summary>
+        </member>
         <member name="F:Orbita.Controles.VA.FrmMonitorizacionCronometros.components">
             <summary>
             Required designer variable.
@@ -4743,11 +4781,6 @@
             <summary> 
             Required method for Designer support - do not modify 
             the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.VA.OrbitaVisorBitmap.PrimeraCarga">
-            <summary>
-            Indica si se trata de la primera vez que cargamos una imagen en el control
             </summary>
         </member>
         <member name="F:Orbita.Controles.VA.OrbitaVisorBitmap.CurrentScrollPosition">
@@ -4982,7 +5015,7 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.VA.OrbitaVisorBitmap.CambioModoReproduccionCamara(Orbita.VA.Hardware.CambioEstadoReproduccionCamaraEventArgs)">
+        <member name="M:Orbita.Controles.VA.OrbitaVisorBitmap.CambioModoReproduccionCamara(System.Object,Orbita.VA.Hardware.CambioEstadoReproduccionCamaraEventArgs)">
             <summary>
             Método que indica que la cámara ha cambiado su modo de reproducción
             </summary>
@@ -5157,7 +5190,7 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.VA.OrbitaVisorBitmap.OnCambioEstadoConexionCamara(Orbita.VA.Hardware.CambioEstadoConexionCamaraEventArgs)">
+        <member name="M:Orbita.Controles.VA.OrbitaVisorBitmap.OnCambioEstadoConexionCamara(System.Object,Orbita.VA.Hardware.CambioEstadoConexionCamaraEventArgs)">
             <summary>
             Delegado de cambio de estaco de conexión de la cámara
             </summary>
@@ -5480,6 +5513,21 @@
             Indica que los visores tienen control sobre la adquisición de imágenes de la cámara
             </summary>
         </member>
+        <member name="T:Orbita.Controles.VA.OLogsControlesVA">
+            <summary>
+            Define el conjunto de módulos del sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OLogsControlesVA.ControlesVA">
+            <summary>
+            Módulo de las funciones de visión
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OLogsControlesVA.Escritorios">
+            <summary>
+            Módulo de los escritorios MDI
+            </summary>
+        </member>
         <member name="T:Orbita.Controles.VA.FrmDetalleCamara">
             <summary>
             Ventana de detalle de la cámara Axis
@@ -5513,9 +5561,21 @@
             Cargamos la información de la cámara
             </summary>
         </member>
+        <member name="M:Orbita.Controles.VA.FrmDetalleCamara.TimerRefresco_Tick(System.Object,System.EventArgs)">
+            <summary>
+            Cerramos la ventana automáticamente despues de 10 segundos
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="T:Orbita.Controles.VA.FrmMonitorizacionVariables">
             <summary>
             Formulario para la monitorización de variables
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmMonitorizacionVariables.CadenciaMonitorizacionMs">
+            <summary>
+            Intervalo entre muestreo
             </summary>
         </member>
         <member name="F:Orbita.Controles.VA.FrmMonitorizacionVariables.MomentoUltimoRefresco">

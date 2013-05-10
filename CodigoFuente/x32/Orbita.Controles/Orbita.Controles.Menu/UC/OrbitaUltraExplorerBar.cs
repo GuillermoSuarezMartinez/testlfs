@@ -9,16 +9,20 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Menu
 {
+    /// <summary>
+    ///  Proporciona una navegación avanzada en la interfaz de la aplicación.
+    /// </summary>
     public partial class OrbitaUltraExplorerBar : Infragistics.Win.UltraWinExplorerBar.UltraExplorerBar
     {
+        #region Nueva definición
         public class ControlNuevaDefinicion : OUltraExplorerBar
         {
             public ControlNuevaDefinicion(OrbitaUltraExplorerBar sender)
                 : base(sender) { }
-        };
+        }
+        #endregion
 
         #region Atributos
         ControlNuevaDefinicion definicion;
@@ -38,7 +42,7 @@ namespace Orbita.Controles.Menu
 
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }

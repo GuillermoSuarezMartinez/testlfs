@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
 using Orbita.Controles.Grid;
 namespace Orbita.Controles.Combo
 {
@@ -18,8 +17,10 @@ namespace Orbita.Controles.Combo
         #region Nueva definición
         public class ControlNuevaDefinicion : OUltraCombo
         {
+            #region Constructor
             public ControlNuevaDefinicion(OrbitaUltraCombo sender)
                 : base(sender as object) { }
+            #endregion
         }
         #endregion
 
@@ -253,7 +254,7 @@ namespace Orbita.Controles.Combo
 
         #region Métodos privados estáticos
         /// <summary>
-        /// SetResourceStrings.
+        /// Inicializar recursos alfabéticos.
         /// </summary>
         static void InitializeResourceStrings()
         {
@@ -338,8 +339,9 @@ namespace Orbita.Controles.Combo
             {
                 e.CustomRowFiltersDialog.TopMost = true;
             }
-            catch (Exception)
+            catch
             {
+                throw;
             }
         }
         void OrbitaUltraCombo_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -360,15 +362,11 @@ namespace Orbita.Controles.Combo
                     }
                 }
             }
-            catch (Exception)
+            catch
             {
+                throw;
             }
         }
-        /// <summary>
-        /// AfterSortChange.
-        /// </summary>
-        /// <param name="sender">Objeto que lanza el evento.</param>
-        /// <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
         void OrbitaUltraCombo_AfterSortChange(object sender, Infragistics.Win.UltraWinGrid.BandEventArgs e)
         {
             //try
@@ -395,11 +393,6 @@ namespace Orbita.Controles.Combo
             //    System.Windows.Forms.MessageBox.Show(string.Format(System.Globalization.CultureInfo.CurrentCulture, OEstilo.FormatExcepcionGeneral(), ex.TargetSite, ex.ToString(), ex.StackTrace), stringManager.GetString("ExcepcionOrbitaCombo", System.Globalization.CultureInfo.CurrentUICulture), System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Exclamation, System.Windows.Forms.MessageBoxDefaultButton.Button1, 0);
             //}
         }
-        /// <summary>
-        /// Validating.
-        /// </summary>
-        /// <param name="sender">Objeto que lanza el evento.</param>
-        /// <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
         void OrbitaUltraCombo_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //// Autor: Rubén Cuenca (Órbita 1).

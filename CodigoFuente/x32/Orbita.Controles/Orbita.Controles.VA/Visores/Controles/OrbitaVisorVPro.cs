@@ -504,7 +504,7 @@ namespace Orbita.Controles.VA
         /// Método que indica que la cámara ha cambiado su modo de reproducción
         /// </summary>
         /// <param name="modoReproduccionContinua"></param>
-        protected override void CambioModoReproduccionCamara(CambioEstadoReproduccionCamaraEventArgs e)
+        protected override void CambioModoReproduccionCamara(object sender, CambioEstadoReproduccionCamaraEventArgs e)
         {
             this.btnPlayStop.Image = e.ModoReproduccionContinua ? Properties.Resources.ImgStop16 : Properties.Resources.ImgPlay16;
         }
@@ -678,9 +678,9 @@ namespace Orbita.Controles.VA
         /// Delegado de cambio de estaco de conexión de la cámara
         /// </summary>
         /// <param name="estadoConexion"></param>
-        public override void OnCambioEstadoConexionCamara(CambioEstadoConexionCamaraEventArgs e)
+        public override void OnCambioEstadoConexionCamara(object sender, CambioEstadoConexionCamaraEventArgs e)
         {
-            base.OnCambioEstadoConexionCamara(e);
+            base.OnCambioEstadoConexionCamara(sender, e);
 
             try
             {

@@ -36,7 +36,7 @@ namespace Orbita.Controles.Contenedores
         {
             get { return this.control; }
         }
-        [System.ComponentModel.Description("")]
+        [System.ComponentModel.Description("Número máximo de formularios abiertos en el formulario contenedor.")]
         public int NumeroMaximoFormulariosAbiertos
         {
             get { return this.numeroMaximoFormulariosAbiertos; }
@@ -45,18 +45,35 @@ namespace Orbita.Controles.Contenedores
         #endregion
 
         #region Métodos públicos
+        /// <summary>
+        /// Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+        /// </summary>
+        /// <returns>El nombre de tipo completo del objeto.</returns>
         public override string ToString()
         {
             return null;
         }
-        public void MostrarFormulario(OrbitaForm form)
+        public bool MostrarFormulario(OrbitaForm form)
         {
+            if (form == null)
+            {
+                return false;
+            }
             if (this.control.MdiChildren.Length < this.numeroMaximoFormulariosAbiertos)
             {
-                if (form == null)
+                if (form.OI.NumeroMaximoFormulariosAbiertos == 0)
                 {
-                    return;
+                    foreach (OrbitaForm hijo in this.control.MdiChildren)
+                    {
+                        if (hijo.GetType() == form.GetType())
+                        {
+                            hijo.Activate();
+                            hijo.BringToFront();
+                            return true;
+                        }
+                    }
                 }
+                form.OI.NumeroMaximoFormulariosAbiertos--;
                 form.MdiParent = this.control;
                 form.Show();
             }
@@ -64,6 +81,7 @@ namespace Orbita.Controles.Contenedores
             {
                 throw new System.Exception("Se ha alcanzado el número máximo de formularios abiertos.");
             }
+            return false;
         }
         #endregion
 
@@ -71,12 +89,16 @@ namespace Orbita.Controles.Contenedores
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetNumeroMaximoFormulariosAbiertos()
         {
-            this.NumeroMaximoFormulariosAbiertos = Configuracion.DefectoNumeroMaximoFormulariosAbiertos;
+            this.NumeroMaximoFormulariosAbiertos = Configuracion.DefectoNumeroMaximoFormulariosAbiertosEnMdi;
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeNumeroMaximoFormulariosAbiertos()
         {
-            return (this.NumeroMaximoFormulariosAbiertos != Configuracion.DefectoNumeroMaximoFormulariosAbiertos);
+            return (this.NumeroMaximoFormulariosAbiertos != Configuracion.DefectoNumeroMaximoFormulariosAbiertosEnMdi);
         }
         #endregion
     }

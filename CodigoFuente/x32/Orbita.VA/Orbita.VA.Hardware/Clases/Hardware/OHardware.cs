@@ -21,6 +21,20 @@ namespace Orbita.VA.Hardware
     public static class OHardwareManager
     {
         #region Atributo(s)
+        /// <summary>
+        /// Indica que se ha iniciado el manejador en modo servidor / cliente
+        /// </summary>
+        public static bool CargarIO = true;
+
+        /// <summary>
+        /// Indica que se ha iniciado el manejador en modo servidor / cliente
+        /// </summary>
+        public static bool CargarCams = true;
+        
+        /// <summary>
+        /// Indica que se ha iniciado el manejador en modo servidor / cliente
+        /// </summary>
+        public static bool Servidor = false;
 
         /// <summary>
         /// Lista de las cámaras del sistema
@@ -37,20 +51,30 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Construye los campos de la clase
         /// </summary>
-        public static void Constructor()
+        public static void Constructor(bool cargarIO = true, bool cargarCams = true, bool servidor = false)
         {
+            // Inicialización de variables
+            CargarIO = cargarIO;
+            CargarCams = cargarCams;
+            Servidor = servidor;
             ListaHardware = new Dictionary<string, IHardware>();
-            if (OSistemaManager.IntegraMaquinaEstados)
+
+            // Constructor del hardware
+            if (CargarIO)
             {
-                Escenarios = new Dictionary<string, OEscenarioHardware>();
+                OIOManager.Constructor();
             }
 
-            OIOManager.Constructor();
-            OCamaraManager.Constructor();
+            if (CargarCams)
+            {
+                OCamaraManager.Constructor();
+            }
 
             // Consulta de todas las escenarios existentes en el sistema
             if (OSistemaManager.IntegraMaquinaEstados)
             {
+                Escenarios = new Dictionary<string, OEscenarioHardware>();
+
                 DataTable dtEscenario = Orbita.VA.Comun.AppBD.GetEscenarios();
                 if (dtEscenario.Rows.Count > 0)
                 {
@@ -72,8 +96,15 @@ namespace Orbita.VA.Hardware
         /// </summary>
         public static void Destructor()
         {
-            OCamaraManager.Destructor();
-            OIOManager.Destructor();
+            if (CargarCams)
+            {
+                OCamaraManager.Destructor();
+            } 
+            
+            if (CargarIO)
+            {
+                OIOManager.Destructor();
+            }
 
             ListaHardware = null;
         }
@@ -83,16 +114,22 @@ namespace Orbita.VA.Hardware
         /// </summary>
         public static void Inicializar()
         {
-            OIOManager.Inicializar();
-            foreach (IHardware hardware in OIOManager.ListaTarjetasIO)
+            if (CargarIO)
             {
-                ListaHardware.Add(hardware.Codigo, hardware);
+                OIOManager.Inicializar();
+                foreach (IHardware hardware in OIOManager.ListaTarjetasIO)
+                {
+                    ListaHardware.Add(hardware.Codigo, hardware);
+                }
             }
 
-            OCamaraManager.Inicializar();
-            foreach (IHardware hardware in OCamaraManager.ListaCamaras.Values)
+            if (CargarCams)
             {
-                ListaHardware.Add(hardware.Codigo, hardware);
+                OCamaraManager.Inicializar();
+                foreach (IHardware hardware in OCamaraManager.ListaCamaras.Values)
+                {
+                    ListaHardware.Add(hardware.Codigo, hardware);
+                }
             }
         }
 
@@ -101,8 +138,15 @@ namespace Orbita.VA.Hardware
         /// </summary>
         public static void Finalizar()
         {
-            OCamaraManager.Finalizar();
-            OIOManager.Finalizar();
+            if (CargarCams)
+            {
+                OCamaraManager.Finalizar();
+            }
+
+            if (CargarIO)
+            {
+                OIOManager.Finalizar();
+            }
         }
 
         /// <summary>
@@ -129,43 +173,6 @@ namespace Orbita.VA.Hardware
                 return hardware;
             }
             return null;
-        }
-
-        /// <summary>
-        /// Comienza una reproducción continua de la cámara
-        /// </summary>
-        /// <returns></returns>
-        public static bool Start(string codigo)
-        {
-            return OCamaraManager.Start(codigo);
-        }
-
-        /// <summary>
-        /// Termina una reproducción continua de la cámara
-        /// </summary>
-        /// <returns></returns>
-        public static bool Stop(string codigo)
-        {
-            return OCamaraManager.Stop(codigo);
-
-        }
-
-        /// <summary>
-        /// Comienza una reproducción de todas las cámaras
-        /// </summary>
-        /// <returns></returns>
-        public static bool StartAll()
-        {
-            return OCamaraManager.StartAll();
-        }
-
-        /// <summary>
-        /// Termina la reproducción de todas las cámaras
-        /// </summary>
-        /// <returns></returns>
-        public static bool StopAll()
-        {
-            return OCamaraManager.StopAll();
         }
 
         /// <summary>
@@ -238,26 +245,30 @@ namespace Orbita.VA.Hardware
             // Inicialización de resultados
             bool resultado = false;
             hardware = null;
-            string alias = codAlias;
 
-            // Cambio el alias al del escenario
-            if ((codEscenario != string.Empty) && (OSistemaManager.IntegraMaquinaEstados) && (Escenarios is Dictionary<string, OEscenarioHardware>))
+            if (OSistemaManager.IntegraMaquinaEstados)
             {
-                // Cambio el alias
-                OEscenarioHardware escenarioHardware;
-                if (Escenarios.TryGetValue(codEscenario, out escenarioHardware))
+                string alias = codAlias;
+
+                // Cambio el alias al del escenario
+                if ((codEscenario != string.Empty) && (OSistemaManager.IntegraMaquinaEstados) && (Escenarios is Dictionary<string, OEscenarioHardware>))
                 {
-                    string codHardware;
-                    if (escenarioHardware.ListaAlias.TryGetValue(codAlias, out codHardware))
+                    // Cambio el alias
+                    OEscenarioHardware escenarioHardware;
+                    if (Escenarios.TryGetValue(codEscenario, out escenarioHardware))
                     {
-                        alias = codHardware;
+                        string codHardware;
+                        if (escenarioHardware.ListaAlias.TryGetValue(codAlias, out codHardware))
+                        {
+                            alias = codHardware;
+                        }
                     }
                 }
-            }
 
-            if (ListaHardware is Dictionary<string, IHardware>)
-            {
-                resultado = ListaHardware.TryGetValue(alias, out hardware);
+                if (ListaHardware is Dictionary<string, IHardware>)
+                {
+                    resultado = ListaHardware.TryGetValue(alias, out hardware);
+                }
             }
 
             return resultado;

@@ -1,5 +1,8 @@
 ﻿namespace Orbita.Controles.Comunicaciones
 {
+    /// <summary>
+    /// Detalle del monitor de trazas
+    /// </summary>
     partial class FrmDetalle
     {
         /// <summary>

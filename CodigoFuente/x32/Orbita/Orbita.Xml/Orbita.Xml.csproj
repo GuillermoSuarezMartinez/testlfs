@@ -52,13 +52,22 @@
     <DocumentationFile>bin\Release\Orbita.Xml.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\OAlmacenXML.cs" />
+    <Compile Include="Core\OExtensionXML.cs" />
+    <Compile Include="Core\OConvertibleXML.cs" />
     <Compile Include="Core\OXml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Orbita.Utiles\Orbita.Utiles.csproj">
+      <Project>{DAD5D2A3-9C23-4C22-ABEB-4DF8258170AD}</Project>
+      <Name>Orbita.Utiles</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

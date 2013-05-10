@@ -71,7 +71,6 @@
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool22 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Cortar");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool23 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Copiar");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool24 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Pegar");
-            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool60 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Eliminar2");
             Infragistics.Win.UltraWinToolbars.PopupMenuTool popupMenuTool3 = new Infragistics.Win.UltraWinToolbars.PopupMenuTool("IrA");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool61 = new Infragistics.Win.UltraWinToolbars.ButtonTool("SeleccionarTodo");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool63 = new Infragistics.Win.UltraWinToolbars.ButtonTool("DeseleccionarTodo");
@@ -109,12 +108,10 @@
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool52 = new Infragistics.Win.UltraWinToolbars.ButtonTool("EliminarPlantillasPublicas");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool32 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Personalizar");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool34 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Exportar");
-            Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool8 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Refrescar");
-            Infragistics.Win.Appearance appearance15 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance14 = new Infragistics.Win.Appearance();
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool9 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Buscar");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool44 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Primero");
-            Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool55 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Eliminar2");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool56 = new Infragistics.Win.UltraWinToolbars.ButtonTool("SeleccionarTodo");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool57 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Anterior");
             Infragistics.Win.UltraWinToolbars.ButtonTool buttonTool58 = new Infragistics.Win.UltraWinToolbars.ButtonTool("Siguiente");
@@ -138,6 +135,7 @@
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbar)).BeginInit();
             this.SuspendLayout();
@@ -194,7 +192,7 @@
             this.grid.Location = new System.Drawing.Point(0, 29);
             this.grid.Name = "grid";
             this.grid.OI.Filas.TipoSeleccion = null;
-            this.grid.Size = new System.Drawing.Size(852, 146);
+            this.grid.Size = new System.Drawing.Size(898, 146);
             this.grid.TabIndex = 13;
             this.grid.Text = "orbitaUltraGrid1";
             this.grid.UpdateMode = Infragistics.Win.UltraWinGrid.UpdateMode.OnCellChangeOrLostFocus;
@@ -218,7 +216,7 @@
             this.toolbar.Appearance = appearance1;
             this.toolbar.DesignerFlags = 1;
             this.toolbar.DockWithinContainer = this;
-            this.toolbar.ImageListSmall = this.imageList;
+            this.toolbar.ImageListSmall = this.imageList1;
             this.toolbar.Office2007UICompatibility = false;
             this.toolbar.RuntimeCustomizationOptions = Infragistics.Win.UltraWinToolbars.RuntimeCustomizationOptions.None;
             this.toolbar.ShowFullMenusDelay = 500;
@@ -268,26 +266,26 @@
             ultraToolbar1,
             ultraToolbar2});
             this.toolbar.ToolbarSettings.AllowCustomize = Infragistics.Win.DefaultableBoolean.False;
-            appearance2.Image = 9;
+            appearance2.Image = 7;
             buttonTool11.SharedPropsInternal.AppearancesSmall.Appearance = appearance2;
             buttonTool11.SharedPropsInternal.Caption = "&Imprimir";
             buttonTool11.SharedPropsInternal.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
-            appearance3.Image = 8;
+            appearance3.Image = 4;
             buttonTool13.SharedPropsInternal.AppearancesSmall.Appearance = appearance3;
             buttonTool13.SharedPropsInternal.Caption = "&Eliminar";
             buttonTool13.SharedPropsInternal.Category = "Gestion";
             buttonTool13.SharedPropsInternal.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
-            appearance4.Image = 7;
+            appearance4.Image = 3;
             buttonTool14.SharedPropsInternal.AppearancesSmall.Appearance = appearance4;
             buttonTool14.SharedPropsInternal.Caption = "&Añadir";
             buttonTool14.SharedPropsInternal.Category = "Gestion";
             buttonTool14.SharedPropsInternal.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
-            appearance5.Image = 6;
+            appearance5.Image = 2;
             buttonTool15.SharedPropsInternal.AppearancesSmall.Appearance = appearance5;
             buttonTool15.SharedPropsInternal.Caption = "&Modificar";
             buttonTool15.SharedPropsInternal.Category = "Gestion";
             buttonTool15.SharedPropsInternal.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
-            appearance6.Image = 5;
+            appearance6.Image = 1;
             buttonTool16.SharedPropsInternal.AppearancesSmall.Appearance = appearance6;
             buttonTool16.SharedPropsInternal.Caption = "&Ver";
             buttonTool16.SharedPropsInternal.Category = "Gestion";
@@ -319,7 +317,6 @@
             buttonTool22,
             buttonTool23,
             buttonTool24,
-            buttonTool60,
             popupMenuTool3,
             buttonTool61,
             buttonTool63,
@@ -330,7 +327,7 @@
             buttonTool25.SharedPropsInternal.Caption = "&Copiar";
             buttonTool25.SharedPropsInternal.Category = "Edición";
             buttonTool25.SharedPropsInternal.Shortcut = System.Windows.Forms.Shortcut.CtrlC;
-            appearance10.Image = 4;
+            appearance10.Image = 0;
             buttonTool26.SharedPropsInternal.AppearancesSmall.Appearance = appearance10;
             buttonTool26.SharedPropsInternal.Caption = "&Gestionar";
             buttonTool26.SharedPropsInternal.Category = "Gestionar";
@@ -380,7 +377,7 @@
             buttonTool31});
             buttonTool40.SharedPropsInternal.Caption = "Guardar plantilla como...";
             buttonTool40.SharedPropsInternal.Category = "Estilo";
-            appearance13.Image = 14;
+            appearance13.Image = 11;
             buttonTool42.SharedPropsInternal.AppearancesSmall.Appearance = appearance13;
             buttonTool42.SharedPropsInternal.Caption = "Guardar plantilla";
             buttonTool42.SharedPropsInternal.Category = "Estilo";
@@ -399,14 +396,12 @@
             buttonTool52.SharedPropsInternal.Caption = "Públicas";
             buttonTool52.SharedPropsInternal.Category = "Estilo";
             buttonTool32.SharedPropsInternal.Caption = "Personalizar...";
-            appearance14.Image = 11;
-            buttonTool34.SharedPropsInternal.AppearancesSmall.Appearance = appearance14;
             buttonTool34.SharedPropsInternal.Caption = "E&xportar";
             buttonTool34.SharedPropsInternal.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
             buttonTool34.SharedPropsInternal.ShowInCustomizer = false;
             buttonTool34.SharedPropsInternal.Tag = "ExportarExcel";
-            appearance15.Image = 10;
-            buttonTool8.SharedPropsInternal.AppearancesSmall.Appearance = appearance15;
+            appearance14.Image = 14;
+            buttonTool8.SharedPropsInternal.AppearancesSmall.Appearance = appearance14;
             buttonTool8.SharedPropsInternal.Caption = "&Refrescar";
             buttonTool8.SharedPropsInternal.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.ImageAndText;
             buttonTool9.SharedPropsInternal.Caption = "Buscar";
@@ -414,9 +409,6 @@
             buttonTool44.SharedPropsInternal.Caption = "Primera posición";
             buttonTool44.SharedPropsInternal.DisplayStyle = Infragistics.Win.UltraWinToolbars.ToolDisplayStyle.TextOnlyAlways;
             buttonTool44.SharedPropsInternal.Shortcut = System.Windows.Forms.Shortcut.CtrlP;
-            buttonTool55.SharedPropsInternal.Caption = "Eliminar";
-            buttonTool55.SharedPropsInternal.Enabled = false;
-            buttonTool55.SharedPropsInternal.Shortcut = System.Windows.Forms.Shortcut.Del;
             buttonTool56.SharedPropsInternal.Caption = "Seleccionar todo";
             buttonTool56.SharedPropsInternal.Enabled = false;
             buttonTool56.SharedPropsInternal.Shortcut = System.Windows.Forms.Shortcut.CtrlA;
@@ -470,7 +462,6 @@
             buttonTool8,
             buttonTool9,
             buttonTool44,
-            buttonTool55,
             buttonTool56,
             buttonTool57,
             buttonTool58,
@@ -486,7 +477,7 @@
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.BackColor = System.Drawing.SystemColors.Control;
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(852, 29);
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(898, 29);
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.Name = "_OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right";
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 146);
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolbar;
@@ -499,7 +490,7 @@
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 175);
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.Name = "_OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom";
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(852, 0);
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(898, 0);
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolbar;
             // 
             // _OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top
@@ -510,8 +501,28 @@
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.Name = "_OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top";
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(852, 29);
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(898, 29);
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolbar;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Empty;
+            this.imageList1.Images.SetKeyName(0, "Edition-49.png");
+            this.imageList1.Images.SetKeyName(1, "Edition-29.png");
+            this.imageList1.Images.SetKeyName(2, "Edition-35.png");
+            this.imageList1.Images.SetKeyName(3, "Interface-89.png");
+            this.imageList1.Images.SetKeyName(4, "Interface-90.png");
+            this.imageList1.Images.SetKeyName(5, "Interface-92.png");
+            this.imageList1.Images.SetKeyName(6, "Interface-93.png");
+            this.imageList1.Images.SetKeyName(7, "Text-23.png");
+            this.imageList1.Images.SetKeyName(8, "Business-72.png");
+            this.imageList1.Images.SetKeyName(9, "Content-45.png");
+            this.imageList1.Images.SetKeyName(10, "Status-30.png");
+            this.imageList1.Images.SetKeyName(11, "Text-2.png");
+            this.imageList1.Images.SetKeyName(12, "Text-5.png");
+            this.imageList1.Images.SetKeyName(13, "Text-46.png");
+            this.imageList1.Images.SetKeyName(14, "Transfers-72.png");
             // 
             // OrbitaUltraGridToolBar
             // 
@@ -523,7 +534,7 @@
             this.Controls.Add(this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom);
             this.Controls.Add(this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top);
             this.Name = "OrbitaUltraGridToolBar";
-            this.Size = new System.Drawing.Size(852, 175);
+            this.Size = new System.Drawing.Size(898, 175);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbar)).EndInit();
             this.ResumeLayout(false);
@@ -543,5 +554,6 @@
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom;
         private Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea _OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }

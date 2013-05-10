@@ -9,16 +9,19 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Comunes
 {
     public partial class OrbitaUltraCheckEditor : Infragistics.Win.UltraWinEditors.UltraCheckEditor
     {
+        #region Nueva definición
         public class ControlNuevaDefinicion : OUltraCheckEditor
         {
+            #region Constructor
             public ControlNuevaDefinicion(OrbitaUltraCheckEditor sender)
                 : base(sender) { }
-        };
+            #endregion
+        }
+        #endregion
 
         #region Atributos
         ControlNuevaDefinicion definicion;
@@ -26,7 +29,7 @@ namespace Orbita.Controles.Comunes
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraCheckEditor.
         /// </summary>
         public OrbitaUltraCheckEditor()
             : base()
@@ -38,7 +41,7 @@ namespace Orbita.Controles.Comunes
 
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public ControlNuevaDefinicion OI
         {
             get { return this.definicion; }

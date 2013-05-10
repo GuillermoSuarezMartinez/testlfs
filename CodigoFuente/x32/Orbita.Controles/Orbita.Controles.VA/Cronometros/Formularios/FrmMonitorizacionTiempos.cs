@@ -20,6 +20,13 @@ namespace Orbita.Controles.VA
     /// </summary>
     public partial class FrmMonitorizacionCronometros : FrmBase
     {
+        #region Constante(s)
+        /// <summary>
+        /// Intervalo entre muestreo
+        /// </summary>
+        private const int CadenciaMonitorizacionMs = 100;
+        #endregion
+
         #region Atributo(s)
         /// <summary>
         /// Momento en el que se produjo el último refresco de las variables
@@ -54,7 +61,7 @@ namespace Orbita.Controles.VA
 
             // Inicializamos el timer de refresco
             this.MomentoUltimoRefresco = DateTime.Now;
-            this.TimerRefresco.Interval = Convert.ToInt32(OSistemaManager.Configuracion.CadenciaMonitorizacion.TotalMilliseconds);
+            this.TimerRefresco.Interval = CadenciaMonitorizacionMs;
 
             foreach (OCronometro cronometro in OCronometrosManager.ListaCronometros)
             {

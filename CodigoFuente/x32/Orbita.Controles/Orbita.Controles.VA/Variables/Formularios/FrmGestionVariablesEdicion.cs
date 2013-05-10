@@ -185,9 +185,9 @@ namespace Orbita.Controles.VA
                     this.Close();
                 }
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                OMensajes.MostrarError(ex);
+                OMensajes.MostrarError(exception);
             }
         }
 
@@ -202,9 +202,9 @@ namespace Orbita.Controles.VA
             {
                 this.Close();
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                OMensajes.MostrarError(ex);
+                OMensajes.MostrarError(exception);
             }
         }
 
@@ -219,9 +219,9 @@ namespace Orbita.Controles.VA
             {
                 this.InicializarFormulario();
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                OMensajes.MostrarError(ex);
+                OMensajes.MostrarError(exception);
             }
 
         }
@@ -256,9 +256,9 @@ namespace Orbita.Controles.VA
                     }
                 }
             }
-            catch (System.Exception ex)
+            catch (Exception exception)
             {
-                OMensajes.MostrarError(ex);
+                OMensajes.MostrarError(exception);
             }
         }
 
@@ -276,9 +276,9 @@ namespace Orbita.Controles.VA
                     this.AlgoModificado = true;
                 }
             }
-            catch (System.Exception ex)
+            catch (Exception exception)
             {
-                OMensajes.MostrarError(ex);
+                OMensajes.MostrarError(exception);
             }
         } 
         #endregion

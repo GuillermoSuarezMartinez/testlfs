@@ -1,0 +1,3065 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orbita.Controles.GateSuite</name>
+    </assembly>
+    <members>
+        <member name="T:Orbita.Controles.GateSuite.OGSComunicaciones">
+            <summary>
+            Clase de las propiedades de Comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSComunicaciones.control">
+            <summary>
+            Control al que está asociada a la clase Orbita.Controles.GateSuite.OGSComunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSComunicaciones.definicionAlarmas">
+            <summary>
+            Definición de las propiedades de las Alarmas de Comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSComunicaciones.definicionCambioDato">
+            <summary>
+            Definición de las propiedades del Cambio de Dato de Comunicaciones 
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSComunicaciones.definicionComunicacion">
+            <summary>
+            Definición de las propiedades de Comunicacion de Comunicaciones 
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSComunicaciones.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSComunicaciones
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSComunicaciones.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSComunicaciones.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades de Comunicaciones 
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSComunicaciones.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSComunicaciones
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSComunicaciones.Alarmas">
+            <summary>
+            Obtiene o establece las propiedades de las Alarmas de Comunicaciones 
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSComunicaciones.CambioDato">
+            <summary>
+            Obtiene o establece las propiedades del Cambio de Dato de Comunicaciones 
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSComunicaciones.Comunicacion">
+            <summary>
+            Obtiene o establece las propiedades de Comunicación de Comunicaciones 
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSComunicaciones.ControlNuevaDefinicionAlarmas">
+            <summary>
+            Clase de las propiedades de las Alarmas de Comunicaciones 
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSAlarmas">
+            <summary>
+            Clase de las propiedades de las Alarmas de Comunicaciones 
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSAlarmas.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSAlarmas
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSAlarmas.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSAlarmas
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSAlarmas.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSAlarmas.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSAlarmas
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSComunicaciones.ControlNuevaDefinicionCambioDato">
+            <summary>
+            Clase de las propiedades al Cambio de Dato de Comunicaciones
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSCambioDato">
+            <summary>
+            Clase de las propiedades al Cambio de Dato de Comunicaciones 
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSCambioDato.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSCambioDato
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSCambioDato.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSCambioDato
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSCambioDato.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSCambioDato.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSCambioDato
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSComunicaciones.ControlNuevaDefinicionComunicacion">
+            <summary>
+            Clase de las propiedades de Comunicacion de Comunicaciones
+            </summary>      
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSComunicacion">
+            <summary>
+            Clase de las propiedades de Comunicacion de Comunicaciones 
+            </summary>   
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSComunicacion.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSComunicacion
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSComunicacion.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSComunicacion
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSComunicacion.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSComunicacion.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase OGSComunicacion
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSEnumModoOrden">
+            <summary>
+            Modo de introducir la orden
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSEnumModoOrden.ModoEscaner">
+            <summary>
+            Orden leída por un escaner
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSEnumModoOrden.ModoManual">
+            <summary>
+            Orden leída desde teclado
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSEnumModoOrden.SinModo">
+            <summary>
+            Orden sin leer
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSButon">
+            <summary>
+            Control Orbita.Controles.GateSuite.orbitaGSButon asociado a los eventos de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSButon.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSButon.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSButon.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSButon.definicion">
+            <summary>
+            Definición de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSButon
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSButon.Logger">
+            <summary>
+            Logger del control Orbita.Controles.GateSuite.OrbitaGSButon
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSButon.#ctor">
+            <summary>
+            Inicializa una nueva instancia del control Orbita.Controles.GateSuite.OrbitaGSButon
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSButon.ProcesarAlarma(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSButon al lanzarse una alarma asociada a Alarmas      
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSButon.ProcesarComunicaciones(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSButon dependiendo de si se comunica o no con el Servidor de Comunicaciones      
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSButon.ProcesarCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del control Orbita.Controles.GateSuite.OrbitaGSButon con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSButon.ProcesarVariableVisual(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSButon con el cambio de dato de la variable asociada a Variable.        
+            </summary>
+            <param name="e"></param>    
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSButon.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSButon
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSButon.CambiarFondoAlarma(System.Drawing.Color)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSButon ante una Alarma      
+            </summary>
+            <param name="color">color</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSButon.CambiarFondoComunicaciones(System.Drawing.Color)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSButon ante un cambio de la comunicación con el Servidor de Comunicaciones       
+            </summary>
+            <param name="color">color</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSButon.CambiarValor(System.String)">
+            <summary>
+            Cambia el valor de la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSButon ante el cambio de dato de la Variable
+            </summary>
+            <param name="valor"></param>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OrbitaGSButon.OI">
+            <summary>
+            Obtiene o establece las propiedades del control Orbita.Controles.GateSuite.OrbitaGSButon
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSButon.OnCambioDato">
+            <summary>
+            Evento que se lanza al Cambio de Dato de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSButon.ControlNuevaDefinicion">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSButon
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSButon">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSButon
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSButon.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSButon
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSButon.definicionComunicaciones">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSButon
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSButon.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSButon
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSButon.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSButon.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSButon
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSButon.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSButon
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSButon.Comunicaciones">
+            <summary>
+            Obtiene o establece las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSButon
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSButon.Estilo">
+            <summary>
+            Obtiene o establece el estilo del botón del control Orbita.Controles.GateSuite.OrbitaGSButon
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSButon.Tipo">
+            <summary>
+            Obtiene o establece el tipo de botón del control Orbita.Controles.GateSuite.OrbitaGSButon
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSButon.ControlNuevaDefinicionComunicaciones">
+            <summary>
+            Clase de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSButon
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSButon.DelegadoValor">
+            <summary>
+            Delegado para el cambio de valor de la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSButon
+            </summary>
+            <param name="valor">valor de la propiedad .Text</param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSButon.DelegadoColor">
+            <summary>
+            Delegado para el cambio de color de la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSButon
+            </summary>
+            <param name="color">color de la propiedad .BackColor</param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSButon.DelegadoCambioDato">
+            <summary>
+            Delegado para el cambio de dato del control Orbita.Controles.GateSuite.OrbitaGSButon
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto">
+            <summary>
+            Clase de las propiedades de Comunicaciones 
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSComunicacionesOrbitaGSCompuesto
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.definicionAlarmasInspeccion">
+            <summary>
+            Definición de las propiedades de Alarmas de Comunicaciones 
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.definicionAlarmasRecod">
+            <summary>
+            Definición de las propiedades de Alarmas de Comunicaciones 
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.definicionAlarmasRecodTOS">
+            <summary>
+            Definición de las propiedades de Alarmas de Comunicaciones 
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.definicionAlarmasFiabilidad">
+            <summary>
+            Definición de las propiedades de CambioDato de Comunicaciones 
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.#ctor(System.Object,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto
+            </summary>
+            <param name="control">control asociado</param>
+            <param name="inspeccion">objeto para la inspección</param>
+            <param name="recod">objeto para la recodificación</param>
+            <param name="recodTOS">objeto para la recodificación TOS</param>
+            <param name="fiabilidad">objeto para la fiabilidad</param>      
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.#ctor(System.Object,System.Object,System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto
+            </summary>
+            <param name="control">control asociado</param>
+            <param name="inspeccion">objeto para la inspección</param>
+            <param name="recod">objeto para la recodificación</param>        
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.#ctor(System.Object,System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto
+            </summary>
+            <param name="control">control asociado</param>
+            <param name="inspeccion">objeto para la inspección</param>        
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades de Comunicaciones 
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSComunicacionesOrbitaGSCompuesto
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.AlarmasInspeccion">
+            <summary>
+            Obtiene o establece las propiedades de Alarmas de Comunicaciones 
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.AlarmasRecod">
+            <summary>
+            Obtiene o establece las propiedades de Alarmas de Comunicaciones 
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.AlarmasRecodTOS">
+            <summary>
+            Obtiene o establece las propiedades de Alarmas de Comunicaciones 
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.AlarmasFiabilidad">
+            <summary>
+            Obtiene o establece las propiedades de Alarmas de Comunicaciones 
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.ControlNuevaDefinicionAlarmasInspeccion">
+            <summary>
+            Clase de las propiedades de Alarmas de Comunicaciones 
+            </summary>      
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSAlarmasCompuesto">
+            <summary>
+            Clase de las propiedades de las Alarmas de Comunicaciones 
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSAlarmasCompuesto.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSAlarmas
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSAlarmasCompuesto.#ctor(System.Object,System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSAlarmas
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSAlarmasCompuesto.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSAlarmasCompuesto.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSAlarmas
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.ControlNuevaDefinicionAlarmasRecod">
+            <summary>
+            Clase de las propiedades de Alarmas de Comunicaciones 
+            </summary>      
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.ControlNuevaDefinicionAlarmasRecodTOS">
+            <summary>
+            Clase de las propiedades de Alarmas de Comunicaciones 
+            </summary>      
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSAlarmasOrbitaGSCompuesto.ControlNuevaDefinicionAlarmasFiabilidad">
+            <summary>
+            Clase de las propiedades de Alarmas de Comunicaciones 
+            </summary>      
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto">
+            <summary>
+            Clase de las propiedades de Comunicaciones 
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSComunicacionesOrbitaGSCompuesto
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.definicionCambioDatoInspeccion">
+            <summary>
+            Definición de las propiedades de CambioDato de Comunicaciones 
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.definicionCambioDatoRecod">
+            <summary>
+            Definición de las propiedades de CambioDato de Comunicaciones 
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.definicionCambioDatoRecodTOS">
+            <summary>
+            Definición de las propiedades de CambioDato de Comunicaciones 
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.definicionCambioDatoFiabilidad">
+            <summary>
+            Definición de las propiedades de CambioDato de Comunicaciones 
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.#ctor(System.Object,System.Object,System.Object,System.Object,System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto
+            </summary>
+            <param name="control">control asociado</param>
+            <param name="inspeccion">objeto para la inspección</param>
+            <param name="recod">objeto para la recodificación</param>
+            <param name="recodTOS">objeto para la recodificación TOS</param>
+            <param name="fiabilidad">objeto para la fiabilidad</param>      
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.#ctor(System.Object,System.Object,System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto
+            </summary>
+            <param name="control">control asociado</param>
+            <param name="inspeccion">objeto para la inspección</param>
+            <param name="recod">objeto para la recodificación</param>       
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.#ctor(System.Object,System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto
+            </summary>
+            <param name="control">control asociado</param>
+            <param name="inspeccion">objeto para la inspección</param>        
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades de Comunicaciones 
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSComunicacionesOrbitaGSCompuesto
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.CambioDatoInspeccion">
+            <summary>
+            Obtiene o establece las propiedades de CambioDato de Comunicaciones 
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.CambioDatoRecod">
+            <summary>
+            Obtiene o establece las propiedades de CambioDato de Comunicaciones  
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.CambioDatoRecodTOS">
+            <summary>
+            Obtiene o establece las propiedades de CambioDato de Comunicaciones 
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.CambioDatoFiabilidad">
+            <summary>
+            Obtiene o establece las propiedades de CambioDato de Comunicaciones 
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.ControlNuevaDefinicionCambioDatoInspeccion">
+            <summary>
+            Clase de las propiedades de CambioDato de Comunicaciones  
+            </summary>      
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSCambioDatoCompuesto.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSCambioDato
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSCambioDatoCompuesto.#ctor(System.Object,System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSCambioDato
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSCambioDatoCompuesto.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSCambioDatoCompuesto.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSCambioDato
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.ControlNuevaDefinicionCambioDatoRecod">
+            <summary>
+            Clase de las propiedades de CambioDato de Comunicaciones 
+            </summary>      
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.ControlNuevaDefinicionCambioDatoRecodTOS">
+            <summary>
+            Clase de las propiedades de CambioDato de Comunicaciones  
+            </summary>      
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSCambioDatoOrbitaGSCompuesto.ControlNuevaDefinicionCambioDatoFiabilidad">
+            <summary>
+            Clase de las propiedades de CambioDato de Comunicaciones 
+            </summary>      
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionContenedor">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionContenedor.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionContenedor.definicionComunicacion">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionContenedor.definicionAlarmasMatricula">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionContenedor.definicionCambioDatoMatricula">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionContenedor.definicionAlarmasISO">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionContenedor.definicionCambioDatoISO">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSInspeccionContenedor.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSInspeccionMatricula
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSInspeccionContenedor.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSInspeccionContenedor.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionContenedor.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionContenedor.Comunicacion">
+            <summary>
+            Obtiene o establece las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionContenedor.AlarmasMatricula">
+            <summary>
+            Obtiene o establece las propiedades de Alarmas del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionContenedor.CambioDatoMatricula">
+            <summary>
+            Obtiene o establece las propiedades de CambioDato del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionContenedor.AlarmasISO">
+            <summary>
+            Obtiene o establece las propiedades de Alarmas del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionContenedor.CambioDatoISO">
+            <summary>
+            Obtiene o establece las propiedades de CambioDato del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionContenedor.ControlNuevaDefinicionComunicacion">
+            <summary>
+            Clase de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSComunicacionInspeccionContenedor">
+            <summary>
+            Clase de las propiedades de Comunicacion de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>   
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSComunicacionInspeccionContenedor.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSComunicacionInspeccionMatricula
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSComunicacionInspeccionContenedor.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSComunicacionInspeccionMatricula
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSComunicacionInspeccionContenedor.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSComunicacionInspeccionContenedor.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase OGSComunicacionInspeccionMatricula
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionContenedor.ControlNuevaDefinicionAlarmasMatricula">
+            <summary>
+            Clase de las propiedades de alarmas de la matricula del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionContenedor.ControlNuevaDefinicionCambioDatoMatricula">
+            <summary>
+            Clase de las propiedades de CambioDato de la matricula del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionContenedor.ControlNuevaDefinicionAlarmasISO">
+            <summary>
+            Clase de las propiedades de alarmas de la ISO del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionContenedor.ControlNuevaDefinicionCambioDatoISO">
+            <summary>
+            Clase de las propiedades de CambioDato de la ISO del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSCheckBox">
+            <summary>
+            Control Orbita.Controles.GateSuite.orbitaGSCheckBox asociado a los eventos de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSCheckBox.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSCheckBox.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSCheckBox.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSCheckBox.definicion">
+            <summary>
+            Definición de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSCheckBox
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSCheckBox.Logger">
+            <summary>
+            Logger del control Orbita.Controles.GateSuite.OrbitaGSCheckBox
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSCheckBox.#ctor">
+            <summary>
+            Inicializa una nueva instancia del control Orbita.Controles.GateSuite.OrbitaGSCheckBox
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSCheckBox.ProcesarAlarma(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSCheckBox al lanzarse una alarma asociada a Alarmas      
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSCheckBox.ProcesarComunicaciones(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSCheckBox dependiendo de si se comunica o no con el Servidor de Comunicaciones      
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSCheckBox.ProcesarCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del control Orbita.Controles.GateSuite.OrbitaGSCheckBox con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSCheckBox.ProcesarVariableVisual(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSCheckBox con el cambio de dato de la variable asociada a Variable.        
+            </summary>
+            <param name="e"></param>        
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSCheckBox.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSCheckBox
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSCheckBox.CambiarFondoAlarma(System.Drawing.Color)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSCheckBox ante una Alarma      
+            </summary>
+            <param name="color">color</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSCheckBox.CambiarFondoComunicaciones(System.Drawing.Color)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSCheckBox ante un cambio de la comunicación con el Servidor de Comunicaciones       
+            </summary>
+            <param name="color">color</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSCheckBox.CambiarValor(System.String)">
+            <summary>
+            Cambia el valor de la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSCheckBox ante el cambio de dato de la Variable
+            </summary>
+            <param name="valor"></param>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OrbitaGSCheckBox.OI">
+            <summary>
+            Obtiene o establece las propiedades del control Orbita.Controles.GateSuite.OrbitaGSCheckBox
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSCheckBox.OnCambioDato">
+            <summary>
+            Evento que se lanza al Cambio de Dato de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSCheckBox.ControlNuevaDefinicion">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSCheckBox
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSCheckBox">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OGSCheckBox
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSCheckBox.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSCheckBox
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSCheckBox.definicionComunicaciones">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSCheckBox
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSCheckBox.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSCheckBox
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSCheckBox.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSCheckBox.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSCheckBox
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSCheckBox.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSCheckBox
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSCheckBox.Comunicaciones">
+             <summary>
+            Obtiene o establece las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSCheckBox
+             </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSCheckBox.ControlNuevaDefinicionComunicaciones">
+            <summary>
+            Clase de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSCheckBox
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSCheckBox.DelegadoValor">
+            <summary>
+            Delegado para el cambio de valor de la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSCheckBox
+            </summary>
+            <param name="valor">valor de la propiedad .Text</param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSCheckBox.DelegadoColor">
+            <summary>
+            Delegado para el cambio de color de la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSCheckBox
+            </summary>
+            <param name="color">color de la propiedad .BackColor</param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSCheckBox.DelegadoCambioDato">
+            <summary>
+            Delegado para el cambio de dato del control Orbita.Controles.GateSuite.OrbitaGSCheckBox
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSLabel">
+            <summary>
+            Control Orbita.Controles.GateSuite.orbitaGSLabel asociado a los eventos de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSLabel.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSLabel.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSLabel.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSLabel.definicion">
+            <summary>
+            Definición de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSLabel.Logger">
+            <summary>
+            Logger del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSLabel.#ctor">
+            <summary>
+            Inicializa una nueva instancia del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSLabel.ProcesarAlarma(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSLabel al lanzarse una alarma asociada a Alarmas      
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSLabel.ProcesarComunicaciones(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSLabel dependiendo de si se comunica o no con el Servidor de Comunicaciones      
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSLabel.ProcesarCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del control Orbita.Controles.GateSuite.OrbitaGSLabel con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSLabel.ProcesarVariableVisual(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSLabel con el cambio de dato de la variable asociada a Variable.        
+            </summary>
+            <param name="e"></param>        
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSLabel.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSLabel.CambiarFondoAlarma(System.Drawing.Color)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSLabel ante una Alarma      
+            </summary>
+            <param name="color">color</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSLabel.CambiarFondoComunicaciones(System.Drawing.Color)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSLabel ante un cambio de la comunicación con el Servidor de Comunicaciones       
+            </summary>
+            <param name="color">color</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSLabel.CambiarValor(System.String)">
+            <summary>
+            Cambia el valor de la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSLabel ante el cambio de dato de la Variable
+            </summary>
+            <param name="valor"></param>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OrbitaGSLabel.OI">
+            <summary>
+            Obtiene o establece las propiedades del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSLabel.OnCambioDato">
+            <summary>
+            Evento que se lanza al Cambio de Dato de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSLabel.ControlNuevaDefinicion">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSLabel">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSLabel.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSLabel
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSLabel.definicionApariencia">
+            <summary>
+            Definición de las propiedades de Apariencia del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSLabel.definicionComunicaciones">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSLabel.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSLabel
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSLabel.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSLabel.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades de Comunicaciones y Apariencia del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSLabel.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSLabel
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSLabel.Apariencia">
+            <summary>
+            Obtiene o establece las propiedades de Apariencia del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSLabel.Comunicaciones">
+            <summary>
+            Obtiene o establece las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSLabel.ControlNuevaDefinicionApariencia">
+            <summary>
+            Clase de las propiedades de Apariencia del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSApariencia">
+            <summary>
+            Clase de las propiedades de Apariencia del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSApariencia.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSAparienciaLabel
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSApariencia.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSAparienciaLabel
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSApariencia.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSApariencia.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSAparienciaLabel
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSApariencia.AlineacionTextoVertical">
+            <summary>
+            Obtiene o establece la alineación vertical del texto del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSApariencia.AlineacionTextoHorizontal">
+            <summary>
+            Obtiene o establece la alineación horizontal del texto del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSApariencia.AdornoTexto">
+             <summary>
+            Obtiene o establece el adorno del texto del control Orbita.Controles.GateSuite.OrbitaGSLabel
+             </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSApariencia.ColorBorde">
+            <summary>
+            Obtiene o establece el color del borde del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSApariencia.ColorFondo">
+            <summary>
+            Obtiene o establece el color del fondo del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSApariencia.ColorTexto">
+            <summary>
+            Obtiene o establece el color del texto del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSApariencia.EstiloBorde">
+            <summary>
+            Obtiene o establece el estilo del borde del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSLabel.ControlNuevaDefinicionComunicaciones">
+            <summary>
+            Clase de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSLabel.DelegadoValor">
+            <summary>
+            Delegado para el cambio de valor de la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+            <param name="valor">valor de la propiedad .Text</param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSLabel.DelegadoColor">
+            <summary>
+            Delegado para el cambio de color de la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+            <param name="color">color de la propiedad .BackColor</param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSLabel.DelegadoCambioDato">
+            <summary>
+            Delegado para el cambio de dato del control Orbita.Controles.GateSuite.OrbitaGSLabel
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSTextBox">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSTextBox
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSTextBox.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSTextBox
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSTextBox.definicionComunicaciones">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSTextBox
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSTextBox.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSTextBox
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSTextBox.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSTextBox.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSTextBox
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSTextBox.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSTextBox
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSTextBox.Comunicaciones">
+            <summary>
+            Obtiene o establece las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSTextBox
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSTextBox.AutoScrollBar">
+            <summary>
+            Obtiene o establece el AutoScrollBar del texto del control Orbita.Controles.GateSuite.OrbitaGSTextBox
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSTextBox.ControlNuevaDefinicionComunicaciones">
+            <summary>
+            Clase de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSTextBox
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSTextBox">
+            <summary>
+            Control Orbita.Controles.GateSuite.orbitaGSTextBox asociado a los eventos de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSTextBox.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTextBox.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTextBox.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSTextBox.definicion">
+            <summary>
+            Definición de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSTextBox
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSTextBox.Logger">
+            <summary>
+            Logger del control Orbita.Controles.GateSuite.OrbitaGSTextBox
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTextBox.#ctor">
+            <summary>
+            Inicializa una nueva instancia del control Orbita.Controles.GateSuite.OrbitaGSTextBox
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTextBox.ProcesarAlarma(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSTextBox al lanzarse una alarma asociada a Alarmas      
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTextBox.ProcesarComunicaciones(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSTextBox dependiendo de si se comunica o no con el Servidor de Comunicaciones      
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTextBox.ProcesarCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del control Orbita.Controles.GateSuite.OrbitaGSTextBox con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTextBox.ProcesarVariableVisual(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSTextBox con el cambio de dato de la variable asociada a Variable.        
+            </summary>
+            <param name="e"></param>        
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTextBox.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSTextBox
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTextBox.CambiarFondoAlarma(System.Drawing.Color)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSTextBox ante una Alarma      
+            </summary>
+            <param name="color">color</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTextBox.CambiarFondoComunicaciones(System.Drawing.Color)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSTextBox ante un cambio de la comunicación con el Servidor de Comunicaciones       
+            </summary>
+            <param name="color">color</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTextBox.CambiarValor(System.String)">
+            <summary>
+            Cambia el valor de la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSTextBox ante el cambio de dato de la Variable
+            </summary>
+            <param name="valor"></param>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OrbitaGSTextBox.OI">
+            <summary>
+            Obtiene o establece las propiedades del control Orbita.Controles.GateSuite.OrbitaGSTextBox
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSTextBox.OnCambioDato">
+            <summary>
+            Evento que se lanza al Cambio de Dato de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSTextBox.ControlNuevaDefinicion">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSTextBox
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSTextBox.DelegadoValor">
+            <summary>
+            Delegado para el cambio de valor de la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSTextBox
+            </summary>
+            <param name="valor">valor de la propiedad .Text</param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSTextBox.DelegadoColor">
+            <summary>
+            Delegado para el cambio de color de la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSTextBox
+            </summary>
+            <param name="color">color de la propiedad .BackColor</param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSTextBox.DelegadoCambioDato">
+            <summary>
+            Delegado para el cambio de dato del control Orbita.Controles.GateSuite.OrbitaGSTextBox
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSVisorBitmap">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSVisorBitmap.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSVisorBitmap
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSVisorBitmap.definicionComunicaciones">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSVisorBitmap.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSVisorBitmap
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSVisorBitmap.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSVisorBitmap.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSVisorBitmap.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSVisorBitmap
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSVisorBitmap.Comunicaciones">
+            <summary>
+            Obtiene o establece las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSVisorBitmap.OrbitaVisorBitmap">
+            <summary>
+            Obtiene o establece las propiedades del VisorBitmap del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSVisorBitmap.ControlNuevaDefinicionComunicaciones">
+            <summary>
+            Clase de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor">
+            <summary>
+            Control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor asociado a los eventos de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.definicion">
+            <summary>
+            Definición de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.Logger">
+            <summary>
+            Logger del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.#ctor">
+            <summary>
+            Constructor por defecto
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.lblInspeccionMatricula_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblInspeccionMatricula del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.lblRecodMatricula_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblRecodMatricula del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.lblRecodTOSMatricula_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblRecodTOSMatricula del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.lblFiabilidadMatricula_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblFiabilidadMatricula del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.lblInspeccionISO_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblInspeccionISO del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.lblRecodISO_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblRecodISO del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.lblRecodTOSISO_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblRecodTOSISO del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.lblFiabilidadISO_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblFiabilidadISO del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.OI">
+            <summary>
+            Obtiene o establece las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.OnCambioDatoInspeccionMatricula">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblInspeccionMatricula de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.OnCambioDatoRecodMatricula">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblRecodMatricula de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.OnCambioDatoRecodTOSMatricula">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblRecodTOSMatricula de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.OnCambioDatoFiabilidadMatricula">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblFiabilidadISO de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.OnCambioDatoInspeccionISO">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblInspeccionISO de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.OnCambioDatoRecodISO">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblRecodISO de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.OnCambioDatoRecodTOSISO">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblRecodTOSISO de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.OnCambioDatoFiabilidadISO">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblFiabilidadISO de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.ControlNuevaDefinicion">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.DelegadoCambioDatoInspeccionMatricula">
+            <summary>
+            Delegado para el cambio de dato del lblInspeccionMatricula del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.DelegadoCambioDatoRecodMatricula">
+            <summary>
+            Delegado para el cambio de dato del lblRecodMatricula del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.DelegadoCambioDatoRecodTOSMatricula">
+            <summary>
+            Delegado para el cambio de dato del lblRecodTOSMatricula del control Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.DelegadoCambioDatoFiabilidadMatricula">
+            <summary>
+            Delegado para el cambio de dato del lblFiabilidadISO del control Orbita.Controles.GateSuite.OrbitaGSInspeccionISO
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.DelegadoCambioDatoInspeccionISO">
+            <summary>
+            Delegado para el cambio de dato del lblInspeccionISO del control Orbita.Controles.GateSuite.OrbitaGSInspeccionISO
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.DelegadoCambioDatoRecodISO">
+            <summary>
+            Delegado para el cambio de dato del lblRecodISO del control Orbita.Controles.GateSuite.OrbitaGSInspeccionISO
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.DelegadoCambioDatoRecodTOSISO">
+            <summary>
+            Delegado para el cambio de dato del lblRecodTOSISO del control Orbita.Controles.GateSuite.OrbitaGSInspeccionISO
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionContenedor.DelegadoCambioDatoFiabilidadISO">
+            <summary>
+            Delegado para el cambio de dato del lblFiabilidadISO del control Orbita.Controles.GateSuite.OrbitaGSInspeccionISO
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO">
+            <summary>
+            Control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO asociado a los eventos de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.definicion">
+            <summary>
+            Definición de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.Logger">
+            <summary>
+            Logger del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.#ctor">
+            <summary>
+            Constructor por defecto
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.lblInspeccionADR_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblInspeccionADR del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.lblRecodADR_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblRecodADR del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.lblRecodTOSADR_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblRecodTOSADR del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.lblFiabilidadADR_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblFiabilidadADR del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.lblInspeccionPresencia_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblInspeccionPresencia del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.lblRecodPresencia_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblRecodPresencia del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.OI">
+            <summary>
+            Obtiene o establece las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.OnCambioDatoInspeccionADR">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblInspeccionADR de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.OnCambioDatoRecodADR">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblRecodADR de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.OnCambioDatoRecodTOSADR">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblRecodTOSADR de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.OnCambioDatoFiabilidadADR">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblFiabilidadPresencia de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.OnCambioDatoInspeccionPresencia">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblInspeccionPresencia de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.OnCambioDatoRecodPresencia">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblRecodPresencia de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.ControlNuevaDefinicion">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionIMO">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionIMO.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSInspeccionADR
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionIMO.definicionComunicacion">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionIMO.definicionAlarmasADR">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionIMO.definicionCambioDatoADR">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionIMO.definicionAlarmasPresencia">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionIMO.definicionCambioDatoPresencia">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSInspeccionIMO.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSInspeccionADR
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSInspeccionIMO.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSInspeccionIMO.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionIMO.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSInspeccionADR
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionIMO.Comunicacion">
+            <summary>
+            Obtiene o establece las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionIMO.AlarmasADR">
+            <summary>
+            Obtiene o establece las propiedades de Alarmas del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionIMO.CambioDatoADR">
+            <summary>
+            Obtiene o establece las propiedades de CambioDato del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionIMO.AlarmasPresencia">
+            <summary>
+            Obtiene o establece las propiedades de Alarmas del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionIMO.CambioDatoPresencia">
+            <summary>
+            Obtiene o establece las propiedades de CambioDato del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionIMO.ControlNuevaDefinicionComunicacion">
+            <summary>
+            Clase de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSComunicacionInspeccionIMO">
+            <summary>
+            Clase de las propiedades de Comunicacion de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>   
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSComunicacionInspeccionIMO.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSComunicacionInspeccionADR
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSComunicacionInspeccionIMO.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSComunicacionInspeccionADR
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSComunicacionInspeccionIMO.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSComunicacionInspeccionIMO.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase OGSComunicacionInspeccionADR
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionIMO.ControlNuevaDefinicionAlarmasADR">
+            <summary>
+            Clase de las propiedades de alarmas de la ADR del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionIMO.ControlNuevaDefinicionCambioDatoADR">
+            <summary>
+            Clase de las propiedades de CambioDato de la ADR del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionIMO.ControlNuevaDefinicionAlarmasPresencia">
+            <summary>
+            Clase de las propiedades de alarmas de la Presencia del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionIMO.ControlNuevaDefinicionCambioDatoPresencia">
+            <summary>
+            Clase de las propiedades de CambioDato de la Presencia del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.DelegadoCambioDatoInspeccionADR">
+            <summary>
+            Delegado para el cambio de dato del lblInspeccionADR del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.DelegadoCambioDatoRecodADR">
+            <summary>
+            Delegado para el cambio de dato del lblRecodADR del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.DelegadoCambioDatoRecodTOSADR">
+            <summary>
+            Delegado para el cambio de dato del lblRecodTOSADR del control Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.DelegadoCambioDatoFiabilidadADR">
+            <summary>
+            Delegado para el cambio de dato del lblFiabilidadPresencia del control Orbita.Controles.GateSuite.OrbitaGSInspeccionPresencia
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.DelegadoCambioDatoInspeccionPresencia">
+            <summary>
+            Delegado para el cambio de dato del lblInspeccionPresencia del control Orbita.Controles.GateSuite.OrbitaGSInspeccionPresencia
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionIMO.DelegadoCambioDatoRecodPresencia">
+            <summary>
+            Delegado para el cambio de dato del lblRecodPresencia del control Orbita.Controles.GateSuite.OrbitaGSInspeccionPresencia
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula">
+            <summary>
+            Control Orbita.Controles.GateSuite.orbitaGSInspeccion asociado a los eventos de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.definicion">
+            <summary>
+            Definición de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccion
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.Logger">
+            <summary>
+            Logger del control Orbita.Controles.GateSuite.OrbitaGSInspeccion
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.#ctor">
+            <summary>
+            Inicializa una nueva instancia del control Orbita.Controles.GateSuite.OrbitaGSInspeccion
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.lblInspeccion_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblInspeccion del control Orbita.Controles.GateSuite.OrbitaGSInspeccion con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.lblRecod_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblRecod del control Orbita.Controles.GateSuite.OrbitaGSInspeccion con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.lblRecodTOS_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblRecodTOS del control Orbita.Controles.GateSuite.OrbitaGSInspeccion con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.lblFiabilidad_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblFiabilidad del control Orbita.Controles.GateSuite.OrbitaGSInspeccion con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccion
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.OI">
+            <summary>
+            Obtiene o establece las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccion
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.OnCambioDatoInspeccion">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblInspeccion de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.OnCambioDatoRecod">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblRecod de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.OnCambioDatoRecodTOS">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblRecodTOS de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.OnCambioDatoFiabilidad">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblFiabilidad de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.ControlNuevaDefinicion">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccion
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionMatricula">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionMatricula.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionMatricula.definicionComunicacion">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionMatricula.definicionAlarmas">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionMatricula.definicionCambioDato">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSInspeccionMatricula.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSInspeccionMatricula
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSInspeccionMatricula.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSInspeccionMatricula.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionMatricula.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionMatricula.Comunicacion">
+            <summary>
+            Obtiene o establece las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionMatricula.Alarmas">
+            <summary>
+            Obtiene o establece las propiedades de Alarmas del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionMatricula.CambioDato">
+            <summary>
+            Obtiene o establece las propiedades de CambioDato del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionMatricula.ControlNuevaDefinicionComunicacion">
+            <summary>
+            Clase de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSComunicacionInspeccionMatricula">
+            <summary>
+            Clase de las propiedades de Comunicacion de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>   
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSComunicacionInspeccionMatricula.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSComunicacionInspeccionMatricula
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSComunicacionInspeccionMatricula.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSComunicacionInspeccionMatricula
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSComunicacionInspeccionMatricula.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSComunicacionInspeccionMatricula.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase OGSComunicacionInspeccionMatricula
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionMatricula.ControlNuevaDefinicionAlarmas">
+            <summary>
+            Clase de las propiedades de alarmas del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionMatricula.ControlNuevaDefinicionCambioDato">
+            <summary>
+            Clase de las propiedades de CambioDato del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.DelegadoCambioDatoInspeccion">
+            <summary>
+            Delegado para el cambio de dato del lblInspeccion del control Orbita.Controles.GateSuite.OrbitaGSInspeccion
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.DelegadoCambioDatoRecod">
+            <summary>
+            Delegado para el cambio de dato del lblRecod del control Orbita.Controles.GateSuite.OrbitaGSInspeccion
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.DelegadoCambioDatoRecodTOS">
+            <summary>
+            Delegado para el cambio de dato del lblRecodTOS del control Orbita.Controles.GateSuite.OrbitaGSInspeccion
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula.DelegadoCambioDatoFiabilidad">
+            <summary>
+            Delegado para el cambio de dato del lblFiabilidad del control Orbita.Controles.GateSuite.OrbitaGSInspeccion
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.definicion">
+            <summary>
+            Definición de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.Logger">
+            <summary>
+            Logger del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.#ctor">
+            <summary>
+            Constructor por defecto
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.lblOrden1_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblOrden1 del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.lblOrden2_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblOrden2 del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.lblOrden3_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblOrden3 del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.lblOrden4_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del lblOrden4 del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.OI">
+            <summary>
+            Obtiene o establece las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.OnCambioDatoOrden1">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblOrden1 de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.OnCambioDatoOrden2">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblOrden2 de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.OnCambioDatoOrden3">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblOrden3 de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.OnCambioDatoOrden4">
+            <summary>
+            Evento que se lanza al Cambio de Dato de lblOrden4 de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.ControlNuevaDefinicion">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionOrdenes">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.definicionComunicacion">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.definicionAlarmasOrden1">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.definicionCambioDatoOrden1">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.definicionAlarmasOrden2">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.definicionCambioDatoOrden2">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.definicionAlarmasOrden3">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.definicionCambioDatoOrden3">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.definicionAlarmasOrden4">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.definicionCambioDatoOrden4">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSInspeccionOrdenes
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.Comunicacion">
+            <summary>
+            Obtiene o establece las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.AlarmasOrden1">
+            <summary>
+            Obtiene o establece las propiedades de Alarmas del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.CambioDatoOrden1">
+            <summary>
+            Obtiene o establece las propiedades de CambioDato del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.AlarmasOrden2">
+            <summary>
+            Obtiene o establece las propiedades de Alarmas del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.CambioDatoOrden2">
+            <summary>
+            Obtiene o establece las propiedades de CambioDato del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.AlarmasOrden3">
+            <summary>
+            Obtiene o establece las propiedades de Alarmas del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.CambioDatoOrden3">
+            <summary>
+            Obtiene o establece las propiedades de CambioDato del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.AlarmasOrden4">
+            <summary>
+            Obtiene o establece las propiedades de Alarmas del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.CambioDatoOrden4">
+            <summary>
+            Obtiene o establece las propiedades de CambioDato del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.ControlNuevaDefinicionComunicacion">
+            <summary>
+            Clase de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSComunicacionInspeccionOrdenes">
+            <summary>
+            Clase de las propiedades de Comunicacion de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>   
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSComunicacionInspeccionOrdenes.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSComunicacionInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSComunicacionInspeccionOrdenes.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSComunicacionInspeccionOrdenes
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSComunicacionInspeccionOrdenes.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSComunicacionInspeccionOrdenes.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase OGSComunicacionInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.ControlNuevaDefinicionAlarmasOrden1">
+            <summary>
+            Clase de las propiedades de alarmas de la Ordenes del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.ControlNuevaDefinicionCambioDatoOrden1">
+            <summary>
+            Clase de las propiedades de CambioDato de la Ordenes del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.ControlNuevaDefinicionAlarmasOrden2">
+            <summary>
+            Clase de las propiedades de alarmas de la Ordenes del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.ControlNuevaDefinicionCambioDatoOrden2">
+            <summary>
+            Clase de las propiedades de CambioDato de la Ordenes del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.ControlNuevaDefinicionAlarmasOrden3">
+            <summary>
+            Clase de las propiedades de alarmas de la Ordenes del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.ControlNuevaDefinicionCambioDatoOrden3">
+            <summary>
+            Clase de las propiedades de CambioDato de la Ordenes del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.ControlNuevaDefinicionAlarmasOrden4">
+            <summary>
+            Clase de las propiedades de alarmas de la Ordenes del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSInspeccionOrdenes.ControlNuevaDefinicionCambioDatoOrden4">
+            <summary>
+            Clase de las propiedades de CambioDato de la Ordenes del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.DelegadoCambioDatoOrden1">
+            <summary>
+            Delegado para el cambio de dato del lblOrden1 del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.DelegadoCambioDatoOrden2">
+            <summary>
+            Delegado para el cambio de dato del lblOrden2 del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.DelegadoCambioDatoOrden3">
+            <summary>
+            Delegado para el cambio de dato del lblOrden3 del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes.DelegadoCambioDatoOrden4">
+            <summary>
+            Delegado para el cambio de dato del lblOrden4 del control Orbita.Controles.GateSuite.OrbitaGSInspeccionOrdenes
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSOrden">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSOrden
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSOrden.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSOrden
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSOrden.definicionComunicacion">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSOrden.definicionAlarmas">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSOrden.definicionCambioDato">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSOrden.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSOrden
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSOrden._numId">
+            <summary>
+            Obtiene o establece el número de identificador del control Orbita.Controles.GateSuite.OrbitaGSOrden
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSOrden._modo">
+            <summary>
+            Obtiene o establece el modo en el que es leído el control Orbita.Controles.GateSuite.OrbitaGSOrden
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSOrden._contenido">
+            <summary>
+            Obtiene o establece el contenido del control Orbita.Controles.GateSuite.OrbitaGSOrden
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSOrden._muestraBotonTeclado">
+            <summary>
+            Obtiene o establece si se muestra el botón teclado del control Orbita.Controles.GateSuite.OrbitaGSOrden
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSOrden._muestraBotonBorrar">
+            <summary>
+            Obtiene o establece si se muestra el botón borrar del control Orbita.Controles.GateSuite.OrbitaGSOrden
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSOrden.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSOrden.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSOrden.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSOrden
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSOrden.Comunicacion">
+            <summary>
+            Obtiene o establece las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSOrden.Alarmas">
+            <summary>
+            Obtiene o establece las propiedades de Alarmas del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSOrden.CambioDato">
+            <summary>
+            Obtiene o establece las propiedades de CambioDato del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSOrden.OrdenVacia">
+            <summary>
+            Obtiene si el contenido del control Orbita.Controles.GateSuite.OrbitaGSOrden es vacío
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSOrden.CodigoVisual">
+            <summary>
+            Obtiene y establece el código visual del control Orbita.Controles.GateSuite.OrbitaGSOrden
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSOrden.MuestraImagenPrecaucion">
+            <summary>
+            Establece si se muestra la imagen de precaución del control Orbita.Controles.GateSuite.OrbitaGSOrden
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSOrden.ControlNuevaDefinicionComunicacion">
+            <summary>
+            Clase de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSComunicacionOrden">
+            <summary>
+            Clase de las propiedades de Comunicacion de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>   
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSComunicacionOrden.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSComunicacionInspeccionMatricula
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSComunicacionOrden.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSComunicacionInspeccionMatricula
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSComunicacionOrden.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSComunicacionOrden.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase OGSComunicacionInspeccionMatricula
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSOrden.ControlNuevaDefinicionAlarmas">
+            <summary>
+            Clase de las propiedades de alarmas del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSOrden.ControlNuevaDefinicionCambioDato">
+            <summary>
+            Clase de las propiedades de CambioDato del control Orbita.Controles.GateSuite.OrbitaGSInspeccionMatricula
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSTablaAlarmas">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSTablaAlarmas.control">
+            <summary>
+            Control al que está asociada la clase Orbita.Controles.GateSuite.OGSTablaAlarmas
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OGSTablaAlarmas.definicionComunicaciones">
+            <summary>
+            Definición de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSTablaAlarmas.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSTablaAlarmas
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSTablaAlarmas.ToString">
+            <summary>
+            Sobreescribe el método ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OGSTablaAlarmas.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSTablaAlarmas.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase Orbita.Controles.GateSuite.OGSTablaAlarmas
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSTablaAlarmas.Comunicaciones">
+            <summary>
+            Obtiene o establece las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OGSTablaAlarmas.PanelFiltrosVisible">
+            <summary>
+            Obtiene o establece si se muestra el filtro del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>       
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OGSTablaAlarmas.ControlNuevaDefinicionComunicaciones">
+            <summary>
+            Clase de las propiedades de Comunicaciones del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSOrden">
+            <summary>
+            Control Orbita.Controles.GateSuite.orbitaGSOrden
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSOrden.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSOrden.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSOrden.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSOrden.definicion">
+            <summary>
+            Definición de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSOrden
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSOrden.Logger">
+            <summary>
+            Logger del control Orbita.Controles.GateSuite.OrbitaGSOrden
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSOrden.#ctor">
+            <summary>
+            Inicializa una nueva instancia del control Orbita.Controles.GateSuite.OrbitaGSOrden
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSOrden.lblTextoOrden_OnCambioDato(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Evento que se lanza en el cambio de dato de alguna de las variables asociadas al cambio de dato en Orbita.Cotnroles.GateSuite.OrbitaGSOrden
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSOrden.lblBoton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Se lanza al presionar en el teclado o en eliminar
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSOrden.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSOrden
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSOrden.CodigoEscaner(System.String)">
+            <summary>
+            El código se lee desde el escaner
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSOrden.VaciarOrden">
+            <summary>
+            Limpia la orden
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OrbitaGSOrden.OI">
+            <summary>
+            Obtiene o establece las propiedades del control Orbita.Controles.GateSuite.OrbitaGSOrden
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSOrden.OnCambioDatoTextoOrden">
+            <summary>
+            Evento que se lanza al Cambio de Dato de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSOrden.ControlNuevaDefinicion">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSOrden
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSOrden.DelegadoCambioDato">
+            <summary>
+            Delegado para el cambio de dato del control Orbita.Controles.GateSuite.OrbitaGSOrden
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSOrden.DelegadoCodigoIntroducido">
+            <summary>
+            Delegado para el cambio de código
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSOrden.DelegadoTeclado">
+            <summary>
+            Delegado para la apertura del teclado
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSOrden.DelegadoEliminaCodigo">
+            <summary>
+            Delegado para eliminar la orden
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas">
+            <summary>
+            Control Orbita.Controles.GateSuite.orbitaGSTablaAlarmas asociado a los eventos de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.definicion">
+            <summary>
+            Definición de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.Logger">
+            <summary>
+            Logger del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.#ctor">
+            <summary>
+            Inicializa una nueva instancia del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.ProcesarAlarma(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSButon al lanzarse una alarma asociada a Alarmas      
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.ProcesarComunicaciones(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSButon dependiendo de si se comunica o no con el Servidor de Comunicaciones      
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.ProcesarCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del control Orbita.Controles.GateSuite.OrbitaGSButon con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.ProcesarVariableVisual(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSButon con el cambio de dato de la variable asociada a Variable.        
+            </summary>
+            <param name="e"></param>    
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.OrbitaGSTablaAlarmas_Load(System.Object,System.EventArgs)">
+            <summary>
+            Evento que se lanza al cargar el control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.gvAlarmas_CellDoubleClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            Evento que se lanza al hacer doble click en una celda del datagridview del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.gvAlarmas_CellClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            Evento que se lanza al hacer click en una celda del datagridview del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.cmbDispositivos_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Evento que se lanza al selecinar un nuevo item en el combo de dispositivos del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.Alarmas_OnAlarma(System.Object,System.EventArgs)">
+            <summary>
+            Evento que se lanza al cambiar el valor de una alarma asociada al control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas 
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.gvAlarmas_CellFormatting(System.Object,System.Windows.Forms.DataGridViewCellFormattingEventArgs)">
+            <summary>
+            Evento que se lanza cuando es neceserio cambiar el formato de una celda al mostrarla en el control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.ActualizaAlarmasMetodo">
+            <summary>
+            Actualizo el datagridview con los cambios en las alarmas
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.CreoColumnaInformacion">
+            <summary>
+            Creo la columna de botones en el datagridview
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.CambiarFondoAlarma(System.Drawing.Color)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSButon ante una Alarma      
+            </summary>
+            <param name="color">color</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.CambiarFondoComunicaciones(System.Drawing.Color)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSButon ante un cambio de la comunicación con el Servidor de Comunicaciones       
+            </summary>
+            <param name="color">color</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.InicializaDataGrid">
+            <summary>
+            Carga inicial del datagridview
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.CambiarValor(System.String)">
+            <summary>
+            Cambia el valor de la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas ante el cambio de dato de la Variable
+            </summary>
+            <param name="valor"></param>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.OI">
+            <summary>
+            Obtiene o establece las propiedades del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.OnDobleClick">
+            <summary>
+            Evento que se lanza al hacer doble click en una celda del datagridview del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.OnActualizaAlarmas">
+            <summary>
+            Evento que se lanza al actualizar las alarmas del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.OnCambioDato">
+            <summary>
+            Evento que se lanza al Cambio de Dato de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.ControlNuevaDefinicion">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.DelegadoValor">
+            <summary>
+            Delegado para el cambio de valor de la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+            <param name="valor">valor de la propiedad .Text</param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.DelegadoColor">
+            <summary>
+            Delegado para el cambio de color de la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+            <param name="color">color de la propiedad .BackColor</param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.DelegadoCambioDato">
+            <summary>
+            Delegado para el cambio de dato del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.DelegadoActualizaAlarmas">
+            <summary>
+            Delegado que actualiza la alarmas del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas.DelegadoDobleClickManejador">
+            <summary>
+            Delegado para el evento dobleclick de la celda del datagridview del control Orbita.Controles.GateSuite.OrbitaGSTablaAlarmas
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.Properties.Resources">
+            <summary>
+              Clase de recurso con establecimiento inflexible de tipos, para buscar cadenas traducidas, etc.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.Properties.Resources.ResourceManager">
+            <summary>
+              Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.Properties.Resources.Culture">
+            <summary>
+              Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
+              búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap">
+            <summary>
+            Control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap asociado a los eventos de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.definicion">
+            <summary>
+            Definición de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.Logger">
+            <summary>
+            Logger del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap._RutaImagen">
+            <summary>
+            Obtiene o establece la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.#ctor">
+            <summary>
+            Inicializa una nueva instancia del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.ProcesarAlarma(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap al lanzarse una alarma asociada a Alarmas      
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.ProcesarComunicaciones(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap dependiendo de si se comunica o no con el Servidor de Comunicaciones      
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.ProcesarCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza el evanto OnCambio del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap con el cambio de dato de una de las variables asociadas al Cambio.        
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.ProcesarVariableVisual(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambia la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap con el cambio de dato de la variable asociada a Variable.        
+            </summary>
+            <param name="e"></param>    
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.CambiarFondoAlarma(System.Drawing.Color)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap ante una Alarma      
+            </summary>
+            <param name="color">color</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.CambiarFondoComunicaciones(System.Drawing.Color)">
+            <summary>
+            Cambia la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap ante un cambio de la comunicación con el Servidor de Comunicaciones       
+            </summary>
+            <param name="color">color</param>
+        </member>
+        <member name="M:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.CambiarValor(System.String)">
+            <summary>
+            Cambia el valor de la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap ante el cambio de dato de la Variable
+            </summary>
+            <param name="valor"></param>
+        </member>
+        <member name="P:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.OI">
+            <summary>
+            Obtiene o establece las propiedades del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.OnCambioDato">
+            <summary>
+            Evento que se lanza al Cambio de Dato de una de las variables asociadas al Cambio
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.ControlNuevaDefinicion">
+            <summary>
+            Clase de las propiedades del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.DelegadoValor">
+            <summary>
+            Delegado para el cambio de valor de la propiedad .Text del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap
+            </summary>
+            <param name="valor">valor de la propiedad .Text</param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.DelegadoColor">
+            <summary>
+            Delegado para el cambio de color de la propiedad .BackColor del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap
+            </summary>
+            <param name="color">color de la propiedad .BackColor</param>
+        </member>
+        <member name="T:Orbita.Controles.GateSuite.OrbitaGSVisorBitmap.DelegadoCambioDato">
+            <summary>
+            Delegado para el cambio de dato del control Orbita.Controles.GateSuite.OrbitaGSVisorBitmap
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+    </members>
+</doc>

@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
 namespace Orbita.Controles.Comunes
 {
     public partial class OrbitaUltraDateTimeEditorWithFilter : Orbita.Controles.Shared.OrbitaUserControl
@@ -106,7 +105,7 @@ namespace Orbita.Controles.Comunes
             {
                 this.CompruebaFechas();
             }
-            catch
+            catch (System.Exception ex)
             {
             }
         }
@@ -121,7 +120,7 @@ namespace Orbita.Controles.Comunes
             {
                 this.CompruebaFechas();
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
             }
         }

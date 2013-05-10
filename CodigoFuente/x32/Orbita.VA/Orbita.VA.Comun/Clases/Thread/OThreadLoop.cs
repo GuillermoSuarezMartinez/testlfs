@@ -84,7 +84,7 @@ namespace Orbita.VA.Comun
                     bool result = false;
                     if (t.ThreadEjecucion != null)
                     {
-                        result = t.ThreadEjecucion.Equals(Thread.CurrentThread);
+                        result = t.ThreadEjecucion.Thread.Equals(Thread.CurrentThread);
                     }
                     return result;
                 });
@@ -148,16 +148,17 @@ namespace Orbita.VA.Comun
         /// </summary>
         /// <param name="metodo">Método que se desea ejecutar en el hilo principal</param>
         /// <param name="parametros">Parámetros del métodos que se desea ejecutar en el hilo principal</param>
-        public static void SincronizarConThreadPrincipal(Delegate metodo, object[] parametros)
+        public static object SincronizarConThreadPrincipal(Delegate metodo, object[] parametros)
         {
             try
             {
-                App.FormularioPrincipal.Invoke(metodo, parametros);
+                return App.FormularioPrincipal.Invoke(metodo, parametros);
             }
             catch (Exception exception)
             {
                 OLogsVAComun.Threads.Info(exception, "SincronizarConThreadPrincipal");
             }
+            return null;
         }
 
         /// <summary>
@@ -466,7 +467,9 @@ namespace Orbita.VA.Comun
             {
                 this.FlagFinalizacion = false;
                 this.CrearThread();
-                this.Estado = EstadoThread.ThreadSuspending;
+                //this.Estado = EstadoThread.ThreadSuspending;
+                this.Estado = EstadoThread.ThreadRunning;
+                this.Pause();
                 this.ThreadEjecucion.Iniciar();
             }
         }
@@ -523,6 +526,7 @@ namespace Orbita.VA.Comun
             if (this.Estado == EstadoThread.ThreadRunning)
             {
                 this.Estado = EstadoThread.ThreadSuspending;
+                this.FinSuspensionEvent.Reset();
                 resultado = true;
             }
 
@@ -558,9 +562,7 @@ namespace Orbita.VA.Comun
                 try
                 {
                     this.Estado = EstadoThread.ThreadSuspended;
-
                     this.FinSuspensionEvent.WaitOne();
-                    this.FinSuspensionEvent.Reset();
                     resultado = true;
                 }
                 catch (Exception exception)
@@ -676,7 +678,8 @@ namespace Orbita.VA.Comun
                 {
                     try
                     {
-                        OThreadManager.EsperarSemaforo();
+                        //OThreadManager.EsperarSemaforo();
+                        this.Wait();
                         bool flagFinalizacionInterno = false;
 
                         // Evento de ejecución del thread
@@ -817,7 +820,6 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Pasua de la ejecución del thread. Este método no debe ser llamado desde el propio thread
         /// </summary>
-        /// <returns>Verdadero si la acción ha resultado exitosa</returns>
         public void Pause()
         {
             this.ListaThreads.ForEach(delegate(OThreadLoop thread) { thread.Pause(); });

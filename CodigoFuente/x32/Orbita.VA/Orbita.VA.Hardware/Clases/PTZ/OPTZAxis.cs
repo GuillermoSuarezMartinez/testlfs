@@ -136,7 +136,7 @@ namespace Orbita.VA.Hardware
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Fatal(this.Codigo, exception);
+                OLogsVAHardware.Camaras.Fatal(exception, this.Codigo);
                 throw new Exception("Imposible iniciar el PTZ " + this.Codigo);
             }
         }
@@ -224,11 +224,11 @@ namespace Orbita.VA.Hardware
                     switch (modo)
 	                {
                         case OEnumModoMovimientoPTZ.Absoluto:
-                            int valorZoomA = (int)ODecimal.Validar(valor, 1, 9999, 0);
+                            int valorZoomA = (int)ODecimal.Validar(valor, 1, 10909, 0);
                             resultado = valorZoomA.ToString(); //int
                             break;
                         case OEnumModoMovimientoPTZ.Relativo:
-                            int valorZoomR = (int)ODecimal.Validar(valor, -9999, 9999, 0);
+                            int valorZoomR = (int)ODecimal.Validar(valor, -10909, 10909, 0);
                             resultado = valorZoomR.ToString(); //int
                             break;
 	                }
@@ -309,13 +309,20 @@ namespace Orbita.VA.Hardware
                     }
                     break;
                 case OEnumTipoMovimientoPTZ.Zoom:
-                case OEnumTipoMovimientoPTZ.Iris:
-                case OEnumTipoMovimientoPTZ.Focus:
-                    OEntero valorEntero = new OEntero("ValorEntero", 1, 9999, 1, false);
+                    OEntero valorEntero = new OEntero("ValorEntero", 1, 10909, 1, false);
                     valorEntero.ValorGenerico = strValor;
                     if (valorEntero.Valido)
                     {
                         posicionPTZ.Valor = valorEntero.Valor;
+                    }
+                    break;
+                case OEnumTipoMovimientoPTZ.Iris:
+                case OEnumTipoMovimientoPTZ.Focus:
+                    OEntero valorEntero2 = new OEntero("ValorEntero", 1, 9999, 1, false);
+                    valorEntero2.ValorGenerico = strValor;
+                    if (valorEntero2.Valido)
+                    {
+                        posicionPTZ.Valor = valorEntero2.Valor;
                     }
                     break;
             }

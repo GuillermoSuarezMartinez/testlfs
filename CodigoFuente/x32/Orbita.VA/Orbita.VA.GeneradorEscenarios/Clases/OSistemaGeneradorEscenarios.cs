@@ -1,6 +1,7 @@
 ﻿using System;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
+using Orbita.BBDD;
 
 namespace Orbita.VA.GeneradorEscenarios
 {
@@ -9,6 +10,13 @@ namespace Orbita.VA.GeneradorEscenarios
     /// </summary>
     public class OSistemaGeneradorEscenarios : OSistema
     {
+        #region Atributo(s)
+        /// <summary>
+        /// Fichero de configuración de la base de datos
+        /// </summary>
+        private static string ConfigFile;
+        #endregion
+
         #region Constructor
         /// <summary>
         /// Constructor de la clase
@@ -17,8 +25,9 @@ namespace Orbita.VA.GeneradorEscenarios
         /// <param name="panelEstadoTexto">Panel de texto en la barra de estado del formulario principal donde se muestra el estado del sistema</param>
         /// <param name="menu">Menú del formulario principal</param>
         public OSistemaGeneradorEscenarios(string configFile)
-            : base(configFile)
+            : base()
         {
+            ConfigFile = configFile;
         }
         #endregion
 
@@ -42,19 +51,12 @@ namespace Orbita.VA.GeneradorEscenarios
                     {
                         // Creación del log de eventos
                         MensajeInfoArranqueAplicacion("Creando log de eventos", false, OTipoMensaje.Info);
-                        //OLogsVAGeneradorEscenarios.Constructor(this.OnShowLogMessage, this.OnShowLogException);
-                        //OLogsVAGeneradorEscenarios.Inicializar();
                         OLogsVAGeneradorEscenarios.GeneradorCodigo.Info("IniciarSistema", "Inicio del sistema");
 
                         // Conexión con la base de datos
-                        if (this.Configuracion.UtilizaBaseDeDatos)
-                        {
-                            MensajeInfoArranqueAplicacion("Conectando con las bases de datos", false, OTipoMensaje.Info);
-                            OBaseDatosManager.Constructor();
-                            OBaseDatosManager.Inicializar();
-                            OBaseDatosParam.Conectar();
-                            OBaseDatosAlmacen.Conectar();
-                        }
+                        MensajeInfoArranqueAplicacion("Conectando con las bases de datos", false, OTipoMensaje.Info);
+                        OBBDDManager.LeerFicheroConfig(ConfigFile);
+                        OBaseDatosParam.CompruebaAccesoBasesDatos(TimeSpan.FromSeconds(20));
                     }
                     catch (Exception exception)
                     {
@@ -75,9 +77,6 @@ namespace Orbita.VA.GeneradorEscenarios
             {
                 try
                 {
-                    // Se finaliza el modo inicialización de los logs (tienen un comportamiento dinstinto)
-                    //OLogsVAGeneradorEscenarios.FinInicializacion();
-
                     // Ocultamos el formulario Splash
                     MensajeInfoArranqueAplicacion("Inicio finalizado con éxito", false, OTipoMensaje.Info);
                     OLogsVAGeneradorEscenarios.GeneradorCodigo.Info("IniciarSistema", "Inicio finalizado con éxito");
@@ -125,10 +124,6 @@ namespace Orbita.VA.GeneradorEscenarios
             {
                 try
                 {
-                    // Finalizaación de las bases de datos
-                    OBaseDatosManager.Finalizar();
-                    OBaseDatosManager.Destructor();
-
                     // Finalización del log de eventos
                     OLogsVAGeneradorEscenarios.GeneradorCodigo.Info("PararSistema", "Paro del sistema finalizado con éxito");
                     //OLogsVAGeneradorEscenarios.Finalizar();

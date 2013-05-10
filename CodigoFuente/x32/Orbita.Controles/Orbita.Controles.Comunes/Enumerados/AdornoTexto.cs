@@ -11,6 +11,9 @@
 //***********************************************************************
 namespace Orbita.Controles.Comunes
 {
+    /// <summary>
+    /// AdornoTexto.
+    /// </summary>
     public enum AdornoTexto
     {
         Ninguno = Infragistics.Win.TextTrimming.Default,

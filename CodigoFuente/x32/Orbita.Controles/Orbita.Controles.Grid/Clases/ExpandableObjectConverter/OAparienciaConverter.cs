@@ -9,17 +9,13 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.ComponentModel;
-using System.Globalization;
 namespace Orbita.Controles.Grid
 {
-    public class OAparienciaConverter : ExpandableObjectConverter
+    public class OAparienciaConverter : System.ComponentModel.ExpandableObjectConverter
     {
         #region Métodos públicos
-        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        public override object ConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, System.Type destinationType)
         {
-            // Convertir a string.
             if ((destinationType == typeof(string)))
             {
                 OApariencia apariencia = (OApariencia)value;

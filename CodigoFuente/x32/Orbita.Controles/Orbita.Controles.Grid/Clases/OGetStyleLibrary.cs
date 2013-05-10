@@ -27,7 +27,7 @@ namespace Orbita.Controles.Grid
         }
         #endregion Private Members
 
-        #region styleLibraryPath
+        #region StyleLibraryPath
         /// <summary>
         /// Path to the Style Library folder installed by the install.
         /// </summary>

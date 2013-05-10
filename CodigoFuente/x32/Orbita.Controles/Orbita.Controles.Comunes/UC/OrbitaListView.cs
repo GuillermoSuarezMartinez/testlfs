@@ -11,13 +11,19 @@
 //***********************************************************************
 namespace Orbita.Controles.Comunes
 {
+    /// <summary>
+    /// Representa un control de vista de lista de Windows, el cual muestra una colección
+    /// de elementos que se pueden ver mediante una de cuatro vistas distintas.
+    /// </summary>
     public partial class OrbitaListView : System.Windows.Forms.ListView
     {
         #region Nueva definición
         public class ControlNuevaDefinicion : OListView
         {
+            #region Constructor
             public ControlNuevaDefinicion(OrbitaListView sender)
                 : base(sender) { }
+            #endregion
         }
         #endregion
 

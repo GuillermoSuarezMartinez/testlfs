@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
 namespace Orbita.Controles.Grid
 {
     [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
@@ -38,7 +37,7 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Propiedades
-        [Browsable(false)]
+        [System.ComponentModel.Browsable(false)]
         public System.Collections.ArrayList Visibles
         {
             get { return this.visibles; }
@@ -134,21 +133,37 @@ namespace Orbita.Controles.Grid
         {
             this.TipoSeleccion = Configuracion.DefectoTipoSeleccionColumna;
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializePermitirOrdenar()
         {
             return (this.PermitirOrdenar != Configuracion.DefectoPermitirOrdenar);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeEstilo()
         {
             return (this.Estilo != Configuracion.DefectoAutoAjustarEstilo);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeTipoSeleccion()
         {
             return (this.TipoSeleccion != Configuracion.DefectoTipoSeleccionColumna);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeVisibles()
         {
@@ -158,9 +173,9 @@ namespace Orbita.Controles.Grid
 
         #region Métodos públicos
         /// <summary>
-        /// Determina el número de propiedades modificadas.
+        /// Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>El nombre de tipo completo del objeto.</returns>
         public override string ToString()
         {
             return null;
@@ -235,10 +250,10 @@ namespace Orbita.Controles.Grid
             {
                 // Añadir un nuevo sumario a la columna.
                 Infragistics.Win.UltraWinGrid.SummarySettings sumario = banda.Summaries.Add(columna.Campo, columna.Sumario.Operacion, banda.Columns[columna.Campo]);
-                // Mostrar sumario en la columna seleccionada.
+                // Mostrar sumario en la posición de la  columna seleccionada.
                 sumario.SummaryPosition = Infragistics.Win.UltraWinGrid.SummaryPosition.UseSummaryPositionColumn;
                 sumario.SummaryPositionColumn = sumario.SourceColumn;
-                // Formatear la apariencia del resumen.
+                // Formatear la apariencia del sumario.
                 sumario.DisplayFormat = columna.Sumario.Mascara;
                 // Justificar el texto.
                 sumario.Appearance.TextHAlign = (Infragistics.Win.HAlign)columna.Alinear;
@@ -250,7 +265,8 @@ namespace Orbita.Controles.Grid
             {
                 string clave = banda.Summaries.Count.ToString(System.Globalization.CultureInfo.CurrentCulture);
                 banda.Summaries.Add(clave, Infragistics.Win.UltraWinGrid.SummaryType.Count, banda.Columns[columna.Campo], Infragistics.Win.UltraWinGrid.SummaryPosition.UseSummaryPositionColumn);
-                banda.Summaries[clave].DisplayFormat = "{0:#####.##}";
+                // TODO: Pruebas de sumarios para + de 1000 filas de sumario.
+                banda.Summaries[clave].DisplayFormat = "{0:###.###.##}";
                 banda.Summaries[clave].Band.Override.SummaryFooterCaptionVisible = Infragistics.Win.DefaultableBoolean.False;
                 banda.Summaries[clave].Band.Override.BorderStyleSummaryFooter = Infragistics.Win.UIElementBorderStyle.Solid;
             }

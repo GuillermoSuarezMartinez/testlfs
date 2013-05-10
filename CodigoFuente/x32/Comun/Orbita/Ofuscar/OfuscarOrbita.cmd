@@ -10,7 +10,7 @@ verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.BBDD.dll /s company "Orbit
 xcopy ..\Orbita.BBDD.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
 :Comunicaciones
-@echo Ofuscacion de Orbita.Controles.Comunicaciones.............
+@echo Ofuscacion de Orbita.Comunicaciones.............
 IF %resp% == t GOTO comunesEx
 set /p resp="Desea ofuscar el ensamblado actual? (s=si, n=no, t=si a todo): " %=%
 IF %resp% == n GOTO Winsock
@@ -22,7 +22,7 @@ verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Comunicaciones.dll /s comp
 xcopy ..\Orbita.Comunicaciones.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
 :Winsock
-@echo Ofuscacion de Orbita.Controles.Winsock....................
+@echo Ofuscacion de Orbita.Winsock....................
 IF %resp% == t GOTO WinsockEx
 set /p resp="Desea ofuscar el ensamblado actual? (s=si, n=no, t=si a todo): " %=%
 IF %resp% == n GOTO Trazabilidad
@@ -34,7 +34,7 @@ verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Winsock.dll /s company "Or
 xcopy ..\Orbita.Winsock.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
 :Trazabilidad
-@echo Ofuscacion de Orbita.Controles.Trazabilidad...............
+@echo Ofuscacion de Orbita.Trazabilidad...............
 IF %resp% == t GOTO TrazabilidadEx
 set /p resp="Desea ofuscar el ensamblado actual? (s=si, n=no, t=si a todo): " %=%
 IF %resp% == n GOTO Utiles
@@ -46,7 +46,7 @@ verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Trazabilidad.dll /s compan
 xcopy ..\Orbita.Trazabilidad.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
 :Utiles
-@echo Ofuscacion de Orbita.Controles.Utiles.....................
+@echo Ofuscacion de Orbita.Utiles.....................
 IF %resp% == t GOTO UtilesEx
 set /p resp="Desea ofuscar el ensamblado actual? (s=si, n=no, t=si a todo): " %=%
 IF %resp% == n GOTO MS
@@ -58,7 +58,7 @@ verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Utiles.dll /s company "Orb
 xcopy ..\Orbita.Utiles.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
 :MS
-@echo Ofuscacion de Orbita.Controles.MS.........................
+@echo Ofuscacion de Orbita.MS.........................
 IF %resp% == t GOTO MSEx
 set /p resp="Desea ofuscar el ensamblado actual? (s=si, n=no, t=si a todo): " %=%
 IF %resp% == n GOTO Xml
@@ -70,7 +70,7 @@ verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.MS.dll /s company "Orbita 
 xcopy ..\Orbita.MS.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
 :Xml
-@echo Ofuscacion de Orbita.Controles.Xml........................
+@echo Ofuscacion de Orbita.Xml........................
 IF %resp% == t GOTO XmlEx
 set /p resp="Desea ofuscar el ensamblado actual? (s=si, n=no, t=si a todo): " %=%
 IF %resp% == n GOTO Compresion
@@ -82,7 +82,7 @@ verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Xml.dll /s company "Orbita
 xcopy ..\Orbita.Xml.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
 :Compresion
-@echo Ofuscacion de Orbita.Controles.Compresion.................
+@echo Ofuscacion de Orbita.Compresion.................
 IF %resp% == t GOTO CompresionEx
 set /p resp="Desea ofuscar el ensamblado actual? (s=si, n=no, t=si a todo): " %=%
 IF %resp% == n GOTO teamfundation

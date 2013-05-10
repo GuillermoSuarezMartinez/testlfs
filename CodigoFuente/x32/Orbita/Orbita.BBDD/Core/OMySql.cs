@@ -18,7 +18,7 @@ namespace Orbita.BBDD
     /// <summary>
     /// Clase tipo para instanciar objetos de base de datos OMySQL.
     /// </summary>
-    public class OMySql : OCore
+    public class OMySql : OCoreBBDD
     {
         #region Constructores
         /// <summary>

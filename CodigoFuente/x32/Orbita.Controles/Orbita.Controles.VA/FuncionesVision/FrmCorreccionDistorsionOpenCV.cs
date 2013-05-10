@@ -58,15 +58,15 @@ namespace Orbita.Controles.VA
             {
                 // Conversión de tipo
                 OImagen imgVisualizada = this.VisorBitmapOriginal.ImagenActual;
-                OImagenOpenCV<Emgu.CV.Structure.Rgb, byte> imgOriginal;
-                imgVisualizada.Convert<OImagenOpenCV<Emgu.CV.Structure.Rgb, byte>>(out imgOriginal);
+                OImagenOpenCV<Emgu.CV.Structure.Bgr, byte> imgOriginal;
+                imgVisualizada.Convert<OImagenOpenCV<Emgu.CV.Structure.Bgr, byte>>(out imgOriginal);
 
                 // Extracción de información de ampliación del lienzo
                 int xAmpliacion = this.NumericEditorXAmpliacion.Value.ValidarEntero(-10000, 10000, 0);
                 int yAmpliacion = this.NumericEditorYAmpliacion.Value.ValidarEntero(-10000, 10000, 0);
 
                 // Ampliación del lienzo
-                OImagenOpenCV<Emgu.CV.Structure.Rgb, byte> imgAmpliada;
+                OImagenOpenCV<Emgu.CV.Structure.Bgr, byte> imgAmpliada;
                 imgAmpliada = imgOriginal.CrearBorde(xAmpliacion, yAmpliacion);
 
                 // Extracción de información de la imagen original
@@ -82,7 +82,7 @@ namespace Orbita.Controles.VA
                 float alto = (float)ODecimal.Validar(this.NumericEditorAlto.Value, 1, 10000, 600);
 
                 // Corrección de perspectiva
-                OImagenOpenCV<Emgu.CV.Structure.Rgb, byte> imgDestino;
+                OImagenOpenCV<Emgu.CV.Structure.Bgr, byte> imgDestino;
                 imgDestino = imgAmpliada.CorregirPerspectiva(puntoOriginal1Offset, puntoOriginal2Offset, puntoOriginal3Offset, puntoOriginal4Offset, x, y, ancho, alto);
 
                 this.VisorBitmapDestino.Visualizar(imgDestino);
@@ -107,6 +107,15 @@ namespace Orbita.Controles.VA
             this.PuntoOriginal2 = this.RadioButtonPuntoOriginal2.Checked ? pos : PuntoOriginal2;
             this.PuntoOriginal3 = this.RadioButtonPuntoOriginal3.Checked ? pos : PuntoOriginal3;
             this.PuntoOriginal4 = this.RadioButtonPuntoOriginal4.Checked ? pos : PuntoOriginal4;
+
+            this.NumericEditorX1Origen.Value = PuntoOriginal1.X;
+            this.NumericEditorY1Origen.Value = PuntoOriginal1.Y;
+            this.NumericEditorX2Origen.Value = PuntoOriginal2.X;
+            this.NumericEditorY2Origen.Value = PuntoOriginal2.Y;
+            this.NumericEditorX3Origen.Value = PuntoOriginal3.X;
+            this.NumericEditorY3Origen.Value = PuntoOriginal3.Y;
+            this.NumericEditorX4Origen.Value = PuntoOriginal4.X;
+            this.NumericEditorY4Origen.Value = PuntoOriginal4.Y;
         }
 	    #endregion    
     }

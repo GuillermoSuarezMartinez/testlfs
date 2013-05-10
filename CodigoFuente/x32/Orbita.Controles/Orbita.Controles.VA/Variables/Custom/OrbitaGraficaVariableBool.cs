@@ -49,12 +49,13 @@ namespace Orbita.Controles.VA
             base.IniciarEjecucion();
 
             // Se cargan los valores acumulados de la varible
-            int numeroMonitorizaciones = Convert.ToInt32(Math.Round(OVariablesManager.TiempoPermanenciaTrazasEnMemoria.TotalMilliseconds / OVariablesManager.CadenciaMonitorizacion.TotalMilliseconds));
+            //int numeroMonitorizaciones = Convert.ToInt32(Math.Round(OVariablesManager.TiempoPermanenciaTrazasEnMemoria.TotalMilliseconds / OVariablesManager.CadenciaMonitorizacion.TotalMilliseconds));
+            int numeroMonitorizaciones = TiempoPermanenciaMS / CadenciaMonitorizacionMs;
             DateTime presente = DateTime.Now;
-            DateTime ahora = presente - OVariablesManager.TiempoPermanenciaTrazasEnMemoria;
+            DateTime ahora = presente - TimeSpan.FromMilliseconds(TiempoPermanenciaMS);
             for (int i = 0; i < numeroMonitorizaciones; i++)
             {
-                ahora += OVariablesManager.CadenciaMonitorizacion;
+                ahora += TimeSpan.FromMilliseconds(CadenciaMonitorizacionMs);
                 UltraDataRow dr = this.varDataSource.Rows.Add();
                 dr["Valor"] = 0;
                 dr["Fecha"] = ahora;

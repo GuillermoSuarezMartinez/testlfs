@@ -68,6 +68,49 @@ namespace Orbita.VA.Comun
                 return resultado;
             }
         }
+
+        /// <summary>
+        /// Profundidad en bytes de cada píxel
+        /// </summary>
+        public virtual int Profundidad
+        {
+            get 
+            {
+                int resultado = base.Profundidad;
+
+                if ((this.Image is ICogImage16GreyData) ||
+                    (this.Image is ICogImage16PixelMemory) ||
+                    (this.Image is ICogImage16Root) ||
+                    (this.Image is ICogImage16RootBuffer))
+                {
+                    resultado = 2;
+                }
+                else if (this.Image is ICogImage24PlanarColorData)
+                {
+                    resultado = 3;
+                }
+                else if ((this.Image is ICogImage8GreyData) ||
+                    (this.Image is ICogImage8PixelMemory) ||
+                    (this.Image is ICogImage8Root) ||
+                    (this.Image is ICogImage8RootBuffer))
+                {
+                    resultado = 1;
+                }
+
+                return resultado; 
+            }
+        }
+
+        /// <summary>
+        /// Indica si las imagenes son a color o monocromo
+        /// </summary>
+        public override bool Color
+        {
+            get
+            {
+                return !(this.Image is ICogImage16GreyData) && !(this.Image is ICogImage8GreyData);
+            }
+        }
         #endregion
 
         #region Constructor
@@ -317,7 +360,7 @@ namespace Orbita.VA.Comun
         /// Método que realiza el empaquetado de un objeto para ser enviado por remoting
         /// </summary>
         /// <returns></returns>
-        public override byte[] ToArray()
+        public override byte[] ToDataArray()
         {
             byte[] resultado = new byte[0];
             if (this.Image is ICogImage)
@@ -350,7 +393,7 @@ namespace Orbita.VA.Comun
         /// Método que realiza el empaquetado de un objeto para ser enviado por remoting
         /// </summary>
         /// <returns></returns>
-        public override byte[] ToArray(ImageFormat formato, double escalado)
+        public override byte[] ToDataArray(ImageFormat formato, double escalado)
         {
             byte[] resultado = new byte[0];
             if (this.Image is ICogImage)
@@ -386,9 +429,9 @@ namespace Orbita.VA.Comun
         /// Método que realiza el desempaquetado de un objeto recibido por remoting
         /// </summary>
         /// <returns></returns>
-        public override OImagen FromArray(byte[] arrayValue, int width, int height, int profundidad)
+        public override bool FromDataArray(byte[] arrayValue, ref OImagen imagen)
         {
-            OImagenVisionPro resultado = null;
+            bool resultado = false;
 
             if (arrayValue.Length > 0)
             {
@@ -401,23 +444,51 @@ namespace Orbita.VA.Comun
                     try
                     {
                         imgVPro = (ICogImage)formateador.Deserialize(stream);
-                        resultado = new OImagenVisionPro(this.Codigo, imgVPro);
+                        imagen = new OImagenVisionPro(this.Codigo, imgVPro);
+
+                        resultado = true;
                     }
                     catch (Exception exception)
                     {
                         OLogsVAComun.ImagenGraficos.Error(exception, "VisionProImage");
-                        resultado = null;
                     }
                     stream.Close();
                 }
                 catch
                 {
-                    resultado = null;
                 }
             }
 
             return resultado;
         }
+
+        /// <summary>
+        /// Método que realiza el empaquetado de un objeto para ser enviado por remoting
+        /// </summary>
+        /// <returns></returns>
+        public override byte[] ToPixelArray()
+        {
+            return this.ToDataArray();
+        }
+
+        /// <summary>
+        /// Método que realiza el empaquetado de un objeto para ser enviado por remoting
+        /// </summary>
+        /// <returns></returns>
+        public override byte[] ToPixelArray(ImageFormat formato, double escalado)
+        {
+            return this.ToPixelArray(formato, escalado);
+        }
+
+        /// <summary>
+        /// Método que realiza el desempaquetado de un objeto recibido por remoting
+        /// </summary>
+        /// <returns></returns>
+        public override bool FromPixelArray(byte[] arrayValue, ref OImagen imagen, int width, int height, int profundidad)
+        {
+            return this.FromDataArray(arrayValue, ref imagen);
+        }
+
 
         /// <summary>
         /// Crea una nueva imagen de la misma clase

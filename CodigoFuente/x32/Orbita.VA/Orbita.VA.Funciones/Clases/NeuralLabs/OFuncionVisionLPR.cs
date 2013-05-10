@@ -19,6 +19,7 @@ using Orbita.Utiles;
 using Orbita.VA.Comun;
 using Orbita.Xml;
 using VPARMTWrapper;
+using System.Drawing;
 
 namespace Orbita.VA.Funciones
 {
@@ -27,7 +28,303 @@ namespace Orbita.VA.Funciones
     /// </summary>
     internal static class OLPRManager
     {
+        #region Propiedad(es)
+        /// <summary>
+        /// Asignación de paises de NL con la ISO3166-2
+        /// </summary>
+        private static List<OQuartet<string, string, string, int>> _AsignacionPaisesNL =
+            new List<OQuartet<string, string, string, int>>()
+            {
+                new OQuartet<string, string, string, int>("AFG", "AF", "Afganistán",0),
+                new OQuartet<string, string, string, int>("ALA", "AX", "Åland",0),
+                new OQuartet<string, string, string, int>("ALB", "AL", "Albania",125),
+                new OQuartet<string, string, string, int>("DEU", "DE", "Alemania",108),
+                new OQuartet<string, string, string, int>("AND", "AD", "Andorra",0),
+                new OQuartet<string, string, string, int>("AGO", "AO", "Angola",0),
+                new OQuartet<string, string, string, int>("AIA", "AI", "Anguila",0),
+                new OQuartet<string, string, string, int>("ATG", "AG", "Antigua y Barbuda",0),
+                new OQuartet<string, string, string, int>("ANT", "AN", "Antillas Neerlandesas",0),
+                new OQuartet<string, string, string, int>("SAU", "SA", "Arabia Saudita",0),
+                new OQuartet<string, string, string, int>("DZA", "DZ", "Argelia",0),
+                new OQuartet<string, string, string, int>("ARG", "AR", "Argentina",204),
+                new OQuartet<string, string, string, int>("ARM", "AM", "Armenia",0),
+                new OQuartet<string, string, string, int>("ABW", "AW", "Aruba",0),
+                new OQuartet<string, string, string, int>("AUS", "AU", "Australia",0),
+                new OQuartet<string, string, string, int>("AUT", "AT", "Austria",124),
+                new OQuartet<string, string, string, int>("AZE", "AZ", "Azerbaiyán",0),
+                new OQuartet<string, string, string, int>("BHS", "BS", "Bahamas",0),
+                new OQuartet<string, string, string, int>("BHR", "BH", "Baréin",0),
+                new OQuartet<string, string, string, int>("BGD", "BD", "Bangladés",0),
+                new OQuartet<string, string, string, int>("BRB", "BB", "Barbados",0),
+                new OQuartet<string, string, string, int>("BEL", "BE", "Bélgica",116),
+                new OQuartet<string, string, string, int>("BLZ", "BZ", "Belice",0),
+                new OQuartet<string, string, string, int>("BEN", "BJ", "Benín",0),
+                new OQuartet<string, string, string, int>("BMU", "BM", "Bermudas",0),
+                new OQuartet<string, string, string, int>("BLR", "BY", "Bielorrusia",0),
+                new OQuartet<string, string, string, int>("MMR", "MM", "Birmania",0),
+                new OQuartet<string, string, string, int>("BOL", "BO", "Bolivia",0),
+                new OQuartet<string, string, string, int>("BIH", "BA", "Bosnia y Herzegovina",114),
+                new OQuartet<string, string, string, int>("BWA", "BW", "Botsuana",0),
+                new OQuartet<string, string, string, int>("BVT", "BV", "Isla Bouvet",0),
+                new OQuartet<string, string, string, int>("BRA", "BR", "Brasil",203),
+                new OQuartet<string, string, string, int>("BRN", "BN", "Brunéi",0),
+                new OQuartet<string, string, string, int>("BGR", "BG", "Bulgaria",111),
+                new OQuartet<string, string, string, int>("BFA", "BF", "Burkina Faso",0),
+                new OQuartet<string, string, string, int>("BDI", "BI", "Burundi",0),
+                new OQuartet<string, string, string, int>("BTN", "BT", "Bután",0),
+                new OQuartet<string, string, string, int>("CPV", "CV", "Cabo Verde",0),
+                new OQuartet<string, string, string, int>("CYM", "KY", "Islas Caimán",0),
+                new OQuartet<string, string, string, int>("KHM", "KH", "Camboya",0),
+                new OQuartet<string, string, string, int>("CMR", "CM", "Camerún",0),
+                new OQuartet<string, string, string, int>("CAN", "CA", "Canadá",561),
+                new OQuartet<string, string, string, int>("CAF", "CF", "República Centroafricana",0),
+                new OQuartet<string, string, string, int>("TCD", "TD", "Chad",0),
+                new OQuartet<string, string, string, int>("CZE", "CZ", "República Checa",0),
+                new OQuartet<string, string, string, int>("CHL", "CL", "Chile",201),
+                new OQuartet<string, string, string, int>("CHN", "CN", "China",0),
+                new OQuartet<string, string, string, int>("CYP", "CY", "Chipre",126),
+                new OQuartet<string, string, string, int>("CCK", "CC", "Islas Cocos",0),
+                new OQuartet<string, string, string, int>("COL", "CO", "Colombia",0),
+                new OQuartet<string, string, string, int>("COM", "KM", "Comoras",0),
+                new OQuartet<string, string, string, int>("COG", "CG", "República del Congo",0),
+                new OQuartet<string, string, string, int>("COD", "CD", "República Democrática del Congo",0),
+                new OQuartet<string, string, string, int>("COK", "CK", "Islas Cook",0),
+                new OQuartet<string, string, string, int>("PRK", "KP", "Corea del Norte",0),
+                new OQuartet<string, string, string, int>("KOR", "KR", "Corea del Sur",0),
+                new OQuartet<string, string, string, int>("CIV", "CI", "Costa de Marfil",0),
+                new OQuartet<string, string, string, int>("CRI", "CR", "Costa Rica",0),
+                new OQuartet<string, string, string, int>("HRV", "HR", "Croacia",0),
+                new OQuartet<string, string, string, int>("CUW", "CW", "Curazao",0),
+                new OQuartet<string, string, string, int>("CUB", "CU", "Cuba",0),
+                new OQuartet<string, string, string, int>("DNK", "DK", "Dinamarca",118),
+                new OQuartet<string, string, string, int>("DMA", "DM", "Dominica",0),
+                new OQuartet<string, string, string, int>("DOM", "DO", "República Dominicana",0),
+                new OQuartet<string, string, string, int>("ECU", "EC", "Ecuador",206),
+                new OQuartet<string, string, string, int>("EGY", "EG", "Egipto",0),
+                new OQuartet<string, string, string, int>("SLV", "SV", "El Salvador",209),
+                new OQuartet<string, string, string, int>("ARE", "AE", "Emiratos Árabes Unidos",0),
+                new OQuartet<string, string, string, int>("ERI", "ER", "Eritrea",0),
+                new OQuartet<string, string, string, int>("SVK", "SK", "Eslovaquia",0),
+                new OQuartet<string, string, string, int>("SVN", "SI", "Eslovenia",0),
+                new OQuartet<string, string, string, int>("ESP", "ES", "España* **",101),
+                new OQuartet<string, string, string, int>("USA", "US", "Estados Unidos",501),
+                new OQuartet<string, string, string, int>("USA", "US", "Estados Unidos",502),
+                new OQuartet<string, string, string, int>("USA", "US", "Estados Unidos",503),
+                new OQuartet<string, string, string, int>("USA", "US", "Estados Unidos",504),
+                new OQuartet<string, string, string, int>("USA", "US", "Estados Unidos",505),
+                new OQuartet<string, string, string, int>("EST", "EE", "Estonia",113),
+                new OQuartet<string, string, string, int>("ETH", "ET", "Etiopía",0),
+                new OQuartet<string, string, string, int>("FRO", "FO", "Islas Feroe",0),
+                new OQuartet<string, string, string, int>("PHL", "PH", "Filipinas",305),
+                new OQuartet<string, string, string, int>("FIN", "FI", "Finlandia",0),
+                new OQuartet<string, string, string, int>("FJI", "FJ", "Fiyi",0),
+                new OQuartet<string, string, string, int>("FRA", "FR", "Francia",103),
+                new OQuartet<string, string, string, int>("GAB", "GA", "Gabón",0),
+                new OQuartet<string, string, string, int>("GMB", "GM", "Gambia",0),
+                new OQuartet<string, string, string, int>("GEO", "GE", "Georgia",0),
+                new OQuartet<string, string, string, int>("SGS", "GS", "Islas Georgias del Sur y Sandwich del Sur",0),
+                new OQuartet<string, string, string, int>("GHA", "GH", "Ghana",0),
+                new OQuartet<string, string, string, int>("GIB", "GI", "Gibraltar",121),
+                new OQuartet<string, string, string, int>("GRD", "GD", "Granada",0),
+                new OQuartet<string, string, string, int>("GRC", "GR", "Grecia",106),
+                new OQuartet<string, string, string, int>("GRL", "GL", "Groenlandia",0),
+                new OQuartet<string, string, string, int>("GLP", "GP", "Guadalupe",0),
+                new OQuartet<string, string, string, int>("GUM", "GU", "Guam",0),
+                new OQuartet<string, string, string, int>("GTM", "GT", "Guatemala",212),
+                new OQuartet<string, string, string, int>("GUF", "GF", "Guayana Francesa",0),
+                new OQuartet<string, string, string, int>("GGY", "GG", "Guernsey",0),
+                new OQuartet<string, string, string, int>("GIN", "GN", "Guinea",0),
+                new OQuartet<string, string, string, int>("GNQ", "GQ", "Guinea Ecuatorial",0),
+                new OQuartet<string, string, string, int>("GNB", "GW", "Guinea-Bisáu",0),
+                new OQuartet<string, string, string, int>("GUY", "GY", "Guyana",0),
+                new OQuartet<string, string, string, int>("HTI", "HT", "Haití",0),
+                new OQuartet<string, string, string, int>("HMD", "HM", "Islas Heard y McDonald",0),
+                new OQuartet<string, string, string, int>("HND", "HN", "Honduras",0),
+                new OQuartet<string, string, string, int>("HKG", "HK", "Hong Kong",0),
+                new OQuartet<string, string, string, int>("HUN", "HU", "Hungría",0),
+                new OQuartet<string, string, string, int>("IND", "IN", "India",0),
+                new OQuartet<string, string, string, int>("IDN", "ID", "Indonesia",0),
+                new OQuartet<string, string, string, int>("IRN", "IR", "Irán",0),
+                new OQuartet<string, string, string, int>("IRQ", "IQ", "Irak",0),
+                new OQuartet<string, string, string, int>("IRL", "IE", "Irlanda",107),
+                new OQuartet<string, string, string, int>("ISL", "IS", "Islandia",0),
+                new OQuartet<string, string, string, int>("ISR", "IL", "Israel",308),
+                new OQuartet<string, string, string, int>("ITA", "IT", "Italia",104),
+                new OQuartet<string, string, string, int>("JAM", "JM", "Jamaica",0),
+                new OQuartet<string, string, string, int>("JPN", "JP", "Japón",0),
+                new OQuartet<string, string, string, int>("JEY", "JE", "Jersey",0),
+                new OQuartet<string, string, string, int>("JOR", "JO", "Jordania",0),
+                new OQuartet<string, string, string, int>("KAZ", "KZ", "Kazajistán",0),
+                new OQuartet<string, string, string, int>("KEN", "KE", "Kenia",0),
+                new OQuartet<string, string, string, int>("KGZ", "KG", "Kirguistán",0),
+                new OQuartet<string, string, string, int>("KIR", "KI", "Kiribati",0),
+                new OQuartet<string, string, string, int>("KWT", "KW", "Kuwait",0),
+                new OQuartet<string, string, string, int>("LAO", "LA", "Laos",0),
+                new OQuartet<string, string, string, int>("LSO", "LS", "Lesoto",0),
+                new OQuartet<string, string, string, int>("LVA", "LV", "Letonia",0),
+                new OQuartet<string, string, string, int>("LBN", "LB", "Líbano",0),
+                new OQuartet<string, string, string, int>("LBR", "LR", "Liberia",0),
+                new OQuartet<string, string, string, int>("LBY", "LY", "Libia",0),
+                new OQuartet<string, string, string, int>("LIE", "LI", "Liechtenstein",0),
+                new OQuartet<string, string, string, int>("LTU", "LT", "Lituania",0),
+                new OQuartet<string, string, string, int>("LUX", "LU", "Luxemburgo",0),
+                new OQuartet<string, string, string, int>("MAC", "MO", "Macao",0),
+                new OQuartet<string, string, string, int>("MKD", "MK", "República de Macedonia",0),
+                new OQuartet<string, string, string, int>("MDG", "MG", "Madagascar",0),
+                new OQuartet<string, string, string, int>("MYS", "MY", "Malasia",306),
+                new OQuartet<string, string, string, int>("MWI", "MW", "Malaui",0),
+                new OQuartet<string, string, string, int>("MDV", "MV", "Maldivas",0),
+                new OQuartet<string, string, string, int>("MLI", "ML", "Malí",0),
+                new OQuartet<string, string, string, int>("MLT", "MT", "Malta",0),
+                new OQuartet<string, string, string, int>("FLK", "FK", "Islas Malvinas",0),
+                new OQuartet<string, string, string, int>("IMN", "IM", "Isla de Man",0),
+                new OQuartet<string, string, string, int>("MNP", "MP", "Islas Marianas del Norte",0),
+                new OQuartet<string, string, string, int>("MAR", "MA", "Marruecos",402),
+                new OQuartet<string, string, string, int>("MHL", "MH", "Islas Marshall",0),
+                new OQuartet<string, string, string, int>("MTQ", "MQ", "Martinica",0),
+                new OQuartet<string, string, string, int>("MUS", "MU", "Mauricio",0),
+                new OQuartet<string, string, string, int>("MRT", "MR", "Mauritania",0),
+                new OQuartet<string, string, string, int>("MYT", "YT", "Mayotte",0),
+                new OQuartet<string, string, string, int>("MEX", "MX", "México",205),
+                new OQuartet<string, string, string, int>("FSM", "FM", "Micronesia",0),
+                new OQuartet<string, string, string, int>("MDA", "MD", "Moldavia",0),
+                new OQuartet<string, string, string, int>("MCO", "MC", "Mónaco",0),
+                new OQuartet<string, string, string, int>("MNG", "MN", "Mongolia",0),
+                new OQuartet<string, string, string, int>("MNE", "ME", "Montenegro",0),
+                new OQuartet<string, string, string, int>("MSR", "MS", "Montserrat",0),
+                new OQuartet<string, string, string, int>("MOZ", "MZ", "Mozambique",0),
+                new OQuartet<string, string, string, int>("NAM", "NA", "Namibia",0),
+                new OQuartet<string, string, string, int>("NRU", "NR", "Nauru",0),
+                new OQuartet<string, string, string, int>("CXR", "CX", "Isla de Navidad",0),
+                new OQuartet<string, string, string, int>("NPL", "NP", "Nepal",0),
+                new OQuartet<string, string, string, int>("NIC", "NI", "Nicaragua",0),
+                new OQuartet<string, string, string, int>("NER", "NE", "Níger",0),
+                new OQuartet<string, string, string, int>("NGA", "NG", "Nigeria",0),
+                new OQuartet<string, string, string, int>("NIU", "NU", "Niue",0),
+                new OQuartet<string, string, string, int>("NFK", "NF", "Norfolk",0),
+                new OQuartet<string, string, string, int>("NOR", "NO", "Noruega",117),
+                new OQuartet<string, string, string, int>("NCL", "NC", "Nueva Caledonia",0),
+                new OQuartet<string, string, string, int>("NZL", "NZ", "Nueva Zelanda",0),
+                new OQuartet<string, string, string, int>("OMN", "OM", "Omán",0),
+                new OQuartet<string, string, string, int>("NLD", "NL", "Países Bajos",112),
+                new OQuartet<string, string, string, int>("PAK", "PK", "Pakistán",0),
+                new OQuartet<string, string, string, int>("PLW", "PW", "Palaos",0),
+                new OQuartet<string, string, string, int>("PSE", "PS", "Estado de Palestina",0),
+                new OQuartet<string, string, string, int>("PAN", "PA", "Panamá",215),
+                new OQuartet<string, string, string, int>("PNG", "PG", "Papúa Nueva Guinea",0),
+                new OQuartet<string, string, string, int>("PRY", "PY", "Paraguay",216),
+                new OQuartet<string, string, string, int>("PER", "PE", "Perú",208),
+                new OQuartet<string, string, string, int>("PCN", "PN", "Islas Pitcairn",0),
+                new OQuartet<string, string, string, int>("PYF", "PF", "Polinesia Francesa",0),
+                new OQuartet<string, string, string, int>("POL", "PL", "Polonia",110),
+                new OQuartet<string, string, string, int>("PRT", "PT", "Portugal",102),
+                new OQuartet<string, string, string, int>("PRI", "PR", "Puerto Rico",0),
+                new OQuartet<string, string, string, int>("QAT", "QA", "Catar",0),
+                new OQuartet<string, string, string, int>("GBR", "GB", "Reino Unido",105),
+                new OQuartet<string, string, string, int>("REU", "RE", "Reunión",0),
+                new OQuartet<string, string, string, int>("RWA", "RW", "Ruanda",0),
+                new OQuartet<string, string, string, int>("ROU", "RO", "Rumania",115),
+                new OQuartet<string, string, string, int>("RUS", "RU", "Rusia",301),
+                new OQuartet<string, string, string, int>("ESH", "EH", "Sahara Occidental",0),
+                new OQuartet<string, string, string, int>("SLB", "SB", "Islas Salomón",0),
+                new OQuartet<string, string, string, int>("WSM", "WS", "Samoa",0),
+                new OQuartet<string, string, string, int>("ASM", "AS", "Samoa Americana",0),
+                new OQuartet<string, string, string, int>("BLM", "BL", "San Bartolomé",0),
+                new OQuartet<string, string, string, int>("KNA", "KN", "San Cristóbal y Nieves",0),
+                new OQuartet<string, string, string, int>("SMR", "SM", "San Marino",0),
+                new OQuartet<string, string, string, int>("MAF", "MF", "San Martín",0),
+                new OQuartet<string, string, string, int>("SPM", "PM", "San Pedro y Miquelón",0),
+                new OQuartet<string, string, string, int>("VCT", "VC", "San Vicente y las Granadinas",0),
+                new OQuartet<string, string, string, int>("SHN", "SH", "Santa Helena, A. y T.",0),
+                new OQuartet<string, string, string, int>("LCA", "LC", "Santa Lucía",0),
+                new OQuartet<string, string, string, int>("STP", "ST", "Santo Tomé y Príncipe",0),
+                new OQuartet<string, string, string, int>("SEN", "SN", "Senegal",0),
+                new OQuartet<string, string, string, int>("SRB", "RS", "Serbia",0),
+                new OQuartet<string, string, string, int>("SYC", "SC", "Seychelles",0),
+                new OQuartet<string, string, string, int>("SLE", "SL", "Sierra Leona",0),
+                new OQuartet<string, string, string, int>("SGP", "SG", "Singapur",307),
+                new OQuartet<string, string, string, int>("SYR", "SY", "Siria",0),
+                new OQuartet<string, string, string, int>("SOM", "SO", "Somalia",0),
+                new OQuartet<string, string, string, int>("LKA", "LK", "Sri Lanka",0),
+                new OQuartet<string, string, string, int>("SWZ", "SZ", "Suazilandia",0),
+                new OQuartet<string, string, string, int>("ZAF", "ZA", "Sudáfrica",401),
+                new OQuartet<string, string, string, int>("SDN", "SD", "Sudán",0),
+                new OQuartet<string, string, string, int>("SSD", "SS", "Sudán del Sur",0),
+                new OQuartet<string, string, string, int>("SWE", "SE", "Suecia",119),
+                new OQuartet<string, string, string, int>("CHE", "CH", "Suiza",0),
+                new OQuartet<string, string, string, int>("SUR", "SR", "Surinam",0),
+                new OQuartet<string, string, string, int>("SJM", "SJ", "Svalbard y Jan Mayen",0),
+                new OQuartet<string, string, string, int>("THA", "TH", "Tailandia",0),
+                new OQuartet<string, string, string, int>("TWN", "TW", "Taiwán",0),
+                new OQuartet<string, string, string, int>("TZA", "TZ", "Tanzania",0),
+                new OQuartet<string, string, string, int>("TJK", "TJ", "Tayikistán",0),
+                new OQuartet<string, string, string, int>("IOT", "IO", "Territorio Británico del Océano Índico",0),
+                new OQuartet<string, string, string, int>("ATF", "TF", "Territorios Australes Franceses",0),
+                new OQuartet<string, string, string, int>("TLS", "TL", "Timor Oriental",0),
+                new OQuartet<string, string, string, int>("TGO", "TG", "Togo",0),
+                new OQuartet<string, string, string, int>("TKL", "TK", "Tokelau",0),
+                new OQuartet<string, string, string, int>("TON", "TO", "Tonga",0),
+                new OQuartet<string, string, string, int>("TTO", "TT", "Trinidad y Tobago",0),
+                new OQuartet<string, string, string, int>("TUN", "TN", "Túnez",0),
+                new OQuartet<string, string, string, int>("TCA", "TC", "Islas Turcas y Caicos",0),
+                new OQuartet<string, string, string, int>("TKM", "TM", "Turkmenistán",0),
+                new OQuartet<string, string, string, int>("TUR", "TR", "Turquía",302),
+                new OQuartet<string, string, string, int>("TUV", "TV", "Tuvalu",0),
+                new OQuartet<string, string, string, int>("UKR", "UA", "Ucrania",0),
+                new OQuartet<string, string, string, int>("UGA", "UG", "Uganda",0),
+                new OQuartet<string, string, string, int>("URY", "UY", "Uruguay",211),
+                new OQuartet<string, string, string, int>("UZB", "UZ", "Uzbekistán",0),
+                new OQuartet<string, string, string, int>("VUT", "VU", "Vanuatu",0),
+                new OQuartet<string, string, string, int>("VAT", "VA", "Ciudad del Vaticano",0),
+                new OQuartet<string, string, string, int>("VEN", "VE", "Venezuela",207),
+                new OQuartet<string, string, string, int>("VNM", "VN", "Vietnam",303),
+                new OQuartet<string, string, string, int>("VGB", "VG", "Islas Vírgenes Británicas",0),
+                new OQuartet<string, string, string, int>("VIR", "VI", "Islas Vírgenes de los Estados Unidos",0),
+                new OQuartet<string, string, string, int>("WLF", "WF", "Wallis y Futuna",0),
+                new OQuartet<string, string, string, int>("YEM", "YE", "Yemen",0),
+                new OQuartet<string, string, string, int>("DJI", "DJ", "Yibuti",0),
+                new OQuartet<string, string, string, int>("ZMB", "ZM", "Zambia",0),
+                new OQuartet<string, string, string, int>("ZWE", "ZW", "Zimbabue",0)
+            };
+        /// <summary>
+        /// Asignación de paises de NL con la ISO3166-2
+        /// </summary>
+        public static List<OQuartet<string, string, string, int>> AsignacionPaisesNL
+        {
+            get { return _AsignacionPaisesNL; }
+        }
+        #endregion
+
         #region Atributo(s)
+        /// <summary>
+        /// Constante que indica el pais o paises a identificar la matricula
+        /// </summary>
+        public static int CountryCode = 101;
+        /// <summary>
+        /// Constante de altura del caracter
+        /// </summary>
+        public static int AvCharHeight = -1;
+        /// <summary>
+        /// Parámetro de Vpar
+        /// </summary>
+        public static int DuplicateLines = 0;
+        /// <summary>
+        /// Parametro de Vpar
+        /// </summary>
+        public static int Reordenar = 0;
+        /// <summary>
+        /// Parametro de Vpar
+        /// </summary>
+        public static int FilterColor = 0;
+        /// <summary>
+        /// Trazabilidad
+        /// </summary>
+        public static int TraceVpar = 1;
+        /// <summary>
+        /// Indica si se ha de realizar una traza del LPR
+        /// </summary>
+        public static bool TraceWrapper = true;
+
         /// <summary>
         /// Thread de ejecución continua del módulo LPR
         /// </summary>
@@ -37,12 +334,6 @@ namespace Orbita.VA.Funciones
         /// Indica si alguna función de visión ha demandado el uso del LPR
         /// </summary>
         private static bool UsoDemandado = false;
-
-        /// <summary>
-        /// Parámetros de configuración del LPR
-        /// </summary>
-        private static ConfiguracionLPR Configuracion;
-
         #endregion
 
         #region Método(s) privado(s)
@@ -52,6 +343,19 @@ namespace Orbita.VA.Funciones
         private static void Constructor()
         {
             ThreadEjecucionLPR = new ThreadEjecucionLPR("LPR", ThreadPriority.Normal);
+
+            // Cargamos valores de la base de datos
+            DataTable dtLPR = AppBD.GetConfiguracionLPR();
+            if (dtLPR.Rows.Count == 1)
+            {
+                CountryCode = OEntero.Validar(dtLPR.Rows[0]["CountryCode"], 0, 100000, 101);
+                AvCharHeight = OEntero.Validar(dtLPR.Rows[0]["AvCharHeight"], 1, 10000, -1);
+                DuplicateLines = OEntero.Validar(dtLPR.Rows[0]["DuplicateLines"], 0, 10000, 0);
+                Reordenar = OEntero.Validar(dtLPR.Rows[0]["Reordenar"], 0, 10000, 0);
+                FilterColor = OEntero.Validar(dtLPR.Rows[0]["FilterColor"], 0, 10000, 0);
+                TraceVpar = OEntero.Validar(dtLPR.Rows[0]["TraceVpar"], 0, 10000, 0);
+                TraceWrapper = OBooleano.Validar(dtLPR.Rows[0]["TraceWrapper"], false);
+            }
         }
 
         /// <summary>
@@ -70,19 +374,8 @@ namespace Orbita.VA.Funciones
         {
             try
             {
-                try
-                {
-                    OLPRManager.Configuracion = (ConfiguracionLPR)(new ConfiguracionLPR().CargarDatos());
-                }
-                catch (FileNotFoundException exception)
-                {
-                    OLogsVAFunciones.LPR.Error(exception, "LPR");
-                    OLPRManager.Configuracion = new ConfiguracionLPR();
-                    OLPRManager.Configuracion.Guardar();
-                }
-
                 // Inicializamos el motor de búsqueda de LPR             
-                int id = MTInterface.Init(OLPRManager.Configuracion.CountryCode, OLPRManager.Configuracion.AvCharHeight, OLPRManager.Configuracion.DuplicateLines, OLPRManager.Configuracion.Reordenar, OLPRManager.Configuracion.filterColor, OLPRManager.Configuracion.TraceVpar, OLPRManager.Configuracion.TraceWrapper);
+                int id = MTInterface.Init(OLPRManager.CountryCode, OLPRManager.AvCharHeight, OLPRManager.DuplicateLines, OLPRManager.Reordenar, OLPRManager.FilterColor, OLPRManager.TraceVpar, OLPRManager.TraceWrapper);
                 // Almacenamos el valor de incio
                 if (id == 1)
                 {
@@ -117,14 +410,14 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Resetea la función de visión LPR
         /// </summary>
-        public static void Reset()
+        internal static void Reset()
         {
             // Detenemos el hilo 
             ThreadEjecucionLPR.Pause();
             // Liberamos memoria reservada para la libreria de LPR, cuando termina de procesar las imagenes
             MTInterface.QueryEnd();
             // Inicializamos el motor de búsqueda de LPR
-            MTInterface.Init(OLPRManager.Configuracion.CountryCode, OLPRManager.Configuracion.AvCharHeight, OLPRManager.Configuracion.DuplicateLines, OLPRManager.Configuracion.Reordenar, OLPRManager.Configuracion.filterColor, OLPRManager.Configuracion.TraceVpar, OLPRManager.Configuracion.TraceWrapper);
+            MTInterface.Init(OLPRManager.CountryCode, OLPRManager.AvCharHeight, OLPRManager.DuplicateLines, OLPRManager.Reordenar, OLPRManager.FilterColor, OLPRManager.TraceVpar, OLPRManager.TraceWrapper);
             // Reiniciamos el hilo
             ThreadEjecucionLPR.Resume();
         }
@@ -132,7 +425,7 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Se demanda el uso del LPR, por lo que se necesita iniciar las librerías correspondientes
         /// </summary>
-        public static void DemandaUso()
+        internal static void DemandaUso()
         {
             if (!UsoDemandado)
             {
@@ -149,7 +442,7 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Se elimina la demanda el uso del LPR, por lo que se necesita finalizar las librerías correspondientes
         /// </summary>
-        public static void FinDemandaUso()
+        internal static void FinDemandaUso()
         {
             if (UsoDemandado)
             {
@@ -236,6 +529,10 @@ namespace Orbita.VA.Funciones
         #endregion
 
         #region Método(s) heredado(s)
+        /// <summary>
+        /// Método heredado para implementar la ejecución del thread.
+        /// Este método se está ejecutando en un bucle. Para salir del bucle hay que devolver finalize a true.
+        /// </summary>
         protected override void Ejecucion(ref bool finalize)
         {
             finalize = this.Finalizar;
@@ -270,7 +567,7 @@ namespace Orbita.VA.Funciones
                                 // Obtengo el resultado de una matricula
                                 OResultadoSimpleLPR resultadoParcial = new OResultadoSimpleLPR(plateInfo, element.ImageInformation.GetTimestamp);
                                 // Añado el resultado de la matricula a la lista de matriculas reconocidas de la imagen
-                                infoInspeccionLPR.Resultados.Add(resultadoParcial); 
+                                infoInspeccionLPR.Resultados.Detalles.Add(resultadoParcial); 
 
                                 plateInfo.Dispose();
                             }
@@ -317,7 +614,7 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Siguiente ruta de imágen a procesar en el LPR
         /// </summary>
-        private string RutaImagen;
+        private string RutaImagenTemporal;
 
         /// <summary>
         /// Lista de información adicional incorporada por el controlador externo
@@ -362,7 +659,8 @@ namespace Orbita.VA.Funciones
                     this.ParametrosLPR.AlturaVentanaBusqueda = OEntero.Validar(dtFuncionVision.Rows[0]["NL_AlturaVentanaBusqueda"], 0, 10000, 0);
                     this.ParametrosLPR.AnchuraVentanaBusqueda = OEntero.Validar(dtFuncionVision.Rows[0]["NL_AnchuraVentanaBusqueda"], 0, 10000, 0);
                     this.ParametrosLPR.ActivadaMasInformacion = OEntero.Validar(dtFuncionVision.Rows[0]["NL_ActivadaMasInformacion"], 0, 10000, 1);
-                }
+                    this.ParametrosLPR.OrbitaCorreccionPerspectiva = new OCorreccionPerspectiva(dtFuncionVision.Rows[0]);
+                }                
             }
             catch (Exception exception)
             {
@@ -466,35 +764,41 @@ namespace Orbita.VA.Funciones
 
                         OInfoInspeccionLPR infoInspeccionLPR = new OInfoInspeccionLPR(
                                 this.Imagen,
-                                new OInfoImagenLPR(this.IdEjecucionActual,this.Codigo, this.IndiceFotografia, DateTime.Now, AñadirResultadoParcial),
                                 this.ParametrosLPR,
+                                new OInfoImagenLPR(this.IdEjecucionActual, this.Codigo, this.IndiceFotografia, DateTime.Now, this.RutaImagenTemporal, AñadirResultadoParcial),
                                 new OResultadoLPR(),
                                 this.InformacionAdicional);
 
                         // Se carga la configuración
                         this.EstablecerConfiguracion((OParametrosLPR)this.ParametrosLPR);
+
                         // Variamos la configuración para la siguiente 
-                        // Se carga la imagen
                         object info = infoInspeccionLPR;
                         int resultCode = 0;
+
+                        // Se carga la imagen
                         //  Si tenemos ruta y imagenes es null, pasamos la ruta y sino viceversa
                         if (this.Imagen == null)
                         {
-                            if (File.Exists(this.RutaImagen))
+                            // Corrección de distorsión
+                            ONerualLabsUtils.CorreccionPerspectivaDisco(this.RutaImagenTemporal, this.ParametrosLPR.OrbitaCorreccionPerspectiva);
+
+                            // adición de imagen
+                            if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                             {
-                                FileInfo fileInfo = new FileInfo(this.RutaImagen);
-                                while (this.IsFileLocked(fileInfo))
-                                {
-                                    // Esperamos a poder utilizar el archivo
-                                    Application.DoEvents();
-                                    Thread.Sleep(1);
-                                }
-                                resultCode = MTInterface.Add(this.RutaImagen,ref info);
+                                resultCode = MTInterface.Add(this.RutaImagenTemporal, ref info);
+                            }
+                            else
+                            {
+                                OLogsVAFunciones.LPR.Info("FuncionLPR: Fichero de imagen bloqueada");
                             }
                         }
                         else
                         {
-                            resultCode = MTInterface.Add(this.Imagen.Image, ref info);
+                            // Corrección de distorsión
+                            OImagenBitmap imagenTrabajo = ONerualLabsUtils.CorreccionPerspectivaMemoria(this.Imagen, this.ParametrosLPR.OrbitaCorreccionPerspectiva);
+
+                            resultCode = MTInterface.Add(imagenTrabajo.Image, ref info);
                         }
                         
 
@@ -511,6 +815,9 @@ namespace Orbita.VA.Funciones
             {
                 OLogsVAFunciones.LPR.Error(exception, "FuncionLPR");
             }
+
+            // Se reseta el diccionario de informacción adicional
+            this.InformacionAdicional = new Dictionary<string, object>();
 
             return resultado;
         }
@@ -530,6 +837,15 @@ namespace Orbita.VA.Funciones
         }
 
         /// <summary>
+        /// Resetea la cola de ejecución
+        /// </summary>
+        public override void ResetearColaEjecucion()
+        {
+            base.ResetearColaEjecucion();
+            this.InformacionAdicional = new Dictionary<string, object>();
+        }
+
+        /// <summary>
         /// Función para la actualización de parámetros de entrada
         /// </summary>
         /// <param name="ParamName">Nombre identificador del parámetro</param>
@@ -542,7 +858,7 @@ namespace Orbita.VA.Funciones
 
             try
             {
-                if (tipoVariable == OEnumTipoDato.Imagen)
+                if (codigo == "Imagen")
                 {
                     this.Imagen = (OImagenBitmap)valor;
                 }
@@ -552,7 +868,7 @@ namespace Orbita.VA.Funciones
                 }
                 else if (codigo == "RutaImagen")
                 {
-                    this.RutaImagen = (string)valor;
+                    this.RutaImagenTemporal = (string)valor;
                 }
                 else
                 {
@@ -575,36 +891,9 @@ namespace Orbita.VA.Funciones
         /// <param name="ParamValue">Nuevo valor del parámetro</param>
         /// <returns></returns>
         /// <remarks></remarks>
-        public override bool SetEntrada(EnumEntradaFuncionVision entrada, object valor, OEnumTipoDato tipoVariable)
+        public override bool SetEntrada(EnumTipoEntradaFuncionVision tipoEntrada, object valor, OEnumTipoDato tipoVariable)
         {
-            bool resultado = false;
-
-            try
-            {
-                if (entrada == EntradasFuncionesVisionLPR.Imagen)
-                {
-                    this.Imagen = (OImagenBitmap)valor;
-                }
-                else if (entrada == EntradasFuncionesVisionLPR.ParametrosLPR)
-                {
-                    this.ParametrosLPR = (OParametrosLPR)valor;
-                }
-                else if (entrada == EntradasFuncionesVisionLPR.RutaImagen)
-                {
-                    this.RutaImagen = (string)valor;
-                }
-                else
-                {
-                    this.InformacionAdicional[entrada.Nombre] = valor;
-                    //throw new Exception("Error en la asignación del parámetro '" + entrada.Nombre + "' a la función '" + this.Codigo + "'. No se admite este tipo de parámetros.");
-                }
-                resultado = true;
-            }
-            catch (Exception exception)
-            {
-                OLogsVAFunciones.LPR.Error(exception, this.Codigo);
-            }
-            return resultado;
+            return SetEntrada(tipoEntrada.Nombre, valor, tipoVariable);
         }
         #endregion
     }
@@ -615,7 +904,7 @@ namespace Orbita.VA.Funciones
     /// <typeparam name="TInfo"></typeparam>
     /// <typeparam name="TParametros"></typeparam>
     /// <typeparam name="TResultados"></typeparam>
-    public class OInfoInspeccionLPR : OInfoInspeccion<OImagenBitmap, OInfoImagenLPR, OParametrosLPR, OResultadoLPR>
+    public class OInfoInspeccionLPR : OInfoInspeccion<OImagenBitmap, OParametrosLPR, OInfoImagenLPR, OResultadoLPR>
     {
         #region Constructor
         /// <summary>
@@ -631,64 +920,9 @@ namespace Orbita.VA.Funciones
         /// <param name="info"></param>
         /// <param name="parametros"></param>
         /// <param name="resultados"></param>
-        public OInfoInspeccionLPR(OImagenBitmap imagen, OInfoImagenLPR info, OParametrosLPR parametros, OResultadoLPR resultados, Dictionary<string,object> informacionAdicional)
-            : base(imagen, info, parametros, resultados, informacionAdicional)
+        public OInfoInspeccionLPR(OImagenBitmap imagen, OParametrosLPR parametros, OInfoImagenLPR info, OResultadoLPR resultados, Dictionary<string, object> informacionAdicional)
+            : base(imagen, parametros, info, resultados, informacionAdicional)
         {
-        }
-        #endregion
-    }
-
-    /// <summary>
-    /// Esta clase contendra la información que queremos pasar con la imagen a la función LPR para recogerla cuando tengamos el resultado
-    /// </summary>
-    public class OInfoImagenLPR
-    {
-        #region Atributo(s)
-        /// <summary>
-        /// Contiene la información de la identificacion a la que pertenece
-        /// </summary>
-        public long IdEjecucionActual;
-        /// <summary>
-        /// Contiene la información de la cámara que se le pasa en la imagen
-        /// </summary>
-        public string Codigo;
-        /// <summary>
-        /// Contiene el indice de la imagen añadida
-        /// </summary>
-        public int IndiceImagen;
-        /// <summary>
-        /// Contiene la fecha exacta en la que se adquirio la imagen
-        /// </summary>
-        public DateTime MomentoImagen;
-        /// <summary>
-        /// CallBack donde mandar el resultado parcial
-        /// </summary>
-        internal CallBackResultadoParcial CallBackResultadoParcial;
-        #endregion
-
-        #region Constructor(es)
-        /// <summary>
-        /// Constructor sin parametros
-        /// </summary>
-        public OInfoImagenLPR()
-        {
-            this.IdEjecucionActual = 0;
-            this.Codigo = "";
-            this.IndiceImagen = 0;
-            this.MomentoImagen = DateTime.Now;
-            this.CallBackResultadoParcial = null;
-        }
-        /// <summary>
-        /// Constructor con parametros
-        /// </summary>
-        /// <param name="codigo">camara que adquiere la imagen</param>
-        public OInfoImagenLPR(long idEjecucionActual,string codigo, int indice, DateTime momentoImagen, CallBackResultadoParcial callBackResultadoParcial)
-        {
-            this.IdEjecucionActual = idEjecucionActual;            
-            this.Codigo = codigo;
-            this.IndiceImagen = indice;
-            this.MomentoImagen = momentoImagen;
-            this.CallBackResultadoParcial = callBackResultadoParcial;
         }
         #endregion
     }
@@ -771,8 +1005,11 @@ namespace Orbita.VA.Funciones
         /// Para saber si han habido modificaciones
         /// </summary>
         public bool Modificado;
-
-        #endregion Campos
+        /// <summary>
+        /// Parámetros de corrección de perspectiva de Orbita
+        /// </summary>
+        public OCorreccionPerspectiva OrbitaCorreccionPerspectiva;
+        #endregion
 
         #region Constructor(es)
         /// <summary>
@@ -800,75 +1037,370 @@ namespace Orbita.VA.Funciones
             this.AnchuraVentanaBusqueda = 0;
             this.ActivadaMasInformacion = 1;
             this.Modificado = true;
+            this.OrbitaCorreccionPerspectiva = new OCorreccionPerspectiva();
         }
         #endregion Constructores
     }
 
     /// <summary>
+    /// Esta clase contendra la información que queremos pasar con la imagen a la función LPR para recogerla cuando tengamos el resultado
+    /// </summary>
+    public class OInfoImagenLPR : OConvertibleXML
+    {
+        #region Propiedades(s)
+        /// <summary>
+        /// Contiene la información de la identificacion a la que pertenece
+        /// </summary>
+        private long _IdEjecucionActual;
+        /// <summary>
+        /// Contiene la información de la identificacion a la que pertenece
+        /// </summary>
+        public long IdEjecucionActual
+        {
+            get { return _IdEjecucionActual; }
+            set
+            {
+                this._IdEjecucionActual = value;
+                this.Propiedades["IdEjecucionActual"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Contiene la información de la cámara que se le pasa en la imagen
+        /// </summary>
+        private string _Codigo;
+        /// <summary>
+        /// Contiene la información de la cámara que se le pasa en la imagen
+        /// </summary>
+        public string Codigo
+        {
+            get { return _Codigo; }
+            set
+            {
+                this._Codigo = value;
+                this.Propiedades["CodigoCamara"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Contiene el indice de la imagen añadida
+        /// </summary>
+        private int _IndiceImagen;
+        /// <summary>
+        /// Contiene el indice de la imagen añadida
+        /// </summary>
+        public int IndiceImagen
+        {
+            get { return _IndiceImagen; }
+            set
+            {
+                this._IndiceImagen = value;
+                this.Propiedades["IndiceImagen"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Contiene la fecha exacta en la que se adquirio la imagen
+        /// </summary>
+        private DateTime _MomentoImagen;
+        /// <summary>
+        /// Contiene la fecha exacta en la que se adquirio la imagen
+        /// </summary>
+        public DateTime MomentoImagen
+        {
+            get { return _MomentoImagen; }
+            set
+            {
+                this._MomentoImagen = value;
+                this.Propiedades["MomentoImagen"] = value;
+            }
+        }
+
+        /// <summary>
+        /// Ruta de la imagen temporal
+        /// </summary>
+        private string _RutaImagenTemporal;
+        /// <summary>
+        /// Ruta de la imagen temporal
+        /// </summary>
+        public string RutaImagenTemporal
+        {
+            get { return _RutaImagenTemporal; }
+            set
+            {
+                this._RutaImagenTemporal = value;
+                this.Propiedades["RutaImagenTemporal"] = value;
+            }
+        }
+
+        /// <summary>
+        /// CallBack donde mandar el resultado parcial
+        /// </summary>
+        internal CallBackResultadoParcial CallBackResultadoParcial;
+        #endregion
+
+        #region Constructor(es)
+        /// <summary>
+        /// Constructor sin parametros
+        /// </summary>
+        public OInfoImagenLPR()
+        {
+            this.IdEjecucionActual = 0;
+            this.Codigo = "";
+            this.IndiceImagen = 0;
+            this.MomentoImagen = DateTime.Now;
+            this.RutaImagenTemporal = string.Empty;
+            this.CallBackResultadoParcial = null;
+        }
+        /// <summary>
+        /// Constructor con parametros
+        /// </summary>
+        /// <param name="codigo">camara que adquiere la imagen</param>
+        public OInfoImagenLPR(long idEjecucionActual, string codigo, int indice, DateTime momentoImagen, string rutaImagenTemporal, CallBackResultadoParcial callBackResultadoParcial)
+        {
+            this.IdEjecucionActual = idEjecucionActual;
+            this.Codigo = codigo;
+            this.IndiceImagen = indice;
+            this.MomentoImagen = momentoImagen;
+            this.RutaImagenTemporal = rutaImagenTemporal;
+            this.CallBackResultadoParcial = callBackResultadoParcial;
+        }
+        #endregion
+    }
+
+    /// <summary>
     /// Lista de resultados de todas las matriculas de una imagen
     /// </summary>
-    public class OResultadoLPR: List<OResultadoSimpleLPR>
+    public class OResultadoLPR : OConvertibleXML
     {
     }
 
     /// <summary>
     /// Clase que contiene los resultados que se reciben de la funcion LPR para una imagen pasada 
     /// </summary>
-    public class OResultadoSimpleLPR
+    public class OResultadoSimpleLPR : OConvertibleXML
     {
-        #region Atributo(s)
+        #region Propiedad(es)
         /// <summary>
         /// Contiene la cadena la matrícula del vehículo
         /// </summary>
-        public string Matricula;
+        private string _Matricula;
+        /// <summary>
+        /// Contiene la cadena la matrícula del vehículo
+        /// </summary>
+        public string Matricula
+        {
+            get { return _Matricula; }
+            set
+            {
+                this._Matricula = value;
+                this.Propiedades["Matricula"] = value;
+            }
+        }
+
         /// <summary>
         /// Fiabilidad de la matrícula
         /// </summary>
-        public int FiabilidadMatricula;
+        private int _FiabilidadMatricula;
+        /// <summary>
+        /// Fiabilidad de la matrícula
+        /// </summary>
+        public int FiabilidadMatricula
+        {
+            get { return _FiabilidadMatricula; }
+            set
+            {
+                this._FiabilidadMatricula = value;
+                this.Propiedades["FiabilidadMatricula"] = value;
+            }
+        }
+
         /// <summary>
         /// Altura letras
         /// </summary>
-        public int AlturaLetrasMatricula;
+        private int _AlturaLetrasMatricula;
+        /// <summary>
+        /// Altura letras
+        /// </summary>
+        public int AlturaLetrasMatricula
+        {
+            get { return _AlturaLetrasMatricula; }
+            set
+            {
+                this._AlturaLetrasMatricula = value;
+                this.Propiedades["AlturaLetrasMatricula"] = value;
+            }
+        }
+
         /// <summary>
         /// Fecha en la que se encolo a la cola de LPR (dada por él)
         /// </summary>
-        public DateTime FechaEncolamiento;
+        private DateTime _FechaEncolamiento;
+        /// <summary>
+        /// Fecha en la que se encolo a la cola de CCR (dada por él)
+        /// </summary>
+        public DateTime FechaEncolamiento
+        {
+            get { return _FechaEncolamiento; }
+            set
+            {
+                this._FechaEncolamiento = value;
+                this.Propiedades["FechaEncolamiento"] = value;
+            }
+        }
+
         /// <summary>
         /// Tiempo de proceso
         /// </summary>
-        public int TiempoDeProceso;
+        private int _TiempoDeProceso;
+        /// <summary>
+        /// Tiempo de proceso
+        /// </summary>
+        public int TiempoDeProceso
+        {
+            get { return _TiempoDeProceso; }
+            set
+            {
+                this._TiempoDeProceso = value;
+                this.Propiedades["TiempoDeProceso"] = value;
+            }
+        }
+
         /// <summary>
         /// Posicion Top matricula
         /// </summary>
-        public int TopPosicionMatricula;
+        private int _TopPosicionMatricula;
+        /// <summary>
+        /// Posicion Top matricula
+        /// </summary>
+        public int TopPosicionMatricula
+        {
+            get { return _TopPosicionMatricula; }
+            set
+            {
+                this._TopPosicionMatricula = value;
+                this.Propiedades["TopPosicionMatricula"] = value;
+            }
+        }
+
         /// <summary>
         /// Posicion Bottom matricula
         /// </summary>
-        public int BottomPosicionMatricula;
+        public int _BottomPosicionMatricula;
+        /// <summary>
+        /// Posicion Bottom matricula
+        /// </summary>
+        public int BottomPosicionMatricula
+        {
+            get { return _BottomPosicionMatricula; }
+            set
+            {
+                this._BottomPosicionMatricula = value;
+                this.Propiedades["BottomPosicionMatricula"] = value;
+            }
+        }
+
         /// <summary>
         /// Posicion Right matricula
         /// </summary>
-        public int RightPosicionMatricula;
+        private int _RightPosicionMatricula;
+        /// <summary>
+        /// Posicion Right matricula
+        /// </summary>
+        public int RightPosicionMatricula
+        {
+            get { return _RightPosicionMatricula; }
+            set
+            {
+                this._RightPosicionMatricula = value;
+                this.Propiedades["RightPosicionMatricula"] = value;
+            }
+        }
+
         /// <summary>
         /// Posicion Left matricula
         /// </summary>
-        public int LeftPosicionMatricula;
+        private int _LeftPosicionMatricula;
+        /// <summary>
+        /// Posicion Left matricula
+        /// </summary>
+        public int LeftPosicionMatricula
+        {
+            get { return _LeftPosicionMatricula; }
+            set
+            {
+                this._LeftPosicionMatricula = value;
+                this.Propiedades["LeftPosicionMatricula"] = value;
+            }
+        }
+
         /// <summary>
         /// <summary>Codigo del pais de la matrículaPosicion Left matricula
         /// </summary>
-        public int CodigoPais;
+        private int _CodigoPais;
+        /// <summary>
+        /// <summary>Codigo del pais de la matrículaPosicion Left matricula
+        /// </summary>
+        public int CodigoPais
+        {
+            get { return _CodigoPais; }
+            set
+            {
+                this._CodigoPais = value;
+                this.Propiedades["CodigoPais"] = value;
+            }
+        }
+
         /// <summary>
         /// <summary>Devuelve el pais que cumple la sintáxis
         /// </summary>
-        public int PaisSintaxis;
+        private string _PaisSintaxis;
+        /// <summary>
+        /// <summary>Codigo del pais de la matrículaPosicion Left matricula
+        /// </summary>
+        public string PaisSintaxis
+        {
+            get { return _PaisSintaxis; }
+            set
+            {
+                this._PaisSintaxis = value;
+                this.Propiedades["PaisSintaxis"] = value;
+            }
+        }
+
         /// <summary>
         /// Número de carácters de la matrícula
         /// </summary>
-        public int NumCaracteres;
+        private int _NumCaracteres;
+        /// <summary>
+        /// Número de carácters de la matrícula
+        /// </summary>
+        public int NumCaracteres
+        {
+            get { return _NumCaracteres; }
+            set
+            {
+                this._NumCaracteres = value;
+                this.Propiedades["NumCaracteres"] = value;
+            }
+        }
+
         /// <summary>
         /// Contiene las fiabilidades de cada letra individual
         /// </summary>
-        public float[] FiabilidadesLetras;
+        private float[] _FiabilidadesLetras;
+        /// <summary>
+        /// Número de carácters de la matrícula
+        /// </summary>
+        public float[] FiabilidadesLetras
+        {
+            get { return _FiabilidadesLetras; }
+            set
+            {
+                this._FiabilidadesLetras = value;
+                this.Propiedades["FiabilidadesLetras"] = value;
+            }
+        }
         #endregion
 
         #region Constructor(es)
@@ -885,9 +1417,9 @@ namespace Orbita.VA.Funciones
             this.BottomPosicionMatricula = 0;
             this.LeftPosicionMatricula = 0;
             this.RightPosicionMatricula = 0;
-            this.CodigoPais = 0;
             this.FechaEncolamiento = DateTime.Now;
-            this.PaisSintaxis = 0;
+            this.CodigoPais = 0;
+            this.PaisSintaxis = string.Empty;
             this.NumCaracteres = 0;
             this.FiabilidadesLetras = new float[0];
         }
@@ -898,28 +1430,33 @@ namespace Orbita.VA.Funciones
         {
             try
             {
-                this.Matricula = (string)resultadoImagen.GetPlateNumber.ToString().Clone();
-                this.FiabilidadMatricula = Convert.ToInt16((Convert.ToInt16(resultadoImagen.GetGlobalConfidence)).ToString().Clone());
-                this.AlturaLetrasMatricula = Convert.ToInt16((Convert.ToInt16(resultadoImagen.GetAverageCharacterHeigth)).ToString().Clone());
-                this.TiempoDeProceso = Convert.ToInt16((Convert.ToInt16(resultadoImagen.GetProcessingTime)).ToString().Clone());
-                this.TopPosicionMatricula = Convert.ToInt16((Convert.ToInt16(resultadoImagen.GetTopPlatePosition)).ToString().Clone());
-                this.BottomPosicionMatricula = Convert.ToInt16((Convert.ToInt16(resultadoImagen.GetBottomPlatePosition)).ToString().Clone());
-                this.LeftPosicionMatricula = Convert.ToInt16((Convert.ToInt16(resultadoImagen.GetLeftPlatePosition)).ToString().Clone());
-                this.RightPosicionMatricula = Convert.ToInt16((Convert.ToInt16(resultadoImagen.GetRightPlatePosition)).ToString().Clone());
-                this.CodigoPais = Convert.ToInt16((Convert.ToInt16(resultadoImagen.GetPlateFormat)).ToString().Clone());
+                this.Matricula = OTexto.Validar(resultadoImagen.GetPlateNumber);
+                this.FiabilidadMatricula = OEntero.Validar(resultadoImagen.GetGlobalConfidence);
+                this.AlturaLetrasMatricula = OEntero.Validar(resultadoImagen.GetAverageCharacterHeigth);
+                this.TiempoDeProceso = OEntero.Validar(resultadoImagen.GetProcessingTime);
+                this.TopPosicionMatricula = OEntero.Validar(resultadoImagen.GetTopPlatePosition);
+                this.BottomPosicionMatricula = OEntero.Validar(resultadoImagen.GetBottomPlatePosition);
+                this.LeftPosicionMatricula = OEntero.Validar(resultadoImagen.GetLeftPlatePosition);
+                this.RightPosicionMatricula = OEntero.Validar(resultadoImagen.GetRightPlatePosition);
                 this.FechaEncolamiento = fechaEncola;
-                this.PaisSintaxis = Convert.ToInt16((Convert.ToInt16(resultadoImagen.GetPlateFormat)).ToString().Clone());
-                this.NumCaracteres = Convert.ToInt16((Convert.ToInt16(resultadoImagen.GetNumCharacters)).ToString().Clone());
-
+                this.PaisSintaxis = this.ConversionCodigoPais(OEntero.Validar(resultadoImagen.GetPlateFormat));
+                this.CodigoPais = OEntero.Validar(resultadoImagen.GetPlateFormat); 
+                this.NumCaracteres = OEntero.Validar(resultadoImagen.GetNumCharacters);
+   
                 // Si tenemos código identificado , obtenemos las fiabilidades de cada una de las letras
-                if (this.NumCaracteres > 0)
+                float[] fiabilidadesLetras = new float[0];
+                if (!string.IsNullOrEmpty(this.Matricula) && (resultadoImagen.GetCharConfidence() != null) && (resultadoImagen.GetCharConfidence().Length > 0) && (resultadoImagen.GetCharConfidence().Length == this.NumCaracteres))
                 {
+                    fiabilidadesLetras = new float[this.NumCaracteres];
+
                     float[] fiabilidades = resultadoImagen.GetCharConfidence();
+                    this.FiabilidadesLetras = new float[fiabilidades.Length];
                     for (int i = 0; i < fiabilidades.Length; i++)
                     {
-                        this.FiabilidadesLetras[i] = Convert.ToSingle(fiabilidades[i]);
+                        fiabilidadesLetras[i] = (float)ODecimal.Validar(fiabilidades[i]);
                     }
                 }
+                this.FiabilidadesLetras = fiabilidadesLetras;
             }
             catch (Exception exception)
             {
@@ -932,91 +1469,45 @@ namespace Orbita.VA.Funciones
                 this.BottomPosicionMatricula = 0;
                 this.LeftPosicionMatricula = 0;
                 this.RightPosicionMatricula = 0;
-                this.CodigoPais = 0;
                 this.FechaEncolamiento = DateTime.Now;
+                this.PaisSintaxis = string.Empty;
+                this.CodigoPais = 0;
+                this.NumCaracteres = 0;
+                this.FiabilidadesLetras = new float[0];
                 OLogsVAFunciones.LPR.Info(exception, "FuncionLPR");
             }
         }
         #endregion
-    }
 
-    /// <summary>
-    /// Parámetros de la aplicación
-    /// </summary>
-    [Serializable]
-    internal class ConfiguracionLPR : OAlmacenXML
-    {
-        #region Atributo(s) estáticos
+        #region Método(s) privado(s)
         /// <summary>
-        /// Ruta por defecto del fichero xml de configuración
+        /// 
         /// </summary>
-        public static string ConfFile = Path.Combine(ORutaParametrizable.AppFolder, "ConfiguracionLPR.xml");
-        #endregion
-
-        #region Atributo(s)
-        /// <summary>
-        /// Constante que indica el pais o paises a identificar la matricula
-        /// </summary>
-        public int CountryCode = 101;
-        /// <summary>
-        /// Constante de altura del caracter
-        /// </summary>
-        public int AvCharHeight = -1;
-        /// <summary>
-        /// Parámetro de Vpar
-        /// </summary>
-        public int DuplicateLines = 0;
-        /// <summary>
-        /// Parametro de Vpar
-        /// </summary>
-        public int Reordenar = 0;
-        /// <summary>
-        /// Parametro de Vpar
-        /// </summary>
-        public int filterColor = 0;
-        /// <summary>
-        /// Trazabilidad
-        /// </summary>
-        public int TraceVpar = 1;
-        /// <summary>
-        /// Indica si se ha de realizar una traza del LPR
-        /// </summary>
-        public bool TraceWrapper = true;
-        #endregion
-
-        #region Constructor
-        /// <summary>
-        /// Contructor de la clase
-        /// </summary>
-        public ConfiguracionLPR()
-            : base(ConfFile)
+        /// <param name="codigoPaisNL"></param>
+        /// <returns></returns>
+        private string ConversionCodigoPais(int codigoPaisNL)
         {
+            string resultado = string.Empty;
+            OQuartet<string, string, string, int> registroPais = OLPRManager.AsignacionPaisesNL.Find(tabla => tabla.Fourth == codigoPaisNL);
+            if (registroPais is OQuartet<string, string, string, int>)
+            {
+                resultado = registroPais.First;
+            }
+            return resultado;
         }
-
-        /// <summary>
-        /// Contructor de la clase
-        /// </summary>
-        public ConfiguracionLPR(string rutaFichero)
-            : base(rutaFichero)
-        {
-        }
-        #endregion Constructor
+        #endregion
     }
 
     /// <summary>
     /// Define el conjunto de tipos de entradas de las funciones de visión LPR
     /// </summary>
-    public class EntradasFuncionesVisionLPR : EntradasFuncionesVision
+    public class EntradasFuncionesVisionLPR : TipoEntradasFuncionesVision
     {
         #region Atributo(s)
         /// <summary>
-        /// Parametros de configuración del LPR
-        /// </summary>
-        public static EnumEntradaFuncionVision ParametrosLPR = new EnumEntradaFuncionVision("ParametrosLPR", "Parametros de configuración del LPR", 101);
-        /// <summary>
         /// Ruta en disco de la imagen de entrada
         /// </summary>
-        public static EnumEntradaFuncionVision RutaImagen = new EnumEntradaFuncionVision("RutaImagen", "Ruta en disco de la imagen de entrada", 102);
+        public static EnumTipoEntradaFuncionVision RutaImagen = new EnumTipoEntradaFuncionVision("RutaImagen", "Ruta en disco de la imagen de entrada", 102);
         #endregion
     }
 }

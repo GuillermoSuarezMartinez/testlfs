@@ -98,6 +98,14 @@ namespace Orbita.VA.Comun
         {
             get { return 1; }
         }
+
+        /// <summary>
+        /// Indica si las imagenes son a color o monocromo
+        /// </summary>
+        public virtual bool Color
+        {
+            get { return false; }
+        }
         #endregion
 
         #region Constructor
@@ -136,6 +144,38 @@ namespace Orbita.VA.Comun
             this._Image = imagen;
             this._TipoImagen = TipoImagen.Bitmap; // Valor por defecto
             this.MomentoCreacion = DateTime.Now;
+        }
+        #endregion
+
+        #region Método(s) estático(s)
+        /// <summary>
+        /// Crea una nueva imagen del tipo seleccionado
+        /// </summary>
+        /// <returns></returns>
+        public static OImagen Nueva(TipoImagen tipoImagen, bool color)
+        {
+            OImagen resultado = null;
+            switch (tipoImagen)
+            {
+                case TipoImagen.Bitmap:
+                default:
+                    resultado = new OImagenBitmap();
+                    break;
+                case TipoImagen.VisionPro:
+                    resultado = new OImagenVisionPro();
+                    break;
+                case TipoImagen.OpenCV:
+                    if (color)
+                    {
+                        resultado = new OImagenOpenCVColor();
+                    }
+                    else
+                    {
+                        resultado = new OImagenOpenCVMonocromo();
+                    }
+                    break;
+            }
+            return resultado;
         }
         #endregion
 
@@ -262,7 +302,7 @@ namespace Orbita.VA.Comun
         /// Método que realiza el empaquetado de un objeto para ser enviado por remoting
         /// </summary>
         /// <returns></returns>
-        public virtual byte[] ToArray()
+        public virtual byte[] ToDataArray()
         {
             // Implementado en hijos
             return null;
@@ -272,7 +312,7 @@ namespace Orbita.VA.Comun
         /// Método que realiza el empaquetado de un objeto para ser enviado por remoting
         /// </summary>
         /// <returns></returns>
-        public virtual byte[] ToArray(ImageFormat formato, double escalado)
+        public virtual byte[] ToDataArray(ImageFormat formato, double escalado)
         {
             // Implementado en hijos
             return null;
@@ -282,10 +322,40 @@ namespace Orbita.VA.Comun
         /// Método que realiza el desempaquetado de un objeto recibido por remoting
         /// </summary>
         /// <returns></returns>
-        public virtual OImagen FromArray(byte[] arrayValue, int width, int height, int profundidad)
+        public virtual bool FromDataArray(byte[] arrayValue, ref OImagen imagen)
+        {
+            // Implementado en hijos
+            return false;
+        }
+
+        /// <summary>
+        /// Método que realiza el empaquetado de un objeto para ser enviado por remoting
+        /// </summary>
+        /// <returns></returns>
+        public virtual byte[] ToPixelArray()
         {
             // Implementado en hijos
             return null;
+        }
+
+        /// <summary>
+        /// Método que realiza el empaquetado de un objeto para ser enviado por remoting
+        /// </summary>
+        /// <returns></returns>
+        public virtual byte[] ToPixelArray(ImageFormat formato, double escalado)
+        {
+            // Implementado en hijos
+            return null;
+        }
+
+        /// <summary>
+        /// Método que realiza el desempaquetado de un objeto recibido por remoting
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool FromPixelArray(byte[] arrayValue, ref OImagen imagen, int width, int height, int profundidad)
+        {
+            // Implementado en hijos
+            return false;
         }
 
         /// <summary>
@@ -310,6 +380,15 @@ namespace Orbita.VA.Comun
                 this._Image = null;
             }
             base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// Devuelve una clase System.String que representa la clase System.Object actual.
+        /// </summary>
+        /// <returns>Una clase System.String que representa la clase System.Object actual.</returns>
+        public override string ToString()
+        {
+            return string.Format("{0}, {1}, {2}, {3}x{4}, {5}", this.GetType().ToString(), this.Codigo, this.MomentoCreacion.ToString("yyyyMMddHHmmssfff"), this.Width, this.Height, this.Color ? "Color" : "Mono");
         }
         #endregion
 
@@ -387,101 +466,6 @@ namespace Orbita.VA.Comun
             return EscalarImagen(img, width, height);
         }
         #endregion
-    }
-
-    /// <summary>
-    /// Clase utilizada para serializar imagenes
-    /// </summary>
-    [Serializable]
-    public class OByteArrayImage
-    {
-        #region Atributo(s)
-        /// <summary>
-        /// Datos de la imagen serializada
-        /// </summary>
-        public byte[] DatosImagen;
-        /// <summary>
-        /// Código identificativo
-        /// </summary>
-        public string Codigo;
-        /// <summary>
-        /// Tipo de la imagen serializada
-        /// </summary>
-        public TipoImagen TipoImagen;
-        /// <summary>
-        /// Tamaño en X de la imagen
-        /// </summary>
-        public int Width;
-        /// <summary>
-        /// Tamaño en Y de la imagen
-        /// </summary>
-        public int Height;
-        /// <summary>
-        /// Informa del momento de la creación de la imagen
-        /// </summary>
-        public DateTime MomentoCreacion;
-        /// <summary>
-        /// Indica que contiene una imagen serializada
-        /// </summary>
-        public bool Serializado;
-        /// <summary>
-        /// Profundidad en bytes de cada píxel
-        /// </summary>
-        public int Profundidad;
-        #endregion
-
-        #region Constructor(es)
-        /// <summary>
-        /// Constructor de la clase
-        /// </summary>
-        public OByteArrayImage()
-        {
-            this.Serializado = false;
-        }
-        #endregion
-
-        #region Método(s) público(s)
-        /// <summary>
-        /// Serializa una imagen
-        /// </summary>
-        public void Serializar(OImagen imagen)
-        {
-            this.TipoImagen = imagen.TipoImagen;
-            this.Width = imagen.Width;
-            this.Height = imagen.Height;
-            this.MomentoCreacion = imagen.MomentoCreacion;
-            this.DatosImagen = imagen.ToArray();
-            this.Serializado = true;
-            this.Profundidad = imagen.Profundidad;
-        }
-
-        /// <summary>
-        /// Desserializa una imagen
-        /// </summary>
-        public OImagen Desserializar()
-        {
-            OImagen imgAux = null;
-            switch (this.TipoImagen)
-            {
-                case TipoImagen.Bitmap:
-                default:
-                    imgAux = new OImagenBitmap();
-                    break;
-                case TipoImagen.VisionPro:
-                    imgAux = new OImagenVisionPro();
-                    break;
-                case TipoImagen.OpenCV:
-                    break;
-            }
-
-            //OImagen resultado = imgAux.FromArray(this.DatosImagen);
-            OImagen resultado = imgAux.FromArray(this.DatosImagen, this.Width, this.Height, this.Profundidad);
-            resultado.MomentoCreacion = this.MomentoCreacion;
-            resultado.Codigo = this.Codigo;
-
-            return resultado;
-        }
-	    #endregion
     }
 
     /// <summary>
@@ -694,6 +678,7 @@ namespace Orbita.VA.Comun
         /// </summary>
         OpenCV
     }
+
     /// <summary>
     /// Resoluciones frecuentes de imagenes
     /// </summary>

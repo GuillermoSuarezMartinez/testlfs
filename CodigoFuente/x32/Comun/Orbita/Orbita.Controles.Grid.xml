@@ -11,7 +11,7 @@
         </member>
         <member name="M:Orbita.Controles.Grid.OrbitaUltraGrid.InitializeResourceStrings">
             <summary>
-            Inicializar recursos.
+            Inicializar recursos alfabéticos.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.OrbitaUltraGrid.components">
@@ -41,6 +41,11 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OControlBase.
             </summary>
             <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OControlBase.ResetApariencia">
+            <summary>
+            Resetear apariencia.
+            </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.OUltraGrid.filas">
             <summary>
@@ -100,7 +105,7 @@
         </member>
         <member name="T:Orbita.Controles.Grid.Configuracion">
             <summary>
-            Orbita.Controles.Combo.Configuracion.
+            Orbita.Controles.Grid.Configuracion.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.OColumnaSumario.mascara">
@@ -136,6 +141,16 @@
             Operación a aplicar.
             </summary>
         </member>
+        <member name="F:Orbita.Controles.Grid.TipoFiltro.Cabecera">
+            <summary>
+            Opción de filtro en la cabecera.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.TipoFiltro.Fila">
+            <summary>
+            Opción de filtro por fila.
+            </summary>
+        </member>
         <member name="F:Orbita.Controles.Grid.OCeldas.activas">
             <summary>
             Celdas activas.
@@ -162,24 +177,39 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="E:Orbita.Controles.Grid.OCeldas.PropertyChanging">
+            <summary>
+            Propiedad cambiando.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Grid.OCeldas.PropertyChanged">
+            <summary>
+            Propiedad cambio.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Grid.Alineacion">
+            <summary>
+            Alineación de texto.
+            </summary>
+        </member>
         <member name="F:Orbita.Controles.Grid.Alineacion.None">
             <summary>
-            Defecto.
+            Alineación por defecto. Sin alineación.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.Alineacion.Centrado">
             <summary>
-            Centrado.
+            Alineación de texto centrada.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.Alineacion.Izquierda">
             <summary>
-            Izquierda.
+            Alineación de texto izquierda.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.Alineacion.Derecha">
             <summary>
-            Derecha.
+            Alineación de texto derecha.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.FrmListadoPlantillasBase.#ctor">
@@ -1025,6 +1055,12 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OApariencia.
             </summary>
         </member>
+        <member name="M:Orbita.Controles.Grid.OApariencia.Reset">
+            <summary>
+            Resetear color de borde, color de fondo, color de texto, estilo de borde, alineación de texto horizontal,
+            alineación de texto vertical y adorno de texto.
+            </summary>
+        </member>
         <member name="E:Orbita.Controles.Grid.OApariencia.PropertyChanging">
             <summary>
             Cambiando la propiedad.
@@ -1135,9 +1171,34 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaInfo.
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Grid.OrbitaUltraGridToolBar.stringManager">
+        <member name="F:Orbita.Controles.Grid.AreaSumario.Ninguna">
             <summary>
-            Proporciona un acceso a los recursos específicos de cada referencia cultural en tiempo de ejecución.
+            Área sin sumario.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AreaSumario.Arriba">
+            <summary>
+            Área de sumario en la parte superior como primera fila ocultable con scroll.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AreaSumario.ArribaFijo">
+            <summary>
+            Área de sumario en la parte superior como primera fila fijo.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AreaSumario.Abajo">
+            <summary>
+            Área de sumario en la parte inferior como última fila ocultable con scroll.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AreaSumario.AbajoFijo">
+            <summary>
+            Área de sumario en la parte inferior como última fila fija.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OrbitaUltraGridToolBar.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OrbitaUltraGridToolBar.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.OrbitaUltraGridToolBar.components">
@@ -1163,9 +1224,109 @@
             </summary>
             <param name="control"></param>
         </member>
+        <member name="F:Orbita.Controles.Grid.OCabecera.estilo">
+            <summary>
+            Estilo de cabecera.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OCabecera.multilinea">
+            <summary>
+            Estilo multilínea de la cabecera.
+            </summary>
+        </member>
         <member name="M:Orbita.Controles.Grid.OCabecera.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OCabecera.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OCabecera.ResetEstilo">
+            <summary>
+            Resetear estilo de la cabecera.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OCabecera.ResetMultilinea">
+            <summary>
+            Resetar estilo multilínea de la cabecera.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Grid.OCabecera.PropertyChanging">
+            <summary>
+            Propiedad cambiando.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Grid.OCabecera.PropertyChanged">
+            <summary>
+            Propiedad cambio.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OAparienciaDatos.colorBorde">
+            <summary>
+            Color de borde.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OAparienciaDatos.colorFondo">
+            <summary>
+            Color de fondo.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OAparienciaDatos.colorTexto">
+            <summary>
+            Color de texto.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OAparienciaDatos.estiloBorde">
+            <summary>
+            Estilo de borde.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OAparienciaDatos.alineacionTextoHorizontal">
+            <summary>
+            Alineación de texto horizontal.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OAparienciaDatos.alineacionTextoVertical">
+            <summary>
+            Alineación de texto vertical.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OAparienciaDatos.adornoTexto">
+            <summary>
+            Adorno de texto.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaDatos.ColorBorde">
+            <summary>
+            Color de borde.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaDatos.ColorFondo">
+            <summary>
+            Color de fondo.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaDatos.ColorTexto">
+            <summary>
+            Color de texto.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaDatos.EstiloBorde">
+            <summary>
+            Estilo de borde.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaDatos.AlineacionTextoHorizontal">
+            <summary>
+            Alineación de texto horizontal.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaDatos.AlineacionTextoVertical">
+            <summary>
+            Alineación de texto vertical.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaDatos.AdornoTexto">
+            <summary>
+            Adorno de texto.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.OColumnasBloqueadas.#ctor">
@@ -1180,7 +1341,7 @@
         </member>
         <member name="F:Orbita.Controles.Grid.OToolClickCollectionEventArgs.filas">
             <summary>
-            Nombre de la propiedad.
+            Colección de filas.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.OToolClickCollectionEventArgs.#ctor(Infragistics.Win.UltraWinToolbars.ToolBase,Infragistics.Win.UltraWinToolbars.ListToolItem)">
@@ -1190,12 +1351,27 @@
         </member>
         <member name="P:Orbita.Controles.Grid.OToolClickCollectionEventArgs.Filas">
             <summary>
-            Nombre de la propiedad.
+            Colección de filas.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.OFilasNuevas.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilasNuevas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AlineacionVertical.Arriba">
+            <summary>
+            Alineación vertical superior.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AlineacionVertical.Medio">
+            <summary>
+            Alineación vertical media.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AlineacionVertical.Abajo">
+            <summary>
+            Alineación vertical inferior.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.OFilas.activas">
@@ -1230,7 +1406,7 @@
         </member>
         <member name="F:Orbita.Controles.Grid.OToolClickEventArgs.fila">
             <summary>
-            Nombre de la propiedad.
+            Fila seleccionada.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.OToolClickEventArgs.#ctor(Infragistics.Win.UltraWinToolbars.ToolBase,Infragistics.Win.UltraWinToolbars.ListToolItem)">
@@ -1240,7 +1416,17 @@
         </member>
         <member name="P:Orbita.Controles.Grid.OToolClickEventArgs.Fila">
             <summary>
-            Nombre de la propiedad.
+            Fila seleccionada.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Grid.OCollectionEventHandler">
+            <summary>
+            A dictionary with keys of type string and values of type Target.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OCollectionEventHandler.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.OCollectionEventHandler.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.OFilasActivas.#ctor(System.Object)">
@@ -1251,6 +1437,11 @@
         <member name="M:Orbita.Controles.Grid.OCeldasAgrupadas.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OCeldasAgrupadas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OCeldasAgrupadas.ResetEstilo">
+            <summary>
+            Resetear estilo de las celdas agrupadas.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Grid.OPlantilla.identificador">
@@ -1588,6 +1779,26 @@
             </summary>
             <returns>Un String predefinido de excepción.</returns>
         </member>
+        <member name="T:Orbita.Controles.Grid.AlineacionHorizontal">
+            <summary>
+            Alineación horizontal.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AlineacionHorizontal.Izquierda">
+            <summary>
+            Alineación horizontal izquierda.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AlineacionHorizontal.Centro">
+            <summary>
+            Alineación horizontal centrada.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AlineacionHorizontal.Derecha">
+            <summary>
+            Alineación horizontal derecha.
+            </summary>
+        </member>
         <member name="M:Orbita.Controles.Grid.ONoFocusRectDrawFilter.GetPhasesToFilter(Infragistics.Win.UIElementDrawParams@)">
             <summary>
             This method is passed a UIElementDrawParams structure and returns a bit-flag enumeration called DrawPhase.
@@ -1625,165 +1836,20 @@
             <param name="fila">Empty.</param>
             <param name="anterior">Empty.</param>
         </member>
+        <member name="F:Orbita.Controles.Grid.OTimerEventArgs.intervalo">
+            <summary>
+            Intervalo de tiempo.
+            </summary>
+        </member>
         <member name="M:Orbita.Controles.Grid.OTimerEventArgs.#ctor(System.Int32)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OTimerEventArgs.
             </summary>
             <param name="intervalo"></param>
         </member>
-        <member name="T:Orbita.Controles.Grid.Tools">
+        <member name="P:Orbita.Controles.Grid.OTimerEventArgs.Intervalo">
             <summary>
-            Tools.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbGestionar">
-            <summary>
-            Tool Gestionar.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbVer">
-            <summary>
-            Tool Ver.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbModificar">
-            <summary>
-            Tool Modificar.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbAñadir">
-            <summary>
-            Tool Añadir.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbEliminar">
-            <summary>
-            Tool Eliminar.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbEditar">
-            <summary>
-            Tool Editar.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbDeshacer">
-            <summary>
-            Tool Deshacer.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbRehacer">
-            <summary>
-            Tool Rehacer.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbCortar">
-            <summary>
-            Tool Cortar.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbCopiar">
-            <summary>
-            Tool Copiar.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbPegar">
-            <summary>
-            Tool Pegar.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbExportar">
-            <summary>
-            Tool Exportar.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbImprimir">
-            <summary>
-            Tool Imprimir.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbEstilo">
-            <summary>
-            Tool Estilo.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbGuardarPlantilla">
-            <summary>
-            Tool Guardar plantilla.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbGuardarPlantillaComo">
-            <summary>
-            Tool Guardar plantilla como.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbPublicarPlantilla">
-            <summary>
-            Tool Publicar plantilla.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbImportarPlantillas">
-            <summary>
-            Tool Importar plantillas.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbEliminarPlantillas">
-            <summary>
-            Tool Eliminar plantillas.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbEliminarPlantillasLocales">
-            <summary>
-            Tool Eliminar plantillas locales.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbEliminarPlantillasPublicas">
-            <summary>
-            Tool Eliminar plantillas públicas.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbRefrescar">
-            <summary>
-            Tool refrescar.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbLimpiarFiltros">
-            <summary>
-            Tool Filtrar.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbOrdenAnterior">
-            <summary>
-            Tool Ir primero y anterior.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbIrPrimero">
-            <summary>
-            Tool Ir primero.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbIrAnterior">
-            <summary>
-            Tool Ir anterior.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbOrdenSiguiente">
-            <summary>
-            Tool Ir siguiente y último.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbIrSiguiente">
-            <summary>
-            Tool Ir siguiente.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbIrUltimo">
-            <summary>
-            Tool Ir último.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Grid.Tools.OrbOrdenIrA">
-            <summary>
-            Tool Ir a posición.
+            Intervalo de tiempo.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Grid.OCeldasActivas.#ctor">
@@ -1866,17 +1932,31 @@
             Valor mínimo del campo.
             </summary>
         </member>
+        <member name="M:Orbita.Controles.Grid.OEventHandler.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEventHandler.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AutoAjustarEstilo.ExtenderUltimaColumna">
+            <summary>
+            Extender la última columna.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AutoAjustarEstilo.RedimensionarTodasLasColumnas">
+            <summary>
+            Redimensionar todas las columnas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AutoAjustarEstilo.SinAutoajusteColumnas">
+            <summary>
+            No establecer autoajuste de columnas.
+            </summary>
+        </member>
         <member name="M:Orbita.Controles.Grid.OColumnas.#ctor(System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnas.
             </summary>
             <param name="control"></param>
-        </member>
-        <member name="M:Orbita.Controles.Grid.OColumnas.ToString">
-            <summary>
-            Determina el número de propiedades modificadas.
-            </summary>
-            <returns></returns>
         </member>
     </members>
 </doc>

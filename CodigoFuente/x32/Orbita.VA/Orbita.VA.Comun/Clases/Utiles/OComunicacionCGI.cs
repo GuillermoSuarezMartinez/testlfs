@@ -26,6 +26,7 @@ namespace Orbita.VA.Comun
         //private WebResponse Response;
         private HttpWebResponse Response;
         public Stream Stream;
+        private long ContReconexion;
         #endregion
 
         #region Propiedad(es)
@@ -212,6 +213,7 @@ namespace Orbita.VA.Comun
             this.Codigo = string.Empty;
             this.UsaGrupoConexionSeparado = false;
             this.TimeOut = 15000;
+            this.ContReconexion = 0;
         }
 
         /// <summary>
@@ -225,6 +227,7 @@ namespace Orbita.VA.Comun
             this.Codigo = codigo;
             this.UsaGrupoConexionSeparado = usaGrupoConexionSeparado;
             this.TimeOut = timeOut;
+            this.ContReconexion = 0;
             this.CodigoRespuesta = codigoRespuesta;
         }
         #endregion
@@ -234,7 +237,7 @@ namespace Orbita.VA.Comun
         /// Inicia la conexión con el CGI
         /// </summary>
         /// <returns>Verdadero si la conexión se ha establecido con éxito</returns>
-        public bool Start()
+        public bool Start(bool nuevoGrupoConexion = false)
         {
             bool resultado = false;
 
@@ -245,7 +248,8 @@ namespace Orbita.VA.Comun
             try
             {
                 // Creamos la consulta CGI
-                this.Request = (HttpWebRequest)WebRequest.Create(this.Url);
+                this.Request = (HttpWebRequest)HttpWebRequest.Create(this.Url);
+                this.Request.KeepAlive = false;
 
                 // set login and password
                 if ((this.Usuario != null) && (this.Contraseña != null) && (this.Usuario != ""))
@@ -256,24 +260,32 @@ namespace Orbita.VA.Comun
                 // set connection group name
                 if (this.UsaGrupoConexionSeparado)
                 {
-                    this.Request.ConnectionGroupName = this.Codigo;
+                    string codigoGrupoConexion = this.Codigo;
+                    if (nuevoGrupoConexion)
+                    {
+                        codigoGrupoConexion += this.ContReconexion.ToString();
+                        this.ContReconexion++;
+                    }
+                    this.Request.ConnectionGroupName = codigoGrupoConexion;
                 }
 
                 this.Request.Method = "GET";
+                this.Request.AllowWriteStreamBuffering = false;
+                this.Request.AllowAutoRedirect = false;
                 this.Request.Timeout = this.TimeOut;
 
                 this.Response = (HttpWebResponse)this.Request.GetResponse();
                 this.Stream = this.Response.GetResponseStream();
                 this.Stream.ReadTimeout = this.TimeOut;
 
-                //resultado = this.Response.StatusDescription == "OK";
                 resultado = this.Response.StatusCode == this.CodigoRespuesta;
             }
                 catch (Exception exception)
             {
-                this.Request = null;
-                this.Response = null;
-                this.Stream = null;
+                this.Stop();
+                //this.Request = null;
+                //this.Response = null;
+                //this.Stream = null;
                 OLogsVAComun.Comun.Info(exception, "StartComandoCGI");
             }
 
@@ -296,6 +308,7 @@ namespace Orbita.VA.Comun
                     if (this.Stream != null)
                     {
                         this.Stream.Close();
+                        this.Stream.Dispose();
                         this.Stream = null;
                     }
 
@@ -308,6 +321,7 @@ namespace Orbita.VA.Comun
                     if (this.Request != null)
                     {
                         this.Request.Abort();
+                        this.Request = null;
                     }
 
                     resultado = true;

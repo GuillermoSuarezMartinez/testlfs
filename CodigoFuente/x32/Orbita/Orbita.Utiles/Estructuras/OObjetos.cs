@@ -1400,7 +1400,8 @@ namespace Orbita.Utiles
                 if (valor is string)
                 {
                     double doubleValor;
-                    if (double.TryParse((string)valor, NumberStyles.Any, CultureInfo.InvariantCulture, out doubleValor))
+                    //if (double.TryParse((string)valor, NumberStyles.Any, CultureInfo.InvariantCulture, out doubleValor))
+                    if (double.TryParse((string)valor, NumberStyles.Any, CultureInfo.CurrentCulture, out doubleValor))
                     {
                         auxValor = doubleValor;
                         validacion = EnumEstadoDecimalRobusto.ResultadoCorrecto;

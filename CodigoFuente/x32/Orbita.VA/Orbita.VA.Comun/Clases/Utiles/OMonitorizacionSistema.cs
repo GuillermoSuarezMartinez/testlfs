@@ -845,9 +845,9 @@ namespace Orbita.VA.Comun
                 if (ret != 0)
                     throw new Exception("Unknown error (" + ret + ")");
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                throw new Exception("CloseConnection failed (" + connectionstring + ")! [" + ex.GetType().ToString() + "," + ex.Message + "]");
+                throw new Exception("CloseConnection failed (" + connectionstring + ")! [" + exception.GetType().ToString() + "," + exception.Message + "]");
             }
         }
 
@@ -924,9 +924,9 @@ namespace Orbita.VA.Comun
                 }
                 return tcpRows;
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                throw new Exception("getTcpTable failed! [" + ex.GetType().ToString() + "," + ex.Message + "]");
+                throw new Exception("getTcpTable failed! [" + exception.GetType().ToString() + "," + exception.Message + "]");
             }
             finally
             {

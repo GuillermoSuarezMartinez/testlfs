@@ -11,6 +11,9 @@
 //***********************************************************************
 namespace Orbita.Controles.Comunes
 {
+    /// <summary>
+    /// Clase base abstracta de apariencia.
+    /// </summary>
     [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
     public abstract class OAparienciaBase
     {
@@ -54,39 +57,39 @@ namespace Orbita.Controles.Comunes
 
         #region Métodos protegidos
         /// <summary>
-        /// Resetear color de borde.
+        /// Resetear color de borde con el valor predeterminado.
         /// </summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetColorBorde()
         {
-            this.ColorBorde = System.Drawing.Color.Empty;
+            this.ColorBorde = Configuracion.DefectoColorBorde;
         }
         /// <summary>
-        /// Resetear color de fondo.
+        /// Resetear color de fondo con el valor predeterminado.
         /// </summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetColorFondo()
         {
-            this.ColorFondo = System.Drawing.Color.Empty;
+            this.ColorFondo = Configuracion.DefectoColorFondo;
         }
         /// <summary>
-        /// Resetear color de texto.
+        /// Resetear color de texto con el valor predeterminado.
         /// </summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetColorTexto()
         {
-            this.ColorTexto = System.Drawing.Color.Empty;
+            this.ColorTexto = Configuracion.DefectoColorTexto;
         }
         /// <summary>
-        /// Resetear estilo de borde.
+        /// Resetear estilo de borde con el valor predeterminado.
         /// </summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetEstiloBorde()
         {
-            this.EstiloBorde = EstiloBorde.Solido;
+            this.EstiloBorde = Configuracion.DefectoEstiloBorde;
         }
         /// <summary>
-        /// Resetear alineación de texto horizontal.
+        /// Resetear alineación de texto horizontal con el valor predeterminado.
         /// </summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetAlineacionTextoHorizontal()
@@ -94,7 +97,7 @@ namespace Orbita.Controles.Comunes
             this.AlineacionTextoHorizontal = Configuracion.DefectoAlineacionTextoHorizontal;
         }
         /// <summary>
-        /// Resetear alineación de texto vertical.
+        /// Resetear alineación de texto vertical con el valor predeterminado.
         /// </summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetAlineacionTextoVertical()
@@ -102,43 +105,71 @@ namespace Orbita.Controles.Comunes
             this.AlineacionTextoVertical = Configuracion.DefectoAlineacionTextoVertical;
         }
         /// <summary>
-        /// Resetear adorno de texto.
+        /// Resetear adorno de texto con el valor predeterminado.
         /// </summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetAdornoTexto()
         {
             this.AdornoTexto = Configuracion.DefectoAdornoTexto;
         }
+        /// <summary>
+        /// Comprueba si el color de borde ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns>True si el color de borde ha cambiado; en otro caso, retorna false.</returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeColorBorde()
         {
-            return (this.ColorBorde != System.Drawing.Color.Empty);
+            return (this.ColorBorde != Configuracion.DefectoColorBorde);
         }
+        /// <summary>
+        /// Comprueba si el color de fondo ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns>True si el color de fondo ha cambiado; en otro caso, retorna false.</returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeColorFondo()
         {
-            return (this.ColorFondo != System.Drawing.Color.Empty);
+            return (this.ColorFondo != Configuracion.DefectoColorFondo);
         }
+        /// <summary>
+        /// Comprueba si el color de texto ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns>True si el color de texto ha cambiado; en otro caso, retorna false.</returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeColorTexto()
         {
-            return (this.ColorTexto != System.Drawing.Color.Empty);
+            return (this.ColorTexto != Configuracion.DefectoColorTexto);
         }
+        /// <summary>
+        /// Comprueba si el estilo de borde ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns>True si el estilo de borde ha cambiado; en otro caso, retorna false.</returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeEstiloBorde()
         {
-            return (this.EstiloBorde != EstiloBorde.Solido);
+            return (this.EstiloBorde != Configuracion.DefectoEstiloBorde);
         }
+        /// <summary>
+        /// Comprueba si la alineación de texto horizontal ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns>True si la alineación de texto horizontal ha cambiado; en otro caso, retorna false.</returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeAlineacionTextoHorizontal()
         {
             return (this.AlineacionTextoHorizontal != Configuracion.DefectoAlineacionTextoHorizontal);
         }
+        /// <summary>
+        /// Comprueba si la alineación de texto vertical ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns>True si la alineación de texto vertical ha cambiado; en otro caso, retorna false.</returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeAlineacionTextoVertical()
         {
             return (this.AlineacionTextoVertical != Configuracion.DefectoAlineacionTextoVertical);
         }
+        /// <summary>
+        /// Comprueba si el adorno de texto ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns>True si el adorno de texto ha cambiado; en otro caso, retorna false.</returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeAdornoTexto()
         {

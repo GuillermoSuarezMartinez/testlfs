@@ -32,14 +32,14 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Propiedades
-        [System.ComponentModel.Description("Determina la apariencia de celdas agrupadas.")]
+        [System.ComponentModel.Description("Determina la apariencia de las celdas agrupadas.")]
         [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public override OApariencia Apariencia
         {
             get { return base.Apariencia; }
             set { base.Apariencia = value; }
         }
-        [System.ComponentModel.Description("Especifica el estilo de celdas agrupadas.")]
+        [System.ComponentModel.Description("Especifica el estilo de las celdas agrupadas.")]
         public EstiloCeldasAgrupadas Estilo
         {
             get { return this.estilo; }
@@ -67,6 +67,10 @@ namespace Orbita.Controles.Grid
         {
             this.Estilo = Configuracion.DefectoEstiloCeldasAgrupadas;
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeEstilo()
         {

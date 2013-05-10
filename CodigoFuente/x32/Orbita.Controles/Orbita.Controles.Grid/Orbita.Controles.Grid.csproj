@@ -55,6 +55,9 @@
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
     <DocumentationFile>bin\Release\Orbita.Controles.Grid.XML</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Framework|x86'">
+    <OutputPath>bin\x86\Framework\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Infragistics2.Documents.Excel.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -101,8 +104,11 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Colecciones\OCollectionEventHandler.cs" />
+    <Compile Include="Clases\OEventHandler.cs" />
     <Compile Include="Clases\EventArgs\OTimerEventArgs.cs" />
     <Compile Include="Clases\EventArgs\OToolClickCollectionEventArgs.cs" />
     <Compile Include="Clases\EventArgs\ORowEventArgs.cs" />
@@ -165,7 +171,6 @@
     <Compile Include="Clases\OPlantilla.cs" />
     <Compile Include="Enumerados\Alineacion.cs" />
     <Compile Include="Enumerados\EstiloColumna.cs" />
-    <Compile Include="Enumerados\Tools.cs" />
     <Compile Include="Interfaces\IPersistencia.cs" />
     <Compile Include="Clases\Configuración\Configuracion.cs" />
     <Compile Include="Clases\Base\OAparienciaBase.cs" />

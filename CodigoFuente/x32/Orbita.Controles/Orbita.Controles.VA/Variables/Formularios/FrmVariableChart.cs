@@ -12,6 +12,7 @@
 using System;
 using System.Windows.Forms;
 using Orbita.VA.Comun;
+using Orbita.Utiles;
 namespace Orbita.Controles.VA
 {
     public partial class FrmVariableChart : FrmBase

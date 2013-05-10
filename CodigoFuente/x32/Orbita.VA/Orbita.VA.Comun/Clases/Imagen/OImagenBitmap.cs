@@ -68,7 +68,9 @@ namespace Orbita.VA.Comun
                 return resultado;
             }
         }
+        #endregion
 
+        #region Propiedad(es)
         /// <summary>
         /// Profundidad en bytes de cada píxel
         /// </summary>
@@ -80,6 +82,22 @@ namespace Orbita.VA.Comun
                 if (this.Image is Bitmap)
                 {
                     return BitmapFactory.GetProfundidad(this.Image.PixelFormat);
+                }
+                return resultado;
+            }
+        }
+
+        /// <summary>
+        /// Indica si las imagenes son a color o monocromo
+        /// </summary>
+        public override bool Color
+        {
+            get 
+            {
+                bool resultado = base.Color;
+                if (this.Image is Bitmap)
+                {
+                    return BitmapFactory.GetColor(this.Image.PixelFormat);
                 }
                 return resultado;
             }
@@ -153,14 +171,14 @@ namespace Orbita.VA.Comun
             {
                 try
                 {
-                    //imagenResultado._Image = this.Image.Clone();
+                    imagenResultado._Image = this.Image.Clone();
 
-                    // Fase 1: Copia de la imagen a Array de Bytes
-                    OByteArrayImage imagenByteArray = new OByteArrayImage();
-                    imagenByteArray.Serializar(this);
+                    //// Fase 1: Copia de la imagen a Array de Bytes
+                    //OByteArrayImage imagenByteArray = new OByteArrayImage();
+                    //imagenByteArray.Serializar(this);
 
-                    // Fase 2: Restauración del Array de Bytes a la Imagen
-                    imagenResultado = (OImagenBitmap)imagenByteArray.Desserializar();
+                    //// Fase 2: Restauración del Array de Bytes a la Imagen
+                    //imagenResultado = (OImagenBitmap)imagenByteArray.Desserializar();
 
                     imagenResultado.Codigo = this.Codigo;
                     imagenResultado.MomentoCreacion = this.MomentoCreacion;
@@ -258,10 +276,92 @@ namespace Orbita.VA.Comun
         }
 
         /// <summary>
+        /// Método que realiza el empaquetado del fichero de la imagen
+        /// </summary>
+        /// <returns></returns>
+        public override byte[] ToDataArray()
+        {
+            byte[] resultado = new byte[0];
+            if (this.Image is Bitmap)
+            {
+                try
+                {
+                    MemoryStream stream = new MemoryStream();
+                    //this.Image.Save(stream, this.Image.RawFormat); // Nuevo
+                    this.Image.Save(stream, ImageFormat.Bmp); // Nuevo
+                    resultado = stream.ToArray();
+                }
+                catch
+                {
+                    resultado = new byte[0];
+                }
+            }
+
+            return resultado;
+        }
+
+        /// <summary>
         /// Método que realiza el empaquetado de un objeto para ser enviado por remoting
         /// </summary>
         /// <returns></returns>
-        public override byte[] ToArray()
+        public override byte[] ToDataArray(ImageFormat formato, double escalado)
+        {
+            byte[] resultado = new byte[0];
+            if (this.Image is Bitmap)
+            {
+                try
+                {
+                    // Escalado de la imagen
+                    OImagenBitmap imgAux = (OImagenBitmap)this.EscalarImagen(this, escalado);
+
+                    MemoryStream stream = new MemoryStream();
+                    imgAux.Image.Save(stream, formato);
+                    resultado = stream.ToArray();
+                    //stream.Close(); // Nuevo
+                    //stream.Dispose(); // Nuevo
+                }
+                catch
+                {
+                    resultado = new byte[0];
+                }
+            }
+
+            return resultado;
+        }
+
+        /// <summary>
+        /// Método que realiza el desempaquetado de un objeto recibido por remoting
+        /// </summary>
+        /// <returns></returns>
+        public override bool FromDataArray(byte[] arrayValue, ref OImagen imagen)
+        {
+            bool resultado = false;
+
+            if (arrayValue.Length > 0)
+            {
+                try
+                {
+                    MemoryStream stream = new MemoryStream(arrayValue);
+                    Bitmap bmp = new Bitmap(stream);
+
+                    imagen = new OImagenBitmap(this.Codigo, bmp);
+                    //stream.Close(); // Nuevo
+                    //stream.Dispose(); // Nuevo
+                    resultado = true;
+                }
+                catch
+                {
+                }
+            }
+
+            return resultado;
+        }
+
+        /// <summary>
+        /// Método que realiza el empaquetado del mapa de bits la imagen.
+        /// </summary>
+        /// <returns></returns>
+        public override byte[] ToPixelArray()
         {
             byte[] resultado = new byte[0];
             if (this.Image is Bitmap)
@@ -279,35 +379,11 @@ namespace Orbita.VA.Comun
             return resultado;
         }
 
-
-        //public override byte[] ToArray()
-        //{
-        //    byte[] resultado = new byte[0];
-        //    if (this.Image is Bitmap)
-        //    {
-        //        try
-        //        {
-        //            MemoryStream stream = new MemoryStream();
-        //            //this.Image.Save(stream, ImageFormat.Bmp); // Viejo
-        //            this.Image.Save(stream, this.Image.RawFormat); // Nuevo
-        //            resultado = stream.ToArray();
-        //            //stream.Close(); // Nuevo
-        //            //stream.Dispose(); // Nuevo
-        //        }
-        //        catch
-        //        {
-        //            resultado = new byte[0];
-        //        }
-        //    }
-
-        //    return resultado;
-        //}
-
         /// <summary>
-        /// Método que realiza el empaquetado de un objeto para ser enviado por remoting
+        /// Método que realiza el empaquetado del mapa de bits la imagen.
         /// </summary>
         /// <returns></returns>
-        public override byte[] ToArray(ImageFormat formato, double escalado)
+        public override byte[] ToPixelArray(ImageFormat formato, double escalado)
         {
             byte[] resultado = new byte[0];
             if (this.Image is Bitmap)
@@ -316,7 +392,6 @@ namespace Orbita.VA.Comun
                 {
                     // Escalado de la imagen
                     OImagenBitmap imgAux = (OImagenBitmap)this.EscalarImagen(this, escalado);
-
                     BitmapFactory.ExtractBufferArray(imgAux.Image, out resultado);
                 }
                 catch
@@ -328,83 +403,39 @@ namespace Orbita.VA.Comun
             return resultado;
         }
 
-        //public override byte[] ToArray(ImageFormat formato, double escalado)
-        //{
-        //    byte[] resultado = new byte[0];
-        //    if (this.Image is Bitmap)
-        //    {
-        //        try
-        //        {
-        //            // Escalado de la imagen
-        //            OImagenBitmap imgAux = (OImagenBitmap)this.EscalarImagen(this, escalado);
-
-        //            MemoryStream stream = new MemoryStream();
-        //            imgAux.Image.Save(stream, formato);
-        //            resultado = stream.ToArray();
-        //            //stream.Close(); // Nuevo
-        //            //stream.Dispose(); // Nuevo
-        //        }
-        //        catch
-        //        {
-        //            resultado = new byte[0];
-        //        }
-        //    }
-
-        //    return resultado;
-        //}
-
         /// <summary>
         /// Método que realiza el desempaquetado de un objeto recibido por remoting
         /// </summary>
         /// <returns></returns>
-        public override OImagen FromArray(byte[] arrayValue, int width, int height, int profundidad)
+        public override bool FromPixelArray(byte[] arrayValue, ref OImagen imagen, int width, int height, int profundidad)
         {
-            OImagenBitmap resultado = null;
+            bool resultado = false;
 
             if (arrayValue.Length > 0)
             {
                 try
                 {
                     Bitmap bmp = null;
-                    BitmapFactory.CreateOrUpdateBitmap(ref bmp, arrayValue, width, height, profundidad);
-                    resultado = new OImagenBitmap(this.Codigo, bmp);
-                    resultado.MomentoCreacion = this.MomentoCreacion;
+                    //if ((imagen is OImagenBitmap) && (imagen.Image is Bitmap))
+                    //{
+                    //    bmp = (Bitmap)imagen.Image;
+                    //}
+                    //BitmapFactory.CreateOrUpdateBitmap(ref bmp, arrayValue, width, height, profundidad);
+
+                    BitmapFactory.CreateBitmap(out bmp, width, height, profundidad);
+                    BitmapFactory.UpdateBitmap(bmp, arrayValue, width, height, profundidad);
+                    imagen.Image = bmp;
+                    imagen.MomentoCreacion = this.MomentoCreacion;
+
+                    resultado = true;
                 }
                 catch
                 {
-                    resultado = null;
                 }
             }
 
             return resultado;
         }
-
-        //public override OImagen FromArray(byte[] arrayValue, int width, int height, int profundidad)
-        ////public override OImagen FromArray(byte[] arrayValue)
-        //{
-        //    OImagenBitmap resultado = null;
-
-        //    if (arrayValue.Length > 0)
-        //    {
-        //        try
-        //        {
-        //            MemoryStream stream = new MemoryStream(arrayValue);
-        //            Bitmap bmp = new Bitmap(stream);
-
-        //            resultado = new OImagenBitmap(this.Codigo, bmp);
-
-        //            //stream.Close(); // Nuevo
-        //            //stream.Dispose(); // Nuevo
-        //        }
-        //        catch
-        //        {
-        //            resultado = null;
-        //        }
-        //    }
-
-        //    return resultado;
-        //}
-
 
         /// <summary>
         /// Crea una nueva imagen de la misma clase

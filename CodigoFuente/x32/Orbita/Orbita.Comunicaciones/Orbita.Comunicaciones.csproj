@@ -108,6 +108,9 @@
     <Compile Include="Protocolos\Siemens\OProtocoloTCPSiemensGateOCRES.cs" />
     <Compile Include="Protocolos\Siemens\OProtocoloTCPSiemensGateOSES.cs" />
     <Compile Include="Protocolos\Siemens\OProtocoloTCPSiemensGateTrafficES.cs" />
+    <Compile Include="Protocolos\TCP\OMensajeCanal.cs" />
+    <Compile Include="Protocolos\TCP\OTCPListener.cs" />
+    <Compile Include="Protocolos\TCP\OWinSockCliente.cs" />
     <Compile Include="Protocolos\WinCC\OProtocoloWinCCDataManager.cs" />
     <Compile Include="Puertos\OConfiguracionPuerto.cs" />
     <Compile Include="Puertos\OInformacionPuerto.cs" />
@@ -165,6 +168,7 @@
   <ItemGroup>
     <None Include="ClassDiagramComs.cd" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)Orbita.Comunicaciones.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I

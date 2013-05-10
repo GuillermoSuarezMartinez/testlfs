@@ -21,6 +21,13 @@ namespace Orbita.Controles.VA
     /// </summary>
     public partial class FrmMonitorizacionIO : FrmBase
     {
+        #region Constante(s)
+        /// <summary>
+        /// Intervalo entre muestreo
+        /// </summary>
+        private const int CadenciaMonitorizacionMs = 100;
+        #endregion
+
         #region Atributo(s)
         /// <summary>
         /// Código de la tarjeta IO
@@ -67,7 +74,7 @@ namespace Orbita.Controles.VA
             if (this.Hardware != null)
             {
                 // Inicializamos el timer de refresco
-                this.TimerRefresco.Interval = OSistemaManager.Configuracion.CadenciaMonitorizacionMilisegundos;
+                this.TimerRefresco.Interval = CadenciaMonitorizacionMs;
 
                 foreach (OTerminalIOBase terminalIO in this.Hardware.ListaTerminales.Values)
                 {
