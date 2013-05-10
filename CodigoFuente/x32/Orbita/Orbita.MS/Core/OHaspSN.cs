@@ -737,6 +737,7 @@ namespace Orbita.MS
             this.swCodes = new ArrayList();
             swCodes.Add(@"2034811058|486|255|7807590|123930|255");
             swCodes.Add(@"2034811056|486|255|7807590|123930|255");
+            swCodes.Add(@"3924507302|486|255|7807590|123930|255");
         }
         /// <summary>
         /// Cierra la aplicación
