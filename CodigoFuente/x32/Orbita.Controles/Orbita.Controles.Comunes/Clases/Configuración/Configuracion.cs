@@ -11,7 +11,7 @@
 //***********************************************************************
 namespace Orbita.Controles.Comunes
 {
-    internal static class Configuracion
+    internal static class Configuración
     {
         #region Atributos internos constantes
         internal static System.Drawing.Color DefectoColorBorde = System.Drawing.Color.Empty;

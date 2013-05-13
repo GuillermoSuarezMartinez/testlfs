@@ -9,8 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 namespace Orbita.Controles.Comunes
@@ -29,14 +27,14 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Evento de cancelación
         /// </summary>
-        public event EventHandler BotonEscClick;
+        public event System.EventHandler BotonEscClick;
         #endregion
 
         #region Propiedades
         /// <summary>
         /// Resultado de la introducción de texto
         /// </summary>
-        [Browsable(false)]
+        [System.ComponentModel.Browsable(false)]
         public string Resultado
         {
             get { return this.txtResultado.Text; }
@@ -44,10 +42,10 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Indica que se ha de visualizar el editor
         /// </summary>
-        [Browsable(true),
-        Category("Orbita"),
-        Description("Indica que se ha de visualizar el editor"),
-        DefaultValue(true)]
+        [System.ComponentModel.Browsable(true)]
+        [System.ComponentModel.Category("Orbita")]
+        [System.ComponentModel.Description("Indica que se ha de visualizar el editor")]
+        [System.ComponentModel.DefaultValue(true)]
         public bool VisualizarEditor
         {
             get { return this.PnlTop.Visible; }
@@ -56,10 +54,10 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Indica que se ha de visualizar la tecla de intro
         /// </summary>
-        [Browsable(true),
-        Category("Orbita"),
-        Description("Indica que se ha de visualizar la tecla de Intro"),
-        DefaultValue(true)]
+        [System.ComponentModel.Browsable(true)]
+        [System.ComponentModel.Category("Orbita")]
+        [System.ComponentModel.Description("Indica que se ha de visualizar la tecla de Intro")]
+        [System.ComponentModel.DefaultValue(true)]
         public bool VisualizarIntro
         {
             get { return this.btnIntro.Visible; }
@@ -68,10 +66,10 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Indica que se ha de visualizar la tecla de espacio
         /// </summary>
-        [Browsable(true),
-        Category("Orbita"),
-        Description("Indica que se ha de visualizar la tecla de espacio"),
-        DefaultValue(true)]
+        [System.ComponentModel.Browsable(true)]
+        [System.ComponentModel.Category("Orbita")]
+        [System.ComponentModel. Description("Indica que se ha de visualizar la tecla de espacio")]
+        [System.ComponentModel. DefaultValue(true)]
         public bool VisualizarSpace
         {
             get { return this.btnSpace.Visible; }
@@ -80,10 +78,10 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Indica que se ha de visualizar la tecla de escape
         /// </summary>
-        [Browsable(true),
-        Category("Orbita"),
-        Description("Indica que se ha de visualizar la tecla de escape"),
-        DefaultValue(true)]
+        [System.ComponentModel.Browsable(true)]
+        [System.ComponentModel.Category("Orbita")]
+        [System.ComponentModel.Description("Indica que se ha de visualizar la tecla de escape")]
+        [System.ComponentModel.DefaultValue(true)]
         public bool VisualizarEsc
         {
             get { return this.BtnEsc.Visible; }
@@ -92,10 +90,10 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Indica que se ha de visualizar la tecla de retroceso
         /// </summary>
-        [Browsable(true),
-        Category("Orbita"),
-        Description("Indica que se ha de visualizar la tecla de retroceso"),
-        DefaultValue(true)]
+        [System.ComponentModel.Browsable(true)]
+        [System.ComponentModel.Category("Orbita")]
+        [System.ComponentModel.Description("Indica que se ha de visualizar la tecla de retroceso")]
+        [System.ComponentModel.DefaultValue(true)]
         public bool VisualizarRet
         {
             get { return this.btnRetrocede.Visible; }
@@ -104,10 +102,10 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Indica que se ha de visualizar la tecla del desplegable
         /// </summary>
-        [Browsable(true),
-        Category("Orbita"),
-        Description("Indica que se ha de visualizar la tecla del desplegable"),
-        DefaultValue(false)]
+        [System.ComponentModel.Browsable(true)]
+        [System.ComponentModel.Category("Orbita")]
+        [System.ComponentModel.Description("Indica que se ha de visualizar la tecla del desplegable")]
+        [System.ComponentModel.DefaultValue(false)]
         public bool VisualizarDropDown
         {
             get { return this.BtnDropDown.Visible; }
@@ -120,9 +118,9 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Lista de seleccion
         /// </summary>
-        [Browsable(true),
-        Category("Orbita"),
-        Description("Lista de texto a visualizar")]
+        [System.ComponentModel.Browsable(true)]
+        [System.ComponentModel.Category("Orbita")]
+        [System.ComponentModel.Description("Lista de texto a visualizar")]
         public string[] ListaTexto
         {
             get { return _ListaTexto; }
@@ -177,7 +175,7 @@ namespace Orbita.Controles.Comunes
                             row.MinimumHeight = 500;
                         }
                     }
-                    catch (Exception)
+                    catch (System.Exception)
                     {
                     }
                     finally
@@ -195,14 +193,14 @@ namespace Orbita.Controles.Comunes
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OrbitaControlTeclado_Load(object sender, EventArgs e)
+        private void OrbitaControlTeclado_Load(object sender, System.EventArgs e)
         {
             try
             {
                 this.txtResultado.Text = string.Empty;
                 this.RellenarDesplegable();
             }
-            catch (Exception)
+            catch (System.Exception)
             {
                 // Do nothing
             }
@@ -212,7 +210,7 @@ namespace Orbita.Controles.Comunes
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_Click(object sender, EventArgs e)
+        private void btn_Click(object sender, System.EventArgs e)
         {
             try
             {
@@ -228,7 +226,7 @@ namespace Orbita.Controles.Comunes
                     }
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
                 // Do nothing
             }
@@ -238,7 +236,7 @@ namespace Orbita.Controles.Comunes
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnRetrocede_Click(object sender, EventArgs e)
+        private void btnRetrocede_Click(object sender, System.EventArgs e)
         {
             try
             {
@@ -247,7 +245,7 @@ namespace Orbita.Controles.Comunes
                     this.txtResultado.Text = this.txtResultado.Text.Remove(this.txtResultado.Text.Length - 1, 1);
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
                 // Do nothing
             }
@@ -257,7 +255,7 @@ namespace Orbita.Controles.Comunes
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnIntro_Click(object sender, EventArgs e)
+        private void btnIntro_Click(object sender, System.EventArgs e)
         {
             try
             {
@@ -266,7 +264,7 @@ namespace Orbita.Controles.Comunes
                     BotonIntroClick(this, new TextEventArgs(this.Resultado));
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
                 // Do nothing
             }
@@ -276,7 +274,7 @@ namespace Orbita.Controles.Comunes
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnEsc_Click(object sender, EventArgs e)
+        private void BtnEsc_Click(object sender, System.EventArgs e)
         {
             try
             {
@@ -285,7 +283,7 @@ namespace Orbita.Controles.Comunes
                     BotonEscClick(this, e);
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
                 // Do nothing
             }
@@ -295,13 +293,13 @@ namespace Orbita.Controles.Comunes
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnDropDown_Click(object sender, EventArgs e)
+        private void BtnDropDown_Click(object sender, System.EventArgs e)
         {
             try
             {
                 this.GridView.Visible = !this.GridView.Visible;
             }
-            catch (Exception)
+            catch (System.Exception)
             {
                 // Do nothing
             }
@@ -311,13 +309,13 @@ namespace Orbita.Controles.Comunes
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnDropDown_Leave(object sender, EventArgs e)
+        private void BtnDropDown_Leave(object sender, System.EventArgs e)
         {
             try
             {
                 this.GridView.Visible = this.GridView.Focused;
             }
-            catch (Exception)
+            catch (System.Exception)
             {
                 // Do nothing
             }
@@ -338,7 +336,7 @@ namespace Orbita.Controles.Comunes
                     this.GridView.Visible = false;
                 }
             }
-            catch (Exception)
+            catch (System.Exception)
             {
                 // Do nothing
             }
@@ -360,14 +358,14 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Nueva imagen
         /// </summary>
-        private string _Texto;
+        private string texto;
         /// <summary>
         /// Nueva imagen
         /// </summary>
         public string Texto
         {
-            get { return _Texto; }
-            set { _Texto = value; }
+            get { return texto; }
+            set { texto = value; }
         }
         #endregion
 
@@ -379,7 +377,7 @@ namespace Orbita.Controles.Comunes
         /// <param name="valor">Valor de la variable</param>
         public TextEventArgs(string texto)
         {
-            this._Texto = texto;
+            this.texto = texto;
         }
         #endregion
     }

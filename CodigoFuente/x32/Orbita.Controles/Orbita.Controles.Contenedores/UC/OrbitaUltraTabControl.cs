@@ -16,8 +16,14 @@ namespace Orbita.Controles.Contenedores
         #region Nueva definición
         public class ControlNuevaDefinicion : OUltraTabControl
         {
+            #region Constructor
+            /// <summary>
+            /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraTabControl.ControlNuevaDefinicion.
+            /// </summary>
+            /// <param name="sender">Representa un control para mostrar una lista de elementos.</param>
             public ControlNuevaDefinicion(OrbitaUltraTabControl sender)
                 : base(sender) { }
+            #endregion
         }
         #endregion
 

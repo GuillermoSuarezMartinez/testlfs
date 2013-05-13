@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.clbPluginsDisponibles = new System.Windows.Forms.CheckedListBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -45,17 +45,6 @@
             this.panel1.Size = new System.Drawing.Size(391, 55);
             this.panel1.TabIndex = 0;
             // 
-            // btnCancelar
-            // 
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(199, 10);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(180, 33);
-            this.btnCancelar.TabIndex = 1;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
             // btnAceptar
             // 
             this.btnAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -67,11 +56,23 @@
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(199, 10);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(180, 33);
+            this.btnCancelar.TabIndex = 1;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // clbPluginsDisponibles
             // 
             this.clbPluginsDisponibles.CheckOnClick = true;
             this.clbPluginsDisponibles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.clbPluginsDisponibles.FormattingEnabled = true;
+            this.clbPluginsDisponibles.HorizontalScrollbar = true;
             this.clbPluginsDisponibles.Location = new System.Drawing.Point(0, 0);
             this.clbPluginsDisponibles.Name = "clbPluginsDisponibles";
             this.clbPluginsDisponibles.Size = new System.Drawing.Size(391, 340);
@@ -91,10 +92,13 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PluginsDisponibles";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Plugins";
             this.Load += new System.EventHandler(this.PluginsDisponibles_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
 
         #endregion

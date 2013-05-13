@@ -17,6 +17,10 @@ namespace Orbita.Controles.Comunes
         public class ControlNuevaDefinicion : OPictureBox
         {
             #region Constructor
+            /// <summary>
+            /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaPictureBox.ControlNuevaDefinicion.
+            /// </summary>
+            /// <param name="sender">Representa un control para mostrar una lista de elementos.</param>
             public ControlNuevaDefinicion(OrbitaPictureBox sender)
                 : base(sender) { }
             #endregion

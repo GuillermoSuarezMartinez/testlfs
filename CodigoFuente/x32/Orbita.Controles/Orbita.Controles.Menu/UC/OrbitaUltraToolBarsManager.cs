@@ -16,8 +16,14 @@ namespace Orbita.Controles.Menu
         #region Nueva definición
         public class ControlNuevaDefinicion : OUltraToolbarsManager
         {
+            #region Constructor
+            /// <summary>
+            /// Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaUltraToolbarsManager.ControlNuevaDefinicion.
+            /// </summary>
+            /// <param name="sender">Representa un control para mostrar una lista de elementos.</param>
             public ControlNuevaDefinicion(OrbitaUltraToolbarsManager sender)
                 : base(sender) { }
+            #endregion
         }
         #endregion
 

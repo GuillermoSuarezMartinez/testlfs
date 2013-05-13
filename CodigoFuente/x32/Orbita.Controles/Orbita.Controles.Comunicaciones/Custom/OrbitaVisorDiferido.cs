@@ -84,7 +84,10 @@ namespace Orbita.Controles.Comunicaciones
             set
             {
                 this._tamaño = value;
-                gridLog.Toolbar.Tools["Tamanyo"].SharedProps.Caption = _tamaño;
+                if ((this.gridLog.Toolbar.Toolbars[0].Tools.Exists("Tamanyo")))
+                {
+                    gridLog.Toolbar.Tools["Tamanyo"].SharedProps.Caption = _tamaño;
+                }
             }
         }
         #endregion

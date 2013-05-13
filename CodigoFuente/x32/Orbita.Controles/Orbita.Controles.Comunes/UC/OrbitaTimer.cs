@@ -17,6 +17,10 @@ namespace Orbita.Controles.Comunes
         public class ControlNuevaDefinicion : OTimer
         {
             #region Constructor
+            /// <summary>
+            /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaTimer.ControlNuevaDefinicion.
+            /// </summary>
+            /// <param name="sender">Representa un control para mostrar una lista de elementos.</param>
             public ControlNuevaDefinicion(OrbitaTimer sender)
                 : base(sender) { }
             #endregion

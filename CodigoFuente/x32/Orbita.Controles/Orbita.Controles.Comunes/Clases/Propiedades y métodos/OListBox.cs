@@ -11,6 +11,9 @@
 //***********************************************************************
 namespace Orbita.Controles.Comunes
 {
+    /// <summary>
+    /// Clase Orbita.Controles.Comunes.OListBox vinculada a la clase Orbita.Controles.Comunes.OrbitaListBox.
+    /// </summary>
     [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
     public class OListBox
     {

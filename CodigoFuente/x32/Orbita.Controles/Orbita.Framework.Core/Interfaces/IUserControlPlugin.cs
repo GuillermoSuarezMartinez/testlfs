@@ -16,6 +16,9 @@ namespace Orbita.Framework.Core
     /// </summary>
     public interface IUserControlPlugin : IPlugin
     {
+        /// <summary>
+        /// Control de usuario.
+        /// </summary>
         System.Windows.Forms.UserControl Control { get; }
     }
 }

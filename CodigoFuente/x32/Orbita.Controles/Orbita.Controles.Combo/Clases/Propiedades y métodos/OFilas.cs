@@ -9,9 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using Infragistics.Win.UltraWinGrid;
-using System.ComponentModel;
 using Orbita.Controles.Grid;
 namespace Orbita.Controles.Combo
 {
@@ -40,8 +37,8 @@ namespace Orbita.Controles.Combo
         #endregion
 
         #region Eventos
-        public event EventHandler<OPropiedadEventArgs> PropertyChanging;
-        public event EventHandler<OPropiedadEventArgs> PropertyChanged;
+        public event System.EventHandler<OPropiedadEventArgs> PropertyChanging;
+        public event System.EventHandler<OPropiedadEventArgs> PropertyChanged;
         #endregion
 
         #region Constructor
@@ -122,7 +119,7 @@ namespace Orbita.Controles.Combo
                 }
             }
         }
-        [Browsable(false)]
+        [System.ComponentModel.Browsable(false)]
         public TipoSeleccionFila TipoSeleccion
         {
             get { return this.tipoSeleccion; }

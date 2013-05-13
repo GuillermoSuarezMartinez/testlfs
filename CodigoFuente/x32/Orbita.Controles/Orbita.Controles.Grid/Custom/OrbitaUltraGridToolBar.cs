@@ -12,13 +12,19 @@
 using System.Linq;
 namespace Orbita.Controles.Grid
 {
-    public partial class OrbitaUltraGridToolBar : Orbita.Controles.Shared.OrbitaUserControl
+    public partial class OrbitaUltraGridToolBar : Orbita.Controles.Contenedores.OrbitaUserControl
     {
         #region Nueva definición
         public class ControlNuevaDefinicion : OUltraGridToolBar
         {
+            #region Constructor
+            /// <summary>
+            /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OrbitaUltraGridToolBar.ControlNuevaDefinicion.
+            /// </summary>
+            /// <param name="sender">Representa un control para mostrar una lista de elementos.</param>
             public ControlNuevaDefinicion(OrbitaUltraGridToolBar sender)
                 : base(sender) { }
+            #endregion
         }
         #endregion Nueva definición
 

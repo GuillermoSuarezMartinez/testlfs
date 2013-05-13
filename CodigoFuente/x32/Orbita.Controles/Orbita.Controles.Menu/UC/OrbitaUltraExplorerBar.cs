@@ -19,8 +19,14 @@ namespace Orbita.Controles.Menu
         #region Nueva definición
         public class ControlNuevaDefinicion : OUltraExplorerBar
         {
+            #region Constructor
+            /// <summary>
+            /// Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaUltraExplorerBar.ControlNuevaDefinicion.
+            /// </summary>
+            /// <param name="sender">Representa un control para mostrar una lista de elementos.</param>
             public ControlNuevaDefinicion(OrbitaUltraExplorerBar sender)
                 : base(sender) { }
+            #endregion
         }
         #endregion
 

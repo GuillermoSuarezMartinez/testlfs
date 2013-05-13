@@ -11,9 +11,15 @@
 //***********************************************************************
 namespace Orbita.Framework.Core
 {
+    /// <summary>
+    /// Interface de idioma.
+    /// </summary>
     [System.CLSCompliantAttribute(false)]
     public interface IFormIdioma
     {
+        /// <summary>
+        /// Evento relativo al cambio de idioma desde el/los formularios cliente.
+        /// </summary>
         event System.EventHandler<IdiomaChangedEventArgs> OnCambiarIdioma;
     }
 }

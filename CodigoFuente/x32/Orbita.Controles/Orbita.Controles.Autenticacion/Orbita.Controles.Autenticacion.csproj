@@ -14,15 +14,15 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>%24/Librerias/CodigoFuente/x32/Orbita.Controles/Orbita.Controles.Autenticacion</SccProjectName>
+    <SccLocalPath>.</SccLocalPath>
+    <SccAuxPath>http://01x0019:8080/tfs/orbitasoftware</SccAuxPath>
+    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>bin\Debug\Orbita.Controles.Autenticacion.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Orbita.Controles.Autenticacion.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>

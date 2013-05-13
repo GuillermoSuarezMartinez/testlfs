@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using Orbita.Controles.Grid;
 namespace Orbita.Controles.Combo
 {
     public partial class OrbitaUltraCombo : Infragistics.Win.UltraWinGrid.UltraCombo
@@ -18,6 +17,10 @@ namespace Orbita.Controles.Combo
         public class ControlNuevaDefinicion : OUltraCombo
         {
             #region Constructor
+            /// <summary>
+            /// Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OrbitaUltraCombo.ControlNuevaDefinicion.
+            /// </summary>
+            /// <param name="sender">Representa un control para mostrar una lista de elementos.</param>
             public ControlNuevaDefinicion(OrbitaUltraCombo sender)
                 : base(sender as object) { }
             #endregion
@@ -210,38 +213,38 @@ namespace Orbita.Controles.Combo
         }
         //void InitializeProperties()
         //{
-            //Stream isl = Estilos.Comunes.GetIsl("FlatNature");
-            //Infragistics.Win.AppStyling.StyleManager.Load(isl, true, "FlatNature");
-            //this.StyleLibraryName = "FlatNature";
-            // Importante: sin no inicializamos esta propiedad a false, a consecuencia de
-            // utilizar TextRenderingMode = GDI, produce que los tooltip de scroll (si hubiera)
-            // y los de la fila de filtros, aparezcan en negrita (ilegibles).
-            // Infragistics.Win.DrawUtility.UseGDIPlusTextRendering = false;
-            //this.Orbita.Estilo = Configuracion.DefectoAutoAjustarEstilo;
-            //this.Orbita.PermitirOrdenar = Configuracion.DefectoPermitirOrdenar;
-            // this.Orbita.Editable = Configuracion.DefectoEditable;
-            //this.DisplayLayout.Override.ResetActiveRowAppearance();
-            //this.DisplayLayout.Override.ResetRowAppearance();
-            //this.DisplayLayout.Override.ResetRowAlternateAppearance();
+        //Stream isl = Estilos.Comunes.GetIsl("FlatNature");
+        //Infragistics.Win.AppStyling.StyleManager.Load(isl, true, "FlatNature");
+        //this.StyleLibraryName = "FlatNature";
+        // Importante: sin no inicializamos esta propiedad a false, a consecuencia de
+        // utilizar TextRenderingMode = GDI, produce que los tooltip de scroll (si hubiera)
+        // y los de la fila de filtros, aparezcan en negrita (ilegibles).
+        // Infragistics.Win.DrawUtility.UseGDIPlusTextRendering = false;
+        //this.Orbita.Estilo = Configuracion.DefectoAutoAjustarEstilo;
+        //this.Orbita.PermitirOrdenar = Configuracion.DefectoPermitirOrdenar;
+        // this.Orbita.Editable = Configuracion.DefectoEditable;
+        //this.DisplayLayout.Override.ResetActiveRowAppearance();
+        //this.DisplayLayout.Override.ResetRowAppearance();
+        //this.DisplayLayout.Override.ResetRowAlternateAppearance();
 
-            // Extender la última columna.
-            // this.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ExtendLastColumn;
+        // Extender la última columna.
+        // this.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ExtendLastColumn;
 
 
-            //this.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
-            //this.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Solid;
-            //this.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Solid;
+        //this.DisplayLayout.BorderStyle = Infragistics.Win.UIElementBorderStyle.Solid;
+        //this.DisplayLayout.Override.BorderStyleCell = Infragistics.Win.UIElementBorderStyle.Solid;
+        //this.DisplayLayout.Override.BorderStyleRow = Infragistics.Win.UIElementBorderStyle.Solid;
 
-            // Estilo de cabecera.
-            //this.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
-            // Eliminar las líneas discontinuas de la fila seleccionada.
-            //this.DrawFilter = new ONoFocusRectDrawFilter();
-            // No mostrar indicador de fila.
-            // this.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.True;
-            // Justificar centrado el texto de la cabecera.
-            //this.DisplayLayout.Override.HeaderAppearance.TextHAlign = Infragistics.Win.HAlign.Left;
-            // Mostrar ls posibilidad de ordenar columna.
-            // this.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortSingle;
+        // Estilo de cabecera.
+        //this.DisplayLayout.Override.HeaderStyle = Infragistics.Win.HeaderStyle.WindowsXPCommand;
+        // Eliminar las líneas discontinuas de la fila seleccionada.
+        //this.DrawFilter = new ONoFocusRectDrawFilter();
+        // No mostrar indicador de fila.
+        // this.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.True;
+        // Justificar centrado el texto de la cabecera.
+        //this.DisplayLayout.Override.HeaderAppearance.TextHAlign = Infragistics.Win.HAlign.Left;
+        // Mostrar ls posibilidad de ordenar columna.
+        // this.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortSingle;
         //}
         void InitializeProperties()
         {

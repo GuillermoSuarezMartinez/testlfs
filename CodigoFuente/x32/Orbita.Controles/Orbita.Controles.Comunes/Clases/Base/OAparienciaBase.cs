@@ -62,7 +62,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetColorBorde()
         {
-            this.ColorBorde = Configuracion.DefectoColorBorde;
+            this.ColorBorde = Configuración.DefectoColorBorde;
         }
         /// <summary>
         /// Resetear color de fondo con el valor predeterminado.
@@ -70,7 +70,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetColorFondo()
         {
-            this.ColorFondo = Configuracion.DefectoColorFondo;
+            this.ColorFondo = Configuración.DefectoColorFondo;
         }
         /// <summary>
         /// Resetear color de texto con el valor predeterminado.
@@ -78,7 +78,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetColorTexto()
         {
-            this.ColorTexto = Configuracion.DefectoColorTexto;
+            this.ColorTexto = Configuración.DefectoColorTexto;
         }
         /// <summary>
         /// Resetear estilo de borde con el valor predeterminado.
@@ -86,7 +86,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetEstiloBorde()
         {
-            this.EstiloBorde = Configuracion.DefectoEstiloBorde;
+            this.EstiloBorde = Configuración.DefectoEstiloBorde;
         }
         /// <summary>
         /// Resetear alineación de texto horizontal con el valor predeterminado.
@@ -94,7 +94,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetAlineacionTextoHorizontal()
         {
-            this.AlineacionTextoHorizontal = Configuracion.DefectoAlineacionTextoHorizontal;
+            this.AlineacionTextoHorizontal = Configuración.DefectoAlineacionTextoHorizontal;
         }
         /// <summary>
         /// Resetear alineación de texto vertical con el valor predeterminado.
@@ -102,7 +102,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetAlineacionTextoVertical()
         {
-            this.AlineacionTextoVertical = Configuracion.DefectoAlineacionTextoVertical;
+            this.AlineacionTextoVertical = Configuración.DefectoAlineacionTextoVertical;
         }
         /// <summary>
         /// Resetear adorno de texto con el valor predeterminado.
@@ -110,7 +110,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetAdornoTexto()
         {
-            this.AdornoTexto = Configuracion.DefectoAdornoTexto;
+            this.AdornoTexto = Configuración.DefectoAdornoTexto;
         }
         /// <summary>
         /// Comprueba si el color de borde ha cambiado respecto a su valor predeterminado.
@@ -119,7 +119,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeColorBorde()
         {
-            return (this.ColorBorde != Configuracion.DefectoColorBorde);
+            return (this.ColorBorde != Configuración.DefectoColorBorde);
         }
         /// <summary>
         /// Comprueba si el color de fondo ha cambiado respecto a su valor predeterminado.
@@ -128,7 +128,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeColorFondo()
         {
-            return (this.ColorFondo != Configuracion.DefectoColorFondo);
+            return (this.ColorFondo != Configuración.DefectoColorFondo);
         }
         /// <summary>
         /// Comprueba si el color de texto ha cambiado respecto a su valor predeterminado.
@@ -137,7 +137,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeColorTexto()
         {
-            return (this.ColorTexto != Configuracion.DefectoColorTexto);
+            return (this.ColorTexto != Configuración.DefectoColorTexto);
         }
         /// <summary>
         /// Comprueba si el estilo de borde ha cambiado respecto a su valor predeterminado.
@@ -146,7 +146,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeEstiloBorde()
         {
-            return (this.EstiloBorde != Configuracion.DefectoEstiloBorde);
+            return (this.EstiloBorde != Configuración.DefectoEstiloBorde);
         }
         /// <summary>
         /// Comprueba si la alineación de texto horizontal ha cambiado respecto a su valor predeterminado.
@@ -155,7 +155,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeAlineacionTextoHorizontal()
         {
-            return (this.AlineacionTextoHorizontal != Configuracion.DefectoAlineacionTextoHorizontal);
+            return (this.AlineacionTextoHorizontal != Configuración.DefectoAlineacionTextoHorizontal);
         }
         /// <summary>
         /// Comprueba si la alineación de texto vertical ha cambiado respecto a su valor predeterminado.
@@ -164,7 +164,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeAlineacionTextoVertical()
         {
-            return (this.AlineacionTextoVertical != Configuracion.DefectoAlineacionTextoVertical);
+            return (this.AlineacionTextoVertical != Configuración.DefectoAlineacionTextoVertical);
         }
         /// <summary>
         /// Comprueba si el adorno de texto ha cambiado respecto a su valor predeterminado.
@@ -173,7 +173,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeAdornoTexto()
         {
-            return (this.AdornoTexto != Configuracion.DefectoAdornoTexto);
+            return (this.AdornoTexto != Configuración.DefectoAdornoTexto);
         }
         #endregion
     }

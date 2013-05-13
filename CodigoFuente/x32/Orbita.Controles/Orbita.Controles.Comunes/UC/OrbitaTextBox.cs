@@ -17,6 +17,10 @@ namespace Orbita.Controles.Comunes
         public class ControlNuevaDefinicion : OTextBox
         {
             #region Constructor
+            /// <summary>
+            /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaTextBox.ControlNuevaDefinicion.
+            /// </summary>
+            /// <param name="sender">Representa un control para mostrar una lista de elementos.</param>
             public ControlNuevaDefinicion(OrbitaTextBox sender)
                 : base(sender) { }
             #endregion
@@ -99,7 +103,7 @@ namespace Orbita.Controles.Comunes
         void InicializeProperties()
         {
             base.Size = new System.Drawing.Size(100, 21);
-            this.OI.AutoScrollBar = Configuracion.DefectoAutoScrollBar;
+            this.OI.AutoScrollBar = Configuración.DefectoAutoScrollBar;
         }
         #endregion
     }

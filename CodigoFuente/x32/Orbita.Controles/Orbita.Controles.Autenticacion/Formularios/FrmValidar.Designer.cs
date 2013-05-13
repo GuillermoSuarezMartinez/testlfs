@@ -110,7 +110,6 @@
             this.Text = "Autenticación";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

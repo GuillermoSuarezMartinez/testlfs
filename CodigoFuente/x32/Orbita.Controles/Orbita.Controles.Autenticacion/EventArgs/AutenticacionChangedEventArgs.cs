@@ -22,12 +22,12 @@ namespace Orbita.Controles.Autenticacion
 
         #region Constructores
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Framework.Core.IdiomaChangedEventArgs.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs.
         /// </summary>
         public AutenticacionChangedEventArgs()
             : base() { }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Framework.Core.IdiomaChangedEventArgs.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs.
         /// </summary>
         /// <param name="estado">Nombre de la propiedad.</param>
         public AutenticacionChangedEventArgs(OEstadoValidacion estado)

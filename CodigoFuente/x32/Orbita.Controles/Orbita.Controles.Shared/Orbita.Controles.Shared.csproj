@@ -62,22 +62,21 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\Propiedades y métodos\OUserControl.cs" />
-    <Compile Include="UC\OrbitaUserControl.cs">
+    <Compile Include="Custom\OrbitaUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UC\OrbitaUserControl.Designer.cs">
+    <Compile Include="Custom\OrbitaUserControl.Designer.cs">
       <DependentUpon>OrbitaUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="UC\OrbitaUserControl.resx">
+    <EmbeddedResource Include="Custom\OrbitaUserControl.resx">
       <DependentUpon>OrbitaUserControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <Folder Include="Clases\Propiedades y métodos\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

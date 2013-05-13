@@ -11,6 +11,9 @@
 //***********************************************************************
 namespace Orbita.Framework
 {
+    /// <summary>
+    /// Determina mediante atributos públicos a que entidades de base de datos se conecta mediante atributos públicos.
+    /// </summary>
     internal static class BDatos
     {
         public static Orbita.BBDD.OSqlServer FW;

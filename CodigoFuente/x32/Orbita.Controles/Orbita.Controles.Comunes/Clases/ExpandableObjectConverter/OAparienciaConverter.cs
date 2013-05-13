@@ -16,7 +16,6 @@ namespace Orbita.Controles.Comunes
         #region Métodos públicos
         public override object ConvertTo(System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, System.Type destinationType)
         {
-            // Convertir a string.
             if ((destinationType == typeof(string)))
             {
                 OApariencia apariencia = (OApariencia)value;
@@ -37,15 +36,15 @@ namespace Orbita.Controles.Comunes
                 {
                     cont++;
                 }
-                if (apariencia.AlineacionTextoHorizontal != Configuracion.DefectoAlineacionTextoHorizontal)
+                if (apariencia.AlineacionTextoHorizontal != Configuración.DefectoAlineacionTextoHorizontal)
                 {
                     cont++;
                 }
-                if (apariencia.AlineacionTextoVertical != Configuracion.DefectoAlineacionTextoVertical)
+                if (apariencia.AlineacionTextoVertical != Configuración.DefectoAlineacionTextoVertical)
                 {
                     cont++;
                 }
-                if (apariencia.AdornoTexto != Configuracion.DefectoAdornoTexto)
+                if (apariencia.AdornoTexto != Configuración.DefectoAdornoTexto)
                 {
                     cont++;
                 }

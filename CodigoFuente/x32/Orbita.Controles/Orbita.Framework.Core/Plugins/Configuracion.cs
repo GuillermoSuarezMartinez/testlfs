@@ -23,13 +23,13 @@ namespace Orbita.Framework.Core
         /// </summary>
         public Configuracion()
         {
-            Plugins = new CollectionPluginConfiguracion();
+            Plugins = new PluginConfiguracionCollection();
         }
         #endregion
 
         #region Propiedades
         [System.Xml.Serialization.XmlElement(ElementName = "Plugin")]
-        public CollectionPluginConfiguracion Plugins { get; set; }
+        public PluginConfiguracionCollection Plugins { get; set; }
         #endregion
 
         #region Métodos públicos

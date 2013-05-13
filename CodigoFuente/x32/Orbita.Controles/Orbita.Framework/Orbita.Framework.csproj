@@ -14,10 +14,10 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>%24/Librerias/CodigoFuente/x32/Orbita.Controles/Orbita.Framework</SccProjectName>
+    <SccLocalPath>.</SccLocalPath>
+    <SccAuxPath>http://01x0019:8080/tfs/orbitasoftware</SccAuxPath>
+    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -80,9 +80,8 @@
   <ItemGroup>
     <Compile Include="Clases\BDatos.cs" />
     <Compile Include="Clases\DatosHelper.cs" />
-    <Compile Include="Clases\Configuracion.cs" />
-    <Compile Include="Clases\Propiedades y métodos\OBase.cs" />
-    <Compile Include="Clases\PluginManager.cs" />
+    <Compile Include="Clases\Internas\Configuracion.cs" />
+    <Compile Include="Clases\Internas\PluginManager.cs" />
     <Compile Include="Formularios\Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,9 +102,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Formularios\Base.resx">
-      <DependentUpon>Base.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,6 +148,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)Orbita.Framework.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I

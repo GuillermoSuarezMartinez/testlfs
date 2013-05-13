@@ -16,8 +16,14 @@ namespace Orbita.Controles.Contenedores
         #region Nueva definición
         public class ControlNuevaDefinicion : OMdiContainerForm
         {
+            #region Constructor
+            /// <summary>
+            /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaMdiContainerForm.ControlNuevaDefinicion.
+            /// </summary>
+            /// <param name="sender">Representa un control para mostrar una lista de elementos.</param>
             public ControlNuevaDefinicion(OrbitaMdiContainerForm sender)
                 : base(sender) { }
+            #endregion
         }
         #endregion
 
@@ -58,8 +64,8 @@ namespace Orbita.Controles.Contenedores
         }
         void InitializeProperties()
         {
-            this.toolTip.Active = Configuracion.DefectoVerToolTips;
-            this.OI.NumeroMaximoFormulariosAbiertos = Configuracion.DefectoNumeroMaximoFormulariosAbiertosEnMdi;
+            this.toolTip.Active = Configuración.DefectoVerToolTips;
+            this.OI.NumeroMaximoFormulariosAbiertos = Configuración.DefectoNumeroMaximoFormulariosAbiertosEnMdi;
         }
         #endregion
     }

@@ -16,8 +16,14 @@ namespace Orbita.Controles.Grid
         #region Nueva definición
         public class ControlNuevaDefinicion : OUltraGrid
         {
+            #region Constructor
+            /// <summary>
+            /// Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OrbitaUltraGrid.ControlNuevaDefinicion.
+            /// </summary>
+            /// <param name="sender">Representa un control para mostrar una lista de elementos.</param>
             public ControlNuevaDefinicion(OrbitaUltraGrid sender)
                 : base(sender) { }
+            #endregion
         }
         #endregion
 

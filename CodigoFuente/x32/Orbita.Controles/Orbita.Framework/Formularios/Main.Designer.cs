@@ -33,11 +33,12 @@
             // 
             // Main
             // 
-            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.ClientSize = new System.Drawing.Size(491, 365);
             this.Name = "Main";
             this.Shown += new System.EventHandler(this.OrbitaFramework_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OrbitaFramework_KeyDown);
             this.ResumeLayout(false);
+
         }
         #endregion
     }

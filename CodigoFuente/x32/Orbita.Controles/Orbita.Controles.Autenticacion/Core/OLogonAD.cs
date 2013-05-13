@@ -33,7 +33,7 @@ namespace Orbita.Controles.Autenticacion
                     try
                     {
                         string entry = deDirEntry.Name;
-                        validacion.Estado = "OK";
+                        validacion.Resultado = "OK";
                         validacion.Mensaje = "";
                     }
                     catch (Exception ex)

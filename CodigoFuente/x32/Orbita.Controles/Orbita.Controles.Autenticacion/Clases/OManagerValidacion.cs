@@ -9,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+using System.Windows.Forms;
 namespace Orbita.Controles.Autenticacion
 {
     public class OManagerValidacion
@@ -26,14 +27,20 @@ namespace Orbita.Controles.Autenticacion
         #endregion
 
         #region Métodos públicos
-        /// <summary>
-        /// Muestra el formulario de validación.
-        /// </summary>
-        public void Mostrar()
+        public void Mostrar(Form parent, bool mostrar)
         {
-            FrmValidar frm = new FrmValidar();
-            frm.OValidacionControl += new FrmValidar.ODelegadoValidacion(frm_OValidacionControl);
-            frm.ShowDialog();
+            if (!mostrar)
+            {
+                OEstadoValidacion validar = new OEstadoValidacion("OK", "", "");
+                AutenticacionChangedEventArgs args = new AutenticacionChangedEventArgs(validar);
+                this.OValidacion(this, args);
+            }
+            else
+            {
+                FrmValidar frm = new FrmValidar(parent);
+                frm.OValidacionControl += new FrmValidar.ODelegadoValidacion(frm_OValidacionControl);
+                frm.Show();
+            }
         }
         #endregion
 

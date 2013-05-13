@@ -17,9 +17,9 @@ namespace Orbita.Controles.Autenticacion
     public class OEstadoValidacion
     {
         #region Atributos
-        string estado;
+        string resultado;
         string mensaje;
-        string boton;
+        string botón;
         #endregion
 
         #region Constructores
@@ -30,25 +30,25 @@ namespace Orbita.Controles.Autenticacion
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.OEstadoValidacion.
         /// </summary>
-        /// <param name="estado">Estado de la validación.</param>
+        /// <param name="resultado">Resultado de la validación.</param>
         /// <param name="mensaje">Mensaje de la validación.</param>
         /// <param name="boton">Botón que se pulsa.</param>
-        public OEstadoValidacion(string estado, string mensaje, string boton)
+        public OEstadoValidacion(string resultado, string mensaje, string boton)
         {
-            this.estado = estado;
+            this.resultado = resultado;
             this.mensaje = mensaje;
-            this.boton = boton;
+            this.botón = boton;
         }
         #endregion
 
         #region Propiedades
         /// <summary>
-        /// Estado de la validación.
+        /// Resultado de la validación.
         /// </summary>
-        public string Estado
+        public string Resultado
         {
-            get { return estado; }
-            set { estado = value; }
+            get { return resultado; }
+            set { resultado = value; }
         }
         /// <summary>
         /// Mensaje de la validación.
@@ -61,10 +61,10 @@ namespace Orbita.Controles.Autenticacion
         /// <summary>
         /// Botón que se pulsa al validar.
         /// </summary>
-        public string Boton
+        public string Botón
         {
-            get { return boton; }
-            set { boton = value; }
+            get { return botón; }
+            set { botón = value; }
         }
         #endregion
     }

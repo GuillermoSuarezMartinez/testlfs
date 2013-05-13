@@ -25,10 +25,6 @@ namespace Orbita.Framework
         /// Colección de controles.
         /// </summary>
         System.Collections.Generic.IDictionary<string, Core.ControlInfo> controles;
-        /// <summary>
-        /// Control Core.PluginOMenuStrip.
-        /// </summary>
-        Core.PluginOMenuStrip menu = null;
         #endregion
 
         #region Constructor
@@ -42,9 +38,14 @@ namespace Orbita.Framework
             InitializeComponent();
             // Inicializar atributos.
             InicializeAttributes();
+            // Cargar Plugins.
+            LoadPlugins();
+            // Cargar configuración de Framework.
+            LoadConfiguration();
             // Cargar formulario de autenticación si la propiedad lo indica.
             // ...en todo caso se ejecuta el evento asociado Validacion_Click 
-            // el cual establece la carga de Plugins.
+            // el cual establece la inicialización del menu, la asignación de
+            // eventos y la carga de controles.
             LoadAuthentication();
         }
         #endregion
@@ -57,31 +58,27 @@ namespace Orbita.Framework
         #endregion
 
         #region Métodos privados
-        /// <summary>
-        /// Inicializar menu.
-        /// </summary>
-        void InicializeMenu()
+        void LoadPlugins()
         {
-            if (this.OI.MostrarMenu)
+            string fichero = "Plugins.xml";
+            if (System.IO.File.Exists(fichero))
             {
-                if (!this.Controls.Contains(menu))
-                {
-                    menu = new Core.PluginOMenuStrip();
-                    menu.Name = "MainMenu";
-                    this.SuspendLayout();
-                    this.Controls.Add(menu);
-                    this.MainMenuStrip = menu;
-                    this.Controls.SetChildIndex(menu, 0);
-                    this.ResumeLayout(false);
-                    this.PerformLayout();
-                }
+                PluginManager.Configuracion = Core.Configuracion.Cargar(fichero);
+                this.LoadPlugins((from x in PluginManager.Configuracion.Plugins
+                                  where x.Ensamblado != null
+                                  select x.Ensamblado).ToList());
+            }
+            else
+            {
+                PluginManager.Configuracion = new Core.Configuracion();
+                PluginManager.Configuracion.Guardar(fichero);
             }
         }
         void LoadAuthentication()
         {
             OManagerValidacion manager = new OManagerValidacion();
             manager.OValidacion += new OManagerValidacion.ODelegadoManagerValidacion(Validacion_Click);
-            manager.Mostrar(this, this.OI.Autenticación);
+            manager.Mostrar(this, this.Configurador.Autenticación);
         }
         /// <summary>
         /// Cargar controles en la colección de acuerdo al idioma seleccionado.
@@ -91,7 +88,7 @@ namespace Orbita.Framework
             Core.Persistencia persistencia = Core.PluginHelper.Persistencia;
             if (persistencia != null)
             {
-                controles = persistencia.GetControles(this.OI.Idioma);
+                controles = persistencia.GetControles(this.Configurador.Idioma);
             }
         }
         /// <summary>
@@ -144,10 +141,10 @@ namespace Orbita.Framework
         {
             foreach (Core.PluginInfo pluginInfo in this.plugins.Values)
             {
-                if (this.OI.MostrarMenu)
+                if (this.Configurador.MostrarMenu)
                 {
                     // Evento click de las opciones de menú principal.
-                    System.Windows.Forms.ToolStripMenuItem pluginItem = menu.AddPlugin(pluginInfo);
+                    System.Windows.Forms.ToolStripMenuItem pluginItem = this.Menu.AddPlugin(pluginInfo);
                     pluginItem.Click += new System.EventHandler(PluginItem_Click);
                 }
                 if (pluginInfo.Plugin is Core.IFormIdioma)
@@ -232,7 +229,7 @@ namespace Orbita.Framework
         {
             try
             {
-                string plugin = this.OI.Plugin;
+                string plugin = this.Configurador.Plugin;
                 if (!string.IsNullOrEmpty(plugin) && this.plugins.ContainsKey(plugin))
                 {
                     Core.PluginInfo pluginInfo = this.plugins[plugin];
@@ -246,7 +243,7 @@ namespace Orbita.Framework
         }
         void OrbitaFramework_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-           try
+            try
             {
                 if (e.Control && e.KeyCode == System.Windows.Forms.Keys.P)
                 {
@@ -284,25 +281,12 @@ namespace Orbita.Framework
             {
                 if (e.Estado.Resultado == "OK")
                 {
-                    string fichero = "Plugins.xml";
-                    if (System.IO.File.Exists(fichero))
-                    {
-                        PluginManager.Configuracion = Core.Configuracion.Cargar(fichero);
-                        this.LoadPlugins((from x in PluginManager.Configuracion.Plugins
-                                          where x.Ensamblado != null
-                                          select x.Ensamblado).ToList());
-                        // Inicializar menu si la propiedad lo indica.
-                        this.InicializeMenu();
-                        // Asignar eventos de Plugins.
-                        this.SetEventsPlugins();
-                        this.LoadControls();
-                        this.InicializeControls();
-                    }
-                    else
-                    {
-                        PluginManager.Configuracion = new Core.Configuracion();
-                        PluginManager.Configuracion.Guardar(fichero);
-                    }
+                    // Inicializar menu si la propiedad lo indica.
+                    this.InicializeMenu();
+                    // Asignar eventos de Plugins.
+                    this.SetEventsPlugins();
+                    this.LoadControls();
+                    this.InicializeControls();
                 }
             }
             catch (System.Exception)
@@ -315,10 +299,10 @@ namespace Orbita.Framework
             try
             {
                 // Solo si el idioma de carga es distinto al idioma asignado previamente.
-                if (e.Idioma != this.OI.Idioma)
+                if (e.Idioma != this.Configurador.Idioma)
                 {
                     // Modificar el atributo de idioma.
-                    this.OI.Idioma = e.Idioma;
+                    this.Configurador.Idioma = e.Idioma;
                     // Inicializar la colección de controles en función del idioma seleccionado.
                     this.LoadControls();
                     // Mostrar el valor de cada uno de los controles en los Plugins de carga.

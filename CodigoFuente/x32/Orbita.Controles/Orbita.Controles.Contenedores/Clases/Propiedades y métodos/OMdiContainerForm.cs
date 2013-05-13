@@ -61,19 +61,15 @@ namespace Orbita.Controles.Contenedores
             }
             if (this.control.MdiChildren.Length < this.numeroMaximoFormulariosAbiertos)
             {
-                if (form.OI.NumeroMaximoFormulariosAbiertos == 0)
+                foreach (OrbitaForm hijo in this.control.MdiChildren)
                 {
-                    foreach (OrbitaForm hijo in this.control.MdiChildren)
+                    if (hijo.GetType() == form.GetType())
                     {
-                        if (hijo.GetType() == form.GetType())
-                        {
-                            hijo.Activate();
-                            hijo.BringToFront();
-                            return true;
-                        }
+                        hijo.Activate();
+                        hijo.BringToFront();
+                        return true;
                     }
                 }
-                form.OI.NumeroMaximoFormulariosAbiertos--;
                 form.MdiParent = this.control;
                 form.Show();
             }
@@ -89,7 +85,7 @@ namespace Orbita.Controles.Contenedores
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetNumeroMaximoFormulariosAbiertos()
         {
-            this.NumeroMaximoFormulariosAbiertos = Configuracion.DefectoNumeroMaximoFormulariosAbiertosEnMdi;
+            this.NumeroMaximoFormulariosAbiertos = Configuración.DefectoNumeroMaximoFormulariosAbiertosEnMdi;
         }
         /// <summary>
         /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
@@ -98,7 +94,7 @@ namespace Orbita.Controles.Contenedores
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeNumeroMaximoFormulariosAbiertos()
         {
-            return (this.NumeroMaximoFormulariosAbiertos != Configuracion.DefectoNumeroMaximoFormulariosAbiertosEnMdi);
+            return (this.NumeroMaximoFormulariosAbiertos != Configuración.DefectoNumeroMaximoFormulariosAbiertosEnMdi);
         }
         #endregion
     }

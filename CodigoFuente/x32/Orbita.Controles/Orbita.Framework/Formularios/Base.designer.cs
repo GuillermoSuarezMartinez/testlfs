@@ -27,7 +27,18 @@ namespace Orbita.Framework
         /// </summary>
         void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Base
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.KeyPreview = true;
+            this.Name = "Base";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.ResumeLayout(false);
+
         }
         #endregion
     }

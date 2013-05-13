@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Text;
-
+﻿using System.ComponentModel;
 namespace Orbita.Controles.Editor.UC
 {
     public partial class OrbitaRichTextBoxPlus : OrbitaRichTextBox
@@ -16,7 +11,6 @@ namespace Orbita.Controles.Editor.UC
         public OrbitaRichTextBoxPlus(IContainer container)
         {
             container.Add(this);
-
             InitializeComponent();
         }
     }

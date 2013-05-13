@@ -92,6 +92,7 @@
     <Compile Include="Clases\Propiedades y métodos\OUltraTabControl.cs" />
     <Compile Include="Clases\Propiedades y métodos\OSplitContainer.cs" />
     <Compile Include="Clases\Propiedades y métodos\OPanel.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUserControl.cs" />
     <Compile Include="Custom\OrbitaMdiContainerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,16 +171,16 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Orbita.Controles.Comunes\Orbita.Controles.Comunes.csproj">
-      <Project>{D66C367A-47B7-4464-93D6-92794E4A57C8}</Project>
-      <Name>Orbita.Controles.Comunes</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\orbita.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\fondo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Orbita.Controles.Comunes\Orbita.Controles.Comunes.csproj">
+      <Project>{D66C367A-47B7-4464-93D6-92794E4A57C8}</Project>
+      <Name>Orbita.Controles.Comunes</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -56,9 +56,18 @@ namespace Orbita.Controles.Autenticacion
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.FrmValidar.
         /// </summary>
-        public FrmValidar()
+        /// <param name="parent"></param>
+        public FrmValidar(Form parent)
         {
             InitializeComponent();
+            MdiParent = parent;
+            //InitializeAuthentication();
+        }
+        #endregion
+
+        #region Métodos privados
+        void InitializeAuthentication()
+        {
             OBBDDManager.LeerFicheroConfig(Application.StartupPath + @"\ConfiguracionBBDD.xml");
             App.COMS = (OSqlServer)OBBDDManager.GetBBDD("basedatosfw");
             this.validacion = Validaciones.Ninguna;
@@ -69,23 +78,19 @@ namespace Orbita.Controles.Autenticacion
                 this.dominio = dt.Rows[0]["FWA_DOMINIO"].ToString();
             }
         }
-        #endregion
-
-        #region Métodos privados
         void Validar()
         {
             OLogon logon = null;
             AutenticacionChangedEventArgs args = null;
             switch (this.validacion)
             {
-                case Validaciones.Ninguna:
-                    break;
                 case Validaciones.BBDD:
                     logon = new OLogonBBDD();
                     break;
                 case Validaciones.ActiveDirectory:
                     logon = new OLogonAD();
                     break;
+                case Validaciones.Ninguna:
                 default:
                     break;
             }

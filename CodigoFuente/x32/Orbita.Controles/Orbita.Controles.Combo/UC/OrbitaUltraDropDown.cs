@@ -1,5 +1,4 @@
-﻿using System;
-using Orbita.Controles.Grid;
+﻿using Orbita.Controles.Grid;
 namespace Orbita.Controles.Combo
 {
     public partial class OrbitaUltraDropDown : Infragistics.Win.UltraWinGrid.UltraDropDown
@@ -71,7 +70,7 @@ namespace Orbita.Controles.Combo
                         else
                         {
                             // Si el campo que le hemos pasado como parametro no existe en el combo.
-                            throw new Exception("Error en FormatearDropDown. El campo " + columna.Campo + " no existe en el Grid.");
+                            throw new System.Exception("Error en FormatearDropDown. El campo " + columna.Campo + " no existe en el Grid.");
                         }
                     }
                     if (dt.Rows.Count > 0)
@@ -87,7 +86,7 @@ namespace Orbita.Controles.Combo
                 else
                 {
                     // Si la tabla es nula lanzamos excepcion.
-                    throw new Exception("Error en FormatearDropDown. La tabla es nula.");
+                    throw new System.Exception("Error en FormatearDropDown. La tabla es nula.");
                 }
             }
             catch

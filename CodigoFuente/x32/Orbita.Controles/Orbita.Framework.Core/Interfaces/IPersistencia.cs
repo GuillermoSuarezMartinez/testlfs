@@ -17,7 +17,7 @@ namespace Orbita.Framework.Core
     public interface IPersistencia
     {
         /// <summary>
-        /// 
+        /// Persistencia de métodos del formulario cliente.
         /// </summary>
         Core.Persistencia Persistencia { get; }
     }

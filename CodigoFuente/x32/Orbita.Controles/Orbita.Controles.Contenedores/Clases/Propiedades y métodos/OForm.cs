@@ -57,25 +57,5 @@ namespace Orbita.Controles.Contenedores
             return null;
         }
         #endregion
-
-        #region Métodos protegidos
-        /// <summary>
-        /// El método ResetnombreDePropiedad establece una propiedad en su valor predeterminado.
-        /// </summary>
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
-        protected void ResetNumeroMaximoFormulariosAbiertos()
-        {
-            this.NumeroMaximoFormulariosAbiertos = Configuracion.DefectoNumeroMaximoFormulariosAbiertos;
-        }
-        /// <summary>
-        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
-        /// </summary>
-        /// <returns></returns>
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
-        protected bool ShouldSerializeNumeroMaximoFormulariosAbiertos()
-        {
-            return (this.NumeroMaximoFormulariosAbiertos != Configuracion.DefectoNumeroMaximoFormulariosAbiertos);
-        }
-        #endregion
     }
 }

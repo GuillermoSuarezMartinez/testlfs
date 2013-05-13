@@ -34,7 +34,7 @@ namespace Orbita.Controles.Autenticacion
                 {
                     if (this.password == OCifrado.DesencriptarTexto(dt.Rows[0]["FWUP_PASS"].ToString()))
                     {
-                        validacion.Estado = "OK";
+                        validacion.Resultado = "OK";
                         validacion.Mensaje = "";
                     }
                     else

@@ -20,6 +20,10 @@ namespace Orbita.Controles.Comunes
         public class ControlNuevaDefinicion : OUltraDockManager
         {
             #region Constructor
+            /// <summary>
+            /// Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaUltraDockManager.ControlNuevaDefinicion.
+            /// </summary>
+            /// <param name="sender">Representa un control para mostrar una lista de elementos.</param>
             public ControlNuevaDefinicion(OrbitaUltraDockManager sender)
                 : base(sender) { }
             #endregion

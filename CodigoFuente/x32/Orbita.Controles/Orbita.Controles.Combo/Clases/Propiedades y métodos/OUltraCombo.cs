@@ -9,13 +9,10 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.ComponentModel;
-using Infragistics.Win;
-using Infragistics.Win.UltraWinGrid;
 using Orbita.Controles.Grid;
 namespace Orbita.Controles.Combo
 {
-    [TypeConverter(typeof(ExpandableObjectConverter))]
+    [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
     public class OUltraCombo : OControlBase
     {
         #region Atributos
@@ -62,13 +59,13 @@ namespace Orbita.Controles.Combo
         #endregion
 
         #region Propiedades
-        [Browsable(false)]
+        [System.ComponentModel.Browsable(false)]
         public bool Formateado
         {
             get { return this.formateado; }
             set { this.formateado = value; }
         }
-        [Browsable(false)]
+        [System.ComponentModel.Browsable(false)]
         public object DataSource
         {
             get { return this.Control.DataSource; }
@@ -94,7 +91,7 @@ namespace Orbita.Controles.Combo
             get { return this.anulablePorTeclado; }
             set { this.anulablePorTeclado = value; }
         }
-        [Browsable(false)]
+        [System.ComponentModel.Browsable(false)]
         public object Valor
         {
             get 
@@ -107,7 +104,7 @@ namespace Orbita.Controles.Combo
             }
             set { this.Control.Value = value; }
         }
-        [Browsable(false)]
+        [System.ComponentModel.Browsable(false)]
         public string Texto
         {
             get
@@ -131,14 +128,14 @@ namespace Orbita.Controles.Combo
             }
         }
         [System.ComponentModel.Description("Determina la apariencia de OrbitaUltraCombo.")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public override OApariencia Apariencia
         {
             get { return base.Apariencia; }
             set { base.Apariencia = value; }
         }
         [System.ComponentModel.Description("Determina la configuración de las filas.")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public OFilas Filas
         {
             get
@@ -158,7 +155,7 @@ namespace Orbita.Controles.Combo
             set { this.filas = value; }
         }
         [System.ComponentModel.Description("Determina la configuración de la cabecera.")]
-        [System.ComponentModel.DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public OCabecera Cabecera
         {
             get
@@ -175,7 +172,7 @@ namespace Orbita.Controles.Combo
             set { this.cabecera = value; }
         }
         [System.ComponentModel.Description("Determina la configuración de las columnas.")]
-        [System.ComponentModel.DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public OColumnas Columnas
         {
             get
@@ -193,7 +190,7 @@ namespace Orbita.Controles.Combo
             set { this.columnas = value; }
         }
         [System.ComponentModel.Description("Determina la configuración de las celdas.")]
-        [System.ComponentModel.DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        [System.ComponentModel.DesignerSerializationVisibility(System.ComponentModel.DesignerSerializationVisibility.Content)]
         public OCeldas Celdas
         {
             get
@@ -219,11 +216,11 @@ namespace Orbita.Controles.Combo
                     case "Editable":
                         if (this.editable)
                         {
-                            this.Control.DropDownStyle = UltraComboStyle.DropDown;
+                            this.Control.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDown;
                         }
                         else
                         {
-                            this.Control.DropDownStyle = UltraComboStyle.DropDownList;
+                            this.Control.DropDownStyle = Infragistics.Win.UltraWinGrid.UltraComboStyle.DropDownList;
                         }
                         break;
                 }
@@ -236,7 +233,7 @@ namespace Orbita.Controles.Combo
                 switch (e.Nombre)
                 {
                     case "MostrarIndicador":
-                        this.Control.DisplayLayout.Override.RowSelectors = (DefaultableBoolean)System.Enum.Parse(typeof(DefaultableBoolean), this.Filas.MostrarIndicador.ToString(), true);
+                        this.Control.DisplayLayout.Override.RowSelectors = (Infragistics.Win.DefaultableBoolean)System.Enum.Parse(typeof(Infragistics.Win.DefaultableBoolean), this.Filas.MostrarIndicador.ToString(), true);
                         break;
                     case "Alto":
                         int alto = this.Filas.Alto;
@@ -256,37 +253,37 @@ namespace Orbita.Controles.Combo
                 {
                     if (this.columnas.PermitirOrdenar)
                     {
-                        this.Control.DisplayLayout.Override.HeaderClickAction = HeaderClickAction.SortMulti;
+                        this.Control.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
                     }
                     else
                     {
-                        this.Control.DisplayLayout.Override.HeaderClickAction = HeaderClickAction.Select;
+                        this.Control.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.Select;
                     }
                 }
                 else if (e.Nombre == "Estilo")
                 {
                     if (this.columnas.Estilo == AutoAjustarEstilo.ExtenderUltimaColumna)
                     {
-                        this.Control.DisplayLayout.AutoFitStyle = AutoFitStyle.ExtendLastColumn;
+                        this.Control.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ExtendLastColumn;
                     }
                     else if (this.columnas.Estilo == AutoAjustarEstilo.RedimensionarTodasLasColumnas)
                     {
-                        this.Control.DisplayLayout.AutoFitStyle = AutoFitStyle.ResizeAllColumns;
+                        this.Control.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ResizeAllColumns;
                     }
                     else if (this.columnas.Estilo == AutoAjustarEstilo.SinAutoajusteColumnas)
                     {
-                        this.Control.DisplayLayout.AutoFitStyle = AutoFitStyle.None;
+                        this.Control.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.None;
                     }
                 }
                 else if (e.Nombre == "MostrarFiltro")
                 {
                     if (this.Columnas.MostrarFiltro)
                     {
-                        this.Control.DisplayLayout.Override.AllowRowFiltering = DefaultableBoolean.True;
+                        this.Control.DisplayLayout.Override.AllowRowFiltering = Infragistics.Win.DefaultableBoolean.True;
                     }
                     else
                     {
-                        this.Control.DisplayLayout.Override.AllowRowFiltering = DefaultableBoolean.Default;
+                        this.Control.DisplayLayout.Override.AllowRowFiltering = Infragistics.Win.DefaultableBoolean.Default;
                     }
                 }
             }

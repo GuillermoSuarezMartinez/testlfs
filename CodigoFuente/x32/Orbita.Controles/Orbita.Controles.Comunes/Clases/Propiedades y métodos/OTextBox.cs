@@ -51,7 +51,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetAutoScrollBar()
         {
-            this.AutoScrollBar = Configuracion.DefectoAutoScrollBar;
+            this.AutoScrollBar = Configuración.DefectoAutoScrollBar;
         }
         /// <summary>
         /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
@@ -60,7 +60,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected bool ShouldSerializeAutoScrollBar()
         {
-            return (this.AutoScrollBar != Configuracion.DefectoAutoScrollBar);
+            return (this.AutoScrollBar != Configuración.DefectoAutoScrollBar);
         }
         #endregion
 

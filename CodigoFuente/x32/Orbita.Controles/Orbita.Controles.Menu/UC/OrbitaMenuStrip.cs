@@ -19,8 +19,14 @@ namespace Orbita.Controles.Menu
         #region Nueva definición
         public class ControlNuevaDefinicion : OMenuStrip
         {
+            #region Constructor
+            /// <summary>
+            /// Inicializar una nueva instancia de la clase Orbita.Controles.Menu.OrbitaMenuStrip.ControlNuevaDefinicion.
+            /// </summary>
+            /// <param name="sender">Representa un control para mostrar una lista de elementos.</param>
             public ControlNuevaDefinicion(OrbitaMenuStrip sender)
                 : base(sender) { }
+            #endregion
         }
         #endregion
 
