@@ -354,13 +354,12 @@ namespace Orbita.MS
                 Console.WriteLine(ex);
             }
 
-            if (ComprobarProductoHASPSL(prodCheck))
-            {
-                this.licencia = OLicencias.HASPSentinel;
-            }
-            else if (ComprobarProductoHASPUsb(prodCheck))
+            if (ComprobarProductoHASPUsb(prodCheck))
             {
                 this.licencia = OLicencias.HASPUsb;
+            } else if (ComprobarProductoHASPSL(prodCheck))
+            {
+                this.licencia = OLicencias.HASPSentinel;
             }
             else
             {
