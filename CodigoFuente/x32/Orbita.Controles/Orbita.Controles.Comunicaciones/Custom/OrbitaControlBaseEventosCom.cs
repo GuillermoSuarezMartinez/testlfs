@@ -62,6 +62,11 @@ namespace Orbita.Controles.Comunicaciones
         {
 
         }
+
+        public virtual void ProcesarEstadoCanal(Orbita.Utiles.OEventArgs e)
+        {
+
+        }
         #endregion
 
         #region Métodos privados
@@ -80,12 +85,14 @@ namespace Orbita.Controles.Comunicaciones
                 OrbitaConfiguracionCanal.OEventoClienteComs += new EventoClienteComs(OrbitaConfiguracionCanal_OEventoClienteComs);
                 OrbitaConfiguracionCanal.OEventoClienteCambioDato += new EventoClienteCambioDato(OrbitaConfiguracionCanal_OEventoClienteCambioDato);
                 OrbitaConfiguracionCanal.OEventoClienteAlarma += new EventoClienteAlarma(OrbitaConfiguracionCanal_OEventoClienteAlarma);
+                OrbitaConfiguracionCanal.OEventoEstadoCanal += new EventoClienteAlarma(OrbitaConfiguracionCanal_OEventoEstadoCanal);
             }
             catch (Exception)
             {
 
             }
         }
+
 
         public void Finalizar()
         {
@@ -94,6 +101,7 @@ namespace Orbita.Controles.Comunicaciones
                 OrbitaConfiguracionCanal.OEventoClienteComs -= new EventoClienteComs(OrbitaConfiguracionCanal_OEventoClienteComs);
                 OrbitaConfiguracionCanal.OEventoClienteCambioDato -= new EventoClienteCambioDato(OrbitaConfiguracionCanal_OEventoClienteCambioDato);
                 OrbitaConfiguracionCanal.OEventoClienteAlarma -= new EventoClienteAlarma(OrbitaConfiguracionCanal_OEventoClienteAlarma);
+                OrbitaConfiguracionCanal.OEventoEstadoCanal -= new EventoClienteAlarma(OrbitaConfiguracionCanal_OEventoEstadoCanal);
             }
             catch (Exception)
             {
@@ -128,6 +136,14 @@ namespace Orbita.Controles.Comunicaciones
             if (canal == this.OI.Comunicacion.NombreCanal && estado.Id == this.OI.Comunicacion.IdDispositivo)
             {
                 this.ProcesarComunicaciones(e);
+            }
+        }
+
+        void OrbitaConfiguracionCanal_OEventoEstadoCanal(Orbita.Utiles.OEventArgs e, string canal)
+        {
+            if (canal == this.OI.Comunicacion.NombreCanal)
+            {
+                this.ProcesarEstadoCanal(e);
             }
         }
 
