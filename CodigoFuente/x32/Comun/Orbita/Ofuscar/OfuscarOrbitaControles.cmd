@@ -123,7 +123,7 @@ xcopy ..\Orbita.Controles.Menu.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 @echo Ofuscacion de Orbita.Controles.Shared.............
 IF %resp% == t GOTO Orbita.Controles.SharedEx
 set /p resp="Desea ofuscar el ensamblado actual? (s=si, n=no, t=si a todo): " %=%
-IF %resp% == n GOTO Orbita.Controles.GateSuite
+IF %resp% == n GOTO Orbita.Controles.VA
 :Orbita.Controles.SharedEx
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.Shared.dll /q/f
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.Shared.xml /q/f
@@ -131,24 +131,12 @@ del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.Shared.xml /q/f
 verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.Shared.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2013"
 xcopy ..\Orbita.Controles.Shared.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
-:Orbita.Controles.GateSuite
-@echo Ofuscacion de Orbita.Controles.GateSuite.............
-IF %resp% == t GOTO Orbita.Controles.GateSuiteEx
-set /p resp="Desea ofuscar el ensamblado actual? (s=si, n=no, t=si a todo): " %=%
-IF %resp% == n GOTO Orbita.Controles.VA
-:Orbita.Controles.GateSuiteEx
-del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.GateSuite.dll /q/f
-del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.GateSuite.xml /q/f
-"%PROGRAMFILES%\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.Controles.GateSuite32.saproj
-verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.GateSuite.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2013"
-xcopy ..\Orbita.Controles.GateSuite.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
-
 :Orbita.Controles.VA
-@echo Ofuscacion de Orbita.VA.................
+@echo Ofuscacion de Orbita.Controles.VA.................
 IF %resp% == t GOTO Orbita.Controles.VAEx
 set /p resp="Desea ofuscar el ensamblado actual? (s=si, n=no, t=si a todo): " %=%
 IF %resp% == n GOTO teamfundation
-:Orbita.Controles.VA
+:Orbita.Controles.VAEx
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.VA.dll /q/f
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.VA.xml /q/f
 "%PROGRAMFILES%\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.Controles.VA32.saproj
