@@ -102,8 +102,11 @@ namespace Orbita.Controles.Comunicaciones
         /// Segundos para el evento de estado
         /// </summary>
         private int _segundosEventoEstado;
-
-
+        /// <summary>
+        /// Ruta del logger
+        /// </summary>
+        private string _nombreLogger;
+        
         #endregion
 
         #region Propiedades
@@ -162,6 +165,14 @@ namespace Orbita.Controles.Comunicaciones
         {
             get { return _segundosEventoEstado; }
             set { _segundosEventoEstado = value; }
+        }
+        /// <summary>
+        /// Ruta del logger
+        /// </summary>
+        public string NombreLogger
+        {
+            get { return _nombreLogger; }
+            set { _nombreLogger = value; }
         }
         #endregion
 
@@ -240,7 +251,7 @@ namespace Orbita.Controles.Comunicaciones
         {
             try
             {
-                LogManager.ConfiguracionLogger(Application.StartupPath + @"\ConfiguracionWrapper.xml");
+                LogManager.ConfiguracionLogger(Application.StartupPath + @"\" + this._nombreLogger + ".xml");
                 _wrapper = LogManager.GetLogger("wrapper");
                 OrbitaConfiguracionCanal._wrapper.Info("Log creado");
                 this.IniciarHiloEstadoCanal();
@@ -468,6 +479,9 @@ namespace Orbita.Controles.Comunicaciones
         {
             //traza hilo
         }
+        /// <summary>
+        /// Proceso para la gestión de estados del componente
+        /// </summary>
         private void GestionEstados()
         {
             int reintentos = 0;
