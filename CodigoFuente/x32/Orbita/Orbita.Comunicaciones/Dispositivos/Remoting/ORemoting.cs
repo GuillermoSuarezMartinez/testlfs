@@ -125,7 +125,7 @@ namespace Orbita.Comunicaciones
                  "</configuration>", ensamblado.Name, typeof(IOCommRemoting).Name, puerto, maquina));
 
             string directorio = string.Concat(Application.StartupPath, CONFIG);
-            string fichero = string.Concat(Application.StartupPath, REMOTING);
+            string fichero = string.Concat(Application.StartupPath, REMOTING + puerto + ".config.xml");
 
             // Control en la creación del directorio de salida.
             if (!Directory.Exists(directorio))

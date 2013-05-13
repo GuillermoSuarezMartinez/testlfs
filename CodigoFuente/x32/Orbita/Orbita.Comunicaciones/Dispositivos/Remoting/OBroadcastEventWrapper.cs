@@ -30,7 +30,11 @@ namespace Orbita.Comunicaciones
         /// <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
         public void OnCambioDato(OEventArgs e)
         {
-            OrbitaCambioDato(e);
+            if (OrbitaCambioDato != null)
+            {
+                OrbitaCambioDato(e);
+            }
+            
         }
         /// <summary>
         /// Evento de alarma.
@@ -38,7 +42,11 @@ namespace Orbita.Comunicaciones
         /// <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
         public void OnAlarma(OEventArgs e)
         {
-            OrbitaAlarma(e);
+            if (OrbitaAlarma!=null)
+            {
+                OrbitaAlarma(e);
+            }
+            
         }
         /// <summary>
         /// Evento de comunicaciones.
@@ -46,7 +54,11 @@ namespace Orbita.Comunicaciones
         /// <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
         public void OnComm(OEventArgs e)
         {
-            OrbitaComm(e);
+            if (OrbitaComm!=null)
+            {
+                OrbitaComm(e);
+            }
+            
         }
         #endregion
     }
