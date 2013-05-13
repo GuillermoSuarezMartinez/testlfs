@@ -97,12 +97,14 @@ namespace Orbita.Framework
             {
                 Core.IFormConfigurador configurador;
                 Core.Persistencia persistencia = Core.PluginHelper.Persistencia;
-                if (persistencia != null)
-                {
-                    configurador = persistencia.GetConfiguracion();
-                    this.configurador.Titulo = configurador.Titulo;
-                    this.configurador.EstadoVentana = configurador.EstadoVentana;
-                }
+                //if (persistencia != null)
+                //{
+                //    configurador = persistencia.GetConfiguracion();
+                    //this.configurador.Titulo = configurador.Titulo;
+                    //this.configurador.EstadoVentana = configurador.EstadoVentana;
+                    //this.configurador.EstiloBorde = configurador.EstiloBorde;
+                    this.configurador.Plugin = "2";
+                //}
                 //// Leer la configuración del Framework de base de datos.
                 //System.Data.DataTable dt = DatosHelper.GetConfiguracion();
                 //if (dt.Rows.Count == 1)

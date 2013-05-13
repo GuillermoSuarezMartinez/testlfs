@@ -25,13 +25,17 @@ namespace Orbita.Framework.Core
         /// Especifica de que tipo de formulario se trata. { Normal, Dialog, MdiChild }
         /// </summary>
         TipoForm Tipo { get; }
-        /// <summary>
-        /// Especifica cómo se muestra una ventana de formulario. { Normal, Minimizado, Maximizado }
-        /// </summary>
-        EstadoVentana EstadoVentana { get; }
-        /// <summary>
-        /// Especifica los estilos de borde de un formulario.
-        /// </summary>
-        System.Windows.Forms.FormBorderStyle EstiloBorde { get; }
+        ///// <summary>
+        ///// Especifica cómo se muestra una ventana de formulario. { Normal, Minimizado, Maximizado }
+        ///// </summary>
+        //EstadoVentana EstadoVentana { get; }
+        ///// <summary>
+        ///// Especifica los estilos de borde de un formulario.
+        ///// </summary>
+        //System.Windows.Forms.FormBorderStyle EstiloBorde { get; }
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        //System.Windows.Forms.FormStartPosition PosicionInicial { get; }
     }
 }

@@ -215,10 +215,10 @@ namespace Orbita.Framework
                     {
                         mostrarAlFrente = this.OI.MostrarFormulario(form);
                     }
-                    if (!mostrarAlFrente)
-                    {
-                        form.WindowState = (System.Windows.Forms.FormWindowState)plugin.EstadoVentana;
-                    }
+                    //if (!mostrarAlFrente)
+                    //{
+                    //    form.WindowState = (System.Windows.Forms.FormWindowState)plugin.EstadoVentana;
+                    //}
                 }
             }
         }

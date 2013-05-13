@@ -15,8 +15,8 @@ namespace Orbita.Framework
     {
         #region Atributos internos constantes
         internal const Core.EstadoVentana DefectoEstadoVentanta = Core.EstadoVentana.Maximizado;
-        internal const System.Windows.Forms.FormBorderStyle DefectoEstiloBorde = System.Windows.Forms.FormBorderStyle.Sizable;
-        internal const bool DefectoMostrarMenu = true;
+        internal const System.Windows.Forms.FormBorderStyle DefectoEstiloBorde = System.Windows.Forms.FormBorderStyle.None;
+        internal const bool DefectoMostrarMenu = false;
         internal const int DefectoNumeroMaximoFormulariosAbiertos = 50;
         internal const bool DefectoAutenticación = false;
         internal const Core.SelectorIdioma DefectoIdioma = Core.SelectorIdioma.Español;
