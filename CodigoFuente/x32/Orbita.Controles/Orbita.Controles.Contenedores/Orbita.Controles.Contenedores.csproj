@@ -92,7 +92,6 @@
     <Compile Include="Clases\Propiedades y métodos\OUltraTabControl.cs" />
     <Compile Include="Clases\Propiedades y métodos\OSplitContainer.cs" />
     <Compile Include="Clases\Propiedades y métodos\OPanel.cs" />
-    <Compile Include="Clases\Propiedades y métodos\OUserControl.cs" />
     <Compile Include="Custom\OrbitaMdiContainerForm.cs">
       <SubType>Form</SubType>
     </Compile>

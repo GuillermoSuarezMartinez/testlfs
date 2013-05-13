@@ -75,9 +75,7 @@
       <DependentUpon>OrbitaUserControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Clases\Propiedades y métodos\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)Orbita.Controles.Shared.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I
