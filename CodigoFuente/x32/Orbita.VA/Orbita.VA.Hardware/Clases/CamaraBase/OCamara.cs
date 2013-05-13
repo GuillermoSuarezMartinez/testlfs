@@ -757,6 +757,33 @@ namespace Orbita.VA.Hardware
                 camara.OnMensajeAsincrono -= messageDelegate;
             }
         }
+
+        /// <summary>
+        /// Suscribe la recepción del bit de vida de una determinada cámara
+        /// </summary>
+        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        public static void CrearSuscripcionBitVidaAsincrona(string codigo, ManejadorEvento messageDelegate)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigo, out camara))
+            {
+                camara.OnBitVidaAsincrono += messageDelegate;
+            }
+        }
+        /// <summary>
+        /// Elimina la suscripción del bit de vida de una determinada cámara
+        /// </summary>
+        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        public static void EliminarSuscripcionBitVidaAsincrona(string codigo, ManejadorEvento messageDelegate)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigo, out camara))
+            {
+                camara.OnBitVidaAsincrono -= messageDelegate;
+            }
+        }
         #endregion
 	}
 
@@ -1405,6 +1432,11 @@ namespace Orbita.VA.Hardware
         /// Delegado de mensaje de cambio de estado de reproducción. Evento asíncrono
         /// </summary>
         internal event EventoCambioEstadoReproduccionCamara OnCambioEstadoReproduccionCamaraAsincrono;
+        /// <summary>
+        /// Delegado de bit de vida
+        /// </summary>
+        /// <param name="estadoConexion"></param>
+        internal event ManejadorEvento OnBitVidaAsincrono;
         #endregion
 
 		#region Constructor(es)
@@ -2259,6 +2291,14 @@ namespace Orbita.VA.Hardware
         {
             this.LanzarEventoMensajeCamaraSincrona(codigo, mensaje);
         }
+        /// <summary>
+        /// Evento de bit de vida
+        /// </summary>
+        /// <param name="estadoConexion"></param>
+        protected virtual void OnBitVida(string codigo)
+        {
+            // Implementado en hijos
+        }
         #endregion
 
         #region Lanzamiento de evento(s)
@@ -2528,6 +2568,33 @@ namespace Orbita.VA.Hardware
         protected bool DebeLanzarEventoCambioReproduccionCamaraAsincrona()
         {
             return this.OnCambioEstadoReproduccionCamaraAsincrono != null;
+        }
+
+        /// <summary>
+        /// Lanza evento de mensaje del bit de vida
+        /// </summary>
+        /// <param name="estadoConexion"></param>
+        protected void LanzarEventoBitVidaAsincrona(object sender, OEventArgs e)
+        {
+            if (this.DebeLanzarEventoMensajeCamaraAsincrona())
+            {
+                try
+                {
+                    this.OnBitVidaAsincrono(sender, e);
+                }
+                catch (Exception exception)
+                {
+                    OLogsVAHardware.Camaras.Error(exception, this.Codigo);
+                }
+            }
+        }
+        /// <summary>
+        /// Debe lanzar el evento del bit de vida
+        /// </summary>
+        /// <param name="estadoConexion"></param>
+        protected bool DebeLanzarEventoBitVidaAsincrona()
+        {
+            return this.OnBitVidaAsincrono != null;
         }
 
         /// <summary>

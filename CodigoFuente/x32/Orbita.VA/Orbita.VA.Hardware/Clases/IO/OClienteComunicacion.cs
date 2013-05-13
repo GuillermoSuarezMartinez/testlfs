@@ -140,7 +140,6 @@ namespace Orbita.VA.Hardware
 
                 // Creación del cronómetro de tiempo de espera sin respuesta de la cámara
                 this.CronometroTiempoSinRespuesta = new Stopwatch();
-
             }
 
             // Cargamos valores de la base de datos buscamos terminales IO
@@ -257,6 +256,7 @@ namespace Orbita.VA.Hardware
 
                 // Iniciamos la comprobación de la conectividad con la cámara
                 this.CronometroTiempoSinRespuesta.Start();
+                this.TimerComprobacionConexion.Tick += this.TimerComprobacionConexion_Tick;
                 this.TimerComprobacionConexion.Start();
 
                 OLogsVAHardware.EntradasSalidas.Info(this.Codigo, "Conectado al servicio");
@@ -275,6 +275,7 @@ namespace Orbita.VA.Hardware
 
             // Finalizamos la comprobación de la conectividad con la cámara
             this.TimerComprobacionConexion.Stop();
+            this.TimerComprobacionConexion.Tick -= this.TimerComprobacionConexion_Tick;
             this.CronometroTiempoSinRespuesta.Stop();
 
             OLogsVAHardware.EntradasSalidas.Info(this.Codigo, "Desconectado del Servicio");
@@ -283,7 +284,7 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Conectar los eventos
         /// </summary>
-        private void ConectarEventWrapper()
+        public void ConectarEventWrapper()
         {
             try
             {
@@ -293,21 +294,21 @@ namespace Orbita.VA.Hardware
                 //Eventos locales.
                 //...cambio de dato.
                 this.ContLlamadasSimultaneasCambioDato = 0;
-                this.EventWrapper.OrbitaCambioDato += new OManejadorEventoComm(eventWrapper_OrbitaCambioDato);
+                this.EventWrapper.OrbitaCambioDato += eventWrapper_OrbitaCambioDato;
                 //...conectividad.
                 this.ContLlamadasSimultaneasComm = 0;
-                this.EventWrapper.OrbitaComm += new OManejadorEventoComm(eventWrapper_OrbitaComm);
+                this.EventWrapper.OrbitaComm += eventWrapper_OrbitaComm;
                 // ...alarma
                 this.ContLlamadasSimultaneasAlarma = 0;
-                this.EventWrapper.OrbitaAlarma += new OManejadorEventoComm(eventWrapper_OrbitaAlarma);
+                this.EventWrapper.OrbitaAlarma += eventWrapper_OrbitaAlarma;
 
                 // Eventos del servidor.
                 //...cambio de dato.
-                this.Servidor.OrbitaCambioDato += new OManejadorEventoComm(this.EventWrapper.OnCambioDato);
+                this.Servidor.OrbitaCambioDato += this.EventWrapper.OnCambioDato;
                 //...conectividad.
-                this.Servidor.OrbitaComm += new OManejadorEventoComm(this.EventWrapper.OnComm);
+                this.Servidor.OrbitaComm += this.EventWrapper.OnComm;
                 // ...alarma
-                this.Servidor.OrbitaAlarma += new OManejadorEventoComm(this.EventWrapper.OnAlarma);
+                this.Servidor.OrbitaAlarma += this.EventWrapper.OnAlarma;
 
                 // Establecer conexión con el servidor.
                 this.ConectarCanal(true);
@@ -320,34 +321,31 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Desconectar los eventos
         /// </summary>
-        private void DesconectarEventWrapper()
+        public void DesconectarEventWrapper()
         {
             try
             {
-                // Eventwrapper de comunicaciones.
-                this.EventWrapper = new Orbita.Comunicaciones.OBroadcastEventWrapper();
-
-                //Eventos locales.
-                //...cambio de dato.
-                this.EventWrapper.OrbitaCambioDato -= new OManejadorEventoComm(eventWrapper_OrbitaCambioDato);
-                this.ContLlamadasSimultaneasCambioDato = 0;
-                //...conectividad.
-                this.EventWrapper.OrbitaComm -= new OManejadorEventoComm(eventWrapper_OrbitaComm);
-                this.ContLlamadasSimultaneasComm = 0;
-                // ...alarma
-                this.EventWrapper.OrbitaAlarma -= new OManejadorEventoComm(eventWrapper_OrbitaAlarma);
-                this.ContLlamadasSimultaneasAlarma = 0;
+                // Establecer conexión con el servidor.
+                this.ConectarCanal(false);
 
                 // Eventos del servidor.
                 //...cambio de dato.
-                this.Servidor.OrbitaCambioDato -= new OManejadorEventoComm(this.EventWrapper.OnCambioDato);
+                this.Servidor.OrbitaCambioDato -= this.EventWrapper.OnCambioDato;
                 //...conectividad.
-                this.Servidor.OrbitaComm -= new OManejadorEventoComm(this.EventWrapper.OnComm);
+                this.Servidor.OrbitaComm -= this.EventWrapper.OnComm;
                 // ...alarma
-                this.Servidor.OrbitaAlarma -= new OManejadorEventoComm(this.EventWrapper.OnAlarma);
+                this.Servidor.OrbitaAlarma -= this.EventWrapper.OnAlarma;
 
-                // Establecer conexión con el servidor.
-                this.ConectarCanal(false);
+                //Eventos locales.
+                //...cambio de dato.
+                this.EventWrapper.OrbitaCambioDato -= eventWrapper_OrbitaCambioDato;
+                this.ContLlamadasSimultaneasCambioDato = 0;
+                //...conectividad.
+                this.EventWrapper.OrbitaComm -= eventWrapper_OrbitaComm;
+                this.ContLlamadasSimultaneasComm = 0;
+                // ...alarma
+                this.EventWrapper.OrbitaAlarma -= eventWrapper_OrbitaAlarma;
+                this.ContLlamadasSimultaneasAlarma = 0;
             }
             catch (Exception exception)
             {
@@ -380,10 +378,11 @@ namespace Orbita.VA.Hardware
         {
             try
             {
+                this.ContLlamadasSimultaneasCambioDato++;
+
                 // Recogemos el código del terminal
                 string codigoCambioEstado = ((OInfoDato)e.Argumento).Texto;
 
-                this.ContLlamadasSimultaneasCambioDato++;
                 if (this.ContLlamadasSimultaneasCambioDato <= NumMaxLlamadasSimultaneas)
                 {
                     // Recogemos el dispositivo al que pertenece el terminal
@@ -401,12 +400,14 @@ namespace Orbita.VA.Hardware
                 {
                     OLogsVAHardware.EntradasSalidas.Info("Número máximo de llamadas al cambio dato superado: " + this.ContLlamadasSimultaneasCambioDato, "Variable del servidor de comunicaciones: " + codigoCambioEstado, this.Codigo);
                 }
-
-                this.ContLlamadasSimultaneasCambioDato--;
             }
             catch (Exception exception)
             {
                 OLogsVAHardware.EntradasSalidas.Error(exception, this.Codigo);
+            }
+            finally
+            {
+                this.ContLlamadasSimultaneasCambioDato--;
             }
         }
         /// <summary>
@@ -420,6 +421,9 @@ namespace Orbita.VA.Hardware
                 this.ContLlamadasSimultaneasComm++;
                 if (this.ContLlamadasSimultaneasComm <= NumMaxLlamadasSimultaneas)
                 {
+                    this.CronometroTiempoSinRespuesta.Stop();
+                    this.CronometroTiempoSinRespuesta.Reset();
+                    this.CronometroTiempoSinRespuesta.Start();
                 }
                 else
                 {
@@ -472,10 +476,13 @@ namespace Orbita.VA.Hardware
                 {
                     this.DesconectarEventWrapper();
                     this.ConectarEventWrapper();
+
+                    this.CronometroTiempoSinRespuesta.Stop();
+                    this.CronometroTiempoSinRespuesta.Reset();
+                    this.CronometroTiempoSinRespuesta.Start();
+
+                    OLogsVAHardware.EntradasSalidas.Error(this.Codigo, "Reconexión del wrapper de eventos", this.Codigo);
                 }
-                this.CronometroTiempoSinRespuesta.Stop();
-                this.CronometroTiempoSinRespuesta.Reset();
-                this.CronometroTiempoSinRespuesta.Start();
             }
             catch (Exception exception)
             {

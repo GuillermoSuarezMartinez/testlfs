@@ -13,6 +13,7 @@ using System;
 using System.Collections;
 using System.Data;
 using System.Net;
+using System.Windows.Forms;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Channels.Tcp;
 using System.Runtime.Remoting.Messaging;
@@ -21,7 +22,7 @@ using System.Security.Permissions;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
 using System.Runtime.Remoting;
-using System.Threading;
+using System.Diagnostics;
 
 namespace Orbita.VA.Hardware
 {
@@ -46,6 +47,30 @@ namespace Orbita.VA.Hardware
         /// Objeto utilizado para enlazar con los eventos del OCamaraCliente de forma remota
         /// </summary>
         private OCamaraBroadcastEventWraper EventWrapper;
+        /// <summary>
+        /// Informa del número de llamadas simultáneas al evento de cambio de dato
+        /// </summary>
+        private int ContLlamadasSimultaneasNuevaFotografiaMemoriaMapeada;
+        /// <summary>
+        /// Informa del número de llamadas simultáneas al evento de conectividad
+        /// </summary>
+        private int ContLlamadasSimultaneasCambioEstadoConexion;
+        /// <summary>
+        /// Informa del número de llamadas simultáneas al evento de alarma
+        /// </summary>
+        private int ContLlamadasSimultaneasCambioEstadoReproduccion;
+        /// <summary>
+        /// Informa del número de llamadas simultáneas al evento de alarma
+        /// </summary>
+        private int ContLlamadasSimultaneasMensaje;
+        /// <summary>
+        /// Timer de comprobación del estado de la conexión
+        /// </summary>
+        private Timer TimerComprobacionConexion;
+        /// <summary>
+        /// Cronómetro del tiempo sin respuesta
+        /// </summary>
+        private Stopwatch CronometroTiempoSinRespuesta;
         /// <summary>
         /// Código identificador de la cámara remota
         /// </summary>
@@ -72,6 +97,21 @@ namespace Orbita.VA.Hardware
         private int NumBuffers;
         #endregion
 
+        #region Propiedad(es)
+        /// <summary>
+        /// Inervalo entre comprobaciones
+        /// </summary>
+        private TimeSpan _IntervaloComprabacion;
+        /// <summary>
+        /// Inervalo entre comprobaciones
+        /// </summary>
+        public TimeSpan IntervaloComprabacion
+        {
+            get { return _IntervaloComprabacion; }
+            set { _IntervaloComprabacion = value; }
+        }
+        #endregion
+
         #region Constructor(es)
         /// <summary>
         /// Constructor de la clase
@@ -81,6 +121,12 @@ namespace Orbita.VA.Hardware
         {
             try
             {
+                // Inicialización de variables
+                this.ContLlamadasSimultaneasNuevaFotografiaMemoriaMapeada = 0;
+                this.ContLlamadasSimultaneasCambioEstadoConexion = 0;
+                this.ContLlamadasSimultaneasCambioEstadoReproduccion = 0;
+                this.ContLlamadasSimultaneasMensaje = 0;
+
                 // Cargamos valores de la base de datos
                 DataTable dt = AppBD.GetCamara(codigo);
                 if (dt.Rows.Count == 1)
@@ -90,6 +136,15 @@ namespace Orbita.VA.Hardware
                     this.IP = IPAddress.Parse(dt.Rows[0]["RemoteCam_IP"].ToString());
                     this.Puerto = OEntero.Validar(dt.Rows[0]["RemoteCam_Puerto"], 0, int.MaxValue, 80);
                     this.NumBuffers = OEntero.Validar(dt.Rows[0]["RemoteCam_NumBuffers"], 0, int.MaxValue, 10);
+                    this._IntervaloComprabacion = OIntervaloTiempo.Validar(dt.Rows[0]["RemoteCam_WatchDogTimeMs"], TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(int.MaxValue), TimeSpan.FromSeconds(10));
+
+                    // Creación del timer de comprobación de la conexión
+                    this.TimerComprobacionConexion = new Timer();
+                    this.TimerComprobacionConexion.Interval = (int)this._IntervaloComprabacion.TotalMilliseconds;
+                    this.TimerComprobacionConexion.Enabled = false;
+
+                    // Creación del cronómetro de tiempo de espera sin respuesta de la cámara
+                    this.CronometroTiempoSinRespuesta = new Stopwatch();
                 }
                 else
                 {
@@ -111,6 +166,54 @@ namespace Orbita.VA.Hardware
             {
                 OLogsVAHardware.Camaras.Fatal(exception, this.Codigo);
                 throw new Exception("Imposible iniciar la cámara " + this.Codigo);
+            }
+        }
+        #endregion
+
+        #region Método(s) privado(s)
+        /// <summary>
+        /// Conectar los eventos
+        /// </summary>
+        public void ConectarEventWrapper()
+        {
+            try
+            {
+                this.EventWrapper = new OCamaraBroadcastEventWraper();
+                this.EventWrapper.NuevaFotografiaCamaraMemoriaMapeada += this.NuevaFotografiaCamaraMemoriaMapeada;
+                this.CamaraCliente.CrearSuscripcionNuevaFotografiaMemoriaMapeada(this.EventWrapper.OnNuevaFotografiaCamaraMemoriaMapeada);
+                this.EventWrapper.CambioEstadoConexionCamara += this.CambioEstadoConexionCamara;
+                this.CamaraCliente.CrearSuscripcionCambioEstadoConexion(this.EventWrapper.OnCambioEstadoConexionCamara);
+                this.EventWrapper.CambioEstadoReproduccionCamara += this.CambioEstadoReproduccionCamara;
+                this.CamaraCliente.CrearSuscripcionCambioEstadoReproduccion(this.EventWrapper.OnCambioEstadoReproduccionCamara);
+                this.EventWrapper.MensajeCamaraRemoting += this.MensajeCamara;
+                this.CamaraCliente.CrearSuscripcionMensajes(this.EventWrapper.OnMensajeCamara);
+                this.EventWrapper.BitVida += this.BitVida;
+                this.CamaraCliente.CrearSuscripcionBitVida(this.EventWrapper.OnBitVida);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, "Excepción al conectar eventos del cliente de cámaras", this.Codigo);
+            }
+        }
+        /// <summary>
+        /// Desconectar los eventos
+        /// </summary>
+        public void DesconectarEventWrapper()
+        {
+            try
+            {
+                this.EventWrapper.NuevaFotografiaCamaraMemoriaMapeada -= this.NuevaFotografiaCamaraMemoriaMapeada;
+                this.CamaraCliente.EliminarSuscripcionNuevaFotografiaMemoriaMapeada(this.EventWrapper.OnNuevaFotografiaCamaraMemoriaMapeada);
+                this.EventWrapper.CambioEstadoConexionCamara -= this.CambioEstadoConexionCamara;
+                this.CamaraCliente.EliminarSuscripcionCambioEstadoConexion(this.EventWrapper.OnCambioEstadoConexionCamara);
+                this.EventWrapper.CambioEstadoReproduccionCamara -= this.CambioEstadoReproduccionCamara;
+                this.CamaraCliente.EliminarSuscripcionCambioEstadoReproduccion(this.EventWrapper.OnCambioEstadoReproduccionCamara);
+                this.EventWrapper.MensajeCamaraRemoting -= this.MensajeCamara;
+                this.CamaraCliente.EliminarSuscripcionMensajes(this.EventWrapper.OnMensajeCamara);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, "Excepción al desconectar eventos del cliente de cámaras", this.Codigo);
             }
         }
         #endregion
@@ -271,7 +374,6 @@ namespace Orbita.VA.Hardware
             return null;
         }
 
-
         /// <summary>
         /// Se toma el control de la cámara
         /// </summary>
@@ -286,17 +388,12 @@ namespace Orbita.VA.Hardware
                 if (conectado)
                 {
                     // Eventos
-                    this.EventWrapper = new OCamaraBroadcastEventWraper();
-                    //this.EventWrapper.NuevaFotografiaCamaraRemota += this.NuevaFotografiaCamaraRemota;
-                    //this.CamaraCliente.CrearSuscripcionNuevaFotografiaRemota(this.EventWrapper.OnNuevaFotografiaCamaraRemota);
-                    this.EventWrapper.NuevaFotografiaCamaraMemoriaMapeada += this.NuevaFotografiaCamaraMemoriaMapeada;
-                    this.CamaraCliente.CrearSuscripcionNuevaFotografiaMemoriaMapeada(this.EventWrapper.OnNuevaFotografiaCamaraMemoriaMapeada);
-                    this.EventWrapper.CambioEstadoConexionCamara += this.CambioEstadoConexionCamara;
-                    this.CamaraCliente.CrearSuscripcionCambioEstadoConexion(this.EventWrapper.OnCambioEstadoConexionCamara);
-                    this.EventWrapper.CambioEstadoReproduccionCamara += this.CambioEstadoReproduccionCamara;
-                    this.CamaraCliente.CrearSuscripcionCambioEstadoReproduccion(this.EventWrapper.OnCambioEstadoReproduccionCamara);
-                    this.EventWrapper.MensajeCamaraRemoting += this.MensajeCamara;
-                    this.CamaraCliente.CrearSuscripcionMensajes(this.EventWrapper.OnMensajeCamara);
+                    this.ConectarEventWrapper();
+
+                    // Iniciamos la comprobación de la conectividad con la cámara
+                    this.CronometroTiempoSinRespuesta.Start();
+                    this.TimerComprobacionConexion.Tick += this.TimerComprobacionConexion_Tick;
+                    this.TimerComprobacionConexion.Start();
 
                     // Inicialización de variables
                     this._TipoImagen = this.CamaraCliente.TipoImagen;
@@ -322,16 +419,14 @@ namespace Orbita.VA.Hardware
 
             try
             {
-                //this.EventWrapper.NuevaFotografiaCamaraRemota -= this.NuevaFotografiaCamaraRemota;
-                //this.CamaraCliente.EliminarSuscripcionNuevaFotografiaRemota(this.EventWrapper.OnNuevaFotografiaCamaraRemota);
-                this.EventWrapper.NuevaFotografiaCamaraMemoriaMapeada -= this.NuevaFotografiaCamaraMemoriaMapeada;
-                this.CamaraCliente.EliminarSuscripcionNuevaFotografiaMemoriaMapeada(this.EventWrapper.OnNuevaFotografiaCamaraMemoriaMapeada);
-                this.EventWrapper.CambioEstadoConexionCamara -= this.CambioEstadoConexionCamara;
-                this.CamaraCliente.EliminarSuscripcionCambioEstadoConexion(this.EventWrapper.OnCambioEstadoConexionCamara);
-                this.EventWrapper.CambioEstadoReproduccionCamara -= this.CambioEstadoReproduccionCamara;
-                this.CamaraCliente.EliminarSuscripcionCambioEstadoReproduccion(this.EventWrapper.OnCambioEstadoReproduccionCamara);
-                this.EventWrapper.MensajeCamaraRemoting -= this.MensajeCamara;
-                this.CamaraCliente.EliminarSuscripcionMensajes(this.EventWrapper.OnMensajeCamara);
+                // Eventos
+                this.DesconectarEventWrapper();
+
+                // Finalizamos la comprobación de la conectividad con la cámara
+                this.TimerComprobacionConexion.Stop();
+                this.TimerComprobacionConexion.Tick -= this.TimerComprobacionConexion_Tick;
+                this.CronometroTiempoSinRespuesta.Stop();
+
                 this.CamaraCliente.Desconectar();
 
                 resultado = true;
@@ -570,6 +665,45 @@ namespace Orbita.VA.Hardware
         private void MensajeCamara(object sender, OMessageEventArgs e)
         {
             this.LanzarEventoMensajeCamaraSincrona(e.Codigo, e.Mensaje);
+        }
+        /// <summary>
+        /// Evento de bit de ivda
+        /// </summary>
+        /// <param name="estadoConexion"></param>
+        private void BitVida(object sender, OEventArgs e)
+        {
+            this.CronometroTiempoSinRespuesta.Stop();
+            this.CronometroTiempoSinRespuesta.Reset();
+            this.CronometroTiempoSinRespuesta.Start();
+        }
+        /// <summary>
+        /// Evento del timer de comprobación de la conexión
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TimerComprobacionConexion_Tick(object sender, EventArgs e)
+        {
+            this.TimerComprobacionConexion.Stop();
+            try
+            {
+                // TimeOut de conectividad
+                if (this.Habilitado && (this.CronometroTiempoSinRespuesta.Elapsed > this.IntervaloComprabacion))
+                {
+                    this.DesconectarEventWrapper();
+                    this.ConectarEventWrapper();
+
+                    this.CronometroTiempoSinRespuesta.Stop();
+                    this.CronometroTiempoSinRespuesta.Reset();
+                    this.CronometroTiempoSinRespuesta.Start();
+
+                    OLogsVAHardware.Camaras.Error(this.Codigo, "Reconexión del wrapper de eventos", this.Codigo);
+                }
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, "Conectividad " + this.Codigo);
+            }
+            this.TimerComprobacionConexion.Start();
         }
         #endregion
     }
@@ -1096,6 +1230,40 @@ namespace Orbita.VA.Hardware
                 OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
             }
         }
+
+        /// <summary>
+        /// Suscribe la recepción del bit de vida de una determinada cámara
+        /// </summary>
+        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        public void CrearSuscripcionBitVida(ManejadorEvento messageDelegate)
+        {
+            try
+            {
+                this.Instancia.CrearSuscripcionBitVida(this.CodigoRemoto, messageDelegate);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+        }
+        /// <summary>
+        /// Elimina la suscripción del bit de vida de una determinada cámara
+        /// </summary>
+        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        public void EliminarSuscripcionBitVida(ManejadorEvento messageDelegate)
+        {
+            try
+            {
+                this.Instancia.EliminarSuscripcionBitVida(this.CodigoRemoto, messageDelegate);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+        }
+        
         #endregion
     }
 
@@ -1130,6 +1298,11 @@ namespace Orbita.VA.Hardware
         /// Nuevo Mensaje.
         /// </summary>
         public event OMessageEvent MensajeCamaraRemoting;
+
+        /// <summary>
+        /// Bit de vida
+        /// </summary>
+        public event ManejadorEvento BitVida;
         #endregion
 
         #region Método(s) público(s)
@@ -1228,6 +1401,24 @@ namespace Orbita.VA.Hardware
                 if (MensajeCamaraRemoting != null)
                 {
                     this.MensajeCamaraRemoting(null, e);
+                }
+            }
+            catch { }
+        }
+
+        /// <summary>
+        /// Evento de bit de vida
+        /// </summary>
+        /// <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
+        //[OneWay]
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public void OnBitVida(object sender, OEventArgs e)
+        {
+            try
+            {
+                if (BitVida != null)
+                {
+                    this.BitVida(null, e);
                 }
             }
             catch { }

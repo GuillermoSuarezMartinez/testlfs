@@ -11,7 +11,7 @@
 //***********************************************************************
 using System;
 
-namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
+namespace Orbita.VA.Funciones
 {
     /// <summary>
     /// Interfaz de puntuación de una variable

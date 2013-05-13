@@ -17,6 +17,7 @@ using System.Drawing;
 using System.Reflection;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
+using System.Windows.Forms;
 
 namespace Orbita.VA.Hardware
 {
@@ -58,6 +59,29 @@ namespace Orbita.VA.Hardware
         /// Objeto utilizado para el lanzamiento del evento de forma asíncrona
         /// </summary>
         private ORemotingEvent<CambioEstadoReproduccionCamaraEventArgs> EventoCambioReproduccionAsincrona;
+        /// <summary>
+        /// Objeto utilizado para el lanzamiento del evento de forma asíncrona
+        /// </summary>
+        private ORemotingEvent<OEventArgs> EventoBitVidaAsincrona;
+        /// <summary>
+        /// Timer de comprobación del estado de la conexión
+        /// </summary>
+        private Timer TimerComprobacionConexion;
+        #endregion
+
+        #region Propiedad(es)
+        /// <summary>
+        /// Inervalo entre comprobaciones
+        /// </summary>
+        private TimeSpan _IntervaloComprabacion;
+        /// <summary>
+        /// Inervalo entre comprobaciones
+        /// </summary>
+        public TimeSpan IntervaloComprabacion
+        {
+            get { return _IntervaloComprabacion; }
+            set { _IntervaloComprabacion = value; }
+        }
         #endregion
 
         #region Constructor(es)
@@ -75,6 +99,12 @@ namespace Orbita.VA.Hardware
                 {
                     this.NumBuffers = OEntero.Validar(dt.Rows[0]["RemoteCam_NumBuffers"], 0, int.MaxValue, 10);
                     this.CapacidadRegion = OEntero.Validar(dt.Rows[0]["RemoteCam_CapacidadRegion"], 0, int.MaxValue, 1000);
+                    this._IntervaloComprabacion = OIntervaloTiempo.Validar(dt.Rows[0]["RemoteCam_WatchDogTimeMs"], TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(int.MaxValue), TimeSpan.FromSeconds(10));
+
+                    // Creación del timer de comprobación de la conexión
+                    this.TimerComprobacionConexion = new Timer();
+                    this.TimerComprobacionConexion.Interval = (int)this._IntervaloComprabacion.TotalMilliseconds;
+                    this.TimerComprobacionConexion.Enabled = false;
                 }
                 else
                 {
@@ -94,6 +124,7 @@ namespace Orbita.VA.Hardware
                     this.EventoEstadoConexionAsincrona = new ORemotingEvent<CambioEstadoConexionCamaraEventArgs>("CambioEstadoConexion" + this.Codigo, this.NumBuffers - 1, new EventHandler<CambioEstadoConexionCamaraEventArgs>(this.LanzarEventoCambioEstadoConexionCamaraAsincrona));
                     this.EventoMensajeCamaraAsincrona = new ORemotingEvent<OMessageEventArgs>("MensajeCamara" + this.Codigo, this.NumBuffers - 1, new EventHandler<OMessageEventArgs>(this.LanzarEventoMensajeCamaraAsincrona));
                     this.EventoCambioReproduccionAsincrona = new ORemotingEvent<CambioEstadoReproduccionCamaraEventArgs>("CambioEstadoReproduccion" + this.Codigo, this.NumBuffers - 1, new EventHandler<CambioEstadoReproduccionCamaraEventArgs>(this.LanzarEventoCambioReproduccionCamaraAsincrona));
+                    this.EventoBitVidaAsincrona = new ORemotingEvent<OEventArgs>("BitVida" + this.Codigo, this.NumBuffers - 1, new EventHandler<OEventArgs>(this.LanzarEventoBitVidaAsincrona));
                 }
             }
             catch (Exception exception)
@@ -119,6 +150,11 @@ namespace Orbita.VA.Hardware
                 this.EventoEstadoConexionAsincrona.Start();
                 this.EventoMensajeCamaraAsincrona.Start();
                 this.EventoCambioReproduccionAsincrona.Start();
+                this.EventoBitVidaAsincrona.Start();
+
+                // Iniciamos la comprobación de la conectividad con la cámara
+                this.TimerComprobacionConexion.Tick += this.TimerComprobacionConexion_Tick;
+                this.TimerComprobacionConexion.Start();
             }
         }
 
@@ -136,9 +172,13 @@ namespace Orbita.VA.Hardware
                 this.EventoEstadoConexionAsincrona.Stop();
                 this.EventoMensajeCamaraAsincrona.Stop();
                 this.EventoCambioReproduccionAsincrona.Stop();
+                this.EventoBitVidaAsincrona.Stop();
+
+                // Finalizamos la comprobación de la conectividad con la cámara
+                this.TimerComprobacionConexion.Stop();
+                this.TimerComprobacionConexion.Tick -= this.TimerComprobacionConexion_Tick;
             }
         }
-
         #endregion
 
         #region Evento(s) heredado(s)
@@ -238,6 +278,38 @@ namespace Orbita.VA.Hardware
             if (this.DebeLanzarEventoMensajeCamaraAsincrona())
             {
                 this.EventoMensajeCamaraAsincrona.LanzarEvento(new OMessageEventArgs(codigo, mensaje));
+            }
+        }
+
+        /// <summary>
+        /// Evento de bit de vida
+        /// </summary>
+        /// <param name="estadoConexion"></param>
+        protected override void OnBitVida(string codigo)
+        {
+            base.OnBitVida(codigo);
+            if (this.DebeLanzarEventoBitVidaAsincrona())
+            {
+                this.EventoBitVidaAsincrona.LanzarEvento(new OEventArgs());
+            }
+        }
+        #endregion
+
+        #region Evento(s)
+        /// <summary>
+        /// Evento del timer de comprobación de la conexión
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TimerComprobacionConexion_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                this.OnBitVida(this.Codigo);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, "Timer de evento del bit de vida " + this.Codigo);
             }
         }
         #endregion

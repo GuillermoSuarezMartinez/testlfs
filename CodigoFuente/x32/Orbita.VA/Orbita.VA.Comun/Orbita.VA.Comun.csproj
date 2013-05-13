@@ -204,6 +204,7 @@
     <Compile Include="Clases\Remoting\ORemotingEvent.cs" />
     <Compile Include="Clases\Remoting\ORemotingServer.cs" />
     <Compile Include="Clases\Remoting\ORemotingUtils.cs" />
+    <Compile Include="Clases\Utiles\OLinea.cs" />
     <Compile Include="Clases\Utiles\OResultadoVA.cs" />
     <Compile Include="Clases\Variables\OVariables.cs" />
     <Compile Include="Clases\Imagen\OAlmacenImagenes.cs" />

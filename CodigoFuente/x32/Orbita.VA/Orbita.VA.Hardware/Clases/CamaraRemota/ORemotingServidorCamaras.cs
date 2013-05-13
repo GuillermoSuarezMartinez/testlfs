@@ -610,6 +610,38 @@ namespace Orbita.VA.Hardware
                 OLogsVAHardware.Camaras.Error(exception, codigo);
             }
         }
+        /// <summary>
+        /// Suscribe la recepción del bit de vida
+        /// </summary>
+        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        public void CrearSuscripcionBitVida(string codigo, ManejadorEvento messageDelegate)
+        {
+            try
+            {
+                OCamaraManager.CrearSuscripcionBitVidaAsincrona(codigo, messageDelegate);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, codigo);
+            }
+        }
+        /// <summary>
+        /// Elimina la suscripción del bit de vida
+        /// </summary>
+        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        public void EliminarSuscripcionBitVida(string codigo, ManejadorEvento messageDelegate)
+        {
+            try
+            {
+                OCamaraManager.EliminarSuscripcionBitVidaAsincrona(codigo, messageDelegate);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, codigo);
+            }
+        }
         #endregion
     }
 }

@@ -167,11 +167,11 @@ namespace Orbita.VA.Comun
                 case TipoImagen.OpenCV:
                     if (color)
                     {
-                        resultado = new OImagenOpenCVColor();
+                        resultado = new OImagenOpenCVColor<byte>();
                     }
                     else
                     {
-                        resultado = new OImagenOpenCVMonocromo();
+                        resultado = new OImagenOpenCVMonocromo<byte>();
                     }
                     break;
             }

@@ -7,7 +7,7 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using Orbita.Utiles;
 
-namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
+namespace Orbita.VA.Funciones
 {
     /// <summary>
     /// Clase que implementa la detección y medición de edges en la region determinada de una imagen
@@ -18,7 +18,7 @@ namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
         /// <summary>
         /// Imagen de entrada
         /// </summary>
-        private OImagenOpenCVMonocromo inputSource;
+        private OImagenOpenCVMonocromo<byte> inputSource;
         /// <summary>
         /// Listado de resultados
         /// </summary>
@@ -54,15 +54,15 @@ namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
         /// <summary>
         /// Area de interés
         /// </summary>
-        private OImagenOpenCVMonocromo proyeccion;
+        private OImagenOpenCVMonocromo<byte> proyeccion;
         /// <summary>
         /// Proyección rectangular del AOI
         /// </summary>
-        private OImagenOpenCV<Gray, float> contrastes;
+        private OImagenOpenCVMonocromo<float> contrastes;
         /// <summary>
         /// Datos de contraste filtrados (datos a procesar)
         /// </summary>
-        private OImagenOpenCV<Gray, float> contrastesFiltrados;
+        private OImagenOpenCVMonocromo<float> contrastesFiltrados;
         #endregion
 
         #region Propiedades
@@ -92,14 +92,14 @@ namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
         /// </summary>
         public float[, ,] DatosFiltrados
         {
-            get { return contrastesFiltrados.Image.Data; }
+            get { return ((Image<Gray, float>)contrastesFiltrados.Image).Data; }
         }
         /// <summary>
         /// Obtiene los puntos de la proyección
         /// </summary>
         public float[, ,] DatosContraste
         {
-            get { return contrastes.Image.Data; }
+            get { return ((Image<Gray, float>)contrastes.Image).Data; }
         }
         #endregion
 
@@ -188,7 +188,7 @@ namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
         /// <param name="extremoX">Extremo en anchura del AOI</param>
         /// <param name="extremoY">Extremo en altura del AOI</param>
         /// <returns>Listado de resultados</returns>
-        public List<OEdgeResult> BuscarEdges(OImagenOpenCVMonocromo input, PointF origen, PointF extremoX, PointF extremoY)
+        public List<OEdgeResult> BuscarEdges(OImagenOpenCVMonocromo<byte> input, PointF origen, PointF extremoX, PointF extremoY)
         {
             //Comprobación de los argumentos de entrada
             if (origen.X > input.Width || extremoX.X > input.Width || extremoY.X > input.Width || origen.Y > input.Height || extremoX.Y > input.Height || extremoY.Y > input.Height)
@@ -200,7 +200,7 @@ namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
 
             //Realizamos la proyección del área del caliper, guardando la matriz de transformación inversa para obtener coordenadas reales
             inverseMatrix = new Matrix<float>(2, 3);
-            proyeccion = new OImagenOpenCVMonocromo();
+            proyeccion = new OImagenOpenCVMonocromo<byte>();
             proyeccion.Image = input.Proyeccion(origen, extremoX, extremoY, out inverseMatrix).Image;
             inverseMatrix = OHerramientasOpenCV.Invertir(inverseMatrix);
 
@@ -211,13 +211,13 @@ namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
             }
             else
             {
-                contrastes = new OImagenOpenCV<Gray,float>();
-                contrastes.Image = proyeccion.Image.Convert<Gray, float>();
+                contrastes = new OImagenOpenCVMonocromo<float>();
+                contrastes.Image = ((Image<Gray, byte>)proyeccion.Image).Convert<Gray, float>();
             }
 
             //Filtramos la imagen 
-            contrastesFiltrados = new OImagenOpenCV<Gray,float>();
-            contrastesFiltrados.Image = contrastes.Image.Convolution(kernel);
+            contrastesFiltrados = new OImagenOpenCVMonocromo<float>();
+            contrastesFiltrados.Image = ((Image<Gray, float>)contrastes.Image).Convolution(kernel);
 
             //Método alternativo de filtrado, seleccionar el mejor
             //Image<Gray, float> filteredAlt = new Image<Gray,float>(filteredImage.Size);
@@ -235,7 +235,7 @@ namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
             //}
 
             //Buscamos máximos y mínimos (edges) en la imagen filtrada
-            algoritmoBusquedaMaxMin(contrastesFiltrados);
+            algoritmoBusquedaEdges();
 
             //Ordenamos los edges por su puntuación
             edges.Sort(delegate(OEdgeResult e1, OEdgeResult e2) { return e2.ResultScore.CompareTo(e1.ResultScore); });
@@ -276,10 +276,10 @@ namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
         /// <param name="grosor">Grosor del marcado de edges</param>
         /// <param name="todos">Indica si se debe buscar sobre todos los edges, o solo sobre los resultados devueltos</param>
         /// <returns>Imagen del caliper con los edges marcados</returns>
-        public OImagenOpenCVColor PintarEdges(Color color, int grosor, bool todos = false)
+        public OImagenOpenCVColor<byte> PintarEdges(Color color, int grosor, bool todos = false)
         {
-            OImagenOpenCVColor res = new OImagenOpenCVColor();
-            res.Image = new Image<Bgr, byte>(this.proyeccion.Image.Size);
+            OImagenOpenCVColor<byte> res = new OImagenOpenCVColor<byte>();
+            res.Image = new Image<Bgr, byte>(this.proyeccion.Width, proyeccion.Height);
             res.Image.ConvertFrom<Gray, byte>(this.proyeccion.Image);
 
             int resultsToPaint = MaxResultados > edges.Count ? this.edges.Count : MaxResultados;
@@ -317,8 +317,8 @@ namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
         /// <summary>
         /// Encuentra los máximos y mínimos de una función discretizada en un array
         /// </summary>
-        /// <param name="filteredData">Datos de la imagen filtrada</param>
-        private void algoritmoBusquedaMaxMin(OImagenOpenCV<Gray, float> filteredData)
+        /// <param name="contrastesFiltrados">Datos de la imagen filtrada</param>
+        private void algoritmoBusquedaEdges()
         {
             List<OEdge> listaCandidatos = new List<OEdge>();
 
@@ -331,8 +331,8 @@ namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
             float actualContraste;
 
             //Flags para búsqueda de máximos o mínimos
-            bool buscandoPositivos = filteredData.Image.Data[0, kernel.Width, 0] > 0;
-            bool buscandoNegativos = filteredData.Image.Data[0, kernel.Width, 0] < 0;
+            bool buscandoPositivos = this.DatosFiltrados[0, kernel.Width, 0] > 0;
+            bool buscandoNegativos = this.DatosFiltrados[0, kernel.Width, 0] < 0;
 
             //Flags para conocer el estado de la función
             bool empiezoCrecer = false;
@@ -346,11 +346,11 @@ namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
             int ini = kernel.Width;
 
             //Recorrido de la función convolución
-            for (int i = kernel.Width; i < filteredData.Width - kernel.Width; i++)
+            for (int i = kernel.Width; i < contrastesFiltrados.Width - kernel.Width; i++)
             {
                 //Actualización de valores
-                actualContraste = filteredData.Image.Data[0, i, 0];
-                siguienteContraste = filteredData.Image.Data[0, i + 1, 0];
+                actualContraste = this.DatosFiltrados[0, i, 0];
+                siguienteContraste = this.DatosFiltrados[0, i + 1, 0];
 
                 //Miro la tendencia futura de la función
                 empiezoDecrecer = !empiezoDecrecer && siguienteContraste < actualContraste;
@@ -364,12 +364,12 @@ namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
                 if ((max && (empiezoCrecer || siguienteContraste <= 0)) || min && (empiezoDecrecer || siguienteContraste >= 0))
                 {
                     //Cálculo de la posición del edge (a nivel subpíxel) y su contraste en la imagen
-                    float xPos = Centroide(ini, i, filteredData.Image);
+                    float xPos = Centroide(ini, i, this.DatosFiltrados);
 
                     PointF puntoEdge = new PointF(xPos, centerY);
                     puntoEdge = OHerramientasOpenCV.Proyeccion(puntoEdge, this.inverseMatrix);
 
-                    double contraste = InterpolacionLineal(xPos, filteredData.Image);
+                    double contraste = InterpolacionLineal(xPos, this.DatosFiltrados);
 
                     double div = this.kernel.Width / 2.0;
                     double nuevoCont = contraste / Math.Max(div, 1);
@@ -521,7 +521,7 @@ namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
         /// <param name="ini">Inicio del intervalo</param>
         /// <param name="fin">Final del intervalo</param>
         /// <returns>Punto en X donde se encuentra el centroide</returns>
-        private float Centroide(int ini, int fin, Image<Gray, float> array)
+        private float Centroide(int ini, int fin, float[,,] array)
         {
             float Xc = ini;
             float C0 = 0;
@@ -530,7 +530,7 @@ namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
             //Encontramos el máximo
             for (int i = ini; i <= fin; i++)
             {
-                float valor = array.Data[0, i, 0];
+                float valor = array[0, i, 0];
                 if (Math.Abs(valor) > Math.Abs(C0))
                 {
                     Xc = i;
@@ -552,10 +552,10 @@ namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
                 int ant = (int)Math.Floor(Xc);
                 ant = (ant == 0) ? ant : ant - 1;
                 int sig = (int)Math.Ceiling(Xc);
-                sig = (sig == array.Data.GetUpperBound(1)) ? sig : sig + 1;
+                sig = (sig == array.GetUpperBound(1)) ? sig : sig + 1;
 
-                float C_1 = array.Data[0, ant, 0];
-                float C1 = array.Data[0, sig, 0];
+                float C_1 = array[0, ant, 0];
+                float C1 = array[0, sig, 0];
 
                 //Saturación de los valores vecinos para que no puedan ser superiores al máximo encontrado. Esta fórmula funciona
                 //solamente si el valor C0 es máximo dentro del rango de búsqueda. Existen casos al inicio y final del array donde esto
@@ -587,13 +587,13 @@ namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
         /// <param name="xPos">Posición a interpolar</param>
         /// <param name="array">Función</param>
         /// <returns>Valor interpolado en Y</returns>
-        private double InterpolacionLineal(float xPos, Image<Gray, float> array)
+        private double InterpolacionLineal(float xPos, float[,,] array)
         {
             int x0 = (int)Math.Floor(xPos);
             int x1 = (int)Math.Ceiling(xPos);
 
-            double y0 = array.Data[0, x0, 0];
-            double y1 = array.Data[0, x1, 0];
+            double y0 = array[0, x0, 0];
+            double y1 = array[0, x1, 0];
 
             if ((x1 - x0) == 0)
             {

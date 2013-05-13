@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
+namespace Orbita.VA.Funciones
 {
     /// <summary>
     /// Clase abstracta que define la interfaz de un método de puntuación

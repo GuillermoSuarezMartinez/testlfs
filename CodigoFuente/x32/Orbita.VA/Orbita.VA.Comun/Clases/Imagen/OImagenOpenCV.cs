@@ -17,6 +17,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Emgu.CV;
 using Orbita.Utiles;
 using System.Runtime.InteropServices;
+using Emgu.CV.CvEnum;
 
 namespace Orbita.VA.Comun
 {
@@ -272,8 +273,8 @@ namespace Orbita.VA.Comun
         /// <param name="imagenBitmap">Imagen de tipo bitmap desde el cual se va a importar la imagen</param>
         public override OImagen ConvertFromBitmap(Bitmap imagenBitmap)
         {
-            Emgu.CV.Image<TColor, TDepth> img = new Emgu.CV.Image<TColor, TDepth>(imagenBitmap);
-            return new OImagenOpenCV<TColor, TDepth>(img);
+            this.Image = new Emgu.CV.Image<TColor, TDepth>(imagenBitmap);
+            return new OImagenOpenCV<TColor, TDepth>(this.Image);
         }
 
         /// <summary>
@@ -293,9 +294,9 @@ namespace Orbita.VA.Comun
         /// <returns>Imagen reducida</returns>
         public override OImagen EscalarImagen(OImagen img, int ancho, int alto)
         {
-            Emgu.CV.Image<TColor, TDepth> imgEscalada = this.Image.Resize(ancho, alto, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
+            this.Image = ((Image<TColor, TDepth>)this.Image).Resize(ancho, alto, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC);
 
-            OImagenOpenCV<TColor, TDepth> reducida = new OImagenOpenCV<TColor, TDepth>(this.Codigo, imgEscalada);
+            OImagenOpenCV<TColor, TDepth> reducida = new OImagenOpenCV<TColor, TDepth>(this.Codigo, this.Image);
             reducida.MomentoCreacion = this.MomentoCreacion;
 
             return reducida;
@@ -413,14 +414,16 @@ namespace Orbita.VA.Comun
     /// <summary>
     /// Imagen a color de OpenCV
     /// </summary>
-    public class OImagenOpenCVColor : OImagenOpenCV<Emgu.CV.Structure.Bgr, byte>
+    public class OImagenOpenCVColor<TDepth> : OImagenOpenCV<Emgu.CV.Structure.Bgr, TDepth>
+        where TDepth : new()
     {
     }
 
     /// <summary>
     /// Imagen monocromo de OpenCV
     /// </summary>
-    public class OImagenOpenCVMonocromo : OImagenOpenCV<Emgu.CV.Structure.Gray, byte>
+    public class OImagenOpenCVMonocromo<TDepth> : OImagenOpenCV<Emgu.CV.Structure.Gray, TDepth>
+        where TDepth : new()
     {
     }
 

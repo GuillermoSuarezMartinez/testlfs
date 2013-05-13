@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 
-namespace Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper
+namespace Orbita.VA.Funciones
 {
     /// <summary>
     /// Implementa el resultado de una detección de edges por parte de OrbitaCaliper

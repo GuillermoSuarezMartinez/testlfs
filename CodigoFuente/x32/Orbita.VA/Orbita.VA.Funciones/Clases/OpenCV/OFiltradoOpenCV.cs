@@ -40,7 +40,7 @@ namespace Orbita.VA.Funciones
         /// <param name="puntoDestino3">Punto destino 3</param>
         /// <param name="puntoDestino4">Punto destino 4</param>
         /// <returns></returns>
-        public static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, PointF puntoDestino1, PointF puntoDestino2, PointF puntoDestino3, PointF puntoDestino4)
+        internal static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, PointF puntoDestino1, PointF puntoDestino2, PointF puntoDestino3, PointF puntoDestino4)
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
@@ -61,7 +61,7 @@ namespace Orbita.VA.Funciones
                 dsts[3] = puntoDestino4;
 
                 HomographyMatrix mywarpmat = CameraCalibration.GetPerspectiveTransform(srcs, dsts);
-                Emgu.CV.Image<TColor, TDepth> img = imagenOriginal.Image.WarpPerspective(mywarpmat, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC, Emgu.CV.CvEnum.WARP.CV_WARP_DEFAULT, default(TColor));
+                Emgu.CV.Image<TColor, TDepth> img = ((Emgu.CV.Image<TColor, TDepth>)imagenOriginal.Image).WarpPerspective(mywarpmat, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC, Emgu.CV.CvEnum.WARP.CV_WARP_DEFAULT, default(TColor));
                 resultado = new OImagenOpenCV<TColor, TDepth>(imagenOriginal.Codigo, img);
             }
             catch (Exception exception)
@@ -87,7 +87,7 @@ namespace Orbita.VA.Funciones
         /// <param name="anchoDestino">Ancho destino</param>
         /// <param name="altoDestino">Alto destino</param>
         /// <returns></returns>
-        public static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, float xDestino, float yDestino, float anchoDestino, float altoDestino)
+        internal static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, float xDestino, float yDestino, float anchoDestino, float altoDestino)
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
@@ -111,7 +111,7 @@ namespace Orbita.VA.Funciones
         /// <param name="puntoOriginal4">Punto origen 4</param>
         /// <param name="areaDestino">Area destino</param>
         /// <returns></returns>
-        public static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, RectangleF areaDestino)
+        internal static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, RectangleF areaDestino)
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
@@ -135,7 +135,7 @@ namespace Orbita.VA.Funciones
         /// <param name="puntoOriginal4">Punto origen 4</param>
         /// <param name="areaDestino">Area destino</param>
         /// <returns></returns>
-        public static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, Point offsetMarco, RectangleF areaDestino)
+        internal static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, Point offsetMarco, RectangleF areaDestino)
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
@@ -166,8 +166,9 @@ namespace Orbita.VA.Funciones
                 int ancho = imagenOriginal.Width;
                 int alto = imagenOriginal.Height;
 
+                Emgu.CV.Image<TColor, TDepth> imgOriginal = (Emgu.CV.Image<TColor, TDepth>)imagenOriginal.Image;
                 Emgu.CV.Image<TColor, TDepth> imgResult = new Emgu.CV.Image<TColor, TDepth>(ancho + offsetX, alto + OffsetY, default(TColor));
-                Emgu.CV.CvInvoke.cvCopyMakeBorder(imagenOriginal.Image.Ptr, imgResult.Ptr, new Point(offsetX, OffsetY), Emgu.CV.CvEnum.BORDER_TYPE.CONSTANT, new Emgu.CV.Structure.MCvScalar(0));
+                Emgu.CV.CvInvoke.cvCopyMakeBorder(imgOriginal.Ptr, imgResult.Ptr, new Point(offsetX, OffsetY), Emgu.CV.CvEnum.BORDER_TYPE.CONSTANT, new Emgu.CV.Structure.MCvScalar(0));
                 resultado = new OImagenOpenCV<TColor, TDepth>(imagenOriginal.Codigo, imgResult);
             }
             catch (Exception exception)
@@ -176,6 +177,72 @@ namespace Orbita.VA.Funciones
             }
 
             return resultado;
+        }
+        #endregion
+
+        #region Obtención de datos
+        /// <summary>
+        /// Obtiene el plano (del espacio BGR) pasado como parámetro
+        /// </summary>
+        /// <param name="input">Imagen de entrada</param>
+        /// <param name="plano">Plano a extraer</param>
+        /// <returns>Plano de la imagen indicado</returns>
+        public static OImagenOpenCVMonocromo<TDepth> ObtenerPlano<TDepth>(this OImagenOpenCVColor<TDepth> input, OPlanoBGR plano)
+            where TDepth : new()
+        {
+            OImagenOpenCVMonocromo<TDepth> resultado = new OImagenOpenCVMonocromo<TDepth>();
+
+            //Descomponemos la imagen de entrada
+            resultado.Image = input.Image.Split()[(int)plano];
+
+            return resultado;
+        }
+
+        /// <summary>
+        /// Calcula la media de los contrastes de la imagen obteniendo una única fila
+        /// </summary>
+        /// <param name="input">Imagen de origen</param>
+        /// <returns>Estructura imagen con una única fila que almacena los valores de contraste medios</returns>
+        public static OImagenOpenCVMonocromo<float> Reducir<TDepth>(this OImagenOpenCVMonocromo<TDepth> input)
+            where TDepth : new()
+        {
+            OImagenOpenCVMonocromo<float> resultado = new OImagenOpenCVMonocromo<float>();
+            Image<Gray, float> imgRes = new Image<Gray, float>(input.Width, 1);
+
+            ((Image<Gray, TDepth>)input.Image).Reduce(imgRes, REDUCE_DIMENSION.SINGLE_ROW, REDUCE_TYPE.CV_REDUCE_AVG);
+            resultado.Image = imgRes;
+
+            return resultado;
+        }    
+        #endregion
+
+        #region Filtros
+        /// <summary>
+        /// Binariza una imagen utilizando un umbral
+        /// </summary>
+        /// <param name="input">Imagen de entrada</param>
+        /// <param name="umbral">Umbral de binarización</param>
+        /// <returns></returns>
+        public static OImagenOpenCVMonocromo<byte> Binarizar<TDepth>(this OImagenOpenCVColor<TDepth> input, int umbral)
+            where TDepth : new()
+        {
+            //Convertimos la imagen a Gray
+            Image<Gray,byte> resultOpenCV = new Image<Gray,byte>(input.ConvertToBitmap());
+            
+            //Filtramos
+            OImagenOpenCVMonocromo<byte> result = new OImagenOpenCVMonocromo<byte>();
+            result.Image = resultOpenCV.ThresholdBinary(new Gray(umbral), new Gray(255));
+
+            return result;
+        }
+
+        public static OImagenOpenCVMonocromo<byte> Dilatar(this OImagenOpenCVMonocromo<byte> input, int iteraciones)
+        {
+            //Filtrado
+            OImagenOpenCVMonocromo<byte> result = new OImagenOpenCVMonocromo<byte>();
+            result.Image = ((Image<Gray, byte>)input.Image).Dilate(iteraciones);
+
+            return result;
         }
         #endregion
 
@@ -189,9 +256,47 @@ namespace Orbita.VA.Funciones
         /// <param name="puntoO">Punto de origen de la proyección</param>
         /// <param name="puntoX">Punto extremo en ancho de la proyección</param>
         /// <param name="puntoY">Punto extremo en alto de la proyección</param>
+        /// <returns>Proyección rectangular del area especificada</returns>
+        public static OImagenOpenCV<TColor, TDepth> Proyeccion<TColor,TDepth>(this OImagenOpenCV<TColor,TDepth> input, PointF puntoO, PointF puntoX, PointF puntoY)
+            where TColor : struct, global::Emgu.CV.IColor
+            where TDepth : new()
+        {
+            Matrix<float> sourceMat = new Matrix<float>(2, 3);
+            OImagenOpenCV<TColor,TDepth> resultado = new OImagenOpenCV<TColor,TDepth>();
+            resultado.Image = input.Proyeccion(puntoO, puntoX, puntoY, out sourceMat).Image;
+            return resultado;
+        }
+        /// <summary>
+        /// Realiza una proyección de un area de la imagen en un rectangulo
+        /// </summary>
+        /// <typeparam name="TColor">Espacio de color</typeparam>
+        /// <typeparam name="TDepth">Profundidad de color</typeparam>
+        /// <param name="input">Imagen sobre la que se hace la proyección</param>
+        /// <param name="sourceMat">Matriz de transformación a utilizar en la transformación</param>
+        /// <returns>Proyección rectangular del area especificada</returns>
+        public static OImagenOpenCV<TColor,TDepth> Proyeccion<TColor,TDepth>(this OImagenOpenCV<TColor,TDepth> input, Matrix<float> sourceMat, bool inversa=false)
+            where TColor : struct, global::Emgu.CV.IColor
+            where TDepth : new()
+        {
+            OImagenOpenCV<TColor,TDepth> result = new OImagenOpenCV<TColor,TDepth>();
+
+            //Aplicación de la transformación
+            result.Image = ((Image<TColor, TDepth>)input.Image).WarpAffine<float>(sourceMat, INTER.CV_INTER_NN, (inversa?WARP.CV_WARP_INVERSE_MAP:WARP.CV_WARP_DEFAULT), default(TColor));
+
+            return result;
+        }
+        /// <summary>
+        /// Realiza una proyección de un area de la imagen en un rectangulo, devolviendo la matriz de transformación utilizada
+        /// </summary>
+        /// <typeparam name="TColor">Espacio de color</typeparam>
+        /// <typeparam name="TDepth">Profundidad de color</typeparam>
+        /// <param name="input">Imagen sobre la que se hace la proyección</param>
+        /// <param name="puntoO">Punto de origen de la proyección</param>
+        /// <param name="puntoX">Punto extremo en ancho de la proyección</param>
+        /// <param name="puntoY">Punto extremo en alto de la proyección</param>
         /// <param name="sourceMat">Matriz de transformación utilizada para realiar la proyección. Sirve para deshacer la proyección</param>
         /// <returns>Proyección rectangular del area especificada</returns>
-        public static OImagenOpenCV<TColor, TDepth> Proyeccion<TColor,TDepth>(this OImagenOpenCV<TColor, TDepth> input, PointF puntoO, PointF puntoX, PointF puntoY, out Matrix<float> sourceMat)
+        internal static OImagenOpenCV<TColor, TDepth> Proyeccion<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> input, PointF puntoO, PointF puntoX, PointF puntoY, out Matrix<float> sourceMat)
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
@@ -253,126 +358,18 @@ namespace Orbita.VA.Funciones
             CvInvoke.cvGetAffineTransform(srcTri, dstTri, sourceMat.Ptr);
 
             //Aplicación de la transformación
-            resultado = new OImagenOpenCV<TColor, TDepth>(input.Image.WarpAffine<float>(sourceMat, (int)Math.Round(width), (int)Math.Round(height), INTER.CV_INTER_NN, WARP.CV_WARP_DEFAULT, default(TColor)));
+            resultado = new OImagenOpenCV<TColor, TDepth>();
+            resultado.Image = ((Image<TColor, TDepth>)input.Image).WarpAffine<float>(sourceMat, (int)Math.Round(width), (int)Math.Round(height), INTER.CV_INTER_NN, WARP.CV_WARP_DEFAULT, default(TColor));
             return resultado;
         }
-        /// <summary>
-        /// Realiza una proyección de un area de la imagen en un rectangulo
-        /// </summary>
-        /// <typeparam name="TColor">Espacio de color</typeparam>
-        /// <typeparam name="TDepth">Profundidad de color</typeparam>
-        /// <param name="input">Imagen sobre la que se hace la proyección</param>
-        /// <param name="sourceMat">Matriz de transformación a utilizar en la transformación</param>
-        /// <returns>Proyección rectangular del area especificada</returns>
-        public static OImagenOpenCV<TColor, TDepth> Proyeccion<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> input, Matrix<float> sourceMat)
-            where TColor : struct, global::Emgu.CV.IColor
-            where TDepth : new()
-        {
-            //Aplicación de la transformación
-            return new OImagenOpenCV<TColor, TDepth>(input.Image.WarpAffine<float>(sourceMat, INTER.CV_INTER_NN, WARP.CV_WARP_DEFAULT, default(TColor)));
-        }
-        /// <summary>
-        /// Realiza una proyección de un area de la imagen en un rectangulo
-        /// </summary>
-        /// <typeparam name="TColor">Espacio de color</typeparam>
-        /// <typeparam name="TDepth">Profundidad de color</typeparam>
-        /// <param name="input">Imagen sobre la que se hace la proyección</param>
-        /// <param name="sourceMat">Matriz de transformación utilizada para la transformación original. Se calculará su inversa</param>
-        /// <returns>Proyección rectangular del area especificada</returns>
-        public static OImagenOpenCV<TColor,TDepth> ProyeccionInversa<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> input, Matrix<float> sourceMat)
-            where TColor : struct, global::Emgu.CV.IColor
-            where TDepth : new ()
-        {
-            //Aplicación de la transformación inversa
-            return new OImagenOpenCV<TColor, TDepth>(input.Image.WarpAffine<float>(sourceMat, INTER.CV_INTER_NN, WARP.CV_WARP_INVERSE_MAP, default(TColor)));
-        }
         #endregion
-
-        #region Obtención de datos
-        /// <summary>
-        /// Obtiene el plano (del espacio BGR) pasado como parámetro
-        /// </summary>
-        /// <param name="input">Imagen de entrada</param>
-        /// <param name="plano">Plano a extraer</param>
-        /// <returns>Plano de la imagen indicado</returns>
-        public static OImagenOpenCV<TColor, TDepth> ObtenerPlano<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> input, OPlanoBGR plano)
-            where TColor : struct, global::Emgu.CV.IColor
-            where TDepth : new()
-        {
-            //Descomponemos la imagen de entrada
-            return new OImagenOpenCV<TColor,TDepth>(input.Image.Split()[(int)plano]);
         }
 
-        /// <summary>
-        /// Calcula la media de los contrastes de la imagen obteniendo una única fila
-        /// </summary>
-        /// <param name="input">Imagen de origen</param>
-        /// <returns>Estructura imagen con una única fila que almacena los valores de contraste medios</returns>
-        public static OImagenOpenCV<Gray, float> Reducir(this OImagenOpenCVMonocromo input)
-        {
-            Image<Gray, float> resultado = new Image<Gray, float>(input.Image.Width, 1);
-
-            input.Image.Reduce(resultado, REDUCE_DIMENSION.SINGLE_ROW, REDUCE_TYPE.CV_REDUCE_AVG);
-
-            return new OImagenOpenCV<Gray, float>(resultado);
-        }    
-        #endregion
-
-        #region Transformaciones
-        /// <summary>
-        /// Redimensiona una imagen interpolando mediante el vecino más próximo
-        /// </summary>
-        /// <typeparam name="TColor">Espacio de color</typeparam>
-        /// <typeparam name="TDepth">Profundidad de color</typeparam>
-        /// <param name="input">Imagen de entrada</param>
-        /// <param name="factor">Factor de redimensionado. Mayor que uno agranda, menor que uno reduce; menor o igual que 0 no hace nada</param>
-        /// <returns>Imagen redimensionada</returns>
-        public static OImagenOpenCV<TColor, TDepth> Redimensionar<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> input, double factor)
-            where TColor : struct, global::Emgu.CV.IColor
-            where TDepth : new()
-        {
-            OImagenOpenCV<TColor, TDepth> resultado = null;
-            if (factor <= 0)
+    public class FiltradoException : ApplicationException
             {
-                return input;
-            }
-            else 
-            {
-                resultado = new OImagenOpenCV<TColor,TDepth>(input.Image.Resize(factor, Emgu.CV.CvEnum.INTER.CV_INTER_NN));
-            }
-            return input;
-        }
-        #endregion
-
-        #region Filtros
-        /// <summary>
-        /// Dilata una imagen mediante una matriz 3x3, las veces indicadas
-        /// </summary>
-        /// <param name="input">Imagen de entrada</param>
-        /// <param name="iteraciones">Iteraciones de dilatación con matriz 3x3</param>
-        /// <returns>Imagen dilatada</returns>
-        public static OImagenOpenCVMonocromo Dilate(this OImagenOpenCVMonocromo input, int iteraciones)
+        public FiltradoException(string mensaje)
+            : base(mensaje)
         {
-            OImagenOpenCVMonocromo result = null;
-            result.Image = input.Image.Dilate(iteraciones);
-
-            return result;
         }
-        /// <summary>
-        /// Binariza una imagen utilizando un umbral
-        /// </summary>
-        /// <param name="input">Imagen de entrada</param>
-        /// <param name="umbral">Umbral de binarización</param>
-        /// <returns></returns>
-        public static OImagenOpenCVMonocromo Binarizar(this OImagenOpenCVColor input, int umbral)
-        {
-            Image<Gray,byte> resultOpenCV = new Image<Gray,byte>(input.Image.Bitmap);
-            OImagenOpenCVMonocromo result = new OImagenOpenCVMonocromo();
-            
-            result.Image = resultOpenCV.ThresholdBinary(new Gray(umbral), new Gray(255));
-
-            return result;
-        }
-        #endregion
     }
 }
