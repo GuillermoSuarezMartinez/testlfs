@@ -178,6 +178,12 @@
     <Compile Include="Custom\OrbitaControlBaseEventosCom.Designer.cs">
       <DependentUpon>OrbitaControlBaseEventosCom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom\OrbitaEstadoCanal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaEstadoCanal.Designer.cs">
+      <DependentUpon>OrbitaEstadoCanal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom\OrbitaControlVideo_OP.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -270,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Custom\OrbitaControlVideo_OP.resx">
       <DependentUpon>OrbitaControlVideo_OP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaEstadoCanal.resx">
+      <DependentUpon>OrbitaEstadoCanal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Custom\OrbitaServidorTCP.resx">
       <DependentUpon>OrbitaServidorTCP.cs</DependentUpon>
