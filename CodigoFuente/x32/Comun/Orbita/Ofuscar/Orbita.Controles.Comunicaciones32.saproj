@@ -72,10 +72,10 @@
                     <ResourcesCompression Compress="1" />
                     <MemberRefsProxy />
                     <Pruning />
-                    <Obfuscation Obfuscate="1">
+                    <Obfuscation Obfuscate="0">
                         <Exclusion />
                     </Obfuscation>
-                    <ControlFlow Obfuscate="1" ObfuscationLevel="3" />
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="4" />
                     <ResourcesPruning />
                 </Merging>
                 <Embedding />
@@ -230,6 +230,216 @@
                         <Exclusion />
                     </Obfuscation>
                 </Merging>
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.CrystalReports.Engine, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.Shared, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.ClientDoc, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.CommonObjectModel, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.DataDefModel, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.CommLayer, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.Controllers, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.ReportDefModel, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.CubeDefModel, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.CommonControls, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.Enterprise.Framework, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.Enterprise.PluginManager, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="BusinessObjects.Enterprise.Sdk, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="log4net, Culture=neutral, PublicKeyToken=b32731d11ce58905">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="BusinessObjects.Licensing.KeycodeDecoder, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.Enterprise.InfoStore, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.DataSetConversion, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.XmlSerialize, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.ObjectFactory, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="CrystalDecisions.ReportAppServer.Prompting, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="StarIO, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinGrid.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Shared.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.Misc.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Controles.Comunes, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinStatusBar.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinEditors.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinMaskedEdit.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinDock.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Controles.Shared, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Controles.Contenedores, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinTabbedMdi.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinTabControl.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Controles.Grid, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinToolbars.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Controles.Menu, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinExplorerBar.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinPrintPreviewDialog.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinGrid.ExcelExport.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Documents.Excel.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.DirectX.Direct3D, Culture=neutral, PublicKeyToken=31bf3856ad364e35" HintPath="..\..\Comunicaciones\Microsoft.DirectX.Direct3D.dll">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="nunit.framework, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77" HintPath="..\..\Reports\nunit.framework.dll">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.DirectX.AudioVideoPlayback, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.DirectX, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="stdole, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.Vsa, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Printing, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="PresentationFramework, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="PresentationCore, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="WindowsBase, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="UIAutomationProvider, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="UIAutomationTypes, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Windows.Input.Manipulations, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="PresentationUI, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="ReachFramework, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
             </Assembly>
         </Assemblies>
         <Options>
