@@ -3,7 +3,6 @@
 @echo Orbita.Controles.Autenticacion...............................................
 set /p resp="Desea ofuscar el ensamblado actual? (s=si, n=no, t=si a todo): " %=%
 IF %resp% == n GOTO Orbita.Controles.Combo
-@echo Orbita.Controles.Autenticacion.............................................
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.Autenticacion.dll /q/f
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.Autenticacion.xml /q/f
 "%PROGRAMFILES%\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.Controles.Autenticacion32.saproj
@@ -11,7 +10,7 @@ verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.Autenticacion.dl
 xcopy ..\Orbita.Controles.Autenticacion.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
 :Orbita.Controles.Combo
-@echo Ofuscacion de Orbita.Controles.Combo.............
+@echo Ofuscacion de Orbita.Controles.Combo..............................
 IF %resp% == t GOTO Orbita.Controles.ComboEx
 set /p resp="Desea ofuscar el ensamblado actual? (s=si, n=no, t=si a todo): " %=%
 IF %resp% == n GOTO Orbita.Controles.Comunes
