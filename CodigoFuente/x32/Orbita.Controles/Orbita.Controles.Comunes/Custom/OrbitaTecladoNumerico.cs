@@ -1,7 +1,7 @@
 ﻿//***********************************************************************
 // Assembly         : Orbita.Controles.Comunes
 // Author           : aibañez
-// Created          : 29-04-2013
+// Created          : 14-05-2013
 //
 // Last Modified By : 
 // Last Modified On : 
@@ -14,9 +14,9 @@ using System.Windows.Forms;
 namespace Orbita.Controles.Comunes
 {
     /// <summary>
-    /// Teclado en pantalla
+    /// Teclado numérico en pantalla
     /// </summary>
-    public partial class OrbitaTeclado : UserControl
+    public partial class OrbitaTecladoNumerico : UserControl
     {
         #region Eventos
         /// <summary>
@@ -65,18 +65,6 @@ namespace Orbita.Controles.Comunes
         {
             get { return this.btnIntro.Visible; }
             set { this.btnIntro.Visible = value; }
-        }
-        /// <summary>
-        /// Indica que se ha de visualizar la tecla de espacio
-        /// </summary>
-        [System.ComponentModel.Browsable(true)]
-        [System.ComponentModel.Category("Orbita")]
-        [System.ComponentModel. Description("Indica que se ha de visualizar la tecla de espacio")]
-        [System.ComponentModel. DefaultValue(true)]
-        public bool VisualizarSpace
-        {
-            get { return this.btnSpace.Visible; }
-            set { this.btnSpace.Visible = value; }
         }
         /// <summary>
         /// Indica que se ha de visualizar la tecla de escape
@@ -135,12 +123,11 @@ namespace Orbita.Controles.Comunes
         /// <summary>
         /// Constructor
         /// </summary>
-        public OrbitaTeclado()
+        public OrbitaTecladoNumerico()
         {
             InitializeComponent();
             this.PnlTop.Visible = true;
             this.btnIntro.Visible = true;
-            this.btnSpace.Visible = true;
             this.BtnEsc.Visible = true;
             this.btnRetrocede.Visible = true;
             this.BtnDropDown.Visible = false;
@@ -343,44 +330,6 @@ namespace Orbita.Controles.Comunes
             {
                 // Do nothing
             }
-        }
-        #endregion
-    }
-    /// <summary>
-    /// Evento de devolución de texto
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    public delegate void TextEventHandler(object sender, TextEventArgs e);
-    /// <summary>
-    /// Argumentos del evento de devolución de texto
-    /// </summary>
-    public class TextEventArgs
-    {
-        #region Propiedades
-        /// <summary>
-        /// Nueva imagen
-        /// </summary>
-        private string texto;
-        /// <summary>
-        /// Nueva imagen
-        /// </summary>
-        public string Texto
-        {
-            get { return texto; }
-            set { texto = value; }
-        }
-        #endregion
-
-        #region Constructor
-        /// <summary>
-        /// Constructor de la clase
-        /// </summary>
-        /// <param name="codigo">Código identificativo de la variable</param>
-        /// <param name="valor">Valor de la variable</param>
-        public TextEventArgs(string texto)
-        {
-            this.texto = texto;
         }
         #endregion
     }
