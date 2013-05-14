@@ -4,20 +4,21 @@
         <name>Orbita.Controles.Autenticacion</name>
     </assembly>
     <members>
-        <member name="F:Orbita.Controles.Autenticacion.FrmValidar._validacion">
+        <member name="F:Orbita.Controles.Autenticacion.FrmValidar.validacion">
             <summary>
             Tipo de validación a realizar
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Autenticacion.FrmValidar._dominio">
+        <member name="F:Orbita.Controles.Autenticacion.FrmValidar.dominio">
             <summary>
             Servidor donde se realiza la validación
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Autenticacion.FrmValidar.#ctor">
+        <member name="M:Orbita.Controles.Autenticacion.FrmValidar.#ctor(System.Windows.Forms.Form)">
             <summary>
-            Constructor de la validación
+            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.FrmValidar.
             </summary>
+            <param name="parent"></param>
         </member>
         <member name="F:Orbita.Controles.Autenticacion.FrmValidar.components">
             <summary>
@@ -38,67 +39,84 @@
         </member>
         <member name="E:Orbita.Controles.Autenticacion.FrmValidar.OValidacionControl">
             <summary>
-            Evento para la validación
+            Evento para la validación.
             </summary>
         </member>
         <member name="T:Orbita.Controles.Autenticacion.FrmValidar.Validaciones">
             <summary>
-            Tipos de validación
+            Tipos de validación.
             </summary>
         </member>
         <member name="T:Orbita.Controles.Autenticacion.FrmValidar.ODelegadoValidacion">
             <summary>
-            Delegado para el evento de validación
+            Delegado para el evento de validación.
             </summary>
-            <param name="args">Mensaje de validación de argumento OEstadoValidacion</param>
+            <param name="sender">Objecto de la clase actual.</param>
+            <param name="args">Mensaje de validación de argumento Orbita.Controles.Autenticacion.OEstadoValidacion.</param>
         </member>
         <member name="T:Orbita.Controles.Autenticacion.OLogonOpenLDAP">
             <summary>
-            Autenticación contra Open LDAP
+            Autenticación contra Open LDAP.
             </summary>
         </member>
         <member name="T:Orbita.Controles.Autenticacion.OLogonAD">
             <summary>
-            Autenticación con Active Direcotry
+            Autenticación con Active Direcotry.
             </summary>
         </member>
         <member name="T:Orbita.Controles.Autenticacion.OLogon">
             <summary>
-            Clase base para el login de usuarios
+            Clase base para el login de usuarios.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Autenticacion.OLogon.Validar">
             <summary>
-            Clase base de validación
+            Clase base de validación.
             </summary>
-            <returns>Mensaje de validación de argumento OEstadoValidacion</returns>
+            <returns>Mensaje de validación de argumento Orbita.Controles.Autenticacion.OEstadoValidacion.</returns>
         </member>
         <member name="M:Orbita.Controles.Autenticacion.OLogonAD.Validar">
             <summary>
-            Validación con active directory
+            Validación con Active Directory.
             </summary>
-            <returns>Mensaje de validación de argumento OEstadoValidacion</returns>
+            <returns>Mensaje de validación de argumento Orbita.Controles.Autenticacion.OEstadoValidacion.</returns>
+        </member>
+        <member name="F:Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs.estado">
+            <summary>
+            Estado de la validación.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs.#ctor(Orbita.Controles.Autenticacion.OEstadoValidacion)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs.
+            </summary>
+            <param name="estado">Nombre de la propiedad.</param>
+        </member>
+        <member name="P:Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs.Estado">
+            <summary>
+            Estado de la validación.
+            </summary>
         </member>
         <member name="M:Orbita.Controles.Autenticacion.OManagerValidacion.#ctor">
             <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Autenticacion.OManagerValidacion.Mostrar">
-            <summary>
-            Muestra el formulario de validación
+            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.OManagerValidacion.
             </summary>
         </member>
         <member name="T:Orbita.Controles.Autenticacion.OLogonBBDD">
             <summary>
-            Autenticación con base de datos
+            Autenticación con base de datos.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Autenticacion.OLogonBBDD.Validar">
             <summary>
-            Validación con la base de datos
+            Validación con la base de datos.
             </summary>
-            <returns>Mensaje de validación de argumento OEstadoValidacion</returns>
+            <returns>Mensaje de validación de argumento Orbita.Controles.Autenticacion.OEstadoValidacion.</returns>
         </member>
         <member name="T:Orbita.Controles.Autenticacion.OEstadoValidacion">
             <summary>
@@ -107,30 +125,30 @@
         </member>
         <member name="M:Orbita.Controles.Autenticacion.OEstadoValidacion.#ctor">
             <summary>
-            Constructor base
+            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.OEstadoValidacion.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Autenticacion.OEstadoValidacion.#ctor(System.String,System.String,System.String)">
             <summary>
-            Constructor para inicializar los valores
+            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.OEstadoValidacion.
             </summary>
-            <param name="estado">estado de la validación</param>
-            <param name="mensaje">mensaje de la validación</param>
-            <param name="boton">botón que se pulsa</param>
+            <param name="resultado">Resultado de la validación.</param>
+            <param name="mensaje">Mensaje de la validación.</param>
+            <param name="boton">Botón que se pulsa.</param>
         </member>
-        <member name="P:Orbita.Controles.Autenticacion.OEstadoValidacion.Estado">
+        <member name="P:Orbita.Controles.Autenticacion.OEstadoValidacion.Resultado">
             <summary>
-            Estado de la validación
+            Resultado de la validación.
             </summary>
         </member>
         <member name="P:Orbita.Controles.Autenticacion.OEstadoValidacion.Mensaje">
             <summary>
-            Mensaje de la validación
+            Mensaje de la validación.
             </summary>
         </member>
-        <member name="P:Orbita.Controles.Autenticacion.OEstadoValidacion.Boton">
+        <member name="P:Orbita.Controles.Autenticacion.OEstadoValidacion.Botón">
             <summary>
-            Botón que se pulsa al validar
+            Botón que se pulsa al validar.
             </summary>
         </member>
     </members>

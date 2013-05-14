@@ -2386,103 +2386,103 @@
             Colección de alarmas activas.
             </summary>
         </member>
-        <member name="T:Orbita.Comunicaciones.OProcoloNTP">
+        <member name="T:Orbita.Comunicaciones.OProtocoloNTP">
             <summary>
             Clase para la sincronización NTP
             </summary>
         </member>
-        <member name="M:Orbita.Comunicaciones.OProcoloNTP.Dispose(System.Boolean)">
+        <member name="M:Orbita.Comunicaciones.OProtocoloNTP.Dispose(System.Boolean)">
             <summary>
             Limpia objetos de memoria
             </summary>
             <param name="disposing"></param>
         </member>
-        <member name="T:Orbita.Comunicaciones.OProcoloNTP._LeapIndicator">
+        <member name="T:Orbita.Comunicaciones.OProtocoloNTP._LeapIndicator">
             <summary>
             Leap indicator field values
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OProcoloNTP._LeapIndicator.NoWarning">
+        <member name="F:Orbita.Comunicaciones.OProtocoloNTP._LeapIndicator.NoWarning">
             <summary>
             0 - No warning
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OProcoloNTP._LeapIndicator.LastMinute61">
+        <member name="F:Orbita.Comunicaciones.OProtocoloNTP._LeapIndicator.LastMinute61">
             <summary>
             1 - Last minute has 61 seconds
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OProcoloNTP._LeapIndicator.LastMinute59">
+        <member name="F:Orbita.Comunicaciones.OProtocoloNTP._LeapIndicator.LastMinute59">
             <summary>
             2 - Last minute has 59 seconds
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OProcoloNTP._LeapIndicator.Alarm">
+        <member name="F:Orbita.Comunicaciones.OProtocoloNTP._LeapIndicator.Alarm">
             <summary>
             3 - Alarm condition (clock not synchronized)
             </summary>
         </member>
-        <member name="T:Orbita.Comunicaciones.OProcoloNTP._Mode">
+        <member name="T:Orbita.Comunicaciones.OProtocoloNTP._Mode">
             <summary>
             Mode field values
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OProcoloNTP._Mode.SymmetricActive">
+        <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Mode.SymmetricActive">
             <summary>
             1 - Symmetric active
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OProcoloNTP._Mode.SymmetricPassive">
+        <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Mode.SymmetricPassive">
             <summary>
             2 - Symmetric pasive
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OProcoloNTP._Mode.Client">
+        <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Mode.Client">
             <summary>
             3 - Client
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OProcoloNTP._Mode.Server">
+        <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Mode.Server">
             <summary>
             4 - Server
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OProcoloNTP._Mode.Broadcast">
+        <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Mode.Broadcast">
             <summary>
             5 - Broadcast
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OProcoloNTP._Mode.Unknown">
+        <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Mode.Unknown">
             <summary>
             0, 6, 7 - Reserved
             </summary>
         </member>
-        <member name="T:Orbita.Comunicaciones.OProcoloNTP._Stratum">
+        <member name="T:Orbita.Comunicaciones.OProtocoloNTP._Stratum">
             <summary>
             Stratum field values
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OProcoloNTP._Stratum.Unspecified">
+        <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Stratum.Unspecified">
             <summary>
             0 - unspecified or unavailable
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OProcoloNTP._Stratum.PrimaryReference">
+        <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Stratum.PrimaryReference">
             <summary>
             1 - primary reference (e.g. radio-clock)
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OProcoloNTP._Stratum.SecondaryReference">
+        <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Stratum.SecondaryReference">
             <summary>
             2-15 - secondary reference (via NTP or SNTP)
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OProcoloNTP._Stratum.Reserved">
+        <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Stratum.Reserved">
             <summary>
             16-255 - reserved
             </summary>
         </member>
-        <member name="T:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient">
+        <member name="T:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient">
              <summary>
              NTPClient is a C# class designed to connect to time servers on the Internet.
              The implementation of the protocol is based on the RFC 2030.
@@ -2582,113 +2582,113 @@
              
              </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.ReceptionTimestamp">
+        <member name="F:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.ReceptionTimestamp">
             <summary>
             Reception Timestamp
             </summary>
         </member>
-        <member name="M:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.#ctor(System.String)">
+        <member name="M:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.#ctor(System.String)">
             <summary>
             Cliente NTP
             </summary>
             <param name="host">IP o dirección del servidor NTP</param>
         </member>
-        <member name="M:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.Connect(System.Boolean,System.Boolean)">
+        <member name="M:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.Connect(System.Boolean,System.Boolean)">
             <summary>
             Connect to the time server and update system time
             </summary>
             <param name="UpdateSystemTime">variable para la actualización de la hora local del equipo</param>
             <param name="usarUTC">actualiza a hora UTC</param>
         </member>
-        <member name="M:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.IsResponseValid">
+        <member name="M:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.IsResponseValid">
             <summary>
             Check if the response from server is valid
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.ToString">
+        <member name="M:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.ToString">
             <summary>
             Converts the object to string
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.Dispose(System.Boolean)">
+        <member name="M:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.Dispose(System.Boolean)">
             <summary>
             Limpia objetos de memoria
             </summary>
             <param name="disposing"></param>
         </member>
-        <member name="P:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.LeapIndicator">
+        <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.LeapIndicator">
             <summary>
             Leap Indicator
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.VersionNumber">
+        <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.VersionNumber">
             <summary>
             Version Number
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.Mode">
+        <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.Mode">
             <summary>
             Mode
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.Stratum">
+        <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.Stratum">
             <summary>
             Stratum
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.PollInterval">
+        <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.PollInterval">
             <summary>
             Poll Interval
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.Precision">
+        <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.Precision">
             <summary>
             Precision (in milliseconds)
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.RootDelay">
+        <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.RootDelay">
             <summary>
             Root Delay (in milliseconds)
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.RootDispersion">
+        <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.RootDispersion">
             <summary>
             Root Dispersion (in milliseconds)
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.ReferenceID">
+        <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.ReferenceID">
             <summary>
             Reference Identifier
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.ReferenceTimestamp">
+        <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.ReferenceTimestamp">
             <summary>
             Reference Timestamp
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.OriginateTimestamp">
+        <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.OriginateTimestamp">
             <summary>
             Originate Timestamp
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.ReceiveTimestamp">
+        <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.ReceiveTimestamp">
             <summary>
             Receive Timestamp
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.TransmitTimestamp">
+        <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.TransmitTimestamp">
             <summary>
             Transmit Timestamp
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.RoundTripDelay">
+        <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.RoundTripDelay">
             <summary>
             Round trip delay (in milliseconds)
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.OProcoloNTP.OProtocoloNTPClient.LocalClockOffset">
+        <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.LocalClockOffset">
             <summary>
             Local clock offset (in milliseconds)
             </summary>

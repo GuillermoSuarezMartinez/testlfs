@@ -633,6 +633,12 @@
             </summary>
             <param name="estadoConexion"></param>
         </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBase.OnBitVida(System.String)">
+            <summary>
+            Evento de bit de vida
+            </summary>
+            <param name="estadoConexion"></param>
+        </member>
         <member name="M:Orbita.VA.Hardware.OCamaraBase.LanzarEventoNuevaFotografiaCamaraSincrona(System.String,Orbita.VA.Comun.OImagen,System.DateTime,System.Double)">
             <summary>
             Lanza evento de nueva fotografía
@@ -736,6 +742,18 @@
         <member name="M:Orbita.VA.Hardware.OCamaraBase.DebeLanzarEventoCambioReproduccionCamaraAsincrona">
             <summary>
             Debe lanzar el evento de mensaje de cambio de estado de reproducción
+            </summary>
+            <param name="estadoConexion"></param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBase.LanzarEventoBitVidaAsincrona(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Lanza evento de mensaje del bit de vida
+            </summary>
+            <param name="estadoConexion"></param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBase.DebeLanzarEventoBitVidaAsincrona">
+            <summary>
+            Debe lanzar el evento del bit de vida
             </summary>
             <param name="estadoConexion"></param>
         </member>
@@ -1028,6 +1046,12 @@
             Delegado de mensaje de cambio de estado de reproducción. Evento asíncrono
             </summary>
         </member>
+        <member name="E:Orbita.VA.Hardware.OCamaraBase.OnBitVidaAsincrono">
+            <summary>
+            Delegado de bit de vida
+            </summary>
+            <param name="estadoConexion"></param>
+        </member>
         <member name="F:Orbita.VA.Hardware.OCamaraServidor.MemoriaMapeada">
             <summary>
             Región de memoria mapeada con multibuffer
@@ -1068,6 +1092,21 @@
             Objeto utilizado para el lanzamiento del evento de forma asíncrona
             </summary>
         </member>
+        <member name="F:Orbita.VA.Hardware.OCamaraServidor.EventoBitVidaAsincrona">
+            <summary>
+            Objeto utilizado para el lanzamiento del evento de forma asíncrona
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OCamaraServidor.TimerComprobacionConexion">
+            <summary>
+            Timer de comprobación del estado de la conexión
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OCamaraServidor._IntervaloComprabacion">
+            <summary>
+            Inervalo entre comprobaciones
+            </summary>
+        </member>
         <member name="M:Orbita.VA.Hardware.OCamaraServidor.#ctor(System.String)">
             <summary>
             Constructor de la clase
@@ -1106,6 +1145,24 @@
             Evento de cambio en de la imagen de la cámara
             </summary>
             <param name="estadoConexion"></param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraServidor.OnBitVida(System.String)">
+            <summary>
+            Evento de bit de vida
+            </summary>
+            <param name="estadoConexion"></param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraServidor.TimerComprobacionConexion_Tick(System.Object,System.EventArgs)">
+            <summary>
+            Evento del timer de comprobación de la conexión
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OCamaraServidor.IntervaloComprabacion">
+            <summary>
+            Inervalo entre comprobaciones
+            </summary>
         </member>
         <member name="F:Orbita.VA.Hardware.OCamaraBaslerVPro.FrameGrabbersGigEs">
             <summary>
@@ -6277,6 +6334,20 @@
             <param name="codigo">Código de la cámara</param>
             <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
         </member>
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.CrearSuscripcionBitVida(System.String,Orbita.Utiles.ManejadorEvento)">
+            <summary>
+            Suscribe la recepción del bit de vida
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EliminarSuscripcionBitVida(System.String,Orbita.Utiles.ManejadorEvento)">
+            <summary>
+            Elimina la suscripción del bit de vida
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        </member>
         <member name="T:Orbita.VA.Hardware.ORemotingCamaraServidor.StartDelegate">
             <summary>
             Delegado de inicio de reproducción
@@ -6465,6 +6536,36 @@
             Objeto utilizado para enlazar con los eventos del OCamaraCliente de forma remota
             </summary>
         </member>
+        <member name="F:Orbita.VA.Hardware.OCamaraRemota.ContLlamadasSimultaneasNuevaFotografiaMemoriaMapeada">
+            <summary>
+            Informa del número de llamadas simultáneas al evento de cambio de dato
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OCamaraRemota.ContLlamadasSimultaneasCambioEstadoConexion">
+            <summary>
+            Informa del número de llamadas simultáneas al evento de conectividad
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OCamaraRemota.ContLlamadasSimultaneasCambioEstadoReproduccion">
+            <summary>
+            Informa del número de llamadas simultáneas al evento de alarma
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OCamaraRemota.ContLlamadasSimultaneasMensaje">
+            <summary>
+            Informa del número de llamadas simultáneas al evento de alarma
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OCamaraRemota.TimerComprobacionConexion">
+            <summary>
+            Timer de comprobación del estado de la conexión
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OCamaraRemota.CronometroTiempoSinRespuesta">
+            <summary>
+            Cronómetro del tiempo sin respuesta
+            </summary>
+        </member>
         <member name="F:Orbita.VA.Hardware.OCamaraRemota.CodigoRemoto">
             <summary>
             Código identificador de la cámara remota
@@ -6495,9 +6596,24 @@
             Número de buffers del fichero mapeado
             </summary>
         </member>
+        <member name="F:Orbita.VA.Hardware.OCamaraRemota._IntervaloComprabacion">
+            <summary>
+            Inervalo entre comprobaciones
+            </summary>
+        </member>
         <member name="M:Orbita.VA.Hardware.OCamaraRemota.#ctor(System.String)">
             <summary>
             Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraRemota.ConectarEventWrapper">
+            <summary>
+            Conectar los eventos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraRemota.DesconectarEventWrapper">
+            <summary>
+            Desconectar los eventos
             </summary>
         </member>
         <member name="M:Orbita.VA.Hardware.OCamaraRemota.Finalizar">
@@ -6662,6 +6778,24 @@
             Evento de nuevo mensaje
             </summary>
             <param name="estadoConexion"></param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraRemota.BitVida(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Evento de bit de ivda
+            </summary>
+            <param name="estadoConexion"></param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraRemota.TimerComprobacionConexion_Tick(System.Object,System.EventArgs)">
+            <summary>
+            Evento del timer de comprobación de la conexión
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OCamaraRemota.IntervaloComprabacion">
+            <summary>
+            Inervalo entre comprobaciones
+            </summary>
         </member>
         <member name="T:Orbita.VA.Hardware.ORemotingCamaraCliente">
             <summary>
@@ -6857,6 +6991,20 @@
             <param name="codigo">Código de la cámara</param>
             <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
         </member>
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraCliente.CrearSuscripcionBitVida(Orbita.Utiles.ManejadorEvento)">
+            <summary>
+            Suscribe la recepción del bit de vida de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraCliente.EliminarSuscripcionBitVida(Orbita.Utiles.ManejadorEvento)">
+            <summary>
+            Elimina la suscripción del bit de vida de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        </member>
         <member name="P:Orbita.VA.Hardware.ORemotingCamaraCliente.Existe">
             <summary>
             Indica que se ha podido acceder a la cámara con éxito
@@ -6908,6 +7056,12 @@
             </summary>
             <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
         </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBroadcastEventWraper.OnBitVida(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Evento de bit de vida
+            </summary>
+            <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
+        </member>
         <member name="E:Orbita.VA.Hardware.OCamaraBroadcastEventWraper.NuevaFotografiaCamaraMemoriaMapeada">
             <summary>
             Evento de cambio de fotografía.
@@ -6931,6 +7085,11 @@
         <member name="E:Orbita.VA.Hardware.OCamaraBroadcastEventWraper.MensajeCamaraRemoting">
             <summary>
             Nuevo Mensaje.
+            </summary>
+        </member>
+        <member name="E:Orbita.VA.Hardware.OCamaraBroadcastEventWraper.BitVida">
+            <summary>
+            Bit de vida
             </summary>
         </member>
         <member name="T:Orbita.VA.Hardware.OCamaraManager">
@@ -7240,6 +7399,20 @@
         <member name="M:Orbita.VA.Hardware.OCamaraManager.EliminarSuscripcionMensajesAsincrona(System.String,Orbita.VA.Comun.OMessageEvent)">
             <summary>
             Elimina la suscripción de mensajes de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraManager.CrearSuscripcionBitVidaAsincrona(System.String,Orbita.Utiles.ManejadorEvento)">
+            <summary>
+            Suscribe la recepción del bit de vida de una determinada cámara
+            </summary>
+            <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraManager.EliminarSuscripcionBitVidaAsincrona(System.String,Orbita.Utiles.ManejadorEvento)">
+            <summary>
+            Elimina la suscripción del bit de vida de una determinada cámara
             </summary>
             <param name="codigo">Código de la cámara</param>
             <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>

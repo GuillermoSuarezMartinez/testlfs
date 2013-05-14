@@ -31,7 +31,23 @@
             </summary>
             <param name="control"></param>
         </member>
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaSplitContainer.#ctor" -->
+        <member name="M:Orbita.Controles.Contenedores.ODialog.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaDialog.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaDialog)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaDialog.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaSplitContainer.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaSplitContainer.
+            </summary>
+        </member>
         <member name="F:Orbita.Controles.Contenedores.OrbitaSplitContainer.components">
             <summary> 
             Variable del diseñador requerida.
@@ -55,11 +71,29 @@
             </summary>
             <param name="control"></param>
         </member>
+        <member name="M:Orbita.Controles.Contenedores.OSplitContainer.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaSplitContainer.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaSplitContainer)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaSplitContainer.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
         <member name="M:Orbita.Controles.Contenedores.OUltraTabbedMdiManager.#ctor(System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OUltraTabbedMdiManager.
             </summary>
             <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OUltraTabbedMdiManager.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
         </member>
         <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.#ctor" -->
         <member name="F:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.components">
@@ -83,6 +117,18 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OUltraGroupBox.
             </summary>
             <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OUltraGroupBox.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaUltraGroupBox)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraGroupBox.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
         </member>
         <member name="M:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.#ctor">
             <summary>
@@ -112,11 +158,35 @@
             </summary>
             <param name="control"></param>
         </member>
+        <member name="M:Orbita.Controles.Contenedores.OMdiContainerForm.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OMdiContainerForm.ShouldSerializeNumeroMaximoFormulariosAbiertos">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaMdiContainerForm)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaMdiContainerForm.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
         <member name="M:Orbita.Controles.Contenedores.OTableLayoutPanel.#ctor(System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OTableLayoutPanel.
             </summary>
             <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OTableLayoutPanel.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
         </member>
         <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.#ctor" -->
         <member name="F:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.components">
@@ -136,6 +206,12 @@
             el contenido del método con el editor de código.
             </summary>
         </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaTableLayoutPanel)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
         <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.#ctor" -->
         <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.#ctor(System.ComponentModel.IContainer)">
             <summary>
@@ -146,7 +222,7 @@
         </member>
         <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.InitializeResourceStrings">
             <summary>
-            Inicializar recursos.
+            Inicializar recursos alfabéticos.
             </summary>
         </member>
         <member name="F:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.components">
@@ -165,6 +241,12 @@
             Método necesario para admitir el Diseñador. No se puede modificar 
             el contenido del método con el editor de código.
             </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
         </member>
         <member name="M:Orbita.Controles.Contenedores.OrbitaForm.#ctor">
             <summary>
@@ -188,17 +270,40 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="F:Orbita.Controles.Contenedores.OForm.numeroMaximoFormulariosAbiertos">
+            <summary>
+            Número máximo de formularios abiertos.
+            </summary>
+        </member>
         <member name="M:Orbita.Controles.Contenedores.OForm.#ctor(System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OForm.
             </summary>
             <param name="control"></param>
         </member>
+        <member name="M:Orbita.Controles.Contenedores.OForm.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaForm.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaForm)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaForm.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
         <member name="M:Orbita.Controles.Contenedores.OPanel.#ctor(System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OPanel.
             </summary>
             <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OPanel.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
         </member>
         <member name="T:Orbita.Controles.Contenedores.Properties.Resources">
             <summary>
@@ -240,6 +345,18 @@
             </summary>
             <param name="control"></param>
         </member>
+        <member name="M:Orbita.Controles.Contenedores.OUltraTabControl.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabControl.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaUltraTabControl)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraTabControl.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
         <member name="F:Orbita.Controles.Contenedores.OrbitaPanel.components">
             <summary> 
             Variable del diseñador requerida.
@@ -261,6 +378,12 @@
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaPanel.
             </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaPanel.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaPanel)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaPanel.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
         </member>
     </members>
 </doc>

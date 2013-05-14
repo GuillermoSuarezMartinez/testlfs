@@ -180,16 +180,6 @@
             Especifica de que tipo de formulario se trata. { Normal, Dialog, MdiChild }
             </summary>
         </member>
-        <member name="P:Orbita.Framework.Core.IFormPlugin.EstadoVentana">
-            <summary>
-            Especifica cómo se muestra una ventana de formulario. { Normal, Minimizado, Maximizado }
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IFormPlugin.EstiloBorde">
-            <summary>
-            Especifica los estilos de borde de un formulario.
-            </summary>
-        </member>
         <member name="T:Orbita.Framework.Core.TipoForm">
             <summary>
             Determina de que tipo de formulario se trata.

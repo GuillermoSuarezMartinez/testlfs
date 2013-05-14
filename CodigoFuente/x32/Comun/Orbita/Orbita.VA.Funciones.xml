@@ -4,6 +4,11 @@
         <name>Orbita.VA.Funciones</name>
     </assembly>
     <members>
+        <member name="T:Orbita.VA.Funciones.AnalisisException">
+            <summary>
+            Excepción propia de las funciones de visión
+            </summary>
+        </member>
         <member name="T:Orbita.VA.Funciones.OFuncionVisionPro">
             <summary>
             Función de visión de VisionPro
@@ -1154,72 +1159,72 @@
             <param name="log"></param>
             <returns></returns>
         </member>
-        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper">
+        <member name="T:Orbita.VA.Funciones.OrbitaCaliper">
             <summary>
             Clase que implementa la detección y medición de edges en la region determinada de una imagen
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.inputSource">
+        <member name="F:Orbita.VA.Funciones.OrbitaCaliper.inputSource">
             <summary>
             Imagen de entrada
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.edges">
+        <member name="F:Orbita.VA.Funciones.OrbitaCaliper.edges">
             <summary>
             Listado de resultados
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.threshold">
+        <member name="F:Orbita.VA.Funciones.OrbitaCaliper.threshold">
             <summary>
             Umbral de detección
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.kernel">
+        <member name="F:Orbita.VA.Funciones.OrbitaCaliper.kernel">
             <summary>
             Kernel de convolución (filtrado)
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.tipo1">
+        <member name="F:Orbita.VA.Funciones.OrbitaCaliper.tipo1">
             <summary>
             Polaridad del primer edge (o del single edge)
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.tipo2">
+        <member name="F:Orbita.VA.Funciones.OrbitaCaliper.tipo2">
             <summary>
             Polaridad del segundo edge (para pares de edges)
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.metodos">
+        <member name="F:Orbita.VA.Funciones.OrbitaCaliper.metodos">
             <summary>
             Listado de métodos de puntuación del OrbitaCaliper
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.MaxResultados">
+        <member name="F:Orbita.VA.Funciones.OrbitaCaliper.MaxResultados">
             <summary>
             Máximo de resultados devueltos (calcula siempre todos, es el máximo que devuelve)
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.inverseMatrix">
+        <member name="F:Orbita.VA.Funciones.OrbitaCaliper.inverseMatrix">
             <summary>
             Matriz de transformación inversa (para devolver a las coordenadas originales)
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.proyeccion">
+        <member name="F:Orbita.VA.Funciones.OrbitaCaliper.proyeccion">
             <summary>
             Area de interés
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.contrastes">
+        <member name="F:Orbita.VA.Funciones.OrbitaCaliper.contrastes">
             <summary>
             Proyección rectangular del AOI
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.contrastesFiltrados">
+        <member name="F:Orbita.VA.Funciones.OrbitaCaliper.contrastesFiltrados">
             <summary>
             Datos de contraste filtrados (datos a procesar)
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.#ctor(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.PolaridadEdges,System.Double,Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize,System.Int32)">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.#ctor(Orbita.VA.Funciones.PolaridadEdges,System.Double,Orbita.VA.Funciones.FilterSize,System.Int32)">
             <summary>
             Constructor de OrbitaCaliper con SingleEdge. Por defecto añade el método de puntuación por contraste
             </summary>
@@ -1228,7 +1233,7 @@
             <param name="kernel">Tamaño del filtro</param>
             <param name="maxResultados">Máximo de resultados a devolver</param>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.#ctor(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.PolaridadEdges,Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.PolaridadEdges,System.Double,System.Double,Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize,System.Int32)">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.#ctor(Orbita.VA.Funciones.PolaridadEdges,Orbita.VA.Funciones.PolaridadEdges,System.Double,System.Double,Orbita.VA.Funciones.FilterSize,System.Int32)">
             <summary>
             Constructor de OrbitaCaliper con PairEdge. Por defecto añade el método de puntuación por distancia entre edges
             </summary>
@@ -1239,7 +1244,7 @@
             <param name="kernel">Tamaño del filtro</param>
             <param name="maxResultados">Máximo de resultados a devolver</param>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.BuscarEdges(Orbita.VA.Comun.OImagenOpenCVMonocromo,System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF)">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.BuscarEdges(Orbita.VA.Comun.OImagenOpenCVMonocromo{System.Byte},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF)">
             <summary>
             Obtiene y devuelve un listado de edges en el área de interes de la imagen pasada como parámetro (en formato de 3 puntos)
             </summary>
@@ -1249,20 +1254,20 @@
             <param name="extremoY">Extremo en altura del AOI</param>
             <returns>Listado de resultados</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.AgregarContraste">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.AgregarContraste">
             <summary>
             Agrega un método de puntuación por contraste (método individual)
             </summary>
             <returns>True si se añadió correctamente</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.AgregarDistancia(System.Double)">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.AgregarDistancia(System.Double)">
             <summary>
             Agrega un método de puntuación por distancia (método de pares)
             </summary>
             <param name="distance">Ancho esperado entre los edges</param>
             <returns>True si se añadió correctamente</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.PintarEdges(System.Drawing.Color,System.Int32,System.Boolean)">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.PintarEdges(System.Drawing.Color,System.Int32,System.Boolean)">
             <summary>
             Pinta los edges encontrados por el caliper
             </summary>
@@ -1271,18 +1276,18 @@
             <param name="todos">Indica si se debe buscar sobre todos los edges, o solo sobre los resultados devueltos</param>
             <returns>Imagen del caliper con los edges marcados</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.EliminarMetodosPuntuacion">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.EliminarMetodosPuntuacion">
             <summary>
             Limpia la lista de métodos de puntuación
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.algoritmoBusquedaMaxMin(Orbita.VA.Comun.OImagenOpenCV{Emgu.CV.Structure.Gray,System.Single})">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.algoritmoBusquedaEdges">
             <summary>
             Encuentra los máximos y mínimos de una función discretizada en un array
             </summary>
-            <param name="filteredData">Datos de la imagen filtrada</param>
+            <param name="contrastesFiltrados">Datos de la imagen filtrada</param>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.EvaluarCandidatoPares(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge,System.Collections.Generic.List{Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge})">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.EvaluarCandidatoPares(Orbita.VA.Funciones.OEdge,System.Collections.Generic.List{Orbita.VA.Funciones.OEdge})">
             <summary>
             Decide si un edge candidato es válido y su puntuación, con cada uno de los edges del array candidatos. En caso afirmativo lo añade.
             </summary>
@@ -1290,21 +1295,21 @@
             <param name="listaCandidatos">Lista de candidatos previos</param>
             <returns>Número de resultados añadidos</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.EvaluarCandidatoSingle(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge)">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.EvaluarCandidatoSingle(Orbita.VA.Funciones.OEdge)">
             <summary>
             Decide si un edge candidato es válido y su puntuación. En caso afirmativo lo añade
             </summary>
             <param name="candidato">Edge candidato</param>
             <returns>Cierto si el edge se ha añadido</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.Puntuar(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult)">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.Puntuar(Orbita.VA.Funciones.OEdgeResult)">
             <summary>
             Puntua un candidato a edge en función de los parámetros de puntuación activos del algoritmo
             </summary>
             <param name="resultado">Resultado a puntuar</param>
             <returns>Puntuación según todos los métodos activos</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.Centroide(System.Int32,System.Int32,Emgu.CV.Image{Emgu.CV.Structure.Gray,System.Single})">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.Centroide(System.Int32,System.Int32,System.Single[0:,0:,0:])">
             <summary>
             Obtiene el centroide (promedio) en x, en un intervalo dado
             </summary>
@@ -1312,7 +1317,7 @@
             <param name="fin">Final del intervalo</param>
             <returns>Punto en X donde se encuentra el centroide</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.InterpolacionLineal(System.Single,Emgu.CV.Image{Emgu.CV.Structure.Gray,System.Single})">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.InterpolacionLineal(System.Single,System.Single[0:,0:,0:])">
             <summary>
             Devuelve el valor interpolado para xPos en el array
             </summary>
@@ -1320,89 +1325,89 @@
             <param name="array">Función</param>
             <returns>Valor interpolado en Y</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.AgregarMetodoPuntuacion(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OMetodoPuntuacion)">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.AgregarMetodoPuntuacion(Orbita.VA.Funciones.OMetodoPuntuacion)">
             <summary>
             Intenta añadir un nuevo método de puntuación a la lista
             </summary>
             <param name="met">Método de puntuación a añadir</param>
             <returns>Cierto si se pudo añadir</returns>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.EdgeResults">
+        <member name="P:Orbita.VA.Funciones.OrbitaCaliper.EdgeResults">
             <summary>
             Obtiene el listado de resultados
             </summary>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.BuscaPares">
+        <member name="P:Orbita.VA.Funciones.OrbitaCaliper.BuscaPares">
             <summary>
             Obtiene si el OrbitaCaliper está configurado para encontrar pares de edges
             </summary>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.NumeroDatos">
+        <member name="P:Orbita.VA.Funciones.OrbitaCaliper.NumeroDatos">
             <summary>
             Obtiene la cantidad de puntos del caliper
             </summary>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.DatosFiltrados">
+        <member name="P:Orbita.VA.Funciones.OrbitaCaliper.DatosFiltrados">
             <summary>
             Obtiene los puntos del OrbitaCaliper
             </summary>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OrbitaCaliper.DatosContraste">
+        <member name="P:Orbita.VA.Funciones.OrbitaCaliper.DatosContraste">
             <summary>
             Obtiene los puntos de la proyección
             </summary>
         </member>
-        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize">
+        <member name="T:Orbita.VA.Funciones.FilterSize">
             <summary>
             Tipos de filtro para detección de edges disponibles. Los filtros son simétricos del tipo -1,0,+1
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter3">
+        <member name="F:Orbita.VA.Funciones.FilterSize.filter3">
             <summary>
             Filtro de tamaño 3: -1,0,+1
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter5">
+        <member name="F:Orbita.VA.Funciones.FilterSize.filter5">
             <summary>
             Filtro de tamaño 5: -1,-1,0,+1,+1
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter7">
+        <member name="F:Orbita.VA.Funciones.FilterSize.filter7">
             <summary>
             Filtro de tamaño 7: -1,-1,-1,0,+1,+1,+1
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter9">
+        <member name="F:Orbita.VA.Funciones.FilterSize.filter9">
             <summary>
             Filtro de tamaño 9: -1,-1,-1,-1,0,+1,+1,+1,+1
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter11">
+        <member name="F:Orbita.VA.Funciones.FilterSize.filter11">
             <summary>
             Filtro de tamaño 11: -1,-1,-1,-1,-1,0,+1,+1,+1,+1,+1
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter13">
+        <member name="F:Orbita.VA.Funciones.FilterSize.filter13">
             <summary>
             Filtro de tamaño 13: -1,-1,-1,-1,-1,-1,0,+1,+1,+1,+1,+1,+1
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter15">
+        <member name="F:Orbita.VA.Funciones.FilterSize.filter15">
             <summary>
             Filtro de tamaño 15: -1,-1,-1,-1,-1,-1,-1,0,+1,+1,+1,+1,+1,+1,+1
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter17">
+        <member name="F:Orbita.VA.Funciones.FilterSize.filter17">
             <summary>
             Filtro de tamaño 17: -1,-1,-1,-1,-1,-1,-1,-1,0,+1,+1,+1,+1,+1,+1,+1,+1
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter19">
+        <member name="F:Orbita.VA.Funciones.FilterSize.filter19">
             <summary>
             Filtro de tamaño 19: -1,-1,-1,-1,-1,-1,-1,-1,-1,0,+1,+1,+1,+1,+1,+1,+1,+1,+1
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.FilterSize.filter21">
+        <member name="F:Orbita.VA.Funciones.FilterSize.filter21">
             <summary>
             Filtro de tamaño 21: -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,+1,+1,+1,+1,+1,+1,+1,+1,+1,+1
             </summary>
@@ -1519,7 +1524,30 @@
             <param name="areaDestino">Area destino</param>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Proyeccion``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,Emgu.CV.Matrix{System.Single}@)">
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.ObtenerPlano``1(Orbita.VA.Comun.OImagenOpenCVColor{``0},Orbita.VA.Comun.OPlanoBGR)">
+            <summary>
+            Obtiene el plano (del espacio BGR) pasado como parámetro
+            </summary>
+            <param name="input">Imagen de entrada</param>
+            <param name="plano">Plano a extraer</param>
+            <returns>Plano de la imagen indicado</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Reducir``1(Orbita.VA.Comun.OImagenOpenCVMonocromo{``0})">
+            <summary>
+            Calcula la media de los contrastes de la imagen obteniendo una única fila
+            </summary>
+            <param name="input">Imagen de origen</param>
+            <returns>Estructura imagen con una única fila que almacena los valores de contraste medios</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Binarizar``1(Orbita.VA.Comun.OImagenOpenCVColor{``0},System.Int32)">
+            <summary>
+            Binariza una imagen utilizando un umbral
+            </summary>
+            <param name="input">Imagen de entrada</param>
+            <param name="umbral">Umbral de binarización</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Proyeccion``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF)">
             <summary>
             Realiza una proyección de un area de la imagen en un rectangulo
             </summary>
@@ -1529,10 +1557,9 @@
             <param name="puntoO">Punto de origen de la proyección</param>
             <param name="puntoX">Punto extremo en ancho de la proyección</param>
             <param name="puntoY">Punto extremo en alto de la proyección</param>
-            <param name="sourceMat">Matriz de transformación utilizada para realiar la proyección. Sirve para deshacer la proyección</param>
             <returns>Proyección rectangular del area especificada</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Proyeccion``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},Emgu.CV.Matrix{System.Single})">
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Proyeccion``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},Emgu.CV.Matrix{System.Single},System.Boolean)">
             <summary>
             Realiza una proyección de un area de la imagen en un rectangulo
             </summary>
@@ -1542,56 +1569,18 @@
             <param name="sourceMat">Matriz de transformación a utilizar en la transformación</param>
             <returns>Proyección rectangular del area especificada</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.ProyeccionInversa``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},Emgu.CV.Matrix{System.Single})">
+        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Proyeccion``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,Emgu.CV.Matrix{System.Single}@)">
             <summary>
-            Realiza una proyección de un area de la imagen en un rectangulo
+            Realiza una proyección de un area de la imagen en un rectangulo, devolviendo la matriz de transformación utilizada
             </summary>
             <typeparam name="TColor">Espacio de color</typeparam>
             <typeparam name="TDepth">Profundidad de color</typeparam>
             <param name="input">Imagen sobre la que se hace la proyección</param>
-            <param name="sourceMat">Matriz de transformación utilizada para la transformación original. Se calculará su inversa</param>
+            <param name="puntoO">Punto de origen de la proyección</param>
+            <param name="puntoX">Punto extremo en ancho de la proyección</param>
+            <param name="puntoY">Punto extremo en alto de la proyección</param>
+            <param name="sourceMat">Matriz de transformación utilizada para realiar la proyección. Sirve para deshacer la proyección</param>
             <returns>Proyección rectangular del area especificada</returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.ObtenerPlano``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},Orbita.VA.Comun.OPlanoBGR)">
-            <summary>
-            Obtiene el plano (del espacio BGR) pasado como parámetro
-            </summary>
-            <param name="input">Imagen de entrada</param>
-            <param name="plano">Plano a extraer</param>
-            <returns>Plano de la imagen indicado</returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Reducir(Orbita.VA.Comun.OImagenOpenCVMonocromo)">
-            <summary>
-            Calcula la media de los contrastes de la imagen obteniendo una única fila
-            </summary>
-            <param name="input">Imagen de origen</param>
-            <returns>Estructura imagen con una única fila que almacena los valores de contraste medios</returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Redimensionar``2(Orbita.VA.Comun.OImagenOpenCV{``0,``1},System.Double)">
-            <summary>
-            Redimensiona una imagen interpolando mediante el vecino más próximo
-            </summary>
-            <typeparam name="TColor">Espacio de color</typeparam>
-            <typeparam name="TDepth">Profundidad de color</typeparam>
-            <param name="input">Imagen de entrada</param>
-            <param name="factor">Factor de redimensionado. Mayor que uno agranda, menor que uno reduce; menor o igual que 0 no hace nada</param>
-            <returns>Imagen redimensionada</returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Dilate(Orbita.VA.Comun.OImagenOpenCVMonocromo,System.Int32)">
-            <summary>
-            Dilata una imagen mediante una matriz 3x3, las veces indicadas
-            </summary>
-            <param name="input">Imagen de entrada</param>
-            <param name="iteraciones">Iteraciones de dilatación con matriz 3x3</param>
-            <returns>Imagen dilatada</returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OFiltradoOpenCV.Binarizar(Orbita.VA.Comun.OImagenOpenCVColor,System.Int32)">
-            <summary>
-            Binariza una imagen utilizando un umbral
-            </summary>
-            <param name="input">Imagen de entrada</param>
-            <param name="umbral">Umbral de binarización</param>
-            <returns></returns>
         </member>
         <member name="T:Orbita.VA.Funciones.OFuncionesVisionManager">
             <summary>
@@ -1917,24 +1906,24 @@
             Constuctor de la clase
             </summary>
         </member>
-        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OScoringFunction">
+        <member name="T:Orbita.VA.Funciones.OScoringFunction">
             <summary>
             Interfaz de puntuación de una variable
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OScoringFunction.MapScore(System.Double)">
+        <member name="M:Orbita.VA.Funciones.OScoringFunction.MapScore(System.Double)">
             <summary>
             Mapeo de una puntuación en crudo
             </summary>
             <param name="rawScore">Puntuación en crudo</param>
             <returns>Puntuación mapeada</returns>
         </member>
-        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.SingleSideScoringFunction">
+        <member name="T:Orbita.VA.Funciones.SingleSideScoringFunction">
             <summary>
             Clase que implementa una función de puntuación simple
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.SingleSideScoringFunction.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:Orbita.VA.Funciones.SingleSideScoringFunction.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             Constructor de la clase, y0 e y1 deben encontrarse entre 0 y 1. X1 se debe encontrar entre Xc y X0
             </summary>
@@ -1944,19 +1933,19 @@
             <param name="y0">Puntuación máxima</param>
             <param name="y1">Puntuación mínima</param>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.SingleSideScoringFunction.MapScore(System.Double)">
+        <member name="M:Orbita.VA.Funciones.SingleSideScoringFunction.MapScore(System.Double)">
             <summary>
             Mapea un valor crudo según la función de puntuación definida
             </summary>
             <param name="rawScore">Valor crudo</param>
             <returns>Puntuación mapeada</returns>
         </member>
-        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.TwoSidedScoringFunction">
+        <member name="T:Orbita.VA.Funciones.TwoSidedScoringFunction">
             <summary>
             Clase que implementa una función de puntuación de dos lados
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.TwoSidedScoringFunction.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:Orbita.VA.Funciones.TwoSidedScoringFunction.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             Constructor
             </summary>
@@ -1971,7 +1960,7 @@
             <param name="y0h">Parámetro Y0 de la parte derecha</param>
             <param name="y1h">Parámetro Y1 de la parte derecha</param>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.TwoSidedScoringFunction.MapScore(System.Double)">
+        <member name="M:Orbita.VA.Funciones.TwoSidedScoringFunction.MapScore(System.Double)">
             <summary>
             Mapea un valor crudo según una función de puntuación
             
@@ -2002,67 +1991,79 @@
             <param name="sourceMat">Matriz de transformación</param>
             <returns>Coordenadas en destino</returns>
         </member>
-        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OMetodoPuntuacion">
+        <member name="M:Orbita.VA.Funciones.OSegmentacionOpenCV.FindLine(Orbita.VA.Comun.OImagenOpenCVMonocromo{System.Byte},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Int32,Orbita.VA.Funciones.FilterSize)">
+            <summary>
+            Encuentra una línea en una imagen
+            </summary>
+            <param name="input">Imagen de entrada</param>
+            <param name="origen">Punto de origen</param>
+            <param name="extremoX">Extremo hasta el cual buscar la línea</param>
+            <param name="extremoY">Eje a lo largo del cual se desplaza la línea</param>
+            <param name="numCalipers">Número de objetos OrbitaCaliper a utilizar (puntos para el dibujado de la línea)</param>
+            <param name="kernel">Filtro para los OrbitaCaliper</param>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OMetodoPuntuacion">
             <summary>
             Clase abstracta que define la interfaz de un método de puntuación
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OMetodoPuntuacion.onlyPairMethod">
+        <member name="F:Orbita.VA.Funciones.OMetodoPuntuacion.onlyPairMethod">
             <summary>
             Indica si el método de puntuación se aplica sólamente a pares de edges
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OMetodoPuntuacion.funcionPuntuacion">
+        <member name="F:Orbita.VA.Funciones.OMetodoPuntuacion.funcionPuntuacion">
             <summary>
             Función de puntuación del método
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OMetodoPuntuacion.Puntuar(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult)">
+        <member name="M:Orbita.VA.Funciones.OMetodoPuntuacion.Puntuar(Orbita.VA.Funciones.OEdgeResult)">
             <summary>
             Método que devuelve la puntuación de un candidato
             </summary>
             <param name="candidato">Resultado a puntuar</param>
             <returns>Puntuación numérica del resultado</returns>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OMetodoPuntuacion.OnlyPairMethod">
+        <member name="P:Orbita.VA.Funciones.OMetodoPuntuacion.OnlyPairMethod">
             <summary>
             Obtiene si se trata de un método para puntuar únicamente pares de edges
             </summary>
         </member>
-        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.SizeDiffNormMethod">
+        <member name="T:Orbita.VA.Funciones.SizeDiffNormMethod">
             <summary>
             Método de puntuación por tamaño. Se basa en el ancho entre un par de edge 
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.SizeDiffNormMethod.edgePairWidth">
+        <member name="F:Orbita.VA.Funciones.SizeDiffNormMethod.edgePairWidth">
             <summary>
             Ancho del par de edges
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.SizeDiffNormMethod.#ctor(System.Double)">
+        <member name="M:Orbita.VA.Funciones.SizeDiffNormMethod.#ctor(System.Double)">
             <summary>
             Constructor del método de puntuación
             </summary>
             <param name="edgePairWidth">Ancho de máxima puntuación</param>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.SizeDiffNormMethod.Puntuar(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult)">
+        <member name="M:Orbita.VA.Funciones.SizeDiffNormMethod.Puntuar(Orbita.VA.Funciones.OEdgeResult)">
             <summary>
             Sobreescritura del método de puntuación
             </summary>
             <param name="candidato">Resultado candidato</param>
             <returns>Puntuación numérica</returns>
         </member>
-        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.ContrastMethod">
+        <member name="T:Orbita.VA.Funciones.ContrastMethod">
             <summary>
             Método de puntuación por contraste. Se basa en el contraste normalizado de un edge
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.ContrastMethod.#ctor">
+        <member name="M:Orbita.VA.Funciones.ContrastMethod.#ctor">
             <summary>
             Constructor del método de puntuación
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.ContrastMethod.Puntuar(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult)">
+        <member name="M:Orbita.VA.Funciones.ContrastMethod.Puntuar(Orbita.VA.Funciones.OEdgeResult)">
             <summary>
             Método sobreescrito de puntuación
             </summary>
@@ -2606,114 +2607,114 @@
             Ruta en disco de la imagen de entrada
             </summary>
         </member>
-        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult">
+        <member name="T:Orbita.VA.Funciones.OEdgeResult">
             <summary>
             Implementa el resultado de una detección de edges por parte de OrbitaCaliper
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.edge1">
+        <member name="F:Orbita.VA.Funciones.OEdgeResult.edge1">
             <summary>
             Edge detectado (o primer edge del par)
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.edge2">
+        <member name="F:Orbita.VA.Funciones.OEdgeResult.edge2">
             <summary>
             Segundo edge del par
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.pair">
+        <member name="F:Orbita.VA.Funciones.OEdgeResult.pair">
             <summary>
             Determina si se trata de un par de edges o de un sigle edge
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.resultScore">
+        <member name="F:Orbita.VA.Funciones.OEdgeResult.resultScore">
             <summary>
             Puntuación del resultado
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.#ctor(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge)">
+        <member name="M:Orbita.VA.Funciones.OEdgeResult.#ctor(Orbita.VA.Funciones.OEdge)">
             <summary>
             Constructor para un resultado single edge
             </summary>
             <param name="edge">Edge a incluir en el resultado</param>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.ToString">
+        <member name="M:Orbita.VA.Funciones.OEdgeResult.ToString">
             <summary>
             Sobreescritura del método ToString
             </summary>
             <returns></returns>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.Edge1">
+        <member name="P:Orbita.VA.Funciones.OEdgeResult.Edge1">
             <summary>
             Obtiene el edge resultado (primer edge en caso de ser un par)
             </summary>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.Edge2">
+        <member name="P:Orbita.VA.Funciones.OEdgeResult.Edge2">
             <summary>
             Obtiene o establece el segundo edge del par
             </summary>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.IsPair">
+        <member name="P:Orbita.VA.Funciones.OEdgeResult.IsPair">
             <summary>
             Obtiene si el resultado es un par de edges
             </summary>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.ResultScore">
+        <member name="P:Orbita.VA.Funciones.OEdgeResult.ResultScore">
             <summary>
             Obtiene la puntuación del resultado
             </summary>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.MeasuredWidth">
+        <member name="P:Orbita.VA.Funciones.OEdgeResult.MeasuredWidth">
             <summary>
             Obtiene el ancho del par
             </summary>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.Position">
+        <member name="P:Orbita.VA.Funciones.OEdgeResult.Position">
             <summary>
             Obtiene la posición del resultado
             </summary>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdgeResult.ContrasteAbsoluto">
+        <member name="P:Orbita.VA.Funciones.OEdgeResult.ContrasteAbsoluto">
             <summary>
             Obtiene el contraste del resultado (en valor absoluto)
             </summary>
         </member>
-        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge">
+        <member name="T:Orbita.VA.Funciones.OEdge">
             <summary>
             Estructura que almacena datos de un Edge
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.indice">
+        <member name="F:Orbita.VA.Funciones.OEdge.indice">
             <summary>
             Índice del edge
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.score">
+        <member name="F:Orbita.VA.Funciones.OEdge.score">
             <summary>
             Puntuación del edge
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.position">
+        <member name="F:Orbita.VA.Funciones.OEdge.position">
             <summary>
             Posición del edge respecto al centro del caliper
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.x">
+        <member name="F:Orbita.VA.Funciones.OEdge.x">
             <summary>
             Posición del edge sobre el eje x
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.y">
+        <member name="F:Orbita.VA.Funciones.OEdge.y">
             <summary>
             Posición del edge sobre el eje y
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.contraste">
+        <member name="F:Orbita.VA.Funciones.OEdge.contraste">
             <summary>
             Contraste medido del edge
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.#ctor(System.Int32,System.Single,System.Drawing.PointF,System.Double)">
+        <member name="M:Orbita.VA.Funciones.OEdge.#ctor(System.Int32,System.Single,System.Drawing.PointF,System.Double)">
             <summary>
             Crea un nuevo edge con la puntuación vacia
             </summary>
@@ -2722,7 +2723,7 @@
             <param name="coordenadas">Coordenadas donde se encuentra el edge</param>
             <param name="contraste">Contraste encontrado</param>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.#ctor(System.Int32,System.Single,System.Drawing.PointF,System.Single,System.Single)">
+        <member name="M:Orbita.VA.Funciones.OEdge.#ctor(System.Int32,System.Single,System.Drawing.PointF,System.Single,System.Single)">
             <summary>
             Crea un nuevo edge con la puntuación
             </summary>
@@ -2732,76 +2733,81 @@
             <param name="contraste">Contraste encontrado</param>
             <param name="score">Puntuación del edge</param>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.#ctor(Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge)">
+        <member name="M:Orbita.VA.Funciones.OEdge.#ctor(Orbita.VA.Funciones.OEdge)">
             <summary>
             Crea un nuevo edge en base a otro
             </summary>
             <param name="origen">Edge a copiar</param>
         </member>
-        <member name="M:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.ToString">
+        <member name="M:Orbita.VA.Funciones.OEdge.ToString">
             <summary>
             Método ToString sobreescrito
             </summary>
             <returns></returns>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.Score">
+        <member name="P:Orbita.VA.Funciones.OEdge.Score">
             <summary>
             Obtiene o establece la puntuación del edge
             </summary>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.Position">
+        <member name="P:Orbita.VA.Funciones.OEdge.Position">
             <summary>
             Obtiene la posición del edge respecto al centro del OrbitaCaliper
             </summary>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.X">
+        <member name="P:Orbita.VA.Funciones.OEdge.X">
             <summary>
             Obtiene la posición sobre el eje X del edge
             </summary>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.Y">
+        <member name="P:Orbita.VA.Funciones.OEdge.Y">
             <summary>
             Obtiene la posición sobre el eje Y del edge
             </summary>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.NegroBlanco">
+        <member name="P:Orbita.VA.Funciones.OEdge.NegroBlanco">
             <summary>
             Obtiene si el edge está en una transición negro a blanco
             </summary>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.Contraste">
+        <member name="P:Orbita.VA.Funciones.OEdge.Contraste">
             <summary>
             Obtiene el contraste medido del edge
             </summary>
         </member>
-        <member name="P:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.OEdge.Indice">
+        <member name="P:Orbita.VA.Funciones.OEdge.Indice">
             <summary>
             Obtiene el índice del edge
             </summary>
         </member>
-        <member name="T:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.PolaridadEdges">
+        <member name="T:Orbita.VA.Funciones.PolaridadEdges">
             <summary>
             Enumera los tipos de edges disponibles
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.PolaridadEdges.NegroBlanco">
+        <member name="F:Orbita.VA.Funciones.PolaridadEdges.NegroBlanco">
             <summary>
             Contraste positivo, pasa de negro a blanco
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.PolaridadEdges.BlancoNegro">
+        <member name="F:Orbita.VA.Funciones.PolaridadEdges.BlancoNegro">
             <summary>
             Contraste negativo, pasa de blanco a negro
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.PolaridadEdges.Cualquiera">
+        <member name="F:Orbita.VA.Funciones.PolaridadEdges.Cualquiera">
             <summary>
             Cualquier signo de contraste, sirve para cualquier edge sea cual sea su signo
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.Clases.OpenCV.Herramientas.OrbitaCaliper.PolaridadEdges.Ninguno">
+        <member name="F:Orbita.VA.Funciones.PolaridadEdges.Ninguno">
             <summary>
             Edge no definido, se utiliza para indicar la no existencia de un edge
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Funciones.FiltradoException">
+            <summary>
+            Excepción de filtrado
             </summary>
         </member>
     </members>

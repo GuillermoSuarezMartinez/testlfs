@@ -20,6 +20,530 @@
               búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
             </summary>
         </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._nombreCanal">
+            <summary>
+            Canal comunicaciones remoto
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._remotingPuerto">
+            <summary>
+            Puerto de comunicación de remoting
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._servidor">
+            <summary>
+            Servidor de comunicaciones.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._servidorRemoting">
+            <summary>
+            Servidor remoting
+            </summary>
+        </member>
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._eventWrapper" -->
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._wrapper">
+            <summary>
+            Wrapper del log
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.HilosEstado">
+            <summary>
+            Hilos de estado
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._fechaRecepcionMensajeComs">
+            <summary>
+            Fecha de recepción del mensaje de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._argumentoMensajeComs">
+            <summary>
+            Argumento mensaje de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._segundosReconexion">
+            <summary>
+            Segundos para la reconexión del canal
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._reintentosReconexion">
+            <summary>
+            Reintentos antes de empezar la reconexión
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._estado">
+            <summary>
+            Estado canal
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._segundosEventoEstado">
+            <summary>
+            Segundos para el evento de estado
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._nombreLogger">
+            <summary>
+            Ruta del logger
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Evento de cambio de dato.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.eventWrapper_OrbitaAlarma(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Evento de alarma.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.eventWrapper_OrbitaComm(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Evento de comunicaciones.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.Iniciar">
+            <summary>
+            Incia las comunicaciones con el dispositivo remoto
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.ConectarWrapper">
+            <summary>
+            Conecta con el wrapper de remoting
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.DesconectarWrapper">
+            <summary>
+            Desconectar del wrapper de remoting
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.Conectar(System.Boolean)">
+            <summary>
+            Conectar al servidor vía Remoting.
+            </summary>
+            <param name="estado">Estado de conexión.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.EscribirComs(System.Int32,System.String[],System.Object[])">
+            <summary>
+            Metodo para escribir en el Servidor de Comunicaciones
+            </summary>
+            <param name="dispositivo">ID de dispositivo</param>
+            <param name="variable">Nombre de la variable</param>
+            <param name="valor">Valor a escribir</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.LeerComs(System.Int32,System.String[])">
+            <summary>
+            Metodo para leer en el Servidor de comunicaciones
+            </summary>
+            <param name="dispositivo">ID de dispositivo</param>
+            <param name="variable">Nombre de la variable</param>
+            <returns>Valor leido</returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.Variables(System.Int32)">
+            <summary>
+            Obtiene las variables del Servidor de comunicaciones
+            </summary>
+            <param name="dispositivo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.Alarmas(System.Int32)">
+            <summary>
+            Obtiene las alarmas del Servidor de comunicaciones
+            </summary>
+            <param name="dispositivo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.Dispositivos">
+            <summary>
+            Obtiene los dispositivos del Servidor de comunicaciones
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.IniciarHiloEstadoCanal">
+            <summary>
+            Iniciamos el hilo del estado del canal
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.hilos_OnDespuesAdicionar(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Arranca el hilo de lectura
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.hilo_OnDespuesAccion(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Traza el hilo de lectura
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.GestionEstados">
+            <summary>
+            Proceso para la gestión de estados del componente
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.OEventoClienteComs">
+            <summary>
+            Evento para los cambios de comunicaciones
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.OEventoClienteCambioDato">
+            <summary>
+            Evento para los cambios de dato
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.OEventoClienteAlarma">
+            <summary>
+            Evento para las alarmas
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.OEventoEstadoCanal">
+            <summary>
+            Evento para el estado del canal
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.RemotingPuerto">
+            <summary>
+            Puerto de comunicación de remoting
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.ServidorRemoting">
+            <summary>
+            Servidor de comunicaciones.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.NombreCanal">
+            <summary>
+            Canal comunicaciones remoto
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.SegundosReconexion">
+            <summary>
+            Segundos para la reconexión del canal
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.ReintentosReconexion">
+            <summary>
+            Reintentos antes de empezar la reconexión
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.Estado">
+            <summary>
+            Estado canal
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.SegundosEventoEstado">
+            <summary>
+            Segundos para el evento de estado
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.NombreLogger">
+            <summary>
+            Ruta del logger
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner">
+            <summary>
+            Control para las lectoras de códigos
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.IEscaner">
+            <summary>
+            Interfaz de lectoras de códigos
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.IEscaner.TimerTickHandler(System.Object,System.EventArgs)">
+            <summary>
+            Si pasa el tiempo definido en TiempoAdquisición anula el código
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.IEscaner.AgregarCaracter(System.Char)">
+            <summary>
+            Agrega un carácter
+            </summary>
+            <param name="caracter"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.IEscaner.CompruebaComunicacionLectorCodigoBarras">
+            <summary>
+            método que comprueba la comunicación con el lector de códigos de barra
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.IEscaner.Codigo">
+            <summary>
+            Resultado codigo de barras
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.IEscaner.TiempoAdquisicion">
+            <summary>
+            Tiempo pulsación
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.IEscaner.LongitudCodigo">
+            <summary>
+            Longitud código de barras
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.IEscaner.CodigoValido">
+            <summary>
+            Validez del código
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunicaciones.IEscaner.NuevoCodigo">
+            <summary>
+            Se lanza al obtener un código de barras
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner.Timer">
+            <summary>
+            Timer para leer los dígitos del código
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner.Concatenacion">
+            <summary>
+            Concatena los dígitos del código
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner._tiempoAdquisicion">
+            <summary>
+            Tiempo relativo en el que se ejecuta el timer
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner._longitudCodigo">
+            <summary>
+            Longitud del código de barras
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner._codigo">
+            <summary>
+            Código de barras leído
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner.#ctor">
+            <summary>
+            Constructor de la clase por defecto
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            constructor de la clase al que se le pasa el componente donde se leerá el código
+            </summary>
+            <param name="container"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner.TimerTickHandler(System.Object,System.EventArgs)">
+            <summary>
+            Si pasa el tiempo definido en TimeRate anula el codigo;
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner.AgregarCaracter(System.Char)">
+            <summary>
+            éetodo para agregar un carácter
+            </summary>
+            <param name="caracter"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner.CompruebaComunicacionLectorCodigoBarras">
+            <summary>
+            método que comprueba la comunicación con el lector de códigos de barra
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner.Codigo">
+            <summary>
+            Resultado codigo de barras
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner.TiempoAdquisicion">
+            <summary>
+            Tiempo pulsación
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner.LongitudCodigo">
+            <summary>
+            Longitud codigo de barras
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner.NuevoCodigo">
+            <summary>
+            Se ejecuta cuando obtiene un codigo de barras
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaControlBaseEventosComs.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaControlBaseEventosComs.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaControlBaseEventosComs.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OBaseEventosComs.control">
+            <summary>
+            Control al que está asociada la clase OGSLabel
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OBaseEventosComs.definicionAlarmas">
+            <summary>
+            definición de las propiedades del OrbitaUltraLabel contenido en el control
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OBaseEventosComs.definicionCambioDato">
+            <summary>
+            definición de las propiedades del OrbitaUltraLabel contenido en el control
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OBaseEventosComs.definicionComunicacion">
+            <summary>
+            definición de las propiedades del OrbitaUltraLabel contenido en el control
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OBaseEventosComs.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSLabel
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OBaseEventosComs.InitializeAttributes">
+            <summary>
+            Inicializa los atributos de las propiedades del OrbitaUltraLabel contenido en el control
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OBaseEventosComs.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase OGSLabel
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OBaseEventosComs.Alarmas">
+            <summary>
+            propiedades del OrbitaUltraLabel contenido en el control
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OBaseEventosComs.CambioDato">
+            <summary>
+            propiedades del OrbitaUltraLabel contenido en el control
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OBaseEventosComs.Comunicacion">
+            <summary>
+            propiedades del OrbitaUltraLabel contenido en el control
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.OBaseEventosComs.CsvArrayConverter">
+            <summary>
+            Conversor del array
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.OBaseEventosComs.ControlNuevaDefinicionAlarmas">
+            <summary>
+            Clase de las propiedades del control OrbitaUltraLabel
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OAlarmas.control">
+            <summary>
+            Control al que está asociada la clase OGSLabel
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OAlarmas.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSLabel
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OAlarmas.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase OGSLabel
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.OBaseEventosComs.ControlNuevaDefinicionCambioDato">
+            <summary>
+            Clase de las propiedades del control OrbitaUltraLabel
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OCambioDato.control">
+            <summary>
+            Control al que está asociada la clase OGSLabel
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OCambioDato.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSLabel
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OCambioDato.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase OGSLabel
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.OBaseEventosComs.ControlNuevaDefinicionComunicacion">
+            <summary>
+            Clase de las propiedades del control OrbitaUltraLabel
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OComunicacion.control">
+            <summary>
+            Control al que está asociada la clase OGSLabel
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OComunicacion.#ctor(System.Object)">
+            <summary>
+            Inicializa una nueva instancia de la clase Orbita.Controles.GateSuite.OGSLabel
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OComunicacion.Control">
+            <summary>
+            Obtiene el control al que está asociada la clase OGSLabel
+            </summary>
+        </member>
         <member name="T:Orbita.Controles.Comunicaciones.OrbitaPuertoSerie">
             <summary>
             Control para comprobación del puerto seria
@@ -378,6 +902,164 @@
             </summary>
             <param name="e"></param>
         </member>
+        <member name="F:Orbita.OrbitaControlVideo.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.OrbitaControlVideo.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.OrbitaControlVideo.VideoActual">
+            <summary>
+            Contendra el video a visualizar
+            </summary>
+        </member>
+        <member name="F:Orbita.OrbitaControlVideo.timer">
+            <summary>
+            Timer para controlar el tiempo de reproducción y la barra de progreso.
+            </summary>
+        </member>
+        <member name="F:Orbita.OrbitaControlVideo.tiempoReproduccion">
+            <summary>
+            TimeSpan para obtener los minutos y segundos durante la reproducción;
+            </summary>
+        </member>
+        <member name="F:Orbita.OrbitaControlVideo.tiempoVideo">
+            <summary>
+            TimeSpan para obtener los minutos y segundos de la duración completa del video.
+            </summary>
+        </member>
+        <member name="F:Orbita.OrbitaControlVideo.primeraReproduccion">
+            <summary>
+            Flag para saber si es la primera reproducción, si está a true generaremos los eventos del video.
+            </summary>
+        </member>
+        <member name="F:Orbita.OrbitaControlVideo.ruta">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Orbita.OrbitaControlVideo.Dispose(System.Boolean)">
+            <summary>
+            Dispose para liberar cada unos de los componentes del control, entre ellos el video.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:Orbita.OrbitaControlVideo.DisposeVideo">
+            <summary>
+            Dispose para liberar  el video.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:Orbita.OrbitaControlVideo.InicializaEventos">
+            <summary>
+            Inicializamos los eventos de Starting, Ending y Pausing;
+            </summary>
+        </member>
+        <member name="M:Orbita.OrbitaControlVideo.ConfigurarTimerDeEjecucion">
+            <summary>
+            Configuración del timer.
+            </summary>
+        </member>
+        <member name="M:Orbita.OrbitaControlVideo.scaleToFit(System.Drawing.Size,System.Drawing.Size)">
+            <summary>
+            Escalamos y ajustamos el video para mantener relación aspecto.
+            </summary>
+            <param name="target">Tamaño del contenedor donde queremos adaptar el video</param>
+            <param name="original">Tamaño del video a escalar</param>
+            <returns>El tamaño ajustado al panel</returns>
+        </member>
+        <member name="M:Orbita.OrbitaControlVideo.scaleToFitSmart(System.Drawing.Size,System.Drawing.Size)">
+            <summary>
+            Escalado y ajuste inteligente.
+            </summary>
+            <param name="target">Tamaño del contenedor donde queremos adaptar el video</param>
+            <param name="original">Tamaño del video a escalar</param>
+            <returns>El tamaño ajustado al contenedor. En caso de que el escalado y el ajuste 
+            sean mayores que el original devolvemos el original.</returns>
+        </member>
+        <member name="M:Orbita.OrbitaControlVideo.ActivarBotonesEnPlay">
+            <summary>
+            Activamos el botó de "Pause" y desactivamos el botón de "Play"
+            </summary>
+        </member>
+        <member name="M:Orbita.OrbitaControlVideo.ActivarBotonesEnStop">
+            <summary>
+            Desactivamos el botón pause y activamos el botón de "Play"
+            </summary>
+        </member>
+        <member name="M:Orbita.OrbitaControlVideo.ActivarBotonesEnFin">
+            <summary>
+            Desactivamos los botones stop y pause y activamos el botón de "Play"
+            </summary>
+        </member>
+        <member name="M:Orbita.OrbitaControlVideo.Redimensionar">
+            <summary>
+            Redimensionamos el video según la propiedad "MantenerRelacionAspecto".
+            </summary>
+        </member>
+        <member name="M:Orbita.OrbitaControlVideo.Suspender(System.Windows.Forms.Control,System.Boolean)">
+            <summary>
+            Suspendemos cada uno de los componentes del control.
+            </summary>
+            <param name="controlSuspender"></param>
+            <param name="suspender"></param>
+        </member>
+        <member name="M:Orbita.OrbitaControlVideo.ActualizaLabels(System.Boolean)">
+            <summary>
+            Actualizamos la barra de progreso, el título, la etiqueta de dimensiones y los temporizadores.
+            </summary>
+            <param name="final"></param>
+        </member>
+        <member name="M:Orbita.OrbitaControlVideo.InicializarVideo">
+            <summary>
+            Inicializamos el video llamando a play
+            </summary>
+        </member>
+        <member name="P:Orbita.OrbitaControlVideo.NombreVideo">
+            <summary>
+            Propiedad para añadir título al video.
+            </summary>
+        </member>
+        <member name="P:Orbita.OrbitaControlVideo.PanelGrande">
+            <summary>
+            Propiedad para mostrar el panel con los botones grandes. True para mostrarlo.
+            </summary>
+        </member>
+        <member name="P:Orbita.OrbitaControlVideo.MantenerRelacionAspecto">
+            <summary>
+            Propiedad para mantener la relación aspecto. True para mantener la relación aspecto.
+            </summary>
+        </member>
+        <member name="P:Orbita.OrbitaControlVideo.ReproduccionEnBucle">
+            <summary>
+            Propiedad para poner el video en bucle. True para activar estado en bucle.
+            </summary>
+        </member>
+        <member name="P:Orbita.OrbitaControlVideo.ZoomVideo">
+            <summary>
+            Propiedad para mostrar el zoom del video. True para mostrarlo.
+            </summary>
+        </member>
+        <member name="P:Orbita.OrbitaControlVideo.CerrarZoomVideo">
+            <summary>
+            Propiedad para mostrar cerrar el zoom del video. True para mostrarlo.
+            </summary>
+        </member>
+        <member name="E:Orbita.OrbitaControlVideo.VideoFinEventHandler">
+            <summary>
+            Generamos el evento del video que nos indicará que ha finalizado
+            </summary>
+        </member>
+        <member name="T:Orbita.OrbitaControlVideo.VideoFinHandler">
+            <summary>
+            Generamos el evento del video que nos indicará que ha finalizado
+            </summary>
+        </member>
         <member name="T:Orbita.Controles.Comunicaciones.Custom.OrbitaClienteTCP">
             <summary>
             Código base para clientes TCP
@@ -451,6 +1133,198 @@
             <summary> 
             Método necesario para admitir el Diseñador. No se puede modificar 
             el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492">
+            <summary>
+            Clase para la comunicación con la impresora Tup492
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.IImpresora">
+            <summary>
+            Interfaz para las impresoras
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.IImpresora.Destruir">
+            <summary>
+            Dispose
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.IImpresora.InvocarMetodoImpresion(Orbita.Controles.Comunicaciones.EnumMetodosImpresion)">
+            <summary>
+            Eliminamos los trabajos de la cola de impresion
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.IImpresora.ImprimirTickets(System.Collections.Generic.List{CrystalDecisions.CrystalReports.Engine.ReportDocument})">
+            <summary>
+            Manda tickets a la impresora
+            </summary>
+            <param name="Tickets"></param>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.IImpresora.DocumentosImprimirTotal">
+            <summary>
+            Devulve el total de documentos a imprimir
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.IImpresora.DocumentosImprimirActual">
+            <summary>
+            Devuelve el numero de documento que esta imprimiendo
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunicaciones.IImpresora.OnNuevaImpresion">
+            <summary>
+            Evento que se lanza cuando inicia una nueva impresión
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunicaciones.IImpresora.OnFinalizaImpresion">
+            <summary>
+            Evento que se lanza cuando finaliza la ultima impresión
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunicaciones.IImpresora.OnErrorImpresion">
+            <summary>
+            Evento que se lanza cuando hay un error de impresion
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.NOMBRE_PUERTO_IMPRESORA">
+            <summary>
+            Nombre del puerto de impresora
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.NOMBRE_IMPRESORA">
+            <summary>
+            Indica el nombre de la impresora
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.SETTINGS_PUERTO_IMPRESORA">
+            <summary>
+            Configuracion del puerto. Vacia para USB
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.timerComprobacionColaImpresion">
+            <summary>
+            Timer de comprobacion de la impresion
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.timerComprobacionError">
+            <summary>
+            Timer de comprobacion de los errores de la impresora
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.puertoImpresora">
+            <summary>
+            Puerto de comunicaciones con la impresora
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.estadoImpresora">
+            <summary>
+            Estado privado para la maquina de estados de la impresora
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.errorImpresora">
+            <summary>
+            Estado privado para la maquina de estados de la impresora
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.iDocumentosRestantesEnCola">
+            <summary>
+            Indica los documentos que quedan en la cola de impresion
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.iTotalDocumentosImprimir">
+            <summary>
+            Indica la cantidad de documentos que se envian a imprimir en total
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.iActualDocumentosImprimir">
+            <summary>
+            Indica el numero de documento que se esta imprimiendo
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.ticketsImprimir">
+            <summary>
+            Guarda los tickets que tiene que imprimir
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.bFinMandarImprimir">
+            <summary>
+            Se activa cuando terminamos de mandar los tickets a la impresora
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.Destruir">
+            <summary>
+            Dispose
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.ImprimirTickets(System.Collections.Generic.List{CrystalDecisions.CrystalReports.Engine.ReportDocument})">
+            <summary>
+            Manda tickets a la impresora
+            </summary>
+            <param name="Tickets"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.OnTimerComprobacionColaImpresion(System.Object)">
+            <summary>
+            Timer privado que refresca la cantidad de tuckets en la cola de impresion
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.OnTimerComprobacionError(System.Object)">
+            <summary>
+            Timer de comprobacion de errores
+            </summary>
+            <param name="state"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.InvocarMetodoImpresion(Orbita.Controles.Comunicaciones.EnumMetodosImpresion)">
+            <summary>
+            Eliminamos los trabajos de la cola de impresion
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.Imprimir">
+            <summary>
+            Hilo encargado de mandar a imprimir los tickets
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.StarPrinterStatus">
+            <summary>
+            Devulve los estados de la impresora
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.DocumentosImprimirActual">
+            <summary>
+            Devuelve el numero de documento que esta imprimiendo
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.OnNuevaImpresion">
+            <summary>
+            Evento que se lanza cuando inicia una nueva impresión
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.OnFinalizaImpresion">
+            <summary>
+            Evento que se lanza cuando finaliza la ultima impresión
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunicaciones.OrbitaComponenteTup492.OnErrorImpresion">
+            <summary>
+            Evento que se lanza cuando hay un error de impresion
             </summary>
         </member>
         <member name="T:Orbita.Controles.Comunicaciones.OrbitaClienteComsOPC">
@@ -586,6 +1460,49 @@
             delegado para la escritura
             </summary>
             <param name="Elemento"></param>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.NuevaImpresionEventHandler">
+            <summary>
+            Delegado del evento NuevaImpresionEventHandler
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.FinalizaImpresionEventHandler">
+            <summary>
+            Delegado del evento FinalizaImpresionEventHandler
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.ErrorImpresionEventHandler">
+            <summary>
+            Delegado del evento ErrorImpresionEventHandler
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.ImpresoraEventArgs">
+            <summary>
+            Argumentos de la impresora
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.EnumErrorImpresora">
+            <summary>
+            Errores de la impresora
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.EnumMetodosImpresion">
+            <summary>
+            Métodos de impresión
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunicaciones.NuevoCodigoEventHandler">
+            <summary>
+            Delegado del evento NuevoCodigoEventHandler
+            </summary>
+            <param name="sender"></param>
+            <param name="codigo">código leído</param>
         </member>
         <member name="T:Orbita.Controles.Comunicaciones.FrmDetalle">
             <summary>
@@ -842,6 +1759,23 @@
             <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
         </member>
         <member name="M:Orbita.Controles.Comunicaciones.OrbitaClienteComsESPhoenixILBK48.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaEstadoCanal.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaEstadoCanal.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaEstadoCanal.InitializeComponent">
             <summary> 
             Método necesario para admitir el Diseñador. No se puede modificar 
             el contenido del método con el editor de código.
@@ -1250,6 +2184,41 @@
             el contenido del método con el editor de código.
             </summary>
         </member>
+        <member name="T:Orbita.Controles.Comunicaciones.EnumEstadosImpresora">
+            <summary>
+            Enumarado de la maquina de estados para controlar la impresion de tickets
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.EnumEstadosImpresora.Inicial">
+            <summary>
+            Estado en el que no se ha empezado a imprimir
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.EnumEstadosImpresora.Imprimiendo">
+            <summary>
+            Estado en el que esta imprimiendo ticket
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.EnumEstadosImpresora.Transicion">
+            <summary>
+            Estado en el que ha terminado de imprimir y sale por el presentador
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.EnumEstadosImpresora.TicketFuera">
+            <summary>
+            Estado en el que el ticket se queda en el presentador
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.EnumEstadosImpresora.Final">
+            <summary>
+            Fin de impresion de todos los tickets
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.EnumEstadosImpresora.Error">
+            <summary>
+            Contempla el caso en el que tengamos un error en la impresora
+            </summary>
+        </member>
         <member name="T:Orbita.Controles.Comunicaciones.OrbitaVisorDiferido">
             <summary>
             Control para visor de trazas diferidas
@@ -1440,80 +2409,69 @@
             Tamaño del fichero visualizado.
             </summary>
         </member>
-        <member name="T:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal">
+        <member name="T:Orbita.Controles.Comunicaciones.OrbitaComponenteMonitor">
             <summary>
-            Configuración del canal TCP
+            Clase para la gestión remota de la pantalla
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.#ctor">
+        <member name="T:Orbita.Controles.Comunicaciones.IMonitor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaListBox.
+            Interfaz encargada de apagar y encender un monitor
+            </summary>
+            <summary>
+            Interfaz encargada de apagar y encender un monitor
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.components">
+        <member name="M:Orbita.Controles.Comunicaciones.IMonitor.ApagaPantalla(System.Windows.Forms.Form)">
+            <summary>
+            método que apaga la pantalla
+            </summary>
+            <param name="formulario">formulario</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.IMonitor.EncenderPantalla(System.Windows.Forms.Form)">
+            <summary>
+            método que enciende la pantalla
+            </summary>
+            <param name="formulario">formulario</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteMonitor.SendMessage(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            envía el mensaje a user.dll
+            </summary>
+            <param name="hWnd">formulario</param>
+            <param name="hMsg">comando del sistema</param>
+            <param name="wParam">parámetrod predefinido por MSDN para el envío de mensaje</param>
+            <param name="lParam">parámetro para encender o apagar</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteMonitor.ApagaPantalla(System.Windows.Forms.Form)">
+            <summary>
+            método que apaga la pantalla
+            </summary>
+            <param name="formulario">formulario</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteMonitor.EncenderPantalla(System.Windows.Forms.Form)">
+            <summary>
+            método que enciende la pantalla
+            </summary>
+            <param name="formulario">formulario</param>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaComponenteMonitor.components">
             <summary>
             Variable del diseñador requerida.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.Dispose(System.Boolean)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteMonitor.Dispose(System.Boolean)">
             <summary> 
             Limpiar los recursos que se estén utilizando.
             </summary>
             <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.InitializeComponent">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaComponenteMonitor.InitializeComponent">
             <summary>
-            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
             </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.OI">
-            <summary>
-            Propiedad para los controles de órbita
-            </summary>
-        </member>
-        <member name="T:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.ControlNuevaDefinicion">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Orbita.Controles.Comunicaciones.OConfiguracionCanal">
-            <summary>
-            Configuración del canal TCP
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OConfiguracionCanal.#ctor(System.Object)">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OListBox.
-            </summary>
-            <param name="control"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OConfiguracionCanal.ResetPuerto">
-            <summary>
-            Sobrecarga del puerto
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OConfiguracionCanal.ShouldSerializePuerto">
-            <summary>
-            Configuración del puerto
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OConfiguracionCanal.ToString">
-            <summary>
-            Sobreescritura para convertir a string
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OConfiguracionCanal.Puerto">
-            <summary>
-            Puerto TCP
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.ControlNuevaDefinicion.#ctor(Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal)">
-            <summary>
-            
-            </summary>
-            <param name="sender"></param>
         </member>
     </members>
 </doc>

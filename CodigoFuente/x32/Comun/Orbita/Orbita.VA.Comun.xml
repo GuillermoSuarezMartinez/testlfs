@@ -4609,12 +4609,12 @@
             Retorna la profundidad imagen
             </summary>
         </member>
-        <member name="T:Orbita.VA.Comun.OImagenOpenCVColor">
+        <member name="T:Orbita.VA.Comun.OImagenOpenCVColor`1">
             <summary>
             Imagen a color de OpenCV
             </summary>
         </member>
-        <member name="T:Orbita.VA.Comun.OImagenOpenCVMonocromo">
+        <member name="T:Orbita.VA.Comun.OImagenOpenCVMonocromo`1">
             <summary>
             Imagen monocromo de OpenCV
             </summary>

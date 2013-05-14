@@ -4,6 +4,16 @@
         <name>Orbita.Controles.Shared</name>
     </assembly>
     <members>
+        <member name="T:Orbita.Controles.Shared.OrbitaUserControl">
+            <summary>
+            Proporciona un control vacío que se puede usar para crear otros controles.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Shared.OrbitaUserControl.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Shared.OrbitaUserControl.
+            </summary>
+        </member>
         <member name="F:Orbita.Controles.Shared.OrbitaUserControl.components">
             <summary> 
             Variable del diseñador requerida.
@@ -18,11 +28,6 @@
         <member name="M:Orbita.Controles.Shared.OrbitaUserControl.InitializeComponent">
             <summary> 
             Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Shared.OrbitaUserControl.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Shared.OrbitaUserControl.
             </summary>
         </member>
     </members>

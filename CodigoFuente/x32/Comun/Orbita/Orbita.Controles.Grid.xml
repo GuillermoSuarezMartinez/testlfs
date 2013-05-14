@@ -42,10 +42,17 @@
             </summary>
             <param name="control"></param>
         </member>
-        <member name="M:Orbita.Controles.Grid.OControlBase.ResetApariencia">
+        <member name="M:Orbita.Controles.Grid.OControlBase.ShouldSerializeApariencia">
             <summary>
-            Resetear apariencia.
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OControlBase.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
         </member>
         <member name="F:Orbita.Controles.Grid.OUltraGrid.filas">
             <summary>
@@ -102,6 +109,60 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OUltraGrid.
             </summary>
             <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.ShouldSerializeEditable">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.ShouldSerializeOcultarAgrupadorFilas">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.ShouldSerializeCancelarTeclaReturn">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.ShouldSerializeModoActualizacion">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.ShouldSerializeMostrarTitulo">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.ShouldSerializeActivarPrimeraFilaAlFormatear">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.ShouldSerializeFormateado">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.ShouldSerializeDataSource">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OrbitaUltraGrid.ControlNuevaDefinicion.#ctor(Orbita.Controles.Grid.OrbitaUltraGrid)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OrbitaUltraGrid.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
         </member>
         <member name="T:Orbita.Controles.Grid.Configuracion">
             <summary>
@@ -171,11 +232,17 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OCeldas.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Grid.OCeldas.ToString">
+        <member name="M:Orbita.Controles.Grid.OCeldas.ShouldSerializeTipoSeleccion">
             <summary>
-            Determina el número de propiedades modificadas.
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OCeldas.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
         </member>
         <member name="E:Orbita.Controles.Grid.OCeldas.PropertyChanging">
             <summary>
@@ -794,11 +861,23 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OSumario.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Grid.OSumario.ToString">
+        <member name="M:Orbita.Controles.Grid.OSumario.ShouldSerializePosicion">
             <summary>
-            Determina el número de propiedades modificadas.
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OSumario.ShouldSerializeMostrarRecuentoFilas">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OSumario.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
         </member>
         <member name="M:Orbita.Controles.Grid.OColumnaCalculada.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,System.String,System.String)">
             <summary>
@@ -1010,6 +1089,48 @@
             Resetear adorno de texto.
             </summary>
         </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ShouldSerializeColorBorde">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ShouldSerializeColorFondo">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ShouldSerializeColorTexto">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ShouldSerializeEstiloBorde">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ShouldSerializeAlineacionTextoHorizontal">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ShouldSerializeAlineacionTextoVertical">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ShouldSerializeAdornoTexto">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="P:Orbita.Controles.Grid.OAparienciaBase.ColorBorde">
             <summary>
             Determina el color de borde.
@@ -1075,6 +1196,18 @@
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFiltros.
             </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFiltros.ShouldSerializeMostrar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFiltros.ShouldSerializeTipo">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Orbita.Controles.Grid.FrmGuardarArchivo.#ctor">
             <summary>
@@ -1224,6 +1357,78 @@
             </summary>
             <param name="control"></param>
         </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolGestionar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolVer">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolModificar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolAñadir">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolEliminar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolLimpiarFiltros">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolEditar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolExportar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolImprimir">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolEstilo">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolRefrescar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OrbitaUltraGridToolBar.ControlNuevaDefinicion.#ctor(Orbita.Controles.Grid.OrbitaUltraGridToolBar)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OrbitaUltraGridToolBar.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
         <member name="F:Orbita.Controles.Grid.OCabecera.estilo">
             <summary>
             Estilo de cabecera.
@@ -1239,15 +1444,17 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OCabecera.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Grid.OCabecera.ResetEstilo">
+        <member name="M:Orbita.Controles.Grid.OCabecera.ShouldSerializeEstilo">
             <summary>
-            Resetear estilo de la cabecera.
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
             </summary>
+            <returns></returns>
         </member>
-        <member name="M:Orbita.Controles.Grid.OCabecera.ResetMultilinea">
+        <member name="M:Orbita.Controles.Grid.OCabecera.ShouldSerializeMultilinea">
             <summary>
-            Resetar estilo multilínea de la cabecera.
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
             </summary>
+            <returns></returns>
         </member>
         <member name="E:Orbita.Controles.Grid.OCabecera.PropertyChanging">
             <summary>
@@ -1339,6 +1546,12 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilasSeleccionadas.
             </summary>
         </member>
+        <member name="M:Orbita.Controles.Grid.OFilasSeleccionadas.ShouldSerializeConfirmarBorrado">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="F:Orbita.Controles.Grid.OToolClickCollectionEventArgs.filas">
             <summary>
             Colección de filas.
@@ -1399,6 +1612,36 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilas.
             </summary>
         </member>
+        <member name="M:Orbita.Controles.Grid.OFilas.ShouldSerializeMostrarIndicador">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFilas.ShouldSerializeMultiseleccion">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFilas.ShouldSerializeConfirmarBorrado">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFilas.ShouldSerializeAlto">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFilas.ShouldSerializePermitirBorrar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Orbita.Controles.Grid.OFilas.TipoSeleccionFila">
             <summary>
             Delegado útil para que el manejador de evento eliminar ejecute el método de clase adecuado.
@@ -1434,15 +1677,22 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilas.
             </summary>
         </member>
+        <member name="M:Orbita.Controles.Grid.OFilasActivas.ShouldSerializeConfirmarBorrado">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Orbita.Controles.Grid.OCeldasAgrupadas.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OCeldasAgrupadas.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Grid.OCeldasAgrupadas.ResetEstilo">
+        <member name="M:Orbita.Controles.Grid.OCeldasAgrupadas.ShouldSerializeEstilo">
             <summary>
-            Resetear estilo de las celdas agrupadas.
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
             </summary>
+            <returns></returns>
         </member>
         <member name="F:Orbita.Controles.Grid.OPlantilla.identificador">
             <summary>
@@ -1957,6 +2207,36 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnas.
             </summary>
             <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnas.ShouldSerializePermitirOrdenar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnas.ShouldSerializeEstilo">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnas.ShouldSerializeTipoSeleccion">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnas.ShouldSerializeVisibles">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnas.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
         </member>
     </members>
 </doc>
