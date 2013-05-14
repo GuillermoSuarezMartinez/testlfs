@@ -252,7 +252,7 @@ namespace Orbita.Controles.Comunicaciones
             try
             {
                 LogManager.ConfiguracionLogger(Application.StartupPath + @"\" + this._nombreLogger + ".xml");
-                _wrapper = LogManager.GetLogger("wrapper");
+                _wrapper = LogManager.GetLogger("wrapper1");
                 OrbitaConfiguracionCanal._wrapper.Info("Log creado");
                 this.IniciarHiloEstadoCanal();
                 // Establecer la configuración Remoting entre procesos.
@@ -518,7 +518,10 @@ namespace Orbita.Controles.Comunicaciones
                 if (tsEvento.Seconds > this._segundosEventoEstado)
                 {
                     arg.Argumento = this._estado;
-                    OEventoEstadoCanal(arg, this._nombreCanal);
+                    if (OEventoEstadoCanal != null)
+                    {
+                        OEventoEstadoCanal(arg, this._nombreCanal);
+                    }
                     fechaUltimaRecepcion = DateTime.Now;
                 }
 
