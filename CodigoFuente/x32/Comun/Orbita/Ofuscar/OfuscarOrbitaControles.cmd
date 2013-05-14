@@ -15,7 +15,6 @@ IF %resp% == t GOTO Orbita.Controles.ComboEx
 set /p resp="Desea ofuscar el ensamblado actual? (s=si, n=no, t=si a todo): " %=%
 IF %resp% == n GOTO Orbita.Controles.Comunes
 :Orbita.Controles.ComboEx
-@echo Orbita.Controles.Combo.............................................
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.Combo.dll /q/f
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Controles.Combo.xml /q/f
 "%PROGRAMFILES%\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.Controles.Combo32.saproj
