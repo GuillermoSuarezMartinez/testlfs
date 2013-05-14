@@ -210,6 +210,7 @@
   <ItemGroup>
     <Compile Include="Clases\BaseDatos\AppBD.cs" />
     <Compile Include="Clases\Excepciones\AnalisisException.cs" />
+    <Compile Include="Clases\Excepciones\FiltradoException.cs" />
     <Compile Include="Clases\NeuralLabs\ONerualLabsUtils.cs" />
     <Compile Include="Clases\OpenCV\Herramientas\OrbitaCaliper\OEdge.cs" />
     <Compile Include="Clases\OpenCV\Herramientas\OrbitaCaliper\OMetodoPuntuacion.cs" />

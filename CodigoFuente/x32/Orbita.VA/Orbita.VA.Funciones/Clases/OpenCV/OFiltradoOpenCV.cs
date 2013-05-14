@@ -40,7 +40,7 @@ namespace Orbita.VA.Funciones
         /// <param name="puntoDestino3">Punto destino 3</param>
         /// <param name="puntoDestino4">Punto destino 4</param>
         /// <returns></returns>
-        internal static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, PointF puntoDestino1, PointF puntoDestino2, PointF puntoDestino3, PointF puntoDestino4)
+        public static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, PointF puntoDestino1, PointF puntoDestino2, PointF puntoDestino3, PointF puntoDestino4)
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
@@ -87,7 +87,7 @@ namespace Orbita.VA.Funciones
         /// <param name="anchoDestino">Ancho destino</param>
         /// <param name="altoDestino">Alto destino</param>
         /// <returns></returns>
-        internal static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, float xDestino, float yDestino, float anchoDestino, float altoDestino)
+        public static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, float xDestino, float yDestino, float anchoDestino, float altoDestino)
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
@@ -111,7 +111,7 @@ namespace Orbita.VA.Funciones
         /// <param name="puntoOriginal4">Punto origen 4</param>
         /// <param name="areaDestino">Area destino</param>
         /// <returns></returns>
-        internal static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, RectangleF areaDestino)
+        public static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, RectangleF areaDestino)
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
@@ -135,7 +135,7 @@ namespace Orbita.VA.Funciones
         /// <param name="puntoOriginal4">Punto origen 4</param>
         /// <param name="areaDestino">Area destino</param>
         /// <returns></returns>
-        internal static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, Point offsetMarco, RectangleF areaDestino)
+        public static OImagenOpenCV<TColor, TDepth> CorregirPerspectiva<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> imagenOriginal, PointF puntoOriginal1, PointF puntoOriginal2, PointF puntoOriginal3, PointF puntoOriginal4, Point offsetMarco, RectangleF areaDestino)
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
@@ -151,7 +151,6 @@ namespace Orbita.VA.Funciones
             // Corrección de perspectiva
             return imgAmpliada.CorregirPerspectiva(puntoOriginal1Offset, puntoOriginal2Offset, puntoOriginal3Offset, puntoOriginal4Offset, areaDestino);
         }
-
         #endregion
 
         #region Crear Borde
@@ -213,7 +212,7 @@ namespace Orbita.VA.Funciones
             resultado.Image = imgRes;
 
             return resultado;
-        }    
+        }
         #endregion
 
         #region Filtros
@@ -227,8 +226,8 @@ namespace Orbita.VA.Funciones
             where TDepth : new()
         {
             //Convertimos la imagen a Gray
-            Image<Gray,byte> resultOpenCV = new Image<Gray,byte>(input.ConvertToBitmap());
-            
+            Image<Gray, byte> resultOpenCV = new Image<Gray, byte>(input.ConvertToBitmap());
+
             //Filtramos
             OImagenOpenCVMonocromo<byte> result = new OImagenOpenCVMonocromo<byte>();
             result.Image = resultOpenCV.ThresholdBinary(new Gray(umbral), new Gray(255));
@@ -257,12 +256,12 @@ namespace Orbita.VA.Funciones
         /// <param name="puntoX">Punto extremo en ancho de la proyección</param>
         /// <param name="puntoY">Punto extremo en alto de la proyección</param>
         /// <returns>Proyección rectangular del area especificada</returns>
-        public static OImagenOpenCV<TColor, TDepth> Proyeccion<TColor,TDepth>(this OImagenOpenCV<TColor,TDepth> input, PointF puntoO, PointF puntoX, PointF puntoY)
+        public static OImagenOpenCV<TColor, TDepth> Proyeccion<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> input, PointF puntoO, PointF puntoX, PointF puntoY)
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
             Matrix<float> sourceMat = new Matrix<float>(2, 3);
-            OImagenOpenCV<TColor,TDepth> resultado = new OImagenOpenCV<TColor,TDepth>();
+            OImagenOpenCV<TColor, TDepth> resultado = new OImagenOpenCV<TColor, TDepth>();
             resultado.Image = input.Proyeccion(puntoO, puntoX, puntoY, out sourceMat).Image;
             return resultado;
         }
@@ -274,14 +273,14 @@ namespace Orbita.VA.Funciones
         /// <param name="input">Imagen sobre la que se hace la proyección</param>
         /// <param name="sourceMat">Matriz de transformación a utilizar en la transformación</param>
         /// <returns>Proyección rectangular del area especificada</returns>
-        public static OImagenOpenCV<TColor,TDepth> Proyeccion<TColor,TDepth>(this OImagenOpenCV<TColor,TDepth> input, Matrix<float> sourceMat, bool inversa=false)
+        public static OImagenOpenCV<TColor, TDepth> Proyeccion<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> input, Matrix<float> sourceMat, bool inversa = false)
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
-            OImagenOpenCV<TColor,TDepth> result = new OImagenOpenCV<TColor,TDepth>();
+            OImagenOpenCV<TColor, TDepth> result = new OImagenOpenCV<TColor, TDepth>();
 
             //Aplicación de la transformación
-            result.Image = ((Image<TColor, TDepth>)input.Image).WarpAffine<float>(sourceMat, INTER.CV_INTER_NN, (inversa?WARP.CV_WARP_INVERSE_MAP:WARP.CV_WARP_DEFAULT), default(TColor));
+            result.Image = ((Image<TColor, TDepth>)input.Image).WarpAffine<float>(sourceMat, INTER.CV_INTER_NN, (inversa ? WARP.CV_WARP_INVERSE_MAP : WARP.CV_WARP_DEFAULT), default(TColor));
 
             return result;
         }
@@ -363,13 +362,5 @@ namespace Orbita.VA.Funciones
             return resultado;
         }
         #endregion
-        }
-
-    public class FiltradoException : ApplicationException
-            {
-        public FiltradoException(string mensaje)
-            : base(mensaje)
-        {
-        }
     }
 }
