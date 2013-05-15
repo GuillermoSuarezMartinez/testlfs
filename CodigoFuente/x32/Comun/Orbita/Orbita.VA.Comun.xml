@@ -1659,88 +1659,6 @@
             Delegado que de la ejecución del thread
             </summary>
         </member>
-        <member name="T:Orbita.VA.Comun.ORemotingClient`1">
-            <summary>
-            Clase cliente de remoting
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Comun.ORemotingClient`1.CanalCliente">
-            <summary>
-            Canal de Servidor de remoting
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Comun.ORemotingClient`1._Iniciado">
-            <summary>
-            Indica si el servicio está iniciado
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Comun.ORemotingClient`1._IP">
-            <summary>
-            Dirección IP de la cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Comun.ORemotingClient`1._Puerto">
-            <summary>
-            Puerto de comunicación remota
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Comun.ORemotingClient`1._NombreCanal">
-            <summary>
-            Código de la clase
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Comun.ORemotingClient`1._Instancia">
-            <summary>
-            Instancia de la clase remota
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Comun.ORemotingClient`1.#ctor">
-            <summary>
-            Constructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Comun.ORemotingClient`1.#ctor(System.String,System.Net.IPAddress,System.Int32)">
-            <summary>
-            Constructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Comun.ORemotingClient`1.Conectar">
-            <summary>
-            Inicio del servicio
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Comun.ORemotingClient`1.Desconectar">
-            <summary>
-            Fin del servicio
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:Orbita.VA.Comun.ORemotingClient`1.Iniciado">
-            <summary>
-            Indica si el servicio está iniciado
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Comun.ORemotingClient`1.IP">
-            <summary>
-            Dirección IP de la cámara
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Comun.ORemotingClient`1.Puerto">
-            <summary>
-            Puerto de comunicación remota
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Comun.ORemotingClient`1.NombreCanal">
-            <summary>
-            Código de la clase
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Comun.ORemotingClient`1.Instancia">
-            <summary>
-            Instancia de la clase remota
-            </summary>
-        </member>
         <member name="T:Orbita.VA.Comun.OBaseDatosParam">
             <summary>
             Clase estática que configura el acceso a la bases de datos de SQL Server de parametrización.
@@ -2202,17 +2120,6 @@
             Código de la clase
             </summary>
         </member>
-        <member name="T:Orbita.VA.Comun.ORemotingObject">
-            <summary>
-            Clase compartida por remoting
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Comun.ORemotingObject.InitializeLifetimeService">
-            <summary>
-            Inicializa el tiempo de vida para que el objeto no pueda morir
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:Orbita.VA.Comun.OProductorConsumidorThread`1">
             <summary>
             Clase que implementa un consumidor en thread
@@ -2473,6 +2380,88 @@
         <member name="F:Orbita.VA.Comun.EstadoProductorConsumidor.Pausado">
             <summary>
             En pausa
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.ORemotingProxie`1">
+            <summary>
+            Clase cliente de remoting
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORemotingProxie`1.CanalCliente">
+            <summary>
+            Canal de Servidor de remoting
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORemotingProxie`1._Iniciado">
+            <summary>
+            Indica si el servicio está iniciado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORemotingProxie`1._IP">
+            <summary>
+            Dirección IP de la cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORemotingProxie`1._Puerto">
+            <summary>
+            Puerto de comunicación remota
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORemotingProxie`1._NombreCanal">
+            <summary>
+            Código de la clase
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.ORemotingProxie`1._Instancia">
+            <summary>
+            Instancia de la clase remota
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.ORemotingProxie`1.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.ORemotingProxie`1.#ctor(System.String,System.Net.IPAddress,System.Int32)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.ORemotingProxie`1.Conectar">
+            <summary>
+            Inicio del servicio
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.ORemotingProxie`1.Desconectar">
+            <summary>
+            Fin del servicio
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.VA.Comun.ORemotingProxie`1.Iniciado">
+            <summary>
+            Indica si el servicio está iniciado
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.ORemotingProxie`1.IP">
+            <summary>
+            Dirección IP de la cámara
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.ORemotingProxie`1.Puerto">
+            <summary>
+            Puerto de comunicación remota
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.ORemotingProxie`1.NombreCanal">
+            <summary>
+            Código de la clase
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.ORemotingProxie`1.Instancia">
+            <summary>
+            Instancia de la clase remota
             </summary>
         </member>
         <member name="T:Orbita.VA.Comun.OMonitorizacionSistemaManager">
@@ -4452,6 +4441,17 @@
         <member name="P:Orbita.VA.Comun.OGestionMemoriaManager.Count">
             <summary>
             Devuelve el número de objetos residentes en memoria
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.Comun.ORemotingObject">
+            <summary>
+            Clase compartida por remoting
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.ORemotingObject.InitializeLifetimeService">
+            <summary>
+            Inicializa el tiempo de vida para que el objeto no pueda morir
             </summary>
             <returns></returns>
         </member>

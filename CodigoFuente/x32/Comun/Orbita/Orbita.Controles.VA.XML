@@ -4793,6 +4793,11 @@
             Indica la velocidad de adquisición actual
             </summary>
         </member>
+        <member name="F:Orbita.Controles.VA.OrbitaVisorBitmap.PreviousSize">
+            <summary>
+            Tamaño previo del control
+            </summary>
+        </member>
         <member name="F:Orbita.Controles.VA.OrbitaVisorBitmap._MostrarBtnModoPuntero">
             <summary>
             Muestra el botón de modo puntero

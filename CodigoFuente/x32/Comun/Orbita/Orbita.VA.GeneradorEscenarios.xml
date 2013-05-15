@@ -66,6 +66,14 @@
             <param name="codEscenario"></param>
             <param name="claseEscenario"></param>
         </member>
+        <member name="M:Orbita.VA.GeneradorEscenarios.Program.GenerarFuncionesVision(Orbita.VA.GeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.CodeDom.CodeTypeDeclaration)">
+            <summary>
+            Generación de la clase interior al escenario que implementa las variables
+            </summary>
+            <param name="generador"></param>
+            <param name="codEscenario"></param>
+            <param name="claseEscenario"></param>
+        </member>
         <member name="M:Orbita.VA.GeneradorEscenarios.Program.GenerarEstados(Orbita.VA.GeneradorEscenarios.OGeneradorAccesoRapido,System.String,System.String)">
             <summary>
             Generador de estados de una determinada máquina de estados

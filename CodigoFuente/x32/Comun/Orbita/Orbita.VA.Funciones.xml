@@ -1412,6 +1412,13 @@
             Filtro de tamaño 21: -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,0,+1,+1,+1,+1,+1,+1,+1,+1,+1,+1
             </summary>
         </member>
+        <member name="M:Orbita.VA.Funciones.AppBD.GetAliasEscenarioFuncionesVision(System.String)">
+            <summary>
+            Consulta el alias de una escenario de hardware
+            </summary>
+            <param name="codEscenario"></param>
+            <returns></returns>
+        </member>
         <member name="M:Orbita.VA.Funciones.AppBD.GetParametrosFuncionesVision(System.String,System.Boolean)">
             <summary>
             Consulta las parámetros de un determinada función de visión
@@ -1970,6 +1977,11 @@
             </summary>
             <param name="rawScore">Puntuación a mapear</param>
             <returns>Puntuación mapeada</returns>
+        </member>
+        <member name="T:Orbita.VA.Funciones.FiltradoException">
+            <summary>
+            Excepción de filtrado
+            </summary>
         </member>
         <member name="T:Orbita.VA.Funciones.OHerramientasOpenCV">
             <summary>
@@ -2803,11 +2815,6 @@
         <member name="F:Orbita.VA.Funciones.PolaridadEdges.Ninguno">
             <summary>
             Edge no definido, se utiliza para indicar la no existencia de un edge
-            </summary>
-        </member>
-        <member name="T:Orbita.VA.Funciones.FiltradoException">
-            <summary>
-            Excepción de filtrado
             </summary>
         </member>
     </members>

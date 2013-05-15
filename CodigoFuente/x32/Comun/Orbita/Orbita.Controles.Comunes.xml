@@ -833,57 +833,6 @@
             Valor de la fecha Hasta.
             </summary>
         </member>
-        <member name="T:Orbita.Controles.Comunes.OrbitaToolTip">
-            <summary>
-            OrbitaTooltip
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunes.OrbitaToolTip.components">
-            <summary>
-            Variable del diseñador requerida.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaToolTip.Dispose(System.Boolean)">
-            <summary> 
-            Limpiar los recursos que se estén utilizando.
-            </summary>
-            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaToolTip.InitializeComponent">
-            <summary>
-            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaToolTip.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaToolTip.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaToolTip.#ctor(System.ComponentModel.IContainer)">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaToolTip.
-            </summary>
-            <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
-            que contienen cero o más componentes de forma lógica.</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OToolTip.#ctor(System.Object)">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OToolTip.
-            </summary>
-            <param name="control">Control Orbita asociado a la clase actual.</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OToolTip.ToString">
-            <summary>
-            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
-            </summary>
-            <returns>El nombre de tipo completo del objeto.</returns>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaToolTip.ControlNuevaDefinicion.#ctor(Orbita.Controles.Comunes.OrbitaToolTip)">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OrbitaToolTip.ControlNuevaDefinicion.
-            </summary>
-            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
-        </member>
         <member name="M:Orbita.Controles.Comunes.OTextBox.#ctor(System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OTextBox.
@@ -1391,6 +1340,149 @@
             </summary>
             <param name="sender">Representa un control para mostrar una lista de elementos.</param>
         </member>
+        <member name="T:Orbita.Controles.Comunes.OrbitaTecladoNumerico">
+            <summary>
+            Teclado numérico en pantalla
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaTecladoNumerico._ListaTexto">
+            <summary>
+            Lista de seleccion
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.RellenarDesplegable">
+            <summary>
+            Método para rellenar la lista desplegable de los carins
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.OrbitaControlTeclado_Load(System.Object,System.EventArgs)">
+            <summary>
+            Carga del control
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.btn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Evento de clic sobre alguna tecla
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.btnRetrocede_Click(System.Object,System.EventArgs)">
+            <summary>
+            Evento de borrado de caracter
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.btnIntro_Click(System.Object,System.EventArgs)">
+            <summary>
+            Clic en Intro
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.BtnEsc_Click(System.Object,System.EventArgs)">
+            <summary>
+            Evento de pulsación de la telca de escape
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.BtnDropDown_Click(System.Object,System.EventArgs)">
+            <summary>
+            Pulsación de la tecla de desplegable
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.BtnDropDown_Leave(System.Object,System.EventArgs)">
+            <summary>
+            Evento de salida del botón de desplegar
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.GridView_CellClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+            <summary>
+            Evento de clic en una celda del grid
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaTecladoNumerico.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunes.OrbitaTecladoNumerico.BotonIntroClick">
+            <summary>
+            Evento de aceptación
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunes.OrbitaTecladoNumerico.BotonClick">
+            <summary>
+            Evento de aceptación
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunes.OrbitaTecladoNumerico.BotonEscClick">
+            <summary>
+            Evento de cancelación
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.Resultado">
+            <summary>
+            Resultado de la introducción de texto
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.VisualizarEditor">
+            <summary>
+            Indica que se ha de visualizar el editor
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.VisualizarIntro">
+            <summary>
+            Indica que se ha de visualizar la tecla de intro
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.VisualizarEsc">
+            <summary>
+            Indica que se ha de visualizar la tecla de escape
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.VisualizarRet">
+            <summary>
+            Indica que se ha de visualizar la tecla de retroceso
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.VisualizarDropDown">
+            <summary>
+            Indica que se ha de visualizar la tecla del desplegable
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.ListaTexto">
+            <summary>
+            Lista de seleccion
+            </summary>
+        </member>
         <member name="M:Orbita.Controles.Comunes.OUltraDateTimeEditor.#ctor(System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OUltraDateTimeEditor.
@@ -1822,149 +1914,6 @@
         <member name="T:Orbita.Controles.Comunes.AdornoTexto">
             <summary>
             AdornoTexto.
-            </summary>
-        </member>
-        <member name="T:Orbita.Controles.Comunes.OrbitaTecladoNumerico">
-            <summary>
-            Teclado numérico en pantalla
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunes.OrbitaTecladoNumerico._ListaTexto">
-            <summary>
-            Lista de seleccion
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.#ctor">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.RellenarDesplegable">
-            <summary>
-            Método para rellenar la lista desplegable de los carins
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.OrbitaControlTeclado_Load(System.Object,System.EventArgs)">
-            <summary>
-            Carga del control
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.btn_Click(System.Object,System.EventArgs)">
-            <summary>
-            Evento de clic sobre alguna tecla
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.btnRetrocede_Click(System.Object,System.EventArgs)">
-            <summary>
-            Evento de borrado de caracter
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.btnIntro_Click(System.Object,System.EventArgs)">
-            <summary>
-            Clic en Intro
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.BtnEsc_Click(System.Object,System.EventArgs)">
-            <summary>
-            Evento de pulsación de la telca de escape
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.BtnDropDown_Click(System.Object,System.EventArgs)">
-            <summary>
-            Pulsación de la tecla de desplegable
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.BtnDropDown_Leave(System.Object,System.EventArgs)">
-            <summary>
-            Evento de salida del botón de desplegar
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.GridView_CellClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
-            <summary>
-            Evento de clic en una celda del grid
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="F:Orbita.Controles.Comunes.OrbitaTecladoNumerico.components">
-            <summary> 
-            Variable del diseñador requerida.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.Dispose(System.Boolean)">
-            <summary> 
-            Limpiar los recursos que se estén utilizando.
-            </summary>
-            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.InitializeComponent">
-            <summary> 
-            Método necesario para admitir el Diseñador. No se puede modificar 
-            el contenido del método con el editor de código.
-            </summary>
-        </member>
-        <member name="E:Orbita.Controles.Comunes.OrbitaTecladoNumerico.BotonIntroClick">
-            <summary>
-            Evento de aceptación
-            </summary>
-        </member>
-        <member name="E:Orbita.Controles.Comunes.OrbitaTecladoNumerico.BotonClick">
-            <summary>
-            Evento de aceptación
-            </summary>
-        </member>
-        <member name="E:Orbita.Controles.Comunes.OrbitaTecladoNumerico.BotonEscClick">
-            <summary>
-            Evento de cancelación
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.Resultado">
-            <summary>
-            Resultado de la introducción de texto
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.VisualizarEditor">
-            <summary>
-            Indica que se ha de visualizar el editor
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.VisualizarIntro">
-            <summary>
-            Indica que se ha de visualizar la tecla de intro
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.VisualizarEsc">
-            <summary>
-            Indica que se ha de visualizar la tecla de escape
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.VisualizarRet">
-            <summary>
-            Indica que se ha de visualizar la tecla de retroceso
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.VisualizarDropDown">
-            <summary>
-            Indica que se ha de visualizar la tecla del desplegable
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.ListaTexto">
-            <summary>
-            Lista de seleccion
             </summary>
         </member>
     </members>
