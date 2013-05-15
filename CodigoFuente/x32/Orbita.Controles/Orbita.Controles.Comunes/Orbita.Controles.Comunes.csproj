@@ -88,9 +88,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.v11.2.dll</HintPath>
     </Reference>
-    <Reference Include="Orbita.Controles.Contenedores">
-      <HintPath>..\Orbita.Controles.Contenedores\obj\x86\Release\Orbita.Controles.Contenedores.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -113,7 +110,6 @@
     <Compile Include="Clases\Propiedades y métodos\OUltraDockManager.cs" />
     <Compile Include="Clases\Propiedades y métodos\OTextBox.cs" />
     <Compile Include="Clases\Propiedades y métodos\OUltraSplitter.cs" />
-    <Compile Include="Clases\Propiedades y métodos\OToolTip.cs" />
     <Compile Include="Clases\Propiedades y métodos\OUltraCheckEditor.cs" />
     <Compile Include="Clases\Propiedades y métodos\OUltraOptionSet.cs" />
     <Compile Include="Clases\Propiedades y métodos\OUltraDateTimeEditor.cs" />
@@ -259,12 +255,6 @@
     <Compile Include="UC\OrbitaTimer.Designer.cs">
       <DependentUpon>OrbitaTimer.cs</DependentUpon>
     </Compile>
-    <Compile Include="UC\OrbitaToolTip.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UC\OrbitaToolTip.Designer.cs">
-      <DependentUpon>OrbitaToolTip.cs</DependentUpon>
-    </Compile>
     <Compile Include="UC\OrbitaTreeView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -316,6 +306,10 @@
     <None Include="Resources\btnGuardarEstandar24.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Orbita.Controles.Contenedores\Orbita.Controles.Contenedores.csproj">
+      <Project>{B953E685-3E2D-4F93-BB80-805427BBB8A2}</Project>
+      <Name>Orbita.Controles.Contenedores</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orbita.Controles.Shared\Orbita.Controles.Shared.csproj">
       <Project>{D104B7D1-93CB-46AE-8F84-AA68BB3B2C5E}</Project>
       <Name>Orbita.Controles.Shared</Name>

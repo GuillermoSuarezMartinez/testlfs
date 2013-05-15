@@ -29,7 +29,7 @@ namespace Orbita.Controles.Contenedores
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrbitaMdiContainerForm));
-            this.toolTip = new Orbita.Controles.Comunes.OrbitaToolTip(this.components);
+            this.toolTip = new Orbita.Controles.Shared.OrbitaToolTip(this.components);
             this.SuspendLayout();
             // 
             // toolTip
@@ -48,6 +48,6 @@ namespace Orbita.Controles.Contenedores
         }
         #endregion
 
-        protected Comunes.OrbitaToolTip toolTip;
+        protected Shared.OrbitaToolTip toolTip;
     }
 }

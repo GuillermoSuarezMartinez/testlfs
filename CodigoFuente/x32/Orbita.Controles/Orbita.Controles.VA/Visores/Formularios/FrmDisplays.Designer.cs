@@ -80,6 +80,7 @@
             this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Monitorizacion;
             this.MostrarBotones = false;
             this.Name = "FrmDisplays";
+            this.OI.NumeroMaximoFormulariosAbiertos = 0;
             this.RecordarPosicion = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Monitorización de cámaras";

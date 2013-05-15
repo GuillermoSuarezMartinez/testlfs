@@ -320,13 +320,14 @@
             // 
             this.lblMensaje.Image = global::Orbita.Controles.VA.Properties.Resources.ImgChat16;
             this.lblMensaje.Name = "lblMensaje";
+            this.lblMensaje.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.lblMensaje.Size = new System.Drawing.Size(16, 17);
             this.lblMensaje.ToolTipText = "Información sobre la imagen visualizada";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(226, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(195, 17);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // lblFps
@@ -349,6 +350,7 @@
             this.lblAutoScrollPosition.Size = new System.Drawing.Size(61, 17);
             this.lblAutoScrollPosition.Text = "X:0, Y:0";
             this.lblAutoScrollPosition.ToolTipText = "Posición del desplazamiento";
+            this.lblAutoScrollPosition.Visible = false;
             // 
             // lblViewArea
             // 
@@ -357,6 +359,7 @@
             this.lblViewArea.Size = new System.Drawing.Size(111, 17);
             this.lblViewArea.Text = "X:0, Y:0, W:0, H:0";
             this.lblViewArea.ToolTipText = "Tamaño de la imagen";
+            this.lblViewArea.Visible = false;
             // 
             // lblZoom
             // 
@@ -378,6 +381,7 @@
             this.lblSelection.Image = global::Orbita.Controles.VA.Properties.Resources.ImgSeleccion16;
             this.lblSelection.Name = "lblSelection";
             this.lblSelection.Size = new System.Drawing.Size(16, 17);
+            this.lblSelection.Visible = false;
             // 
             // TimerUpdateFps
             // 

@@ -176,9 +176,9 @@
     <None Include="Resources\fondo.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Orbita.Controles.Comunes\Orbita.Controles.Comunes.csproj">
-      <Project>{D66C367A-47B7-4464-93D6-92794E4A57C8}</Project>
-      <Name>Orbita.Controles.Comunes</Name>
+    <ProjectReference Include="..\Orbita.Controles.Shared\Orbita.Controles.Shared.csproj">
+      <Project>{D104B7D1-93CB-46AE-8F84-AA68BB3B2C5E}</Project>
+      <Name>Orbita.Controles.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

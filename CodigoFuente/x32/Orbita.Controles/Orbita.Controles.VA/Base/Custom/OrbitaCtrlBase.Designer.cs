@@ -32,7 +32,7 @@
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
-            this.toolTip = new Orbita.Controles.Comunes.OrbitaToolTip(this.components);
+            this.toolTip = new Orbita.Controles.Shared.OrbitaToolTip(this.components);
             this.PnlInferiorPadre = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.PnlBotonesPadre = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.btnCancelar = new Orbita.Controles.Comunes.OrbitaUltraButton();
@@ -134,7 +134,7 @@
 
         #endregion
 
-        private Orbita.Controles.Comunes.OrbitaToolTip toolTip;
+        private Orbita.Controles.Shared.OrbitaToolTip toolTip;
         protected Contenedores.OrbitaPanel PnlInferiorPadre;
         protected Contenedores.OrbitaPanel PnlBotonesPadre;
         protected Comunes.OrbitaUltraButton btnCancelar;

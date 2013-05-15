@@ -277,11 +277,11 @@ namespace Orbita.Controles.VA
             {
                 foreach (OCamaraBase camara in OCamaraManager.ListaCamaras.Values)
                 {
-                    //if (camara.Habilitado)
+                    if (camara.Habilitado)
                     {
                         string titulo = camara.Nombre + " [" + camara.Fabricante + "]";
                         object objetoImplementado;
-                        if (App.ConstruirClase(camara.EnsambladoClaseImplementadoraDisplay, camara.ClaseImplementadoraDisplay, out objetoImplementado, titulo, camara.Codigo, camara.MaxFrameIntervalVisualizacion, this._ControlCamara, this._VisualizacionEnVivo))
+                        if (App.ConstruirClase(camara.EnsambladoClaseImplementadoraDisplay, camara.ClaseImplementadoraDisplay, out objetoImplementado, titulo, camara.Codigo, camara.MaxFrameIntervalVisualizacion, this._EnlazarCamaras, this._VisualizacionEnVivo))
                         {
                             OrbitaVisorBase display = (OrbitaVisorBase)objetoImplementado;
                             this.AddDisplay(display);

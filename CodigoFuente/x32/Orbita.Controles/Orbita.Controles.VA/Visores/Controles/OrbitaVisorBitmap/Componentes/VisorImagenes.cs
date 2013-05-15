@@ -982,16 +982,22 @@ namespace Orbita.Controles.VA
         /// <returns></returns>
         public PointF GetCurrentPosition(Point location)
         {
-            Point imageOffset = this.GetImageViewPort().Location;
+            float x = 0;
+            float y = 0;
+            try
+            {
+                Point imageOffset = this.GetImageViewPort().Location;
 
-            float x = location.X - imageOffset.X - this.AutoScrollPosition.X;
-            float y = location.Y - imageOffset.Y - this.AutoScrollPosition.Y;
+                x = location.X - imageOffset.X - this.AutoScrollPosition.X;
+                y = location.Y - imageOffset.Y - this.AutoScrollPosition.Y;
 
-            x = x / (float)this.ZoomFactor;
-            y = y / (float)this.ZoomFactor;
+                x = x / (float)this.ZoomFactor;
+                y = y / (float)this.ZoomFactor;
 
-            x = (float)ODecimal.AsegurarRango(x, 0, this.Image.Width);
-            y = (float)ODecimal.AsegurarRango(y, 0, this.Image.Height);
+                x = (float)ODecimal.AsegurarRango(x, 0, this.Image.Width);
+                y = (float)ODecimal.AsegurarRango(y, 0, this.Image.Height);
+            }
+            catch { };
 
             return new PointF(x, y);
         }

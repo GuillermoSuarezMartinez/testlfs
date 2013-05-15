@@ -37,13 +37,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrbitaTecladoNumerico));
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.PnlFondo = new System.Windows.Forms.Panel();
-            this.PnlTop = new System.Windows.Forms.Panel();
-            this.PnlTexto = new System.Windows.Forms.Panel();
-            this.txtResultado = new System.Windows.Forms.TextBox();
-            this.PnlDesplegable = new System.Windows.Forms.Panel();
-            this.BtnDropDown = new System.Windows.Forms.Button();
-            this.PnlRet = new System.Windows.Forms.Panel();
-            this.btnRetrocede = new System.Windows.Forms.Button();
             this.GridView = new System.Windows.Forms.DataGridView();
             this.TableLayoutPanelFondo = new Orbita.Controles.Contenedores.OrbitaTableLayoutPanel();
             this.Panel1Vacio = new Orbita.Controles.Contenedores.OrbitaPanel();
@@ -60,14 +53,21 @@
             this.btn8 = new System.Windows.Forms.Button();
             this.btn9 = new System.Windows.Forms.Button();
             this.btn0 = new System.Windows.Forms.Button();
+            this.PnlTop = new System.Windows.Forms.Panel();
+            this.PnlTexto = new System.Windows.Forms.Panel();
+            this.txtResultado = new System.Windows.Forms.TextBox();
+            this.PnlDesplegable = new System.Windows.Forms.Panel();
+            this.BtnDropDown = new System.Windows.Forms.Button();
+            this.PnlRet = new System.Windows.Forms.Panel();
+            this.btnRetrocede = new System.Windows.Forms.Button();
             this.PnlFondo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
+            this.TableLayoutPanelFondo.SuspendLayout();
+            this.PnlTeclas.SuspendLayout();
             this.PnlTop.SuspendLayout();
             this.PnlTexto.SuspendLayout();
             this.PnlDesplegable.SuspendLayout();
             this.PnlRet.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
-            this.TableLayoutPanelFondo.SuspendLayout();
-            this.PnlTeclas.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlFondo
@@ -80,86 +80,6 @@
             this.PnlFondo.Name = "PnlFondo";
             this.PnlFondo.Size = new System.Drawing.Size(439, 392);
             this.PnlFondo.TabIndex = 6;
-            // 
-            // PnlTop
-            // 
-            this.PnlTop.Controls.Add(this.PnlTexto);
-            this.PnlTop.Controls.Add(this.PnlDesplegable);
-            this.PnlTop.Controls.Add(this.PnlRet);
-            this.PnlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PnlTop.Location = new System.Drawing.Point(0, 0);
-            this.PnlTop.Name = "PnlTop";
-            this.PnlTop.Size = new System.Drawing.Size(439, 96);
-            this.PnlTop.TabIndex = 5;
-            // 
-            // PnlTexto
-            // 
-            this.PnlTexto.Controls.Add(this.txtResultado);
-            this.PnlTexto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlTexto.Location = new System.Drawing.Point(93, 0);
-            this.PnlTexto.Name = "PnlTexto";
-            this.PnlTexto.Padding = new System.Windows.Forms.Padding(3);
-            this.PnlTexto.Size = new System.Drawing.Size(253, 96);
-            this.PnlTexto.TabIndex = 8;
-            // 
-            // txtResultado
-            // 
-            this.txtResultado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtResultado.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtResultado.Font = new System.Drawing.Font("Arial Black", 44F, System.Drawing.FontStyle.Bold);
-            this.txtResultado.Location = new System.Drawing.Point(3, 3);
-            this.txtResultado.Margin = new System.Windows.Forms.Padding(0);
-            this.txtResultado.Name = "txtResultado";
-            this.txtResultado.Size = new System.Drawing.Size(247, 90);
-            this.txtResultado.TabIndex = 3;
-            this.txtResultado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // PnlDesplegable
-            // 
-            this.PnlDesplegable.Controls.Add(this.BtnDropDown);
-            this.PnlDesplegable.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PnlDesplegable.Location = new System.Drawing.Point(0, 0);
-            this.PnlDesplegable.Name = "PnlDesplegable";
-            this.PnlDesplegable.Size = new System.Drawing.Size(93, 96);
-            this.PnlDesplegable.TabIndex = 7;
-            // 
-            // BtnDropDown
-            // 
-            this.BtnDropDown.BackColor = System.Drawing.Color.White;
-            this.BtnDropDown.Font = new System.Drawing.Font("Wingdings 3", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.BtnDropDown.Image = global::Orbita.Controles.Comunes.Properties.Resources.ImgComputerKey90;
-            this.BtnDropDown.Location = new System.Drawing.Point(0, 3);
-            this.BtnDropDown.Name = "BtnDropDown";
-            this.BtnDropDown.Size = new System.Drawing.Size(90, 90);
-            this.BtnDropDown.TabIndex = 4;
-            this.BtnDropDown.Tag = "Desplegar";
-            this.BtnDropDown.Text = "";
-            this.BtnDropDown.UseVisualStyleBackColor = false;
-            this.BtnDropDown.Click += new System.EventHandler(this.BtnDropDown_Click);
-            this.BtnDropDown.Leave += new System.EventHandler(this.BtnDropDown_Leave);
-            // 
-            // PnlRet
-            // 
-            this.PnlRet.Controls.Add(this.btnRetrocede);
-            this.PnlRet.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PnlRet.Location = new System.Drawing.Point(346, 0);
-            this.PnlRet.Name = "PnlRet";
-            this.PnlRet.Size = new System.Drawing.Size(93, 96);
-            this.PnlRet.TabIndex = 6;
-            // 
-            // btnRetrocede
-            // 
-            this.btnRetrocede.BackColor = System.Drawing.Color.White;
-            this.btnRetrocede.Font = new System.Drawing.Font("Wingdings 3", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.btnRetrocede.Image = global::Orbita.Controles.Comunes.Properties.Resources.ImgComputerKey90;
-            this.btnRetrocede.Location = new System.Drawing.Point(0, 3);
-            this.btnRetrocede.Name = "btnRetrocede";
-            this.btnRetrocede.Size = new System.Drawing.Size(90, 90);
-            this.btnRetrocede.TabIndex = 4;
-            this.btnRetrocede.Tag = "Ret";
-            this.btnRetrocede.Text = "";
-            this.btnRetrocede.UseVisualStyleBackColor = false;
-            this.btnRetrocede.Click += new System.EventHandler(this.btnRetrocede_Click);
             // 
             // GridView
             // 
@@ -259,7 +179,7 @@
             this.BtnEsc.BackColor = System.Drawing.Color.White;
             this.BtnEsc.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnEsc.Image = global::Orbita.Controles.Comunes.Properties.Resources.ImgComputerKey90;
-            this.BtnEsc.Location = new System.Drawing.Point(97, 291);
+            this.BtnEsc.Location = new System.Drawing.Point(3, 291);
             this.BtnEsc.Name = "BtnEsc";
             this.BtnEsc.Size = new System.Drawing.Size(90, 90);
             this.BtnEsc.TabIndex = 17;
@@ -415,7 +335,7 @@
             this.btn0.BackColor = System.Drawing.Color.White;
             this.btn0.Font = new System.Drawing.Font("Arial Narrow", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn0.Image = ((System.Drawing.Image)(resources.GetObject("btn0.Image")));
-            this.btn0.Location = new System.Drawing.Point(3, 291);
+            this.btn0.Location = new System.Drawing.Point(97, 291);
             this.btn0.Name = "btn0";
             this.btn0.Size = new System.Drawing.Size(90, 90);
             this.btn0.TabIndex = 11;
@@ -423,6 +343,86 @@
             this.btn0.Text = "0";
             this.btn0.UseVisualStyleBackColor = false;
             this.btn0.Click += new System.EventHandler(this.btn_Click);
+            // 
+            // PnlTop
+            // 
+            this.PnlTop.Controls.Add(this.PnlTexto);
+            this.PnlTop.Controls.Add(this.PnlDesplegable);
+            this.PnlTop.Controls.Add(this.PnlRet);
+            this.PnlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PnlTop.Location = new System.Drawing.Point(0, 0);
+            this.PnlTop.Name = "PnlTop";
+            this.PnlTop.Size = new System.Drawing.Size(439, 96);
+            this.PnlTop.TabIndex = 5;
+            // 
+            // PnlTexto
+            // 
+            this.PnlTexto.Controls.Add(this.txtResultado);
+            this.PnlTexto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlTexto.Location = new System.Drawing.Point(93, 0);
+            this.PnlTexto.Name = "PnlTexto";
+            this.PnlTexto.Padding = new System.Windows.Forms.Padding(3);
+            this.PnlTexto.Size = new System.Drawing.Size(253, 96);
+            this.PnlTexto.TabIndex = 8;
+            // 
+            // txtResultado
+            // 
+            this.txtResultado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtResultado.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtResultado.Font = new System.Drawing.Font("Arial Black", 44F, System.Drawing.FontStyle.Bold);
+            this.txtResultado.Location = new System.Drawing.Point(3, 3);
+            this.txtResultado.Margin = new System.Windows.Forms.Padding(0);
+            this.txtResultado.Name = "txtResultado";
+            this.txtResultado.Size = new System.Drawing.Size(247, 90);
+            this.txtResultado.TabIndex = 3;
+            this.txtResultado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // PnlDesplegable
+            // 
+            this.PnlDesplegable.Controls.Add(this.BtnDropDown);
+            this.PnlDesplegable.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PnlDesplegable.Location = new System.Drawing.Point(0, 0);
+            this.PnlDesplegable.Name = "PnlDesplegable";
+            this.PnlDesplegable.Size = new System.Drawing.Size(93, 96);
+            this.PnlDesplegable.TabIndex = 7;
+            // 
+            // BtnDropDown
+            // 
+            this.BtnDropDown.BackColor = System.Drawing.Color.White;
+            this.BtnDropDown.Font = new System.Drawing.Font("Wingdings 3", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.BtnDropDown.Image = global::Orbita.Controles.Comunes.Properties.Resources.ImgComputerKey90;
+            this.BtnDropDown.Location = new System.Drawing.Point(0, 3);
+            this.BtnDropDown.Name = "BtnDropDown";
+            this.BtnDropDown.Size = new System.Drawing.Size(90, 90);
+            this.BtnDropDown.TabIndex = 4;
+            this.BtnDropDown.Tag = "Desplegar";
+            this.BtnDropDown.Text = "";
+            this.BtnDropDown.UseVisualStyleBackColor = false;
+            this.BtnDropDown.Click += new System.EventHandler(this.BtnDropDown_Click);
+            this.BtnDropDown.Leave += new System.EventHandler(this.BtnDropDown_Leave);
+            // 
+            // PnlRet
+            // 
+            this.PnlRet.Controls.Add(this.btnRetrocede);
+            this.PnlRet.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PnlRet.Location = new System.Drawing.Point(346, 0);
+            this.PnlRet.Name = "PnlRet";
+            this.PnlRet.Size = new System.Drawing.Size(93, 96);
+            this.PnlRet.TabIndex = 6;
+            // 
+            // btnRetrocede
+            // 
+            this.btnRetrocede.BackColor = System.Drawing.Color.White;
+            this.btnRetrocede.Font = new System.Drawing.Font("Wingdings 3", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.btnRetrocede.Image = global::Orbita.Controles.Comunes.Properties.Resources.ImgComputerKey90;
+            this.btnRetrocede.Location = new System.Drawing.Point(0, 3);
+            this.btnRetrocede.Name = "btnRetrocede";
+            this.btnRetrocede.Size = new System.Drawing.Size(90, 90);
+            this.btnRetrocede.TabIndex = 4;
+            this.btnRetrocede.Tag = "Ret";
+            this.btnRetrocede.Text = "";
+            this.btnRetrocede.UseVisualStyleBackColor = false;
+            this.btnRetrocede.Click += new System.EventHandler(this.btnRetrocede_Click);
             // 
             // OrbitaTecladoNumerico
             // 
@@ -435,14 +435,14 @@
             this.Size = new System.Drawing.Size(439, 488);
             this.Load += new System.EventHandler(this.OrbitaControlTeclado_Load);
             this.PnlFondo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
+            this.TableLayoutPanelFondo.ResumeLayout(false);
+            this.PnlTeclas.ResumeLayout(false);
             this.PnlTop.ResumeLayout(false);
             this.PnlTexto.ResumeLayout(false);
             this.PnlTexto.PerformLayout();
             this.PnlDesplegable.ResumeLayout(false);
             this.PnlRet.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
-            this.TableLayoutPanelFondo.ResumeLayout(false);
-            this.PnlTeclas.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

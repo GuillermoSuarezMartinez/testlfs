@@ -761,21 +761,21 @@ namespace Orbita.Controles.VA
                         this.ImagenActual.ConvertFromBitmap(global::Orbita.Controles.VA.Properties.Resources.CamaraDesConectada);
                         this.Visualizar(this.ImagenActual);
                         this.ZoomFit();
-                        this.MostrarMensaje("Cámara desconectada");
+                        this.MostrarMensaje("Desconectada");
                         break;
                     case EstadoConexion.Desconectando:
-                        this.MostrarMensaje("Cámara en proceso de desconexión");
+                        this.MostrarMensaje("En proceso de desconexión");
                         break;
                     case EstadoConexion.Conectado:
                         this.ImagenActual = this.NuevaImagen();
                         this.ImagenActual.ConvertFromBitmap(global::Orbita.Controles.VA.Properties.Resources.CamaraConectada);
                         this.Visualizar(this.ImagenActual);
                         this.ZoomFit();
-                        this.MostrarMensaje("Cámara conectada");
+                        this.MostrarMensaje("Conectada");
                         this.PrimerFoto = false;
                         break;
                     case EstadoConexion.Conectando:
-                        this.MostrarMensaje("Cámara en proceso de conexión");
+                        this.MostrarMensaje("En proceso de conexión");
                         break;
                     case EstadoConexion.ErrorConexion:
                         this.MostrarMensaje("Error de conexión");

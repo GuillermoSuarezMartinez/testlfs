@@ -168,7 +168,8 @@ namespace Orbita.Controles.VA
         /// </summary>
         [Browsable(true),
         Category("Orbita"),
-        Description("Muestra los botones de acción situados en la parte inferior del formulario")]
+        Description("Muestra los botones de acción situados en la parte inferior del formulario"),
+        DefaultValue(true)]
         public bool MostrarBotones
         {
             get { return _MostrarBotones; }
@@ -806,12 +807,15 @@ namespace Orbita.Controles.VA
                     this.EstablecerModoVisualizacion();
                     break;
                 case ModoAperturaFormulario.Monitorizacion:
+                    this.OcultarBotones();
                     this.OcultarBotonAceptar();
                     this.CargarDatosModoMonitorizacion();
                     this.EstablecerModoMonitorizacion();
                     break;
                 case ModoAperturaFormulario.Sistema:
                     this.OcultarBotones();
+                    this.OcultarBotonCancelar();
+                    this.OcultarBotonAceptar();
                     this.CargarDatosModoSistema();
                     this.EstablecerModoSistema();
                     break;
@@ -934,8 +938,6 @@ namespace Orbita.Controles.VA
         protected void OcultarBotones()
         {
             this.PnlInferiorPadre.Visible = this._MostrarBotones;
-            this.OcultarBotonCancelar();
-            this.OcultarBotonAceptar();
         }
         /// <summary>
         /// Establece el estilo de los botones de la barra de título del formulario
