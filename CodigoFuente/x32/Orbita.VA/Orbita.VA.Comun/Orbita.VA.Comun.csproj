@@ -200,7 +200,8 @@
     </Compile>
     <Compile Include="Clases\MemoriaMapeada\OMemoriaMapeada.cs" />
     <Compile Include="Clases\MemoriaMapeada\OMemoriaMapeadaMultiBuffer.cs" />
-    <Compile Include="Clases\Remoting\ORemotingClient.cs" />
+    <Compile Include="Clases\Remoting\ORemotingObject.cs" />
+    <Compile Include="Clases\Remoting\ORemotingProxie.cs" />
     <Compile Include="Clases\Remoting\ORemotingEvent.cs" />
     <Compile Include="Clases\Remoting\ORemotingServer.cs" />
     <Compile Include="Clases\Remoting\ORemotingUtils.cs" />

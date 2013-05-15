@@ -525,7 +525,7 @@ namespace Orbita.VA.Hardware
             OCamaraBase camara;
             if (ListaCamaras.TryGetValue(codigo, out camara))
             {
-                camara.OnNuevaFotografiaCamaraSincrona += delegadoNuevaFotografiaCamara;
+                camara.CrearSuscripcionNuevaFotografiaSincrona(delegadoNuevaFotografiaCamara);
             } 
         }
         /// <summary>
@@ -538,7 +538,7 @@ namespace Orbita.VA.Hardware
             OCamaraBase camara;
             if (ListaCamaras.TryGetValue(codigo, out camara))
             {
-                camara.OnNuevaFotografiaCamaraSincrona -= delegadoNuevaFotografiaCamara;
+                camara.EliminarSuscripcionNuevaFotografiaSincrona(delegadoNuevaFotografiaCamara);
             }            
         }
 
@@ -552,7 +552,7 @@ namespace Orbita.VA.Hardware
             OCamaraBase camara;
             if (ListaCamaras.TryGetValue(codigo, out camara))
             {
-                camara.OnCambioEstadoConexionCamaraSincrono += delegadoCambioEstadoConexionCamara;
+                camara.CrearSuscripcionCambioEstadoConexionSincrona(delegadoCambioEstadoConexionCamara);
             } 
         }
         /// <summary>
@@ -565,7 +565,7 @@ namespace Orbita.VA.Hardware
             OCamaraBase camara;
             if (ListaCamaras.TryGetValue(codigo, out camara))
             {
-                camara.OnCambioEstadoConexionCamaraSincrono -= delegadoCambioEstadoConexionCamara;
+                camara.EliminarSuscripcionCambioEstadoConexionSincrona(delegadoCambioEstadoConexionCamara);
             } 
         }
 
@@ -579,7 +579,7 @@ namespace Orbita.VA.Hardware
             OCamaraBase camara;
             if (ListaCamaras.TryGetValue(codigo, out camara))
             {
-                camara.OnCambioEstadoReproduccionCamaraSincrono += delegadoCambioEstadoReproduccionCamara;
+                camara.CrearSuscripcionCambioEstadoReproduccionSincrona(delegadoCambioEstadoReproduccionCamara);
             }
         }
         /// <summary>
@@ -592,7 +592,7 @@ namespace Orbita.VA.Hardware
             OCamaraBase camara;
             if (ListaCamaras.TryGetValue(codigo, out camara))
             {
-                camara.OnCambioEstadoReproduccionCamaraSincrono -= delegadoCambioEstadoReproduccionCamara;
+                camara.EliminarSuscripcionCambioEstadoReproduccionSincrona(delegadoCambioEstadoReproduccionCamara);
             }
         }
 
@@ -606,7 +606,7 @@ namespace Orbita.VA.Hardware
             OCamaraBase camara;
             if (ListaCamaras.TryGetValue(codigo, out camara))
             {
-                camara.OnMensaje += messageDelegate;
+                camara.CrearSuscripcionMensajesSincrona(messageDelegate);
             }
         }
         /// <summary>
@@ -619,169 +619,7 @@ namespace Orbita.VA.Hardware
             OCamaraBase camara;
             if (ListaCamaras.TryGetValue(codigo, out camara))
             {
-                camara.OnMensaje -= messageDelegate;
-            }
-        }
-
-        /// <summary>
-        /// Suscribe el cambio de fotografía de una determinada cámara
-        /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
-        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
-        internal static void CrearSuscripcionNuevaFotografiaAsincronaMemoriaMapeada(string codigo, EventoNuevaFotografiaCamaraMemoriaMapeada delegadoNuevaFotografiaCamaraMemoriaMapeada)
-        {
-            OCamaraBase camara;
-            if (ListaCamaras.TryGetValue(codigo, out camara))
-            {
-                camara.OnNuevaFotografiaCamaraAsincronaMemoriaMapeada += delegadoNuevaFotografiaCamaraMemoriaMapeada;
-            }
-        }
-        /// <summary>
-        /// Elimina la suscripción del cambio de fotografía de una determinada cámara
-        /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
-        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
-        internal static void EliminarSuscripcionNuevaFotografiaAsincronaMemoriaMapeada(string codigo, EventoNuevaFotografiaCamaraMemoriaMapeada delegadoNuevaFotografiaCamaraMemoriaMapeada)
-        {
-            OCamaraBase camara;
-            if (ListaCamaras.TryGetValue(codigo, out camara))
-            {
-                camara.OnNuevaFotografiaCamaraAsincronaMemoriaMapeada -= delegadoNuevaFotografiaCamaraMemoriaMapeada;
-            }
-        }
-
-        /// <summary>
-        /// Suscribe el cambio de fotografía de una determinada cámara
-        /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
-        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
-        internal static void CrearSuscripcionNuevaFotografiaAsincronaRemota(string codigo, EventoNuevaFotografiaCamaraRemota delegadoNuevaFotografiaCamaraRemota)
-        {
-            OCamaraBase camara;
-            if (ListaCamaras.TryGetValue(codigo, out camara))
-            {
-                camara.OnNuevaFotografiaCamaraAsincronaRemota += delegadoNuevaFotografiaCamaraRemota;
-            }
-        }
-        /// <summary>
-        /// Elimina la suscripción del cambio de fotografía de una determinada cámara
-        /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
-        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
-        internal static void EliminarSuscripcionNuevaFotografiaAsincronaRemota(string codigo, EventoNuevaFotografiaCamaraRemota delegadoNuevaFotografiaCamaraRemota)
-        {
-            OCamaraBase camara;
-            if (ListaCamaras.TryGetValue(codigo, out camara))
-            {
-                camara.OnNuevaFotografiaCamaraAsincronaRemota -= delegadoNuevaFotografiaCamaraRemota;
-            }
-        }
-
-        /// <summary>
-        /// Suscribe el cambio de estado de una determinada cámara
-        /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
-        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
-        public static void CrearSuscripcionCambioEstadoConexionAsincrona(string codigo, EventoCambioEstadoConexionCamara delegadoCambioEstadoConexionCamara)
-        {
-            OCamaraBase camara;
-            if (ListaCamaras.TryGetValue(codigo, out camara))
-            {
-                camara.OnCambioEstadoConexionCamaraAsincrono += delegadoCambioEstadoConexionCamara;
-            }
-        }
-        /// <summary>
-        /// Elimina la suscripción del cambio de estado de una determinada cámara
-        /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
-        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
-        public static void EliminarSuscripcionCambioEstadoConexionAsincrona(string codigo, EventoCambioEstadoConexionCamara delegadoCambioEstadoConexionCamara)
-        {
-            OCamaraBase camara;
-            if (ListaCamaras.TryGetValue(codigo, out camara))
-            {
-                camara.OnCambioEstadoConexionCamaraAsincrono -= delegadoCambioEstadoConexionCamara;
-            }
-        }
-
-        /// <summary>
-        /// Suscribe el cambio de estado de reproducción de una determinada cámara
-        /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
-        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
-        public static void CrearSuscripcionCambioEstadoReproduccionAsincrona(string codigo, EventoCambioEstadoReproduccionCamara delegadoCambioEstadoReproduccionCamara)
-        {
-            OCamaraBase camara;
-            if (ListaCamaras.TryGetValue(codigo, out camara))
-            {
-                camara.OnCambioEstadoReproduccionCamaraAsincrono += delegadoCambioEstadoReproduccionCamara;
-            }
-        }
-        /// <summary>
-        /// Elimina la suscripción del cambio de estado de reproducción de una determinada cámara
-        /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
-        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
-        public static void EliminarSuscripcionCambioEstadoReproduccionAsincrona(string codigo, EventoCambioEstadoReproduccionCamara delegadoCambioEstadoReproduccionCamara)
-        {
-            OCamaraBase camara;
-            if (ListaCamaras.TryGetValue(codigo, out camara))
-            {
-                camara.OnCambioEstadoReproduccionCamaraAsincrono -= delegadoCambioEstadoReproduccionCamara;
-            }
-        }
-
-        /// <summary>
-        /// Suscribe la recepción de mensajes de una determinada cámara
-        /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
-        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
-        public static void CrearSuscripcionMensajesAsincrona(string codigo, OMessageEvent messageDelegate)
-        {
-            OCamaraBase camara;
-            if (ListaCamaras.TryGetValue(codigo, out camara))
-            {
-                camara.OnMensajeAsincrono += messageDelegate;
-            }
-        }
-        /// <summary>
-        /// Elimina la suscripción de mensajes de una determinada cámara
-        /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
-        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
-        public static void EliminarSuscripcionMensajesAsincrona(string codigo, OMessageEvent messageDelegate)
-        {
-            OCamaraBase camara;
-            if (ListaCamaras.TryGetValue(codigo, out camara))
-            {
-                camara.OnMensajeAsincrono -= messageDelegate;
-            }
-        }
-
-        /// <summary>
-        /// Suscribe la recepción del bit de vida de una determinada cámara
-        /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
-        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
-        public static void CrearSuscripcionBitVidaAsincrona(string codigo, ManejadorEvento messageDelegate)
-        {
-            OCamaraBase camara;
-            if (ListaCamaras.TryGetValue(codigo, out camara))
-            {
-                camara.OnBitVidaAsincrono += messageDelegate;
-            }
-        }
-        /// <summary>
-        /// Elimina la suscripción del bit de vida de una determinada cámara
-        /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
-        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
-        public static void EliminarSuscripcionBitVidaAsincrona(string codigo, ManejadorEvento messageDelegate)
-        {
-            OCamaraBase camara;
-            if (ListaCamaras.TryGetValue(codigo, out camara))
-            {
-                camara.OnBitVidaAsincrono -= messageDelegate;
+                camara.EliminarSuscripcionMensajesSincrona(messageDelegate);
             }
         }
         #endregion
@@ -1408,35 +1246,6 @@ namespace Orbita.VA.Hardware
         /// Delegado de mensaje de cambio de estado de reproducción. Evento Síncrono
         /// </summary>
         public event EventoCambioEstadoReproduccionCamara OnCambioEstadoReproduccionCamaraSincrono;
-        /// <summary>
-        /// Delegado de nueva fotografía Remota. Evento Asíncrono.
-        /// </summary>
-        /// <param name="estadoConexion"></param>
-        internal event EventoNuevaFotografiaCamaraMemoriaMapeada OnNuevaFotografiaCamaraAsincronaMemoriaMapeada;
-        /// <summary>
-        /// Delegado de nueva fotografía Remota. Evento Asíncrono.
-        /// </summary>
-        /// <param name="estadoConexion"></param>
-        internal event EventoNuevaFotografiaCamaraRemota OnNuevaFotografiaCamaraAsincronaRemota;
-        /// <summary>
-        /// Delegado de cambio de estaco de conexión de la cámara. Evento Asíncrono
-        /// </summary>
-        /// <param name="estadoConexion"></param>
-        internal event EventoCambioEstadoConexionCamara OnCambioEstadoConexionCamaraAsincrono;
-        /// <summary>
-        /// Delegado de mensaje del módulo de Entrada / salida
-        /// </summary>
-        /// <param name="estadoConexion"></param>
-        internal event OMessageEvent OnMensajeAsincrono;
-        /// <summary>
-        /// Delegado de mensaje de cambio de estado de reproducción. Evento asíncrono
-        /// </summary>
-        internal event EventoCambioEstadoReproduccionCamara OnCambioEstadoReproduccionCamaraAsincrono;
-        /// <summary>
-        /// Delegado de bit de vida
-        /// </summary>
-        /// <param name="estadoConexion"></param>
-        internal event ManejadorEvento OnBitVidaAsincrono;
         #endregion
 
 		#region Constructor(es)
@@ -1816,6 +1625,82 @@ namespace Orbita.VA.Hardware
                 resultado = true;
             }
             return resultado;
+        }
+
+        /// <summary>
+        /// Suscribe el cambio de fotografía de una determinada cámara
+        /// </summary>
+        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
+        public void CrearSuscripcionNuevaFotografiaSincrona(EventoNuevaFotografiaCamara delegadoNuevaFotografiaCamara)
+        {
+            this.OnNuevaFotografiaCamaraSincrona += delegadoNuevaFotografiaCamara;
+        }
+        /// <summary>
+        /// Elimina la suscripción del cambio de fotografía de una determinada cámara
+        /// </summary>
+        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
+        public void EliminarSuscripcionNuevaFotografiaSincrona(EventoNuevaFotografiaCamara delegadoNuevaFotografiaCamara)
+        {
+            this.OnNuevaFotografiaCamaraSincrona -= delegadoNuevaFotografiaCamara;
+        }
+
+        /// <summary>
+        /// Suscribe el cambio de estado de una determinada cámara
+        /// </summary>
+        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
+        public void CrearSuscripcionCambioEstadoConexionSincrona(EventoCambioEstadoConexionCamara delegadoCambioEstadoConexionCamara)
+        {
+            this.OnCambioEstadoConexionCamaraSincrono += delegadoCambioEstadoConexionCamara;
+        }
+        /// <summary>
+        /// Elimina la suscripción del cambio de estado de una determinada cámara
+        /// </summary>
+        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
+        public void EliminarSuscripcionCambioEstadoConexionSincrona(EventoCambioEstadoConexionCamara delegadoCambioEstadoConexionCamara)
+        {
+            this.OnCambioEstadoConexionCamaraSincrono -= delegadoCambioEstadoConexionCamara;
+        }
+
+        /// <summary>
+        /// Suscribe el cambio de estado de reproducción de una determinada cámara
+        /// </summary>
+        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
+        public void CrearSuscripcionCambioEstadoReproduccionSincrona(EventoCambioEstadoReproduccionCamara delegadoCambioEstadoReproduccionCamara)
+        {
+            this.OnCambioEstadoReproduccionCamaraSincrono += delegadoCambioEstadoReproduccionCamara;
+        }
+        /// <summary>
+        /// Elimina la suscripción del cambio de estado de reproducción de una determinada cámara
+        /// </summary>
+        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
+        public void EliminarSuscripcionCambioEstadoReproduccionSincrona(EventoCambioEstadoReproduccionCamara delegadoCambioEstadoReproduccionCamara)
+        {
+            this.OnCambioEstadoReproduccionCamaraSincrono -= delegadoCambioEstadoReproduccionCamara;
+        }
+
+        /// <summary>
+        /// Suscribe la recepción de mensajes de una determinada cámara
+        /// </summary>
+        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        public void CrearSuscripcionMensajesSincrona(OMessageEvent messageDelegate)
+        {
+            this.OnMensaje += messageDelegate;
+        }
+        /// <summary>
+        /// Elimina la suscripción de mensajes de una determinada cámara
+        /// </summary>
+        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        public void EliminarSuscripcionMensajesSincrona(OMessageEvent messageDelegate)
+        {
+            this.OnMensaje -= messageDelegate;
         }
 
         /// <summary>
@@ -2431,170 +2316,6 @@ namespace Orbita.VA.Hardware
         protected bool DebeLanzarEventoCambioReproduccionCamaraSincrona()
         {
             return this.OnCambioEstadoReproduccionCamaraSincrono != null;
-        }
-
-        /// <summary>
-        /// Lanza evento de nueva fotografía
-        /// </summary>
-        /// <param name="estadoConexion"></param>
-        protected void LanzarEventoNuevaFotografiaCamaraAsincronaMemoriaMapeada(object sender, NuevaFotografiaCamaraMemoriaMapeadaEventArgs e)
-        {
-            try
-            {
-                if (this.DebeLanzarEventoNuevaFotografiaCamaraAsincronaMemoriaMapeada())
-                {
-                    //OLogsVAHardware.Camaras.Debug(this.Codigo, "Evento de memoria mapeada de cambio de fotografía", "Momento de creación de la fotografía: " + e.ImagenMemoriaMapeada.MomentoCreacion.ToString("yyyyMMddHHmmssfff"));
-                    this.OnNuevaFotografiaCamaraAsincronaMemoriaMapeada(sender, e);
-                    //OLogsVAHardware.Camaras.Debug(this.Codigo, "Fin del evento de memoria mapeada de cambio de fotografía", "Momento de creación de la fotografía: " + e.ImagenMemoriaMapeada.MomentoCreacion.ToString("yyyyMMddHHmmssfff"));
-                }
-            }
-            catch (Exception exception)
-            {
-                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
-            }
-        }
-        /// <summary>
-        /// Debe lanzar el evento de nueva fotografía
-        /// </summary>
-        /// <param name="estadoConexion"></param>
-        protected bool DebeLanzarEventoNuevaFotografiaCamaraAsincronaMemoriaMapeada()
-        {
-            return this.OnNuevaFotografiaCamaraAsincronaMemoriaMapeada != null;
-        }
-
-        /// <summary>
-        /// Lanza evento de nueva fotografía
-        /// </summary>
-        /// <param name="estadoConexion"></param>
-        protected void LanzarEventoNuevaFotografiaCamaraAsincronaRemoting(object sender, NuevaFotografiaCamaraRemotaEventArgs e)
-        {
-            try
-            {
-                if (this.DebeLanzarEventoNuevaFotografiaCamaraAsincronaRemoting())
-                {
-                    OLogsVAHardware.Camaras.Debug(this.Codigo, "Evento de remoting de cambio de fotografía", "Momento de creación de la fotografía: " + e.ImagenByteArray.MomentoCreacion.ToString("yyyyMMddHHmmssfff"));
-                    this.OnNuevaFotografiaCamaraAsincronaRemota(sender, e);
-                    OLogsVAHardware.Camaras.Debug(this.Codigo, "Fin del evento de remoting de cambio de fotografía", "Momento de creación de la fotografía: " + e.ImagenByteArray.MomentoCreacion.ToString("yyyyMMddHHmmssfff"));
-                }
-            }
-            catch (Exception exception)
-            {
-                OLogsVAHardware.Camaras.Error(exception, this.Codigo);
-            }
-        }
-        /// <summary>
-        /// Debe lanzar el evento de nueva fotografía
-        /// </summary>
-        /// <param name="estadoConexion"></param>
-        protected bool DebeLanzarEventoNuevaFotografiaCamaraAsincronaRemoting()
-        {
-            return this.OnNuevaFotografiaCamaraAsincronaRemota != null;
-        }
-
-        /// <summary>
-        /// Lanza evento de cambio de estado de conexión de la cámara
-        /// </summary>
-        /// <param name="estadoConexion"></param>
-        protected void LanzarEventoCambioEstadoConexionCamaraAsincrona(object sender, CambioEstadoConexionCamaraEventArgs e)
-        {
-            if (this.DebeLanzarEventoCambioEstadoConexionCamaraAsincrona())
-            {
-                try
-                {
-                    this.OnCambioEstadoConexionCamaraAsincrono(sender, e);
-                }
-                catch (Exception exception)
-                {
-                    OLogsVAHardware.Camaras.Error(exception, this.Codigo);
-                }
-            }
-        }
-        /// <summary>
-        /// Debe lanzar el evento de cambio de estado de conexión de la cámara
-        /// </summary>
-        /// <param name="estadoConexion"></param>
-        protected bool DebeLanzarEventoCambioEstadoConexionCamaraAsincrona()
-        {
-            return this.OnCambioEstadoConexionCamaraAsincrono != null;
-        }
-        /// <summary>
-        /// Lanza evento de mensaje de la cámara
-        /// </summary>
-        /// <param name="estadoConexion"></param>
-        protected void LanzarEventoMensajeCamaraAsincrona(object sender, OMessageEventArgs e)
-        {
-            if (this.DebeLanzarEventoMensajeCamaraAsincrona())
-            {
-                try
-                {
-                    this.OnMensajeAsincrono(sender, e);
-                }
-                catch (Exception exception)
-                {
-                    OLogsVAHardware.Camaras.Error(exception, this.Codigo);
-                }
-            }
-        }
-        /// <summary>
-        /// Debe lanzar el evento de mensaje de la cámara
-        /// </summary>
-        /// <param name="estadoConexion"></param>
-        protected bool DebeLanzarEventoMensajeCamaraAsincrona()
-        {
-            return this.OnMensajeAsincrono != null;
-        }
-
-        /// <summary>
-        /// Lanza evento de mensaje de cambio de estado de reproducción
-        /// </summary>
-        protected void LanzarEventoCambioReproduccionCamaraAsincrona(object sender, CambioEstadoReproduccionCamaraEventArgs e)
-        {
-            if (this.DebeLanzarEventoCambioReproduccionCamaraAsincrona())
-            {
-                try
-                {
-                    this.OnCambioEstadoReproduccionCamaraAsincrono(sender, e);
-                }
-                catch (Exception exception)
-                {
-                    OLogsVAHardware.Camaras.Error(exception, this.Codigo);
-                }
-            }
-        }
-        /// <summary>
-        /// Debe lanzar el evento de mensaje de cambio de estado de reproducción
-        /// </summary>
-        /// <param name="estadoConexion"></param>
-        protected bool DebeLanzarEventoCambioReproduccionCamaraAsincrona()
-        {
-            return this.OnCambioEstadoReproduccionCamaraAsincrono != null;
-        }
-
-        /// <summary>
-        /// Lanza evento de mensaje del bit de vida
-        /// </summary>
-        /// <param name="estadoConexion"></param>
-        protected void LanzarEventoBitVidaAsincrona(object sender, OEventArgs e)
-        {
-            if (this.DebeLanzarEventoMensajeCamaraAsincrona())
-            {
-                try
-                {
-                    this.OnBitVidaAsincrono(sender, e);
-                }
-                catch (Exception exception)
-                {
-                    OLogsVAHardware.Camaras.Error(exception, this.Codigo);
-                }
-            }
-        }
-        /// <summary>
-        /// Debe lanzar el evento del bit de vida
-        /// </summary>
-        /// <param name="estadoConexion"></param>
-        protected bool DebeLanzarEventoBitVidaAsincrona()
-        {
-            return this.OnBitVidaAsincrono != null;
         }
 
         /// <summary>

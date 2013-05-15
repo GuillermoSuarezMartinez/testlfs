@@ -28,52 +28,99 @@ namespace Orbita.VA.Hardware
     [Serializable]
     public class ORemotingCamaraServidor : ORemotingObject
     {
+        #region Atributo(s)
+        /// <summary>
+        /// Identificador de la cámara
+        /// </summary>
+        private string CodigoCliente;
+        /// <summary>
+        /// Identificador de la cámara servidora
+        /// </summary>
+        private string CodigoServidor;
+        /// <summary>
+        /// Cámara asocada
+        /// </summary>
+        private OCamaraServidor Camara;
+        #endregion
+
         #region Declaración de eventos
         /// <summary>
         /// Delegado de inicio de reproducción
         /// </summary>
         /// <param name="codigo"></param>
         /// <returns></returns>
-        private delegate bool StartDelegate(string codigo);
+        private delegate bool StartDelegate();
         /// <summary>
         /// Delegado de parada de reproducción
         /// </summary>
         /// <param name="codigo"></param>
         /// <returns></returns>
-        private delegate bool StopDelegate(string codigo);
-        /// <summary>
-        /// Delegado de inicio de reproducción
-        /// </summary>
-        /// <param name="codigo"></param>
-        /// <returns></returns>
-        private delegate bool StartAllDelegate();
-        /// <summary>
-        /// Delegado de parada de reproducción
-        /// </summary>
-        /// <param name="codigo"></param>
-        /// <returns></returns>
-        private delegate bool StopAllDelegate();
+        private delegate bool StopDelegate();
         #endregion
 
         #region Método(s) público(s)
         /// <summary>
+        /// Enlaza con el cliente
+        /// </summary>
+        /// <param name="codigoCliente"></param>
+        /// <param name="codigoServidor"></param>
+        public void Enlazar(string codigoCliente, string codigoServidor)
+        {
+            try
+            {
+                this.CodigoCliente = codigoCliente;
+                this.CodigoServidor = codigoServidor;
+                this.Camara = null;
+
+                object camObj = OCamaraManager.GetCamara(codigoServidor);
+                if (camObj is OCamaraServidor)
+                {
+                    this.Camara = camObj as OCamaraServidor;
+                }
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
+            }
+        }
+
+        /// <summary>
+        /// Desenlaza con el cliente
+        /// </summary>
+        /// <param name="codigoCliente"></param>
+        /// <param name="codigoServidor"></param>
+        public void Desenlazar()
+        {
+            try
+            {
+                this.CodigoCliente = string.Empty;
+                this.CodigoServidor = string.Empty;
+                this.Camara = null;
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception);
+            }
+        }
+
+        /// <summary>
         /// Comienza una reproducción continua de la cámara
         /// </summary>
         /// <returns></returns>
-        public bool Start(string codigo)
+        public bool Start()
         {
             if (!OThreadManager.EjecucionEnTrheadPrincipal())
             {
-                return (bool)OThreadManager.SincronizarConThreadPrincipal(new StartDelegate(Start), new object[] { codigo });
+                return (bool)OThreadManager.SincronizarConThreadPrincipal(new StartDelegate(Start), new object[] { });
             }
 
             try
             {
-                return OCamaraManager.Start(codigo);
+                return this.Camara.Start();
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return false;
         }
@@ -82,64 +129,20 @@ namespace Orbita.VA.Hardware
         /// Termina una reproducción continua de la cámara
         /// </summary>
         /// <returns></returns>
-        public bool Stop(string codigo)
+        public bool Stop()
         {
             if (!OThreadManager.EjecucionEnTrheadPrincipal())
             {
-                return (bool)OThreadManager.SincronizarConThreadPrincipal(new StopDelegate(Stop), new object[] { codigo });
+                return (bool)OThreadManager.SincronizarConThreadPrincipal(new StopDelegate(Stop), new object[] { });
             }
 
             try
             {
-                return OCamaraManager.Stop(codigo);
+                this.Camara.Stop();
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Comienza una reproducción de todas las cámaras
-        /// </summary>
-        /// <returns></returns>
-        public bool StartAll()
-        {
-            if (!OThreadManager.EjecucionEnTrheadPrincipal())
-            {
-                return (bool)OThreadManager.SincronizarConThreadPrincipal(new StartAllDelegate(StartAll), new object[] { });
-            }
-
-            try
-            {
-                return OCamaraManager.StartAll();
-            }
-            catch (Exception exception)
-            {
-                OLogsVAHardware.Camaras.Error(exception);
-            }
-            return false; 
-        }
-
-        /// <summary>
-        /// Termina la reproducción de todas las cámaras
-        /// </summary>
-        /// <returns></returns>
-        public bool StopAll()
-        {
-            if (!OThreadManager.EjecucionEnTrheadPrincipal())
-            {
-                return (bool)OThreadManager.SincronizarConThreadPrincipal(new StopAllDelegate(StopAll), new object[] { });
-            }
-
-            try
-            {
-                return OCamaraManager.StopAll();
-            }
-            catch (Exception exception)
-            {
-                OLogsVAHardware.Camaras.Error(exception);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return false;
         }
@@ -148,15 +151,15 @@ namespace Orbita.VA.Hardware
         /// Realiza una fotografía de forma sincrona
         /// </summary>
         /// <returns></returns>
-        public bool Snap(string codigo)
+        public bool Snap()
         {
             try
             {
-                return OCamaraManager.Snap(codigo);
+                return this.Camara.Snap();
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return false;
         }
@@ -166,15 +169,15 @@ namespace Orbita.VA.Hardware
         /// </summary>
         /// <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
         /// <returns></returns>
-        public bool StartREC(string codigo, string fichero)
+        public bool StartREC(string fichero)
         {
             try
             {
-                return OCamaraManager.StartREC(codigo, fichero);
+                return this.Camara.StartREC(fichero);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return false;
         }
@@ -183,15 +186,15 @@ namespace Orbita.VA.Hardware
         /// Termina una grabación continua de la cámara
         /// </summary>
         /// <returns></returns>
-        public bool StopREC(string codigo)
+        public bool StopREC()
         {
             try
             {
-                return OCamaraManager.StopREC(codigo);
+                return this.Camara.StopREC();
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return false;
         }
@@ -202,15 +205,15 @@ namespace Orbita.VA.Hardware
         /// <param name="codAjuste">Código identificativo del ajuste</param>
         /// <param name="valor">valor a ajustar</param>
         /// <returns>Verdadero si la acción se ha realizado con éxito</returns>
-        public bool SetAjuste(string codCamara, string codAjuste, object valor)
+        public bool SetAjuste(string codAjuste, object valor)
         {
             try
             {
-                return OCamaraManager.SetAjuste(codCamara, codAjuste, valor);
+                return this.Camara.SetAjuste(codAjuste, valor);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codCamara);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return false;
         }
@@ -221,16 +224,16 @@ namespace Orbita.VA.Hardware
         /// <param name="codAjuste">Código identificativo del ajuste</param>
         /// <param name="valor">valor a ajustar</param>
         /// <returns>Verdadero si la acción se ha realizado con éxito</returns>
-        public bool GetAjuste(string codCamara, string codAjuste, out object valor)
+        public bool GetAjuste(string codAjuste, out object valor)
         {
             valor = null;
             try
             {
-                return OCamaraManager.GetAjuste(codCamara, codAjuste, out valor);
+                return this.Camara.GetAjuste(codAjuste, out valor);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codCamara);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return false;
         }
@@ -239,15 +242,15 @@ namespace Orbita.VA.Hardware
         /// Consulta si el PTZ está habilitado
         /// </summary>
         /// <returns>Verdadero si el PTZ está habilitado</returns>
-        public bool PTZHabilitado(string codigo)
+        public bool PTZHabilitado()
         {
             try
             {
-                return OCamaraManager.PTZHabilitado(codigo);
+                return this.Camara.PTZHabilitado();
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return false;
         }
@@ -259,15 +262,15 @@ namespace Orbita.VA.Hardware
         /// <param name="modo">Modo de movimiento: Absoluto o relativo</param>
         /// <param name="valor">valor a establecer</param>
         /// <returns>Verdadero si se ha ejecutado correctamente</returns>
-        public bool EjecutaMovimientoPTZ(string codigo, OEnumTipoMovimientoPTZ tipo, OEnumModoMovimientoPTZ modo, double valor)
+        public bool EjecutaMovimientoPTZ(OEnumTipoMovimientoPTZ tipo, OEnumModoMovimientoPTZ modo, double valor)
         {
             try
             {
-                return OCamaraManager.EjecutaMovimientoPTZ(codigo, tipo, modo, valor);
+                return this.Camara.EjecutaMovimientoPTZ(tipo, modo, valor);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return false;
         }
@@ -278,15 +281,15 @@ namespace Orbita.VA.Hardware
         /// <param name="movimiento">Tipo de movimiento ptz a ejecutar</param>
         /// <param name="valor">valor a establecer</param>
         /// <returns>Verdadero si se ha ejecutado correctamente</returns>
-        public bool EjecutaMovimientoPTZ(string codigo, OMovimientoPTZ movimiento, double valor)
+        public bool EjecutaMovimientoPTZ(OMovimientoPTZ movimiento, double valor)
         {
             try
             {
-                return OCamaraManager.EjecutaMovimientoPTZ(codigo, movimiento, valor);
+                return this.Camara.EjecutaMovimientoPTZ(movimiento, valor);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return false; 
         }
@@ -296,15 +299,15 @@ namespace Orbita.VA.Hardware
         /// </summary>
         /// <param name="comando">Comando del movimiento ptz a ejecutar</param>
         /// <returns>Verdadero si se ha ejecutado correctamente</returns>
-        public bool EjecutaMovimientoPTZ(string codigo, OComandoPTZ comando)
+        public bool EjecutaMovimientoPTZ(OComandoPTZ comando)
         {
             try
             {
-                return OCamaraManager.EjecutaMovimientoPTZ(codigo, comando);
+                return this.Camara.EjecutaMovimientoPTZ(comando);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return false;
         }
@@ -314,15 +317,15 @@ namespace Orbita.VA.Hardware
         /// </summary>
         /// <param name="valores">Tipos de movimientos y valores</param>
         /// <returns>Verdadero si se ha ejecutado correctamente</returns>
-        public bool EjecutaMovimientoPTZ(string codigo, OComandosPTZ valores)
+        public bool EjecutaMovimientoPTZ(OComandosPTZ valores)
         {
             try
             {
-                return OCamaraManager.EjecutaMovimientoPTZ(codigo, valores);
+                return this.Camara.EjecutaMovimientoPTZ(valores);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return false;
         }
@@ -331,15 +334,15 @@ namespace Orbita.VA.Hardware
         /// Actualiza la posición actual del PTZ
         /// </summary>
         /// <returns></returns>
-        public OPosicionesPTZ ConsultaPosicionPTZ(string codigo)
+        public OPosicionesPTZ ConsultaPosicionPTZ()
         {
             try
             {
-                return OCamaraManager.ConsultaPosicionPTZ(codigo);
+                return this.Camara.ConsultaPosicionPTZ();
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return new OPosicionesPTZ();
         }
@@ -348,15 +351,15 @@ namespace Orbita.VA.Hardware
         /// Actualiza la posición actual de un determinado movimiento PTZ
         /// </summary>
         /// <returns>Listado de posiciones actuales</returns>
-        public OPosicionPTZ ConsultaPosicionPTZ(string codigo, OEnumTipoMovimientoPTZ movimiento)
+        public OPosicionPTZ ConsultaPosicionPTZ(OEnumTipoMovimientoPTZ movimiento)
         {
             try
             {
-                return OCamaraManager.ConsultaPosicionPTZ(codigo, movimiento);
+                return this.Camara.ConsultaPosicionPTZ(movimiento);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return new OPosicionPTZ();
         }
@@ -365,15 +368,15 @@ namespace Orbita.VA.Hardware
         /// Consulta última posición leida del PTZ
         /// </summary>
         /// <returns></returns>
-        public OPosicionesPTZ ConsultaUltimaPosicionPTZ(string codigo)
+        public OPosicionesPTZ ConsultaUltimaPosicionPTZ()
         {
             try
             {
-                return OCamaraManager.ConsultaUltimaPosicionPTZ(codigo);
+                return this.Camara.ConsultaUltimaPosicionPTZ();
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return new OPosicionesPTZ();
         }
@@ -383,15 +386,15 @@ namespace Orbita.VA.Hardware
         /// </summary>
         /// <param name="ruta">Indica la ruta donde se ha de guardar la fotografía</param>
         /// <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
-        public bool GuardarImagenADisco(string codigo, string ruta)
+        public bool GuardarImagenADisco(string ruta)
         {
             try
             {
-                return OCamaraManager.GuardarImagenADisco(codigo, ruta);
+                return this.Camara.GuardarImagenADisco(ruta);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return false; 
         }
@@ -400,15 +403,15 @@ namespace Orbita.VA.Hardware
         /// Método que realiza el empaquetado de un objeto para ser enviado por remoting
         /// </summary>
         /// <returns></returns>
-        public OByteArrayImage Serializar(string codigo)
+        public OByteArrayImage Serializar()
         {
             try
             {
-                return OCamaraManager.Serializar(codigo);
+                return this.Camara.Serializar();
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return null;
         }
@@ -417,15 +420,15 @@ namespace Orbita.VA.Hardware
         /// Devuelve el tipo de imagen con el que trabaja la cámara
         /// </summary>
         /// <returns></returns>
-        public TipoImagen GetTipoImagen(string codigo)
+        public TipoImagen GetTipoImagen()
         {
             try
             {
-                return OCamaraManager.GetTipoImagen(codigo);
+                return this.Camara.TipoImagen;
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return default(TipoImagen);
         }
@@ -433,15 +436,15 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Indica que se ha podido acceder a la cámara con éxito
         /// </summary>
-        public bool GetExiste(string codigo)
+        public bool GetExiste()
         {
             try
             {
-                return OCamaraManager.GetExiste(codigo);
+                return this.Camara.Existe;
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
             return false;
         }
@@ -449,197 +452,198 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Suscribe el cambio de fotografía de una determinada cámara
         /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="codigoRemoto">Código de la cámara</param>
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
-        public void CrearSuscripcionNuevaFotografiaMemoriaMapeada(string codigo, EventoNuevaFotografiaCamaraMemoriaMapeada delegadoNuevaFotografiaCamaraMemoriaMapeada)
+        public void CrearSuscripcionNuevaFotografiaMemoriaMapeada(string codigoCliente, EventoNuevaFotografiaCamaraMemoriaMapeada delegadoNuevaFotografiaCamaraMemoriaMapeada)
         {
             try
             {
-                OCamaraManager.CrearSuscripcionNuevaFotografiaAsincronaMemoriaMapeada(codigo, delegadoNuevaFotografiaCamaraMemoriaMapeada);
+                this.Camara.CrearSuscripcionNuevaFotografiaAsincronaMemoriaMapeada(codigoCliente, delegadoNuevaFotografiaCamaraMemoriaMapeada);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
         }
         /// <summary>
         /// Elimina la suscripción del cambio de fotografía de una determinada cámara
         /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="codigoRemoto">Código de la cámara</param>
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
-        public void EliminarSuscripcionNuevaFotografiaMemoriaMapeada(string codigo, EventoNuevaFotografiaCamaraMemoriaMapeada delegadoNuevaFotografiaCamaraMemoriaMapeada)
+        public void EliminarSuscripcionNuevaFotografiaMemoriaMapeada(string codigoCliente, EventoNuevaFotografiaCamaraMemoriaMapeada delegadoNuevaFotografiaCamaraMemoriaMapeada)
         {
             try
             {
-                OCamaraManager.EliminarSuscripcionNuevaFotografiaAsincronaMemoriaMapeada(codigo, delegadoNuevaFotografiaCamaraMemoriaMapeada);
+                this.Camara.EliminarSuscripcionNuevaFotografiaAsincronaMemoriaMapeada(codigoCliente, delegadoNuevaFotografiaCamaraMemoriaMapeada);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
         }
 
         /// <summary>
         /// Suscribe el cambio de fotografía de una determinada cámara
         /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="codigoRemoto">Código de la cámara</param>
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
-        public void CrearSuscripcionNuevaFotografiaRemota(string codigo, EventoNuevaFotografiaCamaraRemota delegadoNuevaFotografiaCamaraRemota)
+        public void CrearSuscripcionNuevaFotografiaRemota(string codigoCliente, EventoNuevaFotografiaCamaraRemota delegadoNuevaFotografiaCamaraRemota)
         {
             try
             {
-                OCamaraManager.CrearSuscripcionNuevaFotografiaAsincronaRemota(codigo, delegadoNuevaFotografiaCamaraRemota);
+                this.Camara.CrearSuscripcionNuevaFotografiaAsincronaRemota(codigoCliente, delegadoNuevaFotografiaCamaraRemota);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
         }
         /// <summary>
         /// Elimina la suscripción del cambio de fotografía de una determinada cámara
         /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="codigoRemoto">Código de la cámara</param>
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
-        public void EliminarSuscripcionNuevaFotografiaRemota(string codigo, EventoNuevaFotografiaCamaraRemota delegadoNuevaFotografiaCamaraRemota)
+        public void EliminarSuscripcionNuevaFotografiaRemota(string codigoCliente, EventoNuevaFotografiaCamaraRemota delegadoNuevaFotografiaCamaraRemota)
         {
             try
             {
-                OCamaraManager.EliminarSuscripcionNuevaFotografiaAsincronaRemota(codigo, delegadoNuevaFotografiaCamaraRemota);
+                this.Camara.EliminarSuscripcionNuevaFotografiaAsincronaRemota(codigoCliente, delegadoNuevaFotografiaCamaraRemota);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
         }
 
         /// <summary>
         /// Suscribe el cambio de estado de una determinada cámara
         /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="codigoRemoto">Código de la cámara</param>
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
-        public void CrearSuscripcionCambioEstadoConexion(string codigo, EventoCambioEstadoConexionCamara delegadoCambioEstadoConexionCamara)
+        public void CrearSuscripcionCambioEstadoConexion(string codigoCliente, EventoCambioEstadoConexionCamara delegadoCambioEstadoConexionCamara)
         {
             try
             {
-                OCamaraManager.CrearSuscripcionCambioEstadoConexionAsincrona(codigo, delegadoCambioEstadoConexionCamara);
+                this.Camara.CrearSuscripcionCambioEstadoConexionAsincrona(codigoCliente, delegadoCambioEstadoConexionCamara);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
         }
         /// <summary>
         /// Elimina la suscripción del cambio de estado de una determinada cámara
         /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="codigoRemoto">Código de la cámara</param>
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
-        public void EliminarSuscripcionCambioEstadoConexion(string codigo, EventoCambioEstadoConexionCamara delegadoCambioEstadoConexionCamara)
+        public void EliminarSuscripcionCambioEstadoConexion(string codigoCliente, EventoCambioEstadoConexionCamara delegadoCambioEstadoConexionCamara)
         {
             try
             {
-                OCamaraManager.EliminarSuscripcionCambioEstadoConexionAsincrona(codigo, delegadoCambioEstadoConexionCamara);
+                this.Camara.EliminarSuscripcionCambioEstadoConexionAsincrona(codigoCliente, delegadoCambioEstadoConexionCamara);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
         }
 
         /// <summary>
         /// Suscribe el cambio de estado de reproducción de una determinada cámara
         /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="codigoRemoto">Código de la cámara</param>
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
-        public void CrearSuscripcionCambioEstadoReproduccion(string codigo, EventoCambioEstadoReproduccionCamara delegadoCambioEstadoReproduccionCamara)
+        public void CrearSuscripcionCambioEstadoReproduccion(string codigoCliente, EventoCambioEstadoReproduccionCamara delegadoCambioEstadoReproduccionCamara)
         {
             try
             {
-                OCamaraManager.CrearSuscripcionCambioEstadoReproduccionAsincrona(codigo, delegadoCambioEstadoReproduccionCamara);
+                this.Camara.CrearSuscripcionCambioEstadoReproduccionAsincrona(codigoCliente, delegadoCambioEstadoReproduccionCamara);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
         }
         /// <summary>
         /// Elimina la suscripción del cambio de estado de reproducción de una determinada cámara
         /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="codigoRemoto">Código de la cámara</param>
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
-        public void EliminarSuscripcionCambioEstadoReproduccion(string codigo, EventoCambioEstadoReproduccionCamara delegadoCambioEstadoReproduccionCamara)
+        public void EliminarSuscripcionCambioEstadoReproduccion(string codigoCliente, EventoCambioEstadoReproduccionCamara delegadoCambioEstadoReproduccionCamara)
         {
             try
             {
-                OCamaraManager.EliminarSuscripcionCambioEstadoReproduccionAsincrona(codigo, delegadoCambioEstadoReproduccionCamara);
+                this.Camara.EliminarSuscripcionCambioEstadoReproduccionAsincrona(codigoCliente, delegadoCambioEstadoReproduccionCamara);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
         }
 
         /// <summary>
         /// Suscribe la recepción de mensajes de una determinada cámara
         /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="codigoRemoto">Código de la cámara</param>
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
-        public void CrearSuscripcionMensajes(string codigo, OMessageEvent messageDelegate)
+        public void CrearSuscripcionMensajes(string codigoCliente, OMessageEvent messageDelegate)
         {
             try
             {
-                OCamaraManager.CrearSuscripcionMensajesAsincrona(codigo, messageDelegate);
+                this.Camara.CrearSuscripcionMensajesAsincrona(codigoCliente, messageDelegate);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
         }
         /// <summary>
         /// Elimina la suscripción de mensajes de una determinada cámara
         /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="codigoRemoto">Código de la cámara</param>
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
-        public void EliminarSuscripcionMensajes(string codigo, OMessageEvent messageDelegate)
+        public void EliminarSuscripcionMensajes(string codigoCliente, OMessageEvent messageDelegate)
         {
             try
             {
-                OCamaraManager.EliminarSuscripcionMensajesAsincrona(codigo, messageDelegate);
+                this.Camara.EliminarSuscripcionMensajesAsincrona(codigoCliente, messageDelegate);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
         }
+
         /// <summary>
         /// Suscribe la recepción del bit de vida
         /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="codigoRemoto">Código de la cámara</param>
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
-        public void CrearSuscripcionBitVida(string codigo, ManejadorEvento messageDelegate)
+        public void CrearSuscripcionBitVida(string codigoCliente, ManejadorEvento messageDelegate)
         {
             try
             {
-                OCamaraManager.CrearSuscripcionBitVidaAsincrona(codigo, messageDelegate);
+                this.Camara.CrearSuscripcionBitVidaAsincrona(codigoCliente, messageDelegate);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
         }
         /// <summary>
         /// Elimina la suscripción del bit de vida
         /// </summary>
-        /// <param name="codigo">Código de la cámara</param>
+        /// <param name="codigoRemoto">Código de la cámara</param>
         /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
-        public void EliminarSuscripcionBitVida(string codigo, ManejadorEvento messageDelegate)
+        public void EliminarSuscripcionBitVida(string codigoCliente, ManejadorEvento messageDelegate)
         {
             try
             {
-                OCamaraManager.EliminarSuscripcionBitVidaAsincrona(codigo, messageDelegate);
+                this.Camara.EliminarSuscripcionBitVidaAsincrona(codigoCliente, messageDelegate);
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.Camaras.Error(exception, codigo);
+                OLogsVAHardware.Camaras.Error(exception, CodigoCliente);
             }
         }
         #endregion

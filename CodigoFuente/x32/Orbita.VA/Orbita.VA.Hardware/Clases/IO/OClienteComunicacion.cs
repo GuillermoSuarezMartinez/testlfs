@@ -131,7 +131,7 @@ namespace Orbita.VA.Hardware
             {
                 this._HostServidor = dtTarjetaIO.Rows[0]["COM_Host"].ToString();
                 this._PuertoRemoto = OEntero.Validar(dtTarjetaIO.Rows[0]["COM_Puerto"], 0, int.MaxValue, 1851);
-                this._IntervaloComprabacion = OIntervaloTiempo.Validar(dtTarjetaIO.Rows[0]["COM_TimeOut"], TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(int.MaxValue), TimeSpan.FromSeconds(10));
+                this._IntervaloComprabacion = TimeSpan.FromMilliseconds(OEntero.Validar(dtTarjetaIO.Rows[0]["COM_TimeOut"], 1, int.MaxValue, 15000));
 
                 // Creación del timer de comprobación de la conexión
                 this.TimerComprobacionConexion = new Timer();

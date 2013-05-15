@@ -14,24 +14,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.Remoting.Channels.Tcp;
+using System.Net;
 using System.Runtime.Remoting.Channels;
-using System.Collections;
 using System.Runtime.Serialization.Formatters;
-using System.Runtime.Remoting;
+using System.Collections;
 
 namespace Orbita.VA.Comun
 {
     /// <summary>
-    /// Clase servidora de remoting
+    /// Clase cliente de remoting
     /// </summary>
-    public class ORemotingServer<T>
-        where T: ORemotingObject, new()
+    public class ORemotingProxie<T>
+        where T : new()
     {
         #region Atributo(s)
         /// <summary>
         /// Canal de Servidor de remoting
         /// </summary>
-        protected TcpChannel CanalServidor; //channel to communicate
+        protected TcpChannel CanalCliente; //channel to communicate
         #endregion
 
         #region Propiedad(es)
@@ -42,11 +42,23 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Indica si el servicio está iniciado
         /// </summary>
-        public bool Iniciado 
+        public bool Iniciado
         {
             get { return _Iniciado; }
         }
-        
+
+        /// <summary>
+        /// Dirección IP de la cámara
+        /// </summary>
+        protected IPAddress _IP;
+        /// <summary>
+        /// Dirección IP de la cámara
+        /// </summary>
+        public IPAddress IP
+        {
+            get { return _IP; }
+        }
+
         /// <summary>
         /// Puerto de comunicación remota
         /// </summary>
@@ -70,13 +82,25 @@ namespace Orbita.VA.Comun
         {
             get { return _NombreCanal; }
         }
+
+        /// <summary>
+        /// Instancia de la clase remota
+        /// </summary>
+        protected T _Instancia;
+        /// <summary>
+        /// Instancia de la clase remota
+        /// </summary>
+        public T Instancia
+        {
+            get { return _Instancia; }
+        }
         #endregion
 
         #region Constructor(es)
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public ORemotingServer()
+        public ORemotingProxie()
         {
             this._Iniciado = false;
         }
@@ -84,9 +108,10 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public ORemotingServer(string nombreCanal, int puerto)
+        public ORemotingProxie(string nombreCanal, IPAddress ip, int puerto)
         {
             this._NombreCanal = nombreCanal;
+            this._IP = ip;
             this._Puerto = puerto;
             this._Iniciado = false;
         }
@@ -107,25 +132,24 @@ namespace Orbita.VA.Comun
                 {
                     if (!ORemotingUtils.CanalRegistrado(this.NombreCanal))
                     {
-                        // Registro del canal de servidor
+                        // Registro del canal de cliente
                         BinaryClientFormatterSinkProvider clientProvider = new BinaryClientFormatterSinkProvider();
                         BinaryServerFormatterSinkProvider serverProvider = new BinaryServerFormatterSinkProvider();
                         serverProvider.TypeFilterLevel = TypeFilterLevel.Full;
                         IDictionary props = new Hashtable();
-                        props["port"] = this._Puerto;
+                        props["port"] = 0;
                         props["typeFilterLevel"] = TypeFilterLevel.Full;
                         props["name"] = this._NombreCanal;
-                        CanalServidor = new TcpChannel(props, clientProvider, serverProvider); //channel to communicate
-                        ChannelServices.RegisterChannel(CanalServidor, false);  //register channel
+                        this.CanalCliente  = new TcpChannel(props, clientProvider, serverProvider); //channel to communicate
+                        ChannelServices.RegisterChannel(this.CanalCliente, false);  //register channel
                     }
 
-                    if (!ORemotingUtils.ServicioTipoRegistardo(typeof(T)))
-                    {
-                        string nombreClase = typeof(T).Name;
-                        RemotingConfiguration.RegisterWellKnownServiceType(typeof(T), nombreClase, WellKnownObjectMode.Singleton); //register remote object
-                        this._Iniciado = true;
-                        resultado = true;
-                    }
+                    string nombreClase = typeof(T).Name;
+                    string direccion = string.Format(@"tcp://{0}:{1}/{2}", this.IP, this.Puerto, nombreClase); // Dirección remota
+                    this._Instancia = (T)Activator.GetObject(typeof(T), direccion);
+
+                    this._Iniciado = true;
+                    resultado = true;
                 }
             }
             catch (Exception exception)
@@ -145,7 +169,7 @@ namespace Orbita.VA.Comun
             if (this._Iniciado && ORemotingUtils.CanalRegistrado(this.NombreCanal))
             {
                 // Destrucción de los objetos
-                ChannelServices.UnregisterChannel(CanalServidor);
+                ChannelServices.UnregisterChannel(this.CanalCliente);
             }
         }
         #endregion

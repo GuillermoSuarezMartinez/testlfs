@@ -19,6 +19,18 @@ namespace Orbita.VA.Funciones
 	public static class AppBD
 	{
 		#region TAB Select: funciones Get -> GetX(...)
+        /// <summary>
+        /// Consulta el alias de una escenario de hardware
+        /// </summary>
+        /// <param name="codEscenario"></param>
+        /// <returns></returns>
+        public static DataTable GetAliasEscenarioFuncionesVision(string codEscenario)
+        {
+            ArrayList list = new ArrayList();
+            list.Add(new SqlParameter("@CodEscenario", codEscenario));
+
+            return OBaseDatosParam.SQLServer.SeleccionProcedimientoAlmacenado("VA_VIS_GET_ALIAS_ESCENARIO", list);
+        }
 
 		/// <summary>
 		/// Consulta las parámetros de un determinada función de visión

@@ -120,6 +120,12 @@ namespace Orbita.VA.GeneradorEscenarios
                         GenerarHardware(generador, codEscenario, claseEscenario);
                     }
 
+                    //------------ FUNCIONES VISION ---------------//
+                    if (HabilitadoVision)
+                    {
+                        GenerarFuncionesVision(generador, codEscenario, claseEscenario);
+                    }
+
                     //------------ ESTADOS ---------------//
                     GenerarEstados(generador, codME, claseImplementadoraEscenario);
 
@@ -312,6 +318,42 @@ namespace Orbita.VA.GeneradorEscenarios
             }
 
             generador.Region("Hardware del escenario", claseHardware);
+        }
+
+        /// <summary>
+        /// Generación de la clase interior al escenario que implementa las variables
+        /// </summary>
+        /// <param name="generador"></param>
+        /// <param name="codEscenario"></param>
+        /// <param name="claseEscenario"></param>
+        private static void GenerarFuncionesVision(OGeneradorAccesoRapido generador, string codEscenario, CodeTypeDeclaration claseEscenario)
+        {
+            // Se genera la propiedad de las funciones de visión
+            generador.GenerarPropiedadReadOnly(ref claseEscenario, "FuncionesVision", string.Empty, "Funciones de visión", MemberAttributes.Public, "CFuncionVision", true);
+
+            // Generador de la clase interna de escenarios de las funciones de visión
+            CodeTypeDeclaration claseFuncionesVision = generador.GenerarClase("CFuncionVision", string.Empty, claseEscenario, "Funciones de visión del escenario", MemberAttributes.Public);
+            generador.GenerarPropiedadReadOnly(ref claseFuncionesVision, "Codigo", string.Empty, "Código del escenario", MemberAttributes.Public, typeof(string).ToString(), true);
+
+            // Constructor de la clase FuncionesVision con la asignación del código
+            CodeStatement asignacionCodigoFuncionesVision = generador.Asignacion("_Codigo", "codigo");
+            generador.GenerarConstructor(claseFuncionesVision, "Constructor de la clase", MemberAttributes.Public,
+                new CodeParameterDeclarationExpression[] { new CodeParameterDeclarationExpression(typeof(string), "codigo") },
+                new CodeExpression[] { },
+                new CodeStatement[] { asignacionCodigoFuncionesVision });
+
+            // Lectura de los alias de la base de datos
+            DataTable dtAliasFuncionesVision = Orbita.VA.Funciones.AppBD.GetAliasEscenarioFuncionesVision(codEscenario);
+            foreach (DataRow drAlias in dtAliasFuncionesVision.Rows)
+            {
+                // Creamos una propiedad con cada uno de los alias
+                string codAlias = drAlias["CodAlias"].ToString();
+                string descFuncionVision = drAlias["DescFuncionVision"].ToString();
+                string claseImplementadoraFuncionVision = drAlias["ClaseImplementadora"].ToString();
+                generador.GenerarPropiedadReadOnlyRuntime(ref claseFuncionesVision, codAlias, claseImplementadoraFuncionVision, descFuncionVision, MemberAttributes.Public, claseImplementadoraFuncionVision, "OFuncionesVisionManager", "GetFuncionVision", new CodeExpression[] { new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), "Codigo"), new CodePrimitiveExpression(codAlias) });
+            }
+
+            generador.Region("Funciones de visión del escenario", claseFuncionesVision);
         }
 
         /// <summary>
