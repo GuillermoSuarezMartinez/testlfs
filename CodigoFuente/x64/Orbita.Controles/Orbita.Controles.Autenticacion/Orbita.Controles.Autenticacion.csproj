@@ -32,15 +32,27 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Framework|x86'">
     <OutputPath>bin\x86\Framework\</OutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Framework|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Framework\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Orbita.BBDD">
-      <HintPath>C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.BBDD.dll</HintPath>
+      <HintPath>..\..\Comun\Orbita\Orbita.BBDD.dll</HintPath>
     </Reference>
     <Reference Include="Orbita.MS">
-      <HintPath>C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.MS.dll</HintPath>
+      <HintPath>..\..\Comun\Orbita\Orbita.MS.dll</HintPath>
     </Reference>
     <Reference Include="Orbita.Utiles">
-      <HintPath>C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Utiles.dll</HintPath>
+      <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

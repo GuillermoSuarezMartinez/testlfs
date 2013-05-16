@@ -56,6 +56,18 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Framework|x86'">
     <OutputPath>bin\x86\Framework\</OutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Framework|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Framework\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -107,19 +119,16 @@
     <Reference Include="Microsoft.DirectX.AudioVideoPlayback">
       <HintPath>..\..\Comun\Comunicaciones\Microsoft.DirectX.AudioVideoPlayback.dll</HintPath>
     </Reference>
-    <Reference Include="Orbita.Comunicaciones, Version=13.93.3.1, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Orbita.Comunicaciones">
       <HintPath>..\..\Comun\Orbita\Orbita.Comunicaciones.dll</HintPath>
     </Reference>
-    <Reference Include="Orbita.Trazabilidad, Version=13.68.3.1, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Orbita.Trazabilidad">
       <HintPath>..\..\Comun\Orbita\Orbita.Trazabilidad.dll</HintPath>
     </Reference>
     <Reference Include="Orbita.Utiles">
       <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
     </Reference>
-    <Reference Include="Orbita.Winsock, Version=13.70.5.1, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Orbita.Winsock">
       <HintPath>..\..\Comun\Orbita\Orbita.Winsock.dll</HintPath>
     </Reference>
     <Reference Include="StarIO">
