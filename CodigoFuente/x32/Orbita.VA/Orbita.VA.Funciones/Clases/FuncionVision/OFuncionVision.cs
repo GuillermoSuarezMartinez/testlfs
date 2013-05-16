@@ -28,19 +28,65 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Lista de funciones de visión funcionando en el sistema
         /// </summary>
-        private static List<OFuncionVisionBase> ListaFuncionesVision;
+        private static Dictionary<string, OFuncionVisionBase> ListaFuncionesVision;
 
+        /// <summary>
+        /// Lista de todas las escenarios de las funciones de visión del sistema
+        /// </summary>
+        public static Dictionary<string, OEscenarioFuncionVision> Escenarios;
+        #endregion
+
+        #region Método(s) privado(s)
+        /// <summary>
+        /// Método para acceder a una función de visión
+        /// </summary>
+        /// <param name="codEscenario">Escenario</param>
+        /// <param name="codAlias">Código o alias de la función de visión</param>
+        /// <param name="hardware">Función de visión devuelta</param>
+        /// <returns>Verdadero si se ha encontrado la función de visión</returns>
+        private static bool TryGetFuncionVision(string codEscenario, string codAlias, out OFuncionVisionBase funcionVision)
+        {
+            // Inicialización de resultados
+            bool resultado = false;
+            funcionVision = null;
+
+            if (OSistemaManager.IntegraMaquinaEstados)
+            {
+                string alias = codAlias;
+
+                // Cambio el alias al del escenario
+                if ((codEscenario != string.Empty) && (OSistemaManager.IntegraMaquinaEstados) && (Escenarios is Dictionary<string, OEscenarioFuncionVision>))
+                {
+                    // Cambio el alias
+                    OEscenarioFuncionVision escenarioFuncionVision;
+                    if (Escenarios.TryGetValue(codEscenario, out escenarioFuncionVision))
+                    {
+                        string codHardware;
+                        if (escenarioFuncionVision.ListaAlias.TryGetValue(codAlias, out codHardware))
+                        {
+                            alias = codHardware;
+                        }
+                    }
+                }
+
+                if (ListaFuncionesVision is Dictionary<string, OFuncionVisionBase>)
+                {
+                    resultado = ListaFuncionesVision.TryGetValue(alias, out funcionVision);
+                }
+            }
+
+            return resultado;
+        }
         #endregion
 
         #region Método(s) público(s)
-
         /// <summary>
         /// Construye los objetos
         /// </summary>
         public static void Constructor()
         {
             // Construyo la lista de funciones de visión
-            ListaFuncionesVision = new List<OFuncionVisionBase>();
+            ListaFuncionesVision = new Dictionary<string, OFuncionVisionBase>();
 
             // Consulta a la base de datos
             DataTable dt = AppBD.GetFuncionesVision();
@@ -57,7 +103,27 @@ namespace Orbita.VA.Funciones
                     if (App.ConstruirClase(ensambladoClaseImplementadora, claseImplementadora, out objetoImplementado, codFuncionVision))
                     {
                         OFuncionVisionBase funcionVision = (OFuncionVisionBase)objetoImplementado;
-                        ListaFuncionesVision.Add(funcionVision);
+                        ListaFuncionesVision.Add(codFuncionVision, funcionVision);
+                    }
+                }
+            }
+
+            // Consulta de todas las escenarios existentes en el sistema
+            if (OSistemaManager.IntegraMaquinaEstados)
+            {
+                Escenarios = new Dictionary<string, OEscenarioFuncionVision>();
+
+                DataTable dtEscenario = Orbita.VA.Comun.AppBD.GetEscenarios();
+                if (dtEscenario.Rows.Count > 0)
+                {
+                    // Cargamos todas las escenarios existentes en el sistema
+                    OEscenarioFuncionVision escenario;
+                    foreach (DataRow drEscenario in dtEscenario.Rows)
+                    {
+                        // Creamos cada una de los escenarios del sistema
+                        string codEscenario = drEscenario["CodEscenario"].ToString();
+                        escenario = new OEscenarioFuncionVision(codEscenario);
+                        Escenarios.Add(codEscenario, escenario);
                     }
                 }
             }
@@ -83,7 +149,7 @@ namespace Orbita.VA.Funciones
         /// </summary>
         public static void Inicializar()
         {
-            foreach (OFuncionVisionBase visionFunction in ListaFuncionesVision)
+            foreach (OFuncionVisionBase visionFunction in ListaFuncionesVision.Values)
             {
                 visionFunction.Inicializar();
             }
@@ -94,7 +160,7 @@ namespace Orbita.VA.Funciones
         /// </summary>
         public static void Finalizar()
         {
-            foreach (OFuncionVisionBase visionFunction in ListaFuncionesVision)
+            foreach (OFuncionVisionBase visionFunction in ListaFuncionesVision.Values)
             {
                 visionFunction.Finalizar();
             }
@@ -106,12 +172,18 @@ namespace Orbita.VA.Funciones
         /// </summary>
         public static void IniciarEjecucion(string codFuncionVision)
         {
-            foreach (OFuncionVisionBase visionFunction in ListaFuncionesVision)
+            IniciarEjecucion(string.Empty, codFuncionVision);
+        }
+        /// <summary>
+        /// Inicia la ejecución de determinada función de visión.
+        /// Se debe ejecutar a esta función desde el hilo principal de la aplicación, de lo contrario ocurrirán excepciones.
+        /// </summary>
+        public static void IniciarEjecucion(string escenario, string codFuncionVision)
+        {
+            OFuncionVisionBase funcionVision;
+            if (TryGetFuncionVision(escenario, codFuncionVision, out funcionVision))
             {
-                if (visionFunction.Codigo == codFuncionVision)
-                {
-                    visionFunction.IniciarEjecucion();
-                }
+                funcionVision.IniciarEjecucion();
             }
         }
 
@@ -121,12 +193,18 @@ namespace Orbita.VA.Funciones
         /// </summary>
         public static void IniciarEjecucionSincrona(string codFuncionVision)
         {
-            foreach (OFuncionVisionBase visionFunction in ListaFuncionesVision)
+            IniciarEjecucionSincrona(string.Empty, codFuncionVision);
+        }
+        /// <summary>
+        /// Inicia la ejecución de determinada función de visión de forma síncrona
+        /// Se debe ejecutar a esta función desde el hilo principal de la aplicación, de lo contrario ocurrirán excepciones.
+        /// </summary>
+        public static void IniciarEjecucionSincrona(string escenario, string codFuncionVision)
+        {
+            OFuncionVisionBase funcionVision;
+            if (TryGetFuncionVision(escenario, codFuncionVision, out funcionVision))
             {
-                if (visionFunction.Codigo == codFuncionVision)
-                {
-                    visionFunction.IniciarEjecucionSincrona();
-                }
+                funcionVision.IniciarEjecucionSincrona();
             }
         }
 
@@ -137,12 +215,19 @@ namespace Orbita.VA.Funciones
         /// 
         public static void IniciarEjecucionAsincrona(string codFuncionVision)
         {
-            foreach (OFuncionVisionBase visionFunction in ListaFuncionesVision)
+            IniciarEjecucionAsincrona(string.Empty, codFuncionVision);
+        }
+        /// <summary>
+        /// Inicia la ejecución de determinada función de visión de forma asíncrona
+        /// Se debe ejecutar a esta función desde el hilo principal de la aplicación, de lo contrario ocurrirán excepciones.
+        /// </summary>
+        /// 
+        public static void IniciarEjecucionAsincrona(string escenario, string codFuncionVision)
+        {
+            OFuncionVisionBase funcionVision;
+            if (TryGetFuncionVision(escenario, codFuncionVision, out funcionVision))
             {
-                if (visionFunction.Codigo == codFuncionVision)
-                {
-                    visionFunction.IniciarEjecucionAsincrona();
-                }
+                funcionVision.IniciarEjecucionAsincrona();
             }
         }
 
@@ -157,13 +242,25 @@ namespace Orbita.VA.Funciones
         /// <returns>Verdadero si la función se ha ejecutado correctamente</returns>
         public static bool SetEntrada(string codFuncionVision, string codParametro, object valor, OEnumTipoDato tipoVariable)
         {
-            foreach (OFuncionVisionBase visionFunction in ListaFuncionesVision)
+            return SetEntrada(string.Empty, codFuncionVision, codParametro, valor, tipoVariable);
+        }
+        /// <summary>
+        /// Función para la actualización de parámetros de entrada
+        /// </summary>
+        /// <param name="codFuncionVision">Código identificador de la función de vision</param>
+        /// <param name="codPieza">Código identificador de la pieza</param>
+        /// <param name="codParametro">Código identificador del parámetro</param>
+        /// <param name="valor">Nuevo valor del parámetro</param>
+        /// <param name="tipoVariable">Tipo del parámetro</param>
+        /// <returns>Verdadero si la función se ha ejecutado correctamente</returns>
+        public static bool SetEntrada(string escenario, string codFuncionVision, string codParametro, object valor, OEnumTipoDato tipoVariable)
+        {
+            OFuncionVisionBase funcionVision;
+            if (TryGetFuncionVision(escenario, codFuncionVision, out funcionVision))
             {
-                if (visionFunction.Codigo == codFuncionVision)
-                {
-                    return visionFunction.SetEntrada(codParametro, valor, tipoVariable);
-                }
+                return funcionVision.SetEntrada(codParametro, valor, tipoVariable);
             }
+
             return false;
         }
 
@@ -178,14 +275,26 @@ namespace Orbita.VA.Funciones
         /// <returns>Verdadero si la función se ha ejecutado correctamente</returns>
         public static bool GetSalida(string codFuncionVision, string codParametro, out object valor, OEnumTipoDato tipoVariable)
         {
+            return GetSalida(string.Empty, codFuncionVision, codParametro, out valor, tipoVariable);
+        }
+        /// <summary>
+        /// Función para la consulta de parámetros de salida
+        /// </summary>
+        /// <param name="codFuncionVision">Código identificador de la función de vision</param>
+        /// <param name="codPieza">Código identificador de la pieza</param>
+        /// <param name="codParametro">Código identificador del parámetro</param>
+        /// <param name="valor">Valor del parámetro devuelto por la función</param>
+        /// <param name="tipoVariable">Tipo del parámetro</param>
+        /// <returns>Verdadero si la función se ha ejecutado correctamente</returns>
+        public static bool GetSalida(string escenario, string codFuncionVision, string codParametro, out object valor, OEnumTipoDato tipoVariable)
+        {
+            OFuncionVisionBase funcionVision;
             valor = null;
-            foreach (OFuncionVisionBase visionFunction in ListaFuncionesVision)
+            if (TryGetFuncionVision(escenario, codFuncionVision, out funcionVision))
             {
-                if (visionFunction.Codigo == codFuncionVision)
-                {
-                    return visionFunction.GetSalida(codParametro, out valor, tipoVariable);
-                }
+                return funcionVision.GetSalida(codParametro, out valor, tipoVariable);
             }
+
             return false;
         }
 
@@ -196,14 +305,22 @@ namespace Orbita.VA.Funciones
         /// <returns></returns>
         public static bool GetSalidas(string codFuncionVision, out Dictionary<string, object> listaSalidas)
         {
+            return GetSalidas(string.Empty, codFuncionVision, out listaSalidas);
+        }
+        /// <summary>
+        /// Función para la consulta de parámetros de salida
+        /// </summary>
+        /// <param name="listaSalidas">Lista de objetos que respresentan el conjunto de salidas de la función de visión</param>
+        /// <returns></returns>
+        public static bool GetSalidas(string escenario, string codFuncionVision, out Dictionary<string, object> listaSalidas)
+        {
+            OFuncionVisionBase funcionVision;
             listaSalidas = null;
-            foreach (OFuncionVisionBase visionFunction in ListaFuncionesVision)
+            if (TryGetFuncionVision(escenario, codFuncionVision, out funcionVision))
             {
-                if (visionFunction.Codigo == codFuncionVision)
-                {
-                    return visionFunction.GetSalidas(out listaSalidas);
-                }
+                return funcionVision.GetSalidas(out listaSalidas);
             }
+
             return false;
         }
 
@@ -215,7 +332,7 @@ namespace Orbita.VA.Funciones
         {
             OFuncionVisionBase resultado = null;
 
-            foreach (OFuncionVisionBase funcionVision in ListaFuncionesVision)
+            foreach (OFuncionVisionBase funcionVision in ListaFuncionesVision.Values)
             {
                 if (funcionVision.Claves.CompararClaves(claves))
                 {
@@ -233,13 +350,23 @@ namespace Orbita.VA.Funciones
         /// <returns></returns>
         public static OFuncionVisionBase GetFuncionVision(string codigo)
         {
-            OFuncionVisionBase resultado = null;
-            try
+            return GetFuncionVision(string.Empty, codigo);
+        }
+
+        /// <summary>
+        /// Obtiene la función de visión mediante las claves
+        /// </summary>
+        /// <param name="escenario">Escenario utilizada</param>
+        /// <param name="codigo">Código de la función de visión</param>
+        /// <returns>Hardware encontrado</returns>
+        public static OFuncionVisionBase GetFuncionVision(string escenario, string codigo)
+        {
+            OFuncionVisionBase funcionVisionBase;
+            if (TryGetFuncionVision(escenario, codigo, out funcionVisionBase))
             {
-                resultado = ListaFuncionesVision.Single(fnc => fnc.Codigo == codigo);
+                return funcionVisionBase;
             }
-            catch { }
-            return resultado;
+            return null;
         }
 
         /// <summary>
@@ -250,7 +377,7 @@ namespace Orbita.VA.Funciones
         {
             string resultado = string.Empty;
 
-            foreach (OFuncionVisionBase funcionVision in ListaFuncionesVision)
+            foreach (OFuncionVisionBase funcionVision in ListaFuncionesVision.Values)
             {
                 if (funcionVision.Claves.CompararClaves(claves))
                 {
@@ -260,6 +387,61 @@ namespace Orbita.VA.Funciones
             }
 
             return resultado;
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Clase que implementa los escenarios de las funciones de visión
+    /// </summary>
+    public class OEscenarioFuncionVision
+    {
+        #region Atributo(s)
+        /// <summary>
+        /// Código del escenario
+        /// </summary>
+        public string Codigo;
+
+        /// <summary>
+        /// Lista de todos los alias del escenario
+        /// </summary>
+        public Dictionary<string, string> ListaAlias;
+
+        #endregion
+
+        #region Constructor
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        /// <param name="codEscenario">Código del escenario</param>
+        public OEscenarioFuncionVision(string codEscenario)
+        {
+            this.Codigo = codEscenario;
+
+            this.ListaAlias = new Dictionary<string, string>();
+            this.RellenarAlias(codEscenario);
+        }
+        #endregion
+
+        #region Método(s) privado(s)
+        /// <summary>
+        /// Rellena la lista de alias del escenario
+        /// </summary>
+        private void RellenarAlias(string codEscenario)
+        {
+            // Consulta de todos los alias existentes en el sistema
+            DataTable dtVar = AppBD.GetAliasEscenarioFuncionesVision(codEscenario);
+            if (dtVar.Rows.Count > 0)
+            {
+                // Cargamos todos los alias existentes en el sistema
+                foreach (DataRow drVar in dtVar.Rows)
+                {
+                    // Creamos cada una de las variables del sistema
+                    string codAlias = drVar["CodAlias"].ToString();
+                    string codFuncionVision = drVar["CodFuncionVision"].ToString();
+                    ListaAlias.Add(codAlias, codFuncionVision);
+                }
+            }
         }
         #endregion
     }
