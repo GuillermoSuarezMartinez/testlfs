@@ -7,6 +7,7 @@ using System.Runtime.Remoting;
 using System.Security.Permissions;
 using System.Windows.Forms;
 using System.Xml;
+using System.Runtime.Remoting.Channels;
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -56,22 +57,7 @@ namespace Orbita.Comunicaciones
 
             // Crear el documento Xml.
             XmlDocument doc = new XmlDocument();
-            //doc.LoadXml(string.Format(CultureInfo.CurrentCulture,
-            //    @"<?xml version='1.0' encoding='utf-8' ?>" +
-            //     "<configuration>" +
-            //        "<system.runtime.remoting>" +
-            //            "<application >" +
-            //                "<channels>" +
-            //                    "<channel name=\"{4}\" ref=\"tcp\" port=\"{0}\">" +
-            //                        "<serverProviders><provider ref=\"wsdl\" /><formatter ref=\"soap\" typeFilterLevel=\"Full\" /><formatter ref=\"binary\" typeFilterLevel=\"Full\" />" +
-            //                        "</serverProviders>" +
-            //                    "</channel>" +
-            //                "</channels>" +
-            //                "<service><wellknown mode=\"Singleton\" type=\"{1}.{2}, {1}\" objectUri=\"{3}.soap\" />" +
-            //                "</service>" +
-            //            "</application>" +
-            //        "</system.runtime.remoting>" +
-            //     "</configuration>", puerto, espacioDEnombres, clase, ensamblado.Name, canal));
+            
             doc.LoadXml(string.Format(CultureInfo.CurrentCulture,
                 @"<?xml version='1.0' encoding='utf-8' ?>" +
                  "<configuration>" +
@@ -123,23 +109,14 @@ namespace Orbita.Comunicaciones
         {
             // Obtener el nombre del ensamblado.
             AssemblyName ensamblado = Assembly.GetExecutingAssembly().GetName();
-
-            // Crear el documento Xml.
             XmlDocument doc = new XmlDocument();
-            //doc.LoadXml(string.Format(CultureInfo.CurrentCulture,
-            //    @"<?xml version='1.0' encoding='utf-8' ?>" +
-            //     "<configuration>" +
-            //        "<system.runtime.remoting>" +
-            //            "<application>" +
-            //                "<channels>" +
-            //                    "<channel ref=\"tcp\" port='0' />" +
-            //                "</channels>" +
-            //                "<client><wellknown type=\"Orbita.Comunicaciones.{1}, {0}\" url=\"tcp://{3}:{2}/{0}.soap\" />" +
-            //                "</client>" +
-            //            "</application>" +
-            //        "</system.runtime.remoting>" +
-            //     "</configuration>", ensamblado.Name, typeof(IOCommRemoting).Name, puerto, maquina));
-            doc.LoadXml(string.Format(CultureInfo.CurrentCulture,
+            IChannel[] regChannels = ChannelServices.RegisteredChannels;
+            string url = "";
+            // Crear el documento Xml.
+
+            if (regChannels.Length == 0)
+            {
+                doc.LoadXml(string.Format(CultureInfo.CurrentCulture,
                 @"<?xml version='1.0' encoding='utf-8' ?>" +
                  "<configuration>" +
                     "<system.runtime.remoting>" +
@@ -152,19 +129,34 @@ namespace Orbita.Comunicaciones
                         "</application>" +
                     "</system.runtime.remoting>" +
                  "</configuration>", ensamblado.Name, typeof(IOCommRemoting).Name, puerto, maquina));
+            }
+            else
+            {
+                url = "tcp://localhost:" + puerto.ToString() + "/Orbita.Comunicaciones.soap";
+            }
+
             string directorio = string.Concat(Application.StartupPath, CONFIG);
             string fichero = string.Concat(Application.StartupPath, REMOTING + puerto + ".config.xml");
 
-            // Control en la creación del directorio de salida.
-            if (!Directory.Exists(directorio))
+            if (regChannels.Length == 0)
             {
-                Directory.CreateDirectory(directorio);
-            }
-            // Guardar el documento en la salida.
-            doc.Save(fichero);
 
-            // Configurar .NET Remoting.
-            Configurar(fichero);
+                // Control en la creación del directorio de salida.
+                if (!Directory.Exists(directorio))
+                {
+                    Directory.CreateDirectory(directorio);
+                }
+                // Guardar el documento en la salida.
+                doc.Save(fichero);
+
+                // Configurar .NET Remoting.
+
+                Configurar(fichero);
+            }
+            else
+            {
+                fichero = url;
+            }
 
             return fichero;
         }
