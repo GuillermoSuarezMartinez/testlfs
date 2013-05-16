@@ -55,18 +55,22 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Framework|x86'">
     <OutputPath>bin\x86\Framework\</OutputPath>
+    <DocumentationFile>bin\x86\Framework\Orbita.Controles.Contenedores.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <PlatformTarget>x64</PlatformTarget>
     <OutputPath>bin\x64\Debug\</OutputPath>
+    <DocumentationFile>bin\x64\Debug\Orbita.Controles.Contenedores.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <PlatformTarget>x64</PlatformTarget>
     <OutputPath>bin\x64\Release\</OutputPath>
+    <DocumentationFile>bin\x64\Release\Orbita.Controles.Contenedores.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Framework|x64'">
     <PlatformTarget>x64</PlatformTarget>
     <OutputPath>bin\x64\Framework\</OutputPath>
+    <DocumentationFile>bin\x64\Framework\Orbita.Controles.Contenedores.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Infragistics2.Shared.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
