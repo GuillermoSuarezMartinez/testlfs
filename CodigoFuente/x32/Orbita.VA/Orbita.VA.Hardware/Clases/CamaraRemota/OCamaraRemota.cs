@@ -198,15 +198,6 @@ namespace Orbita.VA.Hardware
 
         #region Método(s) heredado(s)
         /// <summary>
-        /// Inicialización de la clase
-        /// </summary>
-        public override void Inicializar()
-        {
-            base.Inicializar();
-            this.CamaraCliente.Enlazar();
-        }
-
-        /// <summary>
         /// Finaliza la cámara
         /// </summary>
         public override void Finalizar()
@@ -215,7 +206,6 @@ namespace Orbita.VA.Hardware
 
             if (this.CamaraCliente != null)
             {
-                this.CamaraCliente.Desenlazar();
                 this.CamaraCliente.Desconectar();
             }
         }
@@ -407,14 +397,14 @@ namespace Orbita.VA.Hardware
 
             try
             {
-                // Eventos
-                this.DesconectarEventWrapper();
-
                 // Finalizamos la comprobación de la conectividad con la cámara
                 this.TimerComprobacionConexion.Stop();
                 this.TimerComprobacionConexion.Tick -= this.TimerComprobacionConexion_Tick;
                 this.CronometroTiempoSinRespuesta.Stop();
 
+                // Eventos
+                this.DesconectarEventWrapper();
+                
                 this.CamaraCliente.Desconectar();
 
                 resultado = true;
@@ -732,7 +722,7 @@ namespace Orbita.VA.Hardware
                 {
                     if (this.Instancia != null)
                     {
-                        resultado = this.Instancia.GetExiste();
+                        resultado = this.Instancia.GetExiste(this.CodigoRemoto);
                     }
                 }
                 catch { };
@@ -747,7 +737,7 @@ namespace Orbita.VA.Hardware
         {
             get 
             { 
-                return this.Instancia.GetTipoImagen();
+                return this.Instancia.GetTipoImagen(this.CodigoRemoto);
             }
         }
         #endregion
@@ -767,40 +757,6 @@ namespace Orbita.VA.Hardware
 
         #region Método(s) público(s)
         /// <summary>
-        /// Enlaza con el cliente
-        /// </summary>
-        /// <param name="codigoCliente"></param>
-        /// <param name="codigoServidor"></param>
-        public void Enlazar()
-        {
-            try
-            {
-                this.Instancia.Enlazar(this.CodigoCliente, this.CodigoRemoto);
-            }
-            catch (Exception exception)
-            {
-                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
-            }
-        }
-
-        /// <summary>
-        /// Desenlaza con el cliente
-        /// </summary>
-        /// <param name="codigoCliente"></param>
-        /// <param name="codigoServidor"></param>
-        public void Desenlazar()
-        {
-            try
-            {
-                this.Instancia.Desenlazar();
-            }
-            catch (Exception exception)
-            {
-                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
-            }
-        }
-
-        /// <summary>
         /// Comienza una reproducción continua de la cámara
         /// </summary>
         /// <returns></returns>
@@ -808,7 +764,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                return this.Instancia.Start();
+                return this.Instancia.Start(this.CodigoRemoto);
             }
             catch (Exception exception)
             {
@@ -825,7 +781,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                return this.Instancia.Stop();
+                return this.Instancia.Stop(this.CodigoRemoto);
             }
             catch (Exception exception)
             {
@@ -842,7 +798,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                return this.Instancia.Snap();
+                return this.Instancia.Snap(this.CodigoRemoto);
             }
             catch (Exception exception)
             {
@@ -861,7 +817,7 @@ namespace Orbita.VA.Hardware
             bool resultado = false;
             try
             {
-                resultado = this.Instancia.StartREC(fichero);
+                resultado = this.Instancia.StartREC(this.CodigoRemoto, fichero);
             }
             catch (Exception exception)
             {
@@ -879,7 +835,7 @@ namespace Orbita.VA.Hardware
             bool resultado = false;
             try
             {
-                resultado = this.Instancia.StopREC();
+                resultado = this.Instancia.StopREC(this.CodigoRemoto);
             }
             catch (Exception exception)
             {
@@ -899,7 +855,7 @@ namespace Orbita.VA.Hardware
             bool resultado = false;
             try
             {
-                resultado = this.Instancia.SetAjuste(codAjuste, valor);
+                resultado = this.Instancia.SetAjuste(this.CodigoRemoto, codAjuste, valor);
             }
             catch (Exception exception)
             {
@@ -920,7 +876,7 @@ namespace Orbita.VA.Hardware
             valor = null;
             try
             {
-                resultado = this.Instancia.GetAjuste(codAjuste, out valor);
+                resultado = this.Instancia.GetAjuste(this.CodigoRemoto, codAjuste, out valor);
             }
             catch (Exception exception)
             {
@@ -938,7 +894,7 @@ namespace Orbita.VA.Hardware
             bool resultado = false;
             try
             {
-                resultado = this.Instancia.PTZHabilitado();
+                resultado = this.Instancia.PTZHabilitado(this.CodigoRemoto);
             }
             catch (Exception exception)
             {
@@ -959,7 +915,7 @@ namespace Orbita.VA.Hardware
             bool resultado = false;
             try
             {
-                resultado = this.Instancia.EjecutaMovimientoPTZ(tipo, modo, valor);
+                resultado = this.Instancia.EjecutaMovimientoPTZ(this.CodigoRemoto, tipo, modo, valor);
             }
             catch (Exception exception)
             {
@@ -979,7 +935,7 @@ namespace Orbita.VA.Hardware
             bool resultado = false;
             try
             {
-                resultado = this.Instancia.EjecutaMovimientoPTZ(movimiento, valor);
+                resultado = this.Instancia.EjecutaMovimientoPTZ(this.CodigoRemoto, movimiento, valor);
             }
             catch (Exception exception)
             {
@@ -998,7 +954,7 @@ namespace Orbita.VA.Hardware
             bool resultado = false;
             try
             {
-                resultado = this.Instancia.EjecutaMovimientoPTZ(comando);
+                resultado = this.Instancia.EjecutaMovimientoPTZ(this.CodigoRemoto, comando);
             }
             catch (Exception exception)
             {
@@ -1017,7 +973,7 @@ namespace Orbita.VA.Hardware
             bool resultado = false;
             try
             {
-                resultado = this.Instancia.EjecutaMovimientoPTZ(valores);
+                resultado = this.Instancia.EjecutaMovimientoPTZ(this.CodigoRemoto, valores);
             }
             catch (Exception exception)
             {
@@ -1035,7 +991,7 @@ namespace Orbita.VA.Hardware
             OPosicionesPTZ resultado = new OPosicionesPTZ();
             try
             {
-                resultado = this.Instancia.ConsultaPosicionPTZ();
+                resultado = this.Instancia.ConsultaPosicionPTZ(this.CodigoRemoto);
             }
             catch (Exception exception)
             {
@@ -1053,7 +1009,7 @@ namespace Orbita.VA.Hardware
             OPosicionPTZ resultado = new OPosicionPTZ();
             try
             {
-                resultado = this.Instancia.ConsultaPosicionPTZ(movimiento);
+                resultado = this.Instancia.ConsultaPosicionPTZ(this.CodigoRemoto, movimiento);
             }
             catch (Exception exception)
             {
@@ -1071,7 +1027,7 @@ namespace Orbita.VA.Hardware
             OPosicionesPTZ resultado = new OPosicionesPTZ();
             try
             {
-                resultado = this.Instancia.ConsultaUltimaPosicionPTZ();
+                resultado = this.Instancia.ConsultaUltimaPosicionPTZ(this.CodigoRemoto);
             }
             catch (Exception exception)
             {
@@ -1090,7 +1046,7 @@ namespace Orbita.VA.Hardware
             bool resultado = false;
             try
             {
-                resultado = this.Instancia.GuardarImagenADisco(ruta);
+                resultado = this.Instancia.GuardarImagenADisco(this.CodigoRemoto, ruta);
             }
             catch (Exception exception)
             {
@@ -1108,7 +1064,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                this.Instancia.CrearSuscripcionNuevaFotografiaMemoriaMapeada(this.CodigoCliente, delegadoNuevaFotografiaCamaraMemoriaMapeada);
+                this.Instancia.CrearSuscripcionNuevaFotografiaMemoriaMapeada(this.CodigoCliente, this.CodigoRemoto, delegadoNuevaFotografiaCamaraMemoriaMapeada);
             }
             catch (Exception exception)
             {
@@ -1124,7 +1080,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                this.Instancia.EliminarSuscripcionNuevaFotografiaMemoriaMapeada(this.CodigoCliente, delegadoNuevaFotografiaCamaraMemoriaMapeada);
+                this.Instancia.EliminarSuscripcionNuevaFotografiaMemoriaMapeada(this.CodigoCliente, this.CodigoRemoto, delegadoNuevaFotografiaCamaraMemoriaMapeada);
             }
             catch (Exception exception)
             {
@@ -1141,7 +1097,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                this.Instancia.CrearSuscripcionNuevaFotografiaRemota(this.CodigoCliente, delegadoNuevaFotografiaCamaraRemota);
+                this.Instancia.CrearSuscripcionNuevaFotografiaRemota(this.CodigoCliente, this.CodigoRemoto, delegadoNuevaFotografiaCamaraRemota);
             }
             catch (Exception exception)
             {
@@ -1157,7 +1113,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                this.Instancia.EliminarSuscripcionNuevaFotografiaRemota(this.CodigoCliente, delegadoNuevaFotografiaCamaraRemota);
+                this.Instancia.EliminarSuscripcionNuevaFotografiaRemota(this.CodigoCliente, this.CodigoRemoto, delegadoNuevaFotografiaCamaraRemota);
             }
             catch (Exception exception)
             {
@@ -1174,7 +1130,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                this.Instancia.CrearSuscripcionCambioEstadoConexion(this.CodigoCliente, delegadoCambioEstadoConexionCamara);
+                this.Instancia.CrearSuscripcionCambioEstadoConexion(this.CodigoCliente, this.CodigoRemoto, delegadoCambioEstadoConexionCamara);
             }
             catch (Exception exception)
             {
@@ -1190,7 +1146,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                this.Instancia.EliminarSuscripcionCambioEstadoConexion(this.CodigoCliente, delegadoCambioEstadoConexionCamara);
+                this.Instancia.EliminarSuscripcionCambioEstadoConexion(this.CodigoCliente, this.CodigoRemoto, delegadoCambioEstadoConexionCamara);
             }
             catch (Exception exception)
             {
@@ -1207,7 +1163,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                this.Instancia.CrearSuscripcionCambioEstadoReproduccion(this.CodigoCliente, delegadoCambioEstadoReproduccionCamara);
+                this.Instancia.CrearSuscripcionCambioEstadoReproduccion(this.CodigoCliente, this.CodigoRemoto, delegadoCambioEstadoReproduccionCamara);
             }
             catch (Exception exception)
             {
@@ -1223,7 +1179,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                this.Instancia.EliminarSuscripcionCambioEstadoReproduccion(this.CodigoCliente, delegadoCambioEstadoReproduccionCamara);
+                this.Instancia.EliminarSuscripcionCambioEstadoReproduccion(this.CodigoCliente, this.CodigoRemoto, delegadoCambioEstadoReproduccionCamara);
             }
             catch (Exception exception)
             {
@@ -1240,7 +1196,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                this.Instancia.CrearSuscripcionMensajes(this.CodigoCliente, messageDelegate);
+                this.Instancia.CrearSuscripcionMensajes(this.CodigoCliente, this.CodigoRemoto, messageDelegate);
             }
             catch (Exception exception)
             {
@@ -1256,7 +1212,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                this.Instancia.EliminarSuscripcionMensajes(this.CodigoCliente, messageDelegate);
+                this.Instancia.EliminarSuscripcionMensajes(this.CodigoCliente, this.CodigoRemoto, messageDelegate);
             }
             catch (Exception exception)
             {
@@ -1273,7 +1229,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                this.Instancia.CrearSuscripcionBitVida(this.CodigoCliente, messageDelegate);
+                this.Instancia.CrearSuscripcionBitVida(this.CodigoCliente, this.CodigoRemoto, messageDelegate);
             }
             catch (Exception exception)
             {
@@ -1289,7 +1245,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                this.Instancia.EliminarSuscripcionBitVida(this.CodigoCliente, messageDelegate);
+                this.Instancia.EliminarSuscripcionBitVida(this.CodigoCliente, this.CodigoRemoto, messageDelegate);
             }
             catch (Exception exception)
             {

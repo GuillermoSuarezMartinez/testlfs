@@ -622,6 +622,205 @@ namespace Orbita.VA.Hardware
                 camara.EliminarSuscripcionMensajesSincrona(messageDelegate);
             }
         }
+
+
+        /// <summary>
+        /// Suscribe el cambio de fotografía de una determinada cámara
+        /// </summary>
+        /// <param name="codigoRemoto">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
+        internal static void CrearSuscripcionNuevaFotografiaAsincronaMemoriaMapeada(string codigoCliente, string codigoServidor, EventoNuevaFotografiaCamaraMemoriaMapeada delegadoNuevaFotografiaCamaraMemoriaMapeada)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigoServidor, out camara))
+            {
+                if (camara is OCamaraServidor)
+                {
+                    ((OCamaraServidor)camara).CrearSuscripcionNuevaFotografiaAsincronaMemoriaMapeada(codigoCliente, delegadoNuevaFotografiaCamaraMemoriaMapeada);
+                }
+            }
+        }
+        /// <summary>
+        /// Elimina la suscripción del cambio de fotografía de una determinada cámara
+        /// </summary>
+        /// <param name="codigoRemoto">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
+        internal static void EliminarSuscripcionNuevaFotografiaAsincronaMemoriaMapeada(string codigoCliente, string codigoServidor, EventoNuevaFotografiaCamaraMemoriaMapeada delegadoNuevaFotografiaCamaraMemoriaMapeada)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigoServidor, out camara))
+            {
+                if (camara is OCamaraServidor)
+                {
+                    ((OCamaraServidor)camara).EliminarSuscripcionNuevaFotografiaAsincronaMemoriaMapeada(codigoCliente, delegadoNuevaFotografiaCamaraMemoriaMapeada);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Suscribe el cambio de fotografía de una determinada cámara
+        /// </summary>
+        /// <param name="codigoRemoto">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
+        internal static void CrearSuscripcionNuevaFotografiaAsincronaRemota(string codigoCliente, string codigoServidor, EventoNuevaFotografiaCamaraRemota delegadoNuevaFotografiaCamaraRemota)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigoServidor, out camara))
+            {
+                if (camara is OCamaraServidor)
+                {
+                    ((OCamaraServidor)camara).CrearSuscripcionNuevaFotografiaAsincronaRemota(codigoCliente, delegadoNuevaFotografiaCamaraRemota);
+                }
+            }
+        }
+        /// <summary>
+        /// Elimina la suscripción del cambio de fotografía de una determinada cámara
+        /// </summary>
+        /// <param name="codigoRemoto">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
+        internal static void EliminarSuscripcionNuevaFotografiaAsincronaRemota(string codigoCliente, string codigoServidor, EventoNuevaFotografiaCamaraRemota delegadoNuevaFotografiaCamaraRemota)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigoServidor, out camara))
+            {
+                if (camara is OCamaraServidor)
+                {
+                    ((OCamaraServidor)camara).EliminarSuscripcionNuevaFotografiaAsincronaRemota(codigoCliente, delegadoNuevaFotografiaCamaraRemota);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Suscribe el cambio de estado de una determinada cámara
+        /// </summary>
+        /// <param name="codigoRemoto">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
+        internal static void CrearSuscripcionCambioEstadoConexionAsincrona(string codigoCliente, string codigoServidor, EventoCambioEstadoConexionCamara delegadoCambioEstadoConexionCamara)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigoServidor, out camara))
+            {
+                if (camara is OCamaraServidor)
+                {
+                    ((OCamaraServidor)camara).CrearSuscripcionCambioEstadoConexionAsincrona(codigoCliente, delegadoCambioEstadoConexionCamara);
+                }
+            }
+        }
+        /// <summary>
+        /// Elimina la suscripción del cambio de estado de una determinada cámara
+        /// </summary>
+        /// <param name="codigoRemoto">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
+        internal static void EliminarSuscripcionCambioEstadoConexionAsincrona(string codigoCliente, string codigoServidor, EventoCambioEstadoConexionCamara delegadoCambioEstadoConexionCamara)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigoServidor, out camara))
+            {
+                if (camara is OCamaraServidor)
+                {
+                    ((OCamaraServidor)camara).EliminarSuscripcionCambioEstadoConexionAsincrona(codigoCliente, delegadoCambioEstadoConexionCamara);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Suscribe el cambio de estado de reproducción de una determinada cámara
+        /// </summary>
+        /// <param name="codigoRemoto">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
+        internal static void CrearSuscripcionCambioEstadoReproduccionAsincrona(string codigoCliente, string codigoServidor, EventoCambioEstadoReproduccionCamara delegadoCambioEstadoReproduccionCamara)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigoServidor, out camara))
+            {
+                if (camara is OCamaraServidor)
+                {
+                    ((OCamaraServidor)camara).CrearSuscripcionCambioEstadoReproduccionAsincrona(codigoCliente, delegadoCambioEstadoReproduccionCamara);
+                }
+            }
+        }
+        /// <summary>
+        /// Elimina la suscripción del cambio de estado de reproducción de una determinada cámara
+        /// </summary>
+        /// <param name="codigoRemoto">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
+        internal static void EliminarSuscripcionCambioEstadoReproduccionAsincrona(string codigoCliente, string codigoServidor, EventoCambioEstadoReproduccionCamara delegadoCambioEstadoReproduccionCamara)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigoServidor, out camara))
+            {
+                if (camara is OCamaraServidor)
+                {
+                    ((OCamaraServidor)camara).EliminarSuscripcionCambioEstadoReproduccionAsincrona(codigoCliente, delegadoCambioEstadoReproduccionCamara);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Suscribe la recepción de mensajes de una determinada cámara
+        /// </summary>
+        /// <param name="codigoRemoto">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        internal static void CrearSuscripcionMensajesAsincrona(string codigoCliente, string codigoServidor, OMessageEvent messageDelegate)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigoServidor, out camara))
+            {
+                if (camara is OCamaraServidor)
+                {
+                    ((OCamaraServidor)camara).CrearSuscripcionMensajesAsincrona(codigoCliente, messageDelegate);
+                }
+            }
+        }
+        /// <summary>
+        /// Elimina la suscripción de mensajes de una determinada cámara
+        /// </summary>
+        /// <param name="codigoRemoto">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        internal static void EliminarSuscripcionMensajesAsincrona(string codigoCliente, string codigoServidor, OMessageEvent messageDelegate)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigoServidor, out camara))
+            {
+                if (camara is OCamaraServidor)
+                {
+                    ((OCamaraServidor)camara).EliminarSuscripcionMensajesAsincrona(codigoCliente, messageDelegate);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Suscribe la recepción del bit de vida
+        /// </summary>
+        /// <param name="codigoRemoto">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        internal static void CrearSuscripcionBitVidaAsincrona(string codigoCliente, string codigoServidor, ManejadorEvento delegadoBitVida)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigoServidor, out camara))
+            {
+                if (camara is OCamaraServidor)
+                {
+                    ((OCamaraServidor)camara).CrearSuscripcionBitVidaAsincrona(codigoCliente, delegadoBitVida);
+                }
+            }
+        }
+        /// <summary>
+        /// Elimina la suscripción del bit de vida
+        /// </summary>
+        /// <param name="codigoRemoto">Código de la cámara</param>
+        /// <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        internal static void EliminarSuscripcionBitVidaAsincrona(string codigoCliente, string codigoServidor, ManejadorEvento delegadoBitVida)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigoServidor, out camara))
+            {
+                if (camara is OCamaraServidor)
+                {
+                    ((OCamaraServidor)camara).EliminarSuscripcionBitVidaAsincrona(codigoCliente, delegadoBitVida);
+                }
+            }
+        }
         #endregion
 	}
 
