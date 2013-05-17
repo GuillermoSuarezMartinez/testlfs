@@ -116,22 +116,6 @@
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IBM.Data.DB2">
-      <HintPath>..\..\Comun\BBDD\IBM.Data.DB2.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data, Version=5.0.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Comun\BBDD\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Npgsql, Version=2.0.11.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Comun\BBDD\Npgsql.dll</HintPath>
-    </Reference>
-    <Reference Include="Oracle.DataAccess, Version=2.102.5.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Comun\BBDD\Oracle.DataAccess.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.XML" />
@@ -139,10 +123,6 @@
   <ItemGroup>
     <Compile Include="Core\OAccess.cs" />
     <Compile Include="Core\OCore.cs" />
-    <Compile Include="Core\ODB2.cs" />
-    <Compile Include="Core\OMySql.cs" />
-    <Compile Include="Core\OOracle.cs" />
-    <Compile Include="Core\OPostgreSql.cs" />
     <Compile Include="Core\OSqlServer.cs" />
     <Compile Include="Core\OWinCC.cs" />
     <Compile Include="Conexión\OInfoConexion.cs" />
