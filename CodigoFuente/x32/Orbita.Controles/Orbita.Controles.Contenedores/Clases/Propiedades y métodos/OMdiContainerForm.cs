@@ -61,15 +61,15 @@ namespace Orbita.Controles.Contenedores
             }
             if (this.control.MdiChildren.Length < this.numeroMaximoFormulariosAbiertos)
             {
-                foreach (OrbitaForm hijo in this.control.MdiChildren)
-                {
-                    if (hijo.GetType() == form.GetType())
-                    {
-                        hijo.Activate();
-                        hijo.BringToFront();
-                        return true;
-                    }
-                }
+                //foreach (OrbitaForm hijo in this.control.MdiChildren)
+                //{
+                    //if (hijo.GetType() == form.GetType())
+                    //{
+                    //    hijo.Activate();
+                    //    hijo.BringToFront();
+                    //    return true;
+                    //}
+                //}
                 form.MdiParent = this.control;
                 form.Show();
             }
