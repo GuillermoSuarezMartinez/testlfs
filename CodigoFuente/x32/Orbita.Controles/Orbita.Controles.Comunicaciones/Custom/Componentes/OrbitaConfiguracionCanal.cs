@@ -267,7 +267,7 @@ namespace Orbita.Controles.Comunicaciones
                 ORemoting.InicConfiguracionCliente(this._remotingPuerto, this._servidorRemoting);
                 this._servidor = (Orbita.Comunicaciones.IOCommRemoting)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting));
                 this.ConectarWrapper();
-                this.IniciarHiloEstadoCanal();
+                //this.IniciarHiloEstadoCanal();
             }
             catch (Exception ex)
             {

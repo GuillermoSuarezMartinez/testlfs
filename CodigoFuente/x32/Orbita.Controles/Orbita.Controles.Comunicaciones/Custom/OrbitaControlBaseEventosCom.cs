@@ -119,15 +119,18 @@ namespace Orbita.Controles.Comunicaciones
 
         private void OrbitaConfiguracionCanal_OEventoClienteCambioDato(Orbita.Utiles.OEventArgs e, string canal)
         {
-            OInfoDato info = (OInfoDato)e.Argumento;
-            if (canal == this.OI.Comunicacion.NombreCanal && info.Dispositivo == this.OI.Comunicacion.IdDispositivo && info.Texto == this.OI.CambioDato.Variable)
+            lock (this)
             {
-                this.ProcesarVariableVisual(e);
-            }
-            if (canal == this.OI.Comunicacion.NombreCanal && info.Dispositivo == this.OI.Comunicacion.IdDispositivo && this.OI.CambioDato.Cambios.Exists(x => x == info.Texto))
-            {
-                this.ProcesarCambioDato(e);
-            }
+                OInfoDato info = (OInfoDato)e.Argumento;
+                if (canal == this.OI.Comunicacion.NombreCanal && info.Dispositivo == this.OI.Comunicacion.IdDispositivo && info.Texto == this.OI.CambioDato.Variable)
+                {
+                    this.ProcesarVariableVisual(e);
+                }
+                if (canal == this.OI.Comunicacion.NombreCanal && info.Dispositivo == this.OI.Comunicacion.IdDispositivo && this.OI.CambioDato.Cambios.Exists(x => x == info.Texto))
+                {
+                    this.ProcesarCambioDato(e);
+                }
+            }            
         }
 
         private void OrbitaConfiguracionCanal_OEventoClienteComs(Orbita.Utiles.OEventArgs e, string canal)
