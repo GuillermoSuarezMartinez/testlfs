@@ -138,10 +138,10 @@ namespace Orbita.VA.Funciones
             ListaFuncionesVision = null;
 
             // Se elimina la demanda del uso de LPR
-            OLPRManager.FinDemandaUso();
+            //OLPRManager.FinDemandaUso();
 
             // Se elimina la demanda del uso de OCR
-            OCCRManager.FinDemandaUso();
+            //OCCRManager.FinDemandaUso();
         }
 
         /// <summary>

@@ -150,6 +150,8 @@
     <PlatformTarget>x64</PlatformTarget>
     <OutputPath>bin\x64\Release\</OutputPath>
     <DocumentationFile>bin\x64\Release\Orbita.VA.Funciones.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Forzar32|x64'">
     <PlatformTarget>x64</PlatformTarget>
@@ -162,11 +164,6 @@
     <DocumentationFile>bin\x64\Ofuscado\Orbita.VA.Funciones.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CIDARMTWrapper, Version=3.6.29.5, Culture=neutral, processorArchitecture=x86">
-      <HintPath>..\..\Comun\VA\Neural Labs\CIDARMTWrapper.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Cognex.VisionPro, Version=45.0.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=MSIL">
       <HintPath>..\..\Comun\VA\Cognex\Cognex.VisionPro.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
@@ -228,17 +225,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="VPARMTWrapper, Version=3.3.4.0, Culture=neutral, processorArchitecture=x86">
-      <HintPath>..\..\Comun\VA\Neural Labs\VPARMTWrapper.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\BaseDatos\AppBD.cs" />
     <Compile Include="Clases\Excepciones\AnalisisException.cs" />
     <Compile Include="Clases\Excepciones\FiltradoException.cs" />
-    <Compile Include="Clases\NeuralLabs\ONerualLabsUtils.cs" />
     <Compile Include="Clases\OpenCV\Herramientas\OrbitaCaliper\OEdge.cs" />
     <Compile Include="Clases\OpenCV\Herramientas\OrbitaCaliper\OMetodoPuntuacion.cs" />
     <Compile Include="Clases\OpenCV\Herramientas\OrbitaCaliper\OrbitaCaliper.cs" />
@@ -249,8 +240,6 @@
     <Compile Include="Clases\OpenCV\OHerramientasOpenCV.cs" />
     <Compile Include="Clases\OpenCV\OSegmentacionOpenCV.cs" />
     <Compile Include="Clases\VisionPro\OFuncionVisionPro.cs" />
-    <Compile Include="Clases\NeuralLabs\OFuncionVisionLPR.cs" />
-    <Compile Include="Clases\NeuralLabs\OFuncionVisionCCR.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -283,7 +272,9 @@
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Clases\NeuralLabs\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)Orbita.VA.Funciones.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I
