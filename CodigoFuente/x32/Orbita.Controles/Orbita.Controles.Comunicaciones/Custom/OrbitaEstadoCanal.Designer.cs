@@ -46,14 +46,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblEstadoCanal);
-            this.Name = "OrbitaEstadoCanal";
-            this.OI.Alarmas.Alarmas = ((System.Collections.Generic.List<string>)(resources.GetObject("resource.Alarmas")));
-            this.OI.Alarmas.AlarmasArray = new string[0];
-            this.OI.CambioDato.Cambios = ((System.Collections.Generic.List<string>)(resources.GetObject("resource.Cambios")));
-            this.OI.CambioDato.CambiosArray = new string[0];
-            this.OI.CambioDato.Variable = null;
-            this.OI.Comunicacion.IdDispositivo = 0;
-            this.OI.Comunicacion.NombreCanal = "";
+            this.Name = "OrbitaEstadoCanal";            
             this.Size = new System.Drawing.Size(150, 24);
             this.ResumeLayout(false);
 

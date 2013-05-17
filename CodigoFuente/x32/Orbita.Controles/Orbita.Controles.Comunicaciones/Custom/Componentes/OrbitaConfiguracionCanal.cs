@@ -252,7 +252,7 @@ namespace Orbita.Controles.Comunicaciones
             try
             {
                 LogManager.ConfiguracionLogger(Application.StartupPath + @"\" + this._nombreLogger + ".xml");
-                _wrapper = LogManager.GetLogger("wrapper1");
+                _wrapper = LogManager.GetLogger("wrapperCanal");
                 OrbitaConfiguracionCanal._wrapper.Info("Log creado");
                 this.IniciarHiloEstadoCanal();
                 // Establecer la configuración Remoting entre procesos.
