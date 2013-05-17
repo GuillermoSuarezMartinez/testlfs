@@ -108,10 +108,6 @@
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MccDaq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=a37eefcf5c6ca10a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Comun\Comunicaciones\MccDaq.dll</HintPath>
-    </Reference>
     <Reference Include="OpcRcw.Comn, Version=1.10.2.0, Culture=neutral, PublicKeyToken=9a40e993cbface53, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -132,7 +128,6 @@
     <Compile Include="Dispositivos\Colecciones\OEstadoComms.cs" />
     <Compile Include="Dispositivos\ODispositivoES.cs" />
     <Compile Include="Dispositivos\ODispositivoILBKPhoenix.cs" />
-    <Compile Include="Dispositivos\ODispositivoMCUSB.cs" />
     <Compile Include="Dispositivos\ODispositivoSiemens1200ES.cs" />
     <Compile Include="Protocolos\ModBusTCP\OProtocoloModbusTCP.cs" />
     <Compile Include="Protocolos\OPC\Constantes\Constantes.cs" />
