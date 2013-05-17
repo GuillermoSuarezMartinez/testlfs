@@ -59,7 +59,7 @@ namespace Orbita.VA.Hardware
         {
             if (!OThreadManager.EjecucionEnTrheadPrincipal())
             {
-                return (bool)OThreadManager.SincronizarConThreadPrincipal(new StartDelegate(Start), new object[] { });
+                return (bool)OThreadManager.SincronizarConThreadPrincipal(new StartDelegate(Start), new object[] { codigoRemoto });
             }
 
             try
@@ -81,7 +81,7 @@ namespace Orbita.VA.Hardware
         {
             if (!OThreadManager.EjecucionEnTrheadPrincipal())
             {
-                return (bool)OThreadManager.SincronizarConThreadPrincipal(new StopDelegate(Stop), new object[] { });
+                return (bool)OThreadManager.SincronizarConThreadPrincipal(new StopDelegate(Stop), new object[] { codigoRemoto });
             }
 
             try
