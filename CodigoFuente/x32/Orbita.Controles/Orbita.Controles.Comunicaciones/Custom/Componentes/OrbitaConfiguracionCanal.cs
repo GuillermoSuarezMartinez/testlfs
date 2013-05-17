@@ -186,7 +186,10 @@ namespace Orbita.Controles.Comunicaciones
         {
             try
             {
-                OEventoClienteCambioDato(e, this._nombreCanal);
+                if (OEventoClienteCambioDato!=null)
+                {
+                    OEventoClienteCambioDato(e, this._nombreCanal);
+                }               
             }
             catch (Exception ex)
             {
@@ -202,7 +205,10 @@ namespace Orbita.Controles.Comunicaciones
         {
             try
             {
-                OEventoClienteAlarma(e, this._nombreCanal);
+                if (OEventoClienteAlarma != null)
+                {
+                    OEventoClienteAlarma(e, this._nombreCanal);
+                }     
             }
             catch (Exception ex)
             {
@@ -218,9 +224,12 @@ namespace Orbita.Controles.Comunicaciones
         {
             try
             {
-                OEventoClienteComs(e, this._nombreCanal);
                 this._fechaRecepcionMensajeComs = DateTime.Now;
-                this._argumentoMensajeComs = e;
+
+                if (OEventoClienteComs!=null)
+                {
+                    OEventoClienteComs(e, this._nombreCanal); 
+                }                                               
             }
             catch (Exception ex)
             {
@@ -253,12 +262,12 @@ namespace Orbita.Controles.Comunicaciones
             {
                 LogManager.ConfiguracionLogger(Application.StartupPath + @"\" + this._nombreLogger + ".xml");
                 _wrapper = LogManager.GetLogger("wrapperCanal");
-                OrbitaConfiguracionCanal._wrapper.Info("Log creado");
-                this.IniciarHiloEstadoCanal();
+                OrbitaConfiguracionCanal._wrapper.Info("Log creado");                
                 // Establecer la configuración Remoting entre procesos.
                 ORemoting.InicConfiguracionCliente(this._remotingPuerto, this._servidorRemoting);
                 this._servidor = (Orbita.Comunicaciones.IOCommRemoting)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting));
                 this.ConectarWrapper();
+                this.IniciarHiloEstadoCanal();
             }
             catch (Exception ex)
             {

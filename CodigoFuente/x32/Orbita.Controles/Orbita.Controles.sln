@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Framework.Core", "Or
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Controles.Autenticacion", "Orbita.Controles.Autenticacion\Orbita.Controles.Autenticacion.csproj", "{298D55EA-3C54-4D2F-9CF9-DA76531931EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{7CB7B662-039F-49A2-AA3C-37E8E3C9DE2C}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 15
@@ -303,6 +305,18 @@ Global
 		{298D55EA-3C54-4D2F-9CF9-DA76531931EC}.Release|x64.ActiveCfg = Release|x86
 		{298D55EA-3C54-4D2F-9CF9-DA76531931EC}.Release|x86.ActiveCfg = Release|x86
 		{298D55EA-3C54-4D2F-9CF9-DA76531931EC}.Release|x86.Build.0 = Release|x86
+		{7CB7B662-039F-49A2-AA3C-37E8E3C9DE2C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7CB7B662-039F-49A2-AA3C-37E8E3C9DE2C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{7CB7B662-039F-49A2-AA3C-37E8E3C9DE2C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{7CB7B662-039F-49A2-AA3C-37E8E3C9DE2C}.Debug|x64.ActiveCfg = Debug|x86
+		{7CB7B662-039F-49A2-AA3C-37E8E3C9DE2C}.Debug|x86.ActiveCfg = Debug|x86
+		{7CB7B662-039F-49A2-AA3C-37E8E3C9DE2C}.Debug|x86.Build.0 = Debug|x86
+		{7CB7B662-039F-49A2-AA3C-37E8E3C9DE2C}.Release|Any CPU.ActiveCfg = Release|x86
+		{7CB7B662-039F-49A2-AA3C-37E8E3C9DE2C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{7CB7B662-039F-49A2-AA3C-37E8E3C9DE2C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{7CB7B662-039F-49A2-AA3C-37E8E3C9DE2C}.Release|x64.ActiveCfg = Release|x86
+		{7CB7B662-039F-49A2-AA3C-37E8E3C9DE2C}.Release|x86.ActiveCfg = Release|x86
+		{7CB7B662-039F-49A2-AA3C-37E8E3C9DE2C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
