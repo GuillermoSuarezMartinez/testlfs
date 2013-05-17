@@ -6332,67 +6332,43 @@
             Clase para acceder a los objetos OCamaraBase remotos
             </summary>
         </member>
-        <member name="F:Orbita.VA.Hardware.ORemotingCamaraServidor.CodigoCliente">
-            <summary>
-            Identificador de la cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.ORemotingCamaraServidor.CodigoServidor">
-            <summary>
-            Identificador de la cámara servidora
-            </summary>
-        </member>
         <member name="F:Orbita.VA.Hardware.ORemotingCamaraServidor.Camara">
             <summary>
             Cámara asocada
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.Enlazar(System.String,System.String)">
-            <summary>
-            Enlaza con el cliente
-            </summary>
-            <param name="codigoCliente"></param>
-            <param name="codigoServidor"></param>
-        </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.Desenlazar">
-            <summary>
-            Desenlaza con el cliente
-            </summary>
-            <param name="codigoCliente"></param>
-            <param name="codigoServidor"></param>
-        </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.Start">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.Start(System.String)">
             <summary>
             Comienza una reproducción continua de la cámara
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.Stop">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.Stop(System.String)">
             <summary>
             Termina una reproducción continua de la cámara
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.Snap">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.Snap(System.String)">
             <summary>
             Realiza una fotografía de forma sincrona
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.StartREC(System.String)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.StartREC(System.String,System.String)">
             <summary>
             Comienza una grabación continua de la cámara
             </summary>
             <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.StopREC">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.StopREC(System.String)">
             <summary>
             Termina una grabación continua de la cámara
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.SetAjuste(System.String,System.Object)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.SetAjuste(System.String,System.String,System.Object)">
             <summary>
             Ajusta un determinado parámetro de la cámara
             </summary>
@@ -6400,7 +6376,7 @@
             <param name="valor">valor a ajustar</param>
             <returns>Verdadero si la acción se ha realizado con éxito</returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.GetAjuste(System.String,System.Object@)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.GetAjuste(System.String,System.String,System.Object@)">
             <summary>
             Consulta el valor de un determinado parámetro de la cámara
             </summary>
@@ -6408,13 +6384,13 @@
             <param name="valor">valor a ajustar</param>
             <returns>Verdadero si la acción se ha realizado con éxito</returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.PTZHabilitado">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.PTZHabilitado(System.String)">
             <summary>
             Consulta si el PTZ está habilitado
             </summary>
             <returns>Verdadero si el PTZ está habilitado</returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EjecutaMovimientoPTZ(Orbita.VA.Hardware.OEnumTipoMovimientoPTZ,Orbita.VA.Hardware.OEnumModoMovimientoPTZ,System.Double)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EjecutaMovimientoPTZ(System.String,Orbita.VA.Hardware.OEnumTipoMovimientoPTZ,Orbita.VA.Hardware.OEnumModoMovimientoPTZ,System.Double)">
             <summary>
             Ejecuta un movimiento simple de ptz
             </summary>
@@ -6423,7 +6399,7 @@
             <param name="valor">valor a establecer</param>
             <returns>Verdadero si se ha ejecutado correctamente</returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EjecutaMovimientoPTZ(Orbita.VA.Hardware.OMovimientoPTZ,System.Double)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EjecutaMovimientoPTZ(System.String,Orbita.VA.Hardware.OMovimientoPTZ,System.Double)">
             <summary>
             Ejecuta un movimiento simple de ptz
             </summary>
@@ -6431,140 +6407,140 @@
             <param name="valor">valor a establecer</param>
             <returns>Verdadero si se ha ejecutado correctamente</returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EjecutaMovimientoPTZ(Orbita.VA.Hardware.OComandoPTZ)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EjecutaMovimientoPTZ(System.String,Orbita.VA.Hardware.OComandoPTZ)">
             <summary>
             Ejecuta un movimiento simple de ptz
             </summary>
             <param name="comando">Comando del movimiento ptz a ejecutar</param>
             <returns>Verdadero si se ha ejecutado correctamente</returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EjecutaMovimientoPTZ(Orbita.VA.Hardware.OComandosPTZ)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EjecutaMovimientoPTZ(System.String,Orbita.VA.Hardware.OComandosPTZ)">
             <summary>
             Ejecuta un movimiento compuesto de ptz
             </summary>
             <param name="valores">Tipos de movimientos y valores</param>
             <returns>Verdadero si se ha ejecutado correctamente</returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.ConsultaPosicionPTZ">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.ConsultaPosicionPTZ(System.String)">
             <summary>
             Actualiza la posición actual del PTZ
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.ConsultaPosicionPTZ(Orbita.VA.Hardware.OEnumTipoMovimientoPTZ)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.ConsultaPosicionPTZ(System.String,Orbita.VA.Hardware.OEnumTipoMovimientoPTZ)">
             <summary>
             Actualiza la posición actual de un determinado movimiento PTZ
             </summary>
             <returns>Listado de posiciones actuales</returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.ConsultaUltimaPosicionPTZ">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.ConsultaUltimaPosicionPTZ(System.String)">
             <summary>
             Consulta última posición leida del PTZ
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.GuardarImagenADisco(System.String)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.GuardarImagenADisco(System.String,System.String)">
             <summary>
             Guarda una imagen en disco
             </summary>
             <param name="ruta">Indica la ruta donde se ha de guardar la fotografía</param>
             <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.Serializar">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.Serializar(System.String)">
             <summary>
             Método que realiza el empaquetado de un objeto para ser enviado por remoting
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.GetTipoImagen">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.GetTipoImagen(System.String)">
             <summary>
             Devuelve el tipo de imagen con el que trabaja la cámara
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.GetExiste">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.GetExiste(System.String)">
             <summary>
             Indica que se ha podido acceder a la cámara con éxito
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.CrearSuscripcionNuevaFotografiaMemoriaMapeada(System.String,Orbita.VA.Hardware.EventoNuevaFotografiaCamaraMemoriaMapeada)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.CrearSuscripcionNuevaFotografiaMemoriaMapeada(System.String,System.String,Orbita.VA.Hardware.EventoNuevaFotografiaCamaraMemoriaMapeada)">
             <summary>
             Suscribe el cambio de fotografía de una determinada cámara
             </summary>
             <param name="codigoRemoto">Código de la cámara</param>
             <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EliminarSuscripcionNuevaFotografiaMemoriaMapeada(System.String,Orbita.VA.Hardware.EventoNuevaFotografiaCamaraMemoriaMapeada)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EliminarSuscripcionNuevaFotografiaMemoriaMapeada(System.String,System.String,Orbita.VA.Hardware.EventoNuevaFotografiaCamaraMemoriaMapeada)">
             <summary>
             Elimina la suscripción del cambio de fotografía de una determinada cámara
             </summary>
             <param name="codigoRemoto">Código de la cámara</param>
             <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.CrearSuscripcionNuevaFotografiaRemota(System.String,Orbita.VA.Hardware.EventoNuevaFotografiaCamaraRemota)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.CrearSuscripcionNuevaFotografiaRemota(System.String,System.String,Orbita.VA.Hardware.EventoNuevaFotografiaCamaraRemota)">
             <summary>
             Suscribe el cambio de fotografía de una determinada cámara
             </summary>
             <param name="codigoRemoto">Código de la cámara</param>
             <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EliminarSuscripcionNuevaFotografiaRemota(System.String,Orbita.VA.Hardware.EventoNuevaFotografiaCamaraRemota)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EliminarSuscripcionNuevaFotografiaRemota(System.String,System.String,Orbita.VA.Hardware.EventoNuevaFotografiaCamaraRemota)">
             <summary>
             Elimina la suscripción del cambio de fotografía de una determinada cámara
             </summary>
             <param name="codigoRemoto">Código de la cámara</param>
             <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.CrearSuscripcionCambioEstadoConexion(System.String,Orbita.VA.Hardware.EventoCambioEstadoConexionCamara)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.CrearSuscripcionCambioEstadoConexion(System.String,System.String,Orbita.VA.Hardware.EventoCambioEstadoConexionCamara)">
             <summary>
             Suscribe el cambio de estado de una determinada cámara
             </summary>
             <param name="codigoRemoto">Código de la cámara</param>
             <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EliminarSuscripcionCambioEstadoConexion(System.String,Orbita.VA.Hardware.EventoCambioEstadoConexionCamara)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EliminarSuscripcionCambioEstadoConexion(System.String,System.String,Orbita.VA.Hardware.EventoCambioEstadoConexionCamara)">
             <summary>
             Elimina la suscripción del cambio de estado de una determinada cámara
             </summary>
             <param name="codigoRemoto">Código de la cámara</param>
             <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.CrearSuscripcionCambioEstadoReproduccion(System.String,Orbita.VA.Hardware.EventoCambioEstadoReproduccionCamara)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.CrearSuscripcionCambioEstadoReproduccion(System.String,System.String,Orbita.VA.Hardware.EventoCambioEstadoReproduccionCamara)">
             <summary>
             Suscribe el cambio de estado de reproducción de una determinada cámara
             </summary>
             <param name="codigoRemoto">Código de la cámara</param>
             <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EliminarSuscripcionCambioEstadoReproduccion(System.String,Orbita.VA.Hardware.EventoCambioEstadoReproduccionCamara)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EliminarSuscripcionCambioEstadoReproduccion(System.String,System.String,Orbita.VA.Hardware.EventoCambioEstadoReproduccionCamara)">
             <summary>
             Elimina la suscripción del cambio de estado de reproducción de una determinada cámara
             </summary>
             <param name="codigoRemoto">Código de la cámara</param>
             <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.CrearSuscripcionMensajes(System.String,Orbita.VA.Comun.OMessageEvent)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.CrearSuscripcionMensajes(System.String,System.String,Orbita.VA.Comun.OMessageEvent)">
             <summary>
             Suscribe la recepción de mensajes de una determinada cámara
             </summary>
             <param name="codigoRemoto">Código de la cámara</param>
             <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EliminarSuscripcionMensajes(System.String,Orbita.VA.Comun.OMessageEvent)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EliminarSuscripcionMensajes(System.String,System.String,Orbita.VA.Comun.OMessageEvent)">
             <summary>
             Elimina la suscripción de mensajes de una determinada cámara
             </summary>
             <param name="codigoRemoto">Código de la cámara</param>
             <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.CrearSuscripcionBitVida(System.String,Orbita.Utiles.ManejadorEvento)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.CrearSuscripcionBitVida(System.String,System.String,Orbita.Utiles.ManejadorEvento)">
             <summary>
             Suscribe la recepción del bit de vida
             </summary>
             <param name="codigoRemoto">Código de la cámara</param>
             <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
         </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EliminarSuscripcionBitVida(System.String,Orbita.Utiles.ManejadorEvento)">
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.EliminarSuscripcionBitVida(System.String,System.String,Orbita.Utiles.ManejadorEvento)">
             <summary>
             Elimina la suscripción del bit de vida
             </summary>
@@ -6805,11 +6781,6 @@
             Desconectar los eventos
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OCamaraRemota.Inicializar">
-            <summary>
-            Inicialización de la clase
-            </summary>
-        </member>
         <member name="M:Orbita.VA.Hardware.OCamaraRemota.Finalizar">
             <summary>
             Finaliza la cámara
@@ -7010,20 +6981,6 @@
             <summary>
             Constructor de la clase
             </summary>
-        </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraProxie.Enlazar">
-            <summary>
-            Enlaza con el cliente
-            </summary>
-            <param name="codigoCliente"></param>
-            <param name="codigoServidor"></param>
-        </member>
-        <member name="M:Orbita.VA.Hardware.ORemotingCamaraProxie.Desenlazar">
-            <summary>
-            Desenlaza con el cliente
-            </summary>
-            <param name="codigoCliente"></param>
-            <param name="codigoServidor"></param>
         </member>
         <member name="M:Orbita.VA.Hardware.ORemotingCamaraProxie.Start">
             <summary>
@@ -7568,6 +7525,90 @@
             Elimina la suscripción de mensajes de una determinada cámara
             </summary>
             <param name="codigo">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraManager.CrearSuscripcionNuevaFotografiaAsincronaMemoriaMapeada(System.String,System.String,Orbita.VA.Hardware.EventoNuevaFotografiaCamaraMemoriaMapeada)">
+            <summary>
+            Suscribe el cambio de fotografía de una determinada cámara
+            </summary>
+            <param name="codigoRemoto">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraManager.EliminarSuscripcionNuevaFotografiaAsincronaMemoriaMapeada(System.String,System.String,Orbita.VA.Hardware.EventoNuevaFotografiaCamaraMemoriaMapeada)">
+            <summary>
+            Elimina la suscripción del cambio de fotografía de una determinada cámara
+            </summary>
+            <param name="codigoRemoto">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraManager.CrearSuscripcionNuevaFotografiaAsincronaRemota(System.String,System.String,Orbita.VA.Hardware.EventoNuevaFotografiaCamaraRemota)">
+            <summary>
+            Suscribe el cambio de fotografía de una determinada cámara
+            </summary>
+            <param name="codigoRemoto">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraManager.EliminarSuscripcionNuevaFotografiaAsincronaRemota(System.String,System.String,Orbita.VA.Hardware.EventoNuevaFotografiaCamaraRemota)">
+            <summary>
+            Elimina la suscripción del cambio de fotografía de una determinada cámara
+            </summary>
+            <param name="codigoRemoto">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de fotografía</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraManager.CrearSuscripcionCambioEstadoConexionAsincrona(System.String,System.String,Orbita.VA.Hardware.EventoCambioEstadoConexionCamara)">
+            <summary>
+            Suscribe el cambio de estado de una determinada cámara
+            </summary>
+            <param name="codigoRemoto">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraManager.EliminarSuscripcionCambioEstadoConexionAsincrona(System.String,System.String,Orbita.VA.Hardware.EventoCambioEstadoConexionCamara)">
+            <summary>
+            Elimina la suscripción del cambio de estado de una determinada cámara
+            </summary>
+            <param name="codigoRemoto">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraManager.CrearSuscripcionCambioEstadoReproduccionAsincrona(System.String,System.String,Orbita.VA.Hardware.EventoCambioEstadoReproduccionCamara)">
+            <summary>
+            Suscribe el cambio de estado de reproducción de una determinada cámara
+            </summary>
+            <param name="codigoRemoto">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraManager.EliminarSuscripcionCambioEstadoReproduccionAsincrona(System.String,System.String,Orbita.VA.Hardware.EventoCambioEstadoReproduccionCamara)">
+            <summary>
+            Elimina la suscripción del cambio de estado de reproducción de una determinada cámara
+            </summary>
+            <param name="codigoRemoto">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir llamadas a cada cambio de estado</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraManager.CrearSuscripcionMensajesAsincrona(System.String,System.String,Orbita.VA.Comun.OMessageEvent)">
+            <summary>
+            Suscribe la recepción de mensajes de una determinada cámara
+            </summary>
+            <param name="codigoRemoto">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraManager.EliminarSuscripcionMensajesAsincrona(System.String,System.String,Orbita.VA.Comun.OMessageEvent)">
+            <summary>
+            Elimina la suscripción de mensajes de una determinada cámara
+            </summary>
+            <param name="codigoRemoto">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraManager.CrearSuscripcionBitVidaAsincrona(System.String,System.String,Orbita.Utiles.ManejadorEvento)">
+            <summary>
+            Suscribe la recepción del bit de vida
+            </summary>
+            <param name="codigoRemoto">Código de la cámara</param>
+            <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraManager.EliminarSuscripcionBitVidaAsincrona(System.String,System.String,Orbita.Utiles.ManejadorEvento)">
+            <summary>
+            Elimina la suscripción del bit de vida
+            </summary>
+            <param name="codigoRemoto">Código de la cámara</param>
             <param name="delegadoNuevaFotografiaCamara">Delegado donde recibir los mensajes</param>
         </member>
         <member name="T:Orbita.VA.Hardware.TipoCamara">

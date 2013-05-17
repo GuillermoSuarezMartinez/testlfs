@@ -1599,6 +1599,20 @@
             Lista de funciones de visión funcionando en el sistema
             </summary>
         </member>
+        <member name="F:Orbita.VA.Funciones.OFuncionesVisionManager.Escenarios">
+            <summary>
+            Lista de todas las escenarios de las funciones de visión del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.TryGetFuncionVision(System.String,System.String,Orbita.VA.Funciones.OFuncionVisionBase@)">
+            <summary>
+            Método para acceder a una función de visión
+            </summary>
+            <param name="codEscenario">Escenario</param>
+            <param name="codAlias">Código o alias de la función de visión</param>
+            <param name="hardware">Función de visión devuelta</param>
+            <returns>Verdadero si se ha encontrado la función de visión</returns>
+        </member>
         <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.Constructor">
             <summary>
             Construye los objetos
@@ -1625,7 +1639,19 @@
             Se debe ejecutar a esta función desde el hilo principal de la aplicación, de lo contrario ocurrirán excepciones.
             </summary>
         </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.IniciarEjecucion(System.String,System.String)">
+            <summary>
+            Inicia la ejecución de determinada función de visión.
+            Se debe ejecutar a esta función desde el hilo principal de la aplicación, de lo contrario ocurrirán excepciones.
+            </summary>
+        </member>
         <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.IniciarEjecucionSincrona(System.String)">
+            <summary>
+            Inicia la ejecución de determinada función de visión de forma síncrona
+            Se debe ejecutar a esta función desde el hilo principal de la aplicación, de lo contrario ocurrirán excepciones.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.IniciarEjecucionSincrona(System.String,System.String)">
             <summary>
             Inicia la ejecución de determinada función de visión de forma síncrona
             Se debe ejecutar a esta función desde el hilo principal de la aplicación, de lo contrario ocurrirán excepciones.
@@ -1638,7 +1664,25 @@
             </summary>
             
         </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.IniciarEjecucionAsincrona(System.String,System.String)">
+            <summary>
+            Inicia la ejecución de determinada función de visión de forma asíncrona
+            Se debe ejecutar a esta función desde el hilo principal de la aplicación, de lo contrario ocurrirán excepciones.
+            </summary>
+            
+        </member>
         <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.SetEntrada(System.String,System.String,System.Object,Orbita.Utiles.OEnumTipoDato)">
+            <summary>
+            Función para la actualización de parámetros de entrada
+            </summary>
+            <param name="codFuncionVision">Código identificador de la función de vision</param>
+            <param name="codPieza">Código identificador de la pieza</param>
+            <param name="codParametro">Código identificador del parámetro</param>
+            <param name="valor">Nuevo valor del parámetro</param>
+            <param name="tipoVariable">Tipo del parámetro</param>
+            <returns>Verdadero si la función se ha ejecutado correctamente</returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.SetEntrada(System.String,System.String,System.String,System.Object,Orbita.Utiles.OEnumTipoDato)">
             <summary>
             Función para la actualización de parámetros de entrada
             </summary>
@@ -1660,7 +1704,25 @@
             <param name="tipoVariable">Tipo del parámetro</param>
             <returns>Verdadero si la función se ha ejecutado correctamente</returns>
         </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.GetSalida(System.String,System.String,System.String,System.Object@,Orbita.Utiles.OEnumTipoDato)">
+            <summary>
+            Función para la consulta de parámetros de salida
+            </summary>
+            <param name="codFuncionVision">Código identificador de la función de vision</param>
+            <param name="codPieza">Código identificador de la pieza</param>
+            <param name="codParametro">Código identificador del parámetro</param>
+            <param name="valor">Valor del parámetro devuelto por la función</param>
+            <param name="tipoVariable">Tipo del parámetro</param>
+            <returns>Verdadero si la función se ha ejecutado correctamente</returns>
+        </member>
         <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.GetSalidas(System.String,System.Collections.Generic.Dictionary{System.String,System.Object}@)">
+            <summary>
+            Función para la consulta de parámetros de salida
+            </summary>
+            <param name="listaSalidas">Lista de objetos que respresentan el conjunto de salidas de la función de visión</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.GetSalidas(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object}@)">
             <summary>
             Función para la consulta de parámetros de salida
             </summary>
@@ -1679,11 +1741,45 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.GetFuncionVision(System.String,System.String)">
+            <summary>
+            Obtiene la función de visión mediante las claves
+            </summary>
+            <param name="escenario">Escenario utilizada</param>
+            <param name="codigo">Código de la función de visión</param>
+            <returns>Hardware encontrado</returns>
+        </member>
         <member name="M:Orbita.VA.Funciones.OFuncionesVisionManager.GetCodigoFuncionVision(Orbita.VA.Comun.OClaves)">
             <summary>
             Obtiene el código de la función de visión mediante las claves
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.Funciones.OEscenarioFuncionVision">
+            <summary>
+            Clase que implementa los escenarios de las funciones de visión
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OEscenarioFuncionVision.Codigo">
+            <summary>
+            Código del escenario
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OEscenarioFuncionVision.ListaAlias">
+            <summary>
+            Lista de todos los alias del escenario
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OEscenarioFuncionVision.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codEscenario">Código del escenario</param>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OEscenarioFuncionVision.RellenarAlias(System.String)">
+            <summary>
+            Rellena la lista de alias del escenario
+            </summary>
         </member>
         <member name="T:Orbita.VA.Funciones.OParametroFuncionVision">
             <summary>
