@@ -25,9 +25,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Compresion", "Orbita
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Xml", "Orbita.Xml\Orbita.Xml.csproj", "{74729583-45DE-4BCE-A2FA-57A518DEC19D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pruebas", "Pruebas", "{CB5F7D12-25BC-4F27-A63F-8EE689323F6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prueba", "Prueba\Prueba.csproj", "{E6E87660-92B4-4CD5-9315-36ACE94B497C}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 9
+		SccNumberOfProjects = 10
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://01x0019:8080/tfs/orbitasoftware
 		SccProjectUniqueName0 = Orbita.Xml\\Orbita.Xml.csproj
@@ -63,6 +67,10 @@ Global
 		SccProjectName7 = Orbita.BBDD
 		SccLocalPath7 = Orbita.BBDD
 		SccLocalPath8 = .
+		SccProjectUniqueName9 = Prueba\\Prueba.csproj
+		SccProjectTopLevelParentUniqueName9 = Orbita.sln
+		SccProjectName9 = Prueba
+		SccLocalPath9 = Prueba
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -135,6 +143,13 @@ Global
 		{74729583-45DE-4BCE-A2FA-57A518DEC19D}.Release|x64.Build.0 = Release|x64
 		{74729583-45DE-4BCE-A2FA-57A518DEC19D}.Release|x86.ActiveCfg = Release|x86
 		{74729583-45DE-4BCE-A2FA-57A518DEC19D}.Release|x86.Build.0 = Release|x86
+		{E6E87660-92B4-4CD5-9315-36ACE94B497C}.Debug|x64.ActiveCfg = Debug|x86
+		{E6E87660-92B4-4CD5-9315-36ACE94B497C}.Debug|x86.ActiveCfg = Debug|x86
+		{E6E87660-92B4-4CD5-9315-36ACE94B497C}.Debug|x86.Build.0 = Debug|x86
+		{E6E87660-92B4-4CD5-9315-36ACE94B497C}.Release|x64.ActiveCfg = Release|x64
+		{E6E87660-92B4-4CD5-9315-36ACE94B497C}.Release|x64.Build.0 = Release|x64
+		{E6E87660-92B4-4CD5-9315-36ACE94B497C}.Release|x86.ActiveCfg = Release|x86
+		{E6E87660-92B4-4CD5-9315-36ACE94B497C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,5 +163,6 @@ Global
 		{57BB967D-BC96-428F-A5E2-11D30780A914} = {42D7C7C7-2BDF-477E-9C0F-4DDAF7D867AC}
 		{21A9509A-A02C-43B9-98C2-7C4732F0832F} = {42D7C7C7-2BDF-477E-9C0F-4DDAF7D867AC}
 		{74729583-45DE-4BCE-A2FA-57A518DEC19D} = {42D7C7C7-2BDF-477E-9C0F-4DDAF7D867AC}
+		{E6E87660-92B4-4CD5-9315-36ACE94B497C} = {CB5F7D12-25BC-4F27-A63F-8EE689323F6C}
 	EndGlobalSection
 EndGlobal
