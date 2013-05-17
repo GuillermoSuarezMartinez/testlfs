@@ -238,6 +238,11 @@ namespace Orbita.VA.GeneradorEscenarios
                 CodeStatement creacionObjetoHardware = generador.New("_Hardware", "CHardware", "Codigo");
                 listaInstrucciones.Add(creacionObjetoHardware);
             }
+            if (HabilitadoVision)
+            {
+                CodeStatement creacionObjetoFuncionVision = generador.New("_FuncionVision", "CFuncionVision", "Codigo");
+                listaInstrucciones.Add(creacionObjetoFuncionVision);
+            }
             generador.GenerarConstructor(claseEscenario, "Constructor de la clase", MemberAttributes.Public,
                 new CodeParameterDeclarationExpression[] { new CodeParameterDeclarationExpression(typeof(string), "codigo") },
                 new CodeExpression[] { new CodeVariableReferenceExpression("codigo") },
