@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Orbita.Utiles;
+using Orbita.Winsock;
 
 namespace Orbita.Controles.Comunicaciones
 {
     public partial class OrbitaEstadoCanal : OrbitaControlBaseEventosComs
     {
-        internal delegate void Delegado(OEstadoCanalCliente estado);
+        internal delegate void Delegado(WinsockStates estado);
 
         public OrbitaEstadoCanal()
         {
@@ -21,11 +22,11 @@ namespace Orbita.Controles.Comunicaciones
 
         public override void ProcesarEstadoCanal(OEventArgs e)
         {
-            OEstadoCanalCliente dato = (OEstadoCanalCliente)e.Argumento;
-            this.agregarItemOrbita(dato);
+            WinsockStates estado = (WinsockStates)e.Argumento;
+            this.agregarItemOrbita(estado);
         }
 
-        private void agregarItemOrbita(OEstadoCanalCliente estado)
+        private void agregarItemOrbita(WinsockStates estado)
         {
             if (this.lblEstadoCanal.InvokeRequired)
             {
@@ -36,16 +37,17 @@ namespace Orbita.Controles.Comunicaciones
             {
                 switch (estado)
                 {
-                    case OEstadoCanalCliente.Conectado:
+                    case WinsockStates.Connected:
                         this.lblEstadoCanal.BackColor = Color.Green;
+                        this.lblEstadoCanal.Text = estado.ToString();
                         break;
-                    case OEstadoCanalCliente.PendienteReconectar:
-                        this.lblEstadoCanal.BackColor = Color.Yellow;
-                        break;
-                    case OEstadoCanalCliente.Reconectando:
-                        this.lblEstadoCanal.BackColor = Color.Blue;
+                    case WinsockStates.Closed:
+                        this.lblEstadoCanal.BackColor = Color.Red;
+                        this.lblEstadoCanal.Text = estado.ToString();
                         break;
                     default:
+                        this.lblEstadoCanal.BackColor = Color.Yellow;
+                        this.lblEstadoCanal.Text = estado.ToString();
                         break;
                 }
             }

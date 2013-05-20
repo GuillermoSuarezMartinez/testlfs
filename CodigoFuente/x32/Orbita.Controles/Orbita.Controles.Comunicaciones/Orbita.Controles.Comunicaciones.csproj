@@ -142,6 +142,7 @@
     <Compile Include="Clases\Interfaces\IMonitor.cs" />
     <Compile Include="Clases\Logger.cs" />
     <Compile Include="Clases\OBaseEventosCom.cs" />
+    <Compile Include="Clases\OClienteTCPRemoting.cs" />
     <Compile Include="Custom\Componentes\OrbitaComponenteEscaner_KI.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -189,6 +190,12 @@
     </Compile>
     <Compile Include="Custom\OrbitaControlVideo_OP.designer.cs">
       <DependentUpon>OrbitaControlVideo_OP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaEstadoCanalLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaEstadoCanalLabel.Designer.cs">
+      <DependentUpon>OrbitaEstadoCanalLabel.cs</DependentUpon>
     </Compile>
     <Compile Include="Custom\OrbitaServidorTCP.cs">
       <SubType>UserControl</SubType>
@@ -279,6 +286,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Custom\OrbitaEstadoCanal.resx">
       <DependentUpon>OrbitaEstadoCanal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaEstadoCanalLabel.resx">
+      <DependentUpon>OrbitaEstadoCanalLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Custom\OrbitaServidorTCP.resx">
       <DependentUpon>OrbitaServidorTCP.cs</DependentUpon>
