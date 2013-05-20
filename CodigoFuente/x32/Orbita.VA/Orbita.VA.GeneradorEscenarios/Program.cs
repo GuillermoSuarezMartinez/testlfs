@@ -240,7 +240,7 @@ namespace Orbita.VA.GeneradorEscenarios
             }
             if (HabilitadoVision)
             {
-                CodeStatement creacionObjetoFuncionVision = generador.New("_FuncionVision", "CFuncionVision", "Codigo");
+                CodeStatement creacionObjetoFuncionVision = generador.New("_FuncionesVision", "CFuncionVision", "Codigo");
                 listaInstrucciones.Add(creacionObjetoFuncionVision);
             }
             generador.GenerarConstructor(claseEscenario, "Constructor de la clase", MemberAttributes.Public,
