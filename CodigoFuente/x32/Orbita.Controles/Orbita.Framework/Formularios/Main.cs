@@ -100,7 +100,7 @@ namespace Orbita.Framework
         }
         void InitializePluginsWithCloseHandler()
         {
-            // ... utilizar LINQ para obtener aquellos plugins que implementan la interfaz de cambio de idioma.
+            // ... utilizar LINQ para obtener aquellos plugins que implementan la interfaz de manejador de cierre de formulario principal.
             System.Collections.Generic.IEnumerable<PluginManager.PluginInfo> pluginsConManejadorCierre = (from x in this.plugins
                                                                                                           where x.Value.ManejadorCierre != null
                                                                                                           select x.Value).ToList();
@@ -248,8 +248,11 @@ namespace Orbita.Framework
             {
                 if (e.Estado.Resultado == "OK")
                 {
+                    // Inicializar plugins que implementan la interface IMenuPlugin.
                     InitializeMenuPlugins();
+                    // Inicializar plugins que implementan la interface IFormIdioma.
                     InitializePluginsWithChangedLanguage();
+                    // Inicializar plugins que implementan la interface IFormManejadorCierre.
                     InitializePluginsWithCloseHandler();
                     try
                     {
