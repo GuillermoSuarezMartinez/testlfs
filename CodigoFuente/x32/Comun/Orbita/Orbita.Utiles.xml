@@ -2323,6 +2323,11 @@
             Argumento adicional desarrollado en el evento.
             </summary>
         </member>
+        <member name="F:Orbita.Utiles.OEventArgs.id">
+            <summary>
+            Identificador del mensaje
+            </summary>
+        </member>
         <member name="M:Orbita.Utiles.OEventArgs.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase OEventArgs.
@@ -2337,6 +2342,11 @@
         <member name="P:Orbita.Utiles.OEventArgs.Argumento">
             <summary>
             Argumento adicional desarrollado en el evento.
+            </summary>
+        </member>
+        <member name="P:Orbita.Utiles.OEventArgs.Id">
+            <summary>
+            Identificador del mensaje
             </summary>
         </member>
         <member name="T:Orbita.Utiles.OComm">
