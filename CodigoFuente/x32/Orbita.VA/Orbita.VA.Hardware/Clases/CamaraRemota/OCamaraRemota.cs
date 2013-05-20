@@ -96,6 +96,22 @@ namespace Orbita.VA.Hardware
         }
         #endregion
 
+        #region Propiedad(es) heredada(s)
+        /// <summary>
+        /// Estado de la conexión
+        /// </summary>
+        public override EstadoConexion EstadoConexion
+        {
+            get
+            {
+                return this.CamaraCliente.GetEstadoConexion();
+            }
+            set
+            {
+            }
+        }
+        #endregion
+
         #region Constructor(es)
         /// <summary>
         /// Constructor de la clase
@@ -877,6 +893,24 @@ namespace Orbita.VA.Hardware
             try
             {
                 resultado = this.Instancia.GetAjuste(this.CodigoRemoto, codAjuste, out valor);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, this.CodigoRemoto);
+            }
+            return resultado;
+        }
+
+        /// <summary>
+        /// Obtiene el estado de la conexión de la cámara servidora
+        /// </summary>
+        /// <returns></returns>
+        public EstadoConexion GetEstadoConexion()
+        {
+            EstadoConexion resultado = EstadoConexion.Desconectado;
+            try
+            {
+                resultado = this.Instancia.GetEstadoConexion(this.CodigoRemoto);
             }
             catch (Exception exception)
             {

@@ -187,6 +187,23 @@ namespace Orbita.VA.Hardware
         }
 
         /// <summary>
+        /// Obtiene el estado de la conexión de la cámara servidora
+        /// </summary>
+        /// <returns></returns>
+        public EstadoConexion GetEstadoConexion(string codigoRemoto)
+        {
+            try
+            {
+                return OCamaraManager.GetEstadoConexion(codigoRemoto);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, codigoRemoto);
+            }
+            return EstadoConexion.Desconectado;
+        }
+
+        /// <summary>
         /// Consulta si el PTZ está habilitado
         /// </summary>
         /// <returns>Verdadero si el PTZ está habilitado</returns>

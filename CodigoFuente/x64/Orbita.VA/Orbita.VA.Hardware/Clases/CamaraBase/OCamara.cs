@@ -833,10 +833,10 @@ namespace Orbita.VA.Hardware
 		/// <summary>
 		/// Indica si esta grabando
 		/// </summary>
-        public bool Recording
-        {
-            get { return this.VideoFile.Estado == EstadoProductorConsumidor.EnEjecucion; }
-        }
+        //public bool Recording
+        //{
+        //    get { return this.VideoFile.Estado == EstadoProductorConsumidor.EnEjecucion; }
+        //}
 		/// <summary>
 		/// Proporciona herramientas para medir la velocidad de adquisición de la cámara
 		/// </summary>
@@ -844,7 +844,7 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Guardado de Fichero de video
         /// </summary>
-        private OVideoFile VideoFile;
+        //private OVideoFile VideoFile;
         /// <summary>
         /// Contador de fotos utilizado en el recolector de basura
         /// </summary>
@@ -1318,54 +1318,54 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Porcentaje de la reducción de imagenes en el video grabado: 100 => Tamaño original, 50 => Reducción a la mitad...
         /// </summary>
-        public Size ResolucionGrabacion
-        {
-            get { return this.VideoFile.Resolucion; }
-            set { this.VideoFile.Resolucion = value; }
-        }
+        //public Size ResolucionGrabacion
+        //{
+        //    get { return this.VideoFile.Resolucion; }
+        //    set { this.VideoFile.Resolucion = value; }
+        //}
 
         /// <summary>
         /// Tasa de captura
         /// </summary>
-        public int FrameRateGrabacion
-        {
-            get { return this.VideoFile.FrameRate; }
-        }
+        //public int FrameRateGrabacion
+        //{
+        //    get { return this.VideoFile.FrameRate; }
+        //}
 
         /// <summary>
         /// Indica el intervalo de tiempo en ms. de grabación de imagenes
         /// </summary>
-        public double FrameIntervalGrabacion
-        {
-            get { return this.VideoFile.FrameInterval.TotalMilliseconds; }
-        }
+        //public double FrameIntervalGrabacion
+        //{
+        //    get { return this.VideoFile.FrameInterval.TotalMilliseconds; }
+        //}
 
         /// <summary>
         /// Tasa de transferencia
         /// </summary>
-        public int BitRateGrabacion
-        {
-            get { return this.VideoFile.BitRate; }
-            set { this.VideoFile.BitRate = value; }
-        }
+        //public int BitRateGrabacion
+        //{
+        //    get { return this.VideoFile.BitRate; }
+        //    set { this.VideoFile.BitRate = value; }
+        //}
 
         /// <summary>
         /// Códec de grabación
         /// </summary>
-        public OVideoCodec CodecGarbacion
-        {
-            get { return this.VideoFile.Codec; }
-            set { this.VideoFile.Codec = value; }
-        }
+        //public OVideoCodec CodecGarbacion
+        //{
+        //    get { return this.VideoFile.Codec; }
+        //    set { this.VideoFile.Codec = value; }
+        //}
 
         /// <summary>
         /// Tiempo máximo de duración de la grabación
         /// </summary>
-        public TimeSpan TiempoMaxGrabacion
-        {
-            get { return this.VideoFile.TiempoMaxGrabacion; }
-            set { this.VideoFile.TiempoMaxGrabacion = value; }
-        }
+        //public TimeSpan TiempoMaxGrabacion
+        //{
+        //    get { return this.VideoFile.TiempoMaxGrabacion; }
+        //    set { this.VideoFile.TiempoMaxGrabacion = value; }
+        //}
 
         /// <summary>
         /// Contador de fotografías desde que se inició la adquisición
@@ -1511,10 +1511,10 @@ namespace Orbita.VA.Hardware
                     Size resolucionGrabacion = new Size();
                     resolucionGrabacion.Width = OEntero.Validar(dt.Rows[0]["GrabacionResolucionX"], 1, 100000, 1024);
                     resolucionGrabacion.Height = OEntero.Validar(dt.Rows[0]["GrabacionResolucionY"], 1, 100000, 768);
-                    OVideoCodec codecGrabacion = OEnumerado<OVideoCodec>.Validar(dt.Rows[0]["GrabacionCodec"].ToString(), OVideoCodec.MPEG4);
+                    //OVideoCodec codecGrabacion = OEnumerado<OVideoCodec>.Validar(dt.Rows[0]["GrabacionCodec"].ToString(), OVideoCodec.MPEG4);
                     int bitRateGrabacion = OEntero.Validar(dt.Rows[0]["GrabacionBitRate"], 1, int.MaxValue, 1000);
                     double grabacionFrameIntervalMs = ODecimal.Validar(dt.Rows[0]["GrabacionFrameIntervalMs"], 0.0, 1000.0, 1.0);
-                    this.VideoFile = new OVideoFile(this.Codigo, resolucionGrabacion, tiempoMaxGrabacion, grabacionFrameIntervalMs, bitRateGrabacion, codecGrabacion);
+                    //this.VideoFile = new OVideoFile(this.Codigo, resolucionGrabacion, tiempoMaxGrabacion, grabacionFrameIntervalMs, bitRateGrabacion, codecGrabacion);
 				}
 				else
 				{
@@ -2252,11 +2252,11 @@ namespace Orbita.VA.Hardware
 		{
             bool resultado = false;
 
-            this.VideoFile.Ruta = fichero;
-            if (this.VideoFile.Valido)
-            {
-                resultado = this.VideoFile.Start();
-            }
+            //this.VideoFile.Ruta = fichero;
+            //if (this.VideoFile.Valido)
+            //{
+            //    resultado = this.VideoFile.Start();
+            //}
 
             return resultado;
 		}
@@ -2269,11 +2269,11 @@ namespace Orbita.VA.Hardware
 		{
             bool resultado = false;
 
-            if (this.Recording)
-            {
-                this.VideoFile.Stop();
-                resultado = true;
-            }
+            //if (this.Recording)
+            //{
+            //    this.VideoFile.Stop();
+            //    resultado = true;
+            //}
 
             return resultado;
 		}
@@ -2302,10 +2302,10 @@ namespace Orbita.VA.Hardware
             this.MedidorVelocidadAdquisicion.NuevaCaptura();
 
             // Se añade la foto al video
-            if (this.Recording)
-            {
-                this.VideoFile.Add(this.ImagenActual);
-            }
+            //if (this.Recording)
+            //{
+            //    this.VideoFile.Add(this.ImagenActual);
+            //}
 
             // Se dispara el delegado de nueva fotografía
             this.OnCambioFotografiaCamara(this.Codigo, imagen, DateTime.Now, this.MedidorVelocidadAdquisicion.UltimaTasa);

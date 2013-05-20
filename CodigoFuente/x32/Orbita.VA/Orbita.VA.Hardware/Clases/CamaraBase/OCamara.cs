@@ -360,6 +360,21 @@ namespace Orbita.VA.Hardware
         }
 
         /// <summary>
+        /// Obtiene el estado de la conexión
+        /// </summary>
+        /// <returns></returns>
+        public static EstadoConexion GetEstadoConexion(string codigo)
+        {
+            OCamaraBase camara;
+            if (ListaCamaras.TryGetValue(codigo, out camara))
+            {
+                return camara.EstadoConexion;
+            }
+
+            return EstadoConexion.Desconectado;
+        }
+
+        /// <summary>
         /// Consulta si el PTZ está habilitado
         /// </summary>
         /// <returns>Verdadero si el PTZ está habilitado</returns>
