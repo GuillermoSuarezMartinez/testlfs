@@ -12,7 +12,7 @@
 namespace Orbita.Framework.Core
 {
     /// <summary>
-    /// Clase abstracta que indica la persistencia de acuerdo al idioma seleccionado.
+    /// Clase abstracta que indica la persistencia con los plugins de carga en base a los métodos que se consideren.
     /// </summary>
     public interface IConfiguracion
     {
