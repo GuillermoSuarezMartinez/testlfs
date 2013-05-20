@@ -17,10 +17,6 @@ namespace Orbita.Framework.Core
     {
         #region Atributos
         /// <summary>
-        /// Control base.
-        /// </summary>
-        ContainerForm control;
-        /// <summary>
         /// Mostrar el formulario de autenticación.
         /// </summary>
         bool autenticación;
@@ -32,24 +28,12 @@ namespace Orbita.Framework.Core
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Framework.OBase.
+        /// Inicializar una nueva instancia de la clase Orbita.Framework.Core.OIContainerForm.
         /// </summary>
-        /// <param name="control"></param>
-        public OIContainerForm(object control)
-            : base(control)
-        {
-            this.control = (ContainerForm)control;
-        }
+        public OIContainerForm() { }
         #endregion
 
         #region Propiedades
-        /// <summary>
-        /// Control base.
-        /// </summary>
-        internal ContainerForm Control
-        {
-            get { return this.control; }
-        }
         [System.ComponentModel.Description("Indica si se quiere mostrar un formulario de autenticación.")]
         public bool Autenticación
         {

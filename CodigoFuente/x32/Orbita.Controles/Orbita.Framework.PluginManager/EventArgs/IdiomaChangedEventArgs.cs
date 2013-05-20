@@ -11,6 +11,9 @@
 //***********************************************************************
 namespace Orbita.Framework.PluginManager
 {
+    /// <summary>
+    /// Clase que contiene datos de eventos de cambio de idioma.
+    /// </summary>
     public class IdiomaChangedEventArgs : System.EventArgs
     {
         #region Atributos privados
@@ -29,7 +32,7 @@ namespace Orbita.Framework.PluginManager
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Framework.Core.IdiomaChangedEventArgs.
         /// </summary>
-        /// <param name="cadena">Nombre de la propiedad.</param>
+        /// <param name="idioma">Nombre de la propiedad.</param>
         public IdiomaChangedEventArgs(Orbita.Framework.Core.SelectorIdioma idioma)
             : this()
         {

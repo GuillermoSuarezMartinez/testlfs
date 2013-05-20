@@ -26,6 +26,7 @@ namespace Orbita.Framework.PluginManager
         /// </summary>
         public IPlugin Plugin { get; set; }
         public IItemMenu ItemMenu{ get; set; }
+        [System.CLSCompliantAttribute(false)]
         public IFormIdioma Idioma { get; set; }
         #endregion
     }

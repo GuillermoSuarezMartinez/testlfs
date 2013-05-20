@@ -12,6 +12,9 @@
 using System.Linq;
 namespace Orbita.Framework.PluginManager
 {
+    /// <summary>
+    /// Proporciona una estructura de menú para un formulario.
+    /// </summary>
     public class PluginOMenuStrip : System.Windows.Forms.MenuStrip
     {
         #region Atributos
@@ -20,8 +23,12 @@ namespace Orbita.Framework.PluginManager
         #endregion
 
         #region Constructor
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Framework.PluginManager.PluginOMenuStrip.
+        /// </summary>
+        /// <param name="control"></param>
         public PluginOMenuStrip(object control)
-            : base() 
+            : base()
         {
             this.control = (Orbita.Controles.Contenedores.OrbitaMdiContainerForm)control;
         }

@@ -40,7 +40,7 @@ namespace Orbita.Framework.PluginManager
         /// Buscar Plugins en el directorio de Plugins configurado.
         /// </summary>
         /// <returns>Un diccionario con el título del Plugin como clave y la ruta del ensamblado como valor.</returns>
-        public static System.Collections.Generic.IDictionary<string, string> GetEnsamblados()
+        public static System.Collections.Generic.IDictionary<string, string> Ensamblados()
         {
             // Colección de Plugins.
             System.Collections.Generic.Dictionary<string, string> ensamblados = new System.Collections.Generic.Dictionary<string, string>();
@@ -63,12 +63,11 @@ namespace Orbita.Framework.PluginManager
         /// <summary>
         /// Obtener Plugins especificados.
         /// </summary>
-        /// <param name="pluginsDeCarga">Colección de librerías.</param>
         /// <returns></returns>
-        public static System.Collections.Generic.IDictionary<string, PluginInfo> GetPlugins()
+        public static System.Collections.Generic.IDictionary<string, PluginInfo> Plugins()
         {
             System.Collections.Generic.Dictionary<string, PluginInfo> plugins = new System.Collections.Generic.Dictionary<string, PluginInfo>();
-            foreach (string fichero in PluginManager.PluginHelper.GetEnsamblados().Values)
+            foreach (string fichero in PluginManager.PluginHelper.Ensamblados().Values)
             {
                 if (System.IO.File.Exists(fichero))
                 {

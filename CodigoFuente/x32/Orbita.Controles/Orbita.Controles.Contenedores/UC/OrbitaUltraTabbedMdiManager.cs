@@ -34,6 +34,7 @@ namespace Orbita.Controles.Contenedores
         #region Constructor
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.
+        /// </summary>
         public OrbitaUltraTabbedMdiManager()
             : base()
         {

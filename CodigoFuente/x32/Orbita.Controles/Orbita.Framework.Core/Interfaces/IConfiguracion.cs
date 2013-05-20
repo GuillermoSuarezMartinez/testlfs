@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using Orbita.Controles.Comunicaciones;
 namespace Orbita.Framework.Core
 {
     /// <summary>
@@ -28,6 +27,6 @@ namespace Orbita.Framework.Core
         /// <param name="idioma">Enumerado de idioma que determina el rango de controles al que hacen referencia.</param>
         /// <returns>Colección de controles que se refieren al idioma seleccionado.</returns>
         System.Collections.Generic.IDictionary<string, ControlInfo> GetControlesPlugin(SelectorIdioma idioma);
-        System.Collections.Generic.IList<OrbitaConfiguracionCanal> GetConfiguracionCanal();
+        System.Collections.Generic.IList<Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal> GetConfiguracionCanal();
     }
 }

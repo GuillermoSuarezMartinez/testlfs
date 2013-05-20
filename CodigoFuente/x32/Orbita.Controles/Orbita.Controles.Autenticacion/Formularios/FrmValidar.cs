@@ -44,7 +44,7 @@ namespace Orbita.Controles.Autenticacion
         /// Delegado para el evento de validación.
         /// </summary>
         /// <param name="sender">Objecto de la clase actual.</param>
-        /// <param name="args">Mensaje de validación de argumento Orbita.Controles.Autenticacion.OEstadoValidacion.</param>
+        /// <param name="e">Mensaje de validación de argumento Orbita.Controles.Autenticacion.OEstadoValidacion.</param>
         public delegate void ODelegadoValidacion(object sender, AutenticacionChangedEventArgs e);
         /// <summary>
         /// Evento para la validación.

@@ -25,6 +25,9 @@ namespace Orbita.Framework.PluginManager
         /// Descripción del Plugin.
         /// </summary>
         string Descripcion { get; }
+        /// <summary>
+        /// Considerar mostrar el plugin al iniciar el repositorio principal de plugins (Main).
+        /// </summary>
         bool MostrarAlIniciar { get; }
     }
 }

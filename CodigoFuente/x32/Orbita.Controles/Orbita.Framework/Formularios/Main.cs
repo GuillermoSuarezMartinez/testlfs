@@ -45,7 +45,7 @@ namespace Orbita.Framework
         #region Métodos privados
         void InitializePluginsCollection()
         {
-            this.plugins = PluginManager.PluginHelper.GetPlugins();
+            this.plugins = PluginManager.PluginHelper.Plugins();
         }
         void InitializeMenuPlugins()
         {

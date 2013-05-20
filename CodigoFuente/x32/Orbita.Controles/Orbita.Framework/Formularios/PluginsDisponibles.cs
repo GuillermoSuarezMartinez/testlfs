@@ -24,7 +24,7 @@ namespace Orbita.Framework
         public PluginsDisponibles()
         {
             InitializeComponent();
-            System.Collections.Generic.IDictionary<string, string> ensamblados = PluginManager.PluginHelper.GetEnsamblados();
+            System.Collections.Generic.IDictionary<string, string> ensamblados = PluginManager.PluginHelper.Ensamblados();
             lstPluginsDisponibles.Items.AddRange(ensamblados.Keys.ToArray());
         }
         #endregion

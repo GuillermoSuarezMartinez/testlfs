@@ -33,7 +33,8 @@ namespace Orbita.Controles.Contenedores
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraGroupBox.
+        /// </summary>
         public OrbitaUltraGroupBox()
             : base()
         {

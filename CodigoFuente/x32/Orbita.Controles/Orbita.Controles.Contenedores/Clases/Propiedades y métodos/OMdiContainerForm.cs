@@ -23,6 +23,10 @@ namespace Orbita.Controles.Contenedores
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OMdiContainerForm.
         /// </summary>
+        public OMdiContainerForm() { }
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OMdiContainerForm.
+        /// </summary>
         /// <param name="control"></param>
         public OMdiContainerForm(object control)
             : base()
