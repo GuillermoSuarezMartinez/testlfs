@@ -13,24 +13,24 @@ using System.Xml.Linq;
 namespace Orbita.Framework.PluginManager
 {
     /// <summary>
-    /// Interface de Plugin.
+    /// Interface de plugin.
     /// </summary>
     public interface IItemMenu
     {
         /// <summary>
-        /// Grupo al que pertenece el Plugin. Opción padre del menú principal.
+        /// Grupo al que pertenece el plugin. Opción padre del menú principal.
         /// </summary>
         string Grupo { get; }
         /// <summary>
-        /// Subgrupo al que pertenece el Plugin.
+        /// Subgrupo al que pertenece el plugin.
         /// </summary>
         string SubGrupo { get; }
         /// <summary>
-        /// Número de índice para ordenar el plug-in en el árbol.
+        /// Número de índice para ordenar el plugin en el árbol.
         /// </summary>
         int Orden { get; }
         /// <summary>
-        /// Método IDisposable.Dispose() del Plugin.
+        /// Método IDisposable.Dispose() del plugin.
         /// </summary>
         void Dispose();
     }

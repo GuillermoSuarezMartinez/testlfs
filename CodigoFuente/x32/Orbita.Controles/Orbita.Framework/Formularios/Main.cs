@@ -98,6 +98,17 @@ namespace Orbita.Framework
                 pluginInfo.Idioma.OnCambiarIdioma += new System.EventHandler<PluginManager.IdiomaChangedEventArgs>(OnCambiarIdioma);
             }
         }
+        void InitializePluginsWithCloseHandler()
+        {
+            // ... utilizar LINQ para obtener aquellos plugins que implementan la interfaz de cambio de idioma.
+            System.Collections.Generic.IEnumerable<PluginManager.PluginInfo> pluginsConManejadorCierre = (from x in this.plugins
+                                                                                                          where x.Value.ManejadorCierre != null
+                                                                                                          select x.Value).ToList();
+            foreach (var pluginInfo in pluginsConManejadorCierre)
+            {
+                pluginInfo.ManejadorCierre.OnClose += new System.EventHandler<System.Windows.Forms.FormClosedEventArgs>(OnClose);
+            }
+        }
         void InitializeEnvironment()
         {
             Core.ConfiguracionHelper.Configuracion.InicializarEntorno(this, System.EventArgs.Empty);
@@ -239,6 +250,7 @@ namespace Orbita.Framework
                 {
                     InitializeMenuPlugins();
                     InitializePluginsWithChangedLanguage();
+                    InitializePluginsWithCloseHandler();
                     try
                     {
                         InitializeEnvironment();
@@ -287,6 +299,20 @@ namespace Orbita.Framework
             }
             catch (System.NullReferenceException) { }
             catch (System.NotImplementedException) { }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+        void OnClose(object sender, System.Windows.Forms.FormClosedEventArgs e)
+        {
+            try
+            {
+                if (e.CloseReason == System.Windows.Forms.CloseReason.MdiFormClosing)
+                {
+                    this.Close();
+                }
+            }
             catch (System.Exception)
             {
                 throw;

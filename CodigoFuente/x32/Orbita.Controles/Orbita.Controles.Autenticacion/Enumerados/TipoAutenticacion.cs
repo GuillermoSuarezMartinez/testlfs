@@ -9,17 +9,28 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-namespace Orbita.Framework.PluginManager
+namespace Orbita.Controles.Autenticacion
 {
     /// <summary>
-    /// Interface de controles de usuario.
+    /// Determina el tipo de autenticación.
     /// </summary>
-    [System.CLSCompliantAttribute(false)]
-    public interface IUserControlPlugin : IPlugin
+    public enum TipoAutenticacion
     {
         /// <summary>
-        /// Control de usuario (OrbitaUserControl).
+        /// Sin autenticación.
         /// </summary>
-        Orbita.Controles.Shared.OrbitaUserControl Control { get; }
+        Ninguna = 0,
+        /// <summary>
+        /// Autenticación por base de datos.
+        /// </summary>
+        BBDD = 1,
+        /// <summary>
+        /// Autenticación Active Directory.
+        /// </summary>
+        ActiveDirectory = 2,
+        /// <summary>
+        /// Autenticación OpenLDAP.
+        /// </summary>
+        OpenLDAP = 3
     }
 }

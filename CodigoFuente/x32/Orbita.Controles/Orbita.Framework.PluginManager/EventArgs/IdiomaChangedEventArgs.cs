@@ -18,7 +18,7 @@ namespace Orbita.Framework.PluginManager
     {
         #region Atributos privados
         /// <summary>
-        /// Idioma.
+        /// Atributo relativo al idioma actual de controles.
         /// </summary>
         Orbita.Framework.Core.SelectorIdioma idioma;
         #endregion
@@ -41,6 +41,9 @@ namespace Orbita.Framework.PluginManager
         #endregion
 
         #region Propiedades
+        /// <summary>
+        /// Relativo al idioma actual de controles.
+        /// </summary>
         public Orbita.Framework.Core.SelectorIdioma Idioma
         {
             get { return this.idioma; }

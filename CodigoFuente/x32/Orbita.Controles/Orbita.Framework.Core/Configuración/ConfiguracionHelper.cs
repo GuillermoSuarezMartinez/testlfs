@@ -14,6 +14,9 @@ namespace Orbita.Framework.Core
     public static class ConfiguracionHelper
     {
         #region Propiedades
+        /// <summary>
+        /// Propiedad de configuración.
+        /// </summary>
         public static Configuracion Configuracion { get; set; }
         #endregion
     }

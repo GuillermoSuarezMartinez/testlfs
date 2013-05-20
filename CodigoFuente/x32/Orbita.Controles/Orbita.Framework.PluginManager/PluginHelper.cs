@@ -78,7 +78,6 @@ namespace Orbita.Framework.PluginManager
                         foreach (System.Type tipo in ensamblado.GetTypes())
                         {
                             if (tipo.IsSubclassOf(typeof(System.Windows.Forms.Control)))
-                        //    if (tipo.IsSubclassOf(typeof(Orbita.Controles.Contenedores.OrbitaForm)) || tipo.IsSubclassOf(typeof(Orbita.Controles.Shared.OrbitaUserControl))) 
                             {
                                 object control = ensamblado.CreateInstance(tipo.FullName, true);
                                 if (typeof(IPlugin).IsInstanceOfType(control))
@@ -97,6 +96,11 @@ namespace Orbita.Framework.PluginManager
                                         IFormIdioma idioma = (IFormIdioma)control;
                                         pluginInfo.Idioma = idioma;
                                     }
+                                    if (typeof(IFormManejadorCierre).IsInstanceOfType(control))
+                                    {
+                                        IFormManejadorCierre manejadorCierre = (IFormManejadorCierre)control;
+                                        pluginInfo.ManejadorCierre = manejadorCierre;
+                                    }
                                     if (!plugins.ContainsKey(plugin.Nombre))
                                     {
                                         plugins.Add(pluginInfo.Plugin.Nombre, pluginInfo);
@@ -112,9 +116,9 @@ namespace Orbita.Framework.PluginManager
         /// <summary>
         /// Crear una nueva instancia del Plugin del fichero de ensamblado especificado.
         /// </summary>
-        /// <typeparam name="T">OrbitaForm / OrbitaUserControl.</typeparam>
+        /// <typeparam name="T">SubclassOf(typeof(System.Windows.Forms.Control.</typeparam>
         /// <param name="pluginInfo">Plugin a cargar.</param>
-        /// <returns>Nueva instancia del objeto Plugin.</returns>
+        /// <returns>Nueva instancia del objeto plugin.</returns>
         public static T CrearNuevaInstancia<T>(PluginInfo pluginInfo)
         {
             if (pluginInfo == null)

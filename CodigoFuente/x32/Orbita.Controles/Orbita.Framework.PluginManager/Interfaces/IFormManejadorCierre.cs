@@ -12,14 +12,13 @@
 namespace Orbita.Framework.PluginManager
 {
     /// <summary>
-    /// Interface de controles de usuario.
+    /// Interface de cierre.
     /// </summary>
-    [System.CLSCompliantAttribute(false)]
-    public interface IUserControlPlugin : IPlugin
+    public interface IFormManejadorCierre
     {
         /// <summary>
-        /// Control de usuario (OrbitaUserControl).
+        /// Evento de cierre.
         /// </summary>
-        Orbita.Controles.Shared.OrbitaUserControl Control { get; }
+        event System.EventHandler<System.Windows.Forms.FormClosedEventArgs> OnClose;
     }
 }

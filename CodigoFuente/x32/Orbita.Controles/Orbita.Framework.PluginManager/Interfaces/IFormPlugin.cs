@@ -22,7 +22,7 @@ namespace Orbita.Framework.PluginManager
         /// </summary>
         Orbita.Controles.Contenedores.OrbitaForm Formulario { get; }
         /// <summary>
-        /// Especifica como se quiere mostrar el Plugin. { Normal, Dialog, MdiChild }
+        /// Especifica como se quiere mostrar el plugin. { Normal, Dialog, MdiChild }
         /// </summary>
         MostrarComo Mostrar { get; }
     }

@@ -14,8 +14,17 @@ namespace Orbita.Framework.Core
     internal static class ConfiguracionEntorno
     {
         #region Atributos internos constantes
+        /// <summary>
+        /// Número máximo de formularios abiertos.
+        /// </summary>
         internal const int DefectoNumeroMaximoFormulariosAbiertos = 50;
+        /// <summary>
+        /// Modo de autenticación.
+        /// </summary>
         internal const bool DefectoAutenticación = false;
+        /// <summary>
+        /// Selector del idioma de cada uno de los controles.
+        /// </summary>
         internal const SelectorIdioma DefectoIdioma = SelectorIdioma.Español;
         #endregion
     }

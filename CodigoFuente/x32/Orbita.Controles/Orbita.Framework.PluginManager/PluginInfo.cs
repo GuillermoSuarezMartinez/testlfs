@@ -22,12 +22,19 @@ namespace Orbita.Framework.PluginManager
         /// </summary>
         public string Ensamblado { get; set; }
         /// <summary>
-        /// Objeto control plugin.
+        /// Interface de plugin.
         /// </summary>
         public IPlugin Plugin { get; set; }
+        /// <summary>
+        /// Interface de menú.
+        /// </summary>
         public IItemMenu ItemMenu { get; set; }
+        /// <summary>
+        /// Interface de idioma.
+        /// </summary>
         [System.CLSCompliantAttribute(false)]
         public IFormIdioma Idioma { get; set; }
+        public IFormManejadorCierre ManejadorCierre { get; set; }
         #endregion
     }
 }

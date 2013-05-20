@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventArgs\IdiomaChangedEventArgs.cs" />
+    <Compile Include="Interfaces\IFormManejadorCierre.cs" />
     <Compile Include="Interfaces\IFormIdioma.cs" />
     <Compile Include="Interfaces\IMenuPlugin.cs" />
     <Compile Include="Interfaces\IFormPlugin.cs" />

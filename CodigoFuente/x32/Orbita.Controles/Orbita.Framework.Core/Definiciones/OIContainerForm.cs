@@ -16,6 +16,9 @@ namespace Orbita.Framework.Core
     public class OIContainerForm : Orbita.Controles.Contenedores.OMdiContainerForm
     {
         #region Atributos
+        /// <summary>
+        /// Control contenedor de plugins.
+        /// </summary>
         ContainerForm control;
         /// <summary>
         /// Mostrar el formulario de autenticación.
@@ -31,12 +34,9 @@ namespace Orbita.Framework.Core
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Framework.Core.OIContainerForm.
         /// </summary>
-        /// <param name="control"></param>
+        /// <param name="control">Control contenedor de plugins.</param>
         public OIContainerForm(object control)
-            : base(control)
-        {
-            this.control = (ContainerForm)control;
-        }
+            : base(control) { }
         #endregion
 
         #region Propiedades
@@ -66,11 +66,17 @@ namespace Orbita.Framework.Core
         #endregion
 
         #region Métodos protegidos
+        /// <summary>
+        /// Resetear tipo de autenticación con el valor predeterminado.
+        /// </summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetAutenticación()
         {
             this.Autenticación = ConfiguracionEntorno.DefectoAutenticación;
         }
+        /// <summary>
+        /// Resetear selector de idioma con el valor predeterminado.
+        /// </summary>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetIdioma()
         {

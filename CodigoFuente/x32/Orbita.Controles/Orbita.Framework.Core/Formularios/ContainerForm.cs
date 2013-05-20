@@ -54,6 +54,7 @@ namespace Orbita.Framework.Core
         }
         void InitializeProperties()
         {
+            this.OI.Autenticación = ConfiguracionEntorno.DefectoAutenticación;
             this.OI.NumeroMaximoFormulariosAbiertos = ConfiguracionEntorno.DefectoNumeroMaximoFormulariosAbiertos;
         }
         #endregion
