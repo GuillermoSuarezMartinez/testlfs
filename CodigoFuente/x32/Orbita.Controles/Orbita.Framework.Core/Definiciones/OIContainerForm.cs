@@ -12,9 +12,11 @@
 namespace Orbita.Framework.Core
 {
     [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
+    [System.CLSCompliantAttribute(false)]
     public class OIContainerForm : Orbita.Controles.Contenedores.OMdiContainerForm
     {
         #region Atributos
+        ContainerForm control;
         /// <summary>
         /// Mostrar el formulario de autenticación.
         /// </summary>
@@ -29,7 +31,12 @@ namespace Orbita.Framework.Core
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Framework.Core.OIContainerForm.
         /// </summary>
-        public OIContainerForm() { }
+        /// <param name="control"></param>
+        public OIContainerForm(object control)
+            : base(control)
+        {
+            this.control = (ContainerForm)control;
+        }
         #endregion
 
         #region Propiedades

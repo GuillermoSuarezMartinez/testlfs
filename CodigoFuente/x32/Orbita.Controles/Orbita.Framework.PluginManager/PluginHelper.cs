@@ -78,6 +78,7 @@ namespace Orbita.Framework.PluginManager
                         foreach (System.Type tipo in ensamblado.GetTypes())
                         {
                             if (tipo.IsSubclassOf(typeof(System.Windows.Forms.Control)))
+                        //    if (tipo.IsSubclassOf(typeof(Orbita.Controles.Contenedores.OrbitaForm)) || tipo.IsSubclassOf(typeof(Orbita.Controles.Shared.OrbitaUserControl))) 
                             {
                                 object control = ensamblado.CreateInstance(tipo.FullName, true);
                                 if (typeof(IPlugin).IsInstanceOfType(control))

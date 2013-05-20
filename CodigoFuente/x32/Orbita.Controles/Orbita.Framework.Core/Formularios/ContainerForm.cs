@@ -49,7 +49,7 @@ namespace Orbita.Framework.Core
         {
             if (this.definicion == null)
             {
-                this.definicion = new OIContainerForm();
+                this.definicion = new OIContainerForm(this);
             }
         }
         void InitializeProperties()
