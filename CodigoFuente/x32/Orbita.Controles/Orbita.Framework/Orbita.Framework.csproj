@@ -14,10 +14,10 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>%24/Librerias/CodigoFuente/x32/Orbita.Controles/Orbita.Framework</SccProjectName>
-    <SccLocalPath>.</SccLocalPath>
-    <SccAuxPath>http://01x0019:8080/tfs/orbitasoftware</SccAuxPath>
-    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -78,10 +78,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\BDatos.cs" />
-    <Compile Include="Clases\DatosHelper.cs" />
-    <Compile Include="Clases\Internas\Configuracion.cs" />
-    <Compile Include="Clases\Internas\PluginManager.cs" />
     <Compile Include="Formularios\Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,12 +89,6 @@
     </Compile>
     <Compile Include="Formularios\PluginsDisponibles.designer.cs">
       <DependentUpon>PluginsDisponibles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Formularios\Base.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formularios\Base.designer.cs">
-      <DependentUpon>Base.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,13 +104,25 @@
       <Project>{298D55EA-3C54-4D2F-9CF9-DA76531931EC}</Project>
       <Name>Orbita.Controles.Autenticacion</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Comunicaciones\Orbita.Controles.Comunicaciones.csproj">
+      <Project>{7E7DAFD4-3823-46B8-917C-FCEA9431A1A9}</Project>
+      <Name>Orbita.Controles.Comunicaciones</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orbita.Controles.Contenedores\Orbita.Controles.Contenedores.csproj">
       <Project>{B953E685-3E2D-4F93-BB80-805427BBB8A2}</Project>
       <Name>Orbita.Controles.Contenedores</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Shared\Orbita.Controles.Shared.csproj">
+      <Project>{D104B7D1-93CB-46AE-8F84-AA68BB3B2C5E}</Project>
+      <Name>Orbita.Controles.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Orbita.Framework.Core\Orbita.Framework.Core.csproj">
-      <Project>{B9B780FC-3924-47C9-A276-8957E0164BF0}</Project>
+      <Project>{F487D161-E29E-4039-89EB-07FC1DA15D39}</Project>
       <Name>Orbita.Framework.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orbita.Framework.PluginManager\Orbita.Framework.PluginManager.csproj">
+      <Project>{23F5ED03-3278-452F-949A-C1657C73A798}</Project>
+      <Name>Orbita.Framework.PluginManager</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -151,8 +153,8 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)Orbita.Framework.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I
-xcopy "$(TargetDir)Orbita.Framework.xml" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

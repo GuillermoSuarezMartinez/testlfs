@@ -1,5 +1,8 @@
 ﻿namespace Orbita.Framework
 {
+    /// <summary>
+    /// Contenedor principal de plugins.
+    /// </summary>
     partial class Main
     {
         /// <summary>
@@ -40,6 +43,21 @@
             this.ResumeLayout(false);
 
         }
+        private void InitializeComponentMenuStrip()
+        {
+            this.pluginMenuStrip = new PluginManager.PluginOMenuStrip(this);
+            this.SuspendLayout();
+            //
+            // MenuStrip
+            //
+            this.Controls.Add(this.pluginMenuStrip);
+            this.MainMenuStrip = this.pluginMenuStrip;
+            this.Controls.SetChildIndex(this.pluginMenuStrip, 0);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+        }
         #endregion
+
+        PluginManager.PluginOMenuStrip pluginMenuStrip;
     }
 }

@@ -10,19 +10,18 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System.Linq;
-using Orbita.Controles.Autenticacion;
 namespace Orbita.Framework
 {
     [System.CLSCompliantAttribute(false)]
-    public partial class Main : Base
+    public partial class Main : Orbita.Framework.Core.ContainerForm
     {
         #region Atributos privados
         /// <summary>
-        /// Colección de Plugins.
+        /// Colección de plugins.
         /// </summary>
-        System.Collections.Generic.IDictionary<string, Core.PluginInfo> plugins;
+        System.Collections.Generic.IDictionary<string, PluginManager.PluginInfo> plugins;
         /// <summary>
-        /// Colección de controles.
+        /// Colección de controles de plugins.
         /// </summary>
         System.Collections.Generic.IDictionary<string, Core.ControlInfo> controles;
         #endregion
@@ -34,94 +33,102 @@ namespace Orbita.Framework
         public Main()
             : base()
         {
-            // Inicializar componentes.
+            // Inicializar componentes del entorno.
             InitializeComponent();
-            // Inicializar atributos.
-            InicializeAttributes();
-            // Cargar Plugins.
-            LoadPlugins();
-            // Cargar configuración de Framework.
-            LoadConfiguration();
+            // Inicializar la colección de plugins del entorno.
+            InitializePluginsCollection();
             // Cargar formulario de autenticación si la propiedad lo indica.
-            // ...en todo caso se ejecuta el evento asociado Validacion_Click 
-            // el cual establece la inicialización del menu, la asignación de
-            // eventos y la carga de controles.
             LoadAuthentication();
         }
         #endregion
 
-        #region Métodos privados estáticos
-        static void InicializeAttributes()
-        {
-            Core.PluginHelper.Path = System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath, "Plugins");
-        }
-        #endregion
-
         #region Métodos privados
-        void LoadPlugins()
+        void InitializePluginsCollection()
         {
-            string fichero = "Plugins.xml";
-            if (System.IO.File.Exists(fichero))
+            this.plugins = PluginManager.PluginHelper.GetPlugins();
+        }
+        void InitializeMenuPlugins()
+        {
+            try
             {
-                PluginManager.Configuracion = Core.Configuracion.Cargar(fichero);
-                this.LoadPlugins((from x in PluginManager.Configuracion.Plugins
-                                  where x.Ensamblado != null
-                                  select x.Ensamblado).ToList());
+                // Obtener aquellos plugins que implementan la interfaz IItemMenu, ordenarlos y vincularlos al control MenuStrip.
+                // ... utilizar LINQ para especificar aquellos plugins que implementan la interfaz IItemMenu y ordenar dichos valores.
+                // ...AsQueryable(), proporciona funcionalidad para evaluar consultas con respecto a un origen de datos concreto en el 
+                // que se especifica el tipo de los datos, evita CA1502 complejidad ciclomática de 28.
+                var pluginsDeMenu = (from x in this.plugins
+                                     where x.Value.ItemMenu != null
+                                     select x.Value).AsQueryable()
+                                                    .OrderBy(g => g.ItemMenu.Grupo)
+                                                    .ThenBy(sg => sg.ItemMenu.SubGrupo)
+                                                    .ThenBy(o => o.ItemMenu.Orden).ToList();
+
+                // Si existen plugins que implementen la interfaz de menú debemos crear el control MenuStrip.
+                if (pluginsDeMenu.Count > 0)
+                {
+                    // Crear dinámicamente el control pluginMenuStrip.
+                    InitializeComponentMenuStrip();
+
+                    // Recorrer la colección y vincular cada plugin a cada opción de menú.
+                    foreach (PluginManager.PluginInfo pluginInfo in pluginsDeMenu)
+                    {
+                        if (pluginInfo.Plugin is PluginManager.IFormPlugin)
+                        {
+                            pluginMenuStrip.AddPlugin(pluginInfo);
+                        }
+                    }
+                }
             }
-            else
+            catch (System.NullReferenceException)
             {
-                PluginManager.Configuracion = new Core.Configuracion();
-                PluginManager.Configuracion.Guardar(fichero);
+                this.plugins = this.plugins.OrderBy(t => t.Key).ToDictionary(k => k.Key, v => v.Value);
+            }
+            catch (System.NotImplementedException)
+            {
+                this.plugins = this.plugins.OrderBy(t => t.Key).ToDictionary(k => k.Key, v => v.Value);
             }
         }
-        void LoadAuthentication()
+        void InitializePluginsWithChangedLanguage()
         {
-            OManagerValidacion manager = new OManagerValidacion();
-            manager.OValidacion += new OManagerValidacion.ODelegadoManagerValidacion(Validacion_Click);
-            manager.Mostrar(this, this.Configurador.Autenticación);
-        }
-        /// <summary>
-        /// Cargar controles en la colección de acuerdo al idioma seleccionado.
-        /// </summary>
-        void LoadControls()
-        {
-            Core.Persistencia persistencia = Core.PluginHelper.Persistencia;
-            if (persistencia != null)
+            // ... utilizar LINQ para obtener aquellos plugins que implementan la interfaz de cambio de idioma.
+            System.Collections.Generic.IEnumerable<PluginManager.PluginInfo> pluginsConCambioDeIdioma = (from x in this.plugins
+                                                                                                         where x.Value.Idioma != null
+                                                                                                         select x.Value).ToList();
+            foreach (var pluginInfo in pluginsConCambioDeIdioma)
             {
-                controles = persistencia.GetControles(this.Configurador.Idioma);
+                pluginInfo.Idioma.OnCambiarIdioma += new System.EventHandler<PluginManager.IdiomaChangedEventArgs>(OnCambiarIdioma);
             }
         }
-        /// <summary>
-        /// Inicializar el valor de los controles en función de la colección.
-        /// </summary>
-        void InicializeControls()
+        void InitializeEnvironment()
         {
-            foreach (Core.PluginInfo pluginInfo in this.plugins.Values)
+            Core.ConfiguracionHelper.Configuracion.InicializarEntorno(this, System.EventArgs.Empty);
+        }
+        void InitializePluginControlsCollection()
+        {
+            this.controles = Core.ConfiguracionHelper.Configuracion.GetControlesPlugin(this.OI.Idioma);
+        }
+        void InitializePluginControls()
+        {
+            foreach (PluginManager.PluginInfo pluginInfo in this.plugins.Values)
             {
                 System.Windows.Forms.Control control = null;
-                if (pluginInfo.Plugin is Core.IUserControlPlugin)
+                if (pluginInfo.Plugin is PluginManager.IUserControlPlugin)
                 {
-                    Core.IUserControlPlugin plugin = pluginInfo.Plugin as Core.IUserControlPlugin;
+                    Orbita.Framework.PluginManager.IUserControlPlugin plugin = pluginInfo.Plugin as Orbita.Framework.PluginManager.IUserControlPlugin;
                     control = plugin.Control;
                 }
-                else if (pluginInfo.Plugin is Core.IFormPlugin)
+                else if (pluginInfo.Plugin is PluginManager.IFormPlugin)
                 {
-                    Core.IFormPlugin plugin = pluginInfo.Plugin as Core.IFormPlugin;
+                    Orbita.Framework.PluginManager.IFormPlugin plugin = pluginInfo.Plugin as Orbita.Framework.PluginManager.IFormPlugin;
                     control = plugin.Formulario;
                 }
-                InicializeControls(pluginInfo.Plugin.Configuracion.Value, control);
+                InitializePluginControls(pluginInfo.Plugin.ToString(), control);
             }
         }
-        /// <summary>
-        /// Inicializar el valor de todos los controles de un control de forma recursiva.
-        /// </summary>
-        /// <param name="nombre">Nombre del control incluyendo espacio de nombres.</param>
-        /// <param name="contenedor">Control de tipo Plugin.</param>
-        void InicializeControls(string nombre, System.Windows.Forms.Control contenedor)
+        void InitializePluginControls(string nombre, System.Windows.Forms.Control contenedor)
         {
             foreach (System.Windows.Forms.Control control in contenedor.Controls)
             {
-                InicializeControls(nombre + "." + control.Name, control);
+                InitializePluginControls(nombre + "." + control.Name, control);
             }
             if (this.controles.ContainsKey(nombre))
             {
@@ -132,60 +139,19 @@ namespace Orbita.Framework
                 }
             }
         }
-        /// <summary>
-        /// Asignar de forma dinámica los eventos asociado al Plugin de carga.
-        /// Eventos de acciones de pulsación de menú.
-        /// Eventos suscritos al cambio de idioma.
-        /// </summary>
-        void SetEventsPlugins()
+        void LoadAuthentication()
         {
-            foreach (Core.PluginInfo pluginInfo in this.plugins.Values)
-            {
-                if (this.Configurador.MostrarMenu)
-                {
-                    // Evento click de las opciones de menú principal.
-                    System.Windows.Forms.ToolStripMenuItem pluginItem = this.Menu.AddPlugin(pluginInfo);
-                    pluginItem.Click += new System.EventHandler(PluginItem_Click);
-                }
-                if (pluginInfo.Plugin is Core.IFormIdioma)
-                {
-                    // Suscriptor al evento de cambio de idioma.
-                    Core.IFormIdioma idioma = (Core.IFormIdioma)pluginInfo.Plugin;
-                    idioma.OnCambiarIdioma += new System.EventHandler<Core.IdiomaChangedEventArgs>(OnCambiarIdioma);
-                }
-            }
+            Orbita.Controles.Autenticacion.OManagerValidacion manager = new Orbita.Controles.Autenticacion.OManagerValidacion();
+            manager.OValidacion += new Orbita.Controles.Autenticacion.OManagerValidacion.ODelegadoManagerValidacion(Validacion_Click);
+            manager.Mostrar(this, this.OI.Autenticación);
         }
-        /// <summary>
-        /// Cargar controles en función de los ensamblados existentes de carga.
-        /// </summary>
-        /// <param name="ensamblados">Colección de ensamblados.</param>
-        void LoadPlugins(System.Collections.Generic.IEnumerable<string> ensamblados)
-        {
-            this.plugins = Core.PluginHelper.GetPlugins(ensamblados);
-            try
-            {
-                this.plugins = this.plugins.OrderBy(g => g.Value.Plugin.Grupo)
-                    .ThenBy(sg => sg.Value.Plugin.SubGrupo)
-                    .ThenBy(o => o.Value.Plugin.Orden)
-                    .ThenBy(t => t.Key)
-                    .ToDictionary(k => k.Key, v => v.Value);
-            }
-            catch (System.NotImplementedException)
-            {
-                this.plugins = this.plugins.OrderBy(t => t.Key).ToDictionary(k => k.Key, v => v.Value);
-            }
-        }
-        /// <summary>
-        /// Mostrar en el contenedor de controles el Plugin de carga.
-        /// </summary>
-        /// <param name="pluginInfo"></param>
-        void ShowPlugin(Core.PluginInfo pluginInfo)
+        void ShowPlugin(PluginManager.PluginInfo pluginInfo)
         {
             if (pluginInfo != null)
             {
-                if (pluginInfo.Plugin is Core.IUserControlPlugin)
+                if (pluginInfo.Plugin is PluginManager.IUserControlPlugin)
                 {
-                    Core.IUserControlPlugin plugin = pluginInfo.Plugin as Core.IUserControlPlugin;
+                    PluginManager.IUserControlPlugin plugin = pluginInfo.Plugin as PluginManager.IUserControlPlugin;
                     System.Windows.Forms.UserControl control = plugin.Control;
                     if (!this.Controls.Contains(control))
                     {
@@ -194,33 +160,36 @@ namespace Orbita.Framework
                         this.Controls.Add(control);
                     }
                 }
-                else if (pluginInfo.Plugin is Core.IFormPlugin)
+                else if (pluginInfo.Plugin is PluginManager.IFormPlugin)
                 {
-                    Core.IFormPlugin plugin = pluginInfo.Plugin as Core.IFormPlugin;
+                    PluginManager.IFormPlugin plugin = pluginInfo.Plugin as PluginManager.IFormPlugin;
                     Orbita.Controles.Contenedores.OrbitaForm form = plugin.Formulario;
                     if (form.IsDisposed)
                     {
-                        form = Core.PluginHelper.CrearNuevaInstancia<Orbita.Controles.Contenedores.OrbitaForm>(pluginInfo);
+                        form = PluginManager.PluginHelper.CrearNuevaInstancia<Orbita.Controles.Contenedores.OrbitaForm>(pluginInfo);
                     }
-                    bool mostrarAlFrente = false;
-                    if (plugin.Tipo == Core.TipoForm.Dialog)
+                    if (plugin.Mostrar == PluginManager.MostrarComo.Dialog)
                     {
                         form.ShowDialog();
                     }
-                    else if (plugin.Tipo == Core.TipoForm.Normal)
+                    else if (plugin.Mostrar == PluginManager.MostrarComo.Normal)
                     {
                         form.Show();
+                        form.BringToFront();
                     }
-                    else if (plugin.Tipo == Core.TipoForm.MdiChild)
+                    else if (plugin.Mostrar == PluginManager.MostrarComo.MdiChild)
                     {
-                        mostrarAlFrente = this.OI.MostrarFormulario(form);
+                        this.OI.MostrarFormulario(form);
                     }
-                    //if (!mostrarAlFrente)
-                    //{
-                    //    form.WindowState = (System.Windows.Forms.FormWindowState)plugin.EstadoVentana;
-                    //}
                 }
             }
+        }
+        #endregion
+
+        #region Métodos privados estáticos
+        static void InitializeConfigurationChannelCollection()
+        {
+            // System.Collections.Generic.IList<Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal> canales = Orbita.Framework.C.ConfiguracionHelper.Configuracion.GetConfiguracionCanal();
         }
         #endregion
 
@@ -229,13 +198,17 @@ namespace Orbita.Framework
         {
             try
             {
-                string plugin = this.Configurador.Plugin;
-                if (!string.IsNullOrEmpty(plugin) && this.plugins.ContainsKey(plugin))
+                // ... utilizar LINQ para obtener aquellos plugins que se deben mostrar al iniciar el main.
+                System.Collections.Generic.IEnumerable<PluginManager.PluginInfo> pluginsIniciales = (from x in this.plugins
+                                                                                                     where x.Value.Plugin.MostrarAlIniciar == true
+                                                                                                     select x.Value).ToList();
+                foreach (var pluginInfo in pluginsIniciales)
                 {
-                    Core.PluginInfo pluginInfo = this.plugins[plugin];
-                    this.ShowPlugin(pluginInfo);
+                    ShowPlugin(pluginInfo);
                 }
             }
+            catch (System.NullReferenceException) { }
+            catch (System.NotImplementedException) { }
             catch (System.Exception)
             {
                 throw;
@@ -249,26 +222,9 @@ namespace Orbita.Framework
                 {
                     using (PluginsDisponibles form = new PluginsDisponibles())
                     {
-                        if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                        {
-                            this.LoadPlugins(form.PluginsSeleccionados.Values);
-                            this.SetEventsPlugins();
-                        }
+                        form.ShowDialog();
                     }
                 }
-            }
-            catch (System.Exception)
-            {
-                throw;
-            }
-        }
-        void PluginItem_Click(object sender, System.EventArgs e)
-        {
-            try
-            {
-                System.Windows.Forms.ToolStripMenuItem menuItem = sender as System.Windows.Forms.ToolStripMenuItem;
-                Core.PluginInfo plugin = menuItem.Tag as Core.PluginInfo;
-                this.ShowPlugin(plugin);
             }
             catch (System.Exception)
             {
@@ -281,34 +237,56 @@ namespace Orbita.Framework
             {
                 if (e.Estado.Resultado == "OK")
                 {
-                    // Inicializar menu si la propiedad lo indica.
-                    this.InicializeMenu();
-                    // Asignar eventos de Plugins.
-                    this.SetEventsPlugins();
-                    this.LoadControls();
-                    this.InicializeControls();
+                    InitializeMenuPlugins();
+                    InitializePluginsWithChangedLanguage();
+                    try
+                    {
+                        InitializeEnvironment();
+                    }
+                    catch (System.NullReferenceException) { }
+                    catch (System.NotImplementedException) { }
+
+                    try
+                    {
+                        InitializePluginControlsCollection();
+                    }
+                    catch (System.NullReferenceException) { }
+                    catch (System.NotImplementedException) { }
+
+                    try
+                    {
+                        InitializeConfigurationChannelCollection();
+                    }
+                    catch (System.NullReferenceException) { }
+                    catch (System.NotImplementedException) { }
+
+                    InitializePluginControls();
                 }
             }
+            catch (System.NullReferenceException) { }
+            catch (System.NotImplementedException) { }
             catch (System.Exception)
             {
                 throw;
             }
         }
-        void OnCambiarIdioma(object sender, Core.IdiomaChangedEventArgs e)
+        void OnCambiarIdioma(object sender, PluginManager.IdiomaChangedEventArgs e)
         {
             try
             {
                 // Solo si el idioma de carga es distinto al idioma asignado previamente.
-                if (e.Idioma != this.Configurador.Idioma)
+                if (e.Idioma != this.OI.Idioma)
                 {
                     // Modificar el atributo de idioma.
-                    this.Configurador.Idioma = e.Idioma;
+                    this.OI.Idioma = e.Idioma;
                     // Inicializar la colección de controles en función del idioma seleccionado.
-                    this.LoadControls();
+                    InitializePluginControlsCollection();
                     // Mostrar el valor de cada uno de los controles en los Plugins de carga.
-                    this.InicializeControls();
+                    InitializePluginControls();
                 }
             }
+            catch (System.NullReferenceException) { }
+            catch (System.NotImplementedException) { }
             catch (System.Exception)
             {
                 throw;

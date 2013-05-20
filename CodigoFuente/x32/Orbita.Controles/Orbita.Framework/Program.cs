@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using Orbita.BBDD;
 namespace Orbita.Framework
 {
     static class Program
@@ -13,9 +12,6 @@ namespace Orbita.Framework
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //string fichero = Application.StartupPath + @"\ConfiguracionBBDD.xml";
-            //OBBDDManager.LeerFicheroConfig(fichero);
-            //BDatos.FW = (OSqlServer)OBBDDManager.GetBBDD("basedatosfw");
             Application.Run(new Main());
         }
     }
