@@ -78,9 +78,6 @@
     <Reference Include="Emgu.CV">
       <HintPath>..\..\Comun\VA\OpenCV\Emgu.CV.dll</HintPath>
     </Reference>
-    <Reference Include="Emgu.Util">
-      <HintPath>..\..\Comun\VA\OpenCV\Emgu.Util.dll</HintPath>
-    </Reference>
     <Reference Include="Infragistics2.Shared.v11.2">
       <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Shared.v11.2.dll</HintPath>
     </Reference>
