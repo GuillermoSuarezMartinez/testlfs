@@ -9,9 +9,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Orbita.Framework.Core")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Órbita Ingeniería")]
+[assembly: AssemblyCompany("Microsoft")]
 [assembly: AssemblyProduct("Orbita.Framework.Core")]
-[assembly: AssemblyCopyright("Copyright © Orbita Ingenieria 2013")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliantAttribute(true)]
@@ -23,7 +23,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como identificador de typelib si este proyecto se expone a COM
-[assembly: Guid("e142767b-9b5b-44bd-9516-f5166be2a34f")]
+[assembly: Guid("14a3896f-3381-45f2-9dbf-2d79fe19eb10")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //
@@ -35,5 +35,5 @@ using System.Runtime.InteropServices;
 // Puede especificar todos los valores o establecer como predeterminados los números de versión de compilación y de revisión 
 // mediante el asterisco ('*'), como se muestra a continuación:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("13.70.5.1")]
-[assembly: AssemblyFileVersion("13.70.5.1")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
