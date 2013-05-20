@@ -204,7 +204,7 @@
             Informa de la integración de la funcionalidad de máquinas de estados dentro del sistema
             </summary>
         </member>
-        <member name="M:Orbita.VA.Comun.OSistemaManager.Constructor(Orbita.VA.Comun.OSistema,System.Windows.Forms.Form,System.Boolean,System.Boolean)">
+        <member name="M:Orbita.VA.Comun.OSistemaManager.Constructor(Orbita.VA.Comun.OSistema,System.Boolean,System.Boolean,System.Windows.Forms.Form)">
             <summary>
             Constructor de los campos estáticos de la clase
             </summary>
@@ -235,12 +235,47 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.VA.Comun.OSistemaManager.ObtenerVersion(System.Reflection.Assembly)">
+        <member name="M:Orbita.VA.Comun.OSistemaManager.Version(System.Reflection.Assembly)">
             <summary>
             Obtiene la version del ensamblado actual
             </summary>
-            <param name="asm">Ensamblado del cual se quiere conocer la versión</param>
+            <param name="asm">Ensamblado del cual se quiere conocer información</param>
             <returns>Versión del ensamblado</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistemaManager.CompanyName(System.Reflection.Assembly)">
+            <summary> 
+            Nombre del creador del ensamblado
+            </summary> 
+            <param name="asm">Ensamblado del cual se quiere conocer información</param>
+            <returns>Nombre del creador del ensamblado</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistemaManager.CopyrightHolder(System.Reflection.Assembly)">
+            <summary> 
+            Derechos de copia del ensamblado
+            </summary> 
+            <param name="asm">Ensamblado del cual se quiere conocer información</param>
+            <returns>Derechos de copia del ensamblado</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistemaManager.Description(System.Reflection.Assembly)">
+            <summary> 
+            Descripción del ensamblado
+            </summary> 
+            <param name="asm">Ensamblado del cual se quiere conocer información</param>
+            <returns>Descripción del ensamblado</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistemaManager.ProductName(System.Reflection.Assembly)">
+            <summary> 
+            Nombre del producto del ensamblado
+            </summary> 
+            <param name="asm">Ensamblado del cual se quiere conocer información</param>
+            <returns>Nombre del producto del ensamblado</returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSistemaManager.Title(System.Reflection.Assembly)">
+            <summary> 
+            Título del ensamblado 
+            </summary> 
+            <param name="asm">Ensamblado del cual se quiere conocer información</param>
+            <returns>Título del ensamblado</returns>
         </member>
         <member name="M:Orbita.VA.Comun.OSistemaManager.AvailableFreeSpace(System.String)">
             <summary>
