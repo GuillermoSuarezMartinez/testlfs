@@ -198,7 +198,10 @@ namespace Orbita.Comunicaciones
                     string error = this._nombre + " Connection Request no se pudo establecer la conexión con la IP " + ip;
                     OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._nombre, "", error);
                     OEventArgs ev = new OEventArgs(mensaje);
-                    this.WskConnectionRequest(ev);
+                    if (this.WskConnectionRequest != null)
+                    {
+                        this.WskConnectionRequest(ev);
+                    }
                     _log.Error(this._nombre + " " + error);
                 }
                 else
@@ -206,7 +209,10 @@ namespace Orbita.Comunicaciones
                     string conexion = this._nombre + " Connection Request " + e.ClientIP.ToString() + " EndPoint " + e.Client.RemoteEndPoint.ToString();
                     OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._nombre, "", conexion);
                     OEventArgs ev = new OEventArgs(mensaje);
-                    this.WskConnectionRequest(ev);
+                    if (this.WskConnectionRequest != null)
+                    {
+                        this.WskConnectionRequest(ev);
+                    }
                     _log.Debug(this._nombre + " " + conexion);
                 }
             }
@@ -215,7 +221,10 @@ namespace Orbita.Comunicaciones
                 string error = "Connection Request Error: " + ex.ToString();
                 OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._nombre, "", error);
                 OEventArgs ev = new OEventArgs(mensaje);
-                this.WskConnectionRequest(ev);
+                if (this.WskConnectionRequest != null)
+                {
+                    this.WskConnectionRequest(ev);
+                }
                 _log.Error(this._nombre + " " + error);
             }
 
@@ -232,7 +241,10 @@ namespace Orbita.Comunicaciones
                 string error = "Error Received: " + e.Message;
                 OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._nombre, "", error);
                 OEventArgs ev = new OEventArgs(mensaje);
-                this.WskErrorReceived(ev);
+                if (this.WskErrorReceived != null)
+                {
+                    this.WskErrorReceived(ev);
+                }
                 _log.Error(this._nombre + " " + error);
             }
             catch (Exception ex)
@@ -252,7 +264,11 @@ namespace Orbita.Comunicaciones
         /// <param name="e">Argumento del objeto cliente</param>
         void _winsockCliente_OStateChanged(Orbita.Utiles.OEventArgs e)
         {
-            this.WskClientStateChanged(e);
+            if (this.WskClientStateChanged!=null)
+            {
+                this.WskClientStateChanged(e);
+            }
+            
         }
         /// <summary>
         /// Envío de datos en el canal TCP
@@ -260,7 +276,11 @@ namespace Orbita.Comunicaciones
         /// <param name="e">Argumento del objeto cliente</param>
         void _winsockCliente_OSendComplete(Orbita.Utiles.OEventArgs e)
         {
-            this.WskClientSendComplete(e);
+            if (this.WskClientSendComplete != null)
+            {
+                this.WskClientSendComplete(e);
+            }
+            
         }
         /// <summary>
         /// Error en el canal TCP
@@ -268,7 +288,11 @@ namespace Orbita.Comunicaciones
         /// <param name="e">Argumento del objeto cliente</param>
         void _winsockCliente_OErrorReceived(Orbita.Utiles.OEventArgs e)
         {
-            this.WskClientErrorReceived(e);
+            if (this.WskClientSendComplete != null)
+            {
+                this.WskClientErrorReceived(e);
+            }
+            
         }
         /// <summary>
         /// Datos de recepción en el canal TCP
@@ -276,7 +300,11 @@ namespace Orbita.Comunicaciones
         /// <param name="e">Argumento del objeto cliente</param>
         void _winsockCliente_ODataArrival(Orbita.Utiles.OEventArgs e)
         {
-            this.WskClientDataArrival(e);
+            if (this.WskClientSendComplete != null)
+            {
+                this.WskClientDataArrival(e);
+            }
+            
         }
         #endregion
 

@@ -104,6 +104,17 @@ namespace Orbita.Comunicaciones
         }
         #endregion
 
+        #region Eventos
+        /// <summary>
+        /// Evento de cambio de dato entradas
+        /// </summary>
+        public event OManejadorEventoComm OrbitaCambioDatoEntradas;
+        /// <summary>
+        /// Evento de cambio de dato salidas
+        /// </summary>
+        public event OManejadorEventoComm OrbitaCambioDatoSalidas;
+        #endregion
+
         #region Métodos públicos
         /// <summary>
         /// Procesa las lecturas del dispositivo
@@ -318,6 +329,40 @@ namespace Orbita.Comunicaciones
             }
 
             return resultado;
+        }
+        /// <summary>
+        /// Cambio de dato de las entradas
+        /// </summary>
+        /// <param name="e"></param>
+        protected virtual void OnCambioDatoEntradas(OEventArgs e)
+        {
+            // Hacer una copia temporal del evento para evitar una condición
+            // de carrera, si el último suscriptor desuscribe inmediatamente
+            // después de la comprobación nula y antes de que el  evento  se
+            // produce.
+            OManejadorEventoComm handler = OrbitaCambioDatoEntradas;
+            if (handler != null)
+            {
+                handler(e);
+            }
+            handler = null;
+        }
+        /// <summary>
+        /// Cambio de dato de las salidas
+        /// </summary>
+        /// <param name="e"></param>
+        protected virtual void OnCambioDatoSalidas(OEventArgs e)
+        {
+            // Hacer una copia temporal del evento para evitar una condición
+            // de carrera, si el último suscriptor desuscribe inmediatamente
+            // después de la comprobación nula y antes de que el  evento  se
+            // produce.
+            OManejadorEventoComm handler = OrbitaCambioDatoSalidas;
+            if (handler != null)
+            {
+                handler(e);
+            }
+            handler = null;
         }
         #endregion
 

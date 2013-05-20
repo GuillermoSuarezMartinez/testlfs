@@ -30,10 +30,14 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
@@ -86,15 +90,6 @@
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>False</EmbedInteropTypes>
       <HintPath>..\..\Comun\Comunicaciones\opcrcw.da.dll</HintPath>
-    </Reference>
-    <Reference Include="Orbita.Trazabilidad">
-      <HintPath>..\..\Comun\Orbita\Orbita.Trazabilidad.dll</HintPath>
-    </Reference>
-    <Reference Include="Orbita.Utiles">
-      <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
-    </Reference>
-    <Reference Include="Orbita.Winsock">
-      <HintPath>..\..\Comun\Orbita\Orbita.Winsock.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -169,7 +164,20 @@
   <ItemGroup>
     <None Include="ClassDiagramComs.cd" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Orbita.Trazabilidad\Orbita.Trazabilidad.csproj">
+      <Project>{1A2EEC44-A494-4BA6-A591-267B73A55CD1}</Project>
+      <Name>Orbita.Trazabilidad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orbita.Utiles\Orbita.Utiles.csproj">
+      <Project>{DAD5D2A3-9C23-4C22-ABEB-4DF8258170AD}</Project>
+      <Name>Orbita.Utiles</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orbita.Winsock\Orbita.Winsock.vbproj">
+      <Project>{71BD7FF7-F873-49B9-8DC2-C41F909D7300}</Project>
+      <Name>Orbita.Winsock</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)Orbita.Comunicaciones.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I
