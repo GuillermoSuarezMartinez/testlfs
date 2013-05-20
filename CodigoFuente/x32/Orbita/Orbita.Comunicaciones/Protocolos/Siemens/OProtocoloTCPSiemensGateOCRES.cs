@@ -34,15 +34,15 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Fin de la trama de keepAlive envio
         /// </summary>
-        private int _finTramaKeepAliveEnvio = 14;
+        private int _finTramaKeepAliveEnvio = 17;
         /// <summary>
         /// Fin de la trama de keepAlive recepcion
         /// </summary>
-        private int _finTramaKeepAliveRecepcion = 25;
+        private int _finTramaKeepAliveRecepcion = 32;
         /// <summary>
         /// Tamaño máximo de trama
         /// </summary>
-        private int _tamanyoMensaje = 26;
+        private int _tamanyoMensaje = 33;
 
         #endregion
 
@@ -60,7 +60,7 @@ namespace Orbita.Comunicaciones
         #region Métodos
 
         /// <summary>
-        /// Prepara el mensaje keep alive de respuesta
+        /// Mensaje de keep alive que se envía al PLC
         /// </summary>
         /// <returns>mensaje de respuesta</returns>
         public override byte[] KeepAliveEnviar()
@@ -79,13 +79,19 @@ namespace Orbita.Comunicaciones
                 ret[9] = 0;
                 ret[10] = this.Separador[0];
                 ret[11] = 0;
-                ret[12] = this.Separador[0];
+                ret[12] = 0;
+                ret[13] = 0;
+                ret[14] = 0;
+                ret[15] = this.Separador[0];
 
-                BCC = new byte[2];
+                BCC = new byte[5];
                 BCC[0] = 0;
                 BCC[1] = 0;
+                BCC[2] = 0;
+                BCC[3] = 0;
+                BCC[4] = 0;
 
-                ret[13] = this.CalculoBCC(BCC)[0];
+                ret[16] = this.CalculoBCC(BCC)[0];
             }
             catch (Exception ex)
             {
@@ -95,7 +101,7 @@ namespace Orbita.Comunicaciones
             return ret;
         }
         /// <summary>
-        /// Procesa el mensaje keep alive del PLC
+        /// Mensaje de keep alive que se recibe del PLC
         /// </summary>
         /// <param name="valor">valor recibido por el PLC</param>
         /// <param name="lecturas">lecturas leídas en el PLC</param>
@@ -104,8 +110,8 @@ namespace Orbita.Comunicaciones
         {
             bool ret = false;
             byte id = 0;
-            lecturas = new byte[5];
-            byte[] BCC = new byte[6];
+            lecturas = new byte[12];
+            byte[] BCC = new byte[13];
 
             try
             {
@@ -113,11 +119,11 @@ namespace Orbita.Comunicaciones
                 if (valor[0] == this.STX[0] && valor[_finTramaKeepAliveRecepcion] == this.CR[0] && valor.Length == this._tamanyoMensaje)
                 {
                     id = valor[15];
-                    Array.Copy(valor, 17, lecturas, 0, 4);
-                    Array.Copy(valor, 22, lecturas, 4, 1);
+                    Array.Copy(valor, 17, lecturas, 0, 8);
+                    Array.Copy(valor, 26, lecturas, 8, 4);
                     BCC[0] = id;
-                    Array.Copy(lecturas, 0, BCC, 1, 5);
-                    if (this.CalculoBCC(BCC)[0] == valor[24])
+                    Array.Copy(lecturas, 0, BCC, 1, 12);
+                    if (this.CalculoBCC(BCC)[0] == valor[31])
                     {
                         ret = true;
                     }
@@ -146,13 +152,18 @@ namespace Orbita.Comunicaciones
                 ret = KeepAliveEnviar();
                 ret[9] = idMensaje;
                 ret[11] = salidas[0];
-
-                byte[] BCC = new byte[2];
+                ret[12] = salidas[1];
+                ret[13] = salidas[2];
+                ret[14] = salidas[3];
+                byte[] BCC = new byte[5];
 
                 BCC[0] = idMensaje;
                 BCC[1] = salidas[0];
+                BCC[2] = salidas[1];
+                BCC[3] = salidas[2];
+                BCC[4] = salidas[3];
 
-                ret[13] = this.CalculoBCC(BCC)[0];
+                ret[16] = this.CalculoBCC(BCC)[0];
             }
             catch (Exception ex)
             {
@@ -170,22 +181,22 @@ namespace Orbita.Comunicaciones
         public override bool SalidasProcesar(byte[] valor, byte id)
         {
             bool ret = false;
-            byte[] entradas = new byte[4];
-            byte[] salidas = new byte[1];
-            byte[] BCC = new byte[6];
+            byte[] entradas = new byte[8];
+            byte[] salidas = new byte[4];
+            byte[] BCC = new byte[13];
 
             try
             {
                 //Comprobamos el inicio y fin de trama
                 if (valor[0] == this.STX[0] && valor[_finTramaKeepAliveRecepcion] == this.CR[0] && valor.Length == this._tamanyoMensaje)
                 {
-                    Array.Copy(valor, 17, entradas, 0, 4);
-                    Array.Copy(valor, 22, salidas, 0, 1);
+                    Array.Copy(valor, 17, entradas, 0, 8);
+                    Array.Copy(valor, 26, salidas, 0, 4);
 
                     BCC[0] = (byte)(id - 1);
-                    Array.Copy(entradas, 0, BCC, 1, 4);
-                    Array.Copy(salidas, 0, BCC, 5, 1);
-                    if (this.CalculoBCC(BCC)[0] == valor[24])
+                    Array.Copy(entradas, 0, BCC, 1, 8);
+                    Array.Copy(salidas, 0, BCC, 9, 4);
+                    if (this.CalculoBCC(BCC)[0] == valor[31])
                     {
                         ret = true;
                     }

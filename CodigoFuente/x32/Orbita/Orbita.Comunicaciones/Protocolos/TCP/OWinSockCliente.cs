@@ -126,14 +126,14 @@ namespace Orbita.Comunicaciones
                 dat = _winsock.Get<object>();
 
                 string ret = "";
-                byte[] recibido = (byte[])dat;
-                if (recibido != null)
-                {
-                    for (int i = 0; i < recibido.Length; i++)
-                    {
-                        ret += "[" + recibido[i].ToString() + "]";
-                    }
-                }
+                //byte[] recibido = (byte[])dat;
+                //if (recibido != null)
+                //{
+                //    for (int i = 0; i < recibido.Length; i++)
+                //    {
+                //        ret += "[" + recibido[i].ToString() + "]";
+                //    }
+                //}
 
                 OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._listener, this._nombre, ret);
                 mensaje.Data = dat;

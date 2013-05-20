@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 using Orbita.Utiles;
 using Orbita.Winsock;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -15,44 +16,44 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Cola de recepción de tramas de datos.
         /// </summary>
-        private Queue _qEntradaSalida;
+        protected Queue _qEntradaSalida;
         /// <summary>
         /// Evento reset de recepción de tramas KeepAlive, 
         /// Entrada/Salida.
         /// </summary>
-        private OResetManual _eReset;  //0-keep alive;1-lecturas;2-escrituras
+        protected OResetManual _eReset;  //0-keep alive;1-lecturas;2-escrituras
         /// <summary>
         /// Colección para la búsqueda de lecturas. La clave es la dupla "dirección-bit"
         /// </summary>
-        private OHashtable _almacenLecturas;
+        protected OHashtable _almacenLecturas;
         /// <summary>
         /// Colección para la búsqueda de escrituras. La clave es la dupla "dirección-bit"
         /// </summary>
-        private OHashtable _almacenEscrituras;
+        protected OHashtable _almacenEscrituras;
         /// <summary>
         /// Número de lecturas a realizar
         /// </summary>
-        private int _numLecturas;
+        protected int _numLecturas;
         /// <summary>
         /// Número de bytes de entradas
         /// </summary>
-        private int _numeroBytesEntradas;
+        protected int _numeroBytesEntradas;
         /// <summary>
         /// Número de bytes de salidas
         /// </summary>
-        private int _numeroBytesSalidas;
+        protected int _numeroBytesSalidas;
         /// <summary>
         /// Valor de las lecturas
         /// </summary>
-        private byte[] _lecturas;
+        protected byte[] _lecturas;
         /// <summary>
         /// Valor inicial del registro de lecturas
         /// </summary>
-        private int _registroInicialEntradas;
+        protected int _registroInicialEntradas;
         /// <summary>
         /// Valor inicial del registro de escrituras
         /// </summary>
-        private int _registroInicialSalidas;
+        protected int _registroInicialSalidas;
         /// <summary>
         /// identificador del mensaje
         /// </summary>
@@ -60,23 +61,23 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Protocolo comunicación usado para el hilo vida
         /// </summary>
-        private OProtocoloTCPSiemens protocoloHiloVida;
+        protected OProtocoloTCPSiemens protocoloHiloVida;
         /// <summary>
         /// Protocolo comunicación usado para la escritura
         /// </summary>
-        private OProtocoloTCPSiemens protocoloEscritura;
+        protected OProtocoloTCPSiemens protocoloEscritura;
         /// <summary>
         /// Protocolo comunicación usado para el proceso del mensaje
         /// </summary>
-        private OProtocoloTCPSiemens protocoloProcesoMensaje;
+        protected OProtocoloTCPSiemens protocoloProcesoMensaje;
         /// <summary>
         /// Protocolo de comunicación usado para el proceso del hilo
         /// </summary>
-        private OProtocoloTCPSiemens protocoloProcesoHilo;
+        protected OProtocoloTCPSiemens protocoloProcesoHilo;
         /// <summary>
         /// Valor devuelto tras la escritura del PLC
         /// </summary>
-        private byte[] _valorEscritura;
+        protected byte[] _valorEscritura;
         #endregion
 
         #region Constructor
@@ -354,7 +355,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Establece el valor inicial de los objetos
         /// </summary>
-        private void IniciarObjetos()
+        protected virtual void IniciarObjetos()
         {
             // Cola de envío/recepción de tramas.
             this._qEntradaSalida = new Queue();
@@ -365,29 +366,7 @@ namespace Orbita.Comunicaciones
             ArrayList listSalidas = new ArrayList();
 
             this._almacenLecturas = new OHashtable();
-            this._almacenEscrituras = new OHashtable();
-
-            if (this.Protocolo == "OCR")
-            {
-                this.protocoloHiloVida = new OProtocoloTCPSiemensGateOCRES();
-                this.protocoloEscritura = new OProtocoloTCPSiemensGateOCRES();
-                this.protocoloProcesoMensaje = new OProtocoloTCPSiemensGateOCRES();
-                this.protocoloProcesoHilo = new OProtocoloTCPSiemensGateOCRES();
-            }
-            else if (this.Protocolo == "OS")
-            {
-                this.protocoloHiloVida = new OProtocoloTCPSiemensGateOSES();
-                this.protocoloEscritura = new OProtocoloTCPSiemensGateOSES();
-                this.protocoloProcesoMensaje = new OProtocoloTCPSiemensGateOSES();
-                this.protocoloProcesoHilo = new OProtocoloTCPSiemensGateOSES();
-            }
-            else if (this.Protocolo == "TRA")
-            {
-                this.protocoloHiloVida = new OProtocoloTCPSiemensGateTrafficES();
-                this.protocoloEscritura = new OProtocoloTCPSiemensGateTrafficES();
-                this.protocoloProcesoMensaje = new OProtocoloTCPSiemensGateTrafficES();
-                this.protocoloProcesoHilo = new OProtocoloTCPSiemensGateTrafficES();
-            }
+            this._almacenEscrituras = new OHashtable();            
 
             foreach (DictionaryEntry item in this.Tags.GetDatos())
             {
@@ -411,26 +390,12 @@ namespace Orbita.Comunicaciones
                     }
                 }
             }
-
-            listEntradas.Sort();
-            listSalidas.Sort();
-
-            this._numLecturas = listEntradas.Count + listSalidas.Count;//OCR: 4E/1S
-            this._numeroBytesEntradas = listEntradas.Count;//OCR: 4E
-            this._numeroBytesSalidas = listSalidas.Count;//OCR: 1S
-            this._registroInicialEntradas = Convert.ToInt32(listEntradas[0]);//OCR: 0
-            this._registroInicialSalidas = Convert.ToInt32(listSalidas[0]);//OCR: 0
-
-            this.Entradas = new byte[this._numeroBytesEntradas];
-            this.Salidas = new byte[this._numeroBytesSalidas];
-
-            this._lecturas = new byte[_numLecturas];
         }
         /// <summary>
         /// Procesa los mensajes recibidos en el data arrival
         /// </summary>
         /// <param name="mensaje"></param>
-        private void ProcesarMensajeRecibido(byte[] mensaje)
+        protected virtual void ProcesarMensajeRecibido(byte[] mensaje)
         {
             try
             {
@@ -538,7 +503,7 @@ namespace Orbita.Comunicaciones
         /// Método que encola trama GateData.
         /// </summary>
         /// <param name="trama"></param>
-        private void ESEncolar(byte[] trama)
+        protected void ESEncolar(byte[] trama)
         {
             // Bloquear la cola sincronizada.
             lock (this._qEntradaSalida.SyncRoot)
@@ -555,7 +520,7 @@ namespace Orbita.Comunicaciones
         /// Método que desencola trama GateData.
         /// </summary>
         /// <returns>Objeto GateData</returns>
-        private byte[] ESDesencolar()
+        protected byte[] ESDesencolar()
         {
             // Bloquear la cola sincronizada.
             lock (this._qEntradaSalida.SyncRoot)
@@ -576,7 +541,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Hilo de proceso de ES
         /// </summary>
-        private void ESProcesarHilo()
+        protected virtual void ESProcesarHilo()
         {
             while (true)
             {

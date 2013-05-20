@@ -31,15 +31,15 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Fin de la trama de keepAlive envio
         /// </summary>
-        private int _finTramaKeepAliveEnvio = 14;
+        private int _finTramaKeepAliveEnvio = 17;
         /// <summary>
         /// Fin de la trama de keepAlive recepcion
         /// </summary>
-        private int _finTramaKeepAliveRecepcion = 25;
+        private int _finTramaKeepAliveRecepcion = 32;
         /// <summary>
         /// Tamaño máximo de trama
         /// </summary>
-        private int _tamanyoMensaje = 26;
+        private int _tamanyoMensaje = 33;
         #endregion
 
         #region Constructores
@@ -51,7 +51,7 @@ namespace Orbita.Comunicaciones
 
         #region Métodos
         /// <summary>
-        /// Prepara el mensaje keep alive de respuesta
+        /// Mensaje de envío keep alive al PLC
         /// </summary>
         /// <returns>mensaje de respuesta</returns>
         public override byte[] KeepAliveEnviar()
@@ -70,13 +70,19 @@ namespace Orbita.Comunicaciones
                 ret[9] = 0;
                 ret[10] = this.Separador[0];
                 ret[11] = 0;
-                ret[12] = this.Separador[0];
+                ret[12] = 0;
+                ret[13] = 0;
+                ret[14] = 0;
+                ret[15] = this.Separador[0];
 
-                BCC = new byte[2];
+                BCC = new byte[5];
                 BCC[0] = 0;
                 BCC[1] = 0;
+                BCC[2] = 0;
+                BCC[3] = 0;
+                BCC[4] = 0;
 
-                ret[13] = this.CalculoBCC(BCC)[0];
+                ret[16] = this.CalculoBCC(BCC)[0];
             }
             catch (Exception ex)
             {
@@ -85,7 +91,7 @@ namespace Orbita.Comunicaciones
             return ret;
         }
         /// <summary>
-        /// Procesa el mensaje keep alive del PLC
+        /// Mensaje keep alive de respuesta del PLC
         /// </summary>
         /// <param name="valor">valor recibido por el PLC</param>
         /// <param name="lecturas">lecturas del PLC</param>
@@ -94,19 +100,19 @@ namespace Orbita.Comunicaciones
         {
             bool ret = false;
             byte id = 0;
-            lecturas = new byte[5];
-            byte[] BCC = new byte[6];
+            lecturas = new byte[12];
+            byte[] BCC = new byte[13];
             try
             {
                 //Comprobamos el inicio y fin de trama
                 if (valor[0] == this.STX[0] && valor[_finTramaKeepAliveRecepcion] == this.CR[0] && valor.Length == this._tamanyoMensaje)
                 {
                     id = valor[15];
-                    Array.Copy(valor, 17, lecturas, 0, 4);
-                    Array.Copy(valor, 22, lecturas, 4, 1);
+                    Array.Copy(valor, 17, lecturas, 0, 8);
+                    Array.Copy(valor, 26, lecturas, 8, 4);
                     BCC[0] = id;
-                    Array.Copy(lecturas, 0, BCC, 1, 5);
-                    if (this.CalculoBCC(BCC)[0] == valor[24])
+                    Array.Copy(lecturas, 0, BCC, 1, 12);
+                    if (this.CalculoBCC(BCC)[0] == valor[31])
                     {
                         ret = true;
                     }
