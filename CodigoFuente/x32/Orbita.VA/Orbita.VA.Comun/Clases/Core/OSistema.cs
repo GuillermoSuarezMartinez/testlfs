@@ -21,6 +21,7 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using Orbita.Utiles;
 using Orbita.Xml;
+using System.Reflection;
 
 namespace Orbita.VA.Comun
 {
@@ -92,7 +93,7 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Constructor de los campos estáticos de la clase
         /// </summary>
-        public static bool Constructor(OSistema sistema, Form mainForm, bool instanciaUnica, bool integraMaquinasEstados)
+        public static bool Constructor(OSistema sistema, bool instanciaUnica, bool integraMaquinasEstados, Form mainForm = null)
         {
             _Sistema = sistema;
 
@@ -107,6 +108,7 @@ namespace Orbita.VA.Comun
 
             return resultado;
         }
+
         /// <summary>
         /// Inicia el sistema de inspección en tiempo real
         /// </summary>
@@ -199,17 +201,71 @@ namespace Orbita.VA.Comun
             return resultado;
         }
 
-        #region Información del ordenador
+        #region Información del sistema
         /// <summary>
         /// Obtiene la version del ensamblado actual
         /// </summary>
-        /// <param name="asm">Ensamblado del cual se quiere conocer la versión</param>
+        /// <param name="asm">Ensamblado del cual se quiere conocer información</param>
         /// <returns>Versión del ensamblado</returns>
-        public static string ObtenerVersion(System.Reflection.Assembly asm)
+        public static string Version(System.Reflection.Assembly asm)
         {
             Version v = asm.GetName().Version;
             return (v.Major + "." + v.Minor + "." + v.Build + "." + v.Revision);
-        } 
+        }
+        /// <summary> 
+        /// Nombre del creador del ensamblado
+        /// </summary> 
+        /// <param name="asm">Ensamblado del cual se quiere conocer información</param>
+        /// <returns>Nombre del creador del ensamblado</returns>
+        public static string CompanyName(System.Reflection.Assembly asm)
+        {
+            object[] attributes = asm.GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
+            return attributes.Length == 0 ? "" : ((AssemblyCompanyAttribute)attributes[0]).Company;
+        }
+        /// <summary> 
+        /// Derechos de copia del ensamblado
+        /// </summary> 
+        /// <param name="asm">Ensamblado del cual se quiere conocer información</param>
+        /// <returns>Derechos de copia del ensamblado</returns>
+        public static string CopyrightHolder(System.Reflection.Assembly asm)
+        {
+            object[] attributes = asm.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
+            return attributes.Length == 0 ? "" : ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
+        }
+        /// <summary> 
+        /// Descripción del ensamblado
+        /// </summary> 
+        /// <param name="asm">Ensamblado del cual se quiere conocer información</param>
+        /// <returns>Descripción del ensamblado</returns>
+        public static string Description(System.Reflection.Assembly asm)
+        {
+            object[] attributes = asm.GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
+            return attributes.Length == 0 ? "" : ((AssemblyDescriptionAttribute)attributes[0]).Description;
+        }
+        /// <summary> 
+        /// Nombre del producto del ensamblado
+        /// </summary> 
+        /// <param name="asm">Ensamblado del cual se quiere conocer información</param>
+        /// <returns>Nombre del producto del ensamblado</returns>
+        public static string ProductName(System.Reflection.Assembly asm)
+        {
+            object[] attributes = asm.GetCustomAttributes(typeof(AssemblyProductAttribute), false);
+            return attributes.Length == 0 ? "" : ((AssemblyProductAttribute)attributes[0]).Product;
+        }
+        /// <summary> 
+        /// Título del ensamblado 
+        /// </summary> 
+        /// <param name="asm">Ensamblado del cual se quiere conocer información</param>
+        /// <returns>Título del ensamblado</returns>
+        public static string Title(System.Reflection.Assembly asm)
+        {
+            object[] attributes = asm.GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+            if (attributes.Length > 0)
+            {
+                AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0]; if (titleAttribute.Title.Length > 0) return titleAttribute.Title;
+            }
+            return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
+        }
         /// <summary>
         /// Devuelve el espacio libre la unidad que contiene la ruta especificada en bytes , aunque sea de RED
         /// </summary>

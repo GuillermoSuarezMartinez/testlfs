@@ -546,15 +546,18 @@ namespace Orbita.VA.Hardware
                          If another image is in the output queue it can be acquired now using GetCurrentImage(). */
                     }
 
+                    // Comprobación de que la imagen recibida de la cámara es correcta
+                    if (!(image is ImagePylon) || !(this.TempBitmap is Bitmap) || (this.TempBitmap.Width <= 0) || (this.TempBitmap.Height <= 0))
+                    {
+                        throw new Exception(string.Format("La imagen recibida de la cámara {0} está corrupta.", this.Codigo));
+                    }
+
                     // Antes
                     //this.ImagenActual = new OImagenBitmap(this.Codigo);
                     //this.ImagenActual.Image = (Bitmap)this.TempBitmap.Clone(); // Ojo!! comprobar!!
 
-                    // Comprobación de que la imagen recibida de la cámara es correcta
-                    if ((this.ImagenActual.Image == null) || (this.ImagenActual.Image.Width <= 0) || (this.ImagenActual.Image.Height <= 0))
-                    {
-                        throw new Exception(string.Format("La imagen recibida de la cámara {0} está corrupta.", this.Codigo));
-                    }
+                    // Ahora
+                    this.ImagenActual = new OImagenBitmap(this.Codigo, this.TempBitmap);
 
                     // Lanamos el evento de adquisición
                     this.AdquisicionCompletada(this.ImagenActual);

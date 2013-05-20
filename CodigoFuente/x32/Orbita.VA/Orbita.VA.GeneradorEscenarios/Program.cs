@@ -52,7 +52,7 @@ namespace Orbita.VA.GeneradorEscenarios
             if (args.Length >= 5)
             {
                 // Inicializar acceso a la base de datos
-                OSistemaManager.Constructor(new OSistemaGeneradorEscenarios(args[1]), null, false, false);
+                OSistemaManager.Constructor(new OSistemaGeneradorEscenarios(args[1]), false, false);
                 OSistemaManager.IniciarAplicacion(ModoInicio.Normal, args);
 
                 // Generación de la unidad
