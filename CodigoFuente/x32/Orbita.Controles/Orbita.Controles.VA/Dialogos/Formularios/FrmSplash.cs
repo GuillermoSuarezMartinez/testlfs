@@ -91,7 +91,7 @@ namespace Orbita.Controles.VA
             this.lblUsuario.Text = "Nombre del equipo: " + Environment.MachineName.ToString();
             this.lblMaquina.Text = "Nombre del usuario: " + Environment.UserName.ToString();
             this.lblIdioma.Text = "Idioma : " + Application.CurrentCulture.ToString();
-            this.lblVersion.Text = "Versión " + OSistemaManager.ObtenerVersion(System.Reflection.Assembly.GetExecutingAssembly());
+            this.lblVersion.Text = "Versión " + OSistemaManager.Version(System.Reflection.Assembly.GetExecutingAssembly());
             this.lblProducto.Text = "Producto: " + Application.ProductName;
             this.lblCompañia.Text = "Compañía: " + Application.CompanyName;
         }
