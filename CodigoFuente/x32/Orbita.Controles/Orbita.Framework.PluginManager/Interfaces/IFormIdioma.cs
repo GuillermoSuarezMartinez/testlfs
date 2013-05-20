@@ -14,7 +14,6 @@ namespace Orbita.Framework.PluginManager
     /// <summary>
     /// Interface de idioma.
     /// </summary>
-    [System.CLSCompliantAttribute(false)]
     public interface IFormIdioma
     {
         /// <summary>

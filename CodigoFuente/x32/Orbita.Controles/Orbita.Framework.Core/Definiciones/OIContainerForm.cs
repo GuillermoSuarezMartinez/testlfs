@@ -12,7 +12,6 @@
 namespace Orbita.Framework.Core
 {
     [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
-    [System.CLSCompliantAttribute(false)]
     public class OIContainerForm : Orbita.Controles.Contenedores.OMdiContainerForm
     {
         #region Atributos

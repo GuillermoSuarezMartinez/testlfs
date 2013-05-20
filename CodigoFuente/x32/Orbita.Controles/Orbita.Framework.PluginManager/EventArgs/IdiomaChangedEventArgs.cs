@@ -25,12 +25,12 @@ namespace Orbita.Framework.PluginManager
 
         #region Constructores
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Framework.Core.IdiomaChangedEventArgs.
+        /// Inicializar una nueva instancia de la clase Orbita.Framework.PluginManager.IdiomaChangedEventArgs.
         /// </summary>
         public IdiomaChangedEventArgs()
             : base() { }
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Framework.Core.IdiomaChangedEventArgs.
+        /// Inicializar una nueva instancia de la clase Orbita.Framework.PluginManager.IdiomaChangedEventArgs.
         /// </summary>
         /// <param name="idioma">Nombre de la propiedad.</param>
         public IdiomaChangedEventArgs(Orbita.Framework.Core.SelectorIdioma idioma)
@@ -41,9 +41,6 @@ namespace Orbita.Framework.PluginManager
         #endregion
 
         #region Propiedades
-        /// <summary>
-        /// Idioma.
-        /// </summary>
         public Orbita.Framework.Core.SelectorIdioma Idioma
         {
             get { return this.idioma; }

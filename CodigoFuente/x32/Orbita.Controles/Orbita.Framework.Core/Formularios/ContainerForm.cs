@@ -20,14 +20,12 @@ namespace Orbita.Framework.Core
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Framework.Base.
+        /// Inicializar una nueva instancia de la clase Orbita.Framework.Core.ContainerForm.
         /// </summary>
         public ContainerForm()
             : base()
         {
-            // Inicializar componentes.
             InitializeComponent();
-            // Inicializar atributos.
             InitializeAttributes();
             InitializeProperties();
         }
@@ -47,9 +45,6 @@ namespace Orbita.Framework.Core
         #endregion
 
         #region Métodos privados
-        /// <summary>
-        /// Inicializar atributos.
-        /// </summary>
         void InitializeAttributes()
         {
             if (this.definicion == null)
