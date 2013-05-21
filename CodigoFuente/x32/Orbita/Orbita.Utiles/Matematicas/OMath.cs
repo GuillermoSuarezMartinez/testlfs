@@ -76,6 +76,7 @@ namespace Orbita.Utiles
         }
         /// <summary>
         /// Calcula los parámetros m y b tal que y=m*x+b de la línea que más se aproxima a la nube de puntos pasada por parámetro
+        /// No válido para líneas verticales!!!
         /// </summary>
         public static void CalculoLineaMinimosCuadrados(PointF[] nubePuntos, out double m, out Double b)
         {
@@ -83,7 +84,8 @@ namespace Orbita.Utiles
             CalculoLineaMinimosCuadrados(listaNubePuntos, out m, out b);
         }
         /// <summary>
-        /// Calcula los parámetros m y b tal que y=m*x+b de la línea que más se aproxima a la nube de puntos pasada por parámetro
+        /// Calcula los parámetros m y b tal que y=m*x+b de la línea que más se aproxima a la nube de puntos pasada por parámetro.
+        /// No válido para líneas verticales!!!
         /// </summary>
         public static void CalculoLineaMinimosCuadrados(List<PointF> nubePuntos, out double m, out Double b)
         {
