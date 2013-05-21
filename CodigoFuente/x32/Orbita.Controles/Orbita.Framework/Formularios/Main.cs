@@ -52,7 +52,7 @@ namespace Orbita.Framework
             try
             {
                 // Obtener aquellos plugins que implementan la interfaz IItemMenu, ordenarlos y vincularlos al control MenuStrip.
-                // ... utilizar LINQ para especificar aquellos plugins que implementan la interfaz IItemMenu y ordenar dichos valores.
+                // ...utilizar LINQ para especificar aquellos plugins que implementan la interfaz IItemMenu y ordenar dichos valores.
                 // ...AsQueryable(), proporciona funcionalidad para evaluar consultas con respecto a un origen de datos concreto en el 
                 // que se especifica el tipo de los datos, evita CA1502 complejidad ciclomática de 28.
                 var pluginsDeMenu = (from x in this.plugins
@@ -152,9 +152,27 @@ namespace Orbita.Framework
         }
         void LoadAuthentication()
         {
-            Orbita.Controles.Autenticacion.OManagerValidacion manager = new Orbita.Controles.Autenticacion.OManagerValidacion();
-            manager.OValidacion += new Orbita.Controles.Autenticacion.OManagerValidacion.ODelegadoManagerValidacion(Validacion_Click);
-            manager.Mostrar(this, this.OI.Autenticación);
+            Orbita.Controles.Autenticacion.AutenticacionManager autenticacion = new Orbita.Controles.Autenticacion.AutenticacionManager();
+            autenticacion.ControlAutenticacion += new System.EventHandler<Controles.Autenticacion.AutenticacionChangedEventArgs>(Autenticacion_Click);
+            if (this.OI.Autenticación)
+            {
+                autenticacion.Mostrar(this);
+            }
+            else
+            {
+                autenticacion.Validar();
+            }
+        }
+        void ShowStartupPlugins()
+        {
+            // ... utilizar LINQ para obtener aquellos plugins que se deben mostrar al iniciar el main.
+            System.Collections.Generic.IEnumerable<PluginManager.PluginInfo> pluginsIniciales = (from x in this.plugins
+                                                                                                 where x.Value.Plugin.MostrarAlIniciar == true
+                                                                                                 select x.Value).ToList();
+            foreach (var pluginInfo in pluginsIniciales)
+            {
+                ShowPlugin(pluginInfo);
+            }
         }
         void ShowPlugin(PluginManager.PluginInfo pluginInfo)
         {
@@ -200,31 +218,15 @@ namespace Orbita.Framework
         #region Métodos privados estáticos
         static void InitializeConfigurationChannelCollection()
         {
-            // System.Collections.Generic.IList<Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal> canales = Orbita.Framework.C.ConfiguracionHelper.Configuracion.GetConfiguracionCanal();
+            System.Collections.Generic.IList<Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal> canales = Orbita.Framework.Core.ConfiguracionHelper.Configuracion.GetConfiguracionCanal();
+            foreach (var canal in canales)
+            {
+                canal.Iniciar();
+            }
         }
         #endregion
 
         #region Manejadores de eventos
-        void OrbitaFramework_Shown(object sender, System.EventArgs e)
-        {
-            try
-            {
-                // ... utilizar LINQ para obtener aquellos plugins que se deben mostrar al iniciar el main.
-                System.Collections.Generic.IEnumerable<PluginManager.PluginInfo> pluginsIniciales = (from x in this.plugins
-                                                                                                     where x.Value.Plugin.MostrarAlIniciar == true
-                                                                                                     select x.Value).ToList();
-                foreach (var pluginInfo in pluginsIniciales)
-                {
-                    ShowPlugin(pluginInfo);
-                }
-            }
-            catch (System.NullReferenceException) { }
-            catch (System.NotImplementedException) { }
-            catch (System.Exception)
-            {
-                throw;
-            }
-        }
         void OrbitaFramework_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             try
@@ -242,11 +244,11 @@ namespace Orbita.Framework
                 throw;
             }
         }
-        void Validacion_Click(object sender, Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs e)
+        void Autenticacion_Click(object sender, Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs e)
         {
             try
             {
-                if (e.Estado.Resultado == "OK")
+                if (e.Resultado == Orbita.Controles.Autenticacion.ResultadoAutenticacion.OK)
                 {
                     // Inicializar plugins que implementan la interface IMenuPlugin.
                     InitializeMenuPlugins();
@@ -254,8 +256,10 @@ namespace Orbita.Framework
                     InitializePluginsWithChangedLanguage();
                     // Inicializar plugins que implementan la interface IFormManejadorCierre.
                     InitializePluginsWithCloseHandler();
+
                     try
                     {
+                        // Inicializar entorno de acuerdo a lo que establezca el cliente.
                         InitializeEnvironment();
                     }
                     catch (System.NullReferenceException) { }
@@ -263,19 +267,34 @@ namespace Orbita.Framework
 
                     try
                     {
+                        // Inicializar colección de controles de plugins.
                         InitializePluginControlsCollection();
+                        // Inicializar el valor de cada uno de los controles de la colección.
+                        InitializePluginControls();
                     }
                     catch (System.NullReferenceException) { }
                     catch (System.NotImplementedException) { }
 
                     try
                     {
+                        // Inicializar configuración de canales.
                         InitializeConfigurationChannelCollection();
                     }
                     catch (System.NullReferenceException) { }
                     catch (System.NotImplementedException) { }
 
-                    InitializePluginControls();
+                    try
+                    {
+                        // Mostrar plugins que deben iniciarse según el valor de inicio de plugin que indica la interface.
+                        ShowStartupPlugins();
+                    }
+                    catch (System.NullReferenceException) { }
+                    catch (System.NotImplementedException) { }
+                }
+                else if (e.Resultado == Orbita.Controles.Autenticacion.ResultadoAutenticacion.NOK)
+                {
+                    // El usuario quiere salir de la aplicación. Cerrar todo.
+                    System.Windows.Forms.Application.Exit();
                 }
             }
             catch (System.NullReferenceException) { }
