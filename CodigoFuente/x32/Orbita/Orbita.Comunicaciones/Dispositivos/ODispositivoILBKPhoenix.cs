@@ -221,12 +221,19 @@ namespace Orbita.Comunicaciones
         {
             bool resultado = false;
             byte[] salidas = new byte[_numeroBytesSalidas];
+            byte[] salidalocal = new byte[_numeroBytesSalidas];
             try
             {
+                for (int i = 0; i < _numeroBytesSalidas; i++)
+                {
+                    salidalocal[i]=Salidas[i];
+                }
                 for (int i = 0; i < variables.Length; i++)
                 {
                     OInfoDato infodato = this.Tags.GetDB(variables[i]);
-                    salidas[infodato.Direccion - this._registroInicialSalidas] = this.ProcesarByte(this.Salidas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
+
+                    salidas[infodato.Direccion - this._registroInicialSalidas] = this.ProcesarByte(salidalocal[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
+                    salidalocal[infodato.Direccion - this._registroInicialSalidas] = salidas[infodato.Direccion - this._registroInicialSalidas];
                 }
                 if (this.Winsock.State != WinsockStates.Connected)
                 {
