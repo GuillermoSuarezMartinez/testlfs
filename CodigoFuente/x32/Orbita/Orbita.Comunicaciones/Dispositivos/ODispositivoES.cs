@@ -68,7 +68,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                wrapper.Error("Error en ODispositivoTCP. ", ex);
+                wrapper.Error("ODispositivoES Constructor ", ex);
                 throw ex;
             }
         }

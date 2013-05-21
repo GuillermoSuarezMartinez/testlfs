@@ -133,7 +133,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                wrapper.Fatal("OrbitaTCP Error al leer. ", ex);
+                wrapper.Fatal("OdispositivoTCP Leer[]: ", ex);
                 throw ex;
             }
             return resultado;
@@ -193,7 +193,7 @@ namespace Orbita.Comunicaciones
                             }
                             catch (Exception ex)
                             {
-                                wrapper.Fatal("OrbitaTCP Error al escribir la alarma: ", ex);
+                                wrapper.Fatal("ODispositivoTCP Escribir Error al escribir la alarma: ", ex);
                             }
                         }
                     }
@@ -202,7 +202,7 @@ namespace Orbita.Comunicaciones
             catch (Exception ex)
             {
                 resultado = false;
-                wrapper.Fatal("OrbitaTCP Error al escribir: ", ex);
+                wrapper.Fatal("ODispositivoTCP Escribir: ", ex);
             }
 
             return resultado;
@@ -269,12 +269,24 @@ namespace Orbita.Comunicaciones
             OEstadoComms estado = new OEstadoComms();
             while (true)
             {
-                estado.Estado = "OK";
-                estado.Nombre = this.Nombre;
-                estado.Id = this.Identificador;
-                this._oEventargs.Argumento = estado;
-                this.OnComm(this._oEventargs);
-                Thread.Sleep(this._config.TiempoVida);
+                try
+                {
+                    estado.Estado = "OK";
+                    estado.Nombre = this.Nombre;
+                    estado.Id = this.Identificador;
+                    this._oEventargs.Argumento = estado;
+                    this.OnComm(this._oEventargs);
+                    Thread.Sleep(this._config.TiempoVida);
+                }
+                catch (ThreadAbortException)
+                {
+                }
+                catch (Exception ex)
+                {
+                    wrapper.Fatal("ODispositivoTCP ProcesarHiloVida: ", ex);
+                }
+
+                
             }
         }
         #endregion

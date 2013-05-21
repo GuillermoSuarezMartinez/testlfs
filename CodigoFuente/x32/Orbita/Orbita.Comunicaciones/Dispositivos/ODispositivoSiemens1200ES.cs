@@ -98,7 +98,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                wrapper.Error("No se pudo crear la conexión TCP con el dispositivo de ES Siemens." + ex.ToString());
+                wrapper.Error("ODispositivoSiemens1200 Constructor." + ex.ToString());
             }
             wrapper.Debug("Comunicaciones TCP del dispositivo de ES Siemens arrancadas correctamente.");
         }
@@ -143,7 +143,7 @@ namespace Orbita.Comunicaciones
                     }
                     catch (Exception ex)
                     {
-                        wrapper.Error("Error al conectar con dispositivo de ES Siemens para keep alive: ", ex);
+                        wrapper.Error("ODispositivoSiemens1200 ProcesarHiloVida Error al conectar: ", ex);
                     }
                 }
                 else
@@ -171,7 +171,7 @@ namespace Orbita.Comunicaciones
                                     estado.Estado = "NOK";
                                 }
                                 // Trazar recepción errónea.
-                                wrapper.Warn("Timeout en el keep alive del dispositivo de ES Siemens.");
+                                wrapper.Warn("ODispositivoSiemens1200 Timeout en el keep alive.");
                             }
 
                             // Resetear el evento.
@@ -199,7 +199,7 @@ namespace Orbita.Comunicaciones
                     catch (Exception ex)
                     {
                         estado.Estado = "NOK";
-                        wrapper.Error("Error en keep alive del dispositivo de ES Siemens: ", ex);
+                        wrapper.Error("ODispositivoSiemens1200 ProcesarHiloVida Error en keep alive: ", ex);
                     }
                 }
 
@@ -210,7 +210,7 @@ namespace Orbita.Comunicaciones
                 }
                 catch (Exception ex)
                 {
-                    wrapper.Error("Error en envío de evento de comunicaciones en dispositivo de ES Siemens: ", ex);
+                    wrapper.Error("ODispositivoSiemens1200 ProcesarHiloVida Error en envío de evento de comunicaciones: ", ex);
                 }
             }
         }
@@ -245,7 +245,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                wrapper.Fatal("Error al leer en el dispositivo de ES Siemens. ", ex);
+                wrapper.Fatal("ODispositivoSiemens1200 Leer: ", ex);
                 throw ex;
             }
 
@@ -284,7 +284,7 @@ namespace Orbita.Comunicaciones
                     }
                     catch (Exception ex)
                     {
-                        wrapper.Error("Error al conectar con dispositivo de ES Siemens para escribir: ", ex);
+                        wrapper.Error("ODispositivoSiemens1200 Escribir Error al conectar con dispositivo de ES: ", ex);
                     }
                 }
                 else
@@ -318,14 +318,14 @@ namespace Orbita.Comunicaciones
                         }
                         catch (Exception ex)
                         {
-                            wrapper.Error("Error en la escritura de variables en el dispositivo de ES Siemens " + ex.ToString());
+                            wrapper.Error("ODispositivoSiemens1200 Escribir Error en la escritura de variables en el dispositivo de ES Siemens " + ex.ToString());
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                wrapper.Fatal("Error en la escritura de variables en el dispositivo de ES Siemens " + ex.ToString());
+                wrapper.Fatal("ODispositivoSiemens1200 Escribir Error en la escritura de variables: " + ex.ToString());
             }
 
             return resultado;
@@ -385,7 +385,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                wrapper.Fatal("Error al crear la conexión TCP con el dispositivo de ES Siemens. " + ex.ToString());
+                wrapper.Fatal("ODispositivoSiemens1200 CrearParametrosConexionTCP Error al crear la conexión TCP con el dispositivo de ES Siemens. " + ex.ToString());
                 throw ex;
             }
 

@@ -272,7 +272,7 @@ namespace Orbita.Comunicaciones
                 catch (Exception ex)
                 {
                     this.ActualizarCalidadVariables();
-                    wrapper.Error("Leer string: " + ex.ToString());
+                    wrapper.Error("ODispositivoClienteOPC Leer: ",ex);
                 }
             }
             return resultado;
@@ -331,7 +331,7 @@ namespace Orbita.Comunicaciones
                 }
                 catch (Exception ex)
                 {
-                    wrapper.Error("Escribir: " + ex.ToString());
+                    wrapper.Error("ODispositivoClienteOPC Escribir: " + ex.ToString());
                 }
             }
             return resultado;
@@ -436,7 +436,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                wrapper.Error("InicGrupoDatosOPC " + ex.ToString());
+                wrapper.Error("ODispositivoClienteOPC InicGrupoDatosOPC " + ex.ToString());
             }
         }
         /// <summary>
@@ -792,8 +792,18 @@ namespace Orbita.Comunicaciones
             //OInfoOPCvida infoVida = (OInfoOPCvida)this._tags.HtVida;
             while (true)
             {
-                this._tags.HtVida.Valores = this.Leer(this._tags.HtVida.Variables);
-                Thread.Sleep(this._config.TiempoVida);
+                try
+                {
+                    this._tags.HtVida.Valores = this.Leer(this._tags.HtVida.Variables);
+                    Thread.Sleep(this._config.TiempoVida);
+                }
+                catch (ThreadAbortException)
+                {
+                }
+                catch (Exception ex)
+                {
+                    wrapper.Fatal("ODispositivoClienteOPC ProcesarHiloVida: ", ex);
+                }
             }
         }
         /// <summary>
@@ -804,6 +814,8 @@ namespace Orbita.Comunicaciones
         {
             while (true)
             {
+                try
+                {
                 // Procesar datos de lectura de valores en la colección
                 // de vida, si se hubiera producido un error de lectura
                 // y, por tanto, el tiempo  de espera  lectura  agotado,
@@ -872,7 +884,16 @@ namespace Orbita.Comunicaciones
                     this.OnComm(this._oEventargs);
                 }
                 Thread.Sleep(this._config.TiempoVida);
+                }
+                catch (ThreadAbortException)
+                {
+                }
+                catch (Exception ex)
+                {
+                    wrapper.Fatal("ODispositivoClienteOPC ProcesarHiloEstado: ", ex);
+                }
             }
+
         }
         /// <summary>
         /// Pone a cero la calidad de todas las variables. Se llama desde los catch de las lecturas y escrituras
@@ -1008,7 +1029,7 @@ namespace Orbita.Comunicaciones
                 catch (Exception ex)
                 {
                     this.ActualizarCalidadVariables();
-                    wrapper.Error("Leer int:" + ex.ToString());
+                    wrapper.Error("ODispositivoClienteOPC Leer int:" + ex.ToString());
                 }
             }
             return resultado;
@@ -1187,7 +1208,7 @@ namespace Orbita.Comunicaciones
                             }
                             catch (Exception ex)
                             {
-                                wrapper.Error("Error en cambio dato:" + ex.ToString());
+                                wrapper.Error("ODispositivoClienteOPC OnDataChange:" + ex.ToString());
                             }
                         }
                         break;
