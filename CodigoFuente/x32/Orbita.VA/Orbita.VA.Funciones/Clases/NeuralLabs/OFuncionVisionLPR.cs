@@ -6,6 +6,9 @@
 // Last Modified By : aibañez
 // Last Modified On : 12-12-2012
 // Description      : Adaptada la forma de trabajar con el thread
+// Last Modified By : fhernandez
+// Last Modified On : 13-05-2013
+// Description      : Adaptada para funcionar con wrapper propio
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
@@ -18,7 +21,6 @@ using System.Windows.Forms;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
 using Orbita.Xml;
-using VPARMTWrapper;
 using System.Drawing;
 
 namespace Orbita.VA.Funciones
@@ -321,15 +323,9 @@ namespace Orbita.VA.Funciones
         /// </summary>
         public static int TraceVpar = 1;
         /// <summary>
-        /// Indica si se ha de realizar una traza del LPR
-        /// </summary>
-        public static bool TraceWrapper = true;
-
-        /// <summary>
         /// Thread de ejecución continua del módulo LPR
         /// </summary>
         public static ThreadEjecucionLPR ThreadEjecucionLPR;
-
         /// <summary>
         /// Indica si alguna función de visión ha demandado el uso del LPR
         /// </summary>
@@ -348,13 +344,12 @@ namespace Orbita.VA.Funciones
             DataTable dtLPR = AppBD.GetConfiguracionLPR();
             if (dtLPR.Rows.Count == 1)
             {
-                CountryCode = OEntero.Validar(dtLPR.Rows[0]["CountryCode"], 0, 100000, 101);
+                CountryCode = dtLPR.Rows[0]["CountryCode"].ValidarEntero();
                 AvCharHeight = OEntero.Validar(dtLPR.Rows[0]["AvCharHeight"], 1, 10000, -1);
                 DuplicateLines = OEntero.Validar(dtLPR.Rows[0]["DuplicateLines"], 0, 10000, 0);
                 Reordenar = OEntero.Validar(dtLPR.Rows[0]["Reordenar"], 0, 10000, 0);
                 FilterColor = OEntero.Validar(dtLPR.Rows[0]["FilterColor"], 0, 10000, 0);
                 TraceVpar = OEntero.Validar(dtLPR.Rows[0]["TraceVpar"], 0, 10000, 0);
-                TraceWrapper = OBooleano.Validar(dtLPR.Rows[0]["TraceWrapper"], false);
             }
         }
 
@@ -374,8 +369,10 @@ namespace Orbita.VA.Funciones
         {
             try
             {
+                // Inicializamos el motor de búsqueda de LPR
+                OMTInterfaceLPR.Inicializar();
                 // Inicializamos el motor de búsqueda de LPR             
-                int id = MTInterface.Init(OLPRManager.CountryCode, OLPRManager.AvCharHeight, OLPRManager.DuplicateLines, OLPRManager.Reordenar, OLPRManager.FilterColor, OLPRManager.TraceVpar, OLPRManager.TraceWrapper);
+                int id = OMTInterfaceLPR.Init(OLPRManager.CountryCode, OLPRManager.AvCharHeight, OLPRManager.DuplicateLines, OLPRManager.Reordenar, OLPRManager.FilterColor, OLPRManager.TraceVpar);
                 // Almacenamos el valor de incio
                 if (id == 1)
                 {
@@ -402,7 +399,7 @@ namespace Orbita.VA.Funciones
             ThreadEjecucionLPR.Dispose(1000);
 
             // Liberamos memoria reservada para la libreria de LPR, cuando termina de procesar las imagenes
-            MTInterface.QueryEnd();
+            OMTInterfaceLPR.QueryEnd();
         }
         #endregion
 
@@ -415,9 +412,9 @@ namespace Orbita.VA.Funciones
             // Detenemos el hilo 
             ThreadEjecucionLPR.Pause();
             // Liberamos memoria reservada para la libreria de LPR, cuando termina de procesar las imagenes
-            MTInterface.QueryEnd();
+            OMTInterfaceLPR.QueryEnd();
             // Inicializamos el motor de búsqueda de LPR
-            MTInterface.Init(OLPRManager.CountryCode, OLPRManager.AvCharHeight, OLPRManager.DuplicateLines, OLPRManager.Reordenar, OLPRManager.FilterColor, OLPRManager.TraceVpar, OLPRManager.TraceWrapper);
+            OMTInterfaceLPR.Init(OLPRManager.CountryCode, OLPRManager.AvCharHeight, OLPRManager.DuplicateLines, OLPRManager.Reordenar, OLPRManager.FilterColor, OLPRManager.TraceVpar);
             // Reiniciamos el hilo
             ThreadEjecucionLPR.Resume();
         }
@@ -540,32 +537,33 @@ namespace Orbita.VA.Funciones
             if (!this.Finalizar)
             {
                 // Guardamos la traza únicamente cuando hay un cambio en el tamaño de la cola de elementos a procesar en MTInterface
-                if (this.QueueSize != MTInterface.GetQueueSize)
+                if (this.QueueSize != OMTInterfaceLPR.GetQueueSize() + OMTInterfaceLPR.GetQueueSizeVPARMT())
                 {
-                    OLogsVAFunciones.LPR.Info(this.Codigo, "Eliminada imagen de la cola VPAR. Total imágenes: " + MTInterface.GetQueueSize.ToString());
-                    this.QueueSize = MTInterface.GetQueueSize;
+                    OLogsVAFunciones.LPR.Info(this.Codigo, "Eliminada imagen de la cola LPR. Total imágenes: " + OMTInterfaceLPR.GetQueueSize() + OMTInterfaceLPR.GetQueueSizeVPARMT());
+                    this.QueueSize = OMTInterfaceLPR.GetQueueSize() + OMTInterfaceLPR.GetQueueSizeVPARMT();
                 }
 
+                OPair<OLPRCodeInfo, OLPRData> resultado = null;
                 // Consulta de resultados
-                NLInfo element = null;
                 do
                 {
                     //Get firs element where all results are ready
-                    element = MTInterface.GetFirstElement();
-                    if (element != null)
+                    resultado = OMTInterfaceLPR.GetResultado();
+
+                    if (resultado != null)
                     {
                         // Obtengo la información de entrada de la inspección
-                        OInfoInspeccionLPR infoInspeccionLPR = (OInfoInspeccionLPR)element.ImageInformation.GetObject; 
+                        OInfoInspeccionLPR infoInspeccionLPR = (OInfoInspeccionLPR)resultado.Second.ImageInformation.GetObject; 
                         infoInspeccionLPR.Resultados = new OResultadoLPR(); // Inicializo los resultados
 
-                        PlateInfo plateInfo = null;
+                        OLPRCodeInfo plateInfo = null;
                         do
                         {
-                            plateInfo = element.GetFirstPlate;
+                            plateInfo = resultado.Second.GetFirstItem;
                             if (plateInfo != null)
                             {
                                 // Obtengo el resultado de una matricula
-                                OResultadoSimpleLPR resultadoParcial = new OResultadoSimpleLPR(plateInfo, element.ImageInformation.GetTimestamp);
+                                OResultadoSimpleLPR resultadoParcial = new OResultadoSimpleLPR(plateInfo, resultado.Second.ImageInformation.GetTimestamp);
                                 // Añado el resultado de la matricula a la lista de matriculas reconocidas de la imagen
                                 infoInspeccionLPR.Resultados.Detalles.Add(resultadoParcial); 
 
@@ -576,13 +574,27 @@ namespace Orbita.VA.Funciones
 
                         this.CallBack(infoInspeccionLPR); // Llamada al callback
 
+                        // Eliminamos la imagen temporal 
+                        if (infoInspeccionLPR.Parametros.RealizarProcesoPorDisco)
+                        {
+                            try
+                            {
+                                File.Delete(infoInspeccionLPR.Info.RutaImagenTemporal);
+                            }
+                            catch (Exception exception)
+                            {
+                                OLogsVAFunciones.LPR.Error(exception, "Eliminando imagen temporal de la ruta :" + infoInspeccionLPR.Info.RutaImagenTemporal);
+                            }
+                        }
+
                         // Guardamos la traza
                         OLogsVAFunciones.LPR.Debug(this.Codigo, "Fin de ejecución de la función " + this.Codigo);
 
-                        element.Dispose();
+                        resultado.First.Dispose();
+                        resultado.Second.Dispose();
                     }
                 }
-                while (element != null);
+                while (resultado != null);
             }
         }
         #endregion
@@ -620,6 +632,11 @@ namespace Orbita.VA.Funciones
         /// Lista de información adicional incorporada por el controlador externo
         /// </summary>
         private Dictionary<string, object> InformacionAdicional;
+        
+        /// <summary>
+        /// Para saber la cantidad de imagenes guardadas por disco en cada ejecucion
+        /// </summary>
+        private int ContadorImagenesPorDisco;
         #endregion
 
         #region Constructor
@@ -637,6 +654,7 @@ namespace Orbita.VA.Funciones
                 this.Valido = true;
                 this.ParametrosLPR = new OParametrosLPR();
                 this.InformacionAdicional = new Dictionary<string, object>();
+                this.ContadorImagenesPorDisco = 0;
 
                 // Cargamos valores de la base de datos
                 DataTable dtFuncionVision = AppBD.GetFuncionVision(this.Codigo);
@@ -660,13 +678,15 @@ namespace Orbita.VA.Funciones
                     this.ParametrosLPR.AnchuraVentanaBusqueda = OEntero.Validar(dtFuncionVision.Rows[0]["NL_AnchuraVentanaBusqueda"], 0, 10000, 0);
                     this.ParametrosLPR.ActivadaMasInformacion = OEntero.Validar(dtFuncionVision.Rows[0]["NL_ActivadaMasInformacion"], 0, 10000, 1);
                     this.ParametrosLPR.OrbitaCorreccionPerspectiva = new OCorreccionPerspectiva(dtFuncionVision.Rows[0]);
+                    this.ParametrosLPR.RealizarProcesoPorDisco =OBooleano.Validar(dtFuncionVision.Rows[0]["NL_EjecucionPorDisco"], false);
+                    this.ParametrosLPR.RutaEjecucionPorDisco = OTexto.Validar(dtFuncionVision.Rows[0]["NL_RutaTemporalEjecucion"], int.MaxValue, true, false, string.Empty);
                 }                
             }
             catch (Exception exception)
             {
                 OLogsVAFunciones.LPR.Error(exception, "FuncionLPR");
             }
-        }
+        }        
         #endregion
 
         #region Método(s) privado(s)
@@ -676,15 +696,7 @@ namespace Orbita.VA.Funciones
         private void EstablecerConfiguracion(OParametrosLPR parametros)
         {
             // Ejecutamos la configuración
-            bool resultCode = MTInterface.SetConfiguration(parametros.TimeOut, parametros.ActivadaAjusteCorreccion,
-                parametros.Distancia, parametros.CoeficienteVertical, parametros.CoeficienteHorizontal,
-                parametros.AnguloRotacion, parametros.CoordIzq, parametros.CoordArriba,
-                parametros.AnchuraVentanaBusqueda, parametros.AlturaVentanaBusqueda, parametros.ActivadoRangoAlturas,
-                parametros.VectorAlturas);
-            if (!resultCode)
-            {
-                OLogsVAFunciones.LPR.Error("FuncionLPR", "Error al establecer la configuración del VPAR");
-            }
+            OMTInterfaceLPR.SetConfiguracion(parametros);
         }
         /// <summary>
         /// Comprueba que el archivo no este en uso
@@ -731,6 +743,7 @@ namespace Orbita.VA.Funciones
             // Ya no existen inspecciones pendientes
             this.ContInspeccionesEnCola = 0;
             this.IndiceFotografia = 0;
+            this.ContadorImagenesPorDisco = 0;          
 
             // Se finaliza la ejecución de la función de visión
             this.FuncionEjecutada();
@@ -754,14 +767,20 @@ namespace Orbita.VA.Funciones
             try
             {
                 // Añadimos inspecciones de forma bloqueante
-                if (MTInterface.IsRunning())
+                if (OMTInterfaceLPR.IsRunning())
                 {
-                    if (MTInterface.GetQueueSize < MaxInspeccionesEnCola)
+                    if (OMTInterfaceLPR.GetQueueSize() + OMTInterfaceLPR.GetQueueSizeVPARMT() < MaxInspeccionesEnCola)
                     {
                         // Se aumenta el número de inspecciones en cola
                         this.ContInspeccionesEnCola++;
                         this.IndiceFotografia++;
-
+                        // Si vamos por disco tenemos que rellenar la ruta
+                        if (this.ParametrosLPR.RealizarProcesoPorDisco)
+                        {
+                            this.RutaImagenTemporal = this.ParametrosLPR.RutaEjecucionPorDisco + this.Codigo + "_" + this.ContadorImagenesPorDisco.ToString() + ".bmp";
+                            this.ContadorImagenesPorDisco++;
+                        }
+                        // Creamos la información de la imagen
                         OInfoInspeccionLPR infoInspeccionLPR = new OInfoInspeccionLPR(
                                 this.Imagen,
                                 this.ParametrosLPR,
@@ -774,7 +793,7 @@ namespace Orbita.VA.Funciones
 
                         // Variamos la configuración para la siguiente 
                         object info = infoInspeccionLPR;
-                        int resultCode = 0;
+                        bool resultCode = false;
 
                         // Se carga la imagen
                         //  Si tenemos ruta y imagenes es null, pasamos la ruta y sino viceversa
@@ -786,7 +805,7 @@ namespace Orbita.VA.Funciones
                             // adición de imagen
                             if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                             {
-                                resultCode = MTInterface.Add(this.RutaImagenTemporal, ref info);
+                                resultCode = OMTInterfaceLPR.Add(this.RutaImagenTemporal, info);
                             }
                             else
                             {
@@ -798,16 +817,28 @@ namespace Orbita.VA.Funciones
                             // Corrección de distorsión
                             OImagenBitmap imagenTrabajo = ONerualLabsUtils.CorreccionPerspectivaMemoria(this.Imagen, this.ParametrosLPR.OrbitaCorreccionPerspectiva);
 
-                            resultCode = MTInterface.Add(imagenTrabajo.Image, ref info);
+                            // En caso de tener que pasar las imagenes al motor por disco antes tenemos que guardarlas
+                            if (this.ParametrosLPR.RealizarProcesoPorDisco)
+                            {
+                                imagenTrabajo.Image.Save(this.RutaImagenTemporal);
+                                if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
+                                {
+                                    resultCode = OMTInterfaceLPR.Add(this.RutaImagenTemporal, info);
+                                }
+                            }
+                            else
+                            {
+                                resultCode = OMTInterfaceLPR.Add(imagenTrabajo.Image, info);
+                            }
                         }
                         
 
-                        if (resultCode == -1)
+                        if (!resultCode)
                         {
-                            OLogsVAFunciones.LPR.Error("FuncionLPR", "Error al añadir imagen a la cola VPAR. Total imágenes: " + MTInterface.GetQueueSize.ToString());
+                            OLogsVAFunciones.LPR.Error("FuncionLPR", "Error al añadir imagen a la cola VPAR. Total imágenes: " + (OMTInterfaceLPR.GetQueueSize() + OMTInterfaceLPR.GetQueueSizeVPARMT()).ToString());
                         }
 
-                        OLogsVAFunciones.LPR.Info("FuncionLPR", "Añadida imagen a la cola VPAR. Total imágenes: " + MTInterface.GetQueueSize.ToString());
+                        OLogsVAFunciones.LPR.Info("FuncionLPR", "Añadida imagen a la cola VPAR. Total imágenes: " + (OMTInterfaceLPR.GetQueueSize() + OMTInterfaceLPR.GetQueueSizeVPARMT()).ToString());
                     }
                 }
             }
@@ -830,7 +861,7 @@ namespace Orbita.VA.Funciones
         {
             bool resultado = base.HayInspeccionesPendientes();
 
-            resultado |= (MTInterface.GetNumberOfElements() > 0);
+            resultado |= (OMTInterfaceLPR.GetQueueSize() + OMTInterfaceLPR.GetQueueSizeVPARMT() > 0);
             resultado |= this.ContInspeccionesEnCola > 0;
 
             return resultado;
@@ -842,6 +873,7 @@ namespace Orbita.VA.Funciones
         public override void ResetearColaEjecucion()
         {
             base.ResetearColaEjecucion();
+            OMTInterfaceLPR.Reset();
             this.InformacionAdicional = new Dictionary<string, object>();
         }
 
@@ -1006,9 +1038,21 @@ namespace Orbita.VA.Funciones
         /// </summary>
         public bool Modificado;
         /// <summary>
+        /// Escala
+        /// </summary>
+        public int Escala;
+        /// <summary>
         /// Parámetros de corrección de perspectiva de Orbita
         /// </summary>
         public OCorreccionPerspectiva OrbitaCorreccionPerspectiva;
+        /// <summary>
+        /// Para pasar a las librerias una ruta de imagen y no el bitmap
+        /// </summary>
+        public bool RealizarProcesoPorDisco;
+        /// <summary>
+        /// Ruta utilizada para pasar la imagen por disco
+        /// </summary>
+        public string RutaEjecucionPorDisco;
         #endregion
 
         #region Constructor(es)
@@ -1037,7 +1081,10 @@ namespace Orbita.VA.Funciones
             this.AnchuraVentanaBusqueda = 0;
             this.ActivadaMasInformacion = 1;
             this.Modificado = true;
+            this.Escala = 0;
             this.OrbitaCorreccionPerspectiva = new OCorreccionPerspectiva();
+            this.RealizarProcesoPorDisco = false;
+            this.RutaEjecucionPorDisco = Path.GetTempPath();            
         }
         #endregion Constructores
     }
@@ -1426,7 +1473,7 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Constructor con parametros
         /// </summary>
-        public OResultadoSimpleLPR(PlateInfo resultadoImagen, DateTime fechaEncola)
+        public OResultadoSimpleLPR(OLPRCodeInfo resultadoImagen, DateTime fechaEncola)
         {
             try
             {

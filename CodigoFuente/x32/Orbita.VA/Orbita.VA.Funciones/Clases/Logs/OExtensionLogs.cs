@@ -34,6 +34,10 @@ namespace Orbita.VA.Funciones
         /// </summary>
         public static ILogger CCR;
         /// <summary>
+        /// Módulo de ARH de vehículos
+        /// </summary>
+        public static ILogger ARH;
+        /// <summary>
         /// Módulo de LPR de vehículos
         /// </summary>
         public static ILogger LPR;

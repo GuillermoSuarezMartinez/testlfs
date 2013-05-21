@@ -147,6 +147,9 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
+    <Reference Include="cmaccrdotnet8">
+      <HintPath>..\..\Comun\VA\ARH\cmaccrdotnet8.dll</HintPath>
+    </Reference>
     <Reference Include="Cognex.VisionPro, Version=45.0.0.0, Culture=neutral, PublicKeyToken=ef0f902af9dee505, processorArchitecture=MSIL">
       <HintPath>..\..\Comun\VA\Cognex\Cognex.VisionPro.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
@@ -167,6 +170,9 @@
     </Reference>
     <Reference Include="Emgu.Util">
       <HintPath>..\..\Comun\VA\OpenCV\Emgu.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="gxdotnet8">
+      <HintPath>..\..\Comun\VA\ARH\gxdotnet8.dll</HintPath>
     </Reference>
     <Reference Include="Orbita.BBDD, Version=13.32.3.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\..\Comun\Orbita\Orbita.BBDD.dll</HintPath>
@@ -208,10 +214,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\ARH\OFuncionVisionARH.cs" />
+    <Compile Include="Clases\ARH\OWrapperARHMT.cs" />
     <Compile Include="Clases\BaseDatos\AppBD.cs" />
     <Compile Include="Clases\Excepciones\AnalisisException.cs" />
     <Compile Include="Clases\Excepciones\FiltradoException.cs" />
+    <Compile Include="Clases\NeuralLabs\OFuncionVisionCCR.cs" />
+    <Compile Include="Clases\NeuralLabs\OFuncionVisionLPR.cs" />
     <Compile Include="Clases\NeuralLabs\ONerualLabsUtils.cs" />
+    <Compile Include="Clases\NeuralLabs\OWrapperCCRMT.cs" />
+    <Compile Include="Clases\NeuralLabs\OWrapperLPRMT.cs" />
     <Compile Include="Clases\OpenCV\Herramientas\OrbitaCaliper\OEdge.cs" />
     <Compile Include="Clases\OpenCV\Herramientas\OrbitaCaliper\OMetodoPuntuacion.cs" />
     <Compile Include="Clases\OpenCV\Herramientas\OrbitaCaliper\OrbitaCaliper.cs" />
@@ -222,8 +234,6 @@
     <Compile Include="Clases\OpenCV\OHerramientasOpenCV.cs" />
     <Compile Include="Clases\OpenCV\OSegmentacionOpenCV.cs" />
     <Compile Include="Clases\VisionPro\OFuncionVisionPro.cs" />
-    <Compile Include="Clases\NeuralLabs\OFuncionVisionLPR.cs" />
-    <Compile Include="Clases\NeuralLabs\OFuncionVisionCCR.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

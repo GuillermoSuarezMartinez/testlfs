@@ -94,20 +94,19 @@ namespace Orbita.VA.Hardware
             get { return _IntervaloComprabacion; }
             set { _IntervaloComprabacion = value; }
         }
-        #endregion
-
-        #region Propiedad(es) heredada(s)
+        
         /// <summary>
         /// Estado de la conexión
         /// </summary>
-        public override EstadoConexion EstadoConexion
+        public EstadoConexion EstadoConexionRemota
         {
             get
             {
-                return this.CamaraCliente.GetEstadoConexion();
-            }
-            set
-            {
+                if ((this.CamaraCliente is ORemotingCamaraProxie) && this.CamaraCliente.Iniciado)
+                {
+                    return this.CamaraCliente.GetEstadoConexion();
+                }
+                return EstadoConexion.Desconectado;
             }
         }
         #endregion

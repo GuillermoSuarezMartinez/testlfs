@@ -1,4 +1,15 @@
-﻿using System;
+﻿//***********************************************************************
+// Assembly         : Orbita.VA.Funciones
+// Author           : jbelenguer
+// Created          : 02-05-2013
+//
+// Last Modified By : 
+// Last Modified On : 
+// Description      : 
+//
+// Copyright        : (c) Orbita Ingenieria. All rights reserved.
+//***********************************************************************
+using System;
 using System.Collections.Generic;
 using Emgu.CV;
 using Orbita.VA.Comun;
@@ -111,7 +122,7 @@ namespace Orbita.VA.Funciones
         /// <param name="threshold">Umbral de contraste para la detección de un edge</param>
         /// <param name="kernel">Tamaño del filtro</param>
         /// <param name="maxResultados">Máximo de resultados a devolver</param>
-        public OrbitaCaliper(PolaridadEdges polaridad, double threshold, FilterSize kernel, int maxResultados)
+        public OrbitaCaliper(PolaridadEdges polaridad, FilterSize kernel, int maxResultados)
         {
             if (threshold < 0)
             {
@@ -131,7 +142,6 @@ namespace Orbita.VA.Funciones
             this.tipo1 = polaridad;
             this.tipo2 = PolaridadEdges.Ninguno;
             this.MaxResultados = maxResultados;
-            this.threshold = threshold;
 
             edges = new List<OEdgeResult>();
             metodos = new List<OMetodoPuntuacion>();
@@ -148,7 +158,7 @@ namespace Orbita.VA.Funciones
         /// <param name="distance">Distancia esperada entre el par de edges</param>
         /// <param name="kernel">Tamaño del filtro</param>
         /// <param name="maxResultados">Máximo de resultados a devolver</param>
-        public OrbitaCaliper(PolaridadEdges polaridad1, PolaridadEdges polaridad2, double threshold, double distance, FilterSize kernel, int maxResultados)
+        public OrbitaCaliper(PolaridadEdges polaridad1, PolaridadEdges polaridad2, double distance, FilterSize kernel, int maxResultados)
         {
             if (threshold < 0)
             {
@@ -169,7 +179,6 @@ namespace Orbita.VA.Funciones
             this.tipo1 = polaridad1;
             this.tipo2 = polaridad2;
             this.MaxResultados = maxResultados;
-            this.threshold = threshold;
 
             edges = new List<OEdgeResult>();
             metodos = new List<OMetodoPuntuacion>();
@@ -188,8 +197,10 @@ namespace Orbita.VA.Funciones
         /// <param name="extremoX">Extremo en anchura del AOI</param>
         /// <param name="extremoY">Extremo en altura del AOI</param>
         /// <returns>Listado de resultados</returns>
-        public List<OEdgeResult> BuscarEdges(OImagenOpenCVMonocromo<byte> input, PointF origen, PointF extremoX, PointF extremoY)
+        public List<OEdgeResult> BuscarEdges(OImagenOpenCVMonocromo<byte> input, PointF origen, PointF extremoX, PointF extremoY, double threshold)
         {
+            this.threshold = threshold;
+
             //Comprobación de los argumentos de entrada
             if (origen.X > input.Width || extremoX.X > input.Width || extremoY.X > input.Width || origen.Y > input.Height || extremoX.Y > input.Height || extremoY.Y > input.Height)
             {
@@ -521,7 +532,7 @@ namespace Orbita.VA.Funciones
         /// <param name="ini">Inicio del intervalo</param>
         /// <param name="fin">Final del intervalo</param>
         /// <returns>Punto en X donde se encuentra el centroide</returns>
-        private float Centroide(int ini, int fin, float[,,] array)
+        private float Centroide(int ini, int fin, float[, ,] array)
         {
             float Xc = ini;
             float C0 = 0;
@@ -587,7 +598,7 @@ namespace Orbita.VA.Funciones
         /// <param name="xPos">Posición a interpolar</param>
         /// <param name="array">Función</param>
         /// <returns>Valor interpolado en Y</returns>
-        private double InterpolacionLineal(float xPos, float[,,] array)
+        private double InterpolacionLineal(float xPos, float[, ,] array)
         {
             int x0 = (int)Math.Floor(xPos);
             int x1 = (int)Math.Ceiling(xPos);

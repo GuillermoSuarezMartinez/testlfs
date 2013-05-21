@@ -607,6 +607,7 @@ namespace Orbita.VA.Funciones
             this.ListaParametrosSalida = new List<OParametroFuncionVision>();
             this._Valido = false;
             this._IdEjecucionActual = 0;
+            this.EjecucionTerminada = true;
 
             // Cargamos valores de la base de datos
             DataTable dtFuncionVision = AppBD.GetFuncionVision(this._Codigo);
