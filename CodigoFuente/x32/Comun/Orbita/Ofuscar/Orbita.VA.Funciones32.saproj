@@ -238,6 +238,22 @@
                 <Embedding />
                 <Merging />
             </Assembly>
+            <Assembly AssemblyName="Emgu.CV, Culture=neutral, PublicKeyToken=7281126722ab4438">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Emgu.Util, Culture=neutral, PublicKeyToken=7281126722ab4438">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="cmaccrdotnet8, Culture=neutral, PublicKeyToken=58339c1d2d6ea525">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="gxdotnet8, Culture=neutral, PublicKeyToken=3d92ae624958d2aa">
+                <Merging />
+                <Embedding />
+            </Assembly>
         </Assemblies>
         <Options>
             <Obfuscation FieldsNameMangling="3" NameMangling="3" />
