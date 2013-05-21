@@ -11,6 +11,7 @@
 //***********************************************************************
 using System;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace Orbita.Utiles
 {
@@ -72,6 +73,52 @@ namespace Orbita.Utiles
         public static double Distancia(PointF a, PointF b)
         {
             return Math.Sqrt(Math.Pow(b.X - a.X, 2) + Math.Pow(b.Y - a.Y, 2));
+        }
+        /// <summary>
+        /// Calcula los parámetros m y b tal que y=m*x+b de la línea que más se aproxima a la nube de puntos pasada por parámetro
+        /// </summary>
+        public static void CalculoLineaMinimosCuadrados(PointF[] nubePuntos, out double m, out Double b)
+        {
+            List<PointF> listaNubePuntos = new List<PointF>(nubePuntos);
+            CalculoLineaMinimosCuadrados(listaNubePuntos, out m, out b);
+        }
+        /// <summary>
+        /// Calcula los parámetros m y b tal que y=m*x+b de la línea que más se aproxima a la nube de puntos pasada por parámetro
+        /// </summary>
+        public static void CalculoLineaMinimosCuadrados(List<PointF> nubePuntos, out double m, out Double b)
+        {
+            m = 0;
+            b = 0;
+
+            if (nubePuntos.Count > 0)
+            {
+                float Sum_X = 0;
+                float Sum_Y = 0;
+                float Sum_XxY = 0;
+                float Sum_X2 = 0;
+                foreach (PointF punto in nubePuntos)
+                {
+                    Sum_X = Sum_X + punto.X;
+                    Sum_Y = Sum_Y + punto.Y;
+                    Sum_XxY = Sum_XxY + (punto.X * punto.Y);
+                    Sum_X2 = Sum_X2 + (punto.X * punto.X);
+                }
+
+                float den = (nubePuntos.Count * Sum_X2) - (Sum_X * Sum_X);
+                float num_m = (nubePuntos.Count * Sum_XxY) - (Sum_X * Sum_Y);
+                float num_b = (Sum_Y * Sum_X2) - (Sum_X * Sum_XxY);
+
+                if (den != 0)
+                {
+                    m = num_m / den;
+                    b = num_b / den;
+                }
+                else
+                {
+                    m = 0;
+                    b = nubePuntos[0].X;
+                }
+            }
         }
         #endregion
     }
