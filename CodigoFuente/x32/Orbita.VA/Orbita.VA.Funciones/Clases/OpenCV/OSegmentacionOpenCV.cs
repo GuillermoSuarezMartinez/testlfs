@@ -17,6 +17,7 @@ using System.Text;
 using Orbita.VA.Comun;
 using System.Drawing;
 using Emgu.CV;
+using Orbita.Utiles;
 
 namespace Orbita.VA.Funciones
 {
@@ -58,7 +59,7 @@ namespace Orbita.VA.Funciones
 
             for (int i = 0; i < numCalipers; i++)
             {
-                item = new OrbitaCaliper(PolaridadEdges.NegroBlanco, PolaridadEdges.BlancoNegro, 10, 12, kernel, 1);
+                item = new OrbitaCaliper(PolaridadEdges.NegroBlanco, PolaridadEdges.BlancoNegro, 12, kernel, 1);
                 item.EliminarMetodosPuntuacion();
                 item.AgregarContraste();
 
@@ -68,7 +69,7 @@ namespace Orbita.VA.Funciones
                 extremoXC = new PointF(proyeccion.Width, despY);
                 extremoYC = new PointF(0, despY + caliperHeight);
 
-                List<OEdgeResult> edges = item.BuscarEdges(proyeccion, origenC, extremoXC, extremoYC);
+                List<OEdgeResult> edges = item.BuscarEdges(proyeccion, origenC, extremoXC, extremoYC, 10);
                 OImagenOpenCVColor<byte> res = item.PintarEdges(Color.LightGreen, 1);
 
                 if (edges.Count > 0)
@@ -83,33 +84,9 @@ namespace Orbita.VA.Funciones
             {
                 throw new AnalisisException("No se encontraron puntos para construir la línea");
             }
-            float Sum_X = 0;
-            float Sum_Y = 0;
-            float Sum_XxY = 0;
-            float Sum_X2 = 0;
-            foreach (PointF punto in ptos)
-            {
-                Sum_X = Sum_X + punto.X;
-                Sum_Y = Sum_Y + punto.Y;
-                Sum_XxY = Sum_XxY + (punto.X * punto.Y);
-                Sum_X2 = Sum_X2 + (punto.X * punto.X);
-            }
-
-            float den = (ptos.Count * Sum_X2) - (Sum_X * Sum_X);
-            float num_m = (ptos.Count * Sum_XxY) - (Sum_X * Sum_Y);
-            float num_b = (Sum_Y * Sum_X2) - (Sum_X * Sum_XxY);
 
             double M, B;
-            if (den != 0)
-            {
-                M = Math.Round(1000 * (num_m / den)) / 1000;
-                B = Math.Round(1000 * (num_b / den)) / 1000;
-            }
-            else
-            {
-                B = ptos[0].X;
-                M = 0;
-            }
+            OMath.CalculoLineaMinimosCuadrados(ptos, out M, out B);
             PointF start = new PointF(extremoY.X, (float)(extremoY.X * M + B));
             PointF end = new PointF(origen.X, (float)(origen.X * M + B));
 
