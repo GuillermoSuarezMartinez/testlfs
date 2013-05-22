@@ -339,7 +339,11 @@ namespace Orbita.Controles.Comunes
         /// <param name="e"></param>
         private void txtResultado_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = char.IsDigit(e.KeyChar);
+            bool añadir = false;
+            añadir |= char.IsDigit(e.KeyChar);
+            añadir |= (e.KeyChar == '\b') && this.VisualizarRet;
+            
+            e.Handled = !añadir;
         }
         #endregion
     }
