@@ -332,6 +332,15 @@ namespace Orbita.Controles.Comunes
                 // Do nothing
             }
         }
+        /// <summary>
+        /// Evento de escritura
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtResultado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = char.IsDigit(e.KeyChar);
+        }
         #endregion
     }
 }

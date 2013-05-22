@@ -29,22 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrbitaTeclado));
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.PnlFondo = new System.Windows.Forms.Panel();
             this.GridView = new System.Windows.Forms.DataGridView();
-            this.PnlTop = new System.Windows.Forms.Panel();
-            this.PnlTexto = new System.Windows.Forms.Panel();
-            this.txtResultado = new System.Windows.Forms.TextBox();
-            this.PnlDesplegable = new System.Windows.Forms.Panel();
-            this.BtnDropDown = new System.Windows.Forms.Button();
-            this.PnlRet = new System.Windows.Forms.Panel();
-            this.btnRetrocede = new System.Windows.Forms.Button();
             this.orbitaTableLayoutPanel1 = new Orbita.Controles.Contenedores.OrbitaTableLayoutPanel();
             this.PanelTeclas = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.BtnEsc = new System.Windows.Forms.Button();
@@ -87,14 +80,21 @@
             this.btnE = new System.Windows.Forms.Button();
             this.btnW = new System.Windows.Forms.Button();
             this.Panel1Vacio = new Orbita.Controles.Contenedores.OrbitaPanel();
+            this.PnlTop = new System.Windows.Forms.Panel();
+            this.PnlTexto = new System.Windows.Forms.Panel();
+            this.txtResultado = new System.Windows.Forms.TextBox();
+            this.PnlDesplegable = new System.Windows.Forms.Panel();
+            this.BtnDropDown = new System.Windows.Forms.Button();
+            this.PnlRet = new System.Windows.Forms.Panel();
+            this.btnRetrocede = new System.Windows.Forms.Button();
             this.PnlFondo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
+            this.orbitaTableLayoutPanel1.SuspendLayout();
+            this.PanelTeclas.SuspendLayout();
             this.PnlTop.SuspendLayout();
             this.PnlTexto.SuspendLayout();
             this.PnlDesplegable.SuspendLayout();
             this.PnlRet.SuspendLayout();
-            this.orbitaTableLayoutPanel1.SuspendLayout();
-            this.PanelTeclas.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlFondo
@@ -110,45 +110,45 @@
             // 
             // GridView
             // 
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Narrow", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.GridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridView.ColumnHeadersVisible = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle8;
             this.GridView.Location = new System.Drawing.Point(96, 0);
             this.GridView.MultiSelect = false;
             this.GridView.Name = "GridView";
             this.GridView.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.GridView.RowHeadersVisible = false;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
-            this.GridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
+            this.GridView.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.GridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
             this.GridView.RowTemplate.Height = 40;
             this.GridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -156,86 +156,6 @@
             this.GridView.TabIndex = 37;
             this.GridView.Visible = false;
             this.GridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellClick);
-            // 
-            // PnlTop
-            // 
-            this.PnlTop.Controls.Add(this.PnlTexto);
-            this.PnlTop.Controls.Add(this.PnlDesplegable);
-            this.PnlTop.Controls.Add(this.PnlRet);
-            this.PnlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PnlTop.Location = new System.Drawing.Point(0, 0);
-            this.PnlTop.Name = "PnlTop";
-            this.PnlTop.Size = new System.Drawing.Size(1045, 96);
-            this.PnlTop.TabIndex = 5;
-            // 
-            // PnlTexto
-            // 
-            this.PnlTexto.Controls.Add(this.txtResultado);
-            this.PnlTexto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlTexto.Location = new System.Drawing.Point(93, 0);
-            this.PnlTexto.Name = "PnlTexto";
-            this.PnlTexto.Padding = new System.Windows.Forms.Padding(3);
-            this.PnlTexto.Size = new System.Drawing.Size(859, 96);
-            this.PnlTexto.TabIndex = 8;
-            // 
-            // txtResultado
-            // 
-            this.txtResultado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtResultado.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtResultado.Font = new System.Drawing.Font("Arial Black", 44F, System.Drawing.FontStyle.Bold);
-            this.txtResultado.Location = new System.Drawing.Point(3, 3);
-            this.txtResultado.Margin = new System.Windows.Forms.Padding(0);
-            this.txtResultado.Name = "txtResultado";
-            this.txtResultado.Size = new System.Drawing.Size(853, 90);
-            this.txtResultado.TabIndex = 3;
-            this.txtResultado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // PnlDesplegable
-            // 
-            this.PnlDesplegable.Controls.Add(this.BtnDropDown);
-            this.PnlDesplegable.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PnlDesplegable.Location = new System.Drawing.Point(0, 0);
-            this.PnlDesplegable.Name = "PnlDesplegable";
-            this.PnlDesplegable.Size = new System.Drawing.Size(93, 96);
-            this.PnlDesplegable.TabIndex = 7;
-            // 
-            // BtnDropDown
-            // 
-            this.BtnDropDown.BackColor = System.Drawing.Color.White;
-            this.BtnDropDown.Font = new System.Drawing.Font("Wingdings 3", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.BtnDropDown.Image = global::Orbita.Controles.Comunes.Properties.Resources.ImgComputerKey90;
-            this.BtnDropDown.Location = new System.Drawing.Point(0, 3);
-            this.BtnDropDown.Name = "BtnDropDown";
-            this.BtnDropDown.Size = new System.Drawing.Size(90, 90);
-            this.BtnDropDown.TabIndex = 4;
-            this.BtnDropDown.Tag = "Desplegar";
-            this.BtnDropDown.Text = "";
-            this.BtnDropDown.UseVisualStyleBackColor = false;
-            this.BtnDropDown.Click += new System.EventHandler(this.BtnDropDown_Click);
-            this.BtnDropDown.Leave += new System.EventHandler(this.BtnDropDown_Leave);
-            // 
-            // PnlRet
-            // 
-            this.PnlRet.Controls.Add(this.btnRetrocede);
-            this.PnlRet.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PnlRet.Location = new System.Drawing.Point(952, 0);
-            this.PnlRet.Name = "PnlRet";
-            this.PnlRet.Size = new System.Drawing.Size(93, 96);
-            this.PnlRet.TabIndex = 6;
-            // 
-            // btnRetrocede
-            // 
-            this.btnRetrocede.BackColor = System.Drawing.Color.White;
-            this.btnRetrocede.Font = new System.Drawing.Font("Wingdings 3", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.btnRetrocede.Image = global::Orbita.Controles.Comunes.Properties.Resources.ImgComputerKey90;
-            this.btnRetrocede.Location = new System.Drawing.Point(0, 3);
-            this.btnRetrocede.Name = "btnRetrocede";
-            this.btnRetrocede.Size = new System.Drawing.Size(90, 90);
-            this.btnRetrocede.TabIndex = 4;
-            this.btnRetrocede.Tag = "Ret";
-            this.btnRetrocede.Text = "";
-            this.btnRetrocede.UseVisualStyleBackColor = false;
-            this.btnRetrocede.Click += new System.EventHandler(this.btnRetrocede_Click);
             // 
             // orbitaTableLayoutPanel1
             // 
@@ -856,6 +776,88 @@
             this.Panel1Vacio.Size = new System.Drawing.Size(21, 386);
             this.Panel1Vacio.TabIndex = 5;
             // 
+            // PnlTop
+            // 
+            this.PnlTop.Controls.Add(this.PnlTexto);
+            this.PnlTop.Controls.Add(this.PnlDesplegable);
+            this.PnlTop.Controls.Add(this.PnlRet);
+            this.PnlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PnlTop.Location = new System.Drawing.Point(0, 0);
+            this.PnlTop.Name = "PnlTop";
+            this.PnlTop.Size = new System.Drawing.Size(1045, 96);
+            this.PnlTop.TabIndex = 5;
+            // 
+            // PnlTexto
+            // 
+            this.PnlTexto.Controls.Add(this.txtResultado);
+            this.PnlTexto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlTexto.Location = new System.Drawing.Point(93, 0);
+            this.PnlTexto.Name = "PnlTexto";
+            this.PnlTexto.Padding = new System.Windows.Forms.Padding(3);
+            this.PnlTexto.Size = new System.Drawing.Size(859, 96);
+            this.PnlTexto.TabIndex = 8;
+            // 
+            // txtResultado
+            // 
+            this.txtResultado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtResultado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtResultado.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtResultado.Font = new System.Drawing.Font("Arial Black", 44F, System.Drawing.FontStyle.Bold);
+            this.txtResultado.Location = new System.Drawing.Point(3, 3);
+            this.txtResultado.Margin = new System.Windows.Forms.Padding(0);
+            this.txtResultado.Name = "txtResultado";
+            this.txtResultado.Size = new System.Drawing.Size(853, 90);
+            this.txtResultado.TabIndex = 3;
+            this.txtResultado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtResultado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtResultado_KeyPress);
+            // 
+            // PnlDesplegable
+            // 
+            this.PnlDesplegable.Controls.Add(this.BtnDropDown);
+            this.PnlDesplegable.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PnlDesplegable.Location = new System.Drawing.Point(0, 0);
+            this.PnlDesplegable.Name = "PnlDesplegable";
+            this.PnlDesplegable.Size = new System.Drawing.Size(93, 96);
+            this.PnlDesplegable.TabIndex = 7;
+            // 
+            // BtnDropDown
+            // 
+            this.BtnDropDown.BackColor = System.Drawing.Color.White;
+            this.BtnDropDown.Font = new System.Drawing.Font("Wingdings 3", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.BtnDropDown.Image = global::Orbita.Controles.Comunes.Properties.Resources.ImgComputerKey90;
+            this.BtnDropDown.Location = new System.Drawing.Point(0, 3);
+            this.BtnDropDown.Name = "BtnDropDown";
+            this.BtnDropDown.Size = new System.Drawing.Size(90, 90);
+            this.BtnDropDown.TabIndex = 4;
+            this.BtnDropDown.Tag = "Desplegar";
+            this.BtnDropDown.Text = "";
+            this.BtnDropDown.UseVisualStyleBackColor = false;
+            this.BtnDropDown.Click += new System.EventHandler(this.BtnDropDown_Click);
+            this.BtnDropDown.Leave += new System.EventHandler(this.BtnDropDown_Leave);
+            // 
+            // PnlRet
+            // 
+            this.PnlRet.Controls.Add(this.btnRetrocede);
+            this.PnlRet.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PnlRet.Location = new System.Drawing.Point(952, 0);
+            this.PnlRet.Name = "PnlRet";
+            this.PnlRet.Size = new System.Drawing.Size(93, 96);
+            this.PnlRet.TabIndex = 6;
+            // 
+            // btnRetrocede
+            // 
+            this.btnRetrocede.BackColor = System.Drawing.Color.White;
+            this.btnRetrocede.Font = new System.Drawing.Font("Wingdings 3", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.btnRetrocede.Image = global::Orbita.Controles.Comunes.Properties.Resources.ImgComputerKey90;
+            this.btnRetrocede.Location = new System.Drawing.Point(0, 3);
+            this.btnRetrocede.Name = "btnRetrocede";
+            this.btnRetrocede.Size = new System.Drawing.Size(90, 90);
+            this.btnRetrocede.TabIndex = 4;
+            this.btnRetrocede.Tag = "Ret";
+            this.btnRetrocede.Text = "";
+            this.btnRetrocede.UseVisualStyleBackColor = false;
+            this.btnRetrocede.Click += new System.EventHandler(this.btnRetrocede_Click);
+            // 
             // OrbitaTeclado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -868,13 +870,13 @@
             this.Load += new System.EventHandler(this.OrbitaControlTeclado_Load);
             this.PnlFondo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
+            this.orbitaTableLayoutPanel1.ResumeLayout(false);
+            this.PanelTeclas.ResumeLayout(false);
             this.PnlTop.ResumeLayout(false);
             this.PnlTexto.ResumeLayout(false);
             this.PnlTexto.PerformLayout();
             this.PnlDesplegable.ResumeLayout(false);
             this.PnlRet.ResumeLayout(false);
-            this.orbitaTableLayoutPanel1.ResumeLayout(false);
-            this.PanelTeclas.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

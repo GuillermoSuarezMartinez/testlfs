@@ -376,6 +376,7 @@
             this.txtResultado.Size = new System.Drawing.Size(247, 90);
             this.txtResultado.TabIndex = 3;
             this.txtResultado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtResultado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtResultado_KeyPress);
             // 
             // PnlDesplegable
             // 
