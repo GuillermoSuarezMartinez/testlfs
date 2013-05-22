@@ -31,6 +31,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -97,24 +99,36 @@
             this.SB05 = new System.Windows.Forms.TextBox();
             this.SB03 = new System.Windows.Forms.TextBox();
             this.SB04 = new System.Windows.Forms.TextBox();
+            this.lblIdLPR = new System.Windows.Forms.Label();
+            this.txtLPR = new System.Windows.Forms.TextBox();
+            this.txtGOSL = new System.Windows.Forms.TextBox();
+            this.lblIdGOSL = new System.Windows.Forms.Label();
+            this.txtTRA = new System.Windows.Forms.TextBox();
+            this.lblIdTra = new System.Windows.Forms.Label();
             this.gbConfig.SuspendLayout();
             this.pnlInf.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SContMain)).BeginInit();
             this.SContMain.Panel1.SuspendLayout();
             this.SContMain.Panel2.SuspendLayout();
             this.SContMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SContMainSup)).BeginInit();
             this.SContMainSup.Panel2.SuspendLayout();
             this.SContMainSup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SContMainInf)).BeginInit();
             this.SContMainInf.Panel1.SuspendLayout();
             this.SContMainInf.Panel2.SuspendLayout();
             this.SContMainInf.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SContInf)).BeginInit();
             this.SContInf.Panel1.SuspendLayout();
             this.SContInf.Panel2.SuspendLayout();
             this.SContInf.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SContIzq)).BeginInit();
             this.SContIzq.Panel1.SuspendLayout();
             this.SContIzq.Panel2.SuspendLayout();
             this.SContIzq.SuspendLayout();
             this.gbB0.SuspendLayout();
             this.gbB1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SContDer)).BeginInit();
             this.SContDer.Panel1.SuspendLayout();
             this.SContDer.Panel2.SuspendLayout();
             this.SContDer.SuspendLayout();
@@ -125,11 +139,27 @@
             // 
             // gbConfig
             // 
-            this.gbConfig.Size = new System.Drawing.Size(899, 70);
+            this.gbConfig.Controls.Add(this.txtTRA);
+            this.gbConfig.Controls.Add(this.lblIdTra);
+            this.gbConfig.Controls.Add(this.txtGOSL);
+            this.gbConfig.Controls.Add(this.lblIdGOSL);
+            this.gbConfig.Controls.Add(this.txtLPR);
+            this.gbConfig.Controls.Add(this.lblIdLPR);
+            this.gbConfig.Size = new System.Drawing.Size(899, 100);
+            this.gbConfig.Controls.SetChildIndex(this.lblIdLPR, 0);
+            this.gbConfig.Controls.SetChildIndex(this.txtLPR, 0);
+            this.gbConfig.Controls.SetChildIndex(this.txtPuertoRemoting, 0);
+            this.gbConfig.Controls.SetChildIndex(this.txtIdDispositivo, 0);
+            this.gbConfig.Controls.SetChildIndex(this.txtServidorRemoting, 0);
+            this.gbConfig.Controls.SetChildIndex(this.lblIdGOSL, 0);
+            this.gbConfig.Controls.SetChildIndex(this.txtGOSL, 0);
+            this.gbConfig.Controls.SetChildIndex(this.lblIdTra, 0);
+            this.gbConfig.Controls.SetChildIndex(this.txtTRA, 0);
             // 
             // txtIdDispositivo
             // 
             this.txtIdDispositivo.Text = "5";
+            this.txtIdDispositivo.Visible = false;
             // 
             // pnlInf
             // 
@@ -139,31 +169,43 @@
             // 
             // SContMain
             // 
-            this.SContMain.Location = new System.Drawing.Point(0, 70);
-            this.SContMain.Size = new System.Drawing.Size(899, 636);
-            this.SContMain.SplitterDistance = 200;
+            this.SContMain.Location = new System.Drawing.Point(0, 100);
+            this.SContMain.Size = new System.Drawing.Size(899, 606);
+            this.SContMain.SplitterDistance = 190;
             // 
             // SContMainSup
             // 
-            this.SContMainSup.Size = new System.Drawing.Size(899, 200);
-            this.SContMainSup.SplitterDistance = 70;
+            this.SContMainSup.Size = new System.Drawing.Size(899, 190);
+            this.SContMainSup.SplitterDistance = 66;
             // 
             // gbEscrituras
             // 
-            this.gbEscrituras.Size = new System.Drawing.Size(899, 126);
+            this.gbEscrituras.Size = new System.Drawing.Size(899, 120);
             // 
             // SContMainInf
             // 
-            this.SContMainInf.Size = new System.Drawing.Size(899, 432);
-            this.SContMainInf.SplitterDistance = 207;
+            this.SContMainInf.Size = new System.Drawing.Size(899, 412);
+            this.SContMainInf.SplitterDistance = 197;
             // 
             // gbVariables
             // 
-            this.gbVariables.Size = new System.Drawing.Size(899, 207);
+            this.gbVariables.Size = new System.Drawing.Size(899, 197);
             // 
             // gbCDato
             // 
-            this.gbCDato.Size = new System.Drawing.Size(899, 221);
+            this.gbCDato.Size = new System.Drawing.Size(899, 211);
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.DataPropertyName = "Variable";
+            this.dataGridViewTextBoxColumn15.HeaderText = "Variable";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            // 
+            // dataGridViewTextBoxColumn16
+            // 
+            this.dataGridViewTextBoxColumn16.DataPropertyName = "Valor";
+            this.dataGridViewTextBoxColumn16.HeaderText = "Valor";
+            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
             // 
             // dataGridViewTextBoxColumn13
             // 
@@ -835,28 +877,78 @@
             this.SB04.Tag = "1";
             this.SB04.Text = "4";
             // 
-            // OClienteESSiemens
+            // lblIdLPR
+            // 
+            this.lblIdLPR.Location = new System.Drawing.Point(50, 68);
+            this.lblIdLPR.Name = "lblIdLPR";
+            this.lblIdLPR.Size = new System.Drawing.Size(100, 23);
+            this.lblIdLPR.TabIndex = 28;
+            this.lblIdLPR.Text = "Disp. LPR:";
+            // 
+            // txtLPR
+            // 
+            this.txtLPR.Location = new System.Drawing.Point(115, 65);
+            this.txtLPR.Name = "txtLPR";
+            this.txtLPR.Size = new System.Drawing.Size(100, 20);
+            this.txtLPR.TabIndex = 29;
+            // 
+            // txtGOSL
+            // 
+            this.txtGOSL.Location = new System.Drawing.Point(322, 62);
+            this.txtGOSL.Name = "txtGOSL";
+            this.txtGOSL.Size = new System.Drawing.Size(100, 20);
+            this.txtGOSL.TabIndex = 31;
+            // 
+            // lblIdGOSL
+            // 
+            this.lblIdGOSL.Location = new System.Drawing.Point(250, 65);
+            this.lblIdGOSL.Name = "lblIdGOSL";
+            this.lblIdGOSL.Size = new System.Drawing.Size(100, 23);
+            this.lblIdGOSL.TabIndex = 30;
+            this.lblIdGOSL.Text = "Disp. GOSL:";
+            // 
+            // txtTRA
+            // 
+            this.txtTRA.Location = new System.Drawing.Point(522, 62);
+            this.txtTRA.Name = "txtTRA";
+            this.txtTRA.Size = new System.Drawing.Size(100, 20);
+            this.txtTRA.TabIndex = 33;
+            // 
+            // lblIdTra
+            // 
+            this.lblIdTra.Location = new System.Drawing.Point(465, 65);
+            this.lblIdTra.Name = "lblIdTra";
+            this.lblIdTra.Size = new System.Drawing.Size(100, 23);
+            this.lblIdTra.TabIndex = 32;
+            this.lblIdTra.Text = "Disp. TRA:";
+            // 
+            // OrbitaClienteComsESSiemens
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "OClienteESSiemens";
+            this.Name = "OrbitaClienteComsESSiemens";
             this.Size = new System.Drawing.Size(899, 937);
             this.gbConfig.ResumeLayout(false);
             this.gbConfig.PerformLayout();
             this.pnlInf.ResumeLayout(false);
             this.SContMain.Panel1.ResumeLayout(false);
             this.SContMain.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SContMain)).EndInit();
             this.SContMain.ResumeLayout(false);
             this.SContMainSup.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SContMainSup)).EndInit();
             this.SContMainSup.ResumeLayout(false);
             this.SContMainInf.Panel1.ResumeLayout(false);
             this.SContMainInf.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SContMainInf)).EndInit();
             this.SContMainInf.ResumeLayout(false);
             this.SContInf.Panel1.ResumeLayout(false);
             this.SContInf.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SContInf)).EndInit();
             this.SContInf.ResumeLayout(false);
             this.SContIzq.Panel1.ResumeLayout(false);
             this.SContIzq.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SContIzq)).EndInit();
             this.SContIzq.ResumeLayout(false);
             this.gbB0.ResumeLayout(false);
             this.gbB0.PerformLayout();
@@ -864,6 +956,7 @@
             this.gbB1.PerformLayout();
             this.SContDer.Panel1.ResumeLayout(false);
             this.SContDer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SContDer)).EndInit();
             this.SContDer.ResumeLayout(false);
             this.gbB3.ResumeLayout(false);
             this.gbB3.PerformLayout();
@@ -943,5 +1036,13 @@
         private System.Windows.Forms.TextBox SB04;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+        private System.Windows.Forms.TextBox txtGOSL;
+        private System.Windows.Forms.Label lblIdGOSL;
+        private System.Windows.Forms.TextBox txtLPR;
+        private System.Windows.Forms.Label lblIdLPR;
+        private System.Windows.Forms.TextBox txtTRA;
+        private System.Windows.Forms.Label lblIdTra;
     }
 }

@@ -14,10 +14,10 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>%24/Librerias/CodigoFuente/x32/Orbita.Controles/Orbita.Controles.Comunicaciones</SccProjectName>
+    <SccLocalPath>.</SccLocalPath>
+    <SccAuxPath>http://01x0019:8080/tfs/orbitasoftware</SccAuxPath>
+    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -179,6 +179,12 @@
     <Compile Include="Custom\OrbitaControlBaseEventosCom.Designer.cs">
       <DependentUpon>OrbitaControlBaseEventosCom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom\OrbitaClienteComsMultidispositivo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaClienteComsMultidispositivo.Designer.cs">
+      <DependentUpon>OrbitaClienteComsMultidispositivo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom\OrbitaEstadoCanal.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -280,6 +286,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Custom\OrbitaClienteTCP.resx">
       <DependentUpon>OrbitaClienteTCP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaClienteComsMultidispositivo.resx">
+      <DependentUpon>OrbitaClienteComsMultidispositivo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Custom\OrbitaControlVideo_OP.resx">
       <DependentUpon>OrbitaControlVideo_OP.cs</DependentUpon>
