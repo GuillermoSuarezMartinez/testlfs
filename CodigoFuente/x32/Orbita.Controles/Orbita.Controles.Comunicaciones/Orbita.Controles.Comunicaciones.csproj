@@ -143,70 +143,70 @@
     <Compile Include="Clases\Logger.cs" />
     <Compile Include="Clases\OBaseEventosCom.cs" />
     <Compile Include="Clases\OClienteTCPRemoting.cs" />
-    <Compile Include="Custom\Componentes\OrbitaComponenteEscaner_KI.cs">
+    <Compile Include="Custom\Miscelanea\OrbitaComponenteEscaner_KI.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Custom\Componentes\OrbitaComponenteEscaner_KI.designer.cs">
+    <Compile Include="Custom\Miscelanea\OrbitaComponenteEscaner_KI.designer.cs">
       <DependentUpon>OrbitaComponenteEscaner_KI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\Componentes\OrbitaComponenteMonitor_KI.cs">
+    <Compile Include="Custom\Miscelanea\OrbitaComponenteMonitor_KI.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Custom\Componentes\OrbitaComponenteMonitor_KI.designer.cs">
+    <Compile Include="Custom\Miscelanea\OrbitaComponenteMonitor_KI.designer.cs">
       <DependentUpon>OrbitaComponenteMonitor_KI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\Componentes\OrbitaComponenteTup492_KI.cs">
+    <Compile Include="Custom\Miscelanea\OrbitaComponenteTup492_KI.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Custom\Componentes\OrbitaComponenteTup492_KI.designer.cs">
+    <Compile Include="Custom\Miscelanea\OrbitaComponenteTup492_KI.designer.cs">
       <DependentUpon>OrbitaComponenteTup492_KI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\Componentes\OrbitaConfiguracionCanal.cs">
+    <Compile Include="Custom\Multiserver\OrbitaConfiguracionCanal.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Custom\Componentes\OrbitaConfiguracionCanal.designer.cs">
+    <Compile Include="Custom\Multiserver\OrbitaConfiguracionCanal.designer.cs">
       <DependentUpon>OrbitaConfiguracionCanal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaClienteTCP.cs">
+    <Compile Include="Custom\Miscelanea\OrbitaClienteTCP.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaClienteTCP.Designer.cs">
+    <Compile Include="Custom\Miscelanea\OrbitaClienteTCP.Designer.cs">
       <DependentUpon>OrbitaClienteTCP.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaControlBaseEventosCom.cs">
+    <Compile Include="Custom\Multiserver\OrbitaControlBaseEventosCom.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaControlBaseEventosCom.Designer.cs">
+    <Compile Include="Custom\Multiserver\OrbitaControlBaseEventosCom.Designer.cs">
       <DependentUpon>OrbitaControlBaseEventosCom.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaClienteComsMultidispositivo.cs">
+    <Compile Include="Custom\Remoting\OrbitaClienteComsMultidispositivo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaClienteComsMultidispositivo.Designer.cs">
+    <Compile Include="Custom\Remoting\OrbitaClienteComsMultidispositivo.Designer.cs">
       <DependentUpon>OrbitaClienteComsMultidispositivo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaEstadoCanal.cs">
+    <Compile Include="Custom\Multiserver\OrbitaEstadoCanal.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaEstadoCanal.Designer.cs">
+    <Compile Include="Custom\Multiserver\OrbitaEstadoCanal.Designer.cs">
       <DependentUpon>OrbitaEstadoCanal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaControlVideo_OP.cs">
+    <Compile Include="Custom\Miscelanea\OrbitaControlVideo_OP.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaControlVideo_OP.designer.cs">
+    <Compile Include="Custom\Miscelanea\OrbitaControlVideo_OP.designer.cs">
       <DependentUpon>OrbitaControlVideo_OP.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaEstadoCanalLabel.cs">
+    <Compile Include="Custom\Multiserver\OrbitaEstadoCanalLabel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaEstadoCanalLabel.Designer.cs">
+    <Compile Include="Custom\Multiserver\OrbitaEstadoCanalLabel.Designer.cs">
       <DependentUpon>OrbitaEstadoCanalLabel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaServidorTCP.cs">
+    <Compile Include="Custom\Miscelanea\OrbitaServidorTCP.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaServidorTCP.Designer.cs">
+    <Compile Include="Custom\Miscelanea\OrbitaServidorTCP.Designer.cs">
       <DependentUpon>OrbitaServidorTCP.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\FrmConfigLogger.cs">
@@ -221,58 +221,58 @@
     <Compile Include="Formularios\FrmDetalle.designer.cs">
       <DependentUpon>FrmDetalle.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaClienteComs.cs">
+    <Compile Include="Custom\Remoting\OrbitaClienteComs.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaClienteComs.Designer.cs">
+    <Compile Include="Custom\Remoting\OrbitaClienteComs.Designer.cs">
       <DependentUpon>OrbitaClienteComs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaClienteComsOPC.cs">
+    <Compile Include="Custom\Remoting\OrbitaClienteComsOPC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaClienteComsOPC.Designer.cs">
+    <Compile Include="Custom\Remoting\OrbitaClienteComsOPC.Designer.cs">
       <DependentUpon>OrbitaClienteComsOPC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaClienteComsESPhoenixILBK48.cs">
+    <Compile Include="Custom\Remoting\OrbitaClienteComsESPhoenixILBK48.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaClienteComsESPhoenixILBK48.Designer.cs">
+    <Compile Include="Custom\Remoting\OrbitaClienteComsESPhoenixILBK48.Designer.cs">
       <DependentUpon>OrbitaClienteComsESPhoenixILBK48.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaClienteComsESSiemens.cs">
+    <Compile Include="Custom\Remoting\OrbitaClienteComsESSiemens.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaClienteComsESSiemens.Designer.cs">
+    <Compile Include="Custom\Remoting\OrbitaClienteComsESSiemens.Designer.cs">
       <DependentUpon>OrbitaClienteComsESSiemens.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaClienteComsMCUSB.cs">
+    <Compile Include="Custom\Remoting\OrbitaClienteComsMCUSB.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaClienteComsMCUSB.Designer.cs">
+    <Compile Include="Custom\Remoting\OrbitaClienteComsMCUSB.Designer.cs">
       <DependentUpon>OrbitaClienteComsMCUSB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaClienteRemoting.cs">
+    <Compile Include="Custom\Remoting\OrbitaClienteRemoting.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaClienteRemoting.Designer.cs">
+    <Compile Include="Custom\Remoting\OrbitaClienteRemoting.Designer.cs">
       <DependentUpon>OrbitaClienteRemoting.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaPuertoSerie.cs">
+    <Compile Include="Custom\Miscelanea\OrbitaPuertoSerie.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaPuertoSerie.Designer.cs">
+    <Compile Include="Custom\Miscelanea\OrbitaPuertoSerie.Designer.cs">
       <DependentUpon>OrbitaPuertoSerie.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaVisorDiferido.cs">
+    <Compile Include="Custom\VisorTCP\OrbitaVisorDiferido.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaVisorDiferido.designer.cs">
+    <Compile Include="Custom\VisorTCP\OrbitaVisorDiferido.designer.cs">
       <DependentUpon>OrbitaVisorDiferido.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\OrbitaVisorTCP.cs">
+    <Compile Include="Custom\VisorTCP\OrbitaVisorTCP.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Custom\OrbitaVisorTCP.designer.cs">
+    <Compile Include="Custom\VisorTCP\OrbitaVisorTCP.designer.cs">
       <DependentUpon>OrbitaVisorTCP.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -284,22 +284,22 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Custom\OrbitaClienteTCP.resx">
+    <EmbeddedResource Include="Custom\Miscelanea\OrbitaClienteTCP.resx">
       <DependentUpon>OrbitaClienteTCP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom\OrbitaClienteComsMultidispositivo.resx">
+    <EmbeddedResource Include="Custom\Remoting\OrbitaClienteComsMultidispositivo.resx">
       <DependentUpon>OrbitaClienteComsMultidispositivo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom\OrbitaControlVideo_OP.resx">
+    <EmbeddedResource Include="Custom\Miscelanea\OrbitaControlVideo_OP.resx">
       <DependentUpon>OrbitaControlVideo_OP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom\OrbitaEstadoCanal.resx">
+    <EmbeddedResource Include="Custom\Multiserver\OrbitaEstadoCanal.resx">
       <DependentUpon>OrbitaEstadoCanal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom\OrbitaEstadoCanalLabel.resx">
+    <EmbeddedResource Include="Custom\Multiserver\OrbitaEstadoCanalLabel.resx">
       <DependentUpon>OrbitaEstadoCanalLabel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom\OrbitaServidorTCP.resx">
+    <EmbeddedResource Include="Custom\Miscelanea\OrbitaServidorTCP.resx">
       <DependentUpon>OrbitaServidorTCP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmConfigLogger.resx">
@@ -308,31 +308,31 @@
     <EmbeddedResource Include="Formularios\FrmDetalle.resx">
       <DependentUpon>FrmDetalle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom\OrbitaClienteComs.resx">
+    <EmbeddedResource Include="Custom\Remoting\OrbitaClienteComs.resx">
       <DependentUpon>OrbitaClienteComs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom\OrbitaClienteComsOPC.resx">
+    <EmbeddedResource Include="Custom\Remoting\OrbitaClienteComsOPC.resx">
       <DependentUpon>OrbitaClienteComsOPC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom\OrbitaClienteComsESPhoenixILBK48.resx">
+    <EmbeddedResource Include="Custom\Remoting\OrbitaClienteComsESPhoenixILBK48.resx">
       <DependentUpon>OrbitaClienteComsESPhoenixILBK48.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom\OrbitaClienteComsESSiemens.resx">
+    <EmbeddedResource Include="Custom\Remoting\OrbitaClienteComsESSiemens.resx">
       <DependentUpon>OrbitaClienteComsESSiemens.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom\OrbitaClienteComsMCUSB.resx">
+    <EmbeddedResource Include="Custom\Remoting\OrbitaClienteComsMCUSB.resx">
       <DependentUpon>OrbitaClienteComsMCUSB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom\OrbitaClienteRemoting.resx">
+    <EmbeddedResource Include="Custom\Remoting\OrbitaClienteRemoting.resx">
       <DependentUpon>OrbitaClienteRemoting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom\OrbitaPuertoSerie.resx">
+    <EmbeddedResource Include="Custom\Miscelanea\OrbitaPuertoSerie.resx">
       <DependentUpon>OrbitaPuertoSerie.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom\OrbitaVisorDiferido.resx">
+    <EmbeddedResource Include="Custom\VisorTCP\OrbitaVisorDiferido.resx">
       <DependentUpon>OrbitaVisorDiferido.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom\OrbitaVisorTCP.resx">
+    <EmbeddedResource Include="Custom\VisorTCP\OrbitaVisorTCP.resx">
       <DependentUpon>OrbitaVisorTCP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -390,6 +390,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Clases\Configuración\" />
+    <Folder Include="Custom\Componentes\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Orbita.Controles.Comunes\Orbita.Controles.Comunes.csproj">
