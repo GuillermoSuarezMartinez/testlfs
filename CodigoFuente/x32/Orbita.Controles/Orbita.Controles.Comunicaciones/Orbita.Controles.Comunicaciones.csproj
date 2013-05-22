@@ -390,7 +390,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Clases\Configuración\" />
-    <Folder Include="Custom\Componentes\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Orbita.Controles.Comunes\Orbita.Controles.Comunes.csproj">
