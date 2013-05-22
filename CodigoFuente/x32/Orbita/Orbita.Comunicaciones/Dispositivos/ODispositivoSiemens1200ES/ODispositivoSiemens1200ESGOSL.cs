@@ -68,34 +68,7 @@ namespace Orbita.Comunicaciones
                 string smensaje = ASCIIEncoding.ASCII.GetString(bmensaje);
                 using (protocoloProcesoMensaje)
                 {
-                    if (smensaje.Contains("OCRDATA") || smensaje.Contains("OS_DATA"))//respuesta para la lectura
-                    {
-                        if (mensaje[15] == 0)
-                        {
-                            byte[] lecturas;
-                            if (protocoloProcesoMensaje.KeepAliveProcesar(mensaje, out lecturas))
-                            {
-                                for (int i = 0; i < this._numLecturas; i++)
-                                {
-                                    if (this._lecturas[i] != lecturas[i])
-                                    {
-                                        this.ESEncolar(lecturas);
-                                        break;
-                                    }
-                                }
-                                this._lecturas = lecturas;
-                                // Despertar el hilo en la línea:
-                                // this._eReset.Dormir de ProcesarHiloKeepAlive.                        
-                                this._eReset.Despertar(0);
-                            }
-                        }
-                        else//respuesta para la escritura
-                        {
-                            this._valorEscritura = mensaje;
-                            this._eReset.Despertar(2);
-                        }
-                    }
-                    if (smensaje.Contains("TRADATA"))//respuesta para la lectura
+                    if (smensaje.Contains("OSLDATA"))//respuesta para la lectura
                     {
                         if (mensaje[15] == 0)
                         {
@@ -129,7 +102,6 @@ namespace Orbita.Comunicaciones
                 string error = "Error en ProcesarMensajeRecibido en el dispositivo de ES Siemens: " + ex.ToString();
                 wrapper.Error(error);
             }
-
         }
 
         #endregion
@@ -150,6 +122,7 @@ namespace Orbita.Comunicaciones
                     try
                     {
                         byte[] entradas = null, salidas = null;
+                        entradas = new byte[2]; salidas = new byte[2];
                         Array.Copy(mensaje, 0, entradas, 0, 2);
                         Array.Copy(mensaje, 2, salidas, 0, 2);
                         this.ESProcesar(entradas, salidas);
@@ -198,6 +171,18 @@ namespace Orbita.Comunicaciones
         {
             OInfoDato infodato = null;
             OEventArgs ev = new OEventArgs();
+            try
+            {
+                OEventArgs evBit = new OEventArgs(); ;
+                evBit.Id = posicion;
+                evBit.Argumento = valor;
+                this.OnCambioDatoEntradas(evBit);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
             try
             {
                 for (int i = 0; i < 8; i++)
@@ -261,7 +246,17 @@ namespace Orbita.Comunicaciones
         {
             OInfoDato infodato = null;
             OEventArgs ev = new OEventArgs();
-
+            try
+            {
+                OEventArgs evBit = new OEventArgs(); ;
+                evBit.Id = posicion;
+                evBit.Argumento = valor;
+                this.OnCambioDatoSalidas(evBit);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
             for (int i = 0; i < 8; i++)
             {
                 try

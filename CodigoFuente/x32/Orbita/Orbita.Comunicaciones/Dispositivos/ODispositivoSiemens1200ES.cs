@@ -272,8 +272,11 @@ namespace Orbita.Comunicaciones
                 {
                     OInfoDato infodato = this.Tags.GetDB(variables[i]);
 
-                    salidas[infodato.Direccion - this._registroInicialSalidas] = this.ProcesarByte(salidas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
+                    if (!infodato.EsEntrada)
+                    {
+                        salidas[infodato.Direccion - this._registroInicialSalidas] = this.ProcesarByte(salidas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
 
+                    }
                 }
                 if (this.Winsock.State != WinsockStates.Connected)
                 {
@@ -588,53 +591,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         protected virtual void ESProcesarHilo()
         {
-            while (true)
-            {
-                byte[] mensaje = this.ESDesencolar();
-                //this.dtiniproc = DateTime.Now;
-
-                if (mensaje != null)
-                {
-                    try
-                    {
-                        byte[] entradas = null, salidas = null;
-                        switch (this.Protocolo)
-                        {
-                            case "OCR":
-                            case "OS":
-                                entradas = new byte[4];
-                                salidas = new byte[1];
-                                Array.Copy(mensaje, 0, entradas, 0, 4);
-                                Array.Copy(mensaje, 4, salidas, 0, 1);
-                                break;
-
-                            case "TRA":
-                                entradas = new byte[7];
-                                salidas = new byte[2];
-                                Array.Copy(mensaje, 0, entradas, 0, 7);
-                                Array.Copy(mensaje, 7, salidas, 0, 2);
-                                break;
-
-                        }
-
-
-
-                        this.ESProcesar(entradas, salidas);
-                        //this.dtfinproc = DateTime.Now;
-                        //TimeSpan ts = dtfinproc.Subtract(dtiniproc);
-                        //wrapper.Info("tiempo de proceso " + ts.TotalMilliseconds.ToString());
-                    }
-                    catch (Exception ex)
-                    {
-                        wrapper.Fatal("Error al procesar las ES en el dispositivo de ES Siemens. " + ex.ToString());
-                    }
-                    Thread.Sleep(10);
-                }
-                else
-                {
-                    this._eReset.Dormir(1);
-                }
-            }
+            
         }
         /// <summary>
         /// Procesa los bytes de entradas y salidas para actualizar los valores de las variables
