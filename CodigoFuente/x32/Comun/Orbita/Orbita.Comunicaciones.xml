@@ -950,6 +950,11 @@
             Valor devuelto para las entradas
             </summary>
         </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoES._segundosLogErrorComunicacion">
+            <summary>
+            Tiempo que tarda en logar un error de comunicación
+            </summary>
+        </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoES.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
             <summary>
             Inicializar una nueva instancia de la clase de ES.
@@ -1101,6 +1106,11 @@
             Valor devuelto tras la escritura del PLC
             </summary>
         </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES.fechaErrorWrapperWinsock">
+            <summary>
+            Fecha del ultimo wrapper de error
+            </summary>
+        </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
             <summary>
             Constructor de clase de Siemens1200
@@ -1128,6 +1138,18 @@
             <param name="variables">Colección de variables.</param>
             <param name="valores">Colección de valores.</param>
             <returns></returns>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.OnCambioDatoEntradas(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambio de dato de las entradas
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.OnCambioDatoSalidas(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Cambio de dato de las salidas
+            </summary>
+            <param name="e"></param>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.CrearParametrosConexionTCP">
             <summary>
@@ -1238,6 +1260,16 @@
             </summary>
             <param name="sender">Objeto que lanza el evento</param>
             <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="E:Orbita.Comunicaciones.ODispositivoSiemens1200ES.OrbitaCambioDatoEntradas">
+            <summary>
+            Evento de cambio de dato entradas
+            </summary>
+        </member>
+        <member name="E:Orbita.Comunicaciones.ODispositivoSiemens1200ES.OrbitaCambioDatoSalidas">
+            <summary>
+            Evento de cambio de dato salidas
+            </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.ODispositivoSiemens1200ES.IdMensaje">
             <summary>
@@ -1793,6 +1825,11 @@
         <member name="F:Orbita.Comunicaciones.ODispositivoILBKPhoenix._registroInicialSalidas">
             <summary>
             Valor inicial del registro de escrituras
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoILBKPhoenix.fechaErrorWrapperWinsock">
+            <summary>
+            Fecha del ultimo wrapper de error
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoILBKPhoenix.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">

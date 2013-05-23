@@ -2489,6 +2489,18 @@
             <param name="b">Punto de destino</param>
             <returns>Distancia entre los puntos</returns>
         </member>
+        <member name="M:Orbita.Utiles.OMath.CalculoLineaMinimosCuadrados(System.Drawing.PointF[],System.Double@,System.Double@)">
+            <summary>
+            Calcula los parámetros m y b tal que y=m*x+b de la línea que más se aproxima a la nube de puntos pasada por parámetro
+            No válido para líneas verticales!!!
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OMath.CalculoLineaMinimosCuadrados(System.Collections.Generic.List{System.Drawing.PointF},System.Double@,System.Double@)">
+            <summary>
+            Calcula los parámetros m y b tal que y=m*x+b de la línea que más se aproxima a la nube de puntos pasada por parámetro.
+            No válido para líneas verticales!!!
+            </summary>
+        </member>
         <member name="T:Orbita.Utiles.OCola">
             <summary>
             Queue .NET.
