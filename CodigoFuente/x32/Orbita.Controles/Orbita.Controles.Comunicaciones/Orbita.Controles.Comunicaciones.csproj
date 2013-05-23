@@ -209,6 +209,12 @@
     <Compile Include="Custom\Miscelanea\OrbitaServidorTCP.Designer.cs">
       <DependentUpon>OrbitaServidorTCP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom\Remoting\OrbitaClienteEventoComs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\Remoting\OrbitaClienteEventoComs.Designer.cs">
+      <DependentUpon>OrbitaClienteEventoComs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FrmConfigLogger.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Custom\Miscelanea\OrbitaServidorTCP.resx">
       <DependentUpon>OrbitaServidorTCP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\Remoting\OrbitaClienteEventoComs.resx">
+      <DependentUpon>OrbitaClienteEventoComs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FrmConfigLogger.resx">
       <DependentUpon>FrmConfigLogger.cs</DependentUpon>

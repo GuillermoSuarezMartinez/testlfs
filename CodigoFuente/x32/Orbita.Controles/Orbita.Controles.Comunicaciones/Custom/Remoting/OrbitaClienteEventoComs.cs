@@ -88,6 +88,7 @@ namespace Orbita.Controles.Comunicaciones.Custom.Remoting
             else
             {
                 OMensajes.MostrarInfo("Servidor conectado");
+                this.IniciarHiloEstadoCanal();
             }
         }
         /// <summary>
