@@ -21,7 +21,7 @@ namespace Orbita.Framework.Core
         /// <summary>
         /// Modo de autenticación.
         /// </summary>
-        internal const bool DefectoAutenticación = false;
+        internal const bool DefectoAutenticación = true;
         /// <summary>
         /// Selector del idioma de cada uno de los controles.
         /// </summary>

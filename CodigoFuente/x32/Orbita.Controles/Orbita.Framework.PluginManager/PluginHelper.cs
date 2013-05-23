@@ -67,7 +67,8 @@ namespace Orbita.Framework.PluginManager
         public static System.Collections.Generic.IDictionary<string, PluginInfo> Plugins()
         {
             System.Collections.Generic.Dictionary<string, PluginInfo> plugins = new System.Collections.Generic.Dictionary<string, PluginInfo>();
-            foreach (string fichero in PluginManager.PluginHelper.Ensamblados().Values)
+            System.Collections.Generic.IDictionary<string, string> ensamblados = PluginManager.PluginHelper.Ensamblados();
+            foreach (string fichero in ensamblados.Values)
             {
                 if (System.IO.File.Exists(fichero))
                 {
@@ -75,7 +76,8 @@ namespace Orbita.Framework.PluginManager
                     if (archivoInfo.Extension.In(".dll", ".exe"))
                     {
                         System.Reflection.Assembly ensamblado = System.Reflection.Assembly.LoadFile(fichero);
-                        foreach (System.Type tipo in ensamblado.GetTypes())
+                        System.Type[] tipos = ensamblado.GetTypes();
+                        foreach (System.Type tipo in tipos)
                         {
                             if (tipo.IsSubclassOf(typeof(System.Windows.Forms.Control)))
                             {

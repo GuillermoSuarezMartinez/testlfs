@@ -17,10 +17,6 @@ namespace Orbita.Framework.Core
     {
         #region Atributos
         /// <summary>
-        /// Control contenedor de plugins.
-        /// </summary>
-        ContainerForm control;
-        /// <summary>
         /// Mostrar el formulario de autenticación.
         /// </summary>
         bool autenticación;
