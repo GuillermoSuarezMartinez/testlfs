@@ -52,6 +52,10 @@ namespace Orbita.Comunicaciones
         /// Valor inicial del registro de escrituras
         /// </summary>
         private int _registroInicialSalidas;
+        /// <summary>
+        /// Fecha del ultimo wrapper de error
+        /// </summary>
+        DateTime fechaErrorWrapperWinsock = DateTime.MaxValue;
         #endregion
 
         #region Constructor
@@ -91,9 +95,11 @@ namespace Orbita.Comunicaciones
             estado.Id = this.Identificador;
             estado.Enlace = this.Tags.HtVida.Enlaces[0].ToString();
             Boolean responde = true;
+            DateTime fechaErrorWrapper = DateTime.MaxValue;            
 
             int reintento = 0;
             int maxReintentos = 3;
+
             while (true)
             {
                 if (this.Winsock.State != WinsockStates.Connected)
@@ -107,7 +113,20 @@ namespace Orbita.Comunicaciones
                     }
                     catch (Exception ex)
                     {
-                        wrapper.Error("Error al conectar con dispositivo de ES Phoenix para keep alive: ", ex);
+                        if (fechaErrorWrapper == DateTime.MaxValue)
+                        {
+                            wrapper.Error("ODispositivoILBKPhoenix ProcesarHiloVida error para keep alive: ", ex);
+                            fechaErrorWrapper = DateTime.Now;
+                        }
+                        else
+                        {
+                            TimeSpan t = DateTime.Now.Subtract(fechaErrorWrapper);
+                            if (t.TotalSeconds>this._segundosLogErrorComunicacion)
+                            {
+                                wrapper.Error("ODispositivoILBKPhoenix ProcesarHiloVida error para keep alive: ", ex);
+                                fechaErrorWrapper = DateTime.Now;
+                            }
+                        }                        
                     }
                 }
                 else
@@ -161,7 +180,7 @@ namespace Orbita.Comunicaciones
                     catch (Exception ex)
                     {
                         estado.Estado = "NOK";
-                        wrapper.Error("Error en keep alive del dispositivo de ES Phoenix: ", ex);
+                        wrapper.Error("ODispositivoILBKPhoenix ProcesarHiloVida: ", ex);
                     }
                 }
                 try
@@ -171,7 +190,7 @@ namespace Orbita.Comunicaciones
                 }
                 catch (Exception ex)
                 {
-                    wrapper.Error("Error en envío de evento de comunicaciones en dispositivo de ES Phoenix: ", ex);
+                    wrapper.Error("ODispositivoILBKPhoenix ProcesarHiloVida Error en envío de evento de comunicaciones: ", ex);
                 }
 
             }
@@ -751,12 +770,25 @@ namespace Orbita.Comunicaciones
         {
             try
             {
-                string error = "Error Received en el dispositivo de ES Phoenix: " + e.Message;
-                wrapper.Info(error);
+                string error = "ODispositivoILBKPhoenix. _winsock_ErrorReceived: " + e.Message;
+                if (fechaErrorWrapperWinsock == DateTime.MaxValue)
+                {
+                    wrapper.Error(error);
+                    fechaErrorWrapperWinsock = DateTime.Now;
+                }
+                else
+                {
+                    TimeSpan t = DateTime.Now.Subtract(fechaErrorWrapperWinsock);
+                    if (t.TotalSeconds > this._segundosLogErrorComunicacion)
+                    {
+                        wrapper.Error(error);
+                        fechaErrorWrapperWinsock = DateTime.Now;
+                    }
+                }
             }
             catch (Exception ex)
             {
-                string error = "Error Received en el dispositivo de ES Phoenix: " + ex.ToString();
+                string error = "ODispositivoILBKPhoenix. _winsock_ErrorReceived catch: " + ex.ToString();
                 wrapper.Error(error);
             }
         }

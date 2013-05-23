@@ -78,6 +78,10 @@ namespace Orbita.Comunicaciones
         /// Valor devuelto tras la escritura del PLC
         /// </summary>
         protected byte[] _valorEscritura;
+        /// <summary>
+        /// Fecha del ultimo wrapper de error
+        /// </summary>
+        DateTime fechaErrorWrapperWinsock = DateTime.MaxValue;
         #endregion
 
         #region Constructor
@@ -126,6 +130,7 @@ namespace Orbita.Comunicaciones
             estado.Id = this.Identificador;
             estado.Enlace = this.Tags.HtVida.Enlaces[0].ToString();
             Boolean responde = true;
+            DateTime fechaErrorWrapper = DateTime.MaxValue;  
 
             int reintento = 0;
             int maxReintentos = 3;
@@ -143,7 +148,20 @@ namespace Orbita.Comunicaciones
                     }
                     catch (Exception ex)
                     {
-                        wrapper.Error("ODispositivoSiemens1200 ProcesarHiloVida Error al conectar: ", ex);
+                        if (fechaErrorWrapper == DateTime.MaxValue)
+                        {
+                            wrapper.Error("ODispositivoSiemens1200 ProcesarHiloVida error para keep alive: ", ex);
+                            fechaErrorWrapper = DateTime.Now;
+                        }
+                        else
+                        {
+                            TimeSpan t = DateTime.Now.Subtract(fechaErrorWrapper);
+                            if (t.TotalSeconds > this._segundosLogErrorComunicacion)
+                            {
+                                wrapper.Error("ODispositivoSiemens1200 ProcesarHiloVida error para keep alive: ", ex);
+                                fechaErrorWrapper = DateTime.Now;
+                            }
+                        }        
                     }
                 }
                 else
@@ -1018,12 +1036,25 @@ namespace Orbita.Comunicaciones
         {
             try
             {
-                string error = "Error Received en el dispositivo de ES Siemens: " + e.Message;
-                wrapper.Info(error);
+                string error = "ODispositivoSiemens1200ES _winsock_ErrorReceived: " + e.Message;
+                if (fechaErrorWrapperWinsock == DateTime.MaxValue)
+                {
+                    wrapper.Error(error);
+                    fechaErrorWrapperWinsock = DateTime.Now;
+                }
+                else
+                {
+                    TimeSpan t = DateTime.Now.Subtract(fechaErrorWrapperWinsock);
+                    if (t.TotalSeconds > this._segundosLogErrorComunicacion)
+                    {
+                        wrapper.Error(error);
+                        fechaErrorWrapperWinsock = DateTime.Now;
+                    }
+                }                        
             }
             catch (Exception ex)
             {
-                string error = "Error Received en el dispositivo de ES Siemens: " + ex.ToString();
+                string error = "ODispositivoSiemens1200ES _winsock_ErrorReceived catch: " + ex.ToString();
                 wrapper.Error(error);
             }
         }

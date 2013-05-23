@@ -40,6 +40,10 @@ namespace Orbita.Comunicaciones
         /// Valor devuelto para las entradas
         /// </summary>
         public byte[] Entradas;
+        /// <summary>
+        /// Tiempo que tarda en logar un error de comunicación
+        /// </summary>
+        public int _segundosLogErrorComunicacion = 60;
         #endregion
 
         #region Constructores
