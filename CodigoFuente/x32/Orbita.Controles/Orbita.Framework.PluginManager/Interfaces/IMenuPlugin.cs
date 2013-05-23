@@ -9,7 +9,6 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.Xml.Linq;
 namespace Orbita.Framework.PluginManager
 {
     /// <summary>
