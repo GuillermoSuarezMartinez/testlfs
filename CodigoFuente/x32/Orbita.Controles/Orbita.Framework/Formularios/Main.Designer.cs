@@ -18,7 +18,6 @@
         {
             if (disposing && (components != null))
             {
-                this.Shown -= new System.EventHandler(this.OrbitaFramework_Shown);
                 this.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.OrbitaFramework_KeyDown);
                 components.Dispose();
             }
@@ -38,7 +37,6 @@
             // 
             this.ClientSize = new System.Drawing.Size(491, 365);
             this.Name = "Main";
-            this.Shown += new System.EventHandler(this.OrbitaFramework_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OrbitaFramework_KeyDown);
             this.ResumeLayout(false);
 
