@@ -36,13 +36,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Orbita.BBDD">
-      <HintPath>C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.BBDD.dll</HintPath>
+      <HintPath>..\..\Comun\Orbita\Orbita.BBDD.dll</HintPath>
     </Reference>
     <Reference Include="Orbita.MS">
-      <HintPath>C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.MS.dll</HintPath>
+      <HintPath>..\..\Comun\Orbita\Orbita.MS.dll</HintPath>
     </Reference>
     <Reference Include="Orbita.Utiles">
-      <HintPath>C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Utiles.dll</HintPath>
+      <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
