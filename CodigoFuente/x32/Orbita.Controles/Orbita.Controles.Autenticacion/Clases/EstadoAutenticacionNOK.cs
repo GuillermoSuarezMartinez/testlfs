@@ -25,6 +25,7 @@ namespace Orbita.Controles.Autenticacion
         public EstadoAutenticacionNOK(string mensaje)
             : this(mensaje, BotonesAutenticacion.Aceptar) { }
         public EstadoAutenticacionNOK(string mensaje, BotonesAutenticacion botón)
+            : base(ResultadoAutenticacion.NOK)
         {
             this.Mensaje = mensaje;
             this.Botón = botón;

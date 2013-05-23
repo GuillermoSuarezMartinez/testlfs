@@ -10,6 +10,7 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System.Linq;
+using System.Windows.Forms;
 namespace Orbita.Framework
 {
     [System.CLSCompliantAttribute(false)]
@@ -26,6 +27,10 @@ namespace Orbita.Framework
         System.Collections.Generic.IDictionary<string, Core.ControlInfo> controles;
         #endregion
 
+        #region Delegados
+        internal delegate void DelegadoInitializePluginsMenu(Core.WaitWindowEventArgs e);
+        #endregion
+
         #region Constructor
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Framework.Main.
@@ -33,47 +38,122 @@ namespace Orbita.Framework
         public Main()
             : base()
         {
-            // Inicializar componentes del entorno.
             InitializeComponent();
-            // Inicializar la colección de plugins del entorno.
-            InitializePluginsCollection();
-            // Cargar formulario de autenticación si la propiedad lo indica.
-            LoadAuthentication();
+            InitializeApplication();
         }
         #endregion
 
         #region Métodos privados
-        void InitializePluginsCollection()
+        void InitializeApplication()
         {
+            // Inicializar todos los métodos del entorno.
+            object result = Core.WaitWindow.Mostrar(InitializeAllMethods);
+
+            // En el caso que no exista autenticación y se han ejecutado el resto de métodos de inicialización,
+            // se deben mostrar aquellos plugin que necesiten iniciarse al inicio.
+            if (result.ToString() == bool.FalseString)
+            {
+                // Mostrar plugins que deben iniciarse según el valor de inicio de plugin que indica la interface (IPlugin.MostrarAlIniciar).
+                ShowPluginsStartup();
+            }
+            else
+            {
+                // Se produce la llamada al formulario de autenticación a consecuencia de la configuración del entorno.
+                // La resolución del método LoadAuthentication() se resuelve en el manejador Authentication_DialogReturned.
+                LoadAuthentication();
+            }
+        }
+        void InitializeAllMethods(object sender, Core.WaitWindowEventArgs e)
+        {
+            // Inicializar la colección de plugins del entorno.
+            InitializePluginsCollection(e);
+
+            // Inicializar entorno de acuerdo a lo que establezca el cliente en su clase
+            // 'Configuración' herencia de la clase abstracta.
+            InitializeEnvironment(e);
+
+            e.Resultado = this.OI.Autenticación;
+            if (e.Resultado.ToString() == bool.TrueString) return;
+
+            // Inicializar el resto de métodos que implementan las interfaces de plugins.
+            InitializeAllPluginsMethods(e);
+        }
+        void InitializeAllPluginsMethods(object sender, Core.WaitWindowEventArgs e)
+        {
+            InitializeAllPluginsMethods(e);
+        }
+        void InitializeAllPluginsMethods(Core.WaitWindowEventArgs e)
+        {
+            // Inicializar plugins que implementan la interface IMenuPlugin.
+            InitializePluginsMenu(e);
+
+            // Inicializar plugins que implementan la interface IFormIdioma.
+            InitializePluginsWithChangedLanguage(e);
+            
+            // Inicializar plugins que implementan la interface IFormManejadorCierre.
+            InitializePluginsWithCloseHandler(e);
+            
+            // Inicializar configuración de canales.
+            InitializeConfigurationChannelCollection(e);
+
+            // Inicializar colección de controles de plugins.
+            InitializePluginControlsCollection(e);
+        }
+        void InitializePluginsCollection(Core.WaitWindowEventArgs e)
+        {
+            e.Window.Mensaje = "Cargando plugins ...";
             this.plugins = PluginManager.PluginHelper.Plugins();
         }
-        void InitializeMenuPlugins()
+        void InitializeEnvironment(Core.WaitWindowEventArgs e)
         {
             try
             {
-                // Obtener aquellos plugins que implementan la interfaz IItemMenu, ordenarlos y vincularlos al control MenuStrip.
-                // ...utilizar LINQ para especificar aquellos plugins que implementan la interfaz IItemMenu y ordenar dichos valores.
-                // ...AsQueryable(), proporciona funcionalidad para evaluar consultas con respecto a un origen de datos concreto en el 
-                // que se especifica el tipo de los datos, evita CA1502 complejidad ciclomática de 28.
-                var pluginsDeMenu = (from x in this.plugins
-                                     where x.Value.ItemMenu != null
-                                     select x.Value).AsQueryable()
-                                                    .OrderBy(g => g.ItemMenu.Grupo)
-                                                    .ThenBy(sg => sg.ItemMenu.SubGrupo)
-                                                    .ThenBy(o => o.ItemMenu.Orden).ToList();
-
-                // Si existen plugins que implementen la interfaz de menú debemos crear el control MenuStrip.
-                if (pluginsDeMenu.Count > 0)
+                e.Window.Mensaje = "Inicializando entorno ...";
+                Core.ConfiguracionHelper.Configuracion.InicializarEntorno(this, System.EventArgs.Empty);
+            }
+            catch (System.NullReferenceException) { }
+            catch (System.NotImplementedException) { }
+        }
+        void InitializePluginsMenu(Core.WaitWindowEventArgs e)
+        {
+            this.SuspendLayout();
+            try
+            {
+                e.Window.Mensaje = "Inicializar menu ...";
+                if (this.InvokeRequired)
                 {
-                    // Crear dinámicamente el control pluginMenuStrip.
-                    InitializeComponentMenuStrip();
+                    // Si el objeto tiene otros subprocesos pendientes, entonces
+                    // el delegado atendera esa petición invocando un nuevo objeto
+                    // caso contrario se añadira el menú en el entorno.
+                    DelegadoInitializePluginsMenu delegado = new DelegadoInitializePluginsMenu(InitializePluginsMenu);
+                    this.Invoke(delegado, new object[] { e });
+                }
+                else
+                {
+                    // Obtener aquellos plugins que implementan la interfaz IItemMenu, ordenarlos y vincularlos al control MenuStrip.
+                    // ...utilizar LINQ para especificar aquellos plugins que implementan la interfaz IItemMenu y ordenar dichos valores.
+                    // ...AsQueryable(), proporciona funcionalidad para evaluar consultas con respecto a un origen de datos concreto en el 
+                    // que se especifica el tipo de los datos, evita CA1502 complejidad ciclomática de 28.
+                    var pluginsDeMenu = (from x in this.plugins
+                                         where x.Value.ItemMenu != null
+                                         select x.Value).AsQueryable()
+                                                        .OrderBy(g => g.ItemMenu.Grupo)
+                                                        .ThenBy(sg => sg.ItemMenu.SubGrupo)
+                                                        .ThenBy(o => o.ItemMenu.Orden).ToList();
 
-                    // Recorrer la colección y vincular cada plugin a cada opción de menú.
-                    foreach (PluginManager.PluginInfo pluginInfo in pluginsDeMenu)
+                    // Si existen plugins que implementen la interfaz de menú debemos crear el control MenuStrip.
+                    if (pluginsDeMenu.Count > 0)
                     {
-                        if (pluginInfo.Plugin is PluginManager.IFormPlugin)
+                        // Crear dinámicamente el control pluginMenuStrip.
+                        InitializeComponentMenuStrip();
+
+                        // Recorrer la colección y vincular cada plugin a cada opción de menú.
+                        foreach (PluginManager.PluginInfo pluginInfo in pluginsDeMenu)
                         {
-                            pluginMenuStrip.AddPlugin(pluginInfo);
+                            if (pluginInfo.Plugin is PluginManager.IFormPlugin)
+                            {
+                                pluginMenuStrip.AddPlugin(pluginInfo);
+                            }
                         }
                     }
                 }
@@ -86,20 +166,28 @@ namespace Orbita.Framework
             {
                 this.plugins = this.plugins.OrderBy(t => t.Key).ToDictionary(k => k.Key, v => v.Value);
             }
+            finally
+            {
+               this.ResumeLayout(false);
+               this.PerformLayout();
+            }
         }
-        void InitializePluginsWithChangedLanguage()
+        void InitializePluginsWithChangedLanguage(Core.WaitWindowEventArgs e)
         {
+            e.Window.Mensaje = "Inicializar cambio de idioma ...";
             // ... utilizar LINQ para obtener aquellos plugins que implementan la interfaz de cambio de idioma.
             System.Collections.Generic.IEnumerable<PluginManager.PluginInfo> pluginsConCambioDeIdioma = (from x in this.plugins
                                                                                                          where x.Value.Idioma != null
                                                                                                          select x.Value).ToList();
+            
             foreach (var pluginInfo in pluginsConCambioDeIdioma)
             {
                 pluginInfo.Idioma.OnCambiarIdioma += new System.EventHandler<PluginManager.IdiomaChangedEventArgs>(OnCambiarIdioma);
             }
         }
-        void InitializePluginsWithCloseHandler()
+        void InitializePluginsWithCloseHandler(Core.WaitWindowEventArgs e)
         {
+            e.Window.Mensaje = "Inicializar manejador de cierre ...";
             // ... utilizar LINQ para obtener aquellos plugins que implementan la interfaz de manejador de cierre de formulario principal.
             System.Collections.Generic.IEnumerable<PluginManager.PluginInfo> pluginsConManejadorCierre = (from x in this.plugins
                                                                                                           where x.Value.ManejadorCierre != null
@@ -109,27 +197,32 @@ namespace Orbita.Framework
                 pluginInfo.ManejadorCierre.OnClose += new System.EventHandler<System.Windows.Forms.FormClosedEventArgs>(OnClose);
             }
         }
-        void InitializeEnvironment()
+        void InitializePluginControlsCollection(Core.WaitWindowEventArgs e)
         {
-            Core.ConfiguracionHelper.Configuracion.InicializarEntorno(this, System.EventArgs.Empty);
+            e.Window.Mensaje = "Inicializar colección de controles ...";
+            try
+            {
+                this.controles = Core.ConfiguracionHelper.Configuracion.GetControlesPlugin(this.OI.Idioma);
+                // Inicializar el valor de cada uno de los controles de la colección.
+                InitializePluginControls(e);
+            }
+            catch (System.NullReferenceException) { }
+            catch (System.NotImplementedException) { }
         }
-        void InitializePluginControlsCollection()
+        void InitializePluginControls(Core.WaitWindowEventArgs e)
         {
-            this.controles = Core.ConfiguracionHelper.Configuracion.GetControlesPlugin(this.OI.Idioma);
-        }
-        void InitializePluginControls()
-        {
+            e.Window.Mensaje = "Inicializar controles ... ";
             foreach (PluginManager.PluginInfo pluginInfo in this.plugins.Values)
             {
                 System.Windows.Forms.Control control = null;
                 if (pluginInfo.Plugin is PluginManager.IUserControlPlugin)
                 {
-                    Orbita.Framework.PluginManager.IUserControlPlugin plugin = pluginInfo.Plugin as Orbita.Framework.PluginManager.IUserControlPlugin;
+                    PluginManager.IUserControlPlugin plugin = pluginInfo.Plugin as Orbita.Framework.PluginManager.IUserControlPlugin;
                     control = plugin.Control;
                 }
                 else if (pluginInfo.Plugin is PluginManager.IFormPlugin)
                 {
-                    Orbita.Framework.PluginManager.IFormPlugin plugin = pluginInfo.Plugin as Orbita.Framework.PluginManager.IFormPlugin;
+                    PluginManager.IFormPlugin plugin = pluginInfo.Plugin as Orbita.Framework.PluginManager.IFormPlugin;
                     control = plugin.Formulario;
                 }
                 InitializePluginControls(pluginInfo.Plugin.ToString(), control);
@@ -150,20 +243,7 @@ namespace Orbita.Framework
                 }
             }
         }
-        void LoadAuthentication()
-        {
-            Orbita.Controles.Autenticacion.AutenticacionManager autenticacion = new Orbita.Controles.Autenticacion.AutenticacionManager();
-            autenticacion.ControlAutenticacion += new System.EventHandler<Controles.Autenticacion.AutenticacionChangedEventArgs>(Autenticacion_Click);
-            if (this.OI.Autenticación)
-            {
-                autenticacion.Mostrar(this);
-            }
-            else
-            {
-                autenticacion.Validar();
-            }
-        }
-        void ShowStartupPlugins()
+        void ShowPluginsStartup()
         {
             // ... utilizar LINQ para obtener aquellos plugins que se deben mostrar al iniciar el main.
             System.Collections.Generic.IEnumerable<PluginManager.PluginInfo> pluginsIniciales = (from x in this.plugins
@@ -213,16 +293,60 @@ namespace Orbita.Framework
                 }
             }
         }
+        void LoadAuthentication()
+        {
+            Orbita.Controles.Autenticacion.FrmValidar formValidar = new Orbita.Controles.Autenticacion.FrmValidar();
+            ShowChildDialog(formValidar, Authentication_DialogReturned); //Show the form as an dialog, nothing else will be enabled. set the recieving method for the dialog result
+            //Orbita.Controles.Autenticacion.AutenticacionManager autenticacion = new Orbita.Controles.Autenticacion.AutenticacionManager();
+            //autenticacion.ControlAutenticacion += new System.EventHandler<Controles.Autenticacion.AutenticacionChangedEventArgs>(Autenticacion_Click);
+            //if (this.OI.Autenticación)
+            //{
+            //    autenticacion.Mostrar(this);
+            //}
+            //else
+            //{
+            //    autenticacion.Validar();
+            //}
+        }
         #endregion
 
-        #region Métodos privados estáticos
-        static void InitializeConfigurationChannelCollection()
+        protected void Authentication_DialogReturned(object sender, Core.DialogResultArgs e)
         {
-            System.Collections.Generic.IList<Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal> canales = Orbita.Framework.Core.ConfiguracionHelper.Configuracion.GetConfiguracionCanal();
-            foreach (var canal in canales)
+            try
             {
-                canal.Iniciar();
+                if (e.Result == System.Windows.Forms.DialogResult.OK)
+                {
+                    Orbita.Controles.Autenticacion.FrmValidar frm = (Orbita.Controles.Autenticacion.FrmValidar)sender;
+                    frm.Hide();
+                    Core.WaitWindow.Mostrar(InitializeAllPluginsMethods);
+                    // Mostrar plugins que deben iniciarse según el valor de inicio de plugin que indica la interface.
+                    ShowPluginsStartup();
+                }
+                else
+                {
+                    // El usuario quiere salir de la aplicación. Cerrar todo.
+                    System.Windows.Forms.Application.Exit();
+                }
             }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
+        #region Métodos privados estáticos
+        static void InitializeConfigurationChannelCollection(Core.WaitWindowEventArgs e)
+        {
+            try
+            {
+                e.Window.Mensaje = "";
+                foreach (Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal canal in Core.ConfiguracionHelper.Configuracion.GetConfiguracionCanal())
+                {
+                    canal.Iniciar();
+                }
+            }
+            catch (System.NullReferenceException) { }
+            catch (System.NotImplementedException) { }
         }
         #endregion
 
@@ -250,46 +374,7 @@ namespace Orbita.Framework
             {
                 if (e.Resultado == Orbita.Controles.Autenticacion.ResultadoAutenticacion.OK)
                 {
-                    // Inicializar plugins que implementan la interface IMenuPlugin.
-                    InitializeMenuPlugins();
-                    // Inicializar plugins que implementan la interface IFormIdioma.
-                    InitializePluginsWithChangedLanguage();
-                    // Inicializar plugins que implementan la interface IFormManejadorCierre.
-                    InitializePluginsWithCloseHandler();
-
-                    try
-                    {
-                        // Inicializar entorno de acuerdo a lo que establezca el cliente.
-                        InitializeEnvironment();
-                    }
-                    catch (System.NullReferenceException) { }
-                    catch (System.NotImplementedException) { }
-
-                    try
-                    {
-                        // Inicializar colección de controles de plugins.
-                        InitializePluginControlsCollection();
-                        // Inicializar el valor de cada uno de los controles de la colección.
-                        InitializePluginControls();
-                    }
-                    catch (System.NullReferenceException) { }
-                    catch (System.NotImplementedException) { }
-
-                    try
-                    {
-                        // Inicializar configuración de canales.
-                        InitializeConfigurationChannelCollection();
-                    }
-                    catch (System.NullReferenceException) { }
-                    catch (System.NotImplementedException) { }
-
-                    try
-                    {
-                        // Mostrar plugins que deben iniciarse según el valor de inicio de plugin que indica la interface.
-                        ShowStartupPlugins();
-                    }
-                    catch (System.NullReferenceException) { }
-                    catch (System.NotImplementedException) { }
+                    Core.WaitWindow.Mostrar(InitializeAllPluginsMethods);
                 }
                 else if (e.Resultado == Orbita.Controles.Autenticacion.ResultadoAutenticacion.NOK)
                 {
@@ -314,9 +399,9 @@ namespace Orbita.Framework
                     // Modificar el atributo de idioma.
                     this.OI.Idioma = e.Idioma;
                     // Inicializar la colección de controles en función del idioma seleccionado.
-                    InitializePluginControlsCollection();
+                    //InitializePluginControlsCollection();
                     // Mostrar el valor de cada uno de los controles en los Plugins de carga.
-                    InitializePluginControls();
+                    //InitializePluginControls();
                 }
             }
             catch (System.NullReferenceException) { }
