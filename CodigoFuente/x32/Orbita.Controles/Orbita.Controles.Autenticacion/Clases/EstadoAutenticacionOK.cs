@@ -18,7 +18,7 @@ namespace Orbita.Controles.Autenticacion
     {
         #region Constructores
         public EstadoAutenticacionOK()
-            : base(ResultadoAutenticacion.OK) 
+            : base(ResultadoAutenticacion.OK)
         {
             this.Botón = BotonesAutenticacion.Aceptar;
         }

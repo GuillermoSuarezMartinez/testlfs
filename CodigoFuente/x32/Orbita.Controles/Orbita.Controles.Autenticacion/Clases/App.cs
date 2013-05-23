@@ -11,7 +11,7 @@
 //***********************************************************************
 namespace Orbita.Controles.Autenticacion
 {
-    public static class App
+    internal static class App
     {
         public static Orbita.BBDD.OSqlServer COMS;
     }

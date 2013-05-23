@@ -19,18 +19,18 @@ namespace Orbita.Controles.Autenticacion
         /// <summary>
         /// Sin autenticación.
         /// </summary>
-        Ninguna = 0,
+        Ninguna,
         /// <summary>
         /// Autenticación por base de datos.
         /// </summary>
-        BBDD = 1,
+        BBDD,
         /// <summary>
         /// Autenticación Active Directory.
         /// </summary>
-        ActiveDirectory = 2,
+        ActiveDirectory,
         /// <summary>
         /// Autenticación OpenLDAP.
         /// </summary>
-        OpenLDAP = 3
+        OpenLDAP
     }
 }

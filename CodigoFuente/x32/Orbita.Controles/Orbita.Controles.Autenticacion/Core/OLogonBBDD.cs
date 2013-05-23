@@ -9,50 +9,46 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
-using System.Data;
-using Orbita.MS;
 namespace Orbita.Controles.Autenticacion
 {
     /// <summary>
     /// Autenticación con base de datos.
     /// </summary>
-    public class OLogonBBDD : OLogon
+    public class OLogOnBBDD : OLogOn
     {
+        #region Métodos públicos
         /// <summary>
         /// Validación con la base de datos.
         /// </summary>
         /// <returns>Mensaje de validación de argumento Orbita.Controles.Autenticacion.OEstadoValidacion.</returns>
         public override AutenticacionChangedEventArgs Validar()
         {
-            AutenticacionChangedEventArgs args = new AutenticacionChangedEventArgs();
-            OEstadoValidacion validacion = new OEstadoValidacion("NOK", "Sin validar", "Aceptar");
+            EstadoAutenticacion estado = null;
             try
             {
-                DataTable dt = AppBD.Get_Autenticacion_BBDD(this.usuario);
+                System.Data.DataTable dt = AppBD.Get_Autenticacion_BBDD(this.usuario);
                 if (dt.Rows.Count > 0)
                 {
-                    if (this.password == OCifrado.DesencriptarTexto(dt.Rows[0]["FWUP_PASS"].ToString()))
+                    if (this.password == Orbita.MS.OCifrado.DesencriptarTexto(dt.Rows[0]["FWUP_PASS"].ToString()))
                     {
-                        validacion.Resultado = "OK";
-                        validacion.Mensaje = "";
+                        estado = new EstadoAutenticacionOK();
                     }
                     else
                     {
-                        validacion.Mensaje = "Password incorrecto";
+                        estado = new EstadoAutenticacionNOK(MensajesAutenticacion.ContraseñaIncorrecta);
                     }
                 }
                 else
                 {
-                    validacion.Mensaje = "No existe el usuario";
+                    estado = new EstadoAutenticacionNOK(MensajesAutenticacion.UsuarioIncorrecto);
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
-                validacion.Mensaje = "Error al validar: " + ex.ToString();
+                estado = new EstadoAutenticacionNOK("Error al validar: " + ex.ToString());
             }
-            args.Estado = validacion;
-            return args;
+            return new AutenticacionChangedEventArgs(estado);
         }
+        #endregion
     }
 }

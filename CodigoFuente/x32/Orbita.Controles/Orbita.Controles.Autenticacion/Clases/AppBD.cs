@@ -11,7 +11,7 @@
 //***********************************************************************
 namespace Orbita.Controles.Autenticacion
 {
-    public class AppBD
+    public static class AppBD
     {
         public static System.Data.DataTable Get_Tipo_Autenticacion()
         {

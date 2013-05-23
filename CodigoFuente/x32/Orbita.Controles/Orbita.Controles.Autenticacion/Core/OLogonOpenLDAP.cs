@@ -14,6 +14,11 @@ namespace Orbita.Controles.Autenticacion
     /// <summary>
     /// Autenticación contra Open LDAP.
     /// </summary>
-    public class OLogonOpenLDAP
-    {  }
+    public class OLogOnOpenLDAP : OLogOn
+    {
+        public override AutenticacionChangedEventArgs Validar()
+        {
+            throw new System.NotImplementedException();
+        }
+    }
 }

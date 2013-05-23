@@ -15,11 +15,11 @@ namespace Orbita.Controles.Autenticacion
     {
         #region Atributos privados
         /// <summary>
-        /// Estado de la validación.
+        /// Estado de la autenticación.
         /// </summary>
-        OEstadoValidacion estado;
+        EstadoAutenticacion estado;
         #endregion
-
+        
         #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs.
@@ -30,7 +30,7 @@ namespace Orbita.Controles.Autenticacion
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs.
         /// </summary>
         /// <param name="estado">Nombre de la propiedad.</param>
-        public AutenticacionChangedEventArgs(OEstadoValidacion estado)
+        public AutenticacionChangedEventArgs(EstadoAutenticacion estado)
             : this()
         {
             this.estado = estado;
@@ -38,13 +38,17 @@ namespace Orbita.Controles.Autenticacion
         #endregion
 
         #region Propiedades
-        /// <summary>
-        /// Estado de la validación.
-        /// </summary>
-        public OEstadoValidacion Estado
+        public ResultadoAutenticacion Resultado
         {
-            get { return this.estado; }
-            set { this.estado = value; }
+            get { return this.estado.Resultado; }
+        }
+        public string Mensaje
+        {
+            get { return this.estado.Mensaje; }
+        }
+        public BotonesAutenticacion BotónPulsado
+        {
+            get { return this.estado.Botón; }
         }
         #endregion
     }
