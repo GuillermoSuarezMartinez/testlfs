@@ -611,337 +611,340 @@ namespace Orbita.Comunicaciones
         {
             
         }
-        /// <summary>
-        /// Procesa los bytes de entradas y salidas para actualizar los valores de las variables
-        /// </summary>
-        /// <param name="entradas">byte de entradas recibido</param>
-        /// <param name="salidas">byte de salidas recibido</param>
-        private void ESProcesar(byte[] entradas, byte[] salidas)
-        {
-            try
-            {
-                for (int i = 0; i < entradas.Length; i++)
-                {
-                    switch (this.Protocolo)
-                    {
-                        case "OCR":
-                        case "OS":
-                            if (entradas[i] != this.Entradas[i])
-                            {
-                                this.ESActualizarVariablesEntradasOCR(entradas[i], i + this._registroInicialEntradas);
-                            }
-                            if (i == 0)
-                            {
-                                if (salidas[i] != this.Salidas[i])
-                                {
-                                    this.ESActualizarVariablesSalidasOCR(salidas[i], i + this._registroInicialSalidas);
-                                }
-                            }
-                            break;
-                        case "TRA":
-                            if (entradas[i] != this.Entradas[i])
-                            {
-                                this.ESActualizarVariablesEntradasTRA(entradas[i], i + this._registroInicialEntradas);
-                            }
-                            if (i == 0 || i == 1)
-                            {
-                                if (salidas[i] != this.Salidas[i])
-                                {
-                                    this.ESActualizarVariablesSalidasTRA(salidas[i], i + this._registroInicialSalidas);
-                                }
-                            }
-                            break;
-                    }
+        #region PendientePruebasOCR y TRA
+        ///// <summary>
+        ///// Procesa los bytes de entradas y salidas para actualizar los valores de las variables
+        ///// </summary>
+        ///// <param name="entradas">byte de entradas recibido</param>
+        ///// <param name="salidas">byte de salidas recibido</param>
+        //private void ESProcesar(byte[] entradas, byte[] salidas)
+        //{
+        //    try
+        //    {
+        //        for (int i = 0; i < entradas.Length; i++)
+        //        {
+        //            switch (this.Protocolo)
+        //            {
+        //                case "OCR":
+        //                case "OS":
+        //                    if (entradas[i] != this.Entradas[i])
+        //                    {
+        //                        this.ESActualizarVariablesEntradasOCR(entradas[i], i + this._registroInicialEntradas);
+        //                    }
+        //                    if (i == 0)
+        //                    {
+        //                        if (salidas[i] != this.Salidas[i])
+        //                        {
+        //                            this.ESActualizarVariablesSalidasOCR(salidas[i], i + this._registroInicialSalidas);
+        //                        }
+        //                    }
+        //                    break;
+        //                case "TRA":
+        //                    if (entradas[i] != this.Entradas[i])
+        //                    {
+        //                        this.ESActualizarVariablesEntradasTRA(entradas[i], i + this._registroInicialEntradas);
+        //                    }
+        //                    if (i == 0 || i == 1)
+        //                    {
+        //                        if (salidas[i] != this.Salidas[i])
+        //                        {
+        //                            this.ESActualizarVariablesSalidasTRA(salidas[i], i + this._registroInicialSalidas);
+        //                        }
+        //                    }
+        //                    break;
+        //            }
 
-                }
-                this.Entradas = entradas;
-                this.Salidas = salidas;
-            }
-            catch (Exception ex)
-            {
-                wrapper.Fatal("Error al procesar las ES en el dispositivo de ES Siemens en ESProcesar. " + ex.ToString());
-                throw ex;
-            }
-        }
-        /// <summary>
-        /// Actualiza los valores de las entradas y genera los eventos de cambio de dato y alarma
-        /// </summary>
-        /// <param name="valor">valor del byte</param>
-        /// <param name="posicion">posición del byte</param>
-        private void ESActualizarVariablesEntradasOCR(byte valor, int posicion)
-        {
-            OInfoDato infodato = null;
-            OEventArgs ev = new OEventArgs();
-            try
-            {
-                if (posicion < 2)//datos de bits
-                {
-                    for (int i = 0; i < 8; i++)
-                    {
+        //        }
+        //        this.Entradas = entradas;
+        //        this.Salidas = salidas;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        wrapper.Fatal("Error al procesar las ES en el dispositivo de ES Siemens en ESProcesar. " + ex.ToString());
+        //        throw ex;
+        //    }
+        //}
+        ///// <summary>
+        ///// Actualiza los valores de las entradas y genera los eventos de cambio de dato y alarma
+        ///// </summary>
+        ///// <param name="valor">valor del byte</param>
+        ///// <param name="posicion">posición del byte</param>
+        //private void ESActualizarVariablesEntradasOCR(byte valor, int posicion)
+        //{
+        //    OInfoDato infodato = null;
+        //    OEventArgs ev = new OEventArgs();
+        //    try
+        //    {
+        //        if (posicion < 2)//datos de bits
+        //        {
+        //            for (int i = 0; i < 8; i++)
+        //            {
 
-                        infodato = (OInfoDato)this._almacenLecturas[posicion.ToString() + "-" + i.ToString()];
-                        //Comprobamos el valor nuevo 
-                        if (infodato != null)
-                        {
-                            int resultado = 0;
-                            if ((valor & (1 << i)) != 0)
-                            {
-                                resultado = 1;
-                            }
+        //                infodato = (OInfoDato)this._almacenLecturas[posicion.ToString() + "-" + i.ToString()];
+        //                //Comprobamos el valor nuevo 
+        //                if (infodato != null)
+        //                {
+        //                    int resultado = 0;
+        //                    if ((valor & (1 << i)) != 0)
+        //                    {
+        //                        resultado = 1;
+        //                    }
 
-                            if (resultado != Convert.ToInt32(infodato.Valor))
-                            {
-                                infodato.Valor = resultado;
-                                ev.Argumento = infodato;
-                                this.OnCambioDato(ev);
+        //                    if (resultado != Convert.ToInt32(infodato.Valor))
+        //                    {
+        //                        infodato.Valor = resultado;
+        //                        ev.Argumento = infodato;
+        //                        this.OnCambioDato(ev);
 
-                                if (this.Tags.GetAlarmas(infodato.Identificador) != null)
-                                {
-                                    if (Convert.ToInt32(infodato.Valor) == 1)
-                                    {
-                                        if (!AlarmasActivas.Contains(infodato.Texto))
-                                        {
-                                            this.AlarmasActivas.Add(infodato.Texto);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (AlarmasActivas.Contains(infodato.Texto))
-                                        {
-                                            this.AlarmasActivas.Remove(infodato.Texto);
-                                        }
-                                    }
+        //                        if (this.Tags.GetAlarmas(infodato.Identificador) != null)
+        //                        {
+        //                            if (Convert.ToInt32(infodato.Valor) == 1)
+        //                            {
+        //                                if (!AlarmasActivas.Contains(infodato.Texto))
+        //                                {
+        //                                    this.AlarmasActivas.Add(infodato.Texto);
+        //                                }
+        //                            }
+        //                            else
+        //                            {
+        //                                if (AlarmasActivas.Contains(infodato.Texto))
+        //                                {
+        //                                    this.AlarmasActivas.Remove(infodato.Texto);
+        //                                }
+        //                            }
 
-                                    this.OnAlarma(ev);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
-                                " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
-                        }
+        //                            this.OnAlarma(ev);
+        //                        }
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+        //                        " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
+        //                }
 
-                    }
-                }
-                else//posiciones de bytes
-                {
-                    infodato = (OInfoDato)this._almacenLecturas[posicion.ToString() + "-0"];
-                    //Comprobamos el valor nuevo 
-                    if (infodato != null)
-                    {
-                        if (valor != Convert.ToInt32(infodato.Valor))
-                        {
-                            infodato.Valor = valor;
-                            ev.Argumento = infodato;
-                            this.OnCambioDato(ev);
-                        }
-                    }
-                    else
-                    {
-                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-0" +
-                            " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                wrapper.Error("Error no controlado al procesar las entradas en el dispositivo de ES Siemens" + ex.ToString());
-            }
-        }
-        /// <summary>
-        /// Actualiza los valores de las salidas y genera los eventos de cambio de dato y alarma
-        /// </summary>
-        /// <param name="valor">valor del byte</param>
-        /// <param name="posicion">posición del byte</param>
-        private void ESActualizarVariablesSalidasOCR(byte valor, int posicion)
-        {
-            OInfoDato infodato = null;
-            OEventArgs ev = new OEventArgs();
+        //            }
+        //        }
+        //        else//posiciones de bytes
+        //        {
+        //            infodato = (OInfoDato)this._almacenLecturas[posicion.ToString() + "-0"];
+        //            //Comprobamos el valor nuevo 
+        //            if (infodato != null)
+        //            {
+        //                if (valor != Convert.ToInt32(infodato.Valor))
+        //                {
+        //                    infodato.Valor = valor;
+        //                    ev.Argumento = infodato;
+        //                    this.OnCambioDato(ev);
+        //                }
+        //            }
+        //            else
+        //            {
+        //                wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-0" +
+        //                    " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        wrapper.Error("Error no controlado al procesar las entradas en el dispositivo de ES Siemens" + ex.ToString());
+        //    }
+        //}
+        ///// <summary>
+        ///// Actualiza los valores de las salidas y genera los eventos de cambio de dato y alarma
+        ///// </summary>
+        ///// <param name="valor">valor del byte</param>
+        ///// <param name="posicion">posición del byte</param>
+        //private void ESActualizarVariablesSalidasOCR(byte valor, int posicion)
+        //{
+        //    OInfoDato infodato = null;
+        //    OEventArgs ev = new OEventArgs();
 
-            for (int i = 0; i < 8; i++)
-            {
-                try
-                {
-                    infodato = (OInfoDato)this._almacenEscrituras[posicion.ToString() + "-" + i.ToString()];
-                    //Comprobamos el valor nuevo 
-                    if (infodato != null)
-                    {
-                        int resultado = 0;
-                        if ((valor & (1 << i)) != 0)
-                        {
-                            resultado = 1;
-                        }
+        //    for (int i = 0; i < 8; i++)
+        //    {
+        //        try
+        //        {
+        //            infodato = (OInfoDato)this._almacenEscrituras[posicion.ToString() + "-" + i.ToString()];
+        //            //Comprobamos el valor nuevo 
+        //            if (infodato != null)
+        //            {
+        //                int resultado = 0;
+        //                if ((valor & (1 << i)) != 0)
+        //                {
+        //                    resultado = 1;
+        //                }
 
-                        if (resultado != Convert.ToInt32(infodato.Valor))
-                        {
-                            infodato.Valor = resultado;
-                            ev.Argumento = infodato;
-                            this.OnCambioDato(ev);
+        //                if (resultado != Convert.ToInt32(infodato.Valor))
+        //                {
+        //                    infodato.Valor = resultado;
+        //                    ev.Argumento = infodato;
+        //                    this.OnCambioDato(ev);
 
-                            if (this.Tags.GetAlarmas(infodato.Identificador) != null)
-                            {
-                                if (Convert.ToInt32(infodato.Valor) == 1)
-                                {
-                                    if (!AlarmasActivas.Contains(infodato.Texto))
-                                    {
-                                        this.AlarmasActivas.Add(infodato.Texto);
-                                    }
-                                }
-                                else
-                                {
-                                    if (AlarmasActivas.Contains(infodato.Texto))
-                                    {
-                                        this.AlarmasActivas.Remove(infodato.Texto);
-                                    }
-                                }
+        //                    if (this.Tags.GetAlarmas(infodato.Identificador) != null)
+        //                    {
+        //                        if (Convert.ToInt32(infodato.Valor) == 1)
+        //                        {
+        //                            if (!AlarmasActivas.Contains(infodato.Texto))
+        //                            {
+        //                                this.AlarmasActivas.Add(infodato.Texto);
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            if (AlarmasActivas.Contains(infodato.Texto))
+        //                            {
+        //                                this.AlarmasActivas.Remove(infodato.Texto);
+        //                            }
+        //                        }
 
-                                this.OnAlarma(ev);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
-                            " al actualizar las variables de salida en el dispositivo de ES Siemens.");
-                    }
+        //                        this.OnAlarma(ev);
+        //                    }
+        //                }
+        //            }
+        //            else
+        //            {
+        //                wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+        //                    " al actualizar las variables de salida en el dispositivo de ES Siemens.");
+        //            }
 
-                }
-                catch (Exception ex)
-                {
-                    wrapper.Error("Error no controlado al procesar las salidas en el dispositivo de ES Siemens " + ex.ToString());
-                }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            wrapper.Error("Error no controlado al procesar las salidas en el dispositivo de ES Siemens " + ex.ToString());
+        //        }
 
-            }
-        }
-        /// <summary>
-        /// Actualiza los valores de las entradas y genera los eventos de cambio de dato y alarma
-        /// </summary>
-        /// <param name="valor">valor del byte</param>
-        /// <param name="posicion">posición del byte</param>
-        private void ESActualizarVariablesEntradasTRA(byte valor, int posicion)
-        {
-            OInfoDato infodato = null;
-            OEventArgs ev = new OEventArgs();
-            try
-            {
-                for (int i = 0; i < 8; i++)
-                {
+        //    }
+        //}
+        ///// <summary>
+        ///// Actualiza los valores de las entradas y genera los eventos de cambio de dato y alarma
+        ///// </summary>
+        ///// <param name="valor">valor del byte</param>
+        ///// <param name="posicion">posición del byte</param>
+        //private void ESActualizarVariablesEntradasTRA(byte valor, int posicion)
+        //{
+        //    OInfoDato infodato = null;
+        //    OEventArgs ev = new OEventArgs();
+        //    try
+        //    {
+        //        for (int i = 0; i < 8; i++)
+        //        {
 
-                    infodato = (OInfoDato)this._almacenLecturas[posicion.ToString() + "-" + i.ToString()];
-                    //Comprobamos el valor nuevo 
-                    if (infodato != null)
-                    {
-                        int resultado = 0;
-                        if ((valor & (1 << i)) != 0)
-                        {
-                            resultado = 1;
-                        }
+        //            infodato = (OInfoDato)this._almacenLecturas[posicion.ToString() + "-" + i.ToString()];
+        //            //Comprobamos el valor nuevo 
+        //            if (infodato != null)
+        //            {
+        //                int resultado = 0;
+        //                if ((valor & (1 << i)) != 0)
+        //                {
+        //                    resultado = 1;
+        //                }
 
-                        if (resultado != Convert.ToInt32(infodato.Valor))
-                        {
-                            infodato.Valor = resultado;
-                            ev.Argumento = infodato;
-                            this.OnCambioDato(ev);
+        //                if (resultado != Convert.ToInt32(infodato.Valor))
+        //                {
+        //                    infodato.Valor = resultado;
+        //                    ev.Argumento = infodato;
+        //                    this.OnCambioDato(ev);
 
-                            if (this.Tags.GetAlarmas(infodato.Identificador) != null)
-                            {
-                                if (Convert.ToInt32(infodato.Valor) == 1)
-                                {
-                                    if (!AlarmasActivas.Contains(infodato.Texto))
-                                    {
-                                        this.AlarmasActivas.Add(infodato.Texto);
-                                    }
-                                }
-                                else
-                                {
-                                    if (AlarmasActivas.Contains(infodato.Texto))
-                                    {
-                                        this.AlarmasActivas.Remove(infodato.Texto);
-                                    }
-                                }
+        //                    if (this.Tags.GetAlarmas(infodato.Identificador) != null)
+        //                    {
+        //                        if (Convert.ToInt32(infodato.Valor) == 1)
+        //                        {
+        //                            if (!AlarmasActivas.Contains(infodato.Texto))
+        //                            {
+        //                                this.AlarmasActivas.Add(infodato.Texto);
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            if (AlarmasActivas.Contains(infodato.Texto))
+        //                            {
+        //                                this.AlarmasActivas.Remove(infodato.Texto);
+        //                            }
+        //                        }
 
-                                this.OnAlarma(ev);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
-                            " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                wrapper.Error("Error no controlado al procesar las entradas en el dispositivo de ES Siemens" + ex.ToString());
-            }
-        }
-        /// <summary>
-        /// Actualiza los valores de las salidas y genera los eventos de cambio de dato y alarma
-        /// </summary>
-        /// <param name="valor">valor del byte</param>
-        /// <param name="posicion">posición del byte</param>
-        private void ESActualizarVariablesSalidasTRA(byte valor, int posicion)
-        {
-            OInfoDato infodato = null;
-            OEventArgs ev = new OEventArgs();
+        //                        this.OnAlarma(ev);
+        //                    }
+        //                }
+        //            }
+        //            else
+        //            {
+        //                wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+        //                    " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        wrapper.Error("Error no controlado al procesar las entradas en el dispositivo de ES Siemens" + ex.ToString());
+        //    }
+        //}
+        ///// <summary>
+        ///// Actualiza los valores de las salidas y genera los eventos de cambio de dato y alarma
+        ///// </summary>
+        ///// <param name="valor">valor del byte</param>
+        ///// <param name="posicion">posición del byte</param>
+        //private void ESActualizarVariablesSalidasTRA(byte valor, int posicion)
+        //{
+        //    OInfoDato infodato = null;
+        //    OEventArgs ev = new OEventArgs();
 
-            for (int i = 0; i < 8; i++)
-            {
-                try
-                {
-                    infodato = (OInfoDato)this._almacenEscrituras[posicion.ToString() + "-" + i.ToString()];
-                    //Comprobamos el valor nuevo 
-                    if (infodato != null)
-                    {
-                        int resultado = 0;
-                        if ((valor & (1 << i)) != 0)
-                        {
-                            resultado = 1;
-                        }
+        //    for (int i = 0; i < 8; i++)
+        //    {
+        //        try
+        //        {
+        //            infodato = (OInfoDato)this._almacenEscrituras[posicion.ToString() + "-" + i.ToString()];
+        //            //Comprobamos el valor nuevo 
+        //            if (infodato != null)
+        //            {
+        //                int resultado = 0;
+        //                if ((valor & (1 << i)) != 0)
+        //                {
+        //                    resultado = 1;
+        //                }
 
-                        if (resultado != Convert.ToInt32(infodato.Valor))
-                        {
-                            infodato.Valor = resultado;
-                            ev.Argumento = infodato;
-                            this.OnCambioDato(ev);
+        //                if (resultado != Convert.ToInt32(infodato.Valor))
+        //                {
+        //                    infodato.Valor = resultado;
+        //                    ev.Argumento = infodato;
+        //                    this.OnCambioDato(ev);
 
-                            if (this.Tags.GetAlarmas(infodato.Identificador) != null)
-                            {
-                                if (Convert.ToInt32(infodato.Valor) == 1)
-                                {
-                                    if (!AlarmasActivas.Contains(infodato.Texto))
-                                    {
-                                        this.AlarmasActivas.Add(infodato.Texto);
-                                    }
-                                }
-                                else
-                                {
-                                    if (AlarmasActivas.Contains(infodato.Texto))
-                                    {
-                                        this.AlarmasActivas.Remove(infodato.Texto);
-                                    }
-                                }
+        //                    if (this.Tags.GetAlarmas(infodato.Identificador) != null)
+        //                    {
+        //                        if (Convert.ToInt32(infodato.Valor) == 1)
+        //                        {
+        //                            if (!AlarmasActivas.Contains(infodato.Texto))
+        //                            {
+        //                                this.AlarmasActivas.Add(infodato.Texto);
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            if (AlarmasActivas.Contains(infodato.Texto))
+        //                            {
+        //                                this.AlarmasActivas.Remove(infodato.Texto);
+        //                            }
+        //                        }
 
-                                this.OnAlarma(ev);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
-                            " al actualizar las variables de salida en el dispositivo de ES Siemens.");
-                    }
+        //                        this.OnAlarma(ev);
+        //                    }
+        //                }
+        //            }
+        //            else
+        //            {
+        //                wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+        //                    " al actualizar las variables de salida en el dispositivo de ES Siemens.");
+        //            }
 
-                }
-                catch (Exception ex)
-                {
-                    wrapper.Error("Error no controlado al procesar las salidas en el dispositivo de ES Siemens " + ex.ToString());
-                }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            wrapper.Error("Error no controlado al procesar las salidas en el dispositivo de ES Siemens " + ex.ToString());
+        //        }
 
-            }
-        }
+        //    }
+        //}
+        #endregion
+       
         #endregion
 
         #endregion
