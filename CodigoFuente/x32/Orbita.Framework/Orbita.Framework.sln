@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Framework", "Orbita.Framework\Orbita.Framework.csproj", "{675AADC6-EC8B-47F8-966E-882FACCCDB41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Framework.Core", "Orbita.Framework.Core\Orbita.Framework.Core.csproj", "{F487D161-E29E-4039-89EB-07FC1DA15D39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Framework.Extensiones", "Orbita.Framework.Extensiones\Orbita.Framework.Extensiones.csproj", "{49355750-A881-4527-9844-E5EB04B0E2DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Framework.PluginManager", "Orbita.Framework.PluginManager\Orbita.Framework.PluginManager.csproj", "{23F5ED03-3278-452F-949A-C1657C73A798}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://01x0019:8080/tfs/orbitasoftware
+		SccProjectUniqueName0 = Orbita.Framework\\Orbita.Framework.csproj
+		SccProjectName0 = Orbita.Framework
+		SccLocalPath0 = Orbita.Framework
+		SccProjectUniqueName1 = Orbita.Framework.Core\\Orbita.Framework.Core.csproj
+		SccProjectName1 = Orbita.Framework.Core
+		SccLocalPath1 = Orbita.Framework.Core
+		SccProjectUniqueName2 = Orbita.Framework.Extensiones\\Orbita.Framework.Extensiones.csproj
+		SccProjectName2 = Orbita.Framework.Extensiones
+		SccLocalPath2 = Orbita.Framework.Extensiones
+		SccProjectUniqueName3 = Orbita.Framework.PluginManager\\Orbita.Framework.PluginManager.csproj
+		SccProjectName3 = Orbita.Framework.PluginManager
+		SccLocalPath3 = Orbita.Framework.PluginManager
+		SccLocalPath4 = .
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Debug|x86.ActiveCfg = Debug|x86
+		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Debug|x86.Build.0 = Debug|x86
+		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Release|x86.ActiveCfg = Release|x86
+		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Release|x86.Build.0 = Release|x86
+		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Debug|x86.ActiveCfg = Debug|x86
+		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Debug|x86.Build.0 = Debug|x86
+		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Release|x86.ActiveCfg = Release|x86
+		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Release|x86.Build.0 = Release|x86
+		{49355750-A881-4527-9844-E5EB04B0E2DC}.Debug|x86.ActiveCfg = Debug|x86
+		{49355750-A881-4527-9844-E5EB04B0E2DC}.Debug|x86.Build.0 = Debug|x86
+		{49355750-A881-4527-9844-E5EB04B0E2DC}.Release|x86.ActiveCfg = Release|x86
+		{49355750-A881-4527-9844-E5EB04B0E2DC}.Release|x86.Build.0 = Release|x86
+		{23F5ED03-3278-452F-949A-C1657C73A798}.Debug|x86.ActiveCfg = Debug|x86
+		{23F5ED03-3278-452F-949A-C1657C73A798}.Debug|x86.Build.0 = Debug|x86
+		{23F5ED03-3278-452F-949A-C1657C73A798}.Release|x86.ActiveCfg = Release|x86
+		{23F5ED03-3278-452F-949A-C1657C73A798}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
