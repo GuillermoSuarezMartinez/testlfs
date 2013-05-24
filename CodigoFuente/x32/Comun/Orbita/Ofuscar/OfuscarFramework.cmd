@@ -29,7 +29,7 @@ del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Framework.Extensiones.dll /q/f
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Framework.Extensiones.xml /q/f
 "%PROGRAMFILES%\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.Framework.Extensiones32.saproj
 verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Framework.Extensiones.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2013"
-xcopy ..\Orbita.Winsock.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
+xcopy ..\Orbita.Framework.Extensiones.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
 :PluginManager
 @echo Ofuscacion de Orbita.Framework.PluginManager...............
