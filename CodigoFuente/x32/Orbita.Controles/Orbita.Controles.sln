@@ -45,19 +45,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Autenticación", "Autentica
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Controles.Autenticacion", "Orbita.Controles.Autenticacion\Orbita.Controles.Autenticacion.csproj", "{298D55EA-3C54-4D2F-9CF9-DA76531931EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Framework", "Orbita.Framework\Orbita.Framework.csproj", "{675AADC6-EC8B-47F8-966E-882FACCCDB41}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Framework.Extensiones", "Orbita.Framework.Extensiones\Orbita.Framework.Extensiones.csproj", "{49355750-A881-4527-9844-E5EB04B0E2DC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Framework.PluginManager", "Orbita.Framework.PluginManager\Orbita.Framework.PluginManager.csproj", "{23F5ED03-3278-452F-949A-C1657C73A798}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Framework.Core", "Orbita.Framework.Core\Orbita.Framework.Core.csproj", "{F487D161-E29E-4039-89EB-07FC1DA15D39}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "..\Orbita.ControlesCOPIA\ClassLibrary1\ClassLibrary1.csproj", "{79302CC2-FD8D-4744-8CFE-A44DF9888293}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 17
+		SccNumberOfProjects = 13
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://01x0019:8080/tfs/orbitasoftware
 		SccLocalPath0 = .
@@ -109,22 +101,6 @@ Global
 		SccProjectTopLevelParentUniqueName12 = Orbita.Controles.sln
 		SccProjectName12 = Orbita.Controles.Autenticacion
 		SccLocalPath12 = Orbita.Controles.Autenticacion
-		SccProjectUniqueName13 = Orbita.Framework.Core\\Orbita.Framework.Core.csproj
-		SccProjectTopLevelParentUniqueName13 = Orbita.Controles.sln
-		SccProjectName13 = Orbita.Framework.Core
-		SccLocalPath13 = Orbita.Framework.Core
-		SccProjectUniqueName14 = Orbita.Framework.PluginManager\\Orbita.Framework.PluginManager.csproj
-		SccProjectTopLevelParentUniqueName14 = Orbita.Controles.sln
-		SccProjectName14 = Orbita.Framework.PluginManager
-		SccLocalPath14 = Orbita.Framework.PluginManager
-		SccProjectUniqueName15 = Orbita.Framework.Extensiones\\Orbita.Framework.Extensiones.csproj
-		SccProjectTopLevelParentUniqueName15 = Orbita.Controles.sln
-		SccProjectName15 = Orbita.Framework.Extensiones
-		SccLocalPath15 = Orbita.Framework.Extensiones
-		SccProjectUniqueName16 = Orbita.Framework\\Orbita.Framework.csproj
-		SccProjectTopLevelParentUniqueName16 = Orbita.Controles.sln
-		SccProjectName16 = Orbita.Framework
-		SccLocalPath16 = Orbita.Framework
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -271,58 +247,6 @@ Global
 		{298D55EA-3C54-4D2F-9CF9-DA76531931EC}.Release|x64.ActiveCfg = Release|x86
 		{298D55EA-3C54-4D2F-9CF9-DA76531931EC}.Release|x86.ActiveCfg = Release|x86
 		{298D55EA-3C54-4D2F-9CF9-DA76531931EC}.Release|x86.Build.0 = Release|x86
-		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Debug|x64.ActiveCfg = Debug|x86
-		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Debug|x64.Build.0 = Debug|x86
-		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Debug|x86.ActiveCfg = Debug|x86
-		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Debug|x86.Build.0 = Debug|x86
-		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Release|Any CPU.ActiveCfg = Release|x86
-		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Release|Mixed Platforms.Build.0 = Release|x86
-		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Release|x64.ActiveCfg = Release|x86
-		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Release|x86.ActiveCfg = Release|x86
-		{675AADC6-EC8B-47F8-966E-882FACCCDB41}.Release|x86.Build.0 = Release|x86
-		{49355750-A881-4527-9844-E5EB04B0E2DC}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{49355750-A881-4527-9844-E5EB04B0E2DC}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{49355750-A881-4527-9844-E5EB04B0E2DC}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{49355750-A881-4527-9844-E5EB04B0E2DC}.Debug|x64.ActiveCfg = Debug|x86
-		{49355750-A881-4527-9844-E5EB04B0E2DC}.Debug|x64.Build.0 = Debug|x86
-		{49355750-A881-4527-9844-E5EB04B0E2DC}.Debug|x86.ActiveCfg = Debug|x86
-		{49355750-A881-4527-9844-E5EB04B0E2DC}.Debug|x86.Build.0 = Debug|x86
-		{49355750-A881-4527-9844-E5EB04B0E2DC}.Release|Any CPU.ActiveCfg = Release|x86
-		{49355750-A881-4527-9844-E5EB04B0E2DC}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{49355750-A881-4527-9844-E5EB04B0E2DC}.Release|Mixed Platforms.Build.0 = Release|x86
-		{49355750-A881-4527-9844-E5EB04B0E2DC}.Release|x64.ActiveCfg = Release|x86
-		{49355750-A881-4527-9844-E5EB04B0E2DC}.Release|x86.ActiveCfg = Release|x86
-		{49355750-A881-4527-9844-E5EB04B0E2DC}.Release|x86.Build.0 = Release|x86
-		{23F5ED03-3278-452F-949A-C1657C73A798}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{23F5ED03-3278-452F-949A-C1657C73A798}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{23F5ED03-3278-452F-949A-C1657C73A798}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{23F5ED03-3278-452F-949A-C1657C73A798}.Debug|x64.ActiveCfg = Debug|x86
-		{23F5ED03-3278-452F-949A-C1657C73A798}.Debug|x64.Build.0 = Debug|x86
-		{23F5ED03-3278-452F-949A-C1657C73A798}.Debug|x86.ActiveCfg = Debug|x86
-		{23F5ED03-3278-452F-949A-C1657C73A798}.Debug|x86.Build.0 = Debug|x86
-		{23F5ED03-3278-452F-949A-C1657C73A798}.Release|Any CPU.ActiveCfg = Release|x86
-		{23F5ED03-3278-452F-949A-C1657C73A798}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{23F5ED03-3278-452F-949A-C1657C73A798}.Release|Mixed Platforms.Build.0 = Release|x86
-		{23F5ED03-3278-452F-949A-C1657C73A798}.Release|x64.ActiveCfg = Release|x86
-		{23F5ED03-3278-452F-949A-C1657C73A798}.Release|x86.ActiveCfg = Release|x86
-		{23F5ED03-3278-452F-949A-C1657C73A798}.Release|x86.Build.0 = Release|x86
-		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Debug|x64.ActiveCfg = Debug|x86
-		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Debug|x64.Build.0 = Debug|x86
-		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Debug|x86.ActiveCfg = Debug|x86
-		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Debug|x86.Build.0 = Debug|x86
-		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Release|Any CPU.ActiveCfg = Release|x86
-		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Release|Mixed Platforms.Build.0 = Release|x86
-		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Release|x64.ActiveCfg = Release|x86
-		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Release|x86.ActiveCfg = Release|x86
-		{F487D161-E29E-4039-89EB-07FC1DA15D39}.Release|x86.Build.0 = Release|x86
 		{79302CC2-FD8D-4744-8CFE-A44DF9888293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{79302CC2-FD8D-4744-8CFE-A44DF9888293}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79302CC2-FD8D-4744-8CFE-A44DF9888293}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -350,10 +274,6 @@ Global
 		{34B632DA-E0C4-4F27-AAFD-AFAD64604BFA} = {935C8C3E-1EA4-45A4-A89F-4A82DC18474C}
 		{7E7DAFD4-3823-46B8-917C-FCEA9431A1A9} = {16959230-EA71-4015-9EA7-67CAD76281F8}
 		{8E66FB77-D4ED-483B-8481-A9B2C7317192} = {D6CF1657-4F30-4B8B-BE8F-AD2E9F94010D}
-		{675AADC6-EC8B-47F8-966E-882FACCCDB41} = {78CDE09F-A15A-442E-90BD-80A70D81195B}
-		{49355750-A881-4527-9844-E5EB04B0E2DC} = {78CDE09F-A15A-442E-90BD-80A70D81195B}
-		{23F5ED03-3278-452F-949A-C1657C73A798} = {78CDE09F-A15A-442E-90BD-80A70D81195B}
-		{F487D161-E29E-4039-89EB-07FC1DA15D39} = {78CDE09F-A15A-442E-90BD-80A70D81195B}
 		{298D55EA-3C54-4D2F-9CF9-DA76531931EC} = {0AFDFFEE-25F2-4CA4-AA57-A3DCD3C7CAFB}
 	EndGlobalSection
 EndGlobal
