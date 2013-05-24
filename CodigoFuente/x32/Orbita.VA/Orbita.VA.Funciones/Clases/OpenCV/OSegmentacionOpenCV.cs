@@ -70,7 +70,7 @@ namespace Orbita.VA.Funciones
                 extremoYC = new PointF(0, despY + caliperHeight);
 
                 List<OEdgeResult> edges = item.BuscarEdges(proyeccion, origenC, extremoXC, extremoYC, 10);
-                OImagenOpenCVColor<byte> res = item.PintarEdges(Color.LightGreen, 1);
+                //OImagenOpenCVColor<byte> res = item.PintarEdges(Color.LightGreen, 1);
 
                 if (edges.Count > 0)
                 {
@@ -89,6 +89,8 @@ namespace Orbita.VA.Funciones
             OMath.CalculoLineaMinimosCuadrados(ptos, out M, out B);
             PointF start = new PointF(extremoY.X, (float)(extremoY.X * M + B));
             PointF end = new PointF(origen.X, (float)(origen.X * M + B));
+
+            proyeccion.Dispose();
 
             return new OLinea(start, end);
         }

@@ -225,8 +225,9 @@ namespace Orbita.VA.Funciones
         public static OImagenOpenCVMonocromo<byte> Binarizar<TDepth>(this OImagenOpenCVColor<TDepth> input, int umbral)
             where TDepth : new()
         {
-            //Convertimos la imagen a Gray
-            Image<Gray, byte> resultOpenCV = new Image<Gray, byte>(input.ConvertToBitmap());
+            //Copiamos la imagen
+            //Image<Gray, byte> resultOpenCV = new Image<Gray, byte>(input.ConvertToBitmap());
+            Image<Gray, byte> resultOpenCV = input.Image.Convert<Gray, byte>();
 
             //Filtramos
             OImagenOpenCVMonocromo<byte> result = new OImagenOpenCVMonocromo<byte>();
@@ -280,7 +281,7 @@ namespace Orbita.VA.Funciones
             OImagenOpenCV<TColor, TDepth> result = new OImagenOpenCV<TColor, TDepth>();
 
             //Aplicación de la transformación
-            result.Image = ((Image<TColor, TDepth>)input.Image).WarpAffine<float>(sourceMat, INTER.CV_INTER_NN, (inversa ? WARP.CV_WARP_INVERSE_MAP : WARP.CV_WARP_DEFAULT), default(TColor));
+            result.Image = input.Image.WarpAffine<float>(sourceMat, INTER.CV_INTER_NN, (inversa ? WARP.CV_WARP_INVERSE_MAP : WARP.CV_WARP_DEFAULT), default(TColor));
 
             return result;
         }
@@ -358,8 +359,7 @@ namespace Orbita.VA.Funciones
 
             //Aplicación de la transformación
             resultado = new OImagenOpenCV<TColor, TDepth>();
-            resultado.Image = input.Image.Clone();
-            resultado.Image = resultado.Image.WarpAffine<float>(sourceMat, (int)Math.Round(width), (int)Math.Round(height), INTER.CV_INTER_NN, WARP.CV_WARP_DEFAULT, default(TColor));
+            resultado.Image = input.Image.WarpAffine<float>(sourceMat, (int)Math.Round(width), (int)Math.Round(height), INTER.CV_INTER_NN, WARP.CV_WARP_DEFAULT, default(TColor));
             return resultado;
         }
         #endregion
