@@ -602,6 +602,7 @@ namespace Orbita.VA.Hardware
                         this.AdquisicionCompletada(this.ImagenActual);
                     }
                 }
+                this.BitVida(sender, null);
             }
             catch (Exception exception)
             {
@@ -626,9 +627,11 @@ namespace Orbita.VA.Hardware
                     // Lanamos el evento de adquisición
                     if (imagen.EsValida())
                     {
+                        OLogsVAHardware.Camaras.Debug(this.Codigo, "Evento de recepción de cambio de fotografía", this._ImagenActual.ToString());
                         this.AdquisicionCompletada(this.ImagenActual);
                     }
                 }
+                this.BitVida(sender, null);
             }
             catch (Exception exception)
             {
@@ -642,6 +645,7 @@ namespace Orbita.VA.Hardware
         private void CambioEstadoConexionCamara(object sender, CambioEstadoConexionCamaraEventArgs e)
         {
             this.LanzarEventoCambioEstadoConexionCamaraSincrona(e.Codigo, e.EstadoConexionActual, e.EstadoConexionAnterior);
+            this.BitVida(sender, null);
         }
         /// <summary>
         /// Evento de cambio de estado de reproducción
@@ -650,6 +654,7 @@ namespace Orbita.VA.Hardware
         private void CambioEstadoReproduccionCamara(object sender, CambioEstadoReproduccionCamaraEventArgs e)
         {
             this.LanzarEventoCambioReproduccionCamaraSincrona(e.Codigo, e.ModoReproduccionContinua);
+            this.BitVida(sender, null);
         }
         /// <summary>
         /// Evento de nuevo mensaje
@@ -658,6 +663,7 @@ namespace Orbita.VA.Hardware
         private void MensajeCamara(object sender, OMessageEventArgs e)
         {
             this.LanzarEventoMensajeCamaraSincrona(e.Codigo, e.Mensaje);
+            this.BitVida(sender, null);
         }
         /// <summary>
         /// Evento de bit de ivda
