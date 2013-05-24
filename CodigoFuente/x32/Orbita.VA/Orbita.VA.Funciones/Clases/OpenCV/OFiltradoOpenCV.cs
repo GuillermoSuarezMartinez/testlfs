@@ -358,7 +358,8 @@ namespace Orbita.VA.Funciones
 
             //Aplicación de la transformación
             resultado = new OImagenOpenCV<TColor, TDepth>();
-            resultado.Image = ((Image<TColor, TDepth>)input.Image).WarpAffine<float>(sourceMat, (int)Math.Round(width), (int)Math.Round(height), INTER.CV_INTER_NN, WARP.CV_WARP_DEFAULT, default(TColor));
+            resultado.Image = input.Image.Clone();
+            resultado.Image = resultado.Image.WarpAffine<float>(sourceMat, (int)Math.Round(width), (int)Math.Round(height), INTER.CV_INTER_NN, WARP.CV_WARP_DEFAULT, default(TColor));
             return resultado;
         }
         #endregion

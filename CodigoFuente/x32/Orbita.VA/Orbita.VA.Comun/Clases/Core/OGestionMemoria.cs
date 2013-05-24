@@ -20,12 +20,12 @@ namespace Orbita.VA.Comun
     /// </summary>
     public static class OGestionMemoriaManager
     {
-        #region Constante(s)
-        /// <summary>
-        /// Intervalo de tiempo mínimo que ha de pasar entre llamadas al recolector de basura
-        /// </summary>
-        private const int IntervaloMinEntreRecoleccionesBasuraMs = 1000;
-        #endregion
+        //#region Constante(s)
+        ///// <summary>
+        ///// Intervalo de tiempo mínimo que ha de pasar entre llamadas al recolector de basura
+        ///// </summary>
+        //private const int IntervaloMinEntreRecoleccionesBasuraMs = 1000;
+        //#endregion
 
         #region Atributo(s)
         /// <summary>
@@ -205,9 +205,9 @@ namespace Orbita.VA.Comun
         public static void ColectorBasura(bool esperaFinalizacion)
         {
             DateTime ahora = DateTime.Now;
-            if (MomentoUltimaRecoleccionBasura + TimeSpan.FromMilliseconds(IntervaloMinEntreRecoleccionesBasuraMs) <= ahora)
-            {
-                MomentoUltimaRecoleccionBasura = ahora;
+            //if (MomentoUltimaRecoleccionBasura + TimeSpan.FromMilliseconds(IntervaloMinEntreRecoleccionesBasuraMs) <= ahora)
+            //{
+            //    MomentoUltimaRecoleccionBasura = ahora;
 
                 OCronometrosManager.Start("GarbageCollector");
 
@@ -226,7 +226,7 @@ namespace Orbita.VA.Comun
                     OLogsVAComun.GestionMemoria.Info("Colector de basura", "Duración: " + OCronometrosManager.DuracionUltimaEjecucion("GarbageCollector").TotalMilliseconds.ToString());
                 }
                 OCronometrosManager.Stop("GarbageCollector");
-            }
+            //}
         }
 	    #endregion    
     }
