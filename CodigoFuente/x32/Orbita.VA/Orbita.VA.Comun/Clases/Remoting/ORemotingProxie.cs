@@ -18,6 +18,7 @@ using System.Net;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Serialization.Formatters;
 using System.Collections;
+using System.Runtime.Remoting;
 
 namespace Orbita.VA.Comun
 {
