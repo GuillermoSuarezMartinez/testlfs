@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Framework.Core
+// Assembly         : Orbita.Controles.Autenticacion
 // Author           : crodriguez
 // Created          : 18-04-2013
 //
@@ -19,7 +19,7 @@ namespace Orbita.Controles.Autenticacion
         /// </summary>
         EstadoAutenticacion estado;
         #endregion
-        
+
         #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs.
