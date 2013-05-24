@@ -211,6 +211,7 @@ namespace Orbita.VA.Hardware
             this.EliminarSuscripcionNuevaFotografiaAsincronaMemoriaMapeada(codigoCliente);
             this.ListaClientesNuevaFotografiaCamaraMemoriaMapeada.Add(codigoCliente, delegadoNuevaFotografiaCamaraMemoriaMapeada);
             this.OnNuevaFotografiaCamaraAsincronaMemoriaMapeada += delegadoNuevaFotografiaCamaraMemoriaMapeada;
+            OLogsVAHardware.Camaras.Debug(string.Format("Creada suscripción a la nueva fotografía. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
         }
         /// <summary>
         /// Elimina la suscripción del cambio de fotografía de una determinada cámara
@@ -221,6 +222,7 @@ namespace Orbita.VA.Hardware
         {
             this.ListaClientesNuevaFotografiaCamaraMemoriaMapeada.Remove(codigoCliente);
             this.OnNuevaFotografiaCamaraAsincronaMemoriaMapeada -= delegadoNuevaFotografiaCamaraMemoriaMapeada;
+            OLogsVAHardware.Camaras.Debug(string.Format("Eliminada suscripción a la nueva fotografía. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
         }
         /// <summary>
         /// Elimina la suscripción del cambio de fotografía de una determinada cámara
@@ -233,6 +235,7 @@ namespace Orbita.VA.Hardware
             {
                 this.ListaClientesNuevaFotografiaCamaraMemoriaMapeada.Remove(codigoCliente);
                 this.OnNuevaFotografiaCamaraAsincronaMemoriaMapeada -= delegadoNuevaFotografiaCamaraMemoriaMapeada;
+                OLogsVAHardware.Camaras.Debug(string.Format("Eliminada suscripción a la nueva fotografía. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
             } 
         }
 
@@ -246,6 +249,7 @@ namespace Orbita.VA.Hardware
             this.EliminarSuscripcionNuevaFotografiaAsincronaRemota(codigoCliente);
             this.ListaClientesNuevaFotografiaCamaraRemota.Add(codigoCliente, delegadoNuevaFotografiaCamaraRemota);
             this.OnNuevaFotografiaCamaraAsincronaRemota += delegadoNuevaFotografiaCamaraRemota;
+            OLogsVAHardware.Camaras.Debug(string.Format("Creada suscripción a la nueva fotografía. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
         }
         /// <summary>
         /// Elimina la suscripción del cambio de fotografía de una determinada cámara
@@ -256,6 +260,7 @@ namespace Orbita.VA.Hardware
         {
             this.ListaClientesNuevaFotografiaCamaraRemota.Remove(codigoCliente);
             this.OnNuevaFotografiaCamaraAsincronaRemota -= delegadoNuevaFotografiaCamaraRemota;
+            OLogsVAHardware.Camaras.Debug(string.Format("Eliminada suscripción a la nueva fotografía. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
         }
         /// <summary>
         /// Elimina la suscripción del cambio de fotografía de una determinada cámara
@@ -268,6 +273,7 @@ namespace Orbita.VA.Hardware
             {
                 this.ListaClientesNuevaFotografiaCamaraRemota.Remove(codigoCliente);
                 this.OnNuevaFotografiaCamaraAsincronaRemota -= delegadoNuevaFotografiaCamaraRemota;
+                OLogsVAHardware.Camaras.Debug(string.Format("Eliminada suscripción a la nueva fotografía. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
             } 
         }
 
@@ -281,6 +287,7 @@ namespace Orbita.VA.Hardware
             this.EliminarSuscripcionCambioEstadoConexionAsincrona(codigoCliente);
             this.ListaClientesCambioEstadoConexionCamara.Add(codigoCliente, delegadoCambioEstadoConexionCamara);
             this.OnCambioEstadoConexionCamaraAsincrono += delegadoCambioEstadoConexionCamara;
+            OLogsVAHardware.Camaras.Debug(string.Format("Creada suscripción al cambio de estado de conexión. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
         }
         /// <summary>
         /// Elimina la suscripción del cambio de estado de una determinada cámara
@@ -291,6 +298,7 @@ namespace Orbita.VA.Hardware
         {
             this.ListaClientesCambioEstadoConexionCamara.Remove(codigoCliente);
             this.OnCambioEstadoConexionCamaraAsincrono -= delegadoCambioEstadoConexionCamara;
+            OLogsVAHardware.Camaras.Debug(string.Format("Eliminada suscripción al cambio de estado de conexión. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
         }
         /// <summary>
         /// Elimina la suscripción del cambio de estado de una determinada cámara
@@ -303,6 +311,7 @@ namespace Orbita.VA.Hardware
             {
                 this.ListaClientesCambioEstadoConexionCamara.Remove(codigoCliente);
                 this.OnCambioEstadoConexionCamaraAsincrono -= delegadoCambioEstadoConexionCamara;
+                OLogsVAHardware.Camaras.Debug(string.Format("Eliminada suscripción al cambio de estado de conexión. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
             } 
         }
 
@@ -316,6 +325,7 @@ namespace Orbita.VA.Hardware
             this.EliminarSuscripcionCambioEstadoReproduccionAsincrona(codigoCliente);
             this.ListaClientesCambioEstadoReproduccionCamara.Add(codigoCliente, delegadoCambioEstadoReproduccionCamara);
             this.OnCambioEstadoReproduccionCamaraAsincrono += delegadoCambioEstadoReproduccionCamara;
+            OLogsVAHardware.Camaras.Debug(string.Format("Creada suscripción al cambio de estado de reproducción. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
         }
         /// <summary>
         /// Elimina la suscripción del cambio de estado de reproducción de una determinada cámara
@@ -326,6 +336,7 @@ namespace Orbita.VA.Hardware
         {
             this.ListaClientesCambioEstadoReproduccionCamara.Remove(codigoCliente);
             this.OnCambioEstadoReproduccionCamaraAsincrono -= delegadoCambioEstadoReproduccionCamara;
+            OLogsVAHardware.Camaras.Debug(string.Format("Eliminada suscripción al cambio de estado de reproducción. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
         }
         /// <summary>
         /// Elimina la suscripción del cambio de estado de reproducción de una determinada cámara
@@ -338,6 +349,7 @@ namespace Orbita.VA.Hardware
             {
                 this.ListaClientesCambioEstadoReproduccionCamara.Remove(codigoCliente);
                 this.OnCambioEstadoReproduccionCamaraAsincrono -= delegadoCambioEstadoReproduccionCamara;
+                OLogsVAHardware.Camaras.Debug(string.Format("Eliminada suscripción al cambio de estado de reproducción. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
             }
         }
 
@@ -351,6 +363,7 @@ namespace Orbita.VA.Hardware
             this.EliminarSuscripcionMensajesAsincrona(codigoCliente);
             this.ListaClientesMensajes.Add(codigoCliente, messageDelegate);
             this.OnMensajeAsincrono += messageDelegate;
+            OLogsVAHardware.Camaras.Debug(string.Format("Creada suscripción a los mensajes de la cámara. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
         }
         /// <summary>
         /// Elimina la suscripción de mensajes de una determinada cámara
@@ -361,6 +374,7 @@ namespace Orbita.VA.Hardware
         {
             this.ListaClientesMensajes.Remove(codigoCliente);
             this.OnMensajeAsincrono -= messageDelegate;
+            OLogsVAHardware.Camaras.Debug(string.Format("Eliminada suscripción a los mensajes de la cámara. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
         }
         /// <summary>
         /// Elimina la suscripción de mensajes de una determinada cámara
@@ -373,6 +387,7 @@ namespace Orbita.VA.Hardware
             {
                 this.ListaClientesMensajes.Remove(codigoCliente);
                 this.OnMensajeAsincrono -= messageDelegate;
+                OLogsVAHardware.Camaras.Debug(string.Format("Eliminada suscripción a los mensajes de la cámara. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
             }
         }
 
@@ -386,6 +401,7 @@ namespace Orbita.VA.Hardware
             this.EliminarSuscripcionBitVidaAsincrona(codigoCliente);
             this.ListaClientesBitVida.Add(codigoCliente, delegadoBitVida);
             this.OnBitVidaAsincrono += delegadoBitVida;
+            OLogsVAHardware.Camaras.Debug(string.Format("Creada suscripción al bit de vida de la cámara. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
         }
         /// <summary>
         /// Elimina la suscripción del bit de vida de una determinada cámara
@@ -396,6 +412,7 @@ namespace Orbita.VA.Hardware
         {
             this.ListaClientesBitVida.Remove(codigoCliente);
             this.OnBitVidaAsincrono -= delegadoBitVida;
+            OLogsVAHardware.Camaras.Debug(string.Format("Eliminada suscripción al bit de vida de la cámara. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
         }
         /// <summary>
         /// Elimina la suscripción del bit de vida de una determinada cámara
@@ -408,6 +425,7 @@ namespace Orbita.VA.Hardware
             {
                 this.ListaClientesBitVida.Remove(codigoCliente);
                 this.OnBitVidaAsincrono -= delegadoBitVida;
+                OLogsVAHardware.Camaras.Debug(string.Format("Eliminada suscripción al bit de vida de la cámara. Cliente {0}, Servidor {1}", codigoCliente, Codigo));
             }
         }
         #endregion
@@ -602,7 +620,9 @@ namespace Orbita.VA.Hardware
             {
                 if (this.DebeLanzarEventoNuevaFotografiaCamaraAsincronaMemoriaMapeada())
                 {
+                    OLogsVAHardware.Camaras.Debug(this.Codigo, "Evento de remoting de cambio de fotografía", "Momento de creación de la fotografía: " + e.ImagenMemoriaMapeada.MomentoCreacion.ToString("yyyyMMddHHmmssfff"));
                     this.OnNuevaFotografiaCamaraAsincronaMemoriaMapeada(sender, e);
+                    OLogsVAHardware.Camaras.Debug(this.Codigo, "Fin del evento de remoting de cambio de fotografía", "Momento de creación de la fotografía: " + e.ImagenMemoriaMapeada.MomentoCreacion.ToString("yyyyMMddHHmmssfff"));
                 }
             }
             catch (Exception exception)
@@ -658,7 +678,9 @@ namespace Orbita.VA.Hardware
             {
                 try
                 {
+                    OLogsVAHardware.Camaras.Debug(this.Codigo, "Evento de cambio del estado de la conexión");
                     this.OnCambioEstadoConexionCamaraAsincrono(sender, e);
+                    OLogsVAHardware.Camaras.Debug(this.Codigo, "Fin del evento de cambio del estado de la conexión");
                 }
                 catch (Exception exception)
                 {
@@ -684,7 +706,9 @@ namespace Orbita.VA.Hardware
             {
                 try
                 {
+                    OLogsVAHardware.Camaras.Debug(this.Codigo, "Evento de mensaje de la cámara");
                     this.OnMensajeAsincrono(sender, e);
+                    OLogsVAHardware.Camaras.Debug(this.Codigo, "Fin del evento de mensaje de la cámara");
                 }
                 catch (Exception exception)
                 {
@@ -710,7 +734,9 @@ namespace Orbita.VA.Hardware
             {
                 try
                 {
+                    OLogsVAHardware.Camaras.Debug(this.Codigo, "Evento de cambio del estado de la reproducción");
                     this.OnCambioEstadoReproduccionCamaraAsincrono(sender, e);
+                    OLogsVAHardware.Camaras.Debug(this.Codigo, "Fin del evento de cambio del estado de la reproducción");
                 }
                 catch (Exception exception)
                 {
@@ -737,7 +763,9 @@ namespace Orbita.VA.Hardware
             {
                 try
                 {
+                    OLogsVAHardware.Camaras.Debug(this.Codigo, "Evento de bit de vida de la cámara");
                     this.OnBitVidaAsincrono(sender, e);
+                    OLogsVAHardware.Camaras.Debug(this.Codigo, "Fin del evento de bit de vida de la cámara");
                 }
                 catch (Exception exception)
                 {
