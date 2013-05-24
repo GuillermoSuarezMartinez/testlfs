@@ -37,10 +37,10 @@ namespace Orbita.Framework.Extensiones
                     sr = new System.IO.StringReader(s);
                     using (System.Xml.XmlTextReader reader = new System.Xml.XmlTextReader(sr))
                     {
-                        // Referencia: necesario para evitar CA2202: No aplicar Dispose a los objetos varias veces.
+                        //  Referencia: necesario para evitar CA2202: No aplicar Dispose a los objetos varias veces.
                         sr = null;
-                        // Serializa y deserializa objetos en y desde documentos XML.System.Xml.Serialization.XmlSerializer
-                        // permite controlar el modo en que se codifican los objetos en XML.
+                        //  Serializa y deserializa objetos en y desde documentos XML.System.Xml.Serialization.XmlSerializer
+                        //  permite controlar el modo en que se codifican los objetos en XML.
                         System.Xml.Serialization.XmlSerializer xmlSerializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
                         T obj = (T)xmlSerializer.Deserialize(reader);
                         return obj;

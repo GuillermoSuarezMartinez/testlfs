@@ -1,3 +1,5 @@
+using System;
+using System.ComponentModel;
 //***********************************************************************
 // Assembly         : Orbita.Framework
 // Author           : crodriguez
@@ -10,8 +12,6 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System.Windows.Forms;
-using System;
-using System.ComponentModel;
 namespace Orbita.Framework.Core
 {
     [System.CLSCompliantAttribute(false)]
@@ -71,6 +71,13 @@ namespace Orbita.Framework.Core
             DialogReturning += DialogReturnedValue;
             sender.Show();
         }
+        //public void ShowAuthenticationDialog(Form sender, EventHandler<DialogResultArgs> DialogReturnedValue)
+        //{
+        //    sender.MdiParent = this;
+        //    sender.FormClosed += new FormClosedEventHandler(ChildClosed);
+        //    DialogReturning += DialogReturnedValue;
+        //    sender.Show();
+        //}
 
         protected void ChildClosed(object sender, FormClosedEventArgs e)
         {
@@ -85,7 +92,6 @@ namespace Orbita.Framework.Core
             {
                 DialogReturning(sender, DialogReturnedValue);
             }
-            DialogReturning = null;
         }
     }
     public class DialogResultArgs : EventArgs

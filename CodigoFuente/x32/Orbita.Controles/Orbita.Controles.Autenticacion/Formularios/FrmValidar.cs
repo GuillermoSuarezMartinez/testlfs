@@ -238,5 +238,10 @@ namespace Orbita.Controles.Autenticacion
             }
         }
         #endregion
+
+        private void FrmValidar_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

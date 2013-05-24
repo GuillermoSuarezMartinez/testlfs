@@ -30,15 +30,15 @@ namespace Orbita.Framework.Extensiones
         {
             lock (Bloqueo)
             {
-                // Escribir el texto en el fichero de datos de disco.
+                //  Escribir el texto en el fichero de datos de disco.
                 System.IO.FileStream fs = null;
                 try
                 {
-                    // Abrir el Fichero = Nombre del fichero, en modo escritura con lectura compartida y modo de creacion.
+                    //  Abrir el Fichero = Nombre del fichero, en modo escritura con lectura compartida y modo de creacion.
                     fs = new System.IO.FileStream(nombre, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read);
                     using (System.IO.StreamReader sr = new System.IO.StreamReader(fs))
                     {
-                        // Referencia: necesario para evitar CA2202: No aplicar Dispose a los objetos varias veces.
+                        //  Referencia: necesario para evitar CA2202: No aplicar Dispose a los objetos varias veces.
                         fs = null;
                         return sr.ReadToEnd();
                     }

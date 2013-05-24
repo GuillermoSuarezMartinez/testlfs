@@ -49,13 +49,12 @@
             // 
             this.MessageLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.MessageLabel.BackColor = System.Drawing.Color.Transparent;
-            this.MessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MessageLabel.Location = new System.Drawing.Point(12, 12);
+            this.MessageLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MessageLabel.Location = new System.Drawing.Point(12, 7);
             this.MessageLabel.Name = "MessageLabel";
-            this.MessageLabel.Size = new System.Drawing.Size(139, 31);
+            this.MessageLabel.Size = new System.Drawing.Size(137, 34);
             this.MessageLabel.TabIndex = 1;
-            this.MessageLabel.Text = "Espere por favor ...";
+            this.MessageLabel.Text = "Espere por favor ... ";
             this.MessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // WaitWindowGUI
@@ -67,7 +66,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "WaitWindowGUI";
             this.ShowInTaskbar = false;
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WaitWindowGUI";
             this.ResumeLayout(false);

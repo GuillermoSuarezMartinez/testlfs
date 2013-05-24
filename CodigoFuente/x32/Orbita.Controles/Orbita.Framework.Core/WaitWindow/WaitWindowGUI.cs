@@ -53,7 +53,7 @@ namespace Orbita.Framework.Core
                 }
                 else
                 {
-                    // Capturar el resultado.
+                    //  Capturar el resultado.
                     try
                     {
                         this.result = ((FunctionInvoker<object>)results.AsyncState).EndInvoke(results);
@@ -71,7 +71,7 @@ namespace Orbita.Framework.Core
         #region Métodos internos
         internal object DoWork()
         {
-            // Invocar el workerMethod y devolver el resultado.
+            //  Invocar el workerMethod y devolver el resultado.
             WaitWindowEventArgs e = new WaitWindowEventArgs(this.parent, this.parent.args);
             if ((this.parent.workerMethod != null))
             {
@@ -95,8 +95,8 @@ namespace Orbita.Framework.Core
             base.OnPaint(e);
             try
             {
-                // Pintar un borde 3D.
-                System.Windows.Forms.ControlPaint.DrawBorder3D(e.Graphics, this.ClientRectangle, System.Windows.Forms.Border3DStyle.Flat);
+                //  Pintar un borde coloreado.
+                System.Windows.Forms.ControlPaint.DrawBorder(e.Graphics, this.ClientRectangle, System.Drawing.Color.Gray, System.Windows.Forms.ButtonBorderStyle.Solid);
             }
             catch (System.NullReferenceException) { }
         }
@@ -104,17 +104,11 @@ namespace Orbita.Framework.Core
         {
             base.OnShown(e);
 
-            // Crear delegado.
+            //  Crear delegado.
             FunctionInvoker<object> threadController = new FunctionInvoker<object>(this.DoWork);
-            // Ejecutar un hilo secundario.
+            //  Ejecutar un hilo secundario.
             this.threadResult = threadController.BeginInvoke(this.WorkComplete, threadController);
         }
         #endregion
-
-        protected override void OnLoad(System.EventArgs e)
-        {
-            base.OnLoad(e);
-            CheckForIllegalCrossThreadCalls = false;
-        }
     }
 }
