@@ -3,10 +3,9 @@
 @echo Orbita.Framework...............................................
 set /p resp="Desea ofuscar el ensamblado actual? (s=si, n=no, t=si a todo): " %=%
 IF %resp% == n GOTO Comunicaciones
-del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Framework.dll /q/f
-del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Framework.xml /q/f
+del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Framework.exe /q/f
 "%PROGRAMFILES%\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.Framework32.saproj
-verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Framework.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2013"
+verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.Framework.exe /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2013"
 
 :Core
 @echo Ofuscacion de Orbita.Framework.Core.............
