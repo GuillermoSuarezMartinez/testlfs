@@ -376,27 +376,27 @@ namespace Orbita.Framework
                 throw;
             }
         }
-        void Autenticacion_Click(object sender, Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs e)
-        {
-            try
-            {
-                if (e.Resultado == Orbita.Controles.Autenticacion.ResultadoAutenticacion.OK)
-                {
-                    Core.WaitWindow.Mostrar(InitializeAllPluginsMethods);
-                }
-                else if (e.Resultado == Orbita.Controles.Autenticacion.ResultadoAutenticacion.NOK)
-                {
-                    //  El usuario quiere salir de la aplicación. Cerrar todo.
-                    System.Windows.Forms.Application.Exit();
-                }
-            }
-            catch (System.NullReferenceException) { }
-            catch (System.NotImplementedException) { }
-            catch (System.Exception)
-            {
-                throw;
-            }
-        }
+        //void Autenticacion_Click(object sender, Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (e.Resultado == Orbita.Controles.Autenticacion.ResultadoAutenticacion.OK)
+        //        {
+        //            Core.WaitWindow.Mostrar(InitializeAllPluginsMethods);
+        //        }
+        //        else if (e.Resultado == Orbita.Controles.Autenticacion.ResultadoAutenticacion.NOK)
+        //        {
+        //            //  El usuario quiere salir de la aplicación. Cerrar todo.
+        //            System.Windows.Forms.Application.Exit();
+        //        }
+        //    }
+        //    catch (System.NullReferenceException) { }
+        //    catch (System.NotImplementedException) { }
+        //    catch (System.Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
         void OnCambiarIdioma(object sender, PluginManager.IdiomaChangedEventArgs e)
         {
             try
