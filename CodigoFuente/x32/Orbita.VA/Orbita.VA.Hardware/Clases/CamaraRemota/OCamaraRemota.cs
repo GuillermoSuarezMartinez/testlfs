@@ -1305,6 +1305,13 @@ namespace Orbita.VA.Hardware
     [Serializable]
     public class OCamaraBroadcastEventWraper : ORemotingObject
     {
+        #region Constante(s)
+        /// <summary>
+        /// Número de llamadas simultáneas máximas
+        /// </summary>
+        private const int NumMaxLlamadasSimultaneas = 5;
+        #endregion
+
         #region Atributo(s)
         /// <summary>
         /// Informa del número de llamadas simultáneas al evento
@@ -1389,10 +1396,12 @@ namespace Orbita.VA.Hardware
             try
             {
                 this.ContLlamadasSimultaneasNuevaFotografiaMemoriaMapeada++;
-
-                if (NuevaFotografiaCamaraMemoriaMapeada != null)
+                if (this.ContLlamadasSimultaneasNuevaFotografiaMemoriaMapeada <= NumMaxLlamadasSimultaneas)
                 {
-                    this.NuevaFotografiaCamaraMemoriaMapeada(null, e);
+                    if (NuevaFotografiaCamaraMemoriaMapeada != null)
+                    {
+                        this.NuevaFotografiaCamaraMemoriaMapeada(null, e);
+                    }
                 }
                 else
                 {
@@ -1420,10 +1429,12 @@ namespace Orbita.VA.Hardware
             try
             {
                 this.ContLlamadasSimultaneasNuevaFotografiaRemota++;
-
-                if (NuevaFotografiaCamaraRemota != null)
+                if (this.ContLlamadasSimultaneasNuevaFotografiaRemota <= NumMaxLlamadasSimultaneas)
                 {
-                    this.NuevaFotografiaCamaraRemota(null, e);
+                    if (NuevaFotografiaCamaraRemota != null)
+                    {
+                        this.NuevaFotografiaCamaraRemota(null, e);
+                    }
                 }
                 else
                 {
@@ -1451,10 +1462,12 @@ namespace Orbita.VA.Hardware
             try
             {
                 this.ContLlamadasSimultaneasCambioEstadoConexion++;
-
-                if (CambioEstadoConexionCamara != null)
+                if (this.ContLlamadasSimultaneasCambioEstadoConexion <= NumMaxLlamadasSimultaneas)
                 {
-                    this.CambioEstadoConexionCamara(null, e);
+                    if (CambioEstadoConexionCamara != null)
+                    {
+                        this.CambioEstadoConexionCamara(null, e);
+                    }
                 }
                 else
                 {
@@ -1482,10 +1495,12 @@ namespace Orbita.VA.Hardware
             try
             {
                 this.ContLlamadasSimultaneasCambioEstadoReproduccion++;
-
-                if (CambioEstadoReproduccionCamara != null)
+                if (this.ContLlamadasSimultaneasCambioEstadoReproduccion <= NumMaxLlamadasSimultaneas)
                 {
-                    this.CambioEstadoReproduccionCamara(null, e);
+                    if (CambioEstadoReproduccionCamara != null)
+                    {
+                        this.CambioEstadoReproduccionCamara(null, e);
+                    }
                 }
                 else
                 {
@@ -1513,10 +1528,12 @@ namespace Orbita.VA.Hardware
             try
             {
                 this.ContLlamadasSimultaneasMensaje++;
-
-                if (MensajeCamaraRemoting != null)
+                if (this.ContLlamadasSimultaneasMensaje <= NumMaxLlamadasSimultaneas)
                 {
-                    this.MensajeCamaraRemoting(null, e);
+                    if (MensajeCamaraRemoting != null)
+                    {
+                        this.MensajeCamaraRemoting(null, e);
+                    }
                 }
                 else
                 {
@@ -1544,10 +1561,12 @@ namespace Orbita.VA.Hardware
             try
             {
                 this.ContLlamadasSimultaneasBitVida++;
-
-                if (BitVida != null)
+                if (this.ContLlamadasSimultaneasBitVida <= NumMaxLlamadasSimultaneas)
                 {
-                    this.BitVida(null, e);
+                    if (BitVida != null)
+                    {
+                        this.BitVida(null, e);
+                    }
                 }
                 else
                 {
