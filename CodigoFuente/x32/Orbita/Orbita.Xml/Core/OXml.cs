@@ -106,7 +106,7 @@ namespace Orbita.Xml
             {
                 if (valor is DateTime)
                 {
-                    this.Add(etiqueta, (DateTime)valor);
+                    this.AddFechaUniversal(etiqueta, (DateTime)valor);
                 }
                 else if (valor is TimeSpan)
                 {

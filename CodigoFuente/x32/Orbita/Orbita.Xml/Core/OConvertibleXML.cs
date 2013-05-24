@@ -141,6 +141,24 @@ namespace Orbita.Xml
         {
             return this.PropiedadesDetalle.ToXML(modoGeneracionXML, nombreDocumento, nombreEtiqueta);
         }
+
+        /// <summary>
+        /// Convierte el contenido en un diccionario. Se permite el formateo del texto
+        /// </summary>
+        /// <returns></returns>
+        public Dictionary<string,object> ToDictionary(Func<string, string> formateador)
+        {
+            Dictionary<string, object> resultado = new Dictionary<string, object>();
+
+            // Añadimos los detalles
+            foreach (KeyValuePair<string, object> pair in this.Propiedades)
+            {
+                string clave = formateador(pair.Key);
+                resultado.Add(clave, pair.Value);
+            }
+
+            return resultado;
+        }
         #endregion
     }
 
