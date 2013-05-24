@@ -644,6 +644,7 @@ namespace Orbita.VA.Hardware
         /// <param name="estadoConexion"></param>
         private void CambioEstadoConexionCamara(object sender, CambioEstadoConexionCamaraEventArgs e)
         {
+            OLogsVAHardware.Camaras.Debug(this.Codigo, "Evento de recepción de cambio del estado de conexión");
             this.LanzarEventoCambioEstadoConexionCamaraSincrona(e.Codigo, e.EstadoConexionActual, e.EstadoConexionAnterior);
             this.BitVida(sender, null);
         }
@@ -653,6 +654,7 @@ namespace Orbita.VA.Hardware
         /// <param name="estadoConexion"></param>
         private void CambioEstadoReproduccionCamara(object sender, CambioEstadoReproduccionCamaraEventArgs e)
         {
+            OLogsVAHardware.Camaras.Debug(this.Codigo, "Evento de recepción de cambio del estado de reproducción");
             this.LanzarEventoCambioReproduccionCamaraSincrona(e.Codigo, e.ModoReproduccionContinua);
             this.BitVida(sender, null);
         }
@@ -662,6 +664,7 @@ namespace Orbita.VA.Hardware
         /// <param name="estadoConexion"></param>
         private void MensajeCamara(object sender, OMessageEventArgs e)
         {
+            OLogsVAHardware.Camaras.Debug(this.Codigo, "Evento de recepción de mensaje de la cámara");
             this.LanzarEventoMensajeCamaraSincrona(e.Codigo, e.Mensaje);
             this.BitVida(sender, null);
         }
@@ -671,6 +674,7 @@ namespace Orbita.VA.Hardware
         /// <param name="estadoConexion"></param>
         private void BitVida(object sender, OEventArgs e)
         {
+            OLogsVAHardware.Camaras.Debug(this.Codigo, "Evento de recepción del bit de vida de la cámara");
             this.CronometroTiempoSinRespuesta.Stop();
             this.CronometroTiempoSinRespuesta.Reset();
             this.CronometroTiempoSinRespuesta.Start();
