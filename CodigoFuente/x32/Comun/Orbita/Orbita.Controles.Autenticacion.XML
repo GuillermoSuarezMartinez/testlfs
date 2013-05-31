@@ -4,93 +4,117 @@
         <name>Orbita.Controles.Autenticacion</name>
     </assembly>
     <members>
-        <member name="T:Orbita.Controles.Autenticacion.OLogOnOpenLDAP">
+        <member name="T:Orbita.Controles.Autenticacion.App">
             <summary>
-            Autenticación contra Open LDAP.
+            Clase interna de aplicación.
             </summary>
         </member>
-        <member name="T:Orbita.Controles.Autenticacion.OLogOn">
+        <member name="T:Orbita.Controles.Autenticacion.OLogonOpenLDAP">
+            <summary>
+            Autenticación con Open LDAP.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Autenticacion.OLogon">
             <summary>
             Clase base para el login de usuarios.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Autenticacion.OLogOn.Validar">
+        <member name="M:Orbita.Controles.Autenticacion.OLogon.Validar">
             <summary>
-            Clase base de validación.
+            Método abstracto de validación.
             </summary>
-            <returns>Mensaje de validación de argumento Orbita.Controles.Autenticacion.OEstadoValidacion.</returns>
+            <returns>Mensaje de validación de argumento Orbita.Controles.Autenticacion.EstadoAutenticacion.</returns>
         </member>
-        <member name="T:Orbita.Controles.Autenticacion.FrmValidar">
+        <member name="M:Orbita.Controles.Autenticacion.OLogonOpenLDAP.Validar">
+            <summary>
+            Método de validación con Open LDAP.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.Controles.Autenticacion.FrmAutenticacion">
             <summary>
             Formulario de autenticación.
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Autenticacion.FrmValidar.components">
+        <member name="F:Orbita.Controles.Autenticacion.FrmAutenticacion.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Autenticacion.FrmValidar.Dispose(System.Boolean)">
+        <member name="M:Orbita.Controles.Autenticacion.FrmAutenticacion.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Orbita.Controles.Autenticacion.FrmValidar.InitializeComponent">
+        <member name="M:Orbita.Controles.Autenticacion.FrmAutenticacion.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Autenticacion.FrmValidar.GetKeyState(System.Int32)">
+        <member name="M:Orbita.Controles.Autenticacion.FrmAutenticacion.GetKeyState(System.Int32)">
             <summary>
-            This function retrieves the status of the specified virtual key.
+            Esta función recupera el estado de la tecla virtual especificada.
             The status specifies whether the key is up, down.
             </summary>
             <param name="keyCode">Specifies a key code for the button to me checked</param>
             <returns>Return value will be 0 if off and 1 if on</returns>
         </member>
-        <member name="F:Orbita.Controles.Autenticacion.FrmValidar.autenticacion">
-            <summary>
-            Tipo de autenticación a realizar.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Autenticacion.FrmValidar.dominio">
-            <summary>
-            Servidor donde se realiza la autenticación.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Autenticacion.FrmValidar.#ctor">
+        <member name="M:Orbita.Controles.Autenticacion.FrmAutenticacion.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.FrmValidar.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Autenticacion.FrmValidar.#ctor(System.Windows.Forms.Form)">
+        <member name="M:Orbita.Controles.Autenticacion.FrmAutenticacion.ShowChildDialog(System.Windows.Forms.Form,System.EventHandler{Orbita.Controles.Autenticacion.AutenticacionResultEventArgs})">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.FrmValidar.
+            Mostrar ventana de dialogo como hijo de un formulario MDI.
             </summary>
-            <param name="parent"></param>
+            <param name="sender"></param>
+            <param name="dialogReturnedValue">Manejador de evento de retorno.</param>
         </member>
-        <member name="E:Orbita.Controles.Autenticacion.FrmValidar.ControlAutenticacion">
+        <member name="M:Orbita.Controles.Autenticacion.FrmAutenticacion.DialogReturned(System.Object,Orbita.Controles.Autenticacion.AutenticacionResultEventArgs)">
             <summary>
-            Evento para la validación.
+            Manejador de evento de retorno.
             </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
         </member>
-        <member name="F:Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs.estado">
+        <member name="T:Orbita.Controles.Autenticacion.AutenticacionResultEventArgs">
             <summary>
-            Estado de la autenticación.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs.
+            Argumentos de resultado de autenticación.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs.#ctor(Orbita.Controles.Autenticacion.EstadoAutenticacion)">
+        <member name="F:Orbita.Controles.Autenticacion.AutenticacionResultEventArgs.resultado">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.AutenticacionChangedEventArgs.
+            Resultado del formulario de autenticación.
             </summary>
-            <param name="estado">Nombre de la propiedad.</param>
+        </member>
+        <member name="F:Orbita.Controles.Autenticacion.AutenticacionResultEventArgs.usuario">
+            <summary>
+            Usuario validado.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Autenticacion.AutenticacionResultEventArgs.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.AutenticacionResultEventArgs.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Autenticacion.AutenticacionResultEventArgs.#ctor(System.Windows.Forms.DialogResult)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.AutenticacionResultEventArgs.
+            </summary>
+            <param name="resultado">Resultado del formulario de autenticación.</param>
+        </member>
+        <member name="P:Orbita.Controles.Autenticacion.AutenticacionResultEventArgs.Resultado">
+            <summary>
+            Resultado del formulario de autenticación.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Autenticacion.AutenticacionResultEventArgs.Usuario">
+            <summary>
+            Usuario validado.
+            </summary>
         </member>
         <member name="T:Orbita.Controles.Autenticacion.EstadoAutenticacionNOK">
             <summary>
@@ -99,7 +123,17 @@
         </member>
         <member name="T:Orbita.Controles.Autenticacion.EstadoAutenticacion">
             <summary>
-            Estado de la validación.
+            Estado de autenticación.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Autenticacion.EstadoAutenticacion.resultado">
+            <summary>
+            Resultado de autenticación.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Autenticacion.EstadoAutenticacion.mensaje">
+            <summary>
+            Mensaje de autenticación.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Autenticacion.EstadoAutenticacion.#ctor">
@@ -107,20 +141,39 @@
             Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.EstadoAutenticacion.
             </summary>
         </member>
+        <member name="M:Orbita.Controles.Autenticacion.EstadoAutenticacion.#ctor(Orbita.Controles.Autenticacion.ResultadoAutenticacion)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.EstadoAutenticacion.
+            </summary>
+            <param name="resultado">Resultado del formulario de autenticación.</param>
+        </member>
+        <member name="M:Orbita.Controles.Autenticacion.EstadoAutenticacion.#ctor(Orbita.Controles.Autenticacion.ResultadoAutenticacion,System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.EstadoAutenticacion.
+            </summary>
+            <param name="resultado">Resultado del formulario de autenticación.</param>
+            <param name="mensaje">Mensaje adicional de autenticación.</param>
+        </member>
         <member name="P:Orbita.Controles.Autenticacion.EstadoAutenticacion.Resultado">
             <summary>
-            Resultado de la autenticación.
+            Resultado de autenticación.
             </summary>
         </member>
         <member name="P:Orbita.Controles.Autenticacion.EstadoAutenticacion.Mensaje">
             <summary>
-            Mensaje de la validación.
+            Mensaje de autenticación.
             </summary>
         </member>
-        <member name="P:Orbita.Controles.Autenticacion.EstadoAutenticacion.Botón">
+        <member name="M:Orbita.Controles.Autenticacion.EstadoAutenticacionNOK.#ctor">
             <summary>
-            Botón que se pulsa al validar.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.EstadoAutenticacionNOK.
             </summary>
+        </member>
+        <member name="M:Orbita.Controles.Autenticacion.EstadoAutenticacionNOK.#ctor(System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.EstadoAutenticacionNOK.
+            </summary>
+            <param name="mensaje">Mensaje adicional de una autenticación incorrecta.</param>
         </member>
         <member name="T:Orbita.Controles.Autenticacion.ResultadoAutenticacion">
             <summary>
@@ -162,27 +215,45 @@
             Autenticación OpenLDAP.
             </summary>
         </member>
-        <member name="T:Orbita.Controles.Autenticacion.OLogOnBBDD">
+        <member name="T:Orbita.Controles.Autenticacion.OLogonBBDD">
             <summary>
             Autenticación con base de datos.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Autenticacion.OLogOnBBDD.Validar">
+        <member name="M:Orbita.Controles.Autenticacion.OLogonBBDD.Validar">
             <summary>
-            Validación con la base de datos.
+            Autenticación con la base de datos.
             </summary>
-            <returns>Mensaje de validación de argumento Orbita.Controles.Autenticacion.OEstadoValidacion.</returns>
+            <returns>Mensaje de validación de argumento Orbita.Controles.Autenticacion.OLogonBBDD.</returns>
         </member>
-        <member name="T:Orbita.Controles.Autenticacion.OLogOnActiveDirectory">
+        <member name="T:Orbita.Controles.Autenticacion.OLogonActiveDirectory">
             <summary>
             Autenticación con Active Direcotry.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Autenticacion.OLogOnActiveDirectory.Validar">
+        <member name="M:Orbita.Controles.Autenticacion.OLogonActiveDirectory.Validar">
             <summary>
             Autenticación con Active Directory.
             </summary>
-            <returns>Mensaje de validación de argumento Orbita.Controles.Autenticacion.OEstadoValidacion.</returns>
+            <returns>Mensaje de validación de argumento Orbita.Controles.Autenticacion.EstadoAutenticacion.</returns>
+        </member>
+        <member name="T:Orbita.Controles.Autenticacion.AppBD">
+            <summary>
+            Métodos de base de datos.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Autenticacion.AppBD.GetTipoAutenticacion">
+            <summary>
+            Obtener tipo de autenticación.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Autenticacion.AppBD.GetAutenticacionBBDD(System.String)">
+            <summary>
+            Obtener resultado de autenticación de un usuario.
+            </summary>
+            <param name="usuario">Usuario de autenticación.</param>
+            <returns></returns>
         </member>
         <member name="T:Orbita.Controles.Autenticacion.Properties.Resources">
             <summary>
@@ -200,14 +271,34 @@
               búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
             </summary>
         </member>
+        <member name="T:Orbita.Controles.Autenticacion.MensajesAutenticacion">
+            <summary>
+            Mensajes internos de autenticación.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Autenticacion.MensajesAutenticacion.ContraseñaIncorrecta">
+            <summary>
+            La contraseña introducida es incorrecta.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Autenticacion.MensajesAutenticacion.UsuarioIncorrecto">
+            <summary>
+            El nombre del usuario introducido es incorrecto.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Autenticacion.MensajesAutenticacion.SinAutenticacion">
+            <summary>
+            No hay establecido un método de autenticación.
+            </summary>
+        </member>
         <member name="T:Orbita.Controles.Autenticacion.EstadoAutenticacionOK">
             <summary>
             Estado de autenticación correcto.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Autenticacion.AutenticacionManager.#ctor">
+        <member name="M:Orbita.Controles.Autenticacion.EstadoAutenticacionOK.#ctor">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.AutenticacionManager.
+            Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.EstadoAutenticacionOK.
             </summary>
         </member>
     </members>

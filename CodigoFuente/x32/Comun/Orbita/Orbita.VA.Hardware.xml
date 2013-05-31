@@ -3706,17 +3706,12 @@
             Información del Dispositivo
             </summary>
         </member>
-        <member name="F:Orbita.VA.Hardware.OTerminalClienteComunicacion.TipoDispositivo">
-            <summary>
-            Tipo de dispositivo controlado por el servidor de comunicaciones
-            </summary>
-        </member>
         <member name="F:Orbita.VA.Hardware.OTerminalClienteComunicacion.EscrituraInmediata">
             <summary>
             Indica que la escritura del valor se ha de producir inmediatamente al cambio del valor de la variable
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacion.#ctor(System.String,System.String,Orbita.VA.Hardware.OEnumTipoDispositivoClienteComunicacion)">
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacion.#ctor(System.String,System.String)">
             <summary>
             Contructor de la clase
             </summary>
@@ -3784,7 +3779,7 @@
             Lista de terminales asociados
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacionWriteCommand.#ctor(System.String,System.String,Orbita.VA.Hardware.OEnumTipoDispositivoClienteComunicacion)">
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacionWriteCommand.#ctor(System.String,System.String)">
             <summary>
             Contructor de la clase
             </summary>
@@ -3797,26 +3792,6 @@
         <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacionWriteCommand.EscribirSalida(System.String,System.Object)">
             <summary>
             Escritura de la salida
-            </summary>
-        </member>
-        <member name="T:Orbita.VA.Hardware.OEnumTipoDispositivoClienteComunicacion">
-            <summary>
-            Tipo de dispositivo controlado por el servidor de comunicaciones
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OEnumTipoDispositivoClienteComunicacion.OPC_SimaticNET">
-            <summary>
-            Servidor OPC de Siemens
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OEnumTipoDispositivoClienteComunicacion.MCC_EPDISO16">
-            <summary>
-            Tarjeta Ethernet E/S
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OEnumTipoDispositivoClienteComunicacion.Orbita">
-            <summary>
-            Dispositivo para variables internas
             </summary>
         </member>
         <member name="T:Orbita.VA.Hardware.OCamaraBaslerPylon">

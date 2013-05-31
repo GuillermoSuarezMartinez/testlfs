@@ -961,7 +961,17 @@
             Valor máximo
             </summary>
         </member>
+        <member name="F:Orbita.Utiles.OEntero.Formato">
+            <summary>
+            Formato cultural de los números en coma flotante
+            </summary>
+        </member>
         <member name="M:Orbita.Utiles.OEntero.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OEntero.#ctor(System.String,System.Int32,System.Int32,System.IFormatProvider,System.Int32,System.Boolean)">
             <summary>
             Constructor de la clase
             </summary>
@@ -984,7 +994,19 @@
             </summary>
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
+        <member name="M:Orbita.Utiles.OEntero.Validar(System.Object,Orbita.Utiles.EnumEstadoRobusto@,System.Int32,System.Int32,System.IFormatProvider,System.Int32)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
         <member name="M:Orbita.Utiles.OEntero.Validar(System.Object,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEntero.Validar(System.Object,System.Int32,System.Int32,System.IFormatProvider,System.Int32)">
             <summary>
             Evalúa si el parámetro está dentro del rango determinado
             </summary>
@@ -997,6 +1019,13 @@
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
         <member name="M:Orbita.Utiles.OEntero.Validar(System.Object,System.String,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="value">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEntero.Validar(System.Object,System.String,System.Int32,System.Int32,System.IFormatProvider,System.Int32,System.Boolean)">
             <summary>
             Comprueba que el valor del objeto es correcto
             </summary>
@@ -1045,7 +1074,19 @@
             </summary>
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
+        <member name="M:Orbita.Utiles.OEnteroExtension.ValidarEntero(System.Object,Orbita.Utiles.EnumEstadoRobusto@,System.Int32,System.Int32,System.IFormatProvider,System.Int32)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
         <member name="M:Orbita.Utiles.OEnteroExtension.ValidarEntero(System.Object,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEnteroExtension.ValidarEntero(System.Object,System.Int32,System.Int32,System.IFormatProvider,System.Int32)">
             <summary>
             Evalúa si el parámetro está dentro del rango determinado
             </summary>
@@ -1058,6 +1099,13 @@
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
         <member name="M:Orbita.Utiles.OEnteroExtension.ValidarEntero(System.Object,System.String,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="value">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OEnteroExtension.ValidarEntero(System.Object,System.String,System.Int32,System.Int32,System.IFormatProvider,System.Int32,System.Boolean)">
             <summary>
             Comprueba que el valor del objeto es correcto
             </summary>
@@ -1125,7 +1173,17 @@
             Valor máximo
             </summary>
         </member>
+        <member name="F:Orbita.Utiles.ODecimal.Formato">
+            <summary>
+            Formato cultural de los números en coma flotante
+            </summary>
+        </member>
         <member name="M:Orbita.Utiles.ODecimal.#ctor(System.String,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.ODecimal.#ctor(System.String,System.Double,System.Double,System.IFormatProvider,System.Double,System.Boolean)">
             <summary>
             Constructor de la clase
             </summary>
@@ -1149,7 +1207,19 @@
             </summary>
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
+        <member name="M:Orbita.Utiles.ODecimal.Validar(System.Object,Orbita.Utiles.EnumEstadoRobusto@,System.Double,System.Double,System.IFormatProvider,System.Double)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
         <member name="M:Orbita.Utiles.ODecimal.Validar(System.Object,System.Double,System.Double,System.Double)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.ODecimal.Validar(System.Object,System.Double,System.Double,System.IFormatProvider,System.Double)">
             <summary>
             Evalúa si el parámetro está dentro del rango determinado
             </summary>
@@ -1162,6 +1232,13 @@
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
         <member name="M:Orbita.Utiles.ODecimal.Validar(System.Object,System.String,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="value">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
+        </member>
+        <member name="M:Orbita.Utiles.ODecimal.Validar(System.Object,System.String,System.Double,System.Double,System.IFormatProvider,System.Double,System.Boolean)">
             <summary>
             Comprueba que el valor del objeto es correcto
             </summary>

@@ -794,7 +794,7 @@
             Indica si el control de llave se realiza sobre servicio
             </summary>
         </member>
-        <member name="F:Orbita.MS.OHaspSN.wrapper">
+        <member name="F:Orbita.MS.OHaspSN.logger">
             <summary>
             Logger de la clase
             </summary>
@@ -981,22 +981,22 @@
             ADR
             </summary>
         </member>
-        <member name="F:Orbita.MS.OHaspSN.OProductos.AlarmasMails">
+        <member name="F:Orbita.MS.OHaspSN.OProductos.GestionAlarmasMail">
             <summary>
             Alarmas Mails
             </summary>
         </member>
-        <member name="F:Orbita.MS.OHaspSN.OProductos.AlarmasSMS">
+        <member name="F:Orbita.MS.OHaspSN.OProductos.GestionAlarmasSMS">
             <summary>
             Alarmas SMS
             </summary>
         </member>
-        <member name="F:Orbita.MS.OHaspSN.OProductos.CCEnvasado">
+        <member name="F:Orbita.MS.OHaspSN.OProductos.ControlCalidadEnvasado">
             <summary>
             Envasado
             </summary>
         </member>
-        <member name="F:Orbita.MS.OHaspSN.OProductos.LectorCarin">
+        <member name="F:Orbita.MS.OHaspSN.OProductos.CARIN">
             <summary>
             Lector carin
             </summary>
