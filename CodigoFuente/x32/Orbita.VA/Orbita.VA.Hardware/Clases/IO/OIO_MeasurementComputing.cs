@@ -22,7 +22,7 @@ namespace Orbita.VA.Hardware
     /// <summary>
     /// Clase que implementa las funciones para el control del módulo de Entradas/Salidas USB-1024HLS de Measurement Computing
     /// </summary>
-    class OIO_MeasurementComputingUniversal : OModuloIOBase
+    public class OIO_MeasurementComputingUniversal : OModuloIOBase
     {
         #region Atributo(s)
         /// <summary>
@@ -81,7 +81,7 @@ namespace Orbita.VA.Hardware
         /// Rellenamos la lista genérica de terminales del puerto correspondiente
         /// </summary>
         /// <param name="terminalPuerto"></param>
-        protected void RellenarListaTerminales(OTerminalIOMeasurementComputingInt terminalPuerto)
+        internal void RellenarListaTerminales(OTerminalIOMeasurementComputingInt terminalPuerto)
         {
             this.ListaTerminales.Add(terminalPuerto.Codigo, terminalPuerto);
             foreach (OTerminalIOBase terminal in terminalPuerto.ListaTerminalesBit)
@@ -202,7 +202,7 @@ namespace Orbita.VA.Hardware
     /// <summary>
     /// Clase que implementa las funciones para el control del módulo de Entradas/Salidas USB-1024HLS de Measurement Computing
     /// </summary>
-    class OIO_USB1024HLS : OIO_MeasurementComputingUniversal
+    public class OIO_USB1024HLS : OIO_MeasurementComputingUniversal
     {
         #region Atributo(s)
         /// <summary>
@@ -267,7 +267,7 @@ namespace Orbita.VA.Hardware
     /// <summary>
     /// Clase que implementa las funciones para el control del módulo de Entradas/Salidas E-PDISO16 de Measurement Computing
     /// </summary>
-    class OIO_EPDISO16 : OIO_MeasurementComputingUniversal
+    public class OIO_EPDISO16 : OIO_MeasurementComputingUniversal
     {
         #region Atributo(s)
         /// <summary>

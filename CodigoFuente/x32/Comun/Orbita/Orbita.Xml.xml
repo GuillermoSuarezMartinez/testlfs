@@ -66,6 +66,12 @@
             <param name="nombreEtiqueta"></param>
             <returns></returns>
         </member>
+        <member name="M:Orbita.Xml.OConvertibleXML.ToDictionary(System.Func{System.String,System.String})">
+            <summary>
+            Convierte el contenido en un diccionario. Se permite el formateo del texto
+            </summary>
+            <returns></returns>
+        </member>
         <member name="P:Orbita.Xml.OConvertibleXML.Propiedades">
             <summary>
             Propiedades a almacenar en XML

@@ -104,7 +104,7 @@ namespace Orbita.Controles.VA
         /// Constructor de la clase
         /// </summary>
         public FrmDisplays()
-            : this("Monitorización de cámaras", true, true, true)
+            : this("Monitorización de cámaras", true, true, OUsuariosManager.PermisoActual == OPermisos.Administrador)
         {
             InitializeComponent();
 

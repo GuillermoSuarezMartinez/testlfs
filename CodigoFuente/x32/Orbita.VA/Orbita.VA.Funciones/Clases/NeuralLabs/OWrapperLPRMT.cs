@@ -54,7 +54,7 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Elementos enviados al motor, para poder asociar con los resultados
         /// </summary>
-        private static Dictionary<int, OLPRData> ElementosEnviados;
+        private static Dictionary<long, OLPRData> ElementosEnviados;
         /// <summary>
         /// Objeto bloqueante
         /// </summary>
@@ -66,7 +66,7 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Contador de identificación
         /// </summary>
-        private static Int32 ContId;
+        private static long ContId;
         #endregion
 
         #region Métodos Públicos
@@ -79,11 +79,10 @@ namespace Orbita.VA.Funciones
             VPARMtCallbackResult = new VPARCallback(CallbackResultFunction);
             // Creamos las colas , pilas y diccionarios
             ColaDeResultados = new Queue<OPair<OLPRCodeInfo, OLPRData>>();
-            ElementosEnviados = new Dictionary<int, OLPRData>();
+            ElementosEnviados = new Dictionary<long, OLPRData>();
             ProductorConsumidor = new OProductorConsumidorThread<OLPRData>("VPAR PC", 1, 1, ThreadPriority.Normal, MAX_QUEUE);
             ProductorConsumidor.CrearSuscripcionConsumidor(EjecutarConsumidor, true);
             ProductorConsumidor.Start();            
-            // Inicializamos el contador
             VPARIsRunning = false;
         }
         /// <summary>
@@ -156,14 +155,28 @@ namespace Orbita.VA.Funciones
         /// Resetea las colas
         /// </summary>
         /// <returns></returns>
-        public static int Reset()
+        public static int Reset(string codFuncion)
         {
             try
             {
-                ColaDeResultados.Clear();
-                ProductorConsumidor.Clear();
+                lock (LockObject)
+                {
+                    Dictionary<long, OLPRData> nuevo = new Dictionary<long, OLPRData>();
+                    foreach (KeyValuePair<long, OLPRData> elemento in ElementosEnviados)
+                    {
+                        // do something with entry.Value or entry.Key
+                        OLPRData datos = elemento.Value;
+                        long ident = elemento.Key;
+                        if (datos.GetCodFuncion != codFuncion)
+                        {
+                            nuevo.Add(ident, datos);
+                        }
+                    }
                 ElementosEnviados.Clear();
+                    ElementosEnviados = new Dictionary<long,OLPRData>(nuevo);
+                    nuevo.Clear();
                 GC.Collect();
+                }
                 return 1;
             }
             catch (Exception exception)
@@ -235,6 +248,36 @@ namespace Orbita.VA.Funciones
             }
         }
         /// <summary>
+        /// Devuelve la cantidad de imagenes en la cola del wrapper para una determinada funcion
+        /// </summary>
+        /// <returns></returns>
+        public static int GetQueueSize(string codFunc)
+        {
+            try
+            {
+                int cantidad = 0;
+                lock (LockObject)
+                {
+                    foreach (KeyValuePair<long, OLPRData> elemento in ElementosEnviados)
+                    {
+                        // do something with entry.Value or entry.Key
+                        OLPRData datos = elemento.Value;
+                        long ident = elemento.Key;
+                        if (datos.GetCodFuncion == codFunc)
+                        {
+                            cantidad++;
+                        }
+                    }
+                }
+                return cantidad;
+            }
+            catch (Exception exception)
+            {
+                OLogsVAFunciones.LPR.Error("LPR", "Obteniendo cantidad de elementos en cola:" + exception.ToString());
+                return 0;
+            }
+        }
+        /// <summary>
         /// Devuelve un resultado de la cola
         /// </summary>
         /// <returns></returns>
@@ -262,10 +305,11 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Añade una imagen para su reconocimiento
         /// </summary>
+        /// <param name="codFunc">funcion que lo añade</param>
         /// <param name="bitmap">imagen</param>
         /// <param name="obj">información de la imagen</param>
         /// <param name="bFront">Si es prioritaria</param>
-        public static bool Add(Bitmap bitmap, object obj, bool bFront = false)
+        public static bool Add(string codFunc,Bitmap bitmap, object obj, bool bFront = false)
         {
             try
             {
@@ -282,11 +326,11 @@ namespace Orbita.VA.Funciones
                     // Establece la prioridad en la cola para la imagen
                     if (bFront)
                     {
-                        ProductorConsumidor.Encolar(new OLPRData(ContId, Configuracion, ref informacion), -1);
+                        ProductorConsumidor.Encolar(new OLPRData(ContId,codFunc, Configuracion, ref informacion), -1);
                     }
                     else
                     {
-                        ProductorConsumidor.Encolar(new OLPRData(ContId, Configuracion, ref informacion));
+                        ProductorConsumidor.Encolar(new OLPRData(ContId,codFunc, Configuracion, ref informacion));
                     }
 
                     // Incrementamos el contador
@@ -303,10 +347,11 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Añade una imagen para su reconocimiento por ruta
         /// </summary>
+        /// <param name="codFunc">funcion que lo añade</param>
         /// <param name="rutaBitmap">imagen</param>
         /// <param name="obj">información de la imagen</param>
         /// <param name="bFront">Si es prioritaria</param>
-        public static bool Add(string rutaBitmap, object obj, bool bFront = false)
+        public static bool Add(string codFunc,string rutaBitmap, object obj, bool bFront = false)
         {
             try
             {
@@ -323,11 +368,11 @@ namespace Orbita.VA.Funciones
                     // Establece la prioridad en la cola para la imagen
                     if (bFront)
                     {
-                        ProductorConsumidor.Encolar(new OLPRData(ContId, Configuracion, ref informacion), -1);
+                        ProductorConsumidor.Encolar(new OLPRData(ContId, codFunc, Configuracion, ref informacion), -1);
                     }
                     else
                     {
-                        ProductorConsumidor.Encolar(new OLPRData(ContId, Configuracion, ref informacion));
+                        ProductorConsumidor.Encolar(new OLPRData(ContId, codFunc, Configuracion, ref informacion));
                     }
 
                     // Incrementamos el contador
@@ -389,60 +434,65 @@ namespace Orbita.VA.Funciones
             {
                 if (valor != null)
                 {
-                    int identificador = valor.GetId;
-                    if (valor.ImageInformation.GetPath == string.Empty)
+                    long identificador = valor.GetId;
+                    lock (LockObject)
                     {
-                        // Pasamos la imagen al motor, dependiendo de su formato
-                        Bitmap currentImage = (Bitmap)valor.ImageInformation.GetImage.Clone();
-                        Rectangle rect = new Rectangle(0, 0, currentImage.Width, currentImage.Height);
-                        BitmapData bmpData = currentImage.LockBits(rect, ImageLockMode.ReadWrite, currentImage.PixelFormat);
-                        // Cogemos la dirección de la primera línea
-                        IntPtr ptr = bmpData.Scan0;
-                        // Desbloqueamos los bits
-                        currentImage.UnlockBits(bmpData);
-                        // Dependiendo de ll tipo utilizamos una función de paso
-                        switch (currentImage.PixelFormat)
+                        if (valor.ImageInformation.GetPath == string.Empty)
                         {
-                            case PixelFormat.Format24bppRgb:
-                                vparmtReadRGB24(ref Configuracion, currentImage.Width, currentImage.Height, ptr, 0);
-                                break;
-                            case PixelFormat.Format32bppArgb:
-                                vparmtReadRGB32(ref Configuracion, currentImage.Width, currentImage.Height, ptr, 0);
-                                break;
-                            case PixelFormat.Format8bppIndexed:
-                                vparmtRead(ref Configuracion, currentImage.Width, currentImage.Height, ptr);
-                                break;
-                            default:
-                                OLogsVAFunciones.LPR.Error("LPR", "El Pixel Format de la imagen no es soportado");
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        // Pasamos la ruta de la imagen al motor, dependiendo de si se trata de una imagen JPG o BMP
-                        string ruta = valor.ImageInformation.GetPath;
-                        if ((Path.GetExtension(ruta).ToUpper(new CultureInfo("en-US")) == ".JPG") | (Path.GetExtension(ruta).ToUpper(new CultureInfo("en-US")) == ".JPEG"))
-                        {
-                            vparmtReadJpg(ref Configuracion, ref ruta);
-                        }
-                        else if (Path.GetExtension(ruta).ToUpper(new CultureInfo("en-US")) == ".BMP")
-                        {
-                            vparmtReadBmp(ref Configuracion, ref ruta);
+                            // Pasamos la imagen al motor, dependiendo de su formato
+                            Bitmap currentImage = (Bitmap)valor.ImageInformation.GetImage.Clone();
+                            Rectangle rect = new Rectangle(0, 0, currentImage.Width, currentImage.Height);
+                            BitmapData bmpData = currentImage.LockBits(rect, ImageLockMode.ReadWrite, currentImage.PixelFormat);
+                            // Cogemos la dirección de la primera línea
+                            IntPtr ptr = bmpData.Scan0;
+                            // Desbloqueamos los bits
+                            currentImage.UnlockBits(bmpData);
+                            // Dependiendo de ll tipo utilizamos una función de paso
+                            switch (currentImage.PixelFormat)
+                            {
+                                case PixelFormat.Format24bppRgb:
+                                    vparmtReadRGB24(ref Configuracion, currentImage.Width, currentImage.Height, ptr, 0);
+                                    break;
+                                case PixelFormat.Format32bppArgb:
+                                    vparmtReadRGB32(ref Configuracion, currentImage.Width, currentImage.Height, ptr, 0);
+                                    break;
+                                case PixelFormat.Format8bppIndexed:
+                                    vparmtRead(ref Configuracion, currentImage.Width, currentImage.Height, ptr);
+                                    break;
+                                default:
+                                    OLogsVAFunciones.LPR.Error("LPR", "El Pixel Format de la imagen no es soportado");
+                                    break;
+                            }
                         }
                         else
                         {
-                            OLogsVAFunciones.LPR.Error("LPR", "Procesando la cola de VPAR con ruta de imagen con extensión incorrecta " + ruta);
+                            // Pasamos la ruta de la imagen al motor, dependiendo de si se trata de una imagen JPG o BMP
+                            string ruta = valor.ImageInformation.GetPath;
+                            if ((Path.GetExtension(ruta).ToUpper(new CultureInfo("en-US")) == ".JPG") | (Path.GetExtension(ruta).ToUpper(new CultureInfo("en-US")) == ".JPEG"))
+                            {
+                                vparmtReadJpg(ref Configuracion, ref ruta);
+                            }
+                            else if (Path.GetExtension(ruta).ToUpper(new CultureInfo("en-US")) == ".BMP")
+                            {
+                                vparmtReadBmp(ref Configuracion, ref ruta);
+                            }
+                            else
+                            {
+                                OLogsVAFunciones.LPR.Error("LPR", "Procesando la cola de VPAR con ruta de imagen con extensión incorrecta " + ruta);
+                            }
                         }
+
+                        try
+                        {
+                            ElementosEnviados.Add(identificador, valor);
+                        }
+                        catch (Exception ex)
+                        {
+                            OLogsVAFunciones.LPR.Error("LPR", "Añadiendo identificador duplicado al diccionario de datos");
+                        }
+
+                        OLogsVAFunciones.LPR.Debug("LPR", string.Format(new CultureInfo("en-US"), "Introducido ResultadoLPR, id = {0}", new object[] { valor.GetId }));
                     }
-                    try
-                    {
-                        ElementosEnviados.Add(identificador, valor);
-                    }
-                    catch (Exception ex)
-                    {
-                        OLogsVAFunciones.LPR.Error("LPR", "Añadiendo identificador duplicado al diccionario de datos");
-                    }
-                    OLogsVAFunciones.LPR.Debug("LPR", string.Format(new CultureInfo("en-US"), "Introducido ResultadoLPR, id = {0}", new object[] { valor.GetId }));
                 }
             }
             catch (Exception exception)
@@ -873,7 +923,11 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Identificador del dato
         /// </summary>
-        private int Identificador;
+        private long Identificador;
+        /// <summary>
+        /// Codigo de la función que llama
+        /// </summary>
+        private string CodFuncionVision;
         /// <summary>
         /// Si el valor ha sido borrado
         /// </summary>
@@ -894,17 +948,31 @@ namespace Orbita.VA.Funciones
         /// Cantidad de lecturas
         /// </summary>
         private int TotalReadItems;
+        /// <summary>
+        /// Codigo funcion
+        /// </summary>
+        private string codFunc;
         #endregion
 
         #region Propiedades
         /// <summary>
         /// Obtiene el identificador del dato
         /// </summary>
-        public int GetId
+        public long GetId
         {
             get
             {
                 return this.Identificador;
+            }
+        }
+        /// <summary>
+        /// Obtiene el codigo de la función de visión
+        /// </summary>
+        public string GetCodFuncion
+        {
+            get
+            {
+                return this.CodFuncionVision;
             }
         }
         /// <summary>
@@ -988,9 +1056,10 @@ namespace Orbita.VA.Funciones
         /// <param name="ident"></param>
         /// <param name="cfg"></param>
         /// <param name="pi"></param>
-        public OLPRData(int ident, VPARMtConfiguration cfg, ref OLPRInfoImagen pi)
+        public OLPRData(long ident,string codFuncion, VPARMtConfiguration cfg, ref OLPRInfoImagen pi)
         {
             this.Identificador = ident;
+            this.CodFuncionVision = codFuncion;
             this.Configuracion = cfg;
             this.InformacionImagen = pi;
             this.TotalReadItems = -1;

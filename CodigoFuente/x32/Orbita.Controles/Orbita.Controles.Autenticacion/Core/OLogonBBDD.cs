@@ -14,19 +14,19 @@ namespace Orbita.Controles.Autenticacion
     /// <summary>
     /// Autenticación con base de datos.
     /// </summary>
-    public class OLogOnBBDD : OLogOn
+    public class OLogonBBDD : OLogon
     {
         #region Métodos públicos
         /// <summary>
-        /// Validación con la base de datos.
+        /// Autenticación con la base de datos.
         /// </summary>
-        /// <returns>Mensaje de validación de argumento Orbita.Controles.Autenticacion.OEstadoValidacion.</returns>
-        public override AutenticacionChangedEventArgs Validar()
+        /// <returns>Mensaje de validación de argumento Orbita.Controles.Autenticacion.OLogonBBDD.</returns>
+        public override EstadoAutenticacion Validar()
         {
             EstadoAutenticacion estado = null;
             try
             {
-                System.Data.DataTable dt = AppBD.Get_Autenticacion_BBDD(this.usuario);
+                System.Data.DataTable dt = AppBD.GetAutenticacionBBDD(this.usuario);
                 if (dt.Rows.Count > 0)
                 {
                     if (this.password == Orbita.MS.OCifrado.DesencriptarTexto(dt.Rows[0]["FWUP_PASS"].ToString()))
@@ -47,7 +47,7 @@ namespace Orbita.Controles.Autenticacion
             {
                 estado = new EstadoAutenticacionNOK("Error al validar: " + ex.ToString());
             }
-            return new AutenticacionChangedEventArgs(estado);
+            return estado;
         }
         #endregion
     }

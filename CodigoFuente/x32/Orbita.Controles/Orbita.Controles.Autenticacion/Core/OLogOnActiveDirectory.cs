@@ -14,14 +14,14 @@ namespace Orbita.Controles.Autenticacion
     /// <summary>
     /// Autenticación con Active Direcotry.
     /// </summary>
-    public class OLogOnActiveDirectory : OLogOn
+    public class OLogonActiveDirectory : OLogon
     {
         #region Métodos públicos
         /// <summary>
         /// Autenticación con Active Directory.
         /// </summary>
-        /// <returns>Mensaje de validación de argumento Orbita.Controles.Autenticacion.OEstadoValidacion.</returns>
-        public override AutenticacionChangedEventArgs Validar()
+        /// <returns>Mensaje de validación de argumento Orbita.Controles.Autenticacion.EstadoAutenticacion.</returns>
+        public override EstadoAutenticacion Validar()
         {
             EstadoAutenticacion estado = null;
             try
@@ -35,7 +35,7 @@ namespace Orbita.Controles.Autenticacion
             {
                 estado = new EstadoAutenticacionNOK("Error en la autenticación LDAP: " + ex.ToString());
             }
-            return new AutenticacionChangedEventArgs(estado);
+            return estado;
         }
         #endregion
     }

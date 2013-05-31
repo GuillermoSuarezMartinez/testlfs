@@ -318,7 +318,7 @@ namespace Orbita.VA.GeneradorEscenarios
                 // Creamos una propiedad con cada uno de los alias
                 string codAlias = drAlias["CodAlias"].ToString();
                 string descHardware = drAlias["DescHardware"].ToString();
-                string claseImplementadoraHardware = drAlias["ClaseImplementadora"].ToString();
+                string claseImplementadoraHardware = drAlias["ClaseImplementadoraCast"].ToString();
                 generador.GenerarPropiedadReadOnlyRuntime(ref claseHardware, codAlias, claseImplementadoraHardware, descHardware, MemberAttributes.Public, claseImplementadoraHardware, "OHardwareManager", "GetHardware", new CodeExpression[] { new CodeFieldReferenceExpression(new CodeThisReferenceExpression(), "Codigo"), new CodePrimitiveExpression(codAlias) });
             }
 
@@ -559,7 +559,7 @@ namespace Orbita.VA.GeneradorEscenarios
                 // Creamos una propiedad con cada uno de los alias
                 string codHardware = drHw["CodHardware"].ToString();
                 string descHardware = drHw["DescHardware"].ToString();
-                string claseImplementadoraHw = drHw["ClaseImplementadora"].ToString();
+                string claseImplementadoraHw = drHw["ClaseImplementadoraCast"].ToString();
                 generador.GenerarPropiedadReadOnlyRuntime(ref clase, codHardware, claseImplementadoraHw, descHardware, MemberAttributes.Public | MemberAttributes.Static, claseImplementadoraHw, "OHardwareManager", "GetHardware", new CodeExpression[] { new CodePrimitiveExpression(codHardware) });
             }
 

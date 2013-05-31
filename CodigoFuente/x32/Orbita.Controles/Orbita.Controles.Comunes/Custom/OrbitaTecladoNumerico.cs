@@ -190,6 +190,7 @@ namespace Orbita.Controles.Comunes
             {
                 this.txtResultado.Text = string.Empty;
                 this.RellenarDesplegable();
+                this.txtResultado.Focus();
             }
             catch (System.Exception)
             {

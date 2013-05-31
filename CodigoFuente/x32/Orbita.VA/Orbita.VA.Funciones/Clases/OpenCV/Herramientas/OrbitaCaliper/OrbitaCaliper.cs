@@ -200,10 +200,6 @@ namespace Orbita.VA.Funciones
         public List<OEdgeResult> BuscarEdges(OImagenOpenCVMonocromo<byte> input, PointF origen, PointF extremoX, PointF extremoY, double threshold)
         {
             // Inicialización de variables
-            if (this.inputSource != null)
-            {
-                this.inputSource.Dispose();
-            }
             if (this.proyeccion != null)
             {
                 this.proyeccion.Dispose();

@@ -14,7 +14,7 @@ namespace Orbita.Controles.Autenticacion
     /// <summary>
     /// Clase base para el login de usuarios.
     /// </summary>
-    public abstract class OLogOn
+    public abstract class OLogon
     {
         #region Atributos internos
         internal string dominio;
@@ -24,10 +24,10 @@ namespace Orbita.Controles.Autenticacion
 
         #region Métodos virtuales
         /// <summary>
-        /// Clase base de validación.
+        /// Método abstracto de validación.
         /// </summary>
-        /// <returns>Mensaje de validación de argumento Orbita.Controles.Autenticacion.OEstadoValidacion.</returns>
-        public abstract AutenticacionChangedEventArgs Validar();
+        /// <returns>Mensaje de validación de argumento Orbita.Controles.Autenticacion.EstadoAutenticacion.</returns>
+        public abstract EstadoAutenticacion Validar();
         #endregion
     }
 }

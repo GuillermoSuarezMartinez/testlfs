@@ -1,6 +1,6 @@
 ﻿namespace Orbita.Controles.Autenticacion
 {
-    partial class FrmValidar
+    partial class FrmAutenticacion
     {
         /// <summary>
         /// Required designer variable.
@@ -21,7 +21,6 @@
         }
 
         #region Windows Form Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -44,7 +43,6 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAceptar.Location = new System.Drawing.Point(120, 7);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(93, 23);
@@ -72,7 +70,6 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Location = new System.Drawing.Point(218, 7);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(93, 23);
@@ -146,7 +143,7 @@
             this.lblCredencialesIncorrectas.Text = "El nombre de usuario o la contraseña introducidos no son correctos.";
             this.lblCredencialesIncorrectas.Visible = false;
             // 
-            // FrmValidar
+            // FrmAutenticacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -158,11 +155,12 @@
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmValidar";
+            this.Name = "FrmAutenticacion";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Autenticación";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmValidar_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmValidar_FormClosed);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FrmValidar_KeyUp);
             this.pnlInferior.ResumeLayout(false);
@@ -170,7 +168,6 @@
             this.pnlSuperior.PerformLayout();
             this.ResumeLayout(false);
         }
-
         #endregion
 
         private System.Windows.Forms.Button btnAceptar;

@@ -273,7 +273,14 @@ namespace Orbita.VA.Comun
         /// <param name="imagenBitmap">Imagen de tipo bitmap desde el cual se va a importar la imagen</param>
         public override OImagen ConvertFromBitmap(Bitmap imagenBitmap)
         {
-            this.Image = new Emgu.CV.Image<TColor, TDepth>(imagenBitmap);
+            /* Lock the bitmap's bits. */
+            BitmapData bmpData = imagenBitmap.LockBits(new Rectangle(0, 0, imagenBitmap.Width, imagenBitmap.Height), ImageLockMode.ReadWrite, imagenBitmap.PixelFormat);
+            /* Get the pointer to the bitmap's buffer. */
+            IntPtr ptrBmp = bmpData.Scan0;
+            /* Unlock the bits. */
+            imagenBitmap.UnlockBits(bmpData);
+
+            this.Image = new Emgu.CV.Image<TColor, TDepth>(imagenBitmap.Width, imagenBitmap.Height, bmpData.Stride, ptrBmp);
             return new OImagenOpenCV<TColor, TDepth>(this.Image);
         }
 
@@ -417,6 +424,83 @@ namespace Orbita.VA.Comun
     public class OImagenOpenCVColor<TDepth> : OImagenOpenCV<Emgu.CV.Structure.Bgr, TDepth>
         where TDepth : new()
     {
+        #region Constructor
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OImagenOpenCVColor()
+            : this("ImagenOpenCV")
+        {
+        }
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OImagenOpenCVColor(string codigo)
+            : base(codigo)
+        {
+            this.TipoImagen = TipoImagen.OpenCV;
+        }
+        /// <summary>
+        /// Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+        /// </summary>
+        /// <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        public OImagenOpenCVColor(object imagen)
+            : this("ImagenOpenCV", imagen)
+        {
+        }
+        /// <summary>
+        /// Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+        /// </summary>
+        /// <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        public OImagenOpenCVColor(string codigo, object imagen)
+            : base(codigo, imagen)
+        {
+            this.TipoImagen = TipoImagen.OpenCV;
+        }
+        #endregion
+
+        #region Método(s) heredado(s)
+        /// <summary>
+        /// Clonado de la imagen
+        /// </summary>
+        public override object Clone()
+        {
+            OImagenOpenCVColor<TDepth> imagenResultado = new OImagenOpenCVColor<TDepth>();
+            imagenResultado.Codigo = this.Codigo;
+            imagenResultado.MomentoCreacion = this.MomentoCreacion;
+            if (this.Image != null)
+            {
+                try
+                {
+                    imagenResultado.Image = this.Image.Clone();
+                }
+                catch (Exception exception)
+                {
+                    OLogsVAComun.ImagenGraficos.Error(exception, "ImagenOpenCV_Clone");
+                }
+            }
+            return imagenResultado;
+        }
+
+        /// <summary>
+        /// Convierte la imagen de tipo bitmap al tipo actual
+        /// </summary>
+        /// <param name="imagenBitmap">Imagen de tipo bitmap desde el cual se va a importar la imagen</param>
+        public override OImagen ConvertFromBitmap(Bitmap imagenBitmap)
+        {
+            this.Image = new Emgu.CV.Image<Emgu.CV.Structure.Bgr, TDepth>(imagenBitmap);
+            return new OImagenOpenCVColor<TDepth>(this.Image);
+        }
+
+        /// <summary>
+        /// Crea una nueva imagen de la misma clase
+        /// </summary>
+        /// <returns>Nueva instancia de la misma clase de imagen</returns>
+        public override OImagen Nueva()
+        {
+            return new OImagenOpenCVColor<TDepth>(this.Codigo);
+        }
+        #endregion
     }
 
     /// <summary>
@@ -425,6 +509,83 @@ namespace Orbita.VA.Comun
     public class OImagenOpenCVMonocromo<TDepth> : OImagenOpenCV<Emgu.CV.Structure.Gray, TDepth>
         where TDepth : new()
     {
+        #region Constructor
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OImagenOpenCVMonocromo()
+            : this("ImagenOpenCV")
+        {
+        }
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OImagenOpenCVMonocromo(string codigo)
+            : base(codigo)
+        {
+            this.TipoImagen = TipoImagen.OpenCV;
+        }
+        /// <summary>
+        /// Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+        /// </summary>
+        /// <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        public OImagenOpenCVMonocromo(object imagen)
+            : this("ImagenOpenCV", imagen)
+        {
+        }
+        /// <summary>
+        /// Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+        /// </summary>
+        /// <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        public OImagenOpenCVMonocromo(string codigo, object imagen)
+            : base(codigo, imagen)
+        {
+            this.TipoImagen = TipoImagen.OpenCV;
+        }
+        #endregion
+
+        #region Método(s) heredado(s)
+        /// <summary>
+        /// Clonado de la imagen
+        /// </summary>
+        public override object Clone()
+        {
+            OImagenOpenCVMonocromo<TDepth> imagenResultado = new OImagenOpenCVMonocromo<TDepth>();
+            imagenResultado.Codigo = this.Codigo;
+            imagenResultado.MomentoCreacion = this.MomentoCreacion;
+            if (this.Image != null)
+            {
+                try
+                {
+                    imagenResultado.Image = this.Image.Clone();
+                }
+                catch (Exception exception)
+                {
+                    OLogsVAComun.ImagenGraficos.Error(exception, "ImagenOpenCV_Clone");
+                }
+            }
+            return imagenResultado;
+        }
+
+        /// <summary>
+        /// Convierte la imagen de tipo bitmap al tipo actual
+        /// </summary>
+        /// <param name="imagenBitmap">Imagen de tipo bitmap desde el cual se va a importar la imagen</param>
+        public override OImagen ConvertFromBitmap(Bitmap imagenBitmap)
+        {
+            this.Image = new Emgu.CV.Image<Emgu.CV.Structure.Gray, TDepth>(imagenBitmap);
+            return new OImagenOpenCVMonocromo<TDepth>(this.Image);
+        }
+
+        /// <summary>
+        /// Crea una nueva imagen de la misma clase
+        /// </summary>
+        /// <returns>Nueva instancia de la misma clase de imagen</returns>
+        public override OImagen Nueva()
+        {
+            return new OImagenOpenCVMonocromo<TDepth>(this.Codigo);
+        }
+        #endregion
     }
 
     /// <summary>

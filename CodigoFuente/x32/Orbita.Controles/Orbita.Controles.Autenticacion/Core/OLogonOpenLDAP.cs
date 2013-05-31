@@ -12,13 +12,19 @@
 namespace Orbita.Controles.Autenticacion
 {
     /// <summary>
-    /// Autenticación contra Open LDAP.
+    /// Autenticación con Open LDAP.
     /// </summary>
-    public class OLogOnOpenLDAP : OLogOn
+    public class OLogonOpenLDAP : OLogon
     {
-        public override AutenticacionChangedEventArgs Validar()
+        #region Métodos protegidos
+        /// <summary>
+        /// Método de validación con Open LDAP.
+        /// </summary>
+        /// <returns></returns>
+        public override EstadoAutenticacion Validar()
         {
             throw new System.NotImplementedException();
         }
+        #endregion
     }
 }

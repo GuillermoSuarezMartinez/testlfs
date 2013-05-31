@@ -54,7 +54,7 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Elementos enviados al motor, para poder asociar con los resultados
         /// </summary>
-        private static Dictionary<int, OCCRData> ElementosEnviados;
+        private static Dictionary<long, OCCRData> ElementosEnviados;
         /// <summary>
         /// Objeto bloqueante
         /// </summary>
@@ -66,7 +66,7 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Contador de identificación
         /// </summary>
-        private static Int32 ContId;
+        private static long ContId;
         #endregion
 
         #region Métodos Públicos
@@ -79,7 +79,7 @@ namespace Orbita.VA.Funciones
             CidarMtCallbackResult = new CidarCallback(CallbackResultFunction);
             // Creamos las colas , pilas y diccionarios
             ColaDeResultados = new Queue<OPair<OCCRCodeInfo, OCCRData>>();
-            ElementosEnviados = new Dictionary<int, OCCRData>();
+            ElementosEnviados = new Dictionary<long, OCCRData>();
             ProductorConsumidor = new OProductorConsumidorThread<OCCRData>("CIDAR PC", 1, 1, ThreadPriority.Normal, MAX_QUEUE);
             ProductorConsumidor.CrearSuscripcionConsumidor(EjecutarConsumidor, true);
             ProductorConsumidor.Start();
@@ -172,6 +172,40 @@ namespace Orbita.VA.Funciones
             }
         }
         /// <summary>
+        /// Resetea las colas
+        /// </summary>
+        /// <returns></returns>
+        public static int Reset(string codFuncion)
+        {
+            try
+            {
+                lock (LockObject)
+                {
+                    Dictionary<long, OCCRData> nuevo = new Dictionary<long, OCCRData>();
+                    foreach (KeyValuePair<long, OCCRData> elemento in ElementosEnviados)
+                    {
+                        // do something with entry.Value or entry.Key
+                        OCCRData datos = elemento.Value;
+                        long ident = elemento.Key;
+                        if (datos.GetCodFuncion != codFuncion)
+                        {
+                            nuevo.Add(ident, datos);
+                        }
+                    }
+                    ElementosEnviados.Clear();
+                    ElementosEnviados = new Dictionary<long, OCCRData>(nuevo);
+                    nuevo.Clear();
+                    GC.Collect();
+                }
+                return 1;
+            }
+            catch (Exception exception)
+            {
+                OLogsVAFunciones.CCR.Error("CCR", "Reseteando el motor CCR:" + exception.ToString());
+                return 0;
+            }
+        }
+        /// <summary>
         /// Establece la configuración
         /// </summary>
         /// <returns></returns>
@@ -238,6 +272,36 @@ namespace Orbita.VA.Funciones
             }
         }
         /// <summary>
+        /// Devuelve la cantidad de imagenes en la cola del wrapper para una determinada funcion
+        /// </summary>
+        /// <returns></returns>
+        public static int GetQueueSize(string codFunc)
+        {
+            try
+            {
+                int cantidad = 0;
+                lock (LockObject)
+                {
+                    foreach (KeyValuePair<long, OCCRData> elemento in ElementosEnviados)
+                    {
+                        // do something with entry.Value or entry.Key
+                        OCCRData datos = elemento.Value;
+                        long ident = elemento.Key;
+                        if (datos.GetCodFuncion == codFunc)
+                        {
+                            cantidad++;
+                        }
+                    }
+                }
+                return cantidad;
+            }
+            catch (Exception exception)
+            {
+                OLogsVAFunciones.CCR.Error("CCR", "Obteniendo cantidad de elementos en cola:" + exception.ToString());
+                return 0;
+            }
+        }
+        /// <summary>
         /// Devuelve un resultado de la cola
         /// </summary>
         /// <returns></returns>
@@ -268,7 +332,7 @@ namespace Orbita.VA.Funciones
         /// <param name="bitmap">imagen</param>
         /// <param name="obj">información de la imagen</param>
         /// <param name="bFront">Si es prioritaria</param>
-        public static bool Add(Bitmap bitmap, object obj, bool bFront = false)
+        public static bool Add(string codFunc,Bitmap bitmap, object obj, bool bFront = false)
         {
             try
             {
@@ -285,11 +349,11 @@ namespace Orbita.VA.Funciones
                     // Establece la prioridad en la cola para la imagen
                     if (bFront)
                     {
-                        ProductorConsumidor.Encolar(new OCCRData(ContId, Configuracion, ref informacion), -1);
+                        ProductorConsumidor.Encolar(new OCCRData(ContId, codFunc, Configuracion, ref informacion), -1);
                     }
                     else
                     {
-                        ProductorConsumidor.Encolar(new OCCRData(ContId, Configuracion, ref informacion));
+                        ProductorConsumidor.Encolar(new OCCRData(ContId, codFunc, Configuracion, ref informacion));
                     }
 
                     // Incrementamos el contador
@@ -309,7 +373,7 @@ namespace Orbita.VA.Funciones
         /// <param name="rutaBitmap">imagen</param>
         /// <param name="obj">información de la imagen</param>
         /// <param name="bFront">Si es prioritaria</param>
-        public static bool Add(string rutaBitmap, object obj, bool bFront = false)
+        public static bool Add(string codFunc, string rutaBitmap, object obj, bool bFront = false)
         {
             try
             {
@@ -326,11 +390,11 @@ namespace Orbita.VA.Funciones
                     // Establece la prioridad en la cola para la imagen
                     if (bFront)
                     {
-                        ProductorConsumidor.Encolar(new OCCRData(ContId, Configuracion, ref informacion), -1);
+                        ProductorConsumidor.Encolar(new OCCRData(ContId,codFunc, Configuracion, ref informacion), -1);
                     }
                     else
                     {
-                        ProductorConsumidor.Encolar(new OCCRData(ContId, Configuracion, ref informacion));
+                        ProductorConsumidor.Encolar(new OCCRData(ContId,codFunc, Configuracion, ref informacion));
                     }
 
                     // Incrementamos el contador
@@ -401,62 +465,66 @@ namespace Orbita.VA.Funciones
             {
                 if (valor != null)
                 {
-                    int identificador = valor.GetId;
-                    if (valor.ImageInformation.GetPath == string.Empty)
+                    long identificador = valor.GetId;
+
+                    lock (LockObject)
                     {
-                        // Pasamos la imagen al motor, dependiendo de su formato
-                        Bitmap currentImage = (Bitmap)valor.ImageInformation.GetImage.Clone();
-                        Bitmap otra = new Bitmap(valor.ImageInformation.GetImage);
-                        Rectangle rect2 = new Rectangle(0, 0, otra.Width, otra.Height);
-                        Rectangle rect = new Rectangle(0, 0, currentImage.Width, currentImage.Height);
-                        BitmapData bmpData = currentImage.LockBits(rect, ImageLockMode.ReadWrite, currentImage.PixelFormat);
-                        // Cogemos la dirección de la primera línea
-                        IntPtr ptr = bmpData.Scan0;
-                        // Desbloqueamos los bits
-                        currentImage.UnlockBits(bmpData);
-                        // Dependiendo de ll tipo utilizamos una función de paso
-                        switch (currentImage.PixelFormat)
+                        if (valor.ImageInformation.GetPath == string.Empty)
                         {
-                            case PixelFormat.Format24bppRgb:
-                                cidarmtReadRGB24(ref Configuracion, currentImage.Width, currentImage.Height, ptr, 0, 0);
-                                break;
-                            case PixelFormat.Format32bppArgb:
-                                cidarmtReadRGB32(ref Configuracion, currentImage.Width, currentImage.Height, ptr, 0, 0);
-                                break;
-                            case PixelFormat.Format8bppIndexed:
-                                cidarmtRead(ref Configuracion, currentImage.Width, currentImage.Height, ptr, 0);
-                                break;
-                            default:
-                                OLogsVAFunciones.CCR.Error("CCR", "El Pixel Format de la imagen no es soportado");
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        // Pasamos la ruta de la imagen al motor, dependiendo de si se trata de una imagen JPG o BMP
-                        string ruta = valor.ImageInformation.GetPath;
-                        if ((Path.GetExtension(ruta).ToUpper(new CultureInfo("en-US")) == ".JPG") | (Path.GetExtension(ruta).ToUpper(new CultureInfo("en-US")) == ".JPEG"))
-                        {
-                            cidarmtReadJpg(ref Configuracion, ref ruta, 0);
-                        }
-                        else if (Path.GetExtension(ruta).ToUpper(new CultureInfo("en-US")) == ".BMP")
-                        {
-                            cidarmtReadBmp(ref Configuracion, ref ruta, 0);
+                            // Pasamos la imagen al motor, dependiendo de su formato
+                            Bitmap currentImage = (Bitmap)valor.ImageInformation.GetImage.Clone();
+                            Bitmap otra = new Bitmap(valor.ImageInformation.GetImage);
+                            Rectangle rect2 = new Rectangle(0, 0, otra.Width, otra.Height);
+                            Rectangle rect = new Rectangle(0, 0, currentImage.Width, currentImage.Height);
+                            BitmapData bmpData = currentImage.LockBits(rect, ImageLockMode.ReadWrite, currentImage.PixelFormat);
+                            // Cogemos la dirección de la primera línea
+                            IntPtr ptr = bmpData.Scan0;
+                            // Desbloqueamos los bits
+                            currentImage.UnlockBits(bmpData);
+                            // Dependiendo de ll tipo utilizamos una función de paso
+                            switch (currentImage.PixelFormat)
+                            {
+                                case PixelFormat.Format24bppRgb:
+                                    cidarmtReadRGB24(ref Configuracion, currentImage.Width, currentImage.Height, ptr, 0, 0);
+                                    break;
+                                case PixelFormat.Format32bppArgb:
+                                    cidarmtReadRGB32(ref Configuracion, currentImage.Width, currentImage.Height, ptr, 0, 0);
+                                    break;
+                                case PixelFormat.Format8bppIndexed:
+                                    cidarmtRead(ref Configuracion, currentImage.Width, currentImage.Height, ptr, 0);
+                                    break;
+                                default:
+                                    OLogsVAFunciones.CCR.Error("CCR", "El Pixel Format de la imagen no es soportado");
+                                    break;
+                            }
                         }
                         else
                         {
-                            OLogsVAFunciones.CCR.Error("CCR", "Procesando la cola de CCR con ruta de imagen con extensión incorrecta " + ruta);
+                            // Pasamos la ruta de la imagen al motor, dependiendo de si se trata de una imagen JPG o BMP
+                            string ruta = valor.ImageInformation.GetPath;
+                            if ((Path.GetExtension(ruta).ToUpper(new CultureInfo("en-US")) == ".JPG") | (Path.GetExtension(ruta).ToUpper(new CultureInfo("en-US")) == ".JPEG"))
+                            {
+                                cidarmtReadJpg(ref Configuracion, ref ruta, 0);
+                            }
+                            else if (Path.GetExtension(ruta).ToUpper(new CultureInfo("en-US")) == ".BMP")
+                            {
+                                cidarmtReadBmp(ref Configuracion, ref ruta, 0);
+                            }
+                            else
+                            {
+                                OLogsVAFunciones.CCR.Error("CCR", "Procesando la cola de CCR con ruta de imagen con extensión incorrecta " + ruta);
+                            }
                         }
+                        try
+                        {
+                            ElementosEnviados.Add(identificador, valor);
+                        }
+                        catch (Exception ex)
+                        {
+                            OLogsVAFunciones.CCR.Error("CCR", "Añadiendo identificador duplicado al diccionario de datos");
+                        }
+                        OLogsVAFunciones.CCR.Debug("CCR", string.Format(new CultureInfo("en-US"), "Introducido ResultadoCCR, id = {0}", new object[] { valor.GetId }));
                     }
-                    try
-                    {
-                        ElementosEnviados.Add(identificador, valor);
-                    }
-                    catch (Exception ex)
-                    {
-                        OLogsVAFunciones.CCR.Error("CCR", "Añadiendo identificador duplicado al diccionario de datos");
-                    }
-                    OLogsVAFunciones.CCR.Debug("CCR", string.Format(new CultureInfo("en-US"), "Introducido ResultadoCCR, id = {0}", new object[] { valor.GetId }));
                 }
             }
             catch (Exception exception)
@@ -1007,7 +1075,7 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Identificador del dato
         /// </summary>
-        private int Identificador;
+        private long Identificador;
         /// <summary>
         /// Si el valor ha sido borrado
         /// </summary>
@@ -1028,17 +1096,31 @@ namespace Orbita.VA.Funciones
         /// Cantidad de lecturas
         /// </summary>
         private int TotalReadItems;
+        /// <summary>
+        /// Codigo funcion
+        /// </summary>
+        private string CodFuncionVision;
         #endregion
 
         #region Propiedades
         /// <summary>
         /// Obtiene el identificador del dato
         /// </summary>
-        public int GetId
+        public long GetId
         {
             get
             {
                 return this.Identificador;
+            }
+        }
+        /// <summary>
+        /// Obtiene el codigo de la función de visión
+        /// </summary>
+        public string GetCodFuncion
+        {
+            get
+            {
+                return this.CodFuncionVision;
             }
         }
         /// <summary>
@@ -1122,13 +1204,14 @@ namespace Orbita.VA.Funciones
         /// <param name="ident"></param>
         /// <param name="cfg"></param>
         /// <param name="pi"></param>
-        public OCCRData(int ident, CIDARMtConfiguration cfg, ref OCCRInfoImagen pi)
+        public OCCRData(long ident,string codFuncion, CIDARMtConfiguration cfg, ref OCCRInfoImagen pi)
         {
             this.Identificador = ident;
             this.Configuracion = cfg;
             this.InformacionImagen = pi;
             this.TotalReadItems = -1;
             this.DisposedValue = false;
+            this.CodFuncionVision = codFuncion;
         }
         #endregion
 

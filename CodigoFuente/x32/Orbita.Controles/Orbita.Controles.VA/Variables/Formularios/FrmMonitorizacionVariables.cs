@@ -276,12 +276,12 @@ namespace Orbita.Controles.VA
             if (valor != null)
             {
                 textoValor = valor.ToString();
-                activo = OBooleano.Validar(valor, false);
-                //activo = true;
-                //if (valor is bool)
-                //{
-                //    activo = (bool)valor;
-                //}
+                //activo = OBooleano.Validar(valor, false);
+                activo = false;
+                if ((valor is bool) || (valor is string) || (OEntero.EsEntero(valor)))
+                {
+                    activo = OBooleano.Validar(valor, false);
+                }
             }
         }
 

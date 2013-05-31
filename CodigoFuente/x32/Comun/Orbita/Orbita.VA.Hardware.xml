@@ -6384,6 +6384,12 @@
             <param name="valor">valor a ajustar</param>
             <returns>Verdadero si la acción se ha realizado con éxito</returns>
         </member>
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.GetEstadoConexion(System.String)">
+            <summary>
+            Obtiene el estado de la conexión de la cámara servidora
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Orbita.VA.Hardware.ORemotingCamaraServidor.PTZHabilitado(System.String)">
             <summary>
             Consulta si el PTZ está habilitado
@@ -6962,6 +6968,11 @@
             Inervalo entre comprobaciones
             </summary>
         </member>
+        <member name="P:Orbita.VA.Hardware.OCamaraRemota.EstadoConexionRemota">
+            <summary>
+            Estado de la conexión
+            </summary>
+        </member>
         <member name="T:Orbita.VA.Hardware.ORemotingCamaraProxie">
             <summary>
             Clase para acceder a los objetos OCamaraBase remotos
@@ -7028,6 +7039,12 @@
             <param name="codAjuste">Código identificativo del ajuste</param>
             <param name="valor">valor a ajustar</param>
             <returns>Verdadero si la acción se ha realizado con éxito</returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.ORemotingCamaraProxie.GetEstadoConexion">
+            <summary>
+            Obtiene el estado de la conexión de la cámara servidora
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Orbita.VA.Hardware.ORemotingCamaraProxie.PTZHabilitado">
             <summary>
@@ -7188,6 +7205,11 @@
         <member name="T:Orbita.VA.Hardware.OCamaraBroadcastEventWraper">
             <summary>
             Clase utilizada para enlazar con los eventos del variablecore de forma remota
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OCamaraBroadcastEventWraper.NumMaxLlamadasSimultaneas">
+            <summary>
+            Número de llamadas simultáneas máximas
             </summary>
         </member>
         <member name="F:Orbita.VA.Hardware.OCamaraBroadcastEventWraper.ContLlamadasSimultaneasNuevaFotografiaMemoriaMapeada">
@@ -7404,6 +7426,12 @@
             <param name="codAjuste">Código identificativo del ajuste</param>
             <param name="valor">valor a ajustar</param>
             <returns>Verdadero si la acción se ha realizado con éxito</returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraManager.GetEstadoConexion(System.String)">
+            <summary>
+            Obtiene el estado de la conexión
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Orbita.VA.Hardware.OCamaraManager.PTZHabilitado(System.String)">
             <summary>

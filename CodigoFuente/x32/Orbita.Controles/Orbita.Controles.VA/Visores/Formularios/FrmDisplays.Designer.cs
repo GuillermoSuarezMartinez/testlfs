@@ -39,7 +39,7 @@
             // PnlPanelPrincipalPadre
             // 
             this.PnlPanelPrincipalPadre.Controls.Add(this.layFondoVisores);
-            this.PnlPanelPrincipalPadre.Size = new System.Drawing.Size(514, 187);
+            this.PnlPanelPrincipalPadre.Size = new System.Drawing.Size(472, 298);
             // 
             // btnCancelar
             // 
@@ -53,12 +53,12 @@
             // 
             // PnlInferiorPadre
             // 
-            this.PnlInferiorPadre.Location = new System.Drawing.Point(10, 197);
-            this.PnlInferiorPadre.Size = new System.Drawing.Size(514, 43);
+            this.PnlInferiorPadre.Location = new System.Drawing.Point(10, 308);
+            this.PnlInferiorPadre.Size = new System.Drawing.Size(472, 43);
             // 
             // PnlBotonesPadre
             // 
-            this.PnlBotonesPadre.Location = new System.Drawing.Point(312, 0);
+            this.PnlBotonesPadre.Location = new System.Drawing.Point(270, 0);
             // 
             // layFondoVisores
             // 
@@ -69,14 +69,14 @@
             this.layFondoVisores.Name = "layFondoVisores";
             this.layFondoVisores.RowCount = 1;
             this.layFondoVisores.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.layFondoVisores.Size = new System.Drawing.Size(514, 187);
+            this.layFondoVisores.Size = new System.Drawing.Size(472, 298);
             this.layFondoVisores.TabIndex = 0;
             // 
             // FrmDisplays
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 250);
+            this.ClientSize = new System.Drawing.Size(492, 361);
             this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Monitorizacion;
             this.MostrarBotones = false;
             this.Name = "FrmDisplays";

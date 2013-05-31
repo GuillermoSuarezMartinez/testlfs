@@ -119,6 +119,13 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTeclado.txtResultado_KeyPress(System.Object,System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            Evento de escritura
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="F:Orbita.Controles.Comunes.OrbitaTeclado.components">
             <summary> 
             Variable del diseñador requerida.
@@ -1412,6 +1419,13 @@
         <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.GridView_CellClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
             <summary>
             Evento de clic en una celda del grid
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.txtResultado_KeyPress(System.Object,System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            Evento de escritura
             </summary>
             <param name="sender"></param>
             <param name="e"></param>

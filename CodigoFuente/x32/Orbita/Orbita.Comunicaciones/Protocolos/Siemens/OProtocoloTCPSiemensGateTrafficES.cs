@@ -275,7 +275,7 @@ namespace Orbita.Comunicaciones
         {
             get
             {
-                this._traData = Encoding.ASCII.GetBytes("TRADATA");
+                this._traData = Encoding.ASCII.GetBytes("GTFDATA");
                 return this._traData;
             }
         }
@@ -286,7 +286,7 @@ namespace Orbita.Comunicaciones
         {
             get
             {
-                this._traDataResult = Encoding.ASCII.GetBytes("TRADATARESULT");
+                this._traDataResult = Encoding.ASCII.GetBytes("GTFDATARESULT");
                 return this._traDataResult;
             }
         }

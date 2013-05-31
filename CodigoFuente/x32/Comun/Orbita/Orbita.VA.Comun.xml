@@ -4390,11 +4390,6 @@
             Clase estática encargada de monitorizar la creación y destrucción de objetos de origen propio que ocupan gran cantidad de memoria y de creación frecuente.
             </summary>
         </member>
-        <member name="F:Orbita.VA.Comun.OGestionMemoriaManager.IntervaloMinEntreRecoleccionesBasuraMs">
-            <summary>
-            Intervalo de tiempo mínimo que ha de pasar entre llamadas al recolector de basura
-            </summary>
-        </member>
         <member name="F:Orbita.VA.Comun.OGestionMemoriaManager.ListaObjetos">
             <summary>
             Diccionario de objetos grandes. Clave: Código Hash del objeto. Valor: Triplete de Tipo y código inerno
@@ -4649,10 +4644,88 @@
             Imagen a color de OpenCV
             </summary>
         </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCVColor`1.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCVColor`1.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCVColor`1.#ctor(System.Object)">
+            <summary>
+            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+            </summary>
+            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCVColor`1.#ctor(System.String,System.Object)">
+            <summary>
+            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+            </summary>
+            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCVColor`1.Clone">
+            <summary>
+            Clonado de la imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCVColor`1.ConvertFromBitmap(System.Drawing.Bitmap)">
+            <summary>
+            Convierte la imagen de tipo bitmap al tipo actual
+            </summary>
+            <param name="imagenBitmap">Imagen de tipo bitmap desde el cual se va a importar la imagen</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCVColor`1.Nueva">
+            <summary>
+            Crea una nueva imagen de la misma clase
+            </summary>
+            <returns>Nueva instancia de la misma clase de imagen</returns>
+        </member>
         <member name="T:Orbita.VA.Comun.OImagenOpenCVMonocromo`1">
             <summary>
             Imagen monocromo de OpenCV
             </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCVMonocromo`1.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCVMonocromo`1.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCVMonocromo`1.#ctor(System.Object)">
+            <summary>
+            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+            </summary>
+            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCVMonocromo`1.#ctor(System.String,System.Object)">
+            <summary>
+            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+            </summary>
+            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCVMonocromo`1.Clone">
+            <summary>
+            Clonado de la imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCVMonocromo`1.ConvertFromBitmap(System.Drawing.Bitmap)">
+            <summary>
+            Convierte la imagen de tipo bitmap al tipo actual
+            </summary>
+            <param name="imagenBitmap">Imagen de tipo bitmap desde el cual se va a importar la imagen</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OImagenOpenCVMonocromo`1.Nueva">
+            <summary>
+            Crea una nueva imagen de la misma clase
+            </summary>
+            <returns>Nueva instancia de la misma clase de imagen</returns>
         </member>
         <member name="T:Orbita.VA.Comun.OOpenCVTiposColor">
             <summary>

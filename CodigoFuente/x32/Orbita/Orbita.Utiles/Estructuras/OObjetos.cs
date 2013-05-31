@@ -1018,6 +1018,10 @@ namespace Orbita.Utiles
         /// Valor máximo
         /// </summary>
         public int MaxValor;
+        /// <summary>
+        /// Formato cultural de los números en coma flotante
+        /// </summary>
+        public IFormatProvider Formato;
         #endregion
 
         #region Constructores
@@ -1025,10 +1029,18 @@ namespace Orbita.Utiles
         /// Constructor de la clase
         /// </summary>
         public OEntero(string codigo, int minValor, int maxValor, int valorDefecto, bool lanzarExcepcionSiValorNoValido)
+            : this(codigo, minValor, maxValor, CultureInfo.CurrentCulture, valorDefecto, lanzarExcepcionSiValorNoValido)
+        {
+        }
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OEntero(string codigo, int minValor, int maxValor, IFormatProvider cultureInfo, int valorDefecto, bool lanzarExcepcionSiValorNoValido)
             : base(codigo, valorDefecto, lanzarExcepcionSiValorNoValido)
         {
             this.MinValor = minValor;
             this.MaxValor = maxValor;
+            this.Formato = cultureInfo;
         }
         #endregion
 
@@ -1063,7 +1075,7 @@ namespace Orbita.Utiles
                 if (valor is string)
                 {
                     int intValor;
-                    if (int.TryParse((string)valor, NumberStyles.Any, CultureInfo.InvariantCulture, out intValor))
+                    if (int.TryParse((string)valor, NumberStyles.Any, this.Formato, out intValor))
                     {
                         auxValor = intValor;
                         validacion = EnumEstadoEnteroRobusto.ResultadoCorrecto;
@@ -1147,9 +1159,30 @@ namespace Orbita.Utiles
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
         /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static int Validar(object valor, out EnumEstadoRobusto validacion, int min, int max, IFormatProvider cultureInfo, int defecto)
+        {
+            OEntero robusto = new OEntero(string.Empty, min, max, cultureInfo, defecto, false);
+            robusto.ValorGenerico = valor;
+            validacion = robusto.Estado;
+            return robusto.Valor;
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         public static int Validar(object valor, int min, int max, int defecto)
         {
             OEntero robusto = new OEntero(string.Empty, min, max, defecto, false);
+            robusto.ValorGenerico = valor;
+            return robusto.Valor;
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static int Validar(object valor, int min, int max, IFormatProvider cultureInfo, int defecto)
+        {
+            OEntero robusto = new OEntero(string.Empty, min, max, cultureInfo, defecto, false);
             robusto.ValorGenerico = valor;
             return robusto.Valor;
         }
@@ -1169,6 +1202,18 @@ namespace Orbita.Utiles
         public static EnumEstadoRobusto Validar(object valor, string codigo, int min, int max, int defecto, bool lanzarExcepcionSiValorNoValido)
         {
             OEntero robusto = new OEntero(codigo, min, max, defecto, lanzarExcepcionSiValorNoValido);
+            robusto.ValorGenerico = valor;
+            valor = robusto.Valor;
+            return robusto.Estado;
+        }
+        /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="value">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        public static EnumEstadoRobusto Validar(object valor, string codigo, int min, int max, IFormatProvider cultureInfo, int defecto, bool lanzarExcepcionSiValorNoValido)
+        {
+            OEntero robusto = new OEntero(codigo, min, max, cultureInfo, defecto, lanzarExcepcionSiValorNoValido);
             robusto.ValorGenerico = valor;
             valor = robusto.Valor;
             return robusto.Estado;
@@ -1257,9 +1302,25 @@ namespace Orbita.Utiles
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
         /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static int ValidarEntero(this object valor, out EnumEstadoRobusto validacion, int min, int max, IFormatProvider cultureInfo, int defecto)
+        {
+            return OEntero.Validar(valor, out validacion, min, max, cultureInfo, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         public static int ValidarEntero(this object valor, int min, int max, int defecto)
         {
             return OEntero.Validar(valor, min, max, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static int ValidarEntero(this object valor, int min, int max, IFormatProvider cultureInfo, int defecto)
+        {
+            return OEntero.Validar(valor, min, max, cultureInfo, defecto);
         }
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
@@ -1277,6 +1338,15 @@ namespace Orbita.Utiles
         public static EnumEstadoRobusto ValidarEntero(this object valor, string codigo, int min, int max, int defecto, bool lanzarExcepcionSiValorNoValido)
         {
             return OEntero.Validar(valor, codigo, min, max, defecto, lanzarExcepcionSiValorNoValido);
+        }
+        /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="value">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        public static EnumEstadoRobusto ValidarEntero(this object valor, string codigo, int min, int max, IFormatProvider cultureInfo, int defecto, bool lanzarExcepcionSiValorNoValido)
+        {
+            return OEntero.Validar(valor, codigo, min, max, cultureInfo, defecto, lanzarExcepcionSiValorNoValido);
         }
         /// <summary>
         /// Indica si el objeto pasado es de tipo entero
@@ -1355,6 +1425,10 @@ namespace Orbita.Utiles
         /// Valor máximo
         /// </summary>
         public double MaxValor;
+        /// <summary>
+        /// Formato cultural de los números en coma flotante
+        /// </summary>
+        public IFormatProvider Formato;
         #endregion
 
         #region Constructor
@@ -1362,10 +1436,18 @@ namespace Orbita.Utiles
         /// Constructor de la clase
         /// </summary>
         public ODecimal(string codigo, double minValor, double maxValor, double valorDefecto, bool lanzarExcepcionSiValorNoValido)
+            : this(codigo, minValor, maxValor, CultureInfo.CurrentCulture, valorDefecto, lanzarExcepcionSiValorNoValido)
+        {
+        }
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public ODecimal(string codigo, double minValor, double maxValor, IFormatProvider cultureInfo, double valorDefecto, bool lanzarExcepcionSiValorNoValido)
             : base(codigo, valorDefecto, lanzarExcepcionSiValorNoValido)
         {
             this.MinValor = minValor;
             this.MaxValor = maxValor;
+            this.Formato = cultureInfo;
         }
         #endregion
 
@@ -1400,8 +1482,7 @@ namespace Orbita.Utiles
                 if (valor is string)
                 {
                     double doubleValor;
-                    //if (double.TryParse((string)valor, NumberStyles.Any, CultureInfo.InvariantCulture, out doubleValor))
-                    if (double.TryParse((string)valor, NumberStyles.Any, CultureInfo.CurrentCulture, out doubleValor))
+                    if (double.TryParse((string)valor, NumberStyles.Any, this.Formato, out doubleValor))
                     {
                         auxValor = doubleValor;
                         validacion = EnumEstadoDecimalRobusto.ResultadoCorrecto;
@@ -1485,9 +1566,30 @@ namespace Orbita.Utiles
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
         /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static double Validar(object valor, out EnumEstadoRobusto validacion, double min, double max, IFormatProvider cultureInfo, double defecto)
+        {
+            ODecimal robusto = new ODecimal(string.Empty, min, max, cultureInfo, defecto, false);
+            robusto.ValorGenerico = valor;
+            validacion = robusto.Estado;
+            return robusto.Valor;
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         public static double Validar(object valor, double min, double max, double defecto)
         {
             ODecimal robusto = new ODecimal(string.Empty, min, max, defecto, false);
+            robusto.ValorGenerico = valor;
+            return robusto.Valor;
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static double Validar(object valor, double min, double max, IFormatProvider cultureInfo, double defecto)
+        {
+            ODecimal robusto = new ODecimal(string.Empty, min, max, cultureInfo, defecto, false);
             robusto.ValorGenerico = valor;
             return robusto.Valor;
         }
@@ -1507,6 +1609,18 @@ namespace Orbita.Utiles
         public static EnumEstadoRobusto Validar(object valor, string codigo, double min, double max, double defecto, bool lanzarExcepcionSiValorNoValido)
         {
             ODecimal robusto = new ODecimal(codigo, min, max, defecto, lanzarExcepcionSiValorNoValido);
+            robusto.ValorGenerico = valor;
+            valor = robusto.Valor;
+            return robusto.Estado;
+        }
+        /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="value">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        public static EnumEstadoRobusto Validar(object valor, string codigo, double min, double max, IFormatProvider cultureInfo, double defecto, bool lanzarExcepcionSiValorNoValido)
+        {
+            ODecimal robusto = new ODecimal(codigo, min, max, cultureInfo, defecto, lanzarExcepcionSiValorNoValido);
             robusto.ValorGenerico = valor;
             valor = robusto.Valor;
             return robusto.Estado;

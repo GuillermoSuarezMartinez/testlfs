@@ -12,14 +12,19 @@
 namespace Orbita.Controles.Autenticacion
 {
     /// <summary>
-    /// Estado de la validación.
+    /// Estado de autenticación.
     /// </summary>
     public abstract class EstadoAutenticacion
     {
         #region Atributos
-        ResultadoAutenticacion resultado;
-        string mensaje;
-        BotonesAutenticacion botón;
+        /// <summary>
+        /// Resultado de autenticación.
+        /// </summary>
+        private ResultadoAutenticacion resultado;
+        /// <summary>
+        /// Mensaje de autenticación.
+        /// </summary>
+        private string mensaje;
         #endregion
 
         #region Constructores
@@ -27,15 +32,30 @@ namespace Orbita.Controles.Autenticacion
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.EstadoAutenticacion.
         /// </summary>
         protected EstadoAutenticacion() { }
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.EstadoAutenticacion.
+        /// </summary>
+        /// <param name="resultado">Resultado del formulario de autenticación.</param>
         protected EstadoAutenticacion(ResultadoAutenticacion resultado)
         {
             this.resultado = resultado;
+        }
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.EstadoAutenticacion.
+        /// </summary>
+        /// <param name="resultado">Resultado del formulario de autenticación.</param>
+        /// <param name="mensaje">Mensaje adicional de autenticación.</param>
+        protected EstadoAutenticacion(ResultadoAutenticacion resultado, string mensaje)
+            : this(resultado)
+        {
+            this.resultado = resultado;
+            this.mensaje = mensaje;
         }
         #endregion
 
         #region Propiedades
         /// <summary>
-        /// Resultado de la autenticación.
+        /// Resultado de autenticación.
         /// </summary>
         public ResultadoAutenticacion Resultado
         {
@@ -43,20 +63,12 @@ namespace Orbita.Controles.Autenticacion
             set { this.resultado = value; }
         }
         /// <summary>
-        /// Mensaje de la validación.
+        /// Mensaje de autenticación.
         /// </summary>
         public string Mensaje
         {
             get { return this.mensaje; }
             set { this.mensaje = value; }
-        }
-        /// <summary>
-        /// Botón que se pulsa al validar.
-        /// </summary>
-        public BotonesAutenticacion Botón
-        {
-            get { return this.botón; }
-            set { this.botón = value; }
         }
         #endregion
     }

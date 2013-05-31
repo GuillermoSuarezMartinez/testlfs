@@ -61,7 +61,7 @@ namespace Orbita.VA.Funciones
                 dsts[3] = puntoDestino4;
 
                 HomographyMatrix mywarpmat = CameraCalibration.GetPerspectiveTransform(srcs, dsts);
-                Emgu.CV.Image<TColor, TDepth> img = ((Emgu.CV.Image<TColor, TDepth>)imagenOriginal.Image).WarpPerspective(mywarpmat, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC, Emgu.CV.CvEnum.WARP.CV_WARP_DEFAULT, default(TColor));
+                Emgu.CV.Image<TColor, TDepth> img = imagenOriginal.Image.WarpPerspective(mywarpmat, Emgu.CV.CvEnum.INTER.CV_INTER_CUBIC, Emgu.CV.CvEnum.WARP.CV_WARP_DEFAULT, default(TColor));
                 resultado = new OImagenOpenCV<TColor, TDepth>(imagenOriginal.Codigo, img);
             }
             catch (Exception exception)
@@ -139,6 +139,8 @@ namespace Orbita.VA.Funciones
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {
+            OImagenOpenCV<TColor, TDepth> imgResultado = null;
+
             // Ampliación del lienzo
             OImagenOpenCV<TColor, TDepth> imgAmpliada = imagenOriginal.CrearBorde(offsetMarco.X, offsetMarco.Y);
 
@@ -149,7 +151,12 @@ namespace Orbita.VA.Funciones
             PointF puntoOriginal4Offset = new PointF(puntoOriginal4.X + offsetMarco.X, puntoOriginal4.Y + offsetMarco.Y);
 
             // Corrección de perspectiva
-            return imgAmpliada.CorregirPerspectiva(puntoOriginal1Offset, puntoOriginal2Offset, puntoOriginal3Offset, puntoOriginal4Offset, areaDestino);
+            imgResultado = imgAmpliada.CorregirPerspectiva(puntoOriginal1Offset, puntoOriginal2Offset, puntoOriginal3Offset, puntoOriginal4Offset, areaDestino);
+            //imgResultado = imgAmpliada;
+            
+            imgAmpliada.Dispose();
+
+            return imgResultado;
         }
         #endregion
 
@@ -165,7 +172,7 @@ namespace Orbita.VA.Funciones
                 int ancho = imagenOriginal.Width;
                 int alto = imagenOriginal.Height;
 
-                Emgu.CV.Image<TColor, TDepth> imgOriginal = (Emgu.CV.Image<TColor, TDepth>)imagenOriginal.Image;
+                Emgu.CV.Image<TColor, TDepth> imgOriginal = imagenOriginal.Image;
                 Emgu.CV.Image<TColor, TDepth> imgResult = new Emgu.CV.Image<TColor, TDepth>(ancho + offsetX, alto + OffsetY, default(TColor));
                 Emgu.CV.CvInvoke.cvCopyMakeBorder(imgOriginal.Ptr, imgResult.Ptr, new Point(offsetX, OffsetY), Emgu.CV.CvEnum.BORDER_TYPE.CONSTANT, new Emgu.CV.Structure.MCvScalar(0));
                 resultado = new OImagenOpenCV<TColor, TDepth>(imagenOriginal.Codigo, imgResult);

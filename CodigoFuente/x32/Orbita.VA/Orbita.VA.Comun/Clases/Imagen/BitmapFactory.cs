@@ -50,7 +50,7 @@ namespace Orbita.VA.Comun
         }
 
         /* Calculates the length of one line in byte. */
-        private static int GetStride(int width, int profundidad)
+        public static int GetStride(int width, int profundidad)
         {
             return width * profundidad;
         }

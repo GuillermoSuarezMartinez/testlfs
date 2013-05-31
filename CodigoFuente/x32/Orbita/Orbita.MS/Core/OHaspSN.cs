@@ -86,19 +86,19 @@ namespace Orbita.MS
             /// <summary>
             /// Alarmas Mails
             /// </summary>
-            AlarmasMails = 5,
+            GestionAlarmasMail = 5,
             /// <summary>
             /// Alarmas SMS
             /// </summary>
-            AlarmasSMS = 6,
+            GestionAlarmasSMS = 6,
             /// <summary>
             /// Envasado
             /// </summary>
-            CCEnvasado = 7,
+            ControlCalidadEnvasado = 7,
             /// <summary>
             /// Lector carin
             /// </summary>
-            LectorCarin = 8
+            CARIN = 8
         }
         /// <summary>
         /// Tecnologías para licencia sw
@@ -172,7 +172,7 @@ namespace Orbita.MS
         /// <summary>
         /// Logger de la clase
         /// </summary>
-        public static ILogger wrapper;
+        public static ILogger logger;
         /// <summary>
         /// Códigos del sistema
         /// </summary>
@@ -232,7 +232,7 @@ namespace Orbita.MS
         /// </summary>
         public OHaspSN()
         {
-            wrapper = LogManager.GetLogger("wrapper");
+            logger = LogManager.GetLogger("MS");
             Assembly assem = Assembly.GetEntryAssembly();
             this.nombreAplicacion = assem.Location;
         }
@@ -297,11 +297,11 @@ namespace Orbita.MS
                 this.productos = listaProductos;
                 this.esServicio = esServicio;
 
-                if (wrapper == null)
+                if (logger == null)
                 {
-                    wrapper = LogManager.SetDebugLogger("wrapper", NivelLog.Debug);
+                    logger = LogManager.SetDebugLogger("MS", NivelLog.Debug);
                 }
-                wrapper.Info("Comprobando lista de productos inicial");
+                logger.Info("Comprobando lista de productos inicial");
 
                 this.IncluirSerial();
 
@@ -319,7 +319,7 @@ namespace Orbita.MS
                 }
                 else
                 {
-                    wrapper.Info("Estado inicial de los productos OK");
+                    logger.Info("Estado inicial de los productos OK");
                 }
 
                 this.IniciarThreadHasp();
@@ -394,15 +394,15 @@ namespace Orbita.MS
                         ret += dispositivo["TracksPerCylinder"].ToString();
                         inf.Add(ret);
                     }
-                    catch (Exception ex)
+                    catch (Exception exception)
                     {
-                        wrapper.Fatal("ComprobarProductoHASPUsb. Error al comprobar la licencia1: " + ex.ToString());
+                        logger.Warn(exception, "ComprobarProductoHASPUsb. Error al comprobar la licencia1");
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                wrapper.Fatal("ComprobarProductoHASPUsb. Error al comprobar la licencia2: " + ex.ToString());
+                logger.Warn(exception, "ComprobarProductoHASPUsb. Error al comprobar la licencia2");
             }
 
             for (int i = 0; i < inf.Count; i++)
@@ -450,7 +450,7 @@ namespace Orbita.MS
 
                     if (!resultado)
                     {
-                        wrapper.Warn("ComprobarProductoHASPSL. No se encuentra el producto " + producto.ToString());
+                        logger.Warn("ComprobarProductoHASPSL. No se encuentra el producto " + producto.ToString());
                         OEventArgs e = new OEventArgs();
                         using (oMsgHasp msg = new oMsgHasp())
                         {
@@ -467,7 +467,7 @@ namespace Orbita.MS
             }
             catch (Exception exception)
             {
-                wrapper.Fatal("ComprobarProductoHASPSL. Error al comprobar la licencia: " + exception.ToString());
+                logger.Warn(exception, "ComprobarProductoHASPSL. Error al comprobar la licencia");
                 resultado = false;
             }
 
@@ -496,7 +496,7 @@ namespace Orbita.MS
                     {
                         string tareas = "No se ha encontrado la licencia para este producto.";
                         MessageBox.Show(tareas);
-                        wrapper.Info(tareas);
+                        logger.Info(tareas);
                     }
                 }
                 if (mensajeLlaveInicial)
@@ -505,7 +505,7 @@ namespace Orbita.MS
                     {
                         string tareas = "No se ha encontrado la licencia para este producto. La aplicación se detendrá";
                         MessageBox.Show(tareas);
-                        wrapper.Info(tareas);
+                        logger.Info(tareas);
                     }
                 }
                 Thread.Sleep(10000);
@@ -571,13 +571,13 @@ namespace Orbita.MS
 
                 if (!retorno)
                 {
-                    wrapper.Info("TareasHasp. No se encuentra la licencia de " + prodCheck.ToString());
+                    logger.Info("TareasHasp. No se encuentra la licencia de " + prodCheck.ToString());
                     TimeSpan ts = DateTime.Now - FechaError;
                     minutosSN = (int)ts.TotalMinutes;
 
                     if (ts.TotalMinutes > minutosError)
                     {
-                        wrapper.Info("TareasHasp. Se para la aplicación por falta de licencia de " + prodCheck.ToString());
+                        logger.Info("TareasHasp. Se para la aplicación por falta de licencia de " + prodCheck.ToString());
                         this.CerrarAplicacion();
                     }
                 }
@@ -661,13 +661,13 @@ namespace Orbita.MS
                     }
                     if (!check)
                     {
-                        wrapper.Info("TareasHasp. No se encuentra la licencia de " + prodCheck.ToString());
+                        logger.Info("TareasHasp. No se encuentra la licencia de " + prodCheck.ToString());
                         TimeSpan ts = DateTime.Now - FechaError;
                         minutosSN = (int)ts.TotalMinutes;
 
                         if (ts.TotalMinutes > minutosError)
                         {
-                            wrapper.Info("TareasHasp. Se para la aplicación por falta de licencia de " + prodCheck.ToString());
+                            logger.Info("TareasHasp. Se para la aplicación por falta de licencia de " + prodCheck.ToString());
                             this.CerrarAplicacion();
                         }
                     }

@@ -17,18 +17,19 @@ namespace Orbita.Controles.Autenticacion
     public class EstadoAutenticacionNOK : EstadoAutenticacion
     {
         #region Constructores
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.EstadoAutenticacionNOK.
+        /// </summary>
         public EstadoAutenticacionNOK()
-            : base(ResultadoAutenticacion.NOK)
-        {
-            this.Botón = BotonesAutenticacion.Cerrar;
-        }
+            : base(ResultadoAutenticacion.NOK) { }
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.EstadoAutenticacionNOK.
+        /// </summary>
+        /// <param name="mensaje">Mensaje adicional de una autenticación incorrecta.</param>
         public EstadoAutenticacionNOK(string mensaje)
-            : this(mensaje, BotonesAutenticacion.Aceptar) { }
-        public EstadoAutenticacionNOK(string mensaje, BotonesAutenticacion botón)
-            : base(ResultadoAutenticacion.NOK)
+            : this()
         {
             this.Mensaje = mensaje;
-            this.Botón = botón;
         }
         #endregion
     }

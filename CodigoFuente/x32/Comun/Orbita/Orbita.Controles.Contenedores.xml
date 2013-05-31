@@ -95,7 +95,11 @@
             </summary>
             <returns>El nombre de tipo completo del objeto.</returns>
         </member>
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.#ctor" -->
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraGroupBox.
+            </summary>
+        </member>
         <member name="F:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.components">
             <summary>
             Variable del diseñador requerida.
@@ -152,6 +156,11 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="M:Orbita.Controles.Contenedores.OMdiContainerForm.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OMdiContainerForm.
+            </summary>
+        </member>
         <member name="M:Orbita.Controles.Contenedores.OMdiContainerForm.#ctor(System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OMdiContainerForm.
@@ -188,7 +197,11 @@
             </summary>
             <returns>El nombre de tipo completo del objeto.</returns>
         </member>
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.#ctor" -->
+        <member name="M:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.
+            </summary>
+        </member>
         <member name="F:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.components">
             <summary> 
             Variable del diseñador requerida.
@@ -212,7 +225,11 @@
             </summary>
             <param name="sender">Representa un control para mostrar una lista de elementos.</param>
         </member>
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.#ctor" -->
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.
+            </summary>
+        </member>
         <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.#ctor(System.ComponentModel.IContainer)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.
@@ -321,7 +338,11 @@
               búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
             </summary>
         </member>
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "M:Orbita.Controles.Contenedores.OrbitaUltraTabControl.#ctor" -->
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabControl.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraTabControl.
+            </summary>
+        </member>
         <member name="F:Orbita.Controles.Contenedores.OrbitaUltraTabControl.components">
             <summary> 
             Variable del diseñador requerida.

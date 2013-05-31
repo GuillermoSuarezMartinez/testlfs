@@ -1303,7 +1303,7 @@ namespace Orbita.VA.Hardware
     /// Clase utilizada para enlazar con los eventos del variablecore de forma remota
     /// </summary>
     [Serializable]
-    public class OCamaraBroadcastEventWraper : ORemotingObject
+    public class OCamaraBroadcastEventWraper// : ORemotingObject // Se comenta para no heredar la característica de tiempo de vida ilimitada
     {
         #region Constante(s)
         /// <summary>

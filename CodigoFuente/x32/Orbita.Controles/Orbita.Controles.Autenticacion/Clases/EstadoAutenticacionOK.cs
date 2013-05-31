@@ -17,11 +17,11 @@ namespace Orbita.Controles.Autenticacion
     public class EstadoAutenticacionOK : EstadoAutenticacion
     {
         #region Constructores
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.EstadoAutenticacionOK.
+        /// </summary>
         public EstadoAutenticacionOK()
-            : base(ResultadoAutenticacion.OK)
-        {
-            this.Botón = BotonesAutenticacion.Aceptar;
-        }
+            : base(ResultadoAutenticacion.OK) { }
         #endregion
     }
 }

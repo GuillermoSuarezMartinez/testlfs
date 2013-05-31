@@ -153,7 +153,6 @@ namespace Orbita.VA.Hardware
                     {
                         OTerminalClienteComunicacion terminal;
 
-                        OEnumTipoDispositivoClienteComunicacion tipoDispositivo = (OEnumTipoDispositivoClienteComunicacion)OAtributoEnumerado.FindStringValue(typeof(OEnumTipoDispositivoClienteComunicacion), dr["COM_TipoDispositivo"].ToString(), OEnumTipoDispositivoClienteComunicacion.OPC_SimaticNET);
                         int intTipoTerminalIO = OEntero.Validar(dr["IdTipoTerminalIO"], 1, 4, 1);
 
                         OTipoTerminalIO tipoTerminalIO = (OTipoTerminalIO)intTipoTerminalIO;
@@ -163,10 +162,10 @@ namespace Orbita.VA.Hardware
                             case OTipoTerminalIO.EntradaDigital:
                             case OTipoTerminalIO.SalidaDigital:
                             default:
-                                terminal = new OTerminalClienteComunicacion(codHardware, dr["CodTerminalIO"].ToString(), tipoDispositivo);
+                                terminal = new OTerminalClienteComunicacion(codHardware, dr["CodTerminalIO"].ToString());
                                 break;
                             case OTipoTerminalIO.SalidaComando:
-                                terminal = new OTerminalClienteComunicacionWriteCommand(codHardware, dr["CodTerminalIO"].ToString(), tipoDispositivo);
+                                terminal = new OTerminalClienteComunicacionWriteCommand(codHardware, dr["CodTerminalIO"].ToString());
                                 break;
                         }
 
@@ -430,11 +429,14 @@ namespace Orbita.VA.Hardware
                     OLogsVAHardware.EntradasSalidas.Info("Número máximo de llamadas de conectividad: " + this.ContLlamadasSimultaneasComm, this.Codigo);
                 }
 
-                this.ContLlamadasSimultaneasComm--;
             }
             catch (Exception exception)
             {
                 OLogsVAHardware.EntradasSalidas.Error(exception, this.Codigo);
+            }
+            finally
+            {
+                this.ContLlamadasSimultaneasComm--;
             }
         }
         /// <summary>
@@ -515,11 +517,6 @@ namespace Orbita.VA.Hardware
         internal int IdDispositivo;
 
         /// <summary>
-        /// Tipo de dispositivo controlado por el servidor de comunicaciones
-        /// </summary>
-        protected OEnumTipoDispositivoClienteComunicacion TipoDispositivo;
-
-        /// <summary>
         /// Indica que la escritura del valor se ha de producir inmediatamente al cambio del valor de la variable
         /// </summary>
         protected bool EscrituraInmediata;
@@ -529,7 +526,7 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Contructor de la clase
         /// </summary>
-        public OTerminalClienteComunicacion(string codTarjetaIO, string codTerminalIO, OEnumTipoDispositivoClienteComunicacion tipoDispositivoCOM)
+        public OTerminalClienteComunicacion(string codTarjetaIO, string codTerminalIO)
             : base(codTarjetaIO, codTerminalIO)
         {
             this.Valor = null;
@@ -542,7 +539,6 @@ namespace Orbita.VA.Hardware
                 this.EscrituraInmediata = OBooleano.Validar(dtTerminalIO.Rows[0]["COM_EscrituraInmediata"], true);
                 this.CodigoVariableCOM = dtTerminalIO.Rows[0]["COM_CodVariable"].ToString();
             }
-            this.TipoDispositivo = tipoDispositivoCOM;
         }
         #endregion
 
@@ -812,8 +808,8 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Contructor de la clase
         /// </summary>
-        public OTerminalClienteComunicacionWriteCommand(string codTarjetaIO, string codTerminalIO, OEnumTipoDispositivoClienteComunicacion tipoDispositivoCOM)
-            : base(codTarjetaIO, codTerminalIO, tipoDispositivoCOM)
+        public OTerminalClienteComunicacionWriteCommand(string codTarjetaIO, string codTerminalIO)
+            : base(codTarjetaIO, codTerminalIO)
         {
             this.ListaCodigosTerminalesAsociados = new List<string>();
             this.ListaTerminalesAsociados = new List<OTerminalClienteComunicacion>();
@@ -888,30 +884,6 @@ namespace Orbita.VA.Hardware
             }
         }
         #endregion
-    }
-
-    /// <summary>
-    /// Tipo de dispositivo controlado por el servidor de comunicaciones
-    /// </summary>
-    internal enum OEnumTipoDispositivoClienteComunicacion
-    {
-        /// <summary>
-        /// Servidor OPC de Siemens
-        /// </summary>
-        [OAtributoEnumerado("OPC.SimaticNET")]
-        OPC_SimaticNET = 1,
-
-        /// <summary>
-        /// Tarjeta Ethernet E/S
-        /// </summary>
-        [OAtributoEnumerado("MCC.EPDISO16")]
-        MCC_EPDISO16 = 2,
-
-        /// <summary>
-        /// Dispositivo para variables internas
-        /// </summary>
-        [OAtributoEnumerado("Orbita")]
-        Orbita = 3
     }
 }
 

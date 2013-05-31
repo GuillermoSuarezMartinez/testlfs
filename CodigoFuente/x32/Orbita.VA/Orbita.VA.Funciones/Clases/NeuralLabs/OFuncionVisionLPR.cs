@@ -539,7 +539,7 @@ namespace Orbita.VA.Funciones
                 // Guardamos la traza únicamente cuando hay un cambio en el tamaño de la cola de elementos a procesar en MTInterface
                 if (this.QueueSize != OMTInterfaceLPR.GetQueueSize() + OMTInterfaceLPR.GetQueueSizeVPARMT())
                 {
-                    OLogsVAFunciones.LPR.Info(this.Codigo, "Eliminada imagen de la cola LPR. Total imágenes: " + OMTInterfaceLPR.GetQueueSize() + OMTInterfaceLPR.GetQueueSizeVPARMT());
+                    OLogsVAFunciones.LPR.Info(this.Codigo, "Total imágenes: " + (OMTInterfaceLPR.GetQueueSize() + OMTInterfaceLPR.GetQueueSizeVPARMT()).ToString());
                     this.QueueSize = OMTInterfaceLPR.GetQueueSize() + OMTInterfaceLPR.GetQueueSizeVPARMT();
                 }
 
@@ -805,7 +805,7 @@ namespace Orbita.VA.Funciones
                             // adición de imagen
                             if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                             {
-                                resultCode = OMTInterfaceLPR.Add(this.RutaImagenTemporal, info);
+                                resultCode = OMTInterfaceLPR.Add(this.Codigo,this.RutaImagenTemporal, info);
                             }
                             else
                             {
@@ -823,12 +823,12 @@ namespace Orbita.VA.Funciones
                                 imagenTrabajo.Image.Save(this.RutaImagenTemporal);
                                 if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                                 {
-                                    resultCode = OMTInterfaceLPR.Add(this.RutaImagenTemporal, info);
+                                    resultCode = OMTInterfaceLPR.Add(this.Codigo,this.RutaImagenTemporal, info);
                                 }
                             }
                             else
                             {
-                                resultCode = OMTInterfaceLPR.Add(imagenTrabajo.Image, info);
+                                resultCode = OMTInterfaceLPR.Add(this.Codigo,imagenTrabajo.Image, info);
                             }
                         }
                         
@@ -861,7 +861,7 @@ namespace Orbita.VA.Funciones
         {
             bool resultado = base.HayInspeccionesPendientes();
 
-            resultado |= (OMTInterfaceLPR.GetQueueSize() + OMTInterfaceLPR.GetQueueSizeVPARMT() > 0);
+            resultado |= OMTInterfaceLPR.GetQueueSize(this.Codigo) > 0;
             resultado |= this.ContInspeccionesEnCola > 0;
 
             return resultado;
@@ -873,7 +873,7 @@ namespace Orbita.VA.Funciones
         public override void ResetearColaEjecucion()
         {
             base.ResetearColaEjecucion();
-            OMTInterfaceLPR.Reset();
+            OMTInterfaceLPR.Reset(this.Codigo);
             this.InformacionAdicional = new Dictionary<string, object>();
         }
 
@@ -1395,9 +1395,28 @@ namespace Orbita.VA.Funciones
             {
                 this._CodigoPais = value;
                 this.Propiedades["CodigoPais"] = value;
+                if (value == 0)
+                {
+                    this._Verificado = false;
+                }
+                else
+                {
+                    this._Verificado = true;
+                }
             }
         }
 
+        /// <summary>
+        /// Si el Codigo de pais es distinto de 0
+        /// </summary>
+        private bool _Verificado;
+        /// <summary>
+        /// Si el Codigo de pais es distinto de 0
+        /// </summary>
+        public bool Verificado
+        {
+            get { return _Verificado; }
+        }
         /// <summary>
         /// <summary>Devuelve el pais que cumple la sintáxis
         /// </summary>

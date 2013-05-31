@@ -74,11 +74,11 @@ namespace Orbita.VA.Funciones
                 if (parametros.Activada)
                 {
                     // Conversión de tipo
-                    OImagenOpenCV<Emgu.CV.Structure.Rgb, byte> imagenTrabajo;
-                    imagen.Convert<OImagenOpenCV<Emgu.CV.Structure.Rgb, byte>>(out imagenTrabajo);
+                    OImagenOpenCV<Emgu.CV.Structure.Bgr, byte> imagenTrabajo;
+                    imagen.Convert<OImagenOpenCV<Emgu.CV.Structure.Bgr, byte>>(out imagenTrabajo);
 
                     // Corrección de perspectiva
-                    OImagenOpenCV<Emgu.CV.Structure.Rgb, byte> imagenCorregida = imagenTrabajo.CorregirPerspectiva(parametros.PuntoOrigen1,
+                    OImagenOpenCV<Emgu.CV.Structure.Bgr, byte> imagenCorregida = imagenTrabajo.CorregirPerspectiva(parametros.PuntoOrigen1,
                         parametros.PuntoOrigen2,
                         parametros.PuntoOrigen3,
                         parametros.PuntoOrigen4,
@@ -86,7 +86,10 @@ namespace Orbita.VA.Funciones
                         parametros.AreaDestino);
 
                     // Conversión de tipo
-                    imagenTrabajo.Convert<OImagenBitmap>(out resultado);
+                    imagenCorregida.Convert<OImagenBitmap>(out resultado);
+
+                    imagenCorregida.Dispose();
+                    imagenTrabajo.Dispose();
                 }
             }
             catch (Exception exception)

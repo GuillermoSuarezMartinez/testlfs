@@ -548,7 +548,7 @@ namespace Orbita.VA.Funciones
                             // adición de imagen
                             if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                             {
-                                OMTInterfaceCCR.Add(this.RutaImagenTemporal, info);
+                                OMTInterfaceCCR.Add(this.Codigo,this.RutaImagenTemporal, info);
                             }
                             else
                             {
@@ -566,13 +566,13 @@ namespace Orbita.VA.Funciones
                                 imagenTrabajo.Image.Save(this.RutaImagenTemporal);
                                 if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                                 {
-                                    OMTInterfaceLPR.Add(this.RutaImagenTemporal, info);
+                                    OMTInterfaceCCR.Add(this.Codigo,this.RutaImagenTemporal, info);
                                 }
                             }
                             else
                             {
                                 // adición de imagen
-                                OMTInterfaceCCR.Add(imagenTrabajo.Image, info);
+                                OMTInterfaceCCR.Add(this.Codigo,imagenTrabajo.Image, info);
                             }
                             
                         }
@@ -607,7 +607,7 @@ namespace Orbita.VA.Funciones
         {
             bool resultado = base.HayInspeccionesPendientes();
 
-            resultado |= (OMTInterfaceCCR.GetQueueSize() + OMTInterfaceCCR.GetQueueSizeCIDARMT() > 0);
+            resultado |= OMTInterfaceCCR.GetQueueSize(this.Codigo) > 0;
             resultado |= this.ContInspeccionesEnCola > 0;
 
             return resultado;

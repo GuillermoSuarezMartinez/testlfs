@@ -301,7 +301,7 @@ namespace Orbita.VA.Hardware
             {
                 case OEnumTipoMovimientoPTZ.Pan:
                 case OEnumTipoMovimientoPTZ.Tilt:
-                    ODecimal valorDouble = new ODecimal("ValorDouble", -180, 180, 0, false);
+                    ODecimal valorDouble = new ODecimal("ValorDouble", -180, 180, CultureInfo.InvariantCulture, 0, false);
                     valorDouble.ValorGenerico = strValor;
                     if (valorDouble.Valido)
                     {
@@ -309,7 +309,7 @@ namespace Orbita.VA.Hardware
                     }
                     break;
                 case OEnumTipoMovimientoPTZ.Zoom:
-                    OEntero valorEntero = new OEntero("ValorEntero", 1, 10909, 1, false);
+                    OEntero valorEntero = new OEntero("ValorEntero", 1, 10909, CultureInfo.InvariantCulture, 1, false);
                     valorEntero.ValorGenerico = strValor;
                     if (valorEntero.Valido)
                     {
@@ -318,7 +318,7 @@ namespace Orbita.VA.Hardware
                     break;
                 case OEnumTipoMovimientoPTZ.Iris:
                 case OEnumTipoMovimientoPTZ.Focus:
-                    OEntero valorEntero2 = new OEntero("ValorEntero", 1, 9999, 1, false);
+                    OEntero valorEntero2 = new OEntero("ValorEntero", 1, 9999, CultureInfo.InvariantCulture, 1, false);
                     valorEntero2.ValorGenerico = strValor;
                     if (valorEntero2.Valido)
                     {

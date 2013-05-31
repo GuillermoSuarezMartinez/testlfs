@@ -58,10 +58,9 @@
     <Compile Include="Clases\MensajesAutenticacion.cs" />
     <Compile Include="Clases\EstadoAutenticacionNOK.cs" />
     <Compile Include="Clases\EstadoAutenticacionOK.cs" />
-    <Compile Include="Enumerados\BotonesAutenticacion.cs" />
     <Compile Include="Enumerados\ResultadoAutenticacion.cs" />
     <Compile Include="Enumerados\TipoAutenticacion.cs" />
-    <Compile Include="EventArgs\AutenticacionChangedEventArgs.cs" />
+    <Compile Include="EventArgs\AutenticacionResultEventArgs.cs" />
     <Compile Include="Formularios\FrmAutenticacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,7 +72,6 @@
     <Compile Include="Core\OLogonBBDD.cs" />
     <Compile Include="Core\OLogon.cs" />
     <Compile Include="Core\OLogonOpenLDAP.cs" />
-    <Compile Include="Clases\AutenticacionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

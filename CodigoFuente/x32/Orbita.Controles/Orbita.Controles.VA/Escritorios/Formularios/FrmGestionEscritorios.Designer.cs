@@ -116,7 +116,7 @@
             // 
             this.TabPage1.Controls.Add(this.GrpConfigEscritorio);
             this.TabPage1.Controls.Add(this.PnlGeneral);
-            this.TabPage1.Location = new System.Drawing.Point(2, 21);
+            this.TabPage1.Location = new System.Drawing.Point(-10000, -10000);
             this.TabPage1.Name = "TabPage1";
             this.TabPage1.Size = new System.Drawing.Size(371, 273);
             // 
@@ -284,7 +284,7 @@
             this.LblExplicacionGeneral.Size = new System.Drawing.Size(266, 42);
             this.LblExplicacionGeneral.TabIndex = 36;
             this.LblExplicacionGeneral.Text = "La gestión de escritorios nos permite configurar nuestras preferencias sobre los " +
-                "formularios que se han de iniciar con la aplicación.";
+    "formularios que se han de iniciar con la aplicación.";
             this.LblExplicacionGeneral.UseMnemonic = false;
             // 
             // ImgGeneral
@@ -301,7 +301,7 @@
             // 
             this.TabPage2.Controls.Add(this.GrpListaEscritorios);
             this.TabPage2.Controls.Add(this.PnlEscritorios);
-            this.TabPage2.Location = new System.Drawing.Point(-10000, -10000);
+            this.TabPage2.Location = new System.Drawing.Point(2, 21);
             this.TabPage2.Name = "TabPage2";
             this.TabPage2.Size = new System.Drawing.Size(371, 273);
             // 
@@ -342,15 +342,21 @@
             this.GridEscritorios.Name = "GridEscritorios";
             this.GridEscritorios.OI.CampoPosicionable = null;
             this.GridEscritorios.OI.Filas.TipoSeleccion = null;
+            this.GridEscritorios.OI.Filtros.Mostrar = false;
             this.GridEscritorios.OI.MostrarToolAñadir = true;
             this.GridEscritorios.OI.MostrarToolCiclico = false;
             this.GridEscritorios.OI.MostrarToolEditar = false;
+            this.GridEscritorios.OI.MostrarToolEliminar = true;
             this.GridEscritorios.OI.MostrarToolExportar = false;
             this.GridEscritorios.OI.MostrarToolLimpiarFiltros = false;
             this.GridEscritorios.OI.MostrarToolRefrescar = false;
+            this.GridEscritorios.OI.Sumario.MostrarRecuentoFilas = false;
             this.GridEscritorios.Size = new System.Drawing.Size(279, 112);
             this.GridEscritorios.TabIndex = 41;
             this.toolTip.SetToolTip(this.GridEscritorios, resources.GetString("GridEscritorios.ToolTip"));
+            this.GridEscritorios.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.GridEscritorios_ToolClick);
+            this.GridEscritorios.ToolAñadirClick += new Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolAñadirClickEventHandler(this.GridEscritorios_ToolAñadirClick);
+            this.GridEscritorios.ToolEliminarClick += new Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolEliminarClickEventHandler(this.GridEscritorios_ToolEliminarClick);
             // 
             // PnlEscritorios
             // 
@@ -376,8 +382,8 @@
             this.LblExplicacion.Size = new System.Drawing.Size(258, 54);
             this.LblExplicacion.TabIndex = 36;
             this.LblExplicacion.Text = "Llamamos escritorio a la disposición de los formularios abiertos en la aplicación" +
-                ".\r\nMediante este asistente podemos crear nuevos escritorios o eliminar existente" +
-                "s.";
+    ".\r\nMediante este asistente podemos crear nuevos escritorios o eliminar existente" +
+    "s.";
             this.LblExplicacion.UseMnemonic = false;
             // 
             // ImgEscritorios
@@ -422,6 +428,7 @@
             this.ClientSize = new System.Drawing.Size(395, 359);
             this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Modificacion;
             this.Name = "FrmGestionEscritorios";
+            this.OI.NumeroMaximoFormulariosAbiertos = 0;
             this.Text = "Gestión de escritorios";
             this.PnlInferiorPadre.ResumeLayout(false);
             this.PnlBotonesPadre.ResumeLayout(false);

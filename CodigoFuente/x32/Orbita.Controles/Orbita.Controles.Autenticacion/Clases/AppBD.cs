@@ -11,35 +11,31 @@
 //***********************************************************************
 namespace Orbita.Controles.Autenticacion
 {
+    /// <summary>
+    /// Métodos de base de datos.
+    /// </summary>
     public static class AppBD
     {
-        public static System.Data.DataTable Get_Tipo_Autenticacion()
+        #region Métodos públicos estáticos
+        /// <summary>
+        /// Obtener tipo de autenticación.
+        /// </summary>
+        /// <returns></returns>
+        public static System.Data.DataTable GetTipoAutenticacion()
         {
-            System.Data.DataTable resultado = null;
-            try
-            {
-                resultado = App.COMS.SeleccionProcedimientoAlmacenado("FW_GET_TIPO_AUTENTICACION");
-            }
-            catch
-            {
-                throw;
-            }
-            return resultado;
+            return App.COMS.SeleccionProcedimientoAlmacenado("FW_GET_TIPO_AUTENTICACION");
         }
-        public static System.Data.DataTable Get_Autenticacion_BBDD(string usuario)
+        /// <summary>
+        /// Obtener resultado de autenticación de un usuario.
+        /// </summary>
+        /// <param name="usuario">Usuario de autenticación.</param>
+        /// <returns></returns>
+        public static System.Data.DataTable GetAutenticacionBBDD(string usuario)
         {
-            System.Data.DataTable resultado = null;
-            try
-            {
-                System.Collections.ArrayList list = new System.Collections.ArrayList();
-                list.Add(new System.Data.SqlClient.SqlParameter("@NOMBRE_USUARIO", usuario));
-                resultado = App.COMS.SeleccionProcedimientoAlmacenado("GET_USUARIO_PASS", list);
-            }
-            catch
-            {
-                throw;
-            }
-            return resultado;
+            System.Collections.ArrayList list = new System.Collections.ArrayList();
+            list.Add(new System.Data.SqlClient.SqlParameter("@NOMBRE_USUARIO", usuario));
+            return App.COMS.SeleccionProcedimientoAlmacenado("GET_USUARIO_PASS", list);
         }
+        #endregion
     }
 }

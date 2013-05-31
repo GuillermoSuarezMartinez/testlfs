@@ -14,11 +14,11 @@ namespace Orbita.Controles.Autenticacion
     /// <summary>
     /// Formulario de autenticación.
     /// </summary>
-    public partial class FrmValidar : System.Windows.Forms.Form
+    public partial class FrmAutenticacion : System.Windows.Forms.Form
     {
         #region DLL Imports
         /// <summary>
-        /// This function retrieves the status of the specified virtual key.
+        /// Esta función recupera el estado de la tecla virtual especificada.
         /// The status specifies whether the key is up, down.
         /// </summary>
         /// <param name="keyCode">Specifies a key code for the button to me checked</param>
@@ -28,99 +28,122 @@ namespace Orbita.Controles.Autenticacion
         #endregion
 
         #region Atributos
-        /// <summary>
-        /// Tipo de autenticación a realizar.
-        /// </summary>
-        TipoAutenticacion autenticacion;
-        /// <summary>
-        /// Servidor donde se realiza la autenticación.
-        /// </summary>
-        string dominio;
+        private OLogon logon = null;
         #endregion
 
         #region Delegados y eventos
-        /// <summary>
-        /// Evento para la validación.
-        /// </summary>
-        public event System.EventHandler<AutenticacionChangedEventArgs> ControlAutenticacion;
+        private event System.EventHandler<AutenticacionResultEventArgs> dialogReturning;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.FrmValidar.
         /// </summary>
-        public FrmValidar()
+        public FrmAutenticacion()
         {
             InitializeComponent();
-        }
-        /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Controles.Autenticacion.FrmValidar.
-        /// </summary>
-        /// <param name="parent"></param>
-        public FrmValidar(System.Windows.Forms.Form parent)
-            : this()
-        {
-            // Asignar el contenedor a la propiedad de MdiParent.
-            // MdiParent = parent;
-            // Leer el estado actual de las keys especificadas.
+            //  Leer el estado actual de las keys especificadas.
             UpdateKeys();
             //InitializeAuthentication();
         }
         #endregion
 
         #region Métodos privados
-        void InitializeAuthentication()
+        private void InitializeAuthentication()
         {
-            Orbita.BBDD.OBBDDManager.LeerFicheroConfig(System.Windows.Forms.Application.StartupPath + @"\ConfiguracionBBDD.xml");
-            App.COMS = (Orbita.BBDD.OSqlServer)Orbita.BBDD.OBBDDManager.GetBBDD("basedatosfw");
-            this.autenticacion = TipoAutenticacion.Ninguna;
-            System.Data.DataTable dt = AppBD.Get_Tipo_Autenticacion();
-            if (dt.Rows.Count > 0)
+            try
             {
-                this.autenticacion = (TipoAutenticacion)System.Convert.ToInt32(dt.Rows[0]["FWA_ID_AUTENTICACION"], System.Globalization.CultureInfo.CurrentCulture);
-                this.dominio = dt.Rows[0]["FWA_DOMINIO"].ToString();
+                Orbita.BBDD.OBBDDManager.LeerFicheroConfig(System.Windows.Forms.Application.StartupPath + @"\ConfiguracionBBDD.xml");
+                App.COMS = (Orbita.BBDD.OSqlServer)Orbita.BBDD.OBBDDManager.GetBBDD("basedatosfw");
+                System.Data.DataTable dt = AppBD.GetTipoAutenticacion();
+                if (dt.Rows.Count > 0)
+                {
+                    TipoAutenticacion autenticacion = (TipoAutenticacion)System.Convert.ToInt32(dt.Rows[0]["FWA_ID_AUTENTICACION"], System.Globalization.CultureInfo.CurrentCulture);
+                    string dominio = dt.Rows[0]["FWA_DOMINIO"].ToString();
+                    switch (autenticacion)
+                    {
+                        case TipoAutenticacion.BBDD:
+                            this.logon = new OLogonBBDD();
+                            break;
+                        case TipoAutenticacion.ActiveDirectory:
+                            this.logon = new OLogonActiveDirectory();
+                            break;
+                        case TipoAutenticacion.Ninguna:
+                        default:
+                            break;
+                    }
+                    if (logon != null)
+                    {
+                        logon.dominio = dominio;
+                        logon.usuario = this.txtUsuario.Text;
+                    }
+                }
+            }
+            catch (System.NullReferenceException)
+            {
+                throw;
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                throw;
+            }
+            catch (System.Exception)
+            {
+                throw;
             }
         }
-        AutenticacionChangedEventArgs Validar()
+        private EstadoAutenticacion Validar()
         {
-            OLogOn logon = null;
-            AutenticacionChangedEventArgs args = null;
-            switch (this.autenticacion)
-            {
-                case TipoAutenticacion.BBDD:
-                    logon = new OLogOnBBDD();
-                    break;
-                case TipoAutenticacion.ActiveDirectory:
-                    logon = new OLogOnActiveDirectory();
-                    break;
-                case TipoAutenticacion.Ninguna:
-                default:
-                    break;
-            }
+            EstadoAutenticacion estado = null;
             if (logon != null)
             {
-                logon.dominio = this.dominio;
-                logon.usuario = this.txtUsuario.Text;
                 logon.password = this.txtContraseña.Text;
-                args = logon.Validar();
+                estado = logon.Validar();
             }
             else
             {
-                //EstadoAutenticacion estado = new EstadoAutenticacionNOK(MensajesAutenticacion.SinAutenticacion);
-                EstadoAutenticacion estado = new EstadoAutenticacionOK();
-                args = new AutenticacionChangedEventArgs(estado);
+                estado = new EstadoAutenticacionOK();
+                //estado = new EstadoAutenticacionNOK("error");
             }
-            //this.OnControlAutenticacion(this, args);
-            return args;
+            return estado;
         }
-        void UpdateKeys()
+        private void UpdateKeys()
         {
             UpdateCAPSLock();
         }
-        void UpdateCAPSLock()
+        private void UpdateCAPSLock()
         {
             bool capsLock = (GetKeyState((int)System.Windows.Forms.Keys.CapsLock)) != 0;
             this.lblMayusculasActivada.Visible = capsLock;
+            this.Refresh();
+        }
+        private void Aceptar()
+        {
+            //  Obtener o establecer el resultado de cuadro de diálogo para el formulario.
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            //  Cerrar el formulario si la autenticación es correcta.
+            this.Close();
+        }
+        private void Cancelar()
+        {
+            //  Obtener o establecer el resultado de cuadro de diálogo para el formulario.
+            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            //  Cerrar el formulario.
+            this.Close();
+        }
+        #endregion
+
+        #region Métodos públicos
+        /// <summary>
+        /// Mostrar ventana de dialogo como hijo de un formulario MDI.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="dialogReturnedValue">Manejador de evento de retorno.</param>
+        public void ShowChildDialog(System.Windows.Forms.Form sender, System.EventHandler<AutenticacionResultEventArgs> dialogReturnedValue)
+        {
+            this.MdiParent = sender;
+            dialogReturning += dialogReturnedValue;
+            this.Show();
             this.Refresh();
         }
         #endregion
@@ -128,120 +151,89 @@ namespace Orbita.Controles.Autenticacion
         #region Manejadores de eventos
         private void txtUsuario_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
-            try
+            if (e.KeyChar == (char)System.Windows.Forms.Keys.Return || e.KeyChar == (char)System.Windows.Forms.Keys.Enter)
             {
-                if (e.KeyChar == (char)System.Windows.Forms.Keys.Return || e.KeyChar == (char)System.Windows.Forms.Keys.Enter)
+                //  Obtener el valor que indica si el control puede recibir el foco.
+                if (this.txtContraseña.CanFocus)
                 {
+                    //  Establecer el foco de entrada en el control txtContraseña.
                     this.txtContraseña.Focus();
                 }
-            }
-            catch (System.Exception ex)
-            {
-                Orbita.Utiles.OMensajes.MostrarError("Error no controlado " + ex.ToString());
             }
         }
         private void txtContraseña_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
-            try
+            if (e.KeyChar == (char)System.Windows.Forms.Keys.Return || e.KeyChar == (char)System.Windows.Forms.Keys.Enter)
             {
-                if (e.KeyChar == (char)System.Windows.Forms.Keys.Return || e.KeyChar == (char)System.Windows.Forms.Keys.Enter)
-                {
-                    AutenticacionChangedEventArgs result = this.Validar();
-                    if (result.Resultado == ResultadoAutenticacion.OK)
-                    {
-                        this.Close();
-                    }
-                }
-            }
-            catch (System.Exception ex)
-            {
-                Orbita.Utiles.OMensajes.MostrarError("Error no controlado " + ex.ToString());
+                Aceptar();
             }
         }
         private void btnAceptar_Click(object sender, System.EventArgs e)
         {
+            Aceptar();
+        }
+        private void btnCancelar_Click(object sender, System.EventArgs e)
+        {
+            Cancelar();
+        }
+        private void FrmValidar_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
             try
             {
-                AutenticacionChangedEventArgs result = this.Validar();
-                if (result.Resultado == ResultadoAutenticacion.OK)
+                if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
                 {
-                    this.Close();
+                    //  Validar autenticación en función de las credenciales proporcionadas.
+                    EstadoAutenticacion estado = this.Validar();
+                    if (estado.Resultado == ResultadoAutenticacion.OK)
+                    {
+                        //  Ocultar el formulario de autenticación para continuar con el proceso asíncrono.
+                        this.Hide();
+                    }
+                    else if (estado.Resultado == ResultadoAutenticacion.NOK)
+                    {
+                        //  Cancelar evento de cierre de formulario de autenticación.
+                        e.Cancel = true;
+                        //  Inicializar resultado del dialogo en procesos de autenticación incorrecta.
+                        this.DialogResult = System.Windows.Forms.DialogResult.None;
+                        //  Mostrar en pantalla el error concreto al usuario.
+                        this.lblCredencialesIncorrectas.Text = estado.Mensaje;
+                        this.lblCredencialesIncorrectas.Visible = true;
+                        this.lblCredencialesIncorrectas.Refresh();
+                    }
                 }
-            }
-            catch (System.Exception ex)
-            {
-                Orbita.Utiles.OMensajes.MostrarError("Error no controlado: " + ex.ToString());
             }
             finally
             {
             }
         }
-        private void btnCancelar_Click(object sender, System.EventArgs e)
-        {
-            this.Close();
-        }
         private void FrmValidar_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
         {
-            try
+            AutenticacionResultEventArgs args = new AutenticacionResultEventArgs(this.DialogResult);
+            if (logon != null)
             {
-                // ...en el caso que Windows esté intentando cerrar.
-                // ...la pulsación de la tecla Alt+F4.
-                //if (e.CloseReason == System.Windows.Forms.CloseReason.WindowsShutDown ||
-                //    e.CloseReason == System.Windows.Forms.CloseReason.MdiFormClosing)
-                //{
-                //    return;
-                //}
-                //if (this.DialogResult == System.Windows.Forms.DialogResult.Cancel ||
-                //    this.DialogResult == System.Windows.Forms.DialogResult.None)
-                //{
-                //    EstadoAutenticacion estado = new EstadoAutenticacionNOK();
-                //    this.OnControlAutenticacion(this, new AutenticacionChangedEventArgs(estado));
-                //}
+                args.Usuario = logon.usuario;
             }
-            catch (System.Exception ex)
-            {
-                Orbita.Utiles.OMensajes.MostrarError("Error no controlado: " + ex.ToString());
-            }
+            DialogReturned(sender, args);
         }
         private void FrmValidar_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            try
+            if (e.KeyData == System.Windows.Forms.Keys.CapsLock)
             {
-                if (e.KeyData == System.Windows.Forms.Keys.CapsLock)
-                {
-                    UpdateCAPSLock();
-                }
-            }
-            catch (System.Exception ex)
-            {
-                Orbita.Utiles.OMensajes.MostrarError("Error no controlado: " + ex.ToString());
+                UpdateCAPSLock();
             }
         }
-        protected void OnControlAutenticacion(object sender, AutenticacionChangedEventArgs e)
+        /// <summary>
+        /// Manejador de evento de retorno.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected virtual void DialogReturned(object sender, AutenticacionResultEventArgs e)
         {
-            if (e != null)
+            if (this.dialogReturning != null)
             {
-                if (e.Resultado == ResultadoAutenticacion.NOK && e.BotónPulsado == BotonesAutenticacion.Aceptar)
-                {
-                    this.lblCredencialesIncorrectas.Text = e.Mensaje;
-                    this.lblCredencialesIncorrectas.Visible = true;
-                    return;
-                }
-                if (this.ControlAutenticacion != null)
-                {
-                    this.ControlAutenticacion(this, e);
-                    if (e.Resultado == ResultadoAutenticacion.OK)
-                    {
-                        this.Close();
-                    }
-                }
+                this.dialogReturning(sender, e);
             }
         }
         #endregion
-
-        private void FrmValidar_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
-        {
-            this.Hide();
-        }
     }
 }

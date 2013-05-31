@@ -172,7 +172,8 @@ namespace Orbita.VA.Comun
 	        {
                 lock (BlockObject)
                 {
-                    ListaObjetos.Add(baseObject.GetHashCode(), new OPair<Type, string>(baseObject.GetType(), baseObject.Codigo));
+                    //ListaObjetos.Add(baseObject.GetHashCode(), new OPair<Type, string>(baseObject.GetType(), baseObject.Codigo));
+                    ListaObjetos[baseObject.GetHashCode()] = new OPair<Type, string>(baseObject.GetType(), baseObject.Codigo); // Para evitar colisiones en las claves
                 }
 	        }
         }
@@ -289,7 +290,6 @@ namespace Orbita.VA.Comun
             }
             OGestionMemoriaManager.Remove(this);
         }
-
         #endregion
 
         #region Método(s) público(s)
