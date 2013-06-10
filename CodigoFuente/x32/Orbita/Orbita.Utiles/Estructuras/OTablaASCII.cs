@@ -134,6 +134,61 @@ namespace Orbita.Utiles
         }
 
         /// <summary>
+        /// Convierte un caracter ASCII en texto inteligible para su interpretación
+        /// </summary>
+        /// <param name="dato"></param>
+        /// <returns></returns>
+        public static string ASCII2String(char dato)
+        {
+            if (TablaASCII.ContainsKey((byte)dato))
+            {
+                return TablaASCII[(byte)dato];
+            }
+            else
+            {
+                return "[" + dato + "]";
+            }
+        }
+
+        /// <summary>
+        /// Convierte un conjunto de caracteres ASCII en texto inteligible para su interpretación
+        /// </summary>
+        /// <param name="dato"></param>
+        /// <returns></returns>
+        public static string ASCII2String(char[] datos)
+        {
+            string retorno = string.Empty;
+            if (datos != null)
+            {
+                for (int i = 0; i < datos.Length; i++)
+                {
+                    byte dato = (byte)datos[i];
+                    retorno += ASCII2String(dato);
+                }
+            }
+            return retorno;
+        }
+
+        /// <summary>
+        /// Convierte un conjunto de caracteres ASCII en texto inteligible para su interpretación
+        /// </summary>
+        /// <param name="dato"></param>
+        /// <returns></returns>
+        public static string ASCII2String(List<char> datos)
+        {
+            string retorno = string.Empty;
+            if (datos != null)
+            {
+                for (int i = 0; i < datos.Count; i++)
+                {
+                    byte dato = (byte)datos[i];
+                    retorno += ASCII2String(dato);
+                }
+            }
+            return retorno;
+        }
+
+        /// <summary>
         /// Convierte un conjunto de caracteres ASCII en texto inteligible para su interpretación
         /// </summary>
         /// <param name="dato"></param>
