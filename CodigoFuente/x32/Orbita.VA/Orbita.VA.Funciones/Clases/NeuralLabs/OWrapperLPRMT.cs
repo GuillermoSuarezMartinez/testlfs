@@ -391,14 +391,14 @@ namespace Orbita.VA.Funciones
         /// </summary>
         public static int GetFreeCores()
         {
-            return vparmtFreeCores();
+            return FreeCores();
         }
         /// <summary>
         /// Devuelve el número de núcleos de la licencia
         /// </summary>
         public static int GetLicensedCores()
         {
-            return vparmtNumLicenseCores();
+            return NumLicenseCores();
         }
         /// <summary>
         /// Devuelve la cantida de objetos en la cola de cidarmt.dll
@@ -412,7 +412,7 @@ namespace Orbita.VA.Funciones
         /// </summary>
         public static int GetUsedCores()
         {
-            return (vparmtNumLicenseCores() - vparmtFreeCores());
+            return (NumLicenseCores() - FreeCores());
         }
         /// <summary>
         /// Reinicia el contador de identificacion
@@ -470,11 +470,11 @@ namespace Orbita.VA.Funciones
                             string ruta = valor.ImageInformation.GetPath;
                             if ((Path.GetExtension(ruta).ToUpper(new CultureInfo("en-US")) == ".JPG") | (Path.GetExtension(ruta).ToUpper(new CultureInfo("en-US")) == ".JPEG"))
                             {
-                                vparmtReadJpg(ref Configuracion, ref ruta);
+                                vparmtReadJPG(ref Configuracion, ruta);
                             }
                             else if (Path.GetExtension(ruta).ToUpper(new CultureInfo("en-US")) == ".BMP")
                             {
-                                vparmtReadBmp(ref Configuracion, ref ruta);
+                                vparmtReadBMP(ref Configuracion, ruta);
                             }
                             else
                             {
@@ -583,28 +583,84 @@ namespace Orbita.VA.Funciones
         #endregion
 
         #region Llamadas al vparmt.dll ubicado en System
-        [DllImport("vpmr.dll", EntryPoint = "_vpmrComparePlates@8", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        private static extern int vparComparePlates([MarshalAs(UnmanagedType.VBByRefStr)] ref string plate1, [MarshalAs(UnmanagedType.VBByRefStr)] ref string plate2);
-        [DllImport("vparmt.dll", EntryPoint = "_vparmtEnd@0", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        private static extern void vparmtEnd();
-        [DllImport("vparmt.dll", EntryPoint = "_FreeCores@0", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        private static extern int vparmtFreeCores();
-        [DllImport("vparmt.dll", EntryPoint = "_vparmtInit@28", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        private static extern int vparmtInit(VPARCallback callbackFunction, int countryCode, int AvCharHeight, int DuplicateLines, int Reordenar, int filterColor, int Trace);
-        [DllImport("vparmt.dll", EntryPoint = "_NumLicenseCores@0", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        private static extern int vparmtNumLicenseCores();
-        [DllImport("vparmt.dll", EntryPoint = "_vparmtQueueSize@0", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        private static extern int vparmtQueueSize();
-        [DllImport("vparmt.dll", EntryPoint = "_vparmtRead@16", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        private static extern int vparmtRead(ref VPARMtConfiguration configuracion, int lWidth, int lHeight, IntPtr pbImageData);
-        [DllImport("vparmt.dll", EntryPoint = "_vparmtReadBMP@8", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        private static extern int vparmtReadBmp(ref VPARMtConfiguration configuracion, [MarshalAs(UnmanagedType.VBByRefStr)] ref string BmpFile);
-        [DllImport("vparmt.dll", EntryPoint = "_vparmtReadJPG@8", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        private static extern int vparmtReadJpg(ref VPARMtConfiguration configuracion, [MarshalAs(UnmanagedType.VBByRefStr)] ref string JPGFile);
-        [DllImport("vparmt.dll", EntryPoint = "_vparmtReadRGB24@20", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        private static extern int vparmtReadRGB24(ref VPARMtConfiguration configuracion, int lWidth, int lHeight, IntPtr pbImageData, int bVerticalFlip);
-        [DllImport("vparmt.dll", EntryPoint = "_vparmtReadRGB32@20", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        private static extern int vparmtReadRGB32(ref VPARMtConfiguration configuracion, int lWidth, int lHeight, IntPtr pbImageData, int bVerticalFlip);
+
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtInit@28", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtInit(VPARCallback callbackFunction, Int32 countryCode, Int32 AvCharHeight, Int32 DuplicateLines, Int32 Reordenar, Int32 filterColor, Int32 Trace);
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtEnd@0", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern void vparmtEnd();
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtRead@16", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtRead(ref VPARMtConfiguration configuracion, Int32 lWidth, Int32 lHeight, IntPtr pbImageData);
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtReadRGB24@20", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtReadRGB24(ref VPARMtConfiguration configuracion, Int32 lWidth, Int32 lHeight, IntPtr pbImageData, Int32 bVerticalFlip);
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtReadRGB32@20", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtReadRGB32(ref VPARMtConfiguration configuracion, Int32 lWidth, Int32 lHeight, IntPtr pbImageData, Int32 bVerticalFlip);
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtReadBMP@8", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtReadBMP(ref VPARMtConfiguration configuracion, String BmpFile);
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtReadJPG@8", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtReadJPG(ref VPARMtConfiguration configuracion, String JPGFile);
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtRead_sync@20", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtRead(ref VPARMtConfiguration configuracion, Int32 lWidth, Int32 lHeight, IntPtr pbImageData, ref VPARMtResult resultados);
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtReadRGB24_sync@24", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtReadRGB24(ref VPARMtConfiguration configuracion, Int32 lWidth, Int32 lHeight, IntPtr pbImageData, ref VPARMtResult resultados, Int32 bVerticalFlip);
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtReadRGB32_sync@24", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtReadRGB32(ref VPARMtConfiguration configuracion, Int32 lWidth, Int32 lHeight, IntPtr pbImageData, ref VPARMtResult resultados, Int32 bVerticalFlip);
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtReadBMP_sync@12", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtReadBMP(ref VPARMtConfiguration configuracion, String BmpFile, ref VPARMtResult resultados);
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtReadJPG_sync@12", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtReadJPG(ref VPARMtConfiguration configuracion, String JPGFile, ref VPARMtResult resultados);
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtFindCandidateRegionsFromGreyscale@28", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtFindCandidateRegionsFromGreyscale(Int32 lWidth,
+                                                                                             Int32 lHeight,
+                                                                                             IntPtr pbImageData,
+                                                                                             IntPtr plNumRegions,
+                                                                                             ref CandidateRegion pRegions,
+                                                                                             Int32 lMaxRegions,
+                                                                                             bool zPreciseCoordinates
+                                                                                             );
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtFindCandidateRegionsFromRGB24@32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtFindCandidateRegionsFromRGB24(Int32 lWidth,
+                                                                                             Int32 lHeight,
+                                                                                             IntPtr pbImageData,
+                                                                                             bool bflip,
+                                                                                             IntPtr plNumRegions,
+                                                                                             ref CandidateRegion pRegions,
+                                                                                             Int32 lMaxRegions,
+                                                                                             bool zPreciseCoordinates
+                                                                                             );
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtFindCandidateRegionsFromRGB32@32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtFindCandidateRegionsFromRGB32(Int32 lWidth,
+                                                                                             Int32 lHeight,
+                                                                                             IntPtr pbImageData,
+                                                                                             bool bflip,
+                                                                                             IntPtr plNumRegions,
+                                                                                             ref CandidateRegion pRegions,
+                                                                                             Int32 lMaxRegions,
+                                                                                             bool zPreciseCoordinates
+                                                                                             );
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtFindCandidateRegionsFromBMP@20", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtFindCandidateRegionsFromBMP(String strFilename,
+                                                                                       IntPtr plNumRegions,
+                                                                                       ref CandidateRegion pRegions,
+                                                                                       Int32 lMaxRegions,
+                                                                                       bool zPreciseCoordinates);
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtFindCandidateRegionsFromJPG@20", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 _vparmtFindCandidateRegionsFromJPG(String strFilename,
+                                                                                      IntPtr plNumRegions,
+                                                                                      ref CandidateRegion pRegions,
+                                                                                      Int32 lMaxRegions,
+                                                                                      bool zPreciseCoordinates);
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtQueueSize@0", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtQueueSize();
+        [DllImport("vparmtEX.dll", EntryPoint = "_FreeCores@0", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 FreeCores();
+        [DllImport("vparmtEX.dll", EntryPoint = "_NumLicenseCores@0", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 NumLicenseCores();
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparComparePlates@8", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vpmrComparePlates(String plate1, String plate2);
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtReadHasp@8", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vpmrReadHasp(ref byte pData, Int32 size);
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtWriteHasp@8", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vpmrWriteHasp(ref byte pData, Int32 size);
         #endregion
     }
 
@@ -617,71 +673,58 @@ namespace Orbita.VA.Funciones
     [StructLayout(LayoutKind.Explicit)]
     public struct VPARMtResult
     {
-        /// <summary>
-        /// Resultado
-        /// </summary>
         [FieldOffset(0)]
-        public int lRes;
-        /// <summary>
-        /// Número de matrículas identificadas
-        /// </summary>
+        public Int32 lRes;
         [FieldOffset(4)]
-        public int lNumberOfPlates;
-        /// <summary>
-        /// Array con los resultados
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 80), FieldOffset(8)]
+        public Int32 lNumberOfPlates;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 80)]
+        [FieldOffset(8)]
         public byte[] strResult;
-        /// <summary>
-        /// Array con la cantidad de caracteres 
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x58)]
-        public int[] vlNumbersOfCharacters;
-        /// <summary>
-        /// Array con la calidad total 
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(120)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(88)]
+        public Int32[] vlNumbersOfCharacters;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(120)]
         public float[] vlGlobalConfidence;
-        /// <summary>
-        /// Array con las alturas medias
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x98)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(152)]
         public float[] vfAverageCharacterHeight;
-        /// <summary>
-        /// Array de calidades de cada caracter
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 80), FieldOffset(0xb8)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 80)]
+        [FieldOffset(184)]
         public float[] vfCharacterConfidence;
-        /// <summary>
-        /// Array de posiciones izquierdas
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x1f8)]
-        public int[] vlLeft;
-        /// <summary>
-        /// Array de posiciones superiores
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x218)]
-        public int[] vlTop;
-        /// <summary>
-        /// Array de posiciones derechas
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x238)]
-        public int[] vlRight;
-        /// <summary>
-        /// Array de posiciones inferiores
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(600)]
-        public int[] vlBottom;
-        /// <summary>
-        /// Array con tiempos de proceso
-        /// </summary>
-        [FieldOffset(0x278)]
-        public int lProcessingTime;
-        /// <summary>
-        /// Array con los formatos reconocidos
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x27c)]
-        public int[] vlFormat;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(504)]
+        public Int32[] vlLeft;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(536)]
+        public Int32[] vlTop;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(568)]
+        public Int32[] vlRight;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(600)]
+        public Int32[] vlBottom;
+        [FieldOffset(632)]
+        public Int32 lProcessingTime;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(636)]
+        public Int32[] vlFormat;
+        [FieldOffset(668)]
+        public Int32 lUserParam1;
+        [FieldOffset(672)]
+        public Int32 lUserParam2;
+        [FieldOffset(676)]
+        public Int32 lUserParam3;
+        [FieldOffset(680)]
+        public Int32 lUserParam4;
+        [FieldOffset(684)]
+        public Int32 lUserParam5;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 200)]
+        [FieldOffset(688)]
+        public byte[] strPathCorrectedImage;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 320)]
+        [FieldOffset(888)]
+        public Int32[] vlCharacterPosition;
     }
 
     /// <summary>
@@ -690,72 +733,72 @@ namespace Orbita.VA.Funciones
     [StructLayout(LayoutKind.Explicit)]
     public struct VPARMtConfiguration
     {
-        /// <summary>
-        /// Timeout de proceso
-        /// </summary>
         [FieldOffset(0)]
-        public int lMiliseconds;
-        /// <summary>
-        /// Aplicar parámetros de corrección
-        /// </summary>
+        public Int32 lMiliseconds;
+        //Correction Coefficients
         [FieldOffset(4)]
-        public int bAplicarCorreccion;
-        /// <summary>
-        /// Distancia de identificación
-        /// </summary>
+        public Int32 bAplicarCorreccion;
         [FieldOffset(8)]
         public float fDistance;
-        /// <summary>
-        /// Factor de coeficiente vertical
-        /// </summary>
         [FieldOffset(12)]
         public float fVerticalCoeff;
-        /// <summary>
-        /// Factor de coeficiente horizontal
-        /// </summary>
-        [FieldOffset(0x10)]
+        [FieldOffset(16)]
         public float fHorizontalCoeff;
-        /// <summary>
-        /// Angulo
-        /// </summary>
         [FieldOffset(20)]
         public float fAngle;
-        /// <summary>
-        /// Número de alturas
-        /// </summary>
-        [FieldOffset(0x18)]
-        public int lNumSteps;
-        /// <summary>
-        /// Vector alturas
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x1c)]
-        public int[] vlSteps;
-        /// <summary>
-        /// Ventana de busqueda izquierda
-        /// </summary>
-        [FieldOffset(60)]
-        public int lLeft;
-        /// <summary>
-        /// Ventana de busqueda superior
-        /// </summary>
-        [FieldOffset(0x40)]
-        public int lTop;
-        /// <summary>
-        /// Ventana de busqueda anchura
-        /// </summary>
-        [FieldOffset(0x44)]
-        public int lWidth;
-        /// <summary>
-        /// Ventana de busqueda altura
-        /// </summary>
-        [FieldOffset(0x48)]
-        public int lHeight;
-        /// <summary>
-        /// Altura
-        /// </summary>
-        [FieldOffset(0x4c)]
+        [FieldOffset(24)]
+        public float fRadialCoeff;
+        [FieldOffset(28)]
+        public float fVerticalSkew;
+        [FieldOffset(32)]
+        public float fHorizontalSkew;
+        [FieldOffset(36)]
+        public Int32 lNumSteps;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(40)]
+        public Int32[] vlSteps;
+        //Rectangle
+        [FieldOffset(72)]
+        public Int32 lLeft;
+        [FieldOffset(76)]
+        public Int32 lTop;
+        [FieldOffset(80)]
+        public Int32 lWidth;
+        [FieldOffset(84)]
+        public Int32 lHeight;
+        [FieldOffset(88)]
         public float fScale;
+        [FieldOffset(92)]
+        public Int32 lUserParam1;
+        [FieldOffset(96)]
+        public Int32 lUserParam2;
+        [FieldOffset(100)]
+        public Int32 lUserParam3;
+        [FieldOffset(104)]
+        public Int32 lUserParam4;
+        [FieldOffset(108)]
+        public Int32 lUserParam5;
+        [FieldOffset(112)]
+
+        public bool CharacterRectangle;
     }
+    /// <summary>
+    /// Region Candidata
+    /// </summary>
+    [StructLayout(LayoutKind.Explicit)]
+    public struct CandidateRegion
+    {
+        [FieldOffset(0)]
+        public Int32 left;	// Left coordinate of region within image (in pixels).
+        [FieldOffset(4)]
+        public Int32 top;		// Top coordinate of region within image (in pixels).
+        [FieldOffset(8)]
+        public Int32 right;	// Right coordinate of region within image (in pixels).
+        [FieldOffset(12)]
+        public Int32 bottom;	// Bottom coordinate of region within image (in pixels).
+        [FieldOffset(16)]
+        public Int32 ach;		// Approximate Average Character Height of region (in pixels).
+    } 
     #endregion
 
     #region Clases

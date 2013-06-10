@@ -111,7 +111,7 @@ namespace Orbita.Controles.Comunicaciones
                 {
                     return false;
                 }
-                return (this.Codigo.Length == this.LongitudCodigo) && (System.Text.RegularExpressions.Regex.IsMatch(this.Codigo, @"^\d+$"));
+                return true;
             }
         }
         #endregion

@@ -107,7 +107,7 @@
     <Reference Include="Microsoft.DirectX.AudioVideoPlayback">
       <HintPath>..\..\Comun\Comunicaciones\Microsoft.DirectX.AudioVideoPlayback.dll</HintPath>
     </Reference>
-    <Reference Include="Orbita.Comunicaciones, Version=13.93.3.1, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="Orbita.Comunicaciones, Version=13.140.3.1, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Comun\Orbita\Orbita.Comunicaciones.dll</HintPath>
     </Reference>

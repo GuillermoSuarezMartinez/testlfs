@@ -388,7 +388,7 @@ namespace Orbita.VA.Hardware
                     int dispositivo = ((OInfoDato)e.Argumento).Dispositivo;
 
                     // Búsqueda del terminal
-                    OTerminalClienteComunicacion terminal = this.ListaTerminales.Values.OfType<OTerminalClienteComunicacion>().Single(t => (t.CodigoVariableCOM == codigoCambioEstado) && (t.IdDispositivo == dispositivo));
+                    OTerminalClienteComunicacion terminal = this.ListaTerminales.Values.OfType<OTerminalClienteComunicacion>().SingleOrDefault(t => (t.CodigoVariableCOM == codigoCambioEstado) && (t.IdDispositivo == dispositivo));
                     if (terminal != null)
                     {
                         // Extraemos el valor
@@ -423,6 +423,7 @@ namespace Orbita.VA.Hardware
                     this.CronometroTiempoSinRespuesta.Stop();
                     this.CronometroTiempoSinRespuesta.Reset();
                     this.CronometroTiempoSinRespuesta.Start();
+                    OLogsVAHardware.EntradasSalidas.Debug("Evento Comm", this.Codigo);
                 }
                 else
                 {

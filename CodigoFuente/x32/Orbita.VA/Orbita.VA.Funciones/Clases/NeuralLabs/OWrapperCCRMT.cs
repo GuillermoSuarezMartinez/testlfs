@@ -609,14 +609,14 @@ namespace Orbita.VA.Funciones
 
                                 // Creamos el resultado y lo añadimos a la cola
                                 OCCRCodeInfo resultadoCompleto = new OCCRCodeInfo(codigo, res.lCodeVerified, res.lProcessingTime, avgChar, lpos, tpos, rpos, bpos, fia, datoEnviado.ImageInformation.GetPath, id, codigo.Length,
-                                    numArray, res.lExtraInfoFound, extraInfo, numCaracISO, calidadISO, posLeftISO, posTopISO, posRightISO, posBottomISO, destinationArray, nLines, esInvertido, esVertical, res.lUserParam1, res.lUserParam2);
+                                    numArray, res.lExtraInfoFound, extraInfo, numCaracISO, calidadISO, posLeftISO, posTopISO, posRightISO, posBottomISO, destinationArray, nLines, esInvertido, esVertical, res.lUserParam1.ToInt32(), res.lUserParam2.ToInt32());
                                 ColaDeResultados.Enqueue(new OPair<OCCRCodeInfo, OCCRData>(resultadoCompleto, datoEnviado));
                             //}
                         }
                         else if (res.lNumberOfCodes == 0)
                         {
                             OCCRCodeInfo resultadoVacio = new OCCRCodeInfo(string.Empty, 0, res.lProcessingTime, 0f, 0, 0, 0, 0, 0f, string.Empty, id, 0, null, 0, null,
-                                0, 0f, 0, 0, 0, 0, null, 0, false, false, res.lUserParam1, res.lUserParam2);
+                                0, 0f, 0, 0, 0, 0, null, 0, false, false, res.lUserParam1.ToInt32(), res.lUserParam2.ToInt32());
                             ColaDeResultados.Enqueue(new OPair<OCCRCodeInfo, OCCRData>(resultadoVacio, datoEnviado));
                         }
                     }
@@ -625,7 +625,7 @@ namespace Orbita.VA.Funciones
                 {
                     OLogsVAFunciones.CCR.Error("CCR", string.Format(new CultureInfo("en-US"), "ERROR CallbackCCR Exception, {0}", new object[] { exception.Message }));
                     OCCRCodeInfo resultadoVacioError = new OCCRCodeInfo(string.Empty, 0, res.lProcessingTime, 0f, 0, 0, 0, 0, 0f, string.Empty, id, 0, null, 0, null, 
-                        0, 0f, 0, 0, 0, 0, null, 0, false, false, res.lUserParam1, res.lUserParam2);
+                        0, 0f, 0, 0, 0, 0, null, 0, false, false, res.lUserParam1.ToInt32(), res.lUserParam2.ToInt32());
                     ColaDeResultados.Enqueue(new OPair<OCCRCodeInfo, OCCRData>(resultadoVacioError, datoEnviado));
                 }
             }            
@@ -680,141 +680,81 @@ namespace Orbita.VA.Funciones
     [StructLayout(LayoutKind.Explicit)]
     public struct CIDARMtResult
     {
-        /// <summary>
-        /// Si el código esta invertido
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x4f4)]
-        public int[] bIsInverted;
-        /// <summary>
-        /// Si el código es vertical
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x514)]
-        public int[] bIsVertical;
-        /// <summary>
-        /// Si el código ha sido verificado
-        /// </summary>
-        [FieldOffset(0x27c)]
-        public int lCodeVerified;
-        /// <summary>
-        /// Si se ha encontrado el ódigo ISO
-        /// </summary>
-        [FieldOffset(640)]
-        public int lExtraInfoFound;
-        /// <summary>
-        /// Número de código identificados
-        /// </summary>
-        [FieldOffset(4)]
-        public int lNumberOfCodes;
-        /// <summary>
-        /// Número de líneas de la identificación
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x4d4)]
-        public int[] lNumLines;
-        /// <summary>
-        /// Tiempo de proceso
-        /// </summary>
-        [FieldOffset(0x278)]
-        public int lProcessingTime;
-        /// <summary>
-        /// Resultado
-        /// </summary>
         [FieldOffset(0)]
-        public int lRes;
-        /// <summary>
-        /// Parametro de usuario1
-        /// </summary>
-        [FieldOffset(0x534)]
-        public int lUserParam1;
-        /// <summary>
-        /// Parámetro de usuario 2
-        /// </summary>
-        [FieldOffset(0x538)]
-        public int lUserParam2;
-        /// <summary>
-        /// Código ISO
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 80), FieldOffset(0x284)]
-        public byte[] strExtraInfo;
-        /// <summary>
-        /// Código
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 80), FieldOffset(8)]
+        public Int32 lRes;
+        [FieldOffset(4)]
+        public Int32 lNumberOfCodes;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 80)]
+        [FieldOffset(8)]
         public byte[] strResult;
-        /// <summary>
-        /// Altura media del carácter
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x98)]
-        public float[] vfAverageCharacterHeight;
-        /// <summary>
-        /// Calidad media del carácter
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 80), FieldOffset(0xb8)]
-        public float[] vfCharacterConfidence;
-        /// <summary>
-        /// Calidad del caracter del ISO
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 80), FieldOffset(0x394)]
-        public float[] vfExtraInfoCharacterConfidence;
-        /// <summary>
-        /// Calidad de reconocimiento del ISO
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x2f4)]
-        public float[] vfExtraInfoConfidence;
-        /// <summary>
-        /// Posición inferior del ISO
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x374)]
-        public int[] vlExtraInfoBottom;
-        /// <summary>
-        /// Posición izquierda del código
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x314)]
-        public int[] vlExtraInfoLeft;
-        /// <summary>
-        /// Cantidad de caracteres del ISO
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x2d4)]
-        public int[] vlExtraInfoNumberOfCharacters;
-        /// <summary>
-        /// Posición derecha del ISO
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x354)]
-        public int[] vlExtraInfoRight;
-        /// <summary>
-        /// Posición superior del ISO
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(820)]
-        public int[] vlExtraInfoTop;
-        /// <summary>
-        /// Calidad encontrada
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(120)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(88)]
+        public Int32[] vlNumbersOfCharacters;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(120)]
         public float[] vlGlobalConfidence;
-        /// <summary>
-        /// Número de caracteres del código
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x58)]
-        public int[] vlNumbersOfCharacters;
-        /// <summary>
-        /// Posición izquierda del código
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x1f8)]
-        public int[] vlLeft;
-        /// <summary>
-        /// Posición inferior del código
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(600)]
-        public int[] vlBottom;
-        /// <summary>
-        /// Posición derecha del código
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x238)]
-        public int[] vlRight;
-        /// <summary>
-        /// Posición superior del código
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x218)]
-        public int[] vlTop;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(152)]
+        public float[] vfAverageCharacterHeight;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 80)]
+        [FieldOffset(184)]
+        public float[] vfCharacterConfidence;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(504)]
+        public Int32[] vlLeft;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(536)]
+        public Int32[] vlTop;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(568)]
+        public Int32[] vlRight;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(600)]
+        public Int32[] vlBottom;
+        [FieldOffset(632)]
+        public Int32 lProcessingTime;
+        [FieldOffset(636)]
+        public Int32 lCodeVerified;
+        [FieldOffset(640)]
+        public Int32 lExtraInfoFound;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 80)]
+        [FieldOffset(644)]
+        public byte[] strExtraInfo;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(724)]
+        public Int32[] vlExtraInfoNumberOfCharacters;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(756)]
+        public float[] vfExtraInfoConfidence;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(788)]
+        public Int32[] vlExtraInfoLeft;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(820)]
+        public Int32[] vlExtraInfoTop;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(852)]
+        public Int32[] vlExtraInfoRight;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(884)]
+        public Int32[] vlExtraInfoBottom;
+        //New fields 2011/09/01
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 80)]
+        [FieldOffset(916)]
+        public float[] vfExtraInfoCharacterConfidence;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(1236)]
+        public Int32[] lNumLines;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(1268)]
+        public Int32[] bIsInverted;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(1300)]
+        public Int32[] bIsVertical;
+        [FieldOffset(1332)]
+        public IntPtr lUserParam1; 
+        [FieldOffset(1336)]
+        public IntPtr lUserParam2;
     }
     /// <summary>
     /// Estructura de la configuración
@@ -822,91 +762,49 @@ namespace Orbita.VA.Funciones
     [StructLayout(LayoutKind.Explicit)]
     public struct CIDARMtConfiguration
     {
-        /// <summary>
-        /// Si se aplica corrección a la imagen
-        /// </summary>
+        [FieldOffset(0)]
+        public Int32 lMiliseconds;
+        //Correction Coefficients
         [FieldOffset(4)]
-        public int bAplicarCorreccion;
-        /// <summary>
-        /// Si esta activada la opción de buscar el ISO
-        /// </summary>
-        [FieldOffset(80)]
-        public int bEnableExtraInfo;
-        /// <summary>
-        /// Angulo a corregir
-        /// </summary>
-        [FieldOffset(0x18)]
-        public float fAngle;
-        /// <summary>
-        /// Distancia de reconocimiento
-        /// </summary>
+        //En caso de poner este booleano a true, los 4 parametros siguientes se aplicaran
+        public Int32 bAplicarCorreccion;
         [FieldOffset(8)]
         public float fDistance;
-        /// <summary>
-        /// Coeficiente de distorsión horizontal
-        /// </summary>
-        [FieldOffset(0x10)]
-        public float fHorizontalCoeff;
-        /// <summary>
-        /// Coeficiente de distorsión radial
-        /// </summary>
-        [FieldOffset(20)]
-        public float fRadialCoeff;
-        /// <summary>
-        /// Escala a aplicar a la imagen
-        /// </summary>
-        [FieldOffset(0x54)]
-        public float fScale;
-        /// <summary>
-        /// Coeficiente de distorsión vertical
-        /// </summary>
         [FieldOffset(12)]
         public float fVerticalCoeff;
-        /// <summary>
-        /// Altura de la ventana de búsqueda
-        /// </summary>
-        [FieldOffset(0x4c)]
-        public int lHeight;
-        /// <summary>
-        /// Coordenada izquierda de la ventana de búsqueda
-        /// </summary>
-        [FieldOffset(0x40)]
-        public int lLeft;
-        /// <summary>
-        /// Tiempo de proceso máximo
-        /// </summary>
-        [FieldOffset(0)]
-        public int lMiliseconds;
-        /// <summary>
-        /// Número de alturas de búsqueda
-        /// </summary>
-        [FieldOffset(0x1c)]
-        public int lNumSteps;
-        /// <summary>
-        /// Coordenada superior de la ventana de búsqueda
-        /// </summary>
-        [FieldOffset(0x44)]
-        public int lTop;
-        /// <summary>
-        /// Parametro 2 del filtrado
-        /// </summary>
-        [FieldOffset(0x58)]
-        public int lUserParam1;
-        /// <summary>
-        /// Parametro 2 del filtrado
-        /// </summary>
-        [FieldOffset(0x5c)]
-        public int lUserParam2;
-        /// <summary>
-        /// Anchura de la ventana de búsqueda
-        /// </summary>
-        [FieldOffset(0x48)]
-        public int lWidth;
-        /// <summary>
-        /// Vector con los rangos de altura posibles
-        /// </summary>
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8), FieldOffset(0x20)]
-        public int[] vlSteps;
+        [FieldOffset(16)]
+        public float fHorizontalCoeff;
+        [FieldOffset(20)]
+        public float fRadialCoeff;
+        [FieldOffset(24)]
+        public float fAngle;
+        [FieldOffset(28)]
+        public float fVerticalSkew;
+        [FieldOffset(32)]
+        public float FHorizontalSkew;
+        [FieldOffset(36)]
+        //En caso de poner este booleano a true se usaran las aturas del vector siguiente
+        public Int32 lNumSteps;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+        [FieldOffset(40)]
+        public Int32[] vlSteps;
+        //Rectangle
+        [FieldOffset(72)]
+        public Int32 lLeft;
+        [FieldOffset(76)]
+        public Int32 lTop;
+        [FieldOffset(80)]
+        public Int32 lWidth;
+        [FieldOffset(84)]
+        public Int32 lHeight;
+        [FieldOffset(88)]
+        public Int32 bEnableExtraInfo;
+        [FieldOffset(92)]
+        public float fScale;
+        [FieldOffset(96)]
+        public Int32 lUserParam1; 
+        [FieldOffset(100)]
+        public Int32 lUserParam2;
     }
     #endregion
 

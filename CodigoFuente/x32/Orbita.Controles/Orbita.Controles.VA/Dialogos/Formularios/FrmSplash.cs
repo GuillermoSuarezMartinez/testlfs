@@ -212,7 +212,7 @@ namespace Orbita.Controles.VA
                 Splash.Cerrar = true;
 
                 // Espero la finalización
-                OThreadManager.Espera(ref MostrandoSplash, false, 10000);
+                //OThreadManager.Espera(ref MostrandoSplash, false, 10000);
 
                 // Habilito el formulario principal
                 Application.UseWaitCursor = false;

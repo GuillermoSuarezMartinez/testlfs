@@ -10,6 +10,7 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -109,15 +110,8 @@ namespace Orbita.VA.Hardware
         {
             bool resultado = false;
 
-            List<DeviceEnumerator.Device> listaDispositivos = DeviceEnumerator.EnumerateDevices();
-            foreach (DeviceEnumerator.Device dispositivo in listaDispositivos)
-            {
-                if (this.DeviceId == dispositivo.Serial)
-                {
-                    resultado = true;
-                    break;
-                }
-            }
+            OCamaraBaslerPylon.RefrescarListaDispositivos();
+            resultado = OCamaraBaslerPylon.ExisteDispositivo(this.DeviceId);
 
             return resultado;
         }

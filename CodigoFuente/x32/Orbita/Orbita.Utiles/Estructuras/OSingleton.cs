@@ -1,4 +1,15 @@
-﻿using System;
+﻿//***********************************************************************
+// Assembly         : Orbita.VA.Comun
+// Author           : aibañez
+// Created          : 06-09-2012
+//
+// Last Modified By : 
+// Last Modified On : 
+// Description      : 
+//                    
+// Copyright        : (c) Orbita Ingenieria. All rights reserved.
+//***********************************************************************
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

@@ -26,11 +26,18 @@ namespace Orbita.VA.Hardware
     public class OCamaraBaslerPylon : OCamaraBitmap
     {
         #region Atributo(s) estático(s)
-        private static List<DeviceEnumerator.Device> ListaDispositivos;
+        /// <summary>
+        /// Lista de dispositivos conectados
+        /// </summary>
+        internal static Dictionary<string, DeviceEnumerator.Device> ListaDispositivos;
+        /// <summary>
+        /// Objeto de bloqueo para el acceso a la lista de dispositivos
+        /// </summary>
+        internal static object LockObject = new object();
         /// <summary>
         /// Booleano que evita que se construya varias veces el listado de cámaras de tipo GigE
         /// </summary>
-        public static bool PrimeraInstancia = true;
+        private static bool PrimeraInstancia = true;
         #endregion
 
         #region Atributo(s)
@@ -169,7 +176,7 @@ namespace Orbita.VA.Hardware
                     if (PrimeraInstancia)
                     {
                         // Se crea una lista de dispositivos
-                        ListaDispositivos = DeviceEnumerator.EnumerateDevices();
+                        RefrescarListaDispositivos();
                         PrimeraInstancia = false;
                     }
 
@@ -192,6 +199,46 @@ namespace Orbita.VA.Hardware
         }
         #endregion
 
+        #region Método(s) estático(s)
+        /// <summary>
+        /// Refresca la lista de dispositivos
+        /// </summary>
+        internal static void RefrescarListaDispositivos()
+        {
+            lock (LockObject)
+            {
+                ListaDispositivos = DeviceEnumerator.EnumerateDevices();
+            }
+        }
+
+        /// <summary>
+        /// Refresca la lista de dispositivos
+        /// </summary>
+        internal static bool ExisteDispositivo(string serial)
+        {
+            bool resultado = false;
+            lock (LockObject)
+            {
+                resultado = ListaDispositivos.ContainsKey(serial);
+            }
+            return resultado;
+        }
+
+        /// <summary>
+        /// Refresca la lista de dispositivos
+        /// </summary>
+        internal static bool ObtenerInfoDispositivo(string serial, out DeviceEnumerator.Device infoDispositivo)
+        {
+            bool resultado = false;
+            infoDispositivo = new DeviceEnumerator.Device();
+            lock (LockObject)
+            {
+                resultado = ListaDispositivos.TryGetValue(serial, out infoDispositivo);
+            }
+            return resultado;
+        }
+        #endregion
+
         #region Método(s) privado(s)
         /// <summary>
         /// Busca la frame grabber cuyo número de serie coincide con el indicado
@@ -203,25 +250,23 @@ namespace Orbita.VA.Hardware
         {
             bool resultado = false;
 
-            /* Fore each device to the list. */
-            foreach (DeviceEnumerator.Device dispositivo in ListaDispositivos)
-            {
-                if (this._DeviceId == dispositivo.Serial)
-                {
-                    this.Name = dispositivo.Name;
-                    this.Index = dispositivo.Index;
-                    this.Serial = dispositivo.Serial;
-                    this.DeviceClass = dispositivo.DeviceClass;
-                    this.DeviceFactory = dispositivo.DeviceFactory;
-                    this.DeviceVersion = dispositivo.DeviceVersion;
-                    this.FullName = dispositivo.FullName;
-                    this.ModelName = dispositivo.ModelName;
-                    this.UserDefinedName = dispositivo.UserDefinedName;
-                    this.VendorName = dispositivo.VendorName;
+            DeviceEnumerator.Device dispositivo;
+            resultado = ObtenerInfoDispositivo(this._DeviceId, out dispositivo);
 
-                    resultado = true;
-                    break;
-                }
+            if (resultado)
+            {
+                this.Name = dispositivo.Name;
+                this.Index = dispositivo.Index;
+                this.Serial = dispositivo.Serial;
+                this.DeviceClass = dispositivo.DeviceClass;
+                this.DeviceFactory = dispositivo.DeviceFactory;
+                this.DeviceVersion = dispositivo.DeviceVersion;
+                this.FullName = dispositivo.FullName;
+                this.ModelName = dispositivo.ModelName;
+                this.UserDefinedName = dispositivo.UserDefinedName;
+                this.VendorName = dispositivo.VendorName;
+
+                resultado = true;
             }
 
             return resultado;
@@ -270,6 +315,7 @@ namespace Orbita.VA.Hardware
             bool resultado = base.ConectarInterno(reconexion);
             try
             {
+                this.BuscarCamaraPorNumeroSerie();
                 /* Open the image provider using the index from the device data. */
                 this.ImageProvider.Open(this.Index);
 
@@ -326,10 +372,7 @@ namespace Orbita.VA.Hardware
                 this.Ajustes.Finalizar();
 
                 this.ImageProvider.Stop();
-                if (!errorConexion)
-                {
-                    this.ImageProvider.Close();
-                }
+                this.ImageProvider.Close();
 
                 resultado = true;
             }
@@ -388,7 +431,8 @@ namespace Orbita.VA.Hardware
             try
             {
 
-                if (this.EstadoConexion != EstadoConexion.Desconectado)
+                if (this.EstadoConexion == EstadoConexion.Conectado)
+                //if (this.EstadoConexion != EstadoConexion.Desconectado)
                 {
                     this.ImageProvider.Stop();
 
@@ -396,6 +440,8 @@ namespace Orbita.VA.Hardware
                     this.Ajustes.Stop();
 
                     base.StopInterno();
+
+                    resultado = true;
                 }
             }
             catch (Exception exception)

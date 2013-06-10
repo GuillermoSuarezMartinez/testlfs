@@ -22,10 +22,10 @@ namespace Orbita.VA.Hardware
         }
 
         /* Queries the number of available devices and creates a list with device data. */
-        public static List<Device> EnumerateDevices()
+        public static Dictionary<string, Device> EnumerateDevices()
         {
             /* Create a list for the device data. */
-            List<Device> list = new List<Device>();
+            Dictionary<string, Device> list = new Dictionary<string, Device>();
 
             /* Enumerate all camera devices. You must call 
             PylonEnumerateDevices() before creating a device. */
@@ -59,7 +59,7 @@ namespace Orbita.VA.Hardware
                 /* Get the VendorName. */
                 device.VendorName = Pylon.DeviceInfoGetPropertyValueByName(hDi, Pylon.cPylonDeviceInfoVendorNameKey);
                 /* Add to the list. */
-                list.Add(device);
+                list.Add(device.Serial, device);
             }
             return list;
         }

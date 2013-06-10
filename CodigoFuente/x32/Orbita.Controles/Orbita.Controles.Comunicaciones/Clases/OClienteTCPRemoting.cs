@@ -16,6 +16,10 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         OWinsockBase _winsock;
         /// <summary>
+        /// Objeto para establecer el canal TCP
+        /// </summary>
+        OWinsockBase _winsockPeticiones;
+        /// <summary>
         /// Log de la aplicación
         /// </summary>
         ILogger _log;
@@ -31,6 +35,10 @@ namespace Orbita.Controles.Comunicaciones
         /// Estado del canal
         /// </summary>
         WinsockStates _estado;
+        /// <summary>
+        /// Estado del canal
+        /// </summary>
+        WinsockStates _estadoPeticiones;
         /// <summary>
         /// Evento para los cambios de dato
         /// </summary>
@@ -105,13 +113,23 @@ namespace Orbita.Controles.Comunicaciones
             try
             {
                 this._estado = WinsockStates.Closed;
+                this._estadoPeticiones = WinsockStates.Closed;
+
                 this._winsock = new OWinsockBase();
+                this._winsockPeticiones = new OWinsockBase();
+
                 this._winsock.LegacySupport = true;
+                this._winsockPeticiones.LegacySupport = true;
 
                 this._winsock.DataArrival += new IWinsock.DataArrivalEventHandler(_winsock_DataArrival);
                 this._winsock.StateChanged += new IWinsock.StateChangedEventHandler(_winsock_StateChanged);
                 this._winsock.SendComplete += new IWinsock.SendCompleteEventHandler(_winsock_SendComplete);
                 this._winsock.ErrorReceived += new IWinsock.ErrorReceivedEventHandler(_winsock_ErrorReceived);
+
+                this._winsockPeticiones.DataArrival += new IWinsock.DataArrivalEventHandler(_winsockPeticiones_DataArrival);
+                this._winsockPeticiones.StateChanged += new IWinsock.StateChangedEventHandler(_winsockPeticiones_StateChanged);
+                this._winsockPeticiones.SendComplete += new IWinsock.SendCompleteEventHandler(_winsockPeticiones_SendComplete);
+                this._winsockPeticiones.ErrorReceived += new IWinsock.ErrorReceivedEventHandler(_winsockPeticiones_ErrorReceived);
 
                 this._eReset = new OResetManual(5);
                 this._eGetDispositivos = new OEventArgs();
@@ -127,6 +145,8 @@ namespace Orbita.Controles.Comunicaciones
                 this._log.Error("OClienteTCPRemoting Inicializar: ", ex);
             }
         }
+
+        
         /// <summary>
         /// Conecta con el servidor TCP
         /// </summary>
@@ -135,6 +155,7 @@ namespace Orbita.Controles.Comunicaciones
             try
             {
                 this._winsock.Connect(this._servidor, this._puerto);
+                this._winsockPeticiones.Connect(this._servidor, this._puerto + 1);
             }
             catch (Exception ex)
             {
@@ -152,6 +173,21 @@ namespace Orbita.Controles.Comunicaciones
             try
             {
                 this._winsock.Send(data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// Enviar datos
+        /// </summary>
+        /// <param name="data"></param>
+        private void EnviarPeticion(Object data)
+        {
+            try
+            {
+                this._winsockPeticiones.Send(data);
             }
             catch (Exception ex)
             {
@@ -209,6 +245,56 @@ namespace Orbita.Controles.Comunicaciones
             }
         }
         /// <summary>
+        /// Procesamiento de los datos del canal
+        /// </summary>
+        /// <param name="e"></param>
+        private void ProcesarDatosPeticiones(OEventArgs e)
+        {
+            switch (e.Id)
+            {
+                case 1:
+                    if (OEventoTCPCambioDato != null)
+                    {
+                        this.OEventoTCPCambioDato(e);
+                    }
+                    break;
+                case 2:
+                    if (OEventoTCPAlarma != null)
+                    {
+                        this.OEventoTCPAlarma(e);
+                    }
+                    break;
+                case 3:
+                    if (OEventoTCPComunicaciones != null)
+                    {
+                        this.OEventoTCPComunicaciones(e);
+                    }
+                    break;
+                case 4:
+                    this._eGetDispositivos = e;
+                    this._eReset.Despertar(0);
+                    break;
+                case 5:
+                    this._eGetAlarmas = e;
+                    this._eReset.Despertar(1);
+                    break;
+                case 6:
+                    this._eGetVariables = e;
+                    this._eReset.Despertar(2);
+                    break;
+                case 7:
+                    this._eGetValores = e;
+                    this._eReset.Despertar(3);
+                    break;
+                case 8:
+                    this._eSetValores = e;
+                    this._eReset.Despertar(4);
+                    break;
+                default:
+                    break;
+            }
+        }
+        /// <summary>
         /// Devuelve los dispositivos del servidor
         /// </summary>
         /// <returns></returns>
@@ -223,7 +309,7 @@ namespace Orbita.Controles.Comunicaciones
 
             while (reintento<maxReintentos)
             {
-                this.Enviar(comando);
+                this.EnviarPeticion(comando);
                 if (!this._eReset.Dormir(0, TimeSpan.FromSeconds(this._segundosRespuestaServer)))
                 {
                     reintento++;
@@ -255,7 +341,7 @@ namespace Orbita.Controles.Comunicaciones
 
             while (reintento < maxReintentos)
             {
-                this.Enviar(comando);
+                this.EnviarPeticion(comando);
                 if (!this._eReset.Dormir(1, TimeSpan.FromSeconds(this._segundosRespuestaServer)))
                 {
                     reintento++;
@@ -287,7 +373,7 @@ namespace Orbita.Controles.Comunicaciones
 
             while (reintento < maxReintentos)
             {
-                this.Enviar(comando);
+                this.EnviarPeticion(comando);
                 if (!this._eReset.Dormir(2, TimeSpan.FromSeconds(this._segundosRespuestaServer)))
                 {
                     reintento++;
@@ -322,9 +408,9 @@ namespace Orbita.Controles.Comunicaciones
 
             this._eGetValores.Argumento = null;
 
-            while (reintento < maxReintentos)
-            {
-                this.Enviar(comando);
+            //while (reintento < maxReintentos)
+            //{
+                this.EnviarPeticion(comando);
                 if (!this._eReset.Dormir(3, TimeSpan.FromSeconds(this._segundosRespuestaServer)))
                 {
                     reintento++;
@@ -336,7 +422,7 @@ namespace Orbita.Controles.Comunicaciones
                 }
                 // Resetear el evento.
                 this._eReset.Resetear(3);
-            }
+            //}
             ret = (Object[])this._eGetValores.Argumento;
             return ret;
         }
@@ -361,9 +447,9 @@ namespace Orbita.Controles.Comunicaciones
 
             this._eGetValores.Argumento = null;
 
-            while (reintento < maxReintentos)
-            {
-                this.Enviar(comando);
+            //while (reintento < maxReintentos)
+            //{
+                this.EnviarPeticion(comando);
                 if (!this._eReset.Dormir(4, TimeSpan.FromSeconds(this._segundosRespuestaServer)))
                 {
                     reintento++;
@@ -373,9 +459,9 @@ namespace Orbita.Controles.Comunicaciones
                 {
                     reintento = maxReintentos;
                 }
-                // Resetear el evento.
+                //Resetear el evento.
                 this._eReset.Resetear(4);
-            }
+            //}
             ret = (bool)this._eSetValores.Argumento;
             return ret;
         }
@@ -444,7 +530,7 @@ namespace Orbita.Controles.Comunicaciones
             try
             {
                 string estado = "State Changed. Cambia de " + e.Old_State.ToString() + " a " + e.New_State.ToString();
-                this._estado = e.New_State;
+                this._estadoPeticiones = e.New_State;
                 this._log.Debug(estado);
             }
             catch (Exception ex)
@@ -468,6 +554,96 @@ namespace Orbita.Controles.Comunicaciones
             catch (Exception ex)
             {
                 string error = "Error Received: " + ex.ToString();
+                this._log.Error(error);
+            }
+        }
+
+        /// <summary>
+        /// Evento de recepción de datos
+        /// </summary>
+        /// <param name="sender">Objeto que lanza el evento</param>
+        /// <param name="e">Argumentos del evento</param>
+        void _winsockPeticiones_DataArrival(object sender, WinsockDataArrivalEventArgs e)
+        {
+            try
+            {
+                String data = "";   
+                Object dat = (object)data; 
+                
+
+                dat = _winsockPeticiones.Get<object>();
+                OEventArgs recibido = (OEventArgs)dat;
+                this._log.Debug("TCP remoting recibido peticiones " + recibido.ToString());
+                this.ProcesarDatosPeticiones(recibido);
+
+            }
+            catch (Exception ex)
+            {
+                string error = "TCP remoting Error Data Arrival peticiones: " + ex.ToString();
+                this._log.Error(error);
+            }
+        }
+        /// <summary>
+        /// Indica que el objeto winsock ha enviado toda la información
+        /// </summary>
+        /// <param name="sender">Objeto que lanza el evento</param>
+        /// <param name="e">Argumentos del evento</param>
+        void _winsockPeticiones_SendComplete(object sender, WinsockSendEventArgs e)
+        {
+            //verificamos la llegada
+            try
+            {
+                string enviado = "";
+                if (e.DataSent != null)
+                {
+                    for (int i = 0; i < e.DataSent.Length; i++)
+                    {
+                        enviado += "[" + e.DataSent[i].ToString() + "]";
+                    }
+                }
+                this._log.Debug("Enviado Peticiones; " + enviado);
+
+            }
+            catch (Exception ex)
+            {
+                string error = "Error Send Complete Peticiones: " + ex.ToString();
+                this._log.Error(error);
+            }
+        }
+        /// <summary>
+        /// Indica que el objeto winsock ha cambiado de estado. Trazabilidad del canal.
+        /// </summary>
+        /// <param name="sender">Objeto que lanza el evento</param>
+        /// <param name="e">Argumentos del evento</param>
+        void _winsockPeticiones_StateChanged(object sender, WinsockStateChangedEventArgs e)
+        {
+            try
+            {
+                string estado = "State Changed Peticiones. Cambia de " + e.Old_State.ToString() + " a " + e.New_State.ToString();
+                this._estado = e.New_State;
+                this._log.Debug(estado);
+            }
+            catch (Exception ex)
+            {
+                string error = "Error State Changed Peticiones: " + ex.ToString();
+                this._log.Error(error);
+            }
+        }
+        /// <summary>
+        /// Evento de errores en la comunicación TCP
+        /// </summary>
+        /// <param name="sender">Objeto que lanza el evento</param>
+        /// <param name="e">Argumentos del evento</param>
+        void _winsockPeticiones_ErrorReceived(object sender, WinsockErrorReceivedEventArgs e)
+        {
+            try
+            {
+                string error = "Error Received Peticiones: " + e.Message;
+                this._log.Error(error);
+            }
+            catch (Exception ex)
+            {
+                string error = "Error Received Peticiones: " + ex.ToString();
                 this._log.Error(error);
             }
         }
