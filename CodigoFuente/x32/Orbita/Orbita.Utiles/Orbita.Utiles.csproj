@@ -99,6 +99,7 @@
     <Compile Include="Estructuras\OFichero.cs" />
     <Compile Include="Estructuras\OSingleton.cs" />
     <Compile Include="Estructuras\OObjetos.cs" />
+    <Compile Include="Estructuras\OTablaASCII.cs" />
     <Compile Include="Estructuras\OTipoDato.cs" />
     <Compile Include="Excepciones\OExcepcion.cs" />
     <Compile Include="Interfaces\ICola.cs" />
