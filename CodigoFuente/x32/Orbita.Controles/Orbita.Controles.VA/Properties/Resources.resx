@@ -142,20 +142,23 @@
   <data name="ImgTamaño16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImgTamaño16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ImgInputText32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImgInputText32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="imgContadorInactivo24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgContadorInactivo24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ImgChat16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImgChat16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ImgZoomOut16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImgZoomOut16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="imgContadorInactivo32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgContadorInactivo32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="BtnAplicar24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BtnAplicar24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CamaraConectada" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CamaraConectada.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imgNumeroForzada32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgNumeroForzada32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,6 +214,9 @@
   <data name="ImgNextDoc16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImgNextDoc16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BtnSiguiente24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BtnSiguiente24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="imgError64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgError64.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -222,6 +228,9 @@
   </data>
   <data name="imgFullScreen16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgFullScreen16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BtnAnterior24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BtnAnterior24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imgFotoForzada32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgFotoForzada32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -258,9 +267,6 @@
   </data>
   <data name="imgVariableInactiva24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgVariableInactiva24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="imgVariableActiva24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\imgVariableActiva24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imgVariableInactiva32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgVariableInactiva32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -313,8 +319,8 @@
   <data name="BtnToolTips24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BtnToolTips24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ImgZoomOut16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ImgZoomOut16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ImgInputText32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImgInputText32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imgFoto32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgFoto32.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -328,10 +334,16 @@
   <data name="ImgSnap16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImgSnap16.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="CamaraConectada" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\CamaraConectada.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="imgVariableActiva24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\imgVariableActiva24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imgTextoForzada24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\imgTextoForzada24.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImgAsistente24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImgAsistente24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImgAsistente241" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ImgAsistente24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

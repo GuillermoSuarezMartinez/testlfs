@@ -14,10 +14,10 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>%24/Librerias/CodigoFuente/x32/Orbita.Controles/Orbita.Controles.VA</SccProjectName>
-    <SccLocalPath>.</SccLocalPath>
-    <SccAuxPath>http://01x0019:8080/tfs/orbitasoftware</SccAuxPath>
-    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -108,6 +108,7 @@
     <Reference Include="Infragistics2.Win.v11.2">
       <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.v11.2.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Orbita.Trazabilidad">
       <HintPath>..\..\Comun\Orbita\Orbita.Trazabilidad.dll</HintPath>
     </Reference>
@@ -135,6 +136,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -146,6 +148,12 @@
     </Compile>
     <Compile Include="Base\Custom\OrbitaCtrlBase.Designer.cs">
       <DependentUpon>OrbitaCtrlBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Formularios\FrmAsistenteBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Base\Formularios\FrmAsistenteBase.designer.cs">
+      <DependentUpon>FrmAsistenteBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Base\Formularios\FrmBase.cs">
       <SubType>Form</SubType>
@@ -324,6 +332,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Base\Custom\OrbitaCtrlBase.resx">
       <DependentUpon>OrbitaCtrlBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\Formularios\FrmAsistenteBase.resx">
+      <DependentUpon>FrmAsistenteBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Base\Formularios\FrmBase.resx">
       <DependentUpon>FrmBase.cs</DependentUpon>
@@ -669,6 +681,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BtnAplicar24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnAnterior24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BtnSiguiente24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgAsistente24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
