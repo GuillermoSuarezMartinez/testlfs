@@ -692,21 +692,6 @@ namespace Orbita.Controles.VA
         {
             this.PnlInferiorPadre.Visible = this._MostrarBotones;
         }
-        /// <summary>
-        /// Establece el estilo de los botones de la barra de título del formulario
-        /// </summary>
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams myCp = base.CreateParams;
-                if (this._ModoAperturaFormulario == ModoAperturaFormulario.Sistema)
-                {
-                    myCp.ClassStyle = myCp.ClassStyle | 0x200;
-                }
-                return myCp;
-            }
-        }
         #endregion Métodos protegidos
 
         #region Método(s) virtual(es)

@@ -78,6 +78,23 @@ namespace Orbita.Controles.VA
 
         #region Propiedad(es)
         /// <summary>
+        /// Establece el estilo de los botones de la barra de título del formulario
+        /// </summary>
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.ExStyle |= 0x02000000;
+                if (this._ModoAperturaFormulario == ModoAperturaFormulario.Sistema)
+                {
+                    myCp.ClassStyle |= 0x0200;
+                }
+                return myCp;
+            }
+        }
+
+        /// <summary>
         /// Posibilita la apertura de múltiples instancias del formulario
         /// </summary>
         private bool _MultiplesInstancias;
@@ -939,22 +956,6 @@ namespace Orbita.Controles.VA
         {
             this.PnlInferiorPadre.Visible = this._MostrarBotones;
         }
-        /// <summary>
-        /// Establece el estilo de los botones de la barra de título del formulario
-        /// </summary>
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams myCp = base.CreateParams;
-                if (this._ModoAperturaFormulario == ModoAperturaFormulario.Sistema)
-                {
-                    myCp.ClassStyle = myCp.ClassStyle | 0x200;
-                }
-                return myCp;
-            }
-        }
-
         #endregion Métodos protegidos
 
         #region Método(s) virtual(es)
@@ -1173,18 +1174,13 @@ namespace Orbita.Controles.VA
                 {
                     // Apertura del formulario
                     this.CierrePorUsuario = false;
-                    OTrabajoControles.FormularioPrincipalMDI.OI.MostrarFormulario(this);
 
                     // Posición por defecto del formulario
                     this.DefatulRectangle = new Rectangle(this.Left, this.Top, this.Width, this.Height);
 
-                    // Situa la posición del formulario
-                    IOrbitaForm frmBase = this;
-
-                    FrmBase.ListaFormsAbiertos.Add(this.Name);
-
-                    //base.Show();
-                    this.Visible = true;
+                    //OTrabajoControles.FormularioPrincipalMDI.OI.MostrarFormulario(this);
+                    this.MdiParent = OTrabajoControles.FormularioPrincipalMDI;
+                    base.Show();
 
                     // Dock para los formularios de monitorización
                     this._Anclado = false;
@@ -1195,7 +1191,11 @@ namespace Orbita.Controles.VA
                         this.CrearAnclaje();
                     }
 
+                    // Situa la posición del formulario
+                    IOrbitaForm frmBase = this;
                     OEscritoriosManager.SituarFormulario(ref frmBase);
+
+                    FrmBase.ListaFormsAbiertos.Add(this.Name);
                 }
                 catch (Exception exception)
                 {

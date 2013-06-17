@@ -144,20 +144,6 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap ImgAsistente24 {
-            get {
-                object obj = ResourceManager.GetObject("ImgAsistente24", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap ImgAsistente241 {
-            get {
-                object obj = ResourceManager.GetObject("ImgAsistente241", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap ImgChat16 {
             get {
                 object obj = ResourceManager.GetObject("ImgChat16", resourceCulture);

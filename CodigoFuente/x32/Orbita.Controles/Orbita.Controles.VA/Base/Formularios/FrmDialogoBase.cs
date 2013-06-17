@@ -45,6 +45,23 @@ namespace Orbita.Controles.VA
 
         #region Propiedad(es)
         /// <summary>
+        /// Establece el estilo de los botones de la barra de título del formulario
+        /// </summary>
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.ExStyle |= 0x02000000;
+                if (this._ModoAperturaFormulario == ModoAperturaFormulario.Sistema)
+                {
+                    myCp.ClassStyle |= 0x0200;
+                }
+                return myCp;
+            }
+        }
+
+        /// <summary>
         /// Posibilita la apertura de múltiples instancias del formulario
         /// </summary>
         private bool _MultiplesInstancias;
@@ -637,22 +654,6 @@ namespace Orbita.Controles.VA
         {
             this.PnlInferiorPadre.Visible = this._MostrarBotones;
         }
-        /// <summary>
-        /// Establece el estilo de los botones de la barra de título del formulario
-        /// </summary>
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams myCp = base.CreateParams;
-                if (this._ModoAperturaFormulario == ModoAperturaFormulario.Sistema)
-                {
-                    myCp.ClassStyle = myCp.ClassStyle | 0x200;
-                }
-                return myCp;
-            }
-        }
-
         #endregion Métodos protegidos
 
         #region Método(s) virtual(es)
@@ -864,6 +865,7 @@ namespace Orbita.Controles.VA
 
                     // Situa la posición del formulario
                     IOrbitaForm frm = this;
+
                     FrmBase.ListaFormsAbiertos.Add(this.Name);
 
                     base.ShowDialog();

@@ -23,6 +23,7 @@ using Orbita.Controles.Contenedores;
 using Orbita.Controles.Grid;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
+
 namespace Orbita.Controles.VA
 {
     /// <summary>
@@ -44,18 +45,6 @@ namespace Orbita.Controles.VA
         /// </summary>
         protected bool CierrePorUsuario;
         /// <summary>
-        /// Objeto DockAreaPane utilizado para anclar en las ventanas en modo monitorización
-        /// </summary>
-        private DockAreaPane DockAreaPane;
-        /// <summary>
-        /// Objeto DockableWindow utilizado para anclar en las ventanas en modo monitorización
-        /// </summary>
-        private DockableWindow DockableWindow;
-        /// <summary>
-        /// Objeto DockableControlPane para anclar en la ventanas en modo monitorización
-        /// </summary>
-        private DockableControlPane DockableControlPane;
-        /// <summary>
         /// Estado del formulario por defecto
         /// </summary>
         private FormWindowState DefaultWindowState;
@@ -70,6 +59,19 @@ namespace Orbita.Controles.VA
         #endregion Campos
 
         #region Propiedad(es)
+        /// <summary>
+        /// Establece el estilo de los botones de la barra de título del formulario
+        /// </summary>
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.ExStyle |= 0x02000000;
+                return myCp;
+            }
+        }
+
         /// <summary>
         /// Posibilita la apertura de múltiples instancias del formulario
         /// </summary>
@@ -118,22 +120,6 @@ namespace Orbita.Controles.VA
         public bool FormularioModificado
         {
             get { return _FormularioModificado; }
-        }
-
-        /// <summary>
-        /// Almacena el modo con el que se ha abierto el formulario: Nuevo o Modificar
-        /// </summary>
-        protected ModoAperturaFormulario _ModoAperturaFormulario;
-        /// <summary>
-        /// Indica el modo de apertura del formulario. Edicion, Visualizacion, Monitorizacion, Sistema
-        /// </summary>
-        [Browsable(true),
-        Category("Orbita"),
-        Description("Indica el modo de apertura del formulario. Edicion, Visualizacion, Monitorizacion, Sistema")]
-        public ModoAperturaFormulario ModoAperturaFormulario
-        {
-            get { return _ModoAperturaFormulario; }
-            set { _ModoAperturaFormulario = value; }
         }
 
         /// <summary>
@@ -225,29 +211,13 @@ namespace Orbita.Controles.VA
         {
             get
             {
-                bool resultado = false;
-                if (this.Anclado && this.IsDockedMDIChild && (this.DockableWindow is DockableWindow) && (this.DockableWindow.ParentForm is MdiChildForm))
-                {
-                    resultado = this.DockableWindow.ParentForm.WindowState == FormWindowState.Maximized;
-                }
-                if (!Anclado)
-                {
-                    resultado = this.WindowState == FormWindowState.Maximized;
-                }
+                bool resultado = this.WindowState == FormWindowState.Maximized;
                 return resultado;
             }
             set
             {
                 FormWindowState windowsState = value ? FormWindowState.Maximized : FormWindowState.Normal;
-
-                if (this.Anclado && this.IsDockedMDIChild && (this.DockableWindow is DockableWindow) && (this.DockableWindow.ParentForm is MdiChildForm))
-                {
-                    this.DockableWindow.ParentForm.WindowState = windowsState;
-                }
-                if (!Anclado)
-                {
-                    this.WindowState = windowsState;
-                }
+                this.WindowState = windowsState;
             }
         }
 
@@ -348,6 +318,44 @@ namespace Orbita.Controles.VA
             {
             }
         }
+
+        /// <summary>
+        /// Paso Actual
+        /// </summary>
+        [Browsable(true)]
+        public int PasoActual
+        {
+            get
+            {
+                return this.TabControl.SelectedTab.Index;
+            }
+        }
+
+        /// <summary>
+        /// Paso Actual
+        /// </summary>
+        [Browsable(true)]
+        public int TotalPasos
+        {
+            get
+            {
+                return this.TabControl.Tabs.Count;
+            }
+        }
+
+        /// <summary>
+        /// Indica el tipo de paso actual
+        /// </summary>
+        private TipoPasoAsistente _TipoPasoActual = TipoPasoAsistente.PasoInicial;
+        /// <summary>
+        /// Indica el tipo de paso actual
+        /// </summary>
+        [Browsable(false)]
+        public TipoPasoAsistente TipoPasoActual
+        {
+            get { return _TipoPasoActual; }
+            set { _TipoPasoActual = value; }
+        }
         #endregion Propiedades
 
         #region Constructor(es)
@@ -357,7 +365,6 @@ namespace Orbita.Controles.VA
         public FrmAsistenteBase()
         {
             InitializeComponent();
-            this._ModoAperturaFormulario = VA.ModoAperturaFormulario.Modificacion;
 
             // Inicialiación de campos
             this.AlgoModificado = false;
@@ -509,195 +516,100 @@ namespace Orbita.Controles.VA
         }
 
         /// <summary>
-        /// Se establecen los controles como accesibles por el usuario dependiendo del modo
+        /// Cambia la visualización del botón siguiente/finalizar dependiendo del paso en el que nos encontramos
         /// </summary>
-        private void InternoEstablecerModo(Control control)
+        private void VisualizarBotonAnteriorSiguienteFinalizar(TipoPasoAsistente tipoPaso)
         {
-            foreach (Control controlInterno in control.Controls)
+            switch (tipoPaso)
             {
-                if (controlInterno is OrbitaUltraCombo)
-                {
-                    ((OrbitaUltraCombo)controlInterno).ReadOnly = this.ModoAperturaFormulario == ModoAperturaFormulario.Visualizacion;
-                }
-                else if (controlInterno is OrbitaTextBox)
-                {
-                    ((OrbitaTextBox)controlInterno).ReadOnly = this.ModoAperturaFormulario == ModoAperturaFormulario.Visualizacion;
-                }
-                else if (controlInterno is OrbitaUltraNumericEditor)
-                {
-                    ((OrbitaUltraNumericEditor)controlInterno).ReadOnly = this.ModoAperturaFormulario == ModoAperturaFormulario.Visualizacion;
-                }
-                else if (controlInterno is OrbitaUltraCheckEditor)
-                {
-                    ((OrbitaUltraCheckEditor)controlInterno).Enabled = this.ModoAperturaFormulario != ModoAperturaFormulario.Visualizacion;
-                }
-                else if (controlInterno is OrbitaUltraGrid)
-                {
-                    ((OrbitaUltraGrid)controlInterno).OI.Editable = this.ModoAperturaFormulario != ModoAperturaFormulario.Visualizacion;
-                }
-                else if (controlInterno is OrbitaUltraGridToolBar)
-                {
-                    ((OrbitaUltraGridToolBar)controlInterno).OI.Editable = this.ModoAperturaFormulario != ModoAperturaFormulario.Visualizacion;
-                }
-                else if (controlInterno is OrbitaUltraDateTimeEditor)
-                {
-                    ((OrbitaUltraDateTimeEditor)controlInterno).ReadOnly = this.ModoAperturaFormulario == ModoAperturaFormulario.Visualizacion;
-                }
-                else if (controlInterno is OrbitaUltraButton)
-                {
-                    ((OrbitaUltraButton)controlInterno).Enabled = this.ModoAperturaFormulario != ModoAperturaFormulario.Visualizacion;
-                }
-
-                // Recursivo
-                this.InternoEstablecerModo(controlInterno);
+                case TipoPasoAsistente.PasoInicial:
+                    this.BtnAnterior.Enabled = false;
+                    this.btnSiguienteFinalizar.Appearance.Image = global::Orbita.Controles.VA.Properties.Resources.BtnSiguiente24;
+                    this.btnSiguienteFinalizar.Text = "Siguiente";
+                    break;
+                case TipoPasoAsistente.PasoIntermedio:
+                    this.BtnAnterior.Enabled = true;
+                    this.btnSiguienteFinalizar.Appearance.Image = global::Orbita.Controles.VA.Properties.Resources.BtnSiguiente24;
+                    this.btnSiguienteFinalizar.Text = "Siguiente";
+                    break;
+                case TipoPasoAsistente.PasoFinal:
+                    this.BtnAnterior.Enabled = true;
+                    this.btnSiguienteFinalizar.Appearance.Image = global::Orbita.Controles.VA.Properties.Resources.btnOk24;
+                    this.btnSiguienteFinalizar.Text = "Finalizar";
+                    break;
+                default:
+                    break;
             }
         }
 
         /// <summary>
-        /// Permite que el formulario pueda ser manejado por OrbitaUltraDockManager
+        /// Visualiza el texto del paso actual
         /// </summary>
-        private void CrearAnclaje()
+        /// <param name="paso"></param>
+        private void VisualizarPasoActual(int pasoActual, int totalPasos)
         {
-            if (OEscritoriosManager.PermiteAnclajes)
+            this.LblNumeroPaso.Text = string.Format("Paso {0} de {1}", pasoActual + 1, totalPasos);
+        }
+
+        /// <summary>
+        /// Acciones para ir al paso siguiente
+        /// </summary>
+        private void AccionesIrAPasoSiguiente()
+        {
+            TipoPasoAsistente tipoPasoActualLocal = this.TipoPasoActual;
+            switch (tipoPasoActualLocal)
             {
-                this.SuspendLayout();
-                OTrabajoControles.DockManager.SuspendLayout();
-
-                FormWindowState windowState = this.WindowState;
-
-                // Creación del área de anclaje
-                this.DockAreaPane = OTrabajoControles.DockManager.DockControls(new Control[] { this }, DockedLocation.DockedRight, ChildPaneStyle.TabGroup);
-                this.DockAreaPane.MaximumSize = new Size(Screen.PrimaryScreen.WorkingArea.Width / 2, Screen.PrimaryScreen.WorkingArea.Height / 2);
-                this.DockAreaPane.Key = this.Handle.ToString();
-                this.DockAreaPane.Text = this.Text;
-                this.DockAreaPane.Settings.AllowDockLeft = DefaultableBoolean.False;
-                this.DockAreaPane.Settings.AllowDockTop = DefaultableBoolean.False;
-
-                // Creación del furmulario MDI de anclaje
-                this.DockableControlPane = (DockableControlPane)this.DockAreaPane.Panes[0];
-                this.DockableControlPane.Text = this.Text;
-                this.DockableControlPane.IsMdiChild = true;
-
-                // Personalización del formulario MDI de anclaje
-                this.DockableControlPane.MdiChildIcon = this.Icon;
-                this.DockableWindow = (DockableWindow)this.Parent;
-                if (this.DockableWindow.ParentForm is MdiChildForm)
-                {
-                    ((MdiChildForm)this.DockableWindow.ParentForm).Text = this.Text;
-                    ((MdiChildForm)this.DockableWindow.ParentForm).Left = this.DefatulRectangle.Left;
-                    ((MdiChildForm)this.DockableWindow.ParentForm).Width = this.DefatulRectangle.Width;
-                    ((MdiChildForm)this.DockableWindow.ParentForm).Top = this.DefatulRectangle.Top;
-                    ((MdiChildForm)this.DockableWindow.ParentForm).Height = this.DefatulRectangle.Height;
-                    ((MdiChildForm)this.DockableWindow.ParentForm).FormBorderStyle = this.DefaultFormBorderStyle;
-                    ((MdiChildForm)this.DockableWindow.ParentForm).WindowState = this.DefaultWindowState;
-                    ((MdiChildForm)this.DockableWindow.ParentForm).FormClosing += this.FrmBase_FormClosing;
-                    ((MdiChildForm)this.DockableWindow.ParentForm).FormClosed += this.FrmBase_FormClosed;
-                    ((MdiChildForm)this.DockableWindow.ParentForm).WindowState = windowState;
-                    this.DockAreaPane.DefaultPaneSettings.AllowClose = Infragistics.Win.DefaultableBoolean.True;
-                }
-
-                // Eventos para controlar la salida del formulario
-                OTrabajoControles.DockManager.AfterPaneButtonClick += this.FrmBase_AfterPaneButtonClick;
-                OTrabajoControles.DockManager.AfterDockChange += this.FrmBase_AfterDockChange;
-
-                // Se establece el formulario para ser visualizado como un control
-                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-                this.Dock = DockStyle.Fill;
-                this._Anclado = true;
-
-                OTrabajoControles.DockManager.ResumeLayout();
-                this.ResumeLayout();
+                case TipoPasoAsistente.PasoInicial:
+                case TipoPasoAsistente.PasoIntermedio:
+                    if (this.ValidarDatosPaso(this.PasoActual))
+                    {
+                        TipoPasoAsistente tipoPasoSiguiente;
+                        int pasoSiguiente;
+                        this.GetInformacionPasoSiguiente(out pasoSiguiente, out tipoPasoSiguiente);
+                        if (pasoSiguiente != this.PasoActual)
+                        {
+                            this.AccionesAlSalirDelPaso(this.PasoActual);
+                            this.AccionesAlAceptarElPaso(this.PasoActual);
+                            this.TabControl.SelectedTab = this.TabControl.Tabs[pasoSiguiente];
+                            this.TipoPasoActual = tipoPasoSiguiente;
+                            this.AccionesAlIniciarPaso(this.PasoActual);
+                            this.AccionesAlEntrarEnPaso(this.PasoActual);
+                            this.VisualizarBotonAnteriorSiguienteFinalizar(tipoPasoSiguiente);
+                            this.VisualizarPasoActual(this.PasoActual, this.TotalPasos);
+                        }
+                    }
+                    break;
+                case TipoPasoAsistente.PasoFinal:
+                    if (this.GuardarDatos())
+                    {
+                        //Si se han guardado los datos correctamente, cerramos el formulario
+                        this.Close();
+                    }
+                    break;
             }
         }
 
         /// <summary>
-        /// Permite resituar un formulario anclado
+        /// Acciones para ir al paso siguiente
         /// </summary>
-        private void RehacerAnclaje(DockedLocation dockedLocation)
+        private void AccionesIrAPasoAnterior()
         {
-            if (OEscritoriosManager.PermiteAnclajes)
+            TipoPasoAsistente tipoPasoAnterior;
+            int pasoAnterior;
+            this.GetInformacionPasoAnterior(out pasoAnterior, out tipoPasoAnterior);
+            if (pasoAnterior != this.PasoActual)
             {
-                this.SuspendLayout();
-                OTrabajoControles.DockManager.SuspendLayout();
-
-                DockAreaPane dockAreaPane = new DockAreaPane(dockedLocation);
-                dockAreaPane.MaximumSize = new Size(Screen.PrimaryScreen.WorkingArea.Width / 2, Screen.PrimaryScreen.WorkingArea.Height / 2);
-                dockAreaPane.Key = this.Text;
-                dockAreaPane.Settings.AllowDockLeft = DefaultableBoolean.False;
-                dockAreaPane.Settings.AllowDockTop = DefaultableBoolean.False;
-
-                this.DockableControlPane.Pin();
-
-                switch (dockedLocation)
-                {
-                    case DockedLocation.DockedBottom:
-                        this.DockableControlPane.Dock(DockedSide.Bottom);
-                        break;
-                    case DockedLocation.DockedLeft:
-                        this.DockableControlPane.Dock(DockedSide.Left);
-                        break;
-                    case DockedLocation.DockedRight:
-                        this.DockableControlPane.Dock(DockedSide.Right);
-                        break;
-                    case DockedLocation.DockedTop:
-                        this.DockableControlPane.Dock(DockedSide.Top);
-                        break;
-                }
-
-                this.DestroyClosedPanes();
-                this.DockAreaPane = this.DockableControlPane.DockAreaPane;
-
-                OTrabajoControles.DockManager.ResumeLayout();
-                this.ResumeLayout();
-            }
-        }
-
-        /// <summary>
-        /// Permite que el formulario pueda ser manejado por OrbitaUltraDockManager
-        /// </summary>
-        private void EliminarAnclaje()
-        {
-            if (OEscritoriosManager.PermiteAnclajes)
-            {
-                this.SuspendLayout();
-                OTrabajoControles.DockManager.SuspendLayout();
-
-                // Eventos para controlar la salida del formulario
-                OTrabajoControles.DockManager.AfterPaneButtonClick -= this.FrmBase_AfterPaneButtonClick;
-                OTrabajoControles.DockManager.AfterDockChange -= this.FrmBase_AfterDockChange;
-
-                if (this.DockableWindow.ParentForm is MdiChildForm)
-                {
-                    ((MdiChildForm)this.DockableWindow.ParentForm).FormClosing -= this.FrmBase_FormClosing;
-                    ((MdiChildForm)this.DockableWindow.ParentForm).FormClosed -= this.FrmBase_FormClosed;
-                }
-
-                this.DockableControlPane.Close();
-                this.DestroyClosedPanes();
-
-                OTrabajoControles.DockManager.ResumeLayout();
-                this.ResumeLayout();
-            }
-        }
-
-        /// <summary>
-        /// Destruye los anclajes cerrados
-        /// </summary>
-        private void DestroyClosedPanes()
-        {
-            foreach (DockableControlPane pane in OTrabajoControles.DockManager.ControlPanes)
-            {
-                if (pane.Closed)
-                {
-                    if (pane.Control != null)
-                        pane.Control.Dispose(); //removes from DockManager collections
-                    pane.Dispose();
-                }
+                this.AccionesAlSalirDelPaso(this.PasoActual);
+                this.TabControl.SelectedTab = this.TabControl.Tabs[pasoAnterior];
+                this.TipoPasoActual = tipoPasoAnterior;
+                this.AccionesAlEntrarEnPaso(this.PasoActual);
+                this.VisualizarBotonAnteriorSiguienteFinalizar(tipoPasoAnterior);
+                this.VisualizarPasoActual(this.PasoActual, this.TotalPasos);
             }
         }
         #endregion Métodos privados
 
-        #region Método(s) protegidos
+        #region Método(s) protegido(s)
         /// <summary>
         /// Inicializa todos los componentes del formulario, cargando los datos si procede
         /// </summary>
@@ -706,18 +618,13 @@ namespace Orbita.Controles.VA
             this.Inicio = true;
             this.btnCancelar.Select();
 
-            this.CargarDatosComunes();
+            this.VisualizarBotonAnteriorSiguienteFinalizar(TipoPasoAsistente.PasoInicial);
+            this.VisualizarPasoActual(this.PasoActual, this.TotalPasos);
 
-            switch (this._ModoAperturaFormulario)
-            {
-                case ModoAperturaFormulario.Modificacion:
-                    this.CargarDatosModoModificacion();
-                    this.EstablecerModoModificacion();
-                    break;
-                default:
-                    OLogsControlesVA.ControlesVA.Error("Inicio de formulario", "La ejecucion no debería pasar por este punto del código: switch/default");
-                    break;
-            }
+            this.CargarDatosAsistente();
+            this.EstablecerModoAsistente();
+            this.AccionesAlIniciarPaso(this.PasoActual);
+            this.AccionesAlEntrarEnPaso(this.PasoActual);
 
             this.IniciarMonitorizarModificaciones();
             this.SolucionarToolTips(this);
@@ -731,23 +638,16 @@ namespace Orbita.Controles.VA
         {
             if (this.ComprobacionesDeCampos())
             {
-                switch (this._ModoAperturaFormulario)
+                //Llamada a la funcion de guardado de datos
+                if (!this.GuardarDatosAsistente())
                 {
-                    case ModoAperturaFormulario.Modificacion:
-                        //Llamada a la funcion de guardado de datos
-                        if (!this.GuardarDatosModoModificacion())
-                        {
-                            //Si han habido errores...
-                            return false;
-                        }
-                        //Si no han habido errores...
-                        this.ResetDeteccionModificaciones();
-                        return true;
-                    default:
-                        OLogsControlesVA.ControlesVA.Error("Inicio de formulario", "La ejecucion no debería pasar por este punto del código: switch/default");
-                        return false;
+                    //Si han habido errores...
+                    return false;
                 }
-            }
+                //Si no han habido errores...
+                this.ResetDeteccionModificaciones();
+                return true;
+    }
             else //No se pueden guardar los datos por las restricciones impuestas
             {
                 return false;
@@ -794,54 +694,31 @@ namespace Orbita.Controles.VA
         {
             this.PnlInferiorPadre.Visible = this._MostrarBotones;
         }
-        /// <summary>
-        /// Establece el estilo de los botones de la barra de título del formulario
-        /// </summary>
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams myCp = base.CreateParams;
-                if (this._ModoAperturaFormulario == ModoAperturaFormulario.Sistema)
-                {
-                    myCp.ClassStyle = myCp.ClassStyle | 0x200;
-                }
-                return myCp;
-            }
-        }
-
         #endregion Métodos protegidos
 
         #region Método(s) virtual(es)
         /// <summary>
-        /// Carga y muestra datos del formulario comunes para los modos de funcionamiento
-        /// </summary>
-        protected virtual void CargarDatosComunes()
-        {
-        }
-        /// <summary>
         /// Carga y muestra datos del formulario en modo Modificación. Se cargan todos datos que se muestran en 
         /// el formulario: grids, combos, etc... Cada carga de elementos estará encapsulada en un método
         /// </summary>
-        protected virtual void CargarDatosModoModificacion()
+        protected virtual void CargarDatosAsistente()
         {
         }
         /// <summary>
         /// Establece la habiliacion adecuada de los controles para el modo Modificacion
         /// </summary>
-        protected virtual void EstablecerModoModificacion()
+        protected virtual void EstablecerModoAsistente()
         {
             this.SuspendLayout();
             this.ChkToolTip.Checked = false;
             this.toolTip.Active = false;
-            this.InternoEstablecerModo(this.PnlPanelPrincipalPadre);
             this.ResumeLayout();
         }
         /// <summary>
         /// Guarda los datos cuando el formulario está abierto en modo Modificación
         /// </summary>
         /// <returns>True si la operación de guardado de datos ha tenido éxito; false en caso contrario</returns>
-        protected virtual bool GuardarDatosModoModificacion()
+        protected virtual bool GuardarDatosAsistente()
         {
             this._FormularioModificado = true;
             return true;
@@ -899,6 +776,66 @@ namespace Orbita.Controles.VA
         protected virtual void AccionesSalir()
         {
         }
+        /// <summary>
+        /// Devuelve la información del paso anterior
+        /// </summary>
+        /// <param name="pasoAnterior"></param>
+        /// <param name="tipoPasoAnterior"></param>
+        protected virtual void GetInformacionPasoAnterior(out int pasoAnterior, out TipoPasoAsistente tipoPasoAnterior)
+        {
+            pasoAnterior = this.PasoActual > 0 ? this.PasoActual - 1 : 0;
+            tipoPasoAnterior = pasoAnterior == 0 ? TipoPasoAsistente.PasoInicial : TipoPasoAsistente.PasoIntermedio;
+        }
+        /// <summary>
+        /// Devuelve la información del paso sioguiente
+        /// </summary>
+        /// <param name="pasoSiguiente"></param>
+        /// <param name="tipoPasoSiguiente"></param>
+        protected virtual void GetInformacionPasoSiguiente(out int pasoSiguiente, out TipoPasoAsistente tipoPasoSiguiente)
+        {
+            pasoSiguiente = this.PasoActual < this.TotalPasos - 1 ? this.PasoActual + 1 : this.TotalPasos - 1;
+            tipoPasoSiguiente = pasoSiguiente == this.TotalPasos - 1 ? TipoPasoAsistente.PasoFinal: TipoPasoAsistente.PasoIntermedio;
+        }
+        /// <summary>
+        /// Acciones al entrar en el paso desde el paso anterior
+        /// </summary>
+        /// <param name="paso"></param>
+        protected virtual void AccionesAlIniciarPaso(int paso)
+        {
+
+        }
+        /// <summary>
+        /// Acciones al entrar en el paso desde cualquier paso
+        /// </summary>
+        /// <param name="paso"></param>
+        protected virtual void AccionesAlEntrarEnPaso(int paso)
+        {
+
+        }
+        /// <summary>
+        /// Acciones al salir del paso al paso siguiente
+        /// </summary>
+        /// <param name="paso"></param>
+        protected virtual void AccionesAlAceptarElPaso(int paso)
+        {
+
+        }
+        /// <summary>
+        /// Acciones al salir del paso a cualquier paso
+        /// </summary>
+        /// <param name="paso"></param>
+        protected virtual void AccionesAlSalirDelPaso(int paso)
+        {
+
+        }
+        /// <summary>
+        /// Consulta sobre la validez de los datos introducidos en el paso
+        /// </summary>
+        /// <param name="paso"></param>
+        protected virtual bool ValidarDatosPaso(int paso)
+        {
+            return true;
+        }
         #endregion Métodos virtuales
 
         #region Método(s) heredado(s)
@@ -913,28 +850,18 @@ namespace Orbita.Controles.VA
                 {
                     // Apertura del formulario
                     this.CierrePorUsuario = false;
-                    OTrabajoControles.FormularioPrincipalMDI.OI.MostrarFormulario(this);
 
                     // Posición por defecto del formulario
                     this.DefatulRectangle = new Rectangle(this.Left, this.Top, this.Width, this.Height);
 
-                    // Situa la posición del formulario
-                    IOrbitaForm frmBase = this;
+                    //OTrabajoControles.FormularioPrincipalMDI.OI.MostrarFormulario(this);
+                    this.MdiParent = OTrabajoControles.FormularioPrincipalMDI;
+                    base.Show();
 
                     FrmBase.ListaFormsAbiertos.Add(this.Name);
 
-                    //base.Show();
-                    this.Visible = true;
-
-                    // Dock para los formularios de monitorización
-                    this._Anclado = false;
-                    if ((this.ModoAperturaFormulario == ModoAperturaFormulario.Monitorizacion) ||
-                        ((this.ModoAperturaFormulario == ModoAperturaFormulario.Sistema) &&
-                        (this.MostrarBotones)))
-                    {
-                        this.CrearAnclaje();
-                    }
-
+                    // Situa la posición del formulario
+                    IOrbitaForm frmBase = this;
                     OEscritoriosManager.SituarFormulario(ref frmBase);
                 }
                 catch (Exception exception)
@@ -999,15 +926,11 @@ namespace Orbita.Controles.VA
         {
             try
             {
-                if (this.GuardarDatos())
-                {
-                    //Si se han guardado los datos correctamente, cerramos el formulario
-                    this.Close();
-                }
+                this.AccionesIrAPasoSiguiente();
             }
             catch (System.Exception exception)
             {
-                OLogsControlesVA.ControlesVA.Error(exception, "Guardar datos");
+                OLogsControlesVA.ControlesVA.Error(exception, "Siguiente Finalizar");
             }
         }
         /// <summary>
@@ -1017,7 +940,14 @@ namespace Orbita.Controles.VA
         /// <param name="e"></param>
         private void BtnAnterior_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                this.AccionesIrAPasoAnterior();
+            }
+            catch (System.Exception exception)
+            {
+                OLogsControlesVA.ControlesVA.Error(exception, "Anterior");
+            }
         }
         /// <summary>
         /// Evento que se produce cuando se cierra el formulario, antes de cerrarlo
@@ -1028,34 +958,27 @@ namespace Orbita.Controles.VA
         {
             try
             {
-                if ((this.ModoAperturaFormulario == ModoAperturaFormulario.Sistema) && (e.CloseReason == CloseReason.UserClosing) && (!this.CierrePorUsuario))
-                {
-                    e.Cancel = true;
-                }
-                else
-                {
-                    this.btnCancelar.Focus();
+                this.btnCancelar.Focus();
 
-                    if (this.ComprobarDatosModificados())
+                if (this.ComprobarDatosModificados())
+                {
+                    //Si hay datos modificados en el formulario, avisar y preguntar qué hacer
+                    switch (OMensajes.MostrarPreguntaSiNoCancelar("¿Desea guardar los cambios realizados?", MessageBoxDefaultButton.Button3))
                     {
-                        //Si hay datos modificados en el formulario, avisar y preguntar qué hacer
-                        switch (OMensajes.MostrarPreguntaSiNoCancelar("¿Desea guardar los cambios realizados?", MessageBoxDefaultButton.Button3))
-                        {
-                            case DialogResult.Yes:
-                                if (!this.GuardarDatos())
-                                {
-                                    e.Cancel = true;
-                                    return;
-                                }
-                                break;
-                            case DialogResult.No:
-                                this.AccionesNoGuardar();
-                                //Cerrar el formulario, es decir, seguir con la ejecucion
-                                break;
-                            case DialogResult.Cancel:
+                        case DialogResult.Yes:
+                            if (!this.GuardarDatos())
+                            {
                                 e.Cancel = true;
-                                break;
-                        }
+                                return;
+                            }
+                            break;
+                        case DialogResult.No:
+                            this.AccionesNoGuardar();
+                            //Cerrar el formulario, es decir, seguir con la ejecucion
+                            break;
+                        case DialogResult.Cancel:
+                            e.Cancel = true;
+                            break;
                     }
                 }
             }
@@ -1078,32 +1001,10 @@ namespace Orbita.Controles.VA
 
                 // Eliminamos el formulario de la lista de formularios abiertos
                 FrmBase.ListaFormsAbiertos.Remove(this.Name);
-
-                if ((this.ModoAperturaFormulario == ModoAperturaFormulario.Monitorizacion) ||
-                    ((this.ModoAperturaFormulario == ModoAperturaFormulario.Sistema) &&
-                    (this.MostrarBotones)))
-                {
-                    this.EliminarAnclaje();
-                }
             }
             catch (System.Exception exception)
             {
                 OLogsControlesVA.ControlesVA.Error(exception, "Cierre de formulario");
-            }
-        }
-        /// <summary>
-        /// Evento que se produce cuando se activa el formulario, despues de mostrarse
-        /// </summary>
-        /// <param name="sender">Objeto que envía el evento</param>
-        /// <param name="e">Argumentos del evento</param>
-        private void FrmBase_Activated(object sender, EventArgs e)
-        {
-            try
-            {
-            }
-            catch (System.Exception exception)
-            {
-                OLogsControlesVA.ControlesVA.Error(exception, "Activación de formulario");
             }
         }
         /// <summary>
@@ -1150,63 +1051,16 @@ namespace Orbita.Controles.VA
                 OLogsControlesVA.ControlesVA.Error(exception, "Clic en botón de ToolTips");
             }
         }
-        /// <summary>
-        /// Evento de clic sobre los botones del control de anclaje
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FrmBase_AfterPaneButtonClick(object sender, PaneButtonEventArgs e)
-        {
-            try
-            {
-                if (e.Pane is DockableControlPane)
-                {
-                    Control c = ((DockableControlPane)e.Pane).Control;
-                    if (((DockableControlPane)e.Pane).Control == this)
-                    {
-                        if (e.Button == PaneButton.Close)
-                        {
-                            this.Close();
-                        }
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                OLogsControlesVA.ControlesVA.Error(exception, "Clic en botón cerrar del anclaje");
-            }
-        }
-        /// <summary>
-        /// Evento de cambio de anclaje sobre el control de anclaje
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FrmBase_AfterDockChange(object sender, PaneEventArgs e)
-        {
-            try
-            {
-                if (this.DockableControlPane.Control == this)
-                {
-                    if (this.DockableControlPane.IsMdiChild)
-                    {
-                        ((MdiChildForm)this.DockableWindow.ParentForm).Text = this.Text;
-                        ((MdiChildForm)this.DockableWindow.ParentForm).Left = this.DefatulRectangle.Left;
-                        ((MdiChildForm)this.DockableWindow.ParentForm).Width = this.DefatulRectangle.Width;
-                        ((MdiChildForm)this.DockableWindow.ParentForm).Top = this.DefatulRectangle.Top;
-                        ((MdiChildForm)this.DockableWindow.ParentForm).Height = this.DefatulRectangle.Height;
-                        ((MdiChildForm)this.DockableWindow.ParentForm).FormBorderStyle = this.DefaultFormBorderStyle;
-                        ((MdiChildForm)this.DockableWindow.ParentForm).WindowState = this.DefaultWindowState;
-                        ((MdiChildForm)this.DockableWindow.ParentForm).FormClosing += this.FrmBase_FormClosing;
-                        ((MdiChildForm)this.DockableWindow.ParentForm).FormClosed += this.FrmBase_FormClosed;
-                        this.DockAreaPane.DefaultPaneSettings.AllowClose = Infragistics.Win.DefaultableBoolean.True;
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                OLogsControlesVA.ControlesVA.Error(exception, "Formulario cambiado de anclaje");
-            }
-        }
         #endregion Manejadores de eventos
+    }
+
+    /// <summary>
+    /// Indica el tipo de paso del asistente
+    /// </summary>
+    public enum TipoPasoAsistente
+    {
+        PasoInicial,
+        PasoIntermedio,
+        PasoFinal
     }
 }

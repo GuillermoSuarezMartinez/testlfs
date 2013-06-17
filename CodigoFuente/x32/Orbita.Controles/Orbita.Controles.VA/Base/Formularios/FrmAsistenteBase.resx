@@ -121,10 +121,10 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="PicAsistente.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="PictureBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAIGNIUk0AAHolAACAgwAA+f8AAIDoAABS
-        CAABFVgAADqXAAAXb9daH5AAAAAJcEhZcwAAFMEAABTBAWqOjssAAAFmSURBVEhLtZRNTsJAGIZJYGHi
+        CAABFVgAADqXAAAXb9daH5AAAAAJcEhZcwAAFL8AABS/AeoatgIAAAFmSURBVEhLtZRNTsJAGIZJYGHi
         hgV7vYVXcOnCE3gCiQu8hHFLWJtA4gU4hUdg0k5HG09gQsLwvR9fy3Sc0hamTzKh83b6Pv1lYK3tdQTD
         mOMs0jSzSaJfZVpLdAHlb2lqnmTaLNBa39FBc1o4lIgJCSh7Rw6JRM0CWjw9lJkPV6KUunLneZ5fa519
         QSIR0ygAOFM68Fepn1uJcOCI8hlEErFENktaCYAxZiKbXE5n+4kro/u9diU+rQUF1fJsRWN3StJJ4JYn

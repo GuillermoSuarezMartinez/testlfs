@@ -28,21 +28,22 @@ namespace Orbita.Controles.VA
         /// </summary>
         private void InitializeComponent()
         {
-            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab10 = new Infragistics.Win.UltraWinTabControl.UltraTab();
+            Infragistics.Win.UltraWinTabControl.UltraTab ultraTab5 = new Infragistics.Win.UltraWinTabControl.UltraTab();
             Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAsistenteBase));
             Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAsistenteBase));
             Infragistics.Win.Appearance appearance4 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance5 = new Infragistics.Win.Appearance();
             Infragistics.Win.Appearance appearance6 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance7 = new Infragistics.Win.Appearance();
             this.ultraTabPageControl1 = new Infragistics.Win.UltraWinTabControl.UltraTabPageControl();
             this.PnlPanelPrincipalPadre = new Orbita.Controles.Contenedores.OrbitaPanel();
-            this.TabControl = new Infragistics.Win.UltraWinTabControl.UltraTabControl();
+            this.TabControl = new Orbita.Controles.Contenedores.OrbitaUltraTabControl();
             this.ultraTabSharedControlsPage1 = new Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage();
             this.PnlSuperior = new Infragistics.Win.Misc.UltraPanel();
             this.lblTitulo = new Orbita.Controles.Comunes.OrbitaUltraLabel();
-            this.PicAsistente = new Infragistics.Win.UltraWinEditors.UltraPictureBox();
+            this.PictureBox = new Infragistics.Win.UltraWinEditors.UltraPictureBox();
             this.PnlInferiorPadre = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.LblNumeroPaso = new Orbita.Controles.Comunes.OrbitaUltraLabel();
             this.PnlBotonesPadre = new Orbita.Controles.Contenedores.OrbitaPanel();
@@ -64,7 +65,7 @@ namespace Orbita.Controles.VA
             // 
             this.ultraTabPageControl1.Location = new System.Drawing.Point(0, 0);
             this.ultraTabPageControl1.Name = "ultraTabPageControl1";
-            this.ultraTabPageControl1.Size = new System.Drawing.Size(792, 383);
+            this.ultraTabPageControl1.Size = new System.Drawing.Size(603, 338);
             // 
             // PnlPanelPrincipalPadre
             // 
@@ -73,7 +74,7 @@ namespace Orbita.Controles.VA
             this.PnlPanelPrincipalPadre.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlPanelPrincipalPadre.Location = new System.Drawing.Point(0, 0);
             this.PnlPanelPrincipalPadre.Name = "PnlPanelPrincipalPadre";
-            this.PnlPanelPrincipalPadre.Size = new System.Drawing.Size(792, 423);
+            this.PnlPanelPrincipalPadre.Size = new System.Drawing.Size(603, 378);
             this.PnlPanelPrincipalPadre.TabIndex = 0;
             // 
             // TabControl
@@ -84,19 +85,19 @@ namespace Orbita.Controles.VA
             this.TabControl.Location = new System.Drawing.Point(0, 40);
             this.TabControl.Name = "TabControl";
             this.TabControl.SharedControlsPage = this.ultraTabSharedControlsPage1;
-            this.TabControl.Size = new System.Drawing.Size(792, 383);
+            this.TabControl.Size = new System.Drawing.Size(603, 338);
             this.TabControl.Style = Infragistics.Win.UltraWinTabControl.UltraTabControlStyle.Wizard;
             this.TabControl.TabIndex = 0;
-            ultraTab10.TabPage = this.ultraTabPageControl1;
-            ultraTab10.Text = "tab4";
+            ultraTab5.TabPage = this.ultraTabPageControl1;
+            ultraTab5.Text = "tab1";
             this.TabControl.Tabs.AddRange(new Infragistics.Win.UltraWinTabControl.UltraTab[] {
-            ultraTab10});
+            ultraTab5});
             // 
             // ultraTabSharedControlsPage1
             // 
             this.ultraTabSharedControlsPage1.Location = new System.Drawing.Point(-10000, -10000);
             this.ultraTabSharedControlsPage1.Name = "ultraTabSharedControlsPage1";
-            this.ultraTabSharedControlsPage1.Size = new System.Drawing.Size(792, 383);
+            this.ultraTabSharedControlsPage1.Size = new System.Drawing.Size(603, 338);
             // 
             // PnlSuperior
             // 
@@ -108,11 +109,11 @@ namespace Orbita.Controles.VA
             // PnlSuperior.ClientArea
             // 
             this.PnlSuperior.ClientArea.Controls.Add(this.lblTitulo);
-            this.PnlSuperior.ClientArea.Controls.Add(this.PicAsistente);
+            this.PnlSuperior.ClientArea.Controls.Add(this.PictureBox);
             this.PnlSuperior.Dock = System.Windows.Forms.DockStyle.Top;
             this.PnlSuperior.Location = new System.Drawing.Point(0, 0);
             this.PnlSuperior.Name = "PnlSuperior";
-            this.PnlSuperior.Size = new System.Drawing.Size(792, 40);
+            this.PnlSuperior.Size = new System.Drawing.Size(603, 40);
             this.PnlSuperior.TabIndex = 1;
             // 
             // lblTitulo
@@ -120,31 +121,37 @@ namespace Orbita.Controles.VA
             appearance2.BackColor = System.Drawing.Color.Transparent;
             appearance2.BorderColor = System.Drawing.Color.Transparent;
             appearance2.ForeColor = System.Drawing.Color.WhiteSmoke;
+            appearance2.TextVAlignAsString = "Middle";
             this.lblTitulo.Appearance = appearance2;
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTitulo.Font = new System.Drawing.Font("Franklin Gothic Book", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(99, 0);
+            this.lblTitulo.Font = new System.Drawing.Font("Franklin Gothic Book", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(100, 0);
             this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.OI.Apariencia.AlineacionTextoVertical = Orbita.Controles.Comunes.AlineacionVertical.Medio;
             this.lblTitulo.OI.Apariencia.ColorBorde = System.Drawing.Color.Transparent;
             this.lblTitulo.OI.Apariencia.ColorFondo = System.Drawing.Color.Transparent;
             this.lblTitulo.OI.Apariencia.ColorTexto = System.Drawing.Color.WhiteSmoke;
             this.lblTitulo.OI.Apariencia.EstiloBorde = Orbita.Controles.Comunes.EstiloBorde.SinBorde;
-            this.lblTitulo.Size = new System.Drawing.Size(693, 40);
+            this.lblTitulo.Size = new System.Drawing.Size(503, 40);
             this.lblTitulo.TabIndex = 19;
             this.lblTitulo.Text = "Asistente de configuración";
             this.lblTitulo.UseMnemonic = false;
             this.lblTitulo.WrapText = false;
             // 
-            // PicAsistente
+            // PictureBox
             // 
-            this.PicAsistente.BorderShadowColor = System.Drawing.Color.Empty;
-            this.PicAsistente.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PicAsistente.Image = ((object)(resources.GetObject("PicAsistente.Image")));
-            this.PicAsistente.Location = new System.Drawing.Point(0, 0);
-            this.PicAsistente.Name = "PicAsistente";
-            this.PicAsistente.Size = new System.Drawing.Size(99, 40);
-            this.PicAsistente.TabIndex = 20;
+            appearance3.ImageHAlign = Infragistics.Win.HAlign.Center;
+            appearance3.ImageVAlign = Infragistics.Win.VAlign.Middle;
+            this.PictureBox.Appearance = appearance3;
+            this.PictureBox.BorderShadowColor = System.Drawing.Color.Empty;
+            this.PictureBox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PictureBox.Image = ((object)(resources.GetObject("PictureBox.Image")));
+            this.PictureBox.ImageTransparentColor = System.Drawing.Color.White;
+            this.PictureBox.Location = new System.Drawing.Point(0, 0);
+            this.PictureBox.Name = "PictureBox";
+            this.PictureBox.Size = new System.Drawing.Size(100, 40);
+            this.PictureBox.TabIndex = 20;
             // 
             // PnlInferiorPadre
             // 
@@ -152,16 +159,18 @@ namespace Orbita.Controles.VA
             this.PnlInferiorPadre.Controls.Add(this.PnlBotonesPadre);
             this.PnlInferiorPadre.Controls.Add(this.ChkToolTip);
             this.PnlInferiorPadre.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PnlInferiorPadre.Location = new System.Drawing.Point(0, 423);
+            this.PnlInferiorPadre.Location = new System.Drawing.Point(0, 378);
             this.PnlInferiorPadre.Name = "PnlInferiorPadre";
-            this.PnlInferiorPadre.Size = new System.Drawing.Size(792, 43);
+            this.PnlInferiorPadre.Size = new System.Drawing.Size(603, 43);
             this.PnlInferiorPadre.TabIndex = 21;
             // 
             // LblNumeroPaso
             // 
+            this.LblNumeroPaso.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LblNumeroPaso.Location = new System.Drawing.Point(56, 19);
             this.LblNumeroPaso.Name = "LblNumeroPaso";
-            this.LblNumeroPaso.Size = new System.Drawing.Size(245, 23);
+            this.LblNumeroPaso.Size = new System.Drawing.Size(231, 23);
             this.LblNumeroPaso.TabIndex = 33;
             this.LblNumeroPaso.Text = "Paso 1 de 1";
             this.LblNumeroPaso.UseMnemonic = false;
@@ -172,15 +181,15 @@ namespace Orbita.Controles.VA
             this.PnlBotonesPadre.Controls.Add(this.btnCancelar);
             this.PnlBotonesPadre.Controls.Add(this.btnSiguienteFinalizar);
             this.PnlBotonesPadre.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PnlBotonesPadre.Location = new System.Drawing.Point(482, 0);
+            this.PnlBotonesPadre.Location = new System.Drawing.Point(293, 0);
             this.PnlBotonesPadre.Name = "PnlBotonesPadre";
             this.PnlBotonesPadre.Size = new System.Drawing.Size(310, 43);
             this.PnlBotonesPadre.TabIndex = 32;
             // 
             // BtnAnterior
             // 
-            appearance3.Image = global::Orbita.Controles.VA.Properties.Resources.BtnAnterior24;
-            this.BtnAnterior.Appearance = appearance3;
+            appearance4.Image = global::Orbita.Controles.VA.Properties.Resources.BtnAnterior24;
+            this.BtnAnterior.Appearance = appearance4;
             this.BtnAnterior.ImageSize = new System.Drawing.Size(24, 24);
             this.BtnAnterior.Location = new System.Drawing.Point(3, 9);
             this.BtnAnterior.Name = "BtnAnterior";
@@ -192,8 +201,8 @@ namespace Orbita.Controles.VA
             // 
             // btnCancelar
             // 
-            appearance4.Image = global::Orbita.Controles.VA.Properties.Resources.BtnNok24;
-            this.btnCancelar.Appearance = appearance4;
+            appearance5.Image = global::Orbita.Controles.VA.Properties.Resources.BtnNok24;
+            this.btnCancelar.Appearance = appearance5;
             this.btnCancelar.ImageSize = new System.Drawing.Size(24, 24);
             this.btnCancelar.Location = new System.Drawing.Point(211, 9);
             this.btnCancelar.Name = "btnCancelar";
@@ -205,8 +214,8 @@ namespace Orbita.Controles.VA
             // 
             // btnSiguienteFinalizar
             // 
-            appearance5.Image = global::Orbita.Controles.VA.Properties.Resources.BtnSiguiente24;
-            this.btnSiguienteFinalizar.Appearance = appearance5;
+            appearance6.Image = global::Orbita.Controles.VA.Properties.Resources.BtnSiguiente24;
+            this.btnSiguienteFinalizar.Appearance = appearance6;
             this.btnSiguienteFinalizar.ImageSize = new System.Drawing.Size(24, 24);
             this.btnSiguienteFinalizar.Location = new System.Drawing.Point(107, 9);
             this.btnSiguienteFinalizar.Name = "btnSiguienteFinalizar";
@@ -218,10 +227,10 @@ namespace Orbita.Controles.VA
             // 
             // ChkToolTip
             // 
-            appearance6.Image = global::Orbita.Controles.VA.Properties.Resources.BtnToolTips24;
-            appearance6.ImageHAlign = Infragistics.Win.HAlign.Center;
-            appearance6.ImageVAlign = Infragistics.Win.VAlign.Middle;
-            this.ChkToolTip.Appearance = appearance6;
+            appearance7.Image = global::Orbita.Controles.VA.Properties.Resources.BtnToolTips24;
+            appearance7.ImageHAlign = Infragistics.Win.HAlign.Center;
+            appearance7.ImageVAlign = Infragistics.Win.VAlign.Middle;
+            this.ChkToolTip.Appearance = appearance7;
             this.ChkToolTip.Location = new System.Drawing.Point(0, 9);
             this.ChkToolTip.Name = "ChkToolTip";
             this.ChkToolTip.Size = new System.Drawing.Size(34, 34);
@@ -233,14 +242,13 @@ namespace Orbita.Controles.VA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 466);
+            this.ClientSize = new System.Drawing.Size(603, 421);
             this.Controls.Add(this.PnlPanelPrincipalPadre);
             this.Controls.Add(this.PnlInferiorPadre);
             this.Name = "FrmAsistenteBase";
             this.OI.NumeroMaximoFormulariosAbiertos = 0;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Formulario del que heredarán los asistentes de la aplicación";
-            this.Activated += new System.EventHandler(this.FrmBase_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmBase_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmBase_FormClosed);
             this.Load += new System.EventHandler(this.FrmBase_Load);
@@ -266,12 +274,12 @@ namespace Orbita.Controles.VA
         protected Contenedores.OrbitaPanel PnlBotonesPadre;
         protected Comunes.OrbitaUltraCheckEditor ChkToolTip;
         protected Comunes.OrbitaUltraButton BtnAnterior;
-        private Infragistics.Win.UltraWinTabControl.UltraTabControl TabControl;
-        private Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage ultraTabSharedControlsPage1;
-        protected Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl1;
         protected Infragistics.Win.Misc.UltraPanel PnlSuperior;
         protected Comunes.OrbitaUltraLabel lblTitulo;
-        protected Infragistics.Win.UltraWinEditors.UltraPictureBox PicAsistente;
         protected Comunes.OrbitaUltraLabel LblNumeroPaso;
+        protected Infragistics.Win.UltraWinEditors.UltraPictureBox PictureBox;
+        protected Contenedores.OrbitaUltraTabControl TabControl;
+        protected Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage ultraTabSharedControlsPage1;
+        protected Infragistics.Win.UltraWinTabControl.UltraTabPageControl ultraTabPageControl1;
     }
 }
