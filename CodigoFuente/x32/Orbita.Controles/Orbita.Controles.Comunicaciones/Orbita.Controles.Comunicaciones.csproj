@@ -111,6 +111,24 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Comun\Orbita\Orbita.Comunicaciones.dll</HintPath>
     </Reference>
+    <Reference Include="Orbita.Controles.Comunes">
+      <HintPath>..\..\Comun\Orbita\Orbita.Controles.Comunes.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.Contenedores">
+      <HintPath>..\..\Comun\Orbita\Orbita.Controles.Contenedores.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.Estilos">
+      <HintPath>..\..\Comun\Orbita\Orbita.Controles.Estilos.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.Grid">
+      <HintPath>..\..\Comun\Orbita\Orbita.Controles.Grid.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.Menu">
+      <HintPath>..\..\Comun\Orbita\Orbita.Controles.Menu.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Controles.Shared">
+      <HintPath>..\..\Comun\Orbita\Orbita.Controles.Shared.dll</HintPath>
+    </Reference>
     <Reference Include="Orbita.Trazabilidad, Version=13.68.3.1, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Comun\Orbita\Orbita.Trazabilidad.dll</HintPath>
@@ -215,6 +233,12 @@
     <Compile Include="Custom\Remoting\OrbitaClienteEventoComs.Designer.cs">
       <DependentUpon>OrbitaClienteEventoComs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom\Remoting\OrbitaConfiguracionCanalRemoting.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Custom\Remoting\OrbitaConfiguracionCanalRemoting.Designer.cs">
+      <DependentUpon>OrbitaConfiguracionCanalRemoting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FrmConfigLogger.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,12 +268,6 @@
     </Compile>
     <Compile Include="Custom\Remoting\OrbitaClienteComsESPhoenixILBK48.Designer.cs">
       <DependentUpon>OrbitaClienteComsESPhoenixILBK48.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Custom\Remoting\OrbitaClienteComsESSiemens.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Custom\Remoting\OrbitaClienteComsESSiemens.Designer.cs">
-      <DependentUpon>OrbitaClienteComsESSiemens.cs</DependentUpon>
     </Compile>
     <Compile Include="Custom\Remoting\OrbitaClienteComsMCUSB.cs">
       <SubType>UserControl</SubType>
@@ -326,9 +344,6 @@
     <EmbeddedResource Include="Custom\Remoting\OrbitaClienteComsESPhoenixILBK48.resx">
       <DependentUpon>OrbitaClienteComsESPhoenixILBK48.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Custom\Remoting\OrbitaClienteComsESSiemens.resx">
-      <DependentUpon>OrbitaClienteComsESSiemens.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Custom\Remoting\OrbitaClienteComsMCUSB.resx">
       <DependentUpon>OrbitaClienteComsMCUSB.cs</DependentUpon>
     </EmbeddedResource>
@@ -399,32 +414,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Clases\Configuración\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Orbita.Controles.Comunes\Orbita.Controles.Comunes.csproj">
-      <Project>{D66C367A-47B7-4464-93D6-92794E4A57C8}</Project>
-      <Name>Orbita.Controles.Comunes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orbita.Controles.Contenedores\Orbita.Controles.Contenedores.csproj">
-      <Project>{B953E685-3E2D-4F93-BB80-805427BBB8A2}</Project>
-      <Name>Orbita.Controles.Contenedores</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orbita.Controles.Estilos\Orbita.Controles.Estilos.csproj">
-      <Project>{69BCFE99-17D1-4F08-AD49-95C395D247A6}</Project>
-      <Name>Orbita.Controles.Estilos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orbita.Controles.Grid\Orbita.Controles.Grid.csproj">
-      <Project>{34B632DA-E0C4-4F27-AAFD-AFAD64604BFA}</Project>
-      <Name>Orbita.Controles.Grid</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orbita.Controles.Menu\Orbita.Controles.Menu.csproj">
-      <Project>{3FC7CCF4-13B4-4B2B-95A9-CC178C85C343}</Project>
-      <Name>Orbita.Controles.Menu</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Orbita.Controles.Shared\Orbita.Controles.Shared.csproj">
-      <Project>{D104B7D1-93CB-46AE-8F84-AA68BB3B2C5E}</Project>
-      <Name>Orbita.Controles.Shared</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

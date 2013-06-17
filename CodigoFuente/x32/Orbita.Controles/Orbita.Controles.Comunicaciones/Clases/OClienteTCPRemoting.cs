@@ -80,6 +80,8 @@ namespace Orbita.Controles.Comunicaciones
         /// Respuesta con el set de las variables
         /// </summary>
         OEventArgs _eSetValores;
+
+        byte[] _peticiones;
         #endregion
 
         #region Propiedades
@@ -365,7 +367,7 @@ namespace Orbita.Controles.Comunicaciones
         {
             OHashtable ret = null;
             int reintento = 0;
-            int maxReintentos = 3;
+            int maxReintentos = 1;
             OEventArgs comando = new OEventArgs();
             comando.Id = 6;
             comando.Argumento = idDispositivo;
@@ -464,7 +466,7 @@ namespace Orbita.Controles.Comunicaciones
             //}
             ret = (bool)this._eSetValores.Argumento;
             return ret;
-        }
+        }        
         #endregion
 
         #region Eventos
@@ -568,13 +570,34 @@ namespace Orbita.Controles.Comunicaciones
             try
             {
                 String data = "";   
-                Object dat = (object)data; 
-                
+                Object dat = (object)data;
 
                 dat = _winsockPeticiones.Get<object>();
-                OEventArgs recibido = (OEventArgs)dat;
-                this._log.Debug("TCP remoting recibido peticiones " + recibido.ToString());
-                this.ProcesarDatosPeticiones(recibido);
+                if (dat is byte[])
+                {
+                    byte[] valor;
+                    if (this._peticiones == null)
+                    {
+                        this._peticiones = (byte[])dat;
+                    }
+                    else
+                    {
+                        byte[] recibido = (byte[])dat;
+                        valor = new byte[this._peticiones.Length + recibido.Length];
+                        Buffer.BlockCopy(this._peticiones, 0, valor, 0, this._peticiones.Length);
+                        Buffer.BlockCopy(recibido, 0, valor, this._peticiones.Length, recibido.Length);
+
+                        OEventArgs objeto = (OEventArgs)ObjectPacker.GetObject(valor);
+                        this._peticiones = null;
+                        this.ProcesarDatosPeticiones(objeto);
+                    }
+                }
+                else
+                {
+                    OEventArgs recibido = (OEventArgs)dat;
+                    this._log.Debug("TCP remoting recibido peticiones " + recibido.ToString());
+                    this.ProcesarDatosPeticiones(recibido);
+                }
 
             }
             catch (Exception ex)

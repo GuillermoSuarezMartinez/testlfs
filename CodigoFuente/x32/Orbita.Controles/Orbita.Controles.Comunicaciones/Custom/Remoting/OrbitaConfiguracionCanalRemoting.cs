@@ -1,25 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using Orbita.Comunicaciones;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
 using Orbita.Utiles;
+using Orbita.Comunicaciones;
 using Orbita.Trazabilidad;
 using System.Windows.Forms;
 using System.Threading;
-using System.Collections;
 
 namespace Orbita.Controles.Comunicaciones
-{
-    #region Delegados
-
-    public delegate void EventoClienteComs(OEventArgs e, string canal);
-    public delegate void EventoClienteCambioDato(OEventArgs e, string canal);
-    public delegate void EventoClienteAlarma(OEventArgs e, string canal);
-    public delegate void EventoClienteEstadoCabal(OEventArgs e, string canal);
-
-    public delegate void EventoCanalTCP(OEventArgs e);
-    #endregion    
-
-    public partial class OrbitaConfiguracionCanal : Component
+{  
+    public partial class OrbitaConfiguracionCanalRemoting : Component
     {
 
         #region Variables
@@ -33,9 +26,13 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         private int _remotingPuerto = 1852;
         /// <summary>
+        /// Servidor de comunicaciones.
+        /// </summary>
+        private IOCommRemoting _servidor;
+        /// <summary>
         /// Servidor remoting
         /// </summary>
-        private string _remotingServidor = "localhost";
+        private string _servidorRemoting = "localhost";
         /// <summary>
         /// Evento para los cambios de comunicaciones
         /// </summary>
@@ -52,6 +49,11 @@ namespace Orbita.Controles.Comunicaciones
         /// Evento para el estado del canal
         /// </summary>
         public static event EventoClienteAlarma OEventoEstadoCanal;
+        /// <summary>
+        /// <summary>
+        /// Wrapper de comunicaciones
+        /// </summary>
+        private OBroadcastEventWrapper _eventWrapper;
         /// <summary>
         /// Wrapper del log
         /// </summary>
@@ -84,18 +86,16 @@ namespace Orbita.Controles.Comunicaciones
         /// Ruta del logger
         /// </summary>
         private string _nombreLogger;
-        /// <summary>
-        /// Servidor de remoting
-        /// </summary>
-        OClienteTCPRemoting remoting;
-        /// <summary>
-        /// Dispositivos de comunicación
-        /// </summary>
-        ArrayList _dispositivos;
-        /// <summary>
-        /// Valores de las variables
-        /// </summary>
-        OHashtable[] _valoresVariables;
+
+        private OEstadoCanalCliente _estado;
+
+        private enum OEstadoCanalCliente
+        {
+            Conectado,
+            Reconectando,
+            PendienteReconectar
+        }
+
         #endregion
 
         #region Propiedades
@@ -112,8 +112,8 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         public string ServidorRemoting
         {
-            get { return _remotingServidor; }
-            set { _remotingServidor = value; }
+            get { return _servidorRemoting; }
+            set { _servidorRemoting = value; }
         }
         /// <summary>
         /// Canal comunicaciones remoto
@@ -163,18 +163,18 @@ namespace Orbita.Controles.Comunicaciones
         /// Evento de cambio de dato.
         /// </summary>
         /// <param name="e"></param>
-        private void eventWrapper_OrbitaCambioDato(OEventArgs e)
+        public virtual void eventWrapper_OrbitaCambioDato(OEventArgs e)
         {
             try
             {
-                if (OEventoClienteCambioDato!=null)
+                if (OEventoClienteCambioDato != null)
                 {
                     OEventoClienteCambioDato(e, this._nombreCanal);
-                }               
+                }
             }
             catch (Exception ex)
             {
-                OrbitaConfiguracionCanal._wrapper.Error("OrbitaConfiguracionCanal eventWrapper_OrbitaCambioDato: ", ex);
+                OrbitaConfiguracionCanal._wrapper.Error("Error en eventWrapper_OrbitaCambioDato: ", ex);
             }
 
         }
@@ -182,18 +182,18 @@ namespace Orbita.Controles.Comunicaciones
         /// Evento de alarma.
         /// </summary>
         /// <param name="e"></param>
-        private void eventWrapper_OrbitaAlarma(OEventArgs e)
+        void eventWrapper_OrbitaAlarma(OEventArgs e)
         {
             try
             {
                 if (OEventoClienteAlarma != null)
                 {
                     OEventoClienteAlarma(e, this._nombreCanal);
-                }     
+                }
             }
             catch (Exception ex)
             {
-                OrbitaConfiguracionCanal._wrapper.Error("OrbitaConfiguracionCanal eventWrapper_OrbitaAlarma: ", ex);
+                OrbitaConfiguracionCanal._wrapper.Error("Error en eventWrapper_OrbitaAlarma: ", ex);
             }
 
         }
@@ -201,31 +201,31 @@ namespace Orbita.Controles.Comunicaciones
         /// Evento de comunicaciones.
         /// </summary>
         /// <param name="e"></param>
-        private void eventWrapper_OrbitaComm(OEventArgs e)
+        public void eventWrapper_OrbitaComm(OEventArgs e)
         {
             try
             {
                 this._fechaRecepcionMensajeComs = DateTime.Now;
 
-                if (OEventoClienteComs!=null)
+                if (OEventoClienteComs != null)
                 {
-                    OEventoClienteComs(e, this._nombreCanal); 
-                }                                               
+                    OEventoClienteComs(e, this._nombreCanal);
+                }
             }
             catch (Exception ex)
             {
-                OrbitaConfiguracionCanal._wrapper.Error("OrbitaConfiguracionCanal eventWrapper_OrbitaComm: ", ex);
+                OrbitaConfiguracionCanal._wrapper.Error("Error en eventWrapper_OrbitaComm: ", ex);
             }
         }
 
         #endregion
 
-        public OrbitaConfiguracionCanal()
+        public OrbitaConfiguracionCanalRemoting()
         {
             InitializeComponent();
         }
 
-        public OrbitaConfiguracionCanal(IContainer container)
+        public OrbitaConfiguracionCanalRemoting(IContainer container)
         {
             container.Add(this);
 
@@ -243,37 +243,121 @@ namespace Orbita.Controles.Comunicaciones
             {
                 LogManager.ConfiguracionLogger(Application.StartupPath + @"\" + this._nombreLogger + ".xml");
                 _wrapper = LogManager.GetLogger("wrapperCanal");
-                OrbitaConfiguracionCanal._wrapper.Info("Log creado");                
-                // Establecer la configuración Remoting entre procesos.                
-                this.remoting = new OClienteTCPRemoting(this._remotingServidor, this._remotingPuerto, _wrapper);
+                OrbitaConfiguracionCanal._wrapper.Info("Log creado");
+                // Establecer la configuración Remoting entre procesos.
+                ORemoting.InicConfiguracionCliente(this._remotingPuerto, this._servidorRemoting);
+                this._servidor = (Orbita.Comunicaciones.IOCommRemoting)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting));
+                this.ConectarWrapper();
+                OClienteTCPRemoting remoting = new OClienteTCPRemoting(this._servidorRemoting, this._remotingPuerto, _wrapper);
                 remoting.OEventoTCPCambioDato += new EventoCanalTCP(eventWrapper_OrbitaCambioDato);
-                remoting.OEventoTCPAlarma += new EventoCanalTCP(eventWrapper_OrbitaAlarma);
-                remoting.OEventoTCPComunicaciones += new EventoCanalTCP(eventWrapper_OrbitaComm);
                 remoting.Inicializar();
                 this.IniciarHiloEstadoCanal();
             }
             catch (Exception ex)
             {
-                OrbitaConfiguracionCanal._wrapper.Error("OrbitaConfiguracionCanal Iniciar: ", ex);
+                OrbitaConfiguracionCanal._wrapper.Error("Error al iniciar el canal de comunicación: ", ex);
+            }
+        }
+
+        /// <summary>
+        /// Conecta con el wrapper de remoting
+        /// </summary>
+        public void ConectarWrapper()
+        {
+            try
+            {
+                // Eventwrapper de comunicaciones.
+                this._eventWrapper = new Orbita.Comunicaciones.OBroadcastEventWrapper();
+
+                //Eventos locales.
+                //...cambio de dato.
+                this._eventWrapper.OrbitaCambioDato += new OManejadorEventoComm(eventWrapper_OrbitaCambioDato);
+                // ...alarma
+                this._eventWrapper.OrbitaAlarma += new OManejadorEventoComm(eventWrapper_OrbitaAlarma);
+                // ...comunicaciones.
+                this._eventWrapper.OrbitaComm += new OManejadorEventoComm(eventWrapper_OrbitaComm);
+
+                // Eventos del servidor.
+                // ...cambio de dato.
+                this._servidor.OrbitaCambioDato += new OManejadorEventoComm(_eventWrapper.OnCambioDato);
+                // ...alarma.
+                this._servidor.OrbitaAlarma += new OManejadorEventoComm(_eventWrapper.OnAlarma);
+                // ...comunicaciones.
+                this._servidor.OrbitaComm += new OManejadorEventoComm(_eventWrapper.OnComm);
+
+                // Establecer conexión con el servidor.
+                Conectar(true);
+            }
+            catch (Exception ex)
+            {
+                OrbitaConfiguracionCanal._wrapper.Error("Error al conectar el wrapper del canal de comunicación: ", ex);
             }
         }
         /// <summary>
-        /// Escritura en el servidor de comunicaciones
+        /// Desconectar del wrapper de remoting
         /// </summary>
-        /// <param name="idDispositivo">identificador de dispositivo</param>
-        /// <param name="variables">variables</param>
-        /// <param name="valores">valores</param>
-        /// <returns></returns>
-        public bool SetEscribirComs(int idDispositivo, string[] variables, object[] valores)
+        public void DesconectarWrapper()
+        {
+            try
+            {
+                Conectar(false);
+                //Eventos locales.
+                //...cambio de dato.
+                this._eventWrapper.OrbitaCambioDato -= new OManejadorEventoComm(eventWrapper_OrbitaCambioDato);
+                // ...alarma
+                this._eventWrapper.OrbitaAlarma -= new OManejadorEventoComm(eventWrapper_OrbitaAlarma);
+                // ...comunicaciones.
+                this._eventWrapper.OrbitaComm -= new OManejadorEventoComm(eventWrapper_OrbitaComm);
+
+                // Eventos del servidor.
+                // ...cambio de dato.
+                this._servidor.OrbitaCambioDato -= new OManejadorEventoComm(_eventWrapper.OnCambioDato);
+                // ...alarma.
+                this._servidor.OrbitaAlarma -= new OManejadorEventoComm(_eventWrapper.OnAlarma);
+                // ...comunicaciones.
+                this._servidor.OrbitaComm -= new OManejadorEventoComm(_eventWrapper.OnComm);
+            }
+            catch (Exception ex)
+            {
+                OrbitaConfiguracionCanal._wrapper.Error("Error al desconectar el wrapper del canal de comunicación: ", ex);
+            }
+        }
+        /// <summary>
+        /// Conectar al servidor vía Remoting.
+        /// </summary>
+        /// <param name="estado">Estado de conexión.</param>
+        private void Conectar(bool estado)
+        {
+            try
+            {
+                string strHostName = "";
+                strHostName = System.Net.Dns.GetHostName();
+
+                string canal = "canal" + strHostName + ":" + this._remotingPuerto.ToString();
+                this._servidor.OrbitaConectar(canal, estado);
+            }
+            catch (Exception ex)
+            {
+                OrbitaConfiguracionCanal._wrapper.Error("Error al conectar el canal de comunicación: ", ex);
+            }
+
+        }
+        /// <summary>
+        /// Metodo para escribir en el Servidor de Comunicaciones
+        /// </summary>
+        /// <param name="dispositivo">ID de dispositivo</param>
+        /// <param name="variable">Nombre de la variable</param>
+        /// <param name="valor">Valor a escribir</param>
+        public bool EscribirComs(int idDispositivo, string[] variables, object[] valores)
         {
             bool ret = false;
             try
             {
-                ret = this.remoting.SetValores(idDispositivo, variables, valores);
+                ret = this._servidor.OrbitaEscribir(idDispositivo, variables, valores);
             }
             catch (Exception ex)
             {
-                OrbitaConfiguracionCanal._wrapper.Error("OrbitaConfiguracionCanal SetEscribirComs: ", ex);
+                OrbitaConfiguracionCanal._wrapper.Error("Error al escribir en el servidor de comunicaciones: ", ex);
             }
             return ret;
         }
@@ -283,17 +367,17 @@ namespace Orbita.Controles.Comunicaciones
         /// <param name="dispositivo">ID de dispositivo</param>
         /// <param name="variable">Nombre de la variable</param>
         /// <returns>Valor leido</returns>
-        public object[] GetLeerComs(int idDispositivo, string[] variables)
+        public object[] LeerComs(int idDispositivo, string[] variables)
         {
             object[] ret = null;
 
             try
             {
-                ret = this.remoting.GetValores(idDispositivo, variables);
+                ret = this._servidor.OrbitaLeer(idDispositivo, variables, true);
             }
             catch (Exception ex)
             {
-                OrbitaConfiguracionCanal._wrapper.Error("OrbitaConfiguracionCanal GetLeerComs: ", ex);
+                OrbitaConfiguracionCanal._wrapper.Error("Error al leer del servidor de comunicaciones: ", ex);
             }
             return ret;
         }
@@ -302,17 +386,17 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="dispositivo"></param>
         /// <returns></returns>
-        public OHashtable GetVariables(int idDispositivo)
+        public OHashtable Variables(int idDispositivo)
         {
             OHashtable ret = null;
 
             try
             {
-                ret = this.remoting.GetVariables(idDispositivo);
+                ret = this._servidor.OrbitaGetDatos(idDispositivo);
             }
             catch (Exception ex)
             {
-                OrbitaConfiguracionCanal._wrapper.Error("OrbitaConfiguracionCanal GetVariables: ", ex);
+                OrbitaConfiguracionCanal._wrapper.Error("Error al obtener las variables del servidor de comunicaciones: ", ex);
             }
             return ret;
         }
@@ -321,17 +405,17 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="dispositivo"></param>
         /// <returns></returns>
-        public OHashtable GetAlarmas(int idDispositivo)
+        public OHashtable Alarmas(int idDispositivo)
         {
             OHashtable ret = null;
 
             try
             {
-                ret = this.remoting.GetAlarmas(idDispositivo);
+                ret = this._servidor.OrbitaGetAlarmas(idDispositivo);
             }
             catch (Exception ex)
             {
-                OrbitaConfiguracionCanal._wrapper.Error("OrbitaConfiguracionCanal GetAlarmas: ", ex);
+                OrbitaConfiguracionCanal._wrapper.Error("Error al obtener las alarmas del servidor de comunicaciones: ", ex);
             }
             return ret;
         }
@@ -339,57 +423,20 @@ namespace Orbita.Controles.Comunicaciones
         /// Obtiene los dispositivos del Servidor de comunicaciones
         /// </summary>
         /// <returns></returns>
-        public int[] GetDispositivos()
+        public int[] Dispositivos()
         {
             int[] ret = null;
 
             try
             {
-                ret = this.remoting.GetDispositivos();
+                ret = this._servidor.OrbitaGetDispositivos();
             }
             catch (Exception ex)
             {
-                OrbitaConfiguracionCanal._wrapper.Error("OrbitaConfiguracionCanal GetDispositivos: ", ex);
+                OrbitaConfiguracionCanal._wrapper.Error("Error al obtener los dispositivos del servidor de comunicaciones: ", ex);
             }
             return ret;
         }
-        /// <summary>
-        /// Obtener valor de las variables
-        /// </summary>
-        private void ActualizarValoresDispositivos()
-        {
-            if (this._dispositivos==null)
-            {
-                this._dispositivos = new ArrayList();
-            }
-            if (this._dispositivos.Count==0)
-            {
-                int[] disp = this.GetDispositivos();
-
-                if (disp != null)
-                {
-                    for (int i = 0; i < disp.Length; i++)
-                    {
-                        this._dispositivos.Add(disp[i]);
-                    }
-                }
-            }
-            else
-            {
-                if (this._valoresVariables==null)
-                {
-                    this._valoresVariables = new OHashtable[this._dispositivos.Count];
-                }
-                OHashtable variables;
-                for (int i = 0; i < this._dispositivos.Count; i++)
-                {
-                    variables = this.GetVariables(3);
-                }
-            }
-        }
-
-        #region Hilo Control Canal
-
         /// <summary>
         /// Iniciamos el hilo del estado del canal
         /// </summary>
@@ -431,7 +478,8 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         private void GestionEstados()
         {
-            int reintentos = 0;            
+            int reintentos = 0;
+            this._estado = OEstadoCanalCliente.Conectado;
             OEventArgs arg = new OEventArgs();
             DateTime fechaUltimaRecepcion = DateTime.Now;
 
@@ -443,29 +491,19 @@ namespace Orbita.Controles.Comunicaciones
                 {
                     if (reintentos > _reintentosReconexion)
                     {
-                        if (this.remoting.Estado!=Winsock.WinsockStates.Connected)
-                        {
-                            try
-                            {
-                                this.remoting.Conectar();
-                            }
-                            catch (Exception ex)
-                            {
-                                OrbitaConfiguracionCanal._wrapper.Error("OrbitaConfiguracionCanal GestionEstados: ", ex);
-                            }
-                        }
-                        else
-                        {
-                            OrbitaConfiguracionCanal._wrapper.Error("OrbitaConfiguracionCanal GestionEstados: canal conectado sin recepción de eventos del servidor ");
-                        }
+                        this._estado = OEstadoCanalCliente.Reconectando;
+                        this.DesconectarWrapper();
+                        this.ConectarWrapper();
                     }
                     else
                     {
+                        this._estado = OEstadoCanalCliente.PendienteReconectar;
                         reintentos++;
                     }
                 }
                 else
                 {
+                    this._estado = OEstadoCanalCliente.Conectado;
                     reintentos = 0;
                 }
 
@@ -473,7 +511,7 @@ namespace Orbita.Controles.Comunicaciones
 
                 if (tsEvento.Seconds > this._segundosEventoEstado)
                 {
-                    arg.Argumento = this.remoting.Estado;
+                    arg.Argumento = this._estado;
                     if (OEventoEstadoCanal != null)
                     {
                         OEventoEstadoCanal(arg, this._nombreCanal);
@@ -481,17 +519,11 @@ namespace Orbita.Controles.Comunicaciones
                     fechaUltimaRecepcion = DateTime.Now;
                 }
 
-                //if (this.remoting.Estado == Winsock.WinsockStates.Connected)
-                //{
-                //    this.ActualizarValoresDispositivos();
-                //}
-
                 Thread.Sleep(100);
             }
         }
-
-        #endregion
-
+    
         #endregion
     }
 }
+
