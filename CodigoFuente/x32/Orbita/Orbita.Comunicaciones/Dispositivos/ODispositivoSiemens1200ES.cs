@@ -131,7 +131,7 @@ namespace Orbita.Comunicaciones
             estado.Enlace = this.Tags.HtVida.Enlaces[0].ToString();
             Boolean responde = true;
             DateTime fechaErrorWrapper = DateTime.MaxValue;  
-
+            DateTime fechaEnvioComs = DateTime.Now;
             int reintento = 0;
             int maxReintentos = 3;
 
@@ -171,7 +171,6 @@ namespace Orbita.Comunicaciones
                         using (protocoloHiloVida)
                         {
                             // Enviar un mensaje de KeepAlive. 
-                            //this.dtinilec = DateTime.Now;
                             this.Winsock.Send(protocoloHiloVida.KeepAliveEnviar());
 
                             // Letargo del hilo hasta t-tiempo, o bien, hasta recibir respuesta, el cual realiza el Set sobre
@@ -224,7 +223,11 @@ namespace Orbita.Comunicaciones
                 try
                 {
                     this.OEventargs.Argumento = estado;
-                    this.OnComm(this.OEventargs);
+                    TimeSpan t = DateTime.Now.Subtract(fechaEnvioComs);
+                    if (t.TotalSeconds > 2)
+                    {
+                        this.OnComm(this.OEventargs);
+                    }
                 }
                 catch (Exception ex)
                 {

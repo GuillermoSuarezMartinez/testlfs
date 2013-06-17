@@ -238,7 +238,7 @@ namespace Orbita.Comunicaciones
         {
             get
             {
-                this._osData = Encoding.ASCII.GetBytes("OS_DATA");
+                this._osData = Encoding.ASCII.GetBytes("OSODATA");
                 return this._osData;
             }
         }
@@ -249,7 +249,7 @@ namespace Orbita.Comunicaciones
         {
             get
             {
-                this._osDataResult = Encoding.ASCII.GetBytes("OS_DATARESULT");
+                this._osDataResult = Encoding.ASCII.GetBytes("OSODATARESULT");
                 return this._osDataResult;
             }
         }

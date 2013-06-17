@@ -68,7 +68,7 @@ namespace Orbita.Comunicaciones
                 string smensaje = ASCIIEncoding.ASCII.GetString(bmensaje);
                 using (protocoloProcesoMensaje)
                 {
-                    if (smensaje.Contains("OCRDATA"))//respuesta para la lectura
+                    if (smensaje.Contains("OSODATA"))//respuesta para la lectura
                     {
                         if (mensaje[15] == 0)
                         {
