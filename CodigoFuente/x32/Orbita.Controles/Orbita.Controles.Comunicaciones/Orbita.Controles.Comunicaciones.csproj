@@ -257,12 +257,6 @@
     <Compile Include="Custom\Remoting\OrbitaClienteComs.Designer.cs">
       <DependentUpon>OrbitaClienteComs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Custom\Remoting\OrbitaClienteComsOPC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Custom\Remoting\OrbitaClienteComsOPC.Designer.cs">
-      <DependentUpon>OrbitaClienteComsOPC.cs</DependentUpon>
-    </Compile>
     <Compile Include="Custom\Remoting\OrbitaClienteComsESPhoenixILBK48.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -337,9 +331,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Custom\Remoting\OrbitaClienteComs.resx">
       <DependentUpon>OrbitaClienteComs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Custom\Remoting\OrbitaClienteComsOPC.resx">
-      <DependentUpon>OrbitaClienteComsOPC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Custom\Remoting\OrbitaClienteComsESPhoenixILBK48.resx">
       <DependentUpon>OrbitaClienteComsESPhoenixILBK48.cs</DependentUpon>
