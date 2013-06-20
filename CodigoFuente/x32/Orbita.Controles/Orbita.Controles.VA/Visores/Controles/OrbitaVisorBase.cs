@@ -40,27 +40,84 @@ namespace Orbita.Controles.VA
         protected FormWindowState EstadoVentana;
 
         /// <summary>
+        /// Indica que se trata de la primera foto después de la conexión de la cámara;
+        /// </summary>
+        protected bool PrimeraFoto;
+        #endregion
+
+        #region Propiedad(es)
+        /// <summary>
         /// Indica si la velocidad de visualización de imagenes está limitada y por lo tanto se ha de visualizar de forma retrasada con un timer
         /// </summary>
-        protected bool FrameRateVisualizacionLimitado;
+        protected bool _FrameRateVisualizacionLimitado = false;
+        /// <summary>
+        /// Indica si la velocidad de visualización de imagenes está limitada y por lo tanto se ha de visualizar de forma retrasada con un timer
+        /// </summary>
+        [Browsable(true),
+        Category("Orbita"),
+        Description("Indica si la velocidad de visualización de imagenes está limitada y por lo tanto se ha de visualizar de forma retrasada con un timer"),
+        DefaultValue(false)]
+        public bool FrameRateVisualizacionLimitado
+        {
+            get { return _FrameRateVisualizacionLimitado; }
+            set { _FrameRateVisualizacionLimitado = value; }
+        }
 
+        /// <summary>
+        /// Velocidad máxima de visualización en milisegundos
+        /// </summary>
+        protected double _MaxFrameIntervalVisualizacion = 0.0;
+        /// <summary>
+        /// Velocidad máxima de visualización en milisegundos
+        /// </summary>
+        [Browsable(true),
+        Category("Orbita"),
+        Description("Velocidad máxima de visualización en milisegundos"),
+        DefaultValue(0.0)]
+        public double MaxFrameIntervalVisualizacion
+        {
+            get 
+            {
+                return _MaxFrameIntervalVisualizacion; 
+            }
+            set 
+            { 
+                _MaxFrameIntervalVisualizacion = value;
+                if (this.TimerRetrasoVisualizacionUltimaImagen is Timer)
+                {
+                    this.TimerRetrasoVisualizacionUltimaImagen.Interval = OEntero.Validar((int)Math.Truncate(_MaxFrameIntervalVisualizacion), 1, 1000000, 100);
+                }
+            }
+        }        
+        
         /// <summary>
         /// Cámara Asociada al Visor
         /// </summary>
-        protected OCamaraBase CamaraAsociada;
+        protected OCamaraBase _CamaraAsociada = null;
+        /// <summary>
+        /// Cámara Asociada al Visor
+        /// </summary>
+        [Browsable(false)]
+        public OCamaraBase CamaraAsociada
+        {
+            get { return _CamaraAsociada; }
+            set { _CamaraAsociada = value; }
+        }
 
         /// <summary>
         /// Indica que se ha de visualizar en vivo la imagen de la cámara
         /// </summary>
-        protected bool VisualizarEnVivo;
-
+        public bool _VisualizarEnVivo;
         /// <summary>
-        /// Indica que se trata de la primera foto después de la conexión de la cámara;
+        /// Indica que se ha de visualizar en vivo la imagen de la cámara
         /// </summary>
-        protected bool PrimerFoto;
-        #endregion
+        [Browsable(false)]
+        public bool VisualizarEnVivo
+        {
+            get { return _VisualizarEnVivo; }
+            set { _VisualizarEnVivo = value; }
+        }
 
-        #region Propiedad(es)
         /// <summary>
         /// Código identificativo del visor o de la cámara asociada al display
         /// </summary>
@@ -365,6 +422,7 @@ namespace Orbita.Controles.VA
 
             // Creamos el timer de retraso de visualización
             this.FrameRateVisualizacionLimitado = maxFrameIntervalVisualizacion > 0;
+            this._MaxFrameIntervalVisualizacion = maxFrameIntervalVisualizacion;
             this.TimerRetrasoVisualizacionUltimaImagen.Interval = OEntero.Validar((int)Math.Truncate(maxFrameIntervalVisualizacion), 1, 1000000, 100);
         }
         #endregion
@@ -723,9 +781,9 @@ namespace Orbita.Controles.VA
             {
                 this.Visualizar(e.Imagen);
                 this.MostrarFps(e.VelocidadAdquisicion);
-                if (!this.PrimerFoto)
+                if (!this.PrimeraFoto)
                 {
-                    this.PrimerFoto = true;
+                    this.PrimeraFoto = true;
                     this.ZoomFit();
                 }
             }
@@ -772,7 +830,7 @@ namespace Orbita.Controles.VA
                         this.Visualizar(this.ImagenActual);
                         this.ZoomFit();
                         this.MostrarMensaje("Conectada");
-                        this.PrimerFoto = false;
+                        this.PrimeraFoto = false;
                         break;
                     case EstadoConexion.Conectando:
                         this.MostrarMensaje("En proceso de conexión");
