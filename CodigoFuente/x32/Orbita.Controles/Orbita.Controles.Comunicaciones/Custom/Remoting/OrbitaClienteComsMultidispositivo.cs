@@ -25,6 +25,8 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="estado"></param>
         internal delegate void DelegadoES(OEventArgs estado);
+
+        internal delegate int DelegadoInt();
         #endregion
 
         #region Atributos
@@ -39,11 +41,16 @@ namespace Orbita.Controles.Comunicaciones
         /// <summary>
         /// Identificador de dispositivo
         /// </summary>
-        //internal int _idDispositivo = 1;
+        internal int _idDispositivo = 1;
         /// <summary>
         /// Servidor remoting
         /// </summary>
         internal string _servidorRemoting = "localhost";
+        /// <summary>
+        /// <summary>
+        /// Wrapper de comunicaciones
+        /// </summary>
+        OBroadcastEventWrapper _eventWrapper;
         #endregion
 
         public OrbitaClienteComsMultidispositivo()
@@ -60,7 +67,6 @@ namespace Orbita.Controles.Comunicaciones
             try
             {
                 this._remotingPuerto = Convert.ToInt32(this.txtPuertoRemoting.Text);
-                //this._idDispositivo = Convert.ToInt32(this.txtIdDispositivo.Text);
                 this._servidorRemoting = this.txtServidorRemoting.Text;
             }
             catch (Exception ex)
@@ -73,31 +79,76 @@ namespace Orbita.Controles.Comunicaciones
                 ORemoting.InicConfiguracionCliente(this._remotingPuerto, this._servidorRemoting);
                 this._servidor = (Orbita.Comunicaciones.IOCommRemoting)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting));
 
-                // Eventwrapper de comunicaciones.
-                Orbita.Comunicaciones.OBroadcastEventWrapper eventWrapper = new Orbita.Comunicaciones.OBroadcastEventWrapper();
+                string err = "";
+                this.ConectarWrapper(out err);
+                if (err.Length > 0)
+                {
+                    OMensajes.MostrarInfo(err);
+                }
+                else
+                {
+                    OMensajes.MostrarInfo("Servidor conectado");
+                    //this.IniciarHiloEstadoCanal();
+                }
 
-                //Eventos locales.
-                //...cambio de dato.
-                eventWrapper.OrbitaCambioDato += new OManejadorEventoComm(eventWrapper_OrbitaCambioDato);
-                // ...alarma
-                eventWrapper.OrbitaAlarma += new OManejadorEventoComm(eventWrapper_OrbitaAlarma);
-                // ...comunicaciones.
-                eventWrapper.OrbitaComm += new OManejadorEventoComm(eventWrapper_OrbitaComm);
+                this.cmbDispositivo.Items.Clear();
+                int[] disp = this._servidor.OrbitaGetDispositivos();
 
-                // Eventos del servidor.
-                // ...cambio de dato.
-                this._servidor.OrbitaCambioDato += new OManejadorEventoComm(eventWrapper.OnCambioDato);
-                // ...alarma.
-                this._servidor.OrbitaAlarma += new OManejadorEventoComm(eventWrapper.OnAlarma);
-                // ...comunicaciones.
-                this._servidor.OrbitaComm += new OManejadorEventoComm(eventWrapper.OnComm);
-
-                // Establecer conexión con el servidor.
-                Conectar(true);
+                for (int i = 0; i < disp.Length; i++)
+                {
+                    this.cmbDispositivo.Items.Add(disp[i].ToString());
+                }
+                this.cmbDispositivo.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
                 OMensajes.MostrarError(ex);
+            }
+        }
+        /// <summary>
+        /// Conecta con el wrapper de remoting
+        /// </summary>
+        public void ConectarWrapper(out string error)
+        {
+            try
+            {
+                // Eventwrapper de comunicaciones.
+                this._eventWrapper = new Orbita.Comunicaciones.OBroadcastEventWrapper();
+
+                //Eventos locales.
+                //...cambio de dato.
+                this._eventWrapper.OrbitaCambioDato += new OManejadorEventoComm(eventWrapper_OrbitaCambioDato);
+                // ...alarma
+                this._eventWrapper.OrbitaAlarma += new OManejadorEventoComm(eventWrapper_OrbitaAlarma);
+                // ...comunicaciones.
+                this._eventWrapper.OrbitaComm += new OManejadorEventoComm(eventWrapper_OrbitaComm);
+
+                // Eventos del servidor.
+                // ...cambio de dato.
+                this._servidor.OrbitaCambioDato += new OManejadorEventoComm(_eventWrapper.OnCambioDato);
+                // ...alarma.
+                this._servidor.OrbitaAlarma += new OManejadorEventoComm(_eventWrapper.OnAlarma);
+                // ...comunicaciones.
+                this._servidor.OrbitaComm += new OManejadorEventoComm(_eventWrapper.OnComm);
+
+                // Establecer conexión con el servidor.
+                Conectar(true);
+                error = "";
+                //OMensajes.MostrarInfo("Servidor conectado");
+                this.cmbDispositivo.Items.Clear();
+                int[] disp = this._servidor.OrbitaGetDispositivos();
+
+                for (int i = 0; i < disp.Length; i++)
+                {
+                    this.cmbDispositivo.Items.Add(disp[i].ToString());
+                }
+                this.cmbDispositivo.SelectedIndex = 0;
+
+            }
+            catch (Exception ex)
+            {
+                //OMensajes.MostrarError("Error al conectar.", ex);
+                error = "Error al conectar." + ex.ToString();
             }
         }
         /// <summary>
@@ -115,9 +166,34 @@ namespace Orbita.Controles.Comunicaciones
         /// <summary>
         /// Desconectar del servidor vía Remoting.
         /// </summary>
-        public void Desconectar()
+        public void DesconectarWrapper(out string error)
         {
-            Conectar(false);
+            try
+            {
+                //Eventos locales.
+                //...cambio de dato.
+                this._eventWrapper.OrbitaCambioDato -= new OManejadorEventoComm(eventWrapper_OrbitaCambioDato);
+                // ...alarma
+                this._eventWrapper.OrbitaAlarma -= new OManejadorEventoComm(eventWrapper_OrbitaAlarma);
+                // ...comunicaciones.
+                this._eventWrapper.OrbitaComm -= new OManejadorEventoComm(eventWrapper_OrbitaComm);
+
+                // Eventos del servidor.
+                // ...cambio de dato.
+                this._servidor.OrbitaCambioDato -= new OManejadorEventoComm(_eventWrapper.OnCambioDato);
+                // ...alarma.
+                this._servidor.OrbitaAlarma -= new OManejadorEventoComm(_eventWrapper.OnAlarma);
+                // ...comunicaciones.
+                this._servidor.OrbitaComm -= new OManejadorEventoComm(_eventWrapper.OnComm);
+
+                Conectar(false);
+                error = "";
+            }
+            catch (Exception ex)
+            {
+                //OMensajes.MostrarError("Error al Desconectar.", ex);
+                error = "Error al conectar." + ex.ToString();
+            }
         }
         /// <summary>
         /// Procesa la información del evento de comunicaciones
@@ -130,6 +206,27 @@ namespace Orbita.Controles.Comunicaciones
                 OEstadoComms estado = (OEstadoComms)e.Argumento;
                 DelegadoCambioEstado MyDelegado = new DelegadoCambioEstado(cambiarEstado);
                 this.Invoke(MyDelegado, new object[] { estado });
+
+                if (this.checkBoxDispositivo.Checked)
+                {
+                    lock (this)
+                    {
+                        DelegadoInt delegado = new DelegadoInt(this.getIdDisp);
+                        int disp = (int)this.Invoke(delegado);
+
+                        if (estado.Id == disp)
+                        {
+                            this.agregarItemComs("Coms id " + estado.Id.ToString() + " " + estado.Estado);
+                        }
+                    }
+                    
+                }
+                else
+                {
+                    this.agregarItemComs("Coms id " + estado.Id.ToString() + " " + estado.Estado);
+                }
+
+                
             }
             catch (Exception ex)
             {
@@ -145,7 +242,7 @@ namespace Orbita.Controles.Comunicaciones
             int idDispositivo = 0;
             try
             {
-                idDispositivo = Convert.ToInt32(this.txtIdDispositivo.Text);
+                idDispositivo = Convert.ToInt32(this.cmbDispositivo.Text);
             }
             catch (Exception ex)
             {
@@ -187,6 +284,19 @@ namespace Orbita.Controles.Comunicaciones
                 this.listViewCDato.Items.Add(lvi);
             }
         }
+        /// <summary>
+        /// Obtener identificador del dipositivo
+        /// </summary>
+        /// <param name="texto"></param>
+        private int getIdDisp()
+        {
+            int ret = Convert.ToInt32(this.cmbDispositivo.Text);
+
+            return ret;
+        }
+        /// <summary>
+        /// Inicializa el grid de lecturas y escrituras
+        /// </summary>
         private void configurarDataGridEscrituras()
         {
             DataTable dtc = new DataTable();
@@ -201,16 +311,56 @@ namespace Orbita.Controles.Comunicaciones
             column2.ColumnName = "Valor";
             dtc.Columns.Add(column2);
 
-            this.dataGridViewEscrituras.DataSource = dtc;
+            this.dataGridViewOrbita.DataSource = dtc;
+        }
+        /// <summary>
+        /// Agrega Item a la colección
+        /// </summary>
+        /// <param name="texto"></param>
+        private void MostrarMensajesComs(string texto)
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke((Action)delegate { MessageBox.Show(this, texto); });
+            }
+        }
+        /// <summary>
+        /// Agrega Item a la colección
+        /// </summary>
+        /// <param name="texto"></param> 
+        private void agregarItemComs(string texto)
+        {
+            if (this.listViewCDato.InvokeRequired)
+            {
+                DelegadoAgregar Delegado = new DelegadoAgregar(agregarItemComs);
+                this.Invoke(Delegado, new object[] { texto });
+            }
+            else
+            {
+                ListViewItem lvi = new ListViewItem();
+                lvi.Text = texto;
+                //lvi.ImageIndex = 0;
+                lvi.Tag = texto;
+                this.listViewComs.Items.Add(lvi);
+            }
         }
         #endregion
 
         #region Eventos
         /// <summary>
+        /// Carga del dispositivo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OrbitaClienteComsMultidispositivo_Load(object sender, EventArgs e)
+        {
+            this.configurarDataGridEscrituras();
+        }
+        /// <summary>
         /// Evento de cambio de dato.
         /// </summary>
         /// <param name="e"></param>
-        public virtual void eventWrapper_OrbitaCambioDato(OEventArgs e)
+        void eventWrapper_OrbitaCambioDato(OEventArgs e)
         {
             try
             {
@@ -273,7 +423,7 @@ namespace Orbita.Controles.Comunicaciones
         {
             try
             {
-                int idDispositivo = Convert.ToInt32(this.txtIdDispositivo.Text);
+                int idDispositivo = Convert.ToInt32(this.cmbDispositivo.Text);
                 string[] lectura = new string[1];
                 lectura[0] = this.txtVarLeer.Text;
                 DateTime dtini = DateTime.Now;
@@ -282,6 +432,29 @@ namespace Orbita.Controles.Comunicaciones
                 this.lblTpoLect.Text = ts.TotalMilliseconds.ToString() + " ms.";
                 string svalor = valor[0].ToString();
                 this.txtValLeer.Text = svalor;
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+        /// <summary>
+        /// EScribe un valor
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEscritura_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                int idDispositivo = Convert.ToInt32(this.cmbDispositivo.Text);
+                string[] lectura = new string[1];
+                lectura[0] = this.txtVarLeer.Text;
+                object[] valor = new object[1];
+                valor[0] = this.txtValLeer.Text;
+                
+                this._servidor.OrbitaEscribir(idDispositivo, lectura, valor);
+               
             }
             catch (System.Exception ex)
             {
@@ -298,9 +471,8 @@ namespace Orbita.Controles.Comunicaciones
             try
             {
 
-
-                int idDispositivo = Convert.ToInt32(this.txtIdDispositivo.Text);
-                DataTable dt = (DataTable)this.dataGridViewEscrituras.DataSource;
+                int idDispositivo = Convert.ToInt32(this.cmbDispositivo.Text);
+                DataTable dt = (DataTable)this.dataGridViewOrbita.DataSource;
 
                 string[] variable = new string[dt.Rows.Count];
                 object[] valor = new object[dt.Rows.Count];
@@ -313,8 +485,6 @@ namespace Orbita.Controles.Comunicaciones
                 DateTime dtini = DateTime.Now;
 
                 bool resp = this._servidor.OrbitaEscribir(idDispositivo, variable, valor);
-                TimeSpan ts = DateTime.Now.Subtract(dtini);
-                this.lblTpoEsc.Text = ts.TotalMilliseconds.ToString() + " ms.";
             }
             catch (System.Exception ex)
             {
@@ -330,7 +500,7 @@ namespace Orbita.Controles.Comunicaciones
         {
             try
             {
-            int idDispositivo = Convert.ToInt32(this.txtIdDispositivo.Text);
+            int idDispositivo = Convert.ToInt32(this.cmbDispositivo.Text);
 
             OHashtable datos = this._servidor.OrbitaGetDatos(idDispositivo);
             string[] variables = new string[datos.Count];
@@ -372,7 +542,7 @@ namespace Orbita.Controles.Comunicaciones
 
                 dt.Rows.Add(dr);
             }
-            this.dataGridViewLecturas.DataSource = dt;
+            this.dataGridViewOrbita.DataSource = dt;
             }
             catch (Exception ex)
             {
@@ -388,7 +558,7 @@ namespace Orbita.Controles.Comunicaciones
         {
             try
             {
-            int idDispositivo = Convert.ToInt32(this.txtIdDispositivo.Text);
+            int idDispositivo = Convert.ToInt32(this.cmbDispositivo.Text);
             ArrayList alarmas = this._servidor.OrbitaGetAlarmasActivas(idDispositivo);
             string[] variables = new string[alarmas.Count];
             for (int i = 0; i < alarmas.Count; i++)
@@ -426,7 +596,7 @@ namespace Orbita.Controles.Comunicaciones
                 dt.Rows.Add(dr);
             }
 
-            this.dataGridViewLecturas.DataSource = dt;
+            this.dataGridViewOrbita.DataSource = dt;
             }
             catch (Exception ex)
             {
@@ -434,19 +604,41 @@ namespace Orbita.Controles.Comunicaciones
             }
         }
         /// <summary>
-        /// Carga del formulario principal
+        /// Reconecta el wrapper
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OClienteComs_Load(object sender, EventArgs e)
+        private void btnReconectar_Click(object sender, EventArgs e)
         {
-            this.configurarDataGridEscrituras();
+            try
+            {
+                string err = "";
+                this.DesconectarWrapper(out err);
+                if (err.Length > 0)
+                {
+                    this.MostrarMensajesComs(err);
+                }
+                this.Conectar(false);
+                this.ConectarWrapper(out err);
+                if (err.Length > 0)
+                {
+                    this.MostrarMensajesComs(err);
+                }
+                this.Conectar(true);
+            }
+            catch (Exception ex)
+            {
+                OMensajes.MostrarError(ex);
+            }
+            
         }
         #endregion
 
-        private void OrbitaClienteComsMultidispositivo_Load(object sender, EventArgs e)
+        private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            this.configurarDataGridEscrituras();
+            this.listViewCDato.Items.Clear();
+            this.listViewComs.Items.Clear();
         }
+        
     }
 }
