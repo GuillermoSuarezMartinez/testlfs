@@ -179,6 +179,70 @@ namespace Orbita.VA.Hardware
                 throw new Exception("Imposible iniciar la cámara " + this.Codigo);
             }
         }
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OCamaraBaslerVPro(string codigo, string deviceID)
+            : base(codigo)
+        {
+            try
+            {
+                // Inicialización de variables
+                this.AdquisicionEnProceso = false;
+                this._TipoImagen = TipoImagen.VisionPro;
+
+                // Cargamos valores de la base de datos
+                DataTable dt = AppBD.GetCamara(codigo);
+                if (dt.Rows.Count == 1)
+                {
+                    // Rellenamos la información propia de la cámara
+                    this._DeviceId = deviceID;
+                    // Creación de la comprobación de la conexión con la cámara IP
+                    this.IntervaloComprobacionConectividadMS = OEntero.Validar(dt.Rows[0]["IPCam_IntervaloComprobacionConectividadMS"], 1, int.MaxValue, 100);
+                    // Tiempo máximo de acceso a la parametrización GigE
+                    this.TimeOutAccesoGigEFeatures = OEntero.Validar(dt.Rows[0]["Basler_Pilot_TimeOutGigE"], 1, int.MaxValue, 100);
+
+                    // Rellenamos los terminales dinámicamente
+                    this._ListaTerminales = new Dictionary<string, OTerminalIOBase>();
+                    DataTable dtTerminales = AppBD.GetTerminalesIO(codigo);
+                    if (dtTerminales.Rows.Count > 0)
+                    {
+                        foreach (DataRow drTerminales in dtTerminales.Rows)
+                        {
+                            string codigoTerminalIO = drTerminales["CodTerminalIO"].ToString();
+                            this._ListaTerminales.Add(codigoTerminalIO, new OTerminalIOBaslerVproBit(codigo, codigoTerminalIO));
+                        }
+                    }
+
+                    // Creamos el thread de consulta de las E/S
+                    this.ThreadScan = new OThreadLoop(this.Codigo, this.IOTiempoScanMS, ThreadPriority.BelowNormal);
+                    this.ThreadScan.CrearSuscripcionRun(EventoScan, true);
+
+                    // Se construye la lista de cámaras GigE
+                    if (PrimeraInstancia)
+                    {
+                        // Get a reference to a collection of all the GigE Vision Camaras found by this system.
+                        FrameGrabbersGigEs = new CogFrameGrabberGigEs();
+                        PrimeraInstancia = false;
+                    }
+
+                    // Se busca la cámara con su número de serie
+                    this.Existe = this.BuscarCamaraPorNumeroSerie();
+
+                    // Creación de los parámetros internos de las cámaras
+                    this.Ajustes = new OVProGigEFeatures(this.Codigo, this.TimeOutAccesoGigEFeatures);
+                }
+                else
+                {
+                    throw new Exception("No se ha podido cargar la información de la cámara " + codigo + " \r\nde la base de datos.");
+                }
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Fatal(exception, this.Codigo);
+                throw new Exception("Imposible iniciar la cámara " + this.Codigo);
+            }
+        }
         #endregion
 
         #region Método(s) privado(s)

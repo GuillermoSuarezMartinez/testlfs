@@ -64,6 +64,37 @@ namespace Orbita.VA.Hardware
                 throw new Exception("Imposible iniciar la cámara " + this.Codigo);
             }
         }
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>       
+        public OCamaraAxisCGI(string codigo, string url, string usuario, string contraseña)
+            : base(codigo, url, usuario, contraseña)
+        {
+            try
+            {
+                // Rellenamos los terminales dinámicamente
+                this._ListaTerminales = new Dictionary<string, OTerminalIOBase>();
+                DataTable dtTerminales = AppBD.GetTerminalesIO(codigo);
+                if (dtTerminales.Rows.Count > 0)
+                {
+                    foreach (DataRow drTerminales in dtTerminales.Rows)
+                    {
+                        string codigoTerminalIO = drTerminales["CodTerminalIO"].ToString();
+                        this._ListaTerminales.Add(codigoTerminalIO, new TerminalIOAxisBit(codigo, codigoTerminalIO, this.IP, this.TimeOutCGIMS));
+                    }
+                }
+
+                // Creamos el thread de consulta de las E/S
+                this.ThreadScan = new OThreadLoop(this.Codigo, this.IOTiempoScanMS, ThreadPriority.BelowNormal);
+                this.ThreadScan.CrearSuscripcionRun(EventoScan, true);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Fatal(exception, this.Codigo);
+                throw new Exception("Imposible iniciar la cámara " + this.Codigo);
+            }
+        }
         #endregion
 
         #region Método(s) heredado(s)

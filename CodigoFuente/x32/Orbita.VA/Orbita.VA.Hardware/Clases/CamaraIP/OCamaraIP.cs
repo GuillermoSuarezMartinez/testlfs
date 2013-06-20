@@ -117,6 +117,56 @@ namespace Orbita.VA.Hardware
                 throw new Exception("Imposible iniciar la cámara " + this.Codigo);
             }
         }
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>        
+        public OCamaraIP(string codigo, string url, string usuario, string contraseña)
+            : base(codigo)
+        {
+            try
+            {
+                // No hay ninguna imagen adquirida
+                this.HayNuevaImagen = false;
+
+                // Cargamos valores de la base de datos
+                DataTable dt = AppBD.GetCamara(codigo);
+                if (dt.Rows.Count == 1)
+                {
+                    this.IP = IPAddress.Parse(dt.Rows[0]["IPCam_IP"].ToString());
+                    this.Puerto = OEntero.Validar(dt.Rows[0]["IPCam_Puerto"], 0, int.MaxValue, 80);
+                    this.Usuario = usuario;
+                    this.Contraseña = contraseña;
+                    this.URLOriginal = url;
+                    this.IntervaloComprobacionConectividadMS = OEntero.Validar(dt.Rows[0]["IPCam_IntervaloComprobacionConectividadMS"], 1, int.MaxValue, 100);
+                    this.TimeOutCGIMS = OEntero.Validar(dt.Rows[0]["IPCam_TimeOutCGIMS"], 1, int.MaxValue, 1000);
+
+                    // Construcción de la url
+                    this.URL = this.ComponerURL(this.URLOriginal);
+
+                    // Creación del vido source
+                    string strVideoSource = dt.Rows[0]["IPCam_OrigenVideo"].ToString();
+                    TipoOrigenVideo tipoOrigenVideo = OEnumerado<TipoOrigenVideo>.Validar(strVideoSource, TipoOrigenVideo.JPG);
+                    switch (tipoOrigenVideo)
+                    {
+                        case TipoOrigenVideo.MJPG:
+                            this.VideoSource = new MJPEGSource();
+                            break;
+                        case TipoOrigenVideo.JPG:
+                        default:
+                            this.VideoSource = new JPEGSource();
+                            break;
+                    }
+
+                    this.Existe = true;
+                }
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Fatal(exception, this.Codigo);
+                throw new Exception("Imposible iniciar la cámara " + this.Codigo);
+            }
+        }
         #endregion
 
         #region Método(s) virtual(es)

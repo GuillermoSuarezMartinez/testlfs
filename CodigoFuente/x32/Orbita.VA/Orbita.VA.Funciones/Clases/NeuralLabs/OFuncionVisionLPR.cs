@@ -1420,17 +1420,33 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// <summary>Devuelve el pais que cumple la sintáxis
         /// </summary>
-        private string _PaisSintaxis;
+        private string _PaisSintaxis3Caracteres;
         /// <summary>
         /// <summary>Codigo del pais de la matrículaPosicion Left matricula
         /// </summary>
-        public string PaisSintaxis
+        public string PaisSintaxis3Caracteres
         {
-            get { return _PaisSintaxis; }
+            get { return _PaisSintaxis3Caracteres; }
             set
             {
-                this._PaisSintaxis = value;
-                this.Propiedades["PaisSintaxis"] = value;
+                this._PaisSintaxis3Caracteres = value;
+                this.Propiedades["PaisSintaxis3Caracteres"] = value;
+            }
+        }
+        /// <summary>
+        /// <summary>Devuelve el pais que cumple la sintáxis
+        /// </summary>
+        private string _PaisSintaxis2Caracteres;
+        /// <summary>
+        /// <summary>Codigo del pais de la matrículaPosicion Left matricula
+        /// </summary>
+        public string PaisSintaxis2Caracteres
+        {
+            get { return _PaisSintaxis2Caracteres; }
+            set
+            {
+                this._PaisSintaxis2Caracteres = value;
+                this.Propiedades["PaisSintaxis2Caracteres"] = value;
             }
         }
 
@@ -1485,7 +1501,8 @@ namespace Orbita.VA.Funciones
             this.RightPosicionMatricula = 0;
             this.FechaEncolamiento = DateTime.Now;
             this.CodigoPais = 0;
-            this.PaisSintaxis = string.Empty;
+            this.PaisSintaxis3Caracteres = string.Empty;
+            this.PaisSintaxis2Caracteres = string.Empty;
             this.NumCaracteres = 0;
             this.FiabilidadesLetras = new float[0];
         }
@@ -1505,7 +1522,8 @@ namespace Orbita.VA.Funciones
                 this.LeftPosicionMatricula = OEntero.Validar(resultadoImagen.GetLeftPlatePosition);
                 this.RightPosicionMatricula = OEntero.Validar(resultadoImagen.GetRightPlatePosition);
                 this.FechaEncolamiento = fechaEncola;
-                this.PaisSintaxis = this.ConversionCodigoPais(OEntero.Validar(resultadoImagen.GetPlateFormat));
+                this.PaisSintaxis3Caracteres = this.ConversionCodigoPais3(OEntero.Validar(resultadoImagen.GetPlateFormat));
+                this.PaisSintaxis2Caracteres = this.ConversionCodigoPais2(OEntero.Validar(resultadoImagen.GetPlateFormat));
                 this.CodigoPais = OEntero.Validar(resultadoImagen.GetPlateFormat); 
                 this.NumCaracteres = OEntero.Validar(resultadoImagen.GetNumCharacters);
    
@@ -1536,7 +1554,8 @@ namespace Orbita.VA.Funciones
                 this.LeftPosicionMatricula = 0;
                 this.RightPosicionMatricula = 0;
                 this.FechaEncolamiento = DateTime.Now;
-                this.PaisSintaxis = string.Empty;
+                this.PaisSintaxis3Caracteres = string.Empty;
+                this.PaisSintaxis2Caracteres = string.Empty;
                 this.CodigoPais = 0;
                 this.NumCaracteres = 0;
                 this.FiabilidadesLetras = new float[0];
@@ -1547,17 +1566,33 @@ namespace Orbita.VA.Funciones
 
         #region Método(s) privado(s)
         /// <summary>
-        /// 
+        /// Conversión de código de pais de NL a estándar de 3 carácteres
         /// </summary>
         /// <param name="codigoPaisNL"></param>
         /// <returns></returns>
-        private string ConversionCodigoPais(int codigoPaisNL)
+        private string ConversionCodigoPais3(int codigoPaisNL)
         {
             string resultado = string.Empty;
             OQuartet<string, string, string, int> registroPais = OLPRManager.AsignacionPaisesNL.Find(tabla => tabla.Fourth == codigoPaisNL);
             if (registroPais is OQuartet<string, string, string, int>)
             {
                 resultado = registroPais.First;
+            }
+            return resultado;
+        }
+
+        /// <summary>
+        /// Conversión de código de pais de NL a estándar de 2 carácteres
+        /// </summary>
+        /// <param name="codigoPaisNL"></param>
+        /// <returns></returns>
+        private string ConversionCodigoPais2(int codigoPaisNL)
+        {
+            string resultado = string.Empty;
+            OQuartet<string, string, string, int> registroPais = OLPRManager.AsignacionPaisesNL.Find(tabla => tabla.Fourth == codigoPaisNL);
+            if (registroPais is OQuartet<string, string, string, int>)
+            {
+                resultado = registroPais.Second;
             }
             return resultado;
         }
