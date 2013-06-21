@@ -777,7 +777,7 @@ namespace Orbita.VA.Funciones
                         // Si vamos por disco tenemos que rellenar la ruta
                         if (this.ParametrosLPR.RealizarProcesoPorDisco)
                         {
-                            this.RutaImagenTemporal = this.ParametrosLPR.RutaEjecucionPorDisco + this.Codigo + "_" + this.ContadorImagenesPorDisco.ToString() + ".bmp";
+                            this.RutaImagenTemporal = Path.Combine(this.ParametrosLPR.RutaEjecucionPorDisco, this.Codigo + "_" + this.ContadorImagenesPorDisco.ToString() + ".bmp");
                             this.ContadorImagenesPorDisco++;
                         }
                         // Creamos la información de la imagen

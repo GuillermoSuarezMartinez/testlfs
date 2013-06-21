@@ -523,7 +523,7 @@ namespace Orbita.VA.Funciones
                         // Si vamos por disco tenemos que rellenar la ruta
                         if (this.ParametrosCCR.RealizarProcesoPorDisco)
                         {
-                            this.RutaImagenTemporal = this.ParametrosCCR.RutaEjecucionPorDisco + this.Codigo + "_" + this.ContadorImagenesPorDisco.ToString() + ".bmp";
+                            this.RutaImagenTemporal = Path.Combine(this.ParametrosCCR.RutaEjecucionPorDisco, this.Codigo + "_" + this.ContadorImagenesPorDisco.ToString() + ".bmp");
                             this.ContadorImagenesPorDisco++;
                         }
                         // Creamos el objeto con la información que nos interesa, no le pasamos la imagen para que no crezca la memoria
