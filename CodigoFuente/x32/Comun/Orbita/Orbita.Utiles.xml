@@ -2761,6 +2761,65 @@
             Enumerado que describe el tipo de mensaje a mostrar
             </summary>
         </member>
+        <member name="T:Orbita.Utiles.OASCIIUtiles">
+            <summary>
+            Utilidades para el trabajo con cáracteres ASCII
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OASCIIUtiles.TablaASCII">
+            <summary>
+            Tabla ASCII
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OASCIIUtiles.ASCII2String(System.Byte)">
+            <summary>
+            Convierte un caracter ASCII en texto inteligible para su interpretación
+            </summary>
+            <param name="dato"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OASCIIUtiles.ASCII2String(System.Byte[])">
+            <summary>
+            Convierte un conjunto de caracteres ASCII en texto inteligible para su interpretación
+            </summary>
+            <param name="dato"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OASCIIUtiles.ASCII2String(System.Collections.Generic.List{System.Byte})">
+            <summary>
+            Convierte un conjunto de caracteres ASCII en texto inteligible para su interpretación
+            </summary>
+            <param name="dato"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OASCIIUtiles.ASCII2String(System.Char)">
+            <summary>
+            Convierte un caracter ASCII en texto inteligible para su interpretación
+            </summary>
+            <param name="dato"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OASCIIUtiles.ASCII2String(System.Char[])">
+            <summary>
+            Convierte un conjunto de caracteres ASCII en texto inteligible para su interpretación
+            </summary>
+            <param name="dato"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OASCIIUtiles.ASCII2String(System.Collections.Generic.List{System.Char})">
+            <summary>
+            Convierte un conjunto de caracteres ASCII en texto inteligible para su interpretación
+            </summary>
+            <param name="dato"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OASCIIUtiles.ASCII2String(System.String)">
+            <summary>
+            Convierte un conjunto de caracteres ASCII en texto inteligible para su interpretación
+            </summary>
+            <param name="dato"></param>
+            <returns></returns>
+        </member>
         <member name="T:Orbita.Utiles.OExtensionesColecciones">
             <summary>
             Clase estática que extiende los métodos de las colecciones

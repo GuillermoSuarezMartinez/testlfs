@@ -4,588 +4,114 @@
         <name>Orbita.Framework.Core</name>
     </assembly>
     <members>
-        <member name="T:Orbita.Framework.Core.Target">
+        <member name="T:Orbita.Framework.Core.WaitWindowGUI">
             <summary>
-            Representa un target de Framework.
+            El diálogo muestra una instancia WaitWindow.
             </summary>
         </member>
-        <member name="M:Orbita.Framework.Core.Target.#ctor">
+        <member name="M:Orbita.Framework.Core.WaitWindowGUI.#ctor(Orbita.Framework.Core.WaitWindow)">
             <summary>
-            Creates a new instance of the logging target and initializes
-            default layout.
+            Inicializar una nueva instancia de la clase Orbita.Framework.Core.WaitWindowGUI.
             </summary>
-            <remarks>
-            The default value of the layout is: <code>${longdate}|${level:uppercase=true}|${logger}|${message}</code>
-            </remarks>
+            <param name="parent"></param>
         </member>
-        <member name="M:Orbita.Framework.Core.Target.ToString">
+        <member name="F:Orbita.Framework.Core.WaitWindowGUI.components">
             <summary>
-            Returns the text representation of the object. Used for diagnostics.
-            </summary>
-            <returns>A string that describes the target.</returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.Target.Flush">
-            <summary>
-            Flush any pending log messages (in case of asynchronous targets).
+            Designer variable used to keep track of non-visual components.
             </summary>
         </member>
-        <member name="M:Orbita.Framework.Core.Target.Flush(System.TimeSpan)">
+        <member name="M:Orbita.Framework.Core.WaitWindowGUI.Dispose(System.Boolean)">
             <summary>
-            Flush any pending log messages (in case of asynchronous targets).
+            Disposes resources used by the form.
             </summary>
-            <param name="timeout">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Orbita.Framework.Core.Target.Flush(System.Int32)">
+        <member name="M:Orbita.Framework.Core.WaitWindowGUI.InitializeComponent">
             <summary>
-            Flush any pending log messages (in case of asynchronous targets).
-            </summary>
-            <param name="timeoutMilliseconds">Maximum time to allow for the flush. Any messages after that time will be discarded.</param>
-        </member>
-        <member name="M:Orbita.Framework.Core.Target.Close">
-            <summary>
-            Closes the target and releases any unmanaged resources.
+            This method is required for Windows Forms designer support.
+            Do not change the method contents inside the source code editor. The Forms designer might
+            not be able to load this method if it was changed manually.
             </summary>
         </member>
-        <member name="M:Orbita.Framework.Core.Target.Initialize">
+        <member name="F:Orbita.Framework.Core.OIContainerForm.autenticación">
             <summary>
-            Initializes the target. Can be used by inheriting classes
-            to initialize logging.
+            Mostrar el formulario de autenticación.
             </summary>
         </member>
-        <member name="P:Orbita.Framework.Core.Target.Name">
+        <member name="F:Orbita.Framework.Core.OIContainerForm.idioma">
             <summary>
-            The name of the target.
+            Enumerado correspondiente al idioma.
             </summary>
         </member>
-        <member name="T:Orbita.Framework.Core.PluginInfo">
+        <member name="M:Orbita.Framework.Core.OIContainerForm.#ctor(System.Object)">
             <summary>
-            Información del plugin.
+            Inicializar una nueva instancia de la clase Orbita.Framework.Core.OIContainerForm.
+            </summary>
+            <param name="control">Control contenedor de plugins.</param>
+        </member>
+        <member name="M:Orbita.Framework.Core.OIContainerForm.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Framework.Core.OIContainerForm.ResetAutenticación">
+            <summary>
+            Resetear tipo de autenticación con el valor predeterminado.
             </summary>
         </member>
-        <member name="P:Orbita.Framework.Core.PluginInfo.Plugin">
+        <member name="M:Orbita.Framework.Core.OIContainerForm.ResetIdioma">
             <summary>
-            Objeto plugin.
+            Resetear selector de idioma con el valor predeterminado.
             </summary>
         </member>
-        <member name="P:Orbita.Framework.Core.PluginInfo.Ensamblado">
+        <member name="M:Orbita.Framework.Core.OIContainerForm.ShouldSerializeAutenticación">
             <summary>
-            Nombre del ensamblado.
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
             </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.PluginHelper">
-            <summary>
-            Objeto de carga.
-            </summary>
-        </member>
-        <member name="F:Orbita.Framework.Core.PluginHelper.path">
-            <summary>
-            Ruta del directorio de Plugins.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.PluginHelper.BuscarPlugins">
-            <summary>
-            Buscar Plugins en el directorio de Plugins configurado.
-            </summary>
-            <returns>Un diccionario con el título del Plugin como clave y la ruta del ensamblado como valor.</returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.PluginHelper.GetPlugins(System.Collections.Generic.IEnumerable{System.String})">
-            <summary>
-            Obtener Plugins especificados.
-            </summary>
-            <param name="pluginsDEcarga">Colección de librerías.</param>
             <returns></returns>
         </member>
-        <member name="M:Orbita.Framework.Core.PluginHelper.CrearNuevaInstancia``1(Orbita.Framework.Core.PluginInfo)">
+        <member name="M:Orbita.Framework.Core.OIContainerForm.ShouldSerializeIdioma">
             <summary>
-            Crear una nueva instancia del Plugin del fichero de ensamblado especificado.
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
             </summary>
-            <typeparam name="T">Form / UserControl.</typeparam>
-            <param name="plugin">El Plugin a cargar.</param>
-            <returns>Una nueva instancia de Plugin.</returns>
+            <returns></returns>
         </member>
-        <member name="P:Orbita.Framework.Core.PluginHelper.Path">
+        <member name="T:Orbita.Framework.Core.Configuracion">
             <summary>
-            Ruta del directorio de Plugins.
+            Clase abstracta que indica la persistencia de acuerdo al idioma seleccionado.
             </summary>
         </member>
-        <member name="T:Orbita.Framework.Core.IIdioma">
+        <member name="T:Orbita.Framework.Core.IConfiguracion">
             <summary>
-            Interface idioma con cada uno de los métodos relativos a la interface.
+            Clase abstracta que indica la persistencia con los plugins de carga en base a los métodos que se consideren.
             </summary>
         </member>
-        <member name="M:Orbita.Framework.Core.IIdioma.GetControles(Orbita.Framework.Core.SelectorIdioma)">
+        <member name="M:Orbita.Framework.Core.IConfiguracion.InicializarEntorno(System.Object,System.EventArgs)">
             <summary>
-            Obtener la colección de controles del control implementando la interface.
+            Obtener la configuración principal del Framework relativa a estilo de borde, visualización de menú, etc.
             </summary>
-            <param name="idioma">Enumerable relativo al idioma seleccionado.</param>
-            <returns>Diccionario de controles.</returns>
+            <returns></returns>
         </member>
-        <member name="T:Orbita.Framework.Core.IFormPlugin">
+        <member name="M:Orbita.Framework.Core.IConfiguracion.GetControlesPlugin(Orbita.Framework.Core.SelectorIdioma)">
             <summary>
-            Interface de formularios.
+            Obtener la colección de controles desde un origen que se refieren al idioma seleccionado.
             </summary>
+            <param name="idioma">Enumerado de idioma que determina el rango de controles al que hacen referencia.</param>
+            <returns>Colección de controles que se refieren al idioma seleccionado.</returns>
         </member>
-        <member name="T:Orbita.Framework.Core.IPlugin">
+        <member name="M:Orbita.Framework.Core.Configuracion.InicializarEntorno(System.Object,System.EventArgs)">
             <summary>
-            Interface de Plugin.
+            Obtener la configuración principal del Framework relativa a estilo de borde, visualización de menú, etc.
             </summary>
+            <returns></returns>
         </member>
-        <member name="M:Orbita.Framework.Core.IPlugin.Dispose">
+        <member name="M:Orbita.Framework.Core.Configuracion.GetControlesPlugin(Orbita.Framework.Core.SelectorIdioma)">
             <summary>
-            Método IDisposable.Dispose() del Plugin.
+            Obtener la colección de controles desde un origen que se refieren al idioma seleccionado.
             </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IPlugin.Titulo">
-            <summary>
-            Título del Plugin. Clave del elemento que se va a agregar a la colección. Opción de menú que pertenece el evento Click.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IPlugin.Descripcion">
-            <summary>
-            Descripción del Plugin.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IPlugin.Grupo">
-            <summary>
-            Nombre del grupo al que pertenece el Plugin. Opción padre del menú principal.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IPlugin.SubGrupo">
-            <summary>
-            Nombre del subgrupo al que pertenece el Plugin.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IPlugin.Configuracion">
-            <summary>
-            Configuración personalizada.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IPlugin.Orden">
-            <summary>
-            Número de índice para ordenar el Plugin en el árbol.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IPlugin.Icono">
-            <summary>
-            Imagen del icono asociado al Plugin.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IFormPlugin.Formulario">
-            <summary>
-            Especifica el formulario actual al que hace referencia (this).
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IFormPlugin.Tipo">
-            <summary>
-            Especifica de que tipo de formulario se trata. { Normal, Dialog, MdiChild }
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.TipoForm">
-            <summary>
-            Determina de que tipo de formulario se trata.
-            </summary>
-        </member>
-        <member name="F:Orbita.Framework.Core.TipoForm.Normal">
-            <summary>
-            Formulario normal.
-            </summary>
-        </member>
-        <member name="F:Orbita.Framework.Core.TipoForm.Dialog">
-            <summary>
-            Formulario diálogo.
-            </summary>
-        </member>
-        <member name="F:Orbita.Framework.Core.TipoForm.MdiChild">
-            <summary>
-            Formulario hijo del MDI parent.
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.Configurador">
-            <summary>
-            Representa la configuración principal del Framework.
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.IFormConfigurador">
-            <summary>
-            Interface de formularios.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IFormConfigurador.Titulo">
-            <summary>
-            Título del formulario que se muestra en la parte superior.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IFormConfigurador.EstadoVentana">
-            <summary>
-            Especifica cómo se muestra una ventana de formulario. { Normal, Minimizado, Maximizado }
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IFormConfigurador.EstiloBorde">
-            <summary>
-            Especifica los estilos de borde de un formulario.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IFormConfigurador.MostrarMenu">
-            <summary>
-            Mostrar menú principal (MenuStrip).
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IFormConfigurador.NumeroMaximoFormulariosAbiertos">
-            <summary>
-            Número máximo de formularios abiertos.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IFormConfigurador.Autenticación">
-            <summary>
-            Mostrar el formulario de autenticación.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IFormConfigurador.Plugin">
-            <summary>
-            Cargar un Plugin al iniciar el Framework.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IFormConfigurador.Idioma">
-            <summary>
-            Enumerado correspondiente al idioma.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.Configurador.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Framework.Core.Configurador.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.Configurador.Titulo">
-            <summary>
-            Título del formulario que se muestra en la parte superior.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.Configurador.EstadoVentana">
-            <summary>
-            Especifica cómo se muestra una ventana de formulario. { Normal, Minimizado, Maximizado }
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.Configurador.EstiloBorde">
-            <summary>
-            Especifica los estilos de borde de un formulario.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.Configurador.MostrarMenu">
-            <summary>
-            Mostrar menú principal (MenuStrip).
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.Configurador.NumeroMaximoFormulariosAbiertos">
-            <summary>
-            Número máximo de formularios abiertos.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.Configurador.Autenticación">
-            <summary>
-            Mostrar el formulario de autenticación.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.Configurador.Plugin">
-            <summary>
-            Cargar un Plugin al iniciar el Framework.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.Configurador.Idioma">
-            <summary>
-            Enumerado correspondiente al idioma.
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.TargetConfiguration">
-            <summary>
-            Keeps logging configuration and provides simple API
-            to modify it.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetConfiguration.#ctor">
-            <summary>
-            Creates new instance of LoggingConfiguration object.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetConfiguration.AddTarget(System.String,Orbita.Framework.Core.Target)">
-            <summary>
-            Registers the specified target object under a given name.
-            </summary>
-            <param name="name">Name of the target.</param>
-            <param name="target">The target object.</param>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetConfiguration.RemoveTarget(System.String)">
-            <summary>
-            Removes the specified named target.
-            </summary>
-            <param name="name">Name of the target.</param>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetConfiguration.FindTargetByName(System.String)">
-            <summary>
-            Finds the target with the specified name.
-            </summary>
-            <param name="name">The name of the target to be found.</param>
-            <returns>Found target or <see langword="null" /> when the target is not found.</returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetConfiguration.Reload">
-            <summary>
-            Called by LogManager when one of the log configuration files changes.
-            </summary>
-            <returns>A new instance of <see cref="!:LoggingConfiguration"/> that represents the updated configuration.</returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetConfiguration.FlushAllTargets(System.TimeSpan)">
-            <summary>
-            Flushes any pending log messages on all appenders.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetConfiguration.GetConfiguredNamedTargets">
-            <summary>
-            Returns a collection of named targets specified in the configuration.
-            </summary>
-            <returns>A <see cref="T:Orbita.Framework.Core.TargetCollection"/> object that contains a list of named targets.</returns>
-            <remarks>
-            Unnamed targets (such as those wrapped by other targets) are not returned.
-            </remarks>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetConfiguration.Close">
-            <summary>
-            Closes all targets and releases any unmanaged resources.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.TargetConfiguration.FileNamesToWatch">
-            <summary>
-            A collection of file names which should be watched for changes by NLog.
-            </summary>
-        </member>
-        <member name="F:Orbita.Framework.Core.ExtendedFile.Bloqueo">
-            <summary>
-            Atributo estático volátil de bloqueo.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.ExtendedFile.Leer(System.String)">
-            <summary>
-            Leer fichero de texto.
-            </summary>
-            <param name="nombre">Ruta del fichero.</param>
-            <returns>El fichero de tipo StreamReadar.</returns>
-        </member>
-        <member name="T:Orbita.Framework.Core.TypeToPropertyInfoDictionaryAssociation">
-            <summary>
-            A dictionary with keys of type Type and values of type PropertyInfoDictionary
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.TypeToPropertyInfoDictionaryAssociation.#ctor">
-            <summary>
-            Initializes a new empty instance of the TypeToPropertyInfoDictionaryAssociation class
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.TypeToPropertyInfoDictionaryAssociation.Add(System.Type,Orbita.Framework.Core.PropertyInfoDictionary)">
-            <summary>
-            Adds an element with the specified key and value to this TypeToPropertyInfoDictionaryAssociation.
-            </summary>
-            <param name="key">
-            The Type key of the element to add.
-            </param>
-            <param name="value">
-            The PropertyInfoDictionary value of the element to add.
-            </param>
-        </member>
-        <member name="M:Orbita.Framework.Core.TypeToPropertyInfoDictionaryAssociation.Contains(System.Type)">
-            <summary>
-            Determines whether this TypeToPropertyInfoDictionaryAssociation contains a specific key.
-            </summary>
-            <param name="key">
-            The Type key to locate in this TypeToPropertyInfoDictionaryAssociation.
-            </param>
-            <returns>
-            true if this TypeToPropertyInfoDictionaryAssociation contains an element with the specified key;
-            otherwise, false.
-            </returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.TypeToPropertyInfoDictionaryAssociation.ContainsKey(System.Type)">
-            <summary>
-            Determines whether this TypeToPropertyInfoDictionaryAssociation contains a specific key.
-            </summary>
-            <param name="key">
-            The Type key to locate in this TypeToPropertyInfoDictionaryAssociation.
-            </param>
-            <returns>
-            true if this TypeToPropertyInfoDictionaryAssociation contains an element with the specified key;
-            otherwise, false.
-            </returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.TypeToPropertyInfoDictionaryAssociation.ContainsValue(Orbita.Framework.Core.PropertyInfoDictionary)">
-            <summary>
-            Determines whether this TypeToPropertyInfoDictionaryAssociation contains a specific value.
-            </summary>
-            <param name="value">
-            The PropertyInfoDictionary value to locate in this TypeToPropertyInfoDictionaryAssociation.
-            </param>
-            <returns>
-            true if this TypeToPropertyInfoDictionaryAssociation contains an element with the specified value;
-            otherwise, false.
-            </returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.TypeToPropertyInfoDictionaryAssociation.Remove(System.Type)">
-            <summary>
-            Removes the element with the specified key from this TypeToPropertyInfoDictionaryAssociation.
-            </summary>
-            <param name="key">
-            The Type key of the element to remove.
-            </param>
-        </member>
-        <member name="P:Orbita.Framework.Core.TypeToPropertyInfoDictionaryAssociation.Item(System.Type)">
-            <summary>
-            Gets or sets the PropertyInfoDictionary associated with the given Type
-            </summary>
-            <param name="key">
-            The Type whose value to get or set.
-            </param>
-        </member>
-        <member name="P:Orbita.Framework.Core.TypeToPropertyInfoDictionaryAssociation.Keys">
-            <summary>
-            Gets a collection containing the keys in this TypeToPropertyInfoDictionaryAssociation.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.TypeToPropertyInfoDictionaryAssociation.Values">
-            <summary>
-            Gets a collection containing the values in this TypeToPropertyInfoDictionaryAssociation.
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.PluginConfiguracion">
-            <summary>
-            Configuración de plugin.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.PluginConfiguracion.Titulo">
-            <summary>
-            Título del ensamblado.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.PluginConfiguracion.Configuracion">
-            <summary>
-            Configuración del ensamblado.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.PluginConfiguracion.Ensamblado">
-            <summary>
-            Ruta del ensamblado.
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.Utiles">
-            <summary>
-            A class that loads and manages NLog extension assemblies.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.Utiles.GetExtensionAssemblies">
-            <summary>
-            Gets the list of loaded NLog extension assemblies.
-            </summary>
-            <returns>An <see cref="T:System.Collections.ArrayList"/> containing all NLog extension assemblies that have been loaded.</returns>
-        </member>
-        <member name="T:Orbita.Framework.Core.PropertyInfoDictionary">
-            <summary>
-            Un diccionario con claves de tipo cadena y valores de tipo PropertyInfo.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.PropertyInfoDictionary.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Framework.Core.PropertyInfoDictionary.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.PropertyInfoDictionary.Add(System.String,System.Reflection.PropertyInfo)">
-            <summary>
-            Adds an element with the specified key and value to this PropertyInfoDictionary.
-            </summary>
-            <param name="key">
-            The string key of the element to add.
-            </param>
-            <param name="value">
-            The PropertyInfo value of the element to add.
-            </param>
-        </member>
-        <member name="M:Orbita.Framework.Core.PropertyInfoDictionary.Contains(System.String)">
-            <summary>
-            Determines whether this PropertyInfoDictionary contains a specific key.
-            </summary>
-            <param name="key">
-            The string key to locate in this PropertyInfoDictionary.
-            </param>
-            <returns>
-            true if this PropertyInfoDictionary contains an element with the specified key;
-            otherwise, false.
-            </returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.PropertyInfoDictionary.ContainsKey(System.String)">
-            <summary>
-            Determines whether this PropertyInfoDictionary contains a specific key.
-            </summary>
-            <param name="key">
-            The string key to locate in this PropertyInfoDictionary.
-            </param>
-            <returns>
-            true if this PropertyInfoDictionary contains an element with the specified key;
-            otherwise, false.
-            </returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.PropertyInfoDictionary.ContainsValue(System.Reflection.PropertyInfo)">
-            <summary>
-            Determines whether this PropertyInfoDictionary contains a specific value.
-            </summary>
-            <param name="value">
-            The PropertyInfo value to locate in this PropertyInfoDictionary.
-            </param>
-            <returns>
-            true if this PropertyInfoDictionary contains an element with the specified value;
-            otherwise, false.
-            </returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.PropertyInfoDictionary.Remove(System.String)">
-            <summary>
-            Removes the element with the specified key from this PropertyInfoDictionary.
-            </summary>
-            <param name="key">
-            The string key of the element to remove.
-            </param>
-        </member>
-        <member name="P:Orbita.Framework.Core.PropertyInfoDictionary.Item(System.String)">
-            <summary>
-            Gets or sets the PropertyInfo associated with the given string
-            </summary>
-            <param name="key">
-            The string whose value to get or set.
-            </param>
-        </member>
-        <member name="P:Orbita.Framework.Core.PropertyInfoDictionary.Keys">
-            <summary>
-            Gets a collection containing the keys in this PropertyInfoDictionary.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.PropertyInfoDictionary.Values">
-            <summary>
-            Gets a collection containing the values in this PropertyInfoDictionary.
-            </summary>
-        </member>
-        <member name="F:Orbita.Framework.Core.PluginOTreeView.imagenes">
-            <summary>
-            Colección de imagenes.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.PluginOTreeView.AddPlugin(Orbita.Framework.Core.PluginInfo)">
-            <summary>
-            Añadir ramas al árbol.
-            </summary>
-            <param name="pluginInfo">Plugin.</param>
-        </member>
-        <member name="M:Orbita.Framework.Core.PluginOTreeView.AddPlugin(System.Windows.Forms.TreeNode)">
-            <summary>
-            Añadir ramas al árbol.
-            </summary>
-            <param name="treeNode">Nodo del árbol formado por grupo/subgrupo/plugin.</param>
-        </member>
-        <member name="P:Orbita.Framework.Core.PluginOTreeView.Tamaño">
-            <summary>
-            Tamaño de las imagenes.
-            </summary>
+            <param name="idioma">Enumerado de idioma que determina el rango de controles al que hacen referencia.</param>
+            <returns>Colección de controles que se refieren al idioma seleccionado.</returns>
         </member>
         <member name="M:Orbita.Framework.Core.ControlInfo.Equals(System.Object)">
             <summary>
@@ -616,165 +142,68 @@
             <param name="cadena">Cadena de comparación.</param>
             <returns>La desigualdad de la cadena de comparación con el tipo.</returns>
         </member>
-        <member name="T:Orbita.Framework.Core.TypeDictionary">
+        <member name="T:Orbita.Framework.Core.WaitWindowEventArgs">
             <summary>
-            A dictionary with keys of type string and values of type Type
+            Proporciona datos para los eventos WaitWindow.
             </summary>
         </member>
-        <member name="M:Orbita.Framework.Core.TypeDictionary.#ctor">
+        <member name="M:Orbita.Framework.Core.WaitWindowEventArgs.#ctor(Orbita.Framework.Core.WaitWindow,System.Collections.Generic.List{System.Object})">
             <summary>
-            Initializes a new empty instance of the TypeDictionary class
+            Inicializar una nueva instancia de la clase Orbita.Framework.Core.WaitWindowEventArgs.
+            </summary>
+            <param name="GUI">La instancia Orbita.Framework.Core.WaitWindow asociada.</param>
+            <param name="args">La lista de argumentos.</param>
+        </member>
+        <member name="P:Orbita.Framework.Core.ConfiguracionHelper.Configuracion">
+            <summary>
+            Propiedad de configuración.
             </summary>
         </member>
-        <member name="M:Orbita.Framework.Core.TypeDictionary.Add(System.String,System.Type)">
+        <member name="M:Orbita.Framework.Core.ContainerForm.#ctor">
             <summary>
-            Adds an element with the specified key and value to this TypeDictionary.
-            </summary>
-            <param name="key">
-            The string key of the element to add.
-            </param>
-            <param name="value">
-            The Type value of the element to add.
-            </param>
-        </member>
-        <member name="M:Orbita.Framework.Core.TypeDictionary.Contains(System.String)">
-            <summary>
-            Determines whether this TypeDictionary contains a specific key.
-            </summary>
-            <param name="key">
-            The string key to locate in this TypeDictionary.
-            </param>
-            <returns>
-            true if this TypeDictionary contains an element with the specified key;
-            otherwise, false.
-            </returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.TypeDictionary.ContainsKey(System.String)">
-            <summary>
-            Determines whether this TypeDictionary contains a specific key.
-            </summary>
-            <param name="key">
-            The string key to locate in this TypeDictionary.
-            </param>
-            <returns>
-            true if this TypeDictionary contains an element with the specified key;
-            otherwise, false.
-            </returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.TypeDictionary.ContainsValue(System.Type)">
-            <summary>
-            Determines whether this TypeDictionary contains a specific value.
-            </summary>
-            <param name="value">
-            The Type value to locate in this TypeDictionary.
-            </param>
-            <returns>
-            true if this TypeDictionary contains an element with the specified value;
-            otherwise, false.
-            </returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.TypeDictionary.Remove(System.String)">
-            <summary>
-            Removes the element with the specified key from this TypeDictionary.
-            </summary>
-            <param name="key">
-            The string key of the element to remove.
-            </param>
-        </member>
-        <member name="P:Orbita.Framework.Core.TypeDictionary.Item(System.String)">
-            <summary>
-            Gets or sets the Type associated with the given string
-            </summary>
-            <param name="key">
-            The string whose value to get or set.
-            </param>
-        </member>
-        <member name="P:Orbita.Framework.Core.TypeDictionary.Keys">
-            <summary>
-            Gets a collection containing the keys in this TypeDictionary.
+            Inicializar una nueva instancia de la clase Orbita.Framework.Core.ContainerForm.
             </summary>
         </member>
-        <member name="P:Orbita.Framework.Core.TypeDictionary.Values">
+        <member name="F:Orbita.Framework.Core.ContainerForm.components">
             <summary>
-            Gets a collection containing the values in this TypeDictionary.
+            Variable del diseñador requerida.
             </summary>
         </member>
-        <member name="T:Orbita.Framework.Core.Persistencia">
+        <member name="M:Orbita.Framework.Core.ContainerForm.Dispose(System.Boolean)">
             <summary>
-            Clase abstracta que indica la persistencia de acuerdo al idioma seleccionado.
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Framework.Core.ContainerForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="M:Orbita.Framework.Core.Persistencia.GetConfiguracion">
+        <member name="P:Orbita.Framework.Core.ContainerForm.OI">
             <summary>
-            Obtener la configuración principal del Framework relativa a estilo de borde, visualización de menú, etc.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.Persistencia.GetControles(Orbita.Framework.Core.SelectorIdioma)">
-            <summary>
-            Obtener la colección de controles desde un origen que se refieren al idioma seleccionado.
-            </summary>
-            <param name="idioma">Enumerado que determina el idioma al que hace referencia.</param>
-            <returns>Colección de controles que se refieren al idioma seleccionado.</returns>
-        </member>
-        <member name="T:Orbita.Framework.Core.PluginConfiguracionCollection">
-            <summary>
-            Colección de configuración de Plugin.
+            Propiedad de definición de Órbita Ingeniería.
             </summary>
         </member>
-        <member name="M:Orbita.Framework.Core.PluginConfiguracionCollection.#ctor">
+        <member name="P:Orbita.Framework.Core.DialogResultArgs.Result">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Framework.Core.PluginConfiguracionCollection.
+            Returns DialogResult from the dialog form.
             </summary>
         </member>
-        <member name="M:Orbita.Framework.Core.PluginConfiguracionCollection.Existe(System.String)">
+        <member name="F:Orbita.Framework.Core.ConfiguracionEntorno.DefectoNumeroMaximoFormulariosAbiertos">
             <summary>
-            Comprueba si existe el título en la colección.
-            </summary>
-            <param name="titulo">Título del Plugin.</param>
-            <returns>La condición de existencia del Plugin en la colección.</returns>
-        </member>
-        <member name="P:Orbita.Framework.Core.PluginConfiguracionCollection.Item(System.String)">
-            <summary>
-            Obtener los Plugins del título especificado.
-            </summary>
-            <param name="titulo">Título del Plugin.</param>
-            <returns>Un único elemento que cumple la condición especificada de título de Plugin.</returns>
-        </member>
-        <member name="F:Orbita.Framework.Core.IdiomaChangedEventArgs.idioma">
-            <summary>
-            Idioma.
+            Número máximo de formularios abiertos.
             </summary>
         </member>
-        <member name="M:Orbita.Framework.Core.IdiomaChangedEventArgs.#ctor">
+        <member name="F:Orbita.Framework.Core.ConfiguracionEntorno.DefectoAutenticación">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Framework.Core.IdiomaChangedEventArgs.
+            Modo de autenticación.
             </summary>
         </member>
-        <member name="M:Orbita.Framework.Core.IdiomaChangedEventArgs.#ctor(Orbita.Framework.Core.SelectorIdioma)">
+        <member name="F:Orbita.Framework.Core.ConfiguracionEntorno.DefectoIdioma">
             <summary>
-            Inicializar una nueva instancia de la clase Orbita.Framework.Core.IdiomaChangedEventArgs.
-            </summary>
-            <param name="cadena">Nombre de la propiedad.</param>
-        </member>
-        <member name="P:Orbita.Framework.Core.IdiomaChangedEventArgs.Idioma">
-            <summary>
-            Idioma.
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.Autenticación">
-            <summary>
-            Representa la configuración principal del Framework.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.Autenticación.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Framework.Core.Autenticación.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.Autenticación.Tipo">
-            <summary>
-            Título del formulario que se muestra en la parte superior.
+            Selector del idioma de cada uno de los controles.
             </summary>
         </member>
         <member name="T:Orbita.Framework.Core.SelectorIdioma">
@@ -797,492 +226,49 @@
             Francés.
             </summary>
         </member>
-        <member name="T:Orbita.Framework.Core.TargetFactory">
+        <member name="T:Orbita.Framework.Core.WaitWindow">
             <summary>
-            A factory of logging targets. Creates new targets based on their names.
+            Muestra una ventana que indica al usuario una espera a un proceso que se está ejecutando.
             </summary>
         </member>
-        <member name="M:Orbita.Framework.Core.TargetFactory.Clear">
+        <member name="M:Orbita.Framework.Core.WaitWindow.#ctor">
             <summary>
-            Removes all target information from the factory.
+            Inicializar una nueva instancia de la clase Orbita.Framework.Core.WaitWindow.
             </summary>
         </member>
-        <member name="M:Orbita.Framework.Core.TargetFactory.Reset">
+        <member name="M:Orbita.Framework.Core.WaitWindow.Mostrar(System.EventHandler{Orbita.Framework.Core.WaitWindowEventArgs})">
             <summary>
-            Removes all targets and reloads them from NLog assembly and default extension assemblies.
+            Muestra una ventana de espera con el texto "Por favor espere ..." mientras se ejecuta el método aprobado.
             </summary>
+            <param name="workerMethod">Puntero a el método para ejecutar mientras se muestra la ventana de espera.</param>
+            <returns>El argumento de resultado del método de trabajo.</returns>
         </member>
-        <member name="M:Orbita.Framework.Core.TargetFactory.AddTargetsFromAssembly(System.Reflection.Assembly,System.String)">
+        <member name="M:Orbita.Framework.Core.WaitWindow.Mostrar(System.EventHandler{Orbita.Framework.Core.WaitWindowEventArgs},System.String)">
             <summary>
-            Scans the specified assembly for types marked with <see cref="T:Orbita.Framework.Core.TargetAttribute"/> and adds
-            them to the factory. Optionally it prepends the specified text to the target names to avoid
-            naming collisions.
+            Muestra una ventana de espera con el texto especificado mientras se ejecuta el método aprobado.
             </summary>
-            <param name="theAssembly">The assembly to be scanned for targets.</param>
-            <param name="prefix">The prefix to be prepended to target names.</param>
+            <param name="workerMethod">Puntero a el método para ejecutar mientras se muestra la ventana de espera.</param>
+            <param name="mensaje">El texto que se mostrará.</param>
+            <returns>El argumento de resultado del método de trabajo.</returns>
         </member>
-        <member name="M:Orbita.Framework.Core.TargetFactory.AddDefaultTargets">
+        <member name="M:Orbita.Framework.Core.WaitWindow.Mostrar(System.EventHandler{Orbita.Framework.Core.WaitWindowEventArgs},System.String,System.Object[])">
             <summary>
-            Adds default targets from the NLog.dll assembly.
+            Muestra una ventana de espera con el texto especificado al ejecutar el método pasado.
             </summary>
+            <param name="workerMethod">Puntero a el método para ejecutar mientras se muestra la ventana de espera.</param>
+            <param name="mensaje">El texto que se mostrará.</param>
+            <param name="args">Argumentos a pasar al método de trabajo.</param>
+            <returns>El argumento de resultado del método de trabajo.</returns>
         </member>
-        <member name="M:Orbita.Framework.Core.TargetFactory.AddTarget(System.String,System.Type)">
+        <member name="M:Orbita.Framework.Core.WaitWindow.Cancelar">
             <summary>
-            Registers the specified target type to the factory under a specified name.
+            Cancela el trabajo y sale de las ventanas de espera inmediatamente.
             </summary>
-            <param name="targetName">The name of the target (e.g. <code>File</code> or <code>Console</code>)</param>
-            <param name="targetType">The type of the new target</param>
-            <remarks>
-            The name specified in the targetName parameter can then be used
-            to create target.
-            </remarks>
         </member>
-        <member name="M:Orbita.Framework.Core.TargetFactory.CreateTarget(System.String)">
+        <member name="P:Orbita.Framework.Core.WaitWindow.Mensaje">
             <summary>
-            Creates the target object based on its target name.
+            Actualiza el mensaje que aparece en la ventana de espera.
             </summary>
-            <param name="name">The name of the target (e.g. <code>File</code> or <code>Console</code>)</param>
-            <returns>A new instance of the Target object.</returns>
-        </member>
-        <member name="P:Orbita.Framework.Core.TargetFactory.TargetTypes">
-            <summary>
-            Collection of target types added to the factory.
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.IFormIdioma">
-            <summary>
-            Interface de idioma.
-            </summary>
-        </member>
-        <member name="E:Orbita.Framework.Core.IFormIdioma.OnCambiarIdioma">
-            <summary>
-            Evento relativo al cambio de idioma desde el/los formularios cliente.
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.XmlLoggingConfiguration">
-            <summary>
-            A class for configuring NLog through an XML configuration file 
-            (App.config style or App.nlog style)
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.XmlLoggingConfiguration.#ctor(System.String)">
-            <summary>
-            Constructs a new instance of <see cref="T:Orbita.Framework.Core.XmlLoggingConfiguration"/>
-            class and reads the configuration from the specified config file.
-            </summary>
-            <param name="fileName">Configuration file to be read.</param>
-        </member>
-        <member name="M:Orbita.Framework.Core.XmlLoggingConfiguration.#ctor(System.Xml.XmlElement,System.String)">
-            <summary>
-            Constructs a new instance of <see cref="T:Orbita.Framework.Core.XmlLoggingConfiguration"/>
-            class and reads the configuration from the specified XML element.
-            </summary>
-            <param name="configElement"><see cref="T:System.Xml.XmlElement"/> containing the configuration section.</param>
-            <param name="fileName">Name of the file that contains the element (to be used as a base for including other files).</param>
-        </member>
-        <member name="M:Orbita.Framework.Core.XmlLoggingConfiguration.Reload">
-            <summary>
-            Re-reads the original configuration file and returns the new <see cref="!:LoggingConfiguration"/> object.
-            </summary>
-            <returns>The new <see cref="T:Orbita.Framework.Core.XmlLoggingConfiguration"/> object.</returns>
-        </member>
-        <member name="P:Orbita.Framework.Core.XmlLoggingConfiguration.AutoReload">
-            <summary>
-            Gets or sets the value indicating whether the configuration files
-            should be watched for changes and reloaded automatically when changed.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.XmlLoggingConfiguration.AppConfig">
-            <summary>
-            Gets the default <see cref="!:LoggingConfiguration"/> object by parsing 
-            the application configuration file (<c>app.exe.config</c>).
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.IUserControlPlugin">
-            <summary>
-            Interface de controles de usuario.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IUserControlPlugin.Control">
-            <summary>
-            Control de usuario.
-            </summary>
-        </member>
-        <member name="F:Orbita.Framework.Core.ExtendedObject.Bloqueo">
-            <summary>
-            Atributo estático volátil de bloqueo.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.ExtendedObject.In(System.Object,System.Collections.IEnumerable)">
-            <summary>
-            Determina si el System.Object figura en el IEnumerable especificado.
-            </summary>
-            <param name="ocomparable">El System.Object</param>
-            <param name="enumerable">El enumerable.</param>
-            <returns>Verdadero si el enumerable contiene el System.Object, falso en caso contrario.</returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.ExtendedObject.In``1(``0,System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Determina si el T figura en el IEnumerable de T especificado.
-            </summary>
-            <typeparam name="T">El tipo de System.Object.</typeparam>
-            <param name="ocomparable">El item.</param>
-            <param name="enumerable">El enumerable de T.</param>
-            <returns>Verdadero si el enumerable contiene el item, falso en caso contrario.</returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.ExtendedObject.In``1(``0,``0[])">
-            <summary>
-            Determina si el T figura en los valores especificados.
-            </summary>
-            <typeparam name="T">El tipo System.Object.</typeparam>
-            <param name="ocomparable">Item.</param>
-            <param name="items">El valor a comparar.</param>
-            <returns>Verdadero si el valor contiene el item, falso en caso contrario.</returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.ExtendedObject.XmlSerialize``1(``0,System.String)">
-            <summary>
-            Serializa el System.Object especificado y escribe el documento XML en el fichero especificado.
-            </summary>
-            <typeparam name="T">El tipo item.</typeparam>
-            <param name="item">El item.</param>
-            <param name="fileName">El fichero donde escribir.</param>
-            <returns>Verdadero si todo ha ido bien, falso en caso contrario.</returns>
-        </member>
-        <member name="T:Orbita.Framework.Core.RequiredParameterAttribute">
-            <summary>
-            Attribute used to mark the required parameters for targets,
-            layout targets and filters.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.RequiredParameterAttribute.#ctor">
-            <summary>
-            Creates a new RequiredParameterAttribute object.
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.TargetCollection">
-            <summary>
-            A collection of elements of type Target
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetCollection.#ctor">
-            <summary>
-            Initializes a new empty instance of the TargetCollection class.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetCollection.#ctor(Orbita.Framework.Core.Target[])">
-            <summary>
-            Initializes a new instance of the TargetCollection class, containing elements
-            copied from an array.
-            </summary>
-            <param name="items">
-            The array whose elements are to be added to the new TargetCollection.
-            </param>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetCollection.#ctor(Orbita.Framework.Core.TargetCollection)">
-            <summary>
-            Initializes a new instance of the TargetCollection class, containing elements
-            copied from another instance of TargetCollection
-            </summary>
-            <param name="items">
-            The TargetCollection whose elements are to be added to the new TargetCollection.
-            </param>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetCollection.AddRange(Orbita.Framework.Core.Target[])">
-            <summary>
-            Adds the elements of an array to the end of this TargetCollection.
-            </summary>
-            <param name="items">
-            The array whose elements are to be added to the end of this TargetCollection.
-            </param>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetCollection.AddRange(Orbita.Framework.Core.TargetCollection)">
-            <summary>
-            Adds the elements of another TargetCollection to the end of this TargetCollection.
-            </summary>
-            <param name="items">
-            The TargetCollection whose elements are to be added to the end of this TargetCollection.
-            </param>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetCollection.Add(Orbita.Framework.Core.Target)">
-            <summary>
-            Adds an instance of type Target to the end of this TargetCollection.
-            </summary>
-            <param name="value">
-            The Target to be added to the end of this TargetCollection.
-            </param>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetCollection.Contains(Orbita.Framework.Core.Target)">
-            <summary>
-            Determines whether a specfic Target value is in this TargetCollection.
-            </summary>
-            <param name="value">
-            The Target value to locate in this TargetCollection.
-            </param>
-            <returns>
-            true if value is found in this TargetCollection;
-            false otherwise.
-            </returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetCollection.IndexOf(Orbita.Framework.Core.Target)">
-            <summary>
-            Return the zero-based index of the first occurrence of a specific value
-            in this TargetCollection
-            </summary>
-            <param name="value">
-            The Target value to locate in the TargetCollection.
-            </param>
-            <returns>
-            The zero-based index of the first occurrence of the _ELEMENT value if found;
-            -1 otherwise.
-            </returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetCollection.Insert(System.Int32,Orbita.Framework.Core.Target)">
-            <summary>
-            Inserts an element into the TargetCollection at the specified index
-            </summary>
-            <param name="index">
-            The index at which the Target is to be inserted.
-            </param>
-            <param name="value">
-            The Target to insert.
-            </param>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetCollection.Remove(Orbita.Framework.Core.Target)">
-            <summary>
-            Removes the first occurrence of a specific Target from this TargetCollection.
-            </summary>
-            <param name="value">
-            The Target value to remove from this TargetCollection.
-            </param>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetCollection.GetEnumerator">
-            <summary>
-            Returns an enumerator that can iterate through the elements of this TargetCollection.
-            </summary>
-            <returns>
-            An object that implements System.Collections.IEnumerator.
-            </returns>        
-        </member>
-        <member name="P:Orbita.Framework.Core.TargetCollection.Item(System.Int32)">
-            <summary>
-            Gets or sets the Target at the given index in this TargetCollection.
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.TargetCollection.Enumerator">
-            <summary>
-            Type-specific enumeration class, used by TargetCollection.GetEnumerator.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetCollection.Enumerator.#ctor(Orbita.Framework.Core.TargetCollection)">
-            <summary>
-            
-            </summary>
-            <param name="collection"></param>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetCollection.Enumerator.MoveNext">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetCollection.Enumerator.Reset">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.TargetCollection.Enumerator.Current">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.EstadoVentana">
-            <summary>
-            Determina el estado visual inicial del formulario.
-            </summary>
-        </member>
-        <member name="F:Orbita.Framework.Core.EstadoVentana.Normal">
-            <summary>
-            Normal.
-            </summary>
-        </member>
-        <member name="F:Orbita.Framework.Core.EstadoVentana.Minimizado">
-            <summary>
-            Minimizado.
-            </summary>
-        </member>
-        <member name="F:Orbita.Framework.Core.EstadoVentana.Maximizado">
-            <summary>
-            Maximizado.
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.TargetAttribute">
-            <summary>
-            Marks class as a logging target and assigns a name to it.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetAttribute.#ctor(System.String)">
-            <summary>
-            Creates a new instance of the TargetAttribute class and sets the name.
-            </summary>
-            <param name="name"></param>
-        </member>
-        <member name="P:Orbita.Framework.Core.TargetAttribute.Name">
-            <summary>
-            The name of the logging target.
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.IPersistencia">
-            <summary>
-            Interface de persistencia.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.IPersistencia.Persistencia">
-            <summary>
-            Persistencia de métodos del formulario cliente.
-            </summary>
-        </member>
-        <member name="F:Orbita.Framework.Core.ExtendedString.Bloqueo">
-            <summary>
-            Atributo estático volátil de bloqueo.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.ExtendedString.XmlDeserialize``1(System.String)">
-            <summary>
-            Desearializar el XML por el especifico System.String.
-            </summary>
-            <typeparam name="T">El tipo de objeto a deserializar.</typeparam>
-            <param name="s">El System.String contenido en el XML.</param>
-            <returns>El System.Object deserializado.</returns>
-        </member>
-        <member name="T:Orbita.Framework.Core.ArrayParameterAttribute">
-            <summary>
-            Used to mark configurable parameters which are arrays. 
-            Specifies the mapping between XML elements and .NET types.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.ArrayParameterAttribute.#ctor(System.Type,System.String)">
-            <summary>
-            Creates a new instance of ArrayParameterAttribute specifying the
-            element type and configuration element name.
-            </summary>
-            <param name="itemType">The type of the array item</param>
-            <param name="elementName">The XML element name that represents the item.</param>
-        </member>
-        <member name="P:Orbita.Framework.Core.ArrayParameterAttribute.ItemType">
-            <summary>
-            The .NET type of the array item
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.ArrayParameterAttribute.ElementName">
-            <summary>
-            The XML element name.
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.TargetDictionary">
-            <summary>
-            A dictionary with keys of type string and values of type Target
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetDictionary.#ctor">
-            <summary>
-            Initializes a new empty instance of the TargetDictionary class
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetDictionary.Add(System.String,Orbita.Framework.Core.Target)">
-            <summary>
-            Adds an element with the specified key and value to this TargetDictionary.
-            </summary>
-            <param name="key">
-            The string key of the element to add.
-            </param>
-            <param name="value">
-            The Target value of the element to add.
-            </param>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetDictionary.Contains(System.String)">
-            <summary>
-            Determines whether this TargetDictionary contains a specific key.
-            </summary>
-            <param name="key">
-            The string key to locate in this TargetDictionary.
-            </param>
-            <returns>
-            true if this TargetDictionary contains an element with the specified key;
-            otherwise, false.
-            </returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetDictionary.ContainsKey(System.String)">
-            <summary>
-            Determines whether this TargetDictionary contains a specific key.
-            </summary>
-            <param name="key">
-            The string key to locate in this TargetDictionary.
-            </param>
-            <returns>
-            true if this TargetDictionary contains an element with the specified key;
-            otherwise, false.
-            </returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetDictionary.ContainsValue(Orbita.Framework.Core.Target)">
-            <summary>
-            Determines whether this TargetDictionary contains a specific value.
-            </summary>
-            <param name="value">
-            The Target value to locate in this TargetDictionary.
-            </param>
-            <returns>
-            true if this TargetDictionary contains an element with the specified value;
-            otherwise, false.
-            </returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.TargetDictionary.Remove(System.String)">
-            <summary>
-            Removes the element with the specified key from this TargetDictionary.
-            </summary>
-            <param name="key">
-            The string key of the element to remove.
-            </param>
-        </member>
-        <member name="P:Orbita.Framework.Core.TargetDictionary.Item(System.String)">
-            <summary>
-            Gets or sets the Target associated with the given string
-            </summary>
-            <param name="key">
-            The string whose value to get or set.
-            </param>
-        </member>
-        <member name="P:Orbita.Framework.Core.TargetDictionary.Keys">
-            <summary>
-            Gets a collection containing the keys in this TargetDictionary.
-            </summary>
-        </member>
-        <member name="P:Orbita.Framework.Core.TargetDictionary.Values">
-            <summary>
-            Gets a collection containing the values in this TargetDictionary.
-            </summary>
-        </member>
-        <member name="T:Orbita.Framework.Core.Configuracion">
-            <summary>
-            Configuración general de Plugins del Framework.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.Configuracion.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Framework.Core.Configuracion.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Core.Configuracion.Cargar(System.String)">
-            <summary>
-            Cargar el fichero de configuración deserializado.
-            </summary>
-            <param name="fichero">Nombre del fichero.</param>
-            <returns>Fichero deserializado.</returns>
-        </member>
-        <member name="M:Orbita.Framework.Core.Configuracion.Guardar(System.String)">
-            <summary>
-            Guardar el fichero de configuración serializado.
-            </summary>
-            <param name="fichero">Nombre del fichero.</param>
         </member>
     </members>
 </doc>

@@ -1425,6 +1425,11 @@
             Constructor de la clase
             </summary>
         </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBaslerVPro.#ctor(System.String,System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
         <member name="M:Orbita.VA.Hardware.OCamaraBaslerVPro.BuscarCamaraPorNumeroSerie">
             <summary>
             Busca la frame grabber cuyo número de serie coincide con el indicado
@@ -3861,6 +3866,16 @@
             Propieadad a heredar donde se accede a la imagen
             </summary>
         </member>
+        <member name="F:Orbita.VA.Hardware.OCamaraBaslerPylon.ListaDispositivos">
+            <summary>
+            Lista de dispositivos conectados
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OCamaraBaslerPylon.LockObject">
+            <summary>
+            Objeto de bloqueo para el acceso a la lista de dispositivos
+            </summary>
+        </member>
         <member name="F:Orbita.VA.Hardware.OCamaraBaslerPylon.PrimeraInstancia">
             <summary>
             Booleano que evita que se construya varias veces el listado de cámaras de tipo GigE
@@ -3954,6 +3969,26 @@
         <member name="M:Orbita.VA.Hardware.OCamaraBaslerPylon.#ctor(System.String)">
             <summary>
             Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBaslerPylon.#ctor(System.String,System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBaslerPylon.RefrescarListaDispositivos">
+            <summary>
+            Refresca la lista de dispositivos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBaslerPylon.ExisteDispositivo(System.String)">
+            <summary>
+            Refresca la lista de dispositivos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBaslerPylon.ObtenerInfoDispositivo(System.String,Orbita.VA.Hardware.DeviceEnumerator.Device@)">
+            <summary>
+            Refresca la lista de dispositivos
             </summary>
         </member>
         <member name="M:Orbita.VA.Hardware.OCamaraBaslerPylon.BuscarCamaraPorNumeroSerie">
@@ -5002,6 +5037,11 @@
             </summary>
         </member>
         <member name="M:Orbita.VA.Hardware.OCamaraIP.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>        
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraIP.#ctor(System.String,System.String,System.String,System.String)">
             <summary>
             Constructor de la clase
             </summary>        
@@ -8382,6 +8422,11 @@
             </summary>
         </member>
         <member name="M:Orbita.VA.Hardware.OCamaraAxisCGI.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>       
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraAxisCGI.#ctor(System.String,System.String,System.String,System.String)">
             <summary>
             Constructor de la clase
             </summary>       

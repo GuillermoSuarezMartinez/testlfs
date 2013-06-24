@@ -626,6 +626,11 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="P:Orbita.Controles.VA.FrmBase.CreateParams">
+            <summary>
+            Establece el estilo de los botones de la barra de título del formulario
+            </summary>
+        </member>
         <member name="P:Orbita.Controles.VA.FrmBase.MultiplesInstancias">
             <summary>
             Posibilita la apertura de múltiples instancias del formulario
@@ -711,11 +716,6 @@
         <member name="P:Orbita.Controles.VA.FrmBase.DockedLocation">
             <summary>
             Localización del anclaje
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.VA.FrmBase.CreateParams">
-            <summary>
-            Establece el estilo de los botones de la barra de título del formulario
             </summary>
         </member>
         <member name="F:Orbita.Controles.VA.FrmMonitorizacionMaquinaEstados.MaxItems">
@@ -2906,6 +2906,11 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="P:Orbita.Controles.VA.FrmDialogoBase.CreateParams">
+            <summary>
+            Establece el estilo de los botones de la barra de título del formulario
+            </summary>
+        </member>
         <member name="P:Orbita.Controles.VA.FrmDialogoBase.MultiplesInstancias">
             <summary>
             Posibilita la apertura de múltiples instancias del formulario
@@ -2985,11 +2990,6 @@
         <member name="P:Orbita.Controles.VA.FrmDialogoBase.DockedLocation">
             <summary>
             Localización del anclaje
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.VA.FrmDialogoBase.CreateParams">
-            <summary>
-            Establece el estilo de los botones de la barra de título del formulario
             </summary>
         </member>
         <member name="F:Orbita.Controles.VA.FrmInputTextBox.Codigo">
@@ -3530,11 +3530,6 @@
             Código identificativo del cronómetro.
             </summary>
         </member>
-        <member name="P:Orbita.Controles.VA.OrbitaCtrlBase.CreateParams">
-            <summary>
-            Establece el estilo de los botones de la barra de título del formulario
-            </summary>
-        </member>
         <member name="T:Orbita.Controles.VA.OrbitaVisorVPro">
             <summary>
             Display de Vision Pro
@@ -3550,24 +3545,29 @@
             Estado de visualización del control (maximizado o normal)
             </summary>
         </member>
-        <member name="F:Orbita.Controles.VA.OrbitaVisorBase.FrameRateVisualizacionLimitado">
+        <member name="F:Orbita.Controles.VA.OrbitaVisorBase.PrimeraFoto">
+            <summary>
+            Indica que se trata de la primera foto después de la conexión de la cámara;
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaVisorBase._FrameRateVisualizacionLimitado">
             <summary>
             Indica si la velocidad de visualización de imagenes está limitada y por lo tanto se ha de visualizar de forma retrasada con un timer
             </summary>
         </member>
-        <member name="F:Orbita.Controles.VA.OrbitaVisorBase.CamaraAsociada">
+        <member name="F:Orbita.Controles.VA.OrbitaVisorBase._MaxFrameIntervalVisualizacion">
+            <summary>
+            Velocidad máxima de visualización en milisegundos
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaVisorBase._CamaraAsociada">
             <summary>
             Cámara Asociada al Visor
             </summary>
         </member>
-        <member name="F:Orbita.Controles.VA.OrbitaVisorBase.VisualizarEnVivo">
+        <member name="F:Orbita.Controles.VA.OrbitaVisorBase._VisualizarEnVivo">
             <summary>
             Indica que se ha de visualizar en vivo la imagen de la cámara
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.VA.OrbitaVisorBase.PrimerFoto">
-            <summary>
-            Indica que se trata de la primera foto después de la conexión de la cámara;
             </summary>
         </member>
         <member name="F:Orbita.Controles.VA.OrbitaVisorBase._Codigo">
@@ -3846,6 +3846,26 @@
             <summary> 
             Required method for Designer support - do not modify 
             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaVisorBase.FrameRateVisualizacionLimitado">
+            <summary>
+            Indica si la velocidad de visualización de imagenes está limitada y por lo tanto se ha de visualizar de forma retrasada con un timer
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaVisorBase.MaxFrameIntervalVisualizacion">
+            <summary>
+            Velocidad máxima de visualización en milisegundos
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaVisorBase.CamaraAsociada">
+            <summary>
+            Cámara Asociada al Visor
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaVisorBase.VisualizarEnVivo">
+            <summary>
+            Indica que se ha de visualizar en vivo la imagen de la cámara
             </summary>
         </member>
         <member name="P:Orbita.Controles.VA.OrbitaVisorBase.Codigo">
@@ -4327,6 +4347,462 @@
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.VA.FrmAsistenteBase">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmAsistenteBase.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmAsistenteBase.AlgoModificado">
+            <summary>
+            Indica si se ha modificado algo
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmAsistenteBase.Inicio">
+            <summary>
+            Indica si se está en la fase de inicialización de los controles del formulario
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmAsistenteBase.CierrePorUsuario">
+            <summary>
+            Informa si el motivo del cierre es por decisión el usuario o interna del código
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmAsistenteBase.DefaultWindowState">
+            <summary>
+            Estado del formulario por defecto
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmAsistenteBase.DefaultFormBorderStyle">
+            <summary>
+            Borde del formulario por defecto
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmAsistenteBase.DefatulRectangle">
+            <summary>
+            Área de visualización por defecto
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmAsistenteBase._MultiplesInstancias">
+            <summary>
+            Posibilita la apertura de múltiples instancias del formulario
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmAsistenteBase._ControlDatosModificados">
+            <summary>
+            Si se activa, se está indicando que el propio formulario debe monitorizar la entrada de datos del usuario para saber cuando
+            han sido modificados, y por lo tanto realizar las tareas apropiadas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmAsistenteBase._FormularioModificado">
+            <summary>
+            Se activa a verdadero cuando se han guardado correctamten los datos del formulario,
+            bien en la base de datos o bien en formulario invocante.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmAsistenteBase._RecordarPosicion">
+            <summary>
+            Indica si se ha de restaurar la posición del formulario a la última guardada
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmAsistenteBase._MostrarBotones">
+            <summary>
+            Muestra los botones de acción situados en la parte inferior del formulario
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmAsistenteBase._Anclado">
+            <summary>
+            Indica que el formulario está anclado o no
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmAsistenteBase._TipoPasoActual">
+            <summary>
+            Indica el tipo de paso actual
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.#ctor">
+            <summary>
+            Constructor vacio de la clase (es necesario para que el diseñador construya el formulario heredado en tiempo de diseño)
+            </summary>		
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.Dispose">
+            <summary>
+            Destructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.VisualizacionPermitida">
+            <summary>
+            Informa de que el formulario puede abrirse, bien porque se permiten multiples intancias o bien porque no existe niguna instancia abierta
+            </summary>
+            <returns>Verdadero si el formulario puede abrirse</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.InternoIniciarMonitorizarModificaciones(System.Windows.Forms.Control)">
+            <summary>
+            Se añade el evento de monitorización a los controles del formulario
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.InternoFinalizarMonitorizarModificaciones(System.Windows.Forms.Control)">
+            <summary>
+            Se elimina el evento de monitorización a los controles del formulario
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.SolucionarToolTips(System.Windows.Forms.Control)">
+            <summary>
+            Método usado para solucionar el problemas de los componentes orbita con los tooltips
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.VisualizarBotonAnteriorSiguienteFinalizar(Orbita.Controles.VA.TipoPasoAsistente)">
+            <summary>
+            Cambia la visualización del botón siguiente/finalizar dependiendo del paso en el que nos encontramos
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.VisualizarPasoActual(System.Int32,System.Int32)">
+            <summary>
+            Visualiza el texto del paso actual
+            </summary>
+            <param name="paso"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.AccionesIrAPasoSiguiente">
+            <summary>
+            Acciones para ir al paso siguiente
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.AccionesIrAPasoAnterior">
+            <summary>
+            Acciones para ir al paso siguiente
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.IniciarFormulario">
+            <summary>
+            Inicializa todos los componentes del formulario, cargando los datos si procede
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.GuardarDatos">
+            <summary>
+            Guarda los datos
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.CambiarTextoBotonGuardar(System.String)">
+            <summary>
+            Cambia el texto del botón aceptar
+            </summary>
+            <param name="nuevoTexto">Nuevo texto que tendrá el botón aceptar</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.CambiarTextoBotonCancelar(System.String)">
+            <summary>
+            Cambia el texto del botón cancelar
+            </summary>
+            <param name="nuevoTexto">Nuevo texto que tendrá el botón cancelar</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.OcultarBotonAceptar">
+            <summary>
+            Cambia la propiedad Visible del botón aceptar
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.OcultarBotonCancelar">
+            <summary>
+            Cambia la propiedad Visible del botón cancelar
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.OcultarBotones">
+            <summary>
+            Cambia la propiedad Visible de la barra de botones
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.CargarDatosAsistente">
+            <summary>
+            Carga y muestra datos del formulario en modo Modificación. Se cargan todos datos que se muestran en 
+            el formulario: grids, combos, etc... Cada carga de elementos estará encapsulada en un método
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.EstablecerModoAsistente">
+            <summary>
+            Establece la habiliacion adecuada de los controles para el modo Modificacion
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.GuardarDatosAsistente">
+            <summary>
+            Guarda los datos cuando el formulario está abierto en modo Modificación
+            </summary>
+            <returns>True si la operación de guardado de datos ha tenido éxito; false en caso contrario</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.IniciarMonitorizarModificaciones">
+            <summary>
+            Se añade el evento de monitorización a los controles del formulario
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.FinalizarMonitorizarModificaciones">
+            <summary>
+            Se elimina el evento de monitorización a los controles del formulario
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.ComprobarDatosModificados">
+            <summary>
+            Comprueba si se ha modificado algún dato en algún campo del formulario
+            </summary>
+            <returns>True si se han modificado datos; false en caso contrario</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.ResetDeteccionModificaciones">
+            <summary>
+            Resetea el mecanismo de modificaciones indicando que se han procesado los cambios
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.ComprobacionesDeCampos">
+            <summary>
+            Realiza las comprobaciones pertinentes antes de realizar un guardado de los datos. Se usa para el caso en que hayan restricciones en el momento de guardar los datos
+            </summary>
+            <returns>True si todo está correcto para ser guardado; false en caso contrario</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.AccionesNoGuardar">
+            <summary>
+             Método para que sea sobreescrito en el hijo y realizar funciones si el usuario no desea guardar los cambios 
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.AccionesSalir">
+            <summary>
+             Método  para que sea sobreescrito en el hijo y realizar funciones al salir del formulario
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.GetInformacionPasoAnterior(System.Int32@,Orbita.Controles.VA.TipoPasoAsistente@)">
+            <summary>
+            Devuelve la información del paso anterior
+            </summary>
+            <param name="pasoAnterior"></param>
+            <param name="tipoPasoAnterior"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.GetInformacionPasoSiguiente(System.Int32@,Orbita.Controles.VA.TipoPasoAsistente@)">
+            <summary>
+            Devuelve la información del paso sioguiente
+            </summary>
+            <param name="pasoSiguiente"></param>
+            <param name="tipoPasoSiguiente"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.AccionesAlIniciarPaso(System.Int32)">
+            <summary>
+            Acciones al entrar en el paso desde el paso anterior
+            </summary>
+            <param name="paso"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.AccionesAlEntrarEnPaso(System.Int32)">
+            <summary>
+            Acciones al entrar en el paso desde cualquier paso
+            </summary>
+            <param name="paso"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.AccionesAlAceptarElPaso(System.Int32)">
+            <summary>
+            Acciones al salir del paso al paso siguiente
+            </summary>
+            <param name="paso"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.AccionesAlSalirDelPaso(System.Int32)">
+            <summary>
+            Acciones al salir del paso a cualquier paso
+            </summary>
+            <param name="paso"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.ValidarDatosPaso(System.Int32)">
+            <summary>
+            Consulta sobre la validez de los datos introducidos en el paso
+            </summary>
+            <param name="paso"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.Show">
+            <summary>
+            Displays the control to the user.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.Close">
+            <summary>
+            Closes the form.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.FrmBase_Load(System.Object,System.EventArgs)">
+            <summary>
+            Evento que se produce al cargar el formulario, antes de aparecer
+            </summary>
+            <param name="sender">Objeto que envía el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.btnCancelar_Click(System.Object,System.EventArgs)">
+            <summary>
+            Manejador de evento click del boton btnCancelar
+            </summary>
+            <param name="sender">Objeto que envía el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.btnSiguienteFinalizar_Click(System.Object,System.EventArgs)">
+            <summary>
+            Manejador de evento click del boton btnAceptar
+            </summary>
+            <param name="sender">Objeto que envía el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.BtnAnterior_Click(System.Object,System.EventArgs)">
+            <summary>
+            Evento de cambio de anclaje sobre el control de anclaje
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.FrmBase_FormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
+            <summary>
+            Evento que se produce cuando se cierra el formulario, antes de cerrarlo
+            </summary>
+            <param name="sender">Objeto que envía el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.FrmBase_FormClosed(System.Object,System.Windows.Forms.FormClosedEventArgs)">
+            <summary>
+            Evento que se produce cuando se cierra el formulario, despues de cerrarlo
+            </summary>
+            <param name="sender">Objeto que envía el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.EventoCambioValor(System.Object,System.EventArgs)">
+            <summary>
+            Cambio de valor en un componente
+            </summary>
+            <param name="sender">Objeto que envía el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.EventoCeldaCambioValor(System.Object,Infragistics.Win.UltraWinGrid.CellEventArgs)">
+            <summary>
+            Cambio de valor en un componente
+            </summary>
+            <param name="sender">Objeto que envía el evento</param>
+            <param name="celda">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.ChkToolTip_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Muestra o oculta los tooltips
+            </summary>
+            <param name="sender">Objeto que envía el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.CreateParams">
+            <summary>
+            Establece el estilo de los botones de la barra de título del formulario
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.MultiplesInstancias">
+            <summary>
+            Posibilita la apertura de múltiples instancias del formulario
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.ControlDatosModificados">
+            <summary>
+            Si se activa, se está indicando que el propio formulario debe monitorizar la entrada de datos del usuario para saber cuando
+            han sido modificados, y por lo tanto realizar las tareas apropiadas.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.FormularioModificado">
+            <summary>
+            Se activa a verdadero cuando se han guardado correctamten los datos del formulario,
+            bien en la base de datos o bien en formulario invocante.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.RecordarPosicion">
+            <summary>
+            Indica si se ha de restaurar la posición del formulario a la última guardada
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.MostrarBotones">
+            <summary>
+            Muestra los botones de acción situados en la parte inferior del formulario
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.Name">
+            <summary>
+            Nombre del formulario
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.Location">
+            <summary>
+            Localización del formulario
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.Size">
+            <summary>
+            Tamaño del formulario
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.Maximized">
+            <summary>
+            Indica que el formulario está maximizado
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.Anclable">
+            <summary>
+            Indica que el formulario puede anclarse o no
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.Anclado">
+            <summary>
+            Indica que el formulario está anclado o no
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.IsDockedMDIChild">
+            <summary>
+            Is Docked MDIChild
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.DockedMDIRectangle">
+            <summary>
+            Rectangulo de visualización del fomrulario MDI de tipo anclable
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.DockedPaneSize">
+            <summary>
+            Rectangulo de visualización del fomrulario anclado
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.DockedPined">
+            <summary>
+            Informa si la la ventana anclada está puesta para no oculatarse automáticamente
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.DockedLocation">
+            <summary>
+            Localización del anclaje
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.PasoActual">
+            <summary>
+            Paso Actual
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.TotalPasos">
+            <summary>
+            Paso Actual
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.TipoPasoActual">
+            <summary>
+            Indica el tipo de paso actual
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.VA.TipoPasoAsistente">
+            <summary>
+            Indica el tipo de paso del asistente
+            </summary>
         </member>
         <member name="T:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV">
             <summary>

@@ -130,7 +130,7 @@
             <param name="obj">información de la imagen</param>
             <param name="bFront">Si es prioritaria</param>
         </member>
-        <member name="M:Orbita.VA.Funciones.OMTInterfaceCCR.Add(System.String,System.String,System.Object,System.Boolean)">
+        <member name="M:Orbita.VA.Funciones.OMTInterfaceCCR.Add(System.String,System.String,System.Boolean,System.Object,System.Boolean)">
             <summary>
             Añade una imagen para su reconocimiento por ruta
             </summary>
@@ -197,229 +197,9 @@
             Estructura del resultado  devuelto
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.bIsInverted">
-            <summary>
-            Si el código esta invertido
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.bIsVertical">
-            <summary>
-            Si el código es vertical
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.lCodeVerified">
-            <summary>
-            Si el código ha sido verificado
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.lExtraInfoFound">
-            <summary>
-            Si se ha encontrado el ódigo ISO
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.lNumberOfCodes">
-            <summary>
-            Número de código identificados
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.lNumLines">
-            <summary>
-            Número de líneas de la identificación
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.lProcessingTime">
-            <summary>
-            Tiempo de proceso
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.lRes">
-            <summary>
-            Resultado
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.lUserParam1">
-            <summary>
-            Parametro de usuario1
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.lUserParam2">
-            <summary>
-            Parámetro de usuario 2
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.strExtraInfo">
-            <summary>
-            Código ISO
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.strResult">
-            <summary>
-            Código
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.vfAverageCharacterHeight">
-            <summary>
-            Altura media del carácter
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.vfCharacterConfidence">
-            <summary>
-            Calidad media del carácter
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.vfExtraInfoCharacterConfidence">
-            <summary>
-            Calidad del caracter del ISO
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.vfExtraInfoConfidence">
-            <summary>
-            Calidad de reconocimiento del ISO
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.vlExtraInfoBottom">
-            <summary>
-            Posición inferior del ISO
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.vlExtraInfoLeft">
-            <summary>
-            Posición izquierda del código
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.vlExtraInfoNumberOfCharacters">
-            <summary>
-            Cantidad de caracteres del ISO
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.vlExtraInfoRight">
-            <summary>
-            Posición derecha del ISO
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.vlExtraInfoTop">
-            <summary>
-            Posición superior del ISO
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.vlGlobalConfidence">
-            <summary>
-            Calidad encontrada
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.vlNumbersOfCharacters">
-            <summary>
-            Número de caracteres del código
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.vlLeft">
-            <summary>
-            Posición izquierda del código
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.vlBottom">
-            <summary>
-            Posición inferior del código
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.vlRight">
-            <summary>
-            Posición derecha del código
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtResult.vlTop">
-            <summary>
-            Posición superior del código
-            </summary>
-        </member>
         <member name="T:Orbita.VA.Funciones.CIDARMtConfiguration">
             <summary>
             Estructura de la configuración
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.bAplicarCorreccion">
-            <summary>
-            Si se aplica corrección a la imagen
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.bEnableExtraInfo">
-            <summary>
-            Si esta activada la opción de buscar el ISO
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.fAngle">
-            <summary>
-            Angulo a corregir
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.fDistance">
-            <summary>
-            Distancia de reconocimiento
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.fHorizontalCoeff">
-            <summary>
-            Coeficiente de distorsión horizontal
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.fRadialCoeff">
-            <summary>
-            Coeficiente de distorsión radial
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.fScale">
-            <summary>
-            Escala a aplicar a la imagen
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.fVerticalCoeff">
-            <summary>
-            Coeficiente de distorsión vertical
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.lHeight">
-            <summary>
-            Altura de la ventana de búsqueda
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.lLeft">
-            <summary>
-            Coordenada izquierda de la ventana de búsqueda
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.lMiliseconds">
-            <summary>
-            Tiempo de proceso máximo
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.lNumSteps">
-            <summary>
-            Número de alturas de búsqueda
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.lTop">
-            <summary>
-            Coordenada superior de la ventana de búsqueda
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.lUserParam1">
-            <summary>
-            Parametro 2 del filtrado
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.lUserParam2">
-            <summary>
-            Parametro 2 del filtrado
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.lWidth">
-            <summary>
-            Anchura de la ventana de búsqueda
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.CIDARMtConfiguration.vlSteps">
-            <summary>
-            Vector con los rangos de altura posibles
             </summary>
         </member>
         <member name="T:Orbita.VA.Funciones.OCCRInfoImagen">
@@ -447,6 +227,11 @@
             Ruta
             </summary>
         </member>
+        <member name="F:Orbita.VA.Funciones.OCCRInfoImagen.AutoBorradoFicheroTemporal">
+            <summary>
+            Indica si se ha de borrar el fichero temporal
+            </summary>
+        </member>
         <member name="F:Orbita.VA.Funciones.OCCRInfoImagen.Timestamp">
             <summary>
             Fecha
@@ -457,7 +242,7 @@
             Fecha universal
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.OCCRInfoImagen.#ctor(System.Drawing.Bitmap,System.String,System.Object@)">
+        <member name="M:Orbita.VA.Funciones.OCCRInfoImagen.#ctor(System.Drawing.Bitmap,System.String,System.Boolean,System.Object@)">
             <summary>
             Constructor con parametros
             </summary>
@@ -500,6 +285,11 @@
         <member name="P:Orbita.VA.Funciones.OCCRInfoImagen.GetPath">
             <summary>
             Obtiene la ruta
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.OCCRInfoImagen.GetAutoBorradoFicheroTemporal">
+            <summary>
+            Indica si se ha de borrar el fichero temporal
             </summary>
         </member>
         <member name="P:Orbita.VA.Funciones.OCCRInfoImagen.GetTimestamp">
@@ -1270,6 +1060,12 @@
             </summary>
             <param name="parametros"></param>
         </member>
+        <member name="M:Orbita.VA.Funciones.ONerualLabsUtils.EliminarFicheroTemporal(System.String)">
+            <summary>
+            Eliminación del fichero temporal
+            </summary>
+            <param name="rutaFicheroTemporal"></param>
+        </member>
         <member name="T:Orbita.VA.Funciones.OCorreccionPerspectiva">
             <summary>
             Clase con la parametrización de corrección de perspectiva
@@ -1961,7 +1757,8 @@
             Si el Codigo de pais es distinto de 0
             </summary>
         </member>
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.VA.Funciones.OResultadoSimpleLPR._PaisSintaxis" -->
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.VA.Funciones.OResultadoSimpleLPR._PaisSintaxis3Caracteres" -->
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.VA.Funciones.OResultadoSimpleLPR._PaisSintaxis2Caracteres" -->
         <member name="F:Orbita.VA.Funciones.OResultadoSimpleLPR._NumCaracteres">
             <summary>
             Número de carácters de la matrícula
@@ -1982,9 +1779,16 @@
             Constructor con parametros
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.OResultadoSimpleLPR.ConversionCodigoPais(System.Int32)">
+        <member name="M:Orbita.VA.Funciones.OResultadoSimpleLPR.ConversionCodigoPais3(System.Int32)">
             <summary>
-            
+            Conversión de código de pais de NL a estándar de 3 carácteres
+            </summary>
+            <param name="codigoPaisNL"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Funciones.OResultadoSimpleLPR.ConversionCodigoPais2(System.Int32)">
+            <summary>
+            Conversión de código de pais de NL a estándar de 2 carácteres
             </summary>
             <param name="codigoPaisNL"></param>
             <returns></returns>
@@ -2040,7 +1844,8 @@
             Si el Codigo de pais es distinto de 0
             </summary>
         </member>
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "P:Orbita.VA.Funciones.OResultadoSimpleLPR.PaisSintaxis" -->
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "P:Orbita.VA.Funciones.OResultadoSimpleLPR.PaisSintaxis3Caracteres" -->
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "P:Orbita.VA.Funciones.OResultadoSimpleLPR.PaisSintaxis2Caracteres" -->
         <member name="P:Orbita.VA.Funciones.OResultadoSimpleLPR.NumCaracteres">
             <summary>
             Número de carácters de la matrícula
@@ -3805,7 +3610,7 @@
             <param name="obj">información de la imagen</param>
             <param name="bFront">Si es prioritaria</param>
         </member>
-        <member name="M:Orbita.VA.Funciones.OMTInterfaceLPR.Add(System.String,System.String,System.Object,System.Boolean)">
+        <member name="M:Orbita.VA.Funciones.OMTInterfaceLPR.Add(System.String,System.String,System.Boolean,System.Object,System.Boolean)">
             <summary>
             Añade una imagen para su reconocimiento por ruta
             </summary>
@@ -3866,139 +3671,14 @@
             Estructura del resultado  devuelto
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtResult.lRes">
-            <summary>
-            Resultado
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtResult.lNumberOfPlates">
-            <summary>
-            Número de matrículas identificadas
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtResult.strResult">
-            <summary>
-            Array con los resultados
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtResult.vlNumbersOfCharacters">
-            <summary>
-            Array con la cantidad de caracteres 
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtResult.vlGlobalConfidence">
-            <summary>
-            Array con la calidad total 
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtResult.vfAverageCharacterHeight">
-            <summary>
-            Array con las alturas medias
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtResult.vfCharacterConfidence">
-            <summary>
-            Array de calidades de cada caracter
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtResult.vlLeft">
-            <summary>
-            Array de posiciones izquierdas
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtResult.vlTop">
-            <summary>
-            Array de posiciones superiores
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtResult.vlRight">
-            <summary>
-            Array de posiciones derechas
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtResult.vlBottom">
-            <summary>
-            Array de posiciones inferiores
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtResult.lProcessingTime">
-            <summary>
-            Array con tiempos de proceso
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtResult.vlFormat">
-            <summary>
-            Array con los formatos reconocidos
-            </summary>
-        </member>
         <member name="T:Orbita.VA.Funciones.VPARMtConfiguration">
             <summary>
             Estructura de la configuración
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtConfiguration.lMiliseconds">
+        <member name="T:Orbita.VA.Funciones.CandidateRegion">
             <summary>
-            Timeout de proceso
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtConfiguration.bAplicarCorreccion">
-            <summary>
-            Aplicar parámetros de corrección
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtConfiguration.fDistance">
-            <summary>
-            Distancia de identificación
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtConfiguration.fVerticalCoeff">
-            <summary>
-            Factor de coeficiente vertical
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtConfiguration.fHorizontalCoeff">
-            <summary>
-            Factor de coeficiente horizontal
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtConfiguration.fAngle">
-            <summary>
-            Angulo
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtConfiguration.lNumSteps">
-            <summary>
-            Número de alturas
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtConfiguration.vlSteps">
-            <summary>
-            Vector alturas
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtConfiguration.lLeft">
-            <summary>
-            Ventana de busqueda izquierda
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtConfiguration.lTop">
-            <summary>
-            Ventana de busqueda superior
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtConfiguration.lWidth">
-            <summary>
-            Ventana de busqueda anchura
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtConfiguration.lHeight">
-            <summary>
-            Ventana de busqueda altura
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.VPARMtConfiguration.fScale">
-            <summary>
-            Altura
+            Region Candidata
             </summary>
         </member>
         <member name="T:Orbita.VA.Funciones.OLPRInfoImagen">
@@ -4026,6 +3706,11 @@
             Ruta
             </summary>
         </member>
+        <member name="F:Orbita.VA.Funciones.OLPRInfoImagen.AutoBorradoFicheroTemporal">
+            <summary>
+            Indica si se ha de borrar el fichero temporal
+            </summary>
+        </member>
         <member name="F:Orbita.VA.Funciones.OLPRInfoImagen.Timestamp">
             <summary>
             Fecha
@@ -4036,7 +3721,7 @@
             Fecha universal
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.OLPRInfoImagen.#ctor(System.Drawing.Bitmap,System.String,System.Object@)">
+        <member name="M:Orbita.VA.Funciones.OLPRInfoImagen.#ctor(System.Drawing.Bitmap,System.String,System.Boolean,System.Object@)">
             <summary>
             Constructor con parametros
             </summary>
@@ -4079,6 +3764,11 @@
         <member name="P:Orbita.VA.Funciones.OLPRInfoImagen.GetPath">
             <summary>
             Obtiene la ruta
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Funciones.OLPRInfoImagen.GetAutoBorradoFicheroTemporal">
+            <summary>
+            Indica si se ha de borrar el fichero temporal
             </summary>
         </member>
         <member name="P:Orbita.VA.Funciones.OLPRInfoImagen.GetTimestamp">
