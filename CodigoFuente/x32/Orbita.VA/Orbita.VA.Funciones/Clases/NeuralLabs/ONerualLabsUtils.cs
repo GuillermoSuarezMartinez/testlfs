@@ -17,6 +17,7 @@ using Orbita.VA.Comun;
 using System.Drawing;
 using Orbita.Utiles;
 using System.Data;
+using System.IO;
 
 namespace Orbita.VA.Funciones
 {
@@ -97,6 +98,22 @@ namespace Orbita.VA.Funciones
                 OLogsVAFunciones.CCR.Error(exception, "CorreccionPerspectivaMemoria");
             }
             return resultado;
+        }
+
+        /// <summary>
+        /// Eliminación del fichero temporal
+        /// </summary>
+        /// <param name="rutaFicheroTemporal"></param>
+        internal static void EliminarFicheroTemporal(string rutaFicheroTemporal)
+        {
+            try
+            {
+                File.Delete(rutaFicheroTemporal);
+            }
+            catch (Exception exception)
+            {
+                OLogsVAFunciones.LPR.Error(exception, "Eliminando imagen temporal de la ruta :" + rutaFicheroTemporal);
+            }
         }
         #endregion
     }

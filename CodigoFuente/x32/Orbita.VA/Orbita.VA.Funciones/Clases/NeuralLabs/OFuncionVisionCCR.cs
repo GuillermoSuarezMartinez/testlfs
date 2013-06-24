@@ -548,7 +548,7 @@ namespace Orbita.VA.Funciones
                             // adición de imagen
                             if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                             {
-                                OMTInterfaceCCR.Add(this.Codigo,this.RutaImagenTemporal, info);
+                                OMTInterfaceCCR.Add(this.Codigo,this.RutaImagenTemporal, false, info);
                             }
                             else
                             {
@@ -566,7 +566,7 @@ namespace Orbita.VA.Funciones
                                 imagenTrabajo.Image.Save(this.RutaImagenTemporal);
                                 if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                                 {
-                                    OMTInterfaceCCR.Add(this.Codigo,this.RutaImagenTemporal, info);
+                                    OMTInterfaceCCR.Add(this.Codigo,this.RutaImagenTemporal, true, info);
                                 }
                             }
                             else

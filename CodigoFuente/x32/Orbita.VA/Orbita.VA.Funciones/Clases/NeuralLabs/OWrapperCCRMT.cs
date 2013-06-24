@@ -8,6 +8,7 @@
 //***********************************************************************
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
@@ -125,7 +126,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.CCR.Error("CCR", "Inicializando el motor CCR:" + exception.ToString());
+                OLogsVAFunciones.CCR.Error(exception, "CCR", "Inicializando el motor CCR:" + exception.ToString());
                 return -1;
             }
         }
@@ -147,7 +148,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.CCR.Error("CCR", "Finalizando el motor CCR:" + exception.ToString());
+                OLogsVAFunciones.CCR.Error(exception, "CCR", "Finalizando el motor CCR:" + exception.ToString());
                 return false;
             }
         }
@@ -167,7 +168,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.CCR.Error("CCR", "Reseteando el wrapper CCR:" + exception.ToString());
+                OLogsVAFunciones.CCR.Error(exception, "CCR", "Reseteando el wrapper CCR:" + exception.ToString());
                 return 0;
             }
         }
@@ -181,27 +182,45 @@ namespace Orbita.VA.Funciones
             {
                 lock (LockObject)
                 {
-                    Dictionary<long, OCCRData> nuevo = new Dictionary<long, OCCRData>();
-                    foreach (KeyValuePair<long, OCCRData> elemento in ElementosEnviados)
+                    var nuevo = ElementosEnviados.Where(kvp => kvp.Value.GetCodFuncion == codFuncion);
+                    if ((nuevo != null) && (nuevo.Count() > 0))
                     {
-                        // do something with entry.Value or entry.Key
-                        OCCRData datos = elemento.Value;
-                        long ident = elemento.Key;
-                        if (datos.GetCodFuncion != codFuncion)
+                        foreach (var valor in nuevo)
                         {
-                            nuevo.Add(ident, datos);
+                            long ident = valor.Key;
+                            bool borrarFicheroTemporal = valor.Value.ImageInformation.GetAutoBorradoFicheroTemporal;
+                            string rutaFicheroTemporal = valor.Value.ImageInformation.GetPath;
+                            ElementosEnviados.Remove(ident);
+                            if (borrarFicheroTemporal)
+                            {
+                                ONerualLabsUtils.EliminarFicheroTemporal(rutaFicheroTemporal);
+                            }
                         }
                     }
-                    ElementosEnviados.Clear();
-                    ElementosEnviados = new Dictionary<long, OCCRData>(nuevo);
-                    nuevo.Clear();
+
+
+
+                    //Dictionary<long, OCCRData> nuevo = new Dictionary<long, OCCRData>();
+                    //foreach (KeyValuePair<long, OCCRData> elemento in ElementosEnviados)
+                    //{
+                    //    // do something with entry.Value or entry.Key
+                    //    OCCRData datos = elemento.Value;
+                    //    long ident = elemento.Key;
+                    //    if (datos.GetCodFuncion != codFuncion)
+                    //    {
+                    //        nuevo.Add(ident, datos);
+                    //    }
+                    //}
+                    //ElementosEnviados.Clear();
+                    //ElementosEnviados = new Dictionary<long, OCCRData>(nuevo);
+                    //nuevo.Clear();
                     GC.Collect();
                 }
                 return 1;
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.CCR.Error("CCR", "Reseteando el motor CCR:" + exception.ToString());
+                OLogsVAFunciones.CCR.Error(exception, "CCR", "Reseteando el motor CCR:" + exception.ToString());
                 return 0;
             }
         }
@@ -244,7 +263,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.CCR.Error("CCR", "Estableciendo configuración del motor CCR:" + exception.ToString());
+                OLogsVAFunciones.CCR.Error(exception, "CCR", "Estableciendo configuración del motor CCR:" + exception.ToString());
             }
         }
         /// <summary>
@@ -267,7 +286,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.CCR.Error("CCR", "Obteniendo cantidad de elementos en cola:" + exception.ToString());
+                OLogsVAFunciones.CCR.Error(exception, "CCR", "Obteniendo cantidad de elementos en cola:" + exception.ToString());
                 return 0;
             }
         }
@@ -297,7 +316,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.CCR.Error("CCR", "Obteniendo cantidad de elementos en cola:" + exception.ToString());
+                OLogsVAFunciones.CCR.Error(exception, "CCR", "Obteniendo cantidad de elementos en cola:" + exception.ToString());
                 return 0;
             }
         }
@@ -322,7 +341,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.CCR.Error("CCR", "Obteniendo resultado:" + exception.ToString());
+                OLogsVAFunciones.CCR.Error(exception, "CCR", "Obteniendo resultado:" + exception.ToString());
                 return null;
             }
         }
@@ -344,7 +363,7 @@ namespace Orbita.VA.Funciones
                         return false;
                     }
 
-                    OCCRInfoImagen informacion = new OCCRInfoImagen(bitmap, string.Empty, ref obj);
+                    OCCRInfoImagen informacion = new OCCRInfoImagen(bitmap, string.Empty, false, ref obj);
 
                     // Establece la prioridad en la cola para la imagen
                     if (bFront)
@@ -362,7 +381,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.CCR.Error("CCR", "Añadiendo imagen a la cola:" + exception.ToString());
+                OLogsVAFunciones.CCR.Error(exception, "CCR", "Añadiendo imagen a la cola:" + exception.ToString());
                 return false;
             }
             return true;
@@ -373,7 +392,7 @@ namespace Orbita.VA.Funciones
         /// <param name="rutaBitmap">imagen</param>
         /// <param name="obj">información de la imagen</param>
         /// <param name="bFront">Si es prioritaria</param>
-        public static bool Add(string codFunc, string rutaBitmap, object obj, bool bFront = false)
+        public static bool Add(string codFunc, string rutaBitmap, bool autoBorradoFicheroTemporal, object obj, bool bFront = false)
         {
             try
             {
@@ -385,7 +404,7 @@ namespace Orbita.VA.Funciones
                         return false;
                     }
 
-                    OCCRInfoImagen informacion = new OCCRInfoImagen(null, rutaBitmap, ref obj);
+                    OCCRInfoImagen informacion = new OCCRInfoImagen(null, rutaBitmap, autoBorradoFicheroTemporal, ref obj);
 
                     // Establece la prioridad en la cola para la imagen
                     if (bFront)
@@ -403,7 +422,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.CCR.Error("CCR", "Añadiendo imagen a la cola:" + exception.ToString());
+                OLogsVAFunciones.CCR.Error(exception, "CCR", "Añadiendo imagen a la cola:" + exception.ToString());
                 return false;
             }
             return true;
@@ -519,9 +538,9 @@ namespace Orbita.VA.Funciones
                         {
                             ElementosEnviados.Add(identificador, valor);
                         }
-                        catch (Exception ex)
+                        catch (Exception exception)
                         {
-                            OLogsVAFunciones.CCR.Error("CCR", "Añadiendo identificador duplicado al diccionario de datos");
+                            OLogsVAFunciones.CCR.Error(exception, "CCR", "Añadiendo identificador duplicado al diccionario de datos");
                         }
                         OLogsVAFunciones.CCR.Debug("CCR", string.Format(new CultureInfo("en-US"), "Introducido ResultadoCCR, id = {0}", new object[] { valor.GetId }));
                     }
@@ -529,7 +548,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.CCR.Error("CCR", "Procesando la cola de CCR: " + exception.ToString());
+                OLogsVAFunciones.CCR.Error(exception, "CCR", "Procesando la cola de CCR: " + exception.ToString());
             }
         }
         /// <summary>
@@ -552,7 +571,13 @@ namespace Orbita.VA.Funciones
                 {
                     if (datoEnviado != null)
                     {
-                        if (res.lNumberOfCodes > 0)
+                        OCCRCodeInfo resultadoCCR = null;
+                        if (res.lNumberOfCodes == 0)
+                        {
+                            resultadoCCR = new OCCRCodeInfo(string.Empty, 0, res.lProcessingTime, 0f, 0, 0, 0, 0, 0f, string.Empty, id, 0, null, 0, null,
+                                0, 0f, 0, 0, 0, 0, null, 0, false, false, res.lUserParam1.ToInt32(), res.lUserParam2.ToInt32());
+                        }
+                        else if (res.lNumberOfCodes > 0)
                         {
                             //for (int i = 0; i < res.lNumberOfCodes; i++)
                             //{
@@ -587,9 +612,9 @@ namespace Orbita.VA.Funciones
                                     codigo = Encoding.UTF8.GetString(res.strResult, 0, res.vlNumbersOfCharacters[0]);
                                     OLogsVAFunciones.CCR.Debug("CCR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR (id = {0}) : CODIGO {1}", new object[] { id, codigo }));
                                 }
-                                catch
+                                catch (Exception exception)
                                 {
-                                    OLogsVAFunciones.CCR.Error("CCR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR (id = {0}) : Numero carácteres {1}", new object[] { id, res.vlNumbersOfCharacters[0] }));
+                                    OLogsVAFunciones.CCR.Error(exception, "CCR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR (id = {0}) : Numero carácteres {1}", new object[] { id, res.vlNumbersOfCharacters[0] }));
                                 }
 
                                 // Obtenemos el ISO
@@ -608,22 +633,23 @@ namespace Orbita.VA.Funciones
                                 }
 
                                 // Creamos el resultado y lo añadimos a la cola
-                                OCCRCodeInfo resultadoCompleto = new OCCRCodeInfo(codigo, res.lCodeVerified, res.lProcessingTime, avgChar, lpos, tpos, rpos, bpos, fia, datoEnviado.ImageInformation.GetPath, id, codigo.Length,
+                                resultadoCCR = new OCCRCodeInfo(codigo, res.lCodeVerified, res.lProcessingTime, avgChar, lpos, tpos, rpos, bpos, fia, datoEnviado.ImageInformation.GetPath, id, codigo.Length,
                                     numArray, res.lExtraInfoFound, extraInfo, numCaracISO, calidadISO, posLeftISO, posTopISO, posRightISO, posBottomISO, destinationArray, nLines, esInvertido, esVertical, res.lUserParam1.ToInt32(), res.lUserParam2.ToInt32());
-                                ColaDeResultados.Enqueue(new OPair<OCCRCodeInfo, OCCRData>(resultadoCompleto, datoEnviado));
                             //}
                         }
-                        else if (res.lNumberOfCodes == 0)
+                        ColaDeResultados.Enqueue(new OPair<OCCRCodeInfo, OCCRData>(resultadoCCR, datoEnviado));
+
+                        // Eliminamos la imagen temporal 
+                        if ((datoEnviado.ImageInformation != null) && (datoEnviado.ImageInformation.GetAutoBorradoFicheroTemporal))
                         {
-                            OCCRCodeInfo resultadoVacio = new OCCRCodeInfo(string.Empty, 0, res.lProcessingTime, 0f, 0, 0, 0, 0, 0f, string.Empty, id, 0, null, 0, null,
-                                0, 0f, 0, 0, 0, 0, null, 0, false, false, res.lUserParam1.ToInt32(), res.lUserParam2.ToInt32());
-                            ColaDeResultados.Enqueue(new OPair<OCCRCodeInfo, OCCRData>(resultadoVacio, datoEnviado));
+                            string rutaFicheroTemporal = datoEnviado.ImageInformation.GetPath;
+                            ONerualLabsUtils.EliminarFicheroTemporal(rutaFicheroTemporal);
                         }
                     }
                 }
                 catch (Exception exception)
                 {
-                    OLogsVAFunciones.CCR.Error("CCR", string.Format(new CultureInfo("en-US"), "ERROR CallbackCCR Exception, {0}", new object[] { exception.Message }));
+                    OLogsVAFunciones.CCR.Error(exception, "CCR", string.Format(new CultureInfo("en-US"), "ERROR CallbackCCR Exception, {0}", new object[] { exception.Message }));
                     OCCRCodeInfo resultadoVacioError = new OCCRCodeInfo(string.Empty, 0, res.lProcessingTime, 0f, 0, 0, 0, 0, 0f, string.Empty, id, 0, null, 0, null, 
                         0, 0f, 0, 0, 0, 0, null, 0, false, false, res.lUserParam1.ToInt32(), res.lUserParam2.ToInt32());
                     ColaDeResultados.Enqueue(new OPair<OCCRCodeInfo, OCCRData>(resultadoVacioError, datoEnviado));
@@ -832,6 +858,10 @@ namespace Orbita.VA.Funciones
         /// </summary>
         private string Ruta;
         /// <summary>
+        /// Indica si se ha de borrar el fichero temporal
+        /// </summary>
+        private bool AutoBorradoFicheroTemporal;
+        /// <summary>
         /// Fecha
         /// </summary>
         private DateTime Timestamp;
@@ -873,6 +903,16 @@ namespace Orbita.VA.Funciones
             }
         }
         /// <summary>
+        /// Indica si se ha de borrar el fichero temporal
+        /// </summary>
+        public bool GetAutoBorradoFicheroTemporal
+        {
+            get
+            {
+                return this.AutoBorradoFicheroTemporal;
+            }
+        }
+        /// <summary>
         /// Obtiene la fecha
         /// </summary>
         public DateTime GetTimestamp
@@ -901,11 +941,12 @@ namespace Orbita.VA.Funciones
         /// <param name="image"></param>
         /// <param name="path"></param>
         /// <param name="objInfo"></param>
-        public OCCRInfoImagen(Bitmap image, string path, ref object objInfo)
+        public OCCRInfoImagen(Bitmap image, string path, bool autoBorradoFicheroTemporal, ref object objInfo)
         {
             this.DisposedValue = false;
             if (image != null) { this.Imagen = (Bitmap)image.Clone(); }
             this.Ruta = path;
+            this.AutoBorradoFicheroTemporal = autoBorradoFicheroTemporal;
             this.Obj = RuntimeHelpers.GetObjectValue(objInfo);
             this.Timestamp = DateTime.Now;
             this.TimestampUTC = DateTime.Now.ToUniversalTime();

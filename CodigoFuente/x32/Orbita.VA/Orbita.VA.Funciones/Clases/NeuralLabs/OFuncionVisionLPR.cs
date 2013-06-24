@@ -574,19 +574,6 @@ namespace Orbita.VA.Funciones
 
                         this.CallBack(infoInspeccionLPR); // Llamada al callback
 
-                        // Eliminamos la imagen temporal 
-                        if (infoInspeccionLPR.Parametros.RealizarProcesoPorDisco)
-                        {
-                            try
-                            {
-                                File.Delete(infoInspeccionLPR.Info.RutaImagenTemporal);
-                            }
-                            catch (Exception exception)
-                            {
-                                OLogsVAFunciones.LPR.Error(exception, "Eliminando imagen temporal de la ruta :" + infoInspeccionLPR.Info.RutaImagenTemporal);
-                            }
-                        }
-
                         // Guardamos la traza
                         OLogsVAFunciones.LPR.Debug(this.Codigo, "Fin de ejecución de la función " + this.Codigo);
 
@@ -743,7 +730,7 @@ namespace Orbita.VA.Funciones
             // Ya no existen inspecciones pendientes
             this.ContInspeccionesEnCola = 0;
             this.IndiceFotografia = 0;
-            this.ContadorImagenesPorDisco = 0;          
+            this.ContadorImagenesPorDisco = 0;
 
             // Se finaliza la ejecución de la función de visión
             this.FuncionEjecutada();
@@ -805,7 +792,7 @@ namespace Orbita.VA.Funciones
                             // adición de imagen
                             if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                             {
-                                resultCode = OMTInterfaceLPR.Add(this.Codigo,this.RutaImagenTemporal, info);
+                                resultCode = OMTInterfaceLPR.Add(this.Codigo,this.RutaImagenTemporal, false, info);
                             }
                             else
                             {
@@ -823,7 +810,7 @@ namespace Orbita.VA.Funciones
                                 imagenTrabajo.Image.Save(this.RutaImagenTemporal);
                                 if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                                 {
-                                    resultCode = OMTInterfaceLPR.Add(this.Codigo,this.RutaImagenTemporal, info);
+                                    resultCode = OMTInterfaceLPR.Add(this.Codigo,this.RutaImagenTemporal, true, info);
                                 }
                             }
                             else

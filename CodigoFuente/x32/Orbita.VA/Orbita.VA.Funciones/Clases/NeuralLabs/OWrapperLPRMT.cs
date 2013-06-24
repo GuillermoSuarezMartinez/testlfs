@@ -8,6 +8,7 @@
 //***********************************************************************
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
@@ -125,7 +126,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.LPR.Error("LPR", "Inicializando el motor LPR:" + exception.ToString());
+                OLogsVAFunciones.LPR.Error(exception, "LPR", "Inicializando el motor LPR:" + exception.ToString());
                 return -1;
             }
         }
@@ -147,7 +148,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.LPR.Error("LPR", "Finalizando el motor LPR:" + exception.ToString());
+                OLogsVAFunciones.LPR.Error(exception, "LPR", "Finalizando el motor LPR:" + exception.ToString());
                 return false;
             }
         }
@@ -161,27 +162,43 @@ namespace Orbita.VA.Funciones
             {
                 lock (LockObject)
                 {
-                    Dictionary<long, OLPRData> nuevo = new Dictionary<long, OLPRData>();
-                    foreach (KeyValuePair<long, OLPRData> elemento in ElementosEnviados)
+                    var nuevo = ElementosEnviados.Where(kvp => kvp.Value.GetCodFuncion == codFuncion);
+                    if ((nuevo != null) && (nuevo.Count() > 0))
                     {
-                        // do something with entry.Value or entry.Key
-                        OLPRData datos = elemento.Value;
-                        long ident = elemento.Key;
-                        if (datos.GetCodFuncion != codFuncion)
+                        foreach (var valor in nuevo)
                         {
-                            nuevo.Add(ident, datos);
+                            long ident = valor.Key;
+                            bool borrarFicheroTemporal = valor.Value.ImageInformation.GetAutoBorradoFicheroTemporal;
+                            string rutaFicheroTemporal = valor.Value.ImageInformation.GetPath;
+                            ElementosEnviados.Remove(ident);
+                            if (borrarFicheroTemporal)
+                            {
+                                ONerualLabsUtils.EliminarFicheroTemporal(rutaFicheroTemporal);
+                            }
                         }
                     }
-                ElementosEnviados.Clear();
-                    ElementosEnviados = new Dictionary<long,OLPRData>(nuevo);
-                    nuevo.Clear();
-                GC.Collect();
+
+                    //    Dictionary<long, OLPRData> nuevo = new Dictionary<long, OLPRData>();
+                    //    foreach (KeyValuePair<long, OLPRData> elemento in ElementosEnviados)
+                    //    {
+                    //        // do something with entry.Value or entry.Key
+                    //        OLPRData datos = elemento.Value;
+                    //        long ident = elemento.Key;
+                    //        if (datos.GetCodFuncion != codFuncion)
+                    //        {
+                    //            nuevo.Add(ident, datos);
+                    //        }
+                    //    }
+                    //ElementosEnviados.Clear();
+                    //    ElementosEnviados = new Dictionary<long,OLPRData>(nuevo);
+                    //    nuevo.Clear();
+                    GC.Collect();
                 }
                 return 1;
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.LPR.Error("LPR", "Reseteando el motor LPR:" + exception.ToString());
+                OLogsVAFunciones.LPR.Error(exception, "LPR", "Reseteando el motor LPR:" + exception.ToString());
                 return 0;
             }
         }
@@ -220,7 +237,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.LPR.Error("LPR", "Estableciendo configuración del motor LPR:" + exception.ToString());
+                OLogsVAFunciones.LPR.Error(exception, "LPR", "Estableciendo configuración del motor LPR:" + exception.ToString());
             }
         }
         /// <summary>
@@ -243,7 +260,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.LPR.Error("LPR", "Obteniendo cantidad de elementos en cola:" + exception.ToString());
+                OLogsVAFunciones.LPR.Error(exception, "LPR", "Obteniendo cantidad de elementos en cola:" + exception.ToString());
                 return 0;
             }
         }
@@ -273,7 +290,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.LPR.Error("LPR", "Obteniendo cantidad de elementos en cola:" + exception.ToString());
+                OLogsVAFunciones.LPR.Error(exception, "LPR", "Obteniendo cantidad de elementos en cola:" + exception.ToString());
                 return 0;
             }
         }
@@ -298,7 +315,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.LPR.Error("LPR", "Obteniendo resultado:" + exception.ToString());
+                OLogsVAFunciones.LPR.Error(exception, "LPR", "Obteniendo resultado:" + exception.ToString());
                 return null;
             }
         }
@@ -321,7 +338,7 @@ namespace Orbita.VA.Funciones
                         return false;
                     }
 
-                    OLPRInfoImagen informacion = new OLPRInfoImagen(bitmap, string.Empty, ref obj);
+                    OLPRInfoImagen informacion = new OLPRInfoImagen(bitmap, string.Empty, false, ref obj);
 
                     // Establece la prioridad en la cola para la imagen
                     if (bFront)
@@ -339,7 +356,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.LPR.Error("LPR", "Añadiendo imagen a la cola:" + exception.ToString());
+                OLogsVAFunciones.LPR.Error(exception, "LPR", "Añadiendo imagen a la cola:" + exception.ToString());
                 return false;
             }
             return true;
@@ -351,7 +368,7 @@ namespace Orbita.VA.Funciones
         /// <param name="rutaBitmap">imagen</param>
         /// <param name="obj">información de la imagen</param>
         /// <param name="bFront">Si es prioritaria</param>
-        public static bool Add(string codFunc,string rutaBitmap, object obj, bool bFront = false)
+        public static bool Add(string codFunc,string rutaBitmap, bool autoBorradoFicheroTemporal, object obj, bool bFront = false)
         {
             try
             {
@@ -363,7 +380,7 @@ namespace Orbita.VA.Funciones
                         return false;
                     }
 
-                    OLPRInfoImagen informacion = new OLPRInfoImagen(null, rutaBitmap, ref obj);
+                    OLPRInfoImagen informacion = new OLPRInfoImagen(null, rutaBitmap, autoBorradoFicheroTemporal, ref obj);
 
                     // Establece la prioridad en la cola para la imagen
                     if (bFront)
@@ -381,7 +398,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.LPR.Error("LPR", "Añadiendo imagen a la cola:" + exception.ToString());
+                OLogsVAFunciones.LPR.Error(exception, "LPR", "Añadiendo imagen a la cola:" + exception.ToString());
                 return false;
             }
             return true;
@@ -486,9 +503,9 @@ namespace Orbita.VA.Funciones
                         {
                             ElementosEnviados.Add(identificador, valor);
                         }
-                        catch (Exception ex)
+                        catch (Exception exception)
                         {
-                            OLogsVAFunciones.LPR.Error("LPR", "Añadiendo identificador duplicado al diccionario de datos");
+                            OLogsVAFunciones.LPR.Error(exception, "LPR", "Añadiendo identificador duplicado al diccionario de datos");
                         }
 
                         OLogsVAFunciones.LPR.Debug("LPR", string.Format(new CultureInfo("en-US"), "Introducido ResultadoLPR, id = {0}", new object[] { valor.GetId }));
@@ -497,7 +514,7 @@ namespace Orbita.VA.Funciones
             }
             catch (Exception exception)
             {
-                OLogsVAFunciones.LPR.Error("LPR", "Procesando la cola de LPR: " + exception.ToString());
+                OLogsVAFunciones.LPR.Error(exception, "LPR", "Procesando la cola de LPR: " + exception.ToString());
             }
         }
         /// <summary>
@@ -520,9 +537,13 @@ namespace Orbita.VA.Funciones
                 {
                     if (datoEnviado != null)
                     {
-                        if (res.lNumberOfPlates > 0)
+                        OLPRCodeInfo resultadoLPR = null;
+                        if (res.lNumberOfPlates == 0)
                         {
-                            OLPRCodeInfo resultadoCompleto = null;
+                            resultadoLPR = new OLPRCodeInfo(string.Empty, res.lProcessingTime, 0f, 0, 0, 0, 0, 0f, string.Empty, id, 0, null, 0);
+                        }
+                        else if (res.lNumberOfPlates > 0)
+                        {
                             for (int i = 0; i < res.lNumberOfPlates; i++)
                             {
                                 //OLPRCodeInfo sd = res[0];
@@ -543,27 +564,31 @@ namespace Orbita.VA.Funciones
                                     matricula = Encoding.UTF7.GetString(res.strResult, i * 10, res.vlNumbersOfCharacters[i]);
                                     OLogsVAFunciones.LPR.Debug("LPR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR (id = {0}) : CODIGO {1}", new object[] { id, matricula }));
                                 }
-                                catch
+                                catch (Exception exception)
                                 {
-                                    OLogsVAFunciones.LPR.Error("LPR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR (id = {0}) : Numero carácteres {1}", new object[] { id, res.vlNumbersOfCharacters[i] }));
+                                    OLogsVAFunciones.LPR.Error(exception, "LPR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR (id = {0}) : Numero carácteres {1}", new object[] { id, res.vlNumbersOfCharacters[i] }));
                                 }
 
-                                resultadoCompleto = new OLPRCodeInfo(matricula, res.lProcessingTime, (double)avgChar, lpos, tpos, rpos, bpos, (double)fia,
+                                resultadoLPR = new OLPRCodeInfo(matricula, res.lProcessingTime, (double)avgChar, lpos, tpos, rpos, bpos, (double)fia,
                                     datoEnviado.ImageInformation.GetPath, id, matricula.Length, destinationArray, res.vlFormat[0]);
-                                datoEnviado.AddResultado(ref resultadoCompleto);
+                                datoEnviado.AddResultado(ref resultadoLPR);
                             }
-                            ColaDeResultados.Enqueue(new OPair<OLPRCodeInfo, OLPRData>(resultadoCompleto, datoEnviado));
                         }
-                        else if (res.lNumberOfPlates == 0)
+
+                        // Encolamos el resultado
+                        ColaDeResultados.Enqueue(new OPair<OLPRCodeInfo, OLPRData>(resultadoLPR, datoEnviado));
+
+                        // Eliminamos la imagen temporal 
+                        if ((datoEnviado.ImageInformation != null) && (datoEnviado.ImageInformation.GetAutoBorradoFicheroTemporal))
                         {
-                            OLPRCodeInfo resultadoVacio = new OLPRCodeInfo(string.Empty, res.lProcessingTime, 0f, 0, 0, 0, 0, 0f, string.Empty, id, 0, null, 0);
-                            ColaDeResultados.Enqueue(new OPair<OLPRCodeInfo, OLPRData>(resultadoVacio, datoEnviado));
+                            string rutaFicheroTemporal = datoEnviado.ImageInformation.GetPath;
+                            ONerualLabsUtils.EliminarFicheroTemporal(rutaFicheroTemporal);
                         }
                     }
                 }
                 catch (Exception exception)
                 {
-                    OLogsVAFunciones.LPR.Error("LPR", string.Format(new CultureInfo("en-US"), "ERROR CallbackCCR Exception, {0}", new object[] { exception.Message }));
+                    OLogsVAFunciones.LPR.Error(exception, "LPR", string.Format(new CultureInfo("en-US"), "ERROR CallbackCCR Exception, {0}", new object[] { exception.Message }));
                     OLPRCodeInfo resultadoVacioError = new OLPRCodeInfo(string.Empty, res.lProcessingTime, 0f, 0, 0, 0, 0, 0f, string.Empty, id, 0, null, 0);
                     ColaDeResultados.Enqueue(new OPair<OLPRCodeInfo, OLPRData>(resultadoVacioError, datoEnviado));
                 }
@@ -825,6 +850,10 @@ namespace Orbita.VA.Funciones
         /// </summary>
         private string Ruta;
         /// <summary>
+        /// Indica si se ha de borrar el fichero temporal
+        /// </summary>
+        private bool AutoBorradoFicheroTemporal;
+        /// <summary>
         /// Fecha
         /// </summary>
         private DateTime Timestamp;
@@ -866,6 +895,16 @@ namespace Orbita.VA.Funciones
             }
         }
         /// <summary>
+        /// Indica si se ha de borrar el fichero temporal
+        /// </summary>
+        public bool GetAutoBorradoFicheroTemporal
+        {
+            get
+            {
+                return this.AutoBorradoFicheroTemporal;
+            }
+        }
+        /// <summary>
         /// Obtiene la fecha
         /// </summary>
         public DateTime GetTimestamp
@@ -894,11 +933,12 @@ namespace Orbita.VA.Funciones
         /// <param name="image"></param>
         /// <param name="path"></param>
         /// <param name="objInfo"></param>
-        public OLPRInfoImagen(Bitmap image, string path, ref object objInfo)
+        public OLPRInfoImagen(Bitmap image, string path, bool autoBorradoFicheroTemporal, ref object objInfo)
         {
             this.DisposedValue = false;
             if (image != null) { this.Imagen = (Bitmap)image.Clone(); }
             this.Ruta = path;
+            this.AutoBorradoFicheroTemporal = autoBorradoFicheroTemporal;
             this.Obj = RuntimeHelpers.GetObjectValue(objInfo);
             this.Timestamp = DateTime.Now;
             this.TimestampUTC = DateTime.Now.ToUniversalTime();
@@ -1099,7 +1139,7 @@ namespace Orbita.VA.Funciones
         /// <param name="ident"></param>
         /// <param name="cfg"></param>
         /// <param name="pi"></param>
-        public OLPRData(long ident,string codFuncion, VPARMtConfiguration cfg, ref OLPRInfoImagen pi)
+        public OLPRData(long ident, string codFuncion, VPARMtConfiguration cfg, ref OLPRInfoImagen pi)
         {
             this.Identificador = ident;
             this.CodFuncionVision = codFuncion;
