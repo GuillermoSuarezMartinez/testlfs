@@ -251,9 +251,13 @@ namespace Orbita.Comunicaciones
                 {
                     OInfoDato infodato = this.Tags.GetDB(variables[i]);
 
-                    salidas[infodato.Direccion - this._registroInicialSalidas] = this.ProcesarByte(salidalocal[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
-                    salidalocal[infodato.Direccion - this._registroInicialSalidas] = salidas[infodato.Direccion - this._registroInicialSalidas];
-                }
+                    if (!infodato.EsEntrada)
+                    {
+                        salidas[infodato.Direccion - this._registroInicialSalidas] = this.ProcesarByte(salidalocal[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
+                        salidalocal[infodato.Direccion - this._registroInicialSalidas] = salidas[infodato.Direccion - this._registroInicialSalidas];
+                    }
+
+                 }
                 if (this.Winsock.State != WinsockStates.Connected)
                 {
                     try

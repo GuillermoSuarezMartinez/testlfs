@@ -349,7 +349,23 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                wrapper.Fatal("ODispositivoSiemens1200 Escribir Error en la escritura de variables: " + ex.ToString());
+                string vars = "";
+                string disp = this.Nombre;
+
+                try
+                {
+                    for (int i = 0; i < variables.Length; i++)
+                    {
+                        vars = vars + "#" + variables[i].ToString();
+                    }
+                }
+                catch (Exception)
+                {
+                    vars = "";
+                    disp = "";
+                }
+                wrapper.Fatal("ODispositivoSiemens1200 Escribir Error en la escritura de variables en dispositivo " + 
+                    disp.ToString() + " con variables " + vars + " " + ex.ToString());
             }
 
             return resultado;

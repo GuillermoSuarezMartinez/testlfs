@@ -37,9 +37,13 @@ namespace Orbita.Comunicaciones
         /// </summary>
         int _bit;
         /// <summary>
-        /// Valor de tipo String.
+        /// Valor de la variable.
         /// </summary>
         object _valor;
+        /// <summary>
+        /// Valor por defecto de la variable.
+        /// </summary>
+        object _valorDefecto;        
         /// <summary>
         /// Descripción.
         /// </summary>
@@ -84,6 +88,18 @@ namespace Orbita.Comunicaciones
         /// Indica si es una entrada
         /// </summary>
         bool _esEntrada;
+        /// <summary>
+        /// Canal que ejecuta el cambio de valor
+        /// </summary>
+        string _canalCambioDato;
+        /// <summary>
+        /// Canal que ejecuta el cambio de valor
+        /// </summary>
+        public string CanalCambioDato
+        {
+            get { return _canalCambioDato; }
+            set { _canalCambioDato = value; }
+        }
         #endregion
 
         #region Constructores
@@ -186,6 +202,14 @@ namespace Orbita.Comunicaciones
         {
             get { return this._valor; }
             set { this._valor = value; }
+        }
+        /// <summary>
+        /// Valor por defecto de la variable.
+        /// </summary>
+        public object ValorDefecto
+        {
+            get { return _valorDefecto; }
+            set { _valorDefecto = value; }
         }
         /// <summary>
         /// Último valor.

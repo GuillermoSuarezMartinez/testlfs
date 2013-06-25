@@ -77,10 +77,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Comun\Comunicaciones\MccDaq.dll</HintPath>
     </Reference>
-    <Reference Include="OpcRcw.Comn, Version=1.10.2.0, Culture=neutral, PublicKeyToken=9a40e993cbface53, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="OpcRcw.Comn">
+      <HintPath>..\Comun\Comunicaciones\OpcRcw.Comn.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\Comun\Comunicaciones\OpcRcw.Comn.dll</HintPath>
     </Reference>
     <Reference Include="opcrcw.da, Version=3.0.3.0, Culture=neutral, PublicKeyToken=9a40e993cbface53, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -176,8 +175,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)Orbita.Comunicaciones.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I
-xcopy "$(TargetDir)Orbita.Comunicaciones.xml" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -31,6 +31,10 @@ namespace Orbita.Comunicaciones
         /// Argumentos para generar los eventos
         /// </summary>
         OEventArgs _oEventargs;
+        /// <summary>
+        /// Indica si las variables han sido iniciadas
+        /// </summary>
+        private bool _inicioVariables = false;
         #endregion
 
         #region Constructores
@@ -100,7 +104,32 @@ namespace Orbita.Comunicaciones
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
         public override void Iniciar()
         {
+            this.IniciarValores();
             this.InicHiloVida();
+        }
+        /// <summary>
+        /// Inicia los valores por defecto en las variables del dispositivo
+        /// </summary>
+        private void IniciarValores()
+        {
+            string[] variables;
+            object[] valores;
+
+            variables = new string[this.Datos.Count];
+            valores = new string[this.Datos.Count];
+            int i=0;
+            foreach (DictionaryEntry item in this.GetDatos())
+            {
+                OInfoDato dato = (OInfoDato)item.Value;
+                variables[i] = dato.Texto;
+                valores[i] = dato.ValorDefecto;
+                i++;
+            }
+
+            this.Escribir(variables, valores);
+
+            this._inicioVariables = true;
+
         }
         /// <summary>
         /// Leer el valor de las descripciones de variables de la colección
@@ -159,7 +188,7 @@ namespace Orbita.Comunicaciones
                     {
                         OInfoDato infoDBdato = this._tags.GetDB(variables[i]);
                         infoDBdato.UltimoValor = infoDBdato.Valor;
-                        infoDBdato.Valor = valores[i];
+                        infoDBdato.Valor = valores[i];                       
 
                         if (this._tags.GetLecturas(infoDBdato.Identificador) != null)
                         {
@@ -193,7 +222,10 @@ namespace Orbita.Comunicaciones
                             }
                             catch (Exception ex)
                             {
-                                wrapper.Fatal("ODispositivoTCP Escribir Error al escribir la alarma: ", ex);
+                                if (this._inicioVariables)
+                                {
+                                    wrapper.Fatal("ODispositivoTCP Escribir Error al escribir la alarma: ", ex);
+                                }                                
                             }
                         }
                     }
@@ -201,8 +233,24 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
+                string vars = "";
+                string disp = this.Nombre;
+
+                try
+                {
+                    for (int i = 0; i < variables.Length; i++)
+                    {
+                        vars = vars + "#" + variables[i].ToString();
+                    }
+                }
+                catch (Exception)
+                {
+                    vars = "";
+                    disp = "";
+                }
                 resultado = false;
-                wrapper.Fatal("ODispositivoTCP Escribir: ", ex);
+                wrapper.Fatal("ODispositivoTCP Escribir Error en la escritura de variables en dispositivo " +
+                    disp.ToString() + " con variables " + vars + " " + ex.ToString());
             }
 
             return resultado;
