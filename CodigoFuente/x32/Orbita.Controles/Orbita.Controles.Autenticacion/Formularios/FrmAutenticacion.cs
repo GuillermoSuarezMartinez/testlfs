@@ -19,7 +19,6 @@ namespace Orbita.Controles.Autenticacion
         #region DLL Imports
         /// <summary>
         /// Esta función recupera el estado de la tecla virtual especificada.
-        /// The status specifies whether the key is up, down.
         /// </summary>
         /// <param name="keyCode">Specifies a key code for the button to me checked</param>
         /// <returns>Return value will be 0 if off and 1 if on</returns>
@@ -121,6 +120,7 @@ namespace Orbita.Controles.Autenticacion
         {
             //  Obtener o establecer el resultado de cuadro de diálogo para el formulario.
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
+
             //  Cerrar el formulario si la autenticación es correcta.
             this.Close();
         }
@@ -135,13 +135,14 @@ namespace Orbita.Controles.Autenticacion
 
         #region Métodos públicos
         /// <summary>
-        /// Mostrar ventana de dialogo como hijo de un formulario MDI.
+        /// Mostrar la ventana de dialogo como hijo de un formulario MDI.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="dialogReturnedValue">Manejador de evento de retorno.</param>
         public void ShowChildDialog(System.Windows.Forms.Form sender, System.EventHandler<AutenticacionResultEventArgs> dialogReturnedValue)
         {
             this.MdiParent = sender;
+
             dialogReturning += dialogReturnedValue;
             this.Show();
             this.Refresh();
@@ -156,7 +157,7 @@ namespace Orbita.Controles.Autenticacion
                 //  Obtener el valor que indica si el control puede recibir el foco.
                 if (this.txtContraseña.CanFocus)
                 {
-                    //  Establecer el foco de entrada en el control txtContraseña.
+                    //  Establecer el foco de entrada en el control txtContraseña de tipo System.Windows.Forms.TextBox.
                     this.txtContraseña.Focus();
                 }
             }
@@ -193,8 +194,10 @@ namespace Orbita.Controles.Autenticacion
                     {
                         //  Cancelar evento de cierre de formulario de autenticación.
                         e.Cancel = true;
+
                         //  Inicializar resultado del dialogo en procesos de autenticación incorrecta.
                         this.DialogResult = System.Windows.Forms.DialogResult.None;
+
                         //  Mostrar en pantalla el error concreto al usuario.
                         this.lblCredencialesIncorrectas.Text = estado.Mensaje;
                         this.lblCredencialesIncorrectas.Visible = true;
@@ -209,6 +212,7 @@ namespace Orbita.Controles.Autenticacion
         private void FrmValidar_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
         {
             AutenticacionResultEventArgs args = new AutenticacionResultEventArgs(this.DialogResult);
+            args.Usuario = "pp";
             if (logon != null)
             {
                 args.Usuario = logon.usuario;
