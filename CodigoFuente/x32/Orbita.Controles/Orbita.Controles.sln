@@ -47,7 +47,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Test", "..\Pruebas\O
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 12
+		SccNumberOfProjects = 13
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://01x0019:8080/tfs/orbitasoftware
 		SccLocalPath0 = .
@@ -95,6 +95,10 @@ Global
 		SccProjectTopLevelParentUniqueName11 = Orbita.Controles.sln
 		SccProjectName11 = Orbita.Controles.VA
 		SccLocalPath11 = Orbita.Controles.VA
+		SccProjectUniqueName12 = Orbita.Controles.Grid\\Orbita.Controles.Grid.csproj
+		SccProjectTopLevelParentUniqueName12 = Orbita.Controles.sln
+		SccProjectName12 = Orbita.Controles.Grid
+		SccLocalPath12 = Orbita.Controles.Grid
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

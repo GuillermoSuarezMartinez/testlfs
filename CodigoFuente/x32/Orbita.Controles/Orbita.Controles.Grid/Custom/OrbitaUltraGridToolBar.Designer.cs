@@ -15,6 +15,7 @@
         {
             if (disposing && (components != null))
             {
+                FlushAllEvents();
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -129,14 +130,12 @@
             this.excel = new Infragistics.Win.UltraWinGrid.ExcelExport.UltraGridExcelExporter(this.components);
             this.imprimir = new Infragistics.Win.UltraWinGrid.UltraGridPrintDocument(this.components);
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.grid = new Orbita.Controles.Grid.OrbitaUltraGrid();
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this.toolbar = new Orbita.Controles.Menu.OrbitaUltraToolbarsManager(this.components);
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -171,38 +170,10 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // grid
-            // 
-            this.grid.DisplayLayout.AutoFitStyle = Infragistics.Win.UltraWinGrid.AutoFitStyle.ExtendLastColumn;
-            this.grid.DisplayLayout.CaptionVisible = Infragistics.Win.DefaultableBoolean.False;
-            this.grid.DisplayLayout.Override.AllowDelete = Infragistics.Win.DefaultableBoolean.True;
-            this.grid.DisplayLayout.Override.AllowMultiCellOperations = Infragistics.Win.UltraWinGrid.AllowMultiCellOperation.Copy;
-            this.grid.DisplayLayout.Override.AllowRowFiltering = Infragistics.Win.DefaultableBoolean.True;
-            this.grid.DisplayLayout.Override.AllowUpdate = Infragistics.Win.DefaultableBoolean.False;
-            this.grid.DisplayLayout.Override.CellClickAction = Infragistics.Win.UltraWinGrid.CellClickAction.CellSelect;
-            this.grid.DisplayLayout.Override.FilterUIType = Infragistics.Win.UltraWinGrid.FilterUIType.FilterRow;
-            this.grid.DisplayLayout.Override.HeaderClickAction = Infragistics.Win.UltraWinGrid.HeaderClickAction.SortMulti;
-            this.grid.DisplayLayout.Override.RowSelectors = Infragistics.Win.DefaultableBoolean.False;
-            this.grid.DisplayLayout.Override.SelectTypeCell = Infragistics.Win.UltraWinGrid.SelectType.None;
-            this.grid.DisplayLayout.Override.SelectTypeCol = Infragistics.Win.UltraWinGrid.SelectType.None;
-            this.grid.DisplayLayout.Override.SelectTypeRow = Infragistics.Win.UltraWinGrid.SelectType.None;
-            this.grid.DisplayLayout.Override.SummaryDisplayArea = Infragistics.Win.UltraWinGrid.SummaryDisplayAreas.BottomFixed;
-            this.grid.DisplayLayout.Override.WrapHeaderText = Infragistics.Win.DefaultableBoolean.False;
-            this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grid.Location = new System.Drawing.Point(0, 29);
-            this.grid.Name = "grid";
-            this.grid.OI.Filas.TipoSeleccion = null;
-            this.grid.Size = new System.Drawing.Size(898, 146);
-            this.grid.TabIndex = 13;
-            this.grid.Text = "orbitaUltraGrid1";
-            this.grid.UpdateMode = Infragistics.Win.UltraWinGrid.UpdateMode.OnCellChangeOrLostFocus;
-            this.grid.AfterDataRowActivate += new Infragistics.Win.UltraWinGrid.RowEventHandler(this.grid_AfterDataRowActivate);
-            this.grid.AfterFilterRowActivate += new Infragistics.Win.UltraWinGrid.RowEventHandler(this.grid_AfterFilterRowActivate);
-            // 
             // _OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left
             // 
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left.BackColor = System.Drawing.SystemColors.Control;
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Left;
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left.ForeColor = System.Drawing.SystemColors.ControlText;
             this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left.Location = new System.Drawing.Point(0, 29);
@@ -212,7 +183,7 @@
             // 
             // toolbar
             // 
-            appearance1.BackColor = System.Drawing.SystemColors.Control;
+            appearance1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.toolbar.Appearance = appearance1;
             this.toolbar.DesignerFlags = 1;
             this.toolbar.DockWithinContainer = this;
@@ -411,14 +382,16 @@
             buttonTool44.SharedPropsInternal.Shortcut = System.Windows.Forms.Shortcut.CtrlP;
             buttonTool56.SharedPropsInternal.Caption = "Seleccionar todo";
             buttonTool56.SharedPropsInternal.Enabled = false;
-            buttonTool56.SharedPropsInternal.Shortcut = System.Windows.Forms.Shortcut.CtrlA;
+            buttonTool56.SharedPropsInternal.Shortcut = System.Windows.Forms.Shortcut.CtrlT;
             buttonTool57.SharedPropsInternal.Caption = "Posición anterior";
+            buttonTool57.SharedPropsInternal.Shortcut = System.Windows.Forms.Shortcut.CtrlA;
             buttonTool58.SharedPropsInternal.Caption = "Posición siguiente";
+            buttonTool58.SharedPropsInternal.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
             buttonTool59.SharedPropsInternal.Caption = "Última posición";
             buttonTool59.SharedPropsInternal.Shortcut = System.Windows.Forms.Shortcut.CtrlU;
             buttonTool62.SharedPropsInternal.Caption = "Deseleccionar todo";
             buttonTool62.SharedPropsInternal.Enabled = false;
-            buttonTool62.SharedPropsInternal.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftA;
+            buttonTool62.SharedPropsInternal.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftT;
             popupMenuTool4.SharedPropsInternal.Caption = "Ir a";
             popupMenuTool4.Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[] {
             buttonTool66,
@@ -471,39 +444,6 @@
             maskedEditTool2,
             stateButtonTool2});
             // 
-            // _OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right
-            // 
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.BackColor = System.Drawing.SystemColors.Control;
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(898, 29);
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.Name = "_OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right";
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 146);
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolbar;
-            // 
-            // _OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom
-            // 
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.SystemColors.Control;
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 175);
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.Name = "_OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom";
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(898, 0);
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolbar;
-            // 
-            // _OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top
-            // 
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.BackColor = System.Drawing.SystemColors.Control;
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Top;
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.Name = "_OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top";
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(898, 29);
-            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolbar;
-            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -524,18 +464,45 @@
             this.imageList1.Images.SetKeyName(13, "Text-46.png");
             this.imageList1.Images.SetKeyName(14, "Transfers-72.png");
             // 
+            // _OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right
+            // 
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(898, 29);
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.Name = "_OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right";
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 146);
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right.ToolbarsManager = this.toolbar;
+            // 
+            // _OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom
+            // 
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Bottom;
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.Location = new System.Drawing.Point(0, 175);
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.Name = "_OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom";
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.Size = new System.Drawing.Size(898, 0);
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom.ToolbarsManager = this.toolbar;
+            // 
+            // _OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top
+            // 
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Top;
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(0, 0);
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.Name = "_OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top";
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(898, 29);
+            this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top.ToolbarsManager = this.toolbar;
+            // 
             // OrbitaUltraGridToolBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.grid);
-            this.Controls.Add(this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Left);
-            this.Controls.Add(this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Right);
-            this.Controls.Add(this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Bottom);
-            this.Controls.Add(this._OrbitaUltraGridToolBar_Toolbars_Dock_Area_Top);
             this.Name = "OrbitaUltraGridToolBar";
             this.Size = new System.Drawing.Size(898, 175);
-            ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toolbar)).EndInit();
             this.ResumeLayout(false);
 

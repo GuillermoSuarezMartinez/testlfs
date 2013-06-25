@@ -31,23 +31,23 @@ namespace Orbita.Controles.Grid
         #region Atributos privados
         System.Resources.ResourceManager stringManager;
         ControlNuevaDefinicion definicion;
-        FrmBuscar frmBuscar;
         Infragistics.Win.UltraWinGrid.UltraGridRow fila = null;
         object customNodoSeleccionado = null;
+        FrmBuscar frmBuscar;
         OTimerEventArgs ciclo;
 
         #region Atributos privados Toolbar
-        ToolGestionarClickEventHandler onToolGestionarClick;
-        ToolVerClickEventHandler onToolVerClick;
-        ToolModificarClickEventHandler onToolModificarClick;
-        ToolAñadirClickEventHandler onToolAñadirClick;
-        ToolEliminarClickEventHandler onToolEliminarClick;
-        ToolExportarClickEventHandler onToolExportarClick;
-        ToolImprimirClickEventHandler onToolImprimirClick;
-        ToolRefrescarClickEventHandler onToolRefrescarClick;
-        ToolCiclicoClickEventHandler onToolCiclicoClick;
-        ToolEditarBeforeToolDropDownEventHandler onToolEditarBeforeToolDropDown;
-        ToolEstiloBeforeToolDropDownEventHandler onToolEstiloBeforeToolDropDown;
+        ToolGestionarClickEventHandler GestionarClick;
+        ToolVerClickEventHandler VerClick;
+        ToolModificarClickEventHandler ModificarClick;
+        ToolAñadirClickEventHandler AñadirClick;
+        ToolEliminarClickEventHandler EliminarClick;
+        ToolExportarClickEventHandler ExportarClick;
+        ToolImprimirClickEventHandler ImprimirClick;
+        ToolRefrescarClickEventHandler RefrescarClick;
+        ToolCiclicoClickEventHandler CiclicoClick;
+        ToolEditarBeforeToolDropDownEventHandler EditarBeforeToolDropDown;
+        ToolEstiloBeforeToolDropDownEventHandler EstiloBeforeToolDropDown;
         #endregion Atributos privados Toolbar
 
         #endregion Atributos privados
@@ -152,15 +152,7 @@ namespace Orbita.Controles.Grid
             {
                 foreach (Infragistics.Win.UltraWinToolbars.ToolBase tool in this.toolbar.Toolbars[item.Index].Tools)
                 {
-                    if (tool is Infragistics.Win.UltraWinToolbars.PopupMenuTool)
-                    {
-                        this.ToolbarAsignarEventoPorReflexion(tool, "BeforeToolDropdown", "_BeforeToolDropdown");
-                        this.InitializeEventsToolbar((Infragistics.Win.UltraWinToolbars.PopupMenuTool)tool);
-                    }
-                    else if (tool is Infragistics.Win.UltraWinToolbars.ButtonTool)
-                    {
-                        this.ToolbarAsignarEventoPorReflexion(tool, "ToolClick", "_Click");
-                    }
+                    InitializeEventsToolbar(tool, "On");
                 }
             }
         }
@@ -168,79 +160,87 @@ namespace Orbita.Controles.Grid
         {
             foreach (Infragistics.Win.UltraWinToolbars.ToolBase tool in toolPopup.Tools)
             {
-                if (tool is Infragistics.Win.UltraWinToolbars.PopupMenuTool)
-                {
-                    this.ToolbarAsignarEventoPorReflexion(tool, "BeforeToolDropdown", "_BeforeToolDropdown");
-                    this.InitializeEventsToolbar((Infragistics.Win.UltraWinToolbars.PopupMenuTool)tool);
-                }
-                else if (tool is Infragistics.Win.UltraWinToolbars.ButtonTool)
-                {
-                    this.ToolbarAsignarEventoPorReflexion(tool, "ToolClick", "_Click");
-                }
+                InitializeEventsToolbar(tool);
+            }
+        }
+        void InitializeEventsToolbar(Infragistics.Win.UltraWinToolbars.ToolBase tool)
+        {
+            InitializeEventsToolbar(tool, null);
+        }
+        void InitializeEventsToolbar(Infragistics.Win.UltraWinToolbars.ToolBase tool, string arg)
+        {
+            if (tool is Infragistics.Win.UltraWinToolbars.PopupMenuTool)
+            {
+                this.ToolbarAsignarEventoPorReflexion(tool, "BeforeToolDropdown", "BeforeToolDropdown", arg);
+                this.InitializeEventsToolbar((Infragistics.Win.UltraWinToolbars.PopupMenuTool)tool);
+            }
+            else if (tool is Infragistics.Win.UltraWinToolbars.ButtonTool)
+            {
+                this.ToolbarAsignarEventoPorReflexion(tool, "ToolClick", "Click", arg);
             }
         }
         #endregion Initialize
 
         #region Toolbar
-        void ToolbarAsignarEventoPorReflexion(Infragistics.Win.UltraWinToolbars.ToolBase tool, string evento, string metodo)
+        private void ToolbarAsignarEventoPorReflexion(Infragistics.Win.UltraWinToolbars.ToolBase tool, string evento, string metodo, string arg)
         {
             System.Reflection.EventInfo infoEvento = typeof(Infragistics.Win.UltraWinToolbars.ToolBase).GetEvent(evento);
-            System.Reflection.MethodInfo infoMetodo = typeof(OrbitaUltraGridToolBar).GetMethod(tool.Key + metodo, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            System.Reflection.MethodInfo infoMetodo = typeof(OrbitaUltraGridToolBar).GetMethod(arg + tool.Key + metodo, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             if (infoMetodo != null)
             {
                 System.Delegate handler = System.Delegate.CreateDelegate(infoEvento.EventHandlerType, this, infoMetodo);
                 infoEvento.AddEventHandler(tool, handler);
             }
         }
-        bool ToolbarPermitirAccionEditar(Infragistics.Win.UltraWinGrid.UltraGridAction action)
+        private bool ToolbarPermitirAccionEditar(Infragistics.Win.UltraWinGrid.UltraGridAction action)
         {
             return this.grid.KeyActionMappings.IsActionAllowed(action, (long)this.grid.CurrentState);
         }
-        void ToolbarToolEditarDeshacer()
+        private void ToolbarToolEditarDeshacer()
         {
             this.grid.PerformAction(Infragistics.Win.UltraWinGrid.UltraGridAction.Undo);
         }
-        void ToolbarToolEditarRehacer()
+        private void ToolbarToolEditarRehacer()
         {
             this.grid.PerformAction(Infragistics.Win.UltraWinGrid.UltraGridAction.Redo);
         }
-        void ToolbarToolEditarCortar()
+        private void ToolbarToolEditarCortar()
         {
             this.grid.PerformAction(Infragistics.Win.UltraWinGrid.UltraGridAction.Cut);
         }
-        void ToolbarToolEditarCopiar()
+        private void ToolbarToolEditarCopiar()
         {
             this.grid.PerformAction(Infragistics.Win.UltraWinGrid.UltraGridAction.Copy);
         }
-        void ToolbarToolEditarPegar()
+        private void ToolbarToolEditarPegar()
         {
             this.grid.PerformAction(Infragistics.Win.UltraWinGrid.UltraGridAction.Paste);
         }
-        void ToolbarToolEditarPrimero()
+        private void ToolbarToolEditarPrimero()
         {
             this.grid.PerformAction(Infragistics.Win.UltraWinGrid.UltraGridAction.FirstRowInBand);
         }
-        void ToolbarToolEditarAnterior()
+        private void ToolbarToolEditarAnterior()
         {
             this.grid.PerformAction(Infragistics.Win.UltraWinGrid.UltraGridAction.PrevRow);
         }
-        void ToolbarToolEditarSiguiente()
+        private void ToolbarToolEditarSiguiente()
         {
             this.grid.PerformAction(Infragistics.Win.UltraWinGrid.UltraGridAction.NextRow);
         }
-        void ToolbarToolEditarUltimo()
+        private void ToolbarToolEditarUltimo()
         {
             this.grid.PerformAction(Infragistics.Win.UltraWinGrid.UltraGridAction.LastRowInBand);
         }
-        void ToolbarToolEditarSeleccionarTodo()
+        private void ToolbarToolEditarSeleccionarTodo()
         {
             this.grid.Selected.Rows.AddRange((Infragistics.Win.UltraWinGrid.UltraGridRow[])this.grid.Rows.All);
         }
-        void ToolbarToolEditarDeseleccionarTodo()
+        private void ToolbarToolEditarDeseleccionarTodo()
         {
             this.grid.Selected.Rows.Clear();
         }
-        void ToolbarToolEditarBuscar()
+        private void ToolbarToolEditarBuscar()
         {
             if (this.frmBuscar == null)
             {
@@ -248,14 +248,14 @@ namespace Orbita.Controles.Grid
             }
             frmBuscar.ShowDialog();
         }
-        void ToolbarToolLimpiarFiltros()
+        private void ToolbarToolLimpiarFiltros()
         {
             foreach (Infragistics.Win.UltraWinGrid.UltraGridBand banda in this.grid.DisplayLayout.Bands)
             {
                 banda.ColumnFilters.ClearAllFilters();
             }
         }
-        void ToolbarToolExportar()
+        private void ToolbarToolExportar()
         {
             using (System.Windows.Forms.SaveFileDialog saveDialog = new System.Windows.Forms.SaveFileDialog())
             {
@@ -284,7 +284,7 @@ namespace Orbita.Controles.Grid
                 }
             }
         }
-        void ToolbarToolImprimir()
+        private void ToolbarToolImprimir()
         {
             if (this.OI.DataSource != null)
             {
@@ -294,15 +294,15 @@ namespace Orbita.Controles.Grid
                 this.preview.ShowDialog();
             }
         }
-        void ToolbarToolIrPrimero()
+        private void ToolbarToolIrPrimero()
         {
             this.ToolbarToolIrAnterior(0, true);
         }
-        void ToolbarToolIrAnterior()
+        private void ToolbarToolIrAnterior()
         {
             this.ToolbarToolIrAnterior(1, false);
         }
-        void ToolbarToolIrAnterior(int x, bool principio)
+        private void ToolbarToolIrAnterior(int x, bool principio)
         {
             if (string.IsNullOrEmpty(this.OI.CampoPosicionable))
             {
@@ -392,11 +392,11 @@ namespace Orbita.Controles.Grid
                 this.grid.ResumeLayout();
             }
         }
-        void ToolbarToolIrSiguiente()
+        private void ToolbarToolIrSiguiente()
         {
             this.ToolbarToolIrSiguiente(1, false);
         }
-        void ToolbarToolIrSiguiente(int x, bool final)
+        private void ToolbarToolIrSiguiente(int x, bool final)
         {
             if (string.IsNullOrEmpty(this.OI.CampoPosicionable))
             {
@@ -486,17 +486,17 @@ namespace Orbita.Controles.Grid
                 this.grid.ResumeLayout();
             }
         }
-        void ToolbarToolIrUltimo()
+        private void ToolbarToolIrUltimo()
         {
             this.ToolbarToolIrSiguiente(0, true);
         }
-        void ToolbarActualizarEstadoToolPrincipal(bool estado)
+        private void ToolbarActualizarEstadoToolPrincipal(bool estado)
         {
             this.toolbar.Tools["Ver"].SharedProps.Enabled = estado;
             this.toolbar.Tools["Modificar"].SharedProps.Enabled = estado;
             this.toolbar.Tools["Eliminar"].SharedProps.Enabled = estado;
         }
-        void ToolbarActualizarEstadoToolNavegacion(bool estado)
+        private void ToolbarActualizarEstadoToolNavegacion(bool estado)
         {
             if (!string.IsNullOrEmpty(this.OI.CampoPosicionable))
             {
@@ -507,7 +507,7 @@ namespace Orbita.Controles.Grid
                 this.toolbar.Tools["IrAposicion"].SharedProps.Enabled = estado;
             }
         }
-        void ToolbarActualizarEstadoToolEditar()
+        private void ToolbarActualizarEstadoToolEditar()
         {
             this.toolbar.Tools["Deshacer"].SharedProps.Enabled = this.ToolbarPermitirAccionEditar(Infragistics.Win.UltraWinGrid.UltraGridAction.Undo);
             this.toolbar.Tools["Rehacer"].SharedProps.Enabled = this.ToolbarPermitirAccionEditar(Infragistics.Win.UltraWinGrid.UltraGridAction.Redo);
@@ -515,7 +515,7 @@ namespace Orbita.Controles.Grid
             this.toolbar.Tools["Copiar"].SharedProps.Enabled = this.ToolbarPermitirAccionEditar(Infragistics.Win.UltraWinGrid.UltraGridAction.Copy);
             this.toolbar.Tools["Pegar"].SharedProps.Enabled = this.ToolbarPermitirAccionEditar(Infragistics.Win.UltraWinGrid.UltraGridAction.Paste);
         }
-        void ToolbarActualizarEstadoTodosToolEditar()
+        private void ToolbarActualizarEstadoTodosToolEditar()
         {
             this.grid.DisplayLayout.Override.AllowMultiCellOperations =
                              Infragistics.Win.UltraWinGrid.AllowMultiCellOperation.Copy |
@@ -524,15 +524,15 @@ namespace Orbita.Controles.Grid
                              Infragistics.Win.UltraWinGrid.AllowMultiCellOperation.Redo |
                              Infragistics.Win.UltraWinGrid.AllowMultiCellOperation.Undo;
         }
-        void ToolbarActualizarEstadoCopiarToolEditar()
+        private void ToolbarActualizarEstadoCopiarToolEditar()
         {
             this.grid.DisplayLayout.Override.AllowMultiCellOperations = Infragistics.Win.UltraWinGrid.AllowMultiCellOperation.Copy;
         }
-        void ToolbarToolPersonalizar()
+        private void ToolbarToolPersonalizar()
         {
             using (FrmPersonalizar form = new FrmPersonalizar(customNodoSeleccionado))
             {
-                form.IndiceSeleccionado += new System.EventHandler<System.EventArgs>(IndiceSeleccionado_Change);
+                form.IndiceSeleccionado += new System.EventHandler<System.EventArgs>(IndiceSeleccionadoChange);
                 FrmPersonalizar.Grid = this.grid;
                 form.ShowDialog();
             }
@@ -567,13 +567,13 @@ namespace Orbita.Controles.Grid
         {
             add
             {
-                this.onToolGestionarClick += value;
+                this.GestionarClick += value;
                 OEventHandler handler = new OEventHandler("ToolGestionarClick", value);
                 this.eventos.Add(handler.Evento, handler);
             }
             remove
             {
-                this.onToolGestionarClick -= value;
+                this.GestionarClick -= value;
                 this.eventos.Remove("ToolGestionarClick");
             }
         }
@@ -583,13 +583,13 @@ namespace Orbita.Controles.Grid
         {
             add
             {
-                this.onToolVerClick += value;
+                this.VerClick += value;
                 OEventHandler handler = new OEventHandler("ToolVerClick", value);
                 this.eventos.Add(handler.Evento, handler);
             }
             remove
             {
-                this.onToolVerClick -= value;
+                this.VerClick -= value;
                 this.eventos.Remove("ToolVerClick");
             }
         }
@@ -599,13 +599,13 @@ namespace Orbita.Controles.Grid
         {
             add
             {
-                this.onToolModificarClick += value;
+                this.ModificarClick += value;
                 OEventHandler handler = new OEventHandler("ToolModificarClick", value);
                 this.eventos.Add(handler.Evento, handler);
             }
             remove
             {
-                this.onToolModificarClick -= value;
+                this.ModificarClick -= value;
                 this.eventos.Remove("ToolModificarClick");
             }
         }
@@ -615,13 +615,13 @@ namespace Orbita.Controles.Grid
         {
             add
             {
-                this.onToolAñadirClick += value;
+                this.AñadirClick += value;
                 OEventHandler handler = new OEventHandler("ToolAñadirClick", value);
                 this.eventos.Add(handler.Evento, handler);
             }
             remove
             {
-                this.onToolAñadirClick -= value;
+                this.AñadirClick -= value;
                 this.eventos.Remove("ToolAñadirClick");
             }
         }
@@ -631,13 +631,13 @@ namespace Orbita.Controles.Grid
         {
             add
             {
-                this.onToolEliminarClick += value;
+                this.EliminarClick += value;
                 OEventHandler handler = new OEventHandler("ToolEliminarClick", value);
                 this.eventos.Add(handler.Evento, handler);
             }
             remove
             {
-                this.onToolEliminarClick -= value;
+                this.EliminarClick -= value;
                 this.eventos.Remove("ToolEliminarClick");
             }
         }
@@ -647,13 +647,13 @@ namespace Orbita.Controles.Grid
         {
             add
             {
-                this.onToolExportarClick += value;
+                this.ExportarClick += value;
                 OEventHandler handler = new OEventHandler("ToolExportarClick", value);
                 this.eventos.Add(handler.Evento, handler);
             }
             remove
             {
-                this.onToolExportarClick -= value;
+                this.ExportarClick -= value;
                 this.eventos.Remove("ToolExportarClick");
             }
         }
@@ -663,13 +663,13 @@ namespace Orbita.Controles.Grid
         {
             add
             {
-                this.onToolImprimirClick += value;
+                this.ImprimirClick += value;
                 OEventHandler handler = new OEventHandler("ToolImprimirClick", value);
                 this.eventos.Add(handler.Evento, handler);
             }
             remove
             {
-                this.onToolImprimirClick -= value;
+                this.ImprimirClick -= value;
                 this.eventos.Remove("ToolImprimirClick");
             }
         }
@@ -679,13 +679,13 @@ namespace Orbita.Controles.Grid
         {
             add
             {
-                this.onToolRefrescarClick += value;
+                this.RefrescarClick += value;
                 OEventHandler handler = new OEventHandler("ToolRefrescarClick", value);
                 this.eventos.Add(handler.Evento, handler);
             }
             remove
             {
-                this.onToolRefrescarClick -= value;
+                this.RefrescarClick -= value;
                 this.eventos.Remove("ToolRefrescarClick");
             }
         }
@@ -695,13 +695,13 @@ namespace Orbita.Controles.Grid
         {
             add
             {
-                this.onToolCiclicoClick += value;
+                this.CiclicoClick += value;
                 OEventHandler handler = new OEventHandler("ToolCiclicoClick", value);
                 this.eventos.Add(handler.Evento, handler);
             }
             remove
             {
-                this.onToolCiclicoClick -= value;
+                this.CiclicoClick -= value;
                 this.eventos.Remove("ToolCiclicoClick");
             }
         }
@@ -711,13 +711,13 @@ namespace Orbita.Controles.Grid
         {
             add
             {
-                this.onToolEditarBeforeToolDropDown += value;
+                this.EditarBeforeToolDropDown += value;
                 OEventHandler handler = new OEventHandler("ToolEditarBeforeToolDropDown", value);
                 this.eventos.Add(handler.Evento, handler);
             }
             remove
             {
-                this.onToolEditarBeforeToolDropDown -= value;
+                this.EditarBeforeToolDropDown -= value;
                 this.eventos.Remove("ToolEditarBeforeToolDropDown");
             }
         }
@@ -727,33 +727,33 @@ namespace Orbita.Controles.Grid
         {
             add
             {
-                this.onToolEstiloBeforeToolDropDown += value;
+                this.EstiloBeforeToolDropDown += value;
                 OEventHandler handler = new OEventHandler("ToolEstiloBeforeToolDropDown", value);
                 this.eventos.Add(handler.Evento, handler);
             }
             remove
             {
-                this.onToolEstiloBeforeToolDropDown -= value;
+                this.EstiloBeforeToolDropDown -= value;
                 this.eventos.Remove("ToolEstiloBeforeToolDropDown");
             }
         }
         #endregion Toolbar Base
 
         #region Toolbar Principal
-        protected void Gestionar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void OnGestionarClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
-                if (this.onToolGestionarClick != null)
+                if (this.GestionarClick != null)
                 {
-                    this.onToolGestionarClick(this, e);
+                    this.GestionarClick(this, e);
                 }
             }
             catch (System.Exception)
             {
             }
         }
-        protected void Ver_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void OnVerClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -762,18 +762,18 @@ namespace Orbita.Controles.Grid
                 {
                     return;
                 }
-                if (this.onToolVerClick != null)
+                if (this.VerClick != null)
                 {
                     OToolClickEventArgs nuevoEventArgs = new OToolClickEventArgs(e.Tool, e.ListToolItem);
                     nuevoEventArgs.Fila = filaActiva;
-                    this.onToolVerClick(this, nuevoEventArgs);
+                    this.VerClick(this, nuevoEventArgs);
                 }
             }
             catch (System.Exception)
             {
             }
         }
-        protected void Modificar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void OnModificarClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -782,39 +782,39 @@ namespace Orbita.Controles.Grid
                 {
                     return;
                 }
-                if (this.onToolModificarClick != null)
+                if (this.ModificarClick != null)
                 {
                     OToolClickEventArgs nuevoEventArgs = new OToolClickEventArgs(e.Tool, e.ListToolItem);
                     nuevoEventArgs.Fila = filaActiva;
-                    this.onToolModificarClick(this, nuevoEventArgs);
+                    this.ModificarClick(this, nuevoEventArgs);
                 }
             }
             catch (System.Exception)
             {
             }
         }
-        protected void Añadir_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void OnAñadirClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
-                if (this.onToolAñadirClick != null)
+                if (this.AñadirClick != null)
                 {
-                    this.onToolAñadirClick(this, e);
+                    this.AñadirClick(this, e);
                 }
             }
             catch (System.Exception)
             {
             }
         }
-        protected void Eliminar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void OnEliminarClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
-                // Colección de filas que se van a eliminar y que se va a pasar como argumento del evento.
+                //  Colección de filas que se van a eliminar y que se va a pasar como argumento del evento.
                 System.Collections.Generic.List<Infragistics.Win.UltraWinGrid.UltraGridRow> lista = null;
-                // Recorrer la colección de filas seleccionadas, que es diferente a la fila activa.
-                // Filas seleccionadas = Selected.Rows.
-                // Fila activa = ActiveRow.
+                //  Recorrer la colección de filas seleccionadas, que es diferente a la fila activa.
+                //  Filas seleccionadas = Selected.Rows.
+                //  Fila activa = ActiveRow.
                 if (this.grid.Selected.Rows.Count > 0)
                 {
                     foreach (Infragistics.Win.UltraWinGrid.UltraGridRow fila in this.grid.Selected.Rows)
@@ -832,7 +832,7 @@ namespace Orbita.Controles.Grid
                         }
                     }
                 }
-                // Añadir a la colección la fila activa.
+                //  Añadir a la colección la fila activa.
                 Infragistics.Win.UltraWinGrid.UltraGridRow filaActiva = this.grid.ActiveRow;
                 if (filaActiva != null)
                 {
@@ -850,30 +850,30 @@ namespace Orbita.Controles.Grid
                 }
                 if (lista != null)
                 {
-                    // En función de las opciones de seleccionar y a partir del delegado dinámico se va a crear
-                    // el objeto con la llamada al método eliminar adecuado según el caso.
+                    //  En función de las opciones de seleccionar y a partir del delegado dinámico se va a crear
+                    //  el objeto con la llamada al método eliminar adecuado según el caso.
                     if (this.grid.Selected.Rows.Count > 0 && this.grid.Selected.Rows.Count < lista.Count)
                     {
-                        // Se ha seleccionado filas múltiples y deseleccionado la fila activa.
+                        //  Se ha seleccionado filas múltiples y deseleccionado la fila activa.
                         this.definicion.Filas.TipoSeleccion = new OFilas.TipoSeleccionFila(this.definicion.Filas.Eliminar);
                     }
                     else if (this.grid.Selected.Rows.Count > 0 && this.grid.Selected.Rows.Count == lista.Count)
                     {
-                        // Se ha seleccionado filas múltiples y la fila activa.
+                        //  Se ha seleccionado filas múltiples y la fila activa.
                         this.definicion.Filas.TipoSeleccion = new OFilas.TipoSeleccionFila(this.definicion.Filas.Seleccionadas.Eliminar);
                     }
                     else if (this.grid.Selected.Rows.Count == 0 && this.grid.ActiveRow != null)
                     {
-                        // No existe multiselección.
+                        //  No existe multiselección.
                         this.definicion.Filas.TipoSeleccion = new OFilas.TipoSeleccionFila(this.definicion.Filas.Activas.Eliminar);
                     }
                     if (this.definicion.Filas.TipoSeleccion())
                     {
-                        if (this.onToolEliminarClick != null)
+                        if (this.EliminarClick != null)
                         {
                             OToolClickCollectionEventArgs nuevoEventArgs = new OToolClickCollectionEventArgs(e.Tool, e.ListToolItem);
                             nuevoEventArgs.Filas = lista.ToArray();
-                            this.onToolEliminarClick(this, nuevoEventArgs);
+                            this.EliminarClick(this, nuevoEventArgs);
                         }
                     }
                 }
@@ -882,7 +882,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void LimpiarFiltros_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void LimpiarFiltrosClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -892,13 +892,13 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void Exportar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void OnExportarClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
-                if (this.onToolExportarClick != null)
+                if (this.ExportarClick != null)
                 {
-                    this.onToolExportarClick(this, e);
+                    this.ExportarClick(this, e);
                 }
                 else
                 {
@@ -909,13 +909,13 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void Imprimir_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void OnImprimirClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
-                if (this.onToolImprimirClick != null)
+                if (this.ImprimirClick != null)
                 {
-                    this.onToolImprimirClick(this, e);
+                    this.ImprimirClick(this, e);
                 }
                 else
                 {
@@ -926,24 +926,24 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void Refrescar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void OnRefrescarClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
-                if (this.onToolRefrescarClick != null)
+                if (this.RefrescarClick != null)
                 {
-                    this.onToolRefrescarClick(this, e);
+                    this.RefrescarClick(this, e);
                 }
             }
             catch (System.Exception)
             {
             }
         }
-        protected void Ciclico_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void OnCiclicoClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
-                if (this.onToolCiclicoClick != null)
+                if (this.CiclicoClick != null)
                 {
                     bool activo = (e.Tool as Infragistics.Win.UltraWinToolbars.StateButtonTool).Checked;
                     if (activo)
@@ -961,7 +961,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void Deshacer_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void DeshacerClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -971,7 +971,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void Rehacer_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void RehacerClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -981,7 +981,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void Cortar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void CortarClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -991,7 +991,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void Copiar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void CopiarClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1001,7 +1001,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void Pegar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void PegarClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1011,7 +1011,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void Primero_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void PrimeroClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             this.grid.SuspendLayout();
             try
@@ -1030,7 +1030,7 @@ namespace Orbita.Controles.Grid
                 this.grid.ResumeLayout();
             }
         }
-        protected void Anterior_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void AnteriorClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1040,7 +1040,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void Siguiente_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void SiguienteClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1050,7 +1050,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void Ultimo_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void UltimoClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1060,7 +1060,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void SeleccionarTodo_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void SeleccionarTodoClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1070,7 +1070,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void DeseleccionarTodo_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void DeseleccionarTodoClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1080,7 +1080,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void Buscar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void BuscarClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1090,7 +1090,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void Personalizar_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void PersonalizarClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1100,7 +1100,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void GuardarPlantilla_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void GuardarPlantillaClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1109,7 +1109,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void GuardarPlantillaComo_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void GuardarPlantillaComoClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1118,7 +1118,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void EliminarPlantillasLocales_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void EliminarPlantillasLocalesClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1127,7 +1127,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void EliminarPlantillasPublicas_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void EliminarPlantillasPublicasClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1136,7 +1136,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void PublicarPlantillaPublicas_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void PublicarPlantillaPublicasClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1145,7 +1145,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void ImportarPlantillaPublicas_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected virtual void ImportarPlantillaPublicasClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1154,34 +1154,34 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void Editar_BeforeToolDropdown(object sender, Infragistics.Win.UltraWinToolbars.BeforeToolDropdownEventArgs e)
+        protected virtual void OnEditarBeforeToolDropdown(object sender, Infragistics.Win.UltraWinToolbars.BeforeToolDropdownEventArgs e)
         {
             try
             {
                 this.ToolbarActualizarEstadoToolEditar();
-                if (this.onToolEditarBeforeToolDropDown != null)
+                if (this.EditarBeforeToolDropDown != null)
                 {
-                    this.onToolEditarBeforeToolDropDown(this, e);
+                    this.EditarBeforeToolDropDown(this, e);
                 }
             }
             catch (System.Exception)
             {
             }
         }
-        protected void Estilo_BeforeToolDropdown(object sender, Infragistics.Win.UltraWinToolbars.BeforeToolDropdownEventArgs e)
+        protected virtual void OnEstiloBeforeToolDropdown(object sender, Infragistics.Win.UltraWinToolbars.BeforeToolDropdownEventArgs e)
         {
             try
             {
-                if (this.onToolEstiloBeforeToolDropDown != null)
+                if (this.EstiloBeforeToolDropDown != null)
                 {
-                    this.onToolEstiloBeforeToolDropDown(this, e);
+                    this.EstiloBeforeToolDropDown(this, e);
                 }
             }
             catch (System.Exception)
             {
             }
         }
-        protected void IndiceSeleccionado_Change(object sender, System.EventArgs e)
+        protected virtual void IndiceSeleccionadoChange(object sender, System.EventArgs e)
         {
             System.Windows.Forms.TreeView trv = (System.Windows.Forms.TreeView)sender;
             customNodoSeleccionado = trv.SelectedNode.Tag;
@@ -1209,7 +1209,7 @@ namespace Orbita.Controles.Grid
                                 if (tool.Control == null)
                                 {
                                     Posicion posicion = new Posicion();
-                                    posicion.AceptarClick += new System.EventHandler<OPropiedadEventArgs>(PosicionAceptar_Click);
+                                    posicion.AceptarClick += new System.EventHandler<OPropiedadEventArgs>(PosicionAceptarClick);
                                     tool.Control = posicion;
                                 }
                             }
@@ -1218,7 +1218,7 @@ namespace Orbita.Controles.Grid
                 }
             }
         }
-        protected void IrPrimero_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected void OnIrPrimeroClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1228,7 +1228,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void IrAnterior_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected void OnIrAnteriorClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1238,7 +1238,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void IrSiguiente_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected void OnIrSiguienteClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1248,7 +1248,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void IrUltimo_Click(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected void OnIrUltimoClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -1258,7 +1258,7 @@ namespace Orbita.Controles.Grid
             {
             }
         }
-        protected void PosicionAceptar_Click(object sender, OPropiedadEventArgs e)
+        protected void PosicionAceptarClick(object sender, OPropiedadEventArgs e)
         {
             try
             {
@@ -1310,7 +1310,7 @@ namespace Orbita.Controles.Grid
         }
         private void timer_Tick(object sender, System.EventArgs e)
         {
-            this.onToolCiclicoClick(this, ciclo);
+            this.CiclicoClick(this, ciclo);
         }
 
         #region Grid Base
@@ -2918,7 +2918,7 @@ namespace Orbita.Controles.Grid
         #endregion Manejadores de eventos
 
         #region Métodos internos
-        public void FlushAllEvents()
+        internal void FlushAllEvents()
         {
             if (this.eventos.Keys.Count > 0)
             {
@@ -2930,6 +2930,6 @@ namespace Orbita.Controles.Grid
                 claves.Clear();
             }
         }
-        #endregion
+        #endregion Métodos internos
     }
 }

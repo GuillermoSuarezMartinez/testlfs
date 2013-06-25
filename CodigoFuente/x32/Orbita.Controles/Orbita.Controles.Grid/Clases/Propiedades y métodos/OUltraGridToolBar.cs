@@ -37,7 +37,7 @@ namespace Orbita.Controles.Grid
         #endregion
 
         #region Propiedades
-        [System.ComponentModel.Description("Determina si se permite editar el TextBox asociado a OrbitaUltraCombo.")]
+        [System.ComponentModel.Description("")]
         public string CampoPosicionable
         {
             get { return this.campoPosicionable; }
@@ -55,7 +55,7 @@ namespace Orbita.Controles.Grid
                 this.campoPosicionable = value;
             }
         }
-        [System.ComponentModel.Description("Determina si se permite editar el TextBox asociado a OrbitaUltraCombo.")]
+        [System.ComponentModel.Description("")]
         public new bool Editable
         {
             get { return this.editable; }
@@ -205,6 +205,11 @@ namespace Orbita.Controles.Grid
         {
             this.MostrarToolRefrescar = Configuracion.DefectoMostrarToolRefrescar;
         }
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+        protected void ResetMostrarToolCiclico()
+        {
+            this.MostrarToolCiclico = Configuracion.DefectoMostrarToolCiclico;
+        }
         /// <summary>
         /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
         /// </summary>
@@ -304,6 +309,15 @@ namespace Orbita.Controles.Grid
         {
             return (this.MostrarToolRefrescar != Configuracion.DefectoMostrarToolRefrescar);
         }
+        /// <summary>
+        /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+        /// </summary>
+        /// <returns></returns>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
+        protected bool ShouldSerializeMostrarToolCiclico()
+        {
+            return (this.MostrarToolCiclico != Configuracion.DefectoMostrarToolCiclico);
+        }
         #endregion
 
         #region Manejadores de eventos
@@ -311,9 +325,10 @@ namespace Orbita.Controles.Grid
         {
             try
             {
-                // Ejecutar acción.
+                //  Ejecutar acción.
                 this.Control.PerformAction(Infragistics.Win.UltraWinGrid.UltraGridAction.ExitEditMode);
-                // Ejecutar eventos de actualización.
+
+                //  Ejecutar eventos de actualización.
                 this.Filas.Actualizar();
             }
             catch (System.Exception)

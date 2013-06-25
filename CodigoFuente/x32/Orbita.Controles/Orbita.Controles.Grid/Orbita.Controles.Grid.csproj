@@ -192,7 +192,9 @@
     <Compile Include="Clases\Propiedades y métodos\OFilas.cs" />
     <Compile Include="Clases\Propiedades y métodos\OUltraGrid.cs" />
     <Compile Include="Clases\Propiedades y métodos\OUltraGridToolBar.cs" />
-    <Compile Include="Custom\OrbitaUltraGridToolBar.cs" />
+    <Compile Include="Custom\OrbitaUltraGridToolBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Custom\OrbitaUltraGridToolBar.Designer.cs">
       <DependentUpon>OrbitaUltraGridToolBar.cs</DependentUpon>
     </Compile>
