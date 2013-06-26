@@ -180,7 +180,7 @@ namespace Orbita.VA.Comun
             {
                 if (this.Image != null)
                 {
-                    this.Image.Dispose();
+                    //this.Image.Dispose();
                     this._Image = null;
                 }
             }

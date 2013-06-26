@@ -259,12 +259,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Orbita.VA.Comun\Orbita.VA.Comun.csproj">
-      <Project>{CC36FE63-3F16-4355-A11D-F0926DFBC977}</Project>
-      <Name>Orbita.VA.Comun</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
