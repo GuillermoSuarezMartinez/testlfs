@@ -62,15 +62,15 @@ namespace Orbita.Controles.VA
         /// <summary>
         /// Establece el estilo de los botones de la barra de título del formulario
         /// </summary>
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams myCp = base.CreateParams;
-                myCp.ExStyle |= 0x02000000;
-                return myCp;
-            }
-        }
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        CreateParams myCp = base.CreateParams;
+        //        myCp.ExStyle |= 0x02000000;
+        //        return myCp;
+        //    }
+        //}
 
         /// <summary>
         /// Posibilita la apertura de múltiples instancias del formulario
@@ -568,22 +568,28 @@ namespace Orbita.Controles.VA
                         this.GetInformacionPasoSiguiente(out pasoSiguiente, out tipoPasoSiguiente);
                         if (pasoSiguiente != this.PasoActual)
                         {
-                            this.AccionesAlSalirDelPaso(this.PasoActual);
-                            this.AccionesAlAceptarElPaso(this.PasoActual);
-                            this.TabControl.SelectedTab = this.TabControl.Tabs[pasoSiguiente];
-                            this.TipoPasoActual = tipoPasoSiguiente;
-                            this.AccionesAlIniciarPaso(this.PasoActual);
-                            this.AccionesAlEntrarEnPaso(this.PasoActual);
-                            this.VisualizarBotonAnteriorSiguienteFinalizar(tipoPasoSiguiente);
-                            this.VisualizarPasoActual(this.PasoActual, this.TotalPasos);
+                            if (this.ValidacionAceptacionPaso(this.PasoActual))
+                            {
+                                this.AccionesAlSalirDelPaso(this.PasoActual);
+                                this.AccionesAlAceptarElPaso(this.PasoActual);
+                                this.TabControl.SelectedTab = this.TabControl.Tabs[pasoSiguiente];
+                                this.TipoPasoActual = tipoPasoSiguiente;
+                                this.AccionesAlIniciarPaso(this.PasoActual);
+                                this.AccionesAlEntrarEnPaso(this.PasoActual);
+                                this.VisualizarBotonAnteriorSiguienteFinalizar(tipoPasoSiguiente);
+                                this.VisualizarPasoActual(this.PasoActual, this.TotalPasos);
+                            }
                         }
                     }
                     break;
                 case TipoPasoAsistente.PasoFinal:
-                    if (this.GuardarDatos())
+                    if (this.ValidacionAceptacionPaso(this.PasoActual))
                     {
-                        //Si se han guardado los datos correctamente, cerramos el formulario
-                        this.Close();
+                        if (this.GuardarDatos())
+                        {
+                            //Si se han guardado los datos correctamente, cerramos el formulario
+                            this.Close();
+                        }
                     }
                     break;
             }
@@ -819,6 +825,14 @@ namespace Orbita.Controles.VA
         protected virtual void AccionesAlAceptarElPaso(int paso)
         {
 
+        }
+        /// <summary>
+        /// Validación de aceptación del paso
+        /// </summary>
+        /// <param name="paso"></param>
+        protected virtual bool ValidacionAceptacionPaso(int paso)
+        {
+            return true;
         }
         /// <summary>
         /// Acciones al salir del paso a cualquier paso

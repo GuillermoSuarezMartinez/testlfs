@@ -46,13 +46,13 @@ namespace Orbita.VA.Hardware
                 // Cargamos todas las funciones de visión existentes en el sistema
                 foreach (DataRow dr in dt.Rows)
                 {
-                    string codMaquinaEstados = dr["CodHardware"].ToString();
-                    string claseImplementadora = string.Format("{0}.{1}", Assembly.GetExecutingAssembly().GetName().Name, dr["ClaseImplementadora"].ToString());
+                    string codHardware = dr["CodHardware"].ToString();
+                    string ensambladoClaseImplementadora = dr["EnsambladoClaseImplementadora"].ToString();
+                    string claseImplementadora = dr["ClaseImplementadora"].ToString();
 
-                    object objetoImplementado;
-                    if (App.ConstruirClase(Assembly.GetExecutingAssembly().GetName().Name, claseImplementadora, out objetoImplementado, codMaquinaEstados))
+                    OModuloIOBase tarjetaIO;
+                    if (CrearModuloIO(ensambladoClaseImplementadora, claseImplementadora, out tarjetaIO, codHardware))
                     {
-                        OModuloIOBase tarjetaIO = (OModuloIOBase)objetoImplementado;
                         ListaTarjetasIO.Add(tarjetaIO);
                     }
                 }
@@ -88,6 +88,35 @@ namespace Orbita.VA.Hardware
             {
                 tarjetaIO.Finalizar();
             }
+        }
+
+        /// <summary>
+        /// Creación de un módulo IO
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
+        public static bool CrearModuloIO(string ensambladoClaseImplementadora, string claseImplementadora, out OModuloIOBase moduloIO, params object[] parametros)
+        {
+            bool restulado = false;
+            moduloIO = null;
+
+            string claseImplementadoraCompleta = string.Format("{0}.{1}", ensambladoClaseImplementadora, claseImplementadora);
+
+            try
+            {
+                object objetoImplementado;
+                if (App.ConstruirClase(ensambladoClaseImplementadora, claseImplementadoraCompleta, out objetoImplementado, parametros))
+                {
+                    moduloIO = (OModuloIOBase)objetoImplementado;
+                    restulado = true;
+                }
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.EntradasSalidas.Error(exception, string.Format("Error al crear el módulo IO {0} por reflexión", claseImplementadoraCompleta));
+            }
+
+            return restulado;
         }
 
         /// <summary>

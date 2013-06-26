@@ -69,12 +69,11 @@ namespace Orbita.VA.Hardware
                 {
                     string codCamara = dr["CodHardware"].ToString();
                     string ensambladoClaseImplementadora = dr["EnsambladoClaseImplementadora"].ToString();
-                    string claseImplementadora = string.Format("{0}.{1}", ensambladoClaseImplementadora, dr["ClaseImplementadora"].ToString());
+                    string claseImplementadora = dr["ClaseImplementadora"].ToString();
 
-                    object objetoImplementado;
-                    if (App.ConstruirClase(ensambladoClaseImplementadora, claseImplementadora, out objetoImplementado, codCamara))
+                    OCamaraBase camara;
+                    if (CrearCamara(ensambladoClaseImplementadora, claseImplementadora, out camara, codCamara))
                     {
-                        OCamaraBase camara = (OCamaraBase)objetoImplementado;
                         ListaCamaras.Add(codCamara, camara);
                     }
                 }
@@ -157,6 +156,35 @@ namespace Orbita.VA.Hardware
 				camara.Finalizar();
 			}
 		}
+
+        /// <summary>
+        /// Creación de una cámara
+        /// </summary>
+        /// <param name="codigo"></param>
+        /// <returns></returns>
+        public static bool CrearCamara(string ensambladoClaseImplementadora, string claseImplementadora, out OCamaraBase camara, params object[] parametros)
+        {
+            bool restulado = false;
+            camara = null;
+
+            string claseImplementadoraCompleta = string.Format("{0}.{1}", ensambladoClaseImplementadora, claseImplementadora);
+
+            try
+            {
+                object objetoImplementado;
+                if (App.ConstruirClase(ensambladoClaseImplementadora, claseImplementadoraCompleta, out objetoImplementado, parametros))
+                {
+                    camara = (OCamaraBase)objetoImplementado;
+                    restulado = true;
+                }
+            }
+            catch (Exception exception)
+            {
+                OLogsVAHardware.Camaras.Error(exception, string.Format("Error al crear la cámara {0} por reflexión", claseImplementadoraCompleta));
+            }
+
+            return restulado;
+        }
 
 		/// <summary>
 		/// Busca la cámara con el código indicado

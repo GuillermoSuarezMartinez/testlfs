@@ -85,7 +85,7 @@ namespace Orbita.Controles.VA
             get
             {
                 CreateParams myCp = base.CreateParams;
-                myCp.ExStyle |= 0x02000000;
+                //myCp.ExStyle |= 0x02000000;
                 if (this._ModoAperturaFormulario == ModoAperturaFormulario.Sistema)
                 {
                     myCp.ClassStyle |= 0x0200;
