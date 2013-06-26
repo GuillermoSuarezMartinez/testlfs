@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\CXml.cs" />
     <Compile Include="Core\OAlmacenXML.cs" />
     <Compile Include="Core\OExtensionXML.cs" />
     <Compile Include="Core\OConvertibleXML.cs" />
