@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Orbita.Utiles;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -37,6 +38,14 @@ namespace Orbita.Comunicaciones
         /// <param name="valores">Colección de valores.</param>
         /// <returns>Estado correcto o incorrecto de escritura.</returns>
         bool OrbitaEscribir(int dispositivo, string[] variables, object[] valores);
+        /// <summary>
+        /// Método de escritura de valores.
+        /// </summary>
+        /// <param name="dispositivo">Identificador de dispositivo de escritura.</param>
+        /// <param name="variables">Colección de variables.</param>
+        /// <param name="valores">Colección de valores.</param>
+        /// <returns>Estado correcto o incorrecto de escritura.</returns>
+        bool OrbitaEscribir(int dispositivo, string[] variables, object[] valores, string canal);
         /// <summary>
         /// Método de lectura de variables.
         /// </summary>
