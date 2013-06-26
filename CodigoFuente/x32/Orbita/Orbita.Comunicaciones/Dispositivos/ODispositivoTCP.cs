@@ -256,6 +256,94 @@ namespace Orbita.Comunicaciones
             return resultado;
         }
         /// <summary>
+        /// Escribir el valor de los identificadores de variables de la colección.
+        /// </summary>
+        /// <param name="variables">Colección de variables.</param>
+        /// <param name="valores">Colección de valores.</param>
+        /// <returns></returns>
+        public override bool Escribir(string[] variables, object[] valores, string canal)
+        {
+            bool resultado = true;
+            try
+            {
+                if (variables != null)
+                {
+                    // Inicializar contador de variables.
+                    int contador = variables.Length;
+
+                    for (int i = 0; i < contador; i++)
+                    {
+                        OInfoDato infoDBdato = this._tags.GetDB(variables[i]);
+                        infoDBdato.UltimoValor = infoDBdato.Valor;
+                        infoDBdato.Valor = valores[i];
+                        infoDBdato.CanalCambioDato = canal;
+
+                        if (this._tags.GetLecturas(infoDBdato.Identificador) != null)
+                        {
+                            if (infoDBdato.UltimoValor != infoDBdato.Valor)
+                            {
+                                this.OnCambioDato(new OEventArgs(infoDBdato));
+                            }
+                        }
+                        if (this._tags.GetAlarmas(infoDBdato.Identificador) != null)
+                        {
+                            try
+                            {
+                                if (infoDBdato.UltimoValor != infoDBdato.Valor)
+                                {
+                                    this.OnAlarma(new OEventArgs(infoDBdato));
+                                    if (Convert.ToInt16(infoDBdato.Valor) == 1)
+                                    {
+                                        if (!AlarmasActivas.Contains(infoDBdato.Texto))
+                                        {
+                                            this.AlarmasActivas.Add(infoDBdato.Texto);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (AlarmasActivas.Contains(infoDBdato.Texto))
+                                        {
+                                            this.AlarmasActivas.Remove(infoDBdato.Texto);
+                                        }
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                if (this._inicioVariables)
+                                {
+                                    wrapper.Fatal("ODispositivoTCP Escribir Error al escribir la alarma: ", ex);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string vars = "";
+                string disp = this.Nombre;
+
+                try
+                {
+                    for (int i = 0; i < variables.Length; i++)
+                    {
+                        vars = vars + "#" + variables[i].ToString();
+                    }
+                }
+                catch (Exception)
+                {
+                    vars = "";
+                    disp = "";
+                }
+                resultado = false;
+                wrapper.Fatal("ODispositivoTCP Escribir Error en la escritura de variables en dispositivo " +
+                    disp.ToString() + " con variables " + vars + " " + ex.ToString());
+            }
+
+            return resultado;
+        }
+        /// <summary>
         /// Devuelva las alarmas alctivas del sistemas
         /// </summary>
         /// <returns></returns>

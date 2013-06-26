@@ -227,6 +227,16 @@ namespace Orbita.Comunicaciones
             return false;
         }
         /// <summary>
+        /// Método de escritura de un dispositivo
+        /// </summary>
+        /// <param name="variables">nombre de las variables</param>
+        /// <param name="valores">valor de las variables</param>
+        /// <returns></returns>
+        public virtual bool Escribir(string[] variables, object[] valores,string canal)
+        {
+            return false;
+        }
+        /// <summary>
         /// Método de lectura de un dispositivo
         /// </summary>
         /// <param name="variables">nombre de las variables</param>

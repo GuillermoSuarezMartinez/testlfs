@@ -337,6 +337,18 @@ namespace Orbita.Comunicaciones
             return resultado;
         }
         /// <summary>
+        /// Escribir el valor de los identificadores de variables de la colección.
+        /// </summary>
+        /// <param name="variables">Colección de variables.</param>
+        /// <param name="valores">Colección de valores.</param>
+        /// <returns></returns>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public override bool Escribir(string[] variables, object[] valores, string canal)
+        {
+            wrapper.Error("ODispositivoClienteOPC Escribir: la opción de canal no está implementada en este dispositivo ");
+            return false;
+        }
+        /// <summary>
         /// Devuelva las alarmas alctivas del sistemas
         /// </summary>
         /// <returns></returns>

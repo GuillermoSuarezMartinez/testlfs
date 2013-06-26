@@ -110,6 +110,17 @@ namespace Orbita.Comunicaciones
             }
             return retorno;
         }
+        /// <summary>
+        /// Escribir el valor de los identificadores de variables de la colección.
+        /// </summary>
+        /// <param name="variables">Colección de variables.</param>
+        /// <param name="valores">Colección de valores.</param>
+        /// <returns></returns>
+        public override bool Escribir(string[] variables, object[] valores, string canal)
+        {
+            wrapper.Error("ODispositivoWinCC Escribir: la opción de canal no está implementada en este dispositivo ");
+            return false;
+        }
         #endregion
 
         #region Métodos privados

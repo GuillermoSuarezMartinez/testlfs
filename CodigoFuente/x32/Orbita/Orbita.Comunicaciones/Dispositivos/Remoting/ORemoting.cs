@@ -177,6 +177,16 @@ namespace Orbita.Comunicaciones
             }
             return Activator.GetObject(entrada.ObjectType, entrada.ObjectUrl);
         }
+        /// <summary>
+        /// Obtiene el canal para establecer la comunicación remota
+        /// </summary>
+        /// <param name="IP"></param>
+        /// <param name="puerto"></param>
+        /// <returns></returns>
+        public static string GetCanal(string IP, string puerto)
+        {
+            return IP+":" + puerto;
+        }
         #endregion
 
         #region Métodos privados estáticos
