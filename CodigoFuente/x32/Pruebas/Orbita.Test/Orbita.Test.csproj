@@ -57,8 +57,6 @@
     <Reference Include="Orbita.Controles.Combo">
       <HintPath>..\..\Orbita.Controles\Orbita.Controles.Combo\obj\x86\Release\Orbita.Controles.Combo.dll</HintPath>
     </Reference>
-    <Reference Include="Orbita.Controles.Comunes, Version=13.70.5.1, Culture=neutral, processorArchitecture=x86" />
-    <Reference Include="Orbita.Controles.Shared, Version=13.70.5.1, Culture=neutral, processorArchitecture=x86" />
     <Reference Include="Orbita.Trazabilidad">
       <HintPath>..\..\Comun\Orbita\Orbita.Trazabilidad.dll</HintPath>
     </Reference>
@@ -131,6 +129,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Orbita.Controles\Orbita.Controles.Comunes\Orbita.Controles.Comunes.csproj">
+      <Project>{D66C367A-47B7-4464-93D6-92794E4A57C8}</Project>
+      <Name>Orbita.Controles.Comunes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Orbita.Controles\Orbita.Controles.Comunicaciones\Orbita.Controles.Comunicaciones.csproj">
       <Project>{7E7DAFD4-3823-46B8-917C-FCEA9431A1A9}</Project>
       <Name>Orbita.Controles.Comunicaciones</Name>
@@ -146,6 +148,10 @@
     <ProjectReference Include="..\..\Orbita.Controles\Orbita.Controles.Menu\Orbita.Controles.Menu.csproj">
       <Project>{3FC7CCF4-13B4-4B2B-95A9-CC178C85C343}</Project>
       <Name>Orbita.Controles.Menu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Orbita.Controles\Orbita.Controles.Shared\Orbita.Controles.Shared.csproj">
+      <Project>{D104B7D1-93CB-46AE-8F84-AA68BB3B2C5E}</Project>
+      <Name>Orbita.Controles.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

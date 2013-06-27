@@ -44,10 +44,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Controles.Autenticacion", "Orbita.Controles.Autenticacion\Orbita.Controles.Autenticacion.csproj", "{298D55EA-3C54-4D2F-9CF9-DA76531931EC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.Test", "..\Pruebas\Orbita.Test\Orbita.Test.csproj", "{5A389901-6ECF-48D6-8DDC-0A83AE46925C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D66C367A-47B7-4464-93D6-92794E4A57C8} = {D66C367A-47B7-4464-93D6-92794E4A57C8}
+		{D104B7D1-93CB-46AE-8F84-AA68BB3B2C5E} = {D104B7D1-93CB-46AE-8F84-AA68BB3B2C5E}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 13
+		SccNumberOfProjects = 14
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://01x0019:8080/tfs/orbitasoftware
 		SccLocalPath0 = .
@@ -99,6 +103,9 @@ Global
 		SccProjectTopLevelParentUniqueName12 = Orbita.Controles.sln
 		SccProjectName12 = Orbita.Controles.Grid
 		SccLocalPath12 = Orbita.Controles.Grid
+		SccProjectUniqueName13 = ..\\Pruebas\\Orbita.Test\\Orbita.Test.csproj
+		SccProjectName13 = ../Pruebas/Orbita.Test
+		SccLocalPath13 = ..\\Pruebas\\Orbita.Test
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -278,7 +285,6 @@ Global
 		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|x64.ActiveCfg = Release|x86
 		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|x86.ActiveCfg = Release|x86
-		{5A389901-6ECF-48D6-8DDC-0A83AE46925C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
