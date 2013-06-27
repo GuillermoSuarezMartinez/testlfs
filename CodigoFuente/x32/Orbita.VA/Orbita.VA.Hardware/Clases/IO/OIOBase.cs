@@ -795,7 +795,13 @@ namespace Orbita.VA.Hardware
         /// Comando de Entrada
         /// </summary>
         [OAtributoEnumerado("Comando de salida")]
-        SalidaComando = 4
+        SalidaComando = 4,
+
+        /// <summary>
+        /// Entrada / Salida
+        /// </summary>
+        [OAtributoEnumerado("Entrada-Salida digital")]
+        EntradaSalidaDigital = 5,
     }
 
     /// <summary>

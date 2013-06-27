@@ -69,6 +69,10 @@ namespace Orbita.VA.Hardware
         /// Cronómetro del tiempo sin respuesta
         /// </summary>
         private Stopwatch CronometroTiempoSinRespuesta;
+        /// <summary>
+        /// Nombre del canal
+        /// </summary>
+        private string NombreCanal;
         #endregion
 
         #region Propiedad(es)
@@ -162,10 +166,10 @@ namespace Orbita.VA.Hardware
                             case OTipoTerminalIO.EntradaDigital:
                             case OTipoTerminalIO.SalidaDigital:
                             default:
-                                terminal = new OTerminalClienteComunicacion(codHardware, dr["CodTerminalIO"].ToString());
+                                terminal = new OTerminalClienteComunicacion(codHardware, dr["CodTerminalIO"].ToString(), this.NombreCanal);
                                 break;
                             case OTipoTerminalIO.SalidaComando:
-                                terminal = new OTerminalClienteComunicacionWriteCommand(codHardware, dr["CodTerminalIO"].ToString());
+                                terminal = new OTerminalClienteComunicacionWriteCommand(codHardware, dr["CodTerminalIO"].ToString(), this.NombreCanal);
                                 break;
                         }
 
@@ -358,13 +362,8 @@ namespace Orbita.VA.Hardware
         /// <param name="estado">Estado de conexión.</param>
         private void ConectarCanal(bool estado)
         {
-
-            //string strHostName = "";
-            //strHostName = System.Net.Dns.GetHostName();
-            //string canal = "canal" + strHostName + ":" + this._PuertoRemoto.ToString();
-
-            string canal = "canal" + this._PuertoRemoto.ToString();
-            this.Servidor.OrbitaConectar(canal, estado);
+            this.NombreCanal = ORemoting.GetCanal(this.HostServidor, this.PuertoRemoto.ToString());
+            this.Servidor.OrbitaConectar(this.NombreCanal, estado);
         }
         #endregion
 
@@ -379,25 +378,40 @@ namespace Orbita.VA.Hardware
             {
                 this.ContLlamadasSimultaneasCambioDato++;
 
-                // Recogemos el código del terminal
-                string codigoCambioEstado = ((OInfoDato)e.Argumento).Texto;
-
                 if (this.ContLlamadasSimultaneasCambioDato <= NumMaxLlamadasSimultaneas)
                 {
-                    // Recogemos el dispositivo al que pertenece el terminal
-                    int dispositivo = ((OInfoDato)e.Argumento).Dispositivo;
-
-                    // Búsqueda del terminal
-                    OTerminalClienteComunicacion terminal = this.ListaTerminales.Values.OfType<OTerminalClienteComunicacion>().SingleOrDefault(t => (t.CodigoVariableCOM == codigoCambioEstado) && (t.IdDispositivo == dispositivo));
-                    if (terminal != null)
+                    if (e.Argumento is OInfoDato)
                     {
-                        // Extraemos el valor
-                        terminal.LeerEntrada(e);
+                        OInfoDato argumento = (OInfoDato)e.Argumento;
+
+                        // Recogemos el código del terminal, su canal y su dispositivo
+                        string codigoCambioEstado = argumento.Texto;
+                        string nombreCanalCambioDato = argumento.CanalCambioDato;
+                        int dispositivo = argumento.Dispositivo;
+
+                        if (this.NombreCanal != nombreCanalCambioDato)
+                        {
+                            // Búsqueda del terminal
+                            //OTerminalClienteComunicacion terminal = this.ListaTerminales.Values.OfType<OTerminalClienteComunicacion>().SingleOrDefault(t => (t.CodigoVariableCOM == codigoCambioEstado) && (t.IdDispositivo == dispositivo));
+                            var terminales = this.ListaTerminales.Values.OfType<OTerminalClienteComunicacion>().Where(t => (t.CodigoVariableCOM == codigoCambioEstado) && (t.IdDispositivo == dispositivo));
+                            if (terminales != null)
+                            {
+                                foreach (OTerminalClienteComunicacion terminal in terminales)
+                                {
+                                    // Extraemos el valor
+                                    terminal.LeerEntrada(e);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        OLogsVAHardware.EntradasSalidas.Info("Argumento de cambio de dato no válido", this.Codigo);
                     }
                 }
                 else
                 {
-                    OLogsVAHardware.EntradasSalidas.Info("Número máximo de llamadas al cambio dato superado: " + this.ContLlamadasSimultaneasCambioDato, "Variable del servidor de comunicaciones: " + codigoCambioEstado, this.Codigo);
+                    OLogsVAHardware.EntradasSalidas.Info("Número máximo de llamadas al cambio dato superado: " + this.ContLlamadasSimultaneasCambioDato, this.Codigo);
                 }
             }
             catch (Exception exception)
@@ -506,31 +520,33 @@ namespace Orbita.VA.Hardware
         /// Código de la variable contra la que trabaja el terminal
         /// </summary>
         internal string CodigoVariableCOM;
-
         /// <summary>
         /// Servidor de comunicación
         /// </summary>
         protected IOCommRemoting Servidor;
-
         /// <summary>
         /// Información del Dispositivo
         /// </summary>
         internal int IdDispositivo;
-
         /// <summary>
         /// Indica que la escritura del valor se ha de producir inmediatamente al cambio del valor de la variable
         /// </summary>
         protected bool EscrituraInmediata;
+        /// <summary>
+        /// Nombre del canal
+        /// </summary>
+        protected string NombreCanal;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Contructor de la clase
         /// </summary>
-        public OTerminalClienteComunicacion(string codTarjetaIO, string codTerminalIO)
+        public OTerminalClienteComunicacion(string codTarjetaIO, string codTerminalIO, string nombreCanal)
             : base(codTarjetaIO, codTerminalIO)
         {
             this.Valor = null;
+            this.NombreCanal = nombreCanal;
 
             // Cargamos valores de la base de datos
             DataTable dtTerminalIO = AppBD.GetTerminalIO(codTarjetaIO, codTerminalIO);
@@ -656,7 +672,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                if (this.TipoTerminalIO == OTipoTerminalIO.EntradaDigital)
+                if ((this.TipoTerminalIO == OTipoTerminalIO.EntradaDigital) || (this.TipoTerminalIO == OTipoTerminalIO.EntradaSalidaDigital))
                 {
                     // Se devuelve el objeto tal cual
                     object valorCOM = ((OInfoDato)eventArgs.Argumento).Valor;
@@ -668,10 +684,6 @@ namespace Orbita.VA.Hardware
 
                         // Se lanza el cambio de valor
                         this.LanzarCambioValor();
-
-                        // Se lanza desde un thread distino.
-                        //OSimpleMethod setVariableEnThread = new OSimpleMethod(this.LanzarCambioValor);
-                        //setVariableEnThread.BeginInvoke(null, null);
                     }
                 }
             }
@@ -727,7 +739,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                if ((this.TipoTerminalIO == OTipoTerminalIO.SalidaDigital) || (this.TipoTerminalIO == OTipoTerminalIO.SalidaComando))
+                if ((this.TipoTerminalIO == OTipoTerminalIO.SalidaDigital) || (this.TipoTerminalIO == OTipoTerminalIO.EntradaSalidaDigital) || (this.TipoTerminalIO == OTipoTerminalIO.SalidaComando))
                 {
                     base.EscribirSalida(codigoVariable, valor);
 
@@ -737,7 +749,7 @@ namespace Orbita.VA.Hardware
                         this.Valor = FormatoCorrectoACOM(valor, this.TipoDato);
 
                         // Escritura en el servidor de comunicaciones
-                        this.Servidor.OrbitaEscribir(this.IdDispositivo, new string[1] { this.CodigoVariableCOM }, new object[1] { this.Valor });
+                        this.Servidor.OrbitaEscribir(this.IdDispositivo, new string[1] { this.CodigoVariableCOM }, new object[1] { this.Valor }, this.NombreCanal);
                     }
                 }
             }
@@ -755,7 +767,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                if (this.TipoTerminalIO == OTipoTerminalIO.EntradaDigital)
+                if ((this.TipoTerminalIO == OTipoTerminalIO.EntradaDigital) || (this.TipoTerminalIO == OTipoTerminalIO.EntradaSalidaDigital))
                 {
                     base.LeerEntrada();
 
@@ -766,7 +778,6 @@ namespace Orbita.VA.Hardware
                         if (infoDato[0] != null)
                         {
                             object valorCOM = infoDato[0];
-
                             if (!OObjeto.CompararObjetos(this.Valor, valorCOM))
                             {
                                 // Conversión
@@ -798,7 +809,6 @@ namespace Orbita.VA.Hardware
         /// Lista de códigos de terminales asociados
         /// </summary>
         private List<string> ListaCodigosTerminalesAsociados;
-
         /// <summary>
         /// Lista de terminales asociados
         /// </summary>
@@ -809,8 +819,8 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Contructor de la clase
         /// </summary>
-        public OTerminalClienteComunicacionWriteCommand(string codTarjetaIO, string codTerminalIO)
-            : base(codTarjetaIO, codTerminalIO)
+        public OTerminalClienteComunicacionWriteCommand(string codTarjetaIO, string codTerminalIO, string nombreCanal)
+            : base(codTarjetaIO, codTerminalIO, nombreCanal)
         {
             this.ListaCodigosTerminalesAsociados = new List<string>();
             this.ListaTerminalesAsociados = new List<OTerminalClienteComunicacion>();
@@ -870,13 +880,13 @@ namespace Orbita.VA.Hardware
                     }
 
                     // Escritura en el servidor de comunicaciones de las variables asocidas a este terminal tipo Comando salida
-                    bool resultado = this.Servidor.OrbitaEscribir(this.IdDispositivo, variables.ToArray(), valores.ToArray());
+                    bool resultado = this.Servidor.OrbitaEscribir(this.IdDispositivo, variables.ToArray(), valores.ToArray(), this.NombreCanal);
 
                     // Conversión a string
                     object valorCOM = FormatoCorrectoACOM(valor, this.TipoDato);
                     
                     // Escritura en el servidor de comunicaciones de la variable tipo Comando Salida, para que sea escrita en ultimo lugar
-                    resultado = this.Servidor.OrbitaEscribir(this.IdDispositivo, new string[1] { this.CodigoVariableCOM }, new object[1] { valorCOM });
+                    resultado = this.Servidor.OrbitaEscribir(this.IdDispositivo, new string[1] { this.CodigoVariableCOM }, new object[1] { valorCOM }, this.NombreCanal);
                 }
             }
             catch (Exception exception)
