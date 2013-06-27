@@ -556,42 +556,36 @@ namespace Orbita.Controles.VA
         /// </summary>
         private void AccionesIrAPasoSiguiente()
         {
-            TipoPasoAsistente tipoPasoActualLocal = this.TipoPasoActual;
-            switch (tipoPasoActualLocal)
+            if (this.ValidarDatosPaso(this.PasoActual))
             {
-                case TipoPasoAsistente.PasoInicial:
-                case TipoPasoAsistente.PasoIntermedio:
-                    if (this.ValidarDatosPaso(this.PasoActual))
-                    {
+                TipoPasoAsistente tipoPasoActualLocal = this.TipoPasoActual;
+                switch (tipoPasoActualLocal)
+                {
+                    case TipoPasoAsistente.PasoInicial:
+                    case TipoPasoAsistente.PasoIntermedio:
                         TipoPasoAsistente tipoPasoSiguiente;
                         int pasoSiguiente;
                         this.GetInformacionPasoSiguiente(out pasoSiguiente, out tipoPasoSiguiente);
                         if (pasoSiguiente != this.PasoActual)
                         {
-                            if (this.ValidacionAceptacionPaso(this.PasoActual))
+                            this.AccionesAlSalirDelPaso(this.PasoActual);
+                            this.AccionesAlAceptarElPaso(this.PasoActual);
+                            this.TabControl.SelectedTab = this.TabControl.Tabs[pasoSiguiente];
+                            this.TipoPasoActual = tipoPasoSiguiente;
+                            this.AccionesAlIniciarPaso(this.PasoActual);
+                            this.AccionesAlEntrarEnPaso(this.PasoActual);
+                            this.VisualizarBotonAnteriorSiguienteFinalizar(tipoPasoSiguiente);
+                            this.VisualizarPasoActual(this.PasoActual, this.TotalPasos);
+                        }
+                        break;
+                    case TipoPasoAsistente.PasoFinal:
+                            if (this.GuardarDatos())
                             {
-                                this.AccionesAlSalirDelPaso(this.PasoActual);
-                                this.AccionesAlAceptarElPaso(this.PasoActual);
-                                this.TabControl.SelectedTab = this.TabControl.Tabs[pasoSiguiente];
-                                this.TipoPasoActual = tipoPasoSiguiente;
-                                this.AccionesAlIniciarPaso(this.PasoActual);
-                                this.AccionesAlEntrarEnPaso(this.PasoActual);
-                                this.VisualizarBotonAnteriorSiguienteFinalizar(tipoPasoSiguiente);
-                                this.VisualizarPasoActual(this.PasoActual, this.TotalPasos);
+                                //Si se han guardado los datos correctamente, cerramos el formulario
+                                this.Close();
                             }
-                        }
-                    }
-                    break;
-                case TipoPasoAsistente.PasoFinal:
-                    if (this.ValidacionAceptacionPaso(this.PasoActual))
-                    {
-                        if (this.GuardarDatos())
-                        {
-                            //Si se han guardado los datos correctamente, cerramos el formulario
-                            this.Close();
-                        }
-                    }
-                    break;
+                        break;
+                }
             }
         }
 
@@ -819,20 +813,11 @@ namespace Orbita.Controles.VA
 
         }
         /// <summary>
-        /// Acciones al salir del paso al paso siguiente
+        /// Validación de aceptación del paso
         /// </summary>
         /// <param name="paso"></param>
         protected virtual void AccionesAlAceptarElPaso(int paso)
         {
-
-        }
-        /// <summary>
-        /// Validación de aceptación del paso
-        /// </summary>
-        /// <param name="paso"></param>
-        protected virtual bool ValidacionAceptacionPaso(int paso)
-        {
-            return true;
         }
         /// <summary>
         /// Acciones al salir del paso a cualquier paso
