@@ -6,7 +6,7 @@ IF %resp% == n GOTO Funciones
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.Comun.dll /q/f
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.Comun.xml /q/f
 "%PROGRAMFILES%\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.VA.Comun32.saproj
-verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.Comun.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2012"
+verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.Comun.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2013"
 xcopy ..\Orbita.VA.Comun.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
 :Funciones
@@ -18,7 +18,7 @@ IF %resp% == n GOTO Hardware
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.Funciones.dll /q/f
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.Funciones.xml /q/f
 "%PROGRAMFILES%\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.VA.Funciones32.saproj
-verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.Funciones.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2012"
+verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.Funciones.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2013"
 xcopy ..\Orbita.VA.Funciones.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
 :Hardware
@@ -30,7 +30,7 @@ IF %resp% == n GOTO MaquinasEstados
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.Hardware.dll /q/f
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.Hardware.xml /q/f
 "%PROGRAMFILES%\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.VA.Hardware32.saproj
-verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.Hardware.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2012"
+verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.Hardware.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2013"
 xcopy ..\Orbita.VA.Hardware.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
 :MaquinasEstados
@@ -42,7 +42,7 @@ IF %resp% == n GOTO GeneradorEscenarios
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.MaquinasEstados.dll /q/f
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.MaquinasEstados.xml /q/f
 "%PROGRAMFILES%\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.VA.MaquinasEstados32.saproj
-verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.MaquinasEstados.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2012"
+verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.MaquinasEstados.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2013"
 xcopy ..\Orbita.VA.MaquinasEstados.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
 :GeneradorEscenarios
@@ -54,7 +54,7 @@ IF %resp% == n GOTO teamfundation
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.GeneradorEscenarios.exe /q/f
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.GeneradorEscenarios.xml /q/f
 "%PROGRAMFILES%\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.VA.GeneradorEscenarios32.saproj
-verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.GeneradorEscenarios.exe /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2012"
+verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.GeneradorEscenarios.exe /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2013"
 xcopy ..\Orbita.VA.GeneradorEscenarios.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
 :teamfundation
