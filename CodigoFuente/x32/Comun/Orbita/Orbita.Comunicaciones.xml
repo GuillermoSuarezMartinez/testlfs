@@ -105,6 +105,14 @@
             <param name="valores">valor de las variables</param>
             <returns></returns>
         </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivo.Escribir(System.String[],System.Object[],System.String)">
+            <summary>
+            Método de escritura de un dispositivo
+            </summary>
+            <param name="variables">nombre de las variables</param>
+            <param name="valores">valor de las variables</param>
+            <returns></returns>
+        </member>
         <member name="M:Orbita.Comunicaciones.ODispositivo.Leer(System.String[],System.Boolean)">
             <summary>
             Método de lectura de un dispositivo
@@ -251,6 +259,14 @@
             <param name="valores"></param>
             <returns></returns>
         </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoWinCC.Escribir(System.String[],System.Object[],System.String)">
+            <summary>
+            Escribir el valor de los identificadores de variables de la colección.
+            </summary>
+            <param name="variables">Colección de variables.</param>
+            <param name="valores">Colección de valores.</param>
+            <returns></returns>
+        </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoWinCC.Leer(System.String,System.Object@)">
             <summary>
             Lee la variable de wincc
@@ -293,6 +309,11 @@
             Argumentos para generar los eventos
             </summary>
         </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoTCP._inicioVariables">
+            <summary>
+            Indica si las variables han sido iniciadas
+            </summary>
+        </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoTCP.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
             <summary>
             Inicializar una nueva instancia de la clase SiemensOPC.
@@ -301,6 +322,11 @@
         <member name="M:Orbita.Comunicaciones.ODispositivoTCP.Iniciar">
             <summary>
             Inicializar grupos, punteros e items.
+            </summary>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoTCP.IniciarValores">
+            <summary>
+            Inicia los valores por defecto en las variables del dispositivo
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoTCP.Leer(System.String[],System.Boolean)">
@@ -314,6 +340,14 @@
             <returns>Colección de resultados.</returns>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoTCP.Escribir(System.String[],System.Object[])">
+            <summary>
+            Escribir el valor de los identificadores de variables de la colección.
+            </summary>
+            <param name="variables">Colección de variables.</param>
+            <param name="valores">Colección de valores.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoTCP.Escribir(System.String[],System.Object[],System.String)">
             <summary>
             Escribir el valor de los identificadores de variables de la colección.
             </summary>
@@ -564,6 +598,14 @@
             Limpia los objetos en memoria
             </summary>
             <param name="disposing"></param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoES.Escribir(System.String[],System.Object[],System.String)">
+            <summary>
+            Escribir el valor de los identificadores de variables de la colección.
+            </summary>
+            <param name="variables">Colección de variables.</param>
+            <param name="valores">Colección de valores.</param>
+            <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoES.InicHiloVida">
             <summary>
@@ -904,6 +946,14 @@
             </summary>
             <param name="tipo">Interface de eventos y métodos remoting.</param>
             <returns>Objeto con el establecimiento de conexión.</returns>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ORemoting.GetCanal(System.String,System.String)">
+            <summary>
+            Obtiene el canal para establecer la comunicación remota
+            </summary>
+            <param name="IP"></param>
+            <param name="puerto"></param>
+            <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.ORemoting.Configurar(System.String)">
             <summary>
@@ -1951,7 +2001,12 @@
         </member>
         <member name="F:Orbita.Comunicaciones.OInfoDato._valor">
             <summary>
-            Valor de tipo String.
+            Valor de la variable.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.OInfoDato._valorDefecto">
+            <summary>
+            Valor por defecto de la variable.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OInfoDato._descripcion">
@@ -2009,9 +2064,19 @@
             Indica si es una entrada
             </summary>
         </member>
+        <member name="F:Orbita.Comunicaciones.OInfoDato._canalCambioDato">
+            <summary>
+            Canal que ejecuta el cambio de valor
+            </summary>
+        </member>
         <member name="M:Orbita.Comunicaciones.OInfoDato.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase DatosOPC.
+            </summary>
+        </member>
+        <member name="P:Orbita.Comunicaciones.OInfoDato.CanalCambioDato">
+            <summary>
+            Canal que ejecuta el cambio de valor
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OInfoDato.Identificador">
@@ -2067,6 +2132,11 @@
         <member name="P:Orbita.Comunicaciones.OInfoDato.Valor">
             <summary>
             Valor.
+            </summary>
+        </member>
+        <member name="P:Orbita.Comunicaciones.OInfoDato.ValorDefecto">
+            <summary>
+            Valor por defecto de la variable.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OInfoDato.UltimoValor">
@@ -2830,6 +2900,14 @@
             <returns>Colección de resultados.</returns>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoClienteOPC.Escribir(System.String[],System.Object[])">
+            <summary>
+            Escribir el valor de los identificadores de variables de la colección.
+            </summary>
+            <param name="variables">Colección de variables.</param>
+            <param name="valores">Colección de valores.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoClienteOPC.Escribir(System.String[],System.Object[],System.String)">
             <summary>
             Escribir el valor de los identificadores de variables de la colección.
             </summary>
@@ -3645,6 +3723,15 @@
             <param name="estado">Estado de la máquina; conectado, desconectado.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.IOCommRemoting.OrbitaEscribir(System.Int32,System.String[],System.Object[])">
+            <summary>
+            Método de escritura de valores.
+            </summary>
+            <param name="dispositivo">Identificador de dispositivo de escritura.</param>
+            <param name="variables">Colección de variables.</param>
+            <param name="valores">Colección de valores.</param>
+            <returns>Estado correcto o incorrecto de escritura.</returns>
+        </member>
+        <member name="M:Orbita.Comunicaciones.IOCommRemoting.OrbitaEscribir(System.Int32,System.String[],System.Object[],System.String)">
             <summary>
             Método de escritura de valores.
             </summary>
