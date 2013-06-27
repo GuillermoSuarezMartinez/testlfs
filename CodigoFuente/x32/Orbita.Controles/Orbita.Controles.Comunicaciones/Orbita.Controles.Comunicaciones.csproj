@@ -197,6 +197,12 @@
     <Compile Include="Custom\Multiserver\OrbitaControlBaseEventosCom.Designer.cs">
       <DependentUpon>OrbitaControlBaseEventosCom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Custom\Multiserver\OrbitaEstadoEventos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\Multiserver\OrbitaEstadoEventos.Designer.cs">
+      <DependentUpon>OrbitaEstadoEventos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom\Remoting\OrbitaRemotingMultidispositivo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -298,6 +304,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Custom\Miscelanea\OrbitaTCPCliente.resx">
       <DependentUpon>OrbitaTCPCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\Multiserver\OrbitaEstadoEventos.resx">
+      <DependentUpon>OrbitaEstadoEventos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Custom\Remoting\OrbitaRemotingMultidispositivo.resx">
       <DependentUpon>OrbitaRemotingMultidispositivo.cs</DependentUpon>

@@ -86,16 +86,23 @@ namespace Orbita.Controles.Comunicaciones
         /// Ruta del logger
         /// </summary>
         private string _nombreLogger;
-
+        /// <summary>
+        /// Estado del canal
+        /// </summary>
         private OEstadoCanalCliente _estado;
-
+        /// <summary>
+        /// Estados del canal
+        /// </summary>
         private enum OEstadoCanalCliente
         {
             Conectado,
             Reconectando,
             PendienteReconectar
         }
-
+        /// <summary>
+        /// Indica si la comunicación es por remoting
+        /// </summary>
+        private bool esRemoting = false;        
         #endregion
 
         #region Propiedades
@@ -154,6 +161,14 @@ namespace Orbita.Controles.Comunicaciones
         {
             get { return _nombreLogger; }
             set { _nombreLogger = value; }
+        }
+        /// <summary>
+        /// Indica si la comunicación es por remoting
+        /// </summary>
+        public bool EsRemoting
+        {
+            get { return esRemoting; }
+            set { esRemoting = value; }
         }
         #endregion
 

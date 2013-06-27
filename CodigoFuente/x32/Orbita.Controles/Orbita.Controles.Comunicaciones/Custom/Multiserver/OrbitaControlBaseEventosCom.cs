@@ -67,6 +67,16 @@ namespace Orbita.Controles.Comunicaciones
         {
 
         }
+
+        public virtual void ProcesarTodasAlarmas(Orbita.Utiles.OEventArgs e)
+        { 
+        
+        }
+
+        public virtual void ProcesarTodosEventos(Orbita.Utiles.OEventArgs e)
+        {
+
+        }
         #endregion
 
         #region Métodos privados
@@ -93,7 +103,6 @@ namespace Orbita.Controles.Comunicaciones
             }
         }
 
-
         public void Finalizar()
         {
             try
@@ -108,28 +117,50 @@ namespace Orbita.Controles.Comunicaciones
 
             }
         }
+
         private void OrbitaConfiguracionCanal_OEventoClienteAlarma(Orbita.Utiles.OEventArgs e, string canal)
         {
-            OInfoDato info = (OInfoDato)e.Argumento;
-            if (canal == this.OI.Comunicacion.NombreCanal && info.Dispositivo == this.OI.Comunicacion.IdDispositivo && this.OI.Alarmas.Alarmas.Exists(x => x == info.Texto))
+            lock (this)
             {
-                this.ProcesarAlarma(e);
+                try
+                {
+                    OInfoDato info = (OInfoDato)e.Argumento;
+                    if (canal == this.OI.Comunicacion.NombreCanal && info.Dispositivo == this.OI.Comunicacion.IdDispositivo && this.OI.Alarmas.Alarmas.Exists(x => x == info.Texto))
+                    {
+                        this.ProcesarAlarma(e);
+                    }
+                    this.ProcesarTodasAlarmas(e);
+                }
+                catch (Exception ex)
+                {
+                }
             }
+            
+            
         }
 
         private void OrbitaConfiguracionCanal_OEventoClienteCambioDato(Orbita.Utiles.OEventArgs e, string canal)
         {
             lock (this)
             {
-                OInfoDato info = (OInfoDato)e.Argumento;
-                if (canal == this.OI.Comunicacion.NombreCanal && info.Dispositivo == this.OI.Comunicacion.IdDispositivo && info.Texto == this.OI.CambioDato.Variable)
+                try
                 {
-                    this.ProcesarVariableVisual(e);
+                    OInfoDato info = (OInfoDato)e.Argumento;
+                    if (canal == this.OI.Comunicacion.NombreCanal && info.Dispositivo == this.OI.Comunicacion.IdDispositivo && info.Texto == this.OI.CambioDato.Variable)
+                    {
+                        this.ProcesarVariableVisual(e);
+                    }
+                    if (canal == this.OI.Comunicacion.NombreCanal && info.Dispositivo == this.OI.Comunicacion.IdDispositivo && this.OI.CambioDato.Cambios.Exists(x => x == info.Texto))
+                    {
+                        this.ProcesarCambioDato(e);
+                    }
+                    this.ProcesarTodosEventos(e);
                 }
-                if (canal == this.OI.Comunicacion.NombreCanal && info.Dispositivo == this.OI.Comunicacion.IdDispositivo && this.OI.CambioDato.Cambios.Exists(x => x == info.Texto))
+                catch (Exception ex)
                 {
-                    this.ProcesarCambioDato(e);
+                    
                 }
+                
             }            
         }
 

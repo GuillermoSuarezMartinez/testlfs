@@ -304,7 +304,7 @@ namespace Orbita.Controles.Comunicaciones
         {
             int[] ret = null;
             int reintento = 0;
-            int maxReintentos = 3;
+            int maxReintentos = 1;
             OEventArgs comando = new OEventArgs();
             comando.Id = 4;
             this._eGetDispositivos.Argumento = null;
