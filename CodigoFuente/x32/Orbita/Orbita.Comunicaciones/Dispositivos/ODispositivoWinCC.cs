@@ -118,8 +118,8 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public override bool Escribir(string[] variables, object[] valores, string canal)
         {
-            wrapper.Error("ODispositivoWinCC Escribir: la opción de canal no está implementada en este dispositivo ");
-            return false;
+            wrapper.Debug("ODispositivoWinCC Escribir: la opción de canal no está implementada en este dispositivo.");
+            return this.Escribir(variables, valores);
         }
         #endregion
 
