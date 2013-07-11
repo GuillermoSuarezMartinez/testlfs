@@ -179,6 +179,20 @@ namespace Orbita.VA.Comun
         }
         #endregion
 
+        #region Método(s) público(s)
+        /// <summary>
+        /// Guarda la imagen asincronamente en un fichero de disco
+        /// </summary>
+        /// <param name="ruta">Ruta donde se ha de guardar la imagen</param>
+        public void GuardarAsincrono(string ruta)
+        {
+            if (this.EsValida())
+            {
+                OAlmacenImagenesManager.GuardarImagen(ruta, this);
+            }
+        }
+        #endregion
+
         #region Método(s) virtual(es)
         /// <summary>
         /// Clonado de la imagen
@@ -379,18 +393,6 @@ namespace Orbita.VA.Comun
         #endregion
 
         #region Método(s) público(s)
-        /// <summary>
-        /// Guarda la imagen asincronamente en un fichero de disco
-        /// </summary>
-        /// <param name="ruta">Ruta donde se ha de guardar la imagen</param>
-        public void GuardarAsincrono(string ruta)
-        {
-            if (this.EsValida())
-            {
-                OAlmacenImagenesManager.GuardarImagen(ruta, this);
-            }
-        }
-
         /// <summary>
         /// Sirve para reducir o ampliar la imagen 
         /// </summary>

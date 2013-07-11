@@ -233,12 +233,6 @@
       <DependentUpon>FrmMonitorizacionIO.cs</DependentUpon>
     </Compile>
     <Compile Include="Logs\OExtensionLogs.cs" />
-    <Compile Include="MaquinasEstados\Custom\CtrlMonitorizacionMaquinaEstadosTactil.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MaquinasEstados\Custom\CtrlMonitorizacionMaquinaEstadosTactil.Designer.cs">
-      <DependentUpon>CtrlMonitorizacionMaquinaEstadosTactil.cs</DependentUpon>
-    </Compile>
     <Compile Include="MaquinasEstados\Custom\OrbitaVisorMaquinaEstados.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -262,12 +256,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Variables\Custom\CtrlMonitorizacionVariablesTactil.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Variables\Custom\CtrlMonitorizacionVariablesTactil.Designer.cs">
-      <DependentUpon>CtrlMonitorizacionVariablesTactil.cs</DependentUpon>
     </Compile>
     <Compile Include="Variables\Custom\OrbitaGraficaVariableBase.cs">
       <SubType>UserControl</SubType>
@@ -422,9 +410,6 @@
     <EmbeddedResource Include="Hardware\Formularios\FrmMonitorizacionIO.resx">
       <DependentUpon>FrmMonitorizacionIO.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MaquinasEstados\Custom\CtrlMonitorizacionMaquinaEstadosTactil.resx">
-      <DependentUpon>CtrlMonitorizacionMaquinaEstadosTactil.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MaquinasEstados\Custom\OrbitaVisorMaquinaEstados.resx">
       <DependentUpon>OrbitaVisorMaquinaEstados.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -441,9 +426,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Variables\Custom\CtrlMonitorizacionVariablesTactil.resx">
-      <DependentUpon>CtrlMonitorizacionVariablesTactil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Variables\Custom\OrbitaGraficaVariableBase.resx">
       <DependentUpon>OrbitaGraficaVariableBase.cs</DependentUpon>
@@ -921,81 +903,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ImgStop24Blanco.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgZoom24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgVistas24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgGrupos24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgLugar24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgFlash24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgBolaGrisCandadoTactil24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgBolaGrisCandadoTactil32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgBolaGrisTactil24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgBolaGrisTactil32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgBolaVerdeCandadoTactil24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgBolaVerdeCandadoTactil32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgBolaVerdeTactil24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgBolaVerdeTactil32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgBit1Tactil32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgBit0Tactil32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgBit0LockTactil32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgBit1LockTactil32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgBit1RojoTactil32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgImagenLockTactil32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgImagenTactil32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgNumeroLockTactil32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgNumeroTactil32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgTextoLockTactil32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgTextoTactil32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ImgEstados24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

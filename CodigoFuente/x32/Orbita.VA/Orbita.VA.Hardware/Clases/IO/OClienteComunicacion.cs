@@ -35,13 +35,6 @@ namespace Orbita.VA.Hardware
         private const int NumMaxLlamadasSimultaneas = 5;
         #endregion
 
-        #region Atributo(s) estático(s)
-        /// <summary>
-        /// Lista de dispositivos del servidor de comunicaciones
-        /// </summary>
-        public static Dictionary<int, IOCommRemoting> ListaServidorComunicaciones = new Dictionary<int,IOCommRemoting>(); 
-        #endregion
-
         #region Atributo(s)
         /// <summary>
         /// Si están o no configurados los terminales
@@ -281,7 +274,6 @@ namespace Orbita.VA.Hardware
                 int[] numeroServidores = new int[1] { this._NumeroServidor };
                 ORemoting.InicConfiguracionCliente(puertos, servidores, numeroServidores);
                 this.Servidor = ORemoting.getServidor(this._NumeroServidor);
-                ListaServidorComunicaciones.Add(this._NumeroServidor, this.Servidor);
 
                 //ORemoting.InicConfiguracionCliente(this._PuertoRemoto, this._HostServidor);
                 //this.Servidor = (Orbita.Comunicaciones.IOCommRemoting)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting));
@@ -803,6 +795,8 @@ namespace Orbita.VA.Hardware
             {
                 if ((this.TipoTerminalIO == OTipoTerminalIO.EntradaDigital) || (this.TipoTerminalIO == OTipoTerminalIO.EntradaSalidaDigital))
                 {
+                    base.LeerEntrada();
+
                     // Lectura del servidor de comunicaciones
                     object[] infoDato = this.Servidor.OrbitaLeer(this.IdDispositivo, new string[1] { this.CodigoVariableCOM }, true);
                     if (infoDato.Length == 1)
@@ -814,8 +808,6 @@ namespace Orbita.VA.Hardware
                             {
                                 // Conversión
                                 this.Valor = COMAFormatoCorrecto(valorCOM, this.TipoDato);
-
-                                base.LeerEntrada();
 
                                 // Se lanza desde un thread distino.
                                 OSimpleMethod setVariableEnThread = new OSimpleMethod(this.LanzarCambioValor);

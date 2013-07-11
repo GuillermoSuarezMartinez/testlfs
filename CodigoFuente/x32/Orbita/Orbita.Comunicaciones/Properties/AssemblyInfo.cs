@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 [assembly: CLSCompliant(false)]
 
-[assembly: ComVisible(false)]
+[assembly: System.Runtime.InteropServices.ComVisible(false)]
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -28,5 +28,5 @@ using System.Runtime.InteropServices;
 //      Programador.
 //      Versión del día.
 //
-[assembly: AssemblyVersion("13.254.5.1")]
-[assembly: AssemblyFileVersion("13.254.5.1")]
+[assembly: AssemblyVersion("13.185.3.1")]
+[assembly: AssemblyFileVersion("13.185.3.1")]

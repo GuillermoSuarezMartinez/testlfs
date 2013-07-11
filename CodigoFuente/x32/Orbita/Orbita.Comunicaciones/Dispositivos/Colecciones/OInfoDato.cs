@@ -7,15 +7,110 @@ namespace Orbita.Comunicaciones
     [Serializable]
     public class OInfoDato
     {
-        #region Constructor
+        #region Atributos
         /// <summary>
-        /// Inicializar una nueva instancia de la clase OInfoDato.
+        /// Identificador de dato.
+        /// </summary>
+        int _identificador;
+        /// <summary>
+        /// Tipo.
+        /// </summary>
+        string _tipo;
+        /// <summary>
+        /// Texto.
+        /// </summary>
+        string _texto;
+        /// <summary>
+        /// String de conexión.
+        /// </summary>
+        string _conexion;
+        /// <summary>
+        /// DB.
+        /// </summary>
+        int _db;
+        /// <summary>
+        /// Dirección de DB.
+        /// </summary>
+        int _direccion;
+        /// <summary>
+        /// Número de bit.
+        /// </summary>
+        int _bit;
+        /// <summary>
+        /// Valor de la variable.
+        /// </summary>
+        object _valor;
+        /// <summary>
+        /// Valor por defecto de la variable.
+        /// </summary>
+        object _valorDefecto;        
+        /// <summary>
+        /// Descripción.
+        /// </summary>
+        string _descripcion;
+        /// <summary>
+        /// Descripción del enlace.
+        /// </summary>
+        string _enlace;
+        /// <summary>
+        /// Último valor.
+        /// </summary>
+        object _ultimoValor;
+        /// <summary>
+        /// Calidad.
+        /// </summary>
+        string _calidad;
+        /// <summary>
+        /// Indica si es alarma.
+        /// </summary>
+        bool _esAlarma;
+        /// <summary>
+        /// Indica si es visualización.
+        /// </summary>
+        bool _esVisualizacion;
+        /// <summary>
+        /// Indica si es lectura.
+        /// </summary>
+        bool _esLectura;
+        /// <summary>
+        /// Identificador de lectura.
+        /// </summary>
+        int _idLectura;
+        /// <summary>
+        /// El tipo de error.
+        /// </summary>
+        int _error;
+        /// <summary>
+        /// El dispositivo.
+        /// </summary>
+        int _dispositivo;
+        /// <summary>
+        /// Indica si es una entrada
+        /// </summary>
+        bool _esEntrada;
+        /// <summary>
+        /// Canal que ejecuta el cambio de valor
+        /// </summary>
+        string _canalCambioDato;
+        /// <summary>
+        /// Canal que ejecuta el cambio de valor
+        /// </summary>
+        public string CanalCambioDato
+        {
+            get { return _canalCambioDato; }
+            set { _canalCambioDato = value; }
+        }
+        #endregion
+
+        #region Constructores
+        /// <summary>
+        /// Inicializar una nueva instancia de la clase DatosOPC.
         /// </summary>
         public OInfoDato()
         {
-            ESAlarma = false;
-            ESVisualizacion = false;
-            ESLectura = false;
+            this._esAlarma = false;
+            this._esVisualizacion = false;
+            this._esLectura = false;
         }
         #endregion
 
@@ -23,87 +118,163 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Identificador.
         /// </summary>
-        public int Identificador { get; set; }
+        public int Identificador
+        {
+            get { return this._identificador; }
+            set { this._identificador = value; }
+        }
         /// <summary>
         /// Identificador de lectura.
         /// </summary>
-        public int IdLectura { get; set; }
+        public int IdLectura
+        {
+            get { return this._idLectura; }
+            set { this._idLectura = value; }
+        }
         /// <summary>
         /// Conexión.
         /// </summary>
-        public string Conexion { get; set; }
+        public string Conexion
+        {
+            get { return this._conexion; }
+            set { this._conexion = value; }
+        }
         /// <summary>
         /// DB.
         /// </summary>
-        public int DB { get; set; }
+        public int DB
+        {
+            get { return this._db; }
+            set { this._db = value; }
+        }
         /// <summary>
         /// Direccion.
         /// </summary>
-        public int Direccion { get; set; }
+        public int Direccion
+        {
+            get { return this._direccion; }
+            set { this._direccion = value; }
+        }
         /// <summary>
         /// Bit.
         /// </summary>
-        public int Bit { get; set; }
+        public int Bit
+        {
+            get { return this._bit; }
+            set { this._bit = value; }
+        }
         /// <summary>
         /// Texto.
         /// </summary>
-        public string Texto { get; set; }
+        public string Texto
+        {
+            get { return this._texto; }
+            set { this._texto = value; }
+        }
         /// <summary>
         /// Descripción.
         /// </summary>
-        public string Descripcion { get; set; }
+        public string Descripcion
+        {
+            get { return this._descripcion; }
+            set { this._descripcion = value; }
+        }
         /// <summary>
         /// Enlace.
         /// </summary>
-        public string Enlace { get; set; }
+        public string Enlace
+        {
+            get { return this._enlace; }
+            set { this._enlace = value; }
+        }
         /// <summary>
         /// Tipo.
         /// </summary>
-        public string Tipo { get; set; }
+        public string Tipo
+        {
+            get { return this._tipo; }
+            set { this._tipo = value; }
+        }
         /// <summary>
         /// Valor.
         /// </summary>
-        public object Valor { get; set; }
+        public object Valor
+        {
+            get { return this._valor; }
+            set { this._valor = value; }
+        }
         /// <summary>
         /// Valor por defecto de la variable.
         /// </summary>
-        public object ValorDefecto { get; set; }
+        public object ValorDefecto
+        {
+            get { return _valorDefecto; }
+            set { _valorDefecto = value; }
+        }
         /// <summary>
         /// Último valor.
         /// </summary>
-        public object UltimoValor { get; set; }
+        public object UltimoValor
+        {
+            get { return this._ultimoValor; }
+            set { this._ultimoValor = value; }
+        }
         /// <summary>
         /// Error.
         /// </summary>
-        public int Error { get; set; }
+        public int Error
+        {
+            get { return this._error; }
+            set { this._error = value; }
+        }
         /// <summary>
         /// Calidad.
         /// </summary>
-        public string Calidad { get; set; }
+        public string Calidad
+        {
+            get { return this._calidad; }
+            set { this._calidad = value; }
+        }
         /// <summary>
         /// Alarma.
         /// </summary>
-        public bool ESAlarma { get; set; }
+        public bool ESAlarma
+        {
+            get { return this._esAlarma; }
+            set { this._esAlarma = value; }
+        }
         /// <summary>
         /// Lectura.
         /// </summary>
-        public bool ESLectura { get; set; }
+        public bool ESLectura
+        {
+            get { return this._esLectura; }
+            set { this._esLectura = value; }
+        }
         /// <summary>
         /// Visualización.
         /// </summary>
-        public bool ESVisualizacion { get; set; }
+        public bool ESVisualizacion
+        {
+            get { return this._esVisualizacion; }
+            set { this._esVisualizacion = value; }
+        }
         /// <summary>
         /// Dispositivo.
         /// </summary>
-        public int Dispositivo { get; set; }
+        public int Dispositivo
+        {
+            get { return this._dispositivo; }
+            set { this._dispositivo = value; }
+        }
         /// <summary>
         /// Indica si la variable es una entrada.
         /// </summary>
-        public bool EsEntrada { get; set; }
-        /// <summary>
-        /// Canal que ejecuta el cambio de valor.
-        /// </summary>
-        public string CanalCambioDato { get; set; }
+        public bool EsEntrada
+        {
+            get { return _esEntrada; }
+            set { _esEntrada = value; }
+        }
         #endregion
     }
 }

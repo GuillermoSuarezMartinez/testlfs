@@ -10,11 +10,11 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// cabecera del mensaje de lectura F3
         /// </summary>
-        private readonly byte[] _cabeceraMensajeLecturaF3;
+        private byte[] _cabeceraMensajeLecturaF3;
         /// <summary>
         /// cabecera del mensaje de escritura F16
         /// </summary>
-        private readonly byte[] _cabeceraMensajeEscrituraF16;
+        private byte[] _cabeceraMensajeEscrituraF16;
         #endregion
 
         #region Constructor
@@ -37,7 +37,7 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public byte[] configurarMensajeLecturaF3(int registro, int lecturas)
         {
-            byte[] mensaje;
+            byte[] mensaje = null;
             try
             {
                 mensaje = new byte[12];
@@ -51,6 +51,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
+                string error = "Error en configurarMensajeLecturaF3: " + ex;
                 throw ex;
             }
             return mensaje;
@@ -86,6 +87,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
+                string error = "Error en configurarMensajeLecturaF3: " + ex;
                 throw ex;
             }
             return mensaje;
@@ -107,7 +109,7 @@ namespace Orbita.Comunicaciones
         }
         private byte[] convertirArrayLectura(int valor)
         {
-            byte[] retorno;
+            byte[] retorno = null;
             try
             {
                 retorno = BitConverter.GetBytes(valor);
@@ -120,6 +122,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
+                string error = "Error en convertirArrayLectura: " + ex;
                 throw ex;
             }
             return retorno;

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Linq;
 using System.Security.Permissions;
 using System.Threading;
 using Orbita.Utiles;
-
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -21,51 +18,50 @@ namespace Orbita.Comunicaciones
         /// Atributo que indica las  colecciones
         /// de tags de datos, lecturas y alarmas.
         /// </summary>
-        private readonly OTags _tags;
+        OTags _tags;
         /// <summary>
         /// Colección de hilos.
         /// </summary>
-        private static OHilos _hilos;
+        static OHilos Hilos;
         /// <summary>
         /// Datos de configuración del canal
         /// </summary>
-        private readonly OConfigDispositivo _configuracionDispositivo;
+        OConfigDispositivo _config;
         /// <summary>
         /// Argumentos para generar los eventos
         /// </summary>
-        private readonly OEventArgs _eventArgs;
+        OEventArgs _oEventargs;
         /// <summary>
         /// Indica si las variables han sido iniciadas
         /// </summary>
-        private bool _inicioVariables;
+        private bool _inicioVariables = false;
         #endregion
 
-        #region Constructor
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase SiemensOPC.
         /// </summary>
         public ODispositivoTCP(OTags tags, OHilos hilos, ODispositivo dispositivo)
         {
-            Wrapper.Info("Creando dispositivo ODispositivoTCP...");
+            wrapper.Info("Creando dispositivo ODispositivoTCP");
             try
             {
                 // Asignación de las colecciones de datos, lecturas y alarmas.
                 this._tags = tags;
-                this._configuracionDispositivo = tags.Config;
-                this._eventArgs = new OEventArgs();
-
-                // Actualizando las variables de dispositivo.
+                this._config = tags.Config;
+                this._oEventargs = new OEventArgs();
+                //Actualizando las variables de dispositivo
                 this.Identificador = dispositivo.Identificador;
                 this.Nombre = dispositivo.Nombre;
                 this.Tipo = dispositivo.Tipo;
                 this.Direccion = dispositivo.Direccion;
                 this.Local = dispositivo.Local;
-                _hilos = hilos;
+                Hilos = hilos;
             }
             catch (Exception ex)
             {
-                Wrapper.Error("ODispositivoTCP [ODispositivoTCP]: ", ex);
-                throw;
+                wrapper.Error("Error en ODispositivoTCP. ", ex);
+                throw ex;
             }
         }
         #endregion
@@ -77,6 +73,20 @@ namespace Orbita.Comunicaciones
         private OHashtable Datos
         {
             get { return this._tags.GetDatos(); }
+        }
+        /// <summary>
+        /// Colección de lecturas.
+        /// </summary>
+        private OHashtable Lecturas
+        {
+            get { return this._tags.GetLecturas(); }
+        }
+        /// <summary>
+        /// Colección de alarmas.
+        /// </summary>
+        private OHashtable Alarmas
+        {
+            get { return this._tags.GetAlarmas(); }
         }
         /// <summary>
         /// Colección de alarmas activas.
@@ -98,21 +108,28 @@ namespace Orbita.Comunicaciones
             this.InicHiloVida();
         }
         /// <summary>
-        /// Inicia los valores por defecto en las variables del dispositivo.
+        /// Inicia los valores por defecto en las variables del dispositivo
         /// </summary>
         private void IniciarValores()
         {
-            string[] variables = new string[this.Datos.Count];
-            object[] valores = new object[this.Datos.Count];
-            int i = 0;
-            foreach (OInfoDato dato in from DictionaryEntry item in this.GetDatos() select (OInfoDato)item.Value)
+            string[] variables;
+            object[] valores;
+
+            variables = new string[this.Datos.Count];
+            valores = new string[this.Datos.Count];
+            int i=0;
+            foreach (DictionaryEntry item in this.GetDatos())
             {
+                OInfoDato dato = (OInfoDato)item.Value;
                 variables[i] = dato.Texto;
                 valores[i] = dato.ValorDefecto;
                 i++;
             }
+
             this.Escribir(variables, valores);
+
             this._inicioVariables = true;
+
         }
         /// <summary>
         /// Leer el valor de las descripciones de variables de la colección
@@ -125,6 +142,7 @@ namespace Orbita.Comunicaciones
         public override object[] Leer(string[] variables, bool demanda)
         {
             object[] resultado = null;
+
             try
             {
                 if (variables != null)
@@ -137,14 +155,15 @@ namespace Orbita.Comunicaciones
                     resultado = new object[contador];
                     for (int i = 0; i < contador; i++)
                     {
-                        resultado[i] = this._tags.GetDB(variables[i]).Valor;
+                        object res = this._tags.GetDB(variables[i]).Valor;
+                        resultado[i] = res;
                     }
                 }
             }
             catch (Exception ex)
             {
-                Wrapper.Fatal("ODispositivoTCP [Leer]: ", ex);
-                throw;
+                wrapper.Fatal("OdispositivoTCP Leer[]: ", ex);
+                throw ex;
             }
             return resultado;
         }
@@ -164,7 +183,6 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="variables">Colección de variables.</param>
         /// <param name="valores">Colección de valores.</param>
-        /// <param name="canal"></param>
         /// <returns></returns>
         public override bool Escribir(string[] variables, object[] valores, string canal)
         {
@@ -175,65 +193,50 @@ namespace Orbita.Comunicaciones
                 {
                     // Inicializar contador de variables.
                     int contador = variables.Length;
+
                     for (int i = 0; i < contador; i++)
                     {
                         OInfoDato infoDBdato = this._tags.GetDB(variables[i]);
                         infoDBdato.UltimoValor = infoDBdato.Valor;
                         infoDBdato.Valor = valores[i];
                         infoDBdato.CanalCambioDato = canal;
+
                         if (this._tags.GetLecturas(infoDBdato.Identificador) != null)
                         {
-                            Wrapper.Info("ODispositivoTCP [Escribir] Escritura: " + infoDBdato.Texto + " valor: " + infoDBdato.Valor);
-                            switch ((TiposVariables)Enum.Parse(typeof(TiposVariables), infoDBdato.Tipo.ToUpper()))
+                            if (infoDBdato.UltimoValor != infoDBdato.Valor)
                             {
-                                case TiposVariables.STRING:
-                                case TiposVariables.INT:
-                                case TiposVariables.REAL:
-                                case TiposVariables.X:
-                                    if (infoDBdato.Valor != null && infoDBdato.UltimoValor != null)
+                                this.OnCambioDato(new OEventArgs(infoDBdato));
+                            }
+                        }
+                        if (this._tags.GetAlarmas(infoDBdato.Identificador) != null)
+                        {
+                            try
+                            {
+                                if (infoDBdato.UltimoValor != infoDBdato.Valor)
+                                {
+                                    this.OnAlarma(new OEventArgs(infoDBdato));
+                                    if (Convert.ToInt16(infoDBdato.Valor) == 1)
                                     {
-                                        if (infoDBdato.UltimoValor.ToString() != infoDBdato.Valor.ToString())
+                                        if (!AlarmasActivas.Contains(infoDBdato.Texto))
                                         {
-                                            this.OnCambioDato(new OEventArgs(infoDBdato));
-                                            Wrapper.Info("ODispositivoTCP [Escribir] CambioDato: " + infoDBdato.Texto + " valor: " + infoDBdato.Valor);
+                                            this.AlarmasActivas.Add(infoDBdato.Texto);
                                         }
                                     }
-                                    break;
-                                case TiposVariables.OBJECT:
-                                    if (infoDBdato.UltimoValor != infoDBdato.Valor)
+                                    else
                                     {
-                                        this.OnCambioDato(new OEventArgs(infoDBdato));
-                                        Wrapper.Info("ODispositivoTCP [Escribir] CambioDato: " + infoDBdato.Texto + " valor: " + infoDBdato.Valor);
+                                        if (AlarmasActivas.Contains(infoDBdato.Texto))
+                                        {
+                                            this.AlarmasActivas.Remove(infoDBdato.Texto);
+                                        }
                                     }
-                                    break;
-                            }
-
-                        }
-                        if (this._tags.GetAlarmas(infoDBdato.Identificador) == null) continue;
-                        try
-                        {
-                            if (infoDBdato.Valor != null && (infoDBdato.UltimoValor == null || infoDBdato.UltimoValor.ToString() == infoDBdato.Valor.ToString())) continue;
-                            this.OnAlarma(new OEventArgs(infoDBdato));
-                            if (Convert.ToInt16(infoDBdato.Valor) == 1)
-                            {
-                                if (!AlarmasActivas.Contains(infoDBdato.Texto))
-                                {
-                                    this.AlarmasActivas.Add(infoDBdato.Texto);
                                 }
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                if (AlarmasActivas.Contains(infoDBdato.Texto))
+                                if (this._inicioVariables)
                                 {
-                                    this.AlarmasActivas.Remove(infoDBdato.Texto);
+                                    wrapper.Fatal("ODispositivoTCP Escribir Error al escribir la alarma: ", ex);
                                 }
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            if (this._inicioVariables)
-                            {
-                                Wrapper.Fatal("ODispositivoTCP [Escribir] Error al escribir la alarma: ", ex);
                             }
                         }
                     }
@@ -242,19 +245,25 @@ namespace Orbita.Comunicaciones
             catch (Exception ex)
             {
                 string vars = "";
-                string dispositivo = this.Nombre;
+                string disp = this.Nombre;
+
                 try
                 {
-                    vars = variables.Aggregate(vars, (current, t) => current + "#" + t.ToString(CultureInfo.CurrentCulture));
+                    for (int i = 0; i < variables.Length; i++)
+                    {
+                        vars = vars + "#" + variables[i].ToString();
+                    }
                 }
                 catch (Exception)
                 {
                     vars = "";
-                    dispositivo = "";
+                    disp = "";
                 }
                 resultado = false;
-                Wrapper.Fatal("ODispositivoTCP [Escribir] Error en la escritura de variables en dispositivo " + dispositivo + " con variables " + vars + " " + ex);
+                wrapper.Fatal("ODispositivoTCP Escribir Error en la escritura de variables en dispositivo " +
+                    disp.ToString() + " con variables " + vars + " " + ex.ToString());
             }
+
             return resultado;
         }
         /// <summary>
@@ -295,8 +304,8 @@ namespace Orbita.Comunicaciones
         /// <param name="disposing"></param>
         public override void Dispose(bool disposing)
         {
-            _tags.Dispose();
-            _hilos.Destruir();
+            this._tags.Dispose();
+            Hilos.Destruir();
         }
         #endregion
 
@@ -308,14 +317,15 @@ namespace Orbita.Comunicaciones
         {
             // Crear el objeto Hilo e iniciarlo. El parámetro iniciar indica
             // a la colección que una vez añadido el hilo se iniciado.
-            _hilos.Add(new ThreadStart(ProcesarHiloVida), true);
+            Hilos.Add(new ThreadStart(ProcesarHiloVida), true);
         }
         /// <summary>
         /// Proceso del hilo de vida.
         /// </summary>
         private void ProcesarHiloVida()
         {
-            var estado = new OEstadoComms();
+            OInfoOPCvida infoVida = (OInfoOPCvida)this._tags.HtVida;
+            OEstadoComms estado = new OEstadoComms();
             while (true)
             {
                 try
@@ -323,43 +333,21 @@ namespace Orbita.Comunicaciones
                     estado.Estado = "OK";
                     estado.Nombre = this.Nombre;
                     estado.Id = this.Identificador;
-                    this._eventArgs.Argumento = estado;
-                    TimeSpan ts = DateTime.Now.Subtract(this.FechaUltimoEventoComm);
-                    if (ts.TotalSeconds > (double)this._configuracionDispositivo.SegEventoComs)
-                    {
-                        this.OnComm(this._eventArgs);
-                        this.FechaUltimoEventoComm = DateTime.Now;
-                    }
-
-                    Thread.Sleep(this._configuracionDispositivo.TiempoVida);
+                    this._oEventargs.Argumento = estado;
+                    this.OnComm(this._oEventargs);
+                    Thread.Sleep(this._config.TiempoVida);
                 }
                 catch (ThreadAbortException)
                 {
                 }
                 catch (Exception ex)
                 {
-                    Wrapper.Fatal("ODispositivoTCP [ProcesarHiloVida]: ", ex);
+                    wrapper.Fatal("ODispositivoTCP ProcesarHiloVida: ", ex);
                 }
+
+                
             }
         }
         #endregion
-    }
-
-    /// <summary>
-    /// Tipos de variables.
-    /// </summary>
-    public enum TiposVariables
-    {
-        X,
-        REAL,
-        INT,
-        DINT,
-        W,
-        DWORD,
-        CHAR,
-        STRING,
-        B,
-        DT,
-        OBJECT
     }
 }

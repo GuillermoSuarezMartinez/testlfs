@@ -1,4 +1,15 @@
-﻿using System;
+﻿//***********************************************************************
+// Assembly         : OrbitaComunicaciones
+// Author           : crodriguez
+// Created          : 03-14-2011
+//
+// Last Modified By : crodriguez
+// Last Modified On : 03-15-2011
+// Description      : 
+//
+// Copyright        : (c) Orbita Ingenieria. All rights reserved.
+//***********************************************************************
+using System;
 using System.Collections;
 using Orbita.Utiles;
 namespace Orbita.Comunicaciones
@@ -16,30 +27,38 @@ namespace Orbita.Comunicaciones
         /// de la variable.
         /// Object = InfoDato.
         /// </summary>
-        private OHashtable _htDatos;
+        OHashtable _htDatos;
         /// <summary>
         /// Colección de tags DB.
         /// Key = Texto de la variable.
         /// Object = InfoDato.
         /// </summary>
-        private OHashtable _htDB;
+        OHashtable _htDB;
         /// <summary>
         /// Colección de tags de lecturas.
         /// </summary>
-        private OHashtable _htLecturas;
+        OHashtable _htLecturas;
         /// <summary>
         /// Colección de tags de alarmas.
         /// </summary>
-        private OHashtable _htAlarmas;
+        OHashtable _htAlarmas;
+        /// <summary>
+        /// Object = InfoOPCvida.
+        /// </summary>
+        OInfoOPCvida _htVida;
         /// <summary>
         /// Colección de alarmas activas.
         /// </summary>
-        private ArrayList _alAlarmasActivas;
+        ArrayList _alAlarmasActivas;
+        /// <summary>
+        /// Configuracion
+        /// </summary>
+        OConfigDispositivo _config;
         #endregion
 
-        #region Constructor
+        #region Constructores
         /// <summary>
-        /// Inicializar una nueva instancia de la clase OTags.
+        /// Inicializar una nueva instancia de la clase Tags.
         /// </summary>
         public OTags()
         {
@@ -49,15 +68,15 @@ namespace Orbita.Comunicaciones
             this._htLecturas = new OHashtable();
             this._htAlarmas = new OHashtable();
             this._alAlarmasActivas = new ArrayList();
-            this.Config = new OConfigDispositivo();
+            this._config = new OConfigDispositivo();
         }
         #endregion
 
-        #region Destructor
+        #region Destructores
         /// <summary>
         /// Indica si ya se llamo al método Dispose. (default = false)
         /// </summary>
-        bool _disposed;
+        bool disposed = false;
         /// <summary>
         /// Implementa IDisposable.
         /// No  hacer  este  método  virtual.
@@ -83,22 +102,24 @@ namespace Orbita.Comunicaciones
         protected virtual void Dispose(bool disposing)
         {
             // Preguntar si Dispose ya fue llamado.
-            if (this._disposed) return;
-            if (disposing)
+            if (!this.disposed)
             {
-                // Llamar a dispose de todos los recursos manejados.
-                this._htDatos.Dispose();
-                this._htDB.Dispose();
-                this._htLecturas.Dispose();
-                this._htAlarmas.Dispose();
+                if (disposing)
+                {
+                    // Llamar a dispose de todos los recursos manejados.
+                    this._htDatos.Dispose();
+                    this._htDB.Dispose();
+                    this._htLecturas.Dispose();
+                    this._htAlarmas.Dispose();
+                }
+
+                this._alAlarmasActivas = null;
+
+                // Marcar como desechada ó desechandose,
+                // de forma que no se puede ejecutar el
+                // código dos veces.
+                disposed = true;
             }
-
-            this._alAlarmasActivas = null;
-
-            // Marcar como desechada ó desechandose,
-            // de forma que no se puede ejecutar el
-            // código dos veces.
-            _disposed = true;
         }
         /// <summary>
         /// Destructor(es) de clase.
@@ -118,11 +139,19 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Object = InfoOPCvida.
         /// </summary>
-        public OInfoOPCvida HtVida { get; set; }
+        public OInfoOPCvida HtVida
+        {
+            get { return this._htVida; }
+            set { this._htVida = value; }
+        }
         /// <summary>
         /// Configuración.
         /// </summary>
-        public OConfigDispositivo Config { get; set; }
+        public OConfigDispositivo Config
+        {
+            get { return this._config; }
+            set { this._config = value; }
+        }
         #endregion
 
         #region Métodos públicos
@@ -153,13 +182,12 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Asignar la colección de datos, lecturas y alarmas asociado por identificador.
         /// </summary>
-        /// <param name="infoDato">Colección de datos, lecturas y alarmas.</param>
-        public void SetDatos(OInfoDato infoDato)
+        /// <param name="InfoDato">Colección de datos, lecturas y alarmas.</param>
+        public void SetDatos(OInfoDato InfoDato)
         {
-            if (infoDato != null)
+            if (InfoDato != null)
             {
-                
-                this._htDatos.Add(infoDato.Identificador, infoDato);
+                this._htDatos.Add(InfoDato.Identificador, InfoDato);
             }
         }
         /// <summary>
@@ -189,12 +217,12 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Asignar la colección de datos, lecturas y alarmas asociado por nombre.
         /// </summary>
-        /// <param name="infoDato">Colección de datos, lecturas y alarmas.</param>
-        public void SetDB(OInfoDato infoDato)
+        /// <param name="InfoDato">Colección de datos, lecturas y alarmas.</param>
+        public void SetDB(OInfoDato InfoDato)
         {
-            if (infoDato != null)
+            if (InfoDato != null)
             {
-                this._htDB.Add(infoDato.Texto, infoDato);
+                this._htDB.Add(InfoDato.Texto, InfoDato);
             }
         }
         /// <summary>
@@ -224,12 +252,12 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Asignar la colección de datos, lecturas y alarmas asociado por identificador.
         /// </summary>
-        /// <param name="infoDato">Colección de datos, lecturas y alarmas.</param>
-        public void SetLecturas(OInfoDato infoDato)
+        /// <param name="InfoDato">Colección de datos, lecturas y alarmas.</param>
+        public void SetLecturas(OInfoDato InfoDato)
         {
-            if (infoDato != null)
+            if (InfoDato != null)
             {
-                this._htLecturas.Add(infoDato.Identificador, infoDato);
+                this._htLecturas.Add(InfoDato.Identificador, InfoDato);
             }
         }
         /// <summary>
@@ -259,12 +287,12 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Asignar la colección de datos, lecturas y alarmas asociado por identificador.
         /// </summary>
-        /// <param name="infoDato">Colección de datos, lecturas y alarmas.</param>
-        public void SetAlarmas(OInfoDato infoDato)
+        /// <param name="InfoDato">Colección de datos, lecturas y alarmas.</param>
+        public void SetAlarmas(OInfoDato InfoDato)
         {
-            if (infoDato != null)
+            if (InfoDato != null)
             {
-                this._htAlarmas.Add(infoDato.Identificador, infoDato);
+                this._htAlarmas.Add(InfoDato.Identificador, InfoDato);
             }
         }
         /// <summary>
@@ -272,7 +300,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public OInfoOPCvida GetVida()
         {
-            return this.HtVida;
+            return this._htVida;
         }
         /// <summary>
         /// Asignar la colección de alarmas.
@@ -280,7 +308,7 @@ namespace Orbita.Comunicaciones
         /// <param name="vida">Colección de colecciones.</param>
         public void SetVida(OInfoOPCvida vida)
         {
-            this.HtVida = vida;
+            this._htVida = vida;
         }
         /// <summary>
         /// Obtener la colección de alarmas activas.

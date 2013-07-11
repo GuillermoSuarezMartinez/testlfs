@@ -24,7 +24,7 @@ namespace Orbita.VA.Funciones
     /// <summary>
     /// Clase estática con utilidades para el procesado de neural labs
     /// </summary>
-    public static class ONerualLabsUtils
+    internal static class ONerualLabsUtils
     {
         #region Método(s) público(s)
         /// <summary>

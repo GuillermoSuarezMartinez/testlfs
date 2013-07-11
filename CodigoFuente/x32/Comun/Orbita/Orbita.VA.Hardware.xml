@@ -362,6 +362,23 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBase.VisualizarImagen(Orbita.VA.Comun.OImagen)">
+            <summary>
+            Visualiza una imagen en el display
+            </summary>
+            <param name="imagen">Imagen a visualizar</param>        
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBase.VisualizarUltimaImagen">
+            <summary>
+            Visualiza la última imagen capturada por la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBase.VisualizarUltimaImagen(Orbita.VA.Comun.OGrafico)">
+            <summary>
+            Visualiza la última imagen capturada por la cámara
+            </summary>
+            <param name="graficos">Objeto que contiene los gráficos a visualizar (letras, rectas, circulos, etc)</param>
+        </member>
         <member name="M:Orbita.VA.Hardware.OCamaraBase.StartREC(System.String)">
             <summary>
             Comienza una grabación continua de la cámara
@@ -506,6 +523,13 @@
             Devuelve un nuevo gráfico del tipo adecuado al trabajo con el display
             </summary>
             <returns>Grafico del tipo adecuado al trabajo con el display</returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBase.VisualizarImagen(Orbita.VA.Comun.OImagen,Orbita.VA.Comun.OGrafico)">
+            <summary>
+            Visualiza una imagen en el display
+            </summary>
+            <param name="imagen">Imagen a visualizar</param>
+            <param name="graficos">Objeto que contiene los gráficos a visualizar (letras, rectas, circulos, etc)</param>
         </member>
         <member name="M:Orbita.VA.Hardware.OCamaraBase.SetAjuste(System.String,System.Object)">
             <summary>
@@ -3515,11 +3539,6 @@
             Delegado de mensaje del módulo de Entrada / salida
             </summary>
             <param name="estadoConexion"></param>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OClienteComunicacion.ListaServidorComunicaciones">
-            <summary>
-            Lista de dispositivos del servidor de comunicaciones
-            </summary>
         </member>
         <member name="F:Orbita.VA.Hardware.OClienteComunicacion._Valido">
             <summary>

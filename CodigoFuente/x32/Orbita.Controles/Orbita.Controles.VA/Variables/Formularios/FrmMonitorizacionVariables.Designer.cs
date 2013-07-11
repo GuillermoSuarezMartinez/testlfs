@@ -356,7 +356,6 @@
             this.Controls.Add(this._FrmBase_Toolbars_Dock_Area_Top);
             this.ModoAperturaFormulario = Orbita.Controles.VA.ModoAperturaFormulario.Monitorizacion;
             this.Name = "FrmMonitorizacionVariables";
-            this.OI.NumeroMaximoFormulariosAbiertos = 0;
             this.RecordarPosicion = true;
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
             this.Text = "Monitorización de las variables del sistema";

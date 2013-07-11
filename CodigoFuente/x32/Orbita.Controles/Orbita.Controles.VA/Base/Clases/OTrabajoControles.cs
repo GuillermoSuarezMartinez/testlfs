@@ -3,9 +3,9 @@
 // Author           : aibañez
 // Created          : 02-01-2013
 //
-// Last Modified By : aibañez
-// Last Modified On : 04/04/2013
-// Description      : Nuevas clases estáticas OMDIManager y OTactilManager
+// Last Modified By : 
+// Last Modified On : 
+// Description      : 
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
@@ -186,9 +186,9 @@ namespace Orbita.Controles.VA
         /// Visualización de un formulario
         /// </summary>
         /// <param name="formulario"></param>
-        public static bool AbrirFormulario(string codFormulario)
+        public static void AbrirFormulario(string codFormulario)
         {
-            return CtrlContenedorFormularios.AbrirFormulario(codFormulario);
+            CtrlContenedorFormularios.AbrirFormulario(codFormulario);
         }
 
         /// <summary>

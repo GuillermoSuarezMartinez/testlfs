@@ -431,31 +431,6 @@ namespace Orbita.VA.Comun
         }
 
         /// <summary>
-        /// Método para consultar el tiempo de permanencia del valor de la variable
-        /// </summary>
-        /// <param name="codigo">Código de la variable</param>
-        /// <returns>Devuelve el tiempo de permanencia del valor de la variable</returns>
-        public static DateTime GetMomentoUltimaActualizacion(string codigo)
-        {
-            return GetMomentoUltimaActualizacion(string.Empty, codigo);
-        }
-        /// <summary>
-        /// Método para consultar el tiempo de permanencia del valor de la variable
-        /// </summary>
-        /// <param name="codigo">Código de la variable</param>
-        /// <returns>Devuelve el tiempo de permanencia del valor de la variable</returns>
-        public static DateTime GetMomentoUltimaActualizacion(string escenario, string codigo)
-        {
-            OVariable variable;
-            if (TryGetVariable(escenario, codigo, out variable))
-            {
-                return variable.GetMomentoUltimaActualizacion();
-            }
-
-            return DateTime.MinValue;
-        }
-
-        /// <summary>
         /// Método para comprobar si el valor de la variable ha cambiado
         /// </summary>
         /// <param name="codigo">Código de la variable</param>
@@ -536,38 +511,13 @@ namespace Orbita.VA.Comun
         /// Método para modificar el valor de una variable a de forma registrada
         /// </summary>
         /// <param name="codigo">Código de la variable</param>
-        /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
-        /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void SetDefaultValue(string codigo, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false)
-        {
-            SetValue(string.Empty, codigo, codigoModuloLlamada, descripcionLlamada, forzarRefresco);
-        }
-        /// <summary>
-        /// Método para modificar el valor de una variable a de forma registrada
-        /// </summary>
-        /// <param name="codigo">Código de la variable</param>
-        /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
-        /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void SetDefaultValue(string escenario, string codigo, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false)
-        {
-            OVariable variable;
-            if (TryGetVariable(escenario, codigo, out variable))
-            {
-                variable.SetValorDefecto(codigoModuloLlamada, descripcionLlamada, forzarRefresco);
-            }
-        }
-
-        /// <summary>
-        /// Método para modificar el valor de una variable a de forma registrada
-        /// </summary>
-        /// <param name="codigo">Código de la variable</param>
         /// <param name="valor">Nuevo valor de la variable</param>
         /// <param name="retraso">Tiempo de retraso de la actualización del valor</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void SetValueDelayed(string codigo, object valor, TimeSpan retraso, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false, ThreadPriority threadPriority = ThreadPriority.Normal)
+        public static void SetValueDelayed(string codigo, object valor, TimeSpan retraso, string codigoModuloLlamada, string descripcionLlamada)
         {
-            SetValueDelayed(string.Empty, codigo, valor, retraso, codigoModuloLlamada, descripcionLlamada, forzarRefresco, threadPriority);
+            SetValueDelayed(string.Empty, codigo, valor, retraso, codigoModuloLlamada, descripcionLlamada);
         }
         /// <summary>
         /// Método para modificar el valor de una variable a de forma registrada
@@ -577,12 +527,12 @@ namespace Orbita.VA.Comun
         /// <param name="retraso">Tiempo de retraso de la actualización del valor</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        public static void SetValueDelayed(string escenario, string codigo, object valor, TimeSpan retraso, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false, ThreadPriority threadPriority = ThreadPriority.Normal)
+        public static void SetValueDelayed(string escenario, string codigo, object valor, TimeSpan retraso, string codigoModuloLlamada, string descripcionLlamada)
         {
             OVariable variable;
             if (TryGetVariable(escenario, codigo, out variable))
             {
-                variable.SetValorRetrasado(valor, retraso, codigoModuloLlamada, descripcionLlamada, forzarRefresco, threadPriority);
+                variable.SetValorRetrasado(valor, retraso, codigoModuloLlamada, descripcionLlamada);
             }
         }
 
@@ -1430,22 +1380,6 @@ namespace Orbita.VA.Comun
         }
 
         /// <summary>
-        /// Método para consultar el tiempo de permanencia del valor de la variable
-        /// </summary>
-        /// <param name="codigo">Código de la variable</param>
-        /// <returns>Devuelve el tiempo de permanencia del valor de la variable</returns>
-        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public DateTime GetMomentoUltimaActualizacion()
-        {
-            if (OVariablesManager.Iniciado)
-            {
-                return this.VariableCore.GetMomentoUltimaActualizacion();
-            }
-
-            return DateTime.MinValue;
-        }
-
-        /// <summary>
         /// Método para comprobar si el valor de la variable ha cambiado
         /// </summary>
         /// <returns>Devuelve verdadero si valor de la variable con el código correspondientes ha cambiado</returns>
@@ -1484,29 +1418,6 @@ namespace Orbita.VA.Comun
         }
 
         /// <summary>
-        /// Escritura de la variable
-        /// </summary>
-        /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
-        /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public void SetValorDefecto(string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false)
-        {
-            if (OVariablesManager.Iniciado)
-            {
-                if (!this.Remoto)
-                {
-                    this.VariableCore.SetValorDefecto(codigoModuloLlamada, descripcionLlamada, forzarRefresco);
-                }
-                else
-                {
-                    // Se lanza desde un thread distino.
-                    CambiaValorDefectoEnThread cambioValorEnThread = new CambiaValorDefectoEnThread(this.VariableCore.SetValorDefecto);
-                    cambioValorEnThread.BeginInvoke(codigoModuloLlamada, descripcionLlamada, forzarRefresco, null, null);
-                }
-            }
-        }
-
-        /// <summary>
         /// Escritura de la variable de forma retrasada.
         /// Transcurido el tiempo especificado se modifica su valor al deseado
         /// </summary>
@@ -1515,11 +1426,11 @@ namespace Orbita.VA.Comun
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public void SetValorRetrasado(object valor, TimeSpan retraso, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false, ThreadPriority threadPriority = ThreadPriority.Normal)
+        public void SetValorRetrasado(object valor, TimeSpan retraso, string codigoModuloLlamada, string descripcionLlamada)
         {
             if (OVariablesManager.Iniciado)
             {
-                this.VariableCore.SetValorRetrasado(valor, retraso, codigoModuloLlamada, descripcionLlamada, forzarRefresco, threadPriority);
+                this.VariableCore.SetValorRetrasado(valor, retraso, codigoModuloLlamada, descripcionLlamada);
             }
         }
 
@@ -1790,13 +1701,6 @@ namespace Orbita.VA.Comun
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         private delegate void CambiaValorEnThread(object value, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false);
-
-        /// <summary>
-        /// Delegado usado para ejecutar un cambio de valor desde un thread
-        /// </summary>
-        /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
-        /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        private delegate void CambiaValorDefectoEnThread(string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false);
         #endregion
     }
 
@@ -1932,19 +1836,6 @@ namespace Orbita.VA.Comun
             get { return _Cronometro; }
             set { _Cronometro = value; }
         }
-
-        /// <summary>
-        /// Momento del último cambio en la variable
-        /// </summary>
-        private DateTime _MomentoUltimaActualizacion;
-        /// <summary>
-        /// Momento del último cambio en la variable
-        /// </summary>
-        public DateTime MomentoUltimaActualizacion
-        {
-            get { return _MomentoUltimaActualizacion; }
-            set { _MomentoUltimaActualizacion = value; }
-        }
         #endregion
 
         #region Constructor(es)
@@ -1963,7 +1854,6 @@ namespace Orbita.VA.Comun
             this._Tipo = tipo;
             //this._GuardarTrazabilidad = guardarTrazabilidad;
             this._Cronometro = new Stopwatch();
-            this._MomentoUltimaActualizacion = DateTime.Now;
             this.Cronometro.Reset();
             this.ListaConsultasCambioValor = new List<string>();
 
@@ -2053,7 +1943,6 @@ namespace Orbita.VA.Comun
         {
                 this.Cronometro.Reset();
                 this.Cronometro.Start();
-                this.MomentoUltimaActualizacion = DateTime.Now;
                 lock (this.ListaConsultasCambioValor)
                 {
                     this.ListaConsultasCambioValor.Clear();
@@ -2084,7 +1973,6 @@ namespace Orbita.VA.Comun
         public void Inicializar()
         {
             this.Cronometro.Start();
-            this.MomentoUltimaActualizacion = DateTime.Now;
         }
 
         /// <summary>
@@ -2192,17 +2080,6 @@ namespace Orbita.VA.Comun
         }
 
         /// <summary>
-        /// Método para consultar el tiempo de permanencia del valor de la variable
-        /// </summary>
-        /// <param name="codigo">Código de la variable</param>
-        /// <returns>Devuelve el tiempo de permanencia del valor de la variable</returns>
-        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public DateTime GetMomentoUltimaActualizacion()
-        {
-            return this.MomentoUltimaActualizacion;
-        }
-
-        /// <summary>
         /// Método para comprobar si el valor de la variable ha cambiado
         /// </summary>
         /// <returns>Devuelve verdadero si valor de la variable con el código correspondientes ha cambiado</returns>
@@ -2245,29 +2122,6 @@ namespace Orbita.VA.Comun
         }
 
         /// <summary>
-        /// Escritura de la variable
-        /// </summary>
-        /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
-        /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public void SetValorDefecto(string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false)
-        {
-            object valor = OTipoDato.DevaultValue(this.Tipo);
-
-            if ((this._Habilitado) && (forzarRefresco || (this.Valor != valor)) && (!this._Bloqueo) && (!this._Inhibido))
-            {
-                // Insertamos la traza
-                //this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.CambioValor);
-                OLogsVAComun.Variables.Debug("SetValor", "La variable " + this.Codigo + " cambia su valor a " + OObjeto.ToString(valor));
-
-                // Establecimiento del valor
-                this.Valor = valor;
-                this.Remitente = codigoModuloLlamada;
-                this.AccionesTrasEstablecerValor();
-            }
-        }
-
-        /// <summary>
         /// Escritura de la variable de forma retrasada.
         /// Transcurido el tiempo especificado se modifica su valor al deseado
         /// </summary>
@@ -2276,12 +2130,12 @@ namespace Orbita.VA.Comun
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        public void SetValorRetrasado(object valor, TimeSpan retraso, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false, ThreadPriority threadPriority = ThreadPriority.Normal)
+        public void SetValorRetrasado(object valor, TimeSpan retraso, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false)
         {
             if ((this._Habilitado) && (forzarRefresco || (this.Valor != valor)) && (!this._Bloqueo) && (!this._Inhibido))
             {
                 // creo ua secuencia para el valor momentaneo
-                OSecuencia secuencia = new OSecuencia(this.Codigo + "-Retrasado", threadPriority, 1);
+                OSecuencia secuencia = new OSecuencia(this.Codigo + "-Retrasado", System.Threading.ThreadPriority.BelowNormal, 1);
                 secuencia.Add(new OSecuenciaItemValor(this.Codigo, valor, retraso, codigoModuloLlamada, forzarRefresco));
                 secuencia.Start();
             }

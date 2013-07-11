@@ -3,7 +3,6 @@ using System.Collections;
 using System.Threading;
 using Orbita.Utiles;
 using Orbita.Winsock;
-
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -20,7 +19,7 @@ namespace Orbita.Comunicaciones
         /// Evento reset de recepción de tramas KeepAlive, 
         /// Entrada/Salida.
         /// </summary>
-        private OResetManual _eReset;  // 0-KeepAlive; 1-lecturas
+        private OResetManual _eReset;  //0-keep alive;1-lecturas;2-escrituras
         /// <summary>
         /// Colección para la búsqueda de lecturas. La clave es la dupla "dirección-bit"
         /// </summary>
@@ -56,38 +55,33 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Fecha del ultimo wrapper de error
         /// </summary>
-        private DateTime _fechaErrorWrapperWinsock = DateTime.MaxValue;
-        /// <summary>
-        /// Cola de recepción de tramas de datos.
-        /// </summary>
-        private Queue _qEscrituras;
+        DateTime fechaErrorWrapperWinsock = DateTime.MaxValue;
         #endregion
 
         #region Constructor
         /// <summary>
-        /// Constructor de clase
+        /// Constructor de clase de ILBKPhoenix
         /// </summary>
-        /// <param name="tags">variables</param>
-        /// <param name="hilos">hilos del dispositivo</param>
-        /// <param name="dispositivo">dispositivo</param>
         public ODispositivoILBKPhoenix(OTags tags, OHilos hilos, ODispositivo dispositivo)
             : base(tags, hilos, dispositivo)
         {
             //Inicialización de objetos
             this.IniciarObjetos();
-            Wrapper.Info("ODispositivoILBKPhoenix Constructor Objetos del dispositivo de ES Phoenix creados.");
+            wrapper.Info("Objetos del dispositivo de ES Phoenix creados.");
             //Inicio de los parámetros TCP
             try
             {
-                this.CrearParametrosConexionTcp();
-                Hilos.Add(new ThreadStart(EsColaVariables), true);
-                Wrapper.Info("ODispositivoILBKPhoenix Constructor. Comunicaciones TCP del dispositivo de ES Phoenix arrancadas correctamente.");
+                this.CrearParametrosConexionTCP();
+                Hilos.Add(new ThreadStart(ESProcesarHilo), true);
             }
             catch (Exception ex)
             {
-                Wrapper.Error("ODispositivoILBKPhoenix Constructor. No se pudo crear la conexión TCP con el dispositivo de ES Phoenix." + ex);
+                wrapper.Error("No se pudo crear la conexión TCP con el dispositivo de ES Phoenix." + ex.ToString());
             }
+
+            wrapper.Info("Comunicaciones TCP del dispositivo de ES Phoenix arrancadas correctamente.");
         }
+
         #endregion
 
         #region Métodos públicos
@@ -101,23 +95,19 @@ namespace Orbita.Comunicaciones
             estado.Id = this.Identificador;
             estado.Enlace = this.Tags.HtVida.Enlaces[0].ToString();
             Boolean responde = true;
-            DateTime fechaErrorWrapper = DateTime.MaxValue;
+            DateTime fechaErrorWrapper = DateTime.MaxValue;            
 
             int reintento = 0;
             int maxReintentos = 3;
-            TimeSpan ts;
 
-            bool modoKeepAlive = true;
-            bool ini = true;
             while (true)
             {
-                #region Conectar
                 if (this.Winsock.State != WinsockStates.Connected)
                 {
                     try
                     {
                         this.Conectar();
-                        int segReconexion = Convert.ToInt32(this.ReConexionSg * 1000);
+                        int segReconexion = Convert.ToInt32(this.SegReconexion * 1000);
                         Thread.Sleep(segReconexion);
                         estado.Estado = "NOK";
                     }
@@ -125,21 +115,20 @@ namespace Orbita.Comunicaciones
                     {
                         if (fechaErrorWrapper == DateTime.MaxValue)
                         {
-                            Wrapper.Error("ODispositivoILBKPhoenix ProcesarHiloVida error para KeepAlive: ", ex);
+                            wrapper.Error("ODispositivoILBKPhoenix ProcesarHiloVida error para keep alive: ", ex);
                             fechaErrorWrapper = DateTime.Now;
                         }
                         else
                         {
                             TimeSpan t = DateTime.Now.Subtract(fechaErrorWrapper);
-                            if (t.TotalSeconds > this.LogErrorComunicacionSg)
+                            if (t.TotalSeconds>this._segundosLogErrorComunicacion)
                             {
-                                Wrapper.Error("ODispositivoILBKPhoenix ProcesarHiloVida error para KeepAlive: ", ex);
+                                wrapper.Error("ODispositivoILBKPhoenix ProcesarHiloVida error para keep alive: ", ex);
                                 fechaErrorWrapper = DateTime.Now;
                             }
-                        }
+                        }                        
                     }
                 }
-                #endregion
                 else
                 {
                     try
@@ -147,90 +136,63 @@ namespace Orbita.Comunicaciones
                         using (OProtocoloTCPPhoenixES phoenixTCP = new OProtocoloTCPPhoenixES(
                             this._registroInicialEntradas, this._numeroBytesEntradas, this._registroInicialSalidas, this._numeroBytesSalidas))
                         {
-                            #region Escrituras
-                            if (modoKeepAlive && !ini)
+                            // Enviar un mensaje de KeepAlive.                            
+                            this.Winsock.Send(phoenixTCP.KeepAliveEnviar());
+
+                            // Letargo del hilo hasta t-tiempo, o bien, hasta recibir respuesta, el cual realiza el Set sobre
+                            // el eventReset del evento 'wsk_DataArrival'.
+                            if (!this._eReset.Dormir(0, TimeSpan.FromSeconds(this.Config.TiempoVida / 1000)))
                             {
-                                modoKeepAlive = false;
-                                if (this._qEscrituras.Count > 0)
+                                responde = false;
+
+                                if (reintento < maxReintentos)
                                 {
-                                    lock (this._qEscrituras.SyncRoot)
-                                    {
-                                        DispositivoEscrituras de = null;
-                                        de = ((DispositivoEscrituras)this._qEscrituras.Dequeue());
-                                        this.Enviar(phoenixTCP.SalidasEnviar(this.ProcesarEscritura(de.Variables, de.Valores)));
-                                        Thread.Sleep(10);
-                                    }
-
-                                }
-                            }
-                            #endregion
-
-                            #region KeepAlive
-                            else
-                            {
-                                ini = false;
-                                modoKeepAlive = true;
-                                this.Enviar(phoenixTCP.KeepAliveEnviar());
-
-                                // Letargo del hilo hasta t-tiempo, o bien, hasta recibir respuesta, el cual realiza el Set sobre
-                                // el eventReset del evento 'wsk_DataArrival'.
-                                if (!this._eReset.Dormir(0, TimeSpan.FromSeconds(this.ConfigDispositivo.TiempoVida / 1000)))
-                                {
-                                    responde = false;
-                                    modoKeepAlive = false;
-                                    if (reintento < maxReintentos)
-                                    {
-                                        reintento++;
-                                    }
-                                    else
-                                    {
-                                        estado.Estado = "NOK";
-                                    }
-                                    // Trazar recepción errónea.
-                                    Wrapper.Warn("ODispositivoILBKPhoenix ProcesarHiloVida Timeout en el KeepAlive del dispositivo de ES Phoenix.");
-                                }
-
-                                // Resetear el evento.
-                                this._eReset.Resetear(0);
-
-                                // Letargo del hilo en función de la respuesta.
-                                if (responde)
-                                {
-                                    estado.Estado = "OK";
-                                    reintento = 0;
-                                    Thread.Sleep(this.ConfigDispositivo.TiempoVida);
+                                    reintento++;
                                 }
                                 else
                                 {
-                                    responde = true;
-                                    // Establecer un micro tiempo de letargo, necesario en este tipo de hilos.
-                                    // Realizar un envio inmediato tras la no respuesta anterior.
-                                    Thread.Sleep(10);
+                                    estado.Estado = "NOK";
                                 }
+                                // Trazar recepción errónea.
+                                wrapper.Warn("Timeout en el keep alive del dispositivo de ES Phoenix.");
                             }
-                            #endregion
+
+                            // Resetear el evento.
+                            this._eReset.Resetear(0);
+
+                            // Letargo del hilo en función de la respuesta.
+                            if (responde)
+                            {
+                                estado.Estado = "OK";
+                                reintento = 0;
+                                Thread.Sleep(this.Config.TiempoVida);
+                            }
+                            else
+                            {
+                                responde = true;
+
+                                // Establecer un micro tiempo de letargo, necesario en este tipo de hilos.
+                                // Realizar un envio inmediato tras la no respuesta anterior.
+                                Thread.Sleep(10);
+                            }
                         }
                     }
                     catch (Exception ex)
                     {
                         estado.Estado = "NOK";
-                        Wrapper.Error("ODispositivoILBKPhoenix ProcesarHiloVida: ", ex);
+                        wrapper.Error("ODispositivoILBKPhoenix ProcesarHiloVida: ", ex);
                     }
                 }
                 try
                 {
-                    ts = DateTime.Now.Subtract(this.FechaUltimoEventoComm);
-                    if (ts.TotalSeconds > (double)this.ConfigDispositivo.SegEventoComs)
-                    {
-                        this.Eventargs.Argumento = estado;
-                        this.OnComm(this.Eventargs);
-                        this.FechaUltimoEventoComm = DateTime.Now;
-                    }
+                    this.OEventargs.Argumento = estado;
+                    this.OnComm(this.OEventargs);
                 }
                 catch (Exception ex)
                 {
-                    Wrapper.Error("ODispositivoILBKPhoenix ProcesarHiloVida Error en envío de evento de comunicaciones: ", ex);
+                    wrapper.Error("ODispositivoILBKPhoenix ProcesarHiloVida Error en envío de evento de comunicaciones: ", ex);
                 }
+
             }
         }
         /// <summary>
@@ -263,7 +225,7 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                Wrapper.Fatal("ODispositivoILBKPhoenix Leer Error al leer en el dispositivo de ES Phoenix. ", ex);
+                wrapper.Fatal("Error al leer en el dispositivo de ES Phoenix. ", ex);
                 throw ex;
             }
             return resultado;
@@ -276,47 +238,73 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public override bool Escribir(string[] variables, object[] valores)
         {
-            lock (this._qEscrituras.SyncRoot)
+            bool resultado = false;
+            byte[] salidas = new byte[_numeroBytesSalidas];
+            byte[] salidalocal = new byte[_numeroBytesSalidas];
+            try
             {
-                DispositivoEscrituras de = null;
-
-                if (this._qEscrituras.Count > 0)
+                for (int i = 0; i < _numeroBytesSalidas; i++)
                 {
-                    de = ((DispositivoEscrituras)this._qEscrituras.Dequeue());
+                    salidalocal[i]=Salidas[i];
                 }
-
-                int longitud = 0;
-
-                if (de != null)
+                for (int i = 0; i < variables.Length; i++)
                 {
-                    longitud = de.Valores.Length;
-                }
+                    OInfoDato infodato = this.Tags.GetDB(variables[i]);
 
-                longitud = longitud + variables.Length;
-
-                string[] vars = new string[longitud];
-                object[] vals = new object[longitud];
-
-                for (int i = 0; i < longitud; i++)
-                {
-                    if (i < variables.Length)
+                    if (!infodato.EsEntrada)
                     {
-                        vars[i] = variables[i];
-                        vals[i] = valores[i];
-                    }
-                    else
-                    {
-                        vars[i] = de.Variables[longitud - variables.Length - i];
-                        vals[i] = de.Valores[longitud - variables.Length - i];
+                        salidas[infodato.Direccion - this._registroInicialSalidas] = this.ProcesarByte(salidalocal[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
+                        salidalocal[infodato.Direccion - this._registroInicialSalidas] = salidas[infodato.Direccion - this._registroInicialSalidas];
                     }
 
+                 }
+                if (this.Winsock.State != WinsockStates.Connected)
+                {
+                    try
+                    {
+                        //Se reconectará en el keep alive
+                        Thread.Sleep(Convert.ToInt32(this.SegReconexion * 1000));
+                    }
+                    catch (Exception ex)
+                    {
+                        wrapper.Error("Error al conectar con dispositivo de ES Phoenix para escribir: ", ex);
+                    }
                 }
-                DispositivoEscrituras disp = new DispositivoEscrituras(vars, vals);
-
-                this._qEscrituras.Enqueue(disp);
+                else
+                {
+                    using (OProtocoloTCPPhoenixES phoenixTCP = new OProtocoloTCPPhoenixES(
+                            this._registroInicialEntradas, this._numeroBytesEntradas, this._registroInicialSalidas, this._numeroBytesSalidas))
+                    {
+                        try
+                        {
+                            //Configuramos las salidas en dos bytes
+                            Array.Resize(ref salidas, 2);
+                            Array.Reverse(salidas);
+                            this.Winsock.Send(phoenixTCP.SalidasEnviar(salidas));
+                            if (!this._eReset.Dormir(2, TimeSpan.FromSeconds(this.Config.TiempoEsperaEscritura / 1000)))
+                            {
+                                // Trazar recepción errónea.
+                                wrapper.Warn("Timeout en la escritura de variables en el dispositivo de ES Phoenix");
+                            }
+                            else
+                            {
+                                resultado = true;
+                            }
+                            // Resetear el evento.
+                            this._eReset.Resetear(2);
+                        }
+                        catch (Exception ex)
+                        {
+                            wrapper.Error("Error en la escritura de variables en el dispositivo de ES Phoenix " + ex.ToString());
+                        }
+                    }
+                }
             }
-
-            return true;
+            catch (Exception ex)
+            {
+                wrapper.Fatal("Error en la escritura de variables en el dispositivo de ES Phoenix " + ex.ToString());
+            }
+            return resultado;
         }
         #endregion
 
@@ -326,20 +314,21 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Publica los eventos de socket
         /// </summary>
-        private void CrearParametrosConexionTcp()
+        private void CrearParametrosConexionTCP()
         {
             try
             {
-                this.Winsock = new OWinsockBase { LegacySupport = true };
-                this.Winsock.DataArrival += _winsock_DataArrival;
-                this.Winsock.StateChanged += _winsock_StateChanged;
-                this.Winsock.SendComplete += _winsock_SendComplete;
-                this.Winsock.ErrorReceived += _winsock_ErrorReceived;
+                this.Winsock = new OWinsockBase();
+                this.Winsock.LegacySupport = true;
+                this.Winsock.DataArrival += new IWinsock.DataArrivalEventHandler(_winsock_DataArrival);
+                this.Winsock.StateChanged += new IWinsock.StateChangedEventHandler(_winsock_StateChanged);
+                this.Winsock.SendComplete += new IWinsock.SendCompleteEventHandler(_winsock_SendComplete);
+                this.Winsock.ErrorReceived += new IWinsock.ErrorReceivedEventHandler(_winsock_ErrorReceived);
             }
             catch (Exception ex)
             {
-                Wrapper.Fatal("ODispositivoILBKPhoenix CrearParametrosConexionTCP Error al crear la conexión TCP con el dispositivo de ES Phoenix. " + ex);
-                throw;
+                wrapper.Fatal("Error al crear la conexión TCP con el dispositivo de ES Phoenix. " + ex.ToString());
+                throw ex;
             }
         }
         /// <summary>
@@ -356,7 +345,6 @@ namespace Orbita.Comunicaciones
         {
             // Cola de envío/recepción de tramas.
             this._qEntradaSalida = new Queue();
-            this._qEscrituras = new Queue();
             // Evento reset de envío/recepción de tramas KeepAlive y Entrada/Salida.
             this._eReset = new OResetManual(3);
             // Iniciamos los datos 
@@ -410,39 +398,28 @@ namespace Orbita.Comunicaciones
         {
             using (OProtocoloTCPPhoenixES phoenixTCP = new OProtocoloTCPPhoenixES(this._registroInicialEntradas, this._numeroBytesEntradas, this._registroInicialSalidas, this._numeroBytesSalidas))
             {
-                lock (Bloqueo)
+                if (mensaje[7] == 3)//respuesta para la lectura
                 {
                     byte[] lecturas;
-                    if (mensaje[7] == 3)//respuesta para la lectura
+                    if (phoenixTCP.KeepAliveProcesar(mensaje, out lecturas))
                     {
-
-                        if (phoenixTCP.KeepAliveProcesar(mensaje, out lecturas))
-                        {
-                            for (int i = 0; i < this._numLecturas; i++)
-                            {
-                                if (this._lecturas[i] != lecturas[i])
-                                {
-                                    this.EsEncolar(lecturas);
-                                    break;
-                                }
-                            }
-                            this._lecturas = lecturas;
-                            // Despertar el hilo en la línea:
-                            // this._eReset.Dormir de ProcesarHiloKeepAlive.                        
-                            this._eReset.Despertar(0);
-                        }
-                    }
-                    else if (mensaje[7] == 16)//respuesta para la escritura
-                    {
-                        Wrapper.Info("ODispositivoILBKPhoenix ProcesarMensajeRecibido escritura procesada");
-                        lecturas = new byte[this._numLecturas];
                         for (int i = 0; i < this._numLecturas; i++)
                         {
-                            lecturas[i] = this._lecturas[i];
+                            if (this._lecturas[i] != lecturas[i])
+                            {
+                                this.ESEncolar(lecturas);
+                                break;
+                            }
                         }
-                        this.EsEncolar(lecturas);
-                        //this._eReset.Despertar(2);
+                        this._lecturas = lecturas;
+                        // Despertar el hilo en la línea:
+                        // this._eReset.Dormir de ProcesarHiloKeepAlive.                        
+                        this._eReset.Despertar(0);
                     }
+                }
+                else if (mensaje[7] == 16)//respuesta para la escritura
+                {
+                    this._eReset.Despertar(2);
                 }
             }
         }
@@ -453,66 +430,34 @@ namespace Orbita.Comunicaciones
         /// <param name="bit"></param>
         /// <param name="valorBit"></param>
         /// <returns></returns>
-        private static byte ProcesarByte(byte valor, int bit, int valorBit)
+        private byte ProcesarByte(byte valor, int bit, int valorBit)
         {
             byte ret = 0;
-            if (valorBit == 1)
+            try
             {
-                ret = (byte)((valor) | (byte)(Math.Pow(2, bit)));
+                if (valorBit == 1)
+                {
+                    ret = (byte)((valor) | (byte)(Math.Pow(2, bit)));
+                }
+                else
+                {
+                    ret = (byte)(valor & ~(byte)(Math.Pow(2, bit)));
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ret = (byte)(valor & ~(byte)(Math.Pow(2, bit)));
+                throw ex;
             }
             return ret;
-        }
-        /// <summary>
-        /// Enviar datos al dispositivo
-        /// </summary>
-        /// <param name="data"></param>
-        private void Enviar(Object data)
-        {
-            this.Winsock.Send(data);
         }
         #endregion
 
         #region ES
         /// <summary>
-        /// Calcula el valor de las salidas para enviar al dispositivo.
-        /// </summary>
-        /// <param name="variables">Colección de variables.</param>
-        /// <param name="valores"></param>
-        /// <returns></returns>
-        private byte[] ProcesarEscritura(string[] variables, Object[] valores)
-        {
-            byte[] salidas = new byte[_numeroBytesSalidas];
-            byte[] salidalocal = new byte[_numeroBytesSalidas];
-
-            for (int i = 0; i < _numeroBytesSalidas; i++)
-            {
-                salidalocal[i] = this._lecturas[i + 1];
-            }
-            for (int i = 0; i < variables.Length; i++)
-            {
-                OInfoDato infodato = this.Tags.GetDB(variables[i]);
-                if (!infodato.EsEntrada)
-                {
-                    salidas[infodato.Direccion - this._registroInicialSalidas] = ProcesarByte(salidalocal[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
-                    salidalocal[infodato.Direccion - this._registroInicialSalidas] = salidas[infodato.Direccion - this._registroInicialSalidas];
-                }
-            }
-
-            //Configuramos las salidas en dos bytes
-            Array.Resize(ref salidas, 2);
-            Array.Reverse(salidas);
-
-            return salidas;
-        }
-        /// <summary>
-        /// Método que encola las lecturas para que se procesen.
+        /// Método que encola trama GateData.
         /// </summary>
         /// <param name="trama"></param>
-        private void EsEncolar(byte[] trama)
+        private void ESEncolar(byte[] trama)
         {
             // Bloquear la cola sincronizada.
             lock (this._qEntradaSalida.SyncRoot)
@@ -526,10 +471,10 @@ namespace Orbita.Comunicaciones
             }
         }
         /// <summary>
-        /// Método que desencola las lecturas para ser procesadas.
+        /// Método que desencola trama GateData.
         /// </summary>
         /// <returns>Objeto GateData</returns>
-        private byte[] EsDesencolar()
+        private byte[] ESDesencolar()
         {
             // Bloquear la cola sincronizada.
             lock (this._qEntradaSalida.SyncRoot)
@@ -552,35 +497,32 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Hilo de proceso de ES
         /// </summary>
-        private void EsColaVariables()
+        private void ESProcesarHilo()
         {
             while (true)
             {
-                byte[] mensaje = this.EsDesencolar();
+                byte[] mensaje = this.ESDesencolar();
 
                 if (mensaje != null)
                 {
-                    lock (this)
+                    try
                     {
-                        try
+                        using (OProtocoloTCPPhoenixES phoenixTCP = new OProtocoloTCPPhoenixES(
+                            this._registroInicialEntradas, this._numeroBytesEntradas, this._registroInicialSalidas, this._numeroBytesSalidas))
                         {
-                            using (OProtocoloTCPPhoenixES phoenixTCP = new OProtocoloTCPPhoenixES(
-                                this._registroInicialEntradas, this._numeroBytesEntradas, this._registroInicialSalidas, this._numeroBytesSalidas))
+                            byte[] entradas;
+                            byte[] salidas;
+                            if (phoenixTCP.ESprocesar(mensaje, out entradas, out salidas))
                             {
-                                byte[] entradas;
-                                byte[] salidas;
-                                if (phoenixTCP.ESprocesar(mensaje, out entradas, out salidas))
-                                {
-                                    this.EsProcesar(entradas, salidas);
-                                }
+                                this.ESProcesar(entradas, salidas);
                             }
                         }
-                        catch (Exception ex)
-                        {
-                            Wrapper.Fatal("ODispositivoILBKPhoenix ESColaVariables Error al procesar las ES en el dispositivo de ES Phoenix. " + ex);
-                        }
-                        Thread.Sleep(10);
                     }
+                    catch (Exception ex)
+                    {
+                        wrapper.Fatal("Error al procesar las ES en el dispositivo de ES Phoenix. " + ex.ToString());
+                    }
+                    Thread.Sleep(10);
                 }
                 else
                 {
@@ -593,7 +535,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="entradas">byte de entradas recibido</param>
         /// <param name="salidas">byte de salidas recibido</param>
-        private void EsProcesar(byte[] entradas, byte[] salidas)
+        private void ESProcesar(byte[] entradas, byte[] salidas)
         {
             try
             {
@@ -601,11 +543,11 @@ namespace Orbita.Comunicaciones
                 {
                     if (entradas[i] != this.Entradas[i])
                     {
-                        this.EsActualizarVariablesEntradas(entradas[i], i + this._registroInicialEntradas);
+                        this.ESActualizarVariablesEntradas(entradas[i], i + this._registroInicialEntradas);
                     }
                     if (salidas[i] != this.Salidas[i])
                     {
-                        this.EsActualizarVariablesSalidas(salidas[i], i + this._registroInicialSalidas);
+                        this.ESActualizarVariablesSalidas(salidas[i], i + this._registroInicialSalidas);
                     }
                 }
                 this.Entradas = entradas;
@@ -613,8 +555,8 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                Wrapper.Error("ODispositivoILBKPhoenix ESProcesar " + ex);
-                throw;
+                wrapper.Fatal("Error al procesar las ES en el dispositivo de ES Siemens en ESProcesar. " + ex.ToString());
+                throw ex;
             }
         }
         /// <summary>
@@ -622,14 +564,15 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="valor">valor del byte</param>
         /// <param name="posicion">posición del byte</param>
-        private void EsActualizarVariablesEntradas(byte valor, int posicion)
+        private void ESActualizarVariablesEntradas(byte valor, int posicion)
         {
+            OInfoDato infodato = null;
             OEventArgs ev = new OEventArgs();
             for (int i = 0; i < 8; i++)
             {
                 try
                 {
-                    OInfoDato infodato = (OInfoDato)this._almacenLecturas[posicion.ToString() + "-" + i.ToString()];
+                    infodato = (OInfoDato)this._almacenLecturas[posicion.ToString() + "-" + i.ToString()];
                     //Comprobamos el valor nuevo 
                     if (infodato != null)
                     {
@@ -668,13 +611,13 @@ namespace Orbita.Comunicaciones
                     }
                     else
                     {
-                        //wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
-                        //    " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
+                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+                            " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
                     }
                 }
                 catch (Exception ex)
                 {
-                    Wrapper.Error("ODispositivoILBKPhoenix ESActualizarVariablesEntradas " + ex);
+                    wrapper.Error("Error no controlado al procesar las entradas en el dispositivo de ES Siemens" + ex.ToString());
                 }
             }
         }
@@ -683,14 +626,15 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="valor">valor del byte</param>
         /// <param name="posicion">posición del byte</param>
-        private void EsActualizarVariablesSalidas(byte valor, int posicion)
+        private void ESActualizarVariablesSalidas(byte valor, int posicion)
         {
+            OInfoDato infodato = null;
             OEventArgs ev = new OEventArgs();
             for (int i = 0; i < 8; i++)
             {
                 try
                 {
-                    OInfoDato infodato = (OInfoDato)this._almacenEscrituras[posicion.ToString() + "-" + i.ToString()];
+                    infodato = (OInfoDato)this._almacenEscrituras[posicion.ToString() + "-" + i.ToString()];
                     //Comprobamos el valor nuevo 
                     if (infodato != null)
                     {
@@ -729,13 +673,14 @@ namespace Orbita.Comunicaciones
                     }
                     else
                     {
-                        //wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
-                        //    " al actualizar las variables de salida en el dispositivo de ES Phoenix.");
+                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+                            " al actualizar las variables de salida en el dispositivo de ES Phoenix.");
                     }
+
                 }
                 catch (Exception ex)
                 {
-                    Wrapper.Error("ODispositivoILBKPhoenix ESActualizarVariablesSalidas " + ex);
+                    wrapper.Error("Error no controlado al procesar las salidas en el dispositivo de ES Phoenix " + ex.ToString());
                 }
             }
         }
@@ -749,11 +694,15 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="sender">Objeto que lanza el evento</param>
         /// <param name="e">Argumentos del evento</param>
-        private void _winsock_DataArrival(object sender, WinsockDataArrivalEventArgs e)
+        void _winsock_DataArrival(object sender, WinsockDataArrivalEventArgs e)
         {
             try
             {
-                object dat = Winsock.Get<object>();
+                String data = "";   // data es la variable donde guardaremos el mensaje recibido
+                Object dat = (object)data;  // dat es una variable tipo objeto
+                // el metodo Get de winsock solo devuelve datos de tipo objeto.
+
+                dat = Winsock.Get<object>();
                 string ret = "";
                 byte[] recibido = (byte[])dat;
                 if (recibido != null)
@@ -764,11 +713,12 @@ namespace Orbita.Comunicaciones
                     }
                 }
                 this.ProcesarMensajeRecibido(recibido);
-                Wrapper.Debug("ODispositivoILBKPhoenix _winsock_DataArrival: " + ret);
+                wrapper.Debug("Data Arrival en el dispositivo de ES Phoenix: " + ret);
             }
             catch (Exception ex)
             {
-                Wrapper.Error("ODispositivoILBKPhoenix _winsock_DataArrival: " + ex);
+                string error = "Error Data Arrival en el dispositivo de ES Phoenix: " + ex.ToString();
+                wrapper.Error(error);
             }
         }
         /// <summary>
@@ -776,7 +726,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="sender">Objeto que lanza el evento</param>
         /// <param name="e">Argumentos del evento</param>
-        private void _winsock_SendComplete(object sender, WinsockSendEventArgs e)
+        void _winsock_SendComplete(object sender, WinsockSendEventArgs e)
         {
             //verificamos la llegada
             try
@@ -789,11 +739,12 @@ namespace Orbita.Comunicaciones
                         enviado += "[" + e.DataSent[i].ToString() + "]";
                     }
                 }
-                Wrapper.Debug("ODispositivoILBKPhoenix _winsock_SendComplete: " + enviado);
+                wrapper.Debug("Send Complete en el dispositivo de ES Phoenix: " + enviado);
             }
             catch (Exception ex)
             {
-                Wrapper.Error("ODispositivoILBKPhoenix _winsock_SendComplete: " + ex);
+                string error = "Error Send Complete en el dispositivo de ES Phoenix: " + ex.ToString();
+                wrapper.Error(error);
             }
         }
         /// <summary>
@@ -801,16 +752,17 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="sender">Objeto que lanza el evento</param>
         /// <param name="e">Argumentos del evento</param>
-        private void _winsock_StateChanged(object sender, WinsockStateChangedEventArgs e)
+        void _winsock_StateChanged(object sender, WinsockStateChangedEventArgs e)
         {
             try
             {
-                string estado = "ODispositivoILBKPhoenix _winsock_StateChanged. Cambia de " + e.Old_State.ToString() + " a " + e.New_State.ToString();
-                Wrapper.Debug(estado);
+                string estado = "State Changed en el dispositivo de ES Phoenix. Cambia de " + e.Old_State.ToString() + " a " + e.New_State.ToString();
+                wrapper.Debug(estado);
             }
             catch (Exception ex)
             {
-                Wrapper.Error("ODispositivoILBKPhoenix _winsock_StateChanged: " + ex);
+                string error = "Error State Changed en el dispositivo de ES Phoenix: " + ex.ToString();
+                wrapper.Error(error);
             }
         }
         /// <summary>
@@ -818,31 +770,33 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="sender">Objeto que lanza el evento</param>
         /// <param name="e">Argumentos del evento</param>
-        private void _winsock_ErrorReceived(object sender, WinsockErrorReceivedEventArgs e)
+        void _winsock_ErrorReceived(object sender, WinsockErrorReceivedEventArgs e)
         {
             try
             {
-                string error = "ODispositivoILBKPhoenix _winsock_ErrorReceived: " + e.Message;
-                if (_fechaErrorWrapperWinsock == DateTime.MaxValue)
+                string error = "ODispositivoILBKPhoenix. _winsock_ErrorReceived: " + e.Message;
+                if (fechaErrorWrapperWinsock == DateTime.MaxValue)
                 {
-                    Wrapper.Error(error);
-                    _fechaErrorWrapperWinsock = DateTime.Now;
+                    wrapper.Error(error);
+                    fechaErrorWrapperWinsock = DateTime.Now;
                 }
                 else
                 {
-                    TimeSpan t = DateTime.Now.Subtract(_fechaErrorWrapperWinsock);
-                    if (t.TotalSeconds > this.LogErrorComunicacionSg)
+                    TimeSpan t = DateTime.Now.Subtract(fechaErrorWrapperWinsock);
+                    if (t.TotalSeconds > this._segundosLogErrorComunicacion)
                     {
-                        Wrapper.Error(error);
-                        _fechaErrorWrapperWinsock = DateTime.Now;
+                        wrapper.Error(error);
+                        fechaErrorWrapperWinsock = DateTime.Now;
                     }
                 }
             }
             catch (Exception ex)
             {
-                Wrapper.Error("ODispositivoILBKPhoenix _winsock_ErrorReceived catch: " + ex);
+                string error = "ODispositivoILBKPhoenix. _winsock_ErrorReceived catch: " + ex.ToString();
+                wrapper.Error(error);
             }
         }
+
         #endregion
     }
 }

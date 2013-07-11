@@ -98,23 +98,7 @@ namespace Orbita.MS
             /// <summary>
             /// Lector carin
             /// </summary>
-            CARIN = 8,
-            /// <summary>
-            /// GateOCR
-            /// </summary>
-            GateOCR = 10,
-            /// <summary>
-            /// GateLPR
-            /// </summary>
-            GateLPR = 11,
-            /// <summary>
-            /// GateIMO
-            /// </summary>
-            GateIMO = 12,
-            /// <summary>
-            /// GateVIEWER
-            /// </summary>
-            GateVIEWER = 13
+            CARIN = 8
         }
         /// <summary>
         /// Tecnologías para licencia sw
@@ -355,16 +339,13 @@ namespace Orbita.MS
             this.swCod = "";
             try
             {
-                if (File.Exists(Application.StartupPath + @"\orbita.lic"))
+                using (StreamReader sr = new StreamReader(Application.StartupPath + @"\orbita.lic"))
                 {
-                    using (StreamReader sr = new StreamReader(Application.StartupPath + @"\orbita.lic"))
-                    {
-                        String line;
+                    String line;
 
-                        while ((line = sr.ReadLine()) != null)
-                        {
-                            this.swCod = this.swCod + line;
-                        }
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        this.swCod = this.swCod + line;
                     }
                 }
             }

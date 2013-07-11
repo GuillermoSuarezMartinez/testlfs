@@ -344,6 +344,7 @@
             this.GridEscritorios.OI.Filas.TipoSeleccion = null;
             this.GridEscritorios.OI.Filtros.Mostrar = false;
             this.GridEscritorios.OI.MostrarToolAñadir = true;
+            this.GridEscritorios.OI.MostrarToolCiclico = false;
             this.GridEscritorios.OI.MostrarToolEditar = false;
             this.GridEscritorios.OI.MostrarToolEliminar = true;
             this.GridEscritorios.OI.MostrarToolExportar = false;
@@ -356,7 +357,6 @@
             this.GridEscritorios.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.GridEscritorios_ToolClick);
             this.GridEscritorios.ToolAñadirClick += new Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolAñadirClickEventHandler(this.GridEscritorios_ToolAñadirClick);
             this.GridEscritorios.ToolEliminarClick += new Orbita.Controles.Grid.OrbitaUltraGridToolBar.ToolEliminarClickEventHandler(this.GridEscritorios_ToolEliminarClick);
-            this.GridEscritorios.AfterCellUpdate += new Infragistics.Win.UltraWinGrid.CellEventHandler(this.GridEscritorios_AfterCellUpdate);
             // 
             // PnlEscritorios
             // 

@@ -15,8 +15,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Threading;
+using System.Windows.Forms;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
 using Orbita.Xml;
@@ -144,20 +146,12 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Resetea la función de visión CCR
         /// </summary>
-        internal static void Reset(string codigo = "")
+        internal static void Reset()
         {
             // Detenemos el Hilo
             ThreadEjecucionCCR.Pause();
 
-            int id = 0;
-            if (codigo == "")
-            {
-                id = OMTInterfaceCCR.Reset();
-            }
-            else
-            {
-                id = OMTInterfaceCCR.Reset(codigo);
-            }
+            int id = OMTInterfaceCCR.Reset();
             // Almacenamos el valor de incio
             if (id == 0)
             {
@@ -218,10 +212,6 @@ namespace Orbita.VA.Funciones
         /// Indica si se ha de finalizar la ejecución del thread
         /// </summary>
         public bool Finalizar;
-        /// <summary>
-        /// Cola de elementos a procesar en MTInterface
-        /// </summary>
-        private int QueueSize = -1;
         #endregion
 
         #region Constructor
@@ -247,23 +237,18 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Ejecuta el callback en el mismo thread que la Applicación principal
         /// </summary>
-        private void CallBack(OInfoInspeccionCCR infoInspeccionCCR)
+        private void CallBack(CallBackResultadoParcial callBack, EventArgsResultadoParcial argumentoEvento)
         {
-            try
+            if (!OThreadManager.EjecucionEnTrheadPrincipal())
             {
-                EventArgsResultadoParcial argumentoEvento = new EventArgsResultadoParcial(infoInspeccionCCR); // Creación del argumento del evento
-                CallBackResultadoParcial callBack = infoInspeccionCCR.Info.CallBackResultadoParcial; // Obtención del callback
-
-                // Llamada al callback
-                if (callBack != null)
-                {
-                    // Llamada desde el thread principal
-                    OThreadManager.SincronizarConThreadPrincipal(new CallBackResultadoParcial(callBack), new object[] { this, argumentoEvento });
-                }
+                OThreadManager.SincronizarConThreadPrincipal(new DelegadoCallBack(this.CallBack), new object[] { callBack, argumentoEvento });
+                return;
             }
-            catch (Exception exception)
+
+            // Llamada al callback
+            if (callBack != null)
             {
-                OLogsVAFunciones.CCR.Error(exception, this.Codigo);
+                callBack(this, argumentoEvento);
             }
         }
         #endregion
@@ -286,50 +271,76 @@ namespace Orbita.VA.Funciones
         {
             finalize = this.Finalizar;
 
-            if (!this.Finalizar)
+            try
             {
-                // Guardamos la traza únicamente cuando hay un cambio en el tamaño de la cola de elementos a procesar en MTInterface
-                if (this.QueueSize != OMTInterfaceCCR.GetQueueSize() + OMTInterfaceCCR.GetQueueSizeCIDARMT())
+                if (!this.Finalizar)
                 {
-                    OLogsVAFunciones.CCR.Info(this.Codigo, "Total imágenes: " + (OMTInterfaceCCR.GetQueueSize() + OMTInterfaceCCR.GetQueueSizeCIDARMT()).ToString());
-                    this.QueueSize = OMTInterfaceCCR.GetQueueSize() + OMTInterfaceCCR.GetQueueSizeCIDARMT();
-                }
+                    OPair<OCCRCodeInfo, OCCRData> resultado = OMTInterfaceCCR.GetResultado();
 
-                // Consulta de resultados
-                OPair<OCCRCodeInfo, OCCRData> resultado = OMTInterfaceCCR.GetResultado();
-                if (resultado != null)
-                {
-                    OCCRCodeInfo info = resultado.First;
-                    OInfoInspeccionCCR infoInspeccionCCR = (OInfoInspeccionCCR)resultado.Second.ImageInformation.GetObject; // Obtengo la información de entrada de la inspección
-                    OResultadoCCR resultadoParcial = new OResultadoCCR(info, resultado.Second.ImageInformation.GetTimestamp); // Obtengo el resultado parcial
-                    infoInspeccionCCR.Resultados = resultadoParcial; // Añado el resultado a la información de la inspección
-
-                    this.CallBack(infoInspeccionCCR); // Llamada al callback
-
-                    // Guardamos en la traza el resultado
-                    String codeNumber = info.GetCodeNumber;
-                    String fcode = info.ToString();
-                    fcode += "(FC:" + Math.Round(info.GetGlobalConfidence, 1) + ")";
-                    fcode += "(FI:" + Math.Round(info.GetExtraInfoConfidence, 1) + ")";
-                    fcode += "(AC:" + info.GetAverageCharacterHeigth + ")";
-                    fcode += "(T:" + info.GetProcessingTime + ")";
-                    OLogsVAFunciones.CCR.Debug(this.Codigo, "Resultado recibido:" + fcode);
-
-                    if (info != null)
+                    if (resultado != null)
                     {
-                        info.Dispose();
-                    }
-                    resultado.First.Dispose();
-                    resultado.Second.Dispose();
-                    resultado = null;
-                }
+                        // Guardamos la traza
+                        OLogsVAFunciones.Vision.Debug(this.Codigo, "Ejecución de la función CCR " + this.Codigo, "Número de elementos pendientes: " + OMTInterfaceCCR.GetQueueSizeCIDARMT() + OMTInterfaceCCR.GetQueueSize());
 
-                // Se suspende el thread si no hay más elementos que inspeccionar
-                if ((OMTInterfaceCCR.GetQueueSizeCIDARMT() == 0) && (OMTInterfaceCCR.GetQueueSize() == 0) && (OMTInterfaceCCR.GetUsedCores() == 0))
-                {
-                    OLogsVAFunciones.CCR.Debug("Thread de procesado de CCR pausado por no haber imagenes que procesar");
-                    this.Pause();
+                        OCCRCodeInfo info = resultado.First;
+                        OInfoInspeccionCCR infoInspeccionCCR = (OInfoInspeccionCCR)resultado.Second.ImageInformation.GetObject; // Obtengo la información de entrada de la inspección
+                        OResultadoCCR resultadoParcial = new OResultadoCCR(info, resultado.Second.ImageInformation.GetTimestamp); // Obtengo el resultado parcial
+                        infoInspeccionCCR.Resultados = resultadoParcial; // Añado el resultado a la información de la inspección
+
+                        EventArgsResultadoParcial argumentoEvento = new EventArgsResultadoParcial(infoInspeccionCCR); // Creación del argumento del evento
+                        CallBackResultadoParcial callBack = infoInspeccionCCR.Info.CallBackResultadoParcial; // Obtención del callback
+                        this.CallBack(callBack, argumentoEvento); // Llamada al callback
+
+                        // Eliminamos la imagen temporal 
+                        if (infoInspeccionCCR.Parametros.RealizarProcesoPorDisco)
+                        {
+                            try
+                            {
+                                File.Delete(infoInspeccionCCR.Info.RutaImagenTemporal);
+                            }
+                            catch (Exception exception)
+                            {
+                                OLogsVAFunciones.CCR.Error(exception, "Eliminando imagen temporal de la ruta :" + infoInspeccionCCR.Info.RutaImagenTemporal);
+                            }
+                        }
+
+                        // Guardamos en la traza el resultado
+                        String codeNumber = info.GetCodeNumber;
+                        String fcode = info.ToString();
+                        fcode += "(FC:" + Math.Round(info.GetGlobalConfidence, 1) + ")";
+                        fcode += "(FI:" + Math.Round(info.GetExtraInfoConfidence, 1) + ")";
+                        fcode += "(AC:" + info.GetAverageCharacterHeigth + ")";
+                        fcode += "(T:" + info.GetProcessingTime + ")";
+                        OLogsVAFunciones.CCR.Debug(this.Codigo, "Resultado recibido:" + fcode);
+
+                        if (info != null)
+                        {
+                            info.Dispose();
+                        }
+                        resultado.First.Dispose();
+                        resultado.Second.Dispose();
+                        resultado = null;
+                    }
+
+                    // Se suspende el thread si no hay más elementos que inspeccionar
+                    if ((OMTInterfaceCCR.GetQueueSizeCIDARMT() == 0) && (OMTInterfaceCCR.GetQueueSize() == 0) && (OMTInterfaceCCR.GetUsedCores() == 0))
+                    {
+                        OLogsVAFunciones.CCR.Debug("Thread de procesado de CCR pausado por no haber imagenes que procesar");
+                        this.Pause();
+                    }
                 }
+            }
+            catch (ThreadAbortException)
+            {
+                // TODO Do nothing
+            }
+            catch (ApplicationException)
+            {
+                // TODO Do nothing
+            }
+            catch (Exception exception)
+            {
+                OLogsVAFunciones.CCR.Error(exception, this.Codigo);
             }
         }
         #endregion
@@ -360,10 +371,6 @@ namespace Orbita.VA.Funciones
         /// Siguiente ruta de imágen a procesar en el CCR
         /// </summary>
         private string RutaImagenTemporal;
-        /// <summary>
-        /// Prioridad de encolamiento
-        /// </summary>
-        private bool Prioridad = false;
         /// <summary>
         /// Lista de información adicional incorporada por el controlador externo
         /// </summary>
@@ -478,13 +485,12 @@ namespace Orbita.VA.Funciones
             // Guardamos la traza
             OLogsVAFunciones.CCR.Debug(this.Codigo, "Se procede a resetear la función de visión " + this.Codigo);
 
-            OCCRManager.Reset(this.Codigo);
+            OCCRManager.Reset();
 
             // Ya no existen inspecciones pendientes
             this.ContInspeccionesEnCola = 0;
             this.IndiceFotografia = 0;
-            this.ContadorImagenesPorDisco = 0;
-            
+
             // Se finaliza la ejecución de la función de visión
             this.FuncionEjecutada();
 
@@ -509,7 +515,7 @@ namespace Orbita.VA.Funciones
                 // Añadimos inspecciones de forma bloqueante
                 if (OMTInterfaceCCR.IsRunning())
                 {
-                    if (OMTInterfaceCCR.GetQueueSize() + OMTInterfaceCCR.GetQueueSizeCIDARMT() < MaxInspeccionesEnCola)
+                    if (OMTInterfaceCCR.GetQueueSize() < MaxInspeccionesEnCola)
                     {
                         // Se aumenta el número de inspecciones en cola
                         this.ContInspeccionesEnCola++;
@@ -520,25 +526,9 @@ namespace Orbita.VA.Funciones
                             this.RutaImagenTemporal = Path.Combine(this.ParametrosCCR.RutaEjecucionPorDisco, this.Codigo + "_" + this.ContadorImagenesPorDisco.ToString() + ".bmp");
                             this.ContadorImagenesPorDisco++;
                         }
-
-                        // Corrección de perspectiva
-                        OImagenBitmap imagenTrabajo = this.Imagen;
-                        OImagenBitmap imagenPerspectivaCorregida = null;
-                        if (this.Imagen == null)
-                        {
-                            ONerualLabsUtils.CorreccionPerspectivaDisco(this.RutaImagenTemporal, this.ParametrosCCR.OrbitaCorreccionPerspectiva);
-                        }
-                        else if (this.ParametrosCCR.OrbitaCorreccionPerspectiva.Activada)
-                        {
-
-                            imagenPerspectivaCorregida = ONerualLabsUtils.CorreccionPerspectivaMemoria(this.Imagen, this.ParametrosCCR.OrbitaCorreccionPerspectiva);
-                            imagenTrabajo = imagenPerspectivaCorregida;
-                        }
-                        
                         // Creamos el objeto con la información que nos interesa, no le pasamos la imagen para que no crezca la memoria
                         OInfoInspeccionCCR infoInspeccionCCR = new OInfoInspeccionCCR(
                                 this.Imagen,
-                                imagenPerspectivaCorregida,
                                 this.ParametrosCCR,
                                 new OInfoImagenCCR(this.IdEjecucionActual, this.Codigo, this.IndiceFotografia, DateTime.Now, this.RutaImagenTemporal, AñadirResultadoParcial),
                                 new OResultadoCCR(),
@@ -546,19 +536,19 @@ namespace Orbita.VA.Funciones
 
                         // Se carga la configuración
                         this.EstablecerConfiguracion((OParametrosCCR)this.ParametrosCCR);
-
-                        // Variamos la configuración para la siguiente 
                         object info = infoInspeccionCCR;
-                        bool resultCode = false;
                        
                         // Se carga la imagen
                         //  Si tenemos ruta y imagenes es null, pasamos la ruta y sino viceversa
                         if (this.Imagen == null)
                         {
+                            // Corrección de distorsión
+                            ONerualLabsUtils.CorreccionPerspectivaDisco(this.RutaImagenTemporal, this.ParametrosCCR.OrbitaCorreccionPerspectiva);
+
                             // adición de imagen
                             if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                             {
-                                resultCode = OMTInterfaceCCR.Add(this.Codigo, this.RutaImagenTemporal, false, info, this.Prioridad);
+                                OMTInterfaceCCR.Add(this.Codigo,this.RutaImagenTemporal, false, info);
                             }
                             else
                             {
@@ -567,29 +557,28 @@ namespace Orbita.VA.Funciones
                         }
                         else
                         {
+                            // Corrección de distorsión
+                            OImagenBitmap imagenTrabajo = ONerualLabsUtils.CorreccionPerspectivaMemoria(this.Imagen, this.ParametrosCCR.OrbitaCorreccionPerspectiva);
+
                             // En caso de tener que pasar las imagenes al motor por disco antes tenemos que guardarlas
                             if (this.ParametrosCCR.RealizarProcesoPorDisco)
                             {
                                 imagenTrabajo.Image.Save(this.RutaImagenTemporal);
                                 if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                                 {
-                                    resultCode = OMTInterfaceCCR.Add(this.Codigo, this.RutaImagenTemporal, true, info, this.Prioridad);
+                                    OMTInterfaceCCR.Add(this.Codigo,this.RutaImagenTemporal, true, info);
                                 }
                             }
                             else
                             {
                                 // adición de imagen
-                                resultCode = OMTInterfaceCCR.Add(this.Codigo, imagenTrabajo.Image, info, this.Prioridad);
+                                OMTInterfaceCCR.Add(this.Codigo,imagenTrabajo.Image, info);
                             }
+                            
                         }
-
-                        if (!resultCode)
-                        {
-                            OLogsVAFunciones.CCR.Error("FuncionCCR", "Error al añadir imagen a la cola CIDAR. Total imágenes: " + (OMTInterfaceCCR.GetQueueSize() + OMTInterfaceCCR.GetQueueSizeCIDARMT()).ToString());
-                        }
-                        OLogsVAFunciones.CCR.Info("Imagen añadida", "Número de imagenes encoladas: " + OMTInterfaceCCR.GetQueueSize() + OMTInterfaceCCR.GetQueueSizeCIDARMT());
 
                         // Se despierta el thread
+                        OLogsVAFunciones.CCR.Debug("Imagen añadida", "Número de imagenes encoladas: " + OMTInterfaceCCR.GetQueueSize() + OMTInterfaceCCR.GetQueueSizeCIDARMT());
                         OCCRManager.ThreadEjecucionCCR.Resume();
                     }
                     else
@@ -659,10 +648,6 @@ namespace Orbita.VA.Funciones
                 {
                     this.RutaImagenTemporal = (string)valor;
                 }
-                else if (codigo == "Prioridad")
-                {
-                    this.Prioridad = (bool)valor;
-                }
                 else
                 {
                     this.InformacionAdicional[codigo] = valor;
@@ -700,13 +685,6 @@ namespace Orbita.VA.Funciones
     /// <typeparam name="TResultados"></typeparam>
     public class OInfoInspeccionCCR : OInfoInspeccion<OImagenBitmap, OParametrosCCR, OInfoImagenCCR, OResultadoCCR>
     {
-        #region Atributo(s)
-        /// <summary>
-        /// Imagen inspeccionada
-        /// </summary>
-        public OImagenBitmap ImagenPerspectivaCorregida;
-        #endregion
-
         #region Constructor
         /// <summary>
         /// Constructor de la clase
@@ -721,10 +699,9 @@ namespace Orbita.VA.Funciones
         /// <param name="info"></param>
         /// <param name="parametros"></param>
         /// <param name="resultados"></param>
-        public OInfoInspeccionCCR(OImagenBitmap imagen, OImagenBitmap imagenPerspectivaCorregida, OParametrosCCR parametros, OInfoImagenCCR info, OResultadoCCR resultados, Dictionary<string, object> informacionAdicional)
+        public OInfoInspeccionCCR(OImagenBitmap imagen, OParametrosCCR parametros, OInfoImagenCCR info, OResultadoCCR resultados, Dictionary<string, object> informacionAdicional)
             : base(imagen, parametros, info, resultados, informacionAdicional)
         {
-            this.ImagenPerspectivaCorregida = imagenPerspectivaCorregida;
         }
         #endregion
     }
@@ -988,10 +965,10 @@ namespace Orbita.VA.Funciones
         /// Constructor con parametros
         /// </summary>
         /// <param name="camara">camara que adquiere la imagen</param>
-        public OInfoImagenCCR(long idEjecucionActual, string codigo, int indice, DateTime momentoImagen, string rutaImagenTemporal, CallBackResultadoParcial callBackResultadoParcial)
+        public OInfoImagenCCR(long idEjecucionActual, string codCamara, int indice, DateTime momentoImagen, string rutaImagenTemporal, CallBackResultadoParcial callBackResultadoParcial)
         {
             this.IdEjecucionActual = idEjecucionActual;
-            this.Codigo = codigo;
+            this.Codigo = codCamara;
             this.IndiceImagen = indice;
             this.MomentoImagen = momentoImagen;
             this.RutaImagenTemporal = rutaImagenTemporal;
@@ -1244,10 +1221,6 @@ namespace Orbita.VA.Funciones
         /// Ruta en disco de la imagen de entrada
         /// </summary>
         public static EnumTipoEntradaFuncionVision RutaImagen = new EnumTipoEntradaFuncionVision("RutaImagen", "Ruta en disco de la imagen de entrada", 202);
-        /// <summary>
-        /// Prioridad de encolamiento
-        /// </summary>
-        public static EnumTipoEntradaFuncionVision Prioridad = new EnumTipoEntradaFuncionVision("Prioridad", "Prioridad de encolamiento", 203);
         #endregion
     }
 }

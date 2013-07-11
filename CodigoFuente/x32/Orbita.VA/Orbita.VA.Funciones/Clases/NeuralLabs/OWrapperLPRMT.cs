@@ -6,19 +6,20 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
 using System;
+using System.Linq;
 using System.Collections.Generic;
+using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using Orbita.Utiles;
 using Orbita.VA.Comun;
+using Orbita.Utiles;
+using System.Runtime.InteropServices;
 
 namespace Orbita.VA.Funciones
 {
@@ -155,33 +156,13 @@ namespace Orbita.VA.Funciones
         /// Resetea las colas
         /// </summary>
         /// <returns></returns>
-        public static int Reset()
-        {
-            try
-            {
-                ColaDeResultados.Clear();
-                ProductorConsumidor.Clear();
-                ElementosEnviados.Clear();
-                GC.Collect();
-                return 1;
-            }
-            catch (Exception exception)
-            {
-                OLogsVAFunciones.LPR.Error(exception, "LPR", "Reseteando el wrapper LPR:" + exception.ToString());
-                return 0;
-            }
-        }
-        /// <summary>
-        /// Resetea las colas
-        /// </summary>
-        /// <returns></returns>
         public static int Reset(string codFuncion)
         {
             try
             {
                 lock (LockObject)
                 {
-                    var nuevo = ElementosEnviados.Where(kvp => kvp.Value.GetCodFuncion == codFuncion).ToArray();
+                    var nuevo = ElementosEnviados.Where(kvp => kvp.Value.GetCodFuncion == codFuncion);
                     if ((nuevo != null) && (nuevo.Count() > 0))
                     {
                         foreach (var valor in nuevo)
@@ -251,14 +232,6 @@ namespace Orbita.VA.Funciones
                         {
                             Configuracion.vlSteps[i] = param.VectorAlturas[i];
                         }
-                    }
-                    if (param.StrictMode)
-                    {
-                        vparmtStrictModeOn();
-                    }
-                    else
-                    {
-                        vparmtStrictModeOff();
                     }
                 }
             }
@@ -353,7 +326,7 @@ namespace Orbita.VA.Funciones
         /// <param name="bitmap">imagen</param>
         /// <param name="obj">información de la imagen</param>
         /// <param name="bFront">Si es prioritaria</param>
-        public static bool Add(string codFunc,Bitmap bitmap, object obj, bool bFront)
+        public static bool Add(string codFunc,Bitmap bitmap, object obj, bool bFront = false)
         {
             try
             {
@@ -395,7 +368,7 @@ namespace Orbita.VA.Funciones
         /// <param name="rutaBitmap">imagen</param>
         /// <param name="obj">información de la imagen</param>
         /// <param name="bFront">Si es prioritaria</param>
-        public static bool Add(string codFunc,string rutaBitmap, bool autoBorradoFicheroTemporal, object obj, bool bFront)
+        public static bool Add(string codFunc,string rutaBitmap, bool autoBorradoFicheroTemporal, object obj, bool bFront = false)
         {
             try
             {
@@ -589,11 +562,11 @@ namespace Orbita.VA.Funciones
                                 try
                                 {
                                     matricula = Encoding.UTF7.GetString(res.strResult, i * 10, res.vlNumbersOfCharacters[i]);
-                                    OLogsVAFunciones.LPR.Debug("LPR", string.Format(new CultureInfo("en-US"), "Callback ResultadoLPR (id = {0}) : CODIGO {1}, FIABILIDAD {2}", new object[] { id, matricula, fia}));
+                                    OLogsVAFunciones.LPR.Debug("LPR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR (id = {0}) : CODIGO {1}", new object[] { id, matricula }));
                                 }
                                 catch (Exception exception)
                                 {
-                                    OLogsVAFunciones.LPR.Error(exception, "LPR", string.Format(new CultureInfo("en-US"), "Callback ResultadoLPR (id = {0}) : Numero carácteres {1}", new object[] { id, res.vlNumbersOfCharacters[i] }));
+                                    OLogsVAFunciones.LPR.Error(exception, "LPR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR (id = {0}) : Numero carácteres {1}", new object[] { id, res.vlNumbersOfCharacters[i] }));
                                 }
 
                                 resultadoLPR = new OLPRCodeInfo(matricula, res.lProcessingTime, (double)avgChar, lpos, tpos, rpos, bpos, (double)fia,
@@ -615,7 +588,7 @@ namespace Orbita.VA.Funciones
                 }
                 catch (Exception exception)
                 {
-                    OLogsVAFunciones.LPR.Error(exception, "LPR", string.Format(new CultureInfo("en-US"), "ERROR CallbackLPR Exception, {0}", new object[] { exception.Message }));
+                    OLogsVAFunciones.LPR.Error(exception, "LPR", string.Format(new CultureInfo("en-US"), "ERROR CallbackCCR Exception, {0}", new object[] { exception.Message }));
                     OLPRCodeInfo resultadoVacioError = new OLPRCodeInfo(string.Empty, res.lProcessingTime, 0f, 0, 0, 0, 0, 0f, string.Empty, id, 0, null, 0);
                     ColaDeResultados.Enqueue(new OPair<OLPRCodeInfo, OLPRData>(resultadoVacioError, datoEnviado));
                 }
@@ -713,10 +686,6 @@ namespace Orbita.VA.Funciones
         public static extern Int32 vpmrReadHasp(ref byte pData, Int32 size);
         [DllImport("vparmtEX.dll", EntryPoint = "_vparmtWriteHasp@8", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
         public static extern Int32 vpmrWriteHasp(ref byte pData, Int32 size);
-        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtStrictSyntaxOn@0", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        public static extern Int32 vparmtStrictModeOn();
-        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtStrictSyntaxOff@0", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        public static extern Int32 vparmtStrictModeOff();
         #endregion
     }
 
@@ -1062,6 +1031,10 @@ namespace Orbita.VA.Funciones
         /// Cantidad de lecturas
         /// </summary>
         private int TotalReadItems;
+        /// <summary>
+        /// Codigo funcion
+        /// </summary>
+        private string codFunc;
         #endregion
 
         #region Propiedades

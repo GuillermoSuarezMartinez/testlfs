@@ -50,25 +50,11 @@ namespace Orbita.VA.MaquinasEstados
                 foreach (DataRow dr in dt.Rows)
                 {
                     string codInstanciaMaquinaEstados = dr["CodInstanciaMaquinaEstados"].ToString();
-                    if (!codInstanciaMaquinaEstados.ValidarNomenclaturaPropiedadNet())
-                    {
-                        throw new ONomenclaturaNetException(codInstanciaMaquinaEstados);
-                    }
-
                     string ensambladoClaseImplementadora = dr["EnsambladoClaseImplementadora"].ToString();
-                    if (!ensambladoClaseImplementadora.ValidarNomenclaturaEnsambladoNet())
-                    {
-                        throw new ONomenclaturaNetException(ensambladoClaseImplementadora);
-                    }
-
-                    string claseImplementadora = dr["ClaseImplementadora"].ToString();
-                    if (!claseImplementadora.ValidarNomenclaturaPropiedadNet())
-                    {
-                        throw new ONomenclaturaNetException(claseImplementadora);
-                    }
+                    string claseImplementadora = string.Format("{0}.{1}", ensambladoClaseImplementadora, dr["ClaseImplementadora"].ToString());
 
                     object objetoImplementado;
-                    if (App.ConstruirClase(ensambladoClaseImplementadora, string.Format("{0}.{1}", ensambladoClaseImplementadora, claseImplementadora), out objetoImplementado, codInstanciaMaquinaEstados))
+                    if (App.ConstruirClase(ensambladoClaseImplementadora, claseImplementadora, out objetoImplementado, codInstanciaMaquinaEstados))
                     {
                         OMaquinaEstadosBase maquinaEstados = (OMaquinaEstadosBase)objetoImplementado;
                         ListaMaquinasEstados.Add(maquinaEstados);
@@ -467,25 +453,11 @@ namespace Orbita.VA.MaquinasEstados
                         foreach (DataRow drEstados in dtEstados.Rows)
                         {
                             string codEstado = drEstados["CodEstado"].ToString();
-                            if (!codEstado.ValidarNomenclaturaPropiedadNet())
-                            {
-                                throw new ONomenclaturaNetException(codEstado);
-                            }
-
                             string ensambladoClaseImplementadora = drEstados["EnsambladoClaseImplementadora"].ToString();
-                            if (!ensambladoClaseImplementadora.ValidarNomenclaturaEnsambladoNet())
-                            {
-                                throw new ONomenclaturaNetException(ensambladoClaseImplementadora);
-                            }
-
-                            string claseImplementadora = drEstados["ClaseImplementadora"].ToString();
-                            if (!claseImplementadora.ValidarNomenclaturaPropiedadNet())
-                            {
-                                throw new ONomenclaturaNetException(claseImplementadora);
-                            }
+                            string claseImplementadora = string.Format("{0}.{1}", ensambladoClaseImplementadora, drEstados["ClaseImplementadora"].ToString());
 
                             object objetoImplementado;
-                            if (App.ConstruirClase(ensambladoClaseImplementadora, string.Format("{0}.{1}", ensambladoClaseImplementadora, claseImplementadora), out objetoImplementado, this.Codigo, codEstado, this.Escenario))
+                            if (App.ConstruirClase(ensambladoClaseImplementadora, claseImplementadora, out objetoImplementado, this.Codigo, codEstado, this.Escenario))
                             {
                                 OEstadoBase estado = (OEstadoBase)objetoImplementado;
                                 ListaEstados.Add(estado);
@@ -504,25 +476,11 @@ namespace Orbita.VA.MaquinasEstados
                         foreach (DataRow drTransiciones in dtTransiciones.Rows)
                         {
                             string codTransicion = drTransiciones["CodTransicion"].ToString();
-                            if (!codTransicion.ValidarNomenclaturaPropiedadNet())
-                            {
-                                throw new ONomenclaturaNetException(codTransicion);
-                            }
-
                             string ensambladoClaseImplementadora = drTransiciones["EnsambladoClaseImplementadora"].ToString();
-                            if (!ensambladoClaseImplementadora.ValidarNomenclaturaEnsambladoNet())
-                            {
-                                throw new ONomenclaturaNetException(ensambladoClaseImplementadora);
-                            }
-                            
-                            string claseImplementadora = drTransiciones["ClaseImplementadora"].ToString();
-                            if (!claseImplementadora.ValidarNomenclaturaPropiedadNet())
-                            {
-                                throw new ONomenclaturaNetException(claseImplementadora);
-                            }
+                            string claseImplementadora = string.Format("{0}.{1}", ensambladoClaseImplementadora, drTransiciones["ClaseImplementadora"].ToString());
 
                             object objetoImplementado;
-                            if (App.ConstruirClase(ensambladoClaseImplementadora, string.Format("{0}.{1}", ensambladoClaseImplementadora, claseImplementadora), out objetoImplementado, this.Codigo, codTransicion, this.Escenario))
+                            if (App.ConstruirClase(ensambladoClaseImplementadora, claseImplementadora, out objetoImplementado, this.Codigo, codTransicion, this.Escenario))
                             {
                                 OTransicionBase transicion = (OTransicionBase)objetoImplementado;
                                 ListaTransiciones.Add(transicion);

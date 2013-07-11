@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrbitaTeclado));
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.PnlFondo = new System.Windows.Forms.Panel();
             this.GridView = new System.Windows.Forms.DataGridView();
-            this.orbitaTableLayoutPanel = new Orbita.Controles.Contenedores.OrbitaTableLayoutPanel();
+            this.orbitaTableLayoutPanel1 = new Orbita.Controles.Contenedores.OrbitaTableLayoutPanel();
             this.PanelTeclas = new Orbita.Controles.Contenedores.OrbitaPanel();
             this.BtnEsc = new System.Windows.Forms.Button();
             this.btn1 = new System.Windows.Forms.Button();
@@ -89,7 +89,7 @@
             this.btnRetrocede = new System.Windows.Forms.Button();
             this.PnlFondo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
-            this.orbitaTableLayoutPanel.SuspendLayout();
+            this.orbitaTableLayoutPanel1.SuspendLayout();
             this.PanelTeclas.SuspendLayout();
             this.PnlTop.SuspendLayout();
             this.PnlTexto.SuspendLayout();
@@ -99,9 +99,9 @@
             // 
             // PnlFondo
             // 
-            this.PnlFondo.BackColor = System.Drawing.Color.Transparent;
+            this.PnlFondo.BackColor = System.Drawing.Color.LightGray;
             this.PnlFondo.Controls.Add(this.GridView);
-            this.PnlFondo.Controls.Add(this.orbitaTableLayoutPanel);
+            this.PnlFondo.Controls.Add(this.orbitaTableLayoutPanel1);
             this.PnlFondo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlFondo.Location = new System.Drawing.Point(0, 96);
             this.PnlFondo.Name = "PnlFondo";
@@ -110,45 +110,45 @@
             // 
             // GridView
             // 
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial Narrow", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.GridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.GridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GridView.ColumnHeadersVisible = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.GridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.GridView.DefaultCellStyle = dataGridViewCellStyle8;
             this.GridView.Location = new System.Drawing.Point(96, 0);
             this.GridView.MultiSelect = false;
             this.GridView.Name = "GridView";
             this.GridView.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.GridView.RowHeadersVisible = false;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
-            this.GridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
+            this.GridView.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.GridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Arial Black", 30F, System.Drawing.FontStyle.Bold);
             this.GridView.RowTemplate.Height = 40;
             this.GridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -157,26 +157,24 @@
             this.GridView.Visible = false;
             this.GridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellClick);
             // 
-            // orbitaTableLayoutPanel
+            // orbitaTableLayoutPanel1
             // 
-            this.orbitaTableLayoutPanel.BackColor = System.Drawing.Color.Transparent;
-            this.orbitaTableLayoutPanel.ColumnCount = 3;
-            this.orbitaTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.orbitaTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 990F));
-            this.orbitaTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.orbitaTableLayoutPanel.Controls.Add(this.PanelTeclas, 0, 0);
-            this.orbitaTableLayoutPanel.Controls.Add(this.Panel1Vacio, 0, 0);
-            this.orbitaTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.orbitaTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.orbitaTableLayoutPanel.Name = "orbitaTableLayoutPanel";
-            this.orbitaTableLayoutPanel.RowCount = 1;
-            this.orbitaTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.orbitaTableLayoutPanel.Size = new System.Drawing.Size(1045, 392);
-            this.orbitaTableLayoutPanel.TabIndex = 39;
+            this.orbitaTableLayoutPanel1.ColumnCount = 3;
+            this.orbitaTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.orbitaTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 990F));
+            this.orbitaTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.orbitaTableLayoutPanel1.Controls.Add(this.PanelTeclas, 0, 0);
+            this.orbitaTableLayoutPanel1.Controls.Add(this.Panel1Vacio, 0, 0);
+            this.orbitaTableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.orbitaTableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.orbitaTableLayoutPanel1.Name = "orbitaTableLayoutPanel1";
+            this.orbitaTableLayoutPanel1.RowCount = 1;
+            this.orbitaTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.orbitaTableLayoutPanel1.Size = new System.Drawing.Size(1045, 392);
+            this.orbitaTableLayoutPanel1.TabIndex = 39;
             // 
             // PanelTeclas
             // 
-            this.PanelTeclas.BackColor = System.Drawing.Color.Transparent;
             this.PanelTeclas.Controls.Add(this.BtnEsc);
             this.PanelTeclas.Controls.Add(this.btn1);
             this.PanelTeclas.Controls.Add(this.btnA);
@@ -588,7 +586,7 @@
             // 
             // btn5
             // 
-            this.btn5.BackColor = System.Drawing.Color.White;
+            this.btn5.BackColor = System.Drawing.Color.Transparent;
             this.btn5.FlatAppearance.BorderSize = 0;
             this.btn5.Font = new System.Drawing.Font("Arial Narrow", 44.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn5.Image = global::Orbita.Controles.Comunes.Properties.Resources.ImgComputerKey90;
@@ -864,7 +862,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Transparent;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.Controls.Add(this.PnlFondo);
             this.Controls.Add(this.PnlTop);
             this.Name = "OrbitaTeclado";
@@ -872,7 +870,7 @@
             this.Load += new System.EventHandler(this.OrbitaControlTeclado_Load);
             this.PnlFondo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
-            this.orbitaTableLayoutPanel.ResumeLayout(false);
+            this.orbitaTableLayoutPanel1.ResumeLayout(false);
             this.PanelTeclas.ResumeLayout(false);
             this.PnlTop.ResumeLayout(false);
             this.PnlTexto.ResumeLayout(false);
@@ -895,7 +893,7 @@
         private System.Windows.Forms.Panel PnlRet;
         private System.Windows.Forms.Panel PnlTexto;
         private System.Windows.Forms.DataGridView GridView;
-        private Contenedores.OrbitaTableLayoutPanel orbitaTableLayoutPanel;
+        private Contenedores.OrbitaTableLayoutPanel orbitaTableLayoutPanel1;
         private Contenedores.OrbitaPanel PanelTeclas;
         private System.Windows.Forms.Button BtnEsc;
         private System.Windows.Forms.Button btn1;

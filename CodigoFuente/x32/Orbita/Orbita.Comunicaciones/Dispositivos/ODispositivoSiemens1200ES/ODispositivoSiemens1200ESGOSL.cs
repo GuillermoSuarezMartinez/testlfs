@@ -1,142 +1,141 @@
 ﻿using System;
-using System.Linq;
+using System.Collections;
 using System.Text;
 using System.Threading;
 using Orbita.Utiles;
+using Orbita.Winsock;
 
 namespace Orbita.Comunicaciones
 {
-    /// <summary>
-    /// Dispositivo Siemens 1200 OSL.
-    /// </summary>
     public class ODispositivoSiemens1200ESGOSL : ODispositivoSiemens1200ES
     {
-        #region Constantes
-        private const int BytesEntradaLPR = 2;
-        private const int ByteSalidasLPR = 2;
-        private const int RegistroInicialEntradasLPR = 0;
-        private const int RegistroInicialSalidasLPR = 0;
-        private const int BitInicialSalida = 2;
-        #endregion Constantes
+        #region Atributos
+
+        private int _bytesEntradaLPR = 2;
+        private int _byteSalidasLPR = 2;
+        private int _registroInicialEntradasLPR = 0;
+        private int _registroInicialSalidasLPR = 0;
+
+        #endregion
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase ODispositivoSiemens1200ESGOSL.
+        /// Constructor de clase de Siemens1200
         /// </summary>
-        /// <param name="tags">Colección de tags.</param>
-        /// <param name="hilos">Colección de hilos.</param>
-        /// <param name="dispositivo">Dispositivo de conexión.</param>
         public ODispositivoSiemens1200ESGOSL(OTags tags, OHilos hilos, ODispositivo dispositivo)
-            : base(tags, hilos, dispositivo) { }
-        #endregion Constructor
+            : base(tags, hilos, dispositivo)
+        {
+
+        }
+        #endregion
 
         #region Métodos privados
 
         #region Comunes
+
         /// <summary>
         /// Establece el valor inicial de los objetos
         /// </summary>
         protected override void IniciarObjetos()
         {
             base.IniciarObjetos();
-            this.ProtocoloHiloVida = new OProtocoloTCPSiemensGateLPROS();
-            this.ProtocoloEscritura = new OProtocoloTCPSiemensGateLPROS();
-            this.ProtocoloProcesoMensaje = new OProtocoloTCPSiemensGateLPROS();
-            this.ProtocoloProcesoHilo = new OProtocoloTCPSiemensGateLPROS();
+            this.protocoloHiloVida = new OProtocoloTCPSiemensGateLPROS();
+            this.protocoloEscritura = new OProtocoloTCPSiemensGateLPROS();
+            this.protocoloProcesoMensaje = new OProtocoloTCPSiemensGateLPROS();
+            this.protocoloProcesoHilo = new OProtocoloTCPSiemensGateLPROS();
 
-            this.NumLecturas = BytesEntradaLPR + ByteSalidasLPR;
-            this.NumeroBytesEntradas = BytesEntradaLPR;
-            this.NumeroBytesSalidas = ByteSalidasLPR;
-            this.RegistroInicialEntradas = RegistroInicialEntradasLPR;
-            this.RegistroInicialSalidas = RegistroInicialSalidasLPR;
+            this._numLecturas = this._bytesEntradaLPR + this._byteSalidasLPR;
+            this._numeroBytesEntradas = this._bytesEntradaLPR;
+            this._numeroBytesSalidas = this._byteSalidasLPR;
+            this._registroInicialEntradas = this._registroInicialEntradasLPR;
+            this._registroInicialSalidas = this._registroInicialSalidasLPR;
 
-            this.Entradas = new byte[this.NumeroBytesEntradas];
-            this.Salidas = new byte[this.NumeroBytesSalidas];
+            this.Entradas = new byte[this._numeroBytesEntradas];
+            this.Salidas = new byte[this._numeroBytesSalidas];
 
-            this._lecturas = new byte[NumLecturas];
-            this.LecturaInicialSalida = BitInicialSalida;
+            this._lecturas = new byte[_numLecturas];
         }
         /// <summary>
-        /// Procesa los mensajes recibidos en el evento Winsock_DataArrival.
+        /// Procesa los mensajes recibidos en el data arrival
         /// </summary>
         /// <param name="mensaje"></param>
         protected override void ProcesarMensajeRecibido(byte[] mensaje)
         {
             try
             {
-                // TODO: crear el metodo Deserializar.
-                var bmensaje = new byte[13];
+                byte[] bmensaje = new byte[13];
                 Array.Copy(mensaje, 1, bmensaje, 0, 13);
-                string smensaje = Encoding.ASCII.GetString(bmensaje);
-                using (ProtocoloProcesoMensaje)
+                string smensaje = ASCIIEncoding.ASCII.GetString(bmensaje);
+                using (protocoloProcesoMensaje)
                 {
-                    if (!smensaje.Contains("OSLDATA")) return;
-
-                    byte[] lecturas;
-                    // Respuesta para la lectura.
-                    if (mensaje[15] == 0)
+                    if (smensaje.Contains("OSLDATA"))//respuesta para la lectura
                     {
-                        if (ProtocoloProcesoMensaje.KeepAliveProcesar(mensaje, out lecturas))
+                        if (mensaje[15] == 0)
                         {
-                            bool iguales = this._lecturas.SequenceEqual(lecturas);
-                            if (!iguales)
+                            byte[] lecturas;
+                            if (protocoloProcesoMensaje.KeepAliveProcesar(mensaje, out lecturas))
                             {
-                                this.EsEncolar(lecturas);
+                                for (int i = 0; i < this._numLecturas; i++)
+                                {
+                                    if (this._lecturas[i] != lecturas[i])
+                                    {
+                                        this.ESEncolar(lecturas);
+                                        break;
+                                    }
+                                }
+                                this._lecturas = lecturas;
+                                // Despertar el hilo en la línea:
+                                // this._eReset.Dormir de ProcesarHiloKeepAlive.                        
+                                this._eReset.Despertar(0);
                             }
-                            this._lecturas = lecturas;
-                            // Despertar el hilo en la línea: this._eReset.Dormir de ProcesarHiloKeepAlive.                        
-                            this.Reset.Despertar(0);
                         }
-                    }
-                    else // Respuesta para la escritura.
-                    {
-                        if (ProtocoloProcesoMensaje.SalidasProcesar(mensaje, this.IdMensaje, out lecturas))
+                        else//respuesta para la escritura
                         {
-                            bool iguales = this._lecturas.SequenceEqual(lecturas);
-                            if (!iguales)
-                            {
-                                this.EsEncolar(lecturas);
-                            }
-                            this._lecturas = lecturas;
+                            this._valorEscritura = mensaje;
+                            this._eReset.Despertar(2);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Wrapper.Error("ODispositivoSiemens1200ESGOSL [ProcesarMensajeRecibido]: " + ex);
+                string error = "Error en ProcesarMensajeRecibido en el dispositivo de ES Siemens: " + ex.ToString();
+                wrapper.Error(error);
             }
         }
+
         #endregion
 
         #region ES
+
         /// <summary>
         /// Hilo de proceso de ES
         /// </summary>
-        protected override void EsProcesarHilo()
+        protected override void ESProcesarHilo()
         {
             while (true)
             {
-                byte[] mensaje = this.EsDesencolar();
+                byte[] mensaje = this.ESDesencolar();
+
                 if (mensaje != null)
                 {
                     try
                     {
-                        var entradas = new byte[2]; 
-                        var salidas = new byte[2];
+                        byte[] entradas = null, salidas = null;
+                        entradas = new byte[2]; salidas = new byte[2];
                         Array.Copy(mensaje, 0, entradas, 0, 2);
                         Array.Copy(mensaje, 2, salidas, 0, 2);
-                        this.EsProcesar(entradas, salidas);
+                        this.ESProcesar(entradas, salidas);
                     }
                     catch (Exception ex)
                     {
-                        Wrapper.Fatal("ODispositivoSiemens1200ESGOSL [EsProcesarHilo]: " + ex);
+                        wrapper.Fatal("Error al procesar las ES en el dispositivo de ES Siemens GLPR. " + ex.ToString());
                     }
-                    Thread.Sleep(1);
+                    Thread.Sleep(10);
                 }
                 else
                 {
-                    this.Reset.Dormir(1);
+                    this._eReset.Dormir(1);
                 }
             }
         }
@@ -145,22 +144,22 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="entradas">byte de entradas recibido</param>
         /// <param name="salidas">byte de salidas recibido</param>
-        private void EsProcesar(byte[] entradas, byte[] salidas)
+        private void ESProcesar(byte[] entradas, byte[] salidas)
         {
             try
             {
                 for (int i = 0; i < entradas.Length; i++)
                 {
-                    this.EsActualizarVariablesEntradas(entradas[i], i + this.RegistroInicialEntradas);
-                    this.EsActualizarVariablesSalidas(salidas[i], i + this.RegistroInicialSalidas);
+                    this.ESActualizarVariablesEntradas(entradas[i], i + this._registroInicialEntradas);
+                    this.ESActualizarVariablesSalidas(salidas[i], i + this._registroInicialSalidas);
                 }
                 this.Entradas = entradas;
                 this.Salidas = salidas;
             }
             catch (Exception ex)
             {
-                Wrapper.Fatal("ODispositivoSiemens1200ESGOSL [EsProcesar]: " + ex);
-                throw;
+                wrapper.Fatal("Error al procesar las ES en el dispositivo de ES Siemens en ESProcesar. " + ex.ToString());
+                throw ex;
             }
         }
         /// <summary>
@@ -168,59 +167,74 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="valor">valor del byte</param>
         /// <param name="posicion">posición del byte</param>
-        private void EsActualizarVariablesEntradas(byte valor, int posicion)
+        private void ESActualizarVariablesEntradas(byte valor, int posicion)
         {
-            var e = new OEventArgs();
+            OInfoDato infodato = null;
+            OEventArgs ev = new OEventArgs();
             try
             {
-                this.OnCambioDatoEntradas(new OEventArgs { Id = posicion, Argumento = valor });
+                OEventArgs evBit = new OEventArgs(); ;
+                evBit.Id = posicion;
+                evBit.Argumento = valor;
+                this.OnCambioDatoEntradas(evBit);
             }
-            catch
+            catch (Exception ex)
             {
-                // Empty.
+                Console.WriteLine(ex);
             }
 
             try
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    string key = string.Format("{0}-{1}", posicion, i);
-                    var infodato = (OInfoDato)this.AlmacenLecturas[key];
-                    
-                    // Comprobar el valor nuevo.
-                    if (infodato == null) continue;
-                    int resultado = 0;
-                    if ((valor & (1 << i)) != 0)
+                    infodato = (OInfoDato)this._almacenLecturas[posicion.ToString() + "-" + i.ToString()];
+                    //Comprobamos el valor nuevo 
+                    if (infodato != null)
                     {
-                        resultado = 1;
-                    }
-
-                    if (resultado == Convert.ToInt32(infodato.Valor)) continue;
-                    infodato.Valor = resultado;
-                    e.Argumento = infodato;
-                    this.OnCambioDato(e);
-
-                    if (this.Tags.GetAlarmas(infodato.Identificador) == null) continue;
-                    if (Convert.ToInt32(infodato.Valor) == 1)
-                    {
-                        if (!AlarmasActivas.Contains(infodato.Texto))
+                        int resultado = 0;
+                        if ((valor & (1 << i)) != 0)
                         {
-                            this.AlarmasActivas.Add(infodato.Texto);
+                            resultado = 1;
+                        }
+
+                        if (resultado != Convert.ToInt32(infodato.Valor))
+                        {
+                            infodato.Valor = resultado;
+                            ev.Argumento = infodato;
+                            this.OnCambioDato(ev);
+
+                            if (this.Tags.GetAlarmas(infodato.Identificador) != null)
+                            {
+                                if (Convert.ToInt32(infodato.Valor) == 1)
+                                {
+                                    if (!AlarmasActivas.Contains(infodato.Texto))
+                                    {
+                                        this.AlarmasActivas.Add(infodato.Texto);
+                                    }
+                                }
+                                else
+                                {
+                                    if (AlarmasActivas.Contains(infodato.Texto))
+                                    {
+                                        this.AlarmasActivas.Remove(infodato.Texto);
+                                    }
+                                }
+
+                                this.OnAlarma(ev);
+                            }
                         }
                     }
                     else
                     {
-                        if (AlarmasActivas.Contains(infodato.Texto))
-                        {
-                            this.AlarmasActivas.Remove(infodato.Texto);
-                        }
+                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+                            " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
                     }
-                    this.OnAlarma(e);
+
                 }
             }
             catch (Exception ex)
             {
-                Wrapper.Error("ODispositivoSiemens1200ESGOSL [EsActualizarVariablesEntradas]: " + ex);
+                wrapper.Error("Error no controlado al procesar las entradas en el dispositivo de ES Siemens" + ex.ToString());
             }
         }
         /// <summary>
@@ -228,58 +242,74 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="valor">valor del byte</param>
         /// <param name="posicion">posición del byte</param>
-        private void EsActualizarVariablesSalidas(byte valor, int posicion)
+        private void ESActualizarVariablesSalidas(byte valor, int posicion)
         {
-            var e = new OEventArgs();
+            OInfoDato infodato = null;
+            OEventArgs ev = new OEventArgs();
             try
             {
-                this.OnCambioDatoSalidas(new OEventArgs { Id = posicion, Argumento = valor });
+                OEventArgs evBit = new OEventArgs(); ;
+                evBit.Id = posicion;
+                evBit.Argumento = valor;
+                this.OnCambioDatoSalidas(evBit);
             }
-            catch
+            catch (Exception ex)
             {
-                // Empty.
+                Console.WriteLine(ex);
             }
             for (int i = 0; i < 8; i++)
             {
                 try
                 {
-                    string key = string.Format("{0}-{1}", posicion, i);
-                    var infodato = (OInfoDato)this.AlmacenEscrituras[key];
-                    
-                    // Comprobar el valor nuevo.
-                    if (infodato == null) continue;
-                    int resultado = 0;
-                    if ((valor & (1 << i)) != 0)
+                    infodato = (OInfoDato)this._almacenEscrituras[posicion.ToString() + "-" + i.ToString()];
+                    //Comprobamos el valor nuevo 
+                    if (infodato != null)
                     {
-                        resultado = 1;
-                    }
-
-                    if (resultado == Convert.ToInt32(infodato.Valor)) continue;
-                    infodato.Valor = resultado;
-                    e.Argumento = infodato;
-                    this.OnCambioDato(e);
-
-                    if (this.Tags.GetAlarmas(infodato.Identificador) == null) continue;
-                    if (Convert.ToInt32(infodato.Valor) == 1)
-                    {
-                        if (!AlarmasActivas.Contains(infodato.Texto))
+                        int resultado = 0;
+                        if ((valor & (1 << i)) != 0)
                         {
-                            this.AlarmasActivas.Add(infodato.Texto);
+                            resultado = 1;
+                        }
+
+                        if (resultado != Convert.ToInt32(infodato.Valor))
+                        {
+                            infodato.Valor = resultado;
+                            ev.Argumento = infodato;
+                            this.OnCambioDato(ev);
+
+                            if (this.Tags.GetAlarmas(infodato.Identificador) != null)
+                            {
+                                if (Convert.ToInt32(infodato.Valor) == 1)
+                                {
+                                    if (!AlarmasActivas.Contains(infodato.Texto))
+                                    {
+                                        this.AlarmasActivas.Add(infodato.Texto);
+                                    }
+                                }
+                                else
+                                {
+                                    if (AlarmasActivas.Contains(infodato.Texto))
+                                    {
+                                        this.AlarmasActivas.Remove(infodato.Texto);
+                                    }
+                                }
+
+                                this.OnAlarma(ev);
+                            }
                         }
                     }
                     else
                     {
-                        if (AlarmasActivas.Contains(infodato.Texto))
-                        {
-                            this.AlarmasActivas.Remove(infodato.Texto);
-                        }
+                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+                            " al actualizar las variables de salida en el dispositivo de ES Siemens.");
                     }
-                    this.OnAlarma(e);
+
                 }
                 catch (Exception ex)
                 {
-                    Wrapper.Error("ODispositivoSiemens1200ESGOSL [EsActualizarVariablesSalidas]: " + ex);
+                    wrapper.Error("Error no controlado al procesar las salidas en el dispositivo de ES Siemens " + ex.ToString());
                 }
+
             }
         }
         #endregion

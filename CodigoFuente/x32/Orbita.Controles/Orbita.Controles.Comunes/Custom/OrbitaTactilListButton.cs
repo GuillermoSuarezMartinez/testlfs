@@ -1,15 +1,4 @@
-﻿//***********************************************************************
-// Assembly         : Orbita.Controles.Comunes
-// Author           : aibañez
-// Created          : 02-07-2013
-//
-// Last Modified By : 
-// Last Modified On : 
-// Description      : 
-//
-// Copyright        : (c) Orbita Ingenieria. All rights reserved.
-//***********************************************************************
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;

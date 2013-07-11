@@ -10,7 +10,6 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -26,13 +25,6 @@ namespace Orbita.Controles.VA
     /// </summary>
     public partial class CtrlDisplaysTactil : OrbitaCtrlTactilBase
     {
-        #region Atributo(s) estático(s)
-        /// <summary>
-        /// Instancia única del formulario
-        /// </summary>
-        private static CtrlDisplaysTactil CtrlDisplaysSingleton;
-        #endregion
-
         #region Atributo(s)
         /// <summary>
         /// Contador del número de cámaras
@@ -100,7 +92,7 @@ namespace Orbita.Controles.VA
 
         #region Constructor(es)
         public CtrlDisplaysTactil(string codigo, Control contenedor = null)
-            : this(codigo, "Visor de cámaras", true, true, OUsuariosManager.PermisoActual == OPermisos.Administrador, contenedor)
+            : this(ModoAperturaFormulario.Visualizacion, codigo, "Visor de cámaras", true, true, OUsuariosManager.PermisoActual == OPermisos.Administrador, contenedor)
         {
         }
 
@@ -108,14 +100,14 @@ namespace Orbita.Controles.VA
         /// Constructor de la clase
         /// </summary>
         public CtrlDisplaysTactil(string codigo, string titulo, bool enlazarCamaras, bool visualiacionEnVivo, bool controlCamara, Control contenedor = null)
-            : this(ModoAperturaFormulario.Visualizacion, codigo, titulo, enlazarCamaras, visualiacionEnVivo, controlCamara, true, contenedor)
+            : this(ModoAperturaFormulario.Visualizacion, codigo, titulo, enlazarCamaras, visualiacionEnVivo, controlCamara, contenedor)
         {
         }
 
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public CtrlDisplaysTactil(ModoAperturaFormulario modoAperturaFormulario, string codigo, string titulo, bool enlazarCamaras, bool visualiacionEnVivo, bool controlCamara, bool instanciaSingleton, Control contenedor = null)
+        public CtrlDisplaysTactil(ModoAperturaFormulario modoAperturaFormulario, string codigo, string titulo, bool enlazarCamaras, bool visualiacionEnVivo, bool controlCamara, Control contenedor = null)
             : base(modoAperturaFormulario, codigo, titulo, contenedor)
         {
             InitializeComponent();
@@ -125,11 +117,6 @@ namespace Orbita.Controles.VA
             this._ControlCamara = controlCamara;
 
             this.ListaDisplays = new List<OrbitaVisorBase>();
-
-            if (instanciaSingleton)
-            {
-                CtrlDisplaysSingleton = this;
-            }
         }  
         #endregion
 
@@ -372,40 +359,6 @@ namespace Orbita.Controles.VA
             // Eventos
             display.OnEstadoVentanaCambiado += this.OnEstadoVentanaCambiado;
             display.OnVisorDispositivoCambiado += this.OnVisorDispositivoCambiado;
-        }
-        #endregion
-
-        #region Método(s) público(s) estático(s)
-        /// <summary>
-        /// Visualiza una imagen en el display
-        /// </summary>
-        /// <param name="imagen">Imagen a visualizar</param>        
-        public static void VisualizarImagen(string codigo, OImagen imagen)
-        {
-            VisualizarImagen(codigo, imagen, null);
-        }
-        /// <summary>
-        /// Visualiza una imagen en el display
-        /// </summary>
-        /// <param name="imagen">Imagen a visualizar</param>
-        /// <param name="graficos">Objeto que contiene los gráficos a visualizar (letras, rectas, circulos, etc)</param>
-        public static void VisualizarImagen(string codigo, OImagen imagen, OGrafico graficos)
-        {
-            if ((CtrlDisplaysSingleton is CtrlDisplaysTactil) && (CtrlDisplaysSingleton.ListaDisplays is List<OrbitaVisorBase>) && (CtrlDisplaysSingleton.ListaDisplays.Count > 0))
-            {
-                foreach (OrbitaVisorBase visor in CtrlDisplaysSingleton.ListaDisplays)
-                {
-                    if (visor.Codigo == codigo)
-                    {
-                        visor.Visualizar(imagen, graficos);
-                    }
-                }
-                //var display = CtrlDisplaysSingleton.ListaDisplays.Where(dsp => dsp.Codigo == codigo);
-                //if (display.Count() > 0)
-                //{
-                //    display.First().Visualizar(imagen, graficos);
-                //}
-            }
         }
         #endregion
 

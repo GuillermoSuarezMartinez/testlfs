@@ -21,11 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hardware", "Hardware", "{E0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilidades", "Utilidades", "{709E1BD6-0679-4297-ACEB-1A6D51FD5C2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orbita.VA.HerramientasVisionPro", "Orbita.VA.HerramientasVisionPro\Orbita.VA.HerramientasVisionPro.csproj", "{19A87018-75F4-43FE-ABAE-EFB8353EAC38}"
-EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 7
+		SccNumberOfProjects = 6
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://01x0019:8080/tfs/orbitasoftware
 		SccLocalPath0 = .
@@ -49,10 +47,6 @@ Global
 		SccProjectTopLevelParentUniqueName5 = Orbita.VA.sln
 		SccProjectName5 = Orbita.VA.MaquinasEstados
 		SccLocalPath5 = Orbita.VA.MaquinasEstados
-		SccProjectUniqueName6 = Orbita.VA.HerramientasVisionPro\\Orbita.VA.HerramientasVisionPro.csproj
-		SccProjectTopLevelParentUniqueName6 = Orbita.VA.sln
-		SccProjectName6 = Orbita.VA.HerramientasVisionPro
-		SccLocalPath6 = Orbita.VA.HerramientasVisionPro
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -173,22 +167,6 @@ Global
 		{B336255B-92F8-4DAE-9051-C930269AA460}.Release|x64.Build.0 = Release|x86
 		{B336255B-92F8-4DAE-9051-C930269AA460}.Release|x86.ActiveCfg = Release|x86
 		{B336255B-92F8-4DAE-9051-C930269AA460}.Release|x86.Build.0 = Release|x86
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38}.Debug|Any CPU.ActiveCfg = Release|x86
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38}.Debug|Any CPU.Build.0 = Release|x86
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38}.Forzar32|Any CPU.ActiveCfg = Release|Any CPU
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38}.Forzar32|Any CPU.Build.0 = Release|Any CPU
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38}.Forzar32|x64.ActiveCfg = Release|Any CPU
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38}.Forzar32|x86.ActiveCfg = Release|Any CPU
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38}.Ofuscado|Any CPU.ActiveCfg = Release|Any CPU
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38}.Ofuscado|Any CPU.Build.0 = Release|Any CPU
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38}.Ofuscado|x64.ActiveCfg = Release|Any CPU
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38}.Ofuscado|x86.ActiveCfg = Release|Any CPU
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38}.Release|Any CPU.Build.0 = Release|Any CPU
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38}.Release|x64.ActiveCfg = Release|Any CPU
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -197,7 +175,6 @@ Global
 		{1CA30AAB-0DA9-4947-B5C5-E81E9A2D9C18} = {6787E78B-E2D2-446A-B8D5-76E7ADFDC3D7}
 		{CC36FE63-3F16-4355-A11D-F0926DFBC977} = {F1AD13C4-9038-4D5E-9043-DA3E801D1D3F}
 		{80C544D1-CA4E-4836-84DD-EB90E7042B5B} = {83E4A27F-6152-4A60-9F5F-C170E3880B64}
-		{19A87018-75F4-43FE-ABAE-EFB8353EAC38} = {83E4A27F-6152-4A60-9F5F-C170E3880B64}
 		{0E3EC51A-D639-4815-A4DF-A119362891C3} = {709E1BD6-0679-4297-ACEB-1A6D51FD5C2F}
 		{B336255B-92F8-4DAE-9051-C930269AA460} = {E029329F-54B6-48BC-8CE4-BF4A4EE6682B}
 	EndGlobalSection

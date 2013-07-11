@@ -1,15 +1,4 @@
-﻿//***********************************************************************
-// Assembly         : Orbita.Controles.VA
-// Author           : aibañez
-// Created          : 04-07-2013
-//
-// Last Modified By : 
-// Last Modified On : 
-// Description      : 
-//
-// Copyright        : (c) Orbita Ingenieria. All rights reserved.
-//***********************************************************************
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -113,13 +102,10 @@ namespace Orbita.Controles.VA
         /// Visualización de un formulario
         /// </summary>
         /// <param name="formulario"></param>
-        public bool AbrirFormulario(string codFormulario)
+        public void AbrirFormulario(string codFormulario)
         {
-            bool resultado = false;
             if (this.ListaFormularios.ContainsKey(codFormulario))
             {
-                resultado = true;
-
                 // Activación del tab actual
                 this.TabContenedor.SelectedTab = this.TabContenedor.Tabs[codFormulario];
 
@@ -130,7 +116,6 @@ namespace Orbita.Controles.VA
                     this.OnFormularioActivo(formulario, new EventArgsFormularioActivo(codFormulario));
                 }
             }
-            return resultado;
         }
 
         /// <summary>
@@ -184,7 +169,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         public void CerrarTodosFormularios()
         {
-            var frms = this.ListaFormularios.Values.Select(pair => pair.Second).ToArray();
+            var frms = this.ListaFormularios.Values.Select(pair => pair.Second);
             foreach (OrbitaCtrlTactilBase frmBase in frms)
             {
                 if (frmBase.ModoAperturaFormulario != ModoAperturaFormulario.Sistema)

@@ -5,7 +5,18 @@
     /// </summary>
     public class OInformacionPuerto
     {
-        #region Constructor
+        #region Atributos
+        /// <summary>
+        /// Identificador númerico del puerto de comunicaciones
+        /// </summary>
+        int idPuerto;
+        /// <summary>
+        /// Tipo del puerto de comunicaciones
+        /// </summary>
+        string tipoPuerto;
+        #endregion
+
+        #region Constructores
         /// <summary>
         /// Constructor de la clase
         /// </summary>
@@ -13,20 +24,26 @@
         /// <param name="tipoPuerto">Tipo del puerto de comunicaciones</param>
         public OInformacionPuerto(int idPuerto, string tipoPuerto)
         {
-            this.IdPuerto = idPuerto;
-            this.TipoPuerto = tipoPuerto;
+            this.idPuerto = idPuerto;
+            this.tipoPuerto = tipoPuerto;
         }
         #endregion
 
         #region Propiedades
         /// <summary>
-        /// Identificador númerico del puerto de comunicaciones.
+        /// Identificador númerico del puerto de comunicaciones
         /// </summary>
-        public int IdPuerto { get; private set; }
+        public int IdPuerto
+        {
+            get { return this.idPuerto; }
+        }
         /// <summary>
-        /// Identificador textual del puerto de comunicaciones.
+        /// Identificador textual del puerto de comunicaciones
         /// </summary>
-        public string TipoPuerto { get; private set; }
+        public string TipoPuerto
+        {
+            get { return this.tipoPuerto; }
+        }
         #endregion
     }
 }

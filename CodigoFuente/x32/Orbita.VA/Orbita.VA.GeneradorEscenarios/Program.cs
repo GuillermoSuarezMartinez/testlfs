@@ -49,10 +49,7 @@ namespace Orbita.VA.GeneradorEscenarios
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
-            if (args.Length < 3)
-            {
-                Console.WriteLine("Número de parámetros insuficientes");
-            }
+            if (args.Length >= 5)
             {
                 // Inicializar acceso a la base de datos
                 OSistemaManager.Constructor(new OSistemaGeneradorEscenarios(args[1]), false, false);
@@ -62,19 +59,19 @@ namespace Orbita.VA.GeneradorEscenarios
                 OGeneradorAccesoRapido generador = new OGeneradorAccesoRapido();
                 List<string> listaUsing = new List<string>() { typeof(System.Int32).Namespace, typeof(Orbita.VA.Comun.OVariable).Namespace };
 
-                HabilitadoVariables = OSistemaManager.Parametro("Vars");
+                HabilitadoVariables = string.Equals(args[3], "Vars", StringComparison.InvariantCultureIgnoreCase);
                 if (HabilitadoVariables)
                 {
                     listaUsing.Add(typeof(Orbita.VA.MaquinasEstados.OMaquinaEstadosBase).Namespace);
                 }
 
-                HabilitadoHardware = OSistemaManager.Parametro("Hard");
+                HabilitadoHardware = string.Equals(args[4], "Hard", StringComparison.InvariantCultureIgnoreCase);
                 if (HabilitadoHardware)
                 {
                     listaUsing.Add(typeof(Orbita.VA.Hardware.OCamaraBase).Namespace);
                 }
 
-                HabilitadoVision = OSistemaManager.Parametro("Vision");
+                HabilitadoVision = string.Equals(args[5], "Vision", StringComparison.InvariantCultureIgnoreCase);
                 if (HabilitadoVision)
                 {
                     listaUsing.Add(typeof(Orbita.VA.Funciones.OFuncionVisionBase).Namespace);

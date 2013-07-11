@@ -303,7 +303,7 @@ namespace Orbita.VA.Funciones
         /// <param name="puntoY">Punto extremo en alto de la proyección</param>
         /// <param name="sourceMat">Matriz de transformación utilizada para realiar la proyección. Sirve para deshacer la proyección</param>
         /// <returns>Proyección rectangular del area especificada</returns>
-        public static OImagenOpenCV<TColor, TDepth> Proyeccion<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> input, PointF puntoO, PointF puntoX, PointF puntoY, out Matrix<float> sourceMat)
+        internal static OImagenOpenCV<TColor, TDepth> Proyeccion<TColor, TDepth>(this OImagenOpenCV<TColor, TDepth> input, PointF puntoO, PointF puntoX, PointF puntoY, out Matrix<float> sourceMat)
             where TColor : struct, global::Emgu.CV.IColor
             where TDepth : new()
         {

@@ -18,7 +18,6 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -35,13 +34,6 @@ namespace Orbita.Controles.VA
     /// </summary>
     public partial class FrmDisplays : FrmBase
     {
-        #region Atributo(s) estático(s)
-        /// <summary>
-        /// Instancia única del formulario
-        /// </summary>
-        private static FrmDisplays FrmDisplaysSingleton;
-        #endregion
-
         #region Atributo(s)
         /// <summary>
         /// Contador del número de cámaras
@@ -120,14 +112,14 @@ namespace Orbita.Controles.VA
         /// Constructor de la clase
         /// </summary>
         public FrmDisplays(string titulo, bool enlazarCamaras, bool visualiacionEnVivo, bool controlCamara)
-            : this(ModoAperturaFormulario.Monitorizacion, titulo, enlazarCamaras, visualiacionEnVivo, controlCamara, true)
+            : this(ModoAperturaFormulario.Monitorizacion, titulo, enlazarCamaras, visualiacionEnVivo, controlCamara)
         {
         }
 
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public FrmDisplays(ModoAperturaFormulario modoAperturaFormulario, string titulo, bool enlazarCamaras, bool visualiacionEnVivo, bool controlCamara, bool instanciaSingleton)
+        public FrmDisplays(ModoAperturaFormulario modoAperturaFormulario, string titulo, bool enlazarCamaras, bool visualiacionEnVivo, bool controlCamara)
             : base(modoAperturaFormulario)
         {
             InitializeComponent();
@@ -138,11 +130,6 @@ namespace Orbita.Controles.VA
             this._ControlCamara = controlCamara;
 
             this.ListaDisplays = new List<OrbitaVisorBase>();
-
-            if (instanciaSingleton)
-            {
-                FrmDisplaysSingleton = this;
-            }
         }  
         #endregion
 
@@ -386,33 +373,6 @@ namespace Orbita.Controles.VA
             display.OnEstadoVentanaCambiado += this.OnEstadoVentanaCambiado;
             display.OnVisorDispositivoCambiado += this.OnVisorDispositivoCambiado;
         } 
-        #endregion
-
-        #region Método(s) público(s) estático(s)
-        /// <summary>
-        /// Visualiza una imagen en el display
-        /// </summary>
-        /// <param name="imagen">Imagen a visualizar</param>        
-        public static void VisualizarImagen(string codigo, OImagen imagen)
-        {
-            VisualizarImagen(codigo, imagen, null);
-        }
-        /// <summary>
-		/// Visualiza una imagen en el display
-		/// </summary>
-		/// <param name="imagen">Imagen a visualizar</param>
-		/// <param name="graficos">Objeto que contiene los gráficos a visualizar (letras, rectas, circulos, etc)</param>
-        public static void VisualizarImagen(string codigo, OImagen imagen, OGrafico graficos)
-		{
-            if ((FrmDisplaysSingleton is FrmDisplays) && (FrmDisplaysSingleton.ListaDisplays is List<OrbitaVisorBase>) && (FrmDisplaysSingleton.ListaDisplays.Count > 0))
-            {
-                var display = FrmDisplaysSingleton.ListaDisplays.Where(dsp => dsp.Codigo == codigo);
-                if (display.Count() > 0)
-                {
-                    display.First().Visualizar(imagen, graficos);
-                }
-            }
-		}
         #endregion
 
         #region Evento(s)

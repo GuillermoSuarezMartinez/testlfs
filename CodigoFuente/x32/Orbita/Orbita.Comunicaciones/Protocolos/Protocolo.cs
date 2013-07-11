@@ -12,6 +12,7 @@ namespace Orbita.Comunicaciones
         public bool disposed = false;
 
         #region Dispose
+
         /// <summary>
         /// Implementa IDisposable.
         /// No  hacer  este  método  virtual.

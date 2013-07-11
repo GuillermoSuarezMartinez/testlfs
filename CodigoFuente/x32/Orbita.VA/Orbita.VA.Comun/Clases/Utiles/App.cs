@@ -99,6 +99,7 @@ namespace Orbita.VA.Comun
 		/// <param name="orgArray">Array</param>
 		/// <param name="tamaño">Tamaño</param>
 		/// <returns>Array redimensionado</returns>
+
 		public static Array aRedimensionar(Array orgArray, Int32 tamaño)
 		{
 			Type t = orgArray.GetType().GetElementType();
@@ -137,9 +138,6 @@ namespace Orbita.VA.Comun
 			bool resultado = false;
 			try
 			{
-                ensamblado = ensamblado.Replace(" ", "").Replace("\r", "").Replace("\n", "").Replace("\t", "");
-                claseImplementadora = claseImplementadora.Replace(" ", "").Replace("\r", "").Replace("\n", "").Replace("\t", "");
-
 				Assembly assembly = Assembly.Load(ensamblado);
 				Type tipoClaseImplementadora = assembly.GetType(claseImplementadora);
 				if (tipoClaseImplementadora == null)

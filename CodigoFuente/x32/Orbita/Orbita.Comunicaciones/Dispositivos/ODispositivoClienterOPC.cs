@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Threading;
@@ -31,7 +30,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Colección de hilos.
         /// </summary>
-        private static OHilos Hilos;
+        static OHilos Hilos;
         #endregion
 
         #region Atributos privados
@@ -39,69 +38,69 @@ namespace Orbita.Comunicaciones
         /// Atributo de sincronización en las
         /// lecturas y escrituras asíncronas.
         /// </summary>
-        private readonly OResetManual _sincronizacion;
+        OResetManual _sincronizacion;
         /// <summary>
         /// Atributo que indica las  colecciones
         /// de tags de datos, lecturas y alarmas.
         /// </summary>
-        private readonly OTags _tags;
+        OTags _tags;
         /// <summary>
         /// Enlaces
         /// </summary>
-        private readonly Hashtable oEnlaces;
+        Hashtable oEnlaces;
 
         #region OPC
         /// <summary>
         /// OPC.
         /// </summary>
-        private IOPCServer pIOPCServer;
-        private int pRevUpdateRate;
+        IOPCServer pIOPCServer;
+        int pRevUpdateRate;
         /// <summary>
         /// Puntero para IO asincrono de datos.
         /// </summary>
-        private IOPCAsyncIO2 pIOPCAsyncIO2Datos = null;
-        private IConnectionPointContainer pIConnectionPointContainerDatos = null;
-        private IConnectionPoint pIConnectionPointDatos = null;
-        private Object pobjGroupDatos = null;
-        private int pSvrGroupHandleDatos = 0;
-        private int hClientGroupDatos = 1;
+        IOPCAsyncIO2 pIOPCAsyncIO2Datos = null;
+        IConnectionPointContainer pIConnectionPointContainerDatos = null;
+        IConnectionPoint pIConnectionPointDatos = null;
+        Object pobjGroupDatos = null;
+        int pSvrGroupHandleDatos = 0;
+        int hClientGroupDatos = 1;
         /// <summary>
         /// Puntero para IO asincrono de lecturas.
         /// </summary>      
         //IOPCAsyncIO2 pIOPCAsyncIO2Lecturas = null;
         //IOPCGroupStateMgt pIOPCGroupStateMgtLecturas = null;
-        private IConnectionPointContainer pIConnectionPointContainerLecturas = null;
-        private IConnectionPoint pIConnectionPointLecturas = null;
-        private Object pobjGroupLecturas = null;
-        private int pSvrGroupHandleLecturas = 0;
-        private int hClientGroupLecturas = 2;
+        IConnectionPointContainer pIConnectionPointContainerLecturas = null;
+        IConnectionPoint pIConnectionPointLecturas = null;
+        Object pobjGroupLecturas = null;
+        int pSvrGroupHandleLecturas = 0;
+        int hClientGroupLecturas = 2;
         /// <summary>
         /// Puntero para IO asincrono de alarmas.
         /// </summary>            
         //IOPCAsyncIO2 pIOPCAsyncIO2Alarmas = null;
         //IOPCGroupStateMgt pIOPCGroupStateMgtAlarmas = null;
-        private IConnectionPointContainer pIConnectionPointContainerAlarmas = null;
-        private IConnectionPoint pIConnectionPointAlarmas = null;
-        private Object pobjGroupAlarmas = null;
-        private int pSvrGroupHandleAlarmas = 0;
-        private int hClientGroupAlarmas = 3;
-        private int[] itemSvrHandleArray;
-        private int dwCookie = 0;
+        IConnectionPointContainer pIConnectionPointContainerAlarmas = null;
+        IConnectionPoint pIConnectionPointAlarmas = null;
+        Object pobjGroupAlarmas = null;
+        int pSvrGroupHandleAlarmas = 0;
+        int hClientGroupAlarmas = 3;
+        int[] itemSvrHandleArray;
+        int dwCookie = 0;
         //int nTransactionID = 0;
-        private Type svrComponenttyp;
+        Type svrComponenttyp;
         // Propiedad de grupos.
-        private const int dwRequestedUpdateRate = 50;
-        private const float deadband = 0;
-        private const int TimeBias = 0;
-        private GCHandle hTimeBias, hDeadband;
-        private readonly OEventArgs _oEventargs;
-        private readonly OEstadoComms[] _oOPCComms;
-        private readonly OConfigDispositivo _config;
+        int dwRequestedUpdateRate = 50;
+        float deadband = 0;
+        int TimeBias = 0;
+        GCHandle hTimeBias, hDeadband;
+        OEventArgs _oEventargs;
+        OEstadoComms[] _oOPCComms;
+        OConfigDispositivo _config;
         #endregion
 
         #endregion
 
-        #region Constructor
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase SiemensOPC.
         /// </summary>
@@ -113,9 +112,8 @@ namespace Orbita.Comunicaciones
             this.Direccion = dispositivo.Direccion;
             this.Local = dispositivo.Local;
 
-            Wrapper.Info("Creando OPC");
-
-            // Inicio datos de dispositivo.
+            wrapper.Info("Creando OPC");
+            //Inicio datos de dispositivo
             this.Identificador = dispositivo.Identificador;
             this.Nombre = dispositivo.Nombre;
             this.Tipo = dispositivo.Tipo;
@@ -135,12 +133,10 @@ namespace Orbita.Comunicaciones
 
             for (int i = 0; i < info.Enlaces.Length; i++)
             {
-                this._oOPCComms[i] = new OEstadoComms
-                    {
-                        Enlace = info.Enlaces[i],
-                        Nombre = this.Nombre,
-                        Id = this.Identificador
-                    };
+                this._oOPCComms[i] = new OEstadoComms();
+                this._oOPCComms[i].Enlace = info.Enlaces[i];
+                this._oOPCComms[i].Nombre = this.Nombre;
+                this._oOPCComms[i].Id = this.Identificador;
                 OOPCEnlaces enlace = new OOPCEnlaces(this._oOPCComms[i].Enlace);
                 this.oEnlaces.Add(enlace.Nombre, enlace);
             }
@@ -192,23 +188,23 @@ namespace Orbita.Comunicaciones
         {
             // Inicializar grupo de datos.
             InicGrupoDatosOPC();
-            Wrapper.Info("Grupo de datos iniciado");
+            wrapper.Info("Grupo de datos iniciado");
             // Inicializar grupo de lecturas.
             InicGrupoLecturasOPC();
-            Wrapper.Info("Grupo de lecturas iniciado");
+            wrapper.Info("Grupo de lecturas iniciado");
             // Inicializar grupo de alarmas.
             InicGrupoAlarmasOPC();
-            Wrapper.Info("Grupo de alarmas iniciado");
+            wrapper.Info("Grupo de alarmas iniciado");
 
             // Inicializar punteros de datos.
             InicReqIOInterfacesDatos();
-            Wrapper.Info("Puntero de datos iniciado");
+            wrapper.Info("Puntero de datos iniciado");
             // Inicializar punteros de lecturas.
             InicReqIOInterfacesLecturas();
-            Wrapper.Info("Puntero de lecturas iniciado");
+            wrapper.Info("Puntero de lecturas iniciado");
             // Inicializar punteros de alarmas.
             InicReqIOInterfacesAlarmas();
-            Wrapper.Info("Puntero de alarmas iniciado");
+            wrapper.Info("Puntero de alarmas iniciado");
 
             this.SetItems();
             this.InicHiloVida();
@@ -262,7 +258,7 @@ namespace Orbita.Comunicaciones
                         // Actualización de la colección de resultados.
                         for (int i = 0; i < contador; i++)
                         {
-                            // CAMBIADO REVISAR
+                            //CAMBIADO REVISAR
                             resultado[i] = this._tags.GetDatos(identificadores[i]).Valor.ToString();
                         }
                     }
@@ -276,7 +272,7 @@ namespace Orbita.Comunicaciones
                 catch (Exception ex)
                 {
                     this.ActualizarCalidadVariables();
-                    Wrapper.Error("ODispositivoClienteOPC Leer: ", ex);
+                    wrapper.Error("ODispositivoClienteOPC Leer: ",ex);
                 }
             }
             return resultado;
@@ -319,9 +315,11 @@ namespace Orbita.Comunicaciones
                     {
                         for (int i = 0; i < contador; i++)
                         {
-                            if (this._tags.GetDatos(datos[i]).Error == 0) continue;
-                            resultado = false;
-                            break;
+                            if (this._tags.GetDatos(datos[i]).Error != 0)
+                            {
+                                resultado = false;
+                                break;
+                            }
                         }
                     }
                     else
@@ -333,7 +331,7 @@ namespace Orbita.Comunicaciones
                 }
                 catch (Exception ex)
                 {
-                    Wrapper.Error("ODispositivoClienteOPC Escribir: " + ex);
+                    wrapper.Error("ODispositivoClienteOPC Escribir: " + ex.ToString());
                 }
             }
             return resultado;
@@ -343,7 +341,6 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="variables">Colección de variables.</param>
         /// <param name="valores">Colección de valores.</param>
-        /// <param name="canal"></param>
         /// <returns></returns>
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
         public override bool Escribir(string[] variables, object[] valores, string canal)
@@ -396,7 +393,7 @@ namespace Orbita.Comunicaciones
 
         #region Métodos privados
         // Obtener el tipo de ProgID.
-        private Guid _iidRequiredInterface;
+        Guid iidRequiredInterface;
         /// <summary>
         /// Inicialización de grupo de datos OPC.
         /// </summary>
@@ -409,9 +406,18 @@ namespace Orbita.Comunicaciones
                 this.hDeadband = GCHandle.Alloc(deadband, GCHandleType.Pinned);
 
                 // Obtener el tipo de ProgID y crear la instancia del componente COM de servidor OPC.
-                _iidRequiredInterface = typeof(IOPCItemMgt).GUID;
+                iidRequiredInterface = typeof(IOPCItemMgt).GUID;
 
-                svrComponenttyp = this.Local ? Type.GetTypeFromProgID(this.Tipo) : Type.GetTypeFromProgID(this.Tipo, this.Direccion.ToString());
+                if (this.Local)
+                {
+                    // Conectar al servidor local.
+                    svrComponenttyp = Type.GetTypeFromProgID(this.Tipo);
+                }
+                else
+                {
+                    // Conectar al servidor remoto.
+                    svrComponenttyp = Type.GetTypeFromProgID(this.Tipo, this.Direccion.ToString());
+                }
 
                 pIOPCServer = (IOPCServer)Activator.CreateInstance(svrComponenttyp);
 
@@ -437,11 +443,11 @@ namespace Orbita.Comunicaciones
 
                 pIOPCServer.AddGroup(OComunicacionesConstantes.OInfoOPC.Dato, 0, dwRequestedUpdateRate, hClientGroupDatos,
                     hTimeBias.AddrOfPinnedObject(), hDeadband.AddrOfPinnedObject(), LOCALE_ID, out pSvrGroupHandleDatos,
-                    out pRevUpdateRate, ref _iidRequiredInterface, out pobjGroupDatos);
+                    out pRevUpdateRate, ref iidRequiredInterface, out pobjGroupDatos);
             }
             catch (Exception ex)
             {
-                Wrapper.Error("ODispositivoClienteOPC InicGrupoDatosOPC " + ex);
+                wrapper.Error("ODispositivoClienteOPC InicGrupoDatosOPC " + ex.ToString());
             }
         }
         /// <summary>
@@ -452,7 +458,7 @@ namespace Orbita.Comunicaciones
         {
             pIOPCServer.AddGroup(OComunicacionesConstantes.OInfoOPC.Lectura, 1, dwRequestedUpdateRate, hClientGroupLecturas,
                 hTimeBias.AddrOfPinnedObject(), hDeadband.AddrOfPinnedObject(), LOCALE_ID, out pSvrGroupHandleLecturas,
-                out pRevUpdateRate, ref _iidRequiredInterface, out pobjGroupLecturas);
+                out pRevUpdateRate, ref iidRequiredInterface, out pobjGroupLecturas);
 
         }
         /// <summary>
@@ -463,7 +469,7 @@ namespace Orbita.Comunicaciones
         {
             pIOPCServer.AddGroup(OComunicacionesConstantes.OInfoOPC.Alarma, 1, dwRequestedUpdateRate, hClientGroupAlarmas,
                 hTimeBias.AddrOfPinnedObject(), hDeadband.AddrOfPinnedObject(), LOCALE_ID, out pSvrGroupHandleAlarmas,
-                out pRevUpdateRate, ref _iidRequiredInterface, out pobjGroupAlarmas);
+                out pRevUpdateRate, ref iidRequiredInterface, out pobjGroupAlarmas);
         }
         /// <summary>
         /// Inicialización del puntero de datos.
@@ -483,6 +489,7 @@ namespace Orbita.Comunicaciones
             // Crear una conexión entre el punto de conexión de los servidores OPC y
             // sumidero de este cliente (el objeto Callback).
             pIConnectionPointDatos.Advise(this, out dwCookie);
+
         }
         /// <summary>
         /// Inicialización del puntero de lecturas.
@@ -503,6 +510,7 @@ namespace Orbita.Comunicaciones
             // Crear una conexión entre el punto de conexión de los servidores OPC y
             // sumidero de este cliente (el objeto Callback).
             pIConnectionPointLecturas.Advise(this, out dwCookie);
+
         }
         /// <summary>
         /// Inicialización del puntero de alarmas.
@@ -529,13 +537,13 @@ namespace Orbita.Comunicaciones
         {
             // Crear items de datos.
             SetItemsDatos();
-            Wrapper.Info("Items de datos iniciado");
+            wrapper.Info("Items de datos iniciado");
             // Crear items de lecturas.
             SetItemsLecturas();
-            Wrapper.Info("Items de lecturas iniciado");
+            wrapper.Info("Items de lecturas iniciado");
             // Crear items de alarmas.
             SetItemsAlarmas();
-            Wrapper.Info("Items de alarmas iniciado");
+            wrapper.Info("Items de alarmas iniciado");
         }
         /// <summary>
         /// Asignar items de datos al grupo de datos OPC.
@@ -589,10 +597,10 @@ namespace Orbita.Comunicaciones
                             // Modificar el identificar de lectura  de la 
                             // colección de datos y de la colección de db.
                             // Datos.
-                            OInfoDato infoDato = this._tags.GetDatos(item);
-                            infoDato.IdLectura = resultado.hServer;
+                            OInfoDato InfoDato = this._tags.GetDatos(item);
+                            InfoDato.IdLectura = resultado.hServer;
                             // Db.
-                            this._tags.GetDB(infoDato.Texto).IdLectura = resultado.hServer;
+                            this._tags.GetDB(InfoDato.Texto).IdLectura = resultado.hServer;
                         }
                         else
                         {
@@ -625,67 +633,69 @@ namespace Orbita.Comunicaciones
         private void SetItemsLecturas()
         {
             int longitud = this.Lecturas.Contar();
-            if (longitud <= 0) return;
-            OPCITEMDEF[] itemDeffArrayDatos = new OPCITEMDEF[longitud];
-            int j = 0;
-            foreach (OInfoDato lectura in this.Lecturas.Values)
+            if (longitud > 0)
             {
-                itemDeffArrayDatos[j].szItemID = lectura.Conexion;      // cadena de conexión.
-                itemDeffArrayDatos[j].bActive = 1;			            // item es activo.
-                itemDeffArrayDatos[j].hClient = lectura.Identificador;  // manejador cliente.	
-                itemDeffArrayDatos[j].dwBlobSize = 0;                   // tamaño de blob.
-                itemDeffArrayDatos[j].pBlob = IntPtr.Zero;              // puntero a blob.
-                itemDeffArrayDatos[j].vtRequestedDataType = 8;	        // retorna el valor con el tipo nativo.
-                j++;
-            }
-
-            IntPtr pResultados = IntPtr.Zero;
-            IntPtr pErr = IntPtr.Zero;
-            try
-            {
-                // Añadir item al grupo.
-                ((IOPCItemMgt)pobjGroupLecturas).AddItems(longitud, itemDeffArrayDatos, out pResultados, out pErr);
-
-                // Deserializar para obtener el manejador del servidor, después chequea los errores.
-                int[] err = new int[longitud];
-                IntPtr posicion = pResultados;
-                this.itemSvrHandleArray = new int[longitud];
-                Marshal.Copy(pErr, err, 0, longitud);
-                for (int i = 0; i < longitud; i++)
+                OPCITEMDEF[] itemDeffArrayDatos = new OPCITEMDEF[longitud];
+                int j = 0;
+                foreach (OInfoDato lectura in this.Lecturas.Values)
                 {
-                    if (err[i] == 0)
+                    itemDeffArrayDatos[j].szItemID = lectura.Conexion;      // cadena de conexión.
+                    itemDeffArrayDatos[j].bActive = 1;			            // item es activo.
+                    itemDeffArrayDatos[j].hClient = lectura.Identificador;  // manejador cliente.	
+                    itemDeffArrayDatos[j].dwBlobSize = 0;                   // tamaño de blob.
+                    itemDeffArrayDatos[j].pBlob = IntPtr.Zero;              // puntero a blob.
+                    itemDeffArrayDatos[j].vtRequestedDataType = 8;	        // retorna el valor con el tipo nativo.
+                    j++;
+                }
+
+                IntPtr pResultados = IntPtr.Zero;
+                IntPtr pErr = IntPtr.Zero;
+                try
+                {
+                    // Añadir item al grupo.
+                    ((IOPCItemMgt)pobjGroupLecturas).AddItems(longitud, itemDeffArrayDatos, out pResultados, out pErr);
+
+                    // Deserializar para obtener el manejador del servidor, después chequea los errores.
+                    int[] err = new int[longitud];
+                    IntPtr posicion = pResultados;
+                    this.itemSvrHandleArray = new int[longitud];
+                    Marshal.Copy(pErr, err, 0, longitud);
+                    for (int i = 0; i < longitud; i++)
                     {
-                        if (i != 0)
+                        if (err[i] == 0)
                         {
-                            posicion = new IntPtr(posicion.ToInt32() + Marshal.SizeOf(typeof(OPCITEMRESULT)));
-                        }
-                        OPCITEMRESULT resultado = (OPCITEMRESULT)Marshal.PtrToStructure(posicion, typeof(OPCITEMRESULT));
-                        this.itemSvrHandleArray[i] = resultado.hServer;
-                        int item = itemDeffArrayDatos[i].hClient;
+                            if (i != 0)
+                            {
+                                posicion = new IntPtr(posicion.ToInt32() + Marshal.SizeOf(typeof(OPCITEMRESULT)));
+                            }
+                            OPCITEMRESULT resultado = (OPCITEMRESULT)Marshal.PtrToStructure(posicion, typeof(OPCITEMRESULT));
+                            this.itemSvrHandleArray[i] = resultado.hServer;
+                            int item = itemDeffArrayDatos[i].hClient;
 
-                        // Lecturas.
-                        this._tags.GetLecturas(item).IdLectura = resultado.hServer;
+                            // Lecturas.
+                            this._tags.GetLecturas(item).IdLectura = resultado.hServer;
+                        }
+                        else
+                        {
+                            string strError;
+                            pIOPCServer.GetErrorString(err[0], LOCALE_ID, out strError);
+                        }
                     }
-                    else
+                    //this.OnSetItems(new OEventArgs(err));
+                }
+                finally
+                {
+                    // Liberar memoria.
+                    if (pResultados != IntPtr.Zero)
                     {
-                        string strError;
-                        pIOPCServer.GetErrorString(err[0], LOCALE_ID, out strError);
+                        Marshal.FreeCoTaskMem(pResultados);
+                        pResultados = IntPtr.Zero;
                     }
-                }
-                //this.OnSetItems(new OEventArgs(err));
-            }
-            finally
-            {
-                // Liberar memoria.
-                if (pResultados != IntPtr.Zero)
-                {
-                    Marshal.FreeCoTaskMem(pResultados);
-                    pResultados = IntPtr.Zero;
-                }
-                if (pErr != IntPtr.Zero)
-                {
-                    Marshal.FreeCoTaskMem(pErr);
-                    pErr = IntPtr.Zero;
+                    if (pErr != IntPtr.Zero)
+                    {
+                        Marshal.FreeCoTaskMem(pErr);
+                        pErr = IntPtr.Zero;
+                    }
                 }
             }
         }
@@ -746,6 +756,7 @@ namespace Orbita.Comunicaciones
                             pIOPCServer.GetErrorString(err[0], LOCALE_ID, out strError);
                         }
                     }
+                    //this.OnSetItems(new OEventArgs(err));
                 }
                 finally
                 {
@@ -789,6 +800,7 @@ namespace Orbita.Comunicaciones
         [EnvironmentPermission(SecurityAction.Demand, Unrestricted = true)]
         private void ProcesarHiloVida()
         {
+            //OInfoOPCvida infoVida = (OInfoOPCvida)this._tags.HtVida;
             while (true)
             {
                 try
@@ -801,7 +813,7 @@ namespace Orbita.Comunicaciones
                 }
                 catch (Exception ex)
                 {
-                    Wrapper.Fatal("ODispositivoClienteOPC ProcesarHiloVida: ", ex);
+                    wrapper.Fatal("ODispositivoClienteOPC ProcesarHiloVida: ", ex);
                 }
             }
         }
@@ -809,30 +821,40 @@ namespace Orbita.Comunicaciones
         /// Proceso del hilo de vida.
         /// </summary>
         [EnvironmentPermission(SecurityAction.Demand, Unrestricted = true)]
-        private void ProcesarHiloEstado()
+        void ProcesarHiloEstado()
         {
             while (true)
             {
                 try
                 {
-                    // Procesar datos de lectura de valores en la colección
-                    // de vida, si se hubiera producido un error de lectura
-                    // y, por tanto, el tiempo  de espera  lectura  agotado,
-                    // la colección de valores devolverá null.
-                    // En la colección de datos se respetará el último valor
-                    // conocido correcto y se asignará el valor obtenido.
-                    // Inicializar contador de variables.
-                    OEstadoComms oopcComs = null;
-                    foreach (OOPCEnlaces enlace in oEnlaces.Values)
+                // Procesar datos de lectura de valores en la colección
+                // de vida, si se hubiera producido un error de lectura
+                // y, por tanto, el tiempo  de espera  lectura  agotado,
+                // la colección de valores devolverá null.
+                // En la colección de datos se respetará el último valor
+                // conocido correcto y se asignará el valor obtenido.
+                // Inicializar contador de variables.
+                OEstadoComms oopcComs = null;
+                foreach (OOPCEnlaces enlace in oEnlaces.Values)
+                {
+                    bool error = false;
+
+                    foreach (OInfoDato dato in this.Datos.Values)
                     {
-                        bool error = false;
-                        OOPCEnlaces enlace1 = enlace;
-                        foreach (OInfoDato dato in this.Datos.Values.Cast<OInfoDato>().Where(dato => dato.Calidad == GetQuality(0) && dato.Enlace == enlace1.Nombre))
+                        if (dato.Calidad == GetQuality(0) && dato.Enlace == enlace.Nombre)
                         {
                             error = true;
+
                             if (enlace.Reintento <= MAXREINTENTOSERRORCOMM)
                             {
-                                dato.Valor = dato.UltimoValor ?? null;
+                                if (dato.UltimoValor != null)
+                                {
+                                    dato.Valor = dato.UltimoValor;
+                                }
+                                else
+                                {
+                                    dato.Valor = null;
+                                }
                             }
                             else
                             {
@@ -840,49 +862,54 @@ namespace Orbita.Comunicaciones
                                 dato.UltimoValor = null;
                             }
                         }
-                        OOPCEnlaces enlace2 = enlace;
-                        foreach (OEstadoComms t in this._oOPCComms.Where(t => t.Enlace == enlace2.Nombre))
+                    }
+                    for (int i = 0; i < this._oOPCComms.Length; i++)
+                    {
+                        if (this._oOPCComms[i].Enlace == enlace.Nombre)
                         {
-                            oopcComs = t;
+                            oopcComs = this._oOPCComms[i];
+
                         }
-                        if (!error)
+                    }
+                    if (!error)
+                    {
+                        enlace.Reintento = 0;
+                        oopcComs.Estado = "OK";
+                        this._oEventargs.Argumento = oopcComs;
+                    }
+                    else
+                    {
+                        enlace.Reintento++;
+                        if (enlace.Reintento > MAXREINTENTOSERRORCOMM)
                         {
-                            enlace.Reintento = 0;
-                            oopcComs.Estado = "OK";
+                            oopcComs.Estado = "Error";
                             this._oEventargs.Argumento = oopcComs;
                         }
                         else
                         {
-                            enlace.Reintento++;
-                            if (enlace.Reintento > MAXREINTENTOSERRORCOMM)
-                            {
-                                oopcComs.Estado = "Error";
-                                this._oEventargs.Argumento = oopcComs;
-                            }
-                            else
-                            {
-                                //Sirve para que en los microcortes no haya errores de comunicación
-                                oopcComs.Estado = "OK";
-                                this._oEventargs.Argumento = oopcComs;
-                            }
+                            //Sirve para que en los microcortes no haya errores de comunicación
+                            oopcComs.Estado = "OK";
+                            this._oEventargs.Argumento = oopcComs;
                         }
-                        this.OnComm(this._oEventargs);
                     }
-                    Thread.Sleep(this._config.TiempoVida);
+                    this.OnComm(this._oEventargs);
+                }
+                Thread.Sleep(this._config.TiempoVida);
                 }
                 catch (ThreadAbortException)
                 {
                 }
                 catch (Exception ex)
                 {
-                    Wrapper.Fatal("ODispositivoClienteOPC ProcesarHiloEstado: ", ex);
+                    wrapper.Fatal("ODispositivoClienteOPC ProcesarHiloEstado: ", ex);
                 }
             }
+
         }
         /// <summary>
         /// Pone a cero la calidad de todas las variables. Se llama desde los catch de las lecturas y escrituras
         /// </summary>
-        private void ActualizarCalidadVariables()
+        void ActualizarCalidadVariables()
         {
             foreach (OInfoDato dato in this.Datos.Values)
             {
@@ -895,7 +922,7 @@ namespace Orbita.Comunicaciones
         /// <param name="variables">Colección de variables.</param>
         /// <param name="trans">Id de transacción.</param>
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        private void Read(int[] variables, int trans)
+        void Read(int[] variables, int trans)
         {
             lock (this)
             {
@@ -932,30 +959,32 @@ namespace Orbita.Comunicaciones
         /// <param name="variables">Colección de variables.</param>
         /// <param name="valores">Colección de valores.</param>
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
-        private void Write(int[] variables, object[] valores)
+        void Write(int[] variables, object[] valores)
         {
             int nCancelid;
             IntPtr pErr = IntPtr.Zero;
-            if (pIOPCAsyncIO2Datos == null) return;
-            try
-            {	// Escritura asíncrona.
-                pIOPCAsyncIO2Datos.Write(variables.Length, variables, valores, 2, out nCancelid, out pErr);
-                int[] errors = new int[1];
-                Marshal.Copy(pErr, errors, 0, 1);
-                if (errors[0] != 0)
-                {
-                    Marshal.FreeCoTaskMem(pErr);
-                    pErr = IntPtr.Zero;
-                }
-            }
-            catch (Exception) { }
-            finally
+            if (pIOPCAsyncIO2Datos != null)
             {
-                // Liberar la memoria.
-                if (pErr != IntPtr.Zero)
+                try
+                {	// Escritura asíncrona.
+                    pIOPCAsyncIO2Datos.Write(variables.Length, variables, valores, 2, out nCancelid, out pErr);
+                    int[] errors = new int[1];
+                    Marshal.Copy(pErr, errors, 0, 1);
+                    if (errors[0] != 0)
+                    {
+                        Marshal.FreeCoTaskMem(pErr);
+                        pErr = IntPtr.Zero;
+                    }
+                }
+                catch (Exception) { }
+                finally
                 {
-                    Marshal.FreeCoTaskMem(pErr);
-                    pErr = IntPtr.Zero;
+                    // Liberar la memoria.
+                    if (pErr != IntPtr.Zero)
+                    {
+                        Marshal.FreeCoTaskMem(pErr);
+                        pErr = IntPtr.Zero;
+                    }
                 }
             }
         }
@@ -1011,7 +1040,7 @@ namespace Orbita.Comunicaciones
                 catch (Exception ex)
                 {
                     this.ActualizarCalidadVariables();
-                    Wrapper.Error("ODispositivoClienteOPC Leer int:" + ex);
+                    wrapper.Error("ODispositivoClienteOPC Leer int:" + ex.ToString());
                 }
             }
             return resultado;
@@ -1046,47 +1075,64 @@ namespace Orbita.Comunicaciones
         /// </summary>
         private void IniciaStringsLocales()
         {
+
             ArrayList variablesString = new ArrayList();
-            foreach (OInfoDato dato in this.GetDatos().Cast<DictionaryEntry>().Select(item => (OInfoDato)item.Value).Where(dato => dato.Conexion.ToLower().Contains("localserver") && dato.Conexion.ToLower().Contains("string")))
+
+            foreach (DictionaryEntry item in this.GetDatos())
             {
-                variablesString.Add(dato.Texto);
+                OInfoDato dato = (OInfoDato)item.Value;
+                if (dato.Conexion.ToLower().Contains("localserver") && dato.Conexion.ToLower().Contains("string"))
+                {
+                    variablesString.Add(dato.Texto);
+                }
             }
 
-            if (variablesString.Count <= 0) return;
-            string[] variables = new string[variablesString.Count];
-            string[] valores = new string[variablesString.Count];
-
-            for (int i = 0; i < variablesString.Count; i++)
+            if (variablesString.Count > 0)
             {
-                variables[i] = (string)variablesString[i];
-                valores[i] = "";
+                string[] variables = new string[variablesString.Count];
+                string[] valores = new string[variablesString.Count];
+
+                for (int i = 0; i < variablesString.Count; i++)
+                {
+                    variables[i] = (string)variablesString[i];
+                    valores[i] = "";
+                }
+
+                this.Escribir(variables, valores);
             }
 
-            this.Escribir(variables, valores);
+
         }
         /// <summary>
         /// Actualizar de la colección de datos los tipo alarmas.
         /// </summary>
         /// <returns></returns>
-        private void ActualizarAlarmas()
+        private ArrayList ActualizarAlarmas()
         {
-            foreach (OInfoDato dato in this.Datos.Cast<DictionaryEntry>().Select(item => (OInfoDato)item.Value).Where(dato => dato.ESAlarma))
+            ArrayList alarmasActivas = null;
+            foreach (DictionaryEntry item in this.Datos)
             {
-                if (dato.Valor.ToString().ToUpperInvariant() == bool.TrueString.ToUpperInvariant())
+                OInfoDato dato = (OInfoDato)item.Value;
+                if (dato.ESAlarma)
                 {
-                    if (!this.AlarmasActivas.Contains(dato.Texto))
+                    if (dato.Valor.ToString().ToUpperInvariant() == bool.TrueString.ToUpperInvariant())
                     {
-                        this.AlarmasActivas.Add(dato.Texto);
+                        if (!this.AlarmasActivas.Contains(dato.Texto))
+                        {
+                            this.AlarmasActivas.Add(dato.Texto);
+                        }
                     }
-                }
-                else
-                {
-                    if (this.AlarmasActivas.Contains(dato.Texto))
+                    else
                     {
-                        this.AlarmasActivas.Remove(dato.Texto);
+                        if (this.AlarmasActivas.Contains(dato.Texto))
+                        {
+                            this.AlarmasActivas.Remove(dato.Texto);
+                        }
                     }
                 }
             }
+
+            return alarmasActivas;
         }
         #region Estáticos
         /// <summary>
@@ -1094,7 +1140,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="wQuality">Calidad.</param>
         /// <returns></returns>
-        private static String GetQuality(long wQuality)
+        String GetQuality(long wQuality)
         {
             String strQuality = "";
             switch (wQuality)
@@ -1167,13 +1213,13 @@ namespace Orbita.Comunicaciones
                                 {
                                     infoOPClectura = this._tags.GetLecturas(phClientItems[i]);
                                     infoOPClectura.Valor = pvValues[i] as string;
-                                    infoOPClectura.Calidad = GetQuality(pwQualities[i]);
+                                    infoOPClectura.Calidad = this.GetQuality(pwQualities[i]);
                                     this.OnCambioDato(new OEventArgs(infoOPClectura));
                                 }
                             }
                             catch (Exception ex)
                             {
-                                Wrapper.Error("ODispositivoClienteOPC OnDataChange:" + ex);
+                                wrapper.Error("ODispositivoClienteOPC OnDataChange:" + ex.ToString());
                             }
                         }
                         break;
@@ -1188,13 +1234,13 @@ namespace Orbita.Comunicaciones
                                 {
                                     infoOPCalarma = this._tags.GetAlarmas(phClientItems[i]);
                                     infoOPCalarma.Valor = pvValues[i] as string;
-                                    infoOPCalarma.Calidad = GetQuality(pwQualities[i]);
+                                    infoOPCalarma.Calidad = this.GetQuality(pwQualities[i]);
                                     this.OnAlarma(new OEventArgs(infoOPCalarma));
                                 }
                             }
                             catch (Exception ex)
                             {
-                                Wrapper.Error("Error en alarma:" + ex);
+                                wrapper.Error("Error en alarma:" + ex.ToString());
                             }
                         }
                         break;
@@ -1215,21 +1261,21 @@ namespace Orbita.Comunicaciones
                 {
                     // Obtener el objeto InfoDato de la colección de datos
                     // en función de la clave del  identificador  de variable.
-                    OInfoDato infoDato = this._tags.GetDatos(phClientItems[i]);
+                    OInfoDato InfoDato = this._tags.GetDatos(phClientItems[i]);
                     if (pErrors[i] == 0)
                     {
                         // Si no se ha producido un error  en  la lectura del dato
                         // asignar los valores adecuados al objeto de la colección.
-                        infoDato.UltimoValor = infoDato.Valor; // Último valor.
-                        infoDato.Valor = pvValues[i] as string;   // Valor.                                   
-                        infoDato.Calidad = GetQuality(pwQualities[i]);
+                        InfoDato.UltimoValor = InfoDato.Valor; // Último valor.
+                        InfoDato.Valor = pvValues[i] as string;   // Valor.                                   
+                        InfoDato.Calidad = this.GetQuality(pwQualities[i]);
                     }
                     else
                     {
 
-                        Wrapper.Error("Error de lectura en la variable:" + infoDato.Conexion);
+                        wrapper.Error("Error de lectura en la variable:" + InfoDato.Conexion);
                         // Se ha producido un error en la lectura del dato.                        
-                        infoDato.Calidad = GetQuality(0);
+                        InfoDato.Calidad = this.GetQuality(0);
                     }
                 }
             }
@@ -1260,8 +1306,8 @@ namespace Orbita.Comunicaciones
         /// <param name="dwTransid"></param>
         /// <param name="hGroup"></param>
         public virtual void OnCancelComplete(int dwTransid, int hGroup) { }
-        #endregion IOPCDataCallback
+        #endregion
 
-        #endregion Manejadors de eventos
+        #endregion
     }
 }

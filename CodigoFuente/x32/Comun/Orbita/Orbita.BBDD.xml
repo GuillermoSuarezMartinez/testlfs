@@ -1037,7 +1037,7 @@
             Contiene la información de conexión a la base de datos Access.
             </summary>
         </member>
-        <member name="M:Orbita.BBDD.OAccess.#ctor(Orbita.BBDD.OAccess.OInfoConexion)">
+        <member name="M:Orbita.BBDD.OAccess.#ctor(Orbita.BBDD.OAccess.InfoConexion)">
             <summary>
             Inicializar una nueva instancia de la clase Access.
             Proveedor OLEDB.4.0.
@@ -1112,62 +1112,62 @@
             Delete.
             </summary>
         </member>
-        <member name="T:Orbita.BBDD.OAccess.OInfoConexion">
+        <member name="T:Orbita.BBDD.OAccess.InfoConexion">
             <summary>
             Información de la conexión para Access.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.OAccess.OInfoConexion.ruta">
+        <member name="F:Orbita.BBDD.OAccess.InfoConexion.ruta">
             <summary>
             Nombre de la ruta de base de datos.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.OAccess.OInfoConexion.grupoTrabajo">
+        <member name="F:Orbita.BBDD.OAccess.InfoConexion.grupoTrabajo">
             <summary>
             Nombre del grupo de trabajo.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.OAccess.OInfoConexion.usuario">
+        <member name="F:Orbita.BBDD.OAccess.InfoConexion.usuario">
             <summary>
             Usuario de autenticación de base de datos.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.OAccess.OInfoConexion.passwordUsuario">
+        <member name="F:Orbita.BBDD.OAccess.InfoConexion.passwordUsuario">
             <summary>
             Password de autenticación de usuario.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.OAccess.OInfoConexion.passwordBBDD">
+        <member name="F:Orbita.BBDD.OAccess.InfoConexion.passwordBBDD">
             <summary>
             Password de autenticación de base de datos.
             </summary>
         </member>
-        <member name="M:Orbita.BBDD.OAccess.OInfoConexion.#ctor">
+        <member name="M:Orbita.BBDD.OAccess.InfoConexion.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase InfoConexion.
             </summary>
         </member>
-        <member name="P:Orbita.BBDD.OAccess.OInfoConexion.Ruta">
+        <member name="P:Orbita.BBDD.OAccess.InfoConexion.Ruta">
             <summary>
             Nombre de la ruta de base de datos.
             </summary>
         </member>
-        <member name="P:Orbita.BBDD.OAccess.OInfoConexion.GrupoTrabajo">
+        <member name="P:Orbita.BBDD.OAccess.InfoConexion.GrupoTrabajo">
             <summary>
             Nombre del grupo de trabajo.
             </summary>
         </member>
-        <member name="P:Orbita.BBDD.OAccess.OInfoConexion.Usuario">
+        <member name="P:Orbita.BBDD.OAccess.InfoConexion.Usuario">
             <summary>
             Usuario de autenticación de base de datos.
             </summary>
         </member>
-        <member name="P:Orbita.BBDD.OAccess.OInfoConexion.PasswordUsuario">
+        <member name="P:Orbita.BBDD.OAccess.InfoConexion.PasswordUsuario">
             <summary>
             Password de autenticación de usuario.
             </summary>
         </member>
-        <member name="P:Orbita.BBDD.OAccess.OInfoConexion.PasswordBbdd">
+        <member name="P:Orbita.BBDD.OAccess.InfoConexion.PasswordBbdd">
             <summary>
             Password de autenticación de base de datos.
             </summary>
@@ -2236,63 +2236,6 @@
             <summary>
             Número de puerto al que se conectará.
             </summary>
-        </member>
-        <member name="T:Orbita.BBDD.OSQLite">
-            <summary>
-            Clase tipo para instanciar objetos de base de datos OSQLite.
-            </summary>
-        </member>
-        <member name="M:Orbita.BBDD.OSQLite.#ctor(Orbita.BBDD.OInfoConexion)">
-            <summary>
-            Inicializar una nueva instancia de la clase SQLite.
-            </summary>
-            <param name="infoConexion">Información de la conexión actual.</param>
-        </member>
-        <member name="M:Orbita.BBDD.OSQLite.TestConexion">
-            <summary>
-            Comprueba el estado una conexión existente.
-            </summary>
-            <returns>El resultado del test de conexión.</returns>
-        </member>
-        <member name="M:Orbita.BBDD.OSQLite.SeleccionSql(System.String)">
-            <summary>
-            Ejecutar una consulta Select con timeout por defecto.
-            </summary>
-            <param name="sql">Consulta SQL.</param>
-            <returns>Datatable con el resultado.</returns>
-        </member>
-        <member name="M:Orbita.BBDD.OSQLite.SeleccionSql(System.String,System.Int32)">
-            <summary>
-            Ejecutar una consulta Select.
-            </summary>
-            <param name="sql">Consulta SQL.</param>
-            <param name="timeout">Timeout de SqlCommand.</param>
-            <returns>Datatable con el resultado.</returns>
-        </member>
-        <member name="M:Orbita.BBDD.OSQLite.EjecutarSql(System.String)">
-            <summary>
-            Ejecutar una sentencia SQL con timeout por defecto.
-            </summary>
-            <param name="sql">Consulta SQL.</param>
-            <returns>Para las instrucciones Update, Insert y Delete, el 
-            valor devuelto corresponde al número de filas afectadas por
-            el comando. Para los demás tipos de instrucciones, el valor
-            devuelto es -1.</returns>
-        </member>
-        <member name="M:Orbita.BBDD.OSQLite.EjecutarSql(System.String,System.Int32)">
-            <summary>
-            Ejecutar una sentencia SQL.
-            Para las instrucciones Update, Insert y Delete, 
-            el valor devuelto corresponde al número de filas afectadas por
-            el comando. Para los demás tipos de instrucciones, el valor 
-            devuelto es -1.
-            </summary>
-            <param name="sql">Consulta SQL.</param>
-            <param name="timeout">Timeout de SqlCommand.</param>
-            <returns>Para las instrucciones Update, Insert y Delete, el 
-            valor devuelto corresponde al número de filas afectadas por
-            el comando. Para los demás tipos de instrucciones, el valor
-            devuelto es -1.</returns>
         </member>
     </members>
 </doc>

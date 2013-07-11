@@ -15,7 +15,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// PuertoRS232.
         /// </summary>
-        private SerialPort _puertoRs232;
+        private SerialPort PuertoRS232;
         /// <summary>
         /// Buffer de recepción de datos
         /// </summary>
@@ -78,7 +78,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public bool EstaAbierto
         {
-            get { return this._puertoRs232.IsOpen; }
+            get { return this.PuertoRS232.IsOpen; }
         }
         #endregion Propiedades
 
@@ -90,17 +90,17 @@ namespace Orbita.Comunicaciones
         {
             this.BufferDatosRecibidos = new Queue();
 
-            if (this._puertoRs232 != null)
+            if (this.PuertoRS232 != null)
             {
-                if (this._puertoRs232.IsOpen)
+                if (this.PuertoRS232.IsOpen)
                 {
-                    this._puertoRs232.Close();
+                    this.PuertoRS232.Close();
                 }
-                this._puertoRs232.Dispose();
-                this._puertoRs232 = null;
+                this.PuertoRS232.Dispose();
+                this.PuertoRS232 = null;
             }
-            this._puertoRs232 = new SerialPort();
-            this._puertoRs232.DataReceived += PuertoRS232_DataReceived;
+            this.PuertoRS232 = new SerialPort();
+            this.PuertoRS232.DataReceived += new SerialDataReceivedEventHandler(PuertoRS232_DataReceived);
             this.ConfigurarPuerto(this.ConfiguracionPuerto);
         }
         /// <summary>
@@ -177,42 +177,42 @@ namespace Orbita.Comunicaciones
         }
         #endregion Métodos privados
 
-        #region Métodos públicos sobreescritos
+        #region Métodos públicos
         /// <summary>
         /// Crea y configura el puerto serie RS232
         /// </summary>
         /// <param name="configuracionPuerto">Configuración del puerto RS232 a establecer</param>
         public override void ConfigurarPuerto(OConfiguracionPuerto configuracionPuerto)
         {
-            this.ConfiguracionPuerto = configuracionPuerto;
-            if (this._puertoRs232 != null)
+            this._ConfiguracionPuerto = configuracionPuerto;
+            if (this.PuertoRS232 != null)
             {
-                if (this._puertoRs232.IsOpen)
+                if (this.PuertoRS232.IsOpen)
                 {
-                    this._puertoRs232.Close();
+                    this.PuertoRS232.Close();
                 }
             }
             OConfiguracionPuertoRS configRS232 = (OConfiguracionPuertoRS)configuracionPuerto;
-            this._puertoRs232.PortName = "COM" + configRS232.NumeroPuerto.ToString();
-            this._puertoRs232.BaudRate = configRS232.Velocidad;
-            this._puertoRs232.DataBits = configRS232.BitsDatos;
-            this._puertoRs232.Parity = this.ConvertirParidad(configRS232.Paridad);
-            this._puertoRs232.StopBits = this.ConvertirBitsStop(configRS232.BitsStop);
-            this._puertoRs232.Handshake = this.ConvertirHandshake(configRS232.Handshake);
+            this.PuertoRS232.PortName = "COM" + configRS232.NumeroPuerto.ToString();
+            this.PuertoRS232.BaudRate = configRS232.Velocidad;
+            this.PuertoRS232.DataBits = configRS232.BitsDatos;
+            this.PuertoRS232.Parity = this.ConvertirParidad(configRS232.Paridad);
+            this.PuertoRS232.StopBits = this.ConvertirBitsStop(configRS232.BitsStop);
+            this.PuertoRS232.Handshake = this.ConvertirHandshake(configRS232.Handshake);
         }
         /// <summary>
         /// Abre el puerto serie RS232
         /// </summary>
         public override void Abrir()
         {
-            if (this._puertoRs232 != null)
+            if (this.PuertoRS232 != null)
             {
-                if (this._puertoRs232.IsOpen)
+                if (this.PuertoRS232.IsOpen)
                 {
                     return;
                 }
 
-                this._puertoRs232.Open();
+                this.PuertoRS232.Open();
             }
         }
         /// <summary>
@@ -220,11 +220,11 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public override void Cerrar()
         {
-            if (this._puertoRs232 != null)
+            if (this.PuertoRS232 != null)
             {
-                if (this._puertoRs232.IsOpen)
+                if (this.PuertoRS232.IsOpen)
                 {
-                    this._puertoRs232.Close();
+                    this.PuertoRS232.Close();
                     Thread.Sleep(200);
                 }
             }
@@ -235,13 +235,13 @@ namespace Orbita.Comunicaciones
         /// <param name="tramaTx">Vector de bytes a enviar por el puerto serie RS232</param>
         public override void Enviar(byte[] tramaTx)
         {
-            if (this._puertoRs232 != null)
+            if (this.PuertoRS232 != null)
             {
-                if (this._puertoRs232.IsOpen)
+                if (this.PuertoRS232.IsOpen)
                 {
                     if (tramaTx.Length > 0)
                     {
-                        this._puertoRs232.Write(tramaTx, 0, tramaTx.Length);
+                        this.PuertoRS232.Write(tramaTx, 0, tramaTx.Length);
                     }
                 }
             }
@@ -313,12 +313,12 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public override void Dispose()
         {
-            if (this._puertoRs232 != null)
+            if (this.PuertoRS232 != null)
             {
                 this.Cerrar();
-                this._puertoRs232.DataReceived -= new SerialDataReceivedEventHandler(PuertoRS232_DataReceived);
-                this._puertoRs232.Dispose();
-                this._puertoRs232 = null;
+                this.PuertoRS232.DataReceived -= new SerialDataReceivedEventHandler(PuertoRS232_DataReceived);
+                this.PuertoRS232.Dispose();
+                this.PuertoRS232 = null;
                 this.BufferDatosRecibidos.Clear();
                 this.BufferDatosRecibidos.TrimToSize();
                 this.BufferDatosRecibidos = null;
@@ -365,14 +365,17 @@ namespace Orbita.Comunicaciones
         {
             try
             {
+                //TODO: Habría que dar la posibilidad de abrir el puertos serie en dos modos, a saber:
+                // - Tal y como está, en el que se van escribiendo los datos en su buffer interno
+                // - En un modo en el que no se escriben los datos, pero se propaga el evento lazando por el puerto serie del framework. Esta segunda opción es la que habría que implementar.
                 lock (this)
                 {
-                    int numeroBytes = this._puertoRs232.BytesToRead;
+                    int numeroBytes = this.PuertoRS232.BytesToRead;
 
                     if (numeroBytes > 0)
                     {
                         byte[] vb = new byte[numeroBytes];
-                        this._puertoRs232.Read(vb, 0, numeroBytes);
+                        this.PuertoRS232.Read(vb, 0, numeroBytes);
                         foreach (byte b in vb)
                         {
                             this.BufferDatosRecibidos.Enqueue(b);

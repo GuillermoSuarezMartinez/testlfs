@@ -68,22 +68,8 @@ namespace Orbita.VA.Hardware
                 foreach (DataRow dr in dtCamaras.Rows)
                 {
                     string codCamara = dr["CodHardware"].ToString();
-                    if (!codCamara.ValidarNomenclaturaPropiedadNet())
-                    {
-                        throw new ONomenclaturaNetException(codCamara);
-                    }
-
                     string ensambladoClaseImplementadora = dr["EnsambladoClaseImplementadora"].ToString();
-                    if (!ensambladoClaseImplementadora.ValidarNomenclaturaEnsambladoNet())
-                    {
-                        throw new ONomenclaturaNetException(ensambladoClaseImplementadora);
-                    }
-
                     string claseImplementadora = dr["ClaseImplementadora"].ToString();
-                    if (!claseImplementadora.ValidarNomenclaturaPropiedadNet())
-                    {
-                        throw new ONomenclaturaNetException(claseImplementadora);
-                    }
 
                     OCamaraBase camara;
                     if (CrearCamara(ensambladoClaseImplementadora, claseImplementadora, out camara, codCamara))
@@ -182,6 +168,7 @@ namespace Orbita.VA.Hardware
             camara = null;
 
             string claseImplementadoraCompleta = string.Format("{0}.{1}", ensambladoClaseImplementadora, claseImplementadora);
+
             try
             {
                 object objetoImplementado;
@@ -1551,18 +1538,7 @@ namespace Orbita.VA.Hardware
 
                     // Construcción del PTZ
                     this._EnsambladoClaseImplementadoraPTZ = OTexto.Validar(dt.Rows[0]["EnsambladoClaseImplementadoraPTZ"], 100, false, false, Assembly.GetExecutingAssembly().GetName().Name);
-                    if (!_EnsambladoClaseImplementadoraPTZ.ValidarNomenclaturaEnsambladoNet())
-                    {
-                        throw new ONomenclaturaNetException(_EnsambladoClaseImplementadoraPTZ);
-                    }
-
-                    string claseImplementadoraPTZ = OTexto.Validar(dt.Rows[0]["ClaseImplementadoraPTZ"], 100, false, false, typeof(OPTZBase).Name);
-                    if (!claseImplementadoraPTZ.ValidarNomenclaturaPropiedadNet())
-                    {
-                        throw new ONomenclaturaNetException(claseImplementadoraPTZ);
-                    }
-
-                    this._ClaseImplementadoraPTZ = string.Format("{0}.{1}", this._EnsambladoClaseImplementadoraPTZ, claseImplementadoraPTZ);
+                    this._ClaseImplementadoraPTZ = string.Format("{0}.{1}", this._EnsambladoClaseImplementadoraPTZ, OTexto.Validar(dt.Rows[0]["ClaseImplementadoraPTZ"], 100, false, false, typeof(OPTZBase).Name));
                     object objetoImplementado;
                     if (App.ConstruirClase(this._EnsambladoClaseImplementadoraPTZ, this._ClaseImplementadoraPTZ, out objetoImplementado, this._Codigo))
                     {
@@ -1797,6 +1773,32 @@ namespace Orbita.VA.Hardware
             }
 
 			return resultado;
+		}
+
+		/// <summary>
+		/// Visualiza una imagen en el display
+		/// </summary>
+		/// <param name="imagen">Imagen a visualizar</param>        
+		public void VisualizarImagen(OImagen imagen)
+		{
+			this.VisualizarImagen(imagen, null);
+		}
+
+		/// <summary>
+		/// Visualiza la última imagen capturada por la cámara
+		/// </summary>
+		public void VisualizarUltimaImagen()
+		{
+			this.VisualizarImagen(this.ImagenActual, null);
+		}
+
+		/// <summary>
+		/// Visualiza la última imagen capturada por la cámara
+		/// </summary>
+		/// <param name="graficos">Objeto que contiene los gráficos a visualizar (letras, rectas, circulos, etc)</param>
+		public void VisualizarUltimaImagen(OGrafico graficos)
+		{
+			this.VisualizarImagen(this.ImagenActual, graficos);
 		}
 
 		/// <summary>
@@ -2073,6 +2075,15 @@ namespace Orbita.VA.Hardware
 		public virtual OGrafico NuevoGrafico()
 		{
 			return null;
+		}
+
+		/// <summary>
+		/// Visualiza una imagen en el display
+		/// </summary>
+		/// <param name="imagen">Imagen a visualizar</param>
+		/// <param name="graficos">Objeto que contiene los gráficos a visualizar (letras, rectas, circulos, etc)</param>
+		public virtual void VisualizarImagen(OImagen imagen, OGrafico graficos)
+		{
 		}
 
         /// <summary>

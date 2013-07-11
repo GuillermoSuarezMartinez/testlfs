@@ -36,7 +36,7 @@
             // 
             // picMaquinaEstados
             // 
-            this.picMaquinaEstados.BackColor = System.Drawing.Color.Transparent;
+            this.picMaquinaEstados.BackColor = System.Drawing.SystemColors.Window;
             this.picMaquinaEstados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picMaquinaEstados.Location = new System.Drawing.Point(0, 0);
             this.picMaquinaEstados.Name = "picMaquinaEstados";

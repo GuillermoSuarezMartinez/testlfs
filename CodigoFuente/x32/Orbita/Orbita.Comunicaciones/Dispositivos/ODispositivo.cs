@@ -11,29 +11,49 @@ namespace Orbita.Comunicaciones
     {
         #region Atributos
         /// <summary>
-        /// Variable para el cierre de todos los objetos.
+        /// Identificador de dispositivo.
         /// </summary>
-        public bool Disposed = false;
+        int _identificador;
         /// <summary>
-        /// Salidas del dispositivo.
+        /// Nombre de dispositivo.
+        /// </summary>
+        string _nombre;
+        /// <summary>
+        /// Tipo de dispositivo.
+        /// </summary>
+        string _tipo;
+        /// <summary>
+        /// Dirección de conexión.
+        /// </summary>
+        object _direccion;
+        /// <summary>
+        /// Puerto de conexión.
+        /// </summary>
+        int _puerto;
+        /// <summary>
+        /// Nombre del protocolo.
+        /// </summary>
+        string _protocolo;
+        /// <summary>
+        /// Indica si se conecta al dispositivo de forma local o remota.
+        /// </summary>
+        bool _local;
+        /// <summary>
+        /// Variable para el cierre de todos los objetos
+        /// </summary>
+        public bool disposed = false;
+        /// <summary>
+        /// Salidas del dispositivo
         /// </summary>
         public byte[] Salidas;
         /// <summary>
-        /// Logger de la clase.
+        /// Logger de la clase
         /// </summary>
-        public static ILogger Wrapper;
+        public static ILogger wrapper;
         /// <summary>
-        /// Objeto para bloquear las escrituras.
+        /// Objeto para bloquear las escrituras
         /// </summary>
-        public object Bloqueo = new object();
-        /// <summary>
-        /// Segundos del evento Comunicaciones.
-        /// </summary>
-        protected decimal EventoCommSg;
-        /// <summary>
-        /// Fecha del último evento de comunicaciones.
-        /// </summary>
-        protected DateTime FechaUltimoEventoComm;
+        public Object bloqueo = new Object();
         #endregion
 
         #region Eventos
@@ -51,24 +71,24 @@ namespace Orbita.Comunicaciones
         public event OManejadorEventoComm OrbitaComm;
         #endregion
 
-        #region Constructor
+        #region Constructores
         /// <summary>
-        /// Inicializar una nueva instancia de la clase ODispositivo.
+        /// Inicializar una nueva instancia de la clase Dispositivo.
         /// </summary>
         public ODispositivo()
         {
             try
             {
-                Wrapper = LogManager.GetLogger("wrapper");
-                this.FechaUltimoEventoComm = DateTime.Now;
+                wrapper = LogManager.GetLogger("wrapper");
             }
             catch (Exception e)
             {
-                throw new OExcepcion("No se ha definido el objeto logger (nombre wrapper) desde la aplicación.", e);
+                OExcepcion ex = new OExcepcion("No se ha definido el objeto logger (nombre wrapper) desde la aplicación.", e);
             }
+
         }
         /// <summary>
-        /// Destructor del objeto.
+        /// Destruye el objeto
         /// </summary>
         ~ODispositivo()
         {
@@ -83,31 +103,59 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Identificador de dispositivo.
         /// </summary>
-        public int Identificador { get; set; }
+        public int Identificador
+        {
+            get { return this._identificador; }
+            set { this._identificador = value; }
+        }
         /// <summary>
         /// Nombre de dispositivo.
         /// </summary>
-        public string Nombre { get; set; }
+        public string Nombre
+        {
+            get { return this._nombre; }
+            set { this._nombre = value; }
+        }
         /// <summary>
         /// Tipo de dispositivo.
         /// </summary>
-        public string Tipo { get; set; }
+        public string Tipo
+        {
+            get { return this._tipo; }
+            set { this._tipo = value; }
+        }
         /// <summary>
         /// Dirección de conexión.
         /// </summary>
-        public object Direccion { get; set; }
+        public object Direccion
+        {
+            get { return this._direccion; }
+            set { this._direccion = value; }
+        }
         /// <summary>
         /// Puerto de conexión.
         /// </summary>
-        public int Puerto { get; set; }
+        public int Puerto
+        {
+            get { return this._puerto; }
+            set { this._puerto = value; }
+        }
         /// <summary>
         /// Nombre del protocolo.
         /// </summary>
-        public string Protocolo { get; set; }
+        public string Protocolo
+        {
+            get { return this._protocolo; }
+            set { this._protocolo = value; }
+        }
         /// <summary>
         /// Indica si se conecta al dispositivo de forma local o remota.
         /// </summary>
-        public bool Local { get; set; }
+        public bool Local
+        {
+            get { return _local; }
+            set { _local = value; }
+        }
         #endregion
 
         #region Métodos protegidos
@@ -126,6 +174,7 @@ namespace Orbita.Comunicaciones
             {
                 handler(e);
             }
+            handler = null;
         }
         /// <summary>
         /// El evento invoca el método que puede ser sobreescrito en la clase derivada.
@@ -142,6 +191,7 @@ namespace Orbita.Comunicaciones
             {
                 handler(e);
             }
+            handler = null;
         }
         /// <summary>
         /// El evento invoca el método que puede ser sobreescrito en la clase derivada.
@@ -158,39 +208,42 @@ namespace Orbita.Comunicaciones
             {
                 handler(e);
             }
+            handler = null;
         }
         #endregion
 
         #region Métodos públicos
         /// <summary>
-        /// Iniciar todas las comunicaciones del dispositivo.
+        /// Arranca todas las comunicaciones del dispositivo
         /// </summary>
-        public virtual void Iniciar() { }
+        public virtual void Iniciar()
+        {
+
+        }
         /// <summary>
-        /// Método de escritura de un dispositivo.
+        /// Método de escritura de un dispositivo
         /// </summary>
-        /// <param name="variables">Colección de variables.</param>
-        /// <param name="valores">Colección de valores.</param>
-        /// <returns>Resultado de la escritura.</returns>
+        /// <param name="variables">nombre de las variables</param>
+        /// <param name="valores">valor de las variables</param>
+        /// <returns></returns>
         public virtual bool Escribir(string[] variables, object[] valores)
         {
             return false;
         }
         /// <summary>
-        /// Método de escritura de un dispositivo.
+        /// Método de escritura de un dispositivo
         /// </summary>
-        /// <param name="variables">Colección de variables.</param>
-        /// <param name="valores">Colección de valores.</param>
-        /// <param name="canal"></param>
+        /// <param name="variables">nombre de las variables</param>
+        /// <param name="valores">valor de las variables</param>
         /// <returns></returns>
-        public virtual bool Escribir(string[] variables, object[] valores, string canal)
+        public virtual bool Escribir(string[] variables, object[] valores,string canal)
         {
             return false;
         }
         /// <summary>
-        /// Método de lectura de un dispositivo.
+        /// Método de lectura de un dispositivo
         /// </summary>
-        /// <param name="variables">Colección de variables.</param>
+        /// <param name="variables">nombre de las variables</param>
         /// <param name="demanda">establece si la lectura se realiza al instante</param>
         /// <returns></returns>
         public virtual object[] Leer(string[] variables, bool demanda)
@@ -198,7 +251,7 @@ namespace Orbita.Comunicaciones
             return null;
         }
         /// <summary>
-        /// Obtener las alarmas activas del dispositivo.
+        /// Devuelve las alarmas activas del dispositivo
         /// </summary>
         /// <returns></returns>
         public virtual ArrayList GetAlarmasActivas()
@@ -206,7 +259,7 @@ namespace Orbita.Comunicaciones
             return null;
         }
         /// <summary>
-        /// Obtener los datos del sistema y su valor.
+        /// Devuelve los datos del sistema y su valor
         /// </summary>
         /// <returns></returns>
         public virtual OHashtable GetDatos()
@@ -214,7 +267,7 @@ namespace Orbita.Comunicaciones
             return null;
         }
         /// <summary>
-        /// Obtenerr las lecturas del sistema y su valor.
+        /// Devuelve las lecturas del sistema y su valor
         /// </summary>
         /// <returns></returns>
         public virtual OHashtable GetLecturas()
@@ -222,7 +275,7 @@ namespace Orbita.Comunicaciones
             return null;
         }
         /// <summary>
-        /// Obtener las alarmas del sistema y su valor.
+        /// Devuelve las alarmas del sistema y su valor
         /// </summary>
         /// <returns></returns>
         public virtual OHashtable GetAlarmas()
@@ -230,25 +283,32 @@ namespace Orbita.Comunicaciones
             return null;
         }
         /// <summary>
-        /// Limpia la memoria.
+        /// Limpia la memoria
         /// </summary>
         /// <param name="disposing"></param>
         public virtual void Dispose(bool disposing)
         {
             // Check to see if Dispose has already been called. 
-            if (this.Disposed) return;
-            // If disposing equals true, dispose all managed 
-            // and unmanaged resources. 
-            if (disposing)
+            if (!this.disposed)
             {
-            }
-            // Call the appropriate methods to clean up 
-            // unmanaged resources here. 
-            // If disposing is false, 
-            // only the following code is executed.
+                // If disposing equals true, dispose all managed 
+                // and unmanaged resources. 
+                if (disposing)
+                {
+                    //// Dispose managed resources.
+                    //component.Dispose();
+                }
 
-            // Note disposing has been done.
-            Disposed = true;
+                // Call the appropriate methods to clean up 
+                // unmanaged resources here. 
+                // If disposing is false, 
+                // only the following code is executed.
+                //CloseHandle(handle);
+                //handle = IntPtr.Zero;
+
+                // Note disposing has been done.
+                disposed = true;
+            }
         }
         /// <summary>
         /// Llama al método para limpiar todos los objetos de memoria
@@ -263,37 +323,6 @@ namespace Orbita.Comunicaciones
             // from executing a second time.
             GC.SuppressFinalize(this);
         }
-        #endregion
-    }
-
-    public class DispositivoEscrituras
-    {
-        #region Constructores
-        /// <summary>
-        /// Inicializar una nueva instancia de la clase DispositivoEscrituras.
-        /// </summary>
-        public DispositivoEscrituras() { }
-        /// <summary>
-        /// Inicializar una nueva instancia de la clase DispositivoEscrituras.
-        /// </summary>
-        /// <param name="variables">Colección de variables.</param>
-        /// <param name="valores">Colección de valores.</param>
-        public DispositivoEscrituras(string[] variables, object[] valores)
-        {
-            Variables = variables;
-            Valores = valores;
-        }
-        #endregion
-
-        #region Propiedades
-        /// <summary>
-        /// Colección de variables.
-        /// </summary>
-        public string[] Variables { get; set; }
-        /// <summary>
-        /// Colección de valores.
-        /// </summary>
-        public object[] Valores { get; set; }
         #endregion
     }
 }

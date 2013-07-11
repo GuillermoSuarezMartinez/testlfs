@@ -1,11 +1,11 @@
 ﻿//***********************************************************************
 // Assembly         : Orbita.Controles.VA
 // Author           : aibañez
-// Created          : 07-07-2013
+// Created          : 30-10-2012
 //
-// Last Modified By : 
-// Last Modified On : 
-// Description      : 
+// Last Modified By : aibañez
+// Last Modified On : 12-12-2012
+// Description      : Cambiado el intervalo de refresco a 200ms
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************

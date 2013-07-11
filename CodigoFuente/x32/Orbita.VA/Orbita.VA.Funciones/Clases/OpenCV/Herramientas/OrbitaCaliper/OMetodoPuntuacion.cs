@@ -68,19 +68,11 @@ namespace Orbita.VA.Funciones
         /// Constructor del método de puntuación
         /// </summary>
         /// <param name="edgePairWidth">Ancho de máxima puntuación</param>
-        public SizeDiffNormMethod(double edgePairWidth) :
-            this(edgePairWidth, 1, 0, 1, 1, 0)
-        {
-        }
-        /// <summary>
-        /// Constructor del método de puntuación
-        /// </summary>
-        /// <param name="edgePairWidth">Ancho de máxima puntuación</param>
-        public SizeDiffNormMethod(double edgePairWidth, float xc, float x0, float x1, float y0, float y1)
+        public SizeDiffNormMethod(double edgePairWidth)
         {
             this.onlyPairMethod = true;
 
-            this.funcionPuntuacion = new SingleSideScoringFunction(xc, x0, x1, y0, y1);
+            this.funcionPuntuacion = new SingleSideScoringFunction(1, 0, 1, 1, 0);
 
             this.edgePairWidth = edgePairWidth;
         }
@@ -104,8 +96,7 @@ namespace Orbita.VA.Funciones
             double rawScore = Math.Abs(candidato.Edge1.Position - candidato.Edge2.Position);
 
             //Normalizamos
-            rawScore = 1 - (Math.Abs(rawScore - edgePairWidth) / edgePairWidth);
-            rawScore = rawScore < 0 ? 0 : rawScore;
+            rawScore = Math.Abs(rawScore - edgePairWidth) / edgePairWidth;
             return this.funcionPuntuacion.MapScore(rawScore);
         }
         #endregion
@@ -119,19 +110,12 @@ namespace Orbita.VA.Funciones
         /// <summary>
         /// Constructor del método de puntuación
         /// </summary>
-        public ContrastMethod():
-            this(0, 1, 0, 1, 0)
-        {
-        }
-        /// <summary>
-        /// Constructor del método de puntuación
-        /// </summary>
-        public ContrastMethod(float xc, float x0, float x1, float y0, float y1)
+        public ContrastMethod()
         {
             //Este método es para ambos modos, pares y single
             this.onlyPairMethod = false;
 
-            this.funcionPuntuacion = new SingleSideScoringFunction(xc, x0, x1, y0, y1);
+            this.funcionPuntuacion = new SingleSideScoringFunction(0, 255, 0, 1, 0);
         }
         #endregion
 
@@ -143,17 +127,17 @@ namespace Orbita.VA.Funciones
         /// <returns>Puntuación numérica del resultado</returns>
         public override double Puntuar(OEdgeResult candidato)
         {
-            ////Obtenemos el primer contraste
-            //double rawScore = Math.Abs(candidato.Edge1.Contraste);
-            //candidato.Edge1.Score = this.funcionPuntuacion.MapScore(rawScore);
+            //Obtenemos el primer contraste
+            double rawScore = Math.Abs(candidato.Edge1.Contraste);
+            candidato.Edge1.Score = this.funcionPuntuacion.MapScore(rawScore);
 
-            ////Si hay un segundo edge, calculamos la media
-            //if (candidato.IsPair)
-            //{
-            //    //Normalizamos el contrase del primer edge
-            //    rawScore = Math.Abs(candidato.Edge2.Contraste);
-            //    candidato.Edge2.Score = this.funcionPuntuacion.MapScore(rawScore);
-            //}
+            //Si hay un segundo edge, calculamos la media
+            if (candidato.IsPair)
+            {
+                //Normalizamos el contrase del primer edge
+                rawScore = Math.Abs(candidato.Edge2.Contraste);
+                candidato.Edge2.Score = this.funcionPuntuacion.MapScore(rawScore);
+            }
             return this.funcionPuntuacion.MapScore(candidato.ContrasteAbsoluto);
         }
         #endregion

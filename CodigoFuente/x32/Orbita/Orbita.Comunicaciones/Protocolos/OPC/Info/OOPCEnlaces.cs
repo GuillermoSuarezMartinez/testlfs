@@ -11,11 +11,11 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Nombre.
         /// </summary>
-        private string _nombre;
+        string _nombre;
         /// <summary>
         /// Reintento.
         /// </summary>
-        private int _reintento;
+        int _reintento;
         #endregion
 
         #region Propiedades
@@ -44,8 +44,8 @@ namespace Orbita.Comunicaciones
         /// <param name="nombre"></param>
         public OOPCEnlaces(string nombre)
         {
-            _nombre = nombre;
-            _reintento = 0;
+            this._nombre = nombre;
+            this._reintento = 0;
         }
         #endregion
     }

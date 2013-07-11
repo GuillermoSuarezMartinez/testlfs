@@ -492,9 +492,9 @@ namespace Orbita.Comunicaciones
             private void SetDate(byte offset, DateTime date)
             {
                 ulong intpart = 0, fractpart = 0;
-                DateTime startOfCentury = new DateTime(1900, 1, 1, 0, 0, 0);	// January 1, 1900 12:00 AM
+                DateTime StartOfCentury = new DateTime(1900, 1, 1, 0, 0, 0);	// January 1, 1900 12:00 AM
 
-                ulong milliseconds = (ulong)(date - startOfCentury).TotalMilliseconds;
+                ulong milliseconds = (ulong)(date - StartOfCentury).TotalMilliseconds;
                 intpart = milliseconds / 1000;
                 fractpart = ((milliseconds % 1000) * 0x100000000L) / 1000;
 
@@ -716,7 +716,7 @@ namespace Orbita.Comunicaciones
                 SetLocalTime(ref st);
             }
             // The URL of the time server we're connecting to
-            private readonly string TimeServer;
+            private string TimeServer;
         }
     }
 }

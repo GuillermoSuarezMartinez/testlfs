@@ -53,11 +53,6 @@
             Lista de seleccion
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Comunes.OrbitaTeclado._ImagenTecla">
-            <summary>
-            Imagen de la cámara desconectada
-            </summary>
-        </member>
         <member name="M:Orbita.Controles.Comunes.OrbitaTeclado.#ctor">
             <summary>
             Constructor
@@ -201,16 +196,6 @@
         <member name="P:Orbita.Controles.Comunes.OrbitaTeclado.ListaTexto">
             <summary>
             Lista de seleccion
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunes.OrbitaTeclado.FuenteTexto">
-            <summary>
-            Fuente del textbox
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunes.OrbitaTeclado.ImagenTecla">
-            <summary>
-            Imagen de la cámara desconectada
             </summary>
         </member>
         <member name="T:Orbita.Controles.Comunes.TextEventHandler">
@@ -1544,19 +1529,12 @@
             Botonera al que pertenece el botón
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Comunes.OrbitaTactilButton.OnEventoClickBotonTactil">
-            <summary>
-            Delegado de selección
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
         <member name="M:Orbita.Controles.Comunes.OrbitaTactilButton.#ctor">
             <summary>
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaTactilButton.#ctor(Orbita.Controles.Comunes.OrbitaTactilListButton,System.String,System.String,System.Drawing.Bitmap,Orbita.Controles.Comunes.OrbitaTactilButton.DelegadoEventoClickBotonTactil)">
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilButton.#ctor(Orbita.Controles.Comunes.OrbitaTactilListButton,System.String,System.String,System.Drawing.Bitmap,Orbita.Controles.Comunes.OrbitaTactilButton.DelegadoEventoClick)">
             <summary>
             Constructor de la clase
             </summary>
@@ -1602,7 +1580,7 @@
             Botonera al que pertenece el botón
             </summary>
         </member>
-        <member name="T:Orbita.Controles.Comunes.OrbitaTactilButton.DelegadoEventoClickBotonTactil">
+        <member name="T:Orbita.Controles.Comunes.OrbitaTactilButton.DelegadoEventoClick">
             <summary>
             Delegado de selección
             </summary>
@@ -1952,7 +1930,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Comunes.OrbitaTactilListButton.AgregarBoton(System.String,System.String,System.String,System.Drawing.Bitmap,Orbita.Controles.Comunes.OrbitaTactilButton.DelegadoEventoClickBotonTactil)">
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilListButton.AgregarBoton(System.String,System.String,System.String,System.Drawing.Bitmap,Orbita.Controles.Comunes.OrbitaTactilButton.DelegadoEventoClick)">
             <summary>
             Agregar nuevo botón
             </summary>

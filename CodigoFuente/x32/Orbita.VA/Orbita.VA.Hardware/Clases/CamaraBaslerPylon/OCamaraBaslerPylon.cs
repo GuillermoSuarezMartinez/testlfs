@@ -1272,7 +1272,7 @@ namespace Orbita.VA.Hardware
                 this.TriggerActivation = new OPylonGigEEnumFeature("TriggerActivation", new string[] { "RisingEdge", "FallingEdge" }, "RisingEdge", timeOutAccesoGigEFeatures, true, "Basler_Pilot_TriggerActivation");
                 // Transferencia
                 this.PacketSize = new OPylonGigEIntFeature("GevSCPSPacketSize", 220, 16404, 1500, timeOutAccesoGigEFeatures, true, "Basler_Pilot_PacketSize");
-                this.InterPacketDelay = new OPylonGigEIntFeature("GevSCPD", 0, 100000000, 0, timeOutAccesoGigEFeatures, false, string.Empty);
+                this.InterPacketDelay = new OPylonGigEIntFeature("GevSCPD", 0, 904, 0, timeOutAccesoGigEFeatures, false, string.Empty);
                 this.ReserveBandwidth = new OPylonGigEIntFeature("GevSCBWR", 0, 99, 10, timeOutAccesoGigEFeatures, false, string.Empty);
                 this.TimeStampFrequency = new OPylonGigEIntFeature("GevTimestampTickFrequency", 0, int.MaxValue, 0, 125000000, false, string.Empty);
                 this.TransferAdjust = new OPylonTransferAdjust("TransferAdjust", 0.001, 1, 1,
@@ -1282,10 +1282,10 @@ namespace Orbita.VA.Hardware
                     this.InterPacketDelay,
                     "Basler_Pilot_Bandwidth");
                 // Iluminación
-                this.ExposureTimeAbs = new OPylonGigEDoubleFeature("ExposureTimeAbs", 20, 10000000, 400, timeOutAccesoGigEFeatures, true, "Basler_Pilot_Shutter");
+                this.ExposureTimeAbs = new OPylonGigEDoubleFeature("ExposureTimeAbs", 40, 818900, 400, timeOutAccesoGigEFeatures, true, "Basler_Pilot_Shutter");
                 this.GainAuto = new OPylonGigEEnumFeature("GainAuto", new string[] { "Off", "Once", "Continuous" }, "Off", timeOutAccesoGigEFeatures, true, "Basler_Pilot_GainAuto");
-                this.GainRaw = new OPylonGigEIntFeature("GainRaw", 0, 1023, 500, timeOutAccesoGigEFeatures, true, "Basler_Pilot_Gain");
-                this.BlackLevelRaw = new OPylonGigEIntFeature("BlackLevelRaw", 0, 1023, 32, timeOutAccesoGigEFeatures, true, "Basler_Pilot_BlackLevel");
+                this.GainRaw = new OPylonGigEIntFeature("GainRaw", 0, 500, 180, timeOutAccesoGigEFeatures, true, "Basler_Pilot_Gain");
+                this.BlackLevelRaw = new OPylonGigEIntFeature("BlackLevelRaw", 0, 600, 32, timeOutAccesoGigEFeatures, true, "Basler_Pilot_BlackLevel");
                 this.BalanceRatioSelector = new OPylonGigEEnumFeature("BalanceRatioSelector", new string[] { "Red", "Green", "Blue" }, "Red", timeOutAccesoGigEFeatures, false, string.Empty);
                 this.BalanceRatioRaw = new OPylonGigEIntFeature("BalanceRatioRaw", 0, 255, 50, timeOutAccesoGigEFeatures, false, string.Empty);
                 this.BalanceRatioRed = new OPylonWhiteBalance("WhiteBalanceRed", 0, 255, 50, "Red", this.BalanceRatioRaw, this.BalanceRatioSelector, "Basler_Pilot_WhiteBalanceRed");
@@ -1469,14 +1469,6 @@ namespace Orbita.VA.Hardware
         public void Inicializar(PYLON_DEVICE_HANDLE pylonDeviceHandle)
         {
             this.PylonDeviceHandle = pylonDeviceHandle;
-            this.Validar();
-        }
-        /// <summary>
-        /// Inicialización del objeto
-        /// </summary>
-        /// <param name="pylonDeviceHandle"></param>
-        public void Validar()
-        {
             bool valid = Pylon.DeviceFeatureIsAvailable(this.PylonDeviceHandle, this.Codigo) &&
                          Pylon.DeviceFeatureIsImplemented(this.PylonDeviceHandle, this.Codigo);
             this.ValidForRead = valid && Pylon.DeviceFeatureIsReadable(this.PylonDeviceHandle, this.Codigo);
@@ -1603,14 +1595,6 @@ namespace Orbita.VA.Hardware
         public void Inicializar(PYLON_DEVICE_HANDLE pylonDeviceHandle)
         {
             this.PylonDeviceHandle = pylonDeviceHandle;
-            this.Validar();
-        }
-        /// <summary>
-        /// Inicialización del objeto
-        /// </summary>
-        /// <param name="pylonDeviceHandle"></param>
-        public void Validar()
-        {
             bool valid = Pylon.DeviceFeatureIsAvailable(this.PylonDeviceHandle, this.Codigo) &&
                          Pylon.DeviceFeatureIsImplemented(this.PylonDeviceHandle, this.Codigo);
             this.ValidForRead = valid && Pylon.DeviceFeatureIsReadable(this.PylonDeviceHandle, this.Codigo);
@@ -1740,14 +1724,6 @@ namespace Orbita.VA.Hardware
         public void Inicializar(PYLON_DEVICE_HANDLE pylonDeviceHandle)
         {
             this.PylonDeviceHandle = pylonDeviceHandle;
-            this.Validar();
-        }
-        /// <summary>
-        /// Inicialización del objeto
-        /// </summary>
-        /// <param name="pylonDeviceHandle"></param>
-        public void Validar()
-        {
             bool valid = Pylon.DeviceFeatureIsAvailable(this.PylonDeviceHandle, this.Codigo) &&
                          Pylon.DeviceFeatureIsImplemented(this.PylonDeviceHandle, this.Codigo);
             this.ValidForRead = valid && Pylon.DeviceFeatureIsReadable(this.PylonDeviceHandle, this.Codigo);
@@ -1883,14 +1859,6 @@ namespace Orbita.VA.Hardware
         public void Inicializar(PYLON_DEVICE_HANDLE pylonDeviceHandle)
         {
             this.PylonDeviceHandle = pylonDeviceHandle;
-            this.Validar();
-        }
-        /// <summary>
-        /// Inicialización del objeto
-        /// </summary>
-        /// <param name="pylonDeviceHandle"></param>
-        public void Validar()
-        {
             bool valid = Pylon.DeviceFeatureIsAvailable(this.PylonDeviceHandle, this.Codigo) &&
                          Pylon.DeviceFeatureIsImplemented(this.PylonDeviceHandle, this.Codigo);
             this.ValidForRead = valid && Pylon.DeviceFeatureIsReadable(this.PylonDeviceHandle, this.Codigo);
@@ -2023,14 +1991,6 @@ namespace Orbita.VA.Hardware
         public void Inicializar(PYLON_DEVICE_HANDLE pylonDeviceHandle)
         {
             this.PylonDeviceHandle = pylonDeviceHandle;
-            this.Validar();
-        }
-        /// <summary>
-        /// Inicialización del objeto
-        /// </summary>
-        /// <param name="pylonDeviceHandle"></param>
-        public void Validar()
-        {
             bool valid = Pylon.DeviceFeatureIsAvailable(this.PylonDeviceHandle, this.Codigo) &&
                          Pylon.DeviceFeatureIsImplemented(this.PylonDeviceHandle, this.Codigo);
             this.ValidForRead = valid && Pylon.DeviceFeatureIsReadable(this.PylonDeviceHandle, this.Codigo);

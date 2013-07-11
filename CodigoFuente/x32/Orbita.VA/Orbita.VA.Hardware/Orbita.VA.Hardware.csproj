@@ -225,7 +225,6 @@
     <Compile Include="Clases\CamaraRemota\OCamaraRemota.cs" />
     <Compile Include="Clases\CamaraVirtual\OCamaraVirtual.cs" />
     <Compile Include="Clases\Conectividad\OConectividadBitVida.cs" />
-    <Compile Include="Clases\IO\OcsClienteComunicacion.cs" />
     <Compile Include="Clases\PTZ\OPTZAxis.cs" />
     <Compile Include="Clases\PTZ\OPTZBase.cs" />
     <Compile Include="Clases\IO\OIO_MeasurementComputing.cs" />

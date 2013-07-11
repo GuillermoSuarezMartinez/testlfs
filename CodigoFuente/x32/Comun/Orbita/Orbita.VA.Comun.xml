@@ -642,6 +642,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Orbita.VA.Comun.OImagen.GuardarAsincrono(System.String)">
+            <summary>
+            Guarda la imagen asincronamente en un fichero de disco
+            </summary>
+            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
+        </member>
         <member name="M:Orbita.VA.Comun.OImagen.Clone">
             <summary>
             Clonado de la imagen
@@ -747,12 +753,6 @@
             Devuelve una clase System.String que representa la clase System.Object actual.
             </summary>
             <returns>Una clase System.String que representa la clase System.Object actual.</returns>
-        </member>
-        <member name="M:Orbita.VA.Comun.OImagen.GuardarAsincrono(System.String)">
-            <summary>
-            Guarda la imagen asincronamente en un fichero de disco
-            </summary>
-            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
         </member>
         <member name="M:Orbita.VA.Comun.OImagen.EscalarImagen(Orbita.VA.Comun.OImagen,Orbita.VA.Comun.ResolucionesImagenEstandar)">
             <summary>
@@ -2267,11 +2267,6 @@
             Fin del thread
             </summary>
         </member>
-        <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.Abort">
-            <summary>
-            Fin del thread
-            </summary>
-        </member>
         <member name="M:Orbita.VA.Comun.OProductorConsumidorThread`1.Pause">
             <summary>
             Pasua de la ejecución del thread. Este método no debe ser llamado desde el propio thread
@@ -3106,20 +3101,6 @@
             <param name="codigo">Código de la variable</param>
             <returns>Devuelve el tiempo de permanencia del valor de la variable</returns>
         </member>
-        <member name="M:Orbita.VA.Comun.OVariablesManager.GetMomentoUltimaActualizacion(System.String)">
-            <summary>
-            Método para consultar el tiempo de permanencia del valor de la variable
-            </summary>
-            <param name="codigo">Código de la variable</param>
-            <returns>Devuelve el tiempo de permanencia del valor de la variable</returns>
-        </member>
-        <member name="M:Orbita.VA.Comun.OVariablesManager.GetMomentoUltimaActualizacion(System.String,System.String)">
-            <summary>
-            Método para consultar el tiempo de permanencia del valor de la variable
-            </summary>
-            <param name="codigo">Código de la variable</param>
-            <returns>Devuelve el tiempo de permanencia del valor de la variable</returns>
-        </member>
         <member name="M:Orbita.VA.Comun.OVariablesManager.GetChanged(System.String,System.String)">
             <summary>
             Método para comprobar si el valor de la variable ha cambiado
@@ -3166,23 +3147,7 @@
             <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
             <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         </member>
-        <member name="M:Orbita.VA.Comun.OVariablesManager.SetDefaultValue(System.String,System.String,System.String,System.Boolean)">
-            <summary>
-            Método para modificar el valor de una variable a de forma registrada
-            </summary>
-            <param name="codigo">Código de la variable</param>
-            <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
-            <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        </member>
-        <member name="M:Orbita.VA.Comun.OVariablesManager.SetDefaultValue(System.String,System.String,System.String,System.String,System.Boolean)">
-            <summary>
-            Método para modificar el valor de una variable a de forma registrada
-            </summary>
-            <param name="codigo">Código de la variable</param>
-            <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
-            <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        </member>
-        <member name="M:Orbita.VA.Comun.OVariablesManager.SetValueDelayed(System.String,System.Object,System.TimeSpan,System.String,System.String,System.Boolean,System.Threading.ThreadPriority)">
+        <member name="M:Orbita.VA.Comun.OVariablesManager.SetValueDelayed(System.String,System.Object,System.TimeSpan,System.String,System.String)">
             <summary>
             Método para modificar el valor de una variable a de forma registrada
             </summary>
@@ -3192,7 +3157,7 @@
             <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
             <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         </member>
-        <member name="M:Orbita.VA.Comun.OVariablesManager.SetValueDelayed(System.String,System.String,System.Object,System.TimeSpan,System.String,System.String,System.Boolean,System.Threading.ThreadPriority)">
+        <member name="M:Orbita.VA.Comun.OVariablesManager.SetValueDelayed(System.String,System.String,System.Object,System.TimeSpan,System.String,System.String)">
             <summary>
             Método para modificar el valor de una variable a de forma registrada
             </summary>
@@ -3575,13 +3540,6 @@
             <param name="codigo">Código de la variable</param>
             <returns>Devuelve el tiempo de permanencia del valor de la variable</returns>
         </member>
-        <member name="M:Orbita.VA.Comun.OVariable.GetMomentoUltimaActualizacion">
-            <summary>
-            Método para consultar el tiempo de permanencia del valor de la variable
-            </summary>
-            <param name="codigo">Código de la variable</param>
-            <returns>Devuelve el tiempo de permanencia del valor de la variable</returns>
-        </member>
         <member name="M:Orbita.VA.Comun.OVariable.GetHayCambio(System.String)">
             <summary>
             Método para comprobar si el valor de la variable ha cambiado
@@ -3596,14 +3554,7 @@
             <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
             <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         </member>
-        <member name="M:Orbita.VA.Comun.OVariable.SetValorDefecto(System.String,System.String,System.Boolean)">
-            <summary>
-            Escritura de la variable
-            </summary>
-            <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
-            <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        </member>
-        <member name="M:Orbita.VA.Comun.OVariable.SetValorRetrasado(System.Object,System.TimeSpan,System.String,System.String,System.Boolean,System.Threading.ThreadPriority)">
+        <member name="M:Orbita.VA.Comun.OVariable.SetValorRetrasado(System.Object,System.TimeSpan,System.String,System.String)">
             <summary>
             Escritura de la variable de forma retrasada.
             Transcurido el tiempo especificado se modifica su valor al deseado
@@ -3802,13 +3753,6 @@
             <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
             <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         </member>
-        <member name="T:Orbita.VA.Comun.OVariable.CambiaValorDefectoEnThread">
-            <summary>
-            Delegado usado para ejecutar un cambio de valor desde un thread
-            </summary>
-            <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
-            <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        </member>
         <member name="T:Orbita.VA.Comun.VariableCore">
             <summary>
             Variable de tipo genérico que se utiliza para que los diferenes módulos del sistema 
@@ -3872,11 +3816,6 @@
         <member name="F:Orbita.VA.Comun.VariableCore._Cronometro">
             <summary>
             Cronometro del tiempo de permanencia del valor de la variable
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Comun.VariableCore._MomentoUltimaActualizacion">
-            <summary>
-            Momento del último cambio en la variable
             </summary>
         </member>
         <member name="M:Orbita.VA.Comun.VariableCore.#ctor(System.String,System.Boolean,System.Boolean,Orbita.Utiles.OEnumTipoDato,System.Boolean)">
@@ -3963,13 +3902,6 @@
             <param name="codigo">Código de la variable</param>
             <returns>Devuelve el tiempo de permanencia del valor de la variable</returns>
         </member>
-        <member name="M:Orbita.VA.Comun.VariableCore.GetMomentoUltimaActualizacion">
-            <summary>
-            Método para consultar el tiempo de permanencia del valor de la variable
-            </summary>
-            <param name="codigo">Código de la variable</param>
-            <returns>Devuelve el tiempo de permanencia del valor de la variable</returns>
-        </member>
         <member name="M:Orbita.VA.Comun.VariableCore.GetHayCambio(System.String)">
             <summary>
             Método para comprobar si el valor de la variable ha cambiado
@@ -3984,14 +3916,7 @@
             <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
             <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         </member>
-        <member name="M:Orbita.VA.Comun.VariableCore.SetValorDefecto(System.String,System.String,System.Boolean)">
-            <summary>
-            Escritura de la variable
-            </summary>
-            <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
-            <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
-        </member>
-        <member name="M:Orbita.VA.Comun.VariableCore.SetValorRetrasado(System.Object,System.TimeSpan,System.String,System.String,System.Boolean,System.Threading.ThreadPriority)">
+        <member name="M:Orbita.VA.Comun.VariableCore.SetValorRetrasado(System.Object,System.TimeSpan,System.String,System.String,System.Boolean)">
             <summary>
             Escritura de la variable de forma retrasada.
             Transcurido el tiempo especificado se modifica su valor al deseado
@@ -4087,11 +4012,6 @@
         <member name="P:Orbita.VA.Comun.VariableCore.Cronometro">
             <summary>
             Cronometro del tiempo de permanencia del valor de la variable
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Comun.VariableCore.MomentoUltimaActualizacion">
-            <summary>
-            Momento del último cambio en la variable
             </summary>
         </member>
         <member name="E:Orbita.VA.Comun.VariableCore.CambioValor">
@@ -4883,88 +4803,6 @@
         <member name="F:Orbita.VA.Comun.OPlanoBGR.Rojo">
             <summary>
             Plano rojo
-            </summary>
-        </member>
-        <member name="T:Orbita.VA.Comun.OGraficoOpenCV">
-            <summary>
-            Grafico de tipo CogGraphicCollection de Cognex
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Comun.OGraficoOpenCV.#ctor(System.Object)">
-            <summary>
-            Constructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Comun.OGraficoOpenCV.#ctor">
-            <summary>
-            Constructor de la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Comun.OGraficoOpenCV.#ctor(Orbita.VA.Comun.OImagen)">
-            <summary>
-            Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
-            </summary>
-            <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
-        </member>
-        <member name="M:Orbita.VA.Comun.OGraficoOpenCV.Linea(System.Drawing.PointF,System.Drawing.PointF,System.Drawing.Color,System.Int32)">
-            <summary>
-            Desplaza todo el conjunto de gráficos en X y en Y
-            </summary>
-            <param name="X">Valor de desplazamiento en X</param>
-            <param name="Y">Valor de desplazamiento en Y</param>
-        </member>
-        <member name="M:Orbita.VA.Comun.OGraficoOpenCV.Linea(System.Single,System.Single,System.Single,System.Single,System.Drawing.Color,System.Int32)">
-            <summary>
-            Desplaza todo el conjunto de gráficos en X y en Y
-            </summary>
-            <param name="X">Valor de desplazamiento en X</param>
-            <param name="Y">Valor de desplazamiento en Y</param>
-        </member>
-        <member name="M:Orbita.VA.Comun.OGraficoOpenCV.ConvertToImage">
-            <summary>
-            Exportación a imagen
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Comun.OGraficoOpenCV.ConvertFromImage(Orbita.VA.Comun.OImagen)">
-            <summary>
-            Importación desde una imagen
-            </summary>
-            <param name="imagen"></param>
-        </member>
-        <member name="M:Orbita.VA.Comun.OGraficoOpenCV.Dispose">
-            <summary>
-            Elimina la memoria asignada por el objeto.
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Comun.OGraficoOpenCV.Clone">
-            <summary>
-            Clonado del gráfico
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Comun.OGraficoOpenCV.EsValida">
-            <summary>
-            Método a implementar en las clases hijas que indica que la imagen es válida
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Comun.OGraficoOpenCV.Guardar(System.String)">
-            <summary>
-            Método a implementar en las clases hijas para guardar la imagen en un fichero de disco
-            </summary>
-            <param name="ruta">Ruta donde se ha de guardar la imagen</param>
-            <returns>Verdadero si la ruta donde se ha de guardar el fichero es válida</returns>
-        </member>
-        <member name="M:Orbita.VA.Comun.OGraficoOpenCV.Cargar(System.String)">
-            <summary>
-            Método a implementar en las clases hijas para cargar la imagen de un fichero de disco
-            </summary>
-            <param name="ruta">Ruta de donde se ha de cargar la imagen</param>
-            <returns>Verdadero si el fichero que se ha de cargar existe</returns>
-        </member>
-        <member name="P:Orbita.VA.Comun.OGraficoOpenCV.Grafico">
-            <summary>
-            Propieadad a heredar donde se accede a la imagen
             </summary>
         </member>
         <member name="T:Orbita.VA.Comun.OByteArrayImage">

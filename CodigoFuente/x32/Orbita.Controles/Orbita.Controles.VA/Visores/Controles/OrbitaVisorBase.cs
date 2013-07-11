@@ -858,7 +858,7 @@ namespace Orbita.Controles.VA
                         break;
                     case EstadoConexion.Conectado:
                         this.ImagenActual = this.NuevaImagen();
-                        this.ImagenActual.ConvertFromBitmap(this.ImagenCamaraConectada);
+                        this.ImagenActual.ConvertFromBitmap(this.ImagenCamaraDesConectada);
                         this.Visualizar(this.ImagenActual);
                         this.ZoomFit();
                         this.MostrarMensaje("Conectada");
@@ -872,7 +872,7 @@ namespace Orbita.Controles.VA
                         break;
                     case EstadoConexion.Reconectando:
                         this.ImagenActual = this.NuevaImagen();
-                        this.ImagenActual.ConvertFromBitmap(this.ImagenCamaraDesConectada);
+                        this.ImagenActual.ConvertFromBitmap(this.ImagenCamaraConectada);
                         this.Visualizar(this.ImagenActual);
                         this.ZoomFit();
                         this.MostrarMensaje("Intentando reconexión");

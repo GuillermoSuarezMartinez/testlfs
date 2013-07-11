@@ -441,7 +441,7 @@ namespace Orbita.Controles.VA
             {
                 if (controlInterno is OrbitaUltraGridToolBar)
                 {
-                    this.toolTip.SetToolTip(((OrbitaUltraGridToolBar)controlInterno).Grid, this.toolTip.GetToolTip(((OrbitaUltraGridToolBar)controlInterno)));
+                    this.toolTip.SetToolTip(((OrbitaUltraGridToolBar)controlInterno).Grid, this.toolTip.GetToolTip(((OrbitaUltraGrid)controlInterno)));
                 }
 
                 // Recursivo

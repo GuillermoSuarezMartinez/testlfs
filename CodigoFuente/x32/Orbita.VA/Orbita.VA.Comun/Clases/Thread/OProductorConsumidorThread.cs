@@ -349,19 +349,7 @@ namespace Orbita.VA.Comun
             if ((this.Estado == EstadoProductorConsumidor.EnEjecucion) || (this.Estado == EstadoProductorConsumidor.Pausado))
             {
                 this.Estado = EstadoProductorConsumidor.Deteniendo;
-            }
-        }
-
-        /// <summary>
-        /// Fin del thread
-        /// </summary>
-        public void Abort()
-        {
-            if ((this.Estado == EstadoProductorConsumidor.EnEjecucion) || (this.Estado == EstadoProductorConsumidor.Pausado))
-            {
-                this.Estado = EstadoProductorConsumidor.Deteniendo;
                 this.Thread.Stop();
-                this.Estado = EstadoProductorConsumidor.Detenido;
             }
         }
 

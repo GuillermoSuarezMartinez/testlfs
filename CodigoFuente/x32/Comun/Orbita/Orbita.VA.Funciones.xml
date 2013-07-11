@@ -312,8 +312,11 @@
             Identificador del dato
             </summary>
         </member>
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.VA.Funciones.OCCRData.CodFuncionVision" -->
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.VA.Funciones.OCCRData.DisposedValue" -->
+        <member name="F:Orbita.VA.Funciones.OCCRData.DisposedValue">
+            <summary>
+            Si el valor ha sido borrado
+            </summary>
+        </member>
         <member name="F:Orbita.VA.Funciones.OCCRData.Configuracion">
             <summary>
             Configuración a utilizar para el dato
@@ -332,6 +335,11 @@
         <member name="F:Orbita.VA.Funciones.OCCRData.TotalReadItems">
             <summary>
             Cantidad de lecturas
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OCCRData.CodFuncionVision">
+            <summary>
+            Codigo funcion
             </summary>
         </member>
         <member name="M:Orbita.VA.Funciones.OCCRData.#ctor(System.Int64,System.String,Orbita.VA.Funciones.CIDARMtConfiguration,Orbita.VA.Funciones.OCCRInfoImagen@)">
@@ -1178,7 +1186,7 @@
             Finaliza la ejecución
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.OLPRManager.Reset(System.String)">
+        <member name="M:Orbita.VA.Funciones.OLPRManager.Reset">
             <summary>
             Resetea la función de visión LPR
             </summary>
@@ -1366,11 +1374,6 @@
             Siguiente ruta de imágen a procesar en el LPR
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OFuncionVisionLPR.Prioridad">
-            <summary>
-            Prioridad de encolamiento
-            </summary>
-        </member>
         <member name="F:Orbita.VA.Funciones.OFuncionVisionLPR.InformacionAdicional">
             <summary>
             Lista de información adicional incorporada por el controlador externo
@@ -1489,17 +1492,12 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.OInfoInspeccionLPR.ImagenPerspectivaCorregida">
-            <summary>
-            Imagen inspeccionada
-            </summary>
-        </member>
         <member name="M:Orbita.VA.Funciones.OInfoInspeccionLPR.#ctor">
             <summary>
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.OInfoInspeccionLPR.#ctor(Orbita.VA.Comun.OImagenBitmap,Orbita.VA.Comun.OImagenBitmap,Orbita.VA.Funciones.OParametrosLPR,Orbita.VA.Funciones.OInfoImagenLPR,Orbita.VA.Funciones.OResultadoLPR,System.Collections.Generic.Dictionary{System.String,System.Object})">
+        <member name="M:Orbita.VA.Funciones.OInfoInspeccionLPR.#ctor(Orbita.VA.Comun.OImagenBitmap,Orbita.VA.Funciones.OParametrosLPR,Orbita.VA.Funciones.OInfoImagenLPR,Orbita.VA.Funciones.OResultadoLPR,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Constructor de la clase
             </summary>
@@ -1620,11 +1618,6 @@
         <member name="F:Orbita.VA.Funciones.OParametrosLPR.RutaEjecucionPorDisco">
             <summary>
             Ruta utilizada para pasar la imagen por disco
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OParametrosLPR.StrictMode">
-            <summary>
-            Modo estricto de búsqueda de matriculas multipais
             </summary>
         </member>
         <member name="M:Orbita.VA.Funciones.OParametrosLPR.#ctor">
@@ -1817,7 +1810,7 @@
         </member>
         <member name="P:Orbita.VA.Funciones.OResultadoSimpleLPR.FechaEncolamiento">
             <summary>
-            Fecha en la que se encolo a la cola de LPR (dada por él)
+            Fecha en la que se encolo a la cola de CCR (dada por él)
             </summary>
         </member>
         <member name="P:Orbita.VA.Funciones.OResultadoSimpleLPR.TiempoDeProceso">
@@ -1886,11 +1879,6 @@
         <member name="F:Orbita.VA.Funciones.EntradasFuncionesVisionLPR.RutaImagen">
             <summary>
             Ruta en disco de la imagen de entrada
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.EntradasFuncionesVisionLPR.Prioridad">
-            <summary>
-            Prioridad de encolamiento
             </summary>
         </member>
         <member name="T:Orbita.VA.Funciones.OMTInterfaceARH">
@@ -2263,7 +2251,7 @@
             <param name="kernel">Tamaño del filtro</param>
             <param name="maxResultados">Máximo de resultados a devolver</param>
         </member>
-        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.#ctor(Orbita.VA.Funciones.PolaridadEdges,Orbita.VA.Funciones.PolaridadEdges,Orbita.VA.Funciones.FilterSize,System.Int32)">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.#ctor(Orbita.VA.Funciones.PolaridadEdges,Orbita.VA.Funciones.PolaridadEdges,System.Double,Orbita.VA.Funciones.FilterSize,System.Int32)">
             <summary>
             Constructor de OrbitaCaliper con PairEdge. Por defecto añade el método de puntuación por distancia entre edges
             </summary>
@@ -2284,13 +2272,13 @@
             <param name="extremoY">Extremo en altura del AOI</param>
             <returns>Listado de resultados</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.AgregarContraste(System.Single,System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.AgregarContraste">
             <summary>
             Agrega un método de puntuación por contraste (método individual)
             </summary>
             <returns>True si se añadió correctamente</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.AgregarDistancia(System.Double,System.Single,System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:Orbita.VA.Funciones.OrbitaCaliper.AgregarDistancia(System.Double)">
             <summary>
             Agrega un método de puntuación por distancia (método de pares)
             </summary>
@@ -3422,58 +3410,7 @@
             <param name="sourceMat">Matriz de transformación</param>
             <returns>Coordenadas en destino</returns>
         </member>
-        <member name="M:Orbita.VA.Funciones.OSegmentacionOpenCV.BuscarEdges(Orbita.VA.Comun.OImagenOpenCVMonocromo{System.Byte},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Int32,Orbita.VA.Funciones.FilterSize,System.Double,System.Double,Emgu.CV.Matrix{System.Single}@,System.Collections.Generic.List{Orbita.VA.Funciones.OEdgeResult}@)">
-            <summary>
-            Búsqueda de edges
-            </summary>
-            <param name="input"></param>
-            <param name="origen"></param>
-            <param name="extremoX"></param>
-            <param name="extremoY"></param>
-            <param name="numCalipers"></param>
-            <param name="kernel"></param>
-            <param name="anchuraEsperada"></param>
-            <param name="threshold"></param>
-            <param name="matrizConversionCoordenadas"></param>
-            <param name="edges"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OSegmentacionOpenCV.CalculoLineaTendencia(System.Collections.Generic.List{System.Drawing.PointF},System.Drawing.PointF,System.Drawing.PointF,System.Int32,System.Double,System.Double@)">
-            <summary>
-            Cálculo de la línea de tendencia
-            </summary>
-            <param name="ptos"></param>
-            <param name="origen"></param>
-            <param name="extremoY"></param>
-            <param name="numPuntosDescartar"></param>
-            <param name="distanciaDescarte"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OSegmentacionOpenCV.FindLaserLine(Orbita.VA.Comun.OImagenOpenCVMonocromo{System.Byte},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Int32,Orbita.VA.Funciones.FilterSize,System.Double,System.Double,System.Int32,System.Double)">
-            <summary>
-            Encuentra una línea en una imagen
-            </summary>
-            <param name="input">Imagen de entrada</param>
-            <param name="origen">Punto de origen</param>
-            <param name="extremoX">Extremo hasta el cual buscar la línea</param>
-            <param name="extremoY">Eje a lo largo del cual se desplaza la línea</param>
-            <param name="numCalipers">Número de objetos OrbitaCaliper a utilizar (puntos para el dibujado de la línea)</param>
-            <param name="kernel">Filtro para los OrbitaCaliper</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OSegmentacionOpenCV.FindLaserLine(Orbita.VA.Comun.OImagenOpenCVMonocromo{System.Byte},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Int32,Orbita.VA.Funciones.FilterSize,System.Double,System.Double,System.Int32,System.Double,Orbita.VA.Comun.OGraficoOpenCV@,System.Drawing.Color)">
-            <summary>
-            Encuentra una línea en una imagen
-            </summary>
-            <param name="input">Imagen de entrada</param>
-            <param name="origen">Punto de origen</param>
-            <param name="extremoX">Extremo hasta el cual buscar la línea</param>
-            <param name="extremoY">Eje a lo largo del cual se desplaza la línea</param>
-            <param name="numCalipers">Número de objetos OrbitaCaliper a utilizar (puntos para el dibujado de la línea)</param>
-            <param name="kernel">Filtro para los OrbitaCaliper</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OSegmentacionOpenCV.FindLaserLine(Orbita.VA.Comun.OImagenOpenCVMonocromo{System.Byte},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Int32,Orbita.VA.Funciones.FilterSize,System.Double,System.Double,System.Int32,System.Double,Orbita.VA.Comun.OLinea@,System.Double@,Orbita.VA.Comun.OLinea@,System.Double@,Orbita.VA.Comun.OLinea@,System.Double@,Orbita.VA.Comun.OGraficoOpenCV@,System.Drawing.Color)">
+        <member name="M:Orbita.VA.Funciones.OSegmentacionOpenCV.FindLine(Orbita.VA.Comun.OImagenOpenCVMonocromo{System.Byte},System.Drawing.PointF,System.Drawing.PointF,System.Drawing.PointF,System.Int32,Orbita.VA.Funciones.FilterSize)">
             <summary>
             Encuentra una línea en una imagen
             </summary>
@@ -3528,12 +3465,6 @@
             </summary>
             <param name="edgePairWidth">Ancho de máxima puntuación</param>
         </member>
-        <member name="M:Orbita.VA.Funciones.SizeDiffNormMethod.#ctor(System.Double,System.Single,System.Single,System.Single,System.Single,System.Single)">
-            <summary>
-            Constructor del método de puntuación
-            </summary>
-            <param name="edgePairWidth">Ancho de máxima puntuación</param>
-        </member>
         <member name="M:Orbita.VA.Funciones.SizeDiffNormMethod.Puntuar(Orbita.VA.Funciones.OEdgeResult)">
             <summary>
             Sobreescritura del método de puntuación
@@ -3547,11 +3478,6 @@
             </summary>
         </member>
         <member name="M:Orbita.VA.Funciones.ContrastMethod.#ctor">
-            <summary>
-            Constructor del método de puntuación
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.Funciones.ContrastMethod.#ctor(System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             Constructor del método de puntuación
             </summary>
@@ -3636,12 +3562,6 @@
         <member name="M:Orbita.VA.Funciones.OMTInterfaceLPR.QueryEnd">
             <summary>
             Finaliza el motor de búsqueda
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Funciones.OMTInterfaceLPR.Reset">
-            <summary>
-            Resetea las colas
             </summary>
             <returns></returns>
         </member>
@@ -3899,6 +3819,11 @@
         <member name="F:Orbita.VA.Funciones.OLPRData.TotalReadItems">
             <summary>
             Cantidad de lecturas
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.OLPRData.codFunc">
+            <summary>
+            Codigo funcion
             </summary>
         </member>
         <member name="M:Orbita.VA.Funciones.OLPRData.#ctor(System.Int64,System.String,Orbita.VA.Funciones.VPARMtConfiguration,Orbita.VA.Funciones.OLPRInfoImagen@)">
@@ -4424,7 +4349,7 @@
             Finaliza la ejecución
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.OCCRManager.Reset(System.String)">
+        <member name="M:Orbita.VA.Funciones.OCCRManager.Reset">
             <summary>
             Resetea la función de visión CCR
             </summary>
@@ -4449,11 +4374,6 @@
             Indica si se ha de finalizar la ejecución del thread
             </summary>
         </member>
-        <member name="F:Orbita.VA.Funciones.ThreadEjecucionCCR.QueueSize">
-            <summary>
-            Cola de elementos a procesar en MTInterface
-            </summary>
-        </member>
         <member name="M:Orbita.VA.Funciones.ThreadEjecucionCCR.#ctor(System.String)">
             <summary>
             Constructor de la clase
@@ -4464,7 +4384,7 @@
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.ThreadEjecucionCCR.CallBack(Orbita.VA.Funciones.OInfoInspeccionCCR)">
+        <member name="M:Orbita.VA.Funciones.ThreadEjecucionCCR.CallBack(Orbita.VA.Funciones.CallBackResultadoParcial,Orbita.VA.Funciones.EventArgsResultadoParcial)">
             <summary>
             Ejecuta el callback en el mismo thread que la Applicación principal
             </summary>
@@ -4505,11 +4425,6 @@
         <member name="F:Orbita.VA.Funciones.OFuncionVisionCCR.RutaImagenTemporal">
             <summary>
             Siguiente ruta de imágen a procesar en el CCR
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.OFuncionVisionCCR.Prioridad">
-            <summary>
-            Prioridad de encolamiento
             </summary>
         </member>
         <member name="F:Orbita.VA.Funciones.OFuncionVisionCCR.InformacionAdicional">
@@ -4587,17 +4502,12 @@
             <typeparam name="TParametros"></typeparam>
             <typeparam name="TResultados"></typeparam>
         </member>
-        <member name="F:Orbita.VA.Funciones.OInfoInspeccionCCR.ImagenPerspectivaCorregida">
-            <summary>
-            Imagen inspeccionada
-            </summary>
-        </member>
         <member name="M:Orbita.VA.Funciones.OInfoInspeccionCCR.#ctor">
             <summary>
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VA.Funciones.OInfoInspeccionCCR.#ctor(Orbita.VA.Comun.OImagenBitmap,Orbita.VA.Comun.OImagenBitmap,Orbita.VA.Funciones.OParametrosCCR,Orbita.VA.Funciones.OInfoImagenCCR,Orbita.VA.Funciones.OResultadoCCR,System.Collections.Generic.Dictionary{System.String,System.Object})">
+        <member name="M:Orbita.VA.Funciones.OInfoInspeccionCCR.#ctor(Orbita.VA.Comun.OImagenBitmap,Orbita.VA.Funciones.OParametrosCCR,Orbita.VA.Funciones.OInfoImagenCCR,Orbita.VA.Funciones.OResultadoCCR,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Constructor de la clase
             </summary>
@@ -4924,11 +4834,6 @@
         <member name="F:Orbita.VA.Funciones.EntradasFuncionesVisionCCR.RutaImagen">
             <summary>
             Ruta en disco de la imagen de entrada
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Funciones.EntradasFuncionesVisionCCR.Prioridad">
-            <summary>
-            Prioridad de encolamiento
             </summary>
         </member>
     </members>

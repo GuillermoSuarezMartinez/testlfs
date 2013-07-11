@@ -23,7 +23,7 @@ namespace Orbita.Controles.Comunicaciones
             this.InitializeAttributes();
             this.Iniciar();
         }
-        #endregion        
+        #endregion
 
         #region Propiedades
         [System.ComponentModel.Category("Gestión de controles")]

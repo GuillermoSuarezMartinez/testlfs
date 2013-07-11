@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace Orbita.Utiles
 {
@@ -12,13 +11,6 @@ namespace Orbita.Utiles
     /// </summary>
     public static class OWindowsUtils
     {
-        #region Ejecución de procesos
-        [DllImport("Shell32.dll")]
-        private static extern int ShellExecute(IntPtr hwnd, string lpOperation, string lpFile, string lpParameters, string lpDirecotry, int nShowCmd);
-        [DllImport("kernel32.dll")]
-        private static extern bool Wow64EnableWow64FsRedirection(bool enable);
-        #endregion
-
         #region Llamadas a ventanas
         public const int CONST_SHOW = 5;
         public const int CONST_HIDE = 0;
@@ -130,16 +122,6 @@ namespace Orbita.Utiles
             SetWindowPos(StartMenu, new IntPtr(HWND_TOP), x, y, cx, cy, SWP_NOSIZE);
 
             ShowWindowAsync(StartMenu, 1);
-        }
-        /// <summary>
-        /// Ejecución del teclado en pantalla
-        /// </summary>
-        public static void ShowScreenKeyboard(IntPtr handle)
-        {
-            int SW_SHOWNORMAL = 1;
-            Wow64EnableWow64FsRedirection(false);
-            ShellExecute(handle, "open", "osk.exe", "", Environment.CurrentDirectory, SW_SHOWNORMAL);
-            Wow64EnableWow64FsRedirection(true);
         }
 	    #endregion
     }

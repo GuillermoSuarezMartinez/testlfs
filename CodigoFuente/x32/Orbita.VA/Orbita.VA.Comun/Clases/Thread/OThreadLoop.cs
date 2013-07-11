@@ -34,8 +34,6 @@ namespace Orbita.VA.Comun
         /// Listado de los threads de tipo loop del sistema
         /// </summary>
         public static List<OThreadLoop> ListaThreadsLoop;
-        // Identificador del thread principal
-        private static int MainThreadId;
         #endregion
 
         #region Método(s) público(s)
@@ -60,7 +58,6 @@ namespace Orbita.VA.Comun
         /// </summary>
         public static void Inicializar()
         {
-            MainThreadId = Thread.CurrentThread.ManagedThreadId;
         }
 
         /// <summary>
@@ -143,9 +140,7 @@ namespace Orbita.VA.Comun
         /// <returns>Verdadero si se está ejecutando desde el mismo hilo de ejecución que la aplicación principal</returns>
         public static bool EjecucionEnTrheadPrincipal()
         {
-            int threadId = Thread.CurrentThread.ManagedThreadId;
-
-            return !App.FormularioPrincipal.InvokeRequired && (threadId == MainThreadId);
+            return !App.FormularioPrincipal.InvokeRequired;
         }
 
         /// <summary>
@@ -472,6 +467,7 @@ namespace Orbita.VA.Comun
             {
                 this.FlagFinalizacion = false;
                 this.CrearThread();
+                //this.Estado = EstadoThread.ThreadSuspending;
                 this.Estado = EstadoThread.ThreadRunning;
                 this.Pause();
                 this.ThreadEjecucion.Iniciar();
@@ -493,7 +489,6 @@ namespace Orbita.VA.Comun
                         cerrado = this.ThreadEjecucion.Join(10);
                         Application.DoEvents();
                     }
-
                     this.Estado = EstadoThread.ThreadEnded;
                 }
                 catch (Exception exception)
@@ -569,9 +564,6 @@ namespace Orbita.VA.Comun
                     this.Estado = EstadoThread.ThreadSuspended;
                     this.FinSuspensionEvent.WaitOne();
                     resultado = true;
-                }
-                catch (ThreadAbortException threadAbortException)
-                {
                 }
                 catch (Exception exception)
                 {

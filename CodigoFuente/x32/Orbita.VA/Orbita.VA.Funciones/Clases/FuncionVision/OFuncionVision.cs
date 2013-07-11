@@ -96,25 +96,11 @@ namespace Orbita.VA.Funciones
                 foreach (DataRow dr in dt.Rows)
                 {
                     string codFuncionVision = dr["CodFuncionVision"].ToString();
-                    if (!codFuncionVision.ValidarNomenclaturaPropiedadNet())
-                    {
-                        throw new ONomenclaturaNetException(codFuncionVision);
-                    }
-
                     string ensambladoClaseImplementadora = dr["EnsambladoClaseImplementadora"].ToString();
-                    if (!ensambladoClaseImplementadora.ValidarNomenclaturaEnsambladoNet())
-                    {
-                        throw new ONomenclaturaNetException(ensambladoClaseImplementadora);
-                    }
-
-                    string claseImplementadora = dr["ClaseImplementadora"].ToString();
-                    if (!claseImplementadora.ValidarNomenclaturaPropiedadNet())
-                    {
-                        throw new ONomenclaturaNetException(claseImplementadora);
-                    }
+                    string claseImplementadora = string.Format("{0}.{1}", ensambladoClaseImplementadora, dr["ClaseImplementadora"].ToString());
 
                     object objetoImplementado;
-                    if (App.ConstruirClase(ensambladoClaseImplementadora, string.Format("{0}.{1}", ensambladoClaseImplementadora, claseImplementadora), out objetoImplementado, codFuncionVision))
+                    if (App.ConstruirClase(ensambladoClaseImplementadora, claseImplementadora, out objetoImplementado, codFuncionVision))
                     {
                         OFuncionVisionBase funcionVision = (OFuncionVisionBase)objetoImplementado;
                         ListaFuncionesVision.Add(codFuncionVision, funcionVision);

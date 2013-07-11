@@ -54,7 +54,7 @@ namespace Orbita.Comunicaciones
 
         #region Métodos
         /// <summary>
-        /// Prepara el mensaje KeepAlive de respuesta.
+        /// Prepara el mensaje keep alive de respuesta
         /// </summary>
         /// <returns>mensaje de respuesta</returns>
         public byte[] KeepAliveEnviar()
@@ -73,7 +73,7 @@ namespace Orbita.Comunicaciones
             return ret;
         }
         /// <summary>
-        /// Procesa el mensaje KeepAlive del dispositivo.
+        /// Procesa el mensaje keep alive del dispositivo
         /// </summary>
         /// <param name="valor">valor recibido por el dispositivo</param>
         /// <param name="lecturas">lecturas procesadas</param>
@@ -138,7 +138,7 @@ namespace Orbita.Comunicaciones
             return ret;
         }
         /// <summary>
-        /// Prepara el mensaje KeepAlive de respuesta.
+        /// Prepara el mensaje keep alive de respuesta
         /// </summary>
         /// <returns>mensaje de respuesta</returns>
         public byte[] SalidasEnviar(byte[] salidas)

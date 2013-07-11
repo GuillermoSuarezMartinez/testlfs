@@ -1,11 +1,11 @@
 ﻿//***********************************************************************
 // Assembly         : Orbita.Controles.VA
 // Author           : aibañez
-// Created          : 04-07-2013
+// Created          : 06-09-2012
 //
-// Last Modified By : 
-// Last Modified On : 
-// Description      : 
+// Last Modified By : aibañez
+// Last Modified On : 16-11-2012
+// Description      : Movido al proyecto Orbita.Controles.VA
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
@@ -114,6 +114,18 @@ namespace Orbita.Controles.VA
         }
 
         /// <summary>
+        /// Indica si se ha de restaurar la posición del formulario a la última guardada
+        /// </summary>
+        [Browsable(true),
+        Category("Orbita"),
+        Description("Indica si se ha de restaurar la posición del formulario a la última guardada")]
+        public bool RecordarPosicion
+        {
+            get { return false; }
+            set { ; }
+        }
+
+        /// <summary>
         /// Muestra los botones de acción situados en la parte inferior del formulario
         /// </summary>
         private bool _MostrarBotones = true;
@@ -145,13 +157,6 @@ namespace Orbita.Controles.VA
             }
         }
         #endregion Propiedades
-
-        #region Declaración de Eventos
-        /// <summary>
-        /// Se produce después de haberse cerrado el formulario
-        /// </summary>
-        public event FormClosedEventHandler FormClosed;
-        #endregion
 
         #region Constructor(es)
         /// <summary>
@@ -311,7 +316,7 @@ namespace Orbita.Controles.VA
             {
                 if (controlInterno is OrbitaUltraGridToolBar)
                 {
-                    this.toolTip.SetToolTip(((OrbitaUltraGridToolBar)controlInterno).Grid, this.toolTip.GetToolTip(((OrbitaUltraGridToolBar)controlInterno)));
+                    this.toolTip.SetToolTip(((OrbitaUltraGridToolBar)controlInterno).Grid, this.toolTip.GetToolTip(((OrbitaUltraGrid)controlInterno)));
                 }
 
                 // Recursivo
@@ -333,7 +338,7 @@ namespace Orbita.Controles.VA
                 {
                     resultado = false;
                 }
-                else if (this.ModoAperturaFormulario == ModoAperturaFormulario.Modificacion)
+                else
                 {
                     this.btnCancelar.Focus();
 
@@ -380,11 +385,6 @@ namespace Orbita.Controles.VA
 
             this.Parent.Controls.Remove(this);
             this.Parent = null;
-
-            if (this.FormClosed != null)
-            {
-                this.FormClosed(this, new FormClosedEventArgs(CloseReason.None));
-            }
 
             OTactilManager.CerrarFormuario(this);
         }
@@ -457,8 +457,7 @@ namespace Orbita.Controles.VA
                     this.EstablecerModoModificacion();
                     break;
                 case ModoAperturaFormulario.Visualizacion:
-                    this.OcultarBotones();
-                    this.OcultarBotonAceptar();
+                    this.OcultarBotonCancelar();
                     this.CargarDatosModoVisualizacion();
                     this.EstablecerModoVisualizacion();
                     break;
@@ -599,7 +598,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         protected void OcultarBotones()
         {
-            this.PnlBotonesPadre.Visible = this._MostrarBotones;
+            this.PnlSuperiorPadre.Visible = this._MostrarBotones;
         }
         #endregion Métodos protegidos
 
