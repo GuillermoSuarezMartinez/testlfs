@@ -29,10 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Infragistics.Win.Appearance appearance1 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance3 = new Infragistics.Win.Appearance();
+            Infragistics.Win.Appearance appearance2 = new Infragistics.Win.Appearance();
             this.ImageList = new System.Windows.Forms.ImageList(this.components);
             this.SplitPrincipal = new Orbita.Controles.Contenedores.OrbitaSplitContainer();
             this.CtrlStateMachineDisplay = new Orbita.Controles.VA.OrbitaVisorMaquinaEstados();
             this.PicMaquinaEstados = new Orbita.Controles.Comunes.OrbitaPictureBox();
+            this.GrpMensajes = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
+            this.ultraPanel3 = new Infragistics.Win.Misc.UltraPanel();
             this.ListMensajes = new Orbita.Controles.Comunes.OrbitaListView();
             this.Tipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Descripcion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -47,6 +52,10 @@
             this.SplitPrincipal.SuspendLayout();
             this.CtrlStateMachineDisplay.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicMaquinaEstados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GrpMensajes)).BeginInit();
+            this.GrpMensajes.SuspendLayout();
+            this.ultraPanel3.ClientArea.SuspendLayout();
+            this.ultraPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlSuperiorPadre
@@ -56,7 +65,7 @@
             // PnlPanelPrincipalPadre
             // 
             this.PnlPanelPrincipalPadre.Controls.Add(this.SplitPrincipal);
-            this.PnlPanelPrincipalPadre.Size = new System.Drawing.Size(825, 398);
+            this.PnlPanelPrincipalPadre.Size = new System.Drawing.Size(825, 462);
             // 
             // PnlBotonesPadre
             // 
@@ -91,11 +100,11 @@
             // 
             // SplitPrincipal.Panel2
             // 
-            this.SplitPrincipal.Panel2.Controls.Add(this.ListMensajes);
+            this.SplitPrincipal.Panel2.Controls.Add(this.GrpMensajes);
             this.SplitPrincipal.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.SplitPrincipal.Panel2MinSize = 50;
-            this.SplitPrincipal.Size = new System.Drawing.Size(825, 398);
-            this.SplitPrincipal.SplitterDistance = 304;
+            this.SplitPrincipal.Size = new System.Drawing.Size(825, 462);
+            this.SplitPrincipal.SplitterDistance = 279;
             this.SplitPrincipal.TabIndex = 14;
             // 
             // CtrlStateMachineDisplay
@@ -104,7 +113,7 @@
             this.CtrlStateMachineDisplay.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CtrlStateMachineDisplay.Location = new System.Drawing.Point(0, 0);
             this.CtrlStateMachineDisplay.Name = "CtrlStateMachineDisplay";
-            this.CtrlStateMachineDisplay.Size = new System.Drawing.Size(825, 304);
+            this.CtrlStateMachineDisplay.Size = new System.Drawing.Size(825, 279);
             this.CtrlStateMachineDisplay.TabIndex = 15;
             this.CtrlStateMachineDisplay.OnMensajeMaquinaEstados += new Orbita.VA.MaquinasEstados.MensajeMaquinaEstadosLanzado(this.ctrlStateMachineDisplay_OnMensajeMaquinaEstadosRecibido);
             // 
@@ -114,13 +123,56 @@
             this.PicMaquinaEstados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PicMaquinaEstados.Location = new System.Drawing.Point(0, 0);
             this.PicMaquinaEstados.Name = "PicMaquinaEstados";
-            this.PicMaquinaEstados.Size = new System.Drawing.Size(825, 304);
+            this.PicMaquinaEstados.Size = new System.Drawing.Size(825, 279);
             this.PicMaquinaEstados.TabIndex = 0;
             this.PicMaquinaEstados.TabStop = false;
             // 
+            // GrpMensajes
+            // 
+            this.GrpMensajes.BorderStyle = Infragistics.Win.Misc.GroupBoxBorderStyle.RectangularSolid;
+            appearance1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            appearance1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.GrpMensajes.ContentAreaAppearance = appearance1;
+            this.GrpMensajes.ContentPadding.Bottom = 1;
+            this.GrpMensajes.ContentPadding.Left = 1;
+            this.GrpMensajes.ContentPadding.Right = 1;
+            this.GrpMensajes.ContentPadding.Top = 1;
+            this.GrpMensajes.Controls.Add(this.ultraPanel3);
+            this.GrpMensajes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GrpMensajes.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GrpMensajes.ForeColor = System.Drawing.Color.WhiteSmoke;
+            appearance3.BackColor = System.Drawing.Color.Transparent;
+            appearance3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            appearance3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.GrpMensajes.HeaderAppearance = appearance3;
+            this.GrpMensajes.HeaderPosition = Infragistics.Win.Misc.GroupBoxHeaderPosition.TopOutsideBorder;
+            this.GrpMensajes.Location = new System.Drawing.Point(0, 0);
+            this.GrpMensajes.Margin = new System.Windows.Forms.Padding(7);
+            this.GrpMensajes.Name = "GrpMensajes";
+            this.GrpMensajes.Size = new System.Drawing.Size(825, 179);
+            this.GrpMensajes.TabIndex = 20;
+            this.GrpMensajes.Text = "Lista de mensajes";
+            // 
+            // ultraPanel3
+            // 
+            appearance2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            appearance2.BackColor2 = System.Drawing.Color.White;
+            appearance2.BackColorAlpha = Infragistics.Win.Alpha.Opaque;
+            appearance2.BackGradientStyle = Infragistics.Win.GradientStyle.Vertical;
+            this.ultraPanel3.Appearance = appearance2;
+            // 
+            // ultraPanel3.ClientArea
+            // 
+            this.ultraPanel3.ClientArea.Controls.Add(this.ListMensajes);
+            this.ultraPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ultraPanel3.Location = new System.Drawing.Point(3, 24);
+            this.ultraPanel3.Name = "ultraPanel3";
+            this.ultraPanel3.Size = new System.Drawing.Size(819, 152);
+            this.ultraPanel3.TabIndex = 21;
+            // 
             // ListMensajes
             // 
-            this.ListMensajes.AllowColumnReorder = true;
+            this.ListMensajes.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ListMensajes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Tipo,
             this.Descripcion,
@@ -134,9 +186,9 @@
             this.ListMensajes.MultiSelect = false;
             this.ListMensajes.Name = "ListMensajes";
             this.ListMensajes.ShowItemToolTips = true;
-            this.ListMensajes.Size = new System.Drawing.Size(825, 90);
+            this.ListMensajes.Size = new System.Drawing.Size(819, 152);
             this.ListMensajes.SmallImageList = this.ImageList;
-            this.ListMensajes.TabIndex = 16;
+            this.ListMensajes.TabIndex = 17;
             this.ListMensajes.UseCompatibleStateImageBehavior = false;
             this.ListMensajes.View = System.Windows.Forms.View.Details;
             // 
@@ -160,7 +212,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "CtrlMonitorizacionMaquinaEstadosTactil";
-            this.Size = new System.Drawing.Size(845, 461);
+            this.Size = new System.Drawing.Size(845, 525);
             this.Titulo = "Monitorización de máquinas de estado";
             this.PnlSuperiorPadre.ResumeLayout(false);
             this.PnlPanelPrincipalPadre.ResumeLayout(false);
@@ -172,6 +224,10 @@
             this.SplitPrincipal.ResumeLayout(false);
             this.CtrlStateMachineDisplay.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PicMaquinaEstados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GrpMensajes)).EndInit();
+            this.GrpMensajes.ResumeLayout(false);
+            this.ultraPanel3.ClientArea.ResumeLayout(false);
+            this.ultraPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -182,6 +238,8 @@
         private Contenedores.OrbitaSplitContainer SplitPrincipal;
         private OrbitaVisorMaquinaEstados CtrlStateMachineDisplay;
         private Comunes.OrbitaPictureBox PicMaquinaEstados;
+        private Contenedores.OrbitaUltraGroupBox GrpMensajes;
+        private Infragistics.Win.Misc.UltraPanel ultraPanel3;
         private Comunes.OrbitaListView ListMensajes;
         private System.Windows.Forms.ColumnHeader Tipo;
         private System.Windows.Forms.ColumnHeader Descripcion;
