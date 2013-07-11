@@ -278,7 +278,7 @@ namespace Orbita.Controles.VA
         {
             this.ListaInfoPosForms = new List<PosicionFormulario>();
 
-            foreach (Form form in OTrabajoControles.FormularioPrincipalMDI.MdiChildren) // Para todos los formularios abiertos
+            foreach (Form form in OMDIManager.FormularioPrincipalMDI.MdiChildren) // Para todos los formularios abiertos
             {
                 if (form is IOrbitaForm)
                 {
@@ -298,7 +298,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         public void EstablecerEscritorioAplicacion()
         {
-            //OTrabajoControles.DockManager.DockAreas.Clear();
+            //OMDIManager.DockManager.DockAreas.Clear();
 
             // Para todos los elementos del escritorio
             foreach (PosicionFormulario posicionFormulario in this.ListaInfoPosForms)
@@ -307,7 +307,7 @@ namespace Orbita.Controles.VA
                 IOrbitaForm frmBase = null;
 
                 // Busqueda del formulario
-                foreach (Form form in OTrabajoControles.FormularioPrincipalMDI.MdiChildren) // Para todos los formularios abiertos
+                foreach (Form form in OMDIManager.FormularioPrincipalMDI.MdiChildren) // Para todos los formularios abiertos
                 {
                     if (form.Name == posicionFormulario.Nombre)
                     {
@@ -373,7 +373,7 @@ namespace Orbita.Controles.VA
         public void Maximizar()
         {
             // Se maximizan todos los formularios
-            foreach (Form form in OTrabajoControles.FormularioPrincipalMDI.MdiChildren) // Para todos los formularios abiertos
+            foreach (Form form in OMDIManager.FormularioPrincipalMDI.MdiChildren) // Para todos los formularios abiertos
             {
                 if (form is IOrbitaForm)
                 {

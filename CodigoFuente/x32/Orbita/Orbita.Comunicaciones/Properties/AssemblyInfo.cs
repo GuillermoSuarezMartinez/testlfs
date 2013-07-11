@@ -28,5 +28,5 @@ using System.Runtime.InteropServices;
 //      Programador.
 //      Versión del día.
 //
-[assembly: AssemblyVersion("13.179.8.1")]
-[assembly: AssemblyFileVersion("13.179.8.1")]
+[assembly: AssemblyVersion("13.185.3.1")]
+[assembly: AssemblyFileVersion("13.185.3.1")]

@@ -1,11 +1,9 @@
-﻿
-using System.ComponentModel;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Text;
-
 namespace Orbita.Controles.Comunicaciones
 {
     [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
@@ -16,7 +14,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         public class CsvArrayConverter : ArrayConverter
         {
-            #region Métodos
+            #region Métodos públicos
             public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
             {
                 Array array = value as Array;
@@ -32,12 +30,12 @@ namespace Orbita.Controles.Comunicaciones
                         sb.Append(array.GetValue(i));
                     }
                     return sb.ToString();
-
                 }
                 return base.ConvertTo(context, culture, value, destinationType);
             }
             #endregion
         }
+
         /// <summary>
         /// Clase de las propiedades del control OrbitaUltraLabel
         /// </summary>
@@ -64,23 +62,24 @@ namespace Orbita.Controles.Comunicaciones
             public ControlNuevaDefinicionComunicacion(OBaseEventosComs sender)
                 : base(sender) { }
         };
+
         #region Atributos
         /// <summary>
         /// Control al que está asociada la clase OGSLabel
         /// </summary>
-        OrbitaControlBaseEventosComs control;
+        private OrbitaControlBaseEventosComs control;
         /// <summary>
         /// definición de las propiedades del OrbitaUltraLabel contenido en el control
         /// </summary>
-        ControlNuevaDefinicionAlarmas definicionAlarmas;
+        private ControlNuevaDefinicionAlarmas definicionAlarmas;
         /// <summary>
         /// definición de las propiedades del OrbitaUltraLabel contenido en el control
         /// </summary>
-        ControlNuevaDefinicionCambioDato definicionCambioDato;
+        private ControlNuevaDefinicionCambioDato definicionCambioDato;
         /// <summary>
         /// definición de las propiedades del OrbitaUltraLabel contenido en el control
         /// </summary>
-        ControlNuevaDefinicionComunicacion definicionComunicacion;
+        private ControlNuevaDefinicionComunicacion definicionComunicacion;
         #endregion
 
         #region Constructor
@@ -104,7 +103,6 @@ namespace Orbita.Controles.Comunicaciones
         {
             get { return this.control; }
         }
-
         /// <summary>
         /// propiedades del OrbitaUltraLabel contenido en el control
         /// </summary>
@@ -115,7 +113,6 @@ namespace Orbita.Controles.Comunicaciones
             get { return this.definicionAlarmas; }
             set { this.definicionAlarmas = value; }
         }
-
         /// <summary>
         /// propiedades del OrbitaUltraLabel contenido en el control
         /// </summary>
@@ -126,7 +123,6 @@ namespace Orbita.Controles.Comunicaciones
             get { return this.definicionCambioDato; }
             set { this.definicionCambioDato = value; }
         }
-
         /// <summary>
         /// propiedades del OrbitaUltraLabel contenido en el control
         /// </summary>
@@ -175,7 +171,7 @@ namespace Orbita.Controles.Comunicaciones
         /// <summary>
         /// Control al que está asociada la clase OGSLabel
         /// </summary>
-        OBaseEventosComs control;
+        private OBaseEventosComs control;
         private List<string> _alarmas = new List<string>();
         private bool _pintar = false;
         private Color _colorFondoAlarma = Color.Red;
@@ -202,8 +198,6 @@ namespace Orbita.Controles.Comunicaciones
         {
             get { return this.control; }
         }
-
-
         [Browsable(false)]
         public List<String> Alarmas
         {
@@ -225,7 +219,6 @@ namespace Orbita.Controles.Comunicaciones
                 if (value != null) { _alarmas.AddRange(value); }
             }
         }
-
         [Description("Determina si hay que cambiar el backcolor del control si está activa la(s) alarma(s) asociadas.")]
         [Browsable(true), DisplayName("Pintar")]
         [DefaultValue(false)]
@@ -234,7 +227,6 @@ namespace Orbita.Controles.Comunicaciones
             get { return _pintar; }
             set { _pintar = value; }
         }
-
         [Description("Backcolor del control al estar activa la(s) alarma(s) asociadas.")]
         [Browsable(true), DisplayName("ColorFondoAlarma")]
         [DefaultValue(typeof(Color), "Red")]
@@ -243,7 +235,6 @@ namespace Orbita.Controles.Comunicaciones
             get { return this._colorFondoAlarma; }
             set { this._colorFondoAlarma = value; }
         }
-
         [Description("Backcolor del control al no estar activa la(s) alarma(s) asociadas.")]
         [Browsable(true), DisplayName("ColorFondoNoAlarma")]
         [DefaultValue(typeof(Color), "White")]
@@ -269,7 +260,7 @@ namespace Orbita.Controles.Comunicaciones
         /// <summary>
         /// Control al que está asociada la clase OGSLabel
         /// </summary>
-        OBaseEventosComs control;
+        private OBaseEventosComs control;
         private string _variable;
         private List<string> _cambios = new List<string>();
         #endregion
@@ -294,8 +285,6 @@ namespace Orbita.Controles.Comunicaciones
         {
             get { return this.control; }
         }
-
-
         [Description("Variable cuyo valor veremos en el el TEXT.")]
         [Browsable(true), DisplayName("Variable visual")]
         [DefaultValue("")]
@@ -304,15 +293,12 @@ namespace Orbita.Controles.Comunicaciones
             get { return _variable; }
             set { _variable = value; }
         }
-
-
         [Browsable(false)]
         public List<String> Cambios
         {
             get { return _cambios; }
             set { _cambios = value; }
         }
-
         [Browsable(true), DisplayName("Cambio")]
         [Description("Variables al cambio")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -328,7 +314,6 @@ namespace Orbita.Controles.Comunicaciones
                 if (value != null) { _cambios.AddRange(value); }
             }
         }
-
         #endregion
 
         #region Métodos públicos
@@ -346,12 +331,12 @@ namespace Orbita.Controles.Comunicaciones
         /// <summary>
         /// Control al que está asociada la clase OGSLabel
         /// </summary>
-        OBaseEventosComs control;
-        string _nombreCanal = string.Empty;
-        int _idDispositivo = 0;
-        bool _pintar = false;
-        Color _colorFondoComunica = Color.White;
-        Color _colorFondoNoComunica = Color.Red;
+        private OBaseEventosComs control;
+        private string _nombreCanal = string.Empty;
+        private int _idDispositivo = 0;
+        private bool _pintar = false;
+        private Color _colorFondoComunica = Color.White;
+        private Color _colorFondoNoComunica = Color.Red;
         #endregion
 
         #region Constructor
@@ -374,21 +359,18 @@ namespace Orbita.Controles.Comunicaciones
         {
             get { return this.control; }
         }
-
         [Description("Dispositivo del servidor de comunicaciones")]
         public int IdDispositivo
         {
             get { return this._idDispositivo; }
             set { this._idDispositivo = value; }
         }
-
         [Description("Nombre del canal del servidor de comunicaciones")]
         public string NombreCanal
         {
             get { return this._nombreCanal; }
             set { this._nombreCanal = value; }
         }
-
         [Description("Determina si hay que cambiar el backcolor del control si hay un fallo de comunicación con el servidor de comunicaciones.")]
         [Browsable(true), DisplayName("Pintar")]
         [DefaultValue(false)]
@@ -397,7 +379,6 @@ namespace Orbita.Controles.Comunicaciones
             get { return _pintar; }
             set { _pintar = value; }
         }
-
         [Description("Backcolor del control al fallar la comunicación con el servidor de comunicaciones.")]
         [Browsable(true), DisplayName("ColorFondoComunica")]
         [DefaultValue(typeof(Color), "White")]
@@ -406,7 +387,6 @@ namespace Orbita.Controles.Comunicaciones
             get { return this._colorFondoComunica; }
             set { this._colorFondoComunica = value; }
         }
-
         [Description("Backcolor del control al no estar activa la(s) alarma(s) asociadas.")]
         [Browsable(true), DisplayName("ColorFondoNoComunica")]
         [DefaultValue(typeof(Color), "Red")]
@@ -423,5 +403,5 @@ namespace Orbita.Controles.Comunicaciones
             return null;
         }
         #endregion
-    }   
+    }
 }

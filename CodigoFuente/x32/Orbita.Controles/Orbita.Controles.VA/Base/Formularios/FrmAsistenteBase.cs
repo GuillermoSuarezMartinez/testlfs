@@ -45,6 +45,10 @@ namespace Orbita.Controles.VA
         /// </summary>
         protected bool CierrePorUsuario;
         /// <summary>
+        /// Informa si el motivo del cierre es por finalización del asistente
+        /// </summary>
+        protected bool CierrePorFinalizacion;
+        /// <summary>
         /// Estado del formulario por defecto
         /// </summary>
         private FormWindowState DefaultWindowState;
@@ -105,21 +109,6 @@ namespace Orbita.Controles.VA
         {
             get { return _ControlDatosModificados; }
             set { _ControlDatosModificados = value; }
-        }
-
-        /// <summary>
-        /// Se activa a verdadero cuando se han guardado correctamten los datos del formulario,
-        /// bien en la base de datos o bien en formulario invocante.
-        /// </summary>
-        private bool _FormularioModificado;
-        /// <summary>
-        /// Se activa a verdadero cuando se han guardado correctamten los datos del formulario,
-        /// bien en la base de datos o bien en formulario invocante.
-        /// </summary>
-        [Browsable(false)]
-        public bool FormularioModificado
-        {
-            get { return _FormularioModificado; }
         }
 
         /// <summary>
@@ -368,8 +357,8 @@ namespace Orbita.Controles.VA
 
             // Inicialiación de campos
             this.AlgoModificado = false;
-            this._FormularioModificado = false;
             this.CierrePorUsuario = false;
+            this.CierrePorFinalizacion = false;
             this.DefaultWindowState = this.WindowState;
             this.DefaultFormBorderStyle = this.FormBorderStyle;
         }
@@ -408,94 +397,6 @@ namespace Orbita.Controles.VA
             }
 
             return puedeAbrirse;
-        }
-
-        /// <summary>
-        /// Se añade el evento de monitorización a los controles del formulario
-        /// </summary>
-        private void InternoIniciarMonitorizarModificaciones(Control control)
-        {
-            foreach (Control controlInterno in control.Controls)
-            {
-                if (controlInterno != this.PnlInferiorPadre)
-                {
-                    if (controlInterno is OrbitaUltraCombo)
-                    {
-                        ((OrbitaUltraCombo)controlInterno).ValueChanged += this.EventoCambioValor;
-                    }
-                    else if (controlInterno is OrbitaTextBox)
-                    {
-                        ((OrbitaTextBox)controlInterno).TextChanged += this.EventoCambioValor;
-                    }
-                    else if (controlInterno is OrbitaUltraNumericEditor)
-                    {
-                        ((OrbitaUltraNumericEditor)controlInterno).ValueChanged += this.EventoCambioValor;
-                    }
-                    else if (controlInterno is OrbitaUltraCheckEditor)
-                    {
-                        ((OrbitaUltraCheckEditor)controlInterno).CheckedChanged += this.EventoCambioValor;
-                    }
-                    else if (controlInterno is OrbitaUltraGrid)
-                    {
-                        ((OrbitaUltraGrid)controlInterno).CellChange += this.EventoCeldaCambioValor;
-                    }
-                    else if (controlInterno is OrbitaUltraGridToolBar)
-                    {
-                        ((OrbitaUltraGridToolBar)controlInterno).CellChange += this.EventoCeldaCambioValor;
-                    }
-                    else if (controlInterno is OrbitaUltraDateTimeEditor)
-                    {
-                        ((OrbitaUltraDateTimeEditor)controlInterno).ValueChanged += this.EventoCambioValor;
-                    }
-
-                    // Recursivo
-                    this.InternoIniciarMonitorizarModificaciones(controlInterno);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Se elimina el evento de monitorización a los controles del formulario
-        /// </summary>
-        private void InternoFinalizarMonitorizarModificaciones(Control control)
-        {
-            foreach (Control controlInterno in control.Controls)
-            {
-                if (controlInterno != this.PnlInferiorPadre)
-                {
-                    if (controlInterno is OrbitaUltraCombo)
-                    {
-                        ((OrbitaUltraCombo)controlInterno).ValueChanged -= this.EventoCambioValor;
-                    }
-                    else if (controlInterno is OrbitaTextBox)
-                    {
-                        ((OrbitaTextBox)controlInterno).TextChanged -= this.EventoCambioValor;
-                    }
-                    else if (controlInterno is OrbitaUltraNumericEditor)
-                    {
-                        ((OrbitaUltraNumericEditor)controlInterno).ValueChanged -= this.EventoCambioValor;
-                    }
-                    else if (controlInterno is OrbitaUltraCheckEditor)
-                    {
-                        ((OrbitaUltraCheckEditor)controlInterno).CheckedChanged -= this.EventoCambioValor;
-                    }
-                    else if (controlInterno is OrbitaUltraGrid)
-                    {
-                        ((OrbitaUltraGrid)controlInterno).CellChange -= this.EventoCeldaCambioValor;
-                    }
-                    else if (controlInterno is OrbitaUltraGridToolBar)
-                    {
-                        ((OrbitaUltraGridToolBar)controlInterno).Grid.CellChange += this.EventoCeldaCambioValor;
-                    }
-                    else if (controlInterno is OrbitaUltraDateTimeEditor)
-                    {
-                        ((OrbitaUltraDateTimeEditor)controlInterno).ValueChanged -= this.EventoCambioValor;
-                    }
-
-                    // Recursivo
-                    this.InternoFinalizarMonitorizarModificaciones(controlInterno);
-                }
-            }
         }
 
         /// <summary>
@@ -556,7 +457,12 @@ namespace Orbita.Controles.VA
         /// </summary>
         private void AccionesIrAPasoSiguiente()
         {
-            if (this.ValidarDatosPaso(this.PasoActual))
+            string mensajeErrorValidacion;
+            if (!this.ValidarDatosPaso(this.PasoActual, out mensajeErrorValidacion))
+            {
+                OMensajes.MostrarAviso(mensajeErrorValidacion);
+            }
+            else
             {
                 TipoPasoAsistente tipoPasoActualLocal = this.TipoPasoActual;
                 switch (tipoPasoActualLocal)
@@ -581,7 +487,11 @@ namespace Orbita.Controles.VA
                     case TipoPasoAsistente.PasoFinal:
                             if (this.GuardarDatos())
                             {
+                                this.AccionesAlSalirDelPaso(this.PasoActual);
+                                this.AccionesAlAceptarElPaso(this.PasoActual);
+
                                 //Si se han guardado los datos correctamente, cerramos el formulario
+                                this.CierrePorFinalizacion = true;
                                 this.Close();
                             }
                         break;
@@ -600,6 +510,7 @@ namespace Orbita.Controles.VA
             if (pasoAnterior != this.PasoActual)
             {
                 this.AccionesAlSalirDelPaso(this.PasoActual);
+                this.AccionesAlCancelarElPaso(this.PasoActual);
                 this.TabControl.SelectedTab = this.TabControl.Tabs[pasoAnterior];
                 this.TipoPasoActual = tipoPasoAnterior;
                 this.AccionesAlEntrarEnPaso(this.PasoActual);
@@ -622,13 +533,10 @@ namespace Orbita.Controles.VA
             this.VisualizarPasoActual(this.PasoActual, this.TotalPasos);
 
             this.CargarDatosAsistente();
-            this.EstablecerModoAsistente();
             this.AccionesAlIniciarPaso(this.PasoActual);
             this.AccionesAlEntrarEnPaso(this.PasoActual);
 
-            this.IniciarMonitorizarModificaciones();
             this.SolucionarToolTips(this);
-            this.ResetDeteccionModificaciones();
             this.Inicio = false;
         }
         /// <summary>
@@ -636,23 +544,15 @@ namespace Orbita.Controles.VA
         /// </summary>
         protected bool GuardarDatos()
         {
-            if (this.ComprobacionesDeCampos())
+            //Llamada a la funcion de guardado de datos
+            if (!this.GuardarDatosAsistente())
             {
-                //Llamada a la funcion de guardado de datos
-                if (!this.GuardarDatosAsistente())
-                {
-                    //Si han habido errores...
-                    return false;
-                }
-                //Si no han habido errores...
-                this.ResetDeteccionModificaciones();
-                return true;
-    }
-            else //No se pueden guardar los datos por las restricciones impuestas
-            {
+                //Si han habido errores...
                 return false;
             }
-        }
+            //Si no han habido errores...
+            return true;
+    }
         /// <summary>
         /// Cambia el texto del botón aceptar
         /// </summary>
@@ -705,61 +605,10 @@ namespace Orbita.Controles.VA
         {
         }
         /// <summary>
-        /// Establece la habiliacion adecuada de los controles para el modo Modificacion
-        /// </summary>
-        protected virtual void EstablecerModoAsistente()
-        {
-            this.SuspendLayout();
-            this.ChkToolTip.Checked = false;
-            this.toolTip.Active = false;
-            this.ResumeLayout();
-        }
-        /// <summary>
         /// Guarda los datos cuando el formulario está abierto en modo Modificación
         /// </summary>
         /// <returns>True si la operación de guardado de datos ha tenido éxito; false en caso contrario</returns>
         protected virtual bool GuardarDatosAsistente()
-        {
-            this._FormularioModificado = true;
-            return true;
-        }
-        /// <summary>
-        /// Se añade el evento de monitorización a los controles del formulario
-        /// </summary>
-        protected virtual void IniciarMonitorizarModificaciones()
-        {
-            this.InternoIniciarMonitorizarModificaciones(this);
-        }
-        /// <summary>
-        /// Se elimina el evento de monitorización a los controles del formulario
-        /// </summary>
-        protected virtual void FinalizarMonitorizarModificaciones()
-        {
-            this.InternoFinalizarMonitorizarModificaciones(this);
-        }
-        /// <summary>
-        /// Comprueba si se ha modificado algún dato en algún campo del formulario
-        /// </summary>
-        /// <returns>True si se han modificado datos; false en caso contrario</returns>
-        protected virtual bool ComprobarDatosModificados()
-        {
-            if (this.AlgoModificado)
-                return true;
-
-            return false;
-        }
-        /// <summary>
-        /// Resetea el mecanismo de modificaciones indicando que se han procesado los cambios
-        /// </summary>
-        protected virtual void ResetDeteccionModificaciones()
-        {
-            this.AlgoModificado = false;
-        }
-        /// <summary>
-        /// Realiza las comprobaciones pertinentes antes de realizar un guardado de los datos. Se usa para el caso en que hayan restricciones en el momento de guardar los datos
-        /// </summary>
-        /// <returns>True si todo está correcto para ser guardado; false en caso contrario</returns>
-        protected virtual bool ComprobacionesDeCampos()
         {
             return true;
         }
@@ -813,10 +662,17 @@ namespace Orbita.Controles.VA
 
         }
         /// <summary>
-        /// Validación de aceptación del paso
+        /// Acciones al salir del paso al siguiente
         /// </summary>
         /// <param name="paso"></param>
         protected virtual void AccionesAlAceptarElPaso(int paso)
+        {
+        }
+        /// <summary>
+        /// Acciones al salir del paso al anterior
+        /// </summary>
+        /// <param name="paso"></param>
+        protected virtual void AccionesAlCancelarElPaso(int paso)
         {
         }
         /// <summary>
@@ -831,8 +687,9 @@ namespace Orbita.Controles.VA
         /// Consulta sobre la validez de los datos introducidos en el paso
         /// </summary>
         /// <param name="paso"></param>
-        protected virtual bool ValidarDatosPaso(int paso)
+        protected virtual bool ValidarDatosPaso(int paso, out string mensajeErrorValidacion)
         {
+            mensajeErrorValidacion = string.Empty;
             return true;
         }
         #endregion Métodos virtuales
@@ -849,12 +706,13 @@ namespace Orbita.Controles.VA
                 {
                     // Apertura del formulario
                     this.CierrePorUsuario = false;
+                    this.CierrePorFinalizacion = false;
 
                     // Posición por defecto del formulario
                     this.DefatulRectangle = new Rectangle(this.Left, this.Top, this.Width, this.Height);
 
-                    //OTrabajoControles.FormularioPrincipalMDI.OI.MostrarFormulario(this);
-                    this.MdiParent = OTrabajoControles.FormularioPrincipalMDI;
+                    //OMDIManager.FormularioPrincipalMDI.OI.MostrarFormulario(this);
+                    this.MdiParent = OMDIManager.FormularioPrincipalMDI;
                     base.Show();
 
                     FrmBase.ListaFormsAbiertos.Add(this.Name);
@@ -909,6 +767,7 @@ namespace Orbita.Controles.VA
         {
             try
             {
+                this.CierrePorFinalizacion = false;
                 this.Close();
             }
             catch (System.Exception exception)
@@ -957,29 +816,27 @@ namespace Orbita.Controles.VA
         {
             try
             {
-                this.btnCancelar.Focus();
-
-                if (this.ComprobarDatosModificados())
+                if ((e.CloseReason == CloseReason.UserClosing) && (!this.CierrePorUsuario))
                 {
+                    e.Cancel = true;
+                }
+                else if (!this.CierrePorFinalizacion)
+                {
+                    this.btnCancelar.Focus();
+
                     //Si hay datos modificados en el formulario, avisar y preguntar qué hacer
-                    switch (OMensajes.MostrarPreguntaSiNoCancelar("¿Desea guardar los cambios realizados?", MessageBoxDefaultButton.Button3))
+                    switch (OMensajes.MostrarPreguntaSiNoCancelar("¿Desea abandonar el asistente?", MessageBoxDefaultButton.Button3))
                     {
                         case DialogResult.Yes:
-                            if (!this.GuardarDatos())
-                            {
-                                e.Cancel = true;
-                                return;
-                            }
+                            this.AccionesNoGuardar();
                             break;
                         case DialogResult.No:
-                            this.AccionesNoGuardar();
-                            //Cerrar el formulario, es decir, seguir con la ejecucion
-                            break;
                         case DialogResult.Cancel:
                             e.Cancel = true;
                             break;
                     }
                 }
+                this.CierrePorFinalizacion = false;
             }
             catch (System.Exception exception)
             {
@@ -995,7 +852,6 @@ namespace Orbita.Controles.VA
         {
             try
             {
-                this.FinalizarMonitorizarModificaciones();
                 this.AccionesSalir();
 
                 // Eliminamos el formulario de la lista de formularios abiertos
@@ -1005,34 +861,6 @@ namespace Orbita.Controles.VA
             {
                 OLogsControlesVA.ControlesVA.Error(exception, "Cierre de formulario");
             }
-        }
-        /// <summary>
-        /// Cambio de valor en un componente
-        /// </summary>
-        /// <param name="sender">Objeto que envía el evento</param>
-        /// <param name="e">Argumentos del evento</param>
-        public void EventoCambioValor(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!this.Inicio && this.ControlDatosModificados)
-                {
-                    this.AlgoModificado = true;
-                }
-            }
-            catch (Exception exception)
-            {
-                OLogsControlesVA.ControlesVA.Error(exception, "Cambio de valor");
-            }
-        }
-        /// <summary>
-        /// Cambio de valor en un componente
-        /// </summary>
-        /// <param name="sender">Objeto que envía el evento</param>
-        /// <param name="celda">Argumentos del evento</param>
-        private void EventoCeldaCambioValor(object sender, CellEventArgs celda)
-        {
-            this.EventoCambioValor(sender, new EventArgs());
         }
         /// <summary>
         /// Muestra o oculta los tooltips

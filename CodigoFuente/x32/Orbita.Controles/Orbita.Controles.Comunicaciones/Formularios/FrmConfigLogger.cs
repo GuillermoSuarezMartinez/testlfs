@@ -8,7 +8,7 @@ namespace Orbita.Controles.Comunicaciones
 {
     public partial class FrmConfigLogger : Form
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// lista con elementos configuración.
         /// </summary>

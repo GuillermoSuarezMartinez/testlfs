@@ -12,7 +12,7 @@ namespace Orbita.Controles.Comunicaciones
     /// </summary>
     public partial class OrbitaTCPServidor : UserControl
     {
-        #region Variables
+        #region Atributos
         /// <summary>
         /// delegado para la escritura
         /// </summary>
@@ -21,19 +21,19 @@ namespace Orbita.Controles.Comunicaciones
         /// <summary>
         /// Listener principal
         /// </summary>
-        OTCPListener _listenerPrincipal;
+        private OTCPListener _listenerPrincipal;
         /// <summary>
         /// Log de la aplicación
         /// </summary>
-        ILogger _logPrincipal;
+        private ILogger _logPrincipal;
         /// <summary>
         /// Colección de hilos.
         /// </summary>
-        OHilos hilos;
+        private OHilos hilos;
         /// <summary>
         /// Fecha del último envío al cliente
         /// </summary>
-        DateTime fechaUltimoEnvio;
+        private DateTime fechaUltimoEnvio;
         #endregion
 
         #region Constructor
@@ -48,7 +48,6 @@ namespace Orbita.Controles.Comunicaciones
         #endregion
 
         #region Metodos
-
         /// <summary>
         /// Inicializa las variables de la comunicación TCP
         /// </summary>
@@ -70,7 +69,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="pool">Colección de canales</param>
         /// <returns></returns>
-        private OWinSockCliente[] GetClientes(Hashtable pool)
+        private static OWinSockCliente[] GetClientes(Hashtable pool)
         {
             OWinSockCliente[] winsock = new OWinSockCliente[pool.Count];
             int i = 0;
@@ -79,8 +78,6 @@ namespace Orbita.Controles.Comunicaciones
                 winsock[i] = (OWinSockCliente)item.Value;
                 i++;
             }
-
-
             return winsock;
         }
         /// <summary>
@@ -191,7 +188,6 @@ namespace Orbita.Controles.Comunicaciones
         #endregion
 
         #region Eventos Control
-
         /// <summary>
         /// Escribe el mensaje por pantalla
         /// </summary>
@@ -215,7 +211,6 @@ namespace Orbita.Controles.Comunicaciones
                 OMensajes.MostrarError("Error: " + ex.ToString());
             }
         }
-
         private void btnConectar_Click(object sender, EventArgs e)
         {
             try
@@ -227,20 +222,16 @@ namespace Orbita.Controles.Comunicaciones
             {
                 OMensajes.MostrarAviso("No se puede iniciar la aplicación: " + ex.ToString());
             }
-
         }
-
         private void btnEnviar_Click(object sender, EventArgs e)
         {
             try
             {
-                OWinSockCliente[] winsock = this.GetClientes(this._listenerPrincipal.PoolCliente);
-
+                OWinSockCliente[] winsock = GetClientes(this._listenerPrincipal.PoolCliente);
                 for (int i = 0; i < winsock.Length; i++)
                 {
                     winsock[i].Enviar(this.txtEnvioDatos.Text);
                 }
-
             }
             catch (Exception ex)
             {

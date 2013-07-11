@@ -3242,13 +3242,13 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Escritura de la salida física
         /// </summary>
-        public override void EscribirSalida(string codigoVariable, object valor)
+        public override void EscribirSalida(string codigoVariable, object valor, string remitente)
         {
             try
             {
                 if (this.Conectividad.EstadoConexion == EstadoConexion.Conectado)
                 {
-                    base.EscribirSalida(codigoVariable, valor);
+                    base.EscribirSalida(codigoVariable, valor, remitente);
 
                     // Se comprueba que el valor a escribir sea correcto
                     bool boolValor;

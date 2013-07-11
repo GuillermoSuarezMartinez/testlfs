@@ -11,19 +11,22 @@
 //***********************************************************************
 namespace Orbita.Framework.Core
 {
+    /// <summary>
+    /// Clase propia asociada a la clase base.
+    /// </summary>
     [System.ComponentModel.TypeConverter(typeof(System.ComponentModel.ExpandableObjectConverter))]
     [System.CLSCompliantAttribute(false)]
-    public class OIContainerForm : Orbita.Controles.Contenedores.OMdiContainerForm
+    public class OIContainerForm : Controles.Contenedores.OMdiContainerForm
     {
         #region Atributos
         /// <summary>
-        /// Mostrar el formulario de autenticación.
+        /// Indica si se quiere mostrar el formulario de autenticación.
         /// </summary>
-        bool autenticación;
+        private bool autenticación;
         /// <summary>
-        /// Enumerado correspondiente al idioma.
+        /// Enumerado correspondiente al idioma seleccionado.
         /// </summary>
-        SelectorIdioma idioma;
+        private SelectorIdioma idioma;
         #endregion
 
         #region Constructor
@@ -36,12 +39,18 @@ namespace Orbita.Framework.Core
         #endregion
 
         #region Propiedades
+        /// <summary>
+        /// Indica si se quiere mostrar el formulario de autenticación.
+        /// </summary>
         [System.ComponentModel.Description("Indica si se quiere mostrar un formulario de autenticación.")]
         public bool Autenticación
         {
             get { return this.autenticación; }
             set { this.autenticación = value; }
         }
+        /// <summary>
+        /// Enumerado correspodiente al idioma seleccionado.
+        /// </summary>
         [System.ComponentModel.Description("Idioma de los controles que contiene cada formulario que contiene el Framework.")]
         public SelectorIdioma Idioma
         {

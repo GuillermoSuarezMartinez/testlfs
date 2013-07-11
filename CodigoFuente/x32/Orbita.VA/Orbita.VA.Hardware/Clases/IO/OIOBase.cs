@@ -611,8 +611,9 @@ namespace Orbita.VA.Hardware
                 this._Descripcion = dtTerminalIO.Rows[0]["DescTerminalIO"].ToString();
                 this._Habilitado = (bool)dtTerminalIO.Rows[0]["HabilitadoTerminalIO"];
 
-                int intTipoTerminalIO = OEntero.Validar(dtTerminalIO.Rows[0]["IdTipoTerminalIO"], 1, 4, 1);
-                this._TipoTerminalIO = (OTipoTerminalIO)intTipoTerminalIO;
+                //int intTipoTerminalIO = OEntero.Validar(dtTerminalIO.Rows[0]["IdTipoTerminalIO"], (int)OTipoTerminalIO., 5, 1);
+                //this._TipoTerminalIO = (OTipoTerminalIO)intTipoTerminalIO;
+                this._TipoTerminalIO = OEnumerado<OTipoTerminalIO>.Validar(dtTerminalIO.Rows[0]["IdTipoTerminalIO"], OTipoTerminalIO.EntradaComando);
 
                 this._CodVariable = dtTerminalIO.Rows[0]["CodVariable"].ToString();
                 this._Numero = (int)dtTerminalIO.Rows[0]["Numero"];
@@ -638,6 +639,7 @@ namespace Orbita.VA.Hardware
                     //OVariablesManager.CrearSuscripcion(this._CodVariable, "IO", this._Codigo, this.EscribirEntrada); // Nuevo: No se puede leer una entrada
                     break;
                 case OTipoTerminalIO.SalidaDigital:
+                case OTipoTerminalIO.EntradaSalidaDigital:
                 case OTipoTerminalIO.SalidaComando:
                     OVariablesManager.CrearSuscripcion(this._CodVariable, "IO", this._Codigo, this.EscribirSalida); // Nuevo: No se puede leer una entrada
                     break;
@@ -656,6 +658,7 @@ namespace Orbita.VA.Hardware
                     OVariablesManager.EliminarSuscripcion(this._CodVariable, "IO", this._Codigo, this.EscribirEntrada);
                     break;
                 case OTipoTerminalIO.SalidaDigital:
+                case OTipoTerminalIO.EntradaSalidaDigital:
                 case OTipoTerminalIO.SalidaComando:
                     OVariablesManager.EliminarSuscripcion(this._CodVariable, "IO", this._Codigo, this.EscribirSalida);
                     break;
@@ -669,7 +672,7 @@ namespace Orbita.VA.Hardware
         {
             if (this.CodVariable != string.Empty)
 	        {
-                OVariablesManager.SetValue(this.CodVariable, this.Valor, "IO", this.Codigo);
+                OVariablesManager.SetValue(this.CodVariable, this.Valor, this.Codigo, "IO");
             }
         }
 
@@ -732,7 +735,7 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Escritura de la salida física
         /// </summary>
-        public virtual void EscribirSalida(string codigoVariable, object valor)
+        public virtual void EscribirSalida(string codigoVariable, object valor, string remitente)
         {
             // Información extra
             OLogsVAHardware.EntradasSalidas.Debug(this.Codigo, string.Format("Escritura de salida del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(this.Valor)));

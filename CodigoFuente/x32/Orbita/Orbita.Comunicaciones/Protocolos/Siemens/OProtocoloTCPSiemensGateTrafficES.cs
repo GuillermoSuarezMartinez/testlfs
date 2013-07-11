@@ -174,6 +174,7 @@ namespace Orbita.Comunicaciones
                     BCC[0] = (byte)(id - 1);
                     Array.Copy(entradas, 0, BCC, 1, 9);
                     Array.Copy(salidas, 0, BCC, 10, 3);
+
                     if (this.CalculoBCC(BCC)[0] == valor[31])
                     {
                         ret = true;

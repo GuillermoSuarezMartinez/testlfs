@@ -147,6 +147,38 @@ namespace Orbita.Controles.VA
         {
             get { return _CurrentCursorPosition; }
         }
+
+        /// <summary>
+        /// Imagen de la cámara conectada
+        /// </summary>
+        private Bitmap _ImagenCamaraConectada = global::Orbita.Controles.VA.Properties.Resources.CamaraConectada;
+        /// <summary>
+        /// Imagen de la cámara conectada
+        /// </summary>
+        [Browsable(true),
+        Category("Orbita"),
+        Description("Imagen a mostrar cuando la cámara está conectada")]
+        public Bitmap ImagenCamaraConectada
+        {
+            get { return _ImagenCamaraConectada; }
+            set { _ImagenCamaraConectada = value; }
+        }
+
+        /// <summary>
+        /// Imagen de la cámara desconectada
+        /// </summary>
+        private Bitmap _ImagenCamaraDesConectada = global::Orbita.Controles.VA.Properties.Resources.CamaraDesConectada;
+        /// <summary>
+        /// Imagen de la cámara desconectada
+        /// </summary>
+        [Browsable(true),
+        Category("Orbita"),
+        Description("Imagen a mostrar cuando la cámara está desconectada")]
+        public Bitmap ImagenCamaraDesConectada
+        {
+            get { return _ImagenCamaraDesConectada; }
+            set { _ImagenCamaraDesConectada = value; }
+        }
         #endregion
 
         #region Propiedad(es) Virtuales
@@ -816,7 +848,7 @@ namespace Orbita.Controles.VA
                     case EstadoConexion.Desconectado:
                     default:
                         this.ImagenActual = this.NuevaImagen();
-                        this.ImagenActual.ConvertFromBitmap(global::Orbita.Controles.VA.Properties.Resources.CamaraDesConectada);
+                        this.ImagenActual.ConvertFromBitmap(this.ImagenCamaraDesConectada);
                         this.Visualizar(this.ImagenActual);
                         this.ZoomFit();
                         this.MostrarMensaje("Desconectada");
@@ -826,7 +858,7 @@ namespace Orbita.Controles.VA
                         break;
                     case EstadoConexion.Conectado:
                         this.ImagenActual = this.NuevaImagen();
-                        this.ImagenActual.ConvertFromBitmap(global::Orbita.Controles.VA.Properties.Resources.CamaraConectada);
+                        this.ImagenActual.ConvertFromBitmap(this.ImagenCamaraDesConectada);
                         this.Visualizar(this.ImagenActual);
                         this.ZoomFit();
                         this.MostrarMensaje("Conectada");
@@ -840,7 +872,7 @@ namespace Orbita.Controles.VA
                         break;
                     case EstadoConexion.Reconectando:
                         this.ImagenActual = this.NuevaImagen();
-                        this.ImagenActual.ConvertFromBitmap(global::Orbita.Controles.VA.Properties.Resources.CamaraDesConectada);
+                        this.ImagenActual.ConvertFromBitmap(this.ImagenCamaraConectada);
                         this.Visualizar(this.ImagenActual);
                         this.ZoomFit();
                         this.MostrarMensaje("Intentando reconexión");

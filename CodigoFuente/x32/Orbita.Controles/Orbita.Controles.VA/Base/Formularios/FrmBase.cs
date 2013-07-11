@@ -661,12 +661,12 @@ namespace Orbita.Controles.VA
             if (OEscritoriosManager.PermiteAnclajes)
             {
                 this.SuspendLayout();
-                OTrabajoControles.DockManager.SuspendLayout();
+                OMDIManager.DockManager.SuspendLayout();
 
                 FormWindowState windowState = this.WindowState;
 
                 // Creación del área de anclaje
-                this.DockAreaPane = OTrabajoControles.DockManager.DockControls(new Control[] { this }, DockedLocation.DockedRight, ChildPaneStyle.TabGroup);
+                this.DockAreaPane = OMDIManager.DockManager.DockControls(new Control[] { this }, DockedLocation.DockedRight, ChildPaneStyle.TabGroup);
                 this.DockAreaPane.MaximumSize = new Size(Screen.PrimaryScreen.WorkingArea.Width / 2, Screen.PrimaryScreen.WorkingArea.Height / 2);
                 this.DockAreaPane.Key = this.Handle.ToString();
                 this.DockAreaPane.Text = this.Text;
@@ -697,15 +697,15 @@ namespace Orbita.Controles.VA
                 }
 
                 // Eventos para controlar la salida del formulario
-                OTrabajoControles.DockManager.AfterPaneButtonClick += this.FrmBase_AfterPaneButtonClick;
-                OTrabajoControles.DockManager.AfterDockChange += this.FrmBase_AfterDockChange;
+                OMDIManager.DockManager.AfterPaneButtonClick += this.FrmBase_AfterPaneButtonClick;
+                OMDIManager.DockManager.AfterDockChange += this.FrmBase_AfterDockChange;
 
                 // Se establece el formulario para ser visualizado como un control
                 this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                 this.Dock = DockStyle.Fill;
                 this._Anclado = true;
 
-                OTrabajoControles.DockManager.ResumeLayout();
+                OMDIManager.DockManager.ResumeLayout();
                 this.ResumeLayout();
             }
         }
@@ -718,7 +718,7 @@ namespace Orbita.Controles.VA
             if (OEscritoriosManager.PermiteAnclajes)
             {
                 this.SuspendLayout();
-                OTrabajoControles.DockManager.SuspendLayout();
+                OMDIManager.DockManager.SuspendLayout();
 
                 DockAreaPane dockAreaPane = new DockAreaPane(dockedLocation);
                 dockAreaPane.MaximumSize = new Size(Screen.PrimaryScreen.WorkingArea.Width / 2, Screen.PrimaryScreen.WorkingArea.Height / 2);
@@ -747,7 +747,7 @@ namespace Orbita.Controles.VA
                 this.DestroyClosedPanes();
                 this.DockAreaPane = this.DockableControlPane.DockAreaPane;
 
-                OTrabajoControles.DockManager.ResumeLayout();
+                OMDIManager.DockManager.ResumeLayout();
                 this.ResumeLayout();
             }
         }
@@ -760,11 +760,11 @@ namespace Orbita.Controles.VA
             if (OEscritoriosManager.PermiteAnclajes)
             {
                 this.SuspendLayout();
-                OTrabajoControles.DockManager.SuspendLayout();
+                OMDIManager.DockManager.SuspendLayout();
 
                 // Eventos para controlar la salida del formulario
-                OTrabajoControles.DockManager.AfterPaneButtonClick -= this.FrmBase_AfterPaneButtonClick;
-                OTrabajoControles.DockManager.AfterDockChange -= this.FrmBase_AfterDockChange;
+                OMDIManager.DockManager.AfterPaneButtonClick -= this.FrmBase_AfterPaneButtonClick;
+                OMDIManager.DockManager.AfterDockChange -= this.FrmBase_AfterDockChange;
 
                 if (this.DockableWindow.ParentForm is MdiChildForm)
                 {
@@ -775,7 +775,7 @@ namespace Orbita.Controles.VA
                 this.DockableControlPane.Close();
                 this.DestroyClosedPanes();
 
-                OTrabajoControles.DockManager.ResumeLayout();
+                OMDIManager.DockManager.ResumeLayout();
                 this.ResumeLayout();
             }
         }
@@ -785,7 +785,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         private void DestroyClosedPanes()
         {
-            foreach (DockableControlPane pane in OTrabajoControles.DockManager.ControlPanes)
+            foreach (DockableControlPane pane in OMDIManager.DockManager.ControlPanes)
             {
                 if (pane.Closed)
                 {
@@ -1178,8 +1178,8 @@ namespace Orbita.Controles.VA
                     // Posición por defecto del formulario
                     this.DefatulRectangle = new Rectangle(this.Left, this.Top, this.Width, this.Height);
 
-                    //OTrabajoControles.FormularioPrincipalMDI.OI.MostrarFormulario(this);
-                    this.MdiParent = OTrabajoControles.FormularioPrincipalMDI;
+                    //OMDIManager.FormularioPrincipalMDI.OI.MostrarFormulario(this);
+                    this.MdiParent = OMDIManager.FormularioPrincipalMDI;
                     base.Show();
 
                     // Dock para los formularios de monitorización

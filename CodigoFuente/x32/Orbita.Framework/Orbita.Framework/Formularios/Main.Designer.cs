@@ -19,6 +19,7 @@
             if (disposing && (components != null))
             {
                 this.KeyDown -= new System.Windows.Forms.KeyEventHandler(this.OrbitaFramework_KeyDown);
+                this.Shown -= new System.EventHandler(OrbitaFramework_Shown);
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -31,23 +32,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.SuspendLayout();
             // 
             // Main
             // 
-            this.ClientSize = new System.Drawing.Size(491, 365);
+            this.ClientSize = new System.Drawing.Size(485, 262);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
+            this.Text = "<Título>";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OrbitaFramework_KeyDown);
             this.ResumeLayout(false);
 
         }
         private void InitializeComponentMenuStrip()
         {
-            this.pluginMenuStrip = new PluginManager.PluginOMenuStrip(this);
             this.SuspendLayout();
             //
             // MenuStrip
             //
+            this.pluginMenuStrip.AllowMerge = true;
             this.Controls.Add(this.pluginMenuStrip);
             this.MainMenuStrip = this.pluginMenuStrip;
             this.Controls.SetChildIndex(this.pluginMenuStrip, 0);
@@ -56,6 +61,6 @@
         }
         #endregion
 
-        PluginManager.PluginOMenuStrip pluginMenuStrip;
+        private PluginManager.PluginOMenuStrip pluginMenuStrip;
     }
 }

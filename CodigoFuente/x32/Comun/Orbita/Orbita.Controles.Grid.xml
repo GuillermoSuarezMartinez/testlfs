@@ -1423,6 +1423,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolCiclico">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Orbita.Controles.Grid.OrbitaUltraGridToolBar.ControlNuevaDefinicion.#ctor(Orbita.Controles.Grid.OrbitaUltraGridToolBar)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OrbitaUltraGridToolBar.ControlNuevaDefinicion.

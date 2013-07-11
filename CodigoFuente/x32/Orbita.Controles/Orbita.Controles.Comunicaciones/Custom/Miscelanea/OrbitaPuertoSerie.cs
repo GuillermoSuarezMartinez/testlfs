@@ -43,13 +43,13 @@ namespace Orbita.Controles.Comunicaciones
             this.CargarPuertosDisponbiles();
             this.PuertoSerie.OrbitaRX += new OPuertoRS.OManejadorEventoSerie(PuertoSerie_OrbitaRX);
 
-            this.CargarComboConEnumerado(this.cmbVelocidad, typeof(OVelocidad));
+            CargarComboConEnumerado(this.cmbVelocidad, typeof(OVelocidad));
             this.cmbVelocidad.SelectedValue = 9600;
-            this.CargarComboConEnumerado(this.cmbBitsDatos, typeof(OBitsDatos));
+            CargarComboConEnumerado(this.cmbBitsDatos, typeof(OBitsDatos));
             this.cmbBitsDatos.SelectedValue = 8;
-            this.CargarComboConEnumerado(this.cmbParidad, typeof(OParidades));
-            this.CargarComboConEnumerado(this.cmbBitsParada, typeof(OBitsStop));
-            this.CargarComboConEnumerado(this.cmbControlFlujo, typeof(OHandShakes));
+            CargarComboConEnumerado(this.cmbParidad, typeof(OParidades));
+            CargarComboConEnumerado(this.cmbBitsParada, typeof(OBitsStop));
+            CargarComboConEnumerado(this.cmbControlFlujo, typeof(OHandShakes));
         }
         /// <summary>
         /// Muestra los elementos recibidos por consola
@@ -103,7 +103,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="cbo"></param>
         /// <param name="enumerado"></param>
-        private void CargarComboConEnumerado(ComboBox cbo, Type enumerado)
+        private static void CargarComboConEnumerado(ComboBox cbo, Type enumerado)
         {
             //Obtenemos el datatable con laa información del enumerado
             DataTable dt = ODataTableEnumerado.GetValoresDataTable(enumerado, true);

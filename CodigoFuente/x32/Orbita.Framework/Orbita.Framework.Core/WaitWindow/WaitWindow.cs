@@ -12,72 +12,141 @@
 namespace Orbita.Framework.Core
 {
     /// <summary>
-    /// Muestra una ventana que indica al usuario una espera a un proceso que se está ejecutando.
+    /// Mostrar una ventana que indica al usuario una espera a un proceso que se está ejecutando.
     /// </summary>
-    public sealed class WaitWindow
+    public class WaitWindow : System.IDisposable
     {
         #region Atributos
-        WaitWindowGUI GUI;
+        /// <summary>
+        /// Acceso a la interfaz gráfica de usuario GUI.
+        /// </summary>
+        private WaitWindowGUI GUI;
         #endregion
 
         #region Atributos internos
         internal delegate void MethodInvoker<T>(T parametro);
-        internal System.EventHandler<WaitWindowEventArgs> workerMethod;
-        internal System.Collections.Generic.List<object> args;
+        internal System.EventHandler<WaitWindowEventArgs> metodoAsincrono;
+        internal System.Collections.Generic.IList<object> argumentos;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Framework.Core.WaitWindow.
         /// </summary>
-        WaitWindow() { }
+        private WaitWindow() { }
+        #endregion
+
+        #region Destructor
+        /// <summary>
+        /// Indica si ya se llamo al método Dispose. (Default = false)
+        /// </summary>
+        bool disposed = false;
+        /// <summary>
+        /// Implementa IDisposable. No  hacer  este  método  virtual.
+        /// Una clase derivada no debería ser capaz de  reemplazar este método.
+        /// </summary>
+        public void Dispose()
+        {
+            //  Llamo al método que  contiene la lógica
+            //  para liberar los recursos de esta clase.
+            Dispose(true);
+            //  Este objeto será limpiado por el método Dispose.
+            //  Llama al método del recolector de basura, GC.SuppressFinalize.
+            System.GC.SuppressFinalize(this);
+        }
+        /// <summary>
+        /// Método  sobrecargado de  Dispose que será  el que libera los recursos. Controla que solo se ejecute
+        /// dicha lógica una  vez y evita que el GC tenga que llamar al destructor de clase.
+        /// </summary>
+        /// <param name="disposing">Indica si llama al método Dispose.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            //  Preguntar si Dispose ya fue llamado.
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    //  Llamar a dispose de todos los recursos manejados.
+                    this.GUI.Dispose();
+                }
+
+                //  Finalizar correctamente los recursos no manejados.
+                //  { Empty }
+
+                //  Marcar como desechada ó desechandose,
+                //  de forma que no se puede ejecutar el
+                //  código dos veces.
+                disposed = true;
+            }
+        }
+        /// <summary>
+        /// Destructor(es) de clase.
+        /// En caso de que se nos olvide “desechar” la clase, el GC llamará al destructor, que tambén ejecuta 
+        /// la lógica anterior para liberar los recursos.
+        /// </summary>
+        ~WaitWindow()
+        {
+            //  Llamar a Dispose(false) es óptimo en terminos de legibilidad y mantenimiento.
+            Dispose(false);
+        }
         #endregion
 
         #region Métodos públicos estáticos
         /// <summary>
-        /// Muestra una ventana de espera con el texto "Por favor espere ..." mientras se ejecuta el método aprobado.
+        /// Mostrar una ventana de espera con el texto "Por favor espere ..." mientras se ejecuta el método aprobado.
         /// </summary>
         /// <param name="workerMethod">Puntero a el método para ejecutar mientras se muestra la ventana de espera.</param>
-        /// <returns>El argumento de resultado del método de trabajo.</returns>
+        /// <returns>Argumento de resultado del método de trabajo.</returns>
         public static object Mostrar(System.EventHandler<WaitWindowEventArgs> workerMethod)
         {
             return WaitWindow.Mostrar(workerMethod, null);
         }
         /// <summary>
-        /// Muestra una ventana de espera con el texto especificado mientras se ejecuta el método aprobado.
+        /// Mostrar una ventana de espera con el texto especificado mientras se ejecuta el método aprobado.
         /// </summary>
         /// <param name="workerMethod">Puntero a el método para ejecutar mientras se muestra la ventana de espera.</param>
-        /// <param name="mensaje">El texto que se mostrará.</param>
-        /// <returns>El argumento de resultado del método de trabajo.</returns>
+        /// <param name="mensaje">Texto que se mostrará.</param>
+        /// <returns>Argumento de resultado del método de trabajo.</returns>
         public static object Mostrar(System.EventHandler<WaitWindowEventArgs> workerMethod, string mensaje)
         {
-            return new WaitWindow().Mostrar(workerMethod, mensaje, new System.Collections.Generic.List<object>());
+            object result = null;
+            using (WaitWindow ventanaEspera = new WaitWindow())
+            {
+                result = ventanaEspera.Mostrar(workerMethod, mensaje, new System.Collections.Generic.List<object>());
+            }
+            return result;
         }
         /// <summary>
-        /// Muestra una ventana de espera con el texto especificado al ejecutar el método pasado.
+        /// Mostrar una ventana de espera con el texto especificado al ejecutar el método pasado.
         /// </summary>
         /// <param name="workerMethod">Puntero a el método para ejecutar mientras se muestra la ventana de espera.</param>
-        /// <param name="mensaje">El texto que se mostrará.</param>
+        /// <param name="mensaje">Texto que se mostrará.</param>
         /// <param name="args">Argumentos a pasar al método de trabajo.</param>
-        /// <returns>El argumento de resultado del método de trabajo.</returns>
+        /// <returns>Argumento de resultado del método de trabajo.</returns>
         public static object Mostrar(System.EventHandler<WaitWindowEventArgs> workerMethod, string mensaje, params object[] args)
         {
-            System.Collections.Generic.List<object> argumentos = new System.Collections.Generic.List<object>();
-            argumentos.AddRange(args);
-            return new WaitWindow().Mostrar(workerMethod, mensaje, argumentos);
+            object result = null;
+            using (WaitWindow ventanaEspera = new WaitWindow())
+            {
+                System.Collections.Generic.List<object> argumentos = new System.Collections.Generic.List<object>();
+                argumentos.AddRange(args);
+                result = ventanaEspera.Mostrar(workerMethod, mensaje, argumentos);
+            }
+            return result;
         }
         #endregion
 
         #region Métodos públicos
         /// <summary>
-        /// Actualiza el mensaje que aparece en la ventana de espera.
+        /// Actualizar el mensaje que aparece en la ventana de espera.
         /// </summary>
         public string Mensaje
         {
+            get { return this.GUI.Message; }
             set { this.GUI.Invoke(new MethodInvoker<string>(this.GUI.SetMessage), value); }
         }
         /// <summary>
-        /// Cancela el trabajo y sale de las ventanas de espera inmediatamente.
+        /// Cancelar el trabajo y sale de las ventanas de espera inmediatamente.
         /// </summary>
         public void Cancelar()
         {
@@ -86,7 +155,7 @@ namespace Orbita.Framework.Core
         #endregion
 
         #region Métodos privados
-        object Mostrar(System.EventHandler<WaitWindowEventArgs> workerMethod, string mensaje, System.Collections.Generic.List<object> args)
+        private object Mostrar(System.EventHandler<WaitWindowEventArgs> workerMethod, string mensaje, System.Collections.Generic.IList<object> args)
         {
             if (workerMethod == null)
             {
@@ -94,28 +163,24 @@ namespace Orbita.Framework.Core
             }
             else
             {
-                this.workerMethod = workerMethod;
+                this.metodoAsincrono = workerMethod;
             }
 
-            this.args = args;
-            if (string.IsNullOrEmpty(mensaje))
-            {
-                mensaje = "Espere por favor...";
-            }
+            this.argumentos = args;
 
-            // Configurar la ventana.
+            //  Configurar la ventana de espera.
             this.GUI = new WaitWindowGUI(this);
             this.GUI.MessageLabel.Text = mensaje;
-
+            //  Mostrar la ventana de espera.
             this.GUI.ShowDialog();
 
-            object result = this.GUI.result;
+            object result = this.GUI.resultado;
 
-            // Dispose.
+            //  Dispose.
             System.Exception error = this.GUI.error;
             this.GUI.Dispose();
 
-            // Retornar resultado o excepción.
+            //  Retornar resultado o excepción.
             if (error != null)
             {
                 throw error;

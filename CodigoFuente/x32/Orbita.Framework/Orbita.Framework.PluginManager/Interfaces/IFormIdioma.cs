@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Framework.Core
+// Assembly         : Orbita.Framework.PluginManager
 // Author           : crodriguez
 // Created          : 18-04-2013
 //
@@ -17,7 +17,7 @@ namespace Orbita.Framework.PluginManager
     public interface IFormIdioma
     {
         /// <summary>
-        /// Evento relativo al cambio de idioma desde el/los plugins cliente.
+        /// Evento relacionado con el cambio de idioma desde los plugins.
         /// </summary>
         event System.EventHandler<IdiomaChangedEventArgs> OnCambiarIdioma;
     }

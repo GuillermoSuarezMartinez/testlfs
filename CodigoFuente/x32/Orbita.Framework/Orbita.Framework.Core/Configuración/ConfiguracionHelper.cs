@@ -11,6 +11,9 @@
 //***********************************************************************
 namespace Orbita.Framework.Core
 {
+    /// <summary>
+    /// Asistente de configuración.
+    /// </summary>
     public static class ConfiguracionHelper
     {
         #region Propiedades

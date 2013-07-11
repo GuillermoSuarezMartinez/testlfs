@@ -10,6 +10,7 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -27,11 +28,11 @@ using Orbita.Utiles;
 using Orbita.VA.Comun;
 namespace Orbita.Controles.VA
 {
-    #region Clase OTrabajoControles: Destinada a alojar métodos comnes para el trabajo con los controles
+    #region Clase OMDIManager: Destinada a alojar métodos comunes de manejo de aplicaciones MDI
     /// <summary>
-    /// Clase estática destinada a alojar métodos comnes para el trabajo con los controles
+    /// Clase estática con métodos comunes de manejo de aplicaciones MDI
     /// </summary>
-    public static class OTrabajoControles
+    public static class OMDIManager
     {
         #region Atributo(s) estático(s)
         /// <summary>
@@ -56,7 +57,7 @@ namespace Orbita.Controles.VA
         /// <returns>Ture si existe algún formulario MDI hijo que este maximizado; false en caso contrario</returns>
         public static bool HayFormulariosMDIHijosMaximizados()
         {
-            foreach (Form f in OTrabajoControles.FormularioPrincipalMDI.MdiChildren)
+            foreach (Form f in OMDIManager.FormularioPrincipalMDI.MdiChildren)
             {
                 if (f.WindowState == FormWindowState.Maximized)
                 {
@@ -70,13 +71,13 @@ namespace Orbita.Controles.VA
         /// </summary>
         public static void AjustarFondoAplicacion(Size tamaño, Image imagen)
         {
-            OTrabajoControles.FormularioPrincipalMDI.SuspendLayout();
+            OMDIManager.FormularioPrincipalMDI.SuspendLayout();
             // Constantes paras tunear la imagen de fondo de la aplicación //
             float valorOpacidad = (float)0.3; //Entre 0 y 1 (0 invisible, 1 totalmente visible)
             //Tamaño del área donde irá la imagen
             Size p = tamaño;
 
-            if (OTrabajoControles.FormularioPrincipalMDI.WindowState != FormWindowState.Minimized)
+            if (OMDIManager.FormularioPrincipalMDI.WindowState != FormWindowState.Minimized)
             {
                 if (p.Width > 0 && p.Height > 0)
                 {
@@ -110,12 +111,191 @@ namespace Orbita.Controles.VA
                         g.DrawImage(imagenOriginal, new Rectangle(0, 0, imagenOriginal.Width, imagenOriginal.Height), 0, 0, imagenOriginal.Width, imagenOriginal.Height, GraphicsUnit.Pixel, ia);
 
                         //Establecemos la imagen obtenida como fondo de la aplicación
-                        OTrabajoControles.FormularioPrincipalMDI.BackgroundImage = imagenFondo;
+                        OMDIManager.FormularioPrincipalMDI.BackgroundImage = imagenFondo;
                     }
                 }
             }
-            OTrabajoControles.FormularioPrincipalMDI.ResumeLayout();
+            OMDIManager.FormularioPrincipalMDI.ResumeLayout();
         }
+        /// <summary>
+        /// Cierre de todas las ventanas abiertas
+        /// </summary>
+        public static void CerrarTodasVentanas()
+        {
+            // Primero cerramos las ventanas abiertas. Las ventanas de sistema no las cerramos
+            OrbitaForm form;
+            int cantidadDesencolar = FormularioPrincipalMDI.MdiChildren.Length;
+            for (int i = cantidadDesencolar - 1; i >= 0; i--)
+            {
+                form = (OrbitaForm)FormularioPrincipalMDI.MdiChildren[i];
+                if (form is FrmBase)
+                {
+                    FrmBase frmBase = (FrmBase)form;
+                    if (frmBase.ModoAperturaFormulario != ModoAperturaFormulario.Sistema) // Si el formulario permite recordar su posición
+                    {
+                        frmBase.Close();
+                    }
+                }
+            }
+        }
+        #endregion
+    } 
+    #endregion
+
+    #region Clase OTactilManager: Destinada a alojar métodos comunes de manejo de aplicaciones táctiles
+    /// <summary>
+    /// Clase estática con métodos comunes de manejo de aplicaciones MDI
+    /// </summary>
+    public static class OTactilManager
+    {
+        #region Atributo(s)
+        /// <summary>
+        /// Formulario principal de tipo MDI de la aplicación
+        /// </summary>
+        private static CtrlContenedorFormularios CtrlContenedorFormularios;
+        #endregion
+
+        #region Método(s) público(s)
+        /// <summary>
+        /// Visualización de un formulario
+        /// </summary>
+        /// <param name="formulario"></param>
+        public static void Inicializar(CtrlContenedorFormularios ctrlContenedorFormularios)
+        {
+            CtrlContenedorFormularios = ctrlContenedorFormularios;
+        }
+
+        /// <summary>
+        /// Visualización de un formulario
+        /// </summary>
+        /// <param name="formulario"></param>
+        public static void Finalizar()
+        {
+        }
+
+        /// <summary>
+        /// Visualización de un formulario
+        /// </summary>
+        /// <param name="formulario"></param>
+        public static void NuevoFormulario(OrbitaCtrlTactilBase formulario)
+        {
+            CtrlContenedorFormularios.NuevoFormulario(formulario);
+        }
+
+        /// <summary>
+        /// Visualización de un formulario
+        /// </summary>
+        /// <param name="formulario"></param>
+        public static void AbrirFormulario(string codFormulario)
+        {
+            CtrlContenedorFormularios.AbrirFormulario(codFormulario);
+        }
+
+        /// <summary>
+        /// Cierre de un determinado formulario
+        /// </summary>
+        /// <param name="formulario"></param>
+        public static void CerrarFormuario(OrbitaCtrlTactilBase formulario)
+        {
+            CtrlContenedorFormularios.CerrarFormuario(formulario);
+        }
+
+        /// <summary>
+        /// Cierre de un determinado formulario
+        /// </summary>
+        /// <param name="formulario"></param>
+        public static void CerrarFormuario(string codFormulario)
+        {
+            CtrlContenedorFormularios.CerrarFormuario(codFormulario);
+        }
+
+        /// <summary>
+        /// Cierre de todas las ventanas abiertas
+        /// </summary>
+        public static void CerrarTodosFormularios()
+        {
+            CtrlContenedorFormularios.CerrarTodosFormularios();
+        }
+
+        /// <summary>
+        /// Obtiene un determinado formulario
+        /// </summary>
+        /// <param name="cogido"></param>
+        /// <param name="formulario"></param>
+        /// <returns></returns>
+        public static bool GetFormulario(string codFormulario, out OrbitaCtrlTactilBase formulario)
+        {
+            return CtrlContenedorFormularios.GetFormulario(codFormulario, out formulario);
+        }
+
+        /// <summary>
+        /// Indica si el formulario esta en la lista de formularios visualizados
+        /// </summary>
+        /// <returns></returns>
+        public static bool ExisteFormulario(string codFormulario)
+        {
+            return CtrlContenedorFormularios.ExisteFormulario(codFormulario);
+        }
+
+        /// <summary>
+        /// Indica si el formulario esta en la lista de formularios visualizados
+        /// </summary>
+        /// <returns></returns>
+        public static bool ExisteFormulario(OrbitaCtrlTactilBase formulario)
+        {
+            return CtrlContenedorFormularios.ExisteFormulario(formulario);
+        }
+        #endregion
+    }
+    #endregion
+
+    #region Clase OTrabajoControles: Destinada a alojar métodos comnes para el trabajo con los controles
+    /// <summary>
+    /// Clase estática destinada a alojar métodos comnes para el trabajo con los controles
+    /// </summary>
+    public static class OTrabajoControles
+    {
+        #region Atributo(s) estático(s)
+        /// <summary>
+        /// Formulario principal de tipo MDI de la aplicación
+        /// </summary>
+        [Obsolete]
+        public static OrbitaMdiContainerForm FormularioPrincipalMDI
+        {
+            get { return OMDIManager.FormularioPrincipalMDI; }
+            set { OMDIManager.FormularioPrincipalMDI = value; }
+        }
+
+        /// <summary>
+        /// Gestor de anclas de los formularios
+        /// </summary>
+        [Obsolete]        
+        public static OrbitaUltraDockManager DockManager
+        {
+            get { return OMDIManager.DockManager; }
+            set { OMDIManager.DockManager = value; }
+        }
+        #endregion
+
+        #region Método(s) estático(s)
+        /// <summary>
+        /// Indica si existe algún formulario MDI hijo que este maximizado
+        /// </summary>
+        /// <returns>Ture si existe algún formulario MDI hijo que este maximizado; false en caso contrario</returns>
+        [Obsolete]
+        public static bool HayFormulariosMDIHijosMaximizados()
+        {
+            return OMDIManager.HayFormulariosMDIHijosMaximizados();
+        }
+        /// <summary>
+        /// Ajusta el tamaño y posición de la imagen del fondo en función del tamaño y posición del área de cliente del formulario
+        /// </summary>
+        [Obsolete]
+        public static void AjustarFondoAplicacion(Size tamaño, Image imagen)
+        {
+            OMDIManager.AjustarFondoAplicacion(tamaño, imagen);
+        }
+        
         /// <summary>
         /// Comprueba que hay una fila correctamente activada para lanzar un nuevo formulario
         /// </summary>

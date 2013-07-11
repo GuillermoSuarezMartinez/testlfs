@@ -5,7 +5,7 @@ namespace Orbita.Controles.Comunicaciones
 {
     public partial class FrmDetalle : Form
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Fila a mostrar.
         /// </summary>

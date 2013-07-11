@@ -82,6 +82,7 @@ namespace Orbita.Comunicaciones
         /// Fecha del ultimo wrapper de error
         /// </summary>
         DateTime fechaErrorWrapperWinsock = DateTime.MaxValue;
+        
         #endregion
 
         #region Constructor
@@ -93,7 +94,7 @@ namespace Orbita.Comunicaciones
         {
             //Inicialización de objetos
             this.IniciarObjetos();
-            wrapper.Debug("Objetos del dispositivo de ES Siemens creados.");
+            wrapper.Info("ODispositivo1200ES Constructor Objetos del dispositivo de ES Siemens creados.");
             //Inicio de los parámetros TCP
             try
             {
@@ -104,7 +105,7 @@ namespace Orbita.Comunicaciones
             {
                 wrapper.Error("ODispositivoSiemens1200 Constructor." + ex.ToString());
             }
-            wrapper.Debug("Comunicaciones TCP del dispositivo de ES Siemens arrancadas correctamente.");
+            wrapper.Info("ODispositivo1200ES Constructor Comunicaciones TCP del dispositivo de ES Siemens arrancadas correctamente.");
         }
         #endregion
 
@@ -280,92 +281,115 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public override bool Escribir(string[] variables, object[] valores)
         {
-            bool resultado = false;
-            byte[] salidas = new byte[_numeroBytesSalidas];
+            bool resultado = false;            
 
-            for (int i = 0; i < this.Salidas.Length; i++)
+            lock (bloqueo)
             {
-                salidas[i] = this.Salidas[i];
-            }
-            try
-            {
-                for (int i = 0; i < variables.Length; i++)
-                {
-                    OInfoDato infodato = this.Tags.GetDB(variables[i]);
+                try
+                {  
+                    #region procesar
 
-                    if (!infodato.EsEntrada)
+                    byte[] salidas = new byte[_numeroBytesSalidas];
+
+                    for (int i = 0; i < this.Salidas.Length; i++)
                     {
-                        salidas[infodato.Direccion - this._registroInicialSalidas] = this.ProcesarByte(salidas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
-
+                        salidas[i] = this.SalidasHiloEscribir[i];
                     }
-                }
-                if (this.Winsock.State != WinsockStates.Connected)
-                {
                     try
                     {
-                        //Se reconectará en el keep alive
-                        Thread.Sleep(Convert.ToInt32(this.SegReconexion * 1000));
+                        for (int i = 0; i < variables.Length; i++)
+                        {
+                            OInfoDato infodato = this.Tags.GetDB(variables[i]);
+
+                            if (!infodato.EsEntrada)
+                            {
+                                wrapper.Info("ODispositivoSiemens1200 Escribir infodato variable " + variables[i].ToString() + " valor " + valores[0].ToString());
+                                salidas[infodato.Direccion - this._registroInicialSalidas] = this.ProcesarByte(salidas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
+
+                            }                            
+                        }                        
+
+                        if (this.Winsock.State != WinsockStates.Connected)
+                        {
+                            try
+                            {
+                                //Se reconectará en el keep alive
+                                Thread.Sleep(Convert.ToInt32(this.SegReconexion * 1000));
+                            }
+                            catch (Exception ex)
+                            {
+                                wrapper.Error("ODispositivoSiemens1200 Escribir Error al conectar con dispositivo de ES: ", ex);
+                            }
+                        }
+                        else
+                        {
+                            using (protocoloEscritura)
+                            {
+                                try
+                                {
+                                    //Configuramos las salidas en dos bytes
+                                    byte[] byteSalidas = protocoloEscritura.SalidasEnviar(salidas, this.IdMensaje);
+
+                                    if (byteSalidas != null)
+                                    {
+                                        this.Winsock.Send(byteSalidas);
+                                        //wrapper.Info("ODispositivoSiemens1200 Escribir valores: " + salidas[0].ToString() + " " + salidas[1].ToString());
+                                        if (!this._eReset.Dormir(2, TimeSpan.FromSeconds(this.Config.TiempoEsperaEscritura / 1000)))
+                                        {
+                                            // Trazar recepción errónea.
+                                            wrapper.Warn("ODispositivo1200ES Escribir Timeout en la escritura de variables en el dispositivo de ES Siemens");
+                                        }
+                                        else
+                                        {
+                                            //if (protocoloEscritura.SalidasProcesar(this._valorEscritura, this.idMensaje))
+                                            //{
+                                                wrapper.Info("ODispositivo1200ES Escribir Variables procesadas por el PLC");
+                                                this.SalidasHiloEscribir = salidas;
+                                                resultado = true;
+                                            //}
+                                        }
+                                        // Resetear el evento.
+                                        this._eReset.Resetear(2);
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    wrapper.Error("ODispositivoSiemens1200 Escribir Error en la escritura de variables en el dispositivo de ES Siemens " + ex.ToString());
+                                }
+                            }
+                        }
                     }
                     catch (Exception ex)
                     {
-                        wrapper.Error("ODispositivoSiemens1200 Escribir Error al conectar con dispositivo de ES: ", ex);
-                    }
-                }
-                else
-                {
-                    using (protocoloEscritura)
-                    {
+                        string vars = "";
+                        string disp = this.Nombre;
+
                         try
                         {
-                            //Configuramos las salidas en dos bytes
-                            byte[] byteSalidas = protocoloEscritura.SalidasEnviar(salidas, this.IdMensaje);
-
-                            if (byteSalidas != null)
+                            for (int i = 0; i < variables.Length; i++)
                             {
-                                this.Winsock.Send(byteSalidas);
-
-                                if (!this._eReset.Dormir(2, TimeSpan.FromSeconds(this.Config.TiempoEsperaEscritura / 1000)))
-                                {
-                                    // Trazar recepción errónea.
-                                    wrapper.Warn("Timeout en la escritura de variables en el dispositivo de ES Siemens");
-                                }
-                                else
-                                {
-                                    if (protocoloEscritura.SalidasProcesar(this._valorEscritura, this.idMensaje))
-                                    {
-                                        resultado = true;
-                                    }
-                                }
-                                // Resetear el evento.
-                                this._eReset.Resetear(2);
+                                vars = vars + "#" + variables[i].ToString();
                             }
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
-                            wrapper.Error("ODispositivoSiemens1200 Escribir Error en la escritura de variables en el dispositivo de ES Siemens " + ex.ToString());
+                            vars = "";
+                            disp = "";
                         }
+                        wrapper.Fatal("ODispositivoSiemens1200 Escribir Error en la escritura de variables en dispositivo " +
+                            disp.ToString() + " con variables " + vars + " " + ex.ToString());
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                string vars = "";
-                string disp = this.Nombre;
+                        
+                    #endregion    
 
-                try
-                {
-                    for (int i = 0; i < variables.Length; i++)
-                    {
-                        vars = vars + "#" + variables[i].ToString();
-                    }
+                    this._bloqueoEscrituras++;
+
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    vars = "";
-                    disp = "";
+                    Console.WriteLine(ex.ToString());
                 }
-                wrapper.Fatal("ODispositivoSiemens1200 Escribir Error en la escritura de variables en dispositivo " + 
-                    disp.ToString() + " con variables " + vars + " " + ex.ToString());
+                
             }
 
             return resultado;
@@ -451,7 +475,7 @@ namespace Orbita.Comunicaciones
             ArrayList listSalidas = new ArrayList();
 
             this._almacenLecturas = new OHashtable();
-            this._almacenEscrituras = new OHashtable();            
+            this._almacenEscrituras = new OHashtable();
 
             foreach (DictionaryEntry item in this.Tags.GetDatos())
             {
@@ -927,11 +951,11 @@ namespace Orbita.Comunicaciones
                 }
 
                 this.ProcesarMensajeRecibido(recibido);
-                wrapper.Info("Data Arrival en el dispositivo de ES Siemens: " + ret);
+                wrapper.Debug("ODispositivo1200ES _winsock_DataArrival Data Arrival en el dispositivo de ES Siemens: " + ret);
             }
             catch (Exception ex)
             {
-                string error = "Error Data Arrival en el dispositivo de ES Siemens: " + ex.ToString();
+                string error = "ODispositivo1200ES _winsock_DataArrival Error Data Arrival en el dispositivo de ES Siemens: " + ex.ToString();
                 wrapper.Error(error);
             }
         }
@@ -954,12 +978,12 @@ namespace Orbita.Comunicaciones
                     }
                 }
 
-                wrapper.Info("Send Complete en el dispositivo de ES Siemens: " + enviado);
+                wrapper.Debug("ODispositivo1200ES _winsock_SendComplete Send Complete en el dispositivo de ES Siemens: " + enviado);
 
             }
             catch (Exception ex)
             {
-                string error = "Error Send Complete en el dispositivo de ES Siemens: " + ex.ToString();
+                string error = "ODispositivo1200ES _winsock_SendComplete Error Send Complete en el dispositivo de ES Siemens: " + ex.ToString();
                 wrapper.Error(error);
             }
         }
@@ -972,12 +996,12 @@ namespace Orbita.Comunicaciones
         {
             try
             {
-                string estado = "State Changed en el dispositivo de ES Siemens. Cambia de " + e.Old_State.ToString() + " a " + e.New_State.ToString();
-                wrapper.Info(estado);
+                string estado = "ODispositivo1200ES _winsock_StateChanged State Changed en el dispositivo de ES Siemens. Cambia de " + e.Old_State.ToString() + " a " + e.New_State.ToString();
+                wrapper.Debug(estado);
             }
             catch (Exception ex)
             {
-                string error = "Error State Changed en el dispositivo de ES Siemens: " + ex.ToString();
+                string error = "ODispositivo1200ES _winsock_StateChanged Error State Changed en el dispositivo de ES Siemens: " + ex.ToString();
                 wrapper.Error(error);
             }
         }

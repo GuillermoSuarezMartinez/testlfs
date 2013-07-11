@@ -95,9 +95,23 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap BtnNok24Blanco {
+            get {
+                object obj = ResourceManager.GetObject("BtnNok24Blanco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap btnOk24 {
             get {
                 object obj = ResourceManager.GetObject("btnOk24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap btnOk24Blanco {
+            get {
+                object obj = ResourceManager.GetObject("btnOk24Blanco", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +137,30 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap CamaraConectadaNegro {
+            get {
+                object obj = ResourceManager.GetObject("CamaraConectadaNegro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap CamaraDesConectada {
             get {
                 object obj = ResourceManager.GetObject("CamaraDesConectada", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap CamaraDesConectadaNegro {
+            get {
+                object obj = ResourceManager.GetObject("CamaraDesConectadaNegro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap icn_full_screen {
+            get {
+                object obj = ResourceManager.GetObject("icn_full_screen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -144,9 +179,23 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ImgCamara24 {
+            get {
+                object obj = ResourceManager.GetObject("ImgCamara24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap ImgChat16 {
             get {
                 object obj = ResourceManager.GetObject("ImgChat16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ImgChat16Negro {
+            get {
+                object obj = ResourceManager.GetObject("ImgChat16Negro", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -186,6 +235,13 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ImgEjemplo24Blanco {
+            get {
+                object obj = ResourceManager.GetObject("ImgEjemplo24Blanco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap imgError64 {
             get {
                 object obj = ResourceManager.GetObject("imgError64", resourceCulture);
@@ -203,6 +259,20 @@ namespace Orbita.Controles.VA.Properties {
         internal static System.Drawing.Bitmap imgFloppy16 {
             get {
                 object obj = ResourceManager.GetObject("imgFloppy16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap imgFloppy24Blanco {
+            get {
+                object obj = ResourceManager.GetObject("imgFloppy24Blanco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ImgFolder24Blanco {
+            get {
+                object obj = ResourceManager.GetObject("ImgFolder24Blanco", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -242,9 +312,23 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap imgFullScreen24Blanco {
+            get {
+                object obj = ResourceManager.GetObject("imgFullScreen24Blanco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap ImgHand16 {
             get {
                 object obj = ResourceManager.GetObject("ImgHand16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ImgHand24Blanco {
+            get {
+                object obj = ResourceManager.GetObject("ImgHand24Blanco", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -259,6 +343,13 @@ namespace Orbita.Controles.VA.Properties {
         internal static System.Drawing.Bitmap ImgInfo24 {
             get {
                 object obj = ResourceManager.GetObject("ImgInfo24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ImgInfo24Blanco {
+            get {
+                object obj = ResourceManager.GetObject("ImgInfo24Blanco", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -305,9 +396,23 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ImgNextDoc16Blanco {
+            get {
+                object obj = ResourceManager.GetObject("ImgNextDoc16Blanco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap imgNoFullScreen16 {
             get {
                 object obj = ResourceManager.GetObject("imgNoFullScreen16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ImgNoFullScreen24Blanco {
+            get {
+                object obj = ResourceManager.GetObject("ImgNoFullScreen24Blanco", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -361,9 +466,30 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ImgPlay24Blanco {
+            get {
+                object obj = ResourceManager.GetObject("ImgPlay24Blanco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap ImgPointer16 {
             get {
                 object obj = ResourceManager.GetObject("ImgPointer16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ImgPointer16Negro {
+            get {
+                object obj = ResourceManager.GetObject("ImgPointer16Negro", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ImgPointer24Blanco {
+            get {
+                object obj = ResourceManager.GetObject("ImgPointer24Blanco", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -389,6 +515,13 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ImgPrevDoc16Blanco {
+            get {
+                object obj = ResourceManager.GetObject("ImgPrevDoc16Blanco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap imgQuickBuild24 {
             get {
                 object obj = ResourceManager.GetObject("imgQuickBuild24", resourceCulture);
@@ -410,6 +543,13 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ImgSnap24Blanco {
+            get {
+                object obj = ResourceManager.GetObject("ImgSnap24Blanco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap ImgStop16 {
             get {
                 object obj = ResourceManager.GetObject("ImgStop16", resourceCulture);
@@ -420,6 +560,13 @@ namespace Orbita.Controles.VA.Properties {
         internal static System.Drawing.Bitmap ImgStop24 {
             get {
                 object obj = ResourceManager.GetObject("ImgStop24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ImgStop24Blanco {
+            get {
+                object obj = ResourceManager.GetObject("ImgStop24Blanco", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -557,6 +704,20 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ImgZoom161 {
+            get {
+                object obj = ResourceManager.GetObject("ImgZoom161", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ImgZoomAcoplar24 {
+            get {
+                object obj = ResourceManager.GetObject("ImgZoomAcoplar24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap ImgZoomFit16 {
             get {
                 object obj = ResourceManager.GetObject("ImgZoomFit16", resourceCulture);
@@ -571,9 +732,170 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ImgZoomIn24Blanco {
+            get {
+                object obj = ResourceManager.GetObject("ImgZoomIn24Blanco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap ImgZoomOut16 {
             get {
                 object obj = ResourceManager.GetObject("ImgZoomOut16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ImgZoomOut24Blanco {
+            get {
+                object obj = ResourceManager.GetObject("ImgZoomOut24Blanco", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_beginning {
+            get {
+                object obj = ResourceManager.GetObject("media_beginning", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_beginning_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("media_beginning_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_beginning_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("media_beginning_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_end {
+            get {
+                object obj = ResourceManager.GetObject("media_end", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_end_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("media_end_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_end_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("media_end_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_pause {
+            get {
+                object obj = ResourceManager.GetObject("media_pause", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_pause_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("media_pause_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_pause_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("media_pause_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_play_green {
+            get {
+                object obj = ResourceManager.GetObject("media_play_green", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_play_green_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("media_play_green_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_play_green_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("media_play_green_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_step_back {
+            get {
+                object obj = ResourceManager.GetObject("media_step_back", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_step_back_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("media_step_back_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_step_forward {
+            get {
+                object obj = ResourceManager.GetObject("media_step_forward", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_step_forward_16_16 {
+            get {
+                object obj = ResourceManager.GetObject("media_step_forward_16_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_stop_red {
+            get {
+                object obj = ResourceManager.GetObject("media_stop_red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_stop_red_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("media_stop_red_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap media_stop_red_24x24 {
+            get {
+                object obj = ResourceManager.GetObject("media_stop_red_24x24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap NoHayImagen {
+            get {
+                object obj = ResourceManager.GetObject("NoHayImagen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Salir_36x36 {
+            get {
+                object obj = ResourceManager.GetObject("Salir_36x36", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

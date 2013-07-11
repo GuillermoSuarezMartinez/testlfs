@@ -2377,7 +2377,7 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Evento de reproducción realizado por una variable
         /// </summary>
-        protected void ComandoReproduccionPorVariable(string codigo, object valor)
+        protected void ComandoReproduccionPorVariable(string codigo, object valor, string remitente)
         {
             bool play = OBooleano.Validar(valor, false);
             this.Play = play;

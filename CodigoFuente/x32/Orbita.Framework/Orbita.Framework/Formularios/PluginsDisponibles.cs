@@ -9,7 +9,9 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+#region USING
 using System.Linq;
+#endregion
 namespace Orbita.Framework
 {
     /// <summary>

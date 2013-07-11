@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Framework.Core
+// Assembly         : Orbita.Framework.PluginManager
 // Author           : crodriguez
 // Created          : 18-04-2013
 //
@@ -30,11 +30,13 @@ namespace Orbita.Framework.PluginManager
         /// </summary>
         public IItemMenu ItemMenu { get; set; }
         /// <summary>
-        /// Interface de idioma.
+        /// Delegado de cambio de idioma de controles.
         /// </summary>
-        [System.CLSCompliantAttribute(false)]
-        public IFormIdioma Idioma { get; set; }
-        public IFormManejadorCierre ManejadorCierre { get; set; }
+        public System.EventHandler<IdiomaChangedEventArgs> CambiarIdioma;
+        /// <summary>
+        /// Delegado de manejador de cierre de aplicación.
+        /// </summary>
+        public System.EventHandler<System.Windows.Forms.FormClosedEventArgs> ManejadorCierreAplicacion;
         #endregion
     }
 }

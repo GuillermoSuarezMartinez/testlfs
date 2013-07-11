@@ -265,6 +265,21 @@ namespace Orbita.Controles.VA
             this._FormularioModificado = false;
             this.CierrePorUsuario = false;
         }
+
+        /// <summary>
+        /// Constructor vacio de la clase (es necesario para que el diseñador construya el formulario heredado en tiempo de diseño)
+        /// </summary>		
+        public OrbitaCtrlBase(ModoAperturaFormulario modoFormulario)
+        {
+            InitializeComponent();
+            this._ModoAperturaFormulario = modoFormulario;
+
+            // Inicialiación de campos
+            this.AlgoModificado = false;
+            this._FormularioModificado = false;
+            this.CierrePorUsuario = false;
+        }
+
         /// <summary>
         /// Constructor de la clase (No existe bloqueo de registro)
         /// </summary>
@@ -894,6 +909,38 @@ namespace Orbita.Controles.VA
         /// </summary>
         public new void Show()
         {
+            if (this.VisualizacionPermitida())
+            {
+                try
+                {
+                    // Apertura del formulario
+                    this.CierrePorUsuario = false;
+
+                    IOrbitaForm frm = this;
+                    FrmBase.ListaFormsAbiertos.Add(this.Name);
+
+                    this.Visible = true;
+                    this.Dock = DockStyle.Fill;
+                    this.BringToFront();
+
+                    if (!this.DesignMode)
+                    {
+                        this.IniciarFormulario();
+                    }
+                }
+                catch (Exception exception)
+                {
+                    OLogsControlesVA.ControlesVA.Error(exception, "Apertura de formulario");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Displays the control to the user.
+        /// </summary>
+        public new void Show(Control contendor)
+        {
+            this.Parent = contendor;
             if (this.VisualizacionPermitida())
             {
                 try

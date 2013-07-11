@@ -1,5 +1,3 @@
-using System;
-using System.ComponentModel;
 //***********************************************************************
 // Assembly         : Orbita.Framework
 // Author           : crodriguez
@@ -11,17 +9,17 @@ using System.ComponentModel;
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System.Windows.Forms;
 namespace Orbita.Framework.Core
 {
+    /// <summary>
+    /// Clase base contenedor de formularios.
+    /// </summary>
     [System.CLSCompliantAttribute(false)]
-    public partial class ContainerForm : Orbita.Controles.Contenedores.OrbitaMdiContainerForm
+    public partial class ContainerForm : Controles.Contenedores.OrbitaMdiContainerForm
     {
         #region Atributos
-        OIContainerForm definicion;
+        private OIContainerForm definicion;
         #endregion
-
-        event EventHandler<DialogResultArgs> DialogReturning;
 
         #region Constructor
         /// <summary>
@@ -50,65 +48,24 @@ namespace Orbita.Framework.Core
         #endregion
 
         #region Métodos privados
-        void InitializeAttributes()
+        /// <summary>
+        /// Inicializar atributos.
+        /// </summary>
+        private void InitializeAttributes()
         {
             if (this.definicion == null)
             {
                 this.definicion = new OIContainerForm(this);
             }
         }
-        void InitializeProperties()
+        /// <summary>
+        /// Inicializar propiedades.
+        /// </summary>
+        private void InitializeProperties()
         {
             this.OI.Autenticación = ConfiguracionEntorno.DefectoAutenticación;
             this.OI.NumeroMaximoFormulariosAbiertos = ConfiguracionEntorno.DefectoNumeroMaximoFormulariosAbiertos;
         }
         #endregion
-
-        public void ShowChildDialog(Form sender, EventHandler<DialogResultArgs> DialogReturnedValue)
-        {
-            sender.MdiParent = this;
-            sender.FormClosed += new FormClosedEventHandler(ChildClosed);
-            DialogReturning += DialogReturnedValue;
-            sender.Show();
-        }
-        //public void ShowAuthenticationDialog(Form sender, EventHandler<DialogResultArgs> DialogReturnedValue)
-        //{
-        //    sender.MdiParent = this;
-        //    sender.FormClosed += new FormClosedEventHandler(ChildClosed);
-        //    DialogReturning += DialogReturnedValue;
-        //    sender.Show();
-        //}
-
-        protected void ChildClosed(object sender, FormClosedEventArgs e)
-        {
-            Form form = (Form)sender;
-            form.FormClosed -= new FormClosedEventHandler(ChildClosed);
-            DialogReturned(form, new DialogResultArgs(form.DialogResult));
-        }
-
-        public virtual void DialogReturned(object sender, DialogResultArgs DialogReturnedValue)
-        {
-            if (DialogReturning != null)
-            {
-                DialogReturning(sender, DialogReturnedValue);
-            }
-        }
-    }
-    public class DialogResultArgs : EventArgs
-    {
-        private DialogResult _Result;
-        /// <summary>
-        /// Returns DialogResult from the dialog form.
-        /// </summary>
-        [Description("Get DialogResult returned by the dialog form")]
-        [Category("Property")]
-        public DialogResult Result
-        {
-            get { return _Result; }
-        }
-        public DialogResultArgs(DialogResult dr)
-        {
-            _Result = dr;
-        }
     }
 }

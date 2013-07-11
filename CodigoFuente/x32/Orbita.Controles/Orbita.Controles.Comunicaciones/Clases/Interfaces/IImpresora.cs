@@ -115,7 +115,6 @@ namespace Orbita.Controles.Comunicaciones
             get { return _errorImpresora; }
             set { _errorImpresora = value; }
         }
-
         public ImpresoraEventArgs(int DocumentosTotales, int DocumentosImpresos, List<ReportDocument> TicketsNoImpresos, EnumErrorImpresora ErrorImpresora)
         {
             this._DocumentosImpresos = DocumentosImpresos;

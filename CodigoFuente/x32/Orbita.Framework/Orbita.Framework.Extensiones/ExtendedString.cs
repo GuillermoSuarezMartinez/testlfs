@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Framework.Core
+// Assembly         : Orbita.Framework.Extensiones
 // Author           : crodriguez
 // Created          : 18-04-2013
 //
@@ -24,9 +24,9 @@ namespace Orbita.Framework.Extensiones
         /// <summary>
         /// Desearializar el XML por el especifico System.String.
         /// </summary>
-        /// <typeparam name="T">El tipo de objeto a deserializar.</typeparam>
-        /// <param name="s">El System.String contenido en el XML.</param>
-        /// <returns>El System.Object deserializado.</returns>
+        /// <typeparam name="T">Tipo de objeto a deserializar.</typeparam>
+        /// <param name="s">System.String contenido en el XML.</param>
+        /// <returns>System.Object deserializado.</returns>
         public static T XmlDeserialize<T>(this string s)
         {
             System.IO.StringReader sr = null;
@@ -47,10 +47,10 @@ namespace Orbita.Framework.Extensiones
                     }
                 }
             }
-            catch (System.Exception)
-            {
-                return default(T);
-            }
+            //catch (System.Exception)
+            //{
+            //    return default(T);
+            //}
             finally
             {
                 if (sr != null)

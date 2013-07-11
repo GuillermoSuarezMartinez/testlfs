@@ -9,31 +9,31 @@
         /// <summary>
         /// Identificador del argumento.
         /// </summary>
-        int _id;
+        private int _id;
         /// <summary>
         /// Nombre del argumento (texto de la columna en grid).
         /// </summary>
-        string _nombre;
+        private string _nombre;
         /// <summary>
         /// Tag para marcar si se muestra como columna en grid.
         /// </summary>
-        bool _mostrarEnGrid;
+        private bool _mostrarEnGrid;
         /// <summary>
         /// Ancho columna en grid.
         /// </summary>
-        int _with;
+        private int _with;
         /// <summary>
         /// Posición de columna en grid.
         /// </summary>
-        int _posicionColumna;
+        private int _posicionColumna;
         /// <summary>
         /// Estilo de columna en grid.
         /// </summary>
-        Orbita.Controles.Grid.EstiloColumna _estilo;
+        private Orbita.Controles.Grid.EstiloColumna _estilo;
         /// <summary>
         /// Alineación de columna en grid.
         /// </summary>
-        Orbita.Controles.Grid.Alineacion _alineacion;
+        private Orbita.Controles.Grid.Alineacion _alineacion;
         #endregion
 
         #region Constructores
@@ -66,7 +66,7 @@
             this._nombre = nombre;
             this._with = with;
             this._posicionColumna = posicionColumna;
-            this._estilo = this.GetEstilo(estilo);
+            this._estilo = GetEstilo(estilo);
             this._alineacion = this.GetAlineacion();
         }
         #endregion
@@ -136,7 +136,7 @@
         /// </summary>
         /// <param name="idEstilo">Identificador estilo columna.</param>
         /// <returns>Estilo columna orbita.</returns>
-        Orbita.Controles.Grid.EstiloColumna GetEstilo(int idEstilo)
+        private static Orbita.Controles.Grid.EstiloColumna GetEstilo(int idEstilo)
         {
             switch (idEstilo)
             {
@@ -181,7 +181,7 @@
         /// <param name="idEstilo">Identificador del estilo.</param>
         public void SetEstilosGrid(int idEstilo)
         {
-            this._estilo = this.GetEstilo(idEstilo);
+            this._estilo = GetEstilo(idEstilo);
             this._alineacion = this.GetAlineacion();
         }
         #endregion

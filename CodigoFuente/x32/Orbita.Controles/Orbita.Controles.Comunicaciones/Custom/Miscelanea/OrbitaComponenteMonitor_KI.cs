@@ -19,7 +19,7 @@ namespace Orbita.Controles.Comunicaciones
             InitializeComponent();
         }
 
-        #region Métodos
+        #region Métodos públicos
         /// <summary>
         /// envía el mensaje a user.dll
         /// </summary>

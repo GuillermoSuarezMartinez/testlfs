@@ -345,7 +345,6 @@ namespace Orbita.Comunicaciones
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
         public override bool Escribir(string[] variables, object[] valores, string canal)
         {
-            wrapper.Debug("ODispositivoClienteOPC Escribir: la opción de canal no está implementada en este dispositivo.");
             return this.Escribir(variables, valores);
         }
         /// <summary>

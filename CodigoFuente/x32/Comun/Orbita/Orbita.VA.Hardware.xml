@@ -660,7 +660,7 @@
             Evento de snap realizado por una variable
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OCamaraBase.ComandoReproduccionPorVariable(System.String,System.Object)">
+        <member name="M:Orbita.VA.Hardware.OCamaraBase.ComandoReproduccionPorVariable(System.String,System.Object,System.String)">
             <summary>
             Evento de reproducción realizado por una variable
             </summary>
@@ -2518,7 +2518,7 @@
             Simulación de la escritura de la entrada física
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOBase.EscribirSalida(System.String,System.Object)">
+        <member name="M:Orbita.VA.Hardware.OTerminalIOBase.EscribirSalida(System.String,System.Object,System.String)">
             <summary>
             Escritura de la salida física
             </summary>
@@ -2634,7 +2634,7 @@
             Lectura de la entrada física
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOBaslerVproBit.EscribirSalida(System.String,System.Object)">
+        <member name="M:Orbita.VA.Hardware.OTerminalIOBaslerVproBit.EscribirSalida(System.String,System.Object,System.String)">
             <summary>
             Escritura de la salida física
             </summary>
@@ -2830,24 +2830,6 @@
             <param name="psSource"></param>
             <param name="lpOptions"></param>
             <param name="pclsidHandler"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Hardware.Win32Utils.memcpy(System.IntPtr,System.IntPtr,System.Int32)">
-            <summary>
-            memcpy - copy a block of memery
-            </summary>
-            <param name="dst"></param>
-            <param name="src"></param>
-            <param name="count"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Hardware.Win32Utils.memcpy(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            memcpy - copy a block of memery
-            </summary>
-            <param name="dst"></param>
-            <param name="src"></param>
-            <param name="count"></param>
             <returns></returns>
         </member>
         <member name="M:Orbita.VA.Hardware.Win32Utils.CreateBindCtx(System.Int32,System.Runtime.InteropServices.UCOMIBindCtx@)">
@@ -3594,6 +3576,11 @@
             Cronómetro del tiempo sin respuesta
             </summary>
         </member>
+        <member name="F:Orbita.VA.Hardware.OClienteComunicacion.NombreCanal">
+            <summary>
+            Nombre del canal
+            </summary>
+        </member>
         <member name="F:Orbita.VA.Hardware.OClienteComunicacion._HostServidor">
             <summary>
             Dirección del Servidor de comunicaciones
@@ -3607,6 +3594,11 @@
         <member name="F:Orbita.VA.Hardware.OClienteComunicacion._IntervaloComprabacion">
             <summary>
             Inervalo entre comprobaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OClienteComunicacion._NumeroServidor">
+            <summary>
+            Número del servidor
             </summary>
         </member>
         <member name="M:Orbita.VA.Hardware.OClienteComunicacion.#ctor(System.String)">
@@ -3691,6 +3683,11 @@
             Inervalo entre comprobaciones
             </summary>
         </member>
+        <member name="P:Orbita.VA.Hardware.OClienteComunicacion.NumeroServidor">
+            <summary>
+            Número del servidor
+            </summary>
+        </member>
         <member name="T:Orbita.VA.Hardware.OTerminalClienteComunicacion">
             <summary>
             Terminal del Servidor de comunicaciones
@@ -3716,7 +3713,12 @@
             Indica que la escritura del valor se ha de producir inmediatamente al cambio del valor de la variable
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacion.#ctor(System.String,System.String)">
+        <member name="F:Orbita.VA.Hardware.OTerminalClienteComunicacion.NombreCanal">
+            <summary>
+            Nombre del canal
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacion.#ctor(System.String,System.String,System.String)">
             <summary>
             Contructor de la clase
             </summary>
@@ -3758,7 +3760,7 @@
             Simulación de la escritura de la entrada física
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacion.EscribirSalida(System.String,System.Object)">
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacion.EscribirSalida(System.String,System.Object,System.String)">
             <summary>
             Escritura de la salida
             </summary>
@@ -3784,7 +3786,7 @@
             Lista de terminales asociados
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacionWriteCommand.#ctor(System.String,System.String)">
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacionWriteCommand.#ctor(System.String,System.String,System.String)">
             <summary>
             Contructor de la clase
             </summary>
@@ -3794,7 +3796,7 @@
             Inicialización de los terminales
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacionWriteCommand.EscribirSalida(System.String,System.Object)">
+        <member name="M:Orbita.VA.Hardware.OTerminalClienteComunicacionWriteCommand.EscribirSalida(System.String,System.Object,System.String)">
             <summary>
             Escritura de la salida
             </summary>
@@ -4234,6 +4236,12 @@
             </summary>
             <param name="pylonDeviceHandle"></param>
         </member>
+        <member name="M:Orbita.VA.Hardware.OPylonGigEStringFeature.Validar">
+            <summary>
+            Inicialización del objeto
+            </summary>
+            <param name="pylonDeviceHandle"></param>
+        </member>
         <member name="M:Orbita.VA.Hardware.OPylonGigEStringFeature.Send(System.Boolean,Orbita.VA.Hardware.ModoAjuste)">
             <summary>
             Aplica el valor de memoria a la cámara
@@ -4291,6 +4299,12 @@
             </summary>
         </member>
         <member name="M:Orbita.VA.Hardware.OPylonGigEEnumFeature.Inicializar(PylonC.NET.PYLON_DEVICE_HANDLE)">
+            <summary>
+            Inicialización del objeto
+            </summary>
+            <param name="pylonDeviceHandle"></param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OPylonGigEEnumFeature.Validar">
             <summary>
             Inicialización del objeto
             </summary>
@@ -4358,6 +4372,12 @@
             </summary>
             <param name="pylonDeviceHandle"></param>
         </member>
+        <member name="M:Orbita.VA.Hardware.OPylonGigEIntFeature.Validar">
+            <summary>
+            Inicialización del objeto
+            </summary>
+            <param name="pylonDeviceHandle"></param>
+        </member>
         <member name="M:Orbita.VA.Hardware.OPylonGigEIntFeature.Send(System.Boolean,Orbita.VA.Hardware.ModoAjuste)">
             <summary>
             Aplica el parámetro a la cámara
@@ -4420,6 +4440,12 @@
             </summary>
             <param name="pylonDeviceHandle"></param>
         </member>
+        <member name="M:Orbita.VA.Hardware.OPylonGigEDoubleFeature.Validar">
+            <summary>
+            Inicialización del objeto
+            </summary>
+            <param name="pylonDeviceHandle"></param>
+        </member>
         <member name="M:Orbita.VA.Hardware.OPylonGigEDoubleFeature.Send(System.Boolean,Orbita.VA.Hardware.ModoAjuste)">
             <summary>
             Aplica el valor de memoria a la cámara
@@ -4477,6 +4503,12 @@
             </summary>
         </member>
         <member name="M:Orbita.VA.Hardware.OPylonGigEBoolFeature.Inicializar(PylonC.NET.PYLON_DEVICE_HANDLE)">
+            <summary>
+            Inicialización del objeto
+            </summary>
+            <param name="pylonDeviceHandle"></param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OPylonGigEBoolFeature.Validar">
             <summary>
             Inicialización del objeto
             </summary>
@@ -4764,7 +4796,7 @@
             Lectura de la entrada física
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOBaslerPylonBit.EscribirSalida(System.String,System.Object)">
+        <member name="M:Orbita.VA.Hardware.OTerminalIOBaslerPylonBit.EscribirSalida(System.String,System.Object,System.String)">
             <summary>
             Escritura de la salida física
             </summary>
@@ -4811,6 +4843,13 @@
             <summary>
             Finaliza la ejecución
             </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OIOManager.CrearModuloIO(System.String,System.String,Orbita.VA.Hardware.OModuloIOBase@,System.Object[])">
+            <summary>
+            Creación de un módulo IO
+            </summary>
+            <param name="codigo"></param>
+            <returns></returns>
         </member>
         <member name="M:Orbita.VA.Hardware.OIOManager.Start(System.String)">
             <summary>
@@ -4879,6 +4918,11 @@
         <member name="F:Orbita.VA.Hardware.OTipoTerminalIO.SalidaComando">
             <summary>
             Comando de Entrada
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OTipoTerminalIO.EntradaSalidaDigital">
+            <summary>
+            Entrada / Salida
             </summary>
         </member>
         <member name="T:Orbita.VA.Hardware.CambioValorTerminalEvent">
@@ -7358,6 +7402,13 @@
             Finaliza las propiedades de la clase
             </summary>
         </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraManager.CrearCamara(System.String,System.String,Orbita.VA.Hardware.OCamaraBase@,System.Object[])">
+            <summary>
+            Creación de una cámara
+            </summary>
+            <param name="codigo"></param>
+            <returns></returns>
+        </member>
         <member name="M:Orbita.VA.Hardware.OCamaraManager.GetCamara(System.String)">
             <summary>
             Busca la cámara con el código indicado
@@ -8320,7 +8371,7 @@
             Lectura de la entrada física
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOMeasurementComputingInt.EscribirSalida(System.String,System.Object)">
+        <member name="M:Orbita.VA.Hardware.OTerminalIOMeasurementComputingInt.EscribirSalida(System.String,System.Object,System.String)">
             <summary>
             Escritura de la salida física
             </summary>
@@ -8383,7 +8434,7 @@
             Posteriormente a la lectura del bit del puerto se acutaliza el valor a la variable
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OTerminalIOMeasurementComputingBit.EscribirSalida(System.String,System.Object)">
+        <member name="M:Orbita.VA.Hardware.OTerminalIOMeasurementComputingBit.EscribirSalida(System.String,System.Object,System.String)">
             <summary>
             Escritura de la salida física
             </summary>
@@ -8581,7 +8632,7 @@
             Lectura de la salida física
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.TerminalIOAxisBit.EscribirSalida(System.String,System.Object)">
+        <member name="M:Orbita.VA.Hardware.TerminalIOAxisBit.EscribirSalida(System.String,System.Object,System.String)">
             <summary>
             Escritura de la salida física
             </summary>

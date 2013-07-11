@@ -460,33 +460,6 @@ namespace Orbita.VA.Hardware
             IntPtr pclsidHandler);
         #endregion
 
-        #region Métodos manejo de memoria
-        /// <summary>
-        /// memcpy - copy a block of memery
-        /// </summary>
-        /// <param name="dst"></param>
-        /// <param name="src"></param>
-        /// <param name="count"></param>
-        /// <returns></returns>
-        [DllImport("ntdll.dll")]
-        public static extern IntPtr memcpy(
-            IntPtr dst,
-            IntPtr src,
-            int count);
-        /// <summary>
-        /// memcpy - copy a block of memery
-        /// </summary>
-        /// <param name="dst"></param>
-        /// <param name="src"></param>
-        /// <param name="count"></param>
-        /// <returns></returns>
-        [DllImport("ntdll.dll")]
-        public static extern int memcpy(
-            int dst,
-            int src,
-            int count);
-        #endregion
-
         #region Métodos multimedia
         /// <summary>
         /// Supplies a pointer to an implementation of IBindCtx

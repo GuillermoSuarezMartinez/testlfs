@@ -2847,36 +2847,6 @@
             remoteIP, localPort and remotePort.
             </summary>
         </member>
-        <member name="M:Orbita.VA.Comun.ConnectionsInfo.GetTcpTable(System.IntPtr,System.Int32@,System.Boolean)">
-            <summary>
-            API to get list of connections 
-            </summary>
-            <param name="pTcpTable"></param>
-            <param name="pdwSize"></param>
-            <param name="bOrder"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Comun.ConnectionsInfo.SetTcpEntry(System.IntPtr)">
-            <summary>
-            API to change status of connection 
-            </summary>
-            <param name="pTcprow"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Comun.ConnectionsInfo.ntohs(System.Int32)">
-            <summary>
-            Convert 16-bit value from network to host byte order 
-            </summary>
-            <param name="netshort"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.Comun.ConnectionsInfo.htons(System.Int32)">
-            <summary>
-            Convert 16-bit value back again 
-            </summary>
-            <param name="netshort"></param>
-            <returns></returns>
-        </member>
         <member name="M:Orbita.VA.Comun.ConnectionsInfo.CloseRemoteIP(System.String)">
             <summary>
             Close all connection to the remote IP 
@@ -3344,6 +3314,22 @@
             <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
             <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.CrearSuscripcion(System.String,System.String,System.String,Orbita.VA.Comun.OCambioValorDelegateRemitente)">
+            <summary>
+            Suscribe a una determinada variable
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
+            <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.CrearSuscripcion(System.String,System.String,System.String,System.String,Orbita.VA.Comun.OCambioValorDelegateRemitente)">
+            <summary>
+            Suscribe a una determinada variable
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
+            <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
+        </member>
         <member name="M:Orbita.VA.Comun.OVariablesManager.EliminarSuscripcion(System.String,System.String,System.String,Orbita.VA.Comun.OCambioValorDelegate)">
             <summary>
             Elimina la suscripción a una determinada variable
@@ -3369,6 +3355,22 @@
             <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         </member>
         <member name="M:Orbita.VA.Comun.OVariablesManager.EliminarSuscripcion(System.String,System.String,System.String,System.String,Orbita.VA.Comun.OCambioValorDelegateAdvanced)">
+            <summary>
+            Elimina la suscripción a una determinada variable
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
+            <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.EliminarSuscripcion(System.String,System.String,System.String,Orbita.VA.Comun.OCambioValorDelegateRemitente)">
+            <summary>
+            Elimina la suscripción a una determinada variable
+            </summary>
+            <param name="codigo">Código de la variable</param>
+            <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
+            <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariablesManager.EliminarSuscripcion(System.String,System.String,System.String,System.String,Orbita.VA.Comun.OCambioValorDelegateRemitente)">
             <summary>
             Elimina la suscripción a una determinada variable
             </summary>
@@ -3631,6 +3633,14 @@
             <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
             <param name="delegadoSuscriptor">Delegado que queremos suscribir</param>
         </member>
+        <member name="M:Orbita.VA.Comun.OVariable.CrearSuscripcion(System.String,System.String,Orbita.VA.Comun.OCambioValorDelegateRemitente)">
+            <summary>
+            Crea la suscripción a la variable
+            </summary>
+            <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
+            <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
+            <param name="delegadoSuscriptor">Delegado que queremos suscribir</param>
+        </member>
         <member name="M:Orbita.VA.Comun.OVariable.EliminarSuscripcion(System.String,System.String,Orbita.VA.Comun.OCambioValorDelegate)">
             <summary>
             Elimina la suscripción a la variable
@@ -3640,6 +3650,14 @@
             <param name="delegadoSuscriptor">Delegado que queremos desuscribir</param>
         </member>
         <member name="M:Orbita.VA.Comun.OVariable.EliminarSuscripcion(System.String,System.String,Orbita.VA.Comun.OCambioValorDelegateAdvanced)">
+            <summary>
+            Elimina la suscripción a la variable
+            </summary>
+            <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
+            <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
+            <param name="delegadoSuscriptor">Delegado que queremos desuscribir</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVariable.EliminarSuscripcion(System.String,System.String,Orbita.VA.Comun.OCambioValorDelegateRemitente)">
             <summary>
             Elimina la suscripción a la variable
             </summary>
@@ -3722,6 +3740,11 @@
             Implementación del delegado que se activa cuando cambia el valor de la variable
             </summary>
         </member>
+        <member name="E:Orbita.VA.Comun.OVariable.CambioValorRemitente">
+            <summary>
+            Implementación del delegado que se activa cuando cambia el valor de la variable
+            </summary>
+        </member>
         <member name="T:Orbita.VA.Comun.OVariable.CambiaValorEnThread">
             <summary>
             Delegado usado para ejecutar un cambio de valor desde un thread
@@ -3758,6 +3781,11 @@
         <member name="F:Orbita.VA.Comun.VariableCore.Valor">
             <summary>
             Valor de la variable
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.VariableCore.Remitente">
+            <summary>
+            Remitente de la variable
             </summary>
         </member>
         <member name="F:Orbita.VA.Comun.VariableCore._Bloqueo">
@@ -4058,7 +4086,12 @@
             Valor de la variable
             </summary>
         </member>
-        <member name="M:Orbita.VA.Comun.OCambioValorEventArgs.#ctor(System.String,System.Object)">
+        <member name="F:Orbita.VA.Comun.OCambioValorEventArgs._Remitente">
+            <summary>
+            Remitente de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OCambioValorEventArgs.#ctor(System.String,System.Object,System.String)">
             <summary>
             Constructor de la clase
             </summary>
@@ -4075,12 +4108,22 @@
             Valor de la variable
             </summary>
         </member>
+        <member name="P:Orbita.VA.Comun.OCambioValorEventArgs.Remitente">
+            <summary>
+            Remitente de la variable
+            </summary>
+        </member>
         <member name="T:Orbita.VA.Comun.OCambioValorDelegate">
             <summary>
             Declaración del delegado que se activa cuando cambia el valor de una variable
             </summary>
         </member>
         <member name="T:Orbita.VA.Comun.OCambioValorDelegateAdvanced">
+            <summary>
+            Declaración del delegado que se activa cuando cambia el valor de una variable
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OCambioValorDelegateRemitente">
             <summary>
             Declaración del delegado que se activa cuando cambia el valor de una variable
             </summary>
@@ -4171,6 +4214,11 @@
             Código de la variable sobre la que se aplica el valor
             </summary>
         </member>
+        <member name="F:Orbita.VA.Comun.OSecuenciaItemBase.Remitente">
+            <summary>
+            Remitente del cambio de valor de la variable
+            </summary>
+        </member>
         <member name="F:Orbita.VA.Comun.OSecuenciaItemBase.MomentoEjecucionAleatorio">
             <summary>
             Indica que el momento de ejecución se realiza de forma aleatoria
@@ -4201,13 +4249,13 @@
             Momento de ejecución respecto al inicio de la secuencia
             </summary>
         </member>
-        <member name="M:Orbita.VA.Comun.OSecuenciaItemBase.#ctor(System.String,System.TimeSpan,System.Boolean)">
+        <member name="M:Orbita.VA.Comun.OSecuenciaItemBase.#ctor(System.String,System.TimeSpan,System.String,System.Boolean)">
             <summary>
             Constructor de la clase
             </summary>
             <param name="momentoEjecucion"></param>
         </member>
-        <member name="M:Orbita.VA.Comun.OSecuenciaItemBase.#ctor(System.String,System.TimeSpan,System.TimeSpan,System.Boolean)">
+        <member name="M:Orbita.VA.Comun.OSecuenciaItemBase.#ctor(System.String,System.TimeSpan,System.TimeSpan,System.String,System.Boolean)">
             <summary>
             Constructor de la clase
             </summary>
@@ -4242,14 +4290,14 @@
             Valor a establecer en la variable
             </summary>
         </member>
-        <member name="M:Orbita.VA.Comun.OSecuenciaItemValor.#ctor(System.String,System.Object,System.TimeSpan,System.Boolean)">
+        <member name="M:Orbita.VA.Comun.OSecuenciaItemValor.#ctor(System.String,System.Object,System.TimeSpan,System.String,System.Boolean)">
             <summary>
             Constructor de la clase
             </summary>
             <param name="valor">Valor a establecer en la variable</param>
             <param name="momentoEjecucion"></param>
         </member>
-        <member name="M:Orbita.VA.Comun.OSecuenciaItemValor.#ctor(System.String,System.Object,System.TimeSpan,System.TimeSpan,System.Boolean)">
+        <member name="M:Orbita.VA.Comun.OSecuenciaItemValor.#ctor(System.String,System.Object,System.TimeSpan,System.TimeSpan,System.String,System.Boolean)">
             <summary>
             Constructor de la clase
             </summary>
@@ -4270,14 +4318,14 @@
             Clase base para los elementos de la secuencia
             </summary>
         </member>
-        <member name="M:Orbita.VA.Comun.OSecuenciaItemComando.#ctor(System.String,System.TimeSpan)">
+        <member name="M:Orbita.VA.Comun.OSecuenciaItemComando.#ctor(System.String,System.TimeSpan,System.String)">
             <summary>
             Constructor de la clase
             </summary>
             <param name="valor">Valor a establecer en la variable</param>
             <param name="momentoEjecucion"></param>
         </member>
-        <member name="M:Orbita.VA.Comun.OSecuenciaItemComando.#ctor(System.String,System.TimeSpan,System.TimeSpan)">
+        <member name="M:Orbita.VA.Comun.OSecuenciaItemComando.#ctor(System.String,System.TimeSpan,System.TimeSpan,System.String)">
             <summary>
             Constructor de la clase
             </summary>

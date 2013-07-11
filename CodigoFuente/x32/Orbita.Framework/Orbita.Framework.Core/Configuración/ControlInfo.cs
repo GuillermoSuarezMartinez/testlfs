@@ -11,23 +11,38 @@
 //***********************************************************************
 namespace Orbita.Framework.Core
 {
+    /// <summary>
+    /// Información del control de usuario incluido en el plugin.
+    /// </summary>
     public struct ControlInfo
     {
         #region Atributos
-        string valor;
-        string tipo;
+        /// <summary>
+        /// Valor del control.
+        /// </summary>
+        private string valor;
+        /// <summary>
+        /// Tipo de control { tooltip, text, message }.
+        /// </summary>
+        private string tipo;
         #endregion
 
         #region Propiedades
+        /// <summary>
+        /// Valor del control.
+        /// </summary>
         public string Valor
         {
-            get { return valor; }
-            set { valor = value; }
+            get { return this.valor; }
+            set { this.valor = value; }
         }
+        /// <summary>
+        /// Tipo de control { tooltip, text, message }.
+        /// </summary>
         public string Tipo
         {
-            get { return tipo; }
-            set { tipo = value; }
+            get { return this.tipo; }
+            set { this.tipo = value; }
         }
         #endregion
 
@@ -52,7 +67,7 @@ namespace Orbita.Framework.Core
         /// <summary>
         /// Operador de igualdad.
         /// </summary>
-        /// <param name="info">Estado de tipo contenedor.</param>
+        /// <param name="info">Información del control.</param>
         /// <param name="cadena">Cadena de comparación.</param>
         /// <returns>La igualdad de la cadena de comparación con el tipo.</returns>
         public static bool operator ==(ControlInfo info, string cadena)
@@ -62,7 +77,7 @@ namespace Orbita.Framework.Core
         /// <summary>
         /// Operador de desigualdad.
         /// </summary>
-        /// <param name="info">Estado de tipo contenedor.</param>
+        /// <param name="info">Información del control.</param>
         /// <param name="cadena">Cadena de comparación.</param>
         /// <returns>La desigualdad de la cadena de comparación con el tipo.</returns>
         public static bool operator !=(ControlInfo info, string cadena)

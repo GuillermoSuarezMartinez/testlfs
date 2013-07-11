@@ -52,7 +52,7 @@ namespace Orbita.Comunicaciones
 
             this.Entradas = new byte[this._numeroBytesEntradas];
             this.Salidas = new byte[this._numeroBytesSalidas];
-
+            this.SalidasHiloEscribir = new byte[this._numeroBytesSalidas];
             this._lecturas = new byte[_numLecturas];
         }
         /// <summary>
@@ -147,24 +147,42 @@ namespace Orbita.Comunicaciones
         /// <param name="salidas">byte de salidas recibido</param>
         private void ESProcesar(byte[] entradas, byte[] salidas)
         {
-            try
+            bool hayEscritura = false;
+
+            lock (this.bloqueo)
             {
-                for (int i = 0; i < entradas.Length; i++)
+                try
                 {
-                    this.ESActualizarVariablesEntradas(entradas[i], i + this._registroInicialEntradas);
-                    if (i<this._byteSalidasOCR)
+                    for (int i = 0; i < entradas.Length; i++)
                     {
-                        this.ESActualizarVariablesSalidas(salidas[i], i + this._registroInicialSalidas);
+                        this.ESActualizarVariablesEntradas(entradas[i], i + this._registroInicialEntradas);
+                        if (i < this._byteSalidasOCR)
+                        {
+                            this.ESActualizarVariablesSalidas(salidas[i], i + this._registroInicialSalidas);
+                        }
+
                     }
-                    
+                    this.Entradas = entradas;
+                    this.Salidas = salidas;
+                    if (this._bloqueoEscrituras == 0)
+                    {
+                        this.SalidasHiloEscribir = salidas;
+                    }
+                    else
+                    {
+                        hayEscritura = true;
+                    }
                 }
-                this.Entradas = entradas;
-                this.Salidas = salidas;
+                catch (Exception ex)
+                {
+                    wrapper.Fatal("ODispositivoSiemens1200ESGOCR ESProcesar Error al procesar las ES en el dispositivo de ES Siemens. " + ex.ToString());
+                    throw ex;
+                }
             }
-            catch (Exception ex)
+
+            if (hayEscritura)
             {
-                wrapper.Fatal("Error al procesar las ES en el dispositivo de ES Siemens en ESProcesar. " + ex.ToString());
-                throw ex;
+                Thread.Sleep(500);
             }
         }
         /// <summary>
@@ -233,8 +251,8 @@ namespace Orbita.Comunicaciones
                         }
                         else
                         {
-                            wrapper.Warn("ODispositivoSiemens1200ESGOCR ESActualizarVariablesEntradas No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
-                                " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
+                            //wrapper.Warn("ODispositivoSiemens1200ESGOCR ESActualizarVariablesEntradas No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+                            //    " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
                         }
 
                     }
@@ -254,8 +272,8 @@ namespace Orbita.Comunicaciones
                     }
                     else
                     {
-                        wrapper.Warn("ODispositivoSiemens1200ESGOCR ESActualizarVariablesEntradas No se puede encontrar la dupla " + posicion.ToString() + "-0" +
-                            " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
+                        //wrapper.Warn("ODispositivoSiemens1200ESGOCR ESActualizarVariablesEntradas No se puede encontrar la dupla " + posicion.ToString() + "-0" +
+                        //    " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
                     }
                 }
             }
@@ -329,14 +347,14 @@ namespace Orbita.Comunicaciones
                     }
                     else
                     {
-                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
-                            " al actualizar las variables de salida en el dispositivo de ES Siemens.");
+                        //wrapper.Warn("ODispositivoSiemens1200ESGOCR  No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+                        //    " al actualizar las variables de salida en el dispositivo de ES Siemens.");
                     }
 
                 }
                 catch (Exception ex)
                 {
-                    wrapper.Error("Error no controlado al procesar las salidas en el dispositivo de ES Siemens " + ex.ToString());
+                    wrapper.Error("ODispositivoSiemens1200ESGOCR ESActualizarVariablesSalidas Error no controlado al procesar las salidas en el dispositivo de ES Siemens " + ex.ToString());
                 }
 
             }

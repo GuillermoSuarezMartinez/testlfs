@@ -17,12 +17,11 @@ namespace Orbita.Framework.Core
     internal partial class WaitWindowGUI : System.Windows.Forms.Form
     {
         #region Atributos
-        WaitWindow parent;
-        System.IAsyncResult threadResult;
+        private WaitWindow parent;
         #endregion
 
         #region Atributos internos
-        internal object result;
+        internal object resultado;
         internal System.Exception error;
         #endregion
 
@@ -42,21 +41,28 @@ namespace Orbita.Framework.Core
         }
         #endregion
 
+        #region Propiedades
+        internal string Message
+        {
+            get { return this.MessageLabel.Text; }
+        }
+        #endregion
+
         #region Métodos privados
-        void WorkComplete(System.IAsyncResult results)
+        private void WorkComplete(System.IAsyncResult resultados)
         {
             if (!this.IsDisposed)
             {
                 if (this.InvokeRequired)
                 {
-                    this.Invoke(new WaitWindow.MethodInvoker<System.IAsyncResult>(this.WorkComplete), results);
+                    this.Invoke(new WaitWindow.MethodInvoker<System.IAsyncResult>(this.WorkComplete), resultados);
                 }
                 else
                 {
                     //  Capturar el resultado.
                     try
                     {
-                        this.result = ((FunctionInvoker<object>)results.AsyncState).EndInvoke(results);
+                        this.resultado = ((FunctionInvoker<object>)resultados.AsyncState).EndInvoke(resultados);
                     }
                     catch (System.Exception ex)
                     {
@@ -72,10 +78,10 @@ namespace Orbita.Framework.Core
         internal object DoWork()
         {
             //  Invocar el workerMethod y devolver el resultado.
-            WaitWindowEventArgs e = new WaitWindowEventArgs(this.parent, this.parent.args);
-            if ((this.parent.workerMethod != null))
+            WaitWindowEventArgs e = new WaitWindowEventArgs(this.parent, this.parent.argumentos);
+            if ((this.parent.metodoAsincrono != null))
             {
-                this.parent.workerMethod(this, e);
+                this.parent.metodoAsincrono(this, e);
             }
             return e.Resultado;
         }
@@ -90,24 +96,16 @@ namespace Orbita.Framework.Core
         #endregion
 
         #region Manejadores de eventos
-        protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
-        {
-            base.OnPaint(e);
-            try
-            {
-                //  Pintar un borde coloreado.
-                System.Windows.Forms.ControlPaint.DrawBorder(e.Graphics, this.ClientRectangle, System.Drawing.Color.Gray, System.Windows.Forms.ButtonBorderStyle.Solid);
-            }
-            catch (System.NullReferenceException) { }
-        }
         protected override void OnShown(System.EventArgs e)
         {
+            //  Provocar el evento Form.OnShown(System.EventArgs e).
             base.OnShown(e);
 
             //  Crear delegado.
             FunctionInvoker<object> threadController = new FunctionInvoker<object>(this.DoWork);
+
             //  Ejecutar un hilo secundario.
-            this.threadResult = threadController.BeginInvoke(this.WorkComplete, threadController);
+            threadController.BeginInvoke(this.WorkComplete, threadController);
         }
         #endregion
     }

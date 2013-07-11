@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
+using Orbita.Utiles;
 
 namespace Orbita.VA.Comun
 {
@@ -690,43 +691,6 @@ namespace Orbita.VA.Comun
         } 
         #endregion
 
-        #region Método(s) externos estáticos privados
-        /// <summary>
-        /// API to get list of connections 
-        /// </summary>
-        /// <param name="pTcpTable"></param>
-        /// <param name="pdwSize"></param>
-        /// <param name="bOrder"></param>
-        /// <returns></returns>
-        [DllImport("iphlpapi.dll")]
-        private static extern int GetTcpTable(IntPtr pTcpTable, ref int pdwSize, bool bOrder);
-
-        /// <summary>
-        /// API to change status of connection 
-        /// </summary>
-        /// <param name="pTcprow"></param>
-        /// <returns></returns>
-        [DllImport("iphlpapi.dll")]
-        //private static extern int SetTcpEntry(MIB_TCPROW tcprow);
-        private static extern int SetTcpEntry(IntPtr pTcprow);
-
-        /// <summary>
-        /// Convert 16-bit value from network to host byte order 
-        /// </summary>
-        /// <param name="netshort"></param>
-        /// <returns></returns>
-        [DllImport("wsock32.dll")]
-        private static extern int ntohs(int netshort);
-
-        /// <summary>
-        /// Convert 16-bit value back again 
-        /// </summary>
-        /// <param name="netshort"></param>
-        /// <returns></returns>
-        [DllImport("wsock32.dll")]
-        private static extern int htons(int netshort); 
-        #endregion
-
         #region Método(s) estático(s) públicos
         /// <summary>
         /// Close all connection to the remote IP 
@@ -743,7 +707,7 @@ namespace Orbita.VA.Comun
                 {
                     rows[i].dwState = (int)State.Delete_TCB;
                     IntPtr ptr = App.GetPtrToNewObject(rows[i]);
-                    int ret = SetTcpEntry(ptr);
+                    int ret = OWindowsUtils.SetTcpEntry(ptr);
                 }
             }
         }
@@ -763,7 +727,7 @@ namespace Orbita.VA.Comun
                 {
                     rows[i].dwState = (int)State.Delete_TCB;
                     IntPtr ptr = App.GetPtrToNewObject(rows[i]);
-                    int ret = SetTcpEntry(ptr);
+                    int ret = OWindowsUtils.SetTcpEntry(ptr);
                 }
             }
         }
@@ -779,11 +743,11 @@ namespace Orbita.VA.Comun
              i < rows.Length;
              i++)
             {
-                if (port == ntohs(rows[i].dwRemotePort))
+                if (port == OWindowsUtils.ntohs(rows[i].dwRemotePort))
                 {
                     rows[i].dwState = (int)State.Delete_TCB;
                     IntPtr ptr = App.GetPtrToNewObject(rows[i]);
-                    int ret = SetTcpEntry(ptr);
+                    int ret = OWindowsUtils.SetTcpEntry(ptr);
                 }
             }
         }
@@ -799,11 +763,11 @@ namespace Orbita.VA.Comun
              i < rows.Length;
              i++)
             {
-                if (port == ntohs(rows[i].dwLocalPort))
+                if (port == OWindowsUtils.ntohs(rows[i].dwLocalPort))
                 {
                     rows[i].dwState = (int)State.Delete_TCB;
                     IntPtr ptr = App.GetPtrToNewObject(rows[i]);
-                    int ret = SetTcpEntry(ptr);
+                    int ret = OWindowsUtils.SetTcpEntry(ptr);
                 }
             }
         }
@@ -831,11 +795,11 @@ namespace Orbita.VA.Comun
                 byte[] bRemAddr = new byte[] { byte.Parse(remaddr[0]), byte.Parse(remaddr[1]), byte.Parse(remaddr[2]), byte.Parse(remaddr[3]) };
                 row.dwLocalAddr = BitConverter.ToInt32(bLocAddr, 0);
                 row.dwRemoteAddr = BitConverter.ToInt32(bRemAddr, 0);
-                row.dwLocalPort = htons(int.Parse(loc[1]));
-                row.dwRemotePort = htons(int.Parse(rem[1]));
+                row.dwLocalPort = OWindowsUtils.htons(int.Parse(loc[1]));
+                row.dwRemotePort = OWindowsUtils.htons(int.Parse(rem[1]));
                 //Make copy of the structure into memory and use the pointer to call SetTcpEntry 
                 IntPtr ptr = App.GetPtrToNewObject(row);
-                int ret = SetTcpEntry(ptr);
+                int ret = OWindowsUtils.SetTcpEntry(ptr);
                 if (ret == -1)
                     throw new Exception("Unsuccessful");
                 if (ret == 65)
@@ -873,8 +837,8 @@ namespace Orbita.VA.Comun
             {
                 if (state == State.All || state == (State)row.dwState)
                 {
-                    string localaddress = IPIntToString(row.dwLocalAddr) + ":" + ntohs(row.dwLocalPort);
-                    string remoteaddress = IPIntToString(row.dwRemoteAddr) + ":" + ntohs(row.dwRemotePort);
+                    string localaddress = IPIntToString(row.dwLocalAddr) + ":" + OWindowsUtils.ntohs(row.dwLocalPort);
+                    string remoteaddress = IPIntToString(row.dwRemoteAddr) + ":" + OWindowsUtils.ntohs(row.dwRemotePort);
                     arr.Add(localaddress + "-" + remoteaddress + "-" + ((State)row.dwState).ToString() + "-" + row.dwState);
                 }
             }
@@ -894,12 +858,12 @@ namespace Orbita.VA.Comun
             try
             {
                 int iBytes = 0;
-                GetTcpTable(IntPtr.Zero, ref iBytes, false);
+                OWindowsUtils.GetTcpTable(IntPtr.Zero, ref iBytes, false);
                 //Getting size of return data 
                 buffer = Marshal.AllocCoTaskMem(iBytes);
                 //allocating the datasize 
                 allocated = true;
-                GetTcpTable(buffer, ref iBytes, false);
+                OWindowsUtils.GetTcpTable(buffer, ref iBytes, false);
                 //Run it again to fill the memory with the data 
                 int structCount = Marshal.ReadInt32(buffer);
                 // Get the number of structures 

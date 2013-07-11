@@ -9,7 +9,7 @@ namespace Orbita.Controles.Comunicaciones.Custom
     /// </summary>
     public partial class OrbitaTCPCliente : UserControl
     {
-        #region Variables
+        #region Atributos
         /// <summary>
         /// Objeto para establecer el canal TCP
         /// </summary>

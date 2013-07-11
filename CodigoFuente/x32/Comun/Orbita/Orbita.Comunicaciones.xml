@@ -926,18 +926,19 @@
             <param name="puerto">Puerto de salidad de datos.</param>
             <param name="canal"></param>
         </member>
-        <member name="M:Orbita.Comunicaciones.ORemoting.InicConfiguracionCliente(System.Int32)">
+        <member name="M:Orbita.Comunicaciones.ORemoting.getServidor(System.Int32)">
             <summary>
-            Método de inicialización del configurador de cliente para .NET Remoting.
+            Devuelve el servidor remoting de la aplicación
             </summary>
-            <param name="puerto">Puerto de salidad de datos.</param>
+            <param name="servidor">Número de servidor.</param>
         </member>
-        <member name="M:Orbita.Comunicaciones.ORemoting.InicConfiguracionCliente(System.Int32,System.String)">
+        <member name="M:Orbita.Comunicaciones.ORemoting.InicConfiguracionCliente(System.Int32[],System.String[],System.Int32[])">
             <summary>
             Método de inicialización del configurador de cliente para .NET Remoting.
             </summary>
             <param name="puerto">Puerto de salidad de datos.</param>
-            <param name="maquina">Nombre de la maquina servidor de remotings.</param>
+            <param name="maquina">Nombre de la maquina servidor de remoting.</param>
+            <param name="numeroServidor">Número de servidor remoting.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.ORemoting.GetObject(System.Type)">
             <summary>
@@ -3779,6 +3780,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Orbita.Comunicaciones.IOCommRemoting.OrbitaGetDispositivosXML">
+            <summary>
+            Obtener los dispositivos del servicio
+            </summary>
+            <returns></returns>
+        </member>
         <member name="E:Orbita.Comunicaciones.IOCommRemoting.OrbitaCambioDato">
             <summary>
             Evento de cambio de dato.
@@ -3792,6 +3799,11 @@
         <member name="E:Orbita.Comunicaciones.IOCommRemoting.OrbitaComm">
             <summary>
             Evento de comunicaciones.
+            </summary>
+        </member>
+        <member name="T:Orbita.Comunicaciones.IOCommRemoting1">
+            <summary>
+            Interfaz para la generación de comunicaciones remotas
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.OTags">

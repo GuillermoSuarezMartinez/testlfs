@@ -108,6 +108,9 @@
     <Reference Include="Infragistics2.Win.v11.2">
       <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.v11.2.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.DirectX.AudioVideoPlayback">
+      <HintPath>..\..\Comun\VA\DirectX\Microsoft.DirectX.AudioVideoPlayback.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Orbita.Trazabilidad">
       <HintPath>..\..\Comun\Orbita\Orbita.Trazabilidad.dll</HintPath>
@@ -149,6 +152,12 @@
     <Compile Include="Base\Custom\OrbitaCtrlBase.Designer.cs">
       <DependentUpon>OrbitaCtrlBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Base\Custom\CtrlContenedorFormularios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Base\Custom\CtrlContenedorFormularios.designer.cs">
+      <DependentUpon>CtrlContenedorFormularios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Base\Formularios\FrmAsistenteBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +175,12 @@
     </Compile>
     <Compile Include="Base\Formularios\FrmDialogoBase.designer.cs">
       <DependentUpon>FrmDialogoBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Custom\OrbitaCtrlTactilBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Base\Custom\OrbitaCtrlTactilBase.designer.cs">
+      <DependentUpon>OrbitaCtrlTactilBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Cronometros\Formularios\FrmMonitorizacionTiempos.cs">
       <SubType>Form</SubType>
@@ -278,6 +293,24 @@
     <Compile Include="Variables\Formularios\FrmVariableChart.Designer.cs">
       <DependentUpon>FrmVariableChart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Visores\Controles\CtrlDisplaysTactil.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Visores\Controles\CtrlDisplaysTactil.Designer.cs">
+      <DependentUpon>CtrlDisplaysTactil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visores\Controles\OrbitaVisorBitmapTactil.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Visores\Controles\OrbitaVisorBitmapTactil.designer.cs">
+      <DependentUpon>OrbitaVisorBitmapTactil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Visores\Controles\OrbitaControlVideo_OP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Visores\Controles\OrbitaControlVideo_OP.designer.cs">
+      <DependentUpon>OrbitaControlVideo_OP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visores\Controles\OrbitaVisorBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -333,6 +366,9 @@
     <EmbeddedResource Include="Base\Custom\OrbitaCtrlBase.resx">
       <DependentUpon>OrbitaCtrlBase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Base\Custom\CtrlContenedorFormularios.resx">
+      <DependentUpon>CtrlContenedorFormularios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Base\Formularios\FrmAsistenteBase.resx">
       <DependentUpon>FrmAsistenteBase.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -344,6 +380,9 @@
     <EmbeddedResource Include="Base\Formularios\FrmDialogoBase.resx">
       <DependentUpon>FrmDialogoBase.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\Custom\OrbitaCtrlTactilBase.resx">
+      <DependentUpon>OrbitaCtrlTactilBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cronometros\Formularios\FrmMonitorizacionTiempos.resx">
       <DependentUpon>FrmMonitorizacionTiempos.cs</DependentUpon>
@@ -409,6 +448,15 @@
     <EmbeddedResource Include="Variables\Formularios\FrmVariableChart.resx">
       <DependentUpon>FrmVariableChart.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visores\Controles\CtrlDisplaysTactil.resx">
+      <DependentUpon>CtrlDisplaysTactil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visores\Controles\OrbitaVisorBitmapTactil.resx">
+      <DependentUpon>OrbitaVisorBitmapTactil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visores\Controles\OrbitaControlVideo_OP.resx">
+      <DependentUpon>OrbitaControlVideo_OP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visores\Controles\OrbitaVisorBase.resx">
       <DependentUpon>OrbitaVisorBase.cs</DependentUpon>
@@ -690,6 +738,171 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ImgAsistente24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgAceptar24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgCancelar24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgEjemplo24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgMensaje24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgMultimedia24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgTiempo24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgWindows24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\imgConexionPVS64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgWarningTactil24 .png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CamaraConectadaBN.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CamaraDesConectadaTN.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_beginning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_beginning_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_beginning_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_end.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_end_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_end_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_pause.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_pause_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_pause_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_play_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_play_green_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_play_green_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_step_back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_step_back_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_step_forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_step_forward_16_16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_stop_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_stop_red_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\media_stop_red_24x24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icn_full_screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NoHayImagen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Salir_36x36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgFolder24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgDisco24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgCursor24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgMano24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgZoomMas24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgZoomMenos24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgMaximize24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgZoomAcoplar24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgInfo241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgFlechaDerecha24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgFlechaIzquierda24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgPlay24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgSnap24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgCursor16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgCursor161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgZoom161.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgComunicacion16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgPlay241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgSnap241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgCamara24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgRestore24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgStop24Blanco.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

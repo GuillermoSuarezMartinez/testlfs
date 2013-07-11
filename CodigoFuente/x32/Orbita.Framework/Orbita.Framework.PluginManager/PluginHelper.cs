@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Framework.Core
+// Assembly         : Orbita.Framework.PluginManager
 // Author           : crodriguez
 // Created          : 18-04-2013
 //
@@ -9,24 +9,26 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+#region USING
 using Orbita.Framework.Extensiones;
+#endregion
 namespace Orbita.Framework.PluginManager
 {
     /// <summary>
-    /// Objeto de carga.
+    /// Métodos asistentes.
     /// </summary>
     public static class PluginHelper
     {
         #region Atributos privados estáticos
         /// <summary>
-        /// Ruta del directorio de Plugins.
+        /// Ruta del directorio de plugins.
         /// </summary>
-        static string path = System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath, "Plugins");
+        private static string path = System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath, "Plugins");
         #endregion
 
         #region Propiedades
         /// <summary>
-        /// Ruta del directorio de Plugins.
+        /// Ruta del directorio de plugins.
         /// </summary>
         public static string Path
         {
@@ -37,14 +39,14 @@ namespace Orbita.Framework.PluginManager
 
         #region Métodos públicos
         /// <summary>
-        /// Buscar Plugins en el directorio de Plugins configurado.
+        /// Buscar plugins en el directorio de plugins configurado.
         /// </summary>
-        /// <returns>Un diccionario con el título del Plugin como clave y la ruta del ensamblado como valor.</returns>
+        /// <returns>Un diccionario con el título del plugin como clave y la ruta del ensamblado como valor.</returns>
         public static System.Collections.Generic.IDictionary<string, string> Ensamblados()
         {
-            // Colección de Plugins.
+            //  Colección de plugins.
             System.Collections.Generic.Dictionary<string, string> ensamblados = new System.Collections.Generic.Dictionary<string, string>();
-            // Si el directorio de Plugins no existe, crearlo.
+            //  Si el directorio de plugins no existe, crearlo.
             if (!System.IO.Directory.Exists(path))
             {
                 System.IO.Directory.CreateDirectory(path);
@@ -61,10 +63,10 @@ namespace Orbita.Framework.PluginManager
             return ensamblados;
         }
         /// <summary>
-        /// Obtener Plugins especificados.
+        /// Obtener plugins especificados.
         /// </summary>
         /// <returns></returns>
-        public static System.Collections.Generic.IDictionary<string, PluginInfo> Plugins()
+        public static System.Collections.Generic.IDictionary<string, PluginInfo> Plugins(System.EventHandler<IdiomaChangedEventArgs> cambiarIdioma, System.EventHandler<System.Windows.Forms.FormClosedEventArgs> manejadorCierre)
         {
             System.Collections.Generic.Dictionary<string, PluginInfo> plugins = new System.Collections.Generic.Dictionary<string, PluginInfo>();
             System.Collections.Generic.IDictionary<string, string> ensamblados = PluginManager.PluginHelper.Ensamblados();
@@ -73,6 +75,7 @@ namespace Orbita.Framework.PluginManager
                 if (System.IO.File.Exists(fichero))
                 {
                     System.IO.FileInfo archivoInfo = new System.IO.FileInfo(fichero);
+
                     if (archivoInfo.Extension.In(".dll", ".exe"))
                     {
                         System.Reflection.Assembly ensamblado = System.Reflection.Assembly.LoadFile(fichero);
@@ -88,6 +91,8 @@ namespace Orbita.Framework.PluginManager
                                     PluginInfo pluginInfo = new PluginInfo();
                                     pluginInfo.Ensamblado = ensamblado.Location;
                                     pluginInfo.Plugin = plugin;
+                                    pluginInfo.CambiarIdioma = cambiarIdioma;
+                                    pluginInfo.ManejadorCierreAplicacion = manejadorCierre;
                                     if (typeof(IItemMenu).IsInstanceOfType(control))
                                     {
                                         IItemMenu itemMenu = (IItemMenu)control;
@@ -95,13 +100,13 @@ namespace Orbita.Framework.PluginManager
                                     }
                                     if (typeof(IFormIdioma).IsInstanceOfType(control))
                                     {
-                                        IFormIdioma idioma = (IFormIdioma)control;
-                                        pluginInfo.Idioma = idioma;
+                                        IFormIdioma formIdioma = (IFormIdioma)control;
+                                        formIdioma.OnCambiarIdioma += pluginInfo.CambiarIdioma;
                                     }
                                     if (typeof(IFormManejadorCierre).IsInstanceOfType(control))
                                     {
-                                        IFormManejadorCierre manejadorCierre = (IFormManejadorCierre)control;
-                                        pluginInfo.ManejadorCierre = manejadorCierre;
+                                        IFormManejadorCierre formManejadorCierre = (IFormManejadorCierre)control;
+                                        formManejadorCierre.OnCloseApplication += pluginInfo.ManejadorCierreAplicacion;
                                     }
                                     if (!plugins.ContainsKey(plugin.Nombre))
                                     {
@@ -116,18 +121,39 @@ namespace Orbita.Framework.PluginManager
             return plugins;
         }
         /// <summary>
-        /// Crear una nueva instancia del Plugin del fichero de ensamblado especificado.
+        /// Crear una nueva instancia del plugin del fichero de ensamblado especificado.
         /// </summary>
         /// <typeparam name="T">SubclassOf(typeof(System.Windows.Forms.Control.</typeparam>
-        /// <param name="pluginInfo">Plugin a cargar.</param>
+        /// <param name="pluginInfo">Información del plugin.</param>
         /// <returns>Nueva instancia del objeto plugin.</returns>
-        public static T CrearNuevaInstancia<T>(PluginInfo pluginInfo)
+        public static T CrearNuevaInstancia<T>(ref PluginInfo pluginInfo)
         {
             if (pluginInfo == null)
             {
                 throw new System.ArgumentNullException("pluginInfo");
             }
-            return (T)System.Reflection.Assembly.LoadFile(pluginInfo.Ensamblado).CreateInstance(pluginInfo.Plugin.ToString(), true);
+
+            System.Reflection.Assembly ensamblado = System.Reflection.Assembly.LoadFile(pluginInfo.Ensamblado);
+            PluginManager.IFormPlugin plugin = pluginInfo.Plugin as Orbita.Framework.PluginManager.IFormPlugin;
+            System.Windows.Forms.Control control = plugin.Formulario;
+            T item = (T)ensamblado.CreateInstance(control.GetType().FullName, true);
+
+            if (typeof(IPlugin).IsInstanceOfType(item))
+            {
+                IPlugin newPlugin = (IPlugin)item;
+                pluginInfo.Plugin = newPlugin;
+                if (typeof(IFormIdioma).IsInstanceOfType(item))
+                {
+                    IFormIdioma formIdioma = (IFormIdioma)item;
+                    formIdioma.OnCambiarIdioma += pluginInfo.CambiarIdioma;
+                }
+                if (typeof(IFormManejadorCierre).IsInstanceOfType(item))
+                {
+                    IFormManejadorCierre formManejadorCierre = (IFormManejadorCierre)item;
+                    formManejadorCierre.OnCloseApplication += pluginInfo.ManejadorCierreAplicacion;
+                }
+            }
+            return item;
         }
         #endregion
     }

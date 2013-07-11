@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Framework.Core
+// Assembly         : Orbita.Framework.PluginManager
 // Author           : crodriguez
 // Created          : 18-04-2013
 //
@@ -12,7 +12,7 @@
 namespace Orbita.Framework.PluginManager
 {
     /// <summary>
-    /// Clase que contiene datos de eventos de cambio de idioma.
+    /// Contiene datos de eventos de cambio de idioma.
     /// </summary>
     public class IdiomaChangedEventArgs : System.EventArgs
     {
@@ -20,7 +20,7 @@ namespace Orbita.Framework.PluginManager
         /// <summary>
         /// Atributo relativo al idioma actual de controles.
         /// </summary>
-        Orbita.Framework.Core.SelectorIdioma idioma;
+        private Orbita.Framework.Core.SelectorIdioma idioma;
         #endregion
 
         #region Constructores
@@ -32,7 +32,7 @@ namespace Orbita.Framework.PluginManager
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Framework.PluginManager.IdiomaChangedEventArgs.
         /// </summary>
-        /// <param name="idioma">Nombre de la propiedad.</param>
+        /// <param name="idioma">Selector de idioma incluido en el enumerado.</param>
         public IdiomaChangedEventArgs(Orbita.Framework.Core.SelectorIdioma idioma)
             : this()
         {
@@ -42,7 +42,7 @@ namespace Orbita.Framework.PluginManager
 
         #region Propiedades
         /// <summary>
-        /// Relativo al idioma actual de controles.
+        /// Selector de idioma incluido en el enumerado.
         /// </summary>
         public Orbita.Framework.Core.SelectorIdioma Idioma
         {

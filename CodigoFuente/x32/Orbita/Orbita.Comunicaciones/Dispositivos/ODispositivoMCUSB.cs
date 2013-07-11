@@ -63,7 +63,7 @@ namespace Orbita.Comunicaciones
         {
             //Inicialización de objetos
             this.IniciarObjetos();
-            wrapper.Debug("Objetos del dispositivo de ES MCC creados.");
+            wrapper.Info("Objetos del dispositivo de ES MCC creados.");
 
             try
             {
@@ -74,7 +74,7 @@ namespace Orbita.Comunicaciones
                 wrapper.Error("No se pudo crear la conexión TCP con el dispositivo de ES MCC." + ex.ToString());
             }
 
-            wrapper.Debug("Comunicaciones TCP del dispositivo de ES MCC arrancadas correctamente.");
+            wrapper.Info("Comunicaciones TCP del dispositivo de ES MCC arrancadas correctamente.");
         }
 
         #endregion

@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Framework.Core
+// Assembly         : Orbita.Framework.PluginManager
 // Author           : crodriguez
 // Created          : 18-04-2013
 //
@@ -17,8 +17,8 @@ namespace Orbita.Framework.PluginManager
     public interface IFormManejadorCierre
     {
         /// <summary>
-        /// Evento de cierre.
+        /// Evento de suscripción de plugins relacionado con el cierre del contenedor principal.
         /// </summary>
-        event System.EventHandler<System.Windows.Forms.FormClosedEventArgs> OnClose;
+        event System.EventHandler<System.Windows.Forms.FormClosedEventArgs> OnCloseApplication;
     }
 }

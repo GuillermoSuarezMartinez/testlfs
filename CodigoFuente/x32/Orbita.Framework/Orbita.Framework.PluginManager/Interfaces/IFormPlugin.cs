@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Framework.Core
+// Assembly         : Orbita.Framework.PluginManager
 // Author           : crodriguez
 // Created          : 18-04-2013
 //
@@ -12,15 +12,15 @@
 namespace Orbita.Framework.PluginManager
 {
     /// <summary>
-    /// Interface de formularios.
+    /// Interface de plugins de tipo formulario (System.Windows.Forms.Form).
     /// </summary>
     [System.CLSCompliantAttribute(false)]
     public interface IFormPlugin : IPlugin
     {
         /// <summary>
-        /// Especifica el formulario actual al que hace referencia (this).
+        /// Especifica el plugin actual al que hace referencia (this).
         /// </summary>
-        Orbita.Controles.Contenedores.OrbitaForm Formulario { get; }
+        Controles.Contenedores.OrbitaForm Formulario { get; }
         /// <summary>
         /// Especifica como se quiere mostrar el plugin. { Normal, Dialog, MdiChild }
         /// </summary>

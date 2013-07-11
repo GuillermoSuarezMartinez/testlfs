@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Framework.Core
+// Assembly         : Orbita.Framework.Extensiones
 // Author           : crodriguez
 // Created          : 18-04-2013
 //
@@ -25,7 +25,7 @@ namespace Orbita.Framework.Extensiones
         /// Leer fichero de texto.
         /// </summary>
         /// <param name="nombre">Ruta del fichero.</param>
-        /// <returns>El fichero de tipo StreamReadar.</returns>
+        /// <returns>Fichero de tipo StreamReader.</returns>
         public static string Leer(string nombre)
         {
             lock (Bloqueo)

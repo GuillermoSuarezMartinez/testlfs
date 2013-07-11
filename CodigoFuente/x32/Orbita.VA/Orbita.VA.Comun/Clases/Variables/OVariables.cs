@@ -747,6 +747,7 @@ namespace Orbita.VA.Comun
         /// <param name="codigo">Código de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
+        [Obsolete("Utilizar OCambioValorDelegateRemitente")]
         public static void CrearSuscripcion(string codigo, string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegateAdvanced delegadoSuscriptor)
         {
             CrearSuscripcion(string.Empty, codigo, codigoModuloLlamada, descripcionLlamada, delegadoSuscriptor);
@@ -757,6 +758,7 @@ namespace Orbita.VA.Comun
         /// <param name="codigo">Código de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
+        [Obsolete("Utilizar OCambioValorDelegateRemitente")]
         public static void CrearSuscripcion(string escenario, string codigo, string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegateAdvanced delegadoSuscriptor)
         {
             OVariable variable;
@@ -765,6 +767,32 @@ namespace Orbita.VA.Comun
                 variable.CrearSuscripcion(codigoModuloLlamada, descripcionLlamada, delegadoSuscriptor);
             }
         }
+
+        /// <summary>
+        /// Suscribe a una determinada variable
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
+        /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
+        public static void CrearSuscripcion(string codigo, string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegateRemitente delegadoSuscriptor)
+        {
+            CrearSuscripcion(string.Empty, codigo, codigoModuloLlamada, descripcionLlamada, delegadoSuscriptor);
+        }
+        /// <summary>
+        /// Suscribe a una determinada variable
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
+        /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
+        public static void CrearSuscripcion(string escenario, string codigo, string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegateRemitente delegadoSuscriptor)
+        {
+            OVariable variable;
+            if (TryGetVariable(escenario, codigo, out variable))
+            {
+                variable.CrearSuscripcion(codigoModuloLlamada, descripcionLlamada, delegadoSuscriptor);
+            }
+        }
+
 
         /// <summary>
         /// Elimina la suscripción a una determinada variable
@@ -797,6 +825,7 @@ namespace Orbita.VA.Comun
         /// <param name="codigo">Código de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
+        [Obsolete("Utilizar OCambioValorDelegateRemitente")]
         public static void EliminarSuscripcion(string codigo, string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegateAdvanced delegadoSuscriptor)
         {
             EliminarSuscripcion(string.Empty, codigo, codigoModuloLlamada, descripcionLlamada, delegadoSuscriptor);
@@ -807,6 +836,7 @@ namespace Orbita.VA.Comun
         /// <param name="codigo">Código de la variable</param>
         /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
+        [Obsolete("Utilizar OCambioValorDelegateRemitente")]
         public static void EliminarSuscripcion(string escenario, string codigo, string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegateAdvanced delegadoSuscriptor)
         {
             OVariable variable;
@@ -816,6 +846,31 @@ namespace Orbita.VA.Comun
             }
         }
 
+        /// <summary>
+        /// Elimina la suscripción a una determinada variable
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
+        /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
+        public static void EliminarSuscripcion(string codigo, string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegateRemitente delegadoSuscriptor)
+        {
+            EliminarSuscripcion(string.Empty, codigo, codigoModuloLlamada, descripcionLlamada, delegadoSuscriptor);
+        }
+        /// <summary>
+        /// Elimina la suscripción a una determinada variable
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
+        /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
+        public static void EliminarSuscripcion(string escenario, string codigo, string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegateRemitente delegadoSuscriptor)
+        {
+            OVariable variable;
+            if (TryGetVariable(escenario, codigo, out variable))
+            {
+                variable.EliminarSuscripcion(codigoModuloLlamada, descripcionLlamada, delegadoSuscriptor);
+            }
+        }
+        
         /// <summary>
         /// Añade una nueva traza a la cola
         /// </summary>
@@ -1513,11 +1568,27 @@ namespace Orbita.VA.Comun
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         /// <param name="delegadoSuscriptor">Delegado que queremos suscribir</param>
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        [Obsolete("Utilizar OCambioValorDelegateRemitente")]
         public void CrearSuscripcion(string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegateAdvanced delegadoSuscriptor)
         {
             if (OVariablesManager.Iniciado)
             {
                 this.CambioValorAvanzado += delegadoSuscriptor;
+            }
+        }
+
+        /// <summary>
+        /// Crea la suscripción a la variable
+        /// </summary>
+        /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
+        /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
+        /// <param name="delegadoSuscriptor">Delegado que queremos suscribir</param>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public void CrearSuscripcion(string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegateRemitente delegadoSuscriptor)
+        {
+            if (OVariablesManager.Iniciado)
+            {
+                this.CambioValorRemitente += delegadoSuscriptor;
             }
         }
 
@@ -1543,6 +1614,7 @@ namespace Orbita.VA.Comun
         /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
         /// <param name="delegadoSuscriptor">Delegado que queremos desuscribir</param>
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        [Obsolete("Utilizar OCambioValorDelegateRemitente")]
         public void EliminarSuscripcion(string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegateAdvanced delegadoSuscriptor)
         {
             if (OVariablesManager.Iniciado)
@@ -1551,6 +1623,20 @@ namespace Orbita.VA.Comun
             }
         }
 
+        /// <summary>
+        /// Elimina la suscripción a la variable
+        /// </summary>
+        /// <param name="codigoModuloLlamada">Código identificativo del módulo que modifica a la variable</param>
+        /// <param name="descripcionLlamada">Descripción de la modificación de la variable</param>
+        /// <param name="delegadoSuscriptor">Delegado que queremos desuscribir</param>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public void EliminarSuscripcion(string codigoModuloLlamada, string descripcionLlamada, OCambioValorDelegateRemitente delegadoSuscriptor)
+        {
+            if (OVariablesManager.Iniciado)
+            {
+                this.CambioValorRemitente -= delegadoSuscriptor;
+            }
+        }
         #endregion
 
         #region Definición de delegado(s)
@@ -1562,8 +1648,13 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Implementación del delegado que se activa cuando cambia el valor de la variable
         /// </summary>
+        [Obsolete("Utilizar OCambioValorDelegateRemitente")]
         private event OCambioValorDelegateAdvanced CambioValorAvanzado = null;
 
+        /// <summary>
+        /// Implementación del delegado que se activa cuando cambia el valor de la variable
+        /// </summary>
+        private event OCambioValorDelegateRemitente CambioValorRemitente = null;
         #endregion
 
         #region Eventos
@@ -1590,6 +1681,11 @@ namespace Orbita.VA.Comun
                 {
                     // Ejecución del delegado avanzado
                     this.CambioValorAvanzado(this.Codigo, e.Valor);
+                }
+                if (this.CambioValorRemitente != null)
+                {
+                    // Ejecución del delegado avanzado
+                    this.CambioValorRemitente(this.Codigo, e.Valor, e.Remitente);
                 }
             }
             catch (Exception exception)
@@ -1642,6 +1738,11 @@ namespace Orbita.VA.Comun
         /// Valor de la variable
         /// </summary>
         private object Valor;
+
+        /// <summary>
+        /// Remitente de la variable
+        /// </summary>
+        private string Remitente;
 
         /// <summary>
         /// Define si la variable puede modificarse o tiene fijado su valor
@@ -1791,7 +1892,7 @@ namespace Orbita.VA.Comun
                 {
                     try
                     {
-                        this.CambioValor(new OCambioValorEventArgs(this.Codigo, this.Valor));
+                        this.CambioValor(new OCambioValorEventArgs(this.Codigo, this.Valor, this.Remitente));
                     }
                     catch (Exception exception)
                     {
@@ -2015,6 +2116,7 @@ namespace Orbita.VA.Comun
 
                 // Establecimiento del valor
                 this.Valor = valor;
+                this.Remitente = codigoModuloLlamada;
                 this.AccionesTrasEstablecerValor();
             }
         }
@@ -2034,7 +2136,7 @@ namespace Orbita.VA.Comun
             {
                 // creo ua secuencia para el valor momentaneo
                 OSecuencia secuencia = new OSecuencia(this.Codigo + "-Retrasado", System.Threading.ThreadPriority.BelowNormal, 1);
-                secuencia.Add(new OSecuenciaItemValor(this.Codigo, valor, retraso, forzarRefresco));
+                secuencia.Add(new OSecuenciaItemValor(this.Codigo, valor, retraso, codigoModuloLlamada, forzarRefresco));
                 secuencia.Start();
             }
         }
@@ -2140,6 +2242,7 @@ namespace Orbita.VA.Comun
 
                 // Establecimiento del valor
                 this.Valor = valor;
+                this.Remitente = codigoModuloLlamada;
                 this.AccionesTrasEstablecerValor();
             }
         }
@@ -2169,6 +2272,7 @@ namespace Orbita.VA.Comun
                 OLogsVAComun.Variables.Debug("SetValor", "La variable " + this.Codigo + " realiza un disparo");
 
                 // Establecimiento del valor
+                this.Remitente = codigoModuloLlamada;
                 this.AccionesTrasEstablecerValor();
             }
         }
@@ -2191,7 +2295,7 @@ namespace Orbita.VA.Comun
                         Monitor.Wait(this);
                         if (this.CambioValorRemoto != null)
                         {
-                            this.CambioValorRemoto(new OCambioValorEventArgs(this.Codigo, this.Valor));
+                            this.CambioValorRemoto(new OCambioValorEventArgs(this.Codigo, this.Valor, this.Remitente));
                         }
                     }
                 }
@@ -2339,6 +2443,19 @@ namespace Orbita.VA.Comun
             get { return _Valor; }
             set { _Valor = value; }
         }
+
+        /// <summary>
+        /// Remitente de la variable
+        /// </summary>
+        private string _Remitente;
+        /// <summary>
+        /// Remitente de la variable
+        /// </summary>
+        public string Remitente
+        {
+            get { return _Remitente; }
+            set { _Remitente = value; }
+        }
         #endregion
 
         #region Constructor de la clase
@@ -2347,10 +2464,11 @@ namespace Orbita.VA.Comun
         /// </summary>
         /// <param name="codigo">Código identificativo de la variable</param>
         /// <param name="valor">Valor de la variable</param>
-        public OCambioValorEventArgs(string codigo, object valor)
+        public OCambioValorEventArgs(string codigo, object valor, string remitente)
         {
             this._Codigo = codigo;
             this._Valor = valor;
+            this._Remitente = remitente;
         }
         #endregion
     }
@@ -2363,8 +2481,13 @@ namespace Orbita.VA.Comun
     /// <summary>
     /// Declaración del delegado que se activa cuando cambia el valor de una variable
     /// </summary>
+    [Obsolete("Utilizar OCambioValorDelegateRemitente")]
     public delegate void OCambioValorDelegateAdvanced(string codigo, object valor);
 
+    /// <summary>
+    /// Declaración del delegado que se activa cuando cambia el valor de una variable
+    /// </summary>
+    public delegate void OCambioValorDelegateRemitente(string codigo, object valor, string remitente);
     #endregion
 
     #region Secuencias de ejecución
@@ -2538,8 +2661,8 @@ namespace Orbita.VA.Comun
         /// </summary>
         /// <param name="valor">Valor a establecer en la variable</param>
         /// <param name="momentoEjecucion"></param>
-        public OSecuenciaItemValor(string codVariable, object valor, TimeSpan momentoEjecucion, bool forzarRefresco = false)
-            : base(codVariable, momentoEjecucion, forzarRefresco)
+        public OSecuenciaItemValor(string codVariable, object valor, TimeSpan momentoEjecucion, string remitente = "", bool forzarRefresco = false)
+            : base(codVariable, momentoEjecucion, remitente, forzarRefresco)
         {
             this.Valor = valor;
         }
@@ -2549,8 +2672,8 @@ namespace Orbita.VA.Comun
         /// <param name="valor">Valor a establecer en la variable</param>
         /// <param name="momentoMinimoEjecucionAleatoria">Momento mínimo de la ejecución aleatoria</param>
         /// <param name="momentoMaximoEjecucionAleatoria">Momento máximio de la ejecución aleatoria</param>
-        public OSecuenciaItemValor(string codVariable, object valor, TimeSpan momentoMinimoEjecucionAleatorio, TimeSpan momentoMaximoEjecucionAleatorio, bool forzarRefresco = false)
-            : base(codVariable, momentoMinimoEjecucionAleatorio, momentoMaximoEjecucionAleatorio, forzarRefresco)
+        public OSecuenciaItemValor(string codVariable, object valor, TimeSpan momentoMinimoEjecucionAleatorio, TimeSpan momentoMaximoEjecucionAleatorio, string remitente = "", bool forzarRefresco = false)
+            : base(codVariable, momentoMinimoEjecucionAleatorio, momentoMaximoEjecucionAleatorio, remitente, forzarRefresco)
         {
             this.Valor = valor;
         }
@@ -2566,7 +2689,7 @@ namespace Orbita.VA.Comun
         /// <param name="esComando"></param>
         protected override void OnEjecuta()
         {
-            OVariablesManager.SetValue(this.CodVariable, this.Valor, "Secuencia", this.CodVariable, this.ForzarRefresco);
+            OVariablesManager.SetValue(this.CodVariable, this.Valor, this.Remitente, this.CodVariable, this.ForzarRefresco);
         }
         #endregion
     }
@@ -2582,7 +2705,7 @@ namespace Orbita.VA.Comun
         /// </summary>
         /// <param name="valor">Valor a establecer en la variable</param>
         /// <param name="momentoEjecucion"></param>
-        public OSecuenciaItemComando(string codVariable, TimeSpan momentoEjecucion)
+        public OSecuenciaItemComando(string codVariable, TimeSpan momentoEjecucion, string remitente = "")
             : base(codVariable, momentoEjecucion)
         {
         }
@@ -2592,7 +2715,7 @@ namespace Orbita.VA.Comun
         /// <param name="valor">Valor a establecer en la variable</param>
         /// <param name="momentoMinimoEjecucionAleatoria">Momento mínimo de la ejecución aleatoria</param>
         /// <param name="momentoMaximoEjecucionAleatoria">Momento máximio de la ejecución aleatoria</param>
-        public OSecuenciaItemComando(string codVariable, TimeSpan momentoMinimoEjecucionAleatorio, TimeSpan momentoMaximoEjecucionAleatorio)
+        public OSecuenciaItemComando(string codVariable, TimeSpan momentoMinimoEjecucionAleatorio, TimeSpan momentoMaximoEjecucionAleatorio, string remitente = "")
             : base(codVariable, momentoMinimoEjecucionAleatorio, momentoMaximoEjecucionAleatorio)
         {
         }
@@ -2607,7 +2730,7 @@ namespace Orbita.VA.Comun
         /// <param name="esComando"></param>
         protected override void OnEjecuta()
         {
-            OVariablesManager.Dispara(this.CodVariable, "Secuencia", this.CodVariable);
+            OVariablesManager.Dispara(this.CodVariable, Remitente, this.CodVariable);
         }
         #endregion
     }
@@ -2622,6 +2745,11 @@ namespace Orbita.VA.Comun
         /// Código de la variable sobre la que se aplica el valor
         /// </summary>
         public string CodVariable;
+
+        /// <summary>
+        /// Remitente del cambio de valor de la variable
+        /// </summary>
+        public string Remitente;
 
         /// <summary>
         /// Indica que el momento de ejecución se realiza de forma aleatoria
@@ -2679,9 +2807,10 @@ namespace Orbita.VA.Comun
         /// Constructor de la clase
         /// </summary>
         /// <param name="momentoEjecucion"></param>
-        public OSecuenciaItemBase(string codVariable, TimeSpan momentoEjecucion, bool forzarRefresco = false)
+        public OSecuenciaItemBase(string codVariable, TimeSpan momentoEjecucion, string remitente = "", bool forzarRefresco = false)
         {
             this.CodVariable = codVariable;
+            this.Remitente = remitente;
             this.MomentoEjecucion = momentoEjecucion;
             this.MomentoEjecucionAleatorio = false;
             this.ForzarRefresco = forzarRefresco;
@@ -2693,9 +2822,10 @@ namespace Orbita.VA.Comun
         /// </summary>
         /// <param name="momentoMinimoEjecucionAleatoria">Momento mínimo de la ejecución aleatoria</param>
         /// <param name="momentoMaximoEjecucionAleatoria">Momento máximio de la ejecución aleatoria</param>
-        public OSecuenciaItemBase(string codVariable, TimeSpan momentoMinimoEjecucionAleatorio, TimeSpan momentoMaximoEjecucionAleatorio, bool forzarRefresco = false)
+        public OSecuenciaItemBase(string codVariable, TimeSpan momentoMinimoEjecucionAleatorio, TimeSpan momentoMaximoEjecucionAleatorio, string remitente = "", bool forzarRefresco = false)
         {
             this.CodVariable = codVariable;
+            this.Remitente = remitente;
 
             this.MomentoEjecucionAleatorio = true;
             this.MomentoMinimoEjecucionAleatorio = momentoMinimoEjecucionAleatorio;

@@ -33,10 +33,9 @@ namespace Orbita.Controles.Comunicaciones
             /// </summary>
             Zero = 0
         }
-
         #endregion
 
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Ruta del fichero de configuración.
         /// </summary>
@@ -48,55 +47,55 @@ namespace Orbita.Controles.Comunicaciones
         /// <summary>
         /// Contiene los datos de configuración de la aplicación almacenados en el fichero de configuración.
         /// </summary>
-        NameValueCollection AppSettings;
+        private NameValueCollection AppSettings;
         /// <summary>
         /// Contiene listado de argumentos del mensaje de log (columnas a monitorizar en grids) traza.
         /// </summary>
-        Dictionary<int, Argumento> ListaColumnasTraza;
+        private Dictionary<int, Argumento> ListaColumnasTraza;
         /// <summary>
         /// Apariencias generales. Color líneas.
         /// </summary>
-        Infragistics.Win.Appearance _colorWarning;
-        Infragistics.Win.Appearance _colorError;
-        Infragistics.Win.Appearance _colorFatal;
-        Infragistics.Win.Appearance _colorInfo;
-        Infragistics.Win.Appearance _colorKeepAlive;
+        private Infragistics.Win.Appearance _colorWarning;
+        private Infragistics.Win.Appearance _colorError;
+        private Infragistics.Win.Appearance _colorFatal;
+        private Infragistics.Win.Appearance _colorInfo;
+        private Infragistics.Win.Appearance _colorKeepAlive;
         /// <summary>
         /// Número de trazas fatal.
         /// </summary>
-        int _numFatal;
+        private int _numFatal;
         /// <summary>
         /// Número de error fatal.
         /// </summary>
-        int _numError;
+        private int _numError;
         /// <summary>
         /// Número de warning fatal.
         /// </summary>
-        int _numWarning;
+        private int _numWarning;
         /// <summary>
         /// Canal TCP remoting.
         /// </summary>
-        TcpServerChannel tsc = null;
+        private TcpServerChannel tsc = null;
         /// <summary>
         /// Atributo estático que hace referencia a la clase actual, se llama desde clase logger (entrada remoting).
         /// </summary>
-        static OrbitaVisorTCP _main;
+        private static OrbitaVisorTCP _main;
         /// <summary>
         /// Tabla de datos del gridTrazas.
         /// </summary>
-        DataTable _dtGridTrazas;
+        private DataTable _dtGridTrazas;
         /// <summary>
         /// Tabla de datos del gridTrazasError.
         /// inferior.
         /// </summary>
-        DataTable _dtGridTrazasError;
+        private DataTable _dtGridTrazasError;
         /// <summary>
         /// Indica si la trazas estan en run o stop.
         /// </summary>
-        Boolean _pararTrazas = true;
+        private Boolean _pararTrazas = true;
         #endregion
 
-        #region Delegado(s)
+        #region Delegados
         /// <summary>
         /// Delegado de actualización de Windows Form.
         /// </summary>
@@ -107,7 +106,7 @@ namespace Orbita.Controles.Comunicaciones
         internal delegate void MiDelegado();
         #endregion
 
-        #region Constructor(es)
+        #region Constructor
         /// <summary>
         /// Constructor del control.
         /// </summary>
@@ -118,7 +117,7 @@ namespace Orbita.Controles.Comunicaciones
         }
         #endregion
 
-        #region Propiedad(es)
+        #region Propiedades
         /// <summary>
         /// Atributo estático que hace referencia a la clase  actual, accesible desde mismo ensamblado.
         /// </summary>
@@ -129,7 +128,6 @@ namespace Orbita.Controles.Comunicaciones
         /// <summary>
         /// Ruta de los ficheros de configuración.
         /// </summary>
-
         [Category("Orbita"), Editor(typeof(System.Windows.Forms.Design.FolderNameEditor), typeof(System.Drawing.Design.UITypeEditor)), Description("Ruta de los ficheros de configuración, necesaria para la carga del control.")]
         public string OrbitaRutaConfiguracion
         {
@@ -156,7 +154,7 @@ namespace Orbita.Controles.Comunicaciones
         }
         #endregion
 
-        #region Método(s) Interno(s)
+        #region Métodos internos
         /// <summary>
         /// Método interno para inserción de mensajes de log accesible desde todo ensamblado. Se invoca delegado.
         /// </summary>
@@ -260,7 +258,7 @@ namespace Orbita.Controles.Comunicaciones
         /// Carga las colecciones con los argumentos/columnas correspondientes.
         /// </summary>
         /// <returns>Carga correcta.</returns>
-        bool CargarColumnas()
+        private bool CargarColumnas()
         {
             try
             {
@@ -308,7 +306,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="dt">DataTable a formatear.</param>
         /// <returns>DataTable formateado.</returns>
-        DataTable AddColumnasDataTableTrazas(DataTable dt)
+        private DataTable AddColumnasDataTableTrazas(DataTable dt)
         {
             DataColumn columna = new DataColumn();
 
@@ -348,7 +346,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="cols">Colección ArrayList.</param>
         /// <returns>Colección columnas formateada.</returns>
-        ArrayList ColumnasGridTrazas(ArrayList cols)
+        private ArrayList ColumnasGridTrazas(ArrayList cols)
         {
             cols.Add(new Orbita.Controles.Grid.OEstiloColumna("Nivel", "Nivel", Orbita.Controles.Grid.EstiloColumna.Texto, Orbita.Controles.Grid.Alineacion.Izquierda, 54));
             cols.Add(new Orbita.Controles.Grid.OEstiloColumna("Fecha", "Fecha", Orbita.Controles.Grid.EstiloColumna.Fecha, Orbita.Controles.Grid.Alineacion.Centrado, new Orbita.Controles.Grid.OMascara("dd/mm/yyyy hh:mm:ss"), 120));
@@ -370,7 +368,7 @@ namespace Orbita.Controles.Comunicaciones
         /// Da formato a grid.
         /// </summary>
         /// <param name="grid">Grid a formatear.</param>
-        void FormatearGrid(Orbita.Controles.Grid.OrbitaUltraGridToolBar grid)
+        private void FormatearGrid(Orbita.Controles.Grid.OrbitaUltraGridToolBar grid)
         {
             grid.OI.Apariencia.ColorBorde = Color.DimGray;
             grid.OI.Filas.Apariencia.ColorBorde = Color.Silver;
@@ -394,7 +392,7 @@ namespace Orbita.Controles.Comunicaciones
         /// <summary>
         /// Inicializa las apariencias de las filas.
         /// </summary>
-        void InicializarApariencias()
+        private void InicializarApariencias()
         {
             _colorWarning = new Infragistics.Win.Appearance();
             _colorError = new Infragistics.Win.Appearance();
@@ -425,7 +423,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="dt">datatable sobre el que se filtra.</param>
         /// <param name="grid">grid contenedor de los botones.</param>
-        void GestionFiltros(DataTable dt, Orbita.Controles.Grid.OrbitaUltraGridToolBar grid)
+        private void GestionFiltros(DataTable dt, Orbita.Controles.Grid.OrbitaUltraGridToolBar grid)
         {
             //Se obtienen los botones para conocer si pulsados.
             Infragistics.Win.UltraWinToolbars.StateButtonTool error = (Infragistics.Win.UltraWinToolbars.StateButtonTool)grid.Toolbar.Tools["errorGridError"];
@@ -456,7 +454,7 @@ namespace Orbita.Controles.Comunicaciones
         /// <summary>
         /// Establece el canal TCP para conexión remoting con logger.
         /// </summary>
-        void IniciarConexionRemoting()
+        private void IniciarConexionRemoting()
         {
             int puerto = Convert.ToInt32(AppSettings.GetValues("Puerto")[0]);
 
@@ -478,7 +476,7 @@ namespace Orbita.Controles.Comunicaciones
         /// <summary>
         /// Cierra el canal TCP para conexión remoting con logger.
         /// </summary>
-        void PararConexionRemoting()
+        private void PararConexionRemoting()
         {
             try
             {
@@ -494,7 +492,7 @@ namespace Orbita.Controles.Comunicaciones
         /// <summary>
         /// Configura el explorer bar.
         /// </summary>
-        void ConfigurarArbolLogs()
+        private void ConfigurarArbolLogs()
         {
             if (!ebArbol.Groups.Exists("Backup log"))
             {
@@ -514,7 +512,7 @@ namespace Orbita.Controles.Comunicaciones
         /// <summary>
         /// Carga el control TreeView.
         /// </summary>
-        void CargarArbolLogs()
+        private void CargarArbolLogs()
         {
             try
             {
@@ -537,7 +535,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="ruta">ruta del nodo.</param>
         /// <param name="padre">nodo padre.</param>
-        void CargaDirectorio(string ruta, TreeNode padre)
+        private void CargaDirectorio(string ruta, TreeNode padre)
         {
             DirectoryInfo directorio = new DirectoryInfo(ruta);
             //obtenemos los subdirectorios.
@@ -568,7 +566,7 @@ namespace Orbita.Controles.Comunicaciones
                     child.Text = fi.Name;
                     child.ImageIndex = 2;
                     child.SelectedImageIndex = 2;
-                    child.ToolTipText = this.CalcularTamanyo(fi.Length);
+                    child.ToolTipText = CalcularTamanyo(fi.Length);
                     child.ContextMenuStrip = this.cmnTreeView;
                     padre.Nodes.Add(child);
                 }
@@ -577,7 +575,7 @@ namespace Orbita.Controles.Comunicaciones
         /// <summary>
         /// Inicializa el formulario.
         /// </summary>
-        void InicializarControl(bool recarga)
+        private void InicializarControl(bool recarga)
         {
             try
             {
@@ -643,7 +641,7 @@ namespace Orbita.Controles.Comunicaciones
         /// Vacia DataTable.
         /// </summary>
         /// <param name="dt">Tabla a limpiar.</param>
-        void Limpiar(DataTable dt)
+        private void Limpiar(DataTable dt)
         {
             dt.Clear();
             GC.Collect();
@@ -653,7 +651,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="len">longitud.</param>
         /// <returns>tamaño como string.</returns>
-        string CalcularTamanyo(long len)
+        private static string CalcularTamanyo(long len)
         {
             string[] tam = { "B", "KB", "MB", "GB" };
             int order = 0;
@@ -669,7 +667,7 @@ namespace Orbita.Controles.Comunicaciones
         /// Carga los datos de configuración en AppSettings.
         /// </summary>
         /// <returns>True si la carga ha sido correcta; false en caso contrario.</returns>
-        bool CargarConfiguracion()
+        private bool CargarConfiguracion()
         {
             string ficheroConfiguracionAplicacion = Path.Combine(this._rutaConfiguracion, "ConfiguracionVisorTCP.xml");
 
@@ -684,15 +682,12 @@ namespace Orbita.Controles.Comunicaciones
                 return false;
             }
 
-
             XmlDocument ficheroXML = new XmlDocument();
-
             ficheroXML.Load(ficheroConfiguracionAplicacion);
 
             XmlNodeList listaNodos = ficheroXML.GetElementsByTagName("appSettings");
 
             AppSettings = new NameValueCollection();
-
             foreach (XmlNode nodo in listaNodos)
             {
                 foreach (XmlNode clave in nodo.ChildNodes)
@@ -703,7 +698,6 @@ namespace Orbita.Controles.Comunicaciones
                     }
                 }
             }
-
             return true;
         }
         #endregion
@@ -714,7 +708,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void InitializeRow(object sender, Infragistics.Win.UltraWinGrid.InitializeRowEventArgs e)
+        protected void InitializeRow(object sender, Infragistics.Win.UltraWinGrid.InitializeRowEventArgs e)
         {
             try
             {
@@ -762,7 +756,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void InitializeLayoutWithHeader(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
+        protected void InitializeLayoutWithHeader(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
         {
             e.Layout.Bands[0].Override.RowSizing = Infragistics.Win.UltraWinGrid.RowSizing.AutoFree;
             e.Layout.Bands[0].Columns["Mensaje"].CellMultiLine = Infragistics.Win.DefaultableBoolean.True;
@@ -773,7 +767,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void InitializeLayoutWithoutHeader(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
+        protected void InitializeLayoutWithoutHeader(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
         {
             e.Layout.Bands[0].Override.RowSizing = Infragistics.Win.UltraWinGrid.RowSizing.AutoFree;
             e.Layout.Bands[0].Columns["Mensaje"].CellMultiLine = Infragistics.Win.DefaultableBoolean.True;
@@ -786,7 +780,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void DoubleClickRow(object sender, Infragistics.Win.UltraWinGrid.DoubleClickRowEventArgs e)
+        protected void DoubleClickRow(object sender, Infragistics.Win.UltraWinGrid.DoubleClickRowEventArgs e)
         {
             if (!e.Row.IsFilterRow)
             {
@@ -801,7 +795,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void tsmiVerTrazasErrores_Click(object sender, EventArgs e)
+        protected void tsmiVerTrazasErrores_Click(object sender, EventArgs e)
         {
             tsmiVerTrazasErrores.Checked = !tsmiVerTrazasErrores.Checked;
             splitContenedorTrazas.Panel2Collapsed = !tsmiVerTrazasErrores.Checked;
@@ -811,7 +805,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void tsmiVerLogsErrores_Click(object sender, EventArgs e)
+        protected void tsmiVerLogsErrores_Click(object sender, EventArgs e)
         {
             tsmiVerLogsErrores.Checked = !tsmiVerLogsErrores.Checked;
 
@@ -829,7 +823,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void ToolClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected void ToolClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -889,7 +883,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void btnGeneral_Click(object sender, EventArgs e)
+        protected void btnGeneral_Click(object sender, EventArgs e)
         {
             if (_pararTrazas)
             {
@@ -911,7 +905,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void btnAbrirEnOtraPestaña_Click(object sender, EventArgs e)
+        protected void btnAbrirEnOtraPestaña_Click(object sender, EventArgs e)
         {
             try
             {
@@ -942,7 +936,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void btnAbrirEnPrincipal_Click(object sender, EventArgs e)
+        protected void btnAbrirEnPrincipal_Click(object sender, EventArgs e)
         {
             try
             {
@@ -970,7 +964,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void tabDiferido_TabClosed(object sender, Infragistics.Win.UltraWinTabControl.TabClosedEventArgs e)
+        protected void tabDiferido_TabClosed(object sender, Infragistics.Win.UltraWinTabControl.TabClosedEventArgs e)
         {
             try
             {
@@ -997,7 +991,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void oVisorTCP_Load(object sender, EventArgs e)
+        protected void oVisorTCP_Load(object sender, EventArgs e)
         {
             if (this._iniciarControl)
                 InicializarControl(false);

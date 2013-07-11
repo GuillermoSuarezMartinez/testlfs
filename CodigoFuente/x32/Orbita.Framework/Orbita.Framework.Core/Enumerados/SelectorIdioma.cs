@@ -16,17 +16,11 @@ namespace Orbita.Framework.Core
     /// </summary>
     public enum SelectorIdioma
     {
-        /// <summary>
-        /// Español.
-        /// </summary>
         Español,
-        /// <summary>
-        /// Inglés.
-        /// </summary>
         Inglés,
-        /// <summary>
-        /// Francés.
-        /// </summary>
-        Francés
+        Francés,
+        Alemán,
+        Italiano,
+
     }
 }

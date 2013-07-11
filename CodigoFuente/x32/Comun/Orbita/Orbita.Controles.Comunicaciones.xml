@@ -364,520 +364,508 @@
             </summary>
             <param name="Elemento"></param>
         </member>
-        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase">
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._nombreCanal">
             <summary>
-            Control base para cliente de comunicaciones
+            Canal comunicaciones remoto
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase._remotingPuerto">
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._remotingPuerto">
             <summary>
             Puerto de comunicación de remoting
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase._servidor">
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._servidor">
             <summary>
             Servidor de comunicaciones.
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase._idDispositivo">
-            <summary>
-            Identificador de dispositivo
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase._servidorRemoting">
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._remotingServidor">
             <summary>
             Servidor remoting
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.#ctor">
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._eventWrapper">
             <summary>
-            Constructor de clase
+            Wrapper de comunicaciones
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.Iniciar">
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._wrapper">
             <summary>
-            Arranca las comunicaciones con el dispositivo
+            Wrapper del log
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.Conectar(System.Boolean)">
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.HilosEstado">
             <summary>
-            Conectar al servidor vía Remoting.
-            </summary>
-            <param name="estado">Estado de conexión.</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.Desconectar">
-            <summary>
-            Desconectar del servidor vía Remoting.
+            Hilos de estado
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.procesarComunicacionesServidor(Orbita.Utiles.OEventArgs)">
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._fechaRecepcionMensajeComs">
             <summary>
-            Procesa la información del evento de comunicaciones
+            Fecha de recepción del mensaje de comunicaciones
             </summary>
-            <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.cambiarEstado(Orbita.Comunicaciones.OEstadoComms)">
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._segundosReconexion">
             <summary>
-            Procesa la información para el cambio de estado por pantalla
+            Segundos para la reconexión del canal
             </summary>
-            <param name="estado"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.agregarItemOrbita(System.String)">
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._reintentosReconexion">
             <summary>
-            Agrega los items a la lista
+            Reintentos antes de empezar la reconexión
             </summary>
-            <param name="texto"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._segundosEventoEstado">
+            <summary>
+            Segundos para el evento de estado
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._nombreLogger">
+            <summary>
+            Ruta del logger
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._estado">
+            <summary>
+            Estado del canal
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._qCambioDato">
+            <summary>
+            Cola de recepción de tramas de datos.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._qAlarmas">
+            <summary>
+            Cola de recepción de tramas de alarmas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._qComunicaciones">
+            <summary>
+            Cola de recepción de tramas de comunicaciones.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._eReset">
+            <summary>
+            Sincronización de colas
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._hiloCambioDato">
+            <summary>
+            Hilos para desencolar
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._bufferCola">
+            <summary>
+            Tamaño máximo de colas
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._numeroServidor">
+            <summary>
+            Número del servidor de remoting
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
             <summary>
             Evento de cambio de dato.
             </summary>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.eventWrapper_OrbitaAlarma(Orbita.Utiles.OEventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.eventWrapper_OrbitaAlarma(Orbita.Utiles.OEventArgs)">
             <summary>
             Evento de alarma.
             </summary>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.eventWrapper_OrbitaComm(Orbita.Utiles.OEventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.eventWrapper_OrbitaComm(Orbita.Utiles.OEventArgs)">
             <summary>
             Evento de comunicaciones.
             </summary>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.btnConectar_Click(System.Object,System.EventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.Iniciar">
+            <summary>
+            Incia las comunicaciones con el dispositivo remoto
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.ConectarWrapper">
+            <summary>
+            Conecta con el wrapper de remoting
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.DesconectarWrapper">
+            <summary>
+            Desconectar del wrapper de remoting
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.Conectar(System.Boolean)">
+            <summary>
+            Conectar al servidor vía Remoting.
+            </summary>
+            <param name="estado">Estado de conexión.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.SetEscribirComs(System.Int32,System.String[],System.Object[])">
+            <summary>
+            Escritura en el servidor de comunicaciones
+            </summary>
+            <param name="idDispositivo">identificador de dispositivo</param>
+            <param name="variables">variables</param>
+            <param name="valores">valores</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.GetLeerComs(System.Int32,System.String[])">
+            <summary>
+            Metodo para leer en el Servidor de comunicaciones
+            </summary>
+            <param name="idDispositivo">ID de dispositivo</param>
+            <param name="variables">Nombre de la variable</param>
+            <returns>Valor leido</returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.GetVariables(System.Int32)">
+            <summary>
+            Obtiene las variables del Servidor de comunicaciones
+            </summary>
+            <param name="idDispositivo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.GetAlarmas(System.Int32)">
+            <summary>
+            Obtiene las alarmas del Servidor de comunicaciones
+            </summary>
+            <param name="idDispositivo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.GetDispositivos">
+            <summary>
+            Obtiene los dispositivos del Servidor de comunicaciones
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.IniciarHiloEstadoCanal">
+            <summary>
+            Iniciamos el hilo del estado del canal
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.hilos_OnDespuesAdicionar(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Arranca el hilo de lectura
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.hilo_OnDespuesAccion(System.Object,Orbita.Utiles.OEventArgs)">
+            <summary>
+            Traza el hilo de lectura
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.GestionEstados">
+            <summary>
+            Proceso para la gestión de estados del componente
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.ProcesarHiloColaCambioDato">
+            <summary>
+            Procesa los cambios de dato remotos
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.DesencolarCambioDato">
+            <summary>
+            Desencola los mensajes de la cola de cambio de dato
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.EncolarCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Encola los mensajes de cambio de dato
+            </summary>
+            <param name="trama"></param>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.OEventoClienteComs">
+            <summary>
+            Evento para los cambios de comunicaciones
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.OEventoClienteCambioDato">
+            <summary>
+            Evento para los cambios de dato
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.OEventoClienteAlarma">
+            <summary>
+            Evento para las alarmas
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.OEventoEstadoCanal">
+            <summary>
+            Evento para el estado del canal
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.RemotingPuerto">
+            <summary>
+            Puerto de comunicación de remoting
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.ServidorRemoting">
+            <summary>
+            Servidor de comunicaciones.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.NombreCanal">
+            <summary>
+            Canal comunicaciones remoto
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.SegundosReconexion">
+            <summary>
+            Segundos para la reconexión del canal
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.ReintentosReconexion">
+            <summary>
+            Reintentos antes de empezar la reconexión
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.SegundosEventoEstado">
+            <summary>
+            Segundos para el evento de estado
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.NombreLogger">
+            <summary>
+            Ruta del logger
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.NumeroServidor">
+            <summary>
+            Número de servidor de remoting
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo._remotingPuerto">
+            <summary>
+            Puerto de comunicación de remoting
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo._servidor">
+            <summary>
+            Servidor de comunicaciones.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo._idDispositivo">
+            <summary>
+            Identificador de dispositivo
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo._servidorRemoting">
+            <summary>
+            Servidor remoting
+            </summary>
+        </member>
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo._eventWrapper" -->
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo._numeroServidor">
+            <summary>
+            Número de servidor de remoting
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.Iniciar">
+            <summary>
+            Arranca las comunicaciones con el dispositivo
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.ConectarWrapper(System.String@)">
+            <summary>
+            Conecta con el wrapper de remoting
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.Conectar(System.Boolean)">
+            <summary>
+            Conectar al servidor vía Remoting.
+            </summary>
+            <param name="estado">Estado de conexión.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.DesconectarWrapper(System.String@)">
+            <summary>
+            Desconectar del servidor vía Remoting.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.procesarComunicacionesServidor(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Procesa la información del evento de comunicaciones
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.cambiarEstado(Orbita.Comunicaciones.OEstadoComms)">
+            <summary>
+            Procesa la información para el cambio de estado por pantalla
+            </summary>
+            <param name="estado"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.agregarItemOrbita(System.String)">
+            <summary>
+            Agrega los items a la lista
+            </summary>
+            <param name="texto"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.getIdDisp">
+            <summary>
+            Obtener identificador del dipositivo
+            </summary>
+            <param name="texto"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.configurarDataGridEscrituras">
+            <summary>
+            Inicializa el grid de lecturas y escrituras
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.MostrarMensajesComs(System.String)">
+            <summary>
+            Agrega Item a la colección
+            </summary>
+            <param name="texto"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.agregarItemComs(System.String)">
+            <summary>
+            Agrega Item a la colección
+            </summary>
+            <param name="texto"></param> 
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.Leer">
+            <summary>
+            Realiza la lectura y la vuelca al PLC
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.OrbitaClienteComsMultidispositivo_Load(System.Object,System.EventArgs)">
+            <summary>
+            Carga del dispositivo
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Evento de cambio de dato.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.eventWrapper_OrbitaAlarma(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Evento de alarma.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.eventWrapper_OrbitaComm(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Evento de comunicaciones.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.btnConectar_Click(System.Object,System.EventArgs)">
             <summary>
             Inicia el cliente de comunicaciones
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.btnLectura_Click(System.Object,System.EventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.btnLectura_Click(System.Object,System.EventArgs)">
             <summary>
             Lee una variable por OPC
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.btnEscritura_Click(System.Object,System.EventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.btnEscritura_Click_1(System.Object,System.EventArgs)">
+            <summary>
+            EScribe un valor
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.btnEscritura_Click(System.Object,System.EventArgs)">
             <summary>
             Escribe una variable por OPC
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.btnLeerVariables_Click(System.Object,System.EventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.btnLeerVariables_Click(System.Object,System.EventArgs)">
             <summary>
             Lee el valor de todas las variables del dispositivo
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.btnLeerAlarmas_Click(System.Object,System.EventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.btnLeerAlarmas_Click(System.Object,System.EventArgs)">
             <summary>
             Lee las alarmas activas
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.OClienteComs_Load(System.Object,System.EventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.btnReconectar_Click(System.Object,System.EventArgs)">
             <summary>
-            Carga del formulario principal
+            Reconecta el wrapper
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.components">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.btnLimpiar_Click(System.Object,System.EventArgs)">
+            <summary>
+            Limpia los controles del formulario
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.components">
             <summary> 
             Variable del diseñador requerida.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.Dispose(System.Boolean)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.Dispose(System.Boolean)">
             <summary> 
             Limpiar los recursos que se estén utilizando.
             </summary>
             <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.InitializeComponent">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.InitializeComponent">
             <summary> 
             Método necesario para admitir el Diseñador. No se puede modificar 
             el contenido del método con el editor de código.
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.gbConfig">
-            <summary>
-            panel de configuración
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.txtServidorRemoting">
-            <summary>
-            Nombre del servidor remoting
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.txtIdDispositivo">
-            <summary>
-            Identificador del dispositivo
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.txtPuertoRemoting">
-            <summary>
-            Puerto remoting
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.pnlInf">
-            <summary>
-            Panel de información
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.SContMain">
-            <summary>
-            Contenedor principal
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.SContMainSup">
-            <summary>
-            Contenedor superior
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.lblCom">
-            <summary>
-            Etiqueta de comunicaciones
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.txtVarLeer">
-            <summary>
-            Variables de lectura
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.txtCom">
-            <summary>
-            Variables de comunicación
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.gbEscrituras">
-            <summary>
-            Panel de escrituras
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.SContMainInf">
-            <summary>
-            Contenedor inferior
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.gbVariables">
-            <summary>
-            Contendor de variables
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.gbCDato">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.DelegadoAgregar">
+        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.DelegadoAgregar">
             <summary>
             Delegado para mostar los datos en el formulario
             </summary>
             <param name="Elemento"></param>
         </member>
-        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.DelegadoCambioEstado">
+        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.DelegadoCambioEstado">
             <summary>
             Delegado para el cambio de estado
             </summary>
             <param name="estado"></param>
         </member>
-        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.DelegadoES">
+        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.DelegadoES">
             <summary>
             Delegado para el cambio de las ES
             </summary>
             <param name="estado"></param>
-        </member>
-        <member name="F:Orbita.OrbitaControlVideo.VideoActual">
-            <summary>
-            Contendra el video a visualizar
-            </summary>
-        </member>
-        <member name="F:Orbita.OrbitaControlVideo.timer">
-            <summary>
-            Timer para controlar el tiempo de reproducción y la barra de progreso.
-            </summary>
-        </member>
-        <member name="F:Orbita.OrbitaControlVideo.tiempoReproduccion">
-            <summary>
-            TimeSpan para obtener los minutos y segundos durante la reproducción;
-            </summary>
-        </member>
-        <member name="F:Orbita.OrbitaControlVideo.tiempoVideo">
-            <summary>
-            TimeSpan para obtener los minutos y segundos de la duración completa del video.
-            </summary>
-        </member>
-        <member name="F:Orbita.OrbitaControlVideo.primeraReproduccion">
-            <summary>
-            Flag para saber si es la primera reproducción, si está a true generaremos los eventos del video.
-            </summary>
-        </member>
-        <member name="F:Orbita.OrbitaControlVideo.ruta">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Orbita.OrbitaControlVideo.Dispose(System.Boolean)">
-            <summary>
-            Dispose para liberar cada unos de los componentes del control, entre ellos el video.
-            </summary>
-            <param name="disposing"></param>
-        </member>
-        <member name="M:Orbita.OrbitaControlVideo.DisposeVideo">
-            <summary>
-            Dispose para liberar  el video.
-            </summary>
-            <param name="disposing"></param>
-        </member>
-        <member name="M:Orbita.OrbitaControlVideo.InicializaEventos">
-            <summary>
-            Inicializamos los eventos de Starting, Ending y Pausing;
-            </summary>
-        </member>
-        <member name="M:Orbita.OrbitaControlVideo.ConfigurarTimerDeEjecucion">
-            <summary>
-            Configuración del timer.
-            </summary>
-        </member>
-        <member name="M:Orbita.OrbitaControlVideo.scaleToFit(System.Drawing.Size,System.Drawing.Size)">
-            <summary>
-            Escalamos y ajustamos el video para mantener relación aspecto.
-            </summary>
-            <param name="target">Tamaño del contenedor donde queremos adaptar el video</param>
-            <param name="original">Tamaño del video a escalar</param>
-            <returns>El tamaño ajustado al panel</returns>
-        </member>
-        <member name="M:Orbita.OrbitaControlVideo.scaleToFitSmart(System.Drawing.Size,System.Drawing.Size)">
-            <summary>
-            Escalado y ajuste inteligente.
-            </summary>
-            <param name="target">Tamaño del contenedor donde queremos adaptar el video</param>
-            <param name="original">Tamaño del video a escalar</param>
-            <returns>El tamaño ajustado al contenedor. En caso de que el escalado y el ajuste 
-            sean mayores que el original devolvemos el original.</returns>
-        </member>
-        <member name="M:Orbita.OrbitaControlVideo.ActivarBotonesEnPlay">
-            <summary>
-            Activamos el botó de "Pause" y desactivamos el botón de "Play"
-            </summary>
-        </member>
-        <member name="M:Orbita.OrbitaControlVideo.ActivarBotonesEnStop">
-            <summary>
-            Desactivamos el botón pause y activamos el botón de "Play"
-            </summary>
-        </member>
-        <member name="M:Orbita.OrbitaControlVideo.ActivarBotonesEnFin">
-            <summary>
-            Desactivamos los botones stop y pause y activamos el botón de "Play"
-            </summary>
-        </member>
-        <member name="M:Orbita.OrbitaControlVideo.Redimensionar">
-            <summary>
-            Redimensionamos el video según la propiedad "MantenerRelacionAspecto".
-            </summary>
-        </member>
-        <member name="M:Orbita.OrbitaControlVideo.Suspender(System.Windows.Forms.Control,System.Boolean)">
-            <summary>
-            Suspendemos cada uno de los componentes del control.
-            </summary>
-            <param name="controlSuspender"></param>
-            <param name="suspender"></param>
-        </member>
-        <member name="M:Orbita.OrbitaControlVideo.ActualizaLabels(System.Boolean)">
-            <summary>
-            Actualizamos la barra de progreso, el título, la etiqueta de dimensiones y los temporizadores.
-            </summary>
-            <param name="final"></param>
-        </member>
-        <member name="M:Orbita.OrbitaControlVideo.InicializarVideo">
-            <summary>
-            Inicializamos el video llamando a play
-            </summary>
-        </member>
-        <member name="F:Orbita.OrbitaControlVideo.components">
-            <summary> 
-            Variable del diseñador requerida.
-            </summary>
-        </member>
-        <member name="M:Orbita.OrbitaControlVideo.InitializeComponent">
-            <summary> 
-            Método necesario para admitir el Diseñador. No se puede modificar 
-            el contenido del método con el editor de código.
-            </summary>
-        </member>
-        <member name="P:Orbita.OrbitaControlVideo.NombreVideo">
-            <summary>
-            Propiedad para añadir título al video.
-            </summary>
-        </member>
-        <member name="P:Orbita.OrbitaControlVideo.PanelGrande">
-            <summary>
-            Propiedad para mostrar el panel con los botones grandes. True para mostrarlo.
-            </summary>
-        </member>
-        <member name="P:Orbita.OrbitaControlVideo.MantenerRelacionAspecto">
-            <summary>
-            Propiedad para mantener la relación aspecto. True para mantener la relación aspecto.
-            </summary>
-        </member>
-        <member name="P:Orbita.OrbitaControlVideo.ReproduccionEnBucle">
-            <summary>
-            Propiedad para poner el video en bucle. True para activar estado en bucle.
-            </summary>
-        </member>
-        <member name="P:Orbita.OrbitaControlVideo.ZoomVideo">
-            <summary>
-            Propiedad para mostrar el zoom del video. True para mostrarlo.
-            </summary>
-        </member>
-        <member name="P:Orbita.OrbitaControlVideo.CerrarZoomVideo">
-            <summary>
-            Propiedad para mostrar cerrar el zoom del video. True para mostrarlo.
-            </summary>
-        </member>
-        <member name="E:Orbita.OrbitaControlVideo.VideoFinEventHandler">
-            <summary>
-            Generamos el evento del video que nos indicará que ha finalizado
-            </summary>
-        </member>
-        <member name="T:Orbita.OrbitaControlVideo.VideoFinHandler">
-            <summary>
-            Generamos el evento del video que nos indicará que ha finalizado
-            </summary>
-        </member>
-        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingCliente">
-            <summary>
-            Control para comprobación del servidor de comunicaciones con el dispositivo remoting
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingCliente.#ctor">
-            <summary>
-            Constructor de clase
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingCliente.components">
-            <summary> 
-            Variable del diseñador requerida.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingCliente.Dispose(System.Boolean)">
-            <summary> 
-            Limpiar los recursos que se estén utilizando.
-            </summary>
-            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingCliente.InitializeComponent">
-            <summary> 
-            Método necesario para admitir el Diseñador. No se puede modificar 
-            el contenido del método con el editor de código.
-            </summary>
-        </member>
-        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingESPhoenixILBK48">
-            <summary>
-            Control para comprobación del servidor de comunicaciones con el dispositivo de phoenix
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingESPhoenixILBK48.#ctor">
-            <summary>
-            Constructor de clase
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingESPhoenixILBK48.Iniciar">
-            <summary>
-            Inicia la comunicación con el servidor
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingESPhoenixILBK48.actualizarES(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Actualiza las ES del control
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingESPhoenixILBK48.InciarVisualizacion">
-            <summary>
-            Actualiza la visualización al arrancar la aplicación
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingESPhoenixILBK48.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Actualizamos los valores del control
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingESPhoenixILBK48.components">
-            <summary> 
-            Variable del diseñador requerida.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingESPhoenixILBK48.Dispose(System.Boolean)">
-            <summary> 
-            Limpiar los recursos que se estén utilizando.
-            </summary>
-            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingESPhoenixILBK48.InitializeComponent">
-            <summary> 
-            Método necesario para admitir el Diseñador. No se puede modificar 
-            el contenido del método con el editor de código.
-            </summary>
-        </member>
-        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB">
-            <summary>
-            Cliente de comunicaciones para los dispositivos UCB de MC
-            </summary>
-            <summary>
-            Control para comprobación del servidor de comunicaciones con el dispositivo USB de MC
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB.#ctor">
-            <summary>
-            Cliente de comunicaciones para los dispositivos UCB de MC
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB.Iniciar">
-            <summary>
-            Inicia la comunicación con el servidor
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB.actualizarES(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Actualiza las ES del control
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB.InciarVisualizacion">
-            <summary>
-            Actualiza la visualización al arrancar la aplicación
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Actualizamos los valores del control
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB.components">
-            <summary> 
-            Variable del diseñador requerida.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB.Dispose(System.Boolean)">
-            <summary> 
-            Limpiar los recursos que se estén utilizando.
-            </summary>
-            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB.InitializeComponent">
-            <summary> 
-            Método necesario para admitir el Diseñador. No se puede modificar 
-            el contenido del método con el editor de código.
-            </summary>
         </member>
         <member name="F:Orbita.Controles.Comunicaciones.OrbitaControlBaseEventosComs.components">
             <summary> 
@@ -1013,6 +1001,23 @@
         <member name="P:Orbita.Controles.Comunicaciones.OComunicacion.Control">
             <summary>
             Obtiene el control al que está asociada la clase OGSLabel
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaEstadoEventos.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaEstadoEventos.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaEstadoEventos.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
             </summary>
         </member>
         <member name="T:Orbita.Controles.Comunicaciones.OrbitaVisorTCP">
@@ -1411,427 +1416,289 @@
             </summary>
             <param name="Elemento"></param>
         </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.components">
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaEstadoCanal.components">
             <summary> 
             Variable del diseñador requerida.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.Dispose(System.Boolean)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaEstadoCanal.Dispose(System.Boolean)">
             <summary> 
             Limpiar los recursos que se estén utilizando.
             </summary>
             <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.InitializeComponent">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaEstadoCanal.InitializeComponent">
             <summary> 
             Método necesario para admitir el Diseñador. No se puede modificar 
             el contenido del método con el editor de código.
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo._remotingPuerto">
+        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase">
+            <summary>
+            Control base para cliente de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.gbConfig">
+            <summary>
+            panel de configuración
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.txtServidorRemoting">
+            <summary>
+            Nombre del servidor remoting
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.txtIdDispositivo">
+            <summary>
+            Identificador del dispositivo
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.txtPuertoRemoting">
+            <summary>
+            Puerto remoting
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.pnlInf">
+            <summary>
+            Panel de información
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.SContMain">
+            <summary>
+            Contenedor principal
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.SContMainSup">
+            <summary>
+            Contenedor superior
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.lblCom">
+            <summary>
+            Etiqueta de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.txtVarLeer">
+            <summary>
+            Variables de lectura
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.txtCom">
+            <summary>
+            Variables de comunicación
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.gbEscrituras">
+            <summary>
+            Panel de escrituras
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.SContMainInf">
+            <summary>
+            Contenedor inferior
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.gbVariables">
+            <summary>
+            Contendor de variables
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.gbCDato">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase._remotingPuerto">
             <summary>
             Puerto de comunicación de remoting
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo._servidor">
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase._servidor">
             <summary>
             Servidor de comunicaciones.
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo._idDispositivo">
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase._idDispositivo">
             <summary>
             Identificador de dispositivo
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo._servidorRemoting">
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase._servidorRemoting">
             <summary>
             Servidor remoting
             </summary>
         </member>
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo._eventWrapper" -->
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.Iniciar">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.#ctor">
+            <summary>
+            Constructor de clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.Iniciar">
             <summary>
             Arranca las comunicaciones con el dispositivo
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.ConectarWrapper(System.String@)">
-            <summary>
-            Conecta con el wrapper de remoting
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.Conectar(System.Boolean)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.Conectar(System.Boolean)">
             <summary>
             Conectar al servidor vía Remoting.
             </summary>
             <param name="estado">Estado de conexión.</param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.DesconectarWrapper(System.String@)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.Desconectar">
             <summary>
             Desconectar del servidor vía Remoting.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.procesarComunicacionesServidor(Orbita.Utiles.OEventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.procesarComunicacionesServidor(Orbita.Utiles.OEventArgs)">
             <summary>
             Procesa la información del evento de comunicaciones
             </summary>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.cambiarEstado(Orbita.Comunicaciones.OEstadoComms)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.cambiarEstado(Orbita.Comunicaciones.OEstadoComms)">
             <summary>
             Procesa la información para el cambio de estado por pantalla
             </summary>
             <param name="estado"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.agregarItemOrbita(System.String)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.agregarItemOrbita(System.String)">
             <summary>
             Agrega los items a la lista
             </summary>
             <param name="texto"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.getIdDisp">
-            <summary>
-            Obtener identificador del dipositivo
-            </summary>
-            <param name="texto"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.configurarDataGridEscrituras">
-            <summary>
-            Inicializa el grid de lecturas y escrituras
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.MostrarMensajesComs(System.String)">
-            <summary>
-            Agrega Item a la colección
-            </summary>
-            <param name="texto"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.agregarItemComs(System.String)">
-            <summary>
-            Agrega Item a la colección
-            </summary>
-            <param name="texto"></param> 
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.OrbitaClienteComsMultidispositivo_Load(System.Object,System.EventArgs)">
-            <summary>
-            Carga del dispositivo
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
             <summary>
             Evento de cambio de dato.
             </summary>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.eventWrapper_OrbitaAlarma(Orbita.Utiles.OEventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.eventWrapper_OrbitaAlarma(Orbita.Utiles.OEventArgs)">
             <summary>
             Evento de alarma.
             </summary>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.eventWrapper_OrbitaComm(Orbita.Utiles.OEventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.eventWrapper_OrbitaComm(Orbita.Utiles.OEventArgs)">
             <summary>
             Evento de comunicaciones.
             </summary>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.btnConectar_Click(System.Object,System.EventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.btnConectar_Click(System.Object,System.EventArgs)">
             <summary>
             Inicia el cliente de comunicaciones
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.btnLectura_Click(System.Object,System.EventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.btnLectura_Click(System.Object,System.EventArgs)">
             <summary>
             Lee una variable por OPC
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.btnEscritura_Click_1(System.Object,System.EventArgs)">
-            <summary>
-            EScribe un valor
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.btnEscritura_Click(System.Object,System.EventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.btnEscritura_Click(System.Object,System.EventArgs)">
             <summary>
             Escribe una variable por OPC
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.btnLeerVariables_Click(System.Object,System.EventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.btnLeerVariables_Click(System.Object,System.EventArgs)">
             <summary>
             Lee el valor de todas las variables del dispositivo
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.btnLeerAlarmas_Click(System.Object,System.EventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.btnLeerAlarmas_Click(System.Object,System.EventArgs)">
             <summary>
             Lee las alarmas activas
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.btnReconectar_Click(System.Object,System.EventArgs)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.OClienteComs_Load(System.Object,System.EventArgs)">
             <summary>
-            Reconecta el wrapper
+            Carga del formulario principal
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.DelegadoAgregar">
+        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.DelegadoAgregar">
             <summary>
             Delegado para mostar los datos en el formulario
             </summary>
             <param name="Elemento"></param>
         </member>
-        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.DelegadoCambioEstado">
+        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.DelegadoCambioEstado">
             <summary>
             Delegado para el cambio de estado
             </summary>
             <param name="estado"></param>
         </member>
-        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingMultidispositivo.DelegadoES">
+        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingClienteBase.DelegadoES">
             <summary>
             Delegado para el cambio de las ES
             </summary>
             <param name="estado"></param>
         </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.components">
+        <member name="M:Orbita.Controles.Comunicaciones.Custom.Dispositivos.OrbitaRemotingESPhoenix.Iniciar">
             <summary>
+            Inicia la comunicación con el servidor
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.Custom.Dispositivos.OrbitaRemotingESPhoenix.actualizarES(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Actualiza las ES del control
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.Custom.Dispositivos.OrbitaRemotingESPhoenix.InciarVisualizacion">
+            <summary>
+            Actualiza la visualización al arrancar la aplicación
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.Custom.Dispositivos.OrbitaRemotingESPhoenix.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Actualizamos los valores del control
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.Custom.Dispositivos.OrbitaRemotingESPhoenix.components">
+            <summary> 
             Variable del diseñador requerida.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.Dispose(System.Boolean)">
+        <member name="M:Orbita.Controles.Comunicaciones.Custom.Dispositivos.OrbitaRemotingESPhoenix.Dispose(System.Boolean)">
             <summary> 
             Limpiar los recursos que se estén utilizando.
             </summary>
             <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.InitializeComponent">
-            <summary>
-            Método necesario para admitir el Diseñador. No se puede modificar
+        <member name="M:Orbita.Controles.Comunicaciones.Custom.Dispositivos.OrbitaRemotingESPhoenix.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
             el contenido del método con el editor de código.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._nombreCanal">
-            <summary>
-            Canal comunicaciones remoto
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._remotingPuerto">
-            <summary>
-            Puerto de comunicación de remoting
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._remotingServidor">
-            <summary>
-            Servidor remoting
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._wrapper">
-            <summary>
-            Wrapper del log
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.HilosEstado">
-            <summary>
-            Hilos de estado
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._fechaRecepcionMensajeComs">
-            <summary>
-            Fecha de recepción del mensaje de comunicaciones
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._argumentoMensajeComs">
-            <summary>
-            Argumento mensaje de comunicaciones
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._segundosReconexion">
-            <summary>
-            Segundos para la reconexión del canal
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._reintentosReconexion">
-            <summary>
-            Reintentos antes de empezar la reconexión
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._segundosEventoEstado">
-            <summary>
-            Segundos para el evento de estado
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._nombreLogger">
-            <summary>
-            Ruta del logger
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.remoting">
-            <summary>
-            Servidor de remoting
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._dispositivos">
-            <summary>
-            Dispositivos de comunicación
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal._valoresVariables">
-            <summary>
-            Valores de las variables
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Evento de cambio de dato.
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.eventWrapper_OrbitaAlarma(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Evento de alarma.
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.eventWrapper_OrbitaComm(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Evento de comunicaciones.
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.Iniciar">
-            <summary>
-            Incia las comunicaciones con el dispositivo remoto
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.SetEscribirComs(System.Int32,System.String[],System.Object[])">
-            <summary>
-            Escritura en el servidor de comunicaciones
-            </summary>
-            <param name="idDispositivo">identificador de dispositivo</param>
-            <param name="variables">variables</param>
-            <param name="valores">valores</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.GetLeerComs(System.Int32,System.String[])">
-            <summary>
-            Metodo para leer en el Servidor de comunicaciones
-            </summary>
-            <param name="dispositivo">ID de dispositivo</param>
-            <param name="variable">Nombre de la variable</param>
-            <returns>Valor leido</returns>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.GetVariables(System.Int32)">
-            <summary>
-            Obtiene las variables del Servidor de comunicaciones
-            </summary>
-            <param name="dispositivo"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.GetAlarmas(System.Int32)">
-            <summary>
-            Obtiene las alarmas del Servidor de comunicaciones
-            </summary>
-            <param name="dispositivo"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.GetDispositivos">
-            <summary>
-            Obtiene los dispositivos del Servidor de comunicaciones
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.ActualizarValoresDispositivos">
-            <summary>
-            Obtener valor de las variables
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.IniciarHiloEstadoCanal">
-            <summary>
-            Iniciamos el hilo del estado del canal
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.hilos_OnDespuesAdicionar(System.Object,Orbita.Utiles.OEventArgs)">
-            <summary>
-            Arranca el hilo de lectura
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.hilo_OnDespuesAccion(System.Object,Orbita.Utiles.OEventArgs)">
-            <summary>
-            Traza el hilo de lectura
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.GestionEstados">
-            <summary>
-            Proceso para la gestión de estados del componente
-            </summary>
-        </member>
-        <member name="E:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.OEventoClienteComs">
-            <summary>
-            Evento para los cambios de comunicaciones
-            </summary>
-        </member>
-        <member name="E:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.OEventoClienteCambioDato">
-            <summary>
-            Evento para los cambios de dato
-            </summary>
-        </member>
-        <member name="E:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.OEventoClienteAlarma">
-            <summary>
-            Evento para las alarmas
-            </summary>
-        </member>
-        <member name="E:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.OEventoEstadoCanal">
-            <summary>
-            Evento para el estado del canal
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.RemotingPuerto">
-            <summary>
-            Puerto de comunicación de remoting
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.ServidorRemoting">
-            <summary>
-            Servidor de comunicaciones.
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.NombreCanal">
-            <summary>
-            Canal comunicaciones remoto
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.SegundosReconexion">
-            <summary>
-            Segundos para la reconexión del canal
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.ReintentosReconexion">
-            <summary>
-            Reintentos antes de empezar la reconexión
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.SegundosEventoEstado">
-            <summary>
-            Segundos para el evento de estado
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal.NombreLogger">
-            <summary>
-            Ruta del logger
             </summary>
         </member>
         <member name="T:Orbita.Controles.Comunicaciones.NuevaImpresionEventHandler">
@@ -2402,6 +2269,23 @@
             </summary>
             <param name="mensajes">Listado de mensajes.</param>
         </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaEstadoCanalLabel.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaEstadoCanalLabel.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaEstadoCanalLabel.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
         <member name="T:Orbita.Controles.Comunicaciones.EnumEstadosImpresora">
             <summary>
             Enumarado de la maquina de estados para controlar la impresion de tickets
@@ -2435,239 +2319,6 @@
         <member name="F:Orbita.Controles.Comunicaciones.EnumEstadosImpresora.Error">
             <summary>
             Contempla el caso en el que tengamos un error en la impresora
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._winsock">
-            <summary>
-            Objeto para establecer el canal TCP
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._winsockPeticiones">
-            <summary>
-            Objeto para establecer el canal TCP
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._log">
-            <summary>
-            Log de la aplicación
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._servidor">
-            <summary>
-            Servidor de conexión
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._puerto">
-            <summary>
-            Puerto de conexión
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._estado">
-            <summary>
-            Estado del canal
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._estadoPeticiones">
-            <summary>
-            Estado del canal
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._eReset">
-            <summary>
-            Evento reset de recepción de tramas KeepAlive, 
-            Entrada/Salida.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._segundosRespuestaServer">
-            <summary>
-            Tiempo de respuesta del servidor antes de dar tiemout
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._eGetDispositivos">
-            <summary>
-            Respuesta de los dispositivos
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._eGetAlarmas">
-            <summary>
-            Respuesta de las alarmas
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._eGetVariables">
-            <summary>
-            Respuesta con las variables
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._eGetValores">
-            <summary>
-            Respuesta con los valores
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._eSetValores">
-            <summary>
-            Respuesta con el set de las variables
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting.#ctor(System.String,System.Int32,Orbita.Trazabilidad.ILogger)">
-            <summary>
-            Cosntructor del control
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting.Inicializar">
-            <summary>
-            Inicializa las variables de la comunicación TCP
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting.Conectar">
-            <summary>
-            Conecta con el servidor TCP
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting.Enviar(System.Object)">
-            <summary>
-            Enviar datos
-            </summary>
-            <param name="data"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting.EnviarPeticion(System.Object)">
-            <summary>
-            Enviar datos
-            </summary>
-            <param name="data"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting.ProcesarDatos(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Procesamiento de los datos del canal
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting.ProcesarDatosPeticiones(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Procesamiento de los datos del canal
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting.GetDispositivos">
-            <summary>
-            Devuelve los dispositivos del servidor
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting.GetAlarmas(System.Int32)">
-            <summary>
-            Devuelve las alarmas del servidor
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting.GetVariables(System.Int32)">
-            <summary>
-            Devuelve las variables del servidor
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting.GetValores(System.Int32,System.String[])">
-            <summary>
-            Devuelve los valores de las variables del servidor
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting.SetValores(System.Int32,System.String[],System.Object[])">
-            <summary>
-            Escribe las variables en el  servidor
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._winsock_DataArrival(System.Object,Orbita.Winsock.WinsockDataArrivalEventArgs)">
-            <summary>
-            Evento de recepción de datos
-            </summary>
-            <param name="sender">Objeto que lanza el evento</param>
-            <param name="e">Argumentos del evento</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._winsock_SendComplete(System.Object,Orbita.Winsock.WinsockSendEventArgs)">
-            <summary>
-            Indica que el objeto winsock ha enviado toda la información
-            </summary>
-            <param name="sender">Objeto que lanza el evento</param>
-            <param name="e">Argumentos del evento</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._winsock_StateChanged(System.Object,Orbita.Winsock.WinsockStateChangedEventArgs)">
-            <summary>
-            Indica que el objeto winsock ha cambiado de estado. Trazabilidad del canal.
-            </summary>
-            <param name="sender">Objeto que lanza el evento</param>
-            <param name="e">Argumentos del evento</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._winsock_ErrorReceived(System.Object,Orbita.Winsock.WinsockErrorReceivedEventArgs)">
-            <summary>
-            Evento de errores en la comunicación TCP
-            </summary>
-            <param name="sender">Objeto que lanza el evento</param>
-            <param name="e">Argumentos del evento</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._winsockPeticiones_DataArrival(System.Object,Orbita.Winsock.WinsockDataArrivalEventArgs)">
-            <summary>
-            Evento de recepción de datos
-            </summary>
-            <param name="sender">Objeto que lanza el evento</param>
-            <param name="e">Argumentos del evento</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._winsockPeticiones_SendComplete(System.Object,Orbita.Winsock.WinsockSendEventArgs)">
-            <summary>
-            Indica que el objeto winsock ha enviado toda la información
-            </summary>
-            <param name="sender">Objeto que lanza el evento</param>
-            <param name="e">Argumentos del evento</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._winsockPeticiones_StateChanged(System.Object,Orbita.Winsock.WinsockStateChangedEventArgs)">
-            <summary>
-            Indica que el objeto winsock ha cambiado de estado. Trazabilidad del canal.
-            </summary>
-            <param name="sender">Objeto que lanza el evento</param>
-            <param name="e">Argumentos del evento</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OClienteTCPRemoting._winsockPeticiones_ErrorReceived(System.Object,Orbita.Winsock.WinsockErrorReceivedEventArgs)">
-            <summary>
-            Evento de errores en la comunicación TCP
-            </summary>
-            <param name="sender">Objeto que lanza el evento</param>
-            <param name="e">Argumentos del evento</param>
-        </member>
-        <member name="E:Orbita.Controles.Comunicaciones.OClienteTCPRemoting.OEventoTCPCambioDato">
-            <summary>
-            Evento para los cambios de dato
-            </summary>
-        </member>
-        <member name="E:Orbita.Controles.Comunicaciones.OClienteTCPRemoting.OEventoTCPAlarma">
-            <summary>
-            Evento para las alarmas
-            </summary>
-        </member>
-        <member name="E:Orbita.Controles.Comunicaciones.OClienteTCPRemoting.OEventoTCPComunicaciones">
-            <summary>
-            Evento para el estado de las comunicaciones con el servidor
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OClienteTCPRemoting.Estado">
-            <summary>
-            Estado del canal
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaEstadoCanal.components">
-            <summary> 
-            Variable del diseñador requerida.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaEstadoCanal.Dispose(System.Boolean)">
-            <summary> 
-            Limpiar los recursos que se estén utilizando.
-            </summary>
-            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaEstadoCanal.InitializeComponent">
-            <summary> 
-            Método necesario para admitir el Diseñador. No se puede modificar 
-            el contenido del método con el editor de código.
             </summary>
         </member>
         <member name="T:Orbita.Controles.Comunicaciones.OrbitaComponenteEscaner">
@@ -2767,250 +2418,53 @@
             Se ejecuta cuando obtiene un codigo de barras
             </summary>
         </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.components">
+        <member name="T:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB">
             <summary>
+            Cliente de comunicaciones para los dispositivos UCB de MC
+            </summary>
+            <summary>
+            Control para comprobación del servidor de comunicaciones con el dispositivo USB de MC
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB.#ctor">
+            <summary>
+            Cliente de comunicaciones para los dispositivos UCB de MC
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB.Iniciar">
+            <summary>
+            Inicia la comunicación con el servidor
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB.actualizarES(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Actualiza las ES del control
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB.InciarVisualizacion">
+            <summary>
+            Actualiza la visualización al arrancar la aplicación
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Actualizamos los valores del control
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="F:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB.components">
+            <summary> 
             Variable del diseñador requerida.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.Dispose(System.Boolean)">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB.Dispose(System.Boolean)">
             <summary> 
             Limpiar los recursos que se estén utilizando.
             </summary>
             <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
         </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.InitializeComponent">
-            <summary>
-            Método necesario para admitir el Diseñador. No se puede modificar
-            el contenido del método con el editor de código.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting._nombreCanal">
-            <summary>
-            Canal comunicaciones remoto
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting._remotingPuerto">
-            <summary>
-            Puerto de comunicación de remoting
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting._servidor">
-            <summary>
-            Servidor de comunicaciones.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting._servidorRemoting">
-            <summary>
-            Servidor remoting
-            </summary>
-        </member>
-        <!-- El comentario XML con formato incorrecto se omite para el miembro "F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting._eventWrapper" -->
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting._wrapper">
-            <summary>
-            Wrapper del log
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.HilosEstado">
-            <summary>
-            Hilos de estado
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting._fechaRecepcionMensajeComs">
-            <summary>
-            Fecha de recepción del mensaje de comunicaciones
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting._argumentoMensajeComs">
-            <summary>
-            Argumento mensaje de comunicaciones
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting._segundosReconexion">
-            <summary>
-            Segundos para la reconexión del canal
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting._reintentosReconexion">
-            <summary>
-            Reintentos antes de empezar la reconexión
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting._segundosEventoEstado">
-            <summary>
-            Segundos para el evento de estado
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting._nombreLogger">
-            <summary>
-            Ruta del logger
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.eventWrapper_OrbitaCambioDato(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Evento de cambio de dato.
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.eventWrapper_OrbitaAlarma(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Evento de alarma.
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.eventWrapper_OrbitaComm(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Evento de comunicaciones.
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.Iniciar">
-            <summary>
-            Incia las comunicaciones con el dispositivo remoto
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.ConectarWrapper">
-            <summary>
-            Conecta con el wrapper de remoting
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.DesconectarWrapper">
-            <summary>
-            Desconectar del wrapper de remoting
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.Conectar(System.Boolean)">
-            <summary>
-            Conectar al servidor vía Remoting.
-            </summary>
-            <param name="estado">Estado de conexión.</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.EscribirComs(System.Int32,System.String[],System.Object[])">
-            <summary>
-            Metodo para escribir en el Servidor de Comunicaciones
-            </summary>
-            <param name="dispositivo">ID de dispositivo</param>
-            <param name="variable">Nombre de la variable</param>
-            <param name="valor">Valor a escribir</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.LeerComs(System.Int32,System.String[])">
-            <summary>
-            Metodo para leer en el Servidor de comunicaciones
-            </summary>
-            <param name="dispositivo">ID de dispositivo</param>
-            <param name="variable">Nombre de la variable</param>
-            <returns>Valor leido</returns>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.Variables(System.Int32)">
-            <summary>
-            Obtiene las variables del Servidor de comunicaciones
-            </summary>
-            <param name="dispositivo"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.Alarmas(System.Int32)">
-            <summary>
-            Obtiene las alarmas del Servidor de comunicaciones
-            </summary>
-            <param name="dispositivo"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.Dispositivos">
-            <summary>
-            Obtiene los dispositivos del Servidor de comunicaciones
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.IniciarHiloEstadoCanal">
-            <summary>
-            Iniciamos el hilo del estado del canal
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.hilos_OnDespuesAdicionar(System.Object,Orbita.Utiles.OEventArgs)">
-            <summary>
-            Arranca el hilo de lectura
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.hilo_OnDespuesAccion(System.Object,Orbita.Utiles.OEventArgs)">
-            <summary>
-            Traza el hilo de lectura
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.GestionEstados">
-            <summary>
-            Proceso para la gestión de estados del componente
-            </summary>
-        </member>
-        <member name="E:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.OEventoClienteComs">
-            <summary>
-            Evento para los cambios de comunicaciones
-            </summary>
-        </member>
-        <member name="E:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.OEventoClienteCambioDato">
-            <summary>
-            Evento para los cambios de dato
-            </summary>
-        </member>
-        <member name="E:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.OEventoClienteAlarma">
-            <summary>
-            Evento para las alarmas
-            </summary>
-        </member>
-        <member name="E:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.OEventoEstadoCanal">
-            <summary>
-            Evento para el estado del canal
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.RemotingPuerto">
-            <summary>
-            Puerto de comunicación de remoting
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.ServidorRemoting">
-            <summary>
-            Servidor de comunicaciones.
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.NombreCanal">
-            <summary>
-            Canal comunicaciones remoto
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.SegundosReconexion">
-            <summary>
-            Segundos para la reconexión del canal
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.ReintentosReconexion">
-            <summary>
-            Reintentos antes de empezar la reconexión
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.SegundosEventoEstado">
-            <summary>
-            Segundos para el evento de estado
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanalRemoting.NombreLogger">
-            <summary>
-            Ruta del logger
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.Comunicaciones.OrbitaEstadoCanalLabel.components">
-            <summary> 
-            Variable del diseñador requerida.
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaEstadoCanalLabel.Dispose(System.Boolean)">
-            <summary> 
-            Limpiar los recursos que se estén utilizando.
-            </summary>
-            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
-        </member>
-        <member name="M:Orbita.Controles.Comunicaciones.OrbitaEstadoCanalLabel.InitializeComponent">
+        <member name="M:Orbita.Controles.Comunicaciones.OrbitaRemotingMCUSB.InitializeComponent">
             <summary> 
             Método necesario para admitir el Diseñador. No se puede modificar 
             el contenido del método con el editor de código.

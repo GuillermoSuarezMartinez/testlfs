@@ -11,6 +11,9 @@
 //***********************************************************************
 namespace Orbita.Framework.Core
 {
+    /// <summary>
+    /// Configuración general del entorno de trabajo.
+    /// </summary>
     internal static class ConfiguracionEntorno
     {
         #region Atributos internos constantes
@@ -19,9 +22,9 @@ namespace Orbita.Framework.Core
         /// </summary>
         internal const int DefectoNumeroMaximoFormulariosAbiertos = 50;
         /// <summary>
-        /// Modo de autenticación.
+        /// Mostrar formulario de autenticación.
         /// </summary>
-        internal const bool DefectoAutenticación = true;
+        internal const bool DefectoAutenticación = false;
         /// <summary>
         /// Selector del idioma de cada uno de los controles.
         /// </summary>

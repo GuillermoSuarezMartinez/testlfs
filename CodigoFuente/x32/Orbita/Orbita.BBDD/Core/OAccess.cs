@@ -52,7 +52,7 @@ namespace Orbita.BBDD
         /// <summary>
         /// Información de la conexión para Access.
         /// </summary>
-        public class InfoConexion
+        public class OInfoConexion
         {
             #region Atributos privados
             /// <summary>
@@ -81,7 +81,7 @@ namespace Orbita.BBDD
             /// <summary>
             /// Inicializar una nueva instancia de la clase InfoConexion.
             /// </summary>
-            public InfoConexion() { }
+            public OInfoConexion() { }
             #endregion
 
             #region Propiedades
@@ -247,7 +247,7 @@ namespace Orbita.BBDD
         /// <summary>
         /// Contiene la información de conexión a la base de datos Access.
         /// </summary>
-        readonly OAccess.InfoConexion infoConexion;
+        readonly OAccess.OInfoConexion infoConexion;
         #endregion
 
         #region Contructores
@@ -256,7 +256,7 @@ namespace Orbita.BBDD
         /// Proveedor OLEDB.4.0.
         /// </summary>
         /// <param name="infoConexion">Información de la conexión actual.</param>
-        public OAccess(OAccess.InfoConexion infoConexion)
+        public OAccess(OAccess.OInfoConexion infoConexion)
         {
             this.infoConexion = infoConexion;
         }

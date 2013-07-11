@@ -73,7 +73,6 @@ namespace Orbita.Controles.Comunicaciones
         private StarPrinterStatus StarPrinterStatus
         {
             get { return puertoImpresora.GetParsedStatus(); }
-
         }
         #endregion
 

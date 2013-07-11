@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Framework.Core
+// Assembly         : Orbita.Framework.PluginManager
 // Author           : crodriguez
 // Created          : 18-04-2013
 //
@@ -9,7 +9,9 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+#region USING
 using System.Linq;
+#endregion
 namespace Orbita.Framework.PluginManager
 {
     /// <summary>
@@ -18,24 +20,19 @@ namespace Orbita.Framework.PluginManager
     public class PluginOMenuStrip : System.Windows.Forms.MenuStrip
     {
         #region Atributos
-        Orbita.Controles.Contenedores.OrbitaMdiContainerForm control;
-        System.Collections.Generic.List<string> pluginItems = new System.Collections.Generic.List<string>();
+        private System.Collections.Generic.List<string> pluginItems = new System.Collections.Generic.List<string>();
         #endregion
 
         #region Constructor
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Framework.PluginManager.PluginOMenuStrip.
         /// </summary>
-        /// <param name="control"></param>
-        public PluginOMenuStrip(object control)
-            : base()
-        {
-            this.control = (Orbita.Controles.Contenedores.OrbitaMdiContainerForm)control;
-        }
+        public PluginOMenuStrip()
+            : base() { }
         #endregion
 
         #region Métodos privados
-        void AddItem(System.Windows.Forms.ToolStripMenuItem menuItem)
+        private void AddItem(System.Windows.Forms.ToolStripMenuItem menuItem)
         {
             System.Windows.Forms.ToolStripMenuItem item = (from x in this.Items.Cast<System.Windows.Forms.ToolStripMenuItem>()
                                                            where x.Text == menuItem.Text
@@ -56,19 +53,17 @@ namespace Orbita.Framework.PluginManager
         #endregion
 
         #region Métodos públicos
-        public void AddPlugin(PluginInfo pluginInfo)
+        /// <summary>
+        /// Añadir plugin a la opción de menú System.Windows.Forms.ToolStripMenuItem y a la colección de plugins.
+        /// </summary>
+        /// <param name="pluginInfo">Información del plugin.</param>
+        public System.Windows.Forms.ToolStripMenuItem AddPlugin(PluginInfo pluginInfo)
         {
             System.Windows.Forms.ToolStripMenuItem pluginItem = null;
             if (pluginInfo != null)
             {
                 pluginItem = new System.Windows.Forms.ToolStripMenuItem(pluginInfo.Plugin.Nombre);
                 pluginItem.Tag = pluginInfo;
-
-                if (pluginInfo.Plugin is IFormPlugin)
-                {
-                    pluginItem.Click += new System.EventHandler(pluginItem_Click);
-                }
-
                 System.Windows.Forms.ToolStripMenuItem subGrupo = null;
                 try
                 {
@@ -110,7 +105,7 @@ namespace Orbita.Framework.PluginManager
                         this.Items.Add(pluginItem);
                         pluginItems.Add(pluginInfo.Plugin.Nombre);
                     }
-                    return;
+                    return pluginItem;
                 }
                 if (grupo == null && subGrupo == null)
                 {
@@ -118,35 +113,16 @@ namespace Orbita.Framework.PluginManager
                     pluginItems.Add(pluginInfo.Plugin.Nombre);
                 }
             }
+            return pluginItem;
         }
+        /// <summary>
+        /// Eliminar todos los plugins de la colección.
+        /// </summary>
         public void EliminarPlugins()
         {
             foreach (string item in pluginItems)
             {
                 this.Items.RemoveByKey(item);
-            }
-        }
-        #endregion
-
-        #region Manejadores de eventos
-        void pluginItem_Click(object sender, System.EventArgs e)
-        {
-            System.Windows.Forms.ToolStripMenuItem menuItem = sender as System.Windows.Forms.ToolStripMenuItem;
-            PluginInfo pluginInfo = menuItem.Tag as PluginInfo;
-            IFormPlugin plugin = pluginInfo.Plugin as IFormPlugin;
-            Orbita.Controles.Contenedores.OrbitaForm form = plugin.Formulario;
-            if (plugin.Mostrar == PluginManager.MostrarComo.Dialog)
-            {
-                form.ShowDialog();
-            }
-            else if (plugin.Mostrar == PluginManager.MostrarComo.Normal)
-            {
-                form.Show();
-                form.BringToFront();
-            }
-            else if (plugin.Mostrar == PluginManager.MostrarComo.MdiChild)
-            {
-                this.control.OI.MostrarFormulario(form);
             }
         }
         #endregion

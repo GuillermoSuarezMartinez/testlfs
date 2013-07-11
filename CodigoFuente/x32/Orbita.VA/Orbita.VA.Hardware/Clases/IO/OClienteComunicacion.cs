@@ -114,6 +114,19 @@ namespace Orbita.VA.Hardware
             get { return _IntervaloComprabacion; }
             set { _IntervaloComprabacion = value; }
         }
+
+        /// <summary>
+        /// Número del servidor
+        /// </summary>
+        private int _NumeroServidor;
+        /// <summary>
+        /// Número del servidor
+        /// </summary>
+	    public int NumeroServidor
+	    {
+		    get { return _NumeroServidor;}
+		    set { _NumeroServidor = value;}
+	    }
         #endregion
 
         #region Contructores
@@ -136,6 +149,9 @@ namespace Orbita.VA.Hardware
                 this._HostServidor = dtTarjetaIO.Rows[0]["COM_Host"].ToString();
                 this._PuertoRemoto = OEntero.Validar(dtTarjetaIO.Rows[0]["COM_Puerto"], 0, int.MaxValue, 1851);
                 this._IntervaloComprabacion = TimeSpan.FromMilliseconds(OEntero.Validar(dtTarjetaIO.Rows[0]["COM_TimeOut"], 1, int.MaxValue, 15000));
+                this._NumeroServidor = OEntero.Validar(dtTarjetaIO.Rows[0]["COM_NumeroServidor"], 0, int.MaxValue, 1);
+
+                this.NombreCanal = ORemoting.GetCanal(this._HostServidor, this._PuertoRemoto.ToString());
 
                 // Creación del timer de comprobación de la conexión
                 this.TimerComprobacionConexion = new Timer();
@@ -157,17 +173,19 @@ namespace Orbita.VA.Hardware
                     {
                         OTerminalClienteComunicacion terminal;
 
-                        int intTipoTerminalIO = OEntero.Validar(dr["IdTipoTerminalIO"], 1, 4, 1);
-
-                        OTipoTerminalIO tipoTerminalIO = (OTipoTerminalIO)intTipoTerminalIO;
+                        //int intTipoTerminalIO = OEntero.Validar(dr["IdTipoTerminalIO"], 1, 4, 1);
+                        //OTipoTerminalIO tipoTerminalIO = (OTipoTerminalIO)intTipoTerminalIO;
+                        OTipoTerminalIO tipoTerminalIO = OEnumerado<OTipoTerminalIO>.Validar(dr["IdTipoTerminalIO"], OTipoTerminalIO.EntradaComando);
 
                         switch (tipoTerminalIO)
                         {
                             case OTipoTerminalIO.EntradaDigital:
                             case OTipoTerminalIO.SalidaDigital:
+                            case OTipoTerminalIO.EntradaSalidaDigital:
                             default:
                                 terminal = new OTerminalClienteComunicacion(codHardware, dr["CodTerminalIO"].ToString(), this.NombreCanal);
                                 break;
+                            case OTipoTerminalIO.EntradaComando:
                             case OTipoTerminalIO.SalidaComando:
                                 terminal = new OTerminalClienteComunicacionWriteCommand(codHardware, dr["CodTerminalIO"].ToString(), this.NombreCanal);
                                 break;
@@ -251,8 +269,14 @@ namespace Orbita.VA.Hardware
             try
             {
                 // Establecer la configuración Remoting entre procesos.
-                ORemoting.InicConfiguracionCliente(this.PuertoRemoto, this.HostServidor);
-                this.Servidor = (Orbita.Comunicaciones.IOCommRemoting)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting));
+                int[] puertos = new int[1] { (this._PuertoRemoto) };
+                string[] servidores = new string[1] { this._HostServidor };
+                int[] numeroServidores = new int[1] { this._NumeroServidor };
+                ORemoting.InicConfiguracionCliente(puertos, servidores, numeroServidores);
+                this.Servidor = ORemoting.getServidor(this._NumeroServidor);
+
+                //ORemoting.InicConfiguracionCliente(this._PuertoRemoto, this._HostServidor);
+                //this.Servidor = (Orbita.Comunicaciones.IOCommRemoting)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting));
 
                 // Eventwrapper de comunicaciones.
                 this.ConectarEventWrapper();
@@ -260,7 +284,7 @@ namespace Orbita.VA.Hardware
                 // Iniciamos la comprobación de la conectividad con la cámara
                 this.CronometroTiempoSinRespuesta.Start();
                 this.TimerComprobacionConexion.Tick += this.TimerComprobacionConexion_Tick;
-                this.TimerComprobacionConexion.Start();
+                //this.TimerComprobacionConexion.Start();
 
                 OLogsVAHardware.EntradasSalidas.Info(this.Codigo, "Conectado al servicio");
             }
@@ -362,7 +386,6 @@ namespace Orbita.VA.Hardware
         /// <param name="estado">Estado de conexión.</param>
         private void ConectarCanal(bool estado)
         {
-            this.NombreCanal = ORemoting.GetCanal(this.HostServidor, this.PuertoRemoto.ToString());
             this.Servidor.OrbitaConectar(this.NombreCanal, estado);
         }
         #endregion
@@ -491,8 +514,8 @@ namespace Orbita.VA.Hardware
                 // TimeOut de conectividad
                 if (this.Habilitado && (this.CronometroTiempoSinRespuesta.Elapsed > this.IntervaloComprabacion))
                 {
-                    this.DesconectarEventWrapper();
-                    this.ConectarEventWrapper();
+                    //this.DesconectarEventWrapper();
+                    //this.ConectarEventWrapper();
 
                     this.CronometroTiempoSinRespuesta.Stop();
                     this.CronometroTiempoSinRespuesta.Reset();
@@ -735,21 +758,24 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Escritura de la salida
         /// </summary>
-        public override void EscribirSalida(string codigoVariable, object valor)
+        public override void EscribirSalida(string codigoVariable, object valor, string remitente)
         {
             try
             {
                 if ((this.TipoTerminalIO == OTipoTerminalIO.SalidaDigital) || (this.TipoTerminalIO == OTipoTerminalIO.EntradaSalidaDigital) || (this.TipoTerminalIO == OTipoTerminalIO.SalidaComando))
                 {
-                    base.EscribirSalida(codigoVariable, valor);
-
-                    if (this.EscrituraInmediata)
+                    if (remitente != this.Codigo) // Si el remitente no es el propio terminal !
                     {
-                        // Conversión
-                        this.Valor = FormatoCorrectoACOM(valor, this.TipoDato);
+                        base.EscribirSalida(codigoVariable, valor, remitente);
 
-                        // Escritura en el servidor de comunicaciones
-                        this.Servidor.OrbitaEscribir(this.IdDispositivo, new string[1] { this.CodigoVariableCOM }, new object[1] { this.Valor }, this.NombreCanal);
+                        if (this.EscrituraInmediata)
+                        {
+                            // Conversión
+                            this.Valor = FormatoCorrectoACOM(valor, this.TipoDato);
+
+                            // Escritura en el servidor de comunicaciones
+                            this.Servidor.OrbitaEscribir(this.IdDispositivo, new string[1] { this.CodigoVariableCOM }, new object[1] { this.Valor }, this.NombreCanal);
+                        }
                     }
                 }
             }
@@ -861,11 +887,11 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Escritura de la salida
         /// </summary>
-        public override void EscribirSalida(string codigoVariable, object valor)
+        public override void EscribirSalida(string codigoVariable, object valor, string remitente)
         {
             try
             {
-                base.EscribirSalida(codigoVariable, null); // No guardamos el valor
+                base.EscribirSalida(codigoVariable, null, remitente); // No guardamos el valor
 
                 if (this.ListaTerminalesAsociados.Count > 0)
                 {

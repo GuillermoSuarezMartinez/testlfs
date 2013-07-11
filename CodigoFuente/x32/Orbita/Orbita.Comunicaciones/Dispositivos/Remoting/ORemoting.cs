@@ -93,20 +93,91 @@ namespace Orbita.Comunicaciones
             return fichero;
         }
         /// <summary>
-        /// Método de inicialización del configurador de cliente para .NET Remoting.
+        /// Devuelve el servidor remoting de la aplicación
         /// </summary>
-        /// <param name="puerto">Puerto de salidad de datos.</param>
-        public static string InicConfiguracionCliente(int puerto)
+        /// <param name="servidor">Número de servidor.</param>
+        public static IOCommRemoting getServidor(int servidor)
         {
-            return InicConfiguracionCliente(puerto, "localhost");
+            IOCommRemoting server = null;
+
+            try
+            {
+                switch (servidor)
+                {
+                    case 1:
+                        server = (Orbita.Comunicaciones.IOCommRemoting1)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting1));
+                        break;
+                    case 2:
+                        server = (Orbita.Comunicaciones.IOCommRemoting2)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting2));
+                        break;
+                    case 3:
+                        server = (Orbita.Comunicaciones.IOCommRemoting3)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting3));
+                        break;
+                    case 4:
+                        server = (Orbita.Comunicaciones.IOCommRemoting4)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting4));
+                        break;
+                    case 5:
+                        server = (Orbita.Comunicaciones.IOCommRemoting5)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting5));
+                        break;
+                    case 6:
+                        server = (Orbita.Comunicaciones.IOCommRemoting6)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting6));
+                        break;
+                    case 7:
+                        server = (Orbita.Comunicaciones.IOCommRemoting7)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting7));
+                        break;
+                    case 8:
+                        server = (Orbita.Comunicaciones.IOCommRemoting8)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting8));
+                        break;
+                    case 9:
+                        server = (Orbita.Comunicaciones.IOCommRemoting9)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting9));
+                        break;
+                    case 10:
+                        server = (Orbita.Comunicaciones.IOCommRemoting10)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting10));
+                        break;
+                    case 11:
+                        server = (Orbita.Comunicaciones.IOCommRemoting11)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting11));
+                        break;
+                    case 12:
+                        server = (Orbita.Comunicaciones.IOCommRemoting12)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting12));
+                        break;
+                    case 13:
+                        server = (Orbita.Comunicaciones.IOCommRemoting13)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting13));
+                        break;
+                    case 14:
+                        server = (Orbita.Comunicaciones.IOCommRemoting14)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting14));
+                        break;
+                    case 15:
+                        server = (Orbita.Comunicaciones.IOCommRemoting15)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting15));
+                        break;
+                    case 16:
+                        server = (Orbita.Comunicaciones.IOCommRemoting16)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting16));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return server;
         }
         /// <summary>
         /// Método de inicialización del configurador de cliente para .NET Remoting.
         /// </summary>
         /// <param name="puerto">Puerto de salidad de datos.</param>
-        /// <param name="maquina">Nombre de la maquina servidor de remotings.</param>
-        public static string InicConfiguracionCliente(int puerto, string maquina)
+        /// <param name="maquina">Nombre de la maquina servidor de remoting.</param>
+        /// <param name="numeroServidor">Número de servidor remoting.</param>
+        public static string InicConfiguracionCliente(int[] puerto, string[] maquina, int[] numeroServidor)
         {
+            string[] claseRemoting = new string[numeroServidor.Length];
+
+            for (int i = 0; i < numeroServidor.Length; i++)
+            {
+                claseRemoting[i] = "IOCommRemoting" + numeroServidor[i].ToString();
+            }
+
             // Obtener el nombre del ensamblado.
             AssemblyName ensamblado = Assembly.GetExecutingAssembly().GetName();
             XmlDocument doc = new XmlDocument();
@@ -116,19 +187,25 @@ namespace Orbita.Comunicaciones
 
             if (regChannels.Length == 0)
             {
-                doc.LoadXml(string.Format(CultureInfo.CurrentCulture,
-                @"<?xml version='1.0' encoding='utf-8' ?>" +
+                string documento = @"<?xml version='1.0' encoding='utf-8' ?>" +
                  "<configuration>" +
                     "<system.runtime.remoting>" +
                         "<application>" +
                             "<channels>" +
                                 "<channel ref=\"tcp\" port='0' />" +
-                            "</channels>" +
-                            "<client><wellknown type=\"Orbita.Comunicaciones.{1}, {0}\" url=\"tcp://{3}:{2}/{0}.soap\" />" +
-                            "</client>" +
+                            "</channels>"+
+                            "<client>";
+                for (int i = 0; i < puerto.Length; i++)
+                {
+                    documento = documento + string.Format(CultureInfo.CurrentCulture,
+                    "<wellknown type=\"Orbita.Comunicaciones.{1}, {0}\" url=\"tcp://{3}:{2}/{0}.soap\" />",
+                    ensamblado.Name, claseRemoting[i], puerto[i], maquina[i]);
+                }
+                documento = documento +  "</client>" +
                         "</application>" +
                     "</system.runtime.remoting>" +
-                 "</configuration>", ensamblado.Name, typeof(IOCommRemoting).Name, puerto, maquina));
+                 "</configuration>";
+                doc.LoadXml(documento);               
             }
             else
             {
@@ -136,7 +213,7 @@ namespace Orbita.Comunicaciones
             }
 
             string directorio = string.Concat(Application.StartupPath, CONFIG);
-            string fichero = string.Concat(Application.StartupPath, REMOTING + puerto + ".config.xml");
+            string fichero = string.Concat(Application.StartupPath, REMOTING + ".config.xml");
 
             if (regChannels.Length == 0)
             {
@@ -210,6 +287,13 @@ namespace Orbita.Comunicaciones
             {
                 WellKnownTypes.Add(entrada.ObjectType, entrada);
             }
+        }
+
+        public static Object getInterface(int numero)
+        {
+            Object retorno = null;
+
+            return retorno;
         }
         #endregion
     }

@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Framework.Core
+// Assembly         : Orbita.Framework.Extensiones
 // Author           : crodriguez
 // Created          : 18-04-2013
 //
@@ -11,6 +11,9 @@
 //***********************************************************************
 namespace Orbita.Framework.Extensiones
 {
+    /// <summary>
+    /// ExtendedObject.
+    /// </summary>
     public static class ExtendedObject
     {
         #region Atributos internos estáticos
@@ -24,8 +27,8 @@ namespace Orbita.Framework.Extensiones
         /// <summary>
         /// Determina si el System.Object figura en el IEnumerable especificado.
         /// </summary>
-        /// <param name="ocomparable">El System.Object</param>
-        /// <param name="enumerable">El enumerable.</param>
+        /// <param name="ocomparable">System.Object</param>
+        /// <param name="enumerable">Enumerable.</param>
         /// <returns>Verdadero si el enumerable contiene el System.Object, falso en caso contrario.</returns>
         public static bool In(this object ocomparable, System.Collections.IEnumerable enumerable)
         {
@@ -44,9 +47,9 @@ namespace Orbita.Framework.Extensiones
         /// <summary>
         /// Determina si el T figura en el IEnumerable de T especificado.
         /// </summary>
-        /// <typeparam name="T">El tipo de System.Object.</typeparam>
-        /// <param name="ocomparable">El item.</param>
-        /// <param name="enumerable">El enumerable de T.</param>
+        /// <typeparam name="T">System.Object.</typeparam>
+        /// <param name="ocomparable">Item.</param>
+        /// <param name="enumerable">Enumerable de T.</param>
         /// <returns>Verdadero si el enumerable contiene el item, falso en caso contrario.</returns>
         public static bool In<T>(this T ocomparable, System.Collections.Generic.IEnumerable<T> enumerable)
         {
@@ -65,9 +68,9 @@ namespace Orbita.Framework.Extensiones
         /// <summary>
         /// Determina si el T figura en los valores especificados.
         /// </summary>
-        /// <typeparam name="T">El tipo System.Object.</typeparam>
+        /// <typeparam name="T">System.Object.</typeparam>
         /// <param name="ocomparable">Item.</param>
-        /// <param name="items">El valor a comparar.</param>
+        /// <param name="items">Valor a comparar.</param>
         /// <returns>Verdadero si el valor contiene el item, falso en caso contrario.</returns>
         public static bool In<T>(this T ocomparable, params T[] items)
         {
@@ -86,9 +89,9 @@ namespace Orbita.Framework.Extensiones
         /// <summary>
         /// Serializa el System.Object especificado y escribe el documento XML en el fichero especificado.
         /// </summary>
-        /// <typeparam name="T">El tipo item.</typeparam>
-        /// <param name="item">El item.</param>
-        /// <param name="fileName">El fichero donde escribir.</param>
+        /// <typeparam name="T">Item.</typeparam>
+        /// <param name="item">Item.</param>
+        /// <param name="fileName">Fichero donde escribir.</param>
         /// <returns>Verdadero si todo ha ido bien, falso en caso contrario.</returns>
         public static bool XmlSerialize<T>(this T item, string fileName)
         {
@@ -110,10 +113,6 @@ namespace Orbita.Framework.Extensiones
                     }
                     resultado = true;
                 }
-            }
-            catch
-            {
-                return false;
             }
             finally
             {

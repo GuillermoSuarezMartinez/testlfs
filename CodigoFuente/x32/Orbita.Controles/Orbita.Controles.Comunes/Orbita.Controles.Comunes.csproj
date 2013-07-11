@@ -12,10 +12,10 @@
     <AssemblyName>Orbita.Controles.Comunes</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>%24/Librerias/CodigoFuente/x32/Orbita.Controles/Orbita.Controles.Comunes</SccProjectName>
+    <SccLocalPath>.</SccLocalPath>
+    <SccAuxPath>http://01x0019:8080/tfs/orbitasoftware</SccAuxPath>
+    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
@@ -24,12 +24,12 @@
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisLogFile>bin\Debug\Orbita.Controles.Comunes.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisRuleDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
@@ -122,6 +122,18 @@
     <Compile Include="Clases\Propiedades y métodos\OListBox.cs" />
     <Compile Include="Clases\Propiedades y métodos\OApariencia.cs" />
     <Compile Include="Clases\Propiedades y métodos\OUltraLabel.cs" />
+    <Compile Include="Custom\OrbitaTactilListButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaTactilListButton.designer.cs">
+      <DependentUpon>OrbitaTactilListButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaTactilButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaTactilButton.designer.cs">
+      <DependentUpon>OrbitaTactilButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Custom\OrbitaTecladoNumerico.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -165,6 +177,12 @@
     <Compile Include="Enumerados\EstiloBoton.cs" />
     <Compile Include="Enumerados\TipoBoton.cs" />
     <Compile Include="Estructuras\OAparienciaDatos.cs" />
+    <Compile Include="UC\OrbitaUltraButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraButton.Designer.cs">
+      <DependentUpon>OrbitaUltraButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC\OrbitaUltraNumericEditor.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -176,12 +194,6 @@
     </Compile>
     <Compile Include="UC\OrbitaUltraStatusBar.Designer.cs">
       <DependentUpon>OrbitaUltraStatusBar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UC\OrbitaUltraButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="UC\OrbitaUltraButton.Designer.cs">
-      <DependentUpon>OrbitaUltraButton.cs</DependentUpon>
     </Compile>
     <Compile Include="UC\OrbitaUltraCheckEditor.cs">
       <SubType>Component</SubType>
@@ -269,6 +281,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Custom\OrbitaTactilListButton.resx">
+      <DependentUpon>OrbitaTactilListButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaTactilButton.resx">
+      <DependentUpon>OrbitaTactilButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Custom\OrbitaTecladoNumerico.resx">
       <DependentUpon>OrbitaTecladoNumerico.cs</DependentUpon>
     </EmbeddedResource>
@@ -317,6 +335,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ImgComputerKey90.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgEjemplo24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgFondoBotonTactil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgSeparador250.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgSeparador640.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgSeparador1355.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

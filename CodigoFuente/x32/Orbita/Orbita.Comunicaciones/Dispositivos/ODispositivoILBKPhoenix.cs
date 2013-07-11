@@ -67,7 +67,7 @@ namespace Orbita.Comunicaciones
         {
             //Inicialización de objetos
             this.IniciarObjetos();
-            wrapper.Debug("Objetos del dispositivo de ES Phoenix creados.");
+            wrapper.Info("Objetos del dispositivo de ES Phoenix creados.");
             //Inicio de los parámetros TCP
             try
             {
@@ -79,7 +79,7 @@ namespace Orbita.Comunicaciones
                 wrapper.Error("No se pudo crear la conexión TCP con el dispositivo de ES Phoenix." + ex.ToString());
             }
 
-            wrapper.Debug("Comunicaciones TCP del dispositivo de ES Phoenix arrancadas correctamente.");
+            wrapper.Info("Comunicaciones TCP del dispositivo de ES Phoenix arrancadas correctamente.");
         }
 
         #endregion
@@ -713,7 +713,7 @@ namespace Orbita.Comunicaciones
                     }
                 }
                 this.ProcesarMensajeRecibido(recibido);
-                wrapper.Info("Data Arrival en el dispositivo de ES Phoenix: " + ret);
+                wrapper.Debug("Data Arrival en el dispositivo de ES Phoenix: " + ret);
             }
             catch (Exception ex)
             {
@@ -739,7 +739,7 @@ namespace Orbita.Comunicaciones
                         enviado += "[" + e.DataSent[i].ToString() + "]";
                     }
                 }
-                wrapper.Info("Send Complete en el dispositivo de ES Phoenix: " + enviado);
+                wrapper.Debug("Send Complete en el dispositivo de ES Phoenix: " + enviado);
             }
             catch (Exception ex)
             {
@@ -757,7 +757,7 @@ namespace Orbita.Comunicaciones
             try
             {
                 string estado = "State Changed en el dispositivo de ES Phoenix. Cambia de " + e.Old_State.ToString() + " a " + e.New_State.ToString();
-                wrapper.Info(estado);
+                wrapper.Debug(estado);
             }
             catch (Exception ex)
             {

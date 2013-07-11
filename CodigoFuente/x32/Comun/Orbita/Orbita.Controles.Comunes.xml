@@ -1497,6 +1497,96 @@
             Lista de seleccion
             </summary>
         </member>
+        <member name="T:Orbita.Controles.Comunes.OrbitaTactilButton">
+            <summary>
+            Botón táctil
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaTactilButton.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilButton.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilButton.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaTactilButton._Seleccionado">
+            <summary>
+            Indica si el botón está seleccionado
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaTactilButton._Botonera">
+            <summary>
+            Botonera al que pertenece el botón
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilButton.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilButton.#ctor(Orbita.Controles.Comunes.OrbitaTactilListButton,System.String,System.String,System.Drawing.Bitmap,Orbita.Controles.Comunes.OrbitaTactilButton.DelegadoEventoClick)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilButton.Seleccionar">
+            <summary>
+            Selecciona el botón, proporcionando la apariencia definida
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilButton.Deseleccionar">
+            <summary>
+            Deselecciona el botón, proporcionando la apariencia definida
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilButton.btnAccion_MouseEnter(System.Object,System.EventArgs)">
+            <summary>
+            Evento de pasar el ratón por encima
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilButton.btnAccion_MouseLeave(System.Object,System.EventArgs)">
+            <summary>
+            Evento de sacar el ratón de encima
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilButton.btnAccion_MouseDown(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Click del ratón
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTactilButton.Seleccionado">
+            <summary>
+            Indica si el botón está seleccionado
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTactilButton.Botonera">
+            <summary>
+            Botonera al que pertenece el botón
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunes.OrbitaTactilButton.DelegadoEventoClick">
+            <summary>
+            Delegado de selección
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="M:Orbita.Controles.Comunes.OUltraDateTimeEditor.#ctor(System.Object)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OUltraDateTimeEditor.
@@ -1823,6 +1913,58 @@
         <member name="P:Orbita.Controles.Comunes.OrbitaBarraProgreso.Monocolor">
             <summary>
             Monocolor.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Comunes.OrbitaTactilListButton">
+            <summary>
+            Conjunto de botones táctiles
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaTactilListButton.ListaBotones">
+            <summary>
+            Lista de botones añadidos
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilListButton.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilListButton.AgregarBoton(System.String,System.String,System.String,System.Drawing.Bitmap,Orbita.Controles.Comunes.OrbitaTactilButton.DelegadoEventoClick)">
+            <summary>
+            Agregar nuevo botón
+            </summary>
+            <param name="texto"></param>
+            <param name="desc"></param>
+            <param name="img"></param>
+            <param name="eventoClick"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilListButton.Seleccionar(System.String)">
+            <summary>
+            Selecciona un item del menú
+            </summary>
+            <param name="codigo"></param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilListButton.DesSeleccionarTodos">
+            <summary>
+            Limpiar todos los botones seleccionados
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaTactilListButton.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilListButton.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.OrbitaTactilListButton.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
             </summary>
         </member>
         <member name="M:Orbita.Controles.Comunes.OrbitaUltraDateTimeEditorAboveFilter.#ctor">

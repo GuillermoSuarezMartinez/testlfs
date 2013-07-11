@@ -284,7 +284,7 @@ namespace Orbita.Controles.VA
                 //                        try
                 //                        {
                 //                            FrmVariableChart frm = new FrmVariableChart(item.Text);
-                //                            //OTrabajoControles.FormularioPrincipalMDI.OrbMdiEncolarForm(frm);
+                //                            //OMDIManager.FormularioPrincipalMDI.OrbMdiEncolarForm(frm);
                 //                            frm.Show();
                 //                        }
                 //                        catch (Exception exception)

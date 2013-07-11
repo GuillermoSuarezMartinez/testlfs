@@ -50,6 +50,10 @@ namespace Orbita.Comunicaciones
         /// Logger de la clase
         /// </summary>
         public static ILogger wrapper;
+        /// <summary>
+        /// Objeto para bloquear las escrituras
+        /// </summary>
+        public Object bloqueo = new Object();
         #endregion
 
         #region Eventos

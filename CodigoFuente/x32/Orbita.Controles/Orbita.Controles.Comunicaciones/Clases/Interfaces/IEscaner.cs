@@ -34,7 +34,6 @@ namespace Orbita.Controles.Comunicaciones
         {
             get;
         }
-
         /// <summary>
         /// Tiempo pulsación
         /// </summary>
@@ -46,7 +45,6 @@ namespace Orbita.Controles.Comunicaciones
             get;
             set;
         }
-
         /// <summary>
         /// Longitud código de barras
         /// </summary>

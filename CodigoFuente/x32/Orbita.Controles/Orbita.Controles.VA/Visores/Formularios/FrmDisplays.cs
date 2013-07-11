@@ -106,16 +106,13 @@ namespace Orbita.Controles.VA
         public FrmDisplays()
             : this("Monitorización de cámaras", true, true, OUsuariosManager.PermisoActual == OPermisos.Administrador)
         {
-            InitializeComponent();
-
-            this.ListaDisplays = new List<OrbitaVisorBase>();
         }
 
         /// <summary>
         /// Constructor de la clase
         /// </summary>
         public FrmDisplays(string titulo, bool enlazarCamaras, bool visualiacionEnVivo, bool controlCamara)
-            : this(ModoAperturaFormulario.Modificacion, titulo, enlazarCamaras, visualiacionEnVivo, controlCamara)
+            : this(ModoAperturaFormulario.Monitorizacion, titulo, enlazarCamaras, visualiacionEnVivo, controlCamara)
         {
         }
 

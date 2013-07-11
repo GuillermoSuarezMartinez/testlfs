@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Framework.Core
+// Assembly         : Orbita.Framework.PluginManager
 // Author           : crodriguez
 // Created          : 18-04-2013
 //
@@ -17,7 +17,7 @@ namespace Orbita.Framework.PluginManager
     public interface IItemMenu
     {
         /// <summary>
-        /// Grupo al que pertenece el plugin. Opción padre del menú principal.
+        /// Grupo al que pertenece el plugin.
         /// </summary>
         string Grupo { get; }
         /// <summary>

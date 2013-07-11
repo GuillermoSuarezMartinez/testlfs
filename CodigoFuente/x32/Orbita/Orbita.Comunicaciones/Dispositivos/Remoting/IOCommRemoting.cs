@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using Orbita.Utiles;
+using System.Xml;
+using System.IO;
 
 namespace Orbita.Comunicaciones
 {
@@ -79,6 +81,95 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <returns></returns>
         int[] OrbitaGetDispositivos();
+
+        /// <summary>
+        /// Obtener los dispositivos del servicio
+        /// </summary>
+        /// <returns></returns>
+        Stream OrbitaGetDispositivosXML();
         #endregion
+    }
+
+    /// <summary>
+    /// Interfaz para la generación de comunicaciones remotas
+    /// </summary>
+    public interface IOCommRemoting1:IOCommRemoting
+    {
+        
+    }
+
+    public interface IOCommRemoting2 : IOCommRemoting
+    {
+        
+    }
+
+    public interface IOCommRemoting3 : IOCommRemoting
+    {
+
+    }
+
+    public interface IOCommRemoting4 : IOCommRemoting
+    {
+
+    }
+
+    public interface IOCommRemoting5 : IOCommRemoting
+    {
+
+    }
+
+    public interface IOCommRemoting6 : IOCommRemoting
+    {
+
+    }
+
+    public interface IOCommRemoting7 : IOCommRemoting
+    {
+
+    }
+
+    public interface IOCommRemoting8 : IOCommRemoting
+    {
+
+    }
+
+    public interface IOCommRemoting9 : IOCommRemoting
+    {
+
+    }
+
+    public interface IOCommRemoting10 : IOCommRemoting
+    {
+
+    }
+
+    public interface IOCommRemoting11 : IOCommRemoting
+    {
+
+    }
+
+    public interface IOCommRemoting12 : IOCommRemoting
+    {
+
+    }
+
+    public interface IOCommRemoting13 : IOCommRemoting
+    {
+
+    }
+
+    public interface IOCommRemoting14 : IOCommRemoting
+    {
+
+    }
+
+    public interface IOCommRemoting15 : IOCommRemoting
+    {
+
+    }
+
+    public interface IOCommRemoting16 : IOCommRemoting
+    {
+
     }
 }

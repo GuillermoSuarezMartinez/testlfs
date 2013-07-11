@@ -27,6 +27,11 @@ namespace Orbita.Framework.Core
         /// <param name="idioma">Enumerado de idioma que determina el rango de controles al que hacen referencia.</param>
         /// <returns>Colección de controles que se refieren al idioma seleccionado.</returns>
         System.Collections.Generic.IDictionary<string, ControlInfo> GetControlesPlugin(SelectorIdioma idioma);
-        System.Collections.Generic.IList<Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal> GetConfiguracionCanal();
+        /// <summary>
+        /// Obtener la configuración de canales de comunicación.
+        /// </summary>
+        /// <returns>Colección de canales de comunicación.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
+        System.Collections.Generic.IList<Controles.Comunicaciones.OrbitaConfiguracionCanal> GetConfiguracionCanal();
     }
 }

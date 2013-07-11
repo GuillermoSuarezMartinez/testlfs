@@ -13,7 +13,7 @@ namespace Orbita.Controles.Comunicaciones
 {
     public partial class OrbitaVisorDiferido : UserControl
     {
-        #region Atributo(s)
+        #region Atributos
         /// <summary>
         /// Contiene los datos de configuración de la aplicación almacenados en el ficherod e configuración.
         /// </summary>
@@ -109,7 +109,6 @@ namespace Orbita.Controles.Comunicaciones
                     if (!this.CargarColumnas(ruta))
                         OMensajes.MostrarError("No se ha realizado la carga del fichero de configuración, compruebe que la ubicación y el fichero son correctos.");
                 }
-
                 this.gridLog.Toolbar.OI.AgregarToolButton(0, "Limpiar", "limpiarGridLog", 0, Properties.Resources.Borrar);
                 this.gridLog.Toolbar.OI.AgregarToolLabel(0, "Tamaño", "Tamanyo", 1);
                 this.gridLogError.Toolbar.OI.AgregarToolStateButton(0, "Fatales (0)", "fatalGridError", 0, Properties.Resources.Tool_Fatal);
@@ -117,8 +116,8 @@ namespace Orbita.Controles.Comunicaciones
                 this.gridLogError.Toolbar.OI.AgregarToolStateButton(0, "Warnings (0)", "warningGridError", 2, Properties.Resources.Tool_Warning);
                 this.gridLogError.Toolbar.OI.AgregarToolButton(0, "Limpiar", "limpiarGridLogError", 3, Properties.Resources.Borrar);
 
-                this.FormatearGrid(gridLog);
-                this.FormatearGrid(gridLogError);
+                FormatearGrid(gridLog);
+                FormatearGrid(gridLogError);
             }
         }
         /// <summary>
@@ -232,7 +231,7 @@ namespace Orbita.Controles.Comunicaciones
         /// Carga los datos de configuración en AppSettings.
         /// </summary>
         /// <returns>True si la carga ha sido correcta; false en caso contrario.</returns>
-        bool CargarConfiguracion(string ruta)
+        private bool CargarConfiguracion(string ruta)
         {
             string ficheroConfiguracionAplicacion = Path.Combine(ruta, "ConfiguracionVisorTCP.xml");
 
@@ -272,7 +271,7 @@ namespace Orbita.Controles.Comunicaciones
         /// Carga las colecciones con los argumentos/columnas correspondientes.
         /// </summary>
         /// <returns>Carga correcta.</returns>
-        bool CargarColumnas(string ruta)
+        private bool CargarColumnas(string ruta)
         {
             try
             {
@@ -320,7 +319,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="dt">DataTable a formatear.</param>
         /// <returns>DataTable formateado.</returns>
-        DataTable AddColumnasDataTableBackup(DataTable dt)
+        private DataTable AddColumnasDataTableBackup(DataTable dt)
         {
             DataColumn columna = new DataColumn();
 
@@ -359,7 +358,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="cols">Colección ArrayList.</param>
         /// <returns>Colección columnas formateada.</returns>
-        ArrayList ColumnasGridBackup(ArrayList cols)
+        private ArrayList ColumnasGridBackup(ArrayList cols)
         {
             cols.Add(new Orbita.Controles.Grid.OEstiloColumna("Nivel", "Nivel", Orbita.Controles.Grid.EstiloColumna.Texto, Orbita.Controles.Grid.Alineacion.Izquierda, 54));
             cols.Add(new Orbita.Controles.Grid.OEstiloColumna("Fecha", "Fecha", Orbita.Controles.Grid.EstiloColumna.Fecha, Orbita.Controles.Grid.Alineacion.Centrado, new Orbita.Controles.Grid.OMascara("dd/mm/yyyy hh:mm:ss"), 120));
@@ -381,7 +380,7 @@ namespace Orbita.Controles.Comunicaciones
         /// Da formato a grid.
         /// </summary>
         /// <param name="grid">Grid a formatear.</param>
-        void FormatearGrid(Orbita.Controles.Grid.OrbitaUltraGridToolBar grid)
+        private static void FormatearGrid(Orbita.Controles.Grid.OrbitaUltraGridToolBar grid)
         {
             grid.OI.Apariencia.ColorBorde = Color.DimGray;
             grid.OI.Filas.Apariencia.ColorBorde = Color.Silver;
@@ -405,7 +404,7 @@ namespace Orbita.Controles.Comunicaciones
         /// <summary>
         /// Inicializa las apariencias de las filas.
         /// </summary>
-        void InicializarApariencias()
+        private void InicializarApariencias()
         {
             _colorWarning = new Infragistics.Win.Appearance();
             _colorError = new Infragistics.Win.Appearance();
@@ -436,13 +435,12 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="dt">datatable sobre el que se filtra.</param>
         /// <param name="grid">grid contenedor de los botones.</param>
-        void GestionFiltros(DataTable dt, Orbita.Controles.Grid.OrbitaUltraGridToolBar grid)
+        private static void GestionFiltros(DataTable dt, Orbita.Controles.Grid.OrbitaUltraGridToolBar grid)
         {
             //Se obtienen los botones para conocer si pulsados.
             Infragistics.Win.UltraWinToolbars.StateButtonTool error = (Infragistics.Win.UltraWinToolbars.StateButtonTool)grid.Toolbar.Tools["errorGridError"];
             Infragistics.Win.UltraWinToolbars.StateButtonTool warning = (Infragistics.Win.UltraWinToolbars.StateButtonTool)grid.Toolbar.Tools["warningGridError"];
             Infragistics.Win.UltraWinToolbars.StateButtonTool fatal = (Infragistics.Win.UltraWinToolbars.StateButtonTool)grid.Toolbar.Tools["fatalGridError"];
-
             string filtro = string.Empty;
             if (error.Checked)
                 filtro = "Nivel = 'ERROR'";
@@ -468,7 +466,7 @@ namespace Orbita.Controles.Comunicaciones
         /// Vacia DataTable.
         /// </summary>
         /// <param name="dt">Tabla a limpiar.</param>
-        void Limpiar(DataTable dt)
+        private void Limpiar(DataTable dt)
         {
             if (dt != null)
             {
@@ -481,7 +479,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="linea">Línea a formatear.</param>
         /// <returns>Línea formateada.</returns>
-        string Formatear(string linea)
+        private static string Formatear(string linea)
         {
             try
             {
@@ -498,7 +496,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void InitializeRow(object sender, Infragistics.Win.UltraWinGrid.InitializeRowEventArgs e)
+        protected void InitializeRow(object sender, Infragistics.Win.UltraWinGrid.InitializeRowEventArgs e)
         {
             try
             {
@@ -542,7 +540,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void InitializeLayoutWithHeader(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
+        protected void InitializeLayoutWithHeader(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
         {
             try
             {
@@ -560,7 +558,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void InitializeLayoutWithoutHeader(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
+        protected void InitializeLayoutWithoutHeader(object sender, Infragistics.Win.UltraWinGrid.InitializeLayoutEventArgs e)
         {
             try
             {
@@ -580,7 +578,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void DoubleClickRow(object sender, Infragistics.Win.UltraWinGrid.DoubleClickRowEventArgs e)
+        protected void DoubleClickRow(object sender, Infragistics.Win.UltraWinGrid.DoubleClickRowEventArgs e)
         {
             try
             {
@@ -602,7 +600,7 @@ namespace Orbita.Controles.Comunicaciones
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void ToolClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
+        protected void ToolClick(object sender, Infragistics.Win.UltraWinToolbars.ToolClickEventArgs e)
         {
             try
             {
@@ -624,7 +622,7 @@ namespace Orbita.Controles.Comunicaciones
                     case "errorGridError":
                     case "warningGridError":
                     case "fatalGridError":
-                        this.GestionFiltros(_dtGridLogError, gridLogError);
+                        GestionFiltros(_dtGridLogError, gridLogError);
                         break;
                 }
             }

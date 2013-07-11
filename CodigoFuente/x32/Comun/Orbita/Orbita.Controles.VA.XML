@@ -2199,6 +2199,374 @@
             </summary>
             <value>The width of the scaled image.</value>
         </member>
+        <member name="T:Orbita.Controles.VA.OrbitaCtrlTactilBase">
+            <summary>
+            Clase base para controles de formularios
+            </summary>          
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaCtrlTactilBase.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaCtrlTactilBase.AlgoModificado">
+            <summary>
+            Indica si se ha modificado algo
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaCtrlTactilBase.Inicio">
+            <summary>
+            Indica si se está en la fase de inicializacion de los controles del formulario
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaCtrlTactilBase.CierrePorUsuario">
+            <summary>
+            Informa si el motivo del cierre es por decisión el usuario o interna del código
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaCtrlTactilBase._MultiplesInstancias">
+            <summary>
+            Posibilita la apertura de múltiples instancias del formulario
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaCtrlTactilBase._FormularioModificado">
+            <summary>
+            Se activa a verdadero cuando se han guardado correctamten los datos del formulario,
+            bien en la base de datos o bien en formulario invocante.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaCtrlTactilBase._ModoAperturaFormulario">
+            <summary>
+            Almacena el modo con el que se ha abierto el formulario: Nuevo o Modificar
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaCtrlTactilBase._MostrarBotones">
+            <summary>
+            Muestra los botones de acción situados en la parte inferior del formulario
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.#ctor">
+            <summary>
+            Constructor vacio de la clase (es necesario para que el diseñador construya el formulario heredado en tiempo de diseño)
+            </summary>		
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.#ctor(Orbita.Controles.VA.ModoAperturaFormulario,System.String,System.String,System.Windows.Forms.Control)">
+            <summary>
+            Constructor vacio de la clase (es necesario para que el diseñador construya el formulario heredado en tiempo de diseño)
+            </summary>		
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.Dispose">
+            <summary>
+            Destructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.VisualizacionPermitida">
+            <summary>
+            Informa de que el formulario puede abrirse, bien porque se permiten multiples intancias o bien porque no existe niguna instancia abierta
+            </summary>
+            <returns>Verdadero si el formulario puede abrirse</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.InternoIniciarMonitorizarModificaciones(System.Windows.Forms.Control)">
+            <summary>
+            Se añade el evento de monitorización a los controles del formulario
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.InternoFinalizarMonitorizarModificaciones(System.Windows.Forms.Control)">
+            <summary>
+            Se elimina el evento de monitorización a los controles del formulario
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.SolucionarToolTips(System.Windows.Forms.Control)">
+            <summary>
+            Método usado para solucionar el problemas de los componentes orbita con los tooltips
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.IntentaCerrar">
+            <summary>
+            Se ejecuta cuando se cierra el formulario, antes de cerrarlo
+            </summary>
+            <param name="sender">Objeto que envía el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.Salir">
+            <summary>
+            Evento que se produce cuando se cierra el formulario, despues de cerrarlo
+            </summary>
+            <param name="sender">Objeto que envía el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.InternoEstablecerModo(System.Windows.Forms.Control)">
+            <summary>
+            Se establecen los controles como accesibles por el usuario dependiendo del modo
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.IniciarFormulario">
+            <summary>
+            Inicializa todos los componentes del formulario, cargando los datos si procede
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.GuardarDatos">
+            <summary>
+            Guarda los datos
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.CambiarTextoBotonGuardar(System.String)">
+            <summary>
+            Cambia el texto del botón aceptar
+            </summary>
+            <param name="nuevoTexto">Nuevo texto que tendrá el botón aceptar</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.CambiarTextoBotonCancelar(System.String)">
+            <summary>
+            Cambia el texto del botón cancelar
+            </summary>
+            <param name="nuevoTexto">Nuevo texto que tendrá el botón cancelar</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.OcultarBotonAceptar">
+            <summary>
+            Cambia la propiedad Visible del botón aceptar
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.OcultarBotonCancelar">
+            <summary>
+            Cambia la propiedad Visible del botón cancelar
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.OcultarBotones">
+            <summary>
+            Cambia la propiedad Visible de la barra de botones
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.CargarDatosComunes">
+            <summary>
+            Carga y muestra datos del formulario comunes para los modos de funcionamiento
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.CargarDatosModoNuevo">
+            <summary>
+            Carga y muestra datos del formulario en modo edición. Se cargan todos datos que se muestran en 
+            el formulario: grids, combos, etc... Cada carga de elementos estará encapsulada en un método
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.CargarDatosModoModificacion">
+            <summary>
+            Carga y muestra datos del formulario en modo Modificación. Se cargan todos datos que se muestran en 
+            el formulario: grids, combos, etc... Cada carga de elementos estará encapsulada en un método
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.CargarDatosModoVisualizacion">
+            <summary>
+            Carga y muestra datos del formulario en modo visualización. Se cargan todos datos que se muestran en 
+            el formulario: grids, combos, etc... Cada carga de elementos estará encapsulada en un método
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.CargarDatosModoMonitorizacion">
+            <summary>
+            Carga y muestra datos del formulario en modo Monitorización. Se cargan todos datos que se muestran en 
+            el formulario: grids, combos, etc... Cada carga de elementos estará encapsulada en un método
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.CargarDatosModoSistema">
+            <summary>
+            Carga y muestra datos del formulario en modo sistema. Se cargan todos datos que se muestran en 
+            el formulario: grids, combos, etc... Cada carga de elementos estará encapsulada en un método
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.EstablecerModoNuevo">
+            <summary>
+            Establece la habiliacion adecuada de los controles para el modo Nuevo
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.EstablecerModoModificacion">
+            <summary>
+            Establece la habiliacion adecuada de los controles para el modo Modificacion
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.EstablecerModoVisualizacion">
+            <summary>
+            Establece la habiliacion adecuada de los controles para el modo visualizacion
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.EstablecerModoMonitorizacion">
+            <summary>
+            Establece la habiliacion adecuada de los controles para el modo monitorización
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.EstablecerModoSistema">
+            <summary>
+            Establece la habiliacion adecuada de los controles para el modo sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.GuardarDatosModoNuevo">
+            <summary>
+            Guarda los datos cuando el formulario está abierto en modo Creación
+            </summary>
+            <returns>True si la operación de guardado de datos ha tenido éxito; false en caso contrario</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.GuardarDatosModoModificacion">
+            <summary>
+            Guarda los datos cuando el formulario está abierto en modo Modificación
+            </summary>
+            <returns>True si la operación de guardado de datos ha tenido éxito; false en caso contrario</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.GuardarDatosModoVisualizacion">
+            <summary>
+            Guarda los datos cuando el formulario está abierto en modo visualizacion
+            </summary>
+            <returns>True si la operación de guardado de datos ha tenido éxito; false en caso contrario</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.GuardarDatosModoMonitorizacion">
+            <summary>
+            Guarda los datos cuando el formulario está abierto en modo monitorización
+            </summary>
+            <returns>True si la operación de guardado de datos ha tenido éxito; false en caso contrario</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.GuardarDatosModoSistema">
+            <summary>
+            Guarda los datos cuando el formulario está abierto en modo sistema
+            </summary>
+            <returns>True si la operación de guardado de datos ha tenido éxito; false en caso contrario</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.IniciarMonitorizarModificaciones">
+            <summary>
+            Se añade el evento de monitorización a los controles del formulario
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.FinalizarMonitorizarModificaciones">
+            <summary>
+            Se elimina el evento de monitorización a los controles del formulario
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.ComprobarDatosModificados">
+            <summary>
+            Comprueba si se ha modificado algún dato en algún campo del formulario
+            </summary>
+            <returns>True si se han modificado datos; false en caso contrario</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.ResetDeteccionModificaciones">
+            <summary>
+            Resetea el mecanismo de modificaciones indicando que se han procesado los cambios
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.ComprobacionesDeCampos">
+            <summary>
+            Realiza las comprobaciones pertinentes antes de realizar un guardado de los datos. Se usa para el caso en que hayan restricciones en el momento de guardar los datos
+            </summary>
+            <returns>True si todo está correcto para ser guardado; false en caso contrario</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.AccionesNoGuardar">
+            <summary>
+             Método para que sea sobreescrito en el hijo y realizar funciones si el usuario no desea guardar los cambios 
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.AccionesSalir">
+            <summary>
+             Método  para que sea sobreescrito en el hijo y realizar funciones al salir del formulario
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.Show">
+            <summary>
+            Displays the control to the user.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.Show(System.Windows.Forms.Control)">
+            <summary>
+            Displays the control to the user.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.Close">
+            <summary>
+            Closes the form.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.btnCancelar_Click(System.Object,System.EventArgs)">
+            <summary>
+            Manejador de evento click del boton btnCancelar
+            </summary>
+            <param name="sender">Objeto que envía el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.btnGuardar_Click(System.Object,System.EventArgs)">
+            <summary>
+            Manejador de evento click del boton btnAceptar
+            </summary>
+            <param name="sender">Objeto que envía el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.FrmBase_Activated(System.Object,System.EventArgs)">
+            <summary>
+            Evento que se produce cuando se activa el formulario, despues de mostrarse
+            </summary>
+            <param name="sender">Objeto que envía el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.EventoCambioValor(System.Object,System.EventArgs)">
+            <summary>
+            Cambio de valor en un componente
+            </summary>
+            <param name="sender">Objeto que envía el evento</param>
+            <param name="e">Argumentos del evento</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlTactilBase.EventoCeldaCambioValor(System.Object,Infragistics.Win.UltraWinGrid.CellEventArgs)">
+            <summary>
+            Cambio de valor en un componente
+            </summary>
+            <param name="sender">Objeto que envía el evento</param>
+            <param name="celda">Argumentos del evento</param>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaCtrlTactilBase.Codigo">
+            <summary>
+            Código identificativo del formulario
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaCtrlTactilBase.Titulo">
+            <summary>
+            Título del formulario
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaCtrlTactilBase.MultiplesInstancias">
+            <summary>
+            Posibilita la apertura de múltiples instancias del formulario
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaCtrlTactilBase.FormularioModificado">
+            <summary>
+            Se activa a verdadero cuando se han guardado correctamente los datos del formulario,
+            bien en la base de datos o bien en formulario invocante.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaCtrlTactilBase.ModoAperturaFormulario">
+            <summary>
+            Indica el modo de apertura del formulario. Edicion, Visualizacion, Monitorizacion, Sistema
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaCtrlTactilBase.RecordarPosicion">
+            <summary>
+            Indica si se ha de restaurar la posición del formulario a la última guardada
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaCtrlTactilBase.MostrarBotones">
+            <summary>
+            Muestra los botones de acción situados en la parte inferior del formulario
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaCtrlTactilBase.Name">
+            <summary>
+            Nombre del formulario
+            </summary>
+        </member>
         <member name="T:Orbita.Controles.VA.FrmDetalleVisor">
             <summary>
             Formulario base para la visualización de información sobre el origen de la imagen
@@ -3165,6 +3533,11 @@
             Constructor vacio de la clase (es necesario para que el diseñador construya el formulario heredado en tiempo de diseño)
             </summary>		
         </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlBase.#ctor(Orbita.Controles.VA.ModoAperturaFormulario)">
+            <summary>
+            Constructor vacio de la clase (es necesario para que el diseñador construya el formulario heredado en tiempo de diseño)
+            </summary>		
+        </member>
         <member name="M:Orbita.Controles.VA.OrbitaCtrlBase.#ctor(System.Windows.Forms.Control,Orbita.Controles.VA.ModoAperturaFormulario)">
             <summary>
             Constructor de la clase (No existe bloqueo de registro)
@@ -3381,6 +3754,11 @@
             </summary>
         </member>
         <member name="M:Orbita.Controles.VA.OrbitaCtrlBase.Show">
+            <summary>
+            Displays the control to the user.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaCtrlBase.Show(System.Windows.Forms.Control)">
             <summary>
             Displays the control to the user.
             </summary>
@@ -4385,6 +4763,11 @@
             Informa si el motivo del cierre es por decisión el usuario o interna del código
             </summary>
         </member>
+        <member name="F:Orbita.Controles.VA.FrmAsistenteBase.CierrePorFinalizacion">
+            <summary>
+            Informa si el motivo del cierre es por finalización del asistente
+            </summary>
+        </member>
         <member name="F:Orbita.Controles.VA.FrmAsistenteBase.DefaultWindowState">
             <summary>
             Estado del formulario por defecto
@@ -4409,12 +4792,6 @@
             <summary>
             Si se activa, se está indicando que el propio formulario debe monitorizar la entrada de datos del usuario para saber cuando
             han sido modificados, y por lo tanto realizar las tareas apropiadas.
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.VA.FrmAsistenteBase._FormularioModificado">
-            <summary>
-            Se activa a verdadero cuando se han guardado correctamten los datos del formulario,
-            bien en la base de datos o bien en formulario invocante.
             </summary>
         </member>
         <member name="F:Orbita.Controles.VA.FrmAsistenteBase._RecordarPosicion">
@@ -4452,16 +4829,6 @@
             Informa de que el formulario puede abrirse, bien porque se permiten multiples intancias o bien porque no existe niguna instancia abierta
             </summary>
             <returns>Verdadero si el formulario puede abrirse</returns>
-        </member>
-        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.InternoIniciarMonitorizarModificaciones(System.Windows.Forms.Control)">
-            <summary>
-            Se añade el evento de monitorización a los controles del formulario
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.InternoFinalizarMonitorizarModificaciones(System.Windows.Forms.Control)">
-            <summary>
-            Se elimina el evento de monitorización a los controles del formulario
-            </summary>
         </member>
         <member name="M:Orbita.Controles.VA.FrmAsistenteBase.SolucionarToolTips(System.Windows.Forms.Control)">
             <summary>
@@ -4532,43 +4899,11 @@
             el formulario: grids, combos, etc... Cada carga de elementos estará encapsulada en un método
             </summary>
         </member>
-        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.EstablecerModoAsistente">
-            <summary>
-            Establece la habiliacion adecuada de los controles para el modo Modificacion
-            </summary>
-        </member>
         <member name="M:Orbita.Controles.VA.FrmAsistenteBase.GuardarDatosAsistente">
             <summary>
             Guarda los datos cuando el formulario está abierto en modo Modificación
             </summary>
             <returns>True si la operación de guardado de datos ha tenido éxito; false en caso contrario</returns>
-        </member>
-        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.IniciarMonitorizarModificaciones">
-            <summary>
-            Se añade el evento de monitorización a los controles del formulario
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.FinalizarMonitorizarModificaciones">
-            <summary>
-            Se elimina el evento de monitorización a los controles del formulario
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.ComprobarDatosModificados">
-            <summary>
-            Comprueba si se ha modificado algún dato en algún campo del formulario
-            </summary>
-            <returns>True si se han modificado datos; false en caso contrario</returns>
-        </member>
-        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.ResetDeteccionModificaciones">
-            <summary>
-            Resetea el mecanismo de modificaciones indicando que se han procesado los cambios
-            </summary>
-        </member>
-        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.ComprobacionesDeCampos">
-            <summary>
-            Realiza las comprobaciones pertinentes antes de realizar un guardado de los datos. Se usa para el caso en que hayan restricciones en el momento de guardar los datos
-            </summary>
-            <returns>True si todo está correcto para ser guardado; false en caso contrario</returns>
         </member>
         <member name="M:Orbita.Controles.VA.FrmAsistenteBase.AccionesNoGuardar">
             <summary>
@@ -4608,7 +4943,13 @@
         </member>
         <member name="M:Orbita.Controles.VA.FrmAsistenteBase.AccionesAlAceptarElPaso(System.Int32)">
             <summary>
-            Acciones al salir del paso al paso siguiente
+            Acciones al salir del paso al siguiente
+            </summary>
+            <param name="paso"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.AccionesAlCancelarElPaso(System.Int32)">
+            <summary>
+            Acciones al salir del paso al anterior
             </summary>
             <param name="paso"></param>
         </member>
@@ -4618,7 +4959,7 @@
             </summary>
             <param name="paso"></param>
         </member>
-        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.ValidarDatosPaso(System.Int32)">
+        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.ValidarDatosPaso(System.Int32,System.String@)">
             <summary>
             Consulta sobre la validez de los datos introducidos en el paso
             </summary>
@@ -4676,31 +5017,12 @@
             <param name="sender">Objeto que envía el evento</param>
             <param name="e">Argumentos del evento</param>
         </member>
-        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.EventoCambioValor(System.Object,System.EventArgs)">
-            <summary>
-            Cambio de valor en un componente
-            </summary>
-            <param name="sender">Objeto que envía el evento</param>
-            <param name="e">Argumentos del evento</param>
-        </member>
-        <member name="M:Orbita.Controles.VA.FrmAsistenteBase.EventoCeldaCambioValor(System.Object,Infragistics.Win.UltraWinGrid.CellEventArgs)">
-            <summary>
-            Cambio de valor en un componente
-            </summary>
-            <param name="sender">Objeto que envía el evento</param>
-            <param name="celda">Argumentos del evento</param>
-        </member>
         <member name="M:Orbita.Controles.VA.FrmAsistenteBase.ChkToolTip_CheckedChanged(System.Object,System.EventArgs)">
             <summary>
             Muestra o oculta los tooltips
             </summary>
             <param name="sender">Objeto que envía el evento</param>
             <param name="e">Argumentos del evento</param>
-        </member>
-        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.CreateParams">
-            <summary>
-            Establece el estilo de los botones de la barra de título del formulario
-            </summary>
         </member>
         <member name="P:Orbita.Controles.VA.FrmAsistenteBase.MultiplesInstancias">
             <summary>
@@ -4711,12 +5033,6 @@
             <summary>
             Si se activa, se está indicando que el propio formulario debe monitorizar la entrada de datos del usuario para saber cuando
             han sido modificados, y por lo tanto realizar las tareas apropiadas.
-            </summary>
-        </member>
-        <member name="P:Orbita.Controles.VA.FrmAsistenteBase.FormularioModificado">
-            <summary>
-            Se activa a verdadero cuando se han guardado correctamten los datos del formulario,
-            bien en la base de datos o bien en formulario invocante.
             </summary>
         </member>
         <member name="P:Orbita.Controles.VA.FrmAsistenteBase.RecordarPosicion">
@@ -6238,14 +6554,143 @@
               búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
             </summary>
         </member>
+        <member name="T:Orbita.Controles.VA.CtrlContenedorFormularios">
+            <summary>
+            Control contenedor principal
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.CtrlContenedorFormularios.ListaFormularios">
+            <summary>
+            Lista de formularios abiertos
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.CtrlContenedorFormularios.OnFormularioActivo">
+            <summary>
+            Delegado de acticación
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.CtrlContenedorFormularios.#ctor">
+            <summary>
+            Constructores
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.CtrlContenedorFormularios.AbrirFormulario(Orbita.Controles.VA.OrbitaCtrlTactilBase)">
+            <summary>
+            Visualización de un formulario
+            </summary>
+            <param name="formulario"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.CtrlContenedorFormularios.CerrarFormuario(Orbita.Controles.VA.OrbitaCtrlTactilBase)">
+            <summary>
+            Cierre de un determinado formulario
+            </summary>
+            <param name="formulario"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.CtrlContenedorFormularios.CerrarFormuario(System.String)">
+            <summary>
+            Cierre de un determinado formulario
+            </summary>
+            <param name="formulario"></param>
+        </member>
+        <member name="F:Orbita.Controles.VA.CtrlContenedorFormularios.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.CtrlContenedorFormularios.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.CtrlContenedorFormularios.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.VA.CtrlContenedorFormularios.DelegadoFormularioActivo">
+            <summary>
+            Delegado de activación de formulario
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.VA.EventArgsFormularioActivo">
+            <summary>
+            Evento del delegado de activación de un formulario
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.EventArgsFormularioActivo._Codigo">
+            <summary>
+            Código del formulario activo
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.EventArgsFormularioActivo.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigo"></param>
+        </member>
+        <member name="P:Orbita.Controles.VA.EventArgsFormularioActivo.Codigo">
+            <summary>
+            Código del formulario activo
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.VA.OMDIManager">
+            <summary>
+            Clase estática con métodos comunes de manejo de aplicaciones MDI
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OMDIManager.DockManager">
+            <summary>
+            Gestor de anclas de los formularios
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OMDIManager.HayFormulariosMDIHijosMaximizados">
+            <summary>
+            Indica si existe algún formulario MDI hijo que este maximizado
+            </summary>
+            <returns>Ture si existe algún formulario MDI hijo que este maximizado; false en caso contrario</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OMDIManager.AjustarFondoAplicacion(System.Drawing.Size,System.Drawing.Image)">
+            <summary>
+            Ajusta el tamaño y posición de la imagen del fondo en función del tamaño y posición del área de cliente del formulario
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OMDIManager.CerrarTodasVentanas">
+            <summary>
+            Cierre de todas las ventanas abiertas
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OMDIManager.FormularioPrincipalMDI">
+            <summary>
+            Formulario principal de tipo MDI de la aplicación
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.VA.OTactilManager">
+            <summary>
+            Clase estática con métodos comunes de manejo de aplicaciones MDI
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OTactilManager._CtrlContenedorFormularios">
+            <summary>
+            Formulario principal de tipo MDI de la aplicación
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OTactilManager.CerrarTodasVentanas">
+            <summary>
+            Cierre de todas las ventanas abiertas
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OTactilManager.CtrlContenedorFormularios">
+            <summary>
+            Formulario principal de tipo MDI de la aplicación
+            </summary>
+        </member>
         <member name="T:Orbita.Controles.VA.OTrabajoControles">
             <summary>
             Clase estática destinada a alojar métodos comnes para el trabajo con los controles
-            </summary>
-        </member>
-        <member name="F:Orbita.Controles.VA.OTrabajoControles.DockManager">
-            <summary>
-            Gestor de anclas de los formularios
             </summary>
         </member>
         <member name="M:Orbita.Controles.VA.OTrabajoControles.HayFormulariosMDIHijosMaximizados">
@@ -6342,6 +6787,11 @@
         <member name="P:Orbita.Controles.VA.OTrabajoControles.FormularioPrincipalMDI">
             <summary>
             Formulario principal de tipo MDI de la aplicación
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OTrabajoControles.DockManager">
+            <summary>
+            Gestor de anclas de los formularios
             </summary>
         </member>
         <member name="T:Orbita.Controles.VA.OEnumeracionCombo">
@@ -7655,6 +8105,164 @@
             </summary>
             <param name="sender">Objeto que envía el evento</param>
             <param name="celda">Argumentos del evento</param>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaControlVideo.VideoActual">
+            <summary>
+            Contendra el video a visualizar
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaControlVideo.timer">
+            <summary>
+            Timer para controlar el tiempo de reproducción y la barra de progreso.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaControlVideo.tiempoReproduccion">
+            <summary>
+            TimeSpan para obtener los minutos y segundos durante la reproducción;
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaControlVideo.tiempoVideo">
+            <summary>
+            TimeSpan para obtener los minutos y segundos de la duración completa del video.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaControlVideo.primeraReproduccion">
+            <summary>
+            Flag para saber si es la primera reproducción, si está a true generaremos los eventos del video.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaControlVideo.ruta">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaControlVideo.Dispose(System.Boolean)">
+            <summary>
+            Dispose para liberar cada unos de los componentes del control, entre ellos el video.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaControlVideo.DisposeVideo">
+            <summary>
+            Dispose para liberar  el video.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaControlVideo.InicializaEventos">
+            <summary>
+            Inicializamos los eventos de Starting, Ending y Pausing;
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaControlVideo.ConfigurarTimerDeEjecucion">
+            <summary>
+            Configuración del timer.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaControlVideo.scaleToFit(System.Drawing.Size,System.Drawing.Size)">
+            <summary>
+            Escalamos y ajustamos el video para mantener relación aspecto.
+            </summary>
+            <param name="target">Tamaño del contenedor donde queremos adaptar el video</param>
+            <param name="original">Tamaño del video a escalar</param>
+            <returns>El tamaño ajustado al panel</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaControlVideo.scaleToFitSmart(System.Drawing.Size,System.Drawing.Size)">
+            <summary>
+            Escalado y ajuste inteligente.
+            </summary>
+            <param name="target">Tamaño del contenedor donde queremos adaptar el video</param>
+            <param name="original">Tamaño del video a escalar</param>
+            <returns>El tamaño ajustado al contenedor. En caso de que el escalado y el ajuste 
+            sean mayores que el original devolvemos el original.</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaControlVideo.ActivarBotonesEnPlay">
+            <summary>
+            Activamos el botó de "Pause" y desactivamos el botón de "Play"
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaControlVideo.ActivarBotonesEnStop">
+            <summary>
+            Desactivamos el botón pause y activamos el botón de "Play"
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaControlVideo.ActivarBotonesEnFin">
+            <summary>
+            Desactivamos los botones stop y pause y activamos el botón de "Play"
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaControlVideo.Redimensionar">
+            <summary>
+            Redimensionamos el video según la propiedad "MantenerRelacionAspecto".
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaControlVideo.Suspender(System.Windows.Forms.Control,System.Boolean)">
+            <summary>
+            Suspendemos cada uno de los componentes del control.
+            </summary>
+            <param name="controlSuspender"></param>
+            <param name="suspender"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaControlVideo.ActualizaLabels(System.Boolean)">
+            <summary>
+            Actualizamos la barra de progreso, el título, la etiqueta de dimensiones y los temporizadores.
+            </summary>
+            <param name="final"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaControlVideo.InicializarVideo">
+            <summary>
+            Inicializamos el video llamando a play
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaControlVideo.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaControlVideo.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaControlVideo.NombreVideo">
+            <summary>
+            Propiedad para añadir título al video.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaControlVideo.PanelGrande">
+            <summary>
+            Propiedad para mostrar el panel con los botones grandes. True para mostrarlo.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaControlVideo.MantenerRelacionAspecto">
+            <summary>
+            Propiedad para mantener la relación aspecto. True para mantener la relación aspecto.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaControlVideo.ReproduccionEnBucle">
+            <summary>
+            Propiedad para poner el video en bucle. True para activar estado en bucle.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaControlVideo.ZoomVideo">
+            <summary>
+            Propiedad para mostrar el zoom del video. True para mostrarlo.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaControlVideo.CerrarZoomVideo">
+            <summary>
+            Propiedad para mostrar cerrar el zoom del video. True para mostrarlo.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.VA.OrbitaControlVideo.VideoFinEventHandler">
+            <summary>
+            Generamos el evento del video que nos indicará que ha finalizado
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.VA.OrbitaControlVideo.VideoFinHandler">
+            <summary>
+            Generamos el evento del video que nos indicará que ha finalizado
+            </summary>
         </member>
     </members>
 </doc>

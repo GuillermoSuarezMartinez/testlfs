@@ -41,9 +41,21 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public byte[] Entradas;
         /// <summary>
+        /// Byte de escrituras
+        /// </summary>
+        protected byte[] Salidas;
+        /// <summary>
+        /// Byte de escrituras
+        /// </summary>
+        protected byte[] SalidasHiloEscribir;
+        /// <summary>
         /// Tiempo que tarda en logar un error de comunicación
         /// </summary>
         public int _segundosLogErrorComunicacion = 60;
+        /// <summary>
+        /// Variable para bloqueo de escrituras
+        /// </summary>
+        public int _bloqueoEscrituras = 0;
         #endregion
 
         #region Constructores
@@ -170,7 +182,6 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public override bool Escribir(string[] variables, object[] valores, string canal)
         {
-            wrapper.Debug("ODispositivoES Escribir: la opción de canal no está implementada en este dispositivo.");
             return this.Escribir(variables, valores);
         }
         #endregion

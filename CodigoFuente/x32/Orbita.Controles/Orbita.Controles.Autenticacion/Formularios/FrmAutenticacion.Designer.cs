@@ -50,7 +50,7 @@
             // 
             // txtContraseña
             // 
-            this.txtContraseña.Location = new System.Drawing.Point(120, 41);
+            this.txtContraseña.Location = new System.Drawing.Point(120, 37);
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.PasswordChar = '*';
             this.txtContraseña.Size = new System.Drawing.Size(191, 20);
@@ -60,7 +60,7 @@
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(120, 15);
+            this.txtUsuario.Location = new System.Drawing.Point(120, 11);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(191, 20);
             this.txtUsuario.TabIndex = 1;
@@ -78,7 +78,7 @@
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(48, 18);
+            this.lblUsuario.Location = new System.Drawing.Point(48, 14);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(46, 13);
             this.lblUsuario.TabIndex = 0;
@@ -87,7 +87,7 @@
             // lblContraseña
             // 
             this.lblContraseña.AutoSize = true;
-            this.lblContraseña.Location = new System.Drawing.Point(30, 41);
+            this.lblContraseña.Location = new System.Drawing.Point(30, 37);
             this.lblContraseña.Name = "lblContraseña";
             this.lblContraseña.Size = new System.Drawing.Size(64, 13);
             this.lblContraseña.TabIndex = 2;
@@ -102,7 +102,7 @@
             this.pnlSuperior.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlSuperior.Location = new System.Drawing.Point(4, 4);
             this.pnlSuperior.Name = "pnlSuperior";
-            this.pnlSuperior.Size = new System.Drawing.Size(317, 70);
+            this.pnlSuperior.Size = new System.Drawing.Size(313, 70);
             this.pnlSuperior.TabIndex = 0;
             // 
             // lblMayusculasActivada
@@ -113,7 +113,7 @@
             this.lblMayusculasActivada.Location = new System.Drawing.Point(4, 74);
             this.lblMayusculasActivada.Name = "lblMayusculasActivada";
             this.lblMayusculasActivada.Padding = new System.Windows.Forms.Padding(30, 0, 10, 0);
-            this.lblMayusculasActivada.Size = new System.Drawing.Size(317, 20);
+            this.lblMayusculasActivada.Size = new System.Drawing.Size(313, 20);
             this.lblMayusculasActivada.TabIndex = 4;
             this.lblMayusculasActivada.Text = "La tecla Bloq Mayús esta activada.";
             this.lblMayusculasActivada.Visible = false;
@@ -126,7 +126,7 @@
             this.lblCredencialesIncorrectas.Location = new System.Drawing.Point(4, 94);
             this.lblCredencialesIncorrectas.Name = "lblCredencialesIncorrectas";
             this.lblCredencialesIncorrectas.Padding = new System.Windows.Forms.Padding(30, 0, 10, 0);
-            this.lblCredencialesIncorrectas.Size = new System.Drawing.Size(317, 36);
+            this.lblCredencialesIncorrectas.Size = new System.Drawing.Size(313, 36);
             this.lblCredencialesIncorrectas.TabIndex = 5;
             this.lblCredencialesIncorrectas.Text = "El nombre de usuario o la contraseña introducidos no son correctos.";
             this.lblCredencialesIncorrectas.Visible = false;
@@ -135,7 +135,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(325, 156);
+            this.ClientSize = new System.Drawing.Size(321, 165);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);

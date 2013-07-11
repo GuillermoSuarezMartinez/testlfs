@@ -1,5 +1,5 @@
 ﻿//***********************************************************************
-// Assembly         : Orbita.Framework.Core
+// Assembly         : Orbita.Framework.PluginManager
 // Author           : crodriguez
 // Created          : 18-04-2013
 //
@@ -12,7 +12,7 @@
 namespace Orbita.Framework.PluginManager
 {
     /// <summary>
-    /// Interface de controles de usuario.
+    /// Interface de plugins de tipo controles de usuario (Controles.Shared.OrbitaUserControl).
     /// </summary>
     [System.CLSCompliantAttribute(false)]
     public interface IUserControlPlugin : IPlugin
@@ -20,6 +20,6 @@ namespace Orbita.Framework.PluginManager
         /// <summary>
         /// Control de usuario (OrbitaUserControl).
         /// </summary>
-        Orbita.Controles.Shared.OrbitaUserControl Control { get; }
+        Controles.Shared.OrbitaUserControl Control { get; }
     }
 }

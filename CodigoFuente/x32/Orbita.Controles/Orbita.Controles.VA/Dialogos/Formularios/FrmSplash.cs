@@ -190,8 +190,8 @@ namespace Orbita.Controles.VA
             {
                 // Deshabilito el formulario principal
                 Application.UseWaitCursor = true;
-                //OTrabajoControles.FormularioPrincipalMDI.UseWaitCursor = true;
-                //OTrabajoControles.FormularioPrincipalMDI.Enabled = false;
+                //OMDIManager.FormularioPrincipalMDI.UseWaitCursor = true;
+                //OMDIManager.FormularioPrincipalMDI.Enabled = false;
 
                 // Mostramos el formulario Splash en un hilo
                 Thread tSplash = new Thread(new ThreadStart(IniciarSplash));
@@ -216,9 +216,9 @@ namespace Orbita.Controles.VA
 
                 // Habilito el formulario principal
                 Application.UseWaitCursor = false;
-                //OTrabajoControles.FormularioPrincipalMDI.UseWaitCursor = false;
-                //OTrabajoControles.FormularioPrincipalMDI.Enabled = true;
-                //OTrabajoControles.FormularioPrincipalMDI.BringToFront();
+                //OMDIManager.FormularioPrincipalMDI.UseWaitCursor = false;
+                //OMDIManager.FormularioPrincipalMDI.Enabled = true;
+                //OMDIManager.FormularioPrincipalMDI.BringToFront();
             }
         }
 

@@ -455,11 +455,11 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Escritura de la salida física
         /// </summary>
-        public override void EscribirSalida(string codigoVariable, object valor)
+        public override void EscribirSalida(string codigoVariable, object valor, string remitente)
         {
             if (this.TipoTerminalIO == OTipoTerminalIO.SalidaDigital)
             {
-                base.EscribirSalida(codigoVariable, valor);
+                base.EscribirSalida(codigoVariable, valor, remitente);
 
                 // Se comprueba que el valor a escribir sea correcto
                 ushort ushortValor;
@@ -646,9 +646,9 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Escritura de la salida física
         /// </summary>
-        public override void EscribirSalida(string codigoVariable, object valor)
+        public override void EscribirSalida(string codigoVariable, object valor, string remitente)
         {
-            base.EscribirSalida(codigoVariable, valor);
+            base.EscribirSalida(codigoVariable, valor, remitente);
 
             // Se comprueba que el valor a escribir sea correcto
             bool boolValor;

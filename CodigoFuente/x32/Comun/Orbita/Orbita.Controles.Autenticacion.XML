@@ -56,7 +56,6 @@
         <member name="M:Orbita.Controles.Autenticacion.FrmAutenticacion.GetKeyState(System.Int32)">
             <summary>
             Esta función recupera el estado de la tecla virtual especificada.
-            The status specifies whether the key is up, down.
             </summary>
             <param name="keyCode">Specifies a key code for the button to me checked</param>
             <returns>Return value will be 0 if off and 1 if on</returns>
@@ -68,7 +67,7 @@
         </member>
         <member name="M:Orbita.Controles.Autenticacion.FrmAutenticacion.ShowChildDialog(System.Windows.Forms.Form,System.EventHandler{Orbita.Controles.Autenticacion.AutenticacionResultEventArgs})">
             <summary>
-            Mostrar ventana de dialogo como hijo de un formulario MDI.
+            Mostrar la ventana de dialogo como hijo de un formulario MDI.
             </summary>
             <param name="sender"></param>
             <param name="dialogReturnedValue">Manejador de evento de retorno.</param>

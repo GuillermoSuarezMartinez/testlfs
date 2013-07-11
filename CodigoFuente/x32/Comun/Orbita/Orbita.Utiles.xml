@@ -3702,5 +3702,67 @@
             Atributo de sincronización.
             </summary>
         </member>
+        <member name="T:Orbita.Utiles.OWindowsUtils">
+            <summary>
+            Librería de utilidades para el SO Windows
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OWindowsUtils.memcpy(System.IntPtr,System.IntPtr,System.Int32)">
+            <summary>
+            memcpy - copy a block of memery
+            </summary>
+            <param name="dst"></param>
+            <param name="src"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OWindowsUtils.memcpy(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            memcpy - copy a block of memery
+            </summary>
+            <param name="dst"></param>
+            <param name="src"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OWindowsUtils.GetTcpTable(System.IntPtr,System.Int32@,System.Boolean)">
+            <summary>
+            API to get list of connections 
+            </summary>
+            <param name="pTcpTable"></param>
+            <param name="pdwSize"></param>
+            <param name="bOrder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OWindowsUtils.SetTcpEntry(System.IntPtr)">
+            <summary>
+            API to change status of connection 
+            </summary>
+            <param name="pTcprow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OWindowsUtils.ntohs(System.Int32)">
+            <summary>
+            Convert 16-bit value from network to host byte order 
+            </summary>
+            <param name="netshort"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OWindowsUtils.htons(System.Int32)">
+            <summary>
+            Convert 16-bit value back again 
+            </summary>
+            <param name="netshort"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OWindowsUtils.ShowStartMenu(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            desplega el menu de inicio de windows
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="cx"></param>
+            <param name="cy"></param>
+        </member>
     </members>
 </doc>

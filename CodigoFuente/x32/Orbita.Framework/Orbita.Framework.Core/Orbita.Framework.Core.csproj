@@ -58,6 +58,11 @@
     </Compile>
     <Compile Include="Interfaces\IConfiguracion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="WaitWindow\WaitWindow.cs" />
     <Compile Include="EventArgs\WaitWindowEventArgs.cs" />
     <Compile Include="WaitWindow\WaitWindowGUI.cs">
@@ -68,10 +73,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Formularios\ContainerForm.resx">
+      <DependentUpon>ContainerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitWindow\WaitWindowGUI.resx">
       <DependentUpon>WaitWindowGUI.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)Orbita.Framework.Core.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I

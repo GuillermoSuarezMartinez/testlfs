@@ -12,12 +12,21 @@
 namespace Orbita.Framework.Core
 {
     /// <summary>
-    /// Clase abstracta que indica la persistencia de acuerdo al idioma seleccionado.
+    /// Indica la persistencia de acuerdo al idioma seleccionado.
     /// </summary>
     public abstract class Configuracion : IConfiguracion
     {
+        #region Propiedades
         /// <summary>
-        /// Obtener la configuración principal del Framework relativa a estilo de borde, visualización de menú, etc.
+        /// Usuario validado.
+        /// </summary>
+        public string Usuario { get; set; }
+        #endregion
+
+        #region Métodos públicos abstractos
+        /// <summary>
+        /// Obtener la configuración principal del Framework relativa a estilo de borde, visualización de menú, etc., así como
+        /// las propiedades que integra la propiedad OI.
         /// </summary>
         /// <returns></returns>
         public abstract void InicializarEntorno(object sender, System.EventArgs e);
@@ -27,6 +36,11 @@ namespace Orbita.Framework.Core
         /// <param name="idioma">Enumerado de idioma que determina el rango de controles al que hacen referencia.</param>
         /// <returns>Colección de controles que se refieren al idioma seleccionado.</returns>
         public abstract System.Collections.Generic.IDictionary<string, ControlInfo> GetControlesPlugin(SelectorIdioma idioma);
-        public abstract System.Collections.Generic.IList<Orbita.Controles.Comunicaciones.OrbitaConfiguracionCanal> GetConfiguracionCanal();
+        /// <summary>
+        /// Obtener la configuración de canales de comunicación para posteriormente iniciarlos.
+        /// </summary>
+        /// <returns>Colección de canales de comunicación.</returns>
+        public abstract System.Collections.Generic.IList<Controles.Comunicaciones.OrbitaConfiguracionCanal> GetConfiguracionCanal();
+        #endregion
     }
 }
