@@ -3,9 +3,9 @@
 // Author           : aibañez
 // Created          : 02-01-2013
 //
-// Last Modified By : 
-// Last Modified On : 
-// Description      : 
+// Last Modified By : aibañez
+// Last Modified On : 04/04/2013
+// Description      : Nuevas clases estáticas OMDIManager y OTactilManager
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
