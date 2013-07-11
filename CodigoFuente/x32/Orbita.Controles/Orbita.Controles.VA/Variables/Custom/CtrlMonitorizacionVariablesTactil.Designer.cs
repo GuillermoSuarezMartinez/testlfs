@@ -80,7 +80,6 @@
             this.Codigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Valor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Descripcion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.MomentoUltimaActualizacion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ImageListLarge = new System.Windows.Forms.ImageList(this.components);
             this.ImageListSmall = new System.Windows.Forms.ImageList(this.components);
             this._FrmBase_Toolbars_Dock_Area_Top = new Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea();
@@ -90,6 +89,7 @@
             this.grbPrincipal = new Orbita.Controles.Contenedores.OrbitaUltraGroupBox();
             this.TimerRefresco = new System.Windows.Forms.Timer(this.components);
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.MomentoUltimaActualizacion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PnlSuperiorPadre.SuspendLayout();
             this.PnlPanelPrincipalPadre.SuspendLayout();
             this.PnlBotonesPadre.SuspendLayout();
@@ -140,7 +140,7 @@
             this._FrmBase_Toolbars_Dock_Area_Right.BackColor = System.Drawing.Color.Transparent;
             this._FrmBase_Toolbars_Dock_Area_Right.DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.Right;
             this._FrmBase_Toolbars_Dock_Area_Right.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._FrmBase_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(964, 68);
+            this._FrmBase_Toolbars_Dock_Area_Right.Location = new System.Drawing.Point(964, 43);
             this._FrmBase_Toolbars_Dock_Area_Right.Name = "_FrmBase_Toolbars_Dock_Area_Right";
             this._FrmBase_Toolbars_Dock_Area_Right.Size = new System.Drawing.Size(0, 0);
             this._FrmBase_Toolbars_Dock_Area_Right.ToolbarsManager = this.ToolbarsManager;
@@ -156,7 +156,6 @@
             this.ToolbarsManager.MenuAnimationStyle = Infragistics.Win.UltraWinToolbars.MenuAnimationStyle.Unfold;
             this.ToolbarsManager.Office2007UICompatibility = false;
             this.ToolbarsManager.ShowFullMenusDelay = 500;
-            this.ToolbarsManager.ShowMenuShadows = Infragistics.Win.DefaultableBoolean.False;
             ultraToolbar1.DockedColumn = 0;
             ultraToolbar1.DockedRow = 0;
             MenuEscenarios.InstanceProps.IsFirstInGroup = true;
@@ -265,7 +264,6 @@
             buttonTool19,
             buttonTool20,
             buttonTool2});
-            this.ToolbarsManager.UseFlatMode = Infragistics.Win.DefaultableBoolean.False;
             this.ToolbarsManager.ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler(this.ultraToolbarsManager_ToolClick);
             // 
             // ListView
@@ -307,11 +305,6 @@
             this.Descripcion.Text = "Descripción";
             this.Descripcion.Width = 450;
             // 
-            // MomentoUltimaActualizacion
-            // 
-            this.MomentoUltimaActualizacion.Text = "Última actualización";
-            this.MomentoUltimaActualizacion.Width = 180;
-            // 
             // ImageListLarge
             // 
             this.ImageListLarge.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
@@ -332,7 +325,7 @@
             this._FrmBase_Toolbars_Dock_Area_Top.ForeColor = System.Drawing.SystemColors.ControlText;
             this._FrmBase_Toolbars_Dock_Area_Top.Location = new System.Drawing.Point(303, 0);
             this._FrmBase_Toolbars_Dock_Area_Top.Name = "_FrmBase_Toolbars_Dock_Area_Top";
-            this._FrmBase_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(661, 68);
+            this._FrmBase_Toolbars_Dock_Area_Top.Size = new System.Drawing.Size(661, 43);
             this._FrmBase_Toolbars_Dock_Area_Top.ToolbarsManager = this.ToolbarsManager;
             // 
             // _FrmBase_Toolbars_Dock_Area_Bottom
@@ -401,6 +394,11 @@
             // openFileDialog
             // 
             this.openFileDialog.Filter = "Bitmap images (*.BMP)|*.BMP|Jpeg images(*.JPG)|*.JPG|Todos los archivos(*.*)|*.*";
+            // 
+            // MomentoUltimaActualizacion
+            // 
+            this.MomentoUltimaActualizacion.Text = "Última actualización";
+            this.MomentoUltimaActualizacion.Width = 180;
             // 
             // CtrlMonitorizacionVariablesTactil
             // 

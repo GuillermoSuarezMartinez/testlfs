@@ -69,13 +69,13 @@
             // 
             appearance1.FontData.BoldAsString = "False";
             appearance1.FontData.SizeInPoints = 14F;
-            appearance1.ForeColor = System.Drawing.Color.White;
+            appearance1.ForeColor = System.Drawing.Color.WhiteSmoke;
             appearance1.ImageHAlign = Infragistics.Win.HAlign.Left;
             appearance1.ImageVAlign = Infragistics.Win.VAlign.Middle;
             appearance1.TextHAlignAsString = "Left";
             appearance1.TextVAlignAsString = "Middle";
             this.LblMensaje.Appearance = appearance1;
-            this.LblMensaje.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LblMensaje.Cursor = System.Windows.Forms.Cursors.Default;
             this.LblMensaje.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LblMensaje.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblMensaje.ImageSize = new System.Drawing.Size(24, 24);

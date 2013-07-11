@@ -71,7 +71,7 @@ namespace Orbita.Controles.VA
         {
             base.CargarDatosComunes();
 
-            this.CtrlStateMachineDisplay.Inicializar(this.CodMaquinaEstados, this._ModoAperturaFormulario, true);
+            this.CtrlStateMachineDisplay.Inicializar(this.Codigo, this._ModoAperturaFormulario, true);
         }
         /// <summary>
         ///  Funciones a realizar al salir del formulario

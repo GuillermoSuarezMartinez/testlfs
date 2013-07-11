@@ -1,4 +1,15 @@
-﻿using System;
+﻿//***********************************************************************
+// Assembly         : Orbita.Controles.VA
+// Author           : aibañez
+// Created          : 04-07-2013
+//
+// Last Modified By : 
+// Last Modified On : 
+// Description      : 
+//
+// Copyright        : (c) Orbita Ingenieria. All rights reserved.
+//***********************************************************************
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
