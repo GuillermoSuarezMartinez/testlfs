@@ -431,6 +431,31 @@ namespace Orbita.VA.Comun
         }
 
         /// <summary>
+        /// Método para consultar el tiempo de permanencia del valor de la variable
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el tiempo de permanencia del valor de la variable</returns>
+        public static DateTime GetMomentoUltimaActualizacion(string codigo)
+        {
+            return GetMomentoUltimaActualizacion(string.Empty, codigo);
+        }
+        /// <summary>
+        /// Método para consultar el tiempo de permanencia del valor de la variable
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el tiempo de permanencia del valor de la variable</returns>
+        public static DateTime GetMomentoUltimaActualizacion(string escenario, string codigo)
+        {
+            OVariable variable;
+            if (TryGetVariable(escenario, codigo, out variable))
+            {
+                return variable.GetMomentoUltimaActualizacion();
+            }
+
+            return DateTime.MinValue;
+        }
+
+        /// <summary>
         /// Método para comprobar si el valor de la variable ha cambiado
         /// </summary>
         /// <param name="codigo">Código de la variable</param>
@@ -1380,6 +1405,22 @@ namespace Orbita.VA.Comun
         }
 
         /// <summary>
+        /// Método para consultar el tiempo de permanencia del valor de la variable
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el tiempo de permanencia del valor de la variable</returns>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public DateTime GetMomentoUltimaActualizacion()
+        {
+            if (OVariablesManager.Iniciado)
+            {
+                return this.VariableCore.GetMomentoUltimaActualizacion();
+            }
+
+            return DateTime.MinValue;
+        }
+
+        /// <summary>
         /// Método para comprobar si el valor de la variable ha cambiado
         /// </summary>
         /// <returns>Devuelve verdadero si valor de la variable con el código correspondientes ha cambiado</returns>
@@ -1836,6 +1877,19 @@ namespace Orbita.VA.Comun
             get { return _Cronometro; }
             set { _Cronometro = value; }
         }
+
+        /// <summary>
+        /// Momento del último cambio en la variable
+        /// </summary>
+        private DateTime _MomentoUltimaActualizacion;
+        /// <summary>
+        /// Momento del último cambio en la variable
+        /// </summary>
+        public DateTime MomentoUltimaActualizacion
+        {
+            get { return _MomentoUltimaActualizacion; }
+            set { _MomentoUltimaActualizacion = value; }
+        }
         #endregion
 
         #region Constructor(es)
@@ -1854,6 +1908,7 @@ namespace Orbita.VA.Comun
             this._Tipo = tipo;
             //this._GuardarTrazabilidad = guardarTrazabilidad;
             this._Cronometro = new Stopwatch();
+            this._MomentoUltimaActualizacion = DateTime.Now;
             this.Cronometro.Reset();
             this.ListaConsultasCambioValor = new List<string>();
 
@@ -1943,6 +1998,7 @@ namespace Orbita.VA.Comun
         {
                 this.Cronometro.Reset();
                 this.Cronometro.Start();
+                this.MomentoUltimaActualizacion = DateTime.Now;
                 lock (this.ListaConsultasCambioValor)
                 {
                     this.ListaConsultasCambioValor.Clear();
@@ -1973,6 +2029,7 @@ namespace Orbita.VA.Comun
         public void Inicializar()
         {
             this.Cronometro.Start();
+            this.MomentoUltimaActualizacion = DateTime.Now;
         }
 
         /// <summary>
@@ -2077,6 +2134,17 @@ namespace Orbita.VA.Comun
         public TimeSpan GetPermanencia()
         {
             return this.Cronometro.Elapsed;
+        }
+
+        /// <summary>
+        /// Método para consultar el tiempo de permanencia del valor de la variable
+        /// </summary>
+        /// <param name="codigo">Código de la variable</param>
+        /// <returns>Devuelve el tiempo de permanencia del valor de la variable</returns>
+        [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
+        public DateTime GetMomentoUltimaActualizacion()
+        {
+            return this.MomentoUltimaActualizacion;
         }
 
         /// <summary>
