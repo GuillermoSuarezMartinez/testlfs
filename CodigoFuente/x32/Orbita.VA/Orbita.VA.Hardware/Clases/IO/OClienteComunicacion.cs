@@ -795,8 +795,6 @@ namespace Orbita.VA.Hardware
             {
                 if ((this.TipoTerminalIO == OTipoTerminalIO.EntradaDigital) || (this.TipoTerminalIO == OTipoTerminalIO.EntradaSalidaDigital))
                 {
-                    base.LeerEntrada();
-
                     // Lectura del servidor de comunicaciones
                     object[] infoDato = this.Servidor.OrbitaLeer(this.IdDispositivo, new string[1] { this.CodigoVariableCOM }, true);
                     if (infoDato.Length == 1)
@@ -808,6 +806,8 @@ namespace Orbita.VA.Hardware
                             {
                                 // Conversión
                                 this.Valor = COMAFormatoCorrecto(valorCOM, this.TipoDato);
+
+                                base.LeerEntrada();
 
                                 // Se lanza desde un thread distino.
                                 OSimpleMethod setVariableEnThread = new OSimpleMethod(this.LanzarCambioValor);

@@ -729,7 +729,7 @@ namespace Orbita.VA.Hardware
         public virtual void EscribirEntrada(string codigoVariable, object valor)
         {
             // Información extra
-            OLogsVAHardware.EntradasSalidas.Debug(this.Codigo, string.Format("Escritura de entrada del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(this.Valor)));
+            OLogsVAHardware.EntradasSalidas.Debug(this.Codigo, string.Format("Escritura de entrada del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(valor)));
         }
 
         /// <summary>
@@ -738,7 +738,7 @@ namespace Orbita.VA.Hardware
         public virtual void EscribirSalida(string codigoVariable, object valor, string remitente)
         {
             // Información extra
-            OLogsVAHardware.EntradasSalidas.Debug(this.Codigo, string.Format("Escritura de salida del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(this.Valor)));
+            OLogsVAHardware.EntradasSalidas.Debug(this.Codigo, string.Format("Escritura de salida del terminal: {0} de la tarjeta {1}. Valor: {2}", this.Codigo, this.CodTarjeta, OObjeto.ToString(valor)));
         }
 
         /// <summary>
