@@ -25,14 +25,14 @@ namespace Orbita.Comunicaciones
         public ODispositivoSiemens1200ESGLPR(OTags tags, OHilos hilos, ODispositivo dispositivo)
             : base(tags, hilos, dispositivo)
         {
-            
+
         }
         #endregion
 
         #region Métodos privados
 
-        #region Comunes       
-        
+        #region Comunes
+
         /// <summary>
         /// Establece el valor inicial de los objetos
         /// </summary>
@@ -42,7 +42,7 @@ namespace Orbita.Comunicaciones
             this.protocoloHiloVida = new OProtocoloTCPSiemensGateLPR();
             this.protocoloEscritura = new OProtocoloTCPSiemensGateLPR();
             this.protocoloProcesoMensaje = new OProtocoloTCPSiemensGateLPR();
-            this.protocoloProcesoHilo = new OProtocoloTCPSiemensGateLPR();           
+            this.protocoloProcesoHilo = new OProtocoloTCPSiemensGateLPR();
 
             this._numLecturas = this._bytesEntradaLPR + this._byteSalidasLPR;
             this._numeroBytesEntradas = this._bytesEntradaLPR;
@@ -52,7 +52,7 @@ namespace Orbita.Comunicaciones
 
             this.Entradas = new byte[this._numeroBytesEntradas];
             this.Salidas = new byte[this._numeroBytesSalidas];
-            this.SalidasHiloEscribir = new byte[this._numeroBytesSalidas];
+
             this._lecturas = new byte[_numLecturas];
         }
         /// <summary>
@@ -66,34 +66,51 @@ namespace Orbita.Comunicaciones
                 byte[] bmensaje = new byte[13];
                 Array.Copy(mensaje, 1, bmensaje, 0, 13);
                 string smensaje = ASCIIEncoding.ASCII.GetString(bmensaje);
-                using (protocoloProcesoMensaje)
+                byte[] lecturas;
+
+                lock (this)
                 {
-                    if (smensaje.Contains("LPRDATA"))//respuesta para la lectura
+                    using (protocoloProcesoMensaje)
                     {
-                        if (mensaje[15] == 0)
+                        if (smensaje.Contains("LPRDATA"))//respuesta para la lectura
                         {
-                            byte[] lecturas;
-                            if (protocoloProcesoMensaje.KeepAliveProcesar(mensaje, out lecturas))
+                            if (mensaje[15] == 0)
                             {
-                                for (int i = 0; i < this._numLecturas; i++)
+                                if (protocoloProcesoMensaje.KeepAliveProcesar(mensaje, out lecturas))
                                 {
-                                    if (this._lecturas[i] != lecturas[i])
+                                    for (int i = 0; i < this._numLecturas; i++)
                                     {
-                                        this.ESEncolar(lecturas);
-                                        break;
+                                        if (this._lecturas[i] != lecturas[i])
+                                        {
+                                            this.ESEncolar(lecturas);
+                                            break;
+                                        }
                                     }
+                                    this._lecturas = lecturas;
+                                    // Despertar el hilo en la línea:
+                                    // this._eReset.Dormir de ProcesarHiloKeepAlive.                        
+                                    this._eReset.Despertar(0);
                                 }
-                                this._lecturas = lecturas;
-                                // Despertar el hilo en la línea:
-                                // this._eReset.Dormir de ProcesarHiloKeepAlive.                        
-                                this._eReset.Despertar(0);
+                            }
+                            else//respuesta para la escritura
+                            {
+                                if (protocoloProcesoMensaje.SalidasProcesar(mensaje, this.IdMens, out lecturas))
+                                {
+                                    this._valorEscritura = mensaje;
+                                    for (int i = 0; i < this._numLecturas; i++)
+                                    {
+                                        if (this._lecturas[i] != lecturas[i])
+                                        {
+                                            this.ESEncolar(lecturas);
+                                            break;
+                                        }
+                                    }
+                                    this._lecturas = lecturas;
+                                    this._eReset.Despertar(2);
+                                }
                             }
                         }
-                        else//respuesta para la escritura
-                        {
-                            this._valorEscritura = mensaje;
-                            this._eReset.Despertar(2);
-                        }
+
                     }
                 }
             }
@@ -104,11 +121,11 @@ namespace Orbita.Comunicaciones
             }
 
         }
-        
+
         #endregion
 
-        #region ES        
-        
+        #region ES
+
         /// <summary>
         /// Hilo de proceso de ES
         /// </summary>
@@ -147,11 +164,9 @@ namespace Orbita.Comunicaciones
         /// <param name="salidas">byte de salidas recibido</param>
         private void ESProcesar(byte[] entradas, byte[] salidas)
         {
-
             bool hayEscritura = false;
             lock (this.bloqueo)
             {
-
                 try
                 {
                     for (int i = 0; i < entradas.Length; i++)
@@ -161,14 +176,6 @@ namespace Orbita.Comunicaciones
                     }
                     this.Entradas = entradas;
                     this.Salidas = salidas;
-                    if (this._bloqueoEscrituras == 0)
-                    {
-                        this.SalidasHiloEscribir = salidas;
-                    }
-                    else
-                    {
-                        hayEscritura = true;
-                    }
                 }
                 catch (Exception ex)
                 {
@@ -202,7 +209,7 @@ namespace Orbita.Comunicaciones
             {
                 Console.WriteLine(ex);
             }
-            
+
             try
             {
                 for (int i = 0; i < 8; i++)
@@ -336,6 +343,6 @@ namespace Orbita.Comunicaciones
         }
         #endregion
 
-        #endregion 
+        #endregion
     }
 }

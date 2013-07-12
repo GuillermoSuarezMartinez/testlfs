@@ -138,8 +138,9 @@ namespace Orbita.Comunicaciones
         /// <param name="valor">valor a procesar</param>
         /// <param name="id">identificador del mensaje</param>
         /// <returns></returns>
-        public override bool SalidasProcesar(byte[] valor, byte id)
+        public override bool SalidasProcesar(byte[] valor, byte id, out byte[] lecturas)
         {
+            lecturas = null;
             bool ret = false;
 
             return ret;

@@ -139,7 +139,6 @@
     <Compile Include="Protocolos\NTP\OProtocoloNTP.cs" />
     <Compile Include="Dispositivos\Colecciones\OTags.cs" />
     <Compile Include="Dispositivos\ODispositivoTCP.cs" />
-    <Compile Include="Dispositivos\PDISO16.cs" />
     <Compile Include="Dispositivos\ODispositivoClienterOPC.cs" />
     <Compile Include="Dispositivos\Colecciones\OInfoDato.cs" />
     <Compile Include="Dispositivos\ODispositivo.cs" />
@@ -175,8 +174,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)Orbita.Comunicaciones.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I
-xcopy "$(TargetDir)Orbita.Comunicaciones.xml" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

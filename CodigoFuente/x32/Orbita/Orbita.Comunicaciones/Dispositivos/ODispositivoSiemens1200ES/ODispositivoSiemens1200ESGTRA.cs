@@ -52,7 +52,6 @@ namespace Orbita.Comunicaciones
 
             this.Entradas = new byte[this._numeroBytesEntradas];
             this.Salidas = new byte[this._numeroBytesSalidas];
-            this.SalidasHiloEscribir= new byte[this._numeroBytesSalidas];
 
             this._lecturas = new byte[_numLecturas];
         }
@@ -67,13 +66,15 @@ namespace Orbita.Comunicaciones
                 byte[] bmensaje = new byte[13];
                 Array.Copy(mensaje, 1, bmensaje, 0, 13);
                 string smensaje = ASCIIEncoding.ASCII.GetString(bmensaje);
+                byte[] lecturas;
+
                 using (protocoloProcesoMensaje)
                 {
                     if (smensaje.Contains("GTFDATA"))//respuesta para la lectura
                     {
                         if (mensaje[15] == 0)
                         {
-                            byte[] lecturas;
+                            
                             if (protocoloProcesoMensaje.KeepAliveProcesar(mensaje, out lecturas))
                             {
                                 for (int i = 0; i < this._numLecturas; i++)
@@ -92,8 +93,20 @@ namespace Orbita.Comunicaciones
                         }
                         else//respuesta para la escritura
                         {
-                            this._valorEscritura = mensaje;
-                            this._eReset.Despertar(2);
+                            if (protocoloProcesoMensaje.SalidasProcesar(mensaje, this.IdMens, out lecturas))
+                            {
+                                this._valorEscritura = mensaje;
+                                for (int i = 0; i < this._numLecturas; i++)
+                                {
+                                    if (this._lecturas[i] != lecturas[i])
+                                    {
+                                        this.ESEncolar(lecturas);
+                                        break;
+                                    }
+                                }
+                                this._lecturas = lecturas;
+                                this._eReset.Despertar(2);
+                            }
                         }
                     }
                 }
@@ -146,8 +159,7 @@ namespace Orbita.Comunicaciones
         /// <param name="entradas">byte de entradas recibido</param>
         /// <param name="salidas">byte de salidas recibido</param>
         private void ESProcesar(byte[] entradas, byte[] salidas)
-        {
-            bool hayEscritura = false;
+        {           
 
             lock (this.bloqueo)
             {                
@@ -163,14 +175,7 @@ namespace Orbita.Comunicaciones
                     }
                     this.Entradas = entradas;
                     this.Salidas = salidas;
-                    if (this._bloqueoEscrituras==0)
-                    {
-                        this.SalidasHiloEscribir = salidas;
-                    }
-                    else
-                    {
-                        hayEscritura = true;
-                    }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -178,13 +183,8 @@ namespace Orbita.Comunicaciones
                     throw ex;
                 }
 
-                this._bloqueoEscrituras = 0;
             }
 
-            if (hayEscritura)
-            {
-                Thread.Sleep(500);
-            }
         }
         /// <summary>
         /// Actualiza los valores de las entradas y genera los eventos de cambio de dato y alarma

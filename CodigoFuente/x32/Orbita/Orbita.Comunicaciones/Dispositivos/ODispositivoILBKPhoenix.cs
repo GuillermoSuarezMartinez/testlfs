@@ -137,7 +137,8 @@ namespace Orbita.Comunicaciones
                             this._registroInicialEntradas, this._numeroBytesEntradas, this._registroInicialSalidas, this._numeroBytesSalidas))
                         {
                             // Enviar un mensaje de KeepAlive.                            
-                            this.Winsock.Send(phoenixTCP.KeepAliveEnviar());
+                            //this.Winsock.Send(phoenixTCP.KeepAliveEnviar());
+                            this.Enviar(phoenixTCP.KeepAliveEnviar());
 
                             // Letargo del hilo hasta t-tiempo, o bien, hasta recibir respuesta, el cual realiza el Set sobre
                             // el eventReset del evento 'wsk_DataArrival'.
@@ -241,70 +242,94 @@ namespace Orbita.Comunicaciones
             bool resultado = false;
             byte[] salidas = new byte[_numeroBytesSalidas];
             byte[] salidalocal = new byte[_numeroBytesSalidas];
-            try
+            lock (bloqueo)
             {
-                for (int i = 0; i < _numeroBytesSalidas; i++)
+                try
                 {
-                    salidalocal[i]=Salidas[i];
-                }
-                for (int i = 0; i < variables.Length; i++)
-                {
-                    OInfoDato infodato = this.Tags.GetDB(variables[i]);
+                    for (int i = 0; i < _numeroBytesSalidas; i++)
+                    {
+                        //salidalocal[i]=Salidas[i];
+                        salidalocal[i] = this._lecturas[i + 1];
+                    }
+                    for (int i = 0; i < variables.Length; i++)
+                    {
+                        OInfoDato infodato = this.Tags.GetDB(variables[i]);
 
-                    if (!infodato.EsEntrada)
-                    {
-                        salidas[infodato.Direccion - this._registroInicialSalidas] = this.ProcesarByte(salidalocal[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
-                        salidalocal[infodato.Direccion - this._registroInicialSalidas] = salidas[infodato.Direccion - this._registroInicialSalidas];
+                        if (!infodato.EsEntrada)
+                        {
+                            salidas[infodato.Direccion - this._registroInicialSalidas] = this.ProcesarByte(salidalocal[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
+                            salidalocal[infodato.Direccion - this._registroInicialSalidas] = salidas[infodato.Direccion - this._registroInicialSalidas];
+                        }
                     }
-
-                 }
-                if (this.Winsock.State != WinsockStates.Connected)
-                {
-                    try
-                    {
-                        //Se reconectará en el keep alive
-                        Thread.Sleep(Convert.ToInt32(this.SegReconexion * 1000));
-                    }
-                    catch (Exception ex)
-                    {
-                        wrapper.Error("Error al conectar con dispositivo de ES Phoenix para escribir: ", ex);
-                    }
-                }
-                else
-                {
-                    using (OProtocoloTCPPhoenixES phoenixTCP = new OProtocoloTCPPhoenixES(
-                            this._registroInicialEntradas, this._numeroBytesEntradas, this._registroInicialSalidas, this._numeroBytesSalidas))
+                    if (this.Winsock.State != WinsockStates.Connected)
                     {
                         try
                         {
-                            //Configuramos las salidas en dos bytes
-                            Array.Resize(ref salidas, 2);
-                            Array.Reverse(salidas);
-                            this.Winsock.Send(phoenixTCP.SalidasEnviar(salidas));
-                            if (!this._eReset.Dormir(2, TimeSpan.FromSeconds(this.Config.TiempoEsperaEscritura / 1000)))
-                            {
-                                // Trazar recepción errónea.
-                                wrapper.Warn("Timeout en la escritura de variables en el dispositivo de ES Phoenix");
-                            }
-                            else
-                            {
-                                resultado = true;
-                            }
-                            // Resetear el evento.
-                            this._eReset.Resetear(2);
+                            //Se reconectará en el keep alive
+                            Thread.Sleep(Convert.ToInt32(this.SegReconexion * 1000));
                         }
                         catch (Exception ex)
                         {
-                            wrapper.Error("Error en la escritura de variables en el dispositivo de ES Phoenix " + ex.ToString());
+                            wrapper.Error("Error al conectar con dispositivo de ES Phoenix para escribir: ", ex);
+                        }
+                    }
+                    else
+                    {
+                        using (OProtocoloTCPPhoenixES phoenixTCP = new OProtocoloTCPPhoenixES(
+                                this._registroInicialEntradas, this._numeroBytesEntradas, this._registroInicialSalidas, this._numeroBytesSalidas))
+                        {
+                            try
+                            {
+                                //Configuramos las salidas en dos bytes
+                                Array.Resize(ref salidas, 2);
+                                Array.Reverse(salidas);
+                                //this.Winsock.Send(phoenixTCP.SalidasEnviar(salidas));
+
+                                this.Enviar(phoenixTCP.SalidasEnviar(salidas));
+
+                                if (!this._eReset.Dormir(2, TimeSpan.FromSeconds(this.Config.TiempoEsperaEscritura / 1000)))
+                                {
+                                    // Trazar recepción errónea.
+                                    //wrapper.Warn("Timeout en la escritura de variables en el dispositivo de ES Phoenix");
+                                    this._lecturas[1] = salidas[1];
+                                }
+                                else
+                                {
+                                    this._lecturas[1] = salidas[1];
+                                    resultado = true;
+                                }
+                                // Resetear el evento.
+                                this._eReset.Resetear(2);                                
+                            }
+                            catch (Exception ex)
+                            {
+                                wrapper.Error("Error en la escritura de variables en el dispositivo de ES Phoenix " + ex.ToString());
+                            }
                         }
                     }
                 }
+                catch (Exception ex)
+                {
+                    wrapper.Fatal("Error en la escritura de variables en el dispositivo de ES Phoenix " + ex.ToString());
+                }
+                return resultado;
             }
-            catch (Exception ex)
+            Thread.Sleep(200);
+        }
+
+        private void Enviar(Object data)
+        {
+            lock (this)
             {
-                wrapper.Fatal("Error en la escritura de variables en el dispositivo de ES Phoenix " + ex.ToString());
+                try
+                {
+                    this.Winsock.Send(data);
+                }
+                catch (Exception ex)
+                {                    
+                    throw ex;
+                }
             }
-            return resultado;
         }
         #endregion
 
@@ -398,28 +423,31 @@ namespace Orbita.Comunicaciones
         {
             using (OProtocoloTCPPhoenixES phoenixTCP = new OProtocoloTCPPhoenixES(this._registroInicialEntradas, this._numeroBytesEntradas, this._registroInicialSalidas, this._numeroBytesSalidas))
             {
-                if (mensaje[7] == 3)//respuesta para la lectura
+                lock (bloqueo)
                 {
-                    byte[] lecturas;
-                    if (phoenixTCP.KeepAliveProcesar(mensaje, out lecturas))
+                    if (mensaje[7] == 3)//respuesta para la lectura
                     {
-                        for (int i = 0; i < this._numLecturas; i++)
+                        byte[] lecturas;
+                        if (phoenixTCP.KeepAliveProcesar(mensaje, out lecturas))
                         {
-                            if (this._lecturas[i] != lecturas[i])
+                            for (int i = 0; i < this._numLecturas; i++)
                             {
-                                this.ESEncolar(lecturas);
-                                break;
+                                if (this._lecturas[i] != lecturas[i])
+                                {
+                                    this.ESEncolar(lecturas);
+                                    break;
+                                }
                             }
+                            this._lecturas = lecturas;
+                            // Despertar el hilo en la línea:
+                            // this._eReset.Dormir de ProcesarHiloKeepAlive.                        
+                            this._eReset.Despertar(0);
                         }
-                        this._lecturas = lecturas;
-                        // Despertar el hilo en la línea:
-                        // this._eReset.Dormir de ProcesarHiloKeepAlive.                        
-                        this._eReset.Despertar(0);
                     }
-                }
-                else if (mensaje[7] == 16)//respuesta para la escritura
-                {
-                    this._eReset.Despertar(2);
+                    else if (mensaje[7] == 16)//respuesta para la escritura
+                    {
+                        this._eReset.Despertar(2);
+                    }
                 }
             }
         }
@@ -505,24 +533,27 @@ namespace Orbita.Comunicaciones
 
                 if (mensaje != null)
                 {
-                    try
+                    lock (this)
                     {
-                        using (OProtocoloTCPPhoenixES phoenixTCP = new OProtocoloTCPPhoenixES(
-                            this._registroInicialEntradas, this._numeroBytesEntradas, this._registroInicialSalidas, this._numeroBytesSalidas))
+                        try
                         {
-                            byte[] entradas;
-                            byte[] salidas;
-                            if (phoenixTCP.ESprocesar(mensaje, out entradas, out salidas))
+                            using (OProtocoloTCPPhoenixES phoenixTCP = new OProtocoloTCPPhoenixES(
+                                this._registroInicialEntradas, this._numeroBytesEntradas, this._registroInicialSalidas, this._numeroBytesSalidas))
                             {
-                                this.ESProcesar(entradas, salidas);
+                                byte[] entradas;
+                                byte[] salidas;
+                                if (phoenixTCP.ESprocesar(mensaje, out entradas, out salidas))
+                                {
+                                    this.ESProcesar(entradas, salidas);
+                                }
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            wrapper.Fatal("Error al procesar las ES en el dispositivo de ES Phoenix. " + ex.ToString());
+                        }
+                        Thread.Sleep(10);
                     }
-                    catch (Exception ex)
-                    {
-                        wrapper.Fatal("Error al procesar las ES en el dispositivo de ES Phoenix. " + ex.ToString());
-                    }
-                    Thread.Sleep(10);
                 }
                 else
                 {
@@ -796,7 +827,6 @@ namespace Orbita.Comunicaciones
                 wrapper.Error(error);
             }
         }
-
         #endregion
     }
 }

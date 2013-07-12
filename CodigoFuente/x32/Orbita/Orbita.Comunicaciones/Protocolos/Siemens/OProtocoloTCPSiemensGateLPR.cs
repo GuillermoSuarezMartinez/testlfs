@@ -164,19 +164,20 @@ namespace Orbita.Comunicaciones
             }
 
             return ret;
-        }
+        }        
         /// <summary>
         /// Escritura de salidas
         /// </summary>
         /// <param name="valor">valor a preprocesar</param>
         /// <param name="id">identificador del mensaje</param>
         /// <returns></returns>
-        public override bool SalidasProcesar(byte[] valor, byte id)
+        public override bool SalidasProcesar(byte[] valor, byte id, out byte[] lecturas)
         {
-            bool ret = false;
+            bool ret = true;
             byte[] entradas = new byte[2];
             byte[] salidas = new byte[2];
-            byte[] BCC = new byte[6];
+            lecturas = new byte[4];
+            byte[] BCC = new byte[5];
 
             try
             {
@@ -186,9 +187,13 @@ namespace Orbita.Comunicaciones
                     Array.Copy(valor, 17, entradas, 0, 2);
                     Array.Copy(valor, 20, salidas, 0, 2);
 
-                    BCC[0] = (byte)(id - 1);
+                    BCC[0] = (byte)(id);
                     Array.Copy(entradas, 0, BCC, 1, 2);
                     Array.Copy(salidas, 0, BCC, 3, 2);
+
+                    Array.Copy(entradas, 0, lecturas, 0, 2);
+                    Array.Copy(salidas, 0, lecturas, 2, 2);
+
                     if (this.CalculoBCC(BCC)[0] == valor[23])
                     {
                         ret = true;
