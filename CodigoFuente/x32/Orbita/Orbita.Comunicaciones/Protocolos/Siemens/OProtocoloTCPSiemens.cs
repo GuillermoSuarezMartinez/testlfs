@@ -38,8 +38,9 @@
         /// <param name="valor">valor a procesar</param>
         /// <param name="id">identificador del mensaje</param>
         /// <returns></returns>
-        public virtual bool SalidasProcesar(byte[] valor, byte id)
+        public virtual bool SalidasProcesar(byte[] valor, byte id, out byte[] lecturas)
         {
+            lecturas = null;
             return false;
         }
         /// <summary>

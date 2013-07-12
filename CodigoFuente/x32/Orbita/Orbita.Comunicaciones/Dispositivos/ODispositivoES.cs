@@ -47,7 +47,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Byte de escrituras
         /// </summary>
-        protected byte[] SalidasHiloEscribir;
+        //protected byte[] SalidasHiloEscribir;
         /// <summary>
         /// Tiempo que tarda en logar un error de comunicación
         /// </summary>
@@ -55,7 +55,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Variable para bloqueo de escrituras
         /// </summary>
-        public int _bloqueoEscrituras = 0;
+        //public int _bloqueoEscrituras = 0;
         #endregion
 
         #region Constructores
