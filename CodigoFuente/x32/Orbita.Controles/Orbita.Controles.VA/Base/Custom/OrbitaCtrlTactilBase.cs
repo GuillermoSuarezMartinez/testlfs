@@ -114,18 +114,6 @@ namespace Orbita.Controles.VA
         }
 
         /// <summary>
-        /// Indica si se ha de restaurar la posición del formulario a la última guardada
-        /// </summary>
-        [Browsable(true),
-        Category("Orbita"),
-        Description("Indica si se ha de restaurar la posición del formulario a la última guardada")]
-        public bool RecordarPosicion
-        {
-            get { return false; }
-            set { ; }
-        }
-
-        /// <summary>
         /// Muestra los botones de acción situados en la parte inferior del formulario
         /// </summary>
         private bool _MostrarBotones = true;
@@ -157,6 +145,13 @@ namespace Orbita.Controles.VA
             }
         }
         #endregion Propiedades
+
+        #region Declaración de Eventos
+        /// <summary>
+        /// Se produce después de haberse cerrado el formulario
+        /// </summary>
+        public event FormClosedEventHandler FormClosed;
+        #endregion
 
         #region Constructor(es)
         /// <summary>
@@ -386,6 +381,8 @@ namespace Orbita.Controles.VA
             this.Parent.Controls.Remove(this);
             this.Parent = null;
 
+            this.FormClosed(this, new FormClosedEventArgs(CloseReason.None));
+
             OTactilManager.CerrarFormuario(this);
         }
 
@@ -457,7 +454,8 @@ namespace Orbita.Controles.VA
                     this.EstablecerModoModificacion();
                     break;
                 case ModoAperturaFormulario.Visualizacion:
-                    this.OcultarBotonCancelar();
+                    this.OcultarBotones();
+                    this.OcultarBotonAceptar();
                     this.CargarDatosModoVisualizacion();
                     this.EstablecerModoVisualizacion();
                     break;
@@ -598,7 +596,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         protected void OcultarBotones()
         {
-            this.PnlSuperiorPadre.Visible = this._MostrarBotones;
+            this.PnlBotonesPadre.Visible = this._MostrarBotones;
         }
         #endregion Métodos protegidos
 

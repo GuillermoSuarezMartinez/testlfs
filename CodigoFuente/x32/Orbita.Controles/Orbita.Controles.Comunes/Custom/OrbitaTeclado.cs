@@ -11,6 +11,7 @@
 //***********************************************************************
 using System.Data;
 using System.Windows.Forms;
+using System.Drawing;
 namespace Orbita.Controles.Comunes
 {
     /// <summary>
@@ -128,6 +129,83 @@ namespace Orbita.Controles.Comunes
         {
             get { return _ListaTexto; }
             set { _ListaTexto = value; }
+        }
+        /// <summary>
+        /// Fuente del textbox
+        /// </summary>
+        [System.ComponentModel.Browsable(true)]
+        [System.ComponentModel.Category("Orbita")]
+        [System.ComponentModel.Description("Fuente del textbox")]
+        public Font FuenteTexto
+        {
+            get { return this.txtResultado.Font; }
+            set 
+            {
+                this.txtResultado.Font = value;
+                this.GridView.Font = value; 
+            }
+        }
+
+        /// <summary>
+        /// Imagen de la cámara desconectada
+        /// </summary>
+        private Bitmap _ImagenTecla = global::Orbita.Controles.Comunes.Properties.Resources.ImgComputerKey90;
+        /// <summary>
+        /// Imagen de la cámara desconectada
+        /// </summary>
+        [System.ComponentModel.Browsable(true),
+        System.ComponentModel.Category("Orbita"),
+        System.ComponentModel.Description("Imagen de fondo de cada tecla")]
+        public Bitmap ImagenTecla
+        {
+            get { return _ImagenTecla; }
+            set 
+            {
+                _ImagenTecla = value;
+
+                // Rellenado del fondo de cada tecla
+                btnRetrocede.Image = this.ImagenTecla;
+                BtnDropDown.Image = this.ImagenTecla;
+                BtnEsc.Image = this.ImagenTecla;
+                btn1.Image = this.ImagenTecla;
+                btnA.Image = this.ImagenTecla;
+                btnIntro.Image = this.ImagenTecla;
+                btnZ.Image = this.ImagenTecla;
+                btnSpace.Image = this.ImagenTecla;
+                btnX.Image = this.ImagenTecla;
+                btnL.Image = this.ImagenTecla;
+                btnC.Image = this.ImagenTecla;
+                btnK.Image = this.ImagenTecla;
+                btnV.Image = this.ImagenTecla;
+                btnJ.Image = this.ImagenTecla;
+                btnB.Image = this.ImagenTecla;
+                btnH.Image = this.ImagenTecla;
+                btnN.Image = this.ImagenTecla;
+                btnG.Image = this.ImagenTecla;
+                btnM.Image = this.ImagenTecla;
+                btnF.Image = this.ImagenTecla;
+                btnQ.Image = this.ImagenTecla;
+                btnD.Image = this.ImagenTecla;
+                btn2.Image = this.ImagenTecla;
+                btnS.Image = this.ImagenTecla;
+                btn3.Image = this.ImagenTecla;
+                btnP.Image = this.ImagenTecla;
+                btn4.Image = this.ImagenTecla;
+                btnO.Image = this.ImagenTecla;
+                btn5.Image = this.ImagenTecla;
+                btnI.Image = this.ImagenTecla;
+                btn6.Image = this.ImagenTecla;
+                btnU.Image = this.ImagenTecla;
+                btn7.Image = this.ImagenTecla;
+                btnY.Image = this.ImagenTecla;
+                btn8.Image = this.ImagenTecla;
+                btnT.Image = this.ImagenTecla;
+                btn9.Image = this.ImagenTecla;
+                btnR.Image = this.ImagenTecla;
+                btn0.Image = this.ImagenTecla;
+                btnE.Image = this.ImagenTecla;
+                btnW.Image = this.ImagenTecla;
+            }
         }
         #endregion
 
