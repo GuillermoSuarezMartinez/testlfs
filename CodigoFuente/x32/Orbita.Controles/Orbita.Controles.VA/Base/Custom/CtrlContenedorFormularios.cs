@@ -180,7 +180,7 @@ namespace Orbita.Controles.VA
         /// </summary>
         public void CerrarTodosFormularios()
         {
-            var frms = this.ListaFormularios.Values.Select(pair => pair.Second);
+            var frms = this.ListaFormularios.Values.Select(pair => pair.Second).ToArray();
             foreach (OrbitaCtrlTactilBase frmBase in frms)
             {
                 if (frmBase.ModoAperturaFormulario != ModoAperturaFormulario.Sistema)
