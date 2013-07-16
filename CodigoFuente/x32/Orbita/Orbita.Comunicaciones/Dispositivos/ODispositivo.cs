@@ -54,6 +54,14 @@ namespace Orbita.Comunicaciones
         /// Objeto para bloquear las escrituras
         /// </summary>
         public Object bloqueo = new Object();
+        /// <summary>
+        /// Segundos del evento Com
+        /// </summary>
+        protected decimal _segEventoCom;
+        /// <summary>
+        /// Fecha del último evento de comunicaciones
+        /// </summary>
+        protected DateTime _fechaUltimoEventoComs;
         #endregion
 
         #region Eventos
@@ -80,6 +88,7 @@ namespace Orbita.Comunicaciones
             try
             {
                 wrapper = LogManager.GetLogger("wrapper");
+                this._fechaUltimoEventoComs = DateTime.Now;
             }
             catch (Exception e)
             {
@@ -324,5 +333,22 @@ namespace Orbita.Comunicaciones
             GC.SuppressFinalize(this);
         }
         #endregion
+    }
+
+    public class DispositivoEscrituras
+    {
+        public string[] Variables;
+        public object[] Valores;
+
+        public DispositivoEscrituras()
+        {
+
+        }
+
+        public DispositivoEscrituras(string[] variables, object[] valores)
+        {
+            this.Variables = variables;
+            this.Valores = valores;
+        }
     }
 }

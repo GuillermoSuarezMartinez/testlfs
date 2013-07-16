@@ -20,6 +20,10 @@ namespace Orbita.Comunicaciones
         /// Tiempos de espera de vida (segundos).
         /// </summary>
         int _tiempoVida;
+        /// <summary>
+        /// Segundos de envío de evento Coms
+        /// </summary>
+        decimal _segEventoComs;   
         #endregion
 
         #region Propiedades
@@ -46,6 +50,14 @@ namespace Orbita.Comunicaciones
         {
             get { return this._tiempoVida; }
             set { this._tiempoVida = value; }
+        }
+        /// <summary>
+        /// Segundos de envío de evento de comunicaciones
+        /// </summary>
+        public decimal SegEventoComs
+        {
+            get { return _segEventoComs; }
+            set { _segEventoComs = value; }
         }
         #endregion
     }

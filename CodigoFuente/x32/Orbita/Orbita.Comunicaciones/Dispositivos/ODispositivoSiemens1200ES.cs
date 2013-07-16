@@ -85,7 +85,13 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Identificador del mensaje a enviar para la escritura
         /// </summary>
-        private byte _idMens = 1;        
+        private byte _idMens = 1;
+        /// <summary>
+        /// Cola de recepción de tramas de datos.
+        /// </summary>
+        private Queue _qEscrituras;
+
+        internal int _lecturaInicialSalida;
         #endregion
 
         #region Constructor
@@ -135,12 +141,17 @@ namespace Orbita.Comunicaciones
             estado.Enlace = this.Tags.HtVida.Enlaces[0].ToString();
             Boolean responde = true;
             DateTime fechaErrorWrapper = DateTime.MaxValue;
-            DateTime fechaEnvioComs = DateTime.Now;
+
             int reintento = 0;
             int maxReintentos = 3;
+            TimeSpan ts;
+
+            bool modoKeepAlive = true;
+            bool ini = true;
 
             while (true)
             {
+                #region Conectar
                 if (this.Winsock.State != WinsockStates.Connected)
                 {
                     try
@@ -168,69 +179,92 @@ namespace Orbita.Comunicaciones
                         }
                     }
                 }
+                #endregion                
                 else
                 {
                     try
                     {
                         using (protocoloHiloVida)
                         {
-                            // Enviar un mensaje de KeepAlive. 
-                            this.Winsock.Send(protocoloHiloVida.KeepAliveEnviar());
-
-                            // Letargo del hilo hasta t-tiempo, o bien, hasta recibir respuesta, el cual realiza el Set sobre
-                            // el eventReset del evento 'wsk_DataArrival'.
-                            if (!this._eReset.Dormir(0, TimeSpan.FromSeconds(this.Config.TiempoVida / 1000)))
+                            #region Escrituras
+                            if (modoKeepAlive && !ini)
                             {
-                                responde = false;
-
-                                if (reintento < maxReintentos)
+                                modoKeepAlive = false;
+                                if (this._qEscrituras.Count > 0)
                                 {
-                                    reintento++;
+                                    lock (this._qEscrituras.SyncRoot)
+                                    {
+                                        DispositivoEscrituras de = null;
+                                        de = ((DispositivoEscrituras)this._qEscrituras.Dequeue());
+                                        wrapper.Info("ODispositivoSiemens1200 ProcesarHiloVida Escritura de " + de.Variables.Length.ToString());
+                                        this.Enviar(protocoloEscritura.SalidasEnviar(this.ProcesarEscritura(de.Variables, de.Valores), this._idMens));
+                                        Thread.Sleep(10);
+                                    }
+
+                                }
+                            }
+                            #endregion
+                            #region KeepAlive                        
+                            else
+                            {                            
+                                ini = false;
+                                modoKeepAlive = true;
+                                this.Enviar(protocoloHiloVida.KeepAliveEnviar());
+
+                                // Letargo del hilo hasta t-tiempo, o bien, hasta recibir respuesta, el cual realiza el Set sobre
+                                // el eventReset del evento 'wsk_DataArrival'.
+                                if (!this._eReset.Dormir(0, TimeSpan.FromSeconds(this._config.TiempoVida / 1000)))
+                                {
+                                    responde = false;
+                                    modoKeepAlive = false;
+                                    if (reintento < maxReintentos)
+                                    {
+                                        reintento++;
+                                    }
+                                    else
+                                    {
+                                        estado.Estado = "NOK";
+                                    }
+                                    // Trazar recepción errónea.
+                                    wrapper.Warn("ODispositivoSiemens1200 Timeout en el keep alive.");
+                                }
+
+                                // Resetear el evento.
+                                this._eReset.Resetear(0);
+
+                                // Letargo del hilo en función de la respuesta.
+                                if (responde)
+                                {
+                                    estado.Estado = "OK";
+                                    reintento = 0;
+                                    Thread.Sleep(this._config.TiempoVida);
                                 }
                                 else
                                 {
-                                    estado.Estado = "NOK";
+                                    responde = true;
+                                    // Establecer un micro tiempo de letargo, necesario en este tipo de hilos.
+                                    // Realizar un envio inmediato tras la no respuesta anterior.
+                                    Thread.Sleep(10);
                                 }
-                                // Trazar recepción errónea.
-                                wrapper.Warn("ODispositivoSiemens1200 Timeout en el keep alive.");
-                            }
-
-                            // Resetear el evento.
-                            this._eReset.Resetear(0);
-
-                            // Letargo del hilo en función de la respuesta.
-                            if (responde)
-                            {
-                                //this.dtfinlec = DateTime.Now;
-                                //TimeSpan ts = this.dtfinlec.Subtract(dtinilec);
-                                //wrapper.Info("tiempo de lectura " + ts.TotalMilliseconds.ToString());
-                                estado.Estado = "OK";
-                                reintento = 0;
-                                Thread.Sleep(this.Config.TiempoEsperaLectura);
-                            }
-                            else
-                            {
-                                responde = true;
-                                // Establecer un micro tiempo de letargo, necesario en este tipo de hilos.
-                                // Realizar un envio inmediato tras la no respuesta anterior.
-                                Thread.Sleep(10);
                             }
                         }
+                        #endregion
                     }
                     catch (Exception ex)
                     {
                         estado.Estado = "NOK";
-                        wrapper.Error("ODispositivoSiemens1200 ProcesarHiloVida Error en keep alive: ", ex);
+                        wrapper.Error("ODispositivoSiemens1200 ProcesarHiloVida: ", ex);
                     }
                 }
 
                 try
                 {
-                    this.OEventargs.Argumento = estado;
-                    TimeSpan t = DateTime.Now.Subtract(fechaEnvioComs);
-                    if (t.TotalSeconds > 2)
+                    ts = DateTime.Now.Subtract(this._fechaUltimoEventoComs);
+                    if (ts.TotalSeconds > (double)this._config.SegEventoComs)
                     {
-                        this.OnComm(this.OEventargs);
+                        this._oEventargs.Argumento = estado;
+                        this.OnComm(this._oEventargs);
+                        this._fechaUltimoEventoComs = DateTime.Now;
                     }
                 }
                 catch (Exception ex)
@@ -283,117 +317,48 @@ namespace Orbita.Comunicaciones
         /// <param name="valores">Colección de valores.</param>
         /// <returns></returns>
         public override bool Escribir(string[] variables, object[] valores)
-        {
-            bool resultado = false;
-
-            lock (bloqueo)
+        {            
+            lock (this._qEscrituras.SyncRoot)
             {
-                try
+                DispositivoEscrituras de = null;
+
+                if (this._qEscrituras.Count>0)
                 {
-                    #region procesar
-
-                    byte[] salidas = new byte[_numeroBytesSalidas];
-
-                    for (int i = 0; i < this.Salidas.Length; i++)
-                    {
-                        salidas[i] = this.Salidas[i];
-                    }
-                    try
-                    {
-                        for (int i = 0; i < variables.Length; i++)
-                        {
-                            OInfoDato infodato = this.Tags.GetDB(variables[i]);
-
-                            if (!infodato.EsEntrada)
-                            {
-                                wrapper.Info("ODispositivoSiemens1200 Escribir infodato variable " + variables[i].ToString() + " valor " + valores[0].ToString());
-                                salidas[infodato.Direccion - this._registroInicialSalidas] = this.ProcesarByte(salidas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
-
-                            }
-                        }
-
-                        if (this.Winsock.State != WinsockStates.Connected)
-                        {
-                            try
-                            {
-                                //Se reconectará en el keep alive
-                                Thread.Sleep(Convert.ToInt32(this.SegReconexion * 1000));
-                            }
-                            catch (Exception ex)
-                            {
-                                wrapper.Error("ODispositivoSiemens1200 Escribir Error al conectar con dispositivo de ES: ", ex);
-                            }
-                        }
-                        else
-                        {
-                            using (protocoloEscritura)
-                            {
-                                try
-                                {
-                                    //Configuramos las salidas en dos bytes
-                                    byte[] byteSalidas = protocoloEscritura.SalidasEnviar(salidas, this._idMens);
-
-                                    if (byteSalidas != null)
-                                    {
-                                        this.Winsock.Send(byteSalidas);
-                                        //wrapper.Info("ODispositivoSiemens1200 Escribir valores: " + salidas[0].ToString() + " " + salidas[1].ToString());
-                                        if (!this._eReset.Dormir(2, TimeSpan.FromSeconds(this.Config.TiempoEsperaEscritura / 1000)))
-                                        {
-                                            // Trazar recepción errónea.
-                                            wrapper.Warn("ODispositivo1200ES Escribir Timeout en la escritura de variables en el dispositivo de ES Siemens");
-                                        }
-                                        else
-                                        {
-                                            //if (protocoloEscritura.SalidasProcesar(this._valorEscritura, this.idMensaje))
-                                            //{
-                                            this.IdMens++;
-                                            wrapper.Info("ODispositivo1200ES Escribir Variables procesadas por el PLC");
-                                            resultado = true;
-                                            //}
-                                        }
-                                        // Resetear el evento.
-                                        this._eReset.Resetear(2);
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    wrapper.Error("ODispositivoSiemens1200 Escribir Error en la escritura de variables en el dispositivo de ES Siemens " + ex.ToString());
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        string vars = "";
-                        string disp = this.Nombre;
-
-                        try
-                        {
-                            for (int i = 0; i < variables.Length; i++)
-                            {
-                                vars = vars + "#" + variables[i].ToString();
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            vars = "";
-                            disp = "";
-                        }
-                        wrapper.Fatal("ODispositivoSiemens1200 Escribir Error en la escritura de variables en dispositivo " +
-                            disp.ToString() + " con variables " + vars + " " + ex.ToString());
-                    }
-
-                    #endregion
-
-
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.ToString());
+                    de = ((DispositivoEscrituras)this._qEscrituras.Dequeue());
                 }
 
+                int longitud = 0;
+
+                if (de!=null)
+                {
+                    longitud = de.Valores.Length;
+                }
+
+                longitud = longitud + variables.Length;
+
+                string[] vars = new string[longitud];
+                object[] vals = new object[longitud];
+
+                for (int i = 0; i < longitud; i++)
+                {
+                    if (i<variables.Length)
+                    {
+                        vars[i] = variables[i];
+                        vals[i] = valores[i];
+                    }
+                    else
+                    {
+                        vars[i] = de.Variables[longitud-variables.Length-i];
+                        vals[i] = de.Valores[longitud - variables.Length - i];
+                    }
+                    
+                }
+                DispositivoEscrituras disp = new DispositivoEscrituras(vars, vals);
+
+                this._qEscrituras.Enqueue(disp);
             }
-            return resultado;
+
+            return true;
         }
         /// <summary>
         /// Cambio de dato de las entradas
@@ -469,6 +434,7 @@ namespace Orbita.Comunicaciones
         {
             // Cola de envío/recepción de tramas.
             this._qEntradaSalida = new Queue();
+            this._qEscrituras = new Queue();
             // Evento reset de envío/recepción de tramas KeepAlive y Entrada/Salida.
             this._eReset = new OResetManual(3);
             // Iniciamos los datos 
@@ -542,6 +508,35 @@ namespace Orbita.Comunicaciones
 
         #region ES
         /// <summary>
+        /// Calcula el valor de las salidas para enviar al dispositivo
+        /// </summary>
+        /// <param name="variables"></param>
+        /// <param name="valores"></param>
+        /// <returns></returns>
+        private byte[] ProcesarEscritura(string[] variables, Object[] valores)
+        {
+            byte[] salidas = new byte[_numeroBytesSalidas];
+            byte[] salidalocal = new byte[_numeroBytesSalidas];
+
+            for (int i = 0; i < _numeroBytesSalidas; i++)
+            {
+                salidalocal[i] = this._lecturas[this._lecturaInicialSalida + i];
+            }
+            for (int i = 0; i < variables.Length; i++)
+            {
+                OInfoDato infodato = this.Tags.GetDB(variables[i]);
+
+                if (!infodato.EsEntrada)
+                {
+                    salidas[infodato.Direccion - this._registroInicialSalidas] = this.ProcesarByte(salidalocal[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
+                    salidalocal[infodato.Direccion - this._registroInicialSalidas] = salidas[infodato.Direccion - this._registroInicialSalidas];
+                }
+            }
+
+            return salidas;
+        }
+
+        /// <summary>
         /// Método que encola trama GateData.
         /// </summary>
         /// <param name="trama"></param>
@@ -588,6 +583,21 @@ namespace Orbita.Comunicaciones
 
         }
 
+        /// <summary>
+        /// Enviar datos al dispositivo
+        /// </summary>
+        /// <param name="data"></param>
+        private void Enviar(Object data)
+        {
+            try
+            {
+                this.Winsock.Send(data);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         #endregion
 
         #endregion

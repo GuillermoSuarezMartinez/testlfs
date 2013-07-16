@@ -144,7 +144,7 @@ namespace Orbita.Comunicaciones
                         {
                             estado.Estado = "NOK";
                         }
-                        Thread.Sleep(this.Config.TiempoVida);
+                        Thread.Sleep(this._config.TiempoVida);
                     }
                     else
                     {
@@ -160,14 +160,14 @@ namespace Orbita.Comunicaciones
 
                 try
                 {
-                    this.OEventargs.Argumento = estado;
-                    this.OnComm(this.OEventargs);
+                    this._oEventargs.Argumento = estado;
+                    this.OnComm(this._oEventargs);
                 }
                 catch (Exception ex)
                 {
                     wrapper.Error("Error en envío de evento de comunicaciones en dispositivo de ES MCC: ", ex);
                 }
-                Thread.Sleep(this.Config.TiempoEsperaLectura);
+                Thread.Sleep(this._config.TiempoEsperaLectura);
             }
         }
         /// <summary>
