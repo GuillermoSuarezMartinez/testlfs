@@ -54,6 +54,7 @@ namespace Orbita.Comunicaciones
         /// Configuracion
         /// </summary>
         OConfigDispositivo _config;
+            
         #endregion
 
         #region Constructores
@@ -152,6 +153,7 @@ namespace Orbita.Comunicaciones
             get { return this._config; }
             set { this._config = value; }
         }
+        
         #endregion
 
         #region Métodos públicos

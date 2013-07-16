@@ -23,11 +23,11 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Datos de configuración del canal
         /// </summary>
-        public OConfigDispositivo Config;
+        public OConfigDispositivo _config;
         /// <summary>
         /// Argumentos para generar los eventos
         /// </summary>
-        public OEventArgs OEventargs;
+        public OEventArgs _oEventargs;
         /// <summary>
         /// Objeto para establecer el canal TCP
         /// </summary>
@@ -69,8 +69,8 @@ namespace Orbita.Comunicaciones
             {
                 // Asignación de las colecciones de datos, lecturas y alarmas.
                 this.Tags = tags;
-                this.Config = tags.Config;
-                this.OEventargs = new OEventArgs();
+                this._config = tags.Config;
+                this._oEventargs = new OEventArgs();
 
                 //Actualizando las variables de dispositivo
                 this.Identificador = dispositivo.Identificador;

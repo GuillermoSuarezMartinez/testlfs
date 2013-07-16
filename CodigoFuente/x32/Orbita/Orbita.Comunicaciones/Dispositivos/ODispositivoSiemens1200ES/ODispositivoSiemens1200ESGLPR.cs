@@ -15,6 +15,7 @@ namespace Orbita.Comunicaciones
         private int _byteSalidasLPR = 2;
         private int _registroInicialEntradasLPR = 0;
         private int _registroInicialSalidasLPR = 0;
+        private int _bitInicialSalida = 2;
 
         #endregion
 
@@ -54,6 +55,7 @@ namespace Orbita.Comunicaciones
             this.Salidas = new byte[this._numeroBytesSalidas];
 
             this._lecturas = new byte[_numLecturas];
+            this._lecturaInicialSalida = _bitInicialSalida;
         }
         /// <summary>
         /// Procesa los mensajes recibidos en el data arrival
@@ -94,23 +96,16 @@ namespace Orbita.Comunicaciones
                             }
                             else//respuesta para la escritura
                             {
-                                if (protocoloProcesoMensaje.SalidasProcesar(mensaje, this.IdMens, out lecturas))
+                                wrapper.Info("ODispositivoSiemens1200ESGLPR ProcesarMensajeRecibido escritura procesada");
+                                lecturas = new byte[this._numLecturas];
+                                for (int i = 0; i < this._numLecturas; i++)
                                 {
-                                    this._valorEscritura = mensaje;
-                                    for (int i = 0; i < this._numLecturas; i++)
-                                    {
-                                        if (this._lecturas[i] != lecturas[i])
-                                        {
-                                            this.ESEncolar(lecturas);
-                                            break;
-                                        }
-                                    }
-                                    this._lecturas = lecturas;
-                                    this._eReset.Despertar(2);
+                                    lecturas[i] = this._lecturas[i];
                                 }
+                                this.ESEncolar(lecturas);
+                                //this._eReset.Despertar(2);                                
                             }
                         }
-
                     }
                 }
             }

@@ -326,6 +326,7 @@ namespace Orbita.Comunicaciones
         {
             OInfoOPCvida infoVida = (OInfoOPCvida)this._tags.HtVida;
             OEstadoComms estado = new OEstadoComms();
+            TimeSpan ts;
             while (true)
             {
                 try
@@ -334,7 +335,13 @@ namespace Orbita.Comunicaciones
                     estado.Nombre = this.Nombre;
                     estado.Id = this.Identificador;
                     this._oEventargs.Argumento = estado;
-                    this.OnComm(this._oEventargs);
+                    ts = DateTime.Now.Subtract(this._fechaUltimoEventoComs);
+                    if (ts.TotalSeconds>(double)this._config.SegEventoComs)
+                    {
+                        this.OnComm(this._oEventargs);
+                        this._fechaUltimoEventoComs = DateTime.Now;
+                    }
+                    
                     Thread.Sleep(this._config.TiempoVida);
                 }
                 catch (ThreadAbortException)

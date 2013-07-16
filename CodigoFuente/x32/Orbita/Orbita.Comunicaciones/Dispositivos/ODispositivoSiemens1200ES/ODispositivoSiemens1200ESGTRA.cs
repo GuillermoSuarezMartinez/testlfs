@@ -15,6 +15,7 @@ namespace Orbita.Comunicaciones
         private int _byteSalidasTRA = 3;
         private int _registroInicialEntradasTRA = 0;
         private int _registroInicialSalidasTRA = 0;
+        private int _bitInicialSalida = 9;
 
         #endregion
 
@@ -54,6 +55,7 @@ namespace Orbita.Comunicaciones
             this.Salidas = new byte[this._numeroBytesSalidas];
 
             this._lecturas = new byte[_numLecturas];
+            this._lecturaInicialSalida = _bitInicialSalida;
         }
         /// <summary>
         /// Procesa los mensajes recibidos en el data arrival
@@ -68,44 +70,40 @@ namespace Orbita.Comunicaciones
                 string smensaje = ASCIIEncoding.ASCII.GetString(bmensaje);
                 byte[] lecturas;
 
-                using (protocoloProcesoMensaje)
+                lock (this)
                 {
-                    if (smensaje.Contains("GTFDATA"))//respuesta para la lectura
+                    using (protocoloProcesoMensaje)
                     {
-                        if (mensaje[15] == 0)
+                        if (smensaje.Contains("GTFDATA"))//respuesta para la lectura
                         {
-                            
-                            if (protocoloProcesoMensaje.KeepAliveProcesar(mensaje, out lecturas))
-                            {
-                                for (int i = 0; i < this._numLecturas; i++)
+                            if (mensaje[15] == 0)
+                            {                            
+                                if (protocoloProcesoMensaje.KeepAliveProcesar(mensaje, out lecturas))
                                 {
-                                    if (this._lecturas[i] != lecturas[i])
+                                    for (int i = 0; i < this._numLecturas; i++)
                                     {
-                                        this.ESEncolar(lecturas);
-                                        break;
+                                        if (this._lecturas[i] != lecturas[i])
+                                        {
+                                            this.ESEncolar(lecturas);
+                                            break;
+                                        }
                                     }
+                                    this._lecturas = lecturas;
+                                    // Despertar el hilo en la línea:
+                                    // this._eReset.Dormir de ProcesarHiloKeepAlive.                        
+                                    this._eReset.Despertar(0);
                                 }
-                                this._lecturas = lecturas;
-                                // Despertar el hilo en la línea:
-                                // this._eReset.Dormir de ProcesarHiloKeepAlive.                        
-                                this._eReset.Despertar(0);
                             }
-                        }
-                        else//respuesta para la escritura
-                        {
-                            if (protocoloProcesoMensaje.SalidasProcesar(mensaje, this.IdMens, out lecturas))
+                            else//respuesta para la escritura
                             {
-                                this._valorEscritura = mensaje;
+                                wrapper.Info("ODispositivoSiemens1200ESGTRA ProcesarMensajeRecibido escritura procesada");
+                                lecturas = new byte[this._numLecturas];
                                 for (int i = 0; i < this._numLecturas; i++)
                                 {
-                                    if (this._lecturas[i] != lecturas[i])
-                                    {
-                                        this.ESEncolar(lecturas);
-                                        break;
-                                    }
+                                    lecturas[i] = this._lecturas[i];
                                 }
-                                this._lecturas = lecturas;
-                                this._eReset.Despertar(2);
+                                this.ESEncolar(lecturas);
+                                //this._eReset.Despertar(2);       
                             }
                         }
                     }

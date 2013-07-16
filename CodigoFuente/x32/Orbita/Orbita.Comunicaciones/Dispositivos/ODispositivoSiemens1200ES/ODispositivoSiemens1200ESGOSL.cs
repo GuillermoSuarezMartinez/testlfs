@@ -16,6 +16,7 @@ namespace Orbita.Comunicaciones
         private int _registroInicialEntradasLPR = 0;
         private int _registroInicialSalidasLPR = 0;
 
+        private int _bitInicialSalida = 2;
         #endregion
 
         #region Constructor
@@ -54,6 +55,7 @@ namespace Orbita.Comunicaciones
             this.Salidas = new byte[this._numeroBytesSalidas];
 
             this._lecturas = new byte[_numLecturas];
+            this._lecturaInicialSalida = _bitInicialSalida;
         }
         /// <summary>
         /// Procesa los mensajes recibidos en el data arrival
