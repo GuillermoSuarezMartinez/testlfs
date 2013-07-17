@@ -586,24 +586,6 @@
             Thrown if unable to get the keys in the database.
             </exception>
         </member>
-        <member name="M:Cognex.VisionPro.Database.CogDatabaseDirectory.GetKeysNoSort">
-            <summary>
-            Generate an array of strings corresponding to the keys in the database.
-            </summary>
-            <returns>
-            An array of strings containing the keys in the database. This
-            can be an empty array if there are no items in the database.
-            </returns>
-            <exception cref="T:System.ObjectDisposedException">
-            Thrown if this object has already been disposed.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-            Thrown if not currently connected.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-            Thrown if unable to get the keys in the database.
-            </exception>
-        </member>
         <member name="M:Cognex.VisionPro.Database.CogDatabaseDirectory.OnAdding(Cognex.VisionPro.Database.CogDatabaseAddEventArgs)">
             <summary>
             Raise the Adding event.

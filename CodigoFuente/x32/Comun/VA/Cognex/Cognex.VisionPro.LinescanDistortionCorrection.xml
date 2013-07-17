@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        "Cognex.VisionPro.LinescanDistortionCorrection"
+        cognex.visionpro.linescandistortioncorrection
     </assembly>
     <members>
         <member name="P:Cognex.VisionPro.LinescanDistortionCorrection.CogLinescanDistortionCorrectionTool.OutputImage">
@@ -33,6 +33,9 @@ distortion corrected.
             <value>
 The image to be linescan distortion corrected.
 </value>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+If the supplied image is not a CogImage8Grey.
+</exception>
             <event cref="T:Cognex.VisionPro.ICogChangedEvent">
 Fires when this property changes.
 </event>
@@ -175,9 +178,6 @@ An optional region of interest. If provided, the pixel aligned
 bounding box of this region specifies which input pixels should
 be used.
 </param>
-            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
-If InputImage is not CogImage8Grey.
-</exception>
             <exception cref="T:Cognex.VisionPro.Exceptions.CogOperatorNotTrainedException">
 If Trained is false.
 </exception>
@@ -213,9 +213,6 @@ If TrainMode is Image and the TrainImage has too few features.
             <exception cref="T:Cognex.VisionPro.Exceptions.CogLinescanDistortionCorrectionTrainImageNotStripedException">
 If TrainMode is Image and the TrainImage does not appear to have the
 required vertical stripes.
-</exception>
-            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
-If TrainMode is Image and the TrainImage is not CogImage8Grey.
 </exception>
             <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">
 Fires when this method causes the Trained property to
@@ -375,6 +372,9 @@ The image used to train this operator when TrainMode is Image. This
 property is ignored if TrainMode is not Image. Changing this
 value causes the operator to untrain, regardless of TrainMode.
 </value>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogImageBadTypeException">
+If the supplied image is not a CogImage8Grey.
+</exception>
             <event cref="T:Cognex.VisionPro.ICogChangedEvent">
 Fires when this property changes.
 </event>
