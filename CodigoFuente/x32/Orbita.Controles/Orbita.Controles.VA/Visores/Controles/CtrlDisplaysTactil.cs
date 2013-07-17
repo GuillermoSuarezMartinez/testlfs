@@ -10,6 +10,7 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -25,6 +26,13 @@ namespace Orbita.Controles.VA
     /// </summary>
     public partial class CtrlDisplaysTactil : OrbitaCtrlTactilBase
     {
+        #region Atributo(s) estático(s)
+        /// <summary>
+        /// Instancia única del formulario
+        /// </summary>
+        private static CtrlDisplaysTactil CtrlDisplaysSingleton;
+        #endregion
+
         #region Atributo(s)
         /// <summary>
         /// Contador del número de cámaras
@@ -359,6 +367,33 @@ namespace Orbita.Controles.VA
             // Eventos
             display.OnEstadoVentanaCambiado += this.OnEstadoVentanaCambiado;
             display.OnVisorDispositivoCambiado += this.OnVisorDispositivoCambiado;
+        }
+        #endregion
+
+        #region Método(s) público(s) estático(s)
+        /// <summary>
+        /// Visualiza una imagen en el display
+        /// </summary>
+        /// <param name="imagen">Imagen a visualizar</param>        
+        public static void VisualizarImagen(string codigo, OImagen imagen)
+        {
+            VisualizarImagen(codigo, imagen, null);
+        }
+        /// <summary>
+        /// Visualiza una imagen en el display
+        /// </summary>
+        /// <param name="imagen">Imagen a visualizar</param>
+        /// <param name="graficos">Objeto que contiene los gráficos a visualizar (letras, rectas, circulos, etc)</param>
+        public static void VisualizarImagen(string codigo, OImagen imagen, OGrafico graficos)
+        {
+            if ((CtrlDisplaysSingleton is CtrlDisplaysTactil) && (CtrlDisplaysSingleton.ListaDisplays is List<OrbitaVisorBase>) && (CtrlDisplaysSingleton.ListaDisplays.Count > 0))
+            {
+                var display = CtrlDisplaysSingleton.ListaDisplays.Where(dsp => dsp.Codigo == codigo);
+                if (display.Count() > 0)
+                {
+                    display.First().Visualizar(imagen, graficos);
+                }
+            }
         }
         #endregion
 

@@ -381,7 +381,10 @@ namespace Orbita.Controles.VA
             this.Parent.Controls.Remove(this);
             this.Parent = null;
 
-            this.FormClosed(this, new FormClosedEventArgs(CloseReason.None));
+            if (this.FormClosed != null)
+            {
+                this.FormClosed(this, new FormClosedEventArgs(CloseReason.None));
+            }
 
             OTactilManager.CerrarFormuario(this);
         }
