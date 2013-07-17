@@ -1776,32 +1776,6 @@ namespace Orbita.VA.Hardware
 		}
 
 		/// <summary>
-		/// Visualiza una imagen en el display
-		/// </summary>
-		/// <param name="imagen">Imagen a visualizar</param>        
-		public void VisualizarImagen(OImagen imagen)
-		{
-			this.VisualizarImagen(imagen, null);
-		}
-
-		/// <summary>
-		/// Visualiza la última imagen capturada por la cámara
-		/// </summary>
-		public void VisualizarUltimaImagen()
-		{
-			this.VisualizarImagen(this.ImagenActual, null);
-		}
-
-		/// <summary>
-		/// Visualiza la última imagen capturada por la cámara
-		/// </summary>
-		/// <param name="graficos">Objeto que contiene los gráficos a visualizar (letras, rectas, circulos, etc)</param>
-		public void VisualizarUltimaImagen(OGrafico graficos)
-		{
-			this.VisualizarImagen(this.ImagenActual, graficos);
-		}
-
-		/// <summary>
 		/// Comienza una grabación continua de la cámara
 		/// </summary>
 		/// <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
@@ -2075,15 +2049,6 @@ namespace Orbita.VA.Hardware
 		public virtual OGrafico NuevoGrafico()
 		{
 			return null;
-		}
-
-		/// <summary>
-		/// Visualiza una imagen en el display
-		/// </summary>
-		/// <param name="imagen">Imagen a visualizar</param>
-		/// <param name="graficos">Objeto que contiene los gráficos a visualizar (letras, rectas, circulos, etc)</param>
-		public virtual void VisualizarImagen(OImagen imagen, OGrafico graficos)
-		{
 		}
 
         /// <summary>

@@ -182,7 +182,7 @@ namespace Orbita.VA.Funciones
             {
                 lock (LockObject)
                 {
-                    var nuevo = ElementosEnviados.Where(kvp => kvp.Value.GetCodFuncion == codFuncion);
+                    var nuevo = ElementosEnviados.Where(kvp => kvp.Value.GetCodFuncion == codFuncion).ToArray();
                     if ((nuevo != null) && (nuevo.Count() > 0))
                     {
                         foreach (var valor in nuevo)
