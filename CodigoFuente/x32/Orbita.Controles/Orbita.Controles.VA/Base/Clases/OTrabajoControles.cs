@@ -186,9 +186,9 @@ namespace Orbita.Controles.VA
         /// Visualización de un formulario
         /// </summary>
         /// <param name="formulario"></param>
-        public static void AbrirFormulario(string codFormulario)
+        public static bool AbrirFormulario(string codFormulario)
         {
-            CtrlContenedorFormularios.AbrirFormulario(codFormulario);
+            return CtrlContenedorFormularios.AbrirFormulario(codFormulario);
         }
 
         /// <summary>
