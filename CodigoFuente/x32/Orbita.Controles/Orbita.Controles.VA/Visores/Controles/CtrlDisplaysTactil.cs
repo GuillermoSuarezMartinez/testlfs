@@ -100,7 +100,7 @@ namespace Orbita.Controles.VA
 
         #region Constructor(es)
         public CtrlDisplaysTactil(string codigo, Control contenedor = null)
-            : this(ModoAperturaFormulario.Visualizacion, codigo, "Visor de cámaras", true, true, OUsuariosManager.PermisoActual == OPermisos.Administrador, contenedor)
+            : this(codigo, "Visor de cámaras", true, true, OUsuariosManager.PermisoActual == OPermisos.Administrador, contenedor)
         {
         }
 
@@ -108,14 +108,14 @@ namespace Orbita.Controles.VA
         /// Constructor de la clase
         /// </summary>
         public CtrlDisplaysTactil(string codigo, string titulo, bool enlazarCamaras, bool visualiacionEnVivo, bool controlCamara, Control contenedor = null)
-            : this(ModoAperturaFormulario.Visualizacion, codigo, titulo, enlazarCamaras, visualiacionEnVivo, controlCamara, contenedor)
+            : this(ModoAperturaFormulario.Visualizacion, codigo, titulo, enlazarCamaras, visualiacionEnVivo, controlCamara, true, contenedor)
         {
         }
 
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public CtrlDisplaysTactil(ModoAperturaFormulario modoAperturaFormulario, string codigo, string titulo, bool enlazarCamaras, bool visualiacionEnVivo, bool controlCamara, Control contenedor = null)
+        public CtrlDisplaysTactil(ModoAperturaFormulario modoAperturaFormulario, string codigo, string titulo, bool enlazarCamaras, bool visualiacionEnVivo, bool controlCamara, bool instanciaSingleton, Control contenedor = null)
             : base(modoAperturaFormulario, codigo, titulo, contenedor)
         {
             InitializeComponent();
@@ -125,6 +125,11 @@ namespace Orbita.Controles.VA
             this._ControlCamara = controlCamara;
 
             this.ListaDisplays = new List<OrbitaVisorBase>();
+
+            if (instanciaSingleton)
+            {
+                CtrlDisplaysSingleton = this;
+            }
         }  
         #endregion
 

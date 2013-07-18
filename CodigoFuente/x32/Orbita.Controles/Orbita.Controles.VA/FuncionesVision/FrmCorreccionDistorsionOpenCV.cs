@@ -28,13 +28,6 @@ namespace Orbita.Controles.VA
     /// </summary>
     public partial class FrmCorreccionDistorsionOpenCV : FrmBase
     {
-        #region Atributo(s)
-        PointF PuntoOriginal1 = new PointF();
-        PointF PuntoOriginal2 = new PointF();
-        PointF PuntoOriginal3 = new PointF();
-        PointF PuntoOriginal4 = new PointF(); 
-        #endregion
-
         #region Constructor(es)
         /// <summary>
         /// Constructor de la clase
@@ -70,10 +63,24 @@ namespace Orbita.Controles.VA
                 imgAmpliada = imgOriginal.CrearBorde(xAmpliacion, yAmpliacion);
 
                 // Extracción de información de la imagen original
-                PointF puntoOriginal1Offset = new PointF(PuntoOriginal1.X + xAmpliacion, PuntoOriginal1.Y + yAmpliacion);
-                PointF puntoOriginal2Offset = new PointF(PuntoOriginal2.X + xAmpliacion, PuntoOriginal2.Y + yAmpliacion);
-                PointF puntoOriginal3Offset = new PointF(PuntoOriginal3.X + xAmpliacion, PuntoOriginal3.Y + yAmpliacion);
-                PointF puntoOriginal4Offset = new PointF(PuntoOriginal4.X + xAmpliacion, PuntoOriginal4.Y + yAmpliacion);
+                PointF puntoOriginal1 = new PointF();
+                PointF puntoOriginal2 = new PointF();
+                PointF puntoOriginal3 = new PointF();
+                PointF puntoOriginal4 = new PointF();
+
+                puntoOriginal1.X = (float)ODecimal.Validar(this.NumericEditorX1Origen.Value);
+                puntoOriginal1.Y = (float)ODecimal.Validar(this.NumericEditorY1Origen.Value);
+                puntoOriginal2.X = (float)ODecimal.Validar(this.NumericEditorX2Origen.Value);
+                puntoOriginal2.Y = (float)ODecimal.Validar(this.NumericEditorY2Origen.Value);
+                puntoOriginal3.X = (float)ODecimal.Validar(this.NumericEditorX3Origen.Value);
+                puntoOriginal3.Y = (float)ODecimal.Validar(this.NumericEditorY3Origen.Value);
+                puntoOriginal4.X = (float)ODecimal.Validar(this.NumericEditorX4Origen.Value);
+                puntoOriginal4.Y = (float)ODecimal.Validar(this.NumericEditorY4Origen.Value);
+
+                PointF puntoOriginal1Offset = new PointF(puntoOriginal1.X + xAmpliacion, puntoOriginal1.Y + yAmpliacion);
+                PointF puntoOriginal2Offset = new PointF(puntoOriginal2.X + xAmpliacion, puntoOriginal2.Y + yAmpliacion);
+                PointF puntoOriginal3Offset = new PointF(puntoOriginal3.X + xAmpliacion, puntoOriginal3.Y + yAmpliacion);
+                PointF puntoOriginal4Offset = new PointF(puntoOriginal4.X + xAmpliacion, puntoOriginal4.Y + yAmpliacion);
 
                 // Extracción de información de la imagen destino
                 float x = (float)ODecimal.Validar(this.NumericEditorX.Value, -10000, 10000, 0);
@@ -103,19 +110,30 @@ namespace Orbita.Controles.VA
         {
             PointF pos = this.VisorBitmapOriginal.CurrentCursorPosition;
 
-            this.PuntoOriginal1 = this.RadioButtonPuntoOriginal1.Checked ? pos : PuntoOriginal1;
-            this.PuntoOriginal2 = this.RadioButtonPuntoOriginal2.Checked ? pos : PuntoOriginal2;
-            this.PuntoOriginal3 = this.RadioButtonPuntoOriginal3.Checked ? pos : PuntoOriginal3;
-            this.PuntoOriginal4 = this.RadioButtonPuntoOriginal4.Checked ? pos : PuntoOriginal4;
-
-            this.NumericEditorX1Origen.Value = PuntoOriginal1.X;
-            this.NumericEditorY1Origen.Value = PuntoOriginal1.Y;
-            this.NumericEditorX2Origen.Value = PuntoOriginal2.X;
-            this.NumericEditorY2Origen.Value = PuntoOriginal2.Y;
-            this.NumericEditorX3Origen.Value = PuntoOriginal3.X;
-            this.NumericEditorY3Origen.Value = PuntoOriginal3.Y;
-            this.NumericEditorX4Origen.Value = PuntoOriginal4.X;
-            this.NumericEditorY4Origen.Value = PuntoOriginal4.Y;
+            if (this.RadioButtonPuntoOriginal1.Checked)
+            {
+                PointF puntoOriginal1 = pos;
+                this.NumericEditorX1Origen.Value = puntoOriginal1.X;
+                this.NumericEditorY1Origen.Value = puntoOriginal1.Y;
+            }
+            else if (this.RadioButtonPuntoOriginal2.Checked)
+            {
+                PointF puntoOriginal2 = pos;
+                this.NumericEditorX2Origen.Value = puntoOriginal2.X;
+                this.NumericEditorY2Origen.Value = puntoOriginal2.Y;
+            }
+            else if (this.RadioButtonPuntoOriginal3.Checked)
+            {
+                PointF puntoOriginal3 = pos;
+                this.NumericEditorX3Origen.Value = puntoOriginal3.X;
+                this.NumericEditorY3Origen.Value = puntoOriginal3.Y;
+            }
+            else if (this.RadioButtonPuntoOriginal4.Checked)
+            {
+                PointF puntoOriginal4 = pos;
+                this.NumericEditorX4Origen.Value = puntoOriginal4.X;
+                this.NumericEditorY4Origen.Value = puntoOriginal4.Y;
+            }
         }
 	    #endregion    
     }

@@ -113,10 +113,13 @@ namespace Orbita.Controles.VA
         /// Visualización de un formulario
         /// </summary>
         /// <param name="formulario"></param>
-        public void AbrirFormulario(string codFormulario)
+        public bool AbrirFormulario(string codFormulario)
         {
+            bool resultado = false;
             if (this.ListaFormularios.ContainsKey(codFormulario))
             {
+                resultado = true;
+
                 // Activación del tab actual
                 this.TabContenedor.SelectedTab = this.TabContenedor.Tabs[codFormulario];
 
@@ -127,6 +130,7 @@ namespace Orbita.Controles.VA
                     this.OnFormularioActivo(formulario, new EventArgsFormularioActivo(codFormulario));
                 }
             }
+            return resultado;
         }
 
         /// <summary>
