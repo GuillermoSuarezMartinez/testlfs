@@ -304,7 +304,7 @@ namespace Orbita.VA.Comun
             ICogImage cogImage = null;
 
             // Bitmap --> CogImage24PlanarColor
-            if ((imagenBitmap.PixelFormat == PixelFormat.Format24bppRgb) || (imagenBitmap.PixelFormat == PixelFormat.Format32bppArgb) )
+            if ((imagenBitmap.PixelFormat == PixelFormat.Format24bppRgb) || (imagenBitmap.PixelFormat == PixelFormat.Format32bppArgb) || (imagenBitmap.PixelFormat == PixelFormat.Format32bppRgb))
             {
                 cogImage = new CogImage24PlanarColor(imagenBitmap);
             }
