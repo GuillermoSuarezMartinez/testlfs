@@ -101,7 +101,7 @@ namespace Orbita.Utiles
         /// <returns></returns>
         public static bool ExisteCronometro(string codigo)
         {
-            return ListaCronometros.Exists(delegate(OCronometro c) { return c.Codigo == codigo; });
+            return (ListaCronometros != null) && ListaCronometros.Exists(delegate(OCronometro c) { return c.Codigo == codigo; });
         }
 
         /// <summary>
@@ -111,7 +111,11 @@ namespace Orbita.Utiles
         /// <returns></returns>
         public static OCronometro BuscaCronometro(string codigo)
         {
-            return ListaCronometros.Find(delegate(OCronometro c) { return c.Codigo == codigo; });
+            if (ListaCronometros != null)
+            {
+                return ListaCronometros.Find(delegate(OCronometro c) { return c.Codigo == codigo; });
+            }
+            return null;
         }
 
         /// <summary>
