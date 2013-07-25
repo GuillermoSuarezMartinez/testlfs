@@ -351,7 +351,7 @@ namespace Orbita.VA.Funciones
         /// <param name="bitmap">imagen</param>
         /// <param name="obj">información de la imagen</param>
         /// <param name="bFront">Si es prioritaria</param>
-        public static bool Add(string codFunc,Bitmap bitmap, object obj, bool bFront = false)
+        public static bool Add(string codFunc,Bitmap bitmap, object obj, bool bFront)
         {
             try
             {
@@ -392,7 +392,7 @@ namespace Orbita.VA.Funciones
         /// <param name="rutaBitmap">imagen</param>
         /// <param name="obj">información de la imagen</param>
         /// <param name="bFront">Si es prioritaria</param>
-        public static bool Add(string codFunc, string rutaBitmap, bool autoBorradoFicheroTemporal, object obj, bool bFront = false)
+        public static bool Add(string codFunc, string rutaBitmap, bool autoBorradoFicheroTemporal, object obj, bool bFront)
         {
             try
             {
@@ -409,11 +409,11 @@ namespace Orbita.VA.Funciones
                     // Establece la prioridad en la cola para la imagen
                     if (bFront)
                     {
-                        ProductorConsumidor.Encolar(new OCCRData(ContId,codFunc, Configuracion, ref informacion), -1);
+                        ProductorConsumidor.Encolar(new OCCRData(ContId, codFunc, Configuracion, ref informacion), -1);
                     }
                     else
                     {
-                        ProductorConsumidor.Encolar(new OCCRData(ContId,codFunc, Configuracion, ref informacion));
+                        ProductorConsumidor.Encolar(new OCCRData(ContId, codFunc, Configuracion, ref informacion));
                     }
 
                     // Incrementamos el contador

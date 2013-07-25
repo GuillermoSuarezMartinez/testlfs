@@ -604,22 +604,22 @@ namespace Orbita.VA.Funciones
         /// Siguiente parametros de entrada a procesar en el LPR
         /// </summary>
         private OParametrosLPR ParametrosLPR;
-
         /// <summary>
         /// Siguiente imágen a procesar en el LPR
         /// </summary>
         private OImagenBitmap Imagen;
-
         /// <summary>
         /// Siguiente ruta de imágen a procesar en el LPR
         /// </summary>
         private string RutaImagenTemporal;
-
+        /// <summary>
+        /// Prioridad de encolamiento
+        /// </summary>
+        private bool Prioridad = false;
         /// <summary>
         /// Lista de información adicional incorporada por el controlador externo
         /// </summary>
         private Dictionary<string, object> InformacionAdicional;
-        
         /// <summary>
         /// Para saber la cantidad de imagenes guardadas por disco en cada ejecucion
         /// </summary>
@@ -667,6 +667,7 @@ namespace Orbita.VA.Funciones
                     this.ParametrosLPR.OrbitaCorreccionPerspectiva = new OCorreccionPerspectiva(dtFuncionVision.Rows[0]);
                     this.ParametrosLPR.RealizarProcesoPorDisco =OBooleano.Validar(dtFuncionVision.Rows[0]["NL_EjecucionPorDisco"], false);
                     this.ParametrosLPR.RutaEjecucionPorDisco = OTexto.Validar(dtFuncionVision.Rows[0]["NL_RutaTemporalEjecucion"], int.MaxValue, true, false, string.Empty);
+                    this.ParametrosLPR.StrictMode = OBooleano.Validar(dtFuncionVision.Rows[0]["NL_StrictMode"], true);
                 }                
             }
             catch (Exception exception)
@@ -792,7 +793,7 @@ namespace Orbita.VA.Funciones
                             // adición de imagen
                             if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                             {
-                                resultCode = OMTInterfaceLPR.Add(this.Codigo,this.RutaImagenTemporal, false, info);
+                                resultCode = OMTInterfaceLPR.Add(this.Codigo,this.RutaImagenTemporal, false, info, this.Prioridad);
                             }
                             else
                             {
@@ -810,12 +811,12 @@ namespace Orbita.VA.Funciones
                                 imagenTrabajo.Image.Save(this.RutaImagenTemporal);
                                 if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                                 {
-                                    resultCode = OMTInterfaceLPR.Add(this.Codigo,this.RutaImagenTemporal, true, info);
+                                    resultCode = OMTInterfaceLPR.Add(this.Codigo,this.RutaImagenTemporal, true, info, this.Prioridad);
                                 }
                             }
                             else
                             {
-                                resultCode = OMTInterfaceLPR.Add(this.Codigo,imagenTrabajo.Image, info);
+                                resultCode = OMTInterfaceLPR.Add(this.Codigo,imagenTrabajo.Image, info, this.Prioridad);
                             }
                         }
                         
@@ -888,6 +889,10 @@ namespace Orbita.VA.Funciones
                 else if (codigo == "RutaImagen")
                 {
                     this.RutaImagenTemporal = (string)valor;
+                }
+                else if (codigo == "Prioridad")
+                {
+                    this.Prioridad = (bool)valor;
                 }
                 else
                 {
@@ -1040,6 +1045,10 @@ namespace Orbita.VA.Funciones
         /// Ruta utilizada para pasar la imagen por disco
         /// </summary>
         public string RutaEjecucionPorDisco;
+        /// <summary>
+        /// Modo estricto de búsqueda de matriculas multipais
+        /// </summary>
+        public bool StrictMode;
         #endregion
 
         #region Constructor(es)
@@ -1071,7 +1080,8 @@ namespace Orbita.VA.Funciones
             this.Escala = 0;
             this.OrbitaCorreccionPerspectiva = new OCorreccionPerspectiva();
             this.RealizarProcesoPorDisco = false;
-            this.RutaEjecucionPorDisco = Path.GetTempPath();            
+            this.RutaEjecucionPorDisco = Path.GetTempPath();
+            this.StrictMode = true;
         }
         #endregion Constructores
     }
@@ -1596,6 +1606,10 @@ namespace Orbita.VA.Funciones
         /// Ruta en disco de la imagen de entrada
         /// </summary>
         public static EnumTipoEntradaFuncionVision RutaImagen = new EnumTipoEntradaFuncionVision("RutaImagen", "Ruta en disco de la imagen de entrada", 102);
+        /// <summary>
+        /// Prioridad de encolamiento
+        /// </summary>
+        public static EnumTipoEntradaFuncionVision Prioridad = new EnumTipoEntradaFuncionVision("Prioridad", "Prioridad de encolamiento", 203);
         #endregion
     }
 }
