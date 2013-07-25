@@ -233,6 +233,14 @@ namespace Orbita.VA.Funciones
                             Configuracion.vlSteps[i] = param.VectorAlturas[i];
                         }
                     }
+                    if (param.StrictMode)
+                    {
+                        vparmtStrictModeOn();
+                    }
+                    else
+                    {
+                        vparmtStrictModeOff();
+                    }
                 }
             }
             catch (Exception exception)
@@ -326,7 +334,7 @@ namespace Orbita.VA.Funciones
         /// <param name="bitmap">imagen</param>
         /// <param name="obj">información de la imagen</param>
         /// <param name="bFront">Si es prioritaria</param>
-        public static bool Add(string codFunc,Bitmap bitmap, object obj, bool bFront = false)
+        public static bool Add(string codFunc,Bitmap bitmap, object obj, bool bFront)
         {
             try
             {
@@ -368,7 +376,7 @@ namespace Orbita.VA.Funciones
         /// <param name="rutaBitmap">imagen</param>
         /// <param name="obj">información de la imagen</param>
         /// <param name="bFront">Si es prioritaria</param>
-        public static bool Add(string codFunc,string rutaBitmap, bool autoBorradoFicheroTemporal, object obj, bool bFront = false)
+        public static bool Add(string codFunc,string rutaBitmap, bool autoBorradoFicheroTemporal, object obj, bool bFront)
         {
             try
             {
@@ -686,6 +694,10 @@ namespace Orbita.VA.Funciones
         public static extern Int32 vpmrReadHasp(ref byte pData, Int32 size);
         [DllImport("vparmtEX.dll", EntryPoint = "_vparmtWriteHasp@8", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
         public static extern Int32 vpmrWriteHasp(ref byte pData, Int32 size);
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtStrictSyntaxOn@0", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtStrictModeOn();
+        [DllImport("vparmtEX.dll", EntryPoint = "_vparmtStrictSyntaxOff@0", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern Int32 vparmtStrictModeOff();
         #endregion
     }
 

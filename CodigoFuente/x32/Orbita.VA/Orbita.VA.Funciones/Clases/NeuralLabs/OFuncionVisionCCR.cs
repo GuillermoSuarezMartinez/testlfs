@@ -372,6 +372,10 @@ namespace Orbita.VA.Funciones
         /// </summary>
         private string RutaImagenTemporal;
         /// <summary>
+        /// Prioridad de encolamiento
+        /// </summary>
+        private bool Prioridad = false;
+        /// <summary>
         /// Lista de información adicional incorporada por el controlador externo
         /// </summary>
         private Dictionary<string, object> InformacionAdicional;
@@ -490,7 +494,7 @@ namespace Orbita.VA.Funciones
             // Ya no existen inspecciones pendientes
             this.ContInspeccionesEnCola = 0;
             this.IndiceFotografia = 0;
-
+            
             // Se finaliza la ejecución de la función de visión
             this.FuncionEjecutada();
 
@@ -548,7 +552,7 @@ namespace Orbita.VA.Funciones
                             // adición de imagen
                             if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                             {
-                                OMTInterfaceCCR.Add(this.Codigo,this.RutaImagenTemporal, false, info);
+                                OMTInterfaceCCR.Add(this.Codigo,this.RutaImagenTemporal, false, info, this.Prioridad);
                             }
                             else
                             {
@@ -566,13 +570,13 @@ namespace Orbita.VA.Funciones
                                 imagenTrabajo.Image.Save(this.RutaImagenTemporal);
                                 if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                                 {
-                                    OMTInterfaceCCR.Add(this.Codigo,this.RutaImagenTemporal, true, info);
+                                    OMTInterfaceCCR.Add(this.Codigo, this.RutaImagenTemporal, true, info, this.Prioridad);
                                 }
                             }
                             else
                             {
                                 // adición de imagen
-                                OMTInterfaceCCR.Add(this.Codigo,imagenTrabajo.Image, info);
+                                OMTInterfaceCCR.Add(this.Codigo,imagenTrabajo.Image, info, this.Prioridad);
                             }
                             
                         }
@@ -647,6 +651,10 @@ namespace Orbita.VA.Funciones
                 else if (codigo == "RutaImagen")
                 {
                     this.RutaImagenTemporal = (string)valor;
+                }
+                else if (codigo == "Prioridad")
+                {
+                    this.Prioridad = (bool)valor;
                 }
                 else
                 {
@@ -1221,6 +1229,10 @@ namespace Orbita.VA.Funciones
         /// Ruta en disco de la imagen de entrada
         /// </summary>
         public static EnumTipoEntradaFuncionVision RutaImagen = new EnumTipoEntradaFuncionVision("RutaImagen", "Ruta en disco de la imagen de entrada", 202);
+        /// <summary>
+        /// Prioridad de encolamiento
+        /// </summary>
+        public static EnumTipoEntradaFuncionVision Prioridad = new EnumTipoEntradaFuncionVision("Prioridad", "Prioridad de encolamiento", 203);
         #endregion
     }
 }
