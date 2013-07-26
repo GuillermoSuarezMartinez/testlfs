@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orbita.Framework.Extensiones</name>
+    </assembly>
+    <members>
+        <member name="F:Orbita.Framework.Extensiones.ExtendedString.Bloqueo">
+            <summary>
+            Atributo estático volátil de bloqueo.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Extensiones.ExtendedString.XmlDeserialize``1(System.String)">
+            <summary>
+            Desearializar el XML por el especifico System.String.
+            </summary>
+            <typeparam name="T">El tipo de objeto a deserializar.</typeparam>
+            <param name="s">El System.String contenido en el XML.</param>
+            <returns>El System.Object deserializado.</returns>
+        </member>
+        <member name="F:Orbita.Framework.Extensiones.ExtendedFile.Bloqueo">
+            <summary>
+            Atributo estático volátil de bloqueo.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Extensiones.ExtendedFile.Leer(System.String)">
+            <summary>
+            Leer fichero de texto.
+            </summary>
+            <param name="nombre">Ruta del fichero.</param>
+            <returns>El fichero de tipo StreamReadar.</returns>
+        </member>
+        <member name="F:Orbita.Framework.Extensiones.ExtendedObject.Bloqueo">
+            <summary>
+            Atributo estático volátil de bloqueo.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Extensiones.ExtendedObject.In(System.Object,System.Collections.IEnumerable)">
+            <summary>
+            Determina si el System.Object figura en el IEnumerable especificado.
+            </summary>
+            <param name="ocomparable">El System.Object</param>
+            <param name="enumerable">El enumerable.</param>
+            <returns>Verdadero si el enumerable contiene el System.Object, falso en caso contrario.</returns>
+        </member>
+        <member name="M:Orbita.Framework.Extensiones.ExtendedObject.In``1(``0,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Determina si el T figura en el IEnumerable de T especificado.
+            </summary>
+            <typeparam name="T">El tipo de System.Object.</typeparam>
+            <param name="ocomparable">El item.</param>
+            <param name="enumerable">El enumerable de T.</param>
+            <returns>Verdadero si el enumerable contiene el item, falso en caso contrario.</returns>
+        </member>
+        <member name="M:Orbita.Framework.Extensiones.ExtendedObject.In``1(``0,``0[])">
+            <summary>
+            Determina si el T figura en los valores especificados.
+            </summary>
+            <typeparam name="T">El tipo System.Object.</typeparam>
+            <param name="ocomparable">Item.</param>
+            <param name="items">El valor a comparar.</param>
+            <returns>Verdadero si el valor contiene el item, falso en caso contrario.</returns>
+        </member>
+        <member name="M:Orbita.Framework.Extensiones.ExtendedObject.XmlSerialize``1(``0,System.String)">
+            <summary>
+            Serializa el System.Object especificado y escribe el documento XML en el fichero especificado.
+            </summary>
+            <typeparam name="T">El tipo item.</typeparam>
+            <param name="item">El item.</param>
+            <param name="fileName">El fichero donde escribir.</param>
+            <returns>Verdadero si todo ha ido bien, falso en caso contrario.</returns>
+        </member>
+    </members>
+</doc>

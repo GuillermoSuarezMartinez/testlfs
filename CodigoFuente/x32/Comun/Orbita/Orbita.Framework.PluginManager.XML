@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orbita.Framework.PluginManager</name>
+    </assembly>
+    <members>
+        <member name="T:Orbita.Framework.PluginManager.IUserControlPlugin">
+            <summary>
+            Interface de controles de usuario.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.PluginManager.IPlugin">
+            <summary>
+            Interface de Plugin.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.PluginManager.IPlugin.Nombre">
+            <summary>
+            Nombre del Plugin. Clave del elemento que se va a agregar a la colección de Plugins.
+            Opción de menú que pertenece el evento Click.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.PluginManager.IPlugin.Descripcion">
+            <summary>
+            Descripción del Plugin.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.PluginManager.IPlugin.MostrarAlIniciar">
+            <summary>
+            Considerar mostrar el plugin al iniciar el repositorio principal de plugins (Main).
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.PluginManager.IUserControlPlugin.Control">
+            <summary>
+            Control de usuario (OrbitaUserControl).
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.PluginManager.PluginInfo">
+            <summary>
+            Información del plugin.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.PluginManager.PluginInfo.Ensamblado">
+            <summary>
+            Nombre del ensamblado asociado al plugin.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.PluginManager.PluginInfo.Plugin">
+            <summary>
+            Interface de plugin.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.PluginManager.PluginInfo.ItemMenu">
+            <summary>
+            Interface de menú.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.PluginManager.PluginInfo.Idioma">
+            <summary>
+            Interface de idioma.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.PluginManager.IFormIdioma">
+            <summary>
+            Interface de idioma.
+            </summary>
+        </member>
+        <member name="E:Orbita.Framework.PluginManager.IFormIdioma.OnCambiarIdioma">
+            <summary>
+            Evento relativo al cambio de idioma desde el/los plugins cliente.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.PluginManager.PluginOMenuStrip">
+            <summary>
+            Proporciona una estructura de menú para un formulario.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.PluginManager.PluginOMenuStrip.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Framework.PluginManager.PluginOMenuStrip.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="T:Orbita.Framework.PluginManager.IFormManejadorCierre">
+            <summary>
+            Interface de cierre.
+            </summary>
+        </member>
+        <member name="E:Orbita.Framework.PluginManager.IFormManejadorCierre.OnClose">
+            <summary>
+            Evento de cierre.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.PluginManager.IdiomaChangedEventArgs">
+            <summary>
+            Clase que contiene datos de eventos de cambio de idioma.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.PluginManager.IdiomaChangedEventArgs.idioma">
+            <summary>
+            Atributo relativo al idioma actual de controles.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.PluginManager.IdiomaChangedEventArgs.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Framework.PluginManager.IdiomaChangedEventArgs.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.PluginManager.IdiomaChangedEventArgs.#ctor(Orbita.Framework.Core.SelectorIdioma)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Framework.PluginManager.IdiomaChangedEventArgs.
+            </summary>
+            <param name="idioma">Nombre de la propiedad.</param>
+        </member>
+        <member name="P:Orbita.Framework.PluginManager.IdiomaChangedEventArgs.Idioma">
+            <summary>
+            Relativo al idioma actual de controles.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.PluginManager.PluginHelper">
+            <summary>
+            Objeto de carga.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.PluginManager.PluginHelper.path">
+            <summary>
+            Ruta del directorio de Plugins.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.PluginManager.PluginHelper.Ensamblados">
+            <summary>
+            Buscar Plugins en el directorio de Plugins configurado.
+            </summary>
+            <returns>Un diccionario con el título del Plugin como clave y la ruta del ensamblado como valor.</returns>
+        </member>
+        <member name="M:Orbita.Framework.PluginManager.PluginHelper.Plugins">
+            <summary>
+            Obtener Plugins especificados.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Framework.PluginManager.PluginHelper.CrearNuevaInstancia``1(Orbita.Framework.PluginManager.PluginInfo)">
+            <summary>
+            Crear una nueva instancia del Plugin del fichero de ensamblado especificado.
+            </summary>
+            <typeparam name="T">SubclassOf(typeof(System.Windows.Forms.Control.</typeparam>
+            <param name="pluginInfo">Plugin a cargar.</param>
+            <returns>Nueva instancia del objeto plugin.</returns>
+        </member>
+        <member name="P:Orbita.Framework.PluginManager.PluginHelper.Path">
+            <summary>
+            Ruta del directorio de Plugins.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.PluginManager.IFormPlugin">
+            <summary>
+            Interface de formularios.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.PluginManager.IFormPlugin.Formulario">
+            <summary>
+            Especifica el formulario actual al que hace referencia (this).
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.PluginManager.IFormPlugin.Mostrar">
+            <summary>
+            Especifica como se quiere mostrar el plugin. { Normal, Dialog, MdiChild }
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.PluginManager.MostrarComo">
+            <summary>
+            Determina de que tipo de formulario se trata.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.PluginManager.MostrarComo.Normal">
+            <summary>
+            Formulario normal.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.PluginManager.MostrarComo.Dialog">
+            <summary>
+            Formulario diálogo.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.PluginManager.MostrarComo.MdiChild">
+            <summary>
+            Formulario hijo del MDI parent.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.PluginManager.IItemMenu">
+            <summary>
+            Interface de plugin.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.PluginManager.IItemMenu.Dispose">
+            <summary>
+            Método IDisposable.Dispose() del plugin.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.PluginManager.IItemMenu.Grupo">
+            <summary>
+            Grupo al que pertenece el plugin. Opción padre del menú principal.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.PluginManager.IItemMenu.SubGrupo">
+            <summary>
+            Subgrupo al que pertenece el plugin.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.PluginManager.IItemMenu.Orden">
+            <summary>
+            Número de índice para ordenar el plugin en el árbol.
+            </summary>
+        </member>
+    </members>
+</doc>
