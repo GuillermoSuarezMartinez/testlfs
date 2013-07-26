@@ -373,12 +373,15 @@
             </Assembly>
             <Assembly AssemblyName="QWhale.Editor, Culture=neutral, PublicKeyToken=da632fd1713dff10" NotAvailable="1">
                 <Merging />
+                <Embedding />
             </Assembly>
             <Assembly AssemblyName="QWhale.Syntax.Parsers, Culture=neutral, PublicKeyToken=da632fd1713dff10" NotAvailable="1">
                 <Merging />
+                <Embedding />
             </Assembly>
             <Assembly AssemblyName="QWhale.Syntax, Culture=neutral, PublicKeyToken=da632fd1713dff10" NotAvailable="1">
                 <Merging />
+                <Embedding />
             </Assembly>
             <Assembly AssemblyName="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089">
                 <Merging />
@@ -524,6 +527,66 @@
             <Assembly AssemblyName="Orbita.Xml, Culture=neutral, PublicKeyToken=null">
                 <Merging />
                 <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Emgu.CV, Culture=neutral, PublicKeyToken=7281126722ab4438">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Emgu.Util, Culture=neutral, PublicKeyToken=7281126722ab4438">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="System.Data.SQLite, Culture=neutral, PublicKeyToken=db937bc2d44ff139">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="QWhale.Common, Culture=neutral, PublicKeyToken=da632fd1713dff10">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.VA.Funciones, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.ToolGroup, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="cmaccrdotnet8, Culture=neutral, PublicKeyToken=58339c1d2d6ea525">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="gxdotnet8, Culture=neutral, PublicKeyToken=3d92ae624958d2aa">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.MS, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="System.ServiceModel, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.IdentityModel, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Messaging, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.IdentityModel.Selectors, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.Transactions.Bridge, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.DirectX.AudioVideoPlayback, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.DirectX.Direct3D, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.DirectX, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
             </Assembly>
         </Assemblies>
         <Options>
