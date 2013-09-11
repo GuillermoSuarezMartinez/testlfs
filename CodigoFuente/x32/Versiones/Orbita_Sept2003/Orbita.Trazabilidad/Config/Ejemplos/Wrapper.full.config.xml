@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<otrazabilidad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <loggers>
+    <!--nombre = nombre del logger, necesario para hacer referencia al mismo desde la API-->
+    <!--nivel = nivel de logger-->
+    <!--niveles = debug/info/warn/error/fatal, por defecto debug sin referencia-->
+    <!--nivel = nivel de logger, por defecto debug-->
+    <!--niveles = debug/info/warn/error/fatal-->
+    <logger nombre="owrapper" xsi:type="Wrapper" nivel="debug">
+      <logger nombre="owrapperdebug" xsi:type="Debug" nivel="error" />
+      <logger nombre="owrapperremoting" xsi:type="Remoting" nivel="debug" />
+    </logger>
+  </loggers>
+  <propiedades>
+    <path logger="owrapperdebug" ruta="C:\prueba" fichero="debug" extension="log" />
+    <backup logger="owrapperdebug" ruta="C:\prueba\blog" subruta="Mes" bytes="1000000" />
+    <timer logger="owrapperdebug" hora="18:12:00" periodo="12h:0m:0s" />
+    <remoting logger="owrapperremoting" maquina="localhost" puerto="9999" alias="logger" />
+  </propiedades>
+</otrazabilidad>
