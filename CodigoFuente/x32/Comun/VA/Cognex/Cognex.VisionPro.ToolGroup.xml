@@ -149,6 +149,12 @@
             </summary>
             <param name="currentRecord">The record to append the contained tools' last run records to.</param>
         </member>
+        <member name="M:Cognex.VisionPro.Implementation.Internal.CogUserTool.AddSharedGraphics(Cognex.VisionPro.ICogRecord)">
+            <summary>
+            Shares all graphics between image records with the same space tree in the passed ICogRecord
+            </summary>
+            <param name="compositeRecord_in">The record containing the other records</param>
+        </member>
         <member name="M:Cognex.VisionPro.Implementation.Internal.CogUserTool.InternalCreateCurrentRecord(Cognex.VisionPro.ICogRecord,System.Int32)">
             <summary>
             Called by the CreateCurrentRecord method to create a record containing the
@@ -417,6 +423,10 @@
             Constructs a new instance of the CogToolGroup class.
             </summary>
             <param name="other">A CogToolGroup to copy.</param>
+            <remarks>Cognex recommends using 
+            <see cref="M:Cognex.VisionPro.CogSerializer.DeepCopyObject(System.Object)"/>
+            instead of this copy constructor.
+            </remarks>
         </member>
         <member name="M:Cognex.VisionPro.ToolGroup.CogToolGroup.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
@@ -434,6 +444,10 @@
             Creates a deep copy of the tool group.
             </summary>
             <returns>A deep copy of the cloned tool group.</returns>
+            <remarks>Cognex recommends using 
+            <see cref="M:Cognex.VisionPro.CogSerializer.DeepCopyObject(System.Object)"/>
+            instead of this method.
+            </remarks>
         </member>
         <member name="M:Cognex.VisionPro.ToolGroup.CogToolGroup.InternalRun(System.String@)">
             <summary>
@@ -498,6 +512,11 @@
         <member name="F:Cognex.VisionPro.Implementation.Internal.CogUserToolLastRunRecordConstants.CompositeSubToolRecords">
             <summary>
              Include the LastRunRecords of this tool's contained sub-tools.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Implementation.Internal.CogUserToolLastRunRecordConstants.CompositeSubToolSharedGraphics">
+            <summary>
+            Share the graphics between image records of this tool's LastRunRecord
             </summary>
         </member>
         <member name="T:Cognex.VisionPro.ToolGroup.ICogToolGroupScript">
@@ -638,43 +657,20 @@
         </member>
         <member name="M:Cognex.VisionPro.ToolBlock.CogToolBlock.#ctor(Cognex.VisionPro.ToolBlock.CogToolBlock)">
             <summary>
-            There is a bug in Clone.
-            Copies of the internal ToolBlock tools will still be 
-            linked to their source Tools in the original ToolBlock.
-            Instead, they should be linked to the cooresponding source
-            in the copied ToolBlock.
-            
-            For now, please workaround this issue using CogSerializer
-            to copy ToolBlock instances.
-            
-             CogToolBlock copyToolBlock = null;    
-             using (MemoryStream ms = new MemoryStream())
-             {
-               CogSerializer.SaveObjectToStream(origToolBlock, ms);
-               ms.Position = 0;
-               copyToolBlock = CogSerializer.LoadObjectFromStream(ms) as CogToolBlock;
-             } 
+            CogToolBlock does not support copy construction.
+            Please use <see cref="M:Cognex.VisionPro.CogSerializer.DeepCopyObject(System.Object)"/>
+            to copy a CogToolBlock.
             </summary>
+            <exception cref="T:System.NotSupportedException"/>
         </member>
         <member name="M:Cognex.VisionPro.ToolBlock.CogToolBlock.Clone">
             <summary>
-            There is a bug in Clone.
-            Copies of the internal ToolBlock tools will still be 
-            linked to their source Tools in the original ToolBlock.
-            Instead, they should be linked to the cooresponding source
-            in the copied ToolBlock.
-            
-            For now, please workaround this issue using CogSerializer
-            to copy ToolBlock instances.
-            
-             CogToolBlock copyToolBlock = null;    
-             using (MemoryStream ms = new MemoryStream())
-             {
-               CogSerializer.SaveObjectToStream(origToolBlock, ms);
-               ms.Position = 0;
-               copyToolBlock = CogSerializer.LoadObjectFromStream(ms) as CogToolBlock;
-             } 
+            CogToolBlock does not support Clone().
+            It's not well defined if Clone should return a deep or shallow copy.
+            Please use <see cref="M:Cognex.VisionPro.CogSerializer.DeepCopyObject(System.Object)"/>
+            to create a copy of a CogToolBlock.
             </summary>
+            <exception cref="T:System.NotSupportedException"/>
         </member>
         <member name="M:Cognex.VisionPro.ToolBlock.CogToolBlock.mInputs_Changed(System.Object,Cognex.VisionPro.CogChangedEventArgs)">
             <summary>

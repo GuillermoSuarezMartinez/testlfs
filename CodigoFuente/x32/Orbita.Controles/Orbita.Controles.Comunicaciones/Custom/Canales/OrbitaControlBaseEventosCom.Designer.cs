@@ -1,4 +1,5 @@
-﻿namespace Orbita.Controles.Comunicaciones
+﻿using System;
+namespace Orbita.Controles.Comunicaciones
 {
     partial class OrbitaControlBaseEventosComs
     {
@@ -17,7 +18,16 @@
             {
                 components.Dispose();
             }
-            base.Dispose(disposing);
+            try
+            {
+                this.Finalizar();
+                base.Dispose(disposing);
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            
         }
 
         #region Código generado por el Diseñador de componentes

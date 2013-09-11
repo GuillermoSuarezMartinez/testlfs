@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        cognex.visionpro.autoselect
+        "Cognex.VisionPro.AutoSelect"
     </assembly>
     <members>
         <member name="M:Cognex.VisionPro.AutoSelect.CogAutoSelect.GetDiagImages(Cognex.VisionPro.CogImage8Grey,Cognex.VisionPro.ICogRegion,Cognex.VisionPro.CogImage8Grey@,Cognex.VisionPro.CogImage8Grey@)">

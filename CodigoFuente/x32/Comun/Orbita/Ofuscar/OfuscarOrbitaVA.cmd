@@ -13,13 +13,25 @@ xcopy ..\Orbita.VA.Comun.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 @echo Orbita.VA.Funciones...........................................
 IF %resp% == t GOTO FuncionesEx
 set /p resp="Desea ofuscar el ensamblado actual? (s=si, n=no, t=si a todo): " %=%
-IF %resp% == n GOTO Hardware
+IF %resp% == n GOTO HerramientasVisionPro
 :FuncionesEx
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.Funciones.dll /q/f
 del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.Funciones.xml /q/f
 "%PROGRAMFILES%\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.VA.Funciones32.saproj
 verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.Funciones.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2013"
 xcopy ..\Orbita.VA.Funciones.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
+
+:HerramientasVisionPro
+@echo Orbita.VA.HerramientasVisionPro...............................
+IF %resp% == t GOTO HerramientasVisionProEx
+set /p resp="Desea ofuscar el ensamblado actual? (s=si, n=no, t=si a todo): " %=%
+IF %resp% == n GOTO Hardware
+:HerramientasVisionProEx
+del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.HerramientasVisionPro.dll /q/f
+del C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.HerramientasVisionPro.xml /q/f
+"%PROGRAMFILES%\Red Gate\SmartAssembly 6\SmartAssembly.com" /build .\Orbita.VA.HerramientasVisionPro32.saproj
+verpatch C:\TFS\Orbita\General\Dlls\x32\Orbita\Orbita.VA.HerramientasVisionPro.dll /s company "Orbita Software" /s copyright "Copyright © Orbita Ingenieria SW 2013"
+xcopy ..\Orbita.VA.HerramientasVisionPro.xml C:\TFS\Orbita\General\Dlls\x32\Orbita
 
 :Hardware
 @echo Orbita.VA.Hardware............................................

@@ -10,6 +10,7 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
+using System.Linq;
 using System.Drawing;
 using System.Collections.Generic;
 
@@ -78,7 +79,7 @@ namespace Orbita.Utiles
         /// Calcula los parámetros m y b tal que y=m*x+b de la línea que más se aproxima a la nube de puntos pasada por parámetro
         /// No válido para líneas verticales!!!
         /// </summary>
-        public static void CalculoLineaMinimosCuadrados(PointF[] nubePuntos, out double m, out Double b)
+        public static void CalculoLineaMinimosCuadrados(PointF[] nubePuntos, out double m, out double b)
         {
             List<PointF> listaNubePuntos = new List<PointF>(nubePuntos);
             CalculoLineaMinimosCuadrados(listaNubePuntos, out m, out b);
@@ -87,7 +88,16 @@ namespace Orbita.Utiles
         /// Calcula los parámetros m y b tal que y=m*x+b de la línea que más se aproxima a la nube de puntos pasada por parámetro.
         /// No válido para líneas verticales!!!
         /// </summary>
-        public static void CalculoLineaMinimosCuadrados(List<PointF> nubePuntos, out double m, out Double b)
+        public static void CalculoLineaMinimosCuadrados(PointF[] nubePuntos, int numPuntosDescartar, double distanciaDescarte, out double m, out double b, out double desviacionEstandar)
+        {
+            List<PointF> listaNubePuntos = new List<PointF>(nubePuntos);
+            CalculoLineaMinimosCuadrados(listaNubePuntos, numPuntosDescartar, distanciaDescarte, out m, out b, out desviacionEstandar);
+        }
+        /// <summary>
+        /// Calcula los parámetros m y b tal que y=m*x+b de la línea que más se aproxima a la nube de puntos pasada por parámetro.
+        /// No válido para líneas verticales!!!
+        /// </summary>
+        public static void CalculoLineaMinimosCuadrados(List<PointF> nubePuntos, out double m, out double b)
         {
             m = 0;
             b = 0;
@@ -120,6 +130,87 @@ namespace Orbita.Utiles
                     m = 0;
                     b = nubePuntos[0].X;
                 }
+            }
+        }
+        /// <summary>
+        /// Calcula los parámetros m y b tal que y=m*x+b de la línea que más se aproxima a la nube de puntos pasada por parámetro.
+        /// No válido para líneas verticales!!!
+        /// </summary>
+        public static void CalculoLineaMinimosCuadrados(List<PointF> nubePuntos, out double m, out double b, out double desviacionEstandar)
+        {
+            m = 0;
+            b = 0;
+            desviacionEstandar = 0;
+
+            if (nubePuntos.Count > 0)
+            {
+                CalculoLineaMinimosCuadrados(nubePuntos, out m, out b);
+
+                double sumaDistancia = 0;
+                foreach (PointF punto in nubePuntos)
+                {
+                    PointF puntoDeLinea = new PointF(punto.X, (float)(m * punto.X + b));
+                    sumaDistancia += Distancia(puntoDeLinea, punto);
+                }
+                desviacionEstandar = sumaDistancia / nubePuntos.Count;
+            }
+        }
+        /// <summary>
+        /// Calcula los parámetros m y b tal que y=m*x+b de la línea que más se aproxima a la nube de puntos pasada por parámetro.
+        /// No válido para líneas verticales!!!
+        /// </summary>
+        public static void CalculoLineaMinimosCuadrados(List<PointF> nubePuntos, int numPuntosDescartar, double distanciaDescarte, out double m, out double b, out double desviacionEstandar)
+        {
+            m = 0;
+            b = 0;
+            desviacionEstandar = 0;
+
+            if (nubePuntos.Count > 0)
+            {
+                double mProvisional;
+                double bProvisional;
+                CalculoLineaMinimosCuadrados(nubePuntos, out mProvisional, out bProvisional);
+
+                if (numPuntosDescartar > 0)
+                {
+                    // Cálculo de distancias
+                    Dictionary<PointF, double> distancias = new Dictionary<PointF, double>();
+                    foreach (PointF punto in nubePuntos)
+                    {
+                        PointF puntoDeLinea = new PointF(punto.X, (float)(mProvisional * punto.X + bProvisional));
+                        double distancia = Distancia(puntoDeLinea, punto);
+
+                        distancias.Add(punto, distancia);
+                    }
+
+                    // Ordenación de las distancias
+                    var puntosAEliminar = (from dist in distancias
+                                           where dist.Value > distanciaDescarte
+                                           orderby dist.Value descending
+                                           select dist.Key).Take(numPuntosDescartar);
+
+                    if (puntosAEliminar.Count() > 0)
+                    {
+                        foreach (PointF punto in puntosAEliminar)
+                        {
+                            distancias.Remove(punto);
+                        }
+
+                        List<PointF> nubePuntosFiltrada = distancias.Keys.ToList();
+                        CalculoLineaMinimosCuadrados(nubePuntosFiltrada, out mProvisional, out bProvisional);
+                    }
+                }
+
+                m = mProvisional;
+                b = bProvisional;
+
+                double sumaDistancia = 0;
+                foreach (PointF punto in nubePuntos)
+                {
+                    PointF puntoDeLinea = new PointF(punto.X, (float)(m * punto.X + b));
+                    sumaDistancia += Distancia(puntoDeLinea, punto);
+                }
+                desviacionEstandar = sumaDistancia / nubePuntos.Count;
             }
         }
         #endregion

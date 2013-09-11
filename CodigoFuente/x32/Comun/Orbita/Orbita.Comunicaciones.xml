@@ -64,6 +64,21 @@
             Logger de la clase
             </summary>
         </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivo.bloqueo">
+            <summary>
+            Objeto para bloquear las escrituras
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivo._segEventoCom">
+            <summary>
+            Segundos del evento Com
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivo._fechaUltimoEventoComs">
+            <summary>
+            Fecha del último evento de comunicaciones
+            </summary>
+        </member>
         <member name="M:Orbita.Comunicaciones.ODispositivo.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase Dispositivo.
@@ -524,12 +539,12 @@
             Colección de hilos.
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoES.Config">
+        <member name="F:Orbita.Comunicaciones.ODispositivoES._config">
             <summary>
             Datos de configuración del canal
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoES.OEventargs">
+        <member name="F:Orbita.Comunicaciones.ODispositivoES._oEventargs">
             <summary>
             Argumentos para generar los eventos
             </summary>
@@ -547,6 +562,11 @@
         <member name="F:Orbita.Comunicaciones.ODispositivoES.Entradas">
             <summary>
             Valor devuelto para las entradas
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoES.Salidas">
+            <summary>
+            Byte de escrituras
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoES._segundosLogErrorComunicacion">
@@ -718,6 +738,16 @@
             Fecha del ultimo wrapper de error
             </summary>
         </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES._idMens">
+            <summary>
+            Identificador del mensaje a enviar para la escritura
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES._qEscrituras">
+            <summary>
+            Cola de recepción de tramas de datos.
+            </summary>
+        </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
             <summary>
             Constructor de clase de Siemens1200
@@ -788,6 +818,14 @@
             <param name="valorBit"></param>
             <returns></returns>
         </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.ProcesarEscritura(System.String[],System.Object[])">
+            <summary>
+            Calcula el valor de las salidas para enviar al dispositivo
+            </summary>
+            <param name="variables"></param>
+            <param name="valores"></param>
+            <returns></returns>
+        </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.ESEncolar(System.Byte[])">
             <summary>
             Método que encola trama GateData.
@@ -804,6 +842,12 @@
             <summary>
             Hilo de proceso de ES
             </summary>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.Enviar(System.Object)">
+            <summary>
+            Enviar datos al dispositivo
+            </summary>
+            <param name="data"></param>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES._winsock_DataArrival(System.Object,Orbita.Winsock.WinsockDataArrivalEventArgs)">
             <summary>
@@ -843,7 +887,7 @@
             Evento de cambio de dato salidas
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.ODispositivoSiemens1200ES.IdMensaje">
+        <member name="P:Orbita.Comunicaciones.ODispositivoSiemens1200ES.IdMens">
             <summary>
             Identificador del mensaje
             </summary>
@@ -1409,7 +1453,7 @@
             </summary>
             <returns>mensaje de respuesta</returns>
         </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemens.SalidasProcesar(System.Byte[],System.Byte)">
+        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemens.SalidasProcesar(System.Byte[],System.Byte,System.Byte[]@)">
             <summary>
             Escritura de salidas
             </summary>
@@ -1498,7 +1542,7 @@
             <param name="idMensaje">identificador del mensaje</param>
             <returns></returns>
         </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS.SalidasProcesar(System.Byte[],System.Byte)">
+        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS.SalidasProcesar(System.Byte[],System.Byte,System.Byte[]@)">
             <summary>
             Escritura de salidas
             </summary>
@@ -1615,7 +1659,7 @@
             <param name="idMensaje">identificador del mensaje</param>
             <returns></returns>
         </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic.SalidasProcesar(System.Byte[],System.Byte)">
+        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic.SalidasProcesar(System.Byte[],System.Byte,System.Byte[]@)">
             <summary>
             Mensaje de recepción de escritura de salidas
             </summary>
@@ -1773,10 +1817,18 @@
             Fecha del ultimo wrapper de error
             </summary>
         </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoILBKPhoenix._qEscrituras">
+            <summary>
+            Cola de recepción de tramas de datos.
+            </summary>
+        </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoILBKPhoenix.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
             <summary>
-            Constructor de clase de ILBKPhoenix
+            Constructor de clase
             </summary>
+            <param name="tags">variables</param>
+            <param name="hilos">hilos del dispositivo</param>
+            <param name="dispositivo">dispositivo</param>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoILBKPhoenix.ProcesarHiloVida">
             <summary>
@@ -1831,19 +1883,33 @@
             <param name="valorBit"></param>
             <returns></returns>
         </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoILBKPhoenix.Enviar(System.Object)">
+            <summary>
+            Enviar datos al dispositivo
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoILBKPhoenix.ProcesarEscritura(System.String[],System.Object[])">
+            <summary>
+            Calcula el valor de las salidas para enviar al dispositivo
+            </summary>
+            <param name="variables"></param>
+            <param name="valores"></param>
+            <returns></returns>
+        </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoILBKPhoenix.ESEncolar(System.Byte[])">
             <summary>
-            Método que encola trama GateData.
+            Método que encola las lecturas para que se procesen.
             </summary>
             <param name="trama"></param>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoILBKPhoenix.ESDesencolar">
             <summary>
-            Método que desencola trama GateData.
+            Método que desencola las lecturas para ser procesadas.
             </summary>
             <returns>Objeto GateData</returns>
         </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoILBKPhoenix.ESProcesarHilo">
+        <member name="M:Orbita.Comunicaciones.ODispositivoILBKPhoenix.ESColaVariables">
             <summary>
             Hilo de proceso de ES
             </summary>
@@ -2354,7 +2420,7 @@
             <param name="idMensaje">identificador del mensaje</param>
             <returns></returns>
         </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR.SalidasProcesar(System.Byte[],System.Byte)">
+        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR.SalidasProcesar(System.Byte[],System.Byte,System.Byte[]@)">
             <summary>
             Escritura de salidas
             </summary>
@@ -2419,6 +2485,11 @@
             Tiempos de espera de vida (segundos).
             </summary>
         </member>
+        <member name="F:Orbita.Comunicaciones.OConfigDispositivo._segEventoComs">
+            <summary>
+            Segundos de envío de evento Coms
+            </summary>
+        </member>
         <member name="P:Orbita.Comunicaciones.OConfigDispositivo.TiempoEsperaLectura">
             <summary>
             Tiempo de espera lectura (segundos).
@@ -2432,6 +2503,11 @@
         <member name="P:Orbita.Comunicaciones.OConfigDispositivo.TiempoVida">
             <summary>
             Tiempo vida (segundos).
+            </summary>
+        </member>
+        <member name="P:Orbita.Comunicaciones.OConfigDispositivo.SegEventoComs">
+            <summary>
+            Segundos de envío de evento de comunicaciones
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.OBroadcastEventWrapper">
@@ -2597,7 +2673,7 @@
             <param name="idMensaje">identificador del mensaje</param>
             <returns></returns>
         </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR.SalidasProcesar(System.Byte[],System.Byte)">
+        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR.SalidasProcesar(System.Byte[],System.Byte,System.Byte[]@)">
             <summary>
             Escritura de salidas
             </summary>
@@ -4411,7 +4487,7 @@
             <param name="idMensaje">identificador del mensaje</param>
             <returns></returns>
         </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS.SalidasProcesar(System.Byte[],System.Byte)">
+        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS.SalidasProcesar(System.Byte[],System.Byte,System.Byte[]@)">
             <summary>
             Escritura de salidas
             </summary>

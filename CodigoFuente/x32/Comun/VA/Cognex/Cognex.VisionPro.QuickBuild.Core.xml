@@ -207,6 +207,18 @@
         <member name="F:Cognex.VisionPro.QuickBuild.CogJob.SfThroughputSampleSize">
             <summary> Total Job Throughput Sample Size State Flag </summary>
         </member>
+        <member name="F:Cognex.VisionPro.QuickBuild.CogJob.SfRunCount">
+            <summary> Maximum number of job runs State Flag</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.QuickBuild.CogJob.SfRunCountEnable">
+            <summary> RunCountEnable State Flag </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.QuickBuild.CogJob.SfRemainingRuns">
+            <summary> RemainingRuns State Flag</summary>
+        </member>
+        <member name="F:Cognex.VisionPro.QuickBuild.CogJob.SfTotalEncoderOverruns">
+            <summary>Total Encoder Overruns State Flag </summary>
+        </member>
         <member name="M:Cognex.VisionPro.QuickBuild.CogJob.#ctor">
             <summary>
             Default CogJob constructor.  The newly constructed CogJob has no name.
@@ -396,6 +408,16 @@
             Returns the stored CogVTLink object using a link name.
             </summary>
             <param name="linkName">The link name of the wanted CogVTLink object.</param>
+            <returns>A reference of the requested CogVTLink object.</returns>
+            <exception cref="T:System.Exceptions.ArgumentException">Thrown if the specified CogVTLink object was not found.</exception>
+            <remarks/><example/><seealso/>
+        </member>
+        <member name="M:Cognex.VisionPro.QuickBuild.CogJob.VisionToolLink(System.String,Cognex.VisionPro.QuickBuild.CogDestinationQueueConstants)">
+            <summary>
+            Returns the stored CogVTLink object using a link name and its type.
+            </summary>
+            <param name="linkName">The link name of the wanted CogVTLink object.</param>
+            <param name="destination">The destination of the link</param>
             <returns>A reference of the requested CogVTLink object.</returns>
             <exception cref="T:System.Exceptions.ArgumentException">Thrown if the specified CogVTLink object was not found.</exception>
             <remarks/><example/><seealso/>
@@ -614,6 +636,24 @@
             <exception cref="T:Cognex.VisionPro.Exceptions.CogNotStoppedException">Thrown if the CogJob is not stopped.</exception>
             <remarks/><example/><seealso/>
         </member>
+        <member name="P:Cognex.VisionPro.QuickBuild.CogJob.RunCountEnable">
+            <summary>
+            Enable or disable RunCount
+            </summary>
+            <value>If true and the job is in continuous mode then the job will stop after it ran as many time as defined by RunCount.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">Fires when the RunCountEnable changes.</event>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogNotStoppedException">Thrown if the CogJob is not stopped.</exception>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\QuickBuild\CogJob.xml" path="//member[@name=&quot;P:Cognex.VisionPro.QuickBuild.CogJob.AcquisitionCountEnable&quot;]/*"/>
+        </member>
+        <member name="P:Cognex.VisionPro.QuickBuild.CogJob.RunCount">
+            <summary>
+            Get or set the maximum number of job runs.
+            </summary>
+            <value>RunCount defines the maximum number of job run if RunCountEnable is true and the job is in continuous mode.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">Fires when RunCount changes.</event>
+            <exception cref="T:Cognex.VisionPro.Exceptions.CogNotStoppedException">Thrown if the CogJob is not stopped.</exception>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\QuickBuild\CogJob.xml" path="//member[@name=&quot;P:Cognex.VisionPro.QuickBuild.CogJob.AcquisitionCount&quot;]/*"/>
+        </member>
         <member name="P:Cognex.VisionPro.QuickBuild.CogJob.StartCount">
             <summary>
             Get or set the number of StartAcquires in the acq fifo's queue.
@@ -797,6 +837,14 @@
             <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">Fires when this statistic changes.</event>
             <remarks/><example/><seealso/>
         </member>
+        <member name="P:Cognex.VisionPro.QuickBuild.CogJob.TotalEncoderOverruns">
+            <summary>
+            Get or set the total number of encoder overruns.
+            </summary>
+            <value>Every time an encoder overruns, this statistic is incremented by one.  Generally, the only reason to write to this statistic is to reset it to zero.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">Fires when this statistic changes.</event>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\QuickBuild\CogJob.xml" path="//member[@name=&quot;P:Cognex.VisionPro.QuickBuild.CogJob.TotalEncoderOverruns&quot;]/*"/>
+        </member>
         <member name="P:Cognex.VisionPro.QuickBuild.CogJob.TotalAcquisitions">
             <summary>
             Get or set the total number of acquisition completed.
@@ -828,6 +876,14 @@
             <value>This statistic keeps track of the maximum throughput value seen.  This statistics is only updated when running in continuous mode.  The initial value of this statistic is 0.  This statistic is not updated until the job has been running for a settling time.  This settling time depends on the throughput algorithm.  The settling time is either 10 seconds when using the SimpleAverage algorithm or until at least ThroughputSampleSize job cycles have executed when using the MovingAverage algorithm.  Resetting this statistic is only possible by using RestartThroughputCalculation().</value>
             <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">Fires when this statistic changes.</event>
             <remarks/><example/><seealso/>
+        </member>
+        <member name="P:Cognex.VisionPro.QuickBuild.CogJob.RemainingRuns">
+            <summary>
+            Get or set the number of remaining job runs.
+            </summary>
+            <value> RemainingRuns is the number of job runs left if JobRunCountEnable is enabled and the job is in continuous mode.</value>
+            <event cref="E:Cognex.VisionPro.ICogChangedEvent.Changed">Fires when this statistic changes.</event>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\QuickBuild\CogJob.xml" path="//member[@name=&quot;P:Cognex.VisionPro.QuickBuild.CogJob.RemainingAcquisitions&quot;]/*"/>
         </member>
         <member name="P:Cognex.VisionPro.QuickBuild.CogJob.ThroughputAlgorithm">
             <summary>
@@ -4504,6 +4560,11 @@
         <member name="P:Cognex.VisionPro.QuickBuild.Implementation.Internal.CogJobControl.VisionToolRunStatus">
             <summary>
             VisionToolRunStatus
+            </summary>
+        </member>
+        <member name="P:Cognex.VisionPro.QuickBuild.Implementation.Internal.CogJobControl.CurrentAcquisitionCount">
+            <summary>
+            Current number of acquisitions
             </summary>
         </member>
         <member name="P:Cognex.VisionPro.QuickBuild.Implementation.Internal.CogJobControl.AcquisitionRunStatus">

@@ -228,8 +228,8 @@ namespace Orbita.Comunicaciones
                     }
                     else
                     {
-                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
-                            " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
+                        //wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+                        //    " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
                     }
 
                 }
@@ -302,8 +302,8 @@ namespace Orbita.Comunicaciones
                     }
                     else
                     {
-                        wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
-                            " al actualizar las variables de salida en el dispositivo de ES Siemens.");
+                        //wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
+                        //    " al actualizar las variables de salida en el dispositivo de ES Siemens.");
                     }
 
                 }

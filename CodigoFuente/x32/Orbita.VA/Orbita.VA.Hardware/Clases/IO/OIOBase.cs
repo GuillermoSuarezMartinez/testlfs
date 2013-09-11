@@ -47,8 +47,22 @@ namespace Orbita.VA.Hardware
                 foreach (DataRow dr in dt.Rows)
                 {
                     string codHardware = dr["CodHardware"].ToString();
+                    if (!codHardware.ValidarNomenclaturaPropiedadNet())
+                    {
+                        throw new ONomenclaturaNetException(codHardware);
+                    }
+
                     string ensambladoClaseImplementadora = dr["EnsambladoClaseImplementadora"].ToString();
+                    if (!ensambladoClaseImplementadora.ValidarNomenclaturaEnsambladoNet())
+                    {
+                        throw new ONomenclaturaNetException(ensambladoClaseImplementadora);
+                    }
+
                     string claseImplementadora = dr["ClaseImplementadora"].ToString();
+                    if (!claseImplementadora.ValidarNomenclaturaPropiedadNet())
+                    {
+                        throw new ONomenclaturaNetException(claseImplementadora);
+                    }
 
                     OModuloIOBase tarjetaIO;
                     if (CrearModuloIO(ensambladoClaseImplementadora, claseImplementadora, out tarjetaIO, codHardware))

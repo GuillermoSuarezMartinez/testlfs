@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        cognex.visionpro.colorextractor
+        "Cognex.VisionPro.ColorExtractor"
     </assembly>
     <members>
         <member name="M:Cognex.VisionPro.ColorExtractor.CogColorExtractorTool.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">

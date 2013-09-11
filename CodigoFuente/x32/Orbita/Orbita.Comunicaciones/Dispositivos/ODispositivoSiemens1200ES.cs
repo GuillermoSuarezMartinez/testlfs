@@ -196,7 +196,14 @@ namespace Orbita.Comunicaciones
                                     {
                                         DispositivoEscrituras de = null;
                                         de = ((DispositivoEscrituras)this._qEscrituras.Dequeue());
-                                        wrapper.Info("ODispositivoSiemens1200 ProcesarHiloVida Escritura de " + de.Variables.Length.ToString());
+                                        string traza = "";
+
+                                        for (int i = 0; i < de.Variables.Length; i++)
+                                        {
+                                            traza = traza + "#Variable " + de.Variables[i].ToString() + " Valor " + de.Valores[i].ToString();
+                                        }
+
+                                        wrapper.Info("ODispositivoSiemens1200 ProcesarHiloVida Escritura de " + traza);
                                         this.Enviar(protocoloEscritura.SalidasEnviar(this.ProcesarEscritura(de.Variables, de.Valores), this._idMens));
                                         Thread.Sleep(10);
                                     }
@@ -320,42 +327,44 @@ namespace Orbita.Comunicaciones
         {            
             lock (this._qEscrituras.SyncRoot)
             {
-                DispositivoEscrituras de = null;
+                DispositivoEscrituras de = new DispositivoEscrituras(variables, valores);
+                this._qEscrituras.Enqueue(de);
+                //DispositivoEscrituras de = null;
 
-                if (this._qEscrituras.Count>0)
-                {
-                    de = ((DispositivoEscrituras)this._qEscrituras.Dequeue());
-                }
+                //if (this._qEscrituras.Count>0)
+                //{
+                //    de = ((DispositivoEscrituras)this._qEscrituras.Dequeue());
+                //}
 
-                int longitud = 0;
+                //int longitud = 0;
 
-                if (de!=null)
-                {
-                    longitud = de.Valores.Length;
-                }
+                //if (de!=null)
+                //{
+                //    longitud = de.Valores.Length;
+                //}
 
-                longitud = longitud + variables.Length;
+                //longitud = longitud + variables.Length;
 
-                string[] vars = new string[longitud];
-                object[] vals = new object[longitud];
+                //string[] vars = new string[longitud];
+                //object[] vals = new object[longitud];
 
-                for (int i = 0; i < longitud; i++)
-                {
-                    if (i<variables.Length)
-                    {
-                        vars[i] = variables[i];
-                        vals[i] = valores[i];
-                    }
-                    else
-                    {
-                        vars[i] = de.Variables[longitud-variables.Length-i];
-                        vals[i] = de.Valores[longitud - variables.Length - i];
-                    }
+                //for (int i = 0; i < longitud; i++)
+                //{
+                //    if (i<variables.Length)
+                //    {
+                //        vars[i] = variables[i];
+                //        vals[i] = valores[i];
+                //    }
+                //    else
+                //    {
+                //        vars[i] = de.Variables[longitud-variables.Length-i];
+                //        vals[i] = de.Valores[longitud - variables.Length - i];
+                //    }
                     
-                }
-                DispositivoEscrituras disp = new DispositivoEscrituras(vars, vals);
+                //}
+                //DispositivoEscrituras disp = new DispositivoEscrituras(vars, vals);
 
-                this._qEscrituras.Enqueue(disp);
+                //this._qEscrituras.Enqueue(disp);
             }
 
             return true;
@@ -535,7 +544,6 @@ namespace Orbita.Comunicaciones
 
             return salidas;
         }
-
         /// <summary>
         /// Método que encola trama GateData.
         /// </summary>
@@ -582,7 +590,6 @@ namespace Orbita.Comunicaciones
         {
 
         }
-
         /// <summary>
         /// Enviar datos al dispositivo
         /// </summary>

@@ -6,20 +6,19 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-
 using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading;
-using Orbita.VA.Comun;
-using Orbita.Utiles;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading;
+using Orbita.Utiles;
+using Orbita.VA.Comun;
 
 namespace Orbita.VA.Funciones
 {
@@ -150,6 +149,26 @@ namespace Orbita.VA.Funciones
             {
                 OLogsVAFunciones.LPR.Error(exception, "LPR", "Finalizando el motor LPR:" + exception.ToString());
                 return false;
+            }
+        }
+        /// <summary>
+        /// Resetea las colas
+        /// </summary>
+        /// <returns></returns>
+        public static int Reset()
+        {
+            try
+            {
+                ColaDeResultados.Clear();
+                ProductorConsumidor.Clear();
+                ElementosEnviados.Clear();
+                GC.Collect();
+                return 1;
+            }
+            catch (Exception exception)
+            {
+                OLogsVAFunciones.LPR.Error(exception, "LPR", "Reseteando el wrapper LPR:" + exception.ToString());
+                return 0;
             }
         }
         /// <summary>
@@ -570,11 +589,11 @@ namespace Orbita.VA.Funciones
                                 try
                                 {
                                     matricula = Encoding.UTF7.GetString(res.strResult, i * 10, res.vlNumbersOfCharacters[i]);
-                                    OLogsVAFunciones.LPR.Debug("LPR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR (id = {0}) : CODIGO {1}", new object[] { id, matricula }));
+                                    OLogsVAFunciones.LPR.Debug("LPR", string.Format(new CultureInfo("en-US"), "Callback ResultadoLPR (id = {0}) : CODIGO {1}, FIABILIDAD {2}", new object[] { id, matricula, fia}));
                                 }
                                 catch (Exception exception)
                                 {
-                                    OLogsVAFunciones.LPR.Error(exception, "LPR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR (id = {0}) : Numero carácteres {1}", new object[] { id, res.vlNumbersOfCharacters[i] }));
+                                    OLogsVAFunciones.LPR.Error(exception, "LPR", string.Format(new CultureInfo("en-US"), "Callback ResultadoLPR (id = {0}) : Numero carácteres {1}", new object[] { id, res.vlNumbersOfCharacters[i] }));
                                 }
 
                                 resultadoLPR = new OLPRCodeInfo(matricula, res.lProcessingTime, (double)avgChar, lpos, tpos, rpos, bpos, (double)fia,
@@ -596,7 +615,7 @@ namespace Orbita.VA.Funciones
                 }
                 catch (Exception exception)
                 {
-                    OLogsVAFunciones.LPR.Error(exception, "LPR", string.Format(new CultureInfo("en-US"), "ERROR CallbackCCR Exception, {0}", new object[] { exception.Message }));
+                    OLogsVAFunciones.LPR.Error(exception, "LPR", string.Format(new CultureInfo("en-US"), "ERROR CallbackLPR Exception, {0}", new object[] { exception.Message }));
                     OLPRCodeInfo resultadoVacioError = new OLPRCodeInfo(string.Empty, res.lProcessingTime, 0f, 0, 0, 0, 0, 0f, string.Empty, id, 0, null, 0);
                     ColaDeResultados.Enqueue(new OPair<OLPRCodeInfo, OLPRData>(resultadoVacioError, datoEnviado));
                 }
@@ -1043,10 +1062,6 @@ namespace Orbita.VA.Funciones
         /// Cantidad de lecturas
         /// </summary>
         private int TotalReadItems;
-        /// <summary>
-        /// Codigo funcion
-        /// </summary>
-        private string codFunc;
         #endregion
 
         #region Propiedades
