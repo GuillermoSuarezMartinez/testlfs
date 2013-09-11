@@ -6,19 +6,18 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-
 using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 using Orbita.Utiles;
-using System.Runtime.InteropServices;
 using Orbita.VA.Comun;
 
 namespace Orbita.VA.Funciones
@@ -197,23 +196,6 @@ namespace Orbita.VA.Funciones
                             }
                         }
                     }
-
-
-
-                    //Dictionary<long, OCCRData> nuevo = new Dictionary<long, OCCRData>();
-                    //foreach (KeyValuePair<long, OCCRData> elemento in ElementosEnviados)
-                    //{
-                    //    // do something with entry.Value or entry.Key
-                    //    OCCRData datos = elemento.Value;
-                    //    long ident = elemento.Key;
-                    //    if (datos.GetCodFuncion != codFuncion)
-                    //    {
-                    //        nuevo.Add(ident, datos);
-                    //    }
-                    //}
-                    //ElementosEnviados.Clear();
-                    //ElementosEnviados = new Dictionary<long, OCCRData>(nuevo);
-                    //nuevo.Clear();
                     GC.Collect();
                 }
                 return 1;
@@ -492,8 +474,8 @@ namespace Orbita.VA.Funciones
                         {
                             // Pasamos la imagen al motor, dependiendo de su formato
                             Bitmap currentImage = (Bitmap)valor.ImageInformation.GetImage.Clone();
-                            Bitmap otra = new Bitmap(valor.ImageInformation.GetImage);
-                            Rectangle rect2 = new Rectangle(0, 0, otra.Width, otra.Height);
+                            //Bitmap otra = new Bitmap(valor.ImageInformation.GetImage);
+                            //Rectangle rect2 = new Rectangle(0, 0, otra.Width, otra.Height);
                             Rectangle rect = new Rectangle(0, 0, currentImage.Width, currentImage.Height);
                             BitmapData bmpData = currentImage.LockBits(rect, ImageLockMode.ReadWrite, currentImage.PixelFormat);
                             // Cogemos la dirección de la primera línea
@@ -579,63 +561,60 @@ namespace Orbita.VA.Funciones
                         }
                         else if (res.lNumberOfCodes > 0)
                         {
-                            //for (int i = 0; i < res.lNumberOfCodes; i++)
-                            //{
-                                // Inicializamos variables para obtener los datos
-                                int posBottomISO = 0;
-                                int posLeftISO = 0;
-                                int posRightISO = 0;
-                                int posTopISO = 0;
-                                float calidadISO = 0;
-                                int numCaracISO = 0;
-                                bool esInvertido = false;
-                                bool esVertical = false;
-                                string codigo = null;
-                                string extraInfo = null;
-                                float fia = res.vlGlobalConfidence[0];
-                                int bpos = res.vlBottom[0];
-                                int lpos = res.vlLeft[0];
-                                int rpos = res.vlRight[0];
-                                int tpos = res.vlTop[0];
-                                float avgChar = res.vfAverageCharacterHeight[0];
-                                float[] destinationArray = null;
-                                float[] numArray = null;
-                                numArray = new float[(res.vlNumbersOfCharacters[0] - 1) + 1];
-                                Array.Copy(res.vfCharacterConfidence, numArray, res.vlNumbersOfCharacters[0]);
-                                int nLines = res.lNumLines[0];
-                                if (res.bIsInverted[0] == 1) { esInvertido = true; }
-                                if (res.bIsVertical[0] == 1) { esVertical = true; }
+                            // Inicializamos variables para obtener los datos
+                            int posBottomISO = 0;
+                            int posLeftISO = 0;
+                            int posRightISO = 0;
+                            int posTopISO = 0;
+                            float calidadISO = 0;
+                            int numCaracISO = 0;
+                            bool esInvertido = false;
+                            bool esVertical = false;
+                            string codigo = null;
+                            string extraInfo = null;
+                            float fia = res.vlGlobalConfidence[0];
+                            int bpos = res.vlBottom[0];
+                            int lpos = res.vlLeft[0];
+                            int rpos = res.vlRight[0];
+                            int tpos = res.vlTop[0];
+                            float avgChar = res.vfAverageCharacterHeight[0];
+                            float[] destinationArray = null;
+                            float[] numArray = null;
+                            numArray = new float[(res.vlNumbersOfCharacters[0] - 1) + 1];
+                            Array.Copy(res.vfCharacterConfidence, numArray, res.vlNumbersOfCharacters[0]);
+                            int nLines = res.lNumLines[0];
+                            if (res.bIsInverted[0] == 1) { esInvertido = true; }
+                            if (res.bIsVertical[0] == 1) { esVertical = true; }
 
-                                // Obtenemos el código
-                                try
-                                {
-                                    codigo = Encoding.UTF8.GetString(res.strResult, 0, res.vlNumbersOfCharacters[0]);
-                                    OLogsVAFunciones.CCR.Debug("CCR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR (id = {0}) : CODIGO {1}", new object[] { id, codigo }));
-                                }
-                                catch (Exception exception)
-                                {
-                                    OLogsVAFunciones.CCR.Error(exception, "CCR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR (id = {0}) : Numero carácteres {1}", new object[] { id, res.vlNumbersOfCharacters[0] }));
-                                }
+                            // Obtenemos el código
+                            try
+                            {
+                                codigo = Encoding.UTF8.GetString(res.strResult, 0, res.vlNumbersOfCharacters[0]);
+                                OLogsVAFunciones.CCR.Debug("CCR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR (id = {0}) : CODIGO {1}, FIABILIDAD {2}", new object[] { id, codigo, fia }));
+                            }
+                            catch (Exception exception)
+                            {
+                                OLogsVAFunciones.CCR.Error(exception, "CCR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR (id = {0}) : Numero carácteres {1}", new object[] { id, res.vlNumbersOfCharacters[0] }));
+                            }
 
-                                // Obtenemos el ISO
-                                if (res.lExtraInfoFound == 1)
-                                {
-                                    posBottomISO = res.vlExtraInfoBottom[0];
-                                    posLeftISO = res.vlExtraInfoLeft[0];
-                                    posRightISO = res.vlExtraInfoRight[0];
-                                    posTopISO = res.vlExtraInfoTop[0];
-                                    numCaracISO = res.vlExtraInfoNumberOfCharacters[0];
-                                    extraInfo = Encoding.UTF8.GetString(res.strExtraInfo, 0, numCaracISO);
-                                    calidadISO = res.vfExtraInfoConfidence[0];
-                                    destinationArray = new float[(res.vlExtraInfoNumberOfCharacters[0] - 1) + 1];
-                                    Array.Copy(res.vfExtraInfoCharacterConfidence, destinationArray, res.vlExtraInfoNumberOfCharacters[0]);
-                                    OLogsVAFunciones.CCR.Debug("CCR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR ISO (id = {0}): ISO {1}", new object[] { id, extraInfo }));
-                                }
+                            // Obtenemos el ISO
+                            if (res.lExtraInfoFound == 1)
+                            {
+                                posBottomISO = res.vlExtraInfoBottom[0];
+                                posLeftISO = res.vlExtraInfoLeft[0];
+                                posRightISO = res.vlExtraInfoRight[0];
+                                posTopISO = res.vlExtraInfoTop[0];
+                                numCaracISO = res.vlExtraInfoNumberOfCharacters[0];
+                                extraInfo = Encoding.UTF8.GetString(res.strExtraInfo, 0, numCaracISO);
+                                calidadISO = res.vfExtraInfoConfidence[0];
+                                destinationArray = new float[(res.vlExtraInfoNumberOfCharacters[0] - 1) + 1];
+                                Array.Copy(res.vfExtraInfoCharacterConfidence, destinationArray, res.vlExtraInfoNumberOfCharacters[0]);
+                                OLogsVAFunciones.CCR.Debug("CCR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR ISO (id = {0}): ISO {1}", new object[] { id, extraInfo }));
+                            }
 
-                                // Creamos el resultado y lo añadimos a la cola
-                                resultadoCCR = new OCCRCodeInfo(codigo, res.lCodeVerified, res.lProcessingTime, avgChar, lpos, tpos, rpos, bpos, fia, datoEnviado.ImageInformation.GetPath, id, codigo.Length,
-                                    numArray, res.lExtraInfoFound, extraInfo, numCaracISO, calidadISO, posLeftISO, posTopISO, posRightISO, posBottomISO, destinationArray, nLines, esInvertido, esVertical, res.lUserParam1.ToInt32(), res.lUserParam2.ToInt32());
-                            //}
+                            // Creamos el resultado y lo añadimos a la cola
+                            resultadoCCR = new OCCRCodeInfo(codigo, res.lCodeVerified, res.lProcessingTime, avgChar, lpos, tpos, rpos, bpos, fia, datoEnviado.ImageInformation.GetPath, id, codigo.Length,
+                                numArray, res.lExtraInfoFound, extraInfo, numCaracISO, calidadISO, posLeftISO, posTopISO, posRightISO, posBottomISO, destinationArray, nLines, esInvertido, esVertical, res.lUserParam1.ToInt32(), res.lUserParam2.ToInt32());
                         }
                         ColaDeResultados.Enqueue(new OPair<OCCRCodeInfo, OCCRData>(resultadoCCR, datoEnviado));
 
@@ -1015,6 +994,10 @@ namespace Orbita.VA.Funciones
         /// Identificador del dato
         /// </summary>
         private long Identificador;
+        /// Codigo de la función que llama
+        /// </summary>
+        private string CodFuncionVision;
+        /// <summary>
         /// <summary>
         /// Si el valor ha sido borrado
         /// </summary>
@@ -1035,10 +1018,6 @@ namespace Orbita.VA.Funciones
         /// Cantidad de lecturas
         /// </summary>
         private int TotalReadItems;
-        /// <summary>
-        /// Codigo funcion
-        /// </summary>
-        private string CodFuncionVision;
         #endregion
 
         #region Propiedades
@@ -1146,11 +1125,11 @@ namespace Orbita.VA.Funciones
         public OCCRData(long ident,string codFuncion, CIDARMtConfiguration cfg, ref OCCRInfoImagen pi)
         {
             this.Identificador = ident;
+            this.CodFuncionVision = codFuncion;
             this.Configuracion = cfg;
             this.InformacionImagen = pi;
             this.TotalReadItems = -1;
             this.DisposedValue = false;
-            this.CodFuncionVision = codFuncion;
         }
         #endregion
 

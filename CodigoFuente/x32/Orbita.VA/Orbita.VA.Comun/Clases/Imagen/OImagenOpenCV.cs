@@ -18,6 +18,7 @@ using Emgu.CV;
 using Orbita.Utiles;
 using System.Runtime.InteropServices;
 using Emgu.CV.CvEnum;
+using Emgu.CV.Structure;
 
 namespace Orbita.VA.Comun
 {
@@ -654,5 +655,202 @@ namespace Orbita.VA.Comun
         /// </summary>
         [OAtributoEnumerado("Plano rojo en una imagen BGR")]
         Rojo = 2
+    }
+
+    /// <summary>
+    /// Grafico de tipo CogGraphicCollection de Cognex
+    /// </summary>
+    [Serializable]
+    public class OGraficoOpenCV : OGrafico
+    {
+        #region Atributo(s)
+        /// <summary>
+        /// Propieadad a heredar donde se accede a la imagen
+        /// </summary>
+        public new Image<Bgr, byte> Grafico
+        {
+            get { return (Image<Bgr, byte>)_Grafico; }
+            set { _Grafico = value; }
+        }
+        #endregion
+
+        #region Constructor
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OGraficoOpenCV(object grafico)
+            : base(grafico)
+        {
+            this.TipoGrafico = TipoImagen.OpenCV;
+        }
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OGraficoOpenCV()
+            : base()
+        {
+            this.TipoGrafico = TipoImagen.OpenCV;
+        }
+        /// <summary>
+        /// Constructor de la clase que además se encarga de liberar la memoria de la variable que se le pasa por parámetro
+        /// </summary>
+        /// <param name="imagenALiberar">Variable que se desea liberar de memoria</param>
+
+        public OGraficoOpenCV(OImagen graficoALiberar)
+            : base(graficoALiberar)
+        {
+            this.TipoGrafico = TipoImagen.OpenCV;
+        }
+        #endregion
+
+        #region Método(s) público(s)
+        /// <summary>
+        /// Desplaza todo el conjunto de gráficos en X y en Y
+        /// </summary>
+        /// <param name="X">Valor de desplazamiento en X</param>
+        /// <param name="Y">Valor de desplazamiento en Y</param>
+        public void Linea(PointF origen, PointF destino, Color color, int grosor)
+        {
+            try
+            {
+                if (this.EsValida())
+                {
+                    LineSegment2DF line = new LineSegment2DF(origen, destino);
+                    this.Grafico.Draw(line, new Bgr(color), grosor);
+                }
+            }
+            catch (Exception exception)
+            {
+                OLogsVAComun.ImagenGraficos.Error(exception, "GraficoOpenCV_Clone");
+            }
+        }
+        /// <summary>
+        /// Desplaza todo el conjunto de gráficos en X y en Y
+        /// </summary>
+        /// <param name="X">Valor de desplazamiento en X</param>
+        /// <param name="Y">Valor de desplazamiento en Y</param>
+        public void Linea(float x1, float y1, float x2, float y2, Color color, int grosor)
+        {
+            this.Linea(new PointF(x1, y1), new PointF(x2, y2), color, grosor);
+        }
+
+        /// <summary>
+        /// Exportación a imagen
+        /// </summary>
+        /// <returns></returns>
+        public OImagen ConvertToImage()
+        {
+            return new OImagenOpenCVColor<byte>(this.Grafico);
+        }
+
+        /// <summary>
+        /// Importación desde una imagen
+        /// </summary>
+        /// <param name="imagen"></param>
+        public void ConvertFromImage(OImagen imagen)
+        {
+            OImagenOpenCVColor<byte> imgAux;
+            imagen.Convert<OImagenOpenCVColor<byte>>(out imgAux);
+
+            this.Grafico = imgAux.Image;
+        }
+        #endregion
+
+        #region Método(s) heredado(s)
+        /// <summary>
+        /// Elimina la memoria asignada por el objeto.
+        /// </summary>
+        public override void Dispose()
+        {
+            try
+            {
+                if (this._Grafico != null)
+                {
+                    this._Grafico = null;
+                }
+            }
+            finally
+            {
+            }
+        }
+
+        /// <summary>
+        /// Clonado del gráfico
+        /// </summary>
+        public override object Clone()
+        {
+            OGraficoOpenCV graficoResultado = new OGraficoOpenCV();
+            if (this.EsValida())
+            {
+                try
+                {
+                    graficoResultado.Grafico = this.Grafico.Clone();
+                }
+                catch (Exception exception)
+                {
+                    OLogsVAComun.ImagenGraficos.Error(exception, "GraficoOpenCV_Clone");
+                }
+            }
+            return graficoResultado;
+        }
+
+        /// <summary>
+        /// Método a implementar en las clases hijas que indica que la imagen es válida
+        /// </summary>
+        /// <returns></returns>
+        public override bool EsValida()
+        {
+            return (base.EsValida()) && (this._Grafico != null) && (this._Grafico is Image<Bgr, byte>) && (this.Grafico.Width > 0) && (this.Grafico.Height > 0);
+        }
+
+        /// <summary>
+        /// Método a implementar en las clases hijas para guardar la imagen en un fichero de disco
+        /// </summary>
+        /// <param name="ruta">Ruta donde se ha de guardar la imagen</param>
+        /// <returns>Verdadero si la ruta donde se ha de guardar el fichero es válida</returns>
+        public override bool Guardar(string ruta)
+        {
+            try
+            {
+                if (base.Guardar(ruta))
+                {
+                    this.Grafico.Save(ruta);
+
+                    return File.Exists(ruta);
+                }
+            }
+            catch (Exception exception)
+            {
+                OLogsVAComun.ImagenGraficos.Error(exception, "GraficoOpenCV_Guardar");
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Método a implementar en las clases hijas para cargar la imagen de un fichero de disco
+        /// </summary>
+        /// <param name="ruta">Ruta de donde se ha de cargar la imagen</param>
+        /// <returns>Verdadero si el fichero que se ha de cargar existe</returns>
+        public override bool Cargar(string ruta)
+        {
+            try
+            {
+                if (base.Cargar(ruta))
+                {
+                    this.Grafico = new Image<Bgr, byte>(ruta);
+
+                    return this.EsValida();
+                }
+            }
+            catch (Exception exception)
+            {
+                OLogsVAComun.ImagenGraficos.Error(exception, "GraficoOpenCV_Cargar");
+            }
+
+            return false;
+        }
+
+        #endregion
     }
 }

@@ -132,6 +132,7 @@ namespace Orbita.VA.Funciones
 
             //Generamos el kernel de convolución
             this.kernel = new ConvolutionKernelF(1, kernelSize * 2 + 1);
+            //float valorKernel = 1F / kernelSize;
             for (int k = 0; k < kernelSize; k++)
             {
                 this.kernel[0, k] = -1;
@@ -158,7 +159,7 @@ namespace Orbita.VA.Funciones
         /// <param name="distance">Distancia esperada entre el par de edges</param>
         /// <param name="kernel">Tamaño del filtro</param>
         /// <param name="maxResultados">Máximo de resultados a devolver</param>
-        public OrbitaCaliper(PolaridadEdges polaridad1, PolaridadEdges polaridad2, double distance, FilterSize kernel, int maxResultados)
+        public OrbitaCaliper(PolaridadEdges polaridad1, PolaridadEdges polaridad2, FilterSize kernel, int maxResultados)
         {
             if (threshold < 0)
             {
@@ -169,6 +170,7 @@ namespace Orbita.VA.Funciones
 
             //Generamos el kernel de convolución
             this.kernel = new ConvolutionKernelF(1, kernelSize * 2 + 1);
+            //float valorKernel = 1F / kernelSize;
             for (int k = 0; k < kernelSize; k++)
             {
                 this.kernel[0, k] = -1;
@@ -182,9 +184,6 @@ namespace Orbita.VA.Funciones
 
             edges = new List<OEdgeResult>();
             metodos = new List<OMetodoPuntuacion>();
-
-            //Añadimos el método de puntuación por defecto
-            AgregarDistancia(distance);
         }
         #endregion
 
@@ -278,9 +277,9 @@ namespace Orbita.VA.Funciones
         /// Agrega un método de puntuación por contraste (método individual)
         /// </summary>
         /// <returns>True si se añadió correctamente</returns>
-        public bool AgregarContraste()
+        public bool AgregarContraste(float xc = 0, float x0 = 255, float x1 = 0, float y0 = 1, float y1 = 0)
         {
-            OMetodoPuntuacion metodo = new ContrastMethod();
+            OMetodoPuntuacion metodo = new ContrastMethod(xc, x0, x1, y0, y1);
             return AgregarMetodoPuntuacion(metodo);
         }
         /// <summary>
@@ -288,9 +287,9 @@ namespace Orbita.VA.Funciones
         /// </summary>
         /// <param name="distance">Ancho esperado entre los edges</param>
         /// <returns>True si se añadió correctamente</returns>
-        public bool AgregarDistancia(double distance)
+        public bool AgregarDistancia(double distance, float xc = 1, float x0 = 0, float x1 = 1, float y0 = 1, float y1 = 0)
         {
-            OMetodoPuntuacion metodo = new SizeDiffNormMethod(distance);
+            OMetodoPuntuacion metodo = new SizeDiffNormMethod(distance, xc, x0, x1, y0, y1);
             return AgregarMetodoPuntuacion(metodo);
         }
         /// <summary>
@@ -355,8 +354,10 @@ namespace Orbita.VA.Funciones
             float actualContraste;
 
             //Flags para búsqueda de máximos o mínimos
-            bool buscandoPositivos = this.DatosFiltrados[0, kernel.Width, 0] > 0;
-            bool buscandoNegativos = this.DatosFiltrados[0, kernel.Width, 0] < 0;
+            //bool buscandoPositivos = this.DatosFiltrados[0, kernel.Width, 0] > 0;
+            //bool buscandoNegativos = this.DatosFiltrados[0, kernel.Width, 0] < 0;
+            bool buscandoPositivos = this.DatosFiltrados[0, 0, 0] > 0;
+            bool buscandoNegativos = this.DatosFiltrados[0, 0, 0] < 0;
 
             //Flags para conocer el estado de la función
             bool empiezoCrecer = false;
@@ -367,14 +368,20 @@ namespace Orbita.VA.Funciones
             bool min = false;
 
             //Apuntador a la posición inicial del ciclo (positivo o negativo)
-            int ini = kernel.Width;
+            //int ini = kernel.Width;
+            int ini = 0;
 
             //Recorrido de la función convolución
-            for (int i = kernel.Width; i < contrastesFiltrados.Width - kernel.Width; i++)
+            //for (int i = kernel.Width; i < contrastesFiltrados.Width - kernel.Width; i++)
+            for (int i = 0; i < contrastesFiltrados.Width - 1; i++)
             {
                 //Actualización de valores
                 actualContraste = this.DatosFiltrados[0, i, 0];
                 siguienteContraste = this.DatosFiltrados[0, i + 1, 0];
+                if (i == contrastesFiltrados.Width - 2)
+                {
+                    siguienteContraste = 0;
+                }
 
                 //Miro la tendencia futura de la función
                 empiezoDecrecer = !empiezoDecrecer && siguienteContraste < actualContraste;
@@ -531,11 +538,11 @@ namespace Orbita.VA.Funciones
             }
             if (numMetodos > 1)
             {
-                resultado.ResultScore = Math.Pow(prodScore, -numMetodos);
+                resultado.ResultScore = Math.Pow(prodScore, 1.0 / (double)numMetodos);
             }
             else
             {
-                resultado.ResultScore = numMetodos * prodScore;
+                resultado.ResultScore = (double)numMetodos * prodScore;
             }
             return resultado.ResultScore;
         }
@@ -595,14 +602,14 @@ namespace Orbita.VA.Funciones
 
                 //Calculamos el centroide
                 float denominador = C1 + C_1 - 2 * C0;
-                if (denominador == 0)
+                if (denominador != 0)
                 {
-                    return Xc;
+                    Xc = Xc - ((0.5f * (C1 - C_1)) / denominador);
                 }
-                else
-                {
-                    return Xc - ((0.5f * (C1 - C_1)) / denominador);
-                }
+
+                Xc = Xc < ini? ini: (Xc > fin? fin: Xc);
+
+                return Xc;
             }
         }
         /// <summary>

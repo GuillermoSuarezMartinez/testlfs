@@ -1878,6 +1878,47 @@
             <param name="posicion">Posición del bit a establecer</param>
             <param name="valor">Booleano con el valor del bit a establecer</param>
         </member>
+        <member name="T:Orbita.Utiles.OReglaNomenclaturaNet">
+            <summary>
+            Clase con utilidades para la validación de nombres de clases ensamblados, propiedades...
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OReglaNomenclaturaNet.ValidarNomenclaturaPropiedadNet(System.String)">
+            <summary>
+            Valida si el nombre cumple las reglas de nomenclatura para clases, ensamblados, propiedades...
+            </summary>
+            <param name="valor">Nombre a validar</param>
+            <returns>Verdadero si el nombre cumple las reglas de nomenclatura para clases, ensamblados, propiedades...</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OReglaNomenclaturaNet.ValidarNomenclaturaEnsambladoNet(System.String)">
+            <summary>
+            Valida si el nombre cumple las reglas de nomenclatura para clases, ensamblados, propiedades...
+            </summary>
+            <param name="valor">Nombre a validar</param>
+            <returns>Verdadero si el nombre cumple las reglas de nomenclatura para clases, ensamblados, propiedades...</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OReglaNomenclaturaNet.ValidarNomenclaturaEspacioNombresNet(System.String)">
+            <summary>
+            Valida si el nombre cumple las reglas de nomenclatura para clases, ensamblados, propiedades...
+            </summary>
+            <param name="valor">Nombre a validar</param>
+            <returns>Verdadero si el nombre cumple las reglas de nomenclatura para clases, ensamblados, propiedades...</returns>
+        </member>
+        <member name="F:Orbita.Utiles.ONomenclaturaNetException.Nombre">
+            <summary>
+            Nombre que no es válido
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.ONomenclaturaNetException.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.ONomenclaturaNetException.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
         <member name="T:Orbita.Utiles.Extension">
             <summary>
             Enumeración que representa las posibles 
@@ -2438,6 +2479,73 @@
             <param name="puerto">Número de puerto.</param>
             <returns>Si es no disponible.</returns>
         </member>
+        <member name="T:Orbita.Utiles.OWindowsUtils">
+            <summary>
+            Librería de utilidades para el SO Windows
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OWindowsUtils.memcpy(System.IntPtr,System.IntPtr,System.Int32)">
+            <summary>
+            memcpy - copy a block of memery
+            </summary>
+            <param name="dst"></param>
+            <param name="src"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OWindowsUtils.memcpy(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            memcpy - copy a block of memery
+            </summary>
+            <param name="dst"></param>
+            <param name="src"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OWindowsUtils.GetTcpTable(System.IntPtr,System.Int32@,System.Boolean)">
+            <summary>
+            API to get list of connections 
+            </summary>
+            <param name="pTcpTable"></param>
+            <param name="pdwSize"></param>
+            <param name="bOrder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OWindowsUtils.SetTcpEntry(System.IntPtr)">
+            <summary>
+            API to change status of connection 
+            </summary>
+            <param name="pTcprow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OWindowsUtils.ntohs(System.Int32)">
+            <summary>
+            Convert 16-bit value from network to host byte order 
+            </summary>
+            <param name="netshort"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OWindowsUtils.htons(System.Int32)">
+            <summary>
+            Convert 16-bit value back again 
+            </summary>
+            <param name="netshort"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OWindowsUtils.ShowStartMenu(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            desplega el menu de inicio de windows
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="cx"></param>
+            <param name="cy"></param>
+        </member>
+        <member name="M:Orbita.Utiles.OWindowsUtils.ShowScreenKeyboard(System.IntPtr)">
+            <summary>
+            Ejecución del teclado en pantalla
+            </summary>
+        </member>
         <member name="T:Orbita.Utiles.OSingleton`1">
             <summary>
             Clase que implementa la estructura tipo patrón singelton
@@ -2572,7 +2680,25 @@
             No válido para líneas verticales!!!
             </summary>
         </member>
+        <member name="M:Orbita.Utiles.OMath.CalculoLineaMinimosCuadrados(System.Drawing.PointF[],System.Int32,System.Double,System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Calcula los parámetros m y b tal que y=m*x+b de la línea que más se aproxima a la nube de puntos pasada por parámetro.
+            No válido para líneas verticales!!!
+            </summary>
+        </member>
         <member name="M:Orbita.Utiles.OMath.CalculoLineaMinimosCuadrados(System.Collections.Generic.List{System.Drawing.PointF},System.Double@,System.Double@)">
+            <summary>
+            Calcula los parámetros m y b tal que y=m*x+b de la línea que más se aproxima a la nube de puntos pasada por parámetro.
+            No válido para líneas verticales!!!
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OMath.CalculoLineaMinimosCuadrados(System.Collections.Generic.List{System.Drawing.PointF},System.Double@,System.Double@,System.Double@)">
+            <summary>
+            Calcula los parámetros m y b tal que y=m*x+b de la línea que más se aproxima a la nube de puntos pasada por parámetro.
+            No válido para líneas verticales!!!
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OMath.CalculoLineaMinimosCuadrados(System.Collections.Generic.List{System.Drawing.PointF},System.Int32,System.Double,System.Double@,System.Double@,System.Double@)">
             <summary>
             Calcula los parámetros m y b tal que y=m*x+b de la línea que más se aproxima a la nube de puntos pasada por parámetro.
             No válido para líneas verticales!!!
@@ -3013,7 +3139,7 @@
         </member>
         <member name="T:Orbita.Utiles.OQuartet`4">
             <summary>
-            Clase utilizada para almacenar un trío de valores
+            Clase utilizada para almacenar un cuarteto de valores
             </summary>
             <typeparam name="TFirst">Tipo del primer valor</typeparam>
             <typeparam name="TSecond">Tipo del segundo valor</typeparam>
@@ -3052,7 +3178,7 @@
         </member>
         <member name="T:Orbita.Utiles.OQuintet`5">
             <summary>
-            Clase utilizada para almacenar un trío de valores
+            Clase utilizada para almacenar un quinteto de valores
             </summary>
             <typeparam name="TFirst">Tipo del primer valor</typeparam>
             <typeparam name="TSecond">Tipo del segundo valor</typeparam>
@@ -3091,6 +3217,177 @@
             </summary>
         </member>
         <member name="M:Orbita.Utiles.OQuintet`5.#ctor(`0,`1,`2,`3,`4)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="T:Orbita.Utiles.OSextet`6">
+            <summary>
+            Clase utilizada para almacenar un sexteto de valores
+            </summary>
+            <typeparam name="TFirst">Tipo del primer valor</typeparam>
+            <typeparam name="TSecond">Tipo del segundo valor</typeparam>
+            <typeparam name="TThird">Tipo del tercer valor</typeparam>
+            <typeparam name="TFourth">Tipo del cuarto valor</typeparam>
+            <typeparam name="TFifth">Tipo del quinto valor</typeparam>
+            <typeparam name="TSixth">Tipo del sexto valor</typeparam>
+        </member>
+        <member name="F:Orbita.Utiles.OSextet`6.First">
+            <summary>
+            Primer valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OSextet`6.Second">
+            <summary>
+            Segundo valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OSextet`6.Third">
+            <summary>
+            Tercer valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OSextet`6.Fourth">
+            <summary>
+            Cuarto valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OSextet`6.Fifth">
+            <summary>
+            Quinto valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OSextet`6.Sixth">
+            <summary>
+            Sexto valor
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OSextet`6.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OSextet`6.#ctor(`0,`1,`2,`3,`4,`5)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="T:Orbita.Utiles.OSeptet`7">
+            <summary>
+            Clase utilizada para almacenar un septeto de valores
+            </summary>
+            <typeparam name="TFirst">Tipo del primer valor</typeparam>
+            <typeparam name="TSecond">Tipo del segundo valor</typeparam>
+            <typeparam name="TThird">Tipo del tercer valor</typeparam>
+            <typeparam name="TFourth">Tipo del cuarto valor</typeparam>
+            <typeparam name="TFifth">Tipo del quinto valor</typeparam>
+            <typeparam name="TSixth">Tipo del sexto valor</typeparam>
+            <typeparam name="TSeventh">Tipo del séptimo valor</typeparam>
+        </member>
+        <member name="F:Orbita.Utiles.OSeptet`7.First">
+            <summary>
+            Primer valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OSeptet`7.Second">
+            <summary>
+            Segundo valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OSeptet`7.Third">
+            <summary>
+            Tercer valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OSeptet`7.Fourth">
+            <summary>
+            Cuarto valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OSeptet`7.Fifth">
+            <summary>
+            Quinto valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OSeptet`7.Sixth">
+            <summary>
+            Sexto valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OSeptet`7.Seventh">
+            <summary>
+            Séptimo valor
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OSeptet`7.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OSeptet`7.#ctor(`0,`1,`2,`3,`4,`5,`6)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="T:Orbita.Utiles.OOctet`8">
+            <summary>
+            Clase utilizada para almacenar un octeto de valores
+            </summary>
+            <typeparam name="TFirst">Tipo del primer valor</typeparam>
+            <typeparam name="TSecond">Tipo del segundo valor</typeparam>
+            <typeparam name="TThird">Tipo del tercer valor</typeparam>
+            <typeparam name="TFourth">Tipo del cuarto valor</typeparam>
+            <typeparam name="TFifth">Tipo del quinto valor</typeparam>
+            <typeparam name="TSixth">Tipo del sexto valor</typeparam>
+            <typeparam name="TSeventh">Tipo del séptimo valor</typeparam>
+            <typeparam name="TOctet">Tipo del octavo valor</typeparam>
+        </member>
+        <member name="F:Orbita.Utiles.OOctet`8.First">
+            <summary>
+            Primer valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OOctet`8.Second">
+            <summary>
+            Segundo valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OOctet`8.Third">
+            <summary>
+            Tercer valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OOctet`8.Fourth">
+            <summary>
+            Cuarto valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OOctet`8.Fifth">
+            <summary>
+            Quinto valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OOctet`8.Sixth">
+            <summary>
+            Sexto valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OOctet`8.Seventh">
+            <summary>
+            Séptimo valor
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OOctet`8.Eighth">
+            <summary>
+            Octavo valor
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OOctet`8.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OOctet`8.#ctor(`0,`1,`2,`3,`4,`5,`6,`7)">
             <summary>
             Constructor de la clase
             </summary>
@@ -3701,68 +3998,6 @@
             <summary>
             Atributo de sincronización.
             </summary>
-        </member>
-        <member name="T:Orbita.Utiles.OWindowsUtils">
-            <summary>
-            Librería de utilidades para el SO Windows
-            </summary>
-        </member>
-        <member name="M:Orbita.Utiles.OWindowsUtils.memcpy(System.IntPtr,System.IntPtr,System.Int32)">
-            <summary>
-            memcpy - copy a block of memery
-            </summary>
-            <param name="dst"></param>
-            <param name="src"></param>
-            <param name="count"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Utiles.OWindowsUtils.memcpy(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            memcpy - copy a block of memery
-            </summary>
-            <param name="dst"></param>
-            <param name="src"></param>
-            <param name="count"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Utiles.OWindowsUtils.GetTcpTable(System.IntPtr,System.Int32@,System.Boolean)">
-            <summary>
-            API to get list of connections 
-            </summary>
-            <param name="pTcpTable"></param>
-            <param name="pdwSize"></param>
-            <param name="bOrder"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Utiles.OWindowsUtils.SetTcpEntry(System.IntPtr)">
-            <summary>
-            API to change status of connection 
-            </summary>
-            <param name="pTcprow"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Utiles.OWindowsUtils.ntohs(System.Int32)">
-            <summary>
-            Convert 16-bit value from network to host byte order 
-            </summary>
-            <param name="netshort"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Utiles.OWindowsUtils.htons(System.Int32)">
-            <summary>
-            Convert 16-bit value back again 
-            </summary>
-            <param name="netshort"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Utiles.OWindowsUtils.ShowStartMenu(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            desplega el menu de inicio de windows
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <param name="cx"></param>
-            <param name="cy"></param>
         </member>
     </members>
 </doc>

@@ -86,7 +86,7 @@ namespace Orbita.Utiles
     }
 
     /// <summary>
-    /// Clase utilizada para almacenar un trío de valores
+    /// Clase utilizada para almacenar un cuarteto de valores
     /// </summary>
     /// <typeparam name="TFirst">Tipo del primer valor</typeparam>
     /// <typeparam name="TSecond">Tipo del segundo valor</typeparam>
@@ -132,7 +132,7 @@ namespace Orbita.Utiles
     }
 
     /// <summary>
-    /// Clase utilizada para almacenar un trío de valores
+    /// Clase utilizada para almacenar un quinteto de valores
     /// </summary>
     /// <typeparam name="TFirst">Tipo del primer valor</typeparam>
     /// <typeparam name="TSecond">Tipo del segundo valor</typeparam>
@@ -179,6 +179,198 @@ namespace Orbita.Utiles
             this.Third = third;
             this.Fourth = fourth;
             this.Fifth = fifth;
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Clase utilizada para almacenar un sexteto de valores
+    /// </summary>
+    /// <typeparam name="TFirst">Tipo del primer valor</typeparam>
+    /// <typeparam name="TSecond">Tipo del segundo valor</typeparam>
+    /// <typeparam name="TThird">Tipo del tercer valor</typeparam>
+    /// <typeparam name="TFourth">Tipo del cuarto valor</typeparam>
+    /// <typeparam name="TFifth">Tipo del quinto valor</typeparam>
+    /// <typeparam name="TSixth">Tipo del sexto valor</typeparam>
+    public class OSextet<TFirst, TSecond, TThird, TFourth, TFifth, TSixth>
+    {
+        #region Atributos
+        /// <summary>
+        /// Primer valor
+        /// </summary>
+        public TFirst First;
+        /// <summary>
+        /// Segundo valor
+        /// </summary>
+        public TSecond Second;
+        /// <summary>
+        /// Tercer valor
+        /// </summary>
+        public TThird Third;
+        /// <summary>
+        /// Cuarto valor
+        /// </summary>
+        public TFourth Fourth;
+        /// <summary>
+        /// Quinto valor
+        /// </summary>
+        public TFifth Fifth;
+        /// <summary>
+        /// Sexto valor
+        /// </summary>
+        public TSixth Sixth;
+        #endregion
+
+        #region Constructor
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OSextet() { }
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OSextet(TFirst first, TSecond second, TThird third, TFourth fourth, TFifth fifth, TSixth sixth)
+        {
+            this.First = first;
+            this.Second = second;
+            this.Third = third;
+            this.Fourth = fourth;
+            this.Fifth = fifth;
+            this.Sixth = sixth;
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Clase utilizada para almacenar un septeto de valores
+    /// </summary>
+    /// <typeparam name="TFirst">Tipo del primer valor</typeparam>
+    /// <typeparam name="TSecond">Tipo del segundo valor</typeparam>
+    /// <typeparam name="TThird">Tipo del tercer valor</typeparam>
+    /// <typeparam name="TFourth">Tipo del cuarto valor</typeparam>
+    /// <typeparam name="TFifth">Tipo del quinto valor</typeparam>
+    /// <typeparam name="TSixth">Tipo del sexto valor</typeparam>
+    /// <typeparam name="TSeventh">Tipo del séptimo valor</typeparam>
+    public class OSeptet<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh>
+    {
+        #region Atributos
+        /// <summary>
+        /// Primer valor
+        /// </summary>
+        public TFirst First;
+        /// <summary>
+        /// Segundo valor
+        /// </summary>
+        public TSecond Second;
+        /// <summary>
+        /// Tercer valor
+        /// </summary>
+        public TThird Third;
+        /// <summary>
+        /// Cuarto valor
+        /// </summary>
+        public TFourth Fourth;
+        /// <summary>
+        /// Quinto valor
+        /// </summary>
+        public TFifth Fifth;
+        /// <summary>
+        /// Sexto valor
+        /// </summary>
+        public TSixth Sixth;
+        /// <summary>
+        /// Séptimo valor
+        /// </summary>
+        public TSeventh Seventh;
+        #endregion
+
+        #region Constructor
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OSeptet() { }
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OSeptet(TFirst first, TSecond second, TThird third, TFourth fourth, TFifth fifth, TSixth sixth, TSeventh seventh)
+        {
+            this.First = first;
+            this.Second = second;
+            this.Third = third;
+            this.Fourth = fourth;
+            this.Fifth = fifth;
+            this.Sixth = sixth;
+            this.Seventh = seventh;
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Clase utilizada para almacenar un octeto de valores
+    /// </summary>
+    /// <typeparam name="TFirst">Tipo del primer valor</typeparam>
+    /// <typeparam name="TSecond">Tipo del segundo valor</typeparam>
+    /// <typeparam name="TThird">Tipo del tercer valor</typeparam>
+    /// <typeparam name="TFourth">Tipo del cuarto valor</typeparam>
+    /// <typeparam name="TFifth">Tipo del quinto valor</typeparam>
+    /// <typeparam name="TSixth">Tipo del sexto valor</typeparam>
+    /// <typeparam name="TSeventh">Tipo del séptimo valor</typeparam>
+    /// <typeparam name="TOctet">Tipo del octavo valor</typeparam>
+    public class OOctet<TFirst, TSecond, TThird, TFourth, TFifth, TSixth, TSeventh, TOctet>
+    {
+        #region Atributos
+        /// <summary>
+        /// Primer valor
+        /// </summary>
+        public TFirst First;
+        /// <summary>
+        /// Segundo valor
+        /// </summary>
+        public TSecond Second;
+        /// <summary>
+        /// Tercer valor
+        /// </summary>
+        public TThird Third;
+        /// <summary>
+        /// Cuarto valor
+        /// </summary>
+        public TFourth Fourth;
+        /// <summary>
+        /// Quinto valor
+        /// </summary>
+        public TFifth Fifth;
+        /// <summary>
+        /// Sexto valor
+        /// </summary>
+        public TSixth Sixth;
+        /// <summary>
+        /// Séptimo valor
+        /// </summary>
+        public TSeventh Seventh;
+        /// <summary>
+        /// Octavo valor
+        /// </summary>
+        public TOctet Eighth;
+        #endregion
+
+        #region Constructor
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OOctet() { }
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OOctet(TFirst first, TSecond second, TThird third, TFourth fourth, TFifth fifth, TSixth sixth, TSeventh seventh, TOctet eighth)
+        {
+            this.First = first;
+            this.Second = second;
+            this.Third = third;
+            this.Fourth = fourth;
+            this.Fifth = fifth;
+            this.Sixth = sixth;
+            this.Seventh = seventh;
+            this.Eighth = eighth;
         }
         #endregion
     }

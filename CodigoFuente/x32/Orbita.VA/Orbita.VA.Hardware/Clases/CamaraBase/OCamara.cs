@@ -68,8 +68,22 @@ namespace Orbita.VA.Hardware
                 foreach (DataRow dr in dtCamaras.Rows)
                 {
                     string codCamara = dr["CodHardware"].ToString();
+                    if (!codCamara.ValidarNomenclaturaPropiedadNet())
+                    {
+                        throw new ONomenclaturaNetException(codCamara);
+                    }
+
                     string ensambladoClaseImplementadora = dr["EnsambladoClaseImplementadora"].ToString();
+                    if (!ensambladoClaseImplementadora.ValidarNomenclaturaEnsambladoNet())
+                    {
+                        throw new ONomenclaturaNetException(ensambladoClaseImplementadora);
+                    }
+
                     string claseImplementadora = dr["ClaseImplementadora"].ToString();
+                    if (!claseImplementadora.ValidarNomenclaturaPropiedadNet())
+                    {
+                        throw new ONomenclaturaNetException(claseImplementadora);
+                    }
 
                     OCamaraBase camara;
                     if (CrearCamara(ensambladoClaseImplementadora, claseImplementadora, out camara, codCamara))
@@ -168,7 +182,6 @@ namespace Orbita.VA.Hardware
             camara = null;
 
             string claseImplementadoraCompleta = string.Format("{0}.{1}", ensambladoClaseImplementadora, claseImplementadora);
-
             try
             {
                 object objetoImplementado;
@@ -1538,7 +1551,18 @@ namespace Orbita.VA.Hardware
 
                     // Construcción del PTZ
                     this._EnsambladoClaseImplementadoraPTZ = OTexto.Validar(dt.Rows[0]["EnsambladoClaseImplementadoraPTZ"], 100, false, false, Assembly.GetExecutingAssembly().GetName().Name);
-                    this._ClaseImplementadoraPTZ = string.Format("{0}.{1}", this._EnsambladoClaseImplementadoraPTZ, OTexto.Validar(dt.Rows[0]["ClaseImplementadoraPTZ"], 100, false, false, typeof(OPTZBase).Name));
+                    if (!_EnsambladoClaseImplementadoraPTZ.ValidarNomenclaturaEnsambladoNet())
+                    {
+                        throw new ONomenclaturaNetException(_EnsambladoClaseImplementadoraPTZ);
+                    }
+
+                    string claseImplementadoraPTZ = OTexto.Validar(dt.Rows[0]["ClaseImplementadoraPTZ"], 100, false, false, typeof(OPTZBase).Name);
+                    if (!claseImplementadoraPTZ.ValidarNomenclaturaPropiedadNet())
+                    {
+                        throw new ONomenclaturaNetException(claseImplementadoraPTZ);
+                    }
+
+                    this._ClaseImplementadoraPTZ = string.Format("{0}.{1}", this._EnsambladoClaseImplementadoraPTZ, claseImplementadoraPTZ);
                     object objetoImplementado;
                     if (App.ConstruirClase(this._EnsambladoClaseImplementadoraPTZ, this._ClaseImplementadoraPTZ, out objetoImplementado, this._Codigo))
                     {

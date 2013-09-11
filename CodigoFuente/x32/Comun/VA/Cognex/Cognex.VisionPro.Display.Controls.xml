@@ -4,6 +4,55 @@
         <name>Cognex.VisionPro.Display.Controls</name>
     </assembly>
     <members>
+        <member name="T:Cognex.VisionPro.Display.CogDisplayColormapForm">
+            <summary>
+            Internal use only.
+            </summary>
+        </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplayColormapForm.#ctor">
+            <summary>
+            Internal use only.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.CogDisplayColormapForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplayColormapForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplayColormapForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:Cognex.VisionPro.Display.CogDisplayColormap">
+            <summary>
+            This control is used to setup, manipulate, and optionally load or save a colormap on a CogDisplay.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.CogDisplayColormap.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplayColormap.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplayColormap.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:Cognex.VisionPro.Exceptions.CogDisplayZoomOutOfRangeException">
             <summary>
             The exception that is thrown when the zoom value goes out of its range.
@@ -316,6 +365,37 @@
             Specifies the back of the z-order.
             </summary>
         </member>
+        <member name="T:Cognex.VisionPro.Display.CogDisplayColorMapPredefinedConstants">
+            <summary>
+            Enumeration for predefined colormaps
+            </summary>
+            <!-- Failed to insert some or all of included XML --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplayColormapPredefinedConstants.xml" path="//member[@name=&quot;T:Cognex.VisionPro.Display.CogDisplayColormapPredefinedConstants&quot;]/*"/>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.CogDisplayColorMapPredefinedConstants.None">
+            <summary>
+            Specifies no predefined colormap.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.CogDisplayColorMapPredefinedConstants.Grey">
+            <summary>
+            Specifies a linear grey predefined colormap.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.CogDisplayColorMapPredefinedConstants.Thermal">
+            <summary>
+            Specifies a thermal predefined colormap.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.CogDisplayColorMapPredefinedConstants.Height">
+            <summary>
+            Specifies a height predefined colormap.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.CogDisplayColorMapPredefinedConstants.Custom">
+            <summary>
+            Specifies a user defined colormap.
+            </summary>
+        </member>
         <member name="T:Cognex.VisionPro.Display.CogStaticGraphicsContainer">
             <summary>
             A container for the display's static graphics.
@@ -541,7 +621,7 @@ cdDisp.StaticGraphics.Add ccCircle
             </summary>
             <param name="graphics">The list of interactive graphics to add to the display.</param>
             <param name="groupName">The name of the graphics group to which to add all of the <paramref name="graphics"/>.</param>
-            <param name="checkForDuplicates">If <b>true</b> checks whether <paramref name="graphic"/> is
+            <param name="checkForDuplicates">If <b>true</b> checks whether <paramref name="graphics"/> is
             	already in the display container.</param>
             <exception cref="T:System.ObjectDisposedException"> Thrown when the object is already disposed.</exception>
             <exception cref="T:Cognex.VisionPro.Exception.CogException"> Thrown when any of the arguments are invalid.</exception>
@@ -848,6 +928,83 @@ txtObjects.Text =  "ccCircle: " & cdDisp.InteractiveGraphics.FindItem(ccCircle) 
             <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
             <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.GetImage16GreyColorMap&quot;]/*"/>
         </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplay.SetImage16RangeColorMap(System.Collections.ArrayList)">
+            <summary>
+            Sets a colormap for 16-bit range image display.  The size of the colormap being set must match the type of 16-bit image being currently displayed (either 10, 12, 14, or 16-bit image) otherwise an exception is thrown.  In order to change colormap sizes, remove any image being displayed.
+            </summary>
+            <value>An ArrayList containing 256, 1024, 4096, 16384, or 65536 System.Drawing.Color values.</value>
+            <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
+            <exception cref="T:Cognex.VisionPro.Exception.CogDisplayInvalidColormapException"> Thrown when an invalid colormap is specified.</exception>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.Image16RangeColorMap&quot;]/*"/>
+        </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplay.GetImage16RangeColorMap">
+            <summary>
+            Returns the colormap for 16-bit range image display.  If the user has not set a colormap for 16-bit range images, then null is returned.
+            </summary>
+            <value>An ArrayList containing 256, 1024, 4096, 16384, or 65536 System.Drawing.Color values.</value>
+            <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.GetImage16RangeColorMap&quot;]/*"/>
+        </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplay.ClearImage16RangeColorMap">
+            <summary>
+            Clears the 16-bit range colormap that has been set.  This method does nothing if no 16-bit range colormap has been set.
+            </summary>
+            <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.GetImage16RangeColorMap&quot;]/*"/>
+        </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplay.SetColorMapRoiLimits(System.Double,System.Double)">
+            <summary>
+            Sets the lower and upper limit of the colormap's range of interest expressed as a floating point number where 0.0 represents pixel value zero and 1.0 represents the max pixel value (which depends on the displayed image). 
+            </summary>
+            <param name="lowerLimit">The lower limit.  Valid values for this param is in the range of 0.0 to 1.0.</param>
+            <param name="upperLimit">The upper limit.  Valid values for this param is in the range of 0.0 to 1.0.</param>
+            <event cref="E:Cognex.VisionPro.Display.CogDisplay.Changed">Fires when the property value is changed.</event>
+            <exception cref="T:System.ArgumentOutOfRangeException"> Thrown if lower or upper limits are less than 0.0 or more than 1.0.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"> Thrown if the lower limit is greater than the upper limit. </exception>
+            <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.SetColorMapRoiLimits&quot;]/*"/>
+        </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplay.SetColorMapClipColors(System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            Sets the lower and upper clip colors of the colormap range of interest.  
+            </summary>
+            <param name="lowerColor">The lower clip color.</param>
+            <param name="upperColor">The upper clip color.</param>
+            <event cref="E:Cognex.VisionPro.Display.CogDisplay.Changed">Fires when the property value is changed.</event>
+            <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.SetColorMapClipColors&quot;]/*"/>
+        </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplay.ColorMapLoad(System.String)">
+            <summary>
+            Loads and sets a colormap from the specified file.  This method can only be called if an image is being displayed.
+            </summary>
+            <param name="filename">Filename of the file that contains the colormap</param>
+            <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
+            <exception cref="T:System.InvalidOperationException"> Thrown if no image is being displayed.</exception>
+            <exception cref="T:System.InvalidOperationException"> Thrown if a non 8-bit or 16-bit image is being displayed.</exception>
+            <event cref="E:Cognex.VisionPro.Display.CogDisplay.Changed">Fires when the colormap is loaded.</event>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.GetImage16GreyColorMap&quot;]/*"/>
+        </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplay.ColorMapSave(System.String)">
+            <summary>
+            Saves the currently set colormap to the specified file.  This method can only be called if an image is being displayed.
+            </summary>
+            <param name="filename">Filename of the file that will contain the currently set colormap</param>
+            <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
+            <exception cref="T:System.InvalidOperationException"> Thrown if no image is being displayed.</exception>
+            <exception cref="T:System.InvalidOperationException"> Thrown if a non 8-bit or non 16-bit image is being displayed.</exception>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.GetImage16GreyColorMap&quot;]/*"/>
+        </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplay.ColorMapToString">
+            <summary>
+            Internal use only
+            </summary>
+        </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplay.ColorMapFromString(System.String)">
+            <summary>
+            Internal use only
+            </summary>
+        </member>
         <member name="M:Cognex.VisionPro.Display.CogDisplay.CreateContentBitmap(Cognex.VisionPro.Display.CogDisplayContentBitmapConstants,Cognex.VisionPro.CogRectangle,System.Int32)">
             <summary>
             Returns the current content of the display (image and graphics) as a bitmap in a picture object.
@@ -878,6 +1035,14 @@ txtObjects.Text =  "ccCircle: " & cdDisp.InteractiveGraphics.FindItem(ccCircle) 
             <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
             <exception cref="T:Cognex.VisionPro.Exception.CogException"> Thrown when the passed color is not a valid OLE_COLOR</exception>
             <seealso cref="M:Cognex.VisionPro.Display.CogDisplay.SetImage8GreyColorMap(System.Byte,Cognex.VisionPro.CogColorConstants)"/>
+        </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplay.GetImage8GreyColorMap">
+            <summary>
+            Returns the colormap for 8-bit greyscale image display.  
+            </summary>
+            <value>An ArrayList containing 256 System.Drawing.Color values.</value>
+            <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.GetImage16GreyColorMap&quot;]/*"/>
         </member>
         <member name="M:Cognex.VisionPro.Display.CogDisplay.SetImage8GreyColorMap(System.Byte,Cognex.VisionPro.CogColorConstants)">
             <summary>
@@ -932,6 +1097,22 @@ Private Sub AcquireButton_Click(ByVal sender As System.Object, ByVal e As System
 End Sub
 </code>
 		</example><seealso cref="M:Cognex.VisionPro.Display.CogDisplay.GetImage8GreyColorMap(System.Byte)"/>    
+        </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplay.SetImage8GreyColorMap(System.Collections.ArrayList)">
+            <summary>
+            Sets a colormap for 8-bit greyscale image display.  The size of the colormap must be 256.
+            </summary>
+            <value>An ArrayList containing 256 System.Drawing.Color values.</value>
+            <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
+            <exception cref="T:Cognex.VisionPro.Exception.CogDisplayInvalidColormapException"> Thrown when an invalid colormap is specified.</exception>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.SetImage16GreyColorMap&quot;]/*"/>
+        </member>
+        <member name="M:Cognex.VisionPro.Display.CogDisplay.ClearImage8GreyColorMap">
+            <summary>
+            Clears the 8-bit greyscale colormap that has been set.
+            </summary>
+            <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.ClearImage16GreyColorMap&quot;]/*"/>
         </member>
         <member name="M:Cognex.VisionPro.Display.CogDisplay.GetTransform(System.String,System.String)">
             <summary>
@@ -1282,11 +1463,61 @@ End Sub
     		</para>
 		</remarks>
         </member>
+        <member name="P:Cognex.VisionPro.Display.CogDisplay.ColorMapPredefined">
+            <summary>
+            Gets or sets the predefined colormap on this display object.
+            </summary>
+            <value>The predefined colormap.  Default is CogDisplayColormapPredefinedConstants.None</value>
+            <event cref="E:Cognex.VisionPro.Display.CogDisplay.Changed">Fires when the property value is changed.</event>
+            <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.ColormapPredefined&quot;]/*"/>
+        </member>
+        <member name="P:Cognex.VisionPro.Display.CogDisplay.ColorMapLowerRoiLimit">
+            <summary>
+            Gets or sets the lower limit of the colormap's range of interest expressed as a floating point number where 0.0 represents pixel value zero and 1.0 represents the max pixel value (which depends on the displayed image). 
+            </summary>
+            <value>The lower limit.  Default value is 0.0.  Valid values for this property are in the range of 0.0 to 1.0.</value>
+            <event cref="E:Cognex.VisionPro.Display.CogDisplay.Changed">Fires when the property value is changed.</event>
+            <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"> Thrown if value is less than 0.0 or more than 1.0. </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"> Thrown if value is greater than ColorMapUpperRoiLimit. </exception>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.ColorMapLowerRoiLimit&quot;]/*"/>
+        </member>
+        <member name="P:Cognex.VisionPro.Display.CogDisplay.ColorMapUpperRoiLimit">
+            <summary>
+            Gets or sets the upper limit of the colormap's range of interest expressed as a floating point number where 0.0 represents pixel value zero and 1.0 represents the max pixel value (which depends on the displayed image). 
+            </summary>
+            <value>The upper limit.  Default value is 1.0.  Valid values for this property are in the range of 0.0 to 1.0.</value>
+            <event cref="E:Cognex.VisionPro.Display.CogDisplay.Changed">Fires when the property value is changed.</event>
+            <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"> Thrown if value is less than 0.0 or more than 1.0. </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"> Thrown if value is less than ColorMapLowerRoiLimit. </exception>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.ColorMapUpperRoiLimit&quot;]/*"/>
+        </member>
+        <member name="P:Cognex.VisionPro.Display.CogDisplay.ColorMapLowerClipColor">
+            <summary>
+            Gets or sets the lower clip color of the colormap.  This property is only valid if an image is being displayed and ColorMapPredefined is not None or Custom.
+            </summary>
+            <value>The lower clip color.  Default is Color.Black.</value>
+            <event cref="E:Cognex.VisionPro.Display.CogDisplay.Changed">Fires when the property value is changed.</event>
+            <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.ColormapLowerClipColor&quot;]/*"/>
+        </member>
+        <member name="P:Cognex.VisionPro.Display.CogDisplay.ColorMapUpperClipColor">
+            <summary>
+            Gets or sets the upper clip color of the colormap.  This property is only valid if an image is being displayed and ColorMapPredefined is not None or Custom.
+            </summary>
+            <value>The upper clip color.  Default is Color.Black.</value>
+            <event cref="E:Cognex.VisionPro.Display.CogDisplay.Changed">Fires when the property value is changed.</event>
+            <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
+            <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.ColormapUpperClipColor&quot;]/*"/>
+        </member>
         <member name="P:Cognex.VisionPro.Display.CogDisplay.Image">
             <summary>
             Gets or sets the image currently in the display.
             </summary>
             <value>The image in the display.</value>
+            <remarks>When displaying images of different types and a colormap is set, you may have to call one of the colormap properties with a new value in order to update the internal colormap.</remarks>
             <event cref="E:Cognex.VisionPro.Display.CogDisplay.Changed">Fires when an image is changed</event>
             <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
             <remarks>
@@ -1831,6 +2062,91 @@ End Sub
             <event cref="E:Cognex.VisionPro.Display.CogDisplay.Changed">Fires when the value is changed.</event>
             <exception cref="T:System.Windows.Forms.AxHost.InvalidActiveXStateException"> Thrown when the display control is invalid.</exception>
             <!-- No matching elements were found for the following include tag --><include file="k:\docvob\vx\nsrc\ProgrammingReference\src\netstore\Display\CogDisplay.xml" path="//member[@name=&quot;P:Cognex.VisionPro.Display.CogDisplay.UserDefinedMouseCursor&quot;]/*"/>
+        </member>
+        <member name="P:Cognex.VisionPro.Display.CogDisplay.VisiblePixelMaskEnable">
+            <summary>
+            Whether the visible pixel mask is displayed to the user or not.
+            </summary>
+        </member>
+        <member name="P:Cognex.VisionPro.Display.CogDisplay.VisiblePixelMaskColor">
+            <summary>
+            The fill color of the visible pixel mask.
+            </summary>
+        </member>
+        <member name="T:Cognex.VisionPro.Display.Implementation.Internal.CogImageTypeEncoding">
+            <summary>
+            Internal Use only.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.Implementation.Internal.CogImageTypeEncoding.None">
+            <summary>
+            None. Internal Use Only.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.Implementation.Internal.CogImageTypeEncoding.Unknown">
+            <summary>
+            Unknown. Internal Use Only.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.Implementation.Internal.CogImageTypeEncoding.Grey8">
+            <summary>
+            Grey8. Internal Use Only.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.Implementation.Internal.CogImageTypeEncoding.Grey16_8bit">
+            <summary>
+            Grey16_8bit. Internal Use Only.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.Implementation.Internal.CogImageTypeEncoding.Grey16_10bit">
+            <summary>
+            Grey16_10bit. Internal Use Only.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.Implementation.Internal.CogImageTypeEncoding.Grey16_12bit">
+            <summary>
+            Grey16_12bit. Internal Use Only.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.Implementation.Internal.CogImageTypeEncoding.Grey16_14bit">
+            <summary>
+            Grey16_14bit. Internal Use Only.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.Implementation.Internal.CogImageTypeEncoding.Grey16_16bit">
+            <summary>
+            Grey16_16bit. Internal Use Only.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.Implementation.Internal.CogImageTypeEncoding.Range16_8bit">
+            <summary>
+            Range16_8bit. Internal Use Only.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.Implementation.Internal.CogImageTypeEncoding.Range16_10bit">
+            <summary>
+            Range16_10bit. Internal Use Only.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.Implementation.Internal.CogImageTypeEncoding.Range16_12bit">
+            <summary>
+            Range16_12bit. Internal Use Only.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.Implementation.Internal.CogImageTypeEncoding.Range16_14bit">
+            <summary>
+            Range16_14bit. Internal Use Only.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.Implementation.Internal.CogImageTypeEncoding.Range16_16bit">
+            <summary>
+            Range16_16bit. Internal Use Only.
+            </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.Display.Implementation.Internal.CogImageTypeEncoding.Color24Planar">
+            <summary>
+            Color24Planar. Internal Use Only.
+            </summary>
         </member>
     </members>
 </doc>

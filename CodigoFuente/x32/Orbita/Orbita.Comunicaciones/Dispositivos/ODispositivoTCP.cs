@@ -203,16 +203,39 @@ namespace Orbita.Comunicaciones
 
                         if (this._tags.GetLecturas(infoDBdato.Identificador) != null)
                         {
-                            if (infoDBdato.UltimoValor != infoDBdato.Valor)
+                            wrapper.Info("ODispositivoTCP Escribir Escritura" + infoDBdato.Texto + " valor " + infoDBdato.Valor.ToString());
+                            switch ((TiposVariables)Enum.Parse(typeof(TiposVariables), infoDBdato.Tipo.ToUpper()))
                             {
-                                this.OnCambioDato(new OEventArgs(infoDBdato));
+                                case TiposVariables.STRING:
+                                case TiposVariables.INT:
+                                case TiposVariables.REAL:
+                                case TiposVariables.X:
+                                    if (infoDBdato.Valor!=null && infoDBdato.UltimoValor !=null)
+                                    {
+                                        if (infoDBdato.UltimoValor.ToString() != infoDBdato.Valor.ToString())
+                                        {
+                                            this.OnCambioDato(new OEventArgs(infoDBdato));
+                                            wrapper.Info("ODispositivoTCP Escribir CambioDato" + infoDBdato.Texto + " valor " + infoDBdato.Valor.ToString());
+                                        } 
+                                    }                                    
+                                     break;
+                                case TiposVariables.OBJECT:
+                                     if (infoDBdato.UltimoValor != infoDBdato.Valor)
+                                     {
+                                         this.OnCambioDato(new OEventArgs(infoDBdato));
+                                         wrapper.Info("ODispositivoTCP Escribir CambioDato" + infoDBdato.Texto + " valor " + infoDBdato.Valor.ToString());
+                                     }
+                                     break;
+                                default:
+                                    break;
                             }
+                            
                         }
                         if (this._tags.GetAlarmas(infoDBdato.Identificador) != null)
                         {
                             try
                             {
-                                if (infoDBdato.UltimoValor != infoDBdato.Valor)
+                                if (infoDBdato.UltimoValor.ToString() != infoDBdato.Valor.ToString())
                                 {
                                     this.OnAlarma(new OEventArgs(infoDBdato));
                                     if (Convert.ToInt16(infoDBdato.Valor) == 1)
@@ -356,5 +379,20 @@ namespace Orbita.Comunicaciones
             }
         }
         #endregion
+    }
+
+    public enum TiposVariables
+    { 
+        X,
+        REAL,
+        INT,
+        DINT,
+        W,
+        DWORD,
+        CHAR,
+        STRING,
+        B,
+        DT,
+        OBJECT
     }
 }

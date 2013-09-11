@@ -111,11 +111,27 @@ namespace Orbita.Xml
         }
 
         /// <summary>
+        /// Elimina un detalle a la lista de detalles
+        /// </summary>
+        public void EliminarDetalle(OConvertibleXML detalle)
+        {
+            this._Detalles.Remove(detalle);
+        }
+
+        /// <summary>
         /// Añade un detalle a la lista de detalles
         /// </summary>
         public void AñadirPropiedad(string clave, object valor)
         {
             this._Propiedades.Add(clave, valor);
+        }
+
+        /// <summary>
+        /// Elimina un detalle a la lista de detalles
+        /// </summary>
+        public void EliminarPropiedad(string clave, object valor)
+        {
+            this._Propiedades.Remove(clave);
         }
 
         /// <summary>

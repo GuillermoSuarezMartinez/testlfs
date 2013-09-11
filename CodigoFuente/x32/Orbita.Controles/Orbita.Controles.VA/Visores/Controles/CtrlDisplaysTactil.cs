@@ -393,11 +393,18 @@ namespace Orbita.Controles.VA
         {
             if ((CtrlDisplaysSingleton is CtrlDisplaysTactil) && (CtrlDisplaysSingleton.ListaDisplays is List<OrbitaVisorBase>) && (CtrlDisplaysSingleton.ListaDisplays.Count > 0))
             {
-                var display = CtrlDisplaysSingleton.ListaDisplays.Where(dsp => dsp.Codigo == codigo);
-                if (display.Count() > 0)
+                foreach (OrbitaVisorBase visor in CtrlDisplaysSingleton.ListaDisplays)
                 {
-                    display.First().Visualizar(imagen, graficos);
+                    if (visor.Codigo == codigo)
+                    {
+                        visor.Visualizar(imagen, graficos);
+                    }
                 }
+                //var display = CtrlDisplaysSingleton.ListaDisplays.Where(dsp => dsp.Codigo == codigo);
+                //if (display.Count() > 0)
+                //{
+                //    display.First().Visualizar(imagen, graficos);
+                //}
             }
         }
         #endregion

@@ -1204,6 +1204,11 @@ private Boolean RunTool()
             <summary>
             Creates a new instance of the CogRunStatus class.
             </summary>
+            <remarks>
+            Note that <see cref="P:Cognex.VisionPro.Implementation.CogRunStatus.Exception"/>
+            is shallow copied. Both the original RunStatus, and the copy
+            share the same reference to the original Exception.
+            </remarks>
             <param name="other">An ICogRunStatus to copy.</param>
         </member>
         <member name="M:Cognex.VisionPro.Implementation.CogRunStatus.Equals(System.Object)">
@@ -2249,7 +2254,6 @@ private Boolean RunTool()
             <returns>True if the assemblyName starts with "Cognex.VisionPro" and contains 
             the VisionPro PublicKeyToken</returns>
             <exception>System.ArgumentNullException</exception>
-            <remarks>VisionPro3D assemblies are _not_ considered VisionPro assemblies.</remarks>
         </member>
         <member name="M:Cognex.VisionPro.Implementation.Internal.CogTypeResolveUtils.IsSystemType(System.String)">
             <summary>
@@ -2491,6 +2495,17 @@ private Boolean RunTool()
             for this attribute.  If null, then the default .NET binding rules apply
             (generally indicating that side-by-side versioning is desired).</param>      
         </member>
+        <member name="M:Cognex.VisionPro.CogSerializationBinderAttribute.#ctor(System.String,System.Boolean)">
+            <summary>
+            Creates a new instance of the CogSerializationBinderAttribute class.
+            </summary>
+            <param name="binder">A fully qualified type name for the custom binder
+            for this attribute.  If null, then the default .NET binding rules apply
+            (generally indicating that side-by-side versioning is desired).</param> 
+            <param name="useLatest">
+            Dictates whether to upgrade to the latest assembly verion.
+            </param>
+        </member>
         <member name="T:Cognex.VisionPro.Exceptions.CogException">
             <summary>
             This is the base class for all VisionPro exceptions.
@@ -2560,6 +2575,18 @@ private Boolean RunTool()
             <param name="info">The SerializationInfo to populate with data.</param>
             <param name="context">The destination for this serialization.</param>
         </member>
+        <member name="M:Cognex.VisionPro.Implementation.CogSerializationSurrogate.GetObjectData(System.Object,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.Type)">
+            <summary>
+            Populates the provided SerializationInfo with the data needed to serialize the object.
+            </summary>
+            <param name="obj">The object to serialize.</param>
+            <param name="info">The SerializationInfo to populate with data.</param>
+            <param name="context">The destination for this serialization.</param>
+            <param name="nonVisionProBase">
+            A base class of "obj" which has it's own, non-visionpro serialization implementation.
+            GetObjectData() will not serialize the private members of this base class.
+            </param>
+        </member>
         <member name="M:Cognex.VisionPro.Implementation.CogSerializationSurrogate.SetObjectData(System.Object,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Populates the object using the information in the SerializationInfo.
@@ -2568,6 +2595,19 @@ private Boolean RunTool()
             <param name="info">The information to populate the object.</param>
             <param name="context">The source from which the object is deserialized.</param>
             <returns>The populated deserialized object.</returns>
+        </member>
+        <member name="M:Cognex.VisionPro.Implementation.CogSerializationSurrogate.SetObjectData(System.Object,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.Type)">
+            <summary>
+            Populates the object using the information in the SerializationInfo.
+            </summary>
+            <param name="obj">The object to populate.</param>
+            <param name="info">The information to populate the object.</param>
+            <param name="context">The source from which the object is deserialized.</param>
+            <returns>The populated deserialized object.</returns>
+            <param name="nonVisionProBase">
+            A base class of "obj" which has it's own, non-visionpro serialization implementation.
+            SetObjectData() will not deserialize the private members of this base class.
+            </param>
         </member>
         <member name="M:Cognex.VisionPro.Implementation.CogSerializationSurrogate.HasMember(System.Runtime.Serialization.SerializationInfo,System.String)">
             <summary>
@@ -2723,17 +2763,30 @@ private Boolean RunTool()
             Serializes an object.
             </summary>
             <param name="obj">The object to serialize.</param>
-            <param name="info">The object that holds the serialized object data.</param>
-            <param name="context">The contextual information about the SerializationInfo.</param>
+            <param name="info">
+            The object that holds the serialized object data.
+            </param>
+            <param name="context">
+            The contextual information about the SerializationInfo.
+            </param>
         </member>
         <member name="M:Cognex.VisionPro.Implementation.CogExceptionSerializationSurrogate.SetObjectData(System.Object,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.Runtime.Serialization.ISurrogateSelector)">
             <summary>
             Populates the object using the information in the SerializationInfo.
             </summary>
-            <param name="obj">The object to populate.</param>
-            <param name="info">The information to populate the object.</param>
-            <param name="context">The source from which the object is deserialized.</param>
-            <param name="selector">The surrogate selector where the search for a compatible surrogate begins.</param>
+            <param name="obj">
+            The object to populate.
+            </param>
+            <param name="info">
+            The information to populate the object.
+            </param>
+            <param name="context">
+            The source from which the object is deserialized.
+            </param>
+            <param name="selector">
+            The surrogate selector where the search for a 
+            compatible surrogate begins.
+            </param>
             <returns>The populated deserialized object.</returns>
         </member>
         <member name="T:Cognex.VisionPro.Implementation.CogMemberInfoSerializationSurrogate">
@@ -3433,6 +3486,41 @@ private Boolean RunTool()
             Get or set the binding object with the given DestinationPath.
             </summary>
             <param name="destinationPath">Destination path of binding object to access.</param>
+        </member>
+        <member name="M:Cognex.VisionPro.Implementation.Internal.ICogControlValueConverter.Convert(System.Object)">
+            <summary>
+            Converts the unadapted PROPERTY value to the
+            adapted CONTROL value
+            </summary>
+        </member>
+        <member name="M:Cognex.VisionPro.Implementation.Internal.ICogControlValueConverter.ConvertBack(System.Object)">
+            <summary>
+            Converts the adapted CONTROL value "back" to 
+            the unadapted PROPERTY value.
+            </summary>
+        </member>
+        <member name="P:Cognex.VisionPro.Implementation.Internal.ICogControlValueAdapter.UnadaptedType">
+            <summary>
+            The unadapted PROPERTY value type
+            </summary>
+        </member>
+        <member name="P:Cognex.VisionPro.Implementation.Internal.ICogControlValueAdapter.AdaptedType">
+            <summary>
+            The adapted CONTROL value type
+            </summary>
+        </member>
+        <member name="T:Cognex.VisionPro.EnumExtensions">
+            <summary>
+            Contains common extension methods of enumeration types.
+            </summary>
+        </member>
+        <member name="M:Cognex.VisionPro.EnumExtensions.ToList``1">
+            <summary>
+            Creates a List with all keys and values of a given Enum class
+            </summary>
+            <typeparam name="T">Must be derived from class Enum!</typeparam>
+            <returns>A list of KeyValuePair&lt;Enum, string&gt; with all available
+            names and values of the given Enum.</returns>
         </member>
         <member name="T:Cognex.VisionPro.CogPropertyTypeAdapterAttribute">
             <summary>
@@ -5970,31 +6058,6 @@ private Boolean RunTool()
             This class provides an editor for input image properties on the property page
             </summary>
         </member>
-        <member name="T:Cognex.VisionPro.Implementation.Internal.CogMemoryConsumer">
-            <summary>
-            Internal use only testing class
-            </summary>
-        </member>
-        <member name="M:Cognex.VisionPro.Implementation.Internal.CogMemoryConsumer.Consume(System.Int64,System.Boolean)">
-            <summary>
-            Internal use only.  Max number of bytes is around 1GByte
-            </summary>
-        </member>
-        <member name="M:Cognex.VisionPro.Implementation.Internal.CogMemoryConsumer.FreeAll">
-            <summary>
-            Internal use only.
-            </summary>
-        </member>
-        <member name="M:Cognex.VisionPro.Implementation.Internal.CogMemoryConsumer.X64OnlyConsume(System.Int32,System.Boolean)">
-            <summary>
-            Internal use only.
-            </summary>
-        </member>
-        <member name="M:Cognex.VisionPro.Implementation.Internal.CogMemoryConsumer.X64OnlyFreeAll">
-            <summary>
-            Internal use only.
-            </summary>
-        </member>
         <member name="T:Cognex.VisionPro.CogInUseFlag">
             <summary>
             This class implements a boolean "in use" flag that can be
@@ -6083,6 +6146,291 @@ private Boolean RunTool()
             to the thread when the thread is started</param>
             <param name="maxStackSize">the maximum stack size for the thread</param>
             <returns>newly created thread</returns>
+        </member>
+        <member name="T:Cognex.VisionPro.CogAddSpaceConstants">
+            <summary> In a coordinate space tree each child of a given parent
+            space must have a unique name.  This enumeration specifies what
+            action will be taken when the user attempts to add a duplicate
+            child space name to an existing parent in the tree. </summary>
+            <remarks><para> In a
+            <see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" />
+            or <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />
+            each child of a given parent space must have a unique
+            name. This enumeration specifies what action to take if you try to add
+            a coordinate space to a parent space that already has an immediate
+            child with the same name as the one you are trying to add.
+            The options are to return an error, replace the named item, or do
+            nothing. </para></remarks>
+        </member>
+        <member name="F:Cognex.VisionPro.CogAddSpaceConstants.DuplicateIsError">
+            <summary> Attempts to add a duplicate child space will fail.
+            An error will be returned. </summary>
+            <remarks><para> Attempts to add a duplicate child space will fail,
+            and an error will be returned. </para></remarks>
+        </member>
+        <member name="F:Cognex.VisionPro.CogAddSpaceConstants.ReplaceDuplicate">
+            <summary> Attempts to add a duplicate child space will,
+            instead, replace the transform of the existing child with the
+            same name.  Attempts to add a duplicate child tree will
+            replace the entire subtree of the existing child, as well as
+            its transform. </summary>
+            <remarks><para> Attempts to add a duplicate child space will,
+            instead, replace the transform of the existing child with the
+            same name.  Attempts to add a duplicate child tree will
+            replace the entire subtree of the existing child, as well as
+            its transform. </para></remarks>
+        </member>
+        <member name="F:Cognex.VisionPro.CogAddSpaceConstants.IgnoreDuplicate">
+            <summary> Attempts to add a duplicate child space will be ignored.
+            No error will be returned. </summary>
+            <remarks><para> Attempts to add a duplicate child space will be
+            ignored. No error will be returned. </para></remarks>
+        </member>
+        <member name="T:Cognex.VisionPro.CogSpaceTreePathnameConstants">
+            <summary> This enumeration controls the formatting of coordinate
+            space names that are returned from a coordinate space tree 
+            (<see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" /> or
+            <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />). </summary>
+            <remarks><para> This enumeration controls the formatting of
+            <see cref="u:Framework.Coordinates.Theory.CoordSpaceNames">coordinate
+            space names</see> that are returned from a coordinate space tree
+            (<see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" /> or
+            <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />).
+            </para></remarks>
+        </member>
+        <member name="F:Cognex.VisionPro.CogSpaceTreePathnameConstants.None">
+            <remarks><para> Express space names as a single,
+            nonqualified name. </para></remarks>
+            <summary> Returned space names will be expressed as a single,
+            non-qualified name. </summary>
+        </member>
+        <member name="F:Cognex.VisionPro.CogSpaceTreePathnameConstants.Full">
+            <summary> Returned space names will be expressed as a full pathname
+            through the coordinate space tree. </summary>
+            <remarks><para> Express space names as a full pathname through
+            the coordinate space tree. </para></remarks>
+        </member>
+        <member name="F:Cognex.VisionPro.CogSpaceTreePathnameConstants.Partial">
+            <summary> Returned space names will be expressed as a partial
+            pathname through the coordinate space tree, starting at the space
+            named by the first argument of the method that you called. </summary>
+            <remarks><para> Express space names as a partial pathname through
+            the coordinate space tree object, starting at the space specified
+            by the first method argument. </para></remarks>
+        </member>
+        <member name="T:Cognex.VisionPro.CogSpaceAddedEventArgs">
+            <summary>
+            This class provides data for the SpaceAdded event
+            of a <see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" />
+            or <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />.
+            </summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogSpaceAddedEventArgs.#ctor(System.String)">
+            <summary> Constructor for these EventArgs.  You typically will
+            not need to use this method. </summary>
+            <param name="newSpaceName">n/a</param>
+        </member>
+        <member name="P:Cognex.VisionPro.CogSpaceAddedEventArgs.NewSpaceName">
+            <summary> The fully-qualified pathname of the added coordinate
+            space. </summary>
+        </member>
+        <member name="T:Cognex.VisionPro.CogSpaceAddedEventHandler">
+            <summary>
+            Represents the method that will handle the SpaceAdded event of a
+            <see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" />
+            or <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />.
+            The method must have the same parameters as this delegate.
+            </summary>
+            <param name="sender"> The source of the event. </param>
+            <param name="e"> An instance of CogSpaceAddedEventArgs
+            containing the data for this event. </param>
+        </member>
+        <member name="T:Cognex.VisionPro.CogTreeAddedEventArgs">
+            <summary>
+            This class provides data for the TreeAdded event
+            of a <see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" />
+            or <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />.
+            </summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogTreeAddedEventArgs.#ctor(System.String)">
+            <summary> Constructor for these EventArgs.  You typically will
+            not need to use this method. </summary>
+            <param name="newSpaceName">n/a</param>
+        </member>
+        <member name="P:Cognex.VisionPro.CogTreeAddedEventArgs.NewSpaceName">
+            <summary> The fully-qualified pathname of the added tree's
+            root space. </summary>
+        </member>
+        <member name="T:Cognex.VisionPro.CogTreeAddedEventHandler">
+            <summary>
+            Represents the method that will handle the TreeAdded event of a
+            <see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" />
+            or <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />.
+            The method must have the same parameters as this delegate.
+            </summary>
+            <param name="sender"> The source of the event. </param>
+            <param name="e"> An instance of CogTreeAddedEventArgs
+            containing the data for this event. </param>
+        </member>
+        <member name="T:Cognex.VisionPro.CogNameChangedEventArgs">
+            <summary>
+            This class provides data for the NameChanged event
+            of a <see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" />
+            or <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />.
+            </summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogNameChangedEventArgs.#ctor(System.String,System.String)">
+            <summary> Constructor for these EventArgs.  You typically will
+            not need to use this method. </summary>
+            <param name="oldSpaceName">n/a</param>
+            <param name="newSpaceName">n/a</param>
+        </member>
+        <member name="P:Cognex.VisionPro.CogNameChangedEventArgs.OldSpaceName">
+            <summary> The old, fully-qualified pathname of the coordinate
+            space. </summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogNameChangedEventArgs.NewSpaceName">
+            <summary> The new, fully-qualified pathname of the coordinate
+            space. </summary>
+        </member>
+        <member name="T:Cognex.VisionPro.CogNameChangedEventHandler">
+            <summary>
+            Represents the method that will handle the NameChanged event of a
+            <see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" />
+            or <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />.
+            The method must have the same parameters as this delegate.
+            </summary>
+            <param name="sender"> The source of the event. </param>
+            <param name="e"> An instance of CogNameChangedEventArgs 
+            containing the data for this event. </param>
+        </member>
+        <member name="T:Cognex.VisionPro.CogTransformChangedEventArgs">
+            <summary>
+            This class provides data for the TransformChanged event
+            of a <see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" />
+            or <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />.
+            </summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogTransformChangedEventArgs.#ctor(System.String)">
+            <summary> Constructor for these EventArgs.  You typically will
+            not need to use this method. </summary>
+            <param name="spaceName">n/a</param>
+        </member>
+        <member name="P:Cognex.VisionPro.CogTransformChangedEventArgs.SpaceName">
+            <summary> The fully-qualified pathname of the child space for
+            which the transform has changed.  The new transform describes
+            the mapping between this space and its parent space. </summary>
+        </member>
+        <member name="T:Cognex.VisionPro.CogTransformChangedEventHandler">
+            <summary>
+            Represents the method that will handle the TransformChanged event
+            <see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" />
+            or <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />.
+            The method must have the same parameters as this delegate.
+            </summary>
+            <param name="sender"> The source of the event. </param>
+            <param name="e"> An instance of CogTransformChangedEventArgs
+            containing the data for this event. </param>
+        </member>
+        <member name="T:Cognex.VisionPro.CogSubtreeDeletedEventArgs">
+            <summary>
+            This class provides data for the SubtreeDeleted event
+            of a <see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" />
+            or <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />.
+            </summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogSubtreeDeletedEventArgs.#ctor(System.String)">
+            <summary> Constructor for these EventArgs.  You typically will
+            not need to use this method. </summary>
+            <param name="oldSpaceName">n/a</param>
+        </member>
+        <member name="P:Cognex.VisionPro.CogSubtreeDeletedEventArgs.OldSpaceName">
+            <summary> The fully-qualified pathname of the deleted subtree's root
+            space.  This space no longer exists in the coordinate space
+            tree. </summary>
+        </member>
+        <member name="T:Cognex.VisionPro.CogSubtreeDeletedEventHandler">
+            <summary>
+            Represents the method that will handle the SubtreeDeleted event of
+            <see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" />
+            or <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />.
+            The method must have the same parameters as this delegate.
+            </summary>
+            <param name="sender"> The source of the event. </param>
+            <param name="e"> An instance of CogSubtreeDeletedEventArgs
+            containing the data for this event. </param>
+        </member>
+        <member name="T:Cognex.VisionPro.CogSubtreeMovedEventArgs">
+            <summary>
+            This class provides data for the SubtreeMoved event
+            of a <see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" />
+            or <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />.
+            </summary>
+        </member>
+        <member name="M:Cognex.VisionPro.CogSubtreeMovedEventArgs.#ctor(System.String,System.String)">
+            <summary> Constructor for these EventArgs.  You typically will
+            not need to use this method. </summary>
+            <param name="oldSpaceName">n/a</param>
+            <param name="newSpaceName">n/a</param>
+        </member>
+        <member name="P:Cognex.VisionPro.CogSubtreeMovedEventArgs.OldSpaceName">
+            <summary> The old, fully-qualified pathname of the subtree's root
+            space.  This space no longer exists in the coordinate space
+            tree. </summary>
+        </member>
+        <member name="P:Cognex.VisionPro.CogSubtreeMovedEventArgs.NewSpaceName">
+            <summary> The new, fully-qualified pathname of the subtree's root
+            space. </summary>
+        </member>
+        <member name="T:Cognex.VisionPro.CogSubtreeMovedEventHandler">
+            <summary>
+            Represents the method that will handle the SubtreeMoved event of a
+            <see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" />
+            or <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />.
+            The method must have the same parameters as this delegate.
+            </summary>
+            <param name="sender"> The source of the event. </param>
+            <param name="e"> An instance of CogSubtreeMovedEventArgs
+            containing the data for this event. </param>
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogSpaceTreeDuplicateChildNameException">
+            <summary> The exception that is thrown when you attempt to add a
+            duplicate nonqualified coordinate space name to a single node in
+            a <see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" /> or
+            <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />.
+            All nonqualified space names that share the same parent node
+            must be unique.  For more information, see the topic titled <see
+            cref="u:Framework.Coordinates.Theory.CoordSpaceNames">'Coordinate
+            Space Names'</see> in the online User's Guide. </summary>
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogSpaceTreeFixturedSpaceNameCollisionException">
+            <summary> The exception that is thrown when a fixture tool
+            attempts to add a space to a coordinate space tree that already
+            has a space by that name. This exception is only generated by
+            <see cref="T:Cognex.VisionPro.CalibFix.CogFixture" /> or <see
+            cref="T:Cognex.VisionPro.CalibFix.CogFixtureNPointToNPoint" />.
+            </summary>
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogSpaceTreeInvalidNameSyntaxException">
+            <summary> The exception that is thrown when the syntax of the
+            supplied coordinate space name is invalid.  For more
+            information, see the topic titled <see
+            cref="u:Framework.Coordinates.Theory.CoordSpaceNames">'Coordinate
+            Space Names'</see> in the online User's Guide. </summary>
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogSpaceTreeNameNotInTreeException">
+            <summary> The exception that is thrown when the specified
+            coordinate space name was not found in the
+            <see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" />
+            or <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />.
+            </summary>
+        </member>
+        <member name="T:Cognex.VisionPro.Exceptions.CogSpaceTreeNameNotUniqueException">
+            <summary> The exception that is thrown when a nonqualified
+            coordinate space name is expected to be unique within a
+            <see cref="T:Cognex.VisionPro.CogCoordinateSpaceTree" />
+            or <see cref="T:Cognex.VisionPro3D.Cog3DCoordinateSpaceTree" />,
+            but is not unique. </summary>
         </member>
     </members>
 </doc>
