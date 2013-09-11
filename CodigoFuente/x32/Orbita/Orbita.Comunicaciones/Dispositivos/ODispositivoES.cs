@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Threading;
 using Orbita.Utiles;
 using Orbita.Winsock;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -12,8 +12,7 @@ namespace Orbita.Comunicaciones
     {
         #region Atributos
         /// <summary>
-        /// Atributo que indica las  colecciones
-        /// de tags de datos, lecturas y alarmas.
+        /// Atributo que indica las  colecciones de tags de datos, lecturas y alarmas.
         /// </summary>
         public OTags Tags;
         /// <summary>
@@ -21,56 +20,48 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public static OHilos Hilos;
         /// <summary>
-        /// Datos de configuración del canal
+        /// Datos de configuración del canal.
         /// </summary>
-        public OConfigDispositivo _config;
+        public OConfigDispositivo ConfigDispositivo;
         /// <summary>
-        /// Argumentos para generar los eventos
+        /// Argumentos para generar los eventos.
         /// </summary>
-        public OEventArgs _oEventargs;
+        public OEventArgs Eventargs;
         /// <summary>
-        /// Objeto para establecer el canal TCP
+        /// Objeto para establecer el canal TCP.
         /// </summary>
         public OWinsockBase Winsock;
         /// <summary>
-        /// Segundos para la reconexión con el dispositivo
+        /// Segundos para la reconexión con el dispositivo.
         /// </summary>
-        public decimal SegReconexion = 1;
+        public decimal ReConexionSg = 1;
         /// <summary>
-        /// Valor devuelto para las entradas
+        /// Valor devuelto para las entradas.
         /// </summary>
         public byte[] Entradas;
         /// <summary>
-        /// Byte de escrituras
+        /// Byte de escrituras.
         /// </summary>
-        protected byte[] Salidas;
+        protected new byte[] Salidas;
         /// <summary>
-        /// Byte de escrituras
+        /// Tiempo que tarda en logar un error de comunicación.
         /// </summary>
-        //protected byte[] SalidasHiloEscribir;
-        /// <summary>
-        /// Tiempo que tarda en logar un error de comunicación
-        /// </summary>
-        public int _segundosLogErrorComunicacion = 60;
-        /// <summary>
-        /// Variable para bloqueo de escrituras
-        /// </summary>
-        //public int _bloqueoEscrituras = 0;
+        public int LogErrorComunicacionSg = 60;
         #endregion
 
-        #region Constructores
+        #region Constructor
         /// <summary>
         /// Inicializar una nueva instancia de la clase de ES.
         /// </summary>
         public ODispositivoES(OTags tags, OHilos hilos, ODispositivo dispositivo)
         {
-            wrapper.Info("Creando dispositivo ODispositivoES");
+            Wrapper.Info("Creando dispositivo ODispositivoES");
             try
             {
                 // Asignación de las colecciones de datos, lecturas y alarmas.
                 this.Tags = tags;
-                this._config = tags.Config;
-                this._oEventargs = new OEventArgs();
+                this.ConfigDispositivo = tags.Config;
+                this.Eventargs = new OEventArgs();
 
                 //Actualizando las variables de dispositivo
                 this.Identificador = dispositivo.Identificador;
@@ -84,8 +75,8 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                wrapper.Error("ODispositivoES Constructor ", ex);
-                throw ex;
+                Wrapper.Error("ODispositivoES Constructor ", ex);
+                throw;
             }
         }
         #endregion
@@ -127,7 +118,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public override void Iniciar()
         {
-            this.InicHiloVida();
+            this.IniciarHiloVida();
         }
         /// <summary>
         /// Devuelva las alarmas activas del sistema
@@ -179,6 +170,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="variables">Colección de variables.</param>
         /// <param name="valores">Colección de valores.</param>
+        /// <param name="canal"></param>
         /// <returns></returns>
         public override bool Escribir(string[] variables, object[] valores, string canal)
         {
@@ -190,11 +182,11 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Inicia hilo de vida.
         /// </summary>
-        private void InicHiloVida()
+        private void IniciarHiloVida()
         {
             // Crear el objeto Hilo e iniciarlo. El parámetro iniciar indica
             // a la colección que una vez añadido el hilo se iniciado.
-            Hilos.Add(new ThreadStart(ProcesarHiloVida), true);
+            Hilos.Add(ProcesarHiloVida, true);
         }
         #endregion
     }

@@ -9,17 +9,17 @@ namespace Orbita.Comunicaciones
     {
         #region Atributos
         /// <summary>
-        /// Objeto para comunicar con WinCC
+        /// Objeto para comunicar con WinCC.
         /// </summary>
-        private OProtocoloWinCCDataManager oDataManager = null;
+        private OProtocoloWinCCDataManager _oDataManager = null;
         /// <summary>
-        /// Tipo de variable para escribir
+        /// Tipo de variable para escribir.
         /// </summary>
-        private Type m_CurVarType;
+        private Type _mCurVarType;
         /// <summary>
-        /// Logger del sistema
+        /// Logger del sistema.
         /// </summary>
-        private ILogger logger;
+        private readonly ILogger _logger;
         #endregion
 
         #region Constructores
@@ -29,11 +29,10 @@ namespace Orbita.Comunicaciones
         /// <param name="logger">Log de la clase</param>
         public ODispositivoWinCC(ILogger logger)
         {
-            this.logger = logger;
-            oDataManager = new OProtocoloWinCCDataManager();
-            oDataManager.Connect();
+            this._logger = logger;
+            _oDataManager = new OProtocoloWinCCDataManager();
+            _oDataManager.Connect();
         }
-
         /// <summary>
         /// Destruye el objeto
         /// </summary>
@@ -58,14 +57,14 @@ namespace Orbita.Comunicaciones
         public override void Dispose(bool disposing)
         {
             // Check to see if Dispose has already been called. 
-            if (!this.disposed)
+            if (!this.Disposed)
             {
                 // If disposing equals true, dispose all managed 
                 // and unmanaged resources. 
                 if (disposing) { }
                 // Note disposing has been done.
-                oDataManager = null;
-                disposed = true;
+                _oDataManager = null;
+                Disposed = true;
             }
         }
         /// <summary>
@@ -94,13 +93,12 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Escribe las variables en WinCC. El método de escritura es variable a variable
         /// </summary>
-        /// <param name="variables"></param>
+        /// <param name="variables">Colección de variables.</param>
         /// <param name="valores"></param>
         /// <returns></returns>
         public override bool Escribir(string[] variables, object[] valores)
         {
             bool retorno = true;
-
             for (int i = 0; i < variables.Length; i++)
             {
                 if (!this.Escribir(variables[i], valores[i]))
@@ -115,6 +113,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="variables">Colección de variables.</param>
         /// <param name="valores">Colección de valores.</param>
+        /// <param name="canal"></param>
         /// <returns></returns>
         public override bool Escribir(string[] variables, object[] valores, string canal)
         {
@@ -132,16 +131,15 @@ namespace Orbita.Comunicaciones
         private bool Leer(string variable, out object valor)
         {
             bool retorno = false;
-
             valor = null;
             UInt32 calidad = 0;
             try
             {
-                retorno = oDataManager.GetVarValue(variable, out valor, out calidad);
+                retorno = _oDataManager.GetVarValue(variable, out valor, out calidad);
             }
             catch (Exception ex)
             {
-                this.logger.Fatal("Error al leer: ", ex);
+                this._logger.Fatal("Error al leer: ", ex);
             }
             return retorno;
         }
@@ -156,13 +154,13 @@ namespace Orbita.Comunicaciones
             bool retorno = false;
             try
             {
-                m_CurVarType = valor.GetType();
-                Object objNewValue = Convert.ChangeType(valor, m_CurVarType);
-                retorno = oDataManager.SetVarValue(variable, objNewValue);
+                _mCurVarType = valor.GetType();
+                Object objNewValue = Convert.ChangeType(valor, _mCurVarType);
+                retorno = _oDataManager.SetVarValue(variable, objNewValue);
             }
             catch (Exception ex)
             {
-                this.logger.Fatal("Error al escribir: ", ex);
+                this._logger.Fatal("Error al escribir: ", ex);
             }
             return retorno;
         }

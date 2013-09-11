@@ -31,7 +31,6 @@ namespace Orbita.Comunicaciones
         /// Handshake para la comunicación serie
         /// </summary>
         public OHandShakes Handshake;
-
         #endregion Atributos
 
         #region Constructores

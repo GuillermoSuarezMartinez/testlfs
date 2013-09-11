@@ -20,15 +20,11 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Identificador de variables.
         /// </summary>
-        int[] _variables;
+        private int[] _variables;
         /// <summary>
         /// Valor de las variables.
         /// </summary>
-        string[] _valores;
-        /// <summary>
-        /// Enlace de conexión.
-        /// </summary>
-        string[] _enlaces;
+        private string[] _valores;
         #endregion
 
         #region Constructores
@@ -39,9 +35,9 @@ namespace Orbita.Comunicaciones
         /// <param name="enlaces">Descripción del enlace.</param>
         public OInfoOPCvida(int contador, string[] enlaces)
         {
-            this._variables = new int[contador];
-            this._valores = new string[contador];
-            this._enlaces = enlaces;
+            _variables = new int[contador];
+            _valores = new string[contador];
+            Enlaces = enlaces;
         }
         #endregion
 
@@ -49,11 +45,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Enlace de conexión.
         /// </summary>
-        public string[] Enlaces
-        {
-            get { return this._enlaces; }
-            set { this._enlaces = value; }
-        }
+        public string[] Enlaces { get; set; }
         /// <summary>
         /// Variables
         /// </summary>
@@ -79,7 +71,7 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public int[] GetVariables()
         {
-            return this._variables;
+            return _variables;
         }
         /// <summary>
         /// Obtener el elemento i-esimo de la
@@ -90,7 +82,7 @@ namespace Orbita.Comunicaciones
         /// <returns>El objeto de la colección.</returns>
         public object GetVariables(int indice)
         {
-            return this._variables[indice];
+            return _variables[indice];
         }
         /// <summary>
         /// Asignar la colección de variables.
@@ -99,7 +91,7 @@ namespace Orbita.Comunicaciones
         /// <param name="variable">Variable a almacenar.</param>
         public void SetVariables(int indice, int variable)
         {
-            this._variables[indice] = variable;
+            _variables[indice] = variable;
         }
         /// <summary>
         /// Obtener la colección de valores.
@@ -107,14 +99,14 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public string[] GetValores()
         {
-            return this._valores;
+            return _valores;
         }
         /// <summary>
         /// Asignar la colección de valores.
         /// </summary>
         public void SetValores(string[] valores)
         {
-            this._valores = valores;
+            _valores = valores;
         }
         #endregion
     }
