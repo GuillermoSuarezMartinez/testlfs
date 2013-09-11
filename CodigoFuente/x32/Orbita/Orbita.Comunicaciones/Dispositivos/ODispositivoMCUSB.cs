@@ -19,7 +19,7 @@ namespace Orbita.Comunicaciones
         /// Evento reset de recepción de tramas KeepAlive, 
         /// Entrada/Salida.
         /// </summary>
-        private OResetManual _eReset;  //0-keep alive;1-lecturas;2-escrituras
+        private OResetManual _eReset;  // 0-KeepAlive; 1-lecturas; 2-escrituras.
         /// <summary>
         /// Colección para la búsqueda de lecturas. La clave es la dupla "dirección-bit"
         /// </summary>
@@ -63,76 +63,74 @@ namespace Orbita.Comunicaciones
         {
             //Inicialización de objetos
             this.IniciarObjetos();
-            wrapper.Info("Objetos del dispositivo de ES MCC creados.");
+            Wrapper.Info("Objetos del dispositivo de ES MCC creados.");
 
             try
             {
-                Hilos.Add(new ThreadStart(ESProcesarHilo), true);
+                Hilos.Add(new ThreadStart(EsProcesarHilo), true);
             }
             catch (Exception ex)
             {
-                wrapper.Error("No se pudo crear la conexión TCP con el dispositivo de ES MCC." + ex.ToString());
+                Wrapper.Error("No se pudo crear la conexión TCP con el dispositivo de ES MCC." + ex);
             }
 
-            wrapper.Info("Comunicaciones TCP del dispositivo de ES MCC arrancadas correctamente.");
+            Wrapper.Info("Comunicaciones TCP del dispositivo de ES MCC arrancadas correctamente.");
         }
-
         #endregion
 
         #region Métodos públicos
-
         /// <summary>
         /// Procesa las lecturas del dispositivo
         /// </summary>
         public override void ProcesarHiloVida()
         {
-            OEstadoComms estado = new OEstadoComms();
-            estado.Nombre = this.Nombre;
-            estado.Id = this.Identificador;
-            estado.Enlace = this.Tags.HtVida.Enlaces[0].ToString();
-            estado.Estado = "NOK";
-            Boolean responde = true;
+            OEstadoComms estado = new OEstadoComms
+                {
+                    Nombre = this.Nombre,
+                    Id = this.Identificador,
+                    Enlace = this.Tags.HtVida.Enlaces[0],
+                    Estado = "NOK"
+                };
 
             int reintento = 0;
-            int maxReintentos = 3;
+            const int maxReintentos = 3;
 
             while (true)
             {
                 try
                 {
-                    responde = true;
+                    Boolean responde = true;
                     short data;
-                    ErrorInfo info;
-                    info = _daqBoard.DIn(DigitalPortType.FirstPortA, out data);
+                    ErrorInfo info = _daqBoard.DIn(DigitalPortType.FirstPortA, out data);
                     this._lecturas[0] = (byte)data;
                     if (info.Value != ErrorInfo.ErrorCode.NoErrors)
                     {
                         responde = false;
-                        wrapper.Error("Error en keep alive del dispositivo de ES MCC canal A: " + info.Value.ToString());
+                        Wrapper.Error("Error en KeepAlive del dispositivo de ES MCC canal A: " + info.Value.ToString());
                     }
                     info = _daqBoard.DIn(DigitalPortType.FirstPortB, out data);
                     this._lecturas[1] = (byte)data;
                     if (info.Value != ErrorInfo.ErrorCode.NoErrors)
                     {
                         responde = false;
-                        wrapper.Error("Error en keep alive del dispositivo de ES MCC canal B: " + info.Value.ToString());
+                        Wrapper.Error("Error en KeepAlive del dispositivo de ES MCC canal B: " + info.Value.ToString());
                     }
                     info = _daqBoard.DIn(DigitalPortType.FirstPortCL, out data);
                     this._lecturas[2] = (byte)data;
                     if (info.Value != ErrorInfo.ErrorCode.NoErrors)
                     {
                         responde = false;
-                        wrapper.Error("Error en keep alive del dispositivo de ES MCC canal CL: " + info.Value.ToString());
+                        Wrapper.Error("Error en KeepAlive del dispositivo de ES MCC canal CL: " + info.Value.ToString());
                     }
                     info = _daqBoard.DIn(DigitalPortType.FirstPortCH, out data);
                     this._lecturas[3] = (byte)data;
                     if (info.Value != ErrorInfo.ErrorCode.NoErrors)
                     {
                         responde = false;
-                        wrapper.Error("Error en keep alive del dispositivo de ES MCC canal CH: " + info.Value.ToString());
+                        Wrapper.Error("Error en KeepAlive del dispositivo de ES MCC canal CH: " + info.Value.ToString());
                     }
 
-                    this.ESEncolar(this._lecturas);
+                    this.EsEncolar(this._lecturas);
 
                     if (!responde)
                     {
@@ -144,7 +142,7 @@ namespace Orbita.Comunicaciones
                         {
                             estado.Estado = "NOK";
                         }
-                        Thread.Sleep(this._config.TiempoVida);
+                        Thread.Sleep(this.ConfigDispositivo.TiempoVida);
                     }
                     else
                     {
@@ -155,19 +153,19 @@ namespace Orbita.Comunicaciones
                 catch (Exception ex)
                 {
                     estado.Estado = "NOK";
-                    wrapper.Error("Error en keep alive del dispositivo de ES MCC: ", ex);
+                    Wrapper.Error("Error en KeepAlive del dispositivo de ES MCC: ", ex);
                 }
 
                 try
                 {
-                    this._oEventargs.Argumento = estado;
-                    this.OnComm(this._oEventargs);
+                    this.Eventargs.Argumento = estado;
+                    this.OnComm(this.Eventargs);
                 }
                 catch (Exception ex)
                 {
-                    wrapper.Error("Error en envío de evento de comunicaciones en dispositivo de ES MCC: ", ex);
+                    Wrapper.Error("Error en envío de evento de comunicaciones en dispositivo de ES MCC: ", ex);
                 }
-                Thread.Sleep(this._config.TiempoEsperaLectura);
+                Thread.Sleep(this.ConfigDispositivo.TiempoEsperaLectura);
             }
         }
         /// <summary>
@@ -181,7 +179,6 @@ namespace Orbita.Comunicaciones
         public override object[] Leer(string[] variables, bool demanda)
         {
             object[] resultado = null;
-
             try
             {
                 if (variables != null)
@@ -201,8 +198,8 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                wrapper.Fatal("Error al leer en el dispositivo de ES MCC. ", ex);
-                throw ex;
+                Wrapper.Fatal("Error al leer en el dispositivo de ES MCC. ", ex);
+                throw;
             }
 
             return resultado;
@@ -217,8 +214,6 @@ namespace Orbita.Comunicaciones
         {
             lock (this)
             {
-
-
                 bool resultado = false;
 
                 byte[] lecturasEscribir = new byte[this._lecturas.Length];
@@ -232,26 +227,24 @@ namespace Orbita.Comunicaciones
                         switch (infodato.Conexion.ToUpper())
                         {
                             case "A":
-                                lecturasEscribir[0] = this.ProcesarByte(this._lecturas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
+                                lecturasEscribir[0] = ProcesarByte(this._lecturas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
                                 break;
                             case "B":
-                                lecturasEscribir[1] = this.ProcesarByte(this._lecturas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
+                                lecturasEscribir[1] = ProcesarByte(this._lecturas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
                                 break;
                             case "CL":
-                                lecturasEscribir[2] = this.ProcesarByte(this._lecturas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
+                                lecturasEscribir[2] = ProcesarByte(this._lecturas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
                                 break;
                             case "CH":
-                                lecturasEscribir[3] = this.ProcesarByte(this._lecturas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
-                                break;
-                            default:
+                                lecturasEscribir[3] = ProcesarByte(this._lecturas[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
                                 break;
                         }
                     }
 
                     resultado = true;
-                    ErrorInfo info;
                     for (int i = 0; i < 2; i++)
                     {
+                        ErrorInfo info;
                         switch (Salidas[i])
                         {
                             case 0:
@@ -259,7 +252,7 @@ namespace Orbita.Comunicaciones
                                 if (info.Value != ErrorInfo.ErrorCode.NoErrors)
                                 {
                                     resultado = false;
-                                    wrapper.Error("Error al escribir en el dispositivo de ES MCC canal A: " + info.Value.ToString());
+                                    Wrapper.Error("Error al escribir en el dispositivo de ES MCC canal A: " + info.Value.ToString());
                                 }
                                 break;
                             case 1:
@@ -267,7 +260,7 @@ namespace Orbita.Comunicaciones
                                 if (info.Value != ErrorInfo.ErrorCode.NoErrors)
                                 {
                                     resultado = false;
-                                    wrapper.Error("Error al escribir en el dispositivo de ES MCC canal B: " + info.Value.ToString());
+                                    Wrapper.Error("Error al escribir en el dispositivo de ES MCC canal B: " + info.Value.ToString());
                                 }
                                 break;
                             case 2:
@@ -275,7 +268,7 @@ namespace Orbita.Comunicaciones
                                 if (info.Value != ErrorInfo.ErrorCode.NoErrors)
                                 {
                                     resultado = false;
-                                    wrapper.Error("Error al escribir en el dispositivo de ES MCC canal CL: " + info.Value.ToString());
+                                    Wrapper.Error("Error al escribir en el dispositivo de ES MCC canal CL: " + info.Value.ToString());
                                 }
                                 break;
                             case 3:
@@ -283,29 +276,24 @@ namespace Orbita.Comunicaciones
                                 if (info.Value != ErrorInfo.ErrorCode.NoErrors)
                                 {
                                     resultado = false;
-                                    wrapper.Error("Error al escribir en el dispositivo de ES MCC canal CH: " + info.Value.ToString());
+                                    Wrapper.Error("Error al escribir en el dispositivo de ES MCC canal CH: " + info.Value.ToString());
                                 }
-                                break;
-                            default:
                                 break;
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    wrapper.Fatal("Error en la escritura de variables en el dispositivo de ES MCC " + ex.ToString());
+                    Wrapper.Fatal("Error en la escritura de variables en el dispositivo de ES MCC " + ex);
                 }
 
                 return resultado;
             }
         }
-
         #endregion
 
         #region Métodos privados
-
         #region Comunes
-
         /// <summary>
         /// Establece el valor inicial de los objetos
         /// </summary>
@@ -398,8 +386,6 @@ namespace Orbita.Comunicaciones
                     case "CL":
                         _daqBoard.DConfigPort(MccDaq.DigitalPortType.FirstPortCL, MccDaq.DigitalPortDirection.DigitalIn);
                         break;
-                    default:
-                        break;
                 }
             }
             for (int i = 0; i < listSalidas.Count; i++)
@@ -426,7 +412,6 @@ namespace Orbita.Comunicaciones
 
             #endregion
         }
-
         /// <summary>
         /// Procesa los bits poniendo a 1 o 0 el bit correspondiente
         /// </summary>
@@ -434,38 +419,29 @@ namespace Orbita.Comunicaciones
         /// <param name="bit"></param>
         /// <param name="valorBit"></param>
         /// <returns></returns>
-        private byte ProcesarByte(byte valor, int bit, int valorBit)
+        private static byte ProcesarByte(byte valor, int bit, int valorBit)
         {
             byte ret = 0;
 
-            try
+            if (valorBit == 1)
             {
-                if (valorBit == 1)
-                {
-                    ret = (byte)((valor) | (byte)(Math.Pow(2, bit)));
-                }
-                else
-                {
-                    ret = (byte)(valor & ~(byte)(Math.Pow(2, bit)));
-                }
+                ret = (byte)((valor) | (byte)(Math.Pow(2, bit)));
             }
-            catch (Exception ex)
+            else
             {
-                throw ex;
+                ret = (byte)(valor & ~(byte)(Math.Pow(2, bit)));
             }
 
             return ret;
         }
-
-        #endregion
+        #endregion Comunes
 
         #region ES
-
         /// <summary>
         /// Método que encola trama GateData.
         /// </summary>
         /// <param name="trama"></param>
-        private void ESEncolar(byte[] trama)
+        private void EsEncolar(byte[] trama)
         {
             // Bloquear la cola sincronizada.
             lock (this._qEntradaSalida.SyncRoot)
@@ -480,7 +456,7 @@ namespace Orbita.Comunicaciones
         /// Método que desencola trama GateData.
         /// </summary>
         /// <returns>Objeto GateData</returns>
-        private byte[] ESDesencolar()
+        private byte[] EsDesencolar()
         {
             // Bloquear la cola sincronizada.
             lock (this._qEntradaSalida.SyncRoot)
@@ -503,21 +479,21 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Hilo de proceso de ES
         /// </summary>
-        private void ESProcesarHilo()
+        private void EsProcesarHilo()
         {
             while (true)
             {
-                byte[] mensaje = this.ESDesencolar();
+                byte[] mensaje = this.EsDesencolar();
 
                 if (mensaje != null)
                 {
                     try
                     {
-                        this.ESProcesar(mensaje);
+                        this.EsProcesar(mensaje);
                     }
                     catch (Exception ex)
                     {
-                        wrapper.Fatal("Error al procesar las ES en el dispositivo de ES MCC. " + ex.ToString());
+                        Wrapper.Fatal("Error al procesar las ES en el dispositivo de ES MCC. " + ex);
                     }
                     Thread.Sleep(10);
                 }
@@ -531,7 +507,7 @@ namespace Orbita.Comunicaciones
         /// Procesa los bytes de entradas y salidas para actualizar los valores de las variables
         /// </summary>
         /// <param name="mensaje">byte de entradas recibido</param>
-        private void ESProcesar(byte[] mensaje)
+        private void EsProcesar(byte[] mensaje)
         {
             try
             {
@@ -539,14 +515,14 @@ namespace Orbita.Comunicaciones
                 {
                     if (mensaje[i] != this.LecturasContinuas[i])
                     {
-                        this.ESActualizarVariables(mensaje[i], i);
+                        this.EsActualizarVariables(mensaje[i], i);
                         this.LecturasContinuas[i] = mensaje[i];
                     }
                 }
             }
             catch (Exception ex)
             {
-                wrapper.Fatal("Error al procesar las ES en el dispositivo de ES MCC en ESProcesar. " + ex.ToString());
+                Wrapper.Fatal("Error al procesar las ES en el dispositivo de ES MCC en ESProcesar. " + ex);
                 throw ex;
             }
         }
@@ -555,7 +531,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="valor">valor del byte</param>
         /// <param name="posicion">posición del byte</param>
-        private void ESActualizarVariables(byte valor, int posicion)
+        private void EsActualizarVariables(byte valor, int posicion)
         {
             OInfoDato infodato = null;
             OEventArgs ev = new OEventArgs();
@@ -614,29 +590,21 @@ namespace Orbita.Comunicaciones
 
                                 this.OnAlarma(ev);
                             }
-
                         }
-
-
                     }
                     else
                     {
                         //wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
                         //    " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
                     }
-
                 }
                 catch (Exception ex)
                 {
-                    wrapper.Error("Error no controlado al procesar las entradas en el dispositivo de ES Siemens" + ex.ToString());
+                    Wrapper.Error("Error no controlado al procesar las entradas en el dispositivo de ES Siemens" + ex);
                 }
-
             }
-
         }
-
-        #endregion
-
-        #endregion
+        #endregion ES
+        #endregion Métodos privados
     }
 }

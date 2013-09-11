@@ -58,13 +58,6 @@ namespace Orbita.Comunicaciones
         public event ManejadorEvento EnviarOHttpCompletado;
         #endregion
 
-        #region Constructores
-        /// <summary>
-        /// Inicializar una nueva instancia de la clase OHttp.
-        /// </summary>
-        public OProtocoloHttp() { }
-        #endregion
-
         #region Destructores
         /// <summary>
         /// Método  sobrecargado de  Dispose que será  el que

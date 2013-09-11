@@ -4,10 +4,11 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Remoting;
+using System.Runtime.Remoting.Channels;
 using System.Security.Permissions;
 using System.Windows.Forms;
 using System.Xml;
-using System.Runtime.Remoting.Channels;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -17,27 +18,26 @@ namespace Orbita.Comunicaciones
     public static class ORemoting
     {
         #region Atributos
-
-        /// <summary>
-        /// Valor de inicialización.
-        /// </summary>
-        readonly static bool Inic = false;
         /// <summary>
         /// Colección de  tipos  conocidos
         /// en el establecimiento remoting.
         /// </summary>
-        static IDictionary WellKnownTypes;
+        private static IDictionary WellKnownTypes;
 
         #region Constantes
         /// <summary>
+        /// Valor de inicialización.
+        /// </summary>
+        private const bool Inic = false;
+        /// <summary>
         /// Ruta de configuración general.
         /// </summary>
-        const string CONFIG = @"\Config";
+        private const string Config = @"\Config";
         /// <summary>
         /// Ruta de configuración de servidor
         /// y cliente para .NET Remoting.
         /// </summary>
-        const string REMOTING = @"\Config\remoting";
+        private const string Remoting = @"\Config\remoting";
         #endregion
 
         #endregion
@@ -57,7 +57,7 @@ namespace Orbita.Comunicaciones
 
             // Crear el documento Xml.
             XmlDocument doc = new XmlDocument();
-            
+
             doc.LoadXml(string.Format(CultureInfo.CurrentCulture,
                 @"<?xml version='1.0' encoding='utf-8' ?>" +
                  "<configuration>" +
@@ -75,9 +75,9 @@ namespace Orbita.Comunicaciones
                     "</system.runtime.remoting>" +
                  "</configuration>", puerto, espacioDEnombres, clase, ensamblado.Name, canal));
             // Ruta de salida.
-            string directorio = string.Concat(Application.StartupPath, CONFIG);
+            string directorio = string.Concat(Application.StartupPath, Config);
 
-            string fichero = string.Concat(Application.StartupPath, REMOTING + puerto + ".config.xml");
+            string fichero = string.Concat(Application.StartupPath, Remoting + puerto + ".config.xml");
 
             // Control en la creación del directorio de salida.
             if (!Directory.Exists(directorio))
@@ -99,68 +99,57 @@ namespace Orbita.Comunicaciones
         public static IOCommRemoting getServidor(int servidor)
         {
             IOCommRemoting server = null;
-
-            try
+            switch (servidor)
             {
-                switch (servidor)
-                {
-                    case 1:
-                        server = (Orbita.Comunicaciones.IOCommRemoting1)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting1));
-                        break;
-                    case 2:
-                        server = (Orbita.Comunicaciones.IOCommRemoting2)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting2));
-                        break;
-                    case 3:
-                        server = (Orbita.Comunicaciones.IOCommRemoting3)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting3));
-                        break;
-                    case 4:
-                        server = (Orbita.Comunicaciones.IOCommRemoting4)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting4));
-                        break;
-                    case 5:
-                        server = (Orbita.Comunicaciones.IOCommRemoting5)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting5));
-                        break;
-                    case 6:
-                        server = (Orbita.Comunicaciones.IOCommRemoting6)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting6));
-                        break;
-                    case 7:
-                        server = (Orbita.Comunicaciones.IOCommRemoting7)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting7));
-                        break;
-                    case 8:
-                        server = (Orbita.Comunicaciones.IOCommRemoting8)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting8));
-                        break;
-                    case 9:
-                        server = (Orbita.Comunicaciones.IOCommRemoting9)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting9));
-                        break;
-                    case 10:
-                        server = (Orbita.Comunicaciones.IOCommRemoting10)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting10));
-                        break;
-                    case 11:
-                        server = (Orbita.Comunicaciones.IOCommRemoting11)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting11));
-                        break;
-                    case 12:
-                        server = (Orbita.Comunicaciones.IOCommRemoting12)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting12));
-                        break;
-                    case 13:
-                        server = (Orbita.Comunicaciones.IOCommRemoting13)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting13));
-                        break;
-                    case 14:
-                        server = (Orbita.Comunicaciones.IOCommRemoting14)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting14));
-                        break;
-                    case 15:
-                        server = (Orbita.Comunicaciones.IOCommRemoting15)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting15));
-                        break;
-                    case 16:
-                        server = (Orbita.Comunicaciones.IOCommRemoting16)ORemoting.GetObject(typeof(Orbita.Comunicaciones.IOCommRemoting16));
-                        break;
-                    default:
-                        break;
-                }
+                case 1:
+                    server = (IOCommRemoting1)ORemoting.GetObject(typeof(IOCommRemoting1));
+                    break;
+                case 2:
+                    server = (IOCommRemoting2)GetObject(typeof(IOCommRemoting2));
+                    break;
+                case 3:
+                    server = (IOCommRemoting3)GetObject(typeof(IOCommRemoting3));
+                    break;
+                case 4:
+                    server = (IOCommRemoting4)GetObject(typeof(IOCommRemoting4));
+                    break;
+                case 5:
+                    server = (IOCommRemoting5)GetObject(typeof(IOCommRemoting5));
+                    break;
+                case 6:
+                    server = (IOCommRemoting6)GetObject(typeof(IOCommRemoting6));
+                    break;
+                case 7:
+                    server = (IOCommRemoting7)GetObject(typeof(IOCommRemoting7));
+                    break;
+                case 8:
+                    server = (IOCommRemoting8)GetObject(typeof(IOCommRemoting8));
+                    break;
+                case 9:
+                    server = (IOCommRemoting9)GetObject(typeof(IOCommRemoting9));
+                    break;
+                case 10:
+                    server = (IOCommRemoting10)GetObject(typeof(IOCommRemoting10));
+                    break;
+                case 11:
+                    server = (IOCommRemoting11)GetObject(typeof(IOCommRemoting11));
+                    break;
+                case 12:
+                    server = (IOCommRemoting12)GetObject(typeof(IOCommRemoting12));
+                    break;
+                case 13:
+                    server = (IOCommRemoting13)GetObject(typeof(IOCommRemoting13));
+                    break;
+                case 14:
+                    server = (IOCommRemoting14)GetObject(typeof(IOCommRemoting14));
+                    break;
+                case 15:
+                    server = (IOCommRemoting15)GetObject(typeof(IOCommRemoting15));
+                    break;
+                case 16:
+                    server = (IOCommRemoting16)GetObject(typeof(IOCommRemoting16));
+                    break;
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
             return server;
         }
         /// <summary>
@@ -172,7 +161,6 @@ namespace Orbita.Comunicaciones
         public static string InicConfiguracionCliente(int[] puerto, string[] maquina, int[] numeroServidor)
         {
             string[] claseRemoting = new string[numeroServidor.Length];
-
             for (int i = 0; i < numeroServidor.Length; i++)
             {
                 claseRemoting[i] = "IOCommRemoting" + numeroServidor[i].ToString();
@@ -193,7 +181,7 @@ namespace Orbita.Comunicaciones
                         "<application>" +
                             "<channels>" +
                                 "<channel ref=\"tcp\" port='0' />" +
-                            "</channels>"+
+                            "</channels>" +
                             "<client>";
                 for (int i = 0; i < puerto.Length; i++)
                 {
@@ -201,19 +189,19 @@ namespace Orbita.Comunicaciones
                     "<wellknown type=\"Orbita.Comunicaciones.{1}, {0}\" url=\"tcp://{3}:{2}/{0}.soap\" />",
                     ensamblado.Name, claseRemoting[i], puerto[i], maquina[i]);
                 }
-                documento = documento +  "</client>" +
+                documento = documento + "</client>" +
                         "</application>" +
                     "</system.runtime.remoting>" +
                  "</configuration>";
-                doc.LoadXml(documento);               
+                doc.LoadXml(documento);
             }
             else
             {
                 url = "tcp://localhost:" + puerto.ToString() + "/Orbita.Comunicaciones.soap";
             }
 
-            string directorio = string.Concat(Application.StartupPath, CONFIG);
-            string fichero = string.Concat(Application.StartupPath, REMOTING + ".config.xml");
+            string directorio = string.Concat(Application.StartupPath, Config);
+            string fichero = string.Concat(Application.StartupPath, Remoting + ".config.xml");
 
             if (regChannels.Length == 0)
             {
@@ -227,14 +215,12 @@ namespace Orbita.Comunicaciones
                 doc.Save(fichero);
 
                 // Configurar .NET Remoting.
-
                 Configurar(fichero);
             }
             else
             {
                 fichero = url;
             }
-
             return fichero;
         }
         /// <summary>
@@ -257,12 +243,16 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Obtiene el canal para establecer la comunicación remota
         /// </summary>
-        /// <param name="IP"></param>
+        /// <param name="ip"></param>
         /// <param name="puerto"></param>
         /// <returns></returns>
-        public static string GetCanal(string IP, string puerto)
+        public static string GetCanal(string ip, string puerto)
         {
-            return IP+":" + puerto;
+            return ip + ":" + puerto;
+        }
+        public static Object getInterface(int numero)
+        {
+            return null;
         }
         #endregion
 
@@ -272,7 +262,7 @@ namespace Orbita.Comunicaciones
         /// del  fichero creado  en  los  inicializadores.
         /// </summary>
         /// <param name="fichero">Fichero de configuración</param>
-        static void Configurar(string fichero)
+        private static void Configurar(string fichero)
         {
             // Configurar .NET Remoting.
             RemotingConfiguration.Configure(fichero, false);
@@ -280,20 +270,13 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Inicializar el tipo caché.
         /// </summary>
-        static void InicTipoCache()
+        private static void InicTipoCache()
         {
             WellKnownTypes = new Hashtable();
             foreach (WellKnownClientTypeEntry entrada in RemotingConfiguration.GetRegisteredWellKnownClientTypes())
             {
                 WellKnownTypes.Add(entrada.ObjectType, entrada);
             }
-        }
-
-        public static Object getInterface(int numero)
-        {
-            Object retorno = null;
-
-            return retorno;
         }
         #endregion
     }

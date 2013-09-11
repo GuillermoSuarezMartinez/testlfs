@@ -7,177 +7,123 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OProtocoloTCPSiemensGateOCROS : OProtocoloTCPSiemens
     {
-        #region Atributos
+        #region Atributos privados
         /// <summary>
-        /// byte inicio trama
+        /// Fin de la trama de keepAlive envio.
         /// </summary>
-        private byte[] _stx;
+        private const int FinTramaKeepAliveEnvio = 17;
         /// <summary>
-        /// byte retorno de carro
+        /// Fin de la trama de keepAlive recepción.
         /// </summary>
-        private byte[] _cr;
+        private const int FinTramaKeepAliveRecepcion = 32;
         /// <summary>
-        /// byte identificador de la petición OCR
+        /// Tamaño máximo de trama.
         /// </summary>
-        private byte[] _osData;
-        /// <summary>
-        /// byte identificador de la respuesta OCR
-        /// </summary>
-        private byte[] _osDataResult;
-        /// <summary>
-        /// byte separador
-        /// </summary>
-        private byte[] _separador;
-        /// <summary>
-        /// Fin de la trama de keepAlive envio
-        /// </summary>
-        private int _finTramaKeepAliveEnvio = 17;
-        /// <summary>
-        /// Fin de la trama de keepAlive recepcion
-        /// </summary>
-        private int _finTramaKeepAliveRecepcion = 32;
-        /// <summary>
-        /// Tamaño máximo de trama
-        /// </summary>
-        private int _tamanyoMensaje = 33;
-        #endregion
+        private const int TamanyoMensaje = 33;
+        #endregion Atributos privados
 
-        #region Constructores
+        #region Métodos públicos
         /// <summary>
-        /// Constructor para el protocolo GATE OS
+        /// Mensaje de envío KeepAlive al PLC.
         /// </summary>
-        public OProtocoloTCPSiemensGateOCROS() { }
-        #endregion
-
-        #region Métodos
-        /// <summary>
-        /// Mensaje de envío keep alive al PLC
-        /// </summary>
-        /// <returns>mensaje de respuesta</returns>
+        /// <returns>Mensaje de respuesta.</returns>
         public override byte[] KeepAliveEnviar()
         {
-            byte[] ret = null;
-            byte[] BCC = null;
-            try
-            {
-                ret = new byte[_finTramaKeepAliveEnvio + 1];
+            var resultado = new byte[FinTramaKeepAliveEnvio + 1];
 
-                ret[0] = this.STX[0];
-                ret[this._finTramaKeepAliveEnvio] = this.CR[0];
+            resultado[0] = this.STX[0];
+            resultado[FinTramaKeepAliveEnvio] = this.CR[0];
 
-                Array.Copy(this.OSData, 0, ret, 1, this.OSData.Length);
-                ret[8] = this.Separador[0];
-                ret[9] = 0;
-                ret[10] = this.Separador[0];
-                ret[11] = 0;
-                ret[12] = 0;
-                ret[13] = 0;
-                ret[14] = 0;
-                ret[15] = this.Separador[0];
+            Array.Copy(this.OSData, 0, resultado, 1, this.OSData.Length);
+            resultado[8] = this.Separador[0];
+            resultado[9] = 0;
+            resultado[10] = this.Separador[0];
+            resultado[11] = 0;
+            resultado[12] = 0;
+            resultado[13] = 0;
+            resultado[14] = 0;
+            resultado[15] = this.Separador[0];
 
-                BCC = new byte[5];
-                BCC[0] = 0;
-                BCC[1] = 0;
-                BCC[2] = 0;
-                BCC[3] = 0;
-                BCC[4] = 0;
+            var bcc = new byte[5];
+            bcc[0] = 0;
+            bcc[1] = 0;
+            bcc[2] = 0;
+            bcc[3] = 0;
+            bcc[4] = 0;
 
-                ret[16] = this.CalculoBCC(BCC)[0];
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return ret;
+            resultado[16] = CalculoBCC(bcc)[0];
+            return resultado;
         }
         /// <summary>
-        /// Mensaje keep alive de respuesta del PLC
+        /// Mensaje KeepAlive de respuesta del PLC.
         /// </summary>
-        /// <param name="valor">valor recibido por el PLC</param>
-        /// <param name="lecturas">lecturas del PLC</param>
+        /// <param name="valor">Valor recibido por el PLC.</param>
+        /// <param name="lecturas">Lecturas del PLC.</param>
         /// <returns></returns>
         public override bool KeepAliveProcesar(byte[] valor, out byte[] lecturas)
         {
-            bool ret = false;
-            byte id = 0;
+            bool resultado = false;
             lecturas = new byte[12];
-            byte[] BCC = new byte[13];
-            try
+            var bcc = new byte[13];
+
+            // Comprobar el inicio y fin de trama.
+            if (valor[0] == this.STX[0] && valor[FinTramaKeepAliveRecepcion] == this.CR[0] && valor.Length == TamanyoMensaje)
             {
-                //Comprobamos el inicio y fin de trama
-                if (valor[0] == this.STX[0] && valor[_finTramaKeepAliveRecepcion] == this.CR[0] && valor.Length == this._tamanyoMensaje)
+                byte id = valor[15];
+                Array.Copy(valor, 17, lecturas, 0, 8);
+                Array.Copy(valor, 26, lecturas, 8, 4);
+                bcc[0] = id;
+                Array.Copy(lecturas, 0, bcc, 1, 12);
+                if (CalculoBCC(bcc)[0] == valor[31])
                 {
-                    id = valor[15];
-                    Array.Copy(valor, 17, lecturas, 0, 8);
-                    Array.Copy(valor, 26, lecturas, 8, 4);
-                    BCC[0] = id;
-                    Array.Copy(lecturas, 0, BCC, 1, 12);
-                    if (this.CalculoBCC(BCC)[0] == valor[31])
-                    {
-                        ret = true;
-                    }
+                    resultado = true;
                 }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return ret;
+            return resultado;
         }
         /// <summary>
-        /// Escritura de salidas
+        /// Escritura de salidas.
         /// </summary>
-        /// <param name="salidas">salidas a escribir</param>
-        /// <param name="idMensaje">identificador del mensaje</param>
+        /// <param name="salidas">Salidas a escribir.</param>
+        /// <param name="idMensaje">Identificador del mensaje.</param>
         /// <returns></returns>
         public override byte[] SalidasEnviar(byte[] salidas, byte idMensaje)
         {
-            byte[] ret = null;
-
-            return ret;
+            return null;
         }
         /// <summary>
-        /// Escritura de salidas
+        /// Escritura de salidas.
         /// </summary>
-        /// <param name="valor">valor a procesar</param>
-        /// <param name="id">identificador del mensaje</param>
+        /// <param name="valor">Valor a procesar.</param>
+        /// <param name="id">Identificador del mensaje.</param>
+        /// <param name="lecturas"></param>
         /// <returns></returns>
         public override bool SalidasProcesar(byte[] valor, byte id, out byte[] lecturas)
         {
             lecturas = null;
-            bool ret = false;
-
-            return ret;
+            return false;
         }
         /// <summary>
-        /// Calculo BCC
+        /// Cálculo BCC.
         /// </summary>
-        /// <param name="dato">bytes para calculo</param>
-        /// <returns>BCC</returns>
-        private byte[] CalculoBCC(byte[] dato)
+        /// <param name="dato">Bytes para cálculo.</param>
+        /// <returns>BCC.</returns>
+        private static byte[] CalculoBCC(byte[] dato)
         {
             int resultado = 0;
-            byte[] retorno = new byte[1];
-
-            try
+            var retorno = new byte[1];
+            for (int i = 0; i < (dato.Length - 1); i++)
             {
-                for (int i = 0; i < (dato.Length - 1); i++)
+                if (i == 0)
                 {
-                    if (i == 0)
-                    {
-                        resultado = dato[i] ^ dato[i + 1];
-                    }
-                    else
-                    {
-                        resultado = resultado ^ dato[i + 1];
-                    }
+                    resultado = dato[i] ^ dato[i + 1];
                 }
-                retorno[0] = (byte)resultado;
+                else
+                {
+                    resultado = resultado ^ dato[i + 1];
+                }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            retorno[0] = (byte)resultado;
             return retorno;
         }
         /// <summary>
@@ -186,74 +132,49 @@ namespace Orbita.Comunicaciones
         public override void Dispose(bool disposing)
         {
             // Check to see if Dispose has already been called.
-            if (!this.disposed)
-            {
-                // If disposing equals true, dispose all managed
-                // and unmanaged resources.
-                if (disposing)
-                {
-                    // Dispose managed resources.
-                }
-            }
+            if (this.disposed) return;
+            // If disposing equals true, dispose all managed
+            // and unmanaged resources.
+            if (disposing) { }
         }
-        #endregion
+        #endregion Métodos públicos
 
         #region Propiedades
         /// <summary>
-        /// byte inicio trama
+        /// Byte inicio trama.
         /// </summary>
         public byte[] STX
         {
-            get
-            {
-                this._stx = Encoding.ASCII.GetBytes("\x02");
-                return this._stx;
-            }
+            get { return Encoding.ASCII.GetBytes("\x02"); }
         }
         /// <summary>
-        /// byte retorno de carro
+        /// Byte retorno de carro.
         /// </summary>
         public byte[] CR
         {
-            get
-            {
-                this._cr = Encoding.ASCII.GetBytes("\x0D");
-                return this._cr;
-            }
+            get { return Encoding.ASCII.GetBytes("\x0D"); }
         }
         /// <summary>
-        /// Byte separador del mensaje
+        /// Byte separador del mensaje.
         /// </summary>
         public byte[] Separador
         {
-            get
-            {
-                this._separador = Encoding.ASCII.GetBytes("\x2F");
-                return this._separador;
-            }
+            get { return Encoding.ASCII.GetBytes("\x2F"); }
         }
         /// <summary>
-        /// Identificador del mensaje ocr data
+        /// Identificador del mensaje ocr data.
         /// </summary>
         public byte[] OSData
         {
-            get
-            {
-                this._osData = Encoding.ASCII.GetBytes("OSODATA");
-                return this._osData;
-            }
+            get { return Encoding.ASCII.GetBytes("OSODATA"); }
         }
         /// <summary>
-        /// Identificador del mensaje ocr data result
+        /// Identificador del mensaje ocr data result.
         /// </summary>
         public byte[] OSDataResult
         {
-            get
-            {
-                this._osDataResult = Encoding.ASCII.GetBytes("OSODATARESULT");
-                return this._osDataResult;
-            }
+            get { return Encoding.ASCII.GetBytes("OSODATARESULT"); }
         }
-        #endregion
+        #endregion Propiedades
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Text;
+using System.Linq;
 using System.Threading;
 using Orbita.Utiles;
 using Orbita.Winsock;
@@ -16,105 +16,100 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Cola de recepción de tramas de datos.
         /// </summary>
-        protected Queue _qEntradaSalida;
+        protected Queue QEntradaSalida;
         /// <summary>
-        /// Evento reset de recepción de tramas KeepAlive, 
+        /// Evento reset de recepción de tramas KeepAlive.
         /// Entrada/Salida.
         /// </summary>
-        protected OResetManual _eReset;  //0-keep alive;1-lecturas;2-escrituras
+        protected OResetManual Reset;  // 0-KeepAlive; 1-lecturas.
         /// <summary>
-        /// Colección para la búsqueda de lecturas. La clave es la dupla "dirección-bit"
+        /// Colección para la búsqueda de lecturas. La clave es la dupla "dirección-bit".
         /// </summary>
-        protected OHashtable _almacenLecturas;
+        protected OHashtable AlmacenLecturas;
         /// <summary>
-        /// Colección para la búsqueda de escrituras. La clave es la dupla "dirección-bit"
+        /// Colección para la búsqueda de escrituras. La clave es la dupla "dirección-bit".
         /// </summary>
-        protected OHashtable _almacenEscrituras;
+        protected OHashtable AlmacenEscrituras;
         /// <summary>
-        /// Número de lecturas a realizar
+        /// Número de lecturas a realizar.
         /// </summary>
-        protected int _numLecturas;
+        protected int NumLecturas;
         /// <summary>
-        /// Número de bytes de entradas
+        /// Número de bytes de entradas.
         /// </summary>
-        protected int _numeroBytesEntradas;
+        protected int NumeroBytesEntradas;
         /// <summary>
-        /// Número de bytes de salidas
+        /// Número de bytes de salidas.
         /// </summary>
-        protected int _numeroBytesSalidas;
+        protected int NumeroBytesSalidas;
         /// <summary>
-        /// Valor de las lecturas
+        /// Valor de las lecturas.
         /// </summary>
         protected byte[] _lecturas;
         /// <summary>
-        /// Valor inicial del registro de lecturas
+        /// Valor inicial del registro de lecturas.
         /// </summary>
-        protected int _registroInicialEntradas;
+        protected int RegistroInicialEntradas;
         /// <summary>
-        /// Valor inicial del registro de escrituras
+        /// Valor inicial del registro de escrituras.
         /// </summary>
-        protected int _registroInicialSalidas;
+        protected int RegistroInicialSalidas;
         /// <summary>
-        /// identificador del mensaje
+        /// Protocolo comunicación usado para el hilo vida.
         /// </summary>
-        byte idMensaje = 0;
+        protected OProtocoloTCPSiemens ProtocoloHiloVida;
         /// <summary>
-        /// Protocolo comunicación usado para el hilo vida
+        /// Protocolo comunicación usado para la escritura.
         /// </summary>
-        protected OProtocoloTCPSiemens protocoloHiloVida;
+        protected OProtocoloTCPSiemens ProtocoloEscritura;
         /// <summary>
-        /// Protocolo comunicación usado para la escritura
+        /// Protocolo comunicación usado para el proceso del mensaje.
         /// </summary>
-        protected OProtocoloTCPSiemens protocoloEscritura;
+        protected OProtocoloTCPSiemens ProtocoloProcesoMensaje;
         /// <summary>
-        /// Protocolo comunicación usado para el proceso del mensaje
+        /// Protocolo de comunicación usado para el proceso del hilo.
         /// </summary>
-        protected OProtocoloTCPSiemens protocoloProcesoMensaje;
+        protected OProtocoloTCPSiemens ProtocoloProcesoHilo;
         /// <summary>
-        /// Protocolo de comunicación usado para el proceso del hilo
+        /// Fecha del ultimo wrapper de error.
         /// </summary>
-        protected OProtocoloTCPSiemens protocoloProcesoHilo;
+        private DateTime _fechaErrorWrapperWinsock = DateTime.MaxValue;
         /// <summary>
-        /// Valor devuelto tras la escritura del PLC
+        /// Identificador del mensaje a enviar para la escritura.
         /// </summary>
-        protected byte[] _valorEscritura;
-        /// <summary>
-        /// Fecha del ultimo wrapper de error
-        /// </summary>
-        DateTime fechaErrorWrapperWinsock = DateTime.MaxValue;
-        /// <summary>
-        /// Identificador del mensaje a enviar para la escritura
-        /// </summary>
-        private byte _idMens = 1;
+        private byte _idMensaje = 1;
         /// <summary>
         /// Cola de recepción de tramas de datos.
         /// </summary>
         private Queue _qEscrituras;
-
-        internal int _lecturaInicialSalida;
+        internal int LecturaInicialSalida;
         #endregion
 
         #region Constructor
         /// <summary>
-        /// Constructor de clase de Siemens1200
+        /// Inicializar una nueva instancia de la clase ODispositivoSiemens1200ES.
         /// </summary>
+        /// <param name="tags">Colección de tags.</param>
+        /// <param name="hilos">Colección de hilos.</param>
+        /// <param name="dispositivo">Dispositivo de conexión.</param>
         public ODispositivoSiemens1200ES(OTags tags, OHilos hilos, ODispositivo dispositivo)
             : base(tags, hilos, dispositivo)
         {
-            //Inicialización de objetos
+            // Inicialización de objetos
             this.IniciarObjetos();
-            wrapper.Info("ODispositivo1200ES Constructor Objetos del dispositivo de ES Siemens creados.");
-            //Inicio de los parámetros TCP
+
+            Wrapper.Info("ODispositivoSiemens1200ES constructor de objetos del dispositivo de ES Siemens creados.");
+            // Inicio de los parámetros TCP
             try
             {
-                this.CrearParametrosConexionTCP();
-                Hilos.Add(new ThreadStart(ESProcesarHilo), true);
+                this.CrearParametrosConexionTcp();
+                Hilos.Add(EsProcesarHilo, true);
             }
             catch (Exception ex)
             {
-                wrapper.Error("ODispositivoSiemens1200 Constructor." + ex.ToString());
+                Wrapper.Error("ODispositivoSiemens1200ES [ODispositivoSiemens1200ES]: " + ex);
             }
-            wrapper.Info("ODispositivo1200ES Constructor Comunicaciones TCP del dispositivo de ES Siemens arrancadas correctamente.");
+            Wrapper.Info("ODispositivoSiemens1200ES constructor de comunicaciones Tcp del dispositivo de ES Siemens arrancadas correctamente.");
         }
         #endregion
 
@@ -131,96 +126,96 @@ namespace Orbita.Comunicaciones
 
         #region Métodos públicos
         /// <summary>
-        /// Procesa las lecturas del dispositivo
+        /// Procesa las lecturas del dispositivo.
         /// </summary>
         public override void ProcesarHiloVida()
         {
-            OEstadoComms estado = new OEstadoComms();
-            estado.Nombre = this.Nombre;
-            estado.Id = this.Identificador;
-            estado.Enlace = this.Tags.HtVida.Enlaces[0].ToString();
+            var estado = new OEstadoComms
+                {
+                    Nombre = this.Nombre,
+                    Id = this.Identificador,
+                    Enlace = this.Tags.HtVida.Enlaces[0]
+                };
             Boolean responde = true;
             DateTime fechaErrorWrapper = DateTime.MaxValue;
 
             int reintento = 0;
-            int maxReintentos = 3;
-            TimeSpan ts;
+            const int maxReintentos = 3;
 
             bool modoKeepAlive = true;
             bool ini = true;
 
             while (true)
             {
-                #region Conectar
+                // Conectar.
                 if (this.Winsock.State != WinsockStates.Connected)
                 {
                     try
                     {
                         this.Conectar();
-                        int segReconexion = Convert.ToInt32(this.SegReconexion * 1000);
-                        Thread.Sleep(segReconexion);
+                        int reConexionSg = Convert.ToInt32(this.ReConexionSg * 1000);
+                        Thread.Sleep(reConexionSg);
                         estado.Estado = "NOK";
                     }
                     catch (Exception ex)
                     {
                         if (fechaErrorWrapper == DateTime.MaxValue)
                         {
-                            wrapper.Error("ODispositivoSiemens1200 ProcesarHiloVida error para keep alive: ", ex);
+                            Wrapper.Error("ODispositivoSiemens1200ES [ProcesarHiloVida_fechaErrorWrapper == DateTime.MaxValue]: ", ex);
                             fechaErrorWrapper = DateTime.Now;
                         }
                         else
                         {
                             TimeSpan t = DateTime.Now.Subtract(fechaErrorWrapper);
-                            if (t.TotalSeconds > this._segundosLogErrorComunicacion)
+                            if (t.TotalSeconds > this.LogErrorComunicacionSg)
                             {
-                                wrapper.Error("ODispositivoSiemens1200 ProcesarHiloVida error para keep alive: ", ex);
+                                Wrapper.Error("ODispositivoSiemens1200ES [ProcesarHiloVida_(t.TotalSeconds > this.LogErrorComunicacionSg]: ", ex);
                                 fechaErrorWrapper = DateTime.Now;
                             }
                         }
                     }
                 }
-                #endregion                
                 else
                 {
                     try
                     {
-                        using (protocoloHiloVida)
+                        using (ProtocoloHiloVida)
                         {
-                            #region Escrituras
+                            // Escrituras.
                             if (modoKeepAlive && !ini)
                             {
                                 modoKeepAlive = false;
-                                if (this._qEscrituras.Count > 0)
+                                lock (this._qEscrituras.SyncRoot)
                                 {
-                                    lock (this._qEscrituras.SyncRoot)
+                                    if (this._qEscrituras.Count > 0)
                                     {
-                                        DispositivoEscrituras de = null;
-                                        de = ((DispositivoEscrituras)this._qEscrituras.Dequeue());
+                                        var de = ((DispositivoEscrituras)this._qEscrituras.Dequeue());
                                         string traza = "";
-
                                         for (int i = 0; i < de.Variables.Length; i++)
                                         {
-                                            traza = traza + "#Variable " + de.Variables[i].ToString() + " Valor " + de.Valores[i].ToString();
+                                            traza = traza + " #Variable: " + de.Variables[i] + " Valor: " + de.Valores[i];
                                         }
-
-                                        wrapper.Info("ODispositivoSiemens1200 ProcesarHiloVida Escritura de " + traza);
-                                        this.Enviar(protocoloEscritura.SalidasEnviar(this.ProcesarEscritura(de.Variables, de.Valores), this._idMens));
-                                        Thread.Sleep(10);
+                                        Wrapper.Info("ODispositivoSiemens1200ES [ProcesarHiloVida] Escritura de " + traza);
+                                        var salidas = ProtocoloEscritura.SalidasEnviar(this.ProcesarEscritura(de.Variables, de.Valores), this._idMensaje);
+                                        if (salidas == null)
+                                        {
+                                            Wrapper.Warn("ODispositivoSiemens1200ES [ProcesarHiloVida] Protocolo de solo lectura.");
+                                            return;
+                                        }
+                                        this.Enviar(salidas);
                                     }
-
                                 }
                             }
-                            #endregion
-                            #region KeepAlive                        
-                            else
-                            {                            
+                            else // KeepAlive.
+                            {
                                 ini = false;
                                 modoKeepAlive = true;
-                                this.Enviar(protocoloHiloVida.KeepAliveEnviar());
+
+                                this.Enviar(ProtocoloHiloVida.KeepAliveEnviar());
 
                                 // Letargo del hilo hasta t-tiempo, o bien, hasta recibir respuesta, el cual realiza el Set sobre
                                 // el eventReset del evento 'wsk_DataArrival'.
-                                if (!this._eReset.Dormir(0, TimeSpan.FromSeconds(this._config.TiempoVida / 1000)))
+                                if (!this.Reset.Dormir(0, TimeSpan.FromSeconds(this.ConfigDispositivo.TiempoVida)))
                                 {
                                     responde = false;
                                     modoKeepAlive = false;
@@ -233,50 +228,45 @@ namespace Orbita.Comunicaciones
                                         estado.Estado = "NOK";
                                     }
                                     // Trazar recepción errónea.
-                                    wrapper.Warn("ODispositivoSiemens1200 Timeout en el keep alive.");
+                                    Wrapper.Warn("ODispositivoSiemens1200ES [ProcesarHiloVida] Timeout en el KeepAlive.");
                                 }
 
                                 // Resetear el evento.
-                                this._eReset.Resetear(0);
+                                this.Reset.Resetear(0);
 
-                                // Letargo del hilo en función de la respuesta.
                                 if (responde)
                                 {
                                     estado.Estado = "OK";
                                     reintento = 0;
-                                    Thread.Sleep(this._config.TiempoVida);
+                                    //  Thread.Sleep(this._config.TiempoVida);
                                 }
                                 else
                                 {
                                     responde = true;
                                     // Establecer un micro tiempo de letargo, necesario en este tipo de hilos.
                                     // Realizar un envio inmediato tras la no respuesta anterior.
-                                    Thread.Sleep(10);
                                 }
                             }
+                            Thread.Sleep(1);
                         }
-                        #endregion
                     }
                     catch (Exception ex)
                     {
                         estado.Estado = "NOK";
-                        wrapper.Error("ODispositivoSiemens1200 ProcesarHiloVida: ", ex);
+                        Wrapper.Error("ODispositivoSiemens1200ES [ProcesarHiloVida_estado.Estado = NOK]: ", ex);
                     }
                 }
-
                 try
                 {
-                    ts = DateTime.Now.Subtract(this._fechaUltimoEventoComs);
-                    if (ts.TotalSeconds > (double)this._config.SegEventoComs)
-                    {
-                        this._oEventargs.Argumento = estado;
-                        this.OnComm(this._oEventargs);
-                        this._fechaUltimoEventoComs = DateTime.Now;
-                    }
+                    TimeSpan ts = DateTime.Now.Subtract(this.FechaUltimoEventoComm);
+                    if (!(ts.TotalSeconds > (double)this.ConfigDispositivo.SegEventoComs)) continue;
+                    this.Eventargs.Argumento = estado;
+                    this.OnComm(this.Eventargs);
+                    this.FechaUltimoEventoComm = DateTime.Now;
                 }
                 catch (Exception ex)
                 {
-                    wrapper.Error("ODispositivoSiemens1200 ProcesarHiloVida Error en envío de evento de comunicaciones: ", ex);
+                    Wrapper.Error("ODispositivoSiemens1200ES [ProcesarHiloVida_ts.TotalSeconds > (double)this.ConfigDispositivo.SegEventoComs]: ", ex);
                 }
             }
         }
@@ -291,30 +281,25 @@ namespace Orbita.Comunicaciones
         public override object[] Leer(string[] variables, bool demanda)
         {
             object[] resultado = null;
-
             try
             {
                 if (variables != null)
                 {
                     // Inicializar contador de variables.
                     int contador = variables.Length;
-
-                    // Asignar a la colección resultado el número
-                    // de variables de la colección de variables.
+                    // Asignar a la colección resultado el número de variables de la colección de variables.
                     resultado = new object[contador];
                     for (int i = 0; i < contador; i++)
                     {
-                        object res = this.Tags.GetDB(variables[i]).Valor;
-                        resultado[i] = res;
+                        resultado[i] = this.Tags.GetDB(variables[i]).Valor;
                     }
                 }
             }
             catch (Exception ex)
             {
-                wrapper.Fatal("ODispositivoSiemens1200 Leer: ", ex);
-                throw ex;
+                Wrapper.Fatal("ODispositivoSiemens1200ES [Leer]: ", ex);
+                throw;
             }
-
             return resultado;
         }
         /// <summary>
@@ -324,49 +309,11 @@ namespace Orbita.Comunicaciones
         /// <param name="valores">Colección de valores.</param>
         /// <returns></returns>
         public override bool Escribir(string[] variables, object[] valores)
-        {            
+        {
             lock (this._qEscrituras.SyncRoot)
             {
-                DispositivoEscrituras de = new DispositivoEscrituras(variables, valores);
-                this._qEscrituras.Enqueue(de);
-                //DispositivoEscrituras de = null;
-
-                //if (this._qEscrituras.Count>0)
-                //{
-                //    de = ((DispositivoEscrituras)this._qEscrituras.Dequeue());
-                //}
-
-                //int longitud = 0;
-
-                //if (de!=null)
-                //{
-                //    longitud = de.Valores.Length;
-                //}
-
-                //longitud = longitud + variables.Length;
-
-                //string[] vars = new string[longitud];
-                //object[] vals = new object[longitud];
-
-                //for (int i = 0; i < longitud; i++)
-                //{
-                //    if (i<variables.Length)
-                //    {
-                //        vars[i] = variables[i];
-                //        vals[i] = valores[i];
-                //    }
-                //    else
-                //    {
-                //        vars[i] = de.Variables[longitud-variables.Length-i];
-                //        vals[i] = de.Valores[longitud - variables.Length - i];
-                //    }
-                    
-                //}
-                //DispositivoEscrituras disp = new DispositivoEscrituras(vars, vals);
-
-                //this._qEscrituras.Enqueue(disp);
+                this._qEscrituras.Enqueue(new DispositivoEscrituras(variables, valores));
             }
-
             return true;
         }
         /// <summary>
@@ -384,7 +331,6 @@ namespace Orbita.Comunicaciones
             {
                 handler(e);
             }
-            handler = null;
         }
         /// <summary>
         /// Cambio de dato de las salidas
@@ -401,7 +347,6 @@ namespace Orbita.Comunicaciones
             {
                 handler(e);
             }
-            handler = null;
         }
         #endregion
 
@@ -411,23 +356,21 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Publica los eventos de socket
         /// </summary>
-        private void CrearParametrosConexionTCP()
+        private void CrearParametrosConexionTcp()
         {
             try
             {
-                this.Winsock = new OWinsockBase();
-                this.Winsock.LegacySupport = true;
-                this.Winsock.DataArrival += new IWinsock.DataArrivalEventHandler(_winsock_DataArrival);
-                this.Winsock.StateChanged += new IWinsock.StateChangedEventHandler(_winsock_StateChanged);
-                this.Winsock.SendComplete += new IWinsock.SendCompleteEventHandler(_winsock_SendComplete);
-                this.Winsock.ErrorReceived += new IWinsock.ErrorReceivedEventHandler(_winsock_ErrorReceived);
+                this.Winsock = new OWinsockBase { LegacySupport = true };
+                this.Winsock.DataArrival += Winsock_DataArrival;
+                this.Winsock.StateChanged += Winsock_StateChanged;
+                this.Winsock.SendComplete += Winsock_SendComplete;
+                this.Winsock.ErrorReceived += Winsock_ErrorReceived;
             }
             catch (Exception ex)
             {
-                wrapper.Fatal("ODispositivoSiemens1200 CrearParametrosConexionTCP Error al crear la conexión TCP con el dispositivo de ES Siemens. " + ex.ToString());
-                throw ex;
+                Wrapper.Fatal("ODispositivoSiemens1200ES [CrearParametrosConexionTcp]: " + ex);
+                throw;
             }
-
         }
         /// <summary>
         /// Conecta con el dispositivo TCP
@@ -442,143 +385,127 @@ namespace Orbita.Comunicaciones
         protected virtual void IniciarObjetos()
         {
             // Cola de envío/recepción de tramas.
-            this._qEntradaSalida = new Queue();
+            this.QEntradaSalida = new Queue();
             this._qEscrituras = new Queue();
+
             // Evento reset de envío/recepción de tramas KeepAlive y Entrada/Salida.
-            this._eReset = new OResetManual(3);
-            // Iniciamos los datos 
-            ArrayList listEntradas = new ArrayList();
-            ArrayList listSalidas = new ArrayList();
+            this.Reset = new OResetManual(2);
 
-            this._almacenLecturas = new OHashtable();
-            this._almacenEscrituras = new OHashtable();
+            // Inicializar datos.
+            var entradas = new ArrayList();
+            var salidas = new ArrayList();
 
-            foreach (DictionaryEntry item in this.Tags.GetDatos())
+            this.AlmacenLecturas = new OHashtable();
+            this.AlmacenEscrituras = new OHashtable();
+
+            foreach (OInfoDato infodato in from DictionaryEntry item in this.Tags.GetDatos() select (OInfoDato)item.Value)
             {
-                OInfoDato infodato = (OInfoDato)item.Value;
                 infodato.Valor = 0;
-                string key = infodato.Direccion.ToString() + "-" + infodato.Bit.ToString();
+                string key = string.Format("{0}-{1}", infodato.Direccion, infodato.Bit);
                 if (infodato.EsEntrada)
                 {
-                    this._almacenLecturas.Add(key, infodato);
-                    if (!listEntradas.Contains(infodato.Direccion))
+                    this.AlmacenLecturas.Add(key, infodato);
+                    if (!entradas.Contains(infodato.Direccion))
                     {
-                        listEntradas.Add(infodato.Direccion);
+                        entradas.Add(infodato.Direccion);
                     }
                 }
                 else
                 {
-                    this._almacenEscrituras.Add(key, infodato);
-                    if (!listSalidas.Contains(infodato.Direccion))
+                    this.AlmacenEscrituras.Add(key, infodato);
+                    if (!salidas.Contains(infodato.Direccion))
                     {
-                        listSalidas.Add(infodato.Direccion);
+                        salidas.Add(infodato.Direccion);
                     }
                 }
             }
         }
         /// <summary>
-        /// Procesa los mensajes recibidos en el data arrival
+        /// Procesa los mensajes recibidos en el data arrival.
         /// </summary>
         /// <param name="mensaje"></param>
-        protected virtual void ProcesarMensajeRecibido(byte[] mensaje)
-        {
-
-        }
+        protected virtual void ProcesarMensajeRecibido(byte[] mensaje) { }
         /// <summary>
-        /// Procesa los bits poniendo a 1 o 0 el bit correspondiente
+        /// Procesa los bits poniendo a 1 o 0 el bit correspondiente.
         /// </summary>
         /// <param name="valor"></param>
         /// <param name="bit"></param>
         /// <param name="valorBit"></param>
         /// <returns></returns>
-        private byte ProcesarByte(byte valor, int bit, int valorBit)
+        private static byte ProcesarByte(byte valor, int bit, int valorBit)
         {
-            byte ret = 0;
-
-            try
+            byte ret;
+            if (valorBit == 1)
             {
-                if (valorBit == 1)
-                {
-                    ret = (byte)((valor) | (byte)(Math.Pow(2, bit)));
-                }
-                else
-                {
-                    ret = (byte)(valor & ~(byte)(Math.Pow(2, bit)));
-                }
+                ret = (byte)((valor) | (byte)(Math.Pow(2, bit)));
             }
-            catch (Exception ex)
+            else
             {
-                throw ex;
+                ret = (byte)(valor & ~(byte)(Math.Pow(2, bit)));
             }
-
             return ret;
         }
-        #endregion
+        #endregion Comunes
 
         #region ES
         /// <summary>
         /// Calcula el valor de las salidas para enviar al dispositivo
         /// </summary>
-        /// <param name="variables"></param>
+        /// <param name="variables">Colección de variables.</param>
         /// <param name="valores"></param>
         /// <returns></returns>
         private byte[] ProcesarEscritura(string[] variables, Object[] valores)
         {
-            byte[] salidas = new byte[_numeroBytesSalidas];
-            byte[] salidalocal = new byte[_numeroBytesSalidas];
+            var salidas = new byte[NumeroBytesSalidas];
+            var salidalocal = new byte[NumeroBytesSalidas];
 
-            for (int i = 0; i < _numeroBytesSalidas; i++)
+            for (int i = 0; i < NumeroBytesSalidas; i++)
             {
-                salidalocal[i] = this._lecturas[this._lecturaInicialSalida + i];
+                salidalocal[i] = this._lecturas[this.LecturaInicialSalida + i];
             }
             for (int i = 0; i < variables.Length; i++)
             {
                 OInfoDato infodato = this.Tags.GetDB(variables[i]);
-
-                if (!infodato.EsEntrada)
-                {
-                    salidas[infodato.Direccion - this._registroInicialSalidas] = this.ProcesarByte(salidalocal[infodato.Direccion - this._registroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
-                    salidalocal[infodato.Direccion - this._registroInicialSalidas] = salidas[infodato.Direccion - this._registroInicialSalidas];
-                }
+                if (infodato.EsEntrada) continue;
+                salidas[infodato.Direccion - this.RegistroInicialSalidas] = ProcesarByte(salidalocal[infodato.Direccion - this.RegistroInicialSalidas], infodato.Bit, Convert.ToInt32(valores[i]));
+                salidalocal[infodato.Direccion - this.RegistroInicialSalidas] = salidas[infodato.Direccion - this.RegistroInicialSalidas];
             }
-
             return salidas;
         }
         /// <summary>
         /// Método que encola trama GateData.
         /// </summary>
         /// <param name="trama"></param>
-        protected void ESEncolar(byte[] trama)
+        protected void EsEncolar(byte[] trama)
         {
             // Bloquear la cola sincronizada.
-            lock (this._qEntradaSalida.SyncRoot)
+            lock (this.QEntradaSalida.SyncRoot)
             {
                 // Encolar la trama de ES recibida.
-                this._qEntradaSalida.Enqueue(trama);
+                this.QEntradaSalida.Enqueue(trama);
 
-                // Despertar el hilo 'ESProcesarHilo' aletargado
-                // en la línea: 'this._eReset.Dormir(1)'
-                this._eReset.Despertar(1);
+                // Despertar el hilo 'ESProcesarHilo' aletargado en la línea: 'this._eReset.Dormir(1)'
+                this.Reset.Despertar(1);
             }
         }
         /// <summary>
         /// Método que desencola trama GateData.
         /// </summary>
         /// <returns>Objeto GateData</returns>
-        protected byte[] ESDesencolar()
+        protected byte[] EsDesencolar()
         {
             // Bloquear la cola sincronizada.
-            lock (this._qEntradaSalida.SyncRoot)
+            lock (this.QEntradaSalida.SyncRoot)
             {
                 byte[] mensaje = null;
-                if (this._qEntradaSalida.Count > 0)
+                if (this.QEntradaSalida.Count > 0)
                 {
                     // Desencolar el objeto Trama encolado en wsk_DataArrival.
-                    mensaje = ((byte[])this._qEntradaSalida.Dequeue());
+                    mensaje = ((byte[])this.QEntradaSalida.Dequeue());
                 }
                 else
                 {
-                    this._eReset.Resetear(1);
+                    this.Reset.Resetear(1);
                 }
                 return mensaje;
             }
@@ -586,26 +513,16 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Hilo de proceso de ES
         /// </summary>
-        protected virtual void ESProcesarHilo()
-        {
-
-        }
+        protected virtual void EsProcesarHilo() { }
         /// <summary>
         /// Enviar datos al dispositivo
         /// </summary>
         /// <param name="data"></param>
         private void Enviar(Object data)
         {
-            try
-            {
-                this.Winsock.Send(data);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            this.Winsock.Send(data);
         }
-        #endregion
+        #endregion ES
 
         #endregion
 
@@ -615,33 +532,26 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="sender">Objeto que lanza el evento</param>
         /// <param name="e">Argumentos del evento</param>
-        void _winsock_DataArrival(object sender, WinsockDataArrivalEventArgs e)
+        private void Winsock_DataArrival(object sender, WinsockDataArrivalEventArgs e)
         {
             try
             {
-                String data = "";   // data es la variable donde guardaremos el mensaje recibido
-                Object dat = (object)data;  // dat es una variable tipo objeto
-                // el metodo Get de winsock solo devuelve datos de tipo objeto.
+                // El método Get de winsock solo devuelve datos de tipo objeto.
+                var datos = Winsock.Get<object>();
 
-                dat = Winsock.Get<object>();
+                string res = "";
+                var recibido = (byte[])datos;
+                this.ProcesarMensajeRecibido(recibido);
 
-                string ret = "";
-                byte[] recibido = (byte[])dat;
                 if (recibido != null)
                 {
-                    for (int i = 0; i < recibido.Length; i++)
-                    {
-                        ret += "[" + recibido[i].ToString() + "]";
-                    }
+                    res = recibido.Aggregate(res, (current, t) => current + ("[" + t + "]"));
                 }
-
-                this.ProcesarMensajeRecibido(recibido);
-                wrapper.Debug("ODispositivo1200ES _winsock_DataArrival Data Arrival en el dispositivo de ES Siemens: " + ret);
+                Wrapper.Debug("ODispositivoSiemens1200ES [Winsock_DataArrival]: " + res);
             }
             catch (Exception ex)
             {
-                string error = "ODispositivo1200ES _winsock_DataArrival Error Data Arrival en el dispositivo de ES Siemens: " + ex.ToString();
-                wrapper.Error(error);
+                Wrapper.Error("ODispositivoSiemens1200ES [Winsock_DataArrival]: " + ex);
             }
         }
         /// <summary>
@@ -649,27 +559,21 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="sender">Objeto que lanza el evento</param>
         /// <param name="e">Argumentos del evento</param>
-        void _winsock_SendComplete(object sender, WinsockSendEventArgs e)
+        private static void Winsock_SendComplete(object sender, WinsockSendEventArgs e)
         {
-            //verificamos la llegada
+            // Verificar la llegada.
             try
             {
                 string enviado = "";
                 if (e.DataSent != null)
                 {
-                    for (int i = 0; i < e.DataSent.Length; i++)
-                    {
-                        enviado += "[" + e.DataSent[i].ToString() + "]";
-                    }
+                    enviado = e.DataSent.Aggregate(enviado, (current, t) => current + ("[" + t + "]"));
                 }
-
-                wrapper.Debug("ODispositivo1200ES _winsock_SendComplete Send Complete en el dispositivo de ES Siemens: " + enviado);
-
+                Wrapper.Debug("ODispositivoSiemens1200ES [Winsock_SendComplete]: " + enviado);
             }
             catch (Exception ex)
             {
-                string error = "ODispositivo1200ES _winsock_SendComplete Error Send Complete en el dispositivo de ES Siemens: " + ex.ToString();
-                wrapper.Error(error);
+                Wrapper.Error("ODispositivoSiemens1200ES [Winsock_SendComplete]: " + ex);
             }
         }
         /// <summary>
@@ -677,17 +581,15 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="sender">Objeto que lanza el evento</param>
         /// <param name="e">Argumentos del evento</param>
-        void _winsock_StateChanged(object sender, WinsockStateChangedEventArgs e)
+        private static void Winsock_StateChanged(object sender, WinsockStateChangedEventArgs e)
         {
             try
             {
-                string estado = "ODispositivo1200ES _winsock_StateChanged State Changed en el dispositivo de ES Siemens. Cambia de " + e.Old_State.ToString() + " a " + e.New_State.ToString();
-                wrapper.Debug(estado);
+                Wrapper.Debug("ODispositivoSiemens1200ES [Winsock_StateChanged]. Cambia de " + e.Old_State + " a " + e.New_State + ".");
             }
             catch (Exception ex)
             {
-                string error = "ODispositivo1200ES _winsock_StateChanged Error State Changed en el dispositivo de ES Siemens: " + ex.ToString();
-                wrapper.Error(error);
+                Wrapper.Error("ODispositivoSiemens1200ES [Winsock_StateChanged]: " + ex);
             }
         }
         /// <summary>
@@ -695,50 +597,49 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="sender">Objeto que lanza el evento</param>
         /// <param name="e">Argumentos del evento</param>
-        void _winsock_ErrorReceived(object sender, WinsockErrorReceivedEventArgs e)
+        private void Winsock_ErrorReceived(object sender, WinsockErrorReceivedEventArgs e)
         {
             try
             {
-                string error = "ODispositivoSiemens1200ES _winsock_ErrorReceived: " + e.Message;
-                if (fechaErrorWrapperWinsock == DateTime.MaxValue)
+                string error = "ODispositivoSiemens1200ES [Winsock_ErrorReceived]: " + e.Message;
+                if (_fechaErrorWrapperWinsock == DateTime.MaxValue)
                 {
-                    wrapper.Error(error);
-                    fechaErrorWrapperWinsock = DateTime.Now;
+                    Wrapper.Error(error);
+                    _fechaErrorWrapperWinsock = DateTime.Now;
                 }
                 else
                 {
-                    TimeSpan t = DateTime.Now.Subtract(fechaErrorWrapperWinsock);
-                    if (t.TotalSeconds > this._segundosLogErrorComunicacion)
+                    TimeSpan t = DateTime.Now.Subtract(_fechaErrorWrapperWinsock);
+                    if (t.TotalSeconds > this.LogErrorComunicacionSg)
                     {
-                        wrapper.Error(error);
-                        fechaErrorWrapperWinsock = DateTime.Now;
+                        Wrapper.Error(error);
+                        _fechaErrorWrapperWinsock = DateTime.Now;
                     }
                 }
             }
             catch (Exception ex)
             {
-                string error = "ODispositivoSiemens1200ES _winsock_ErrorReceived catch: " + ex.ToString();
-                wrapper.Error(error);
+                Wrapper.Error("ODispositivoSiemens1200ES [Winsock_ErrorReceived]: " + ex);
             }
         }
         #endregion
 
         #region Propiedades
         /// <summary>
-        /// Identificador del mensaje
+        /// Identificador del mensaje.
         /// </summary>
-        protected byte IdMens
+        protected byte IdMensaje
         {
-            get { return _idMens; }
+            get { return _idMensaje; }
             set
             {
-                if (this._idMens > 255)
+                if (this._idMensaje > 255)
                 {
-                    _idMens = 1;
+                    _idMensaje = 1;
                 }
                 else
                 {
-                    _idMens++;
+                    _idMensaje++;
                 }
             }
         }

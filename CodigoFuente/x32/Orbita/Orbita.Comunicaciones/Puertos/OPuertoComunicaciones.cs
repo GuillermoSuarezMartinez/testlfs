@@ -9,17 +9,6 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public abstract class OPuertoComunicaciones : IDisposable
     {
-        #region Atributos protegidos
-        /// <summary>
-        /// Contiene la información básica del puerto de comunicaciones
-        /// </summary>
-        protected OInformacionPuerto _InformacionPuerto;
-        /// <summary>
-        /// Contiene la configuración del puerto de comunicaciones
-        /// </summary>
-        protected OConfiguracionPuerto _ConfiguracionPuerto;
-        #endregion
-
         #region Atributos públicos
         /// <summary>
         /// Contiene los dispositivos asociados a este puerto
@@ -32,20 +21,20 @@ namespace Orbita.Comunicaciones
         /// Constructor de la clase
         /// </summary>
         /// <param name="configuracionPuerto">Configuración del puerto de comunicaciones</param>
-        public OPuertoComunicaciones(OConfiguracionPuerto configuracionPuerto)
+        protected OPuertoComunicaciones(OConfiguracionPuerto configuracionPuerto)
         {
-            this._ConfiguracionPuerto = configuracionPuerto;
-            this._InformacionPuerto = new OInformacionPuerto(-1, "No especificado");
+            this.ConfiguracionPuerto = configuracionPuerto;
+            this.InformacionPuerto = new OInformacionPuerto(-1, "No especificado");
         }
         /// <summary>
         /// Constructor de la clase
         /// </summary>
         /// <param name="configuracionPuerto">Configuración del puerto de comunicaciones</param>
         /// <param name="info">Información básica del puerto de comunicaciones</param>
-        public OPuertoComunicaciones(OConfiguracionPuerto configuracionPuerto, OInformacionPuerto info)
+        protected OPuertoComunicaciones(OConfiguracionPuerto configuracionPuerto, OInformacionPuerto info)
         {
-            this._ConfiguracionPuerto = configuracionPuerto;
-            this._InformacionPuerto = info;
+            this.ConfiguracionPuerto = configuracionPuerto;
+            this.InformacionPuerto = info;
         }
         /// <summary>
         /// Constructor de la clase
@@ -53,10 +42,10 @@ namespace Orbita.Comunicaciones
         /// <param name="configuracionPuerto">Configuración del puerto de comunicaciones</param>
         /// <param name="idNumerico">Identificador númerico del puerto de comunicaciones</param>
         /// <param name="tipoPuerto">Tipo del puerto de comunicaciones</param>
-        public OPuertoComunicaciones(OConfiguracionPuerto configuracionPuerto, int idNumerico, string tipoPuerto)
+        protected OPuertoComunicaciones(OConfiguracionPuerto configuracionPuerto, int idNumerico, string tipoPuerto)
         {
-            this._ConfiguracionPuerto = configuracionPuerto;
-            this._InformacionPuerto = new OInformacionPuerto(idNumerico, tipoPuerto);
+            this.ConfiguracionPuerto = configuracionPuerto;
+            this.InformacionPuerto = new OInformacionPuerto(idNumerico, tipoPuerto);
         }
         #endregion
 
@@ -64,17 +53,11 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Obtiene la información básica del puerto de comunicaciones
         /// </summary>
-        public OInformacionPuerto InformacionPuerto
-        {
-            get { return this._InformacionPuerto; }
-        }
+        public OInformacionPuerto InformacionPuerto { get; protected set; }
         /// <summary>
         /// Obtiene la configuración del puerto de comunicaciones
         /// </summary>
-        public OConfiguracionPuerto ConfiguracionPuerto
-        {
-            get { return this._ConfiguracionPuerto; }
-        }
+        public OConfiguracionPuerto ConfiguracionPuerto { get; protected set; }
         #endregion
 
         #region Métodos públicos abstractos - Funciones a implementar en función del tipo de puerto.
@@ -166,12 +149,10 @@ namespace Orbita.Comunicaciones
         /// <param name="enc">Cadena que contendrá el texto recibido</param>
         public string RecibirCadena(Encoding enc)
         {
-            string tramaRx;
             byte[] b = this.RecibirBytes();
-            tramaRx = enc.GetString(b);
-            return tramaRx;
+            return enc.GetString(b);
         }
-        #endregion
+        #endregion Métodos públicos
 
         #region Miembros de IDisposable
         /// <summary>
@@ -179,11 +160,11 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public virtual void Dispose()
         {
-            this._InformacionPuerto = null;
-            this._ConfiguracionPuerto = null;
+            this.InformacionPuerto = null;
+            this.ConfiguracionPuerto = null;
             this.Dispositivos.Clear();
             this.Dispositivos = null;
         }
-        #endregion
+        #endregion Miembros de IDisposable
     }
 }
