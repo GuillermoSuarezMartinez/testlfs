@@ -1001,6 +1001,26 @@
             Lector carin
             </summary>
         </member>
+        <member name="F:Orbita.MS.OHaspSN.OProductos.GateOCR">
+            <summary>
+            GateOCR
+            </summary>
+        </member>
+        <member name="F:Orbita.MS.OHaspSN.OProductos.GateLPR">
+            <summary>
+            GateLPR
+            </summary>
+        </member>
+        <member name="F:Orbita.MS.OHaspSN.OProductos.GateIMO">
+            <summary>
+            GateIMO
+            </summary>
+        </member>
+        <member name="F:Orbita.MS.OHaspSN.OProductos.GateVIEWER">
+            <summary>
+            GateVIEWER
+            </summary>
+        </member>
         <member name="T:Orbita.MS.OHaspSN.OLicencias">
             <summary>
             Tecnologías para licencia sw

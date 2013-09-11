@@ -43,9 +43,19 @@
             Añade un detalle a la lista de detalles
             </summary>
         </member>
+        <member name="M:Orbita.Xml.OConvertibleXML.EliminarDetalle(Orbita.Xml.OConvertibleXML)">
+            <summary>
+            Elimina un detalle a la lista de detalles
+            </summary>
+        </member>
         <member name="M:Orbita.Xml.OConvertibleXML.AñadirPropiedad(System.String,System.Object)">
             <summary>
             Añade un detalle a la lista de detalles
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXML.EliminarPropiedad(System.String,System.Object)">
+            <summary>
+            Elimina un detalle a la lista de detalles
             </summary>
         </member>
         <member name="M:Orbita.Xml.OConvertibleXML.ToXML(Orbita.Xml.ModoGeneracionXML,System.String,System.String)">

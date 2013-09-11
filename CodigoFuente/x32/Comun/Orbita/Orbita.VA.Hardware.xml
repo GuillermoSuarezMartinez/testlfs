@@ -8731,5 +8731,251 @@
             Estado de la conexión
             </summary>
         </member>
+        <member name="T:Orbita.VA.Hardware.OcsClienteComunicacion">
+            <summary>
+            Clase que implementa las funciones para el control de Entradas/Salidas del Servidor de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsClienteComunicacion.ListaClientesSincronizados">
+            <summary>
+            Lista de dispositivos del servidor de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsClienteComunicacion._Valido">
+            <summary>
+            Si están o no configurados los terminales
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsClienteComunicacion.ClienteSincronizado">
+            <summary>
+            Cliente sincronizado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsClienteComunicacion.ContLlamadasSimultaneasCambioDato">
+            <summary>
+            Informa del número de llamadas simultáneas al evento de cambio de dato
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsClienteComunicacion.ContLlamadasSimultaneasComm">
+            <summary>
+            Informa del número de llamadas simultáneas al evento de conectividad
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsClienteComunicacion.ContLlamadasSimultaneasAlarma">
+            <summary>
+            Informa del número de llamadas simultáneas al evento de alarma
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsClienteComunicacion.TimerComprobacionConexion">
+            <summary>
+            Timer de comprobación del estado de la conexión
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsClienteComunicacion.CronometroTiempoSinRespuesta">
+            <summary>
+            Cronómetro del tiempo sin respuesta
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsClienteComunicacion.NombreCanal">
+            <summary>
+            Nombre del canal
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsClienteComunicacion._HostServidor">
+            <summary>
+            Dirección del Servidor de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsClienteComunicacion._PuertoRemoto">
+            <summary>
+            Número de puerto remoto
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsClienteComunicacion._IntervaloComprabacion">
+            <summary>
+            Inervalo entre comprobaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsClienteComunicacion._NumeroServidor">
+            <summary>
+            Número del servidor
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsClienteComunicacion.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codHardware">Código del hardware</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsClienteComunicacion.Inicializar">
+            <summary>
+            Método a heredar donde se conecta y se configura la tarjeta de IO
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsClienteComunicacion.Finalizar">
+            <summary>
+            Método a heredar donde se conecta y se configura la tarjeta de IO
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsClienteComunicacion.Conectar">
+            <summary>
+            Conectar al servidor vía Remoting.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsClienteComunicacion.Desconectar">
+            <summary>
+            Desconectar del servidor vía Remoting.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsClienteComunicacion.ConectarEventWrapper">
+            <summary>
+            Conectar los eventos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsClienteComunicacion.DesconectarEventWrapper">
+            <summary>
+            Desconectar los eventos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsClienteComunicacion.ConectarCanal(System.Boolean)">
+            <summary>
+            Conectar al servidor vía Remoting.
+            </summary>
+            <param name="estado">Estado de conexión.</param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsClienteComunicacion.eventWrapper_OrbitaCambioDato(System.Object,Orbita.Comunicaciones.OcsMensajeInfoDatoEventArgs)">
+            <summary>
+            Evento de cambio de dato.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsClienteComunicacion.eventWrapper_OrbitaComm(System.Object,Orbita.Comunicaciones.OcsMensajeComunicacionesEventArgs)">
+            <summary>
+            Evento de conectividad
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsClienteComunicacion.eventWrapper_OrbitaAlarma(System.Object,Orbita.Comunicaciones.OcsMensajeInfoDatoEventArgs)">
+            <summary>
+            Evento de alarma
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsClienteComunicacion.TimerComprobacionConexion_Tick(System.Object,System.EventArgs)">
+            <summary>
+            Evento del timer de comprobación de la conexión
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OcsClienteComunicacion.HostServidor">
+            <summary>
+            Dirección del servidor de comunicaciones
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OcsClienteComunicacion.PuertoRemoto">
+            <summary>
+            Número de puerto remoto
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OcsClienteComunicacion.IntervaloComprabacion">
+            <summary>
+            Inervalo entre comprobaciones
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Hardware.OcsClienteComunicacion.NumeroServidor">
+            <summary>
+            Número del servidor
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Hardware.OcsTerminalClienteComunicacion">
+            <summary>
+            Terminal del Servidor de comunicaciones
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsTerminalClienteComunicacion.CodigoVariableCOM">
+            <summary>
+            Código de la variable contra la que trabaja el terminal
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsTerminalClienteComunicacion.ClienteSincronizado">
+            <summary>
+            Cliente sincronizado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsTerminalClienteComunicacion.IdDispositivo">
+            <summary>
+            Información del Dispositivo
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsTerminalClienteComunicacion.EscrituraInmediata">
+            <summary>
+            Indica que la escritura del valor se ha de producir inmediatamente al cambio del valor de la variable
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Hardware.OcsTerminalClienteComunicacion.NombreCanal">
+            <summary>
+            Nombre del canal
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsTerminalClienteComunicacion.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Contructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsTerminalClienteComunicacion.COMAFormatoCorrecto(System.Object,Orbita.Utiles.OEnumTipoDato)">
+            <summary>
+            Convierte el string devuelto por el servidor de comunicaciones al formato correcto de trabajo
+            </summary>
+            <param name="valorCOM"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsTerminalClienteComunicacion.FormatoCorrectoACOM(System.Object,Orbita.Utiles.OEnumTipoDato)">
+            <summary>
+            Convierte el string devuelto por el servidor de comuniaciones al formato correcto de trabajo
+            </summary>
+            <param name="valorObj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsTerminalClienteComunicacion.LeerEntrada(Orbita.Comunicaciones.OcsMensajeInfoDatoEventArgs)">
+            <summary>
+            Trata el cambio de valor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsTerminalClienteComunicacion.LeerEntrada(Orbita.Utiles.OEventArgs)">
+            <summary>
+            Trata el cambio de valor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsTerminalClienteComunicacion.ValorFormateado">
+            <summary>
+            Devuelve el valor listo para ser enviado al servidor de comunicaciones
+            </summary>
+            <param name="valorObj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsTerminalClienteComunicacion.Inicializar(Orbita.Comunicaciones.IOcsClienteSincronizado)">
+            <summary>
+            Método a heredar donde se inicializan los terminales
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsTerminalClienteComunicacion.EscribirEntrada(System.String,System.Object)">
+            <summary>
+            Simulación de la escritura de la entrada física
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsTerminalClienteComunicacion.EscribirSalida(System.String,System.Object,System.String)">
+            <summary>
+            Escritura de la salida
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsTerminalClienteComunicacion.LeerEntrada">
+            <summary>
+            lee del OPC.Servidor el valor de la variable
+            </summary>       
+            <param name="variable">variable en la que se escribe el valor</param>
+        </member>
     </members>
 </doc>
