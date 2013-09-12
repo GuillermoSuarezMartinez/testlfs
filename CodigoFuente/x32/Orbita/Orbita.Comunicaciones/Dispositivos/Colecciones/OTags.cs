@@ -12,8 +12,7 @@ namespace Orbita.Comunicaciones
         #region Atributos privados
         /// <summary>
         /// Colección de tags de datos.
-        /// Key = Identificador numérico
-        /// de la variable.
+        /// Key = Identificador numérico de la variable.
         /// Object = InfoDato.
         /// </summary>
         private OHashtable _htDatos;
@@ -158,7 +157,6 @@ namespace Orbita.Comunicaciones
         {
             if (infoDato != null)
             {
-                
                 this._htDatos.Add(infoDato.Identificador, infoDato);
             }
         }
