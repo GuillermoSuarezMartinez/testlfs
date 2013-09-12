@@ -763,8 +763,19 @@ namespace Orbita.VA.Hardware
                             // Conversión
                             this.Valor = FormatoCorrectoACOM(valor, this.TipoDato);
 
-                            // Escritura en el servidor de comunicaciones
-                            this.ClienteSincronizado.Escribir(this.IdDispositivo, new string[1] { this.CodigoVariableCOM }, new object[1] { this.Valor }, this.NombreCanal);
+                            try
+                            {
+                                // Escritura en el servidor de comunicaciones
+                                this.ClienteSincronizado.Escribir(this.IdDispositivo, new string[1] { this.CodigoVariableCOM }, new object[1] { this.Valor }, this.NombreCanal);
+                            }
+                            catch (ExcepcionComunicacion ex)
+                            {
+                                OLogsVAHardware.EntradasSalidas.Error(ex, this.Codigo);
+                            }
+                            catch (TimeoutException ex)
+                            {
+                                OLogsVAHardware.EntradasSalidas.Error(ex, this.Codigo);
+                            }
                         }
                     }
                 }
@@ -810,6 +821,10 @@ namespace Orbita.VA.Hardware
                         }
                     }
                     catch(ExcepcionComunicacion ex)
+                    {
+                        OLogsVAHardware.EntradasSalidas.Error(ex, this.Codigo);
+                    }
+                    catch (TimeoutException ex)
                     {
                         OLogsVAHardware.EntradasSalidas.Error(ex, this.Codigo);
                     }
