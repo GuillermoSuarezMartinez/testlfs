@@ -2231,7 +2231,8 @@ namespace Orbita.VA.Comun
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
         public void SetValor(object valor, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false)
         {
-            if ((this._Habilitado) && (forzarRefresco || (this.Valor != valor)) && (!this._Bloqueo) && (!this._Inhibido))
+            //if ((this._Habilitado) && (forzarRefresco || (this.Valor != valor)) && (!this._Bloqueo) && (!this._Inhibido))
+            if ((this._Habilitado) && (forzarRefresco || !(object.Equals(this.Valor, valor))) && (!this._Bloqueo) && (!this._Inhibido))
             {
                 // Insertamos la traza
                 //this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.CambioValor);
@@ -2254,7 +2255,8 @@ namespace Orbita.VA.Comun
         {
             object valor = OTipoDato.DevaultValue(this.Tipo);
 
-            if ((this._Habilitado) && (forzarRefresco || (this.Valor != valor)) && (!this._Bloqueo) && (!this._Inhibido))
+            //if ((this._Habilitado) && (forzarRefresco || (this.Valor != valor)) && (!this._Bloqueo) && (!this._Inhibido))
+            if ((this._Habilitado) && (forzarRefresco || !(object.Equals(this.Valor, valor))) && (!this._Bloqueo) && (!this._Inhibido))
             {
                 // Insertamos la traza
                 //this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.CambioValor);
@@ -2278,7 +2280,8 @@ namespace Orbita.VA.Comun
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
         public void SetValorRetrasado(object valor, TimeSpan retraso, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false, ThreadPriority threadPriority = ThreadPriority.Normal)
         {
-            if ((this._Habilitado) && (forzarRefresco || (this.Valor != valor)) && (!this._Bloqueo) && (!this._Inhibido))
+            //if ((this._Habilitado) && (forzarRefresco || (this.Valor != valor)) && (!this._Bloqueo) && (!this._Inhibido))
+            if ((this._Habilitado) && (forzarRefresco || !(object.Equals(this.Valor, valor))) && (!this._Bloqueo) && (!this._Inhibido))
             {
                 // creo ua secuencia para el valor momentaneo
                 OSecuencia secuencia = new OSecuencia(this.Codigo + "-Retrasado", threadPriority, 1);
@@ -2380,7 +2383,8 @@ namespace Orbita.VA.Comun
         [EnvironmentPermissionAttribute(SecurityAction.Demand, Unrestricted = true)]
         public void ForzarValor(object valor, string codigoModuloLlamada, string descripcionLlamada, bool forzarRefresco = false)
         {
-            if ((this._Habilitado) && (forzarRefresco || (this.Valor != valor)) && (this._Bloqueo))
+            //if ((this._Habilitado) && (forzarRefresco || (this.Valor != valor)) && (this._Bloqueo))
+            if ((this._Habilitado) && (forzarRefresco || !(object.Equals(this.Valor, valor))) && (this._Bloqueo))
             {
                 // Insertamos la traza
                 //this.NuevaTraza(codigoModuloLlamada, descripcionLlamada, TipoTraza.ForzarValor);
