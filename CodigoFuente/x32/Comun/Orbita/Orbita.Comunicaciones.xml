@@ -6804,8 +6804,7 @@
         <member name="F:Orbita.Comunicaciones.OTags._htDatos">
             <summary>
             Colección de tags de datos.
-            Key = Identificador numérico
-            de la variable.
+            Key = Identificador numérico de la variable.
             Object = InfoDato.
             </summary>
         </member>
