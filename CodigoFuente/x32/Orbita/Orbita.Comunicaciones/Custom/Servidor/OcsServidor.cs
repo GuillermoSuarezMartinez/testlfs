@@ -89,6 +89,10 @@ namespace Orbita.Comunicaciones
         public void Terminar()
         {
             if (_listeners.Count <= 0) return;
+            foreach (var listener in _listeners)
+            {
+                listener.Parar();
+            }
             _cambioDato.Terminar();
             _alarmas.Terminar();
             _comunicaciones.Terminar();

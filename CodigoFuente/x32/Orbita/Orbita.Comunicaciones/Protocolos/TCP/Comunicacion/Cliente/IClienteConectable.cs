@@ -48,6 +48,5 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
         /// No hace nada si ya se encuentra desconectado.
         /// </summary>
         void Desconectar();
-
     }
 }

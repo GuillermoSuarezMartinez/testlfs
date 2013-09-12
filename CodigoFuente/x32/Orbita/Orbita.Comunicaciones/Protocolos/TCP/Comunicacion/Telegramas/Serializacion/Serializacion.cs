@@ -22,7 +22,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
     /// Protocolo de comunicación predeterminado entre el servidor y los clientes para enviar y recibir un mensaje.
     /// Utiliza serialización binaria .NET para escribir y leer mensajes.
     /// 
-    /// Formato de mensaje: [Longitud de mensaje (4 bytes)][Contenido del mensaje serializado]
+    /// Formato de mensaje: [Longitud de mensaje (4 bytes)][Contenido del mensaje serializado].
     /// 
     /// Si un mensaje es serializado en un array de bytes en N bytes, este protocolo añade 4 bytes de
     /// información extra a la cabecera del mensaje, por lo tanto, la longitud total es de (4 + N) bytes.
@@ -305,6 +305,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
                         select assembly.GetType(typeName)).FirstOrDefault();
             }
         }
-        #endregion
+        #endregion Clase DeserializationAppDomainBinder
     }
 }

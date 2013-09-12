@@ -17,8 +17,8 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Threading
     /// <summary>
     /// Esta clase se utiliza para procesar elementos de forma secuencial en procesos multihilo (multithread).
     /// </summary>
-    /// <typeparam name="TElemento">Tipo de elemento.</typeparam>
     /// <typeparam name="TSender"></typeparam>
+    /// <typeparam name="TElemento">Tipo de elemento.</typeparam>
     public class ProcesadorElementosSecuencialesT2<TSender, TElemento>
     {
         #region Atributos privados

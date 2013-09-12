@@ -1,11 +1,14 @@
 ﻿//***********************************************************************
+//
 // Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
 //
-// Modificado         : crodriguez
+// Modificado por     : crodriguez
 // Fecha modificación : 01-09-2013
-// Descripción        :
+// Descripción        : Proporciona la funcionalidad básica para todas 
+// las clases servidor.
+//
 //***********************************************************************
 
 using System;

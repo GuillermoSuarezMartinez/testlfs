@@ -12,7 +12,6 @@ using System;
 using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales;
 using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints;
 using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Excepciones;
-using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros;
 using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas;
 using Orbita.Comunicaciones.Protocolos.Tcp.Threading;
 

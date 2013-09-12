@@ -22,9 +22,5 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
         /// Endpoint del servidor.
         /// </summary>
         TcpEndPoint EndPointRemoto { get; }
-        ///// <summary>
-        ///// Obtener el objeto IMensajero subyacente.
-        ///// </summary>
-        //IMensajero Mensajero { get; set; }
     }
 }
