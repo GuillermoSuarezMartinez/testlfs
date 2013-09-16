@@ -295,7 +295,7 @@ namespace Orbita.VA.Comun
             bool resultado = false;
             valor = default(T);
 
-            if (this.Estado == EstadoProductorConsumidor.EnEjecucion)
+            if ((this.Estado == EstadoProductorConsumidor.EnEjecucion) || (this.Estado == EstadoProductorConsumidor.Deteniendo))
             {
                 lock (this.LockObject)
                 {
