@@ -217,6 +217,7 @@ namespace Orbita.Comunicaciones
                             var valor = infoDBdato.Valor.ToString();
                             if (ultimoValor.Equals(valor)) continue;
 
+                            // Elevar el evento Alarma.
                             OnAlarma(new OEventArgs(infoDBdato));
                             bool valorX;
                             if (!bool.TryParse(valor, out valorX)) continue;
