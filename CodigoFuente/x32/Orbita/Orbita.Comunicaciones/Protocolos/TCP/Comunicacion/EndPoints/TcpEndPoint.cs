@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -15,7 +14,7 @@ using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor;
 namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints
 {
     /// <summary>
-    /// Representa un endpoint TCP.
+    /// Representa un endpoint Tcp.
     /// </summary>
     public sealed class TcpEndPoint : EndPoint
     {
@@ -42,7 +41,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints
         /// Inicializar una nueva instancia de la clase TcpEndPoint.
         /// Formato de dirección debe ser como Dirección IP: puerto (por ejemplo: 127.0.0.1:8001).
         /// </summary>
-        /// <param name="direccionIp">Dirección endpoint TCP.</param>
+        /// <param name="direccionIp">Dirección endpoint Tcp.</param>
         /// <returns>TcpEndpoint.</returns>
         public TcpEndPoint(string direccionIp)
         {
@@ -50,7 +49,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints
             DireccionIp = splittedAddress[0].Trim();
             PuertoTcp = Convert.ToInt32(splittedAddress[1].Trim());
         }
-        #endregion
+        #endregion Constructores
 
         #region Propiedades públicas
         ///<summary>
@@ -58,10 +57,10 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints
         ///</summary>
         public string DireccionIp { get; set; }
         ///<summary>
-        /// Puerto de escucha TCP para solicitudes de conexión entrantes en el servidor.
+        /// Puerto de escucha Tcp para solicitudes de conexión entrantes en el servidor.
         ///</summary>
         public int PuertoTcp { get; private set; }
-        #endregion
+        #endregion Propiedades públicas
 
         #region Propiedades internas
         /// <summary>
@@ -80,7 +79,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints
         {
             return new TcpCliente(this);
         }
-        #endregion
+        #endregion Propiedades internas
 
         #region Propiedades públicas
         /// <summary>
@@ -91,6 +90,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints
         {
             return string.IsNullOrEmpty(DireccionIp) ? ("tcp://" + PuertoTcp) : (DireccionIp + ":" + PuertoTcp);
         }
-        #endregion
+        #endregion Propiedades públicas
     }
 }

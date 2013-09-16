@@ -1,15 +1,13 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
-using System.Threading;
 
 namespace Orbita.Comunicaciones
 {
@@ -20,12 +18,9 @@ namespace Orbita.Comunicaciones
     [Serializable]
     public class Mensaje : IMensaje
     {
-        #region Atributos privados
-        /// <summary>
-        /// Se utiliza para establecer un identificador auto incremential único a los clientes.
-        /// </summary>
-        private static long _ultimoIdentificador;
-        #endregion
+        #region Atributos
+        //private static long _ultimoIdentificador;
+        #endregion Atributos
 
         #region Constructores
         /// <summary>
@@ -33,8 +28,8 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public Mensaje()
         {
-            //IdMensaje = Guid.NewGuid().ToString();
-            IdMensaje = Interlocked.Increment(ref _ultimoIdentificador).ToString();
+            IdMensaje = Guid.NewGuid().ToString();
+            //IdMensaje = Interlocked.Increment(ref _ultimoIdentificador).ToString();
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Mensaje.
@@ -45,7 +40,7 @@ namespace Orbita.Comunicaciones
         {
             IdMensajeRespuesta = idMensajeRespuesta;
         }
-        #endregion
+        #endregion Constructores
 
         #region Propiedades
         /// <summary>
@@ -59,7 +54,7 @@ namespace Orbita.Comunicaciones
         /// Puede ser nulo (null) si no se trata de un mensaje de respuesta.
         /// </summary>
         public string IdMensajeRespuesta { get; set; }
-        #endregion
+        #endregion Propiedades
 
         #region Métodos públicos
         /// <summary>
@@ -72,6 +67,6 @@ namespace Orbita.Comunicaciones
                        ? string.Format("Mensaje [{0}]", IdMensaje)
                        : string.Format("Mensaje [{0}] Respuesta de [{1}]", IdMensaje, IdMensajeRespuesta);
         }
-        #endregion
+        #endregion Métodos públicos
     }
 }

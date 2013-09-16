@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Threading
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -23,7 +22,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Threading
         /// Este evento se produce periódicamente en función del período del temporizador (timer).
         /// </summary>
         public event EventHandler Elapsed;
-        #endregion
+        #endregion Eventos públicos
 
         #region Atributos públicos
         /// <summary>
@@ -35,7 +34,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Threading
         /// Valor predeterminado: False.
         /// </summary>
         public bool ArrancarAlIniciar { get; set; }
-        #endregion
+        #endregion Atributos públicos
 
         #region Atributos privados
         /// <summary>
@@ -51,7 +50,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Threading
         /// Este campo se utiliza para esperar la ejecución de tareas cuando se detiene Timer.
         /// </summary>
         private volatile bool _tareasRealizadas;
-        #endregion
+        #endregion Atributos privados
 
         #region Constructores
         /// <summary>
@@ -71,7 +70,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Threading
             ArrancarAlIniciar = arrancarAlIniciar;
             _timerTareas = new System.Threading.Timer(TimerCallBack, null, Timeout.Infinite, Timeout.Infinite);
         }
-        #endregion
+        #endregion Constructores
 
         #region Métodos públicos
         /// <summary>
@@ -106,7 +105,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Threading
                 }
             }
         }
-        #endregion
+        #endregion Métodos públicos
 
         #region Métodos privados
         /// <summary>
@@ -145,6 +144,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Threading
                 }
             }
         }
-        #endregion
+        #endregion Métodos privados
     }
 }

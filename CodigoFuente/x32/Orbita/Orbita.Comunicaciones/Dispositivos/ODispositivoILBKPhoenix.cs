@@ -61,11 +61,11 @@ namespace Orbita.Comunicaciones
         /// Cola de recepción de tramas de datos.
         /// </summary>
         private Queue _qEscrituras;
-        #endregion
+        #endregion Atributos
 
         #region Constructor
         /// <summary>
-        /// Constructor de clase
+        /// Inicializar una nueva instancia de la clase ODispositivoILBKPhoenix.
         /// </summary>
         /// <param name="tags">variables</param>
         /// <param name="hilos">hilos del dispositivo</param>
@@ -88,7 +88,7 @@ namespace Orbita.Comunicaciones
                 Wrapper.Error("ODispositivoILBKPhoenix Constructor. No se pudo crear la conexión TCP con el dispositivo de ES Phoenix." + ex);
             }
         }
-        #endregion
+        #endregion Constructor
 
         #region Métodos públicos
         /// <summary>
@@ -318,7 +318,7 @@ namespace Orbita.Comunicaciones
 
             return true;
         }
-        #endregion
+        #endregion Métodos públicos
 
         #region Métodos privados
 
@@ -474,7 +474,7 @@ namespace Orbita.Comunicaciones
         {
             this.Winsock.Send(data);
         }
-        #endregion
+        #endregion Comunes
 
         #region ES
         /// <summary>
@@ -666,11 +666,6 @@ namespace Orbita.Comunicaciones
                             }
                         }
                     }
-                    else
-                    {
-                        //wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
-                        //    " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
-                    }
                 }
                 catch (Exception ex)
                 {
@@ -727,11 +722,6 @@ namespace Orbita.Comunicaciones
                             }
                         }
                     }
-                    else
-                    {
-                        //wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
-                        //    " al actualizar las variables de salida en el dispositivo de ES Phoenix.");
-                    }
                 }
                 catch (Exception ex)
                 {
@@ -739,9 +729,9 @@ namespace Orbita.Comunicaciones
                 }
             }
         }
-        #endregion
+        #endregion ES
 
-        #endregion
+        #endregion Métodos privados
 
         #region Eventos Socket
         /// <summary>
@@ -843,6 +833,6 @@ namespace Orbita.Comunicaciones
                 Wrapper.Error("ODispositivoILBKPhoenix _winsock_ErrorReceived catch: " + ex);
             }
         }
-        #endregion
+        #endregion Eventos Socket
     }
 }

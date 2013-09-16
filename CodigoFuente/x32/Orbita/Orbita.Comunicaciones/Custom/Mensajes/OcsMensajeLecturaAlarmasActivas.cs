@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
+//
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -20,7 +19,6 @@ namespace Orbita.Comunicaciones
     public class OcsMensajeLecturaAlarmasActivas : OcsMensajeLecturaAlarmasActivasBase
     {
         #region Constructores
-
         /// <summary>
         /// Inicializar una nueva instancia de la clase OcsMensajeLecturaAlarmasActivas.
         /// </summary>
@@ -35,6 +33,6 @@ namespace Orbita.Comunicaciones
         /// <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
         public OcsMensajeLecturaAlarmasActivas(int dispositivo, ArrayList datos, string idMensajeRespuesta)
             : base(dispositivo, datos, idMensajeRespuesta) { }
-        #endregion
+        #endregion Constructores
     }
 }

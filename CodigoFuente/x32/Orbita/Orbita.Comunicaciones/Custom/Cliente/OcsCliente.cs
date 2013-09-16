@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
+//
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -83,7 +82,7 @@ namespace Orbita.Comunicaciones
         public event EventHandler<OcsMensajeLecturaDispositivosEventArgs> MensajeRecibidoLecturaDispositivos;
         #endregion Eventos públicos
 
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// Representa un cliente para conectarse a un servidor.
         /// </summary>
@@ -104,9 +103,9 @@ namespace Orbita.Comunicaciones
         /// Estructura que procesa los mensajes recibidos de comunicaciones de forma secuencial.
         /// </summary>
         protected readonly ProcesadorElementosSecuencialesT2<object, IMensaje> MensajesEntrantesComunicaciones;
-        #endregion Atributos privados
+        #endregion Atributos
 
-        #region Constructor
+        #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase OcsCliente con la dirección Ip local (127.0.0.1)
         /// del servidor.
@@ -139,7 +138,7 @@ namespace Orbita.Comunicaciones
             if (periodoReConexionMs <= 0) return;
             new ClienteReConexion(_cliente) { PeriodoReConexion = periodoReConexionMs };
         }
-        #endregion Constructor
+        #endregion Constructores
 
         #region Propiedades
         /// <summary>
@@ -352,6 +351,7 @@ namespace Orbita.Comunicaciones
 
         #region Métodos protegidos de eventos elevados
 
+        #region Cliente
         /// <summary>
         /// Elevar el evento Conectado.
         /// </summary>
@@ -374,6 +374,7 @@ namespace Orbita.Comunicaciones
                 handler(_cliente, EventArgs.Empty);
             }
         }
+        #endregion
 
         #region Mensajes enviados
         /// <summary>

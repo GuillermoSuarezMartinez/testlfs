@@ -1,13 +1,14 @@
 ﻿//***********************************************************************
+//
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor;
 using Orbita.Comunicaciones.Protocolos.Tcp.Threading;
@@ -20,7 +21,7 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OcsClienteConectable : IOcsClienteConectable
     {
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// Colección de mensajes producidos por el cliente a petición de lecturas de variables.
         /// </summary>
@@ -41,7 +42,7 @@ namespace Orbita.Comunicaciones
         /// Colección de mensajes producidos por el cliente a petición de lectura de dispositivos.
         /// </summary>
         private readonly ProcesadorElementosSecuencialesT2<object, IMensaje> _dispositivos;
-        #endregion Atributos privados
+        #endregion Atributos
 
         #region Constructores
         /// <summary>
@@ -153,10 +154,12 @@ namespace Orbita.Comunicaciones
         protected virtual void OnLecturas(object sender, IMensaje mensaje)
         {
             var mensajeLectura = OcsMensajeFactory.ObtenerMensajeLectura(mensaje);
-            var dispositivo = (ODispositivo)Dispositivos[mensajeLectura.Dispositivo];
 
-            //  Leer el valor de las variables solicitadas del dispositivo.
-            var valores = dispositivo.Leer(mensajeLectura.Variables, mensajeLectura.Demanda);
+            object[] valores;
+            using (var dispositivo = (ODispositivo) Dispositivos[mensajeLectura.Dispositivo])
+            {
+                valores = dispositivo.Leer(mensajeLectura.Variables, mensajeLectura.Demanda);
+            }
 
             //  Crear mensaje de respuesta de lectura.
             var mensajeRespuesta = OcsMensajeFactory.CrearMensajeLectura(mensajeLectura.Dispositivo, mensajeLectura.Variables, valores, mensaje.IdMensaje);
@@ -175,10 +178,12 @@ namespace Orbita.Comunicaciones
         protected virtual void OnDatos(object sender, IMensaje mensaje)
         {
             var mensajeDatos = OcsMensajeFactory.ObtenerMensajeDatos(mensaje);
-            var dispositivo = (ODispositivo)Dispositivos[mensajeDatos.Dispositivo];
 
-            //  Leer el valor de las variables solicitadas del dispositivo.
-            var valores = dispositivo.GetDatos();
+            OHashtable valores;
+            using (var dispositivo = (ODispositivo) Dispositivos[mensajeDatos.Dispositivo])
+            {
+                valores = dispositivo.GetDatos();
+            }
 
             //  Crear mensaje de respuesta de datos.
             var mensajeRespuesta = OcsMensajeFactory.CrearMensajeDatos(mensajeDatos.Dispositivo, valores, mensaje.IdMensaje);
@@ -197,10 +202,12 @@ namespace Orbita.Comunicaciones
         protected virtual void OnAlarmasActivas(object sender, IMensaje mensaje)
         {
             var mensajeAlarmasActivas = OcsMensajeFactory.ObtenerMensajeAlarmasActivas(mensaje);
-            var dispositivo = (ODispositivo)Dispositivos[mensajeAlarmasActivas.Dispositivo];
 
-            //  Leer el valor de las alarmas activas vinculadas al dispositivo.
-            var valores = dispositivo.GetAlarmasActivas();
+            ArrayList valores;
+            using (var dispositivo = (ODispositivo) Dispositivos[mensajeAlarmasActivas.Dispositivo])
+            {
+                valores = dispositivo.GetAlarmasActivas();
+            }
 
             //  Crear mensaje de respuesta de alarmas activas.
             var mensajeRespuesta = OcsMensajeFactory.CrearMensajeAlarmasActivas(mensajeAlarmasActivas.Dispositivo, valores, mensaje.IdMensaje);
@@ -219,7 +226,7 @@ namespace Orbita.Comunicaciones
         protected virtual void OnDispositivos(object sender, IMensaje mensaje)
         {
             //  Obtener los dispositivos de la colección.
-            var dispositivos = new System.Collections.Generic.List<int>();
+            var dispositivos = new List<int>();
             dispositivos.AddRange(Dispositivos.Keys.Cast<int>());
 
             //  Copiar los elementos obtenidos en una nueva matriz.
@@ -245,10 +252,12 @@ namespace Orbita.Comunicaciones
 
             //  Crear mensaje de escritura.
             var mensajeRespuesta = OcsMensajeFactory.CrearMensajeEscritura(mensaje.IdMensaje);
-            var dispositivo = (ODispositivo)Dispositivos[mensajeEscritura.Dispositivo];
 
-            //  Escribir el valor de las variables asociadas al dispositivo.
-            mensajeRespuesta.Respuesta = dispositivo.Escribir(mensajeEscritura.Variables, mensajeEscritura.Valores, mensajeEscritura.Canal);
+            //  Escribir en el dispositivo y obtener la respuesta que se enviará.
+            using (var dispositivo = (ODispositivo) Dispositivos[mensajeEscritura.Dispositivo])
+            {
+                mensajeRespuesta.Respuesta = dispositivo.Escribir(mensajeEscritura.Variables, mensajeEscritura.Valores, mensajeEscritura.Canal);
+            }
 
             //  Contiene una referencia al objeto que provocó el evento.
             var cliente = (IServidorCliente)sender;

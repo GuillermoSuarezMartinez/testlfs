@@ -25,9 +25,9 @@ namespace Orbita.Comunicaciones
         /// Valor de las variables.
         /// </summary>
         private string[] _valores;
-        #endregion
+        #endregion Atributos
 
-        #region Constructores
+        #region Constructor
         /// <summary>
         /// Inicializar una nueva instancia de la clase InfoVida.
         /// </summary>
@@ -39,7 +39,7 @@ namespace Orbita.Comunicaciones
             _valores = new string[contador];
             Enlaces = enlaces;
         }
-        #endregion
+        #endregion Constructor
 
         #region Propiedades
         /// <summary>
@@ -47,7 +47,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public string[] Enlaces { get; set; }
         /// <summary>
-        /// Variables
+        /// Colección de variables.
         /// </summary>
         public int[] Variables
         {
@@ -55,14 +55,14 @@ namespace Orbita.Comunicaciones
             set { _variables = value; }
         }
         /// <summary>
-        /// Valores
+        /// Colección de valores.
         /// </summary>
         public string[] Valores
         {
             get { return _valores; }
             set { _valores = value; }
         }
-        #endregion
+        #endregion Propiedades
 
         #region Métodos públicos
         /// <summary>
@@ -108,6 +108,6 @@ namespace Orbita.Comunicaciones
         {
             _valores = valores;
         }
-        #endregion
+        #endregion Métodos públicos
     }
 }

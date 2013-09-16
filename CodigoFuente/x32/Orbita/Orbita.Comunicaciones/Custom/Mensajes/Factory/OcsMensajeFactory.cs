@@ -1,13 +1,11 @@
 ﻿//***********************************************************************
+//
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
-
 using System;
 using Orbita.Utiles;
 using System.Collections;

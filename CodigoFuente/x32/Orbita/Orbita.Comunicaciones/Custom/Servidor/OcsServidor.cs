@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
+//
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System.Collections.Generic;
@@ -21,7 +20,7 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OcsServidor : IOcsServidor
     {
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// Colección de listeners.
         /// </summary>
@@ -38,7 +37,7 @@ namespace Orbita.Comunicaciones
         /// Colección de datos producidos en el evento comunicaciones.
         /// </summary>
         private readonly ProcesadorElementosSecuenciales<OEstadoComms> _comunicaciones;
-        #endregion Atributos privados
+        #endregion Atributos
 
         #region Constructores
         /// <summary>
@@ -65,12 +64,12 @@ namespace Orbita.Comunicaciones
         }
         #endregion Constructores
 
-        #region Propiedades
+        #region Propiedades privadas
         /// <summary>
         /// Colección de variables.
         /// </summary>
         private DataTable Variables { get; set; }
-        #endregion
+        #endregion Propiedades privadas
 
         #region Métodos públicos
         /// <summary>

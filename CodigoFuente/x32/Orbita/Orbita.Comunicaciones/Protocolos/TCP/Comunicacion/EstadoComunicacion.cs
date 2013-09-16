@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion

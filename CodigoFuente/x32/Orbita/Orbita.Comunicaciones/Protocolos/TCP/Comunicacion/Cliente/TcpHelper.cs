@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -15,13 +14,13 @@ using System.Net.Sockets;
 namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
 {
     /// <summary>
-    /// Esta clase se utiliza para simplificar las operaciones del socket TCP.
+    /// Esta clase se utiliza para simplificar las operaciones del socket Tcp.
     /// </summary>
     internal static class TcpHelper
     {
         #region Métodos públicos
         /// <summary>
-        /// Este código se utiliza para conectarse a un socket TCP con el parámetro tiempo de espera en milisegundos.
+        /// Este código se utiliza para conectarse a un socket Tcp con el parámetro tiempo de espera en milisegundos.
         /// </summary>
         /// <param name="endPointRemoto">IP endpoint del servidor remoto.</param>
         /// <param name="timeoutMs">Timeout de espera hasta conectar.</param>
@@ -60,7 +59,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
             }
         }
         /// <summary>
-        /// Este código se utiliza para conectarse a un socket TCP con el parámetro tiempo de espera en milisegundos.
+        /// Este código se utiliza para conectarse a un socket Tcp con el parámetro tiempo de espera en milisegundos.
         /// </summary>
         /// <param name="endPointRemoto">Endpoint del servidor.</param>
         /// <param name="endPointLocal">Endpoint del cliente.</param>
@@ -100,6 +99,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
                 return socket;
             }
         }
-        #endregion
+        #endregion Métodos públicos
     }
 }

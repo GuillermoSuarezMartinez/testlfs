@@ -10,22 +10,22 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Valor inicial del registro de lecturas
         /// </summary>
-        private int _registroInicialEntradas;
+        private readonly int _registroInicialEntradas;
         /// <summary>
         /// Valor inicial del registro de escrituras
         /// </summary>
-        private int _registroInicialSalidas;
+        private readonly int _registroInicialSalidas;
         /// <summary>
         /// Número de lecturas a realizar
         /// </summary>
-        private int _tamanyoEntradas;
+        private readonly int _tamanyoEntradas;
         /// <summary>
         /// Número de escrituras a realizar
         /// </summary>
-        private int _tamanyoSalidas;
-        #endregion
+        private readonly int _tamanyoSalidas;
+        #endregion Atributos
 
-        #region Constructores
+        #region Constructor
         /// <summary>
         /// Constructor para el protocolo phoenix
         /// </summary>
@@ -40,6 +40,9 @@ namespace Orbita.Comunicaciones
             this._registroInicialSalidas = regIniSalidas;
             this._tamanyoSalidas = byteSalidas;
         }
+        #endregion Constructor
+
+        #region Destructor
         /// <summary>
         /// Destructor de clase
         /// </summary>
@@ -50,9 +53,9 @@ namespace Orbita.Comunicaciones
             // readability and maintainability.
             Dispose(false);
         }
-        #endregion
+        #endregion Destructor
 
-        #region Métodos
+        #region Métodos públicos
         /// <summary>
         /// Prepara el mensaje KeepAlive de respuesta.
         /// </summary>
@@ -162,15 +165,15 @@ namespace Orbita.Comunicaciones
         public override void Dispose(bool disposing)
         {
             // Preguntar si Dispose ya fue llamado.
-            if (!this.disposed)
+            if (!this.Disposed)
             {
 
                 // Marcar como desechada ó desechandose,
                 // de forma que no se puede ejecutar el
                 // código dos veces.
-                disposed = true;
+                Disposed = true;
             }
         }
-        #endregion
+        #endregion Métodos públicos
     }
 }

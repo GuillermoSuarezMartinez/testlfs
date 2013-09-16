@@ -1,13 +1,9 @@
 ﻿//***********************************************************************
 //
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-//
-// Modificado por     : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        : Proporciona la funcionalidad básica para todas 
-// las clases servidor.
+// Descripción        : ...
 //
 //***********************************************************************
 
@@ -49,12 +45,12 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
         public event EventHandler<ServidorErrorEventArgs> ErrorConexion;
         #endregion Eventos públicos
 
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// Este objeto se utiliza para escuchar (listener) conexiones entrantes.
         /// </summary>
         private IListener _listener;
-        #endregion Atributos privados
+        #endregion Atributos
 
         #region Constructor
         /// <summary>

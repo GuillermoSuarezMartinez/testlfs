@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints;
@@ -22,11 +21,11 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
         /// Crear un nuevo servidor utilizando endpoint.
         /// </summary>
         /// <param name="endPoint">Endpoint que representa la dirección del servidor.</param>
-        /// <returns>Servidor TCP.</returns>
+        /// <returns>Servidor Tcp.</returns>
         public static IServidor Crear(EndPoint endPoint)
         {
             return endPoint.CrearServidor();
         }
-        #endregion
+        #endregion Métodos públicos
     }
 }

@@ -16,7 +16,7 @@ namespace Orbita.Comunicaciones
     [Serializable]
     public class ODispositivoTCP : ODispositivo
     {
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// Atributo que indica las  colecciones
         /// de tags de datos, lecturas y alarmas.
@@ -38,11 +38,11 @@ namespace Orbita.Comunicaciones
         /// Indica si las variables han sido iniciadas
         /// </summary>
         private bool _inicioVariables;
-        #endregion
+        #endregion Atributos
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase SiemensOPC.
+        /// Inicializar una nueva instancia de la clase ODispositivoTCP.
         /// </summary>
         public ODispositivoTCP(OTags tags, OHilos hilos, ODispositivo dispositivo)
         {
@@ -68,7 +68,7 @@ namespace Orbita.Comunicaciones
                 throw;
             }
         }
-        #endregion
+        #endregion Constructor
 
         #region Propiedades
         /// <summary>
@@ -85,7 +85,7 @@ namespace Orbita.Comunicaciones
         {
             get { return this._tags.GetAlarmasActivas(); }
         }
-        #endregion
+        #endregion Propiedades
 
         #region Métodos públicos
         /// <summary>
@@ -102,8 +102,8 @@ namespace Orbita.Comunicaciones
         /// </summary>
         private void IniciarValores()
         {
-            string[] variables = new string[this.Datos.Count];
-            object[] valores = new object[this.Datos.Count];
+            var variables = new string[this.Datos.Count];
+            var valores = new object[this.Datos.Count];
             int i = 0;
             foreach (OInfoDato dato in from DictionaryEntry item in this.GetDatos() select (OInfoDato)item.Value)
             {
@@ -111,7 +111,7 @@ namespace Orbita.Comunicaciones
                 valores[i] = dato.ValorDefecto;
                 i++;
             }
-            this.Escribir(variables, valores);
+            Escribir(variables, valores);
             this._inicioVariables = true;
         }
         /// <summary>
@@ -212,9 +212,15 @@ namespace Orbita.Comunicaciones
                         if (this._tags.GetAlarmas(infoDBdato.Identificador) == null) continue;
                         try
                         {
-                            if (infoDBdato.Valor != null && (infoDBdato.UltimoValor == null || infoDBdato.UltimoValor.ToString() == infoDBdato.Valor.ToString())) continue;
-                            this.OnAlarma(new OEventArgs(infoDBdato));
-                            if (Convert.ToInt16(infoDBdato.Valor) == 1)
+                            if (infoDBdato.Valor == null || infoDBdato.UltimoValor == null) continue;
+                            var ultimoValor = infoDBdato.UltimoValor.ToString();
+                            var valor = infoDBdato.Valor.ToString();
+                            if (ultimoValor.Equals(valor)) continue;
+
+                            OnAlarma(new OEventArgs(infoDBdato));
+                            bool valorX;
+                            if (!bool.TryParse(valor, out valorX)) continue;
+                            if (valorX)
                             {
                                 if (!AlarmasActivas.Contains(infoDBdato.Texto))
                                 {
@@ -298,7 +304,7 @@ namespace Orbita.Comunicaciones
             _tags.Dispose();
             _hilos.Destruir();
         }
-        #endregion
+        #endregion Métodos públicos
 
         #region Métodos privados
         /// <summary>
@@ -342,7 +348,7 @@ namespace Orbita.Comunicaciones
                 }
             }
         }
-        #endregion
+        #endregion Métodos privados
     }
 
     /// <summary>

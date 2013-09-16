@@ -1,5 +1,6 @@
 ﻿using System;
 using Orbita.Utiles;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -21,7 +22,7 @@ namespace Orbita.Comunicaciones
         /// Evento de comunicaciones.
         /// </summary>
         public event OManejadorEventoComm OrbitaComm;
-        #endregion
+        #endregion Eventos
 
         #region Métodos públicos
         /// <summary>
@@ -57,6 +58,6 @@ namespace Orbita.Comunicaciones
                 OrbitaComm(e);
             }
         }
-        #endregion
+        #endregion Métodos públicos
     }
 }

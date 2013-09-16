@@ -2,6 +2,7 @@
 using System.Collections;
 using Orbita.Trazabilidad;
 using Orbita.Utiles;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -9,6 +10,21 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class ODispositivo : IDisposable
     {
+        #region Eventos
+        /// <summary>
+        /// Evento de cambio de dato.
+        /// </summary>
+        public event OManejadorEventoComm OrbitaCambioDato;
+        /// <summary>
+        /// Evento de alarma.
+        /// </summary>
+        public event OManejadorEventoComm OrbitaAlarma;
+        /// <summary>
+        /// Evento de comunicaciones correctas.
+        /// </summary>
+        public event OManejadorEventoComm OrbitaComm;
+        #endregion Eventos
+
         #region Atributos
         /// <summary>
         /// Variable para el cierre de todos los objetos.
@@ -34,22 +50,7 @@ namespace Orbita.Comunicaciones
         /// Fecha del último evento de comunicaciones.
         /// </summary>
         protected DateTime FechaUltimoEventoComm;
-        #endregion
-
-        #region Eventos
-        /// <summary>
-        /// Evento de cambio de dato.
-        /// </summary>
-        public event OManejadorEventoComm OrbitaCambioDato;
-        /// <summary>
-        /// Evento de alarma.
-        /// </summary>
-        public event OManejadorEventoComm OrbitaAlarma;
-        /// <summary>
-        /// Evento de comunicaciones correctas.
-        /// </summary>
-        public event OManejadorEventoComm OrbitaComm;
-        #endregion
+        #endregion Atributos
 
         #region Constructor
         /// <summary>
@@ -67,6 +68,9 @@ namespace Orbita.Comunicaciones
                 throw new OExcepcion("No se ha definido el objeto logger (nombre wrapper) desde la aplicación.", e);
             }
         }
+        #endregion Constructor
+
+        #region Destructor
         /// <summary>
         /// Destructor del objeto.
         /// </summary>
@@ -77,7 +81,7 @@ namespace Orbita.Comunicaciones
             // readability and maintainability.
             Dispose(false);
         }
-        #endregion
+        #endregion Destructor
 
         #region Propiedades
         /// <summary>
@@ -108,7 +112,7 @@ namespace Orbita.Comunicaciones
         /// Indica si se conecta al dispositivo de forma local o remota.
         /// </summary>
         public bool Local { get; set; }
-        #endregion
+        #endregion Propiedades
 
         #region Métodos protegidos
         /// <summary>
@@ -159,7 +163,7 @@ namespace Orbita.Comunicaciones
                 handler(e);
             }
         }
-        #endregion
+        #endregion Métodos protegidos
 
         #region Métodos públicos
         /// <summary>
@@ -263,9 +267,10 @@ namespace Orbita.Comunicaciones
             // from executing a second time.
             GC.SuppressFinalize(this);
         }
-        #endregion
+        #endregion Métodos públicos
     }
 
+    #region Clase DispositivoEscrituras
     public class DispositivoEscrituras
     {
         #region Constructores
@@ -283,9 +288,9 @@ namespace Orbita.Comunicaciones
             Variables = variables;
             Valores = valores;
         }
-        #endregion
+        #endregion Constructores
 
-        #region Propiedades
+        #region Propiedades públicas
         /// <summary>
         /// Colección de variables.
         /// </summary>
@@ -294,6 +299,7 @@ namespace Orbita.Comunicaciones
         /// Colección de valores.
         /// </summary>
         public object[] Valores { get; set; }
-        #endregion
+        #endregion Propiedades públicas
     }
+    #endregion Clase DispositivoEscrituras
 }

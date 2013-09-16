@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -7,7 +8,7 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OProtocoloTCPSiemensGateLPROS : OProtocoloTCPSiemens
     {
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// Fin de la trama de keepAlive envio.
         /// </summary>
@@ -20,9 +21,47 @@ namespace Orbita.Comunicaciones
         /// Tamaño máximo de trama.
         /// </summary>
         private const int TamanyoMensaje = 25;
-        #endregion Atributos privados
+        #endregion Atributos
 
-        #region Métodos públicos
+        #region Propiedades
+        /// <summary>
+        /// Byte inicio trama.
+        /// </summary>
+        public byte[] STX
+        {
+            get { return Encoding.ASCII.GetBytes("\x02"); }
+        }
+        /// <summary>
+        /// Byte retorno de carro.
+        /// </summary>
+        public byte[] CR
+        {
+            get { return Encoding.ASCII.GetBytes("\x0D"); }
+        }
+        /// <summary>
+        /// Byte separador del mensaje.
+        /// </summary>
+        public byte[] Separador
+        {
+            get { return Encoding.ASCII.GetBytes("\x2F"); }
+        }
+        /// <summary>
+        /// Identificador del mensaje ocr data.
+        /// </summary>
+        public byte[] OSLData
+        {
+            get { return Encoding.ASCII.GetBytes("OSLDATA"); }
+        }
+        /// <summary>
+        /// Identificador del mensaje ocr data result.
+        /// </summary>
+        public byte[] OSLDataResult
+        {
+            get { return Encoding.ASCII.GetBytes("OSLDATARESULT"); }
+        }
+        #endregion Propiedades
+
+        #region Métodos públicos sobreescritos
         /// <summary>
         /// KeepAlive de envío al PLC.
         /// </summary>
@@ -101,6 +140,9 @@ namespace Orbita.Comunicaciones
             lecturas = null;
             return false;
         }
+        #endregion Métodos públicos sobreescritos
+
+        #region Métodos privados
         /// <summary>
         /// Cálculo BCC.
         /// </summary>
@@ -124,55 +166,20 @@ namespace Orbita.Comunicaciones
             retorno[0] = (byte)resultado;
             return retorno;
         }
+        #endregion
+
+        #region Miembros de IDisposable
         /// <summary>
         /// Destrucción del objeto.
         /// </summary>
         public override void Dispose(bool disposing)
         {
             // Check to see if Dispose has already been called.
-            if (this.disposed) return;
+            if (this.Disposed) return;
             // If disposing equals true, dispose all managed
             // and unmanaged resources.
             if (disposing) { }
         }
-        #endregion Métodos públicos
-
-        #region Propiedades
-        /// <summary>
-        /// Byte inicio trama.
-        /// </summary>
-        public byte[] STX
-        {
-            get { return Encoding.ASCII.GetBytes("\x02"); }
-        }
-        /// <summary>
-        /// Byte retorno de carro.
-        /// </summary>
-        public byte[] CR
-        {
-            get { return Encoding.ASCII.GetBytes("\x0D"); }
-        }
-        /// <summary>
-        /// Byte separador del mensaje.
-        /// </summary>
-        public byte[] Separador
-        {
-            get { return Encoding.ASCII.GetBytes("\x2F"); }
-        }
-        /// <summary>
-        /// Identificador del mensaje ocr data.
-        /// </summary>
-        public byte[] OSLData
-        {
-            get { return Encoding.ASCII.GetBytes("OSLDATA"); }
-        }
-        /// <summary>
-        /// Identificador del mensaje ocr data result.
-        /// </summary>
-        public byte[] OSLDataResult
-        {
-            get { return Encoding.ASCII.GetBytes("OSLDATARESULT"); }
-        }
-        #endregion Propiedades
+        #endregion Miembros de IDisposable
     }
 }

@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -30,7 +29,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
         {
             EndPoint = endPoint;
         }
-        #endregion
+        #endregion Constructor
 
         #region Propiedades públicas
         /// <summary>
@@ -44,6 +43,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
         {
             get { return base.GetException(); }
         }
-        #endregion
+        #endregion Propiedades públicas
     }
 }

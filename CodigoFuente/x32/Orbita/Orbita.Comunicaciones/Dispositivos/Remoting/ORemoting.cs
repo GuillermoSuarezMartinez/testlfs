@@ -23,8 +23,6 @@ namespace Orbita.Comunicaciones
         /// en el establecimiento remoting.
         /// </summary>
         private static IDictionary WellKnownTypes;
-
-        #region Constantes
         /// <summary>
         /// Valor de inicialización.
         /// </summary>
@@ -38,9 +36,7 @@ namespace Orbita.Comunicaciones
         /// y cliente para .NET Remoting.
         /// </summary>
         private const string Remoting = @"\Config\remoting";
-        #endregion
-
-        #endregion
+        #endregion Atributos
 
         #region Métodos públicos estáticos
         /// <summary>
@@ -254,7 +250,7 @@ namespace Orbita.Comunicaciones
         {
             return null;
         }
-        #endregion
+        #endregion Métodos públicos estáticos
 
         #region Métodos privados estáticos
         /// <summary>
@@ -278,6 +274,6 @@ namespace Orbita.Comunicaciones
                 WellKnownTypes.Add(entrada.ObjectType, entrada);
             }
         }
-        #endregion
+        #endregion Métodos privados estáticos
     }
 }

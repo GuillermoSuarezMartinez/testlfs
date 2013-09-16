@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
+//
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -36,13 +35,13 @@ namespace Orbita.Comunicaciones
             Error = error;
             IdMensajeRespuesta = idMensajeRespuesta;
         }
-        #endregion
+        #endregion Constructores
 
         #region Propiedades públicas
         /// <summary>
         /// Representa el error que se produce durante la ejecución de una aplicación.
         /// </summary>
         public Exception Error { get; private set; }
-        #endregion
+        #endregion Propiedades públicas
     }
 }

@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -22,7 +21,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
     /// </summary>
     public class MensajeroSincronizado<T> : MensajeroPeticionRespuesta<T> where T : IMensajero
     {
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// Cola que se utiliza para almacenar mensajes recibidos.
         /// </summary>
@@ -35,7 +34,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
         /// Flag para el control de funcionamiento de la clase.
         /// </summary>
         private volatile bool _iniciado;
-        #endregion
+        #endregion Atributos
 
         #region Constructores
         ///<summary>
@@ -56,7 +55,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
             _colaMensajesRecibidos = new Queue<IMensaje>();
             TamañoColaMensajesEntrantes = tamañoColaMensajesEntrantes;
         }
-        #endregion
+        #endregion Constructores
 
         #region Propiedades públicas
         ///<summary>
@@ -65,7 +64,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
         /// Valor predeterminado: int.MaxValue (2147483647).
         ///</summary>
         public int TamañoColaMensajesEntrantes { get; set; }
-        #endregion
+        #endregion Propiedades públicas
 
         #region Métodos públicos
         /// <summary>
@@ -166,7 +165,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
             }
             return (TMensaje)mensajeRecibido;
         }
-        #endregion
+        #endregion Métodos públicos
 
         #region Métodos protegidos
         /// <summary>
@@ -184,6 +183,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
                 _eventoEspera.Set();
             }
         }
-        #endregion
+        #endregion Métodos protegidos
     }
 }

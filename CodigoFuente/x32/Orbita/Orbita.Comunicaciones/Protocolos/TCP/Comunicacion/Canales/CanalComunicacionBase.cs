@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -37,7 +36,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
         /// Este evento se produce cuando se cierra el canal de comunicación con el cliente.
         /// </summary>
         public event EventHandler Desconectado;
-        #endregion
+        #endregion Eventos públicos
 
         #region Constructor protegido
         /// <summary>
@@ -49,14 +48,14 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
             FechaUltimoMensajeRecibido = DateTime.MinValue;
             FechaUltimoMensajeEnviado = DateTime.MinValue;
         }
-        #endregion
+        #endregion Constructor protegido
 
         #region Propiedades públicas abstractas
         ///<summary>
         /// Obtener endpoint de la aplicación remota.
         ///</summary>
         public abstract EndPoint EndPointRemoto { get; }
-        #endregion
+        #endregion Propiedades públicas abstractas
 
         #region Propiedades públicas
         /// <summary>
@@ -76,14 +75,14 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
         /// Esta propiedad se debe definir antes de la primera comunicación.
         /// </summary>
         public ITelegrama Telegrama { get; set; }
-        #endregion
+        #endregion Propiedades públicas
 
         #region Métodos públicos abstractos
         /// <summary>
         /// Desconectar de la aplicación remota y cerrar este canal.
         /// </summary>
         public abstract void Desconectar();
-        #endregion
+        #endregion Métodos públicos abstractos
 
         #region Métodos públicos
         /// <summary>
@@ -108,7 +107,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
             }
             EnviarMensajePorCanalComunicacion(mensaje);
         }
-        #endregion
+        #endregion Métodos públicos
 
         #region Métodos protegidos
         /// <summary>
@@ -121,7 +120,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
         /// </summary>
         /// <param name="mensaje">Mensaje que será enviado.</param>
         protected abstract void EnviarMensajePorCanalComunicacion(IMensaje mensaje);
-        #endregion
+        #endregion Métodos protegidos
 
         #region Métodos protegidos de eventos elevados
         /// <summary>
@@ -170,6 +169,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
                 handler(this, new MensajeEventArgs(mensaje));
             }
         }
-        #endregion
+        #endregion Métodos protegidos de eventos elevados
     }
 }

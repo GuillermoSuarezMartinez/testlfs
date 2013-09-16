@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Excepciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -46,6 +45,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Excepciones
         /// (null) si no se especifica ninguna excepción interna.</param>
         public ExcepcionEstadoComunicacion(string message, Exception innerException)
             : base(message, innerException) { }
-        #endregion
+        #endregion Constructores
     }
 }

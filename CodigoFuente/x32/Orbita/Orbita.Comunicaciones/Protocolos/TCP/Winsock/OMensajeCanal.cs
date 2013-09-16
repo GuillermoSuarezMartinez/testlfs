@@ -1,29 +1,10 @@
 ﻿namespace Orbita.Comunicaciones
 {
     /// <summary>
-    /// Mensaje para las comunicaciones TCP
+    /// Mensaje para las comunicaciones Tcp.
     /// </summary>
     public class OMensajeCanalTCP
     {
-        #region Atributos
-        /// <summary>
-        /// nombre del listener
-        /// </summary>
-        string _listener;
-        /// <summary>
-        /// nombre del canal
-        /// </summary>
-        string _canal;
-        /// <summary>
-        /// mensaje
-        /// </summary>
-        string _mensaje;
-        /// <summary>
-        /// datos del mensaje
-        /// </summary>
-        object _data;
-        #endregion
-
         #region Constructor
         /// <summary>
         /// Constructor de clase
@@ -33,46 +14,29 @@
         /// <param name="mensaje"></param>
         public OMensajeCanalTCP(string listener, string canal, string mensaje)
         {
-            this._listener = listener;
-            this._canal = canal;
-            this._mensaje = mensaje;
+            this.Listener = listener;
+            this.Canal = canal;
+            this.Mensaje = mensaje;
         }
-
         #endregion
 
         #region Propiedades
         /// <summary>
         /// nombre del listener
         /// </summary>
-        public string Listener
-        {
-            get { return _listener; }
-            set { _listener = value; }
-        }
+        public string Listener { get; set; }
         /// <summary>
         /// nombre del canal
         /// </summary>
-        public string Canal
-        {
-            get { return _canal; }
-            set { _canal = value; }
-        }
+        public string Canal { get; set; }
         /// <summary>
         /// mensaje
         /// </summary>
-        public string Mensaje
-        {
-            get { return _mensaje; }
-            set { _mensaje = value; }
-        }
+        public string Mensaje { get; set; }
         /// <summary>
         /// datos del mensaje
         /// </summary>
-        public object Data
-        {
-            get { return _data; }
-            set { _data = value; }
-        }
+        public object Data { get; set; }
         #endregion
     }
 }

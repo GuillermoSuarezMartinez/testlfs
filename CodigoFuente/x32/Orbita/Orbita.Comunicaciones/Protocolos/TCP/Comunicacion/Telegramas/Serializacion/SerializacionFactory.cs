@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializacion
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializacion
@@ -15,6 +14,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
     /// </summary>
     public class SerializacionFactory : ITelegramaFactory
     {
+        #region Métodos públicos
         /// <summary>
         /// Crear un nuevo telegrama.
         /// </summary>
@@ -23,5 +23,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
         {
             return new Serializacion();
         }
+        #endregion Métodos públicos
     }
 }

@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
+//
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -44,13 +43,13 @@ namespace Orbita.Comunicaciones
         /// <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
         protected OcsMensajeLecturaBase(int dispositivo, string[] variables, object[] valores, string idMensajeRespuesta)
             : base(dispositivo, variables, valores, idMensajeRespuesta)  { }
-        #endregion
+        #endregion Constructores
 
         #region Propiedades públicas
         /// <summary>
         /// Indica si la lectura se realiza bajo demanda al dispositivo.
         /// </summary>
         public bool Demanda { get; private set; }
-        #endregion
+        #endregion Propiedades públicas
     }
 }

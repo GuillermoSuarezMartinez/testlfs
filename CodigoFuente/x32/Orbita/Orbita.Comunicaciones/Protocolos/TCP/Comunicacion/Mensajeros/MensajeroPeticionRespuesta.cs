@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -35,9 +34,9 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
         /// Esto no garantiza que el mensaje es obtenido y procesado por la aplicación remota correctamente.
         /// </summary>
         public event EventHandler<MensajeEventArgs> MensajeEnviado;
-        #endregion
+        #endregion Eventos públicos
 
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// Valor predeterminado del timeout.
         /// </summary>
@@ -56,7 +55,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
         /// Este objeto sólo se utiliza para la sincronización de threads (bloqueo).
         /// </summary>
         private readonly object _objSincronizacion = new object();
-        #endregion
+        #endregion Atributos
 
         #region Constructor
         /// <summary>
@@ -72,7 +71,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
             _mensajesEnEspera = new SortedList<string, MensajeEnEspera>();
             TimeoutMs = TimeoutMsPredeterminado;
         }
-        #endregion
+        #endregion Constructor
 
         #region Propiedades públicas
         /// <summary>
@@ -88,20 +87,14 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
         /// </summary>
         public DateTime FechaUltimoMensajeRecibido
         {
-            get
-            {
-                return Mensajero.FechaUltimoMensajeRecibido;
-            }
+            get { return Mensajero.FechaUltimoMensajeRecibido; }
         }
         /// <summary>
         /// Obtener la fecha del último mensaje enviado satisfactoriamente.
         /// </summary>
         public DateTime FechaUltimoMensajeEnviado
         {
-            get
-            {
-                return Mensajero.FechaUltimoMensajeEnviado;
-            }
+            get { return Mensajero.FechaUltimoMensajeEnviado; }
         }
         /// <summary>
         /// Obtener el objeto IMensajero subyacente.
@@ -112,7 +105,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
         /// Valor predeterminado: 60000 ms (1 minuto).
         /// </summary>
         public int TimeoutMs { get; set; }
-        #endregion
+        #endregion Propiedades públicas
 
         #region Métodos públicos
         /// <summary>
@@ -232,7 +225,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
                 }
             }
         }
-        #endregion
+        #endregion Métodos públicos
 
         #region Manejadores de eventos
         /// <summary>
@@ -274,7 +267,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
         {
             OnMensajeEnviado(e.Mensaje);
         }
-        #endregion
+        #endregion Manejadores de eventos
 
         #region Métodos protegidos de eventos elevados
         /// <summary>
@@ -301,7 +294,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
                 handler(this, new MensajeEventArgs(mensaje));
             }
         }
-        #endregion
+        #endregion Métodos protegidos de eventos elevados
 
         #region Clase MensajeEnEspera
         /// <summary>
@@ -318,7 +311,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
                 EventoEspera = new ManualResetEventSlim(false);
                 Estado = EstadoMensajeEnEspera.EsperandoRespuesta;
             }
-            #endregion
+            #endregion Constructor
 
             #region Propiedades públicas
             /// <summary>
@@ -335,7 +328,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
             /// Estado del mensaje de solicitud.
             /// </summary>
             public EstadoMensajeEnEspera Estado { get; set; }
-            #endregion
+            #endregion Propiedades públicas
         }
 
         /// <summary>
@@ -356,6 +349,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
             /// </summary>
             RespuestaRecibida
         }
-        #endregion
+        #endregion Clase MensajeEnEspera
     }
 }

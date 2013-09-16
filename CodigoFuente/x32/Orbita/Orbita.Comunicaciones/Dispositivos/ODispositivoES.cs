@@ -28,7 +28,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public OEventArgs Eventargs;
         /// <summary>
-        /// Objeto para establecer el canal TCP.
+        /// Objeto para establecer el canal Tcp.
         /// </summary>
         public OWinsockBase Winsock;
         /// <summary>
@@ -47,11 +47,11 @@ namespace Orbita.Comunicaciones
         /// Tiempo que tarda en logar un error de comunicación.
         /// </summary>
         public int LogErrorComunicacionSg = 60;
-        #endregion
+        #endregion Atributos
 
         #region Constructor
         /// <summary>
-        /// Inicializar una nueva instancia de la clase de ES.
+        /// Inicializar una nueva instancia de la clase ODispositivoES.
         /// </summary>
         public ODispositivoES(OTags tags, OHilos hilos, ODispositivo dispositivo)
         {
@@ -79,7 +79,7 @@ namespace Orbita.Comunicaciones
                 throw;
             }
         }
-        #endregion
+        #endregion Constructor
 
         #region Propiedades
         /// <summary>
@@ -110,7 +110,7 @@ namespace Orbita.Comunicaciones
         {
             get { return this.Tags.GetAlarmasActivas(); }
         }
-        #endregion
+        #endregion Propiedades
 
         #region Métodos públicos
         /// <summary>
@@ -121,7 +121,7 @@ namespace Orbita.Comunicaciones
             this.IniciarHiloVida();
         }
         /// <summary>
-        /// Devuelva las alarmas activas del sistema
+        /// Devuelva las alarmas activas del sistema.
         /// </summary>
         /// <returns></returns>
         public override ArrayList GetAlarmasActivas()
@@ -129,7 +129,7 @@ namespace Orbita.Comunicaciones
             return this.Tags.GetAlarmasActivas();
         }
         /// <summary>
-        /// Devuelve los datos del dipositivo y su valor
+        /// Devuelve los datos del dipositivo y su valor.
         /// </summary>
         /// <returns></returns>
         public override OHashtable GetDatos()
@@ -137,7 +137,7 @@ namespace Orbita.Comunicaciones
             return this.Tags.GetDatos();
         }
         /// <summary>
-        /// Devuelve las lectuas del dipositivo y su valor
+        /// Devuelve las lectuas del dipositivo y su valor.
         /// </summary>
         /// <returns></returns>
         public override OHashtable GetLecturas()
@@ -145,7 +145,7 @@ namespace Orbita.Comunicaciones
             return this.Tags.GetLecturas();
         }
         /// <summary>
-        /// Devuelve las alarmas del dipositivo y su valor
+        /// Devuelve las alarmas del dipositivo y su valor.
         /// </summary>
         /// <returns></returns>
         public override OHashtable GetAlarmas()
@@ -157,7 +157,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public virtual void ProcesarHiloVida() { }
         /// <summary>
-        /// Limpia los objetos en memoria
+        /// Limpia los objetos en memoria.
         /// </summary>
         /// <param name="disposing"></param>
         public override void Dispose(bool disposing)
@@ -176,7 +176,7 @@ namespace Orbita.Comunicaciones
         {
             return this.Escribir(variables, valores);
         }
-        #endregion
+        #endregion Métodos públicos
 
         #region Métodos privados
         /// <summary>
@@ -188,6 +188,6 @@ namespace Orbita.Comunicaciones
             // a la colección que una vez añadido el hilo se iniciado.
             Hilos.Add(ProcesarHiloVida, true);
         }
-        #endregion
+        #endregion Métodos privados
     }
 }

@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -23,7 +22,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints
         /// <summary>
         /// Crear endPoint de un string.
         /// La dirección debe tener el formato: protocolo://dirección
-        /// Ejemplo: tcp://10.37.2.30:8000 uno de los extremos TCP con
+        /// Ejemplo: tcp://10.37.2.30:8000 uno de los extremos Tcp con
         /// dirección IP 10.37.2.30 y puerto 8000.
         /// </summary>
         /// <param name="direccionEndPoint">Dirección endpoint.</param>
@@ -34,7 +33,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints
             {
                 throw new ArgumentNullException("direccionEndPoint");
             }
-            //  Si no se especifica protocolo, asume TCP.
+            //  Si no se especifica protocolo, asume Tcp.
             var direccionEndPointAuxiliar = direccionEndPoint;
             if (!direccionEndPointAuxiliar.Contains("://"))
             {
@@ -57,9 +56,9 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints
                     throw new ApplicationException("Protocolo " + protocolo + "no compatible en el endpoint " + direccionEndPoint);
             }
         }
-        #endregion
+        #endregion Métodos públicos
 
-        #region Métodos internos
+        #region Métodos internos abstractos
         /// <summary>
         /// Crear un servidor que utiliza este endpoint para escuchar las conexiones entrantes.
         /// </summary>
@@ -70,6 +69,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints
         /// </summary>
         /// <returns>Cliente.</returns>
         internal abstract ICliente CrearCliente();
-        #endregion
+        #endregion Métodos internos abstractos
     }
 }

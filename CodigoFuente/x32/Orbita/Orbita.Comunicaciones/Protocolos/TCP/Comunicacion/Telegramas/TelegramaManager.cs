@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializacion;
@@ -34,6 +33,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas
         {
             return new Serializacion.Serializacion();
         }
-        #endregion
+        #endregion Métodos públicos
     }
 }

@@ -22,7 +22,7 @@ namespace Orbita.Comunicaciones
         /// Evento de comunicaciones.
         /// </summary>
         event OManejadorEventoComm OrbitaComm;
-        #endregion
+        #endregion Eventos
 
         #region Métodos privados
         /// <summary>
@@ -86,26 +86,71 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <returns></returns>
         Stream OrbitaGetDispositivosXML();
-        #endregion
+        #endregion Métodos privados
     }
 
     /// <summary>
     /// Interfaz para la generación de comunicaciones remotas.
     /// </summary>
     public interface IOCommRemoting1 : IOCommRemoting { }
+    /// <summary>
+    /// Interfaz para la generación de comunicaciones remotas.
+    /// </summary>
     public interface IOCommRemoting2 : IOCommRemoting { }
+    /// <summary>
+    /// Interfaz para la generación de comunicaciones remotas.
+    /// </summary>
     public interface IOCommRemoting3 : IOCommRemoting { }
+    /// <summary>
+    /// Interfaz para la generación de comunicaciones remotas.
+    /// </summary>
     public interface IOCommRemoting4 : IOCommRemoting { }
+    /// <summary>
+    /// Interfaz para la generación de comunicaciones remotas.
+    /// </summary>
     public interface IOCommRemoting5 : IOCommRemoting { }
+    /// <summary>
+    /// Interfaz para la generación de comunicaciones remotas.
+    /// </summary>
     public interface IOCommRemoting6 : IOCommRemoting { }
+    /// <summary>
+    /// Interfaz para la generación de comunicaciones remotas.
+    /// </summary>
     public interface IOCommRemoting7 : IOCommRemoting { }
+    /// <summary>
+    /// Interfaz para la generación de comunicaciones remotas.
+    /// </summary>
     public interface IOCommRemoting8 : IOCommRemoting { }
+    /// <summary>
+    /// Interfaz para la generación de comunicaciones remotas.
+    /// </summary>
     public interface IOCommRemoting9 : IOCommRemoting { }
+    /// <summary>
+    /// Interfaz para la generación de comunicaciones remotas.
+    /// </summary>
     public interface IOCommRemoting10 : IOCommRemoting { }
+    /// <summary>
+    /// Interfaz para la generación de comunicaciones remotas.
+    /// </summary>
     public interface IOCommRemoting11 : IOCommRemoting { }
+    /// <summary>
+    /// Interfaz para la generación de comunicaciones remotas.
+    /// </summary>
     public interface IOCommRemoting12 : IOCommRemoting { }
+    /// <summary>
+    /// Interfaz para la generación de comunicaciones remotas.
+    /// </summary>
     public interface IOCommRemoting13 : IOCommRemoting { }
+    /// <summary>
+    /// Interfaz para la generación de comunicaciones remotas.
+    /// </summary>
     public interface IOCommRemoting14 : IOCommRemoting { }
+    /// <summary>
+    /// Interfaz para la generación de comunicaciones remotas.
+    /// </summary>
     public interface IOCommRemoting15 : IOCommRemoting { }
+    /// <summary>
+    /// Interfaz para la generación de comunicaciones remotas.
+    /// </summary>
     public interface IOCommRemoting16 : IOCommRemoting { }
 }

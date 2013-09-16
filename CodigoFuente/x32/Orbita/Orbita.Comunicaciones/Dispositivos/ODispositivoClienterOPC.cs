@@ -25,16 +25,13 @@ namespace Orbita.Comunicaciones
         /// Local para inglés.
         /// </summary>
         internal const int LOCALE_ID = 0x407;
-        #endregion
+        #endregion Constantes
 
-        #region Atributos privados estáticos
+        #region Atributos
         /// <summary>
         /// Colección de hilos.
         /// </summary>
         private static OHilos Hilos;
-        #endregion
-
-        #region Atributos privados
         /// <summary>
         /// Atributo de sincronización en las
         /// lecturas y escrituras asíncronas.
@@ -97,9 +94,9 @@ namespace Orbita.Comunicaciones
         private readonly OEventArgs _oEventargs;
         private readonly OEstadoComms[] _oOPCComms;
         private readonly OConfigDispositivo _config;
-        #endregion
+        #endregion OPC
 
-        #endregion
+        #endregion Atributos
 
         #region Constructor
         /// <summary>
@@ -150,7 +147,7 @@ namespace Orbita.Comunicaciones
             // Asignación de la colección estática de hilos.
             Hilos = hilos;
         }
-        #endregion
+        #endregion Constructor
 
         #region Propiedades
         /// <summary>
@@ -181,7 +178,7 @@ namespace Orbita.Comunicaciones
         {
             get { return this._tags.GetAlarmasActivas(); }
         }
-        #endregion
+        #endregion Propiedades
 
         #region Métodos públicos
         /// <summary>
@@ -392,7 +389,7 @@ namespace Orbita.Comunicaciones
             this._tags.Dispose();
             Hilos.Destruir();
         }
-        #endregion
+        #endregion Métodos públicos
 
         #region Métodos privados
         // Obtener el tipo de ProgID.
@@ -1088,6 +1085,7 @@ namespace Orbita.Comunicaciones
                 }
             }
         }
+
         #region Estáticos
         /// <summary>
         /// Obtener calidad.
@@ -1138,10 +1136,11 @@ namespace Orbita.Comunicaciones
             }
             return strQuality;
         }
-        #endregion
-        #endregion
+        #endregion Estáticos
 
-        #region Manejadors de eventos
+        #endregion Métodos privados
+
+        #region Manejadores de eventos
 
         #region IOPCDataCallback
         /// <summary>
@@ -1262,6 +1261,6 @@ namespace Orbita.Comunicaciones
         public virtual void OnCancelComplete(int dwTransid, int hGroup) { }
         #endregion IOPCDataCallback
 
-        #endregion Manejadors de eventos
+        #endregion Manejadores de eventos
     }
 }

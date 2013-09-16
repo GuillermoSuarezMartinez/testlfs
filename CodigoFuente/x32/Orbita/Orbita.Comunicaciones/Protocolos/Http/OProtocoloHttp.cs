@@ -9,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
 using System;
 using System.Diagnostics;
 using System.Globalization;
@@ -16,6 +17,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using Orbita.Utiles;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -23,42 +25,42 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OProtocoloHttp : Protocolo
     {
-        #region Atributos privados
-        /// <summary>
-        /// Respuesta obtenida del servicio Web.
-        /// </summary>
-        HttpWebResponse _respuesta;
-        /// <summary>
-        /// Cuerpo de la respuesta.
-        /// </summary>
-        string _cuerpoRespuesta;
-        /// <summary>
-        /// Tiempo de respuesta.
-        /// </summary>
-        double _tiempoRespuesta;
-        /// <summary>
-        /// Definición de los carácteres de escape.
-        /// </summary>
-        string _caracteresEscapeBody;
-        /// <summary>
-        /// Código de respuesta necesario en la trama.
-        /// </summary>
-        int _codigoEstado;
-        /// <summary>
-        /// Timeout de espera de 
-        /// respuesta en segundos.
-        /// </summary>
-        int _timeout;
-        #endregion
-
-        #region Delegados públicos
+        #region Eventos
         /// <summary>
         /// Evento que se ejecuta tras realizar la solicitud al servicio Web.
         /// </summary>
         public event ManejadorEvento EnviarOHttpCompletado;
-        #endregion
+        #endregion Eventos
 
-        #region Destructores
+        #region Atributos
+        /// <summary>
+        /// Respuesta obtenida del servicio Web.
+        /// </summary>
+        private HttpWebResponse _respuesta;
+        /// <summary>
+        /// Cuerpo de la respuesta.
+        /// </summary>
+        private string _cuerpoRespuesta;
+        /// <summary>
+        /// Tiempo de respuesta.
+        /// </summary>
+        private double _tiempoRespuesta;
+        /// <summary>
+        /// Definición de los carácteres de escape.
+        /// </summary>
+        private string _caracteresEscapeBody;
+        /// <summary>
+        /// Código de respuesta necesario en la trama.
+        /// </summary>
+        private int _codigoEstado;
+        /// <summary>
+        /// Timeout de espera de 
+        /// respuesta en segundos.
+        /// </summary>
+        private int _timeout;
+        #endregion Atributos
+
+        #region Destructor
         /// <summary>
         /// Método  sobrecargado de  Dispose que será  el que
         /// libera los recursos. Controla que solo se ejecute
@@ -69,20 +71,19 @@ namespace Orbita.Comunicaciones
         public override void Dispose(bool disposing)
         {
             // Preguntar si Dispose ya fue llamado.
-            if (!this.disposed)
-            {
-                // Finalizar correctamente los recursos no manejados.
-                this._respuesta = null;
-                this._cuerpoRespuesta = null;
-                this._caracteresEscapeBody = null;
+            if (this.Disposed) return;
 
-                // Marcar como desechada ó desechandose,
-                // de forma que no se puede ejecutar el
-                // código dos veces.
-                disposed = true;
-            }
+            // Finalizar correctamente los recursos no manejados.
+            this._respuesta = null;
+            this._cuerpoRespuesta = null;
+            this._caracteresEscapeBody = null;
+
+            // Marcar como desechada ó desechandose,
+            // de forma que no se puede ejecutar el
+            // código dos veces.
+            Disposed = true;
         }
-        #endregion
+        #endregion Destructor
 
         #region Propiedades
         /// <summary>
@@ -160,7 +161,7 @@ namespace Orbita.Comunicaciones
             get { return this._timeout; }
             set { this._timeout = value; }
         }
-        #endregion
+        #endregion Propiedades
 
         #region Métodos públicos
         /// <summary>
@@ -229,6 +230,6 @@ namespace Orbita.Comunicaciones
                 this._tiempoRespuesta = Math.Abs(solicitud.Timeout / 1000.0);
             }
         }
-        #endregion
+        #endregion Métodos públicos
     }
 }

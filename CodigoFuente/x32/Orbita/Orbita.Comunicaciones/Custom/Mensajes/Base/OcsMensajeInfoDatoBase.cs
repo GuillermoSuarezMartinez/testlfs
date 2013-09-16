@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
+//
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -38,13 +37,13 @@ namespace Orbita.Comunicaciones
         {
             IdMensajeRespuesta = idMensajeRespuesta;
         }
-        #endregion
+        #endregion Constructores
 
         #region Propiedades públicas
         /// <summary>
         /// Información del dato que se está transmitiendo.
         /// </summary>
         public OInfoDato InfoDato { get; private set; }
-        #endregion
+        #endregion Propiedades públicas
     }
 }

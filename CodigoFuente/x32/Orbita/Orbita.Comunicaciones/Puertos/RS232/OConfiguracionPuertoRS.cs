@@ -1,4 +1,5 @@
 ﻿using Orbita.Utiles;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -39,7 +40,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public OConfiguracionPuertoRS()
         {
-            //Configuración del puerto serie por defecto
+            // Configuración del puerto serie por defecto.
             this.NumeroPuerto = 1;
             this.Velocidad = 9600;
             this.BitsDatos = 8;

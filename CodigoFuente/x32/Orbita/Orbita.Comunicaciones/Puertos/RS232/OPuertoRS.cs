@@ -4,6 +4,7 @@ using System.Data;
 using System.IO.Ports;
 using System.Threading;
 using Orbita.Utiles;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -139,7 +140,6 @@ namespace Orbita.Comunicaciones
         private StopBits ConvertirBitsStop(OBitsStop bitsStop)
         {
             StopBits convBitsStop = StopBits.Two;
-
             switch (bitsStop)
             {
                 case OBitsStop.Uno:

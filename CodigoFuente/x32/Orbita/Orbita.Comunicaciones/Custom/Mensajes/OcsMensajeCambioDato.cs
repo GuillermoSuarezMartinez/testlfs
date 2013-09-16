@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
+//
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -32,6 +31,6 @@ namespace Orbita.Comunicaciones
         /// <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
         public OcsMensajeCambioDato(OInfoDato infoDato, string idMensajeRespuesta)
             : base(infoDato, idMensajeRespuesta) { }
-        #endregion
+        #endregion Constructores
     }
 }

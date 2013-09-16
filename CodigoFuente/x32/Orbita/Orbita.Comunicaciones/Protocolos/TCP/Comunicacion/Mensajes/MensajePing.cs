@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -33,7 +32,7 @@ namespace Orbita.Comunicaciones
         {
             IdMensajeRespuesta = idMensajeRespuesta;
         }
-        #endregion
+        #endregion Constructores
 
         #region Métodos públicos
         /// <summary>
@@ -46,6 +45,6 @@ namespace Orbita.Comunicaciones
                        ? string.Format("MensajePing [{0}]", IdMensaje)
                        : string.Format("MensajePing [{0}] Respuesta de [{1}]", IdMensaje, IdMensajeRespuesta);
         }
-        #endregion
+        #endregion Métodos públicos
     }
 }

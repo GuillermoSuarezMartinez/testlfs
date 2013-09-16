@@ -3,6 +3,7 @@ using System.Collections;
 using System.Threading;
 using MccDaq;
 using Orbita.Utiles;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -52,16 +53,15 @@ namespace Orbita.Comunicaciones
         /// tarjeta ES
         /// </summary>
         private MccBoard _daqBoard;
-        #endregion
+        #endregion Atributos
 
         #region Constructor
         /// <summary>
-        /// Constructor de clase de USB MCC
+        /// Inicializar una nueva instancia de la clase ODispositivoMCUSB.
         /// </summary>
         public ODispositivoMCUSB(OTags tags, OHilos hilos, ODispositivo dispositivo)
             : base(tags, hilos, dispositivo)
         {
-            //Inicialización de objetos
             this.IniciarObjetos();
             Wrapper.Info("Objetos del dispositivo de ES MCC creados.");
 
@@ -76,7 +76,7 @@ namespace Orbita.Comunicaciones
 
             Wrapper.Info("Comunicaciones TCP del dispositivo de ES MCC arrancadas correctamente.");
         }
-        #endregion
+        #endregion Constructor
 
         #region Métodos públicos
         /// <summary>
@@ -290,9 +290,10 @@ namespace Orbita.Comunicaciones
                 return resultado;
             }
         }
-        #endregion
+        #endregion Métodos públicos
 
         #region Métodos privados
+
         #region Comunes
         /// <summary>
         /// Establece el valor inicial de los objetos
@@ -367,6 +368,7 @@ namespace Orbita.Comunicaciones
 
             this._lecturas = new byte[_numLecturas];
             this.LecturasContinuas = new byte[_numLecturas];
+
             #region Configuración entradas y salidas
 
             for (int i = 0; i < listEntradas.Count; i++)
@@ -375,16 +377,16 @@ namespace Orbita.Comunicaciones
                 switch (canal.ToUpper())
                 {
                     case "A":
-                        _daqBoard.DConfigPort(MccDaq.DigitalPortType.FirstPortA, MccDaq.DigitalPortDirection.DigitalIn);
+                        _daqBoard.DConfigPort(DigitalPortType.FirstPortA, DigitalPortDirection.DigitalIn);
                         break;
                     case "B":
-                        _daqBoard.DConfigPort(MccDaq.DigitalPortType.FirstPortB, MccDaq.DigitalPortDirection.DigitalIn);
+                        _daqBoard.DConfigPort(DigitalPortType.FirstPortB, DigitalPortDirection.DigitalIn);
                         break;
                     case "CH":
-                        _daqBoard.DConfigPort(MccDaq.DigitalPortType.FirstPortCH, MccDaq.DigitalPortDirection.DigitalIn);
+                        _daqBoard.DConfigPort(DigitalPortType.FirstPortCH, DigitalPortDirection.DigitalIn);
                         break;
                     case "CL":
-                        _daqBoard.DConfigPort(MccDaq.DigitalPortType.FirstPortCL, MccDaq.DigitalPortDirection.DigitalIn);
+                        _daqBoard.DConfigPort(DigitalPortType.FirstPortCL, DigitalPortDirection.DigitalIn);
                         break;
                 }
             }
@@ -394,18 +396,16 @@ namespace Orbita.Comunicaciones
                 switch (canal.ToUpper())
                 {
                     case "A":
-                        _daqBoard.DConfigPort(MccDaq.DigitalPortType.FirstPortA, MccDaq.DigitalPortDirection.DigitalOut);
+                        _daqBoard.DConfigPort(DigitalPortType.FirstPortA, DigitalPortDirection.DigitalOut);
                         break;
                     case "B":
-                        _daqBoard.DConfigPort(MccDaq.DigitalPortType.FirstPortB, MccDaq.DigitalPortDirection.DigitalOut);
+                        _daqBoard.DConfigPort(DigitalPortType.FirstPortB, DigitalPortDirection.DigitalOut);
                         break;
                     case "CH":
-                        _daqBoard.DConfigPort(MccDaq.DigitalPortType.FirstPortCH, MccDaq.DigitalPortDirection.DigitalOut);
+                        _daqBoard.DConfigPort(DigitalPortType.FirstPortCH, DigitalPortDirection.DigitalOut);
                         break;
                     case "CL":
-                        _daqBoard.DConfigPort(MccDaq.DigitalPortType.FirstPortCL, MccDaq.DigitalPortDirection.DigitalOut);
-                        break;
-                    default:
+                        _daqBoard.DConfigPort(DigitalPortType.FirstPortCL, DigitalPortDirection.DigitalOut);
                         break;
                 }
             }
@@ -535,7 +535,6 @@ namespace Orbita.Comunicaciones
         {
             OInfoDato infodato = null;
             OEventArgs ev = new OEventArgs();
-
             for (int i = 0; i < 8; i++)
             {
                 try
@@ -592,11 +591,6 @@ namespace Orbita.Comunicaciones
                             }
                         }
                     }
-                    else
-                    {
-                        //wrapper.Warn("No se puede encontrar la dupla " + posicion.ToString() + "-" + i.ToString() +
-                        //    " al actualizar las variables de entrada en el dispositivo de ES Siemens.");
-                    }
                 }
                 catch (Exception ex)
                 {
@@ -605,6 +599,7 @@ namespace Orbita.Comunicaciones
             }
         }
         #endregion ES
+
         #endregion Métodos privados
     }
 }

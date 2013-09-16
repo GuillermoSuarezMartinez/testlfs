@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -29,7 +28,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener
         /// </summary>
         event EventHandler<EventArgs> NoEscuchando;
         /// <summary>
-        /// 
+        /// Este evento se produce cuando se produce un error de conexión.
         /// </summary>
         event EventHandler<ErrorEventArgs> ErrorConexion;
         /// <summary>

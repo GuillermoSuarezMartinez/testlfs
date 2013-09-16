@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -22,7 +21,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
         /// Timeout para la conexión a un servidor (en milisegundos).
         /// Valor predeterminado: 15 segundos (15000 ms).
         /// </summary>
-        int TimeoutMsConexion { get; set; }
+        int TimeoutConexionMs { get; set; }
         /// <summary>
         /// Endpoint del cliente.
         /// </summary>

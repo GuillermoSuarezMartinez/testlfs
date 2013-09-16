@@ -12,11 +12,11 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// objeto para establecer el canal TCP
         /// </summary>
-        OWinsockBase _winsock;
+        private OWinsockBase _winsock;
         /// <summary>
         /// Log de la aplicación
         /// </summary>
-        ILogger log;
+        private ILogger log;
         /// <summary>
         /// evento para la recepción de datos en el canal
         /// </summary>
@@ -36,20 +36,18 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// nombre del canal
         /// </summary>
-        string _nombre;
+        private string _nombre;
         /// <summary>
         /// Nombre del listener
         /// </summary>
-        string _listener;
+        private string _listener;
         /// <summary>
         /// Estado del canal
         /// </summary>
-        WinsockStates _estado;
-
+        private WinsockStates _estado;
         #endregion
 
         #region Constructor
-
         /// <summary>
         /// Constructor de la clase
         /// </summary>
@@ -62,15 +60,32 @@ namespace Orbita.Comunicaciones
             this._nombre = nombre;
             this._listener = listener;
             this.log = log;
-            this._winsock = new OWinsockBase();
-            this._winsock.LegacySupport = true;
+            this._winsock = new OWinsockBase {LegacySupport = true};
 
             this._winsock.DataArrival += _winsock_DataArrival;
             this._winsock.StateChanged += _winsock_StateChanged;
             this._winsock.SendComplete += _winsock_SendComplete;
             this._winsock.ErrorReceived += _winsock_ErrorReceived;
         }
+        #endregion
 
+        #region Propiedades
+        /// <summary>
+        /// nombre del listener
+        /// </summary>
+        public string Listener
+        {
+            get { return _listener; }
+            set { _listener = value; }
+        }
+        /// <summary>
+        /// Estado del canal
+        /// </summary>
+        public WinsockStates Estado
+        {
+            get { return _estado; }
+            set { _estado = value; }
+        }
         #endregion
 
         #region Métodos públicos
@@ -219,25 +234,6 @@ namespace Orbita.Comunicaciones
                 this.OSendComplete(ev);
                 log.Error(this._nombre + " " + error);
             }
-        }
-        #endregion
-
-        #region Propiedades
-        /// <summary>
-        /// nombre del listener
-        /// </summary>
-        public string Listener
-        {
-            get { return _listener; }
-            set { _listener = value; }
-        }
-        /// <summary>
-        /// Estado del canal
-        /// </summary>
-        public WinsockStates Estado
-        {
-            get { return _estado; }
-            set { _estado = value; }
         }
         #endregion
     }

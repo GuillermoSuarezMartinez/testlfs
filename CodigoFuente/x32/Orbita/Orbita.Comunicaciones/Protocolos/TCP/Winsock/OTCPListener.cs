@@ -10,62 +10,62 @@ namespace Orbita.Comunicaciones
     {
         #region Atributos
         /// <summary>
-        /// Objeto para establecer el canal TCP principal
+        /// Objeto para establecer el canal Tcp principal.
         /// </summary>
-        OWinsockBase _winsockListener;
+        private OWinsockBase _winsockListener;
         /// <summary>
-        /// Log de la aplicación
+        /// Log de la aplicación.
         /// </summary>
-        ILogger _log;
+        private readonly ILogger _log;
         /// <summary>
-        /// Pool de clientes
+        /// Pool de clientes.
         /// </summary>
-        Hashtable _poolCliente;
+        private Hashtable _poolCliente;
         /// <summary>
-        /// Evento Listener para petición de conexión
+        /// Evento Listener para petición de conexión.
         /// </summary>
         public event OManejadorEventoComm WskConnectionRequest;
         /// <summary>
-        /// Evento Listener para canvio de estado
+        /// Evento Listener para canvio de estado.
         /// </summary>
         public event OManejadorEventoComm WskStateChanged;
         /// <summary>
-        /// Evento Listener para error de recepción
+        /// Evento Listener para error de recepción.
         /// </summary>
         public event OManejadorEventoComm WskErrorReceived;
         /// <summary>
-        /// Evento Cliente Listener para recepción de datos
+        /// Evento Cliente Listener para recepción de datos.
         /// </summary>
         public event OManejadorEventoComm WskClientDataArrival;
         /// <summary>
-        /// Evento Cliente Listener para error de recepción
+        /// Evento Cliente Listener para error de recepción.
         /// </summary>
         public event OManejadorEventoComm WskClientErrorReceived;
         /// <summary>
-        /// Evento Cliente Listener para send complete
+        /// Evento Cliente Listener para send complete.
         /// </summary>
         public event OManejadorEventoComm WskClientSendComplete;
         /// <summary>
-        /// Evento Cliente Listener para cambio de estado
+        /// Evento Cliente Listener para cambio de estado.
         /// </summary>
         public event OManejadorEventoComm WskClientStateChanged;
         /// <summary>
-        /// Puerto TCP
+        /// Puerto Tcp.
         /// </summary>
-        int _puerto;
+        private int _puerto;
         /// <summary>
-        /// Nombre del canal
+        /// Nombre del canal.
         /// </summary>
-        string _nombre;
+        private string _nombre;
         /// <summary>
-        /// Estado del listener
+        /// Estado del listener.
         /// </summary>
-        WinsockStates _estadoListener;
+        private WinsockStates _estadoListener;
         #endregion
 
         #region Constructor
         /// <summary>
-        /// Constructor del formulario
+        /// Constructor del formulario.
         /// </summary>
         public OTCPListener(ILogger log, int puerto, string nombre)
         {
@@ -79,7 +79,7 @@ namespace Orbita.Comunicaciones
         #region Metodos
 
         /// <summary>
-        /// Inicializa las variables de la comunicación TCP
+        /// Inicializa las variables de la comunicación Tcp.
         /// </summary>
         private void Inicializar()
         {
@@ -88,14 +88,13 @@ namespace Orbita.Comunicaciones
             this._winsockListener = new OWinsockBase();
             this._winsockListener.LegacySupport = true;
 
-            this._winsockListener.ConnectionRequest += new IWinsock.ConnectionRequestEventHandler(this._wskListener_ConnectionRequest);
-            this._winsockListener.StateChanged += new IWinsock.StateChangedEventHandler(this._wskListener_StateChanged);
-            this._winsockListener.ErrorReceived += new IWinsock.ErrorReceivedEventHandler(this._wskListener_ErrorReceived);
+            this._winsockListener.ConnectionRequest += this._wskListener_ConnectionRequest;
+            this._winsockListener.StateChanged += this._wskListener_StateChanged;
+            this._winsockListener.ErrorReceived += this._wskListener_ErrorReceived;
 
             this._winsockListener.LocalPort = this._puerto;
             this._winsockListener.Listen();
         }
-
         public WinsockStates GetEstadoCanal(string ip)
         {
             WinsockStates retorno = WinsockStates.Closed;
@@ -107,11 +106,9 @@ namespace Orbita.Comunicaciones
 
             return retorno;
         }
-
         #endregion
 
         #region Eventos
-
         /// <summary>
         /// Indica que el objeto winsock principal ha cambiado de estado. Trazabilidad del canal.
         /// </summary>
@@ -121,7 +118,6 @@ namespace Orbita.Comunicaciones
         {
             try
             {
-                OWinsockBase winsock = (OWinsockBase)sender;
                 string estado = "State Changed: Cambia de " + e.Old_State.ToString() + " a " + e.New_State.ToString();
                 this._estadoListener = e.New_State;
                 OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._nombre, "", estado);
@@ -130,7 +126,6 @@ namespace Orbita.Comunicaciones
                 {
                     this.WskStateChanged(ev);
                 }
-
                 _log.Debug(this._nombre + " " + estado);
             }
             catch (Exception ex)
@@ -156,7 +151,7 @@ namespace Orbita.Comunicaciones
             {
                 if (e.ClientIP == "bad IP")
                 {
-                    string error = "Connection Request Bad IP";
+                    const string error = "Connection Request Bad IP";
                     OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._nombre, "", error);
                     OEventArgs ev = new OEventArgs(mensaje);
                     this.WskConnectionRequest(ev);
@@ -223,7 +218,6 @@ namespace Orbita.Comunicaciones
                 }
                 _log.Error(this._nombre + " " + error);
             }
-
         }
         /// <summary>
         /// Evento de errores en la comunicación TCP
@@ -331,7 +325,6 @@ namespace Orbita.Comunicaciones
             get { return _nombre; }
             set { _nombre = value; }
         }
-
         public WinsockStates EstadoListener
         {
             get { return _estadoListener; }

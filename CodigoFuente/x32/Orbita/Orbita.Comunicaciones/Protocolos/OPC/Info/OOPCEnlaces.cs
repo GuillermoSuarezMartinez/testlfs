@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -7,7 +8,7 @@ namespace Orbita.Comunicaciones
     [Serializable]
     public class OOPCEnlaces
     {
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// Nombre.
         /// </summary>
@@ -16,7 +17,7 @@ namespace Orbita.Comunicaciones
         /// Reintento.
         /// </summary>
         private int _reintento;
-        #endregion
+        #endregion Atributos
 
         #region Propiedades
         /// <summary>
@@ -35,11 +36,11 @@ namespace Orbita.Comunicaciones
             get { return _reintento; }
             set { _reintento = value; }
         }
-        #endregion
+        #endregion Propiedades
 
         #region Métodos públicos
         /// <summary>
-        /// oOPCEnlaces.
+        /// OOPCEnlaces.
         /// </summary>
         /// <param name="nombre"></param>
         public OOPCEnlaces(string nombre)
@@ -47,6 +48,6 @@ namespace Orbita.Comunicaciones
             _nombre = nombre;
             _reintento = 0;
         }
-        #endregion
+        #endregion Métodos públicos
     }
 }

@@ -6,10 +6,12 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public abstract class Protocolo : IDisposable
     {
+        #region Atributos
         /// <summary>
         /// Indica si ya se llamo al método Dispose. (default = false)
         /// </summary>
-        public bool disposed = false;
+        public bool Disposed = false;
+        #endregion
 
         #region Dispose
         /// <summary>

@@ -1,7 +1,7 @@
 ﻿namespace Orbita.Comunicaciones
 {
     /// <summary>
-    /// Clase que encapsula información de un puerto de comunicaciones
+    /// Clase que encapsula información de un puerto de comunicaciones.
     /// </summary>
     public class OInformacionPuerto
     {

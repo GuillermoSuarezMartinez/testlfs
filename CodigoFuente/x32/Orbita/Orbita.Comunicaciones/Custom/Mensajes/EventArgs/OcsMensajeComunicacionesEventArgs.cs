@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
+//
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -26,13 +25,13 @@ namespace Orbita.Comunicaciones
         {
             Mensaje = mensaje;
         }
-        #endregion
+        #endregion Constructor
 
         #region Propiedades públicas
         /// <summary>
         /// Mensaje que está suscrito a este evento.
         /// </summary>
         public IOcsMensajeComunicaciones Mensaje { get; private set; }
-        #endregion
+        #endregion Propiedades públicas
     }
 }

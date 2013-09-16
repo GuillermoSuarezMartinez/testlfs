@@ -12,6 +12,17 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class ODispositivoSiemens1200ES : ODispositivoES
     {
+        #region Eventos
+        /// <summary>
+        /// Evento de cambio de dato entradas
+        /// </summary>
+        public event OManejadorEventoComm OrbitaCambioDatoEntradas;
+        /// <summary>
+        /// Evento de cambio de dato salidas
+        /// </summary>
+        public event OManejadorEventoComm OrbitaCambioDatoSalidas;
+        #endregion Eventos
+
         #region Atributos
         /// <summary>
         /// Cola de recepción de tramas de datos.
@@ -83,7 +94,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         private Queue _qEscrituras;
         internal int LecturaInicialSalida;
-        #endregion
+        #endregion Atributos
 
         #region Constructor
         /// <summary>
@@ -111,18 +122,7 @@ namespace Orbita.Comunicaciones
             }
             Wrapper.Info("ODispositivoSiemens1200ES constructor de comunicaciones Tcp del dispositivo de ES Siemens arrancadas correctamente.");
         }
-        #endregion
-
-        #region Eventos
-        /// <summary>
-        /// Evento de cambio de dato entradas
-        /// </summary>
-        public event OManejadorEventoComm OrbitaCambioDatoEntradas;
-        /// <summary>
-        /// Evento de cambio de dato salidas
-        /// </summary>
-        public event OManejadorEventoComm OrbitaCambioDatoSalidas;
-        #endregion
+        #endregion Constructor
 
         #region Métodos públicos
         /// <summary>
@@ -348,7 +348,7 @@ namespace Orbita.Comunicaciones
                 handler(e);
             }
         }
-        #endregion
+        #endregion Métodos públicos
 
         #region Métodos privados
 
@@ -524,7 +524,7 @@ namespace Orbita.Comunicaciones
         }
         #endregion ES
 
-        #endregion
+        #endregion Métodos privados
 
         #region Eventos Socket
         /// <summary>
@@ -622,7 +622,7 @@ namespace Orbita.Comunicaciones
                 Wrapper.Error("ODispositivoSiemens1200ES [Winsock_ErrorReceived]: " + ex);
             }
         }
-        #endregion
+        #endregion Eventos Socket
 
         #region Propiedades
         /// <summary>
@@ -643,6 +643,6 @@ namespace Orbita.Comunicaciones
                 }
             }
         }
-        #endregion
+        #endregion Propiedades
     }
 }

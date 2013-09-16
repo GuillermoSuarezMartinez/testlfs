@@ -10,7 +10,7 @@ namespace Orbita.Comunicaciones
     [Serializable]
     public class OTags : IDisposable
     {
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// Colección de tags de datos.
         /// Key = Identificador numérico de la variable.
@@ -35,7 +35,7 @@ namespace Orbita.Comunicaciones
         /// Colección de alarmas activas.
         /// </summary>
         private ArrayList _alAlarmasActivas;
-        #endregion
+        #endregion Atributos
 
         #region Constructor
         /// <summary>
@@ -51,7 +51,7 @@ namespace Orbita.Comunicaciones
             this._alAlarmasActivas = new ArrayList();
             this.Config = new OConfigDispositivo();
         }
-        #endregion
+        #endregion Constructor
 
         #region Destructor
         /// <summary>
@@ -112,7 +112,7 @@ namespace Orbita.Comunicaciones
             // de legibilidad y mantenimiento.
             Dispose(false);
         }
-        #endregion
+        #endregion Destructor
 
         #region Propiedades
         /// <summary>
@@ -123,7 +123,7 @@ namespace Orbita.Comunicaciones
         /// Configuración.
         /// </summary>
         public OConfigDispositivo Config { get; set; }
-        #endregion
+        #endregion Propiedades
 
         #region Métodos públicos
         /// <summary>
@@ -305,6 +305,6 @@ namespace Orbita.Comunicaciones
         {
             this._alAlarmasActivas = alarmasActivas;
         }
-        #endregion
+        #endregion Métodos públicos
     }
 }

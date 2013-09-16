@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints;
@@ -22,7 +21,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
         /// Crear un nuevo cliente para conectarse a un servidor utilizando un endpoint.
         /// </summary>
         /// <param name="endPointRemoto">Endpoint del servidor a conectarse.</param>
-        /// <returns>Cliente TCP.</returns>
+        /// <returns>Cliente Tcp.</returns>
         public static ICliente Crear(EndPoint endPointRemoto)
         {
             return endPointRemoto.CrearCliente();
@@ -31,11 +30,11 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
         /// Crear un nuevo cliente para conectarse a un servidor utilizando un endpoint.
         /// </summary>
         /// <param name="direccionEndpoint">Dirección endpoint del servidor a conectarse.</param>
-        /// <returns>Cliente TCP.</returns>
+        /// <returns>Cliente Tcp.</returns>
         public static ICliente Crear(string direccionEndpoint)
         {
             return Crear(EndPoint.CrearEndPoint(direccionEndpoint));
         }
-        #endregion
+        #endregion Métodos públicos
     }
 }

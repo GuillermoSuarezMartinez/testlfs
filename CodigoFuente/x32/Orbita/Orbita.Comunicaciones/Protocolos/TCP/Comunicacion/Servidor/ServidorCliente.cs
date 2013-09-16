@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -40,12 +39,12 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
         public event EventHandler Desconectado;
         #endregion Eventos públicos
 
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// El canal de comunicación que se utiliza por el cliente para enviar y recibir mensajes.
         /// </summary>
         private readonly ICanalComunicacion _canalComunicacion;
-        #endregion Atributos privados
+        #endregion Atributos
 
         #region Constructor
         /// <summary>

@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -40,13 +39,13 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
         /// Este evento se produce cuando el cliente se desconecta del servidor.
         /// </summary>
         public event EventHandler Desconectado;
-        #endregion
+        #endregion Eventos públicos
 
-        #region Atributos privados
+        #region Atributos
         /// <summary>
-        /// Valor timeout predeterminado para la conexión a un servidor.
+        /// Valor timeout predeterminado para la conexión a un servidor en milisegundos.
         /// </summary>
-        private const int TimeoutMsConexionPredeterminado = 15000; // 15 segundos.
+        private const int TimeoutConexionMsPredeterminado = 15000; // 15 segundos.
         /// <summary>
         /// Canal de comunicación que se utiliza por el cliente para enviar y recibir mensajes.
         /// </summary>
@@ -59,7 +58,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
         /// Telegrama de comunicación.
         /// </summary>
         private ITelegrama _telegrama;
-        #endregion
+        #endregion Atributos
 
         #region Constructor protegido
         /// <summary>
@@ -69,7 +68,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
         {
             _timerPing = new Timer(30000);
             _timerPing.Elapsed += PingTimer_Elapsed;
-            TimeoutMsConexion = TimeoutMsConexionPredeterminado;
+            TimeoutConexionMs = TimeoutConexionMsPredeterminado;
             Telegrama = TelegramaManager.GetTelegramaPredeterminado();
         }
         #endregion
@@ -79,10 +78,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
         /// Endpoint del servidor.
         /// </summary>
         public TcpEndPoint EndPointRemoto { get; protected set; }
-        ///// <summary>
-        ///// Obtener el objeto IMensajero subyacente.
-        ///// </summary>
-        //public IMensajero Mensajero { get; set; }
         /// <summary>
         /// Endpoint del cliente.
         /// </summary>
@@ -91,7 +86,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
         /// Timeout para la conexión a un servidor (en milisegundos).
         /// Valor predeterminado: 15 segundos (15000 ms).
         /// </summary>
-        public int TimeoutMsConexion { get; set; }
+        public int TimeoutConexionMs { get; set; }
         /// <summary>
         /// Obtener/establecer el telegrama que se utiliza durante la lectura y escritura de mensajes.
         /// </summary>

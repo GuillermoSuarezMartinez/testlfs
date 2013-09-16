@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -36,7 +35,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
         /// Periodo de reconexión predeterminado.
         /// </summary>
         private const int PeriodoReConexionPredeterminado = 20000; // 20 segundos.
-        #endregion
+        #endregion Atributos
 
         #region Constructor
         /// <summary>
@@ -58,7 +57,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
             _timerReconexion.Elapsed += TimerReconexion_Elapsed;
             _timerReconexion.Iniciar();
         }
-        #endregion
+        #endregion Constructor
 
         #region Destructor
         /// <summary>
@@ -75,7 +74,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
             _cliente.Desconectado -= Cliente_Desconectado;
             _timerReconexion.Parar();
         }
-        #endregion
+        #endregion Destructor
 
         #region Propiedades públicas
         /// <summary>
@@ -87,7 +86,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
             get { return _timerReconexion.Periodo; }
             set { _timerReconexion.Periodo = value; }
         }
-        #endregion
+        #endregion Propiedades públicas
 
         #region Manejadores de eventos
         /// <summary>
@@ -121,6 +120,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
                 // Empty.
             }
         }
-        #endregion
+        #endregion Manejadores de eventos
     }
 }

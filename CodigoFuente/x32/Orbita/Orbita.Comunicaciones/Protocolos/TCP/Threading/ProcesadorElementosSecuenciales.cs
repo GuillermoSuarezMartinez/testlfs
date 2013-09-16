@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Threading
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -20,7 +19,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Threading
     /// <typeparam name="TElemento">Tipo de elemento.</typeparam>
     public class ProcesadorElementosSecuenciales<TElemento>
     {
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// El método delegado que se llama para procesar elementos.
         /// </summary>
@@ -45,7 +44,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Threading
         /// Este objeto sólo se utiliza para la sincronización de threads (bloqueo).
         /// </summary>
         private readonly object _objSincronizacion = new object();
-        #endregion
+        #endregion Atributos
 
         #region Constructor
         /// <summary>
@@ -57,7 +56,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Threading
             _metodo = metodo;
             _cola = new Queue<TElemento>();
         }
-        #endregion
+        #endregion Constructor
 
         #region Métodos públicos
         /// <summary>
@@ -118,7 +117,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Threading
                 //  Empty.
             }
         }
-        #endregion
+        #endregion Métodos públicos
 
         #region Métodos privados
         /// <summary>
@@ -158,6 +157,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Threading
                 _tareaActual = Task.Factory.StartNew(ProcesarElemento);
             }
         }
-        #endregion
+        #endregion Métodos privados
     }
 }

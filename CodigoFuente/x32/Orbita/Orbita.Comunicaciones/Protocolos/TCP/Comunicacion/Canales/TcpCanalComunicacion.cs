@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -17,13 +16,13 @@ using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Excepciones;
 namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
 {
     /// <summary>
-    /// Esta clase se utiliza para comunicarse con una aplicación remotamente (canl de comunicación) a través de TCP / IP.
+    /// Esta clase se utiliza para comunicarse con una aplicación remotamente (canl de comunicación) a través de Tcp / IP.
     /// </summary>
     internal class TcpCanalComunicacion : CanalComunicacionBase
     {
-        #region Atributos privados
+        #region Atributos
         /// <summary>
-        /// Tamaño del búfer que se utiliza para recibir bytes del socket TCP.
+        /// Tamaño del búfer que se utiliza para recibir bytes del socket Tcp.
         /// </summary>
         private const int TamañoBufferRecepcion = 4 * 1024; // 4 KB
         /// <summary>
@@ -46,7 +45,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
         /// Endpoint de la aplicación remota.
         /// </summary>
         private readonly TcpEndPoint _endPointRemoto;
-        #endregion
+        #endregion Atributos
 
         #region Constructor
         /// <summary>
@@ -64,7 +63,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
             _bufferRecepcion = new byte[TamañoBufferRecepcion];
             _objSincronizacion = new object();
         }
-        #endregion
+        #endregion Constructor
 
         #region Propiedades públicas
         ///<summary>
@@ -74,7 +73,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
         {
             get { return _endPointRemoto; }
         }
-        #endregion
+        #endregion Propiedades públicas
 
         #region Métodos públicos
         /// <summary>
@@ -102,7 +101,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
             EstadoComunicacion = EstadoComunicacion.Desconectado;
             OnDesconectado();
         }
-        #endregion
+        #endregion Métodos públicos
 
         #region Métodos protegidos
         /// <summary>
@@ -129,18 +128,18 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
                     if (bytesEnviados <= 0)
                     {
                         throw new ExcepcionComunicacion(
-                            "El mensaje no pudo ser enviado a través del socket TCP. Se han enviado " +
+                            "El mensaje no pudo ser enviado a través del socket Tcp. Se han enviado " +
                             totalBytesEnviados + " bytes de " + bytesMensaje.Length + " bytes.");
                     }
 
                     totalBytesEnviados += bytesEnviados;
                 }
-                
+
                 FechaUltimoMensajeEnviado = DateTime.Now;
                 OnMensajeEnviado(mensaje);
             }
         }
-        #endregion
+        #endregion Métodos protegidos
 
         #region Métodos privados
         /// <summary>
@@ -155,7 +154,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
             }
             try
             {
-                //  Obtener el número de bytes recibidos, tras la finalización de una lectura asíncrona pendiente.
+                //  Obtener el número de bytes recibidos tras la finalización de una lectura asíncrona pendiente.
                 var bytesLeidos = _socketCliente.EndReceive(resultadoAsincrono);
                 if (bytesLeidos > 0)
                 {
@@ -176,7 +175,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
                 }
                 else
                 {
-                    throw new ExcepcionComunicacion("Socket TCP está cerrado.");
+                    throw new ExcepcionComunicacion("Socket Tcp está cerrado.");
                 }
                 //  Leer más bytes si aún está recibiendo.
                 _socketCliente.BeginReceive(_bufferRecepcion, 0, _bufferRecepcion.Length, 0, RecepcionMensajes, null);
@@ -186,6 +185,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
                 Desconectar();
             }
         }
-        #endregion
+        #endregion Métodos privados
     }
 }

@@ -9,11 +9,13 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
 using System;
 using System.Globalization;
 using System.IO;
 using System.Net;
 using Orbita.Utiles;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -22,20 +24,20 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OProtocoloFtp : Protocolo
     {
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// Nombre del servidor Ftp.
         /// </summary>
-        string _nombre;
+        private string _nombre;
         /// <summary>
         /// Usuario de acceso al servidor.
         /// </summary>
-        string _usuario;
+        private string _usuario;
         /// <summary>
         /// Contraseña de usuario de acceso.
         /// </summary>
-        string _password;
-        #endregion
+        private string _password;
+        #endregion Atributos
 
         #region Constructores
         /// <summary>
@@ -62,9 +64,9 @@ namespace Orbita.Comunicaciones
             this._usuario = usuario;
             this._password = password;
         }
-        #endregion
+        #endregion Constructores
 
-        #region Destructores
+        #region Destructor
         /// <summary>
         /// Método  sobrecargado de  Dispose que será  el que
         /// libera los recursos. Controla que solo se ejecute
@@ -75,20 +77,19 @@ namespace Orbita.Comunicaciones
         public override void Dispose(bool disposing)
         {
             // Preguntar si Dispose ya fue llamado.
-            if (!this.disposed)
-            {
-                // Finalizar correctamente los recursos no manejados.
-                this._nombre = null;
-                this._usuario = null;
-                this._password = null;
+            if (this.Disposed) return;
 
-                // Marcar como desechada ó desechandose,
-                // de forma que no se puede ejecutar el
-                // código dos veces.
-                disposed = true;
-            }
+            // Finalizar correctamente los recursos no manejados.
+            this._nombre = null;
+            this._usuario = null;
+            this._password = null;
+
+            // Marcar como desechada ó desechandose,
+            // de forma que no se puede ejecutar el
+            // código dos veces.
+            Disposed = true;
         }
-        #endregion
+        #endregion Destructor
 
         #region Métodos públicos
         /// <summary>
@@ -148,6 +149,6 @@ namespace Orbita.Comunicaciones
                 }
             }
         }
-        #endregion
+        #endregion Métodos públicos
     }
 }

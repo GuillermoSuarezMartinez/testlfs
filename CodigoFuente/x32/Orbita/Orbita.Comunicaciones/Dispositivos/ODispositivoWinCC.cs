@@ -1,5 +1,6 @@
 ﻿using System;
 using Orbita.Trazabilidad;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -20,9 +21,9 @@ namespace Orbita.Comunicaciones
         /// Logger del sistema.
         /// </summary>
         private readonly ILogger _logger;
-        #endregion
+        #endregion Atributos
 
-        #region Constructores
+        #region Constructor
         /// <summary>
         /// Constructor de clase
         /// </summary>
@@ -33,6 +34,9 @@ namespace Orbita.Comunicaciones
             _oDataManager = new OProtocoloWinCCDataManager();
             _oDataManager.Connect();
         }
+        #endregion Constructor
+
+        #region Destructor
         /// <summary>
         /// Destruye el objeto
         /// </summary>
@@ -43,7 +47,7 @@ namespace Orbita.Comunicaciones
             // readability and maintainability.
             Dispose(false);
         }
-        #endregion
+        #endregion Destructor
 
         #region Métodos públicos
         /// <summary>
@@ -119,7 +123,7 @@ namespace Orbita.Comunicaciones
         {
             return this.Escribir(variables, valores);
         }
-        #endregion
+        #endregion Métodos públicos
 
         #region Métodos privados
         /// <summary>
@@ -164,6 +168,6 @@ namespace Orbita.Comunicaciones
             }
             return retorno;
         }
-        #endregion
+        #endregion Métodos privados
     }
 }

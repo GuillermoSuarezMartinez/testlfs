@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System.Net.Sockets;
@@ -16,11 +15,11 @@ using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints;
 namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener
 {
     /// <summary>
-    /// Esta clase se utiliza para escuchar (listener) y aceptar peticiones de conexiones entrantes de clientes, en un puerto TCP.
+    /// Esta clase se utiliza para escuchar (listener) y aceptar peticiones de conexiones entrantes de clientes, en un puerto Tcp.
     /// </summary>
     internal class TcpListenerConexion : ListenerBase
     {
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// La dirección endpoint del servidor para escuchar las peticiones de conexiones entrantes.
         /// </summary>
@@ -37,7 +36,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener
         /// Flag para el control de funcionamiento del hilo (thread).
         /// </summary>
         private volatile bool _iniciado;
-        #endregion
+        #endregion Atributos
 
         #region Constructor
         /// <summary>
@@ -48,7 +47,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener
         {
             _endPoint = endPoint;
         }
-        #endregion
+        #endregion Constructor
 
         #region Métodos públicos
         /// <summary>
@@ -69,7 +68,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener
             NoEscuchar();
             _iniciado = false;
         }
-        #endregion
+        #endregion Métodos públicos
 
         #region Métodos privados
         /// <summary>
@@ -136,6 +135,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener
                 Thread.Sleep(10);
             }
         }
-        #endregion
+        #endregion Métodos privados
     }
 }

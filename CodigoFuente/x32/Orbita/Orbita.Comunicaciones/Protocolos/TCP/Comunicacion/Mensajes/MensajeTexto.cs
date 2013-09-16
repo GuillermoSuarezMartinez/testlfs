@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -41,14 +40,14 @@ namespace Orbita.Comunicaciones
         {
             IdMensajeRespuesta = idMensajeRespuesta;
         }
-        #endregion
+        #endregion Constructores
 
         #region Propiedades públicas
         /// <summary>
         /// El texto del mensaje que se está transmitiendo.
         /// </summary>
         public string Texto { get; set; }
-        #endregion
+        #endregion Propiedades públicas
 
         #region Métodos públicos
         /// <summary>
@@ -61,6 +60,6 @@ namespace Orbita.Comunicaciones
                        ? string.Format("MensajeTexto [{0}]: {1}", IdMensaje, Texto)
                        : string.Format("MensajeTexto [{0}] Respuesta de [{1}]: {2}", IdMensaje, IdMensajeRespuesta, Texto);
         }
-        #endregion
+        #endregion Métodos públicos
     }
 }

@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
+//
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -58,7 +57,7 @@ namespace Orbita.Comunicaciones
             Valores = valores;
             IdMensajeRespuesta = idMensajeRespuesta;
         }
-        #endregion
+        #endregion Constructores
 
         #region Propiedades públicas
         /// <summary>
@@ -73,6 +72,6 @@ namespace Orbita.Comunicaciones
         /// Colección de valores.
         /// </summary>
         public object[] Valores { get; private set; }
-        #endregion
+        #endregion Propiedades públicas
     }
 }

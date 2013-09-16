@@ -107,7 +107,7 @@ namespace Orbita.Comunicaciones
                 Wrapper.Error("ODispositivoSiemens1200ESGOSL [ProcesarMensajeRecibido]: " + ex);
             }
         }
-        #endregion
+        #endregion Comunes
 
         #region ES
         /// <summary>
@@ -282,8 +282,8 @@ namespace Orbita.Comunicaciones
                 }
             }
         }
-        #endregion
+        #endregion ES
 
-        #endregion
+        #endregion Métodos privados
     }
 }

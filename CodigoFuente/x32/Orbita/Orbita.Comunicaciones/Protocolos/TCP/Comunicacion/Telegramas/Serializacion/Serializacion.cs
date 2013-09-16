@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializacion
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -32,7 +31,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
     /// </summary>
     public class Serializacion : ITelegrama
     {
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// Máxima longitud del mensaje.
         /// </summary>
@@ -41,7 +40,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
         /// Este MemoryStream se utiliza para recoger los bytes recibidos en la construcción de mensajes.
         /// </summary>
         private MemoryStream _bytesRecibidosMemoryStream;
-        #endregion
+        #endregion Atributos
 
         #region Constructor
         /// <summary>
@@ -51,7 +50,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
         {
             _bytesRecibidosMemoryStream = new MemoryStream();
         }
-        #endregion
+        #endregion Constructor
 
         #region Implementación de ITelegrama
         /// <summary>
@@ -118,7 +117,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
                 _bytesRecibidosMemoryStream = new MemoryStream();
             }
         }
-        #endregion
+        #endregion Implementación de ITelegrama
 
         #region Métodos protegidos
         /// <summary>
@@ -167,7 +166,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
                 return (IMensaje)binaryFormatter.Deserialize(memoryStreamDeserializado);
             }
         }
-        #endregion
+        #endregion Métodos protegidos
 
         #region Métodos privados
         /// <summary>
@@ -283,7 +282,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
             }
             return buffer;
         }
-        #endregion
+        #endregion Métodos privados
 
         #region Clase DeserializationAppDomainBinder
         /// <summary>

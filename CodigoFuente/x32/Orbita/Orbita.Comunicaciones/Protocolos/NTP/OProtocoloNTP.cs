@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -91,13 +92,13 @@ namespace Orbita.Comunicaciones
         public override void Dispose(bool disposing)
         {
             // Preguntar si Dispose ya fue llamado.
-            if (!this.disposed)
+            if (!this.Disposed)
             {
 
                 // Marcar como desechada ó desechandose,
                 // de forma que no se puede ejecutar el
                 // código dos veces.
-                disposed = true;
+                Disposed = true;
             }
         }
 
@@ -666,13 +667,13 @@ namespace Orbita.Comunicaciones
             public override void Dispose(bool disposing)
             {
                 // Preguntar si Dispose ya fue llamado.
-                if (!this.disposed)
+                if (!this.Disposed)
                 {
 
                     // Marcar como desechada ó desechandose,
                     // de forma que no se puede ejecutar el
                     // código dos veces.
-                    disposed = true;
+                    Disposed = true;
                 }
             }
 

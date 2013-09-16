@@ -17,7 +17,7 @@ namespace Orbita.Comunicaciones
             ESVisualizacion = false;
             ESLectura = false;
         }
-        #endregion
+        #endregion Constructor
 
         #region Propiedades
         /// <summary>
@@ -104,6 +104,6 @@ namespace Orbita.Comunicaciones
         /// Canal que ejecuta el cambio de valor.
         /// </summary>
         public string CanalCambioDato { get; set; }
-        #endregion
+        #endregion Propiedades
     }
 }

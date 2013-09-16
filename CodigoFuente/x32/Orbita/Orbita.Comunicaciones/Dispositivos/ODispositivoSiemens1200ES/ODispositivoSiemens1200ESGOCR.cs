@@ -16,7 +16,7 @@ namespace Orbita.Comunicaciones
         private const int ByteSalidasOCR = 4;
         private const int RegistroInicialEntradasOCR = 0;
         private const int RegistroInicialSalidasOCR = 0;
-        #endregion
+        #endregion Constantes
 
         #region Constructor
         /// <summary>
@@ -27,7 +27,7 @@ namespace Orbita.Comunicaciones
         /// <param name="dispositivo">Dispositivo de conexión.</param>
         public ODispositivoSiemens1200ESGOCR(OTags tags, OHilos hilos, ODispositivo dispositivo)
             : base(tags, hilos, dispositivo) { }
-        #endregion
+        #endregion Constructor
 
         #region Métodos privados
 
@@ -106,7 +106,7 @@ namespace Orbita.Comunicaciones
                 Wrapper.Error("ODispositivoSiemens1200ESGOCR [ProcesarMensajeRecibido]: " + ex);
             }
         }
-        #endregion
+        #endregion Comunes
 
         #region ES
         /// <summary>
@@ -309,8 +309,8 @@ namespace Orbita.Comunicaciones
                 }
             }
         }
-        #endregion
+        #endregion ES
 
-        #endregion
+        #endregion Métodos privados
     }
 }

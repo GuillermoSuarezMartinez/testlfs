@@ -9,8 +9,10 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
 using System;
 using System.Diagnostics.CodeAnalysis;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -37,7 +39,7 @@ namespace Orbita.Comunicaciones
             /// Colección de alarmas.
             /// </summary>
             public const string Alarma = "Alarma";
-            #endregion
+            #endregion Constantes
 
             #region Métodos públicos
             /// <summary>
@@ -79,7 +81,7 @@ namespace Orbita.Comunicaciones
             {
                 return !infoOPC.Equals(cadena);
             }
-            #endregion
+            #endregion Métodos públicos
         }
     }
 }

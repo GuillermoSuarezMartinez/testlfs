@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System.Threading;
@@ -17,12 +16,12 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
     /// </summary>
     internal static class ServidorManager
     {
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// Se utiliza para establecer un identificador auto incremential único a los clientes.
         /// </summary>
         private static long _ultimoIdentificador;
-        #endregion
+        #endregion Atributos
 
         #region Métodos públicos
         /// <summary>
@@ -33,6 +32,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
         {
             return Interlocked.Increment(ref _ultimoIdentificador);
         }
-        #endregion
+        #endregion Métodos públicos
     }
 }

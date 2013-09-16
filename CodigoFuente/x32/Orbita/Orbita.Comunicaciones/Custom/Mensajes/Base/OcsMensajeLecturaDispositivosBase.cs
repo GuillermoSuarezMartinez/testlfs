@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
+//
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -35,13 +34,13 @@ namespace Orbita.Comunicaciones
             Dispositivos = dispositivos;
             IdMensajeRespuesta = idMensajeRespuesta;
         }
-        #endregion
+        #endregion Constructores
 
         #region Propiedades públicas
         /// <summary>
         /// Colección de dispositivos.
         /// </summary>
         public int[] Dispositivos { get; private set; }
-        #endregion
+        #endregion Propiedades públicas
     }
 }

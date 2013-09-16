@@ -1,13 +1,11 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Colecciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
-
 using System.Collections.Generic;
 using System.Threading;
 
@@ -30,7 +28,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Colecciones
         /// Utilizado para sincronizar el acceso a la lista de elementos.
         /// </summary>
         protected readonly ReaderWriterLockSlim Lock;
-        #endregion
+        #endregion Atributos protegidos
 
         #region Constructor
         /// <summary>
@@ -41,7 +39,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Colecciones
             Elementos = new SortedList<TK, TV>();
             Lock = new ReaderWriterLockSlim(LockRecursionPolicy.NoRecursion);
         }
-        #endregion
+        #endregion Constructor
 
         #region Propiedades públicas
         /// <summary>
@@ -61,6 +59,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Colecciones
                     Lock.ExitReadLock();
                 }
             }
+            set { throw new System.NotImplementedException(); }
         }
         /// <summary>
         /// Obtener/añadir/reemplazar un elemento por clave.
@@ -94,7 +93,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Colecciones
                 }
             }
         }
-        #endregion
+        #endregion Propiedades públicas
 
         #region Métodos públicos
         /// <summary>
@@ -179,8 +178,8 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Colecciones
             try
             {
                 if (Elementos.Count == 0) return default(TV);
-                TK key = Elementos.Keys[0];
-                return Elementos.ContainsKey(key) ? Elementos[key] : default(TV);
+                var key = Elementos.Keys[0];
+                 return Elementos.ContainsKey(key) ? Elementos[key] : default(TV);
             }
             finally
             {
@@ -220,6 +219,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Colecciones
                 Lock.ExitWriteLock();
             }
         }
-        #endregion
+        #endregion Métodos públicos
     }
 }

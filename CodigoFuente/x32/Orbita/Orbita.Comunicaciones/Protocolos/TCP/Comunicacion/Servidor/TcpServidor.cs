@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
-// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp
+//
+// Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints;
@@ -14,7 +13,7 @@ using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener;
 namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
 {
     /// <summary>
-    /// Esta clase se utiliza para crear un servidor TCP.
+    /// Esta clase se utiliza para crear un servidor Tcp.
     /// </summary>
     internal class TcpServidor : ServidorBase
     {
@@ -27,17 +26,17 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
         {
             EndPoint = endPoint;
         }
-        #endregion
+        #endregion Constructor
 
         #region Métodos protegidos
         /// <summary>
-        /// Crear un listener TCP.
+        /// Crear un listener Tcp.
         /// </summary>
         /// <returns>TcpListener.</returns>
         protected override IListener CrearListener()
         {
             return new TcpListenerConexion(EndPoint);
         }
-        #endregion
+        #endregion Métodos protegidos
     }
 }

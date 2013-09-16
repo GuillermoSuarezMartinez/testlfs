@@ -1,11 +1,10 @@
 ﻿//***********************************************************************
+//
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
+// Descripción        : ...
 //
-// Modificado         : crodriguez
-// Fecha modificación : 01-09-2013
-// Descripción        :
 //***********************************************************************
 
 using System;
@@ -37,7 +36,7 @@ namespace Orbita.Comunicaciones
         public event EventHandler<MensajeEventArgs> MensajeEnviado;
         #endregion Eventos públicos
 
-        #region Atributos privados
+        #region Atributos
         /// <summary>
         /// Valor predeterminado del timeout.
         /// </summary>
@@ -52,7 +51,7 @@ namespace Orbita.Comunicaciones
         /// Este objeto sólo se utiliza para la sincronización de threads (bloqueo).
         /// </summary>
         private readonly object _objSincronizacion = new object();
-        #endregion Atributos privados
+        #endregion Atributos
 
         #region Constructor
         /// <summary>
