@@ -109,6 +109,7 @@ namespace Orbita.VA.Funciones
             try
             {
                 File.Delete(rutaFicheroTemporal);
+                OLogsVAFunciones.CCR.Debug("Eliminada imagen temporal de la ruta :" + rutaFicheroTemporal);
             }
             catch (Exception exception)
             {

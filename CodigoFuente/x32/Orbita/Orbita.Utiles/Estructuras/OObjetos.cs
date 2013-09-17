@@ -120,17 +120,13 @@ namespace Orbita.Utiles
     /// <summary>
     /// Clase base para el trabajo de forma robusta con variables
     /// </summary>
-    public class OObjetoBase<ClaseTipo>
+    public class OObjetoBase<ClaseTipo> : IObjetoBase
     {
         #region Atributos
         /// <summary>
         /// Indica que se ha de lanzar una excepción de tipo InvalidValueException cuando el valor a establecer no sea el correcto
         /// </summary>
         public bool LanzarExcepcionSiValorNoValido;
-        /// <summary>
-        /// Valor por defecto del objeto
-        /// </summary>
-        public ClaseTipo ValorPorDefecto;
         #endregion
 
         #region Propiedades
@@ -182,6 +178,25 @@ namespace Orbita.Utiles
         {
             get { return _Estado; }
             set { _Estado = value; }
+        }
+        /// <summary>
+        /// Valor por defecto del objeto
+        /// </summary>
+        private ClaseTipo _ValorPorDefecto;
+        /// <summary>
+        /// Valor por defecto del objeto
+        /// </summary>
+        public ClaseTipo ValorPorDefecto
+        {
+            get { return _ValorPorDefecto; }
+            set { _ValorPorDefecto = value; }
+        }
+        /// <summary>
+        /// Valor por defecto del objeto
+        /// </summary>
+        public object ValorPorDefectoGenerico
+        {
+            get { return _ValorPorDefecto; }
         }
         /// <summary>
         /// Valor del objeto
@@ -259,7 +274,12 @@ namespace Orbita.Utiles
         }
         #endregion
     }
+    #endregion
 
+    #region Interfaz de objetos robustos
+    /// <summary>
+    /// Interfaz para el trabajo de forma robusta con variables
+    /// </summary>
     public interface IObjetoBase
     {
         #region Propiedades
@@ -275,6 +295,10 @@ namespace Orbita.Utiles
         /// Estado del valor actual
         /// </summary>
         EnumEstadoRobusto Estado { get; set; }
+        /// <summary>
+        /// Valor por defecto del objeto
+        /// </summary>
+        object ValorPorDefectoGenerico { get; }
         /// <summary>
         /// Valor del objeto
         /// </summary>

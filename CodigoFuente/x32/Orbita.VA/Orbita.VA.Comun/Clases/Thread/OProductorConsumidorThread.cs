@@ -244,7 +244,7 @@ namespace Orbita.VA.Comun
                         App.FormularioPrincipal.Invoke(this.OnMonitorizacion, obj);
                         finalize = (bool)obj[0];
                     }
-                    OLogsVAComun.Threads.Debug(this.Codigo, "Invocada monitorización", "Resultado: " + finalize);
+                    //OLogsVAComun.Threads.Debug(this.Codigo, "Invocada monitorización", "Resultado: " + finalize);
                 }
             }
             catch (Exception exception)

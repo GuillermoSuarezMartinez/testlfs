@@ -487,14 +487,52 @@
             Clase base para el trabajo de forma robusta con variables
             </summary>
         </member>
+        <member name="T:Orbita.Utiles.IObjetoBase">
+            <summary>
+            Interfaz para el trabajo de forma robusta con variables
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.IObjetoBase.Validar(System.Object@)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="valor">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
+        </member>
+        <member name="M:Orbita.Utiles.IObjetoBase.LanzarExcepcion">
+            <summary>
+            Lanza una exepción por no estár permitido el valor especificado
+            </summary>
+            <param name="valor">valor no permitido</param>
+        </member>
+        <member name="P:Orbita.Utiles.IObjetoBase.Codigo">
+            <summary>
+            Código identificativo de la clase.
+            </summary>
+        </member>
+        <member name="P:Orbita.Utiles.IObjetoBase.Valido">
+            <summary>
+            Indica que el valor asignado es válido
+            </summary>
+        </member>
+        <member name="P:Orbita.Utiles.IObjetoBase.Estado">
+            <summary>
+            Estado del valor actual
+            </summary>
+        </member>
+        <member name="P:Orbita.Utiles.IObjetoBase.ValorPorDefectoGenerico">
+            <summary>
+            Valor por defecto del objeto
+            </summary>
+        </member>
+        <member name="P:Orbita.Utiles.IObjetoBase.ValorGenerico">
+            <summary>
+            Valor del objeto
+            </summary>
+        </member>
         <member name="F:Orbita.Utiles.OObjetoBase`1.LanzarExcepcionSiValorNoValido">
             <summary>
             Indica que se ha de lanzar una excepción de tipo InvalidValueException cuando el valor a establecer no sea el correcto
-            </summary>
-        </member>
-        <member name="F:Orbita.Utiles.OObjetoBase`1.ValorPorDefecto">
-            <summary>
-            Valor por defecto del objeto
             </summary>
         </member>
         <member name="F:Orbita.Utiles.OObjetoBase`1._Valor">
@@ -510,6 +548,11 @@
         <member name="F:Orbita.Utiles.OObjetoBase`1._Estado">
             <summary>
             Estado del valor actual
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OObjetoBase`1._ValorPorDefecto">
+            <summary>
+            Valor por defecto del objeto
             </summary>
         </member>
         <member name="M:Orbita.Utiles.OObjetoBase`1.#ctor(System.String,`0,System.Boolean)">
@@ -550,40 +593,17 @@
             Estado del valor actual
             </summary>
         </member>
+        <member name="P:Orbita.Utiles.OObjetoBase`1.ValorPorDefecto">
+            <summary>
+            Valor por defecto del objeto
+            </summary>
+        </member>
+        <member name="P:Orbita.Utiles.OObjetoBase`1.ValorPorDefectoGenerico">
+            <summary>
+            Valor por defecto del objeto
+            </summary>
+        </member>
         <member name="P:Orbita.Utiles.OObjetoBase`1.ValorGenerico">
-            <summary>
-            Valor del objeto
-            </summary>
-        </member>
-        <member name="M:Orbita.Utiles.IObjetoBase.Validar(System.Object@)">
-            <summary>
-            Comprueba que el valor del objeto es correcto
-            </summary>
-            <param name="valor">Valor del objeto a comprobar</param>
-            <returns>Verdadero si el valor es correcto</returns>
-        </member>
-        <member name="M:Orbita.Utiles.IObjetoBase.LanzarExcepcion">
-            <summary>
-            Lanza una exepción por no estár permitido el valor especificado
-            </summary>
-            <param name="valor">valor no permitido</param>
-        </member>
-        <member name="P:Orbita.Utiles.IObjetoBase.Codigo">
-            <summary>
-            Código identificativo de la clase.
-            </summary>
-        </member>
-        <member name="P:Orbita.Utiles.IObjetoBase.Valido">
-            <summary>
-            Indica que el valor asignado es válido
-            </summary>
-        </member>
-        <member name="P:Orbita.Utiles.IObjetoBase.Estado">
-            <summary>
-            Estado del valor actual
-            </summary>
-        </member>
-        <member name="P:Orbita.Utiles.IObjetoBase.ValorGenerico">
             <summary>
             Valor del objeto
             </summary>

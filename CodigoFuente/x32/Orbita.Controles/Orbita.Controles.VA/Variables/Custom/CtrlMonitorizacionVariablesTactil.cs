@@ -367,11 +367,13 @@ namespace Orbita.Controles.VA
                 switch (variable.Tipo)
                 {
                     case OEnumTipoDato.Entero:
+                        InputIntegerBox.Show(variable.Codigo, "Forzado de número entero", "Escriba el nuevo valor de la variable " + variable.Codigo, objValor.ValidarEntero(), this.EnteroImputadoPorUsuario);
                         break;
                     case OEnumTipoDato.Texto:
-                        InputTextBox.Show(variable.Codigo, "Forzado de valor", "Escriba el nuevo valor de la variable " + variable.Codigo, OObjeto.ToString(objValor), this.TextoImputadoPorUsuario);
+                        InputTextBox.Show(variable.Codigo, "Forzado de texto", "Escriba el nuevo valor de la variable " + variable.Codigo, OObjeto.ToString(objValor), this.TextoImputadoPorUsuario);
                         break;
                     case OEnumTipoDato.Decimal:
+                        InputDoubleBox.Show(variable.Codigo, "Forzado de número real", "Escriba el nuevo valor de la variable " + variable.Codigo, objValor.ValidarDecimal(), this.DecimalImputadoPorUsuario);
                         break;
                     case OEnumTipoDato.Fecha:
                         break;
@@ -380,15 +382,49 @@ namespace Orbita.Controles.VA
         }
 
         /// <summary>
+        /// Se lanza cuando el usuario imputa el número de una variable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EnteroImputadoPorUsuario(object sender, EventArgsInput e)
+        {
+            try
+            {
+                OVariablesManager.ForzarValor(e.Codigo, (int)e.ObjetoImputado, "Monitorizacion", this.Name);
+            }
+            catch (Exception exception)
+            {
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
+            }
+        }
+
+        /// <summary>
         /// Se lanza cuando el usuario imputa el texto de una variable
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TextoImputadoPorUsuario(object sender, EventArgsInputText e)
+        private void TextoImputadoPorUsuario(object sender, EventArgsInput e)
         {
             try
             {
-                OVariablesManager.ForzarValor(e.Codigo, e.TextoImputado, "Monitorizacion", this.Name);
+                OVariablesManager.ForzarValor(e.Codigo, (string)e.ObjetoImputado, "Monitorizacion", this.Name);
+            }
+            catch (Exception exception)
+            {
+                OLogsControlesVA.ControlesVA.Error(exception, this.Name);
+            }
+        }
+
+        /// <summary>
+        /// Se lanza cuando el usuario imputa el número de una variable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DecimalImputadoPorUsuario(object sender, EventArgsInput e)
+        {
+            try
+            {
+                OVariablesManager.ForzarValor(e.Codigo, (double)e.ObjetoImputado, "Monitorizacion", this.Name);
             }
             catch (Exception exception)
             {

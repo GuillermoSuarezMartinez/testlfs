@@ -571,6 +571,7 @@ namespace Orbita.VA.Funciones
                             if (this.ParametrosCCR.RealizarProcesoPorDisco)
                             {
                                 imagenTrabajo.Image.Save(this.RutaImagenTemporal);
+                                OLogsVAFunciones.CCR.Debug("Guardada imagen temporal de la ruta :" + this.RutaImagenTemporal);
                                 if (!OFicheros.FicheroBloqueado(this.RutaImagenTemporal, 5000))
                                 {
                                     resultCode = OMTInterfaceCCR.Add(this.Codigo, this.RutaImagenTemporal, true, info, this.Prioridad);

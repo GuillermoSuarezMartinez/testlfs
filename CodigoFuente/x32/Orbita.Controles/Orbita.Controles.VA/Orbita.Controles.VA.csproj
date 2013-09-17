@@ -189,11 +189,11 @@
       <DependentUpon>FrmMonitorizacionTiempos.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogos\Componentes\ONotifyIcon.cs" />
-    <Compile Include="Dialogos\Formularios\FrmInputTextBox.cs">
+    <Compile Include="Dialogos\Formularios\FrmInputBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialogos\Formularios\FrmInputTextBox.Designer.cs">
-      <DependentUpon>FrmInputTextBox.cs</DependentUpon>
+    <Compile Include="Dialogos\Formularios\FrmInputBox.Designer.cs">
+      <DependentUpon>FrmInputBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogos\Formularios\FrmMensajeError.cs">
       <SubType>Form</SubType>
@@ -399,8 +399,8 @@
     <EmbeddedResource Include="Cronometros\Formularios\FrmMonitorizacionTiempos.resx">
       <DependentUpon>FrmMonitorizacionTiempos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogos\Formularios\FrmInputTextBox.resx">
-      <DependentUpon>FrmInputTextBox.cs</DependentUpon>
+    <EmbeddedResource Include="Dialogos\Formularios\FrmInputBox.resx">
+      <DependentUpon>FrmInputBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogos\Formularios\FrmMensajeError.resx">
       <DependentUpon>FrmMensajeError.cs</DependentUpon>

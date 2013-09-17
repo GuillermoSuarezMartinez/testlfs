@@ -137,11 +137,6 @@
             Identificador único para este mensaje de respuesta. 
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.Mensaje._ultimoIdentificador">
-            <summary>
-            Se utiliza para establecer un identificador auto incremential único a los clientes.
-            </summary>
-        </member>
         <member name="M:Orbita.Comunicaciones.Mensaje.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase Mensaje.
@@ -580,7 +575,7 @@
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoTCP.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
             <summary>
-            Inicializar una nueva instancia de la clase SiemensOPC.
+            Inicializar una nueva instancia de la clase ODispositivoTCP.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoTCP.Iniciar">
@@ -685,7 +680,7 @@
             Clase base para los protocolos
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.Protocolo.disposed">
+        <member name="F:Orbita.Comunicaciones.Protocolo.Disposed">
             <summary>
             Indica si ya se llamo al método Dispose. (default = false)
             </summary>
@@ -923,7 +918,7 @@
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoES.Winsock">
             <summary>
-            Objeto para establecer el canal TCP.
+            Objeto para establecer el canal Tcp.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoES.ReConexionSg">
@@ -948,7 +943,7 @@
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoES.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
             <summary>
-            Inicializar una nueva instancia de la clase de ES.
+            Inicializar una nueva instancia de la clase ODispositivoES.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoES.Iniciar">
@@ -958,25 +953,25 @@
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoES.GetAlarmasActivas">
             <summary>
-            Devuelva las alarmas activas del sistema
+            Devuelva las alarmas activas del sistema.
             </summary>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoES.GetDatos">
             <summary>
-            Devuelve los datos del dipositivo y su valor
+            Devuelve los datos del dipositivo y su valor.
             </summary>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoES.GetLecturas">
             <summary>
-            Devuelve las lectuas del dipositivo y su valor
+            Devuelve las lectuas del dipositivo y su valor.
             </summary>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoES.GetAlarmas">
             <summary>
-            Devuelve las alarmas del dipositivo y su valor
+            Devuelve las alarmas del dipositivo y su valor.
             </summary>
             <returns></returns>
         </member>
@@ -987,7 +982,7 @@
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoES.Dispose(System.Boolean)">
             <summary>
-            Limpia los objetos en memoria
+            Limpia los objetos en memoria.
             </summary>
             <param name="disposing"></param>
         </member>
@@ -1337,27 +1332,7 @@
         </member>
         <member name="T:Orbita.Comunicaciones.OMensajeCanalTCP">
             <summary>
-            Mensaje para las comunicaciones TCP
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OMensajeCanalTCP._listener">
-            <summary>
-            nombre del listener
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OMensajeCanalTCP._canal">
-            <summary>
-            nombre del canal
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OMensajeCanalTCP._mensaje">
-            <summary>
-            mensaje
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OMensajeCanalTCP._data">
-            <summary>
-            datos del mensaje
+            Mensaje para las comunicaciones Tcp.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OMensajeCanalTCP.#ctor(System.String,System.String,System.String)">
@@ -1560,7 +1535,7 @@
             <summary>
             Crear endPoint de un string.
             La dirección debe tener el formato: protocolo://dirección
-            Ejemplo: tcp://10.37.2.30:8000 uno de los extremos TCP con
+            Ejemplo: tcp://10.37.2.30:8000 uno de los extremos Tcp con
             dirección IP 10.37.2.30 y puerto 8000.
             </summary>
             <param name="direccionEndPoint">Dirección endpoint.</param>
@@ -1865,52 +1840,52 @@
         </member>
         <member name="P:Orbita.Comunicaciones.OInfoOPCvida.Variables">
             <summary>
-            Variables
+            Colección de variables.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OInfoOPCvida.Valores">
             <summary>
-            Valores
+            Colección de valores.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OTCPListener._winsockListener">
             <summary>
-            Objeto para establecer el canal TCP principal
+            Objeto para establecer el canal Tcp principal.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OTCPListener._log">
             <summary>
-            Log de la aplicación
+            Log de la aplicación.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OTCPListener._poolCliente">
             <summary>
-            Pool de clientes
+            Pool de clientes.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OTCPListener._puerto">
             <summary>
-            Puerto TCP
+            Puerto Tcp.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OTCPListener._nombre">
             <summary>
-            Nombre del canal
+            Nombre del canal.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OTCPListener._estadoListener">
             <summary>
-            Estado del listener
+            Estado del listener.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OTCPListener.#ctor(Orbita.Trazabilidad.ILogger,System.Int32,System.String)">
             <summary>
-            Constructor del formulario
+            Constructor del formulario.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OTCPListener.Inicializar">
             <summary>
-            Inicializa las variables de la comunicación TCP
+            Inicializa las variables de la comunicación Tcp.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OTCPListener._wskListener_StateChanged(System.Object,Orbita.Winsock.WinsockStateChangedEventArgs)">
@@ -1960,37 +1935,37 @@
         </member>
         <member name="E:Orbita.Comunicaciones.OTCPListener.WskConnectionRequest">
             <summary>
-            Evento Listener para petición de conexión
+            Evento Listener para petición de conexión.
             </summary>
         </member>
         <member name="E:Orbita.Comunicaciones.OTCPListener.WskStateChanged">
             <summary>
-            Evento Listener para canvio de estado
+            Evento Listener para canvio de estado.
             </summary>
         </member>
         <member name="E:Orbita.Comunicaciones.OTCPListener.WskErrorReceived">
             <summary>
-            Evento Listener para error de recepción
+            Evento Listener para error de recepción.
             </summary>
         </member>
         <member name="E:Orbita.Comunicaciones.OTCPListener.WskClientDataArrival">
             <summary>
-            Evento Cliente Listener para recepción de datos
+            Evento Cliente Listener para recepción de datos.
             </summary>
         </member>
         <member name="E:Orbita.Comunicaciones.OTCPListener.WskClientErrorReceived">
             <summary>
-            Evento Cliente Listener para error de recepción
+            Evento Cliente Listener para error de recepción.
             </summary>
         </member>
         <member name="E:Orbita.Comunicaciones.OTCPListener.WskClientSendComplete">
             <summary>
-            Evento Cliente Listener para send complete
+            Evento Cliente Listener para send complete.
             </summary>
         </member>
         <member name="E:Orbita.Comunicaciones.OTCPListener.WskClientStateChanged">
             <summary>
-            Evento Cliente Listener para cambio de estado
+            Evento Cliente Listener para cambio de estado.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OTCPListener.PoolCliente">
@@ -2397,7 +2372,7 @@
         </member>
         <member name="T:Orbita.Comunicaciones.OInformacionPuerto">
             <summary>
-            Clase que encapsula información de un puerto de comunicaciones
+            Clase que encapsula información de un puerto de comunicaciones.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OInformacionPuerto.#ctor(System.Int32,System.String)">
@@ -2419,7 +2394,7 @@
         </member>
         <member name="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener.TcpListenerConexion">
             <summary>
-            Esta clase se utiliza para escuchar (listener) y aceptar peticiones de conexiones entrantes de clientes, en un puerto TCP.
+            Esta clase se utiliza para escuchar (listener) y aceptar peticiones de conexiones entrantes de clientes, en un puerto Tcp.
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener.ListenerBase">
@@ -2455,7 +2430,7 @@
         </member>
         <member name="E:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener.IListener.ErrorConexion">
             <summary>
-            
+            Este evento se produce cuando se produce un error de conexión.
             </summary>
         </member>
         <member name="E:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener.IListener.CanalComunicacionConectado">
@@ -2489,11 +2464,17 @@
             Elevar el evento NoEscuchando.
             </summary>
         </member>
+        <member name="M:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener.ListenerBase.OnErrorConexion(System.Exception)">
+            <summary>
+            Elevar el evento ErrorConexion.
+            </summary>
+            <param name="ex">Representa los errores que se producen durante la ejecución de una aplicación.</param>
+        </member>
         <member name="M:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener.ListenerBase.OnCanalComunicacionConectado(Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales.ICanalComunicacion)">
             <summary>
             Elevar el evento CanalComunicacionConectado.
             </summary>
-            <param name="cliente">Cliente.</param>
+            <param name="cliente">Cliente que establece el canal de comunicación.</param>
         </member>
         <member name="E:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener.ListenerBase.Escuchando">
             <summary>
@@ -2503,6 +2484,11 @@
         <member name="E:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener.ListenerBase.NoEscuchando">
             <summary>
             Este evento se produce cuando se cierra el agente de escucha de conexiones entrantes con éxito.
+            </summary>
+        </member>
+        <member name="E:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener.ListenerBase.ErrorConexion">
+            <summary>
+            Este evento se produce cuando se produce un error de conexión.
             </summary>
         </member>
         <member name="E:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener.ListenerBase.CanalComunicacionConectado">
@@ -2881,7 +2867,7 @@
             Crear un nuevo servidor utilizando endpoint.
             </summary>
             <param name="endPoint">Endpoint que representa la dirección del servidor.</param>
-            <returns>Servidor TCP.</returns>
+            <returns>Servidor Tcp.</returns>
         </member>
         <member name="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales.ICanalComunicacion">
             <summary>
@@ -3172,7 +3158,7 @@
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoILBKPhoenix.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
             <summary>
-            Constructor de clase
+            Inicializar una nueva instancia de la clase ODispositivoILBKPhoenix.
             </summary>
             <param name="tags">variables</param>
             <param name="hilos">hilos del dispositivo</param>
@@ -3361,6 +3347,24 @@
             <summary>
             Representa un objeto que puede enviar y recibir mensajes.
             </summary>
+        </member>
+        <member name="M:Orbita.Comunicaciones.IOcsMensajeroServidor.CambioDato(Orbita.Comunicaciones.OInfoDato)">
+            <summary>
+            Enviar un mensaje de tipo cambio de dato a la aplicación remota.
+            </summary>
+            <param name="infoDato">Información del dato que se está transmitiendo.</param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.IOcsMensajeroServidor.Alarma(Orbita.Comunicaciones.OInfoDato)">
+            <summary>
+            Enviar un mensaje de tipo alarma a la aplicación remota.
+            </summary>
+            <param name="infoDato">Información del dato que se está transmitiendo.</param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.IOcsMensajeroServidor.Comunicaciones(Orbita.Comunicaciones.OEstadoComms)">
+            <summary>
+            Enviar un mensaje de tipo estado de las comunicaciones a la aplicación remota.
+            </summary>
+            <param name="estadoComm">Información del estado de las comunicaciones que se están transmitiendo.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.IOcsServidor.Iniciar">
             <summary>
@@ -3684,7 +3688,7 @@
         </member>
         <member name="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente.TcpCliente">
             <summary>
-            Esta clase se utiliza para comunicarse con el servidor a través del protocolo TCP/IP.
+            Esta clase se utiliza para comunicarse con el servidor a través del protocolo Tcp / IP.
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente.ClienteBase">
@@ -3713,7 +3717,7 @@
             No hace nada si ya se encuentra desconectado.
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente.IClienteConectable.TimeoutMsConexion">
+        <member name="P:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente.IClienteConectable.TimeoutConexionMs">
             <summary>
             Timeout para la conexión a un servidor (en milisegundos).
             Valor predeterminado: 15 segundos (15000 ms).
@@ -3744,9 +3748,9 @@
             Endpoint del servidor.
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente.ClienteBase.TimeoutMsConexionPredeterminado">
+        <member name="F:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente.ClienteBase.TimeoutConexionMsPredeterminado">
             <summary>
-            Valor timeout predeterminado para la conexión a un servidor.
+            Valor timeout predeterminado para la conexión a un servidor en milisegundos.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente.ClienteBase._canalComunicacion">
@@ -3879,7 +3883,7 @@
             Endpoint del cliente.
             </summary>
         </member>
-        <member name="P:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente.ClienteBase.TimeoutMsConexion">
+        <member name="P:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente.ClienteBase.TimeoutConexionMs">
             <summary>
             Timeout para la conexión a un servidor (en milisegundos).
             Valor predeterminado: 15 segundos (15000 ms).
@@ -4860,12 +4864,12 @@
         </member>
         <member name="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales.TcpCanalComunicacion">
             <summary>
-            Esta clase se utiliza para comunicarse con una aplicación remotamente (canl de comunicación) a través de TCP / IP.
+            Esta clase se utiliza para comunicarse con una aplicación remotamente (canl de comunicación) a través de Tcp / IP.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales.TcpCanalComunicacion.TamañoBufferRecepcion">
             <summary>
-            Tamaño del búfer que se utiliza para recibir bytes del socket TCP.
+            Tamaño del búfer que se utiliza para recibir bytes del socket Tcp.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales.TcpCanalComunicacion._bufferRecepcion">
@@ -6143,7 +6147,7 @@
             Protocolo de comunicación predeterminado entre el servidor y los clientes para enviar y recibir un mensaje.
             Utiliza serialización binaria .NET para escribir y leer mensajes.
             
-            Formato de mensaje: [Longitud de mensaje (4 bytes)][Contenido del mensaje serializado]
+            Formato de mensaje: [Longitud de mensaje (4 bytes)][Contenido del mensaje serializado].
             
             Si un mensaje es serializado en un array de bytes en N bytes, este protocolo añade 4 bytes de
             información extra a la cabecera del mensaje, por lo tanto, la longitud total es de (4 + N) bytes.
@@ -6404,100 +6408,100 @@
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.#ctor(Orbita.Comunicaciones.OConfiguracionPuerto)">
             <summary>
-            Constructor de la clase
+            Inicializar una nueva instancia de la clase OPuertoComunicaciones.
             </summary>
-            <param name="configuracionPuerto">Configuración del puerto de comunicaciones</param>
+            <param name="configuracionPuerto">Configuración del puerto de comunicaciones.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.#ctor(Orbita.Comunicaciones.OConfiguracionPuerto,Orbita.Comunicaciones.OInformacionPuerto)">
             <summary>
-            Constructor de la clase
+            Inicializar una nueva instancia de la clase OPuertoComunicaciones.
             </summary>
-            <param name="configuracionPuerto">Configuración del puerto de comunicaciones</param>
-            <param name="info">Información básica del puerto de comunicaciones</param>
+            <param name="configuracionPuerto">Configuración del puerto de comunicaciones.</param>
+            <param name="info">Información básica del puerto de comunicaciones.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.#ctor(Orbita.Comunicaciones.OConfiguracionPuerto,System.Int32,System.String)">
             <summary>
-            Constructor de la clase
+            Inicializar una nueva instancia de la clase OPuertoComunicaciones.
             </summary>
-            <param name="configuracionPuerto">Configuración del puerto de comunicaciones</param>
-            <param name="idNumerico">Identificador númerico del puerto de comunicaciones</param>
-            <param name="tipoPuerto">Tipo del puerto de comunicaciones</param>
+            <param name="configuracionPuerto">Configuración del puerto de comunicaciones.</param>
+            <param name="idNumerico">Identificador númerico del puerto de comunicaciones.</param>
+            <param name="tipoPuerto">Tipo del puerto de comunicaciones.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.ConfigurarPuerto(Orbita.Comunicaciones.OConfiguracionPuerto)">
             <summary>
-            Configura el puerto de comunicaciones
+            Configurar el puerto de comunicaciones.
             </summary>
             <param name="configuracion"></param>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.Abrir">
             <summary>
-            Abre el puerto de comunicaciones
+            Abrir el puerto de comunicaciones.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.Cerrar">
             <summary>
-            Cierra el puerto de comunicaciones
+            Cerrar el puerto de comunicaciones.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.Enviar(System.Byte[])">
             <summary>
-            Envía por el puerto de comunicaciones el vector de bytes tramaTx
+            Envía por el puerto de comunicaciones el vector de bytes tramaTx.
             </summary>
-            <param name="tramaTx">Vector de bytes a enviar por el puerto de comunicaciones</param>
+            <param name="tramaTx">Vector de bytes a enviar por el puerto de comunicaciones.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.RecibirBytes">
             <summary>
-            Copia en el vector de bytes tramaRx la información recibida por el puerto de comunicaciones
+            Copiar en el vector de bytes tramaRx la información recibida por el puerto de comunicaciones.
             </summary>
-            <returns>Vector de bytes donde que contendrá la información recibida hasta el momento</returns>
+            <returns>Vector de bytes donde que contendrá la información recibida hasta el momento.</returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.BytesRecibidos">
             <summary>
-             Devuleve el número de bytes recibidos hasta el momento por el puerto de comunicaciones
+             Devuleve el número de bytes recibidos hasta el momento por el puerto de comunicaciones.
             </summary>
-            <returns>El número de bytes recibidos hasta el momento</returns>
+            <returns>El número de bytes recibidos hasta el momento.</returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.ResetBuffer">
             <summary>
-            Resetea el buffer de recepcion de datos del puerto de comunicaciones
+            Resetea el buffer de recepcion de datos del puerto de comunicaciones.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.BuscarCaracter(System.Byte)">
             <summary>
-            Busca un carácter en el buffer de recepcion de datos del puerto de comunicaciones
+            Busca un carácter en el buffer de recepcion de datos del puerto de comunicaciones.
             </summary>
-            <param name="caracter">Carácter a buscar</param>
-            <returns>True encuentra el valor buscado; false en caso contrario</returns>
+            <param name="caracter">Carácter a buscar.</param>
+            <returns>True encuentra el valor buscado; false en caso contrario.</returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.ObtenerPuertosDisponibles">
             <summary>
-            Lista los puertos COM RS-232 disponbles en el sistema en un DataTable
+            Lista los puertos COM RS-232 disponbles en el sistema en un DataTable.
             </summary>
-            <returns>Un DataTable con los puertos COM RS-232 disponbles en el sistema</returns>
+            <returns>Un DataTable con los puertos COM RS-232 disponbles en el sistema.</returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.Enviar(System.String)">
             <summary>
-            Envia una cadena de texto por el puerto utilizando una codificación ASCII
+            Envia una cadena de texto por el puerto utilizando una codificación ASCII.
             </summary>
             <param name="tramaTx">Cadena de texto a enviar</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.Enviar(System.String,System.Text.Encoding)">
             <summary>
-            Envia una cadena de texto por el puerto utilizando la codificación enc
+            Envia una cadena de texto por el puerto utilizando la codificación Encoding.
             </summary>
             <param name="tramaTx"></param>
-            <param name="enc">Cadena de texto a enviar</param>
+            <param name="codificacion">Cadena de texto a enviar</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.RecibirCadena">
             <summary>
-            Recibe una cadena de texto por el puerto utilizando la codificación ASCII
+            Recibe una cadena de texto por el puerto utilizando la codificación ASCII.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.RecibirCadena(System.Text.Encoding)">
             <summary>
-            Recibe una cadena de texto por el puerto utilizando la codificación enc
+            Recibe una cadena de texto por el puerto utilizando la codificación Encoding.
             </summary>
-            <param name="enc">Cadena que contendrá el texto recibido</param>
+            <param name="codificacion">Cadena que contendrá el texto recibido</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoComunicaciones.Dispose">
             <summary>
@@ -6506,12 +6510,12 @@
         </member>
         <member name="P:Orbita.Comunicaciones.OPuertoComunicaciones.InformacionPuerto">
             <summary>
-            Obtiene la información básica del puerto de comunicaciones
+            Obtiene la información básica del puerto de comunicaciones.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OPuertoComunicaciones.ConfiguracionPuerto">
             <summary>
-            Obtiene la configuración del puerto de comunicaciones
+            Obtiene la configuración del puerto de comunicaciones.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OPuertoRS._puertoRs232">
@@ -6796,6 +6800,81 @@
             Interfaz para la generación de comunicaciones remotas.
             </summary>
         </member>
+        <member name="T:Orbita.Comunicaciones.IOCommRemoting2">
+            <summary>
+            Interfaz para la generación de comunicaciones remotas.
+            </summary>
+        </member>
+        <member name="T:Orbita.Comunicaciones.IOCommRemoting3">
+            <summary>
+            Interfaz para la generación de comunicaciones remotas.
+            </summary>
+        </member>
+        <member name="T:Orbita.Comunicaciones.IOCommRemoting4">
+            <summary>
+            Interfaz para la generación de comunicaciones remotas.
+            </summary>
+        </member>
+        <member name="T:Orbita.Comunicaciones.IOCommRemoting5">
+            <summary>
+            Interfaz para la generación de comunicaciones remotas.
+            </summary>
+        </member>
+        <member name="T:Orbita.Comunicaciones.IOCommRemoting6">
+            <summary>
+            Interfaz para la generación de comunicaciones remotas.
+            </summary>
+        </member>
+        <member name="T:Orbita.Comunicaciones.IOCommRemoting7">
+            <summary>
+            Interfaz para la generación de comunicaciones remotas.
+            </summary>
+        </member>
+        <member name="T:Orbita.Comunicaciones.IOCommRemoting8">
+            <summary>
+            Interfaz para la generación de comunicaciones remotas.
+            </summary>
+        </member>
+        <member name="T:Orbita.Comunicaciones.IOCommRemoting9">
+            <summary>
+            Interfaz para la generación de comunicaciones remotas.
+            </summary>
+        </member>
+        <member name="T:Orbita.Comunicaciones.IOCommRemoting10">
+            <summary>
+            Interfaz para la generación de comunicaciones remotas.
+            </summary>
+        </member>
+        <member name="T:Orbita.Comunicaciones.IOCommRemoting11">
+            <summary>
+            Interfaz para la generación de comunicaciones remotas.
+            </summary>
+        </member>
+        <member name="T:Orbita.Comunicaciones.IOCommRemoting12">
+            <summary>
+            Interfaz para la generación de comunicaciones remotas.
+            </summary>
+        </member>
+        <member name="T:Orbita.Comunicaciones.IOCommRemoting13">
+            <summary>
+            Interfaz para la generación de comunicaciones remotas.
+            </summary>
+        </member>
+        <member name="T:Orbita.Comunicaciones.IOCommRemoting14">
+            <summary>
+            Interfaz para la generación de comunicaciones remotas.
+            </summary>
+        </member>
+        <member name="T:Orbita.Comunicaciones.IOCommRemoting15">
+            <summary>
+            Interfaz para la generación de comunicaciones remotas.
+            </summary>
+        </member>
+        <member name="T:Orbita.Comunicaciones.IOCommRemoting16">
+            <summary>
+            Interfaz para la generación de comunicaciones remotas.
+            </summary>
+        </member>
         <member name="T:Orbita.Comunicaciones.OTags">
             <summary>
             Colecciones de tags.
@@ -7017,7 +7096,7 @@
         </member>
         <member name="M:Orbita.Comunicaciones.OOPCEnlaces.#ctor(System.String)">
             <summary>
-            oOPCEnlaces.
+            OOPCEnlaces.
             </summary>
             <param name="nombre"></param>
         </member>
@@ -7077,7 +7156,7 @@
         </member>
         <member name="T:Orbita.Comunicaciones.OConfiguracionPuerto">
             <summary>
-            Implementa una clase abstacta con la configuración de un puerto de comunicaciones
+            Implementa una clase abstacta con la configuración de un puerto de comunicaciones.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OConfiguracionPuertoRS.NumeroPuerto">
@@ -7359,7 +7438,7 @@
         </member>
         <member name="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor.TcpServidor">
             <summary>
-            Esta clase se utiliza para crear un servidor TCP.
+            Esta clase se utiliza para crear un servidor Tcp.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor.TcpServidor.#ctor(Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints.TcpEndPoint)">
@@ -7370,7 +7449,7 @@
         </member>
         <member name="M:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor.TcpServidor.CrearListener">
             <summary>
-            Crear un listener TCP.
+            Crear un listener Tcp.
             </summary>
             <returns>TcpListener.</returns>
         </member>
@@ -8046,7 +8125,7 @@
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoMCUSB.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
             <summary>
-            Constructor de clase de USB MCC
+            Inicializar una nueva instancia de la clase ODispositivoMCUSB.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoMCUSB.ProcesarHiloVida">
@@ -8344,7 +8423,7 @@
         </member>
         <member name="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints.TcpEndPoint">
             <summary>
-            Representa un endpoint TCP.
+            Representa un endpoint Tcp.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints.TcpEndPoint.#ctor(System.Int32)">
@@ -8365,7 +8444,7 @@
             Inicializar una nueva instancia de la clase TcpEndPoint.
             Formato de dirección debe ser como Dirección IP: puerto (por ejemplo: 127.0.0.1:8001).
             </summary>
-            <param name="direccionIp">Dirección endpoint TCP.</param>
+            <param name="direccionIp">Dirección endpoint Tcp.</param>
             <returns>TcpEndpoint.</returns>
         </member>
         <member name="M:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints.TcpEndPoint.CrearServidor">
@@ -8393,7 +8472,7 @@
         </member>
         <member name="P:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints.TcpEndPoint.PuertoTcp">
             <summary>
-             Puerto de escucha TCP para solicitudes de conexión entrantes en el servidor.
+             Puerto de escucha Tcp para solicitudes de conexión entrantes en el servidor.
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales.CanalComunicacionEventArgs">
@@ -8466,8 +8545,8 @@
             <summary>
             Esta clase se utiliza para procesar elementos de forma secuencial en procesos multihilo (multithread).
             </summary>
-            <typeparam name="TElemento">Tipo de elemento.</typeparam>
             <typeparam name="TSender"></typeparam>
+            <typeparam name="TElemento">Tipo de elemento.</typeparam>
         </member>
         <member name="F:Orbita.Comunicaciones.Protocolos.Tcp.Threading.ProcesadorElementosSecuencialesT2`2._metodo">
             <summary>
@@ -8529,12 +8608,12 @@
         </member>
         <member name="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente.TcpHelper">
             <summary>
-            Esta clase se utiliza para simplificar las operaciones del socket TCP.
+            Esta clase se utiliza para simplificar las operaciones del socket Tcp.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente.TcpHelper.ConectarAlServidor(System.Net.EndPoint,System.Int32)">
             <summary>
-            Este código se utiliza para conectarse a un socket TCP con el parámetro tiempo de espera en milisegundos.
+            Este código se utiliza para conectarse a un socket Tcp con el parámetro tiempo de espera en milisegundos.
             </summary>
             <param name="endPointRemoto">IP endpoint del servidor remoto.</param>
             <param name="timeoutMs">Timeout de espera hasta conectar.</param>
@@ -8544,7 +8623,7 @@
         </member>
         <member name="M:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente.TcpHelper.ConectarAlServidor(System.Net.EndPoint,System.Net.EndPoint,System.Int32)">
             <summary>
-            Este código se utiliza para conectarse a un socket TCP con el parámetro tiempo de espera en milisegundos.
+            Este código se utiliza para conectarse a un socket Tcp con el parámetro tiempo de espera en milisegundos.
             </summary>
             <param name="endPointRemoto">Endpoint del servidor.</param>
             <param name="endPointLocal">Endpoint del cliente.</param>
@@ -8563,14 +8642,14 @@
             Crear un nuevo cliente para conectarse a un servidor utilizando un endpoint.
             </summary>
             <param name="endPointRemoto">Endpoint del servidor a conectarse.</param>
-            <returns>Cliente TCP.</returns>
+            <returns>Cliente Tcp.</returns>
         </member>
         <member name="M:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente.ClienteFactory.Crear(System.String)">
             <summary>
             Crear un nuevo cliente para conectarse a un servidor utilizando un endpoint.
             </summary>
             <param name="direccionEndpoint">Dirección endpoint del servidor a conectarse.</param>
-            <returns>Cliente TCP.</returns>
+            <returns>Cliente Tcp.</returns>
         </member>
         <member name="T:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOCR">
             <summary>
