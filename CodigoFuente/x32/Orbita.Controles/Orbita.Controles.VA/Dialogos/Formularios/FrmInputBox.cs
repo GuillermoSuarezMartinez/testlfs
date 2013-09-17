@@ -36,13 +36,21 @@ namespace Orbita.Controles.VA
         /// Texto escrito
         /// </summary>
         public IObjetoBase ValorImputado;
+        /// <summary>
+        /// Posiciones enteras del editor numérico
+        /// </summary>
+        public int PosicionesEnteras;
+        /// <summary>
+        /// Posiciones enteras del editor numérico
+        /// </summary>
+        public int PosicionesDecimales;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public FrmInputBox(string codigo, string titulo, string explicacion, IObjetoBase valorDefecto)
+        public FrmInputBox(string codigo, string titulo, string explicacion, IObjetoBase valorDefecto, int posicionesEnteras = 10, int posicionesDecimales = 2)
             : base()
         {
             InitializeComponent();
@@ -51,6 +59,8 @@ namespace Orbita.Controles.VA
             this.Titulo = titulo;
             this.Explicacion = explicacion;
             this.ValorImputado = valorDefecto;
+            this.PosicionesEnteras = posicionesEnteras;
+            this.PosicionesDecimales = posicionesDecimales;
         }
         #endregion
 
@@ -88,12 +98,14 @@ namespace Orbita.Controles.VA
             {
                 this.NumericEditorInput.NumericType = Infragistics.Win.UltraWinEditors.NumericType.Integer;
                 this.NumericEditorInput.Value = ((OEntero)this.ValorImputado).Valor;
+                this.NumericEditorInput.MaskInput = "-" + new string('n', this.PosicionesEnteras);
                 this.NumericEditorInput.Visible = true;
             }
-            if (this.ValorImputado is ODecimal)
+            else if (this.ValorImputado is ODecimal)
             {
                 this.NumericEditorInput.NumericType = Infragistics.Win.UltraWinEditors.NumericType.Double;
                 this.NumericEditorInput.Value = ((ODecimal)this.ValorImputado).Valor;
+                this.NumericEditorInput.MaskInput = string.Format("{0}double:-{1}.{2}{3}", "{", this.PosicionesEnteras, this.PosicionesDecimales, "}");
                 this.NumericEditorInput.Visible = true;
             }
             else if (this.ValorImputado is OTexto)
@@ -117,7 +129,7 @@ namespace Orbita.Controles.VA
                 EnumEstadoRobusto estado = ((OEntero)this.ValorImputado).Validar(ref objValor);
                 resultado = estado == EnumEstadoEnteroRobusto.ResultadoCorrecto;
             }
-            if (this.ValorImputado is ODecimal)
+            else if (this.ValorImputado is ODecimal)
             {
                 object objValor = this.NumericEditorInput.Value;
                 EnumEstadoRobusto estado = ((ODecimal)this.ValorImputado).Validar(ref objValor);
@@ -146,7 +158,7 @@ namespace Orbita.Controles.VA
             {
                 objValor =  this.NumericEditorInput.Value;
             }
-            if (this.ValorImputado is ODecimal)
+            else if (this.ValorImputado is ODecimal)
             {
                 objValor = this.NumericEditorInput.Value;
             }
@@ -180,7 +192,7 @@ namespace Orbita.Controles.VA
             {
                 this.NumericEditorInput.Focus();
             }
-            if (this.ValorImputado is ODecimal)
+            else if (this.ValorImputado is ODecimal)
             {
                 this.NumericEditorInput.Focus();
             }
@@ -210,11 +222,11 @@ namespace Orbita.Controles.VA
         /// <param name="explicacion">Explicación del dato a imputar</param>
         /// <param name="valor">Valor por defecto</param>
         /// <returns>Verdadero si el usuario ha aceptado la imputación</returns>
-        public static bool ShowModal(string codigo, string titulo, string explicacion, ref int valor, int minValue = int.MinValue, int maxValue = int.MaxValue)
+        public static bool ShowModal(string codigo, string titulo, string explicacion, ref int valor, int posicionesEnteras, int minValue = int.MinValue, int maxValue = int.MaxValue)
         {
             IObjetoBase entero = new OEntero(codigo, minValue, maxValue, valor, false);
 
-            FrmInputBox frm = new FrmInputBox(codigo, titulo, explicacion, entero);
+            FrmInputBox frm = new FrmInputBox(codigo, titulo, explicacion, entero, posicionesEnteras);
 
             bool ok = frm.ShowDialog(out entero);
 
@@ -229,11 +241,11 @@ namespace Orbita.Controles.VA
         /// <param name="explicacion">Explicación del dato a imputar</param>
         /// <param name="texto">Valor por defecto</param>
         /// <returns>Verdadero si el usuario ha aceptado la imputación</returns>
-        public static void Show(string codigo, string titulo, string explicacion, int valor, EventHandlerInput onInputObject, int minValue = int.MinValue, int maxValue = int.MaxValue)
+        public static void Show(string codigo, string titulo, string explicacion, int valor, EventHandlerInput onInputObject, int posicionesEnteras, int minValue = int.MinValue, int maxValue = int.MaxValue)
         {
             IObjetoBase entero = new OEntero(codigo, minValue, maxValue, valor, false);
 
-            FrmInputBox frm = new FrmInputBox(codigo, titulo, explicacion, entero);
+            FrmInputBox frm = new FrmInputBox(codigo, titulo, explicacion, entero, posicionesEnteras);
             frm.OnInputObject = onInputObject;
             frm.Show();
         }
@@ -253,11 +265,11 @@ namespace Orbita.Controles.VA
         /// <param name="explicacion">Explicación del dato a imputar</param>
         /// <param name="valor">Valor por defecto</param>
         /// <returns>Verdadero si el usuario ha aceptado la imputación</returns>
-        public static bool ShowModal(string codigo, string titulo, string explicacion, ref double valor, double minValue = double.MinValue, double maxValue = double.MaxValue)
+        public static bool ShowModal(string codigo, string titulo, string explicacion, ref double valor, int posicionesEnteras, int posicionesDecimales, double minValue = double.MinValue, double maxValue = double.MaxValue)
         {
             IObjetoBase entero = new ODecimal(codigo, minValue, maxValue, valor, false);
 
-            FrmInputBox frm = new FrmInputBox(codigo, titulo, explicacion, entero);
+            FrmInputBox frm = new FrmInputBox(codigo, titulo, explicacion, entero, posicionesEnteras, posicionesDecimales);
             bool ok = frm.ShowDialog(out entero);
 
             valor = ((ODecimal)entero).Valor;
@@ -271,11 +283,11 @@ namespace Orbita.Controles.VA
         /// <param name="explicacion">Explicación del dato a imputar</param>
         /// <param name="texto">Valor por defecto</param>
         /// <returns>Verdadero si el usuario ha aceptado la imputación</returns>
-        public static void Show(string codigo, string titulo, string explicacion, double valor, EventHandlerInput onInputObject, double minValue = double.MinValue, double maxValue = double.MaxValue)
+        public static void Show(string codigo, string titulo, string explicacion, double valor, EventHandlerInput onInputObject, int posicionesEnteras, int posicionesDecimales, double minValue = double.MinValue, double maxValue = double.MaxValue)
         {
             IObjetoBase entero = new ODecimal(codigo, minValue, maxValue, valor, false);
 
-            FrmInputBox frm = new FrmInputBox(codigo, titulo, explicacion, entero);
+            FrmInputBox frm = new FrmInputBox(codigo, titulo, explicacion, entero, posicionesEnteras, posicionesDecimales);
             frm.OnInputObject = onInputObject;
             frm.Show();
         }

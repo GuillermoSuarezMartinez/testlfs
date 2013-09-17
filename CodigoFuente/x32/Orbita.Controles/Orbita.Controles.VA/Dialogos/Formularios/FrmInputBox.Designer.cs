@@ -75,10 +75,10 @@ namespace Orbita.Controles.VA
             // 
             appearance1.ForeColor = System.Drawing.Color.Black;
             this.GrpFondo.Appearance = appearance1;
-            this.GrpFondo.Controls.Add(this.TxtInput);
             this.GrpFondo.Controls.Add(this.NumericEditorInput);
             this.GrpFondo.Controls.Add(this.LblExplicacion);
             this.GrpFondo.Controls.Add(this.PictureBox);
+            this.GrpFondo.Controls.Add(this.TxtInput);
             this.GrpFondo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GrpFondo.Location = new System.Drawing.Point(0, 0);
             this.GrpFondo.Name = "GrpFondo";

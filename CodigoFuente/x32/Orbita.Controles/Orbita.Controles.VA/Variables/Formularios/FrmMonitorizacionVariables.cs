@@ -3,13 +3,14 @@
 // Author           : aibañez
 // Created          : 04-03-2013
 //
-// Last Modified By : 
-// Last Modified On : 
-// Description      : 
+// Last Modified By : aibañez
+// Last Modified On : 17/09/2013
+// Description      : Eliminada columna de habilitado y añade la de última modificación
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
@@ -145,6 +146,12 @@ namespace Orbita.Controles.VA
         /// </summary>
         protected override void AccionesSalir()
         {
+            bool hayBloqueadas = OVariablesManager.ListaVariables.Where(v => v.Value.Bloqueado).Count() > 0;
+            if (hayBloqueadas)
+            {
+                OMensajes.MostrarAviso("Existen variables bloqueadas.");
+            }
+
             base.AccionesSalir();
 
             this.TimerRefresco.Enabled = false;
@@ -217,9 +224,8 @@ namespace Orbita.Controles.VA
         {
             string codigo = variable.Codigo.ToString();
             string descripcion = variable.Descripcion.ToString();
-            string habilitado = variable.Habilitado.ToString();
-            //string guardarTrazabilidad = variable.GuardarTrazabilidad.ToString();
             string grupo = variable.Grupo.ToString();
+            string momentoUltimaActualizacion = variable.GetMomentoUltimaActualizacion().ToString();
 
             ListViewItem item = new ListViewItem();
 
@@ -250,15 +256,10 @@ namespace Orbita.Controles.VA
             subItemDescVariable.Text = descripcion;
             item.SubItems.Add(subItemDescVariable);
 
-            ListViewItem.ListViewSubItem subItemHabilitadoVariable = new ListViewItem.ListViewSubItem();
-            subItemHabilitadoVariable.Name = "HabilitadoVariable";
-            subItemHabilitadoVariable.Text = habilitado;
-            item.SubItems.Add(subItemHabilitadoVariable);
-
-            //ListViewItem.ListViewSubItem subItemGuardarTrazabilidad = new ListViewItem.ListViewSubItem();
-            //subItemGuardarTrazabilidad.Name = "GuardarTrazabilidad";
-            //subItemGuardarTrazabilidad.Text = guardarTrazabilidad;
-            //item.SubItems.Add(subItemGuardarTrazabilidad);
+            ListViewItem.ListViewSubItem subItemMomentoUltimaActualizacion = new ListViewItem.ListViewSubItem();
+            subItemMomentoUltimaActualizacion.Name = "MomentoUltimaActualizacion";
+            subItemMomentoUltimaActualizacion.Text = momentoUltimaActualizacion;
+            item.SubItems.Add(subItemMomentoUltimaActualizacion);
 
             this.ListView.Items.Add(item);
         }
@@ -372,13 +373,13 @@ namespace Orbita.Controles.VA
                 switch (variable.Tipo)
                 {
                     case OEnumTipoDato.Entero:
-                        InputIntegerBox.Show(variable.Codigo, "Forzado de número entero", "Escriba el nuevo valor de la variable " + variable.Codigo, objValor.ValidarEntero(), this.EnteroImputadoPorUsuario);
+                        InputIntegerBox.Show(variable.Codigo, "Forzado de número entero", "Escriba el nuevo valor de la variable " + variable.Codigo, objValor.ValidarEntero(), this.EnteroImputadoPorUsuario, 12);
                         break;
                     case OEnumTipoDato.Texto:
                         InputTextBox.Show(variable.Codigo, "Forzado de texto", "Escriba el nuevo valor de la variable " + variable.Codigo, OObjeto.ToString(objValor), this.TextoImputadoPorUsuario);
                         break;
                     case OEnumTipoDato.Decimal:
-                        InputDoubleBox.Show(variable.Codigo, "Forzado de número real", "Escriba el nuevo valor de la variable " + variable.Codigo, objValor.ValidarDecimal(), this.DecimalImputadoPorUsuario);
+                        InputDoubleBox.Show(variable.Codigo, "Forzado de número real", "Escriba el nuevo valor de la variable " + variable.Codigo, objValor.ValidarDecimal(), this.DecimalImputadoPorUsuario, 12, 4);
                         break;
                     case OEnumTipoDato.Fecha:
                         break;
@@ -446,13 +447,15 @@ namespace Orbita.Controles.VA
             {
                 OVariable variable = (OVariable)this.ListView.FocusedItem.Tag;
 
+                bool administrador = OUsuariosManager.PermisoActual == OPermisos.Administrador;
+
                 // Menú de bloqueo
-                this.ToolbarsManager.Tools["Bloquear"].SharedProps.Enabled = !variable.Bloqueado;
+                this.ToolbarsManager.Tools["Bloquear"].SharedProps.Enabled = !variable.Bloqueado && administrador;
                 this.ToolbarsManager.Tools["Desbloquear"].SharedProps.Enabled = variable.Bloqueado;
-                this.ToolbarsManager.Tools["ForzarValor"].SharedProps.Enabled = variable.Bloqueado;
-                this.ToolbarsManager.Tools["ForzarVerdadero"].SharedProps.Enabled = variable.Bloqueado;
-                this.ToolbarsManager.Tools["ForzarFalso"].SharedProps.Enabled = variable.Bloqueado;
-                this.ToolbarsManager.Tools["CargarImagen"].SharedProps.Enabled = variable.Bloqueado;
+                this.ToolbarsManager.Tools["ForzarValor"].SharedProps.Enabled = variable.Bloqueado && administrador;
+                this.ToolbarsManager.Tools["ForzarVerdadero"].SharedProps.Enabled = variable.Bloqueado && administrador;
+                this.ToolbarsManager.Tools["ForzarFalso"].SharedProps.Enabled = variable.Bloqueado && administrador;
+                this.ToolbarsManager.Tools["CargarImagen"].SharedProps.Enabled = variable.Bloqueado && administrador;
                 this.ToolbarsManager.Tools["GuardarImagen"].SharedProps.Enabled = variable.Bloqueado;
 
                 // Menú de Forzado

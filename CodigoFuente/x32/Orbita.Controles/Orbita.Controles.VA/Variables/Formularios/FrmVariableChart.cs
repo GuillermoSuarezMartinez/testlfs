@@ -56,13 +56,17 @@ namespace Orbita.Controles.VA
                         this.CtrlVariableChart.Dock = DockStyle.Fill;
                         break;
                     case OEnumTipoDato.Entero:
-                        throw new Exception("No se ha implementado todavía el formulario de monitorización temporal para el tipo de variable Entero");
+                        this.CtrlVariableChart = new OrbitaGraficaVariableInt();
+                        this.CtrlVariableChart.Parent = this.PnlPanelPrincipalPadre;
+                        this.CtrlVariableChart.Dock = DockStyle.Fill;
                         break;
                     case OEnumTipoDato.Texto:
                         throw new Exception("No se ha implementado todavía el formulario de monitorización temporal para el tipo de variable Texto");
                         break;
                     case OEnumTipoDato.Decimal:
-                        throw new Exception("No se ha implementado todavía el formulario de monitorización temporal para el tipo de variable decimal");
+                        this.CtrlVariableChart = new OrbitaGraficaVariableDouble();
+                        this.CtrlVariableChart.Parent = this.PnlPanelPrincipalPadre;
+                        this.CtrlVariableChart.Dock = DockStyle.Fill;
                         break;
                     case OEnumTipoDato.Fecha:
                         throw new Exception("No se ha implementado todavía el formulario de monitorización temporal para el tipo de variable fecha");

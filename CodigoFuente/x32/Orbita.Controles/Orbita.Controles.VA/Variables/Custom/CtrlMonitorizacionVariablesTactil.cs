@@ -10,6 +10,7 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
@@ -146,6 +147,12 @@ namespace Orbita.Controles.VA
         /// </summary>
         protected override void AccionesSalir()
         {
+            bool hayBloqueadas = OVariablesManager.ListaVariables.Where(v => v.Value.Bloqueado).Count() > 0;
+            if (hayBloqueadas)
+            {
+                OMensajes.MostrarAviso("Existen variables bloqueadas.");
+            }
+
             base.AccionesSalir();
 
             this.TimerRefresco.Enabled = false;
@@ -367,13 +374,13 @@ namespace Orbita.Controles.VA
                 switch (variable.Tipo)
                 {
                     case OEnumTipoDato.Entero:
-                        InputIntegerBox.Show(variable.Codigo, "Forzado de número entero", "Escriba el nuevo valor de la variable " + variable.Codigo, objValor.ValidarEntero(), this.EnteroImputadoPorUsuario);
+                        InputIntegerBox.Show(variable.Codigo, "Forzado de número entero", "Escriba el nuevo valor de la variable " + variable.Codigo, objValor.ValidarEntero(), this.EnteroImputadoPorUsuario, 12);
                         break;
                     case OEnumTipoDato.Texto:
                         InputTextBox.Show(variable.Codigo, "Forzado de texto", "Escriba el nuevo valor de la variable " + variable.Codigo, OObjeto.ToString(objValor), this.TextoImputadoPorUsuario);
                         break;
                     case OEnumTipoDato.Decimal:
-                        InputDoubleBox.Show(variable.Codigo, "Forzado de número real", "Escriba el nuevo valor de la variable " + variable.Codigo, objValor.ValidarDecimal(), this.DecimalImputadoPorUsuario);
+                        InputDoubleBox.Show(variable.Codigo, "Forzado de número real", "Escriba el nuevo valor de la variable " + variable.Codigo, objValor.ValidarDecimal(), this.DecimalImputadoPorUsuario, 12, 4);
                         break;
                     case OEnumTipoDato.Fecha:
                         break;

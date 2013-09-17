@@ -1,6 +1,6 @@
 ﻿namespace Orbita.Controles.VA
 {
-    partial class OrbitaGraficaVariableBool
+    partial class OrbitaGraficaVariableDouble
     {
         /// <summary> 
         /// Required designer variable.
@@ -44,7 +44,7 @@
             // varDataSource
             // 
             ultraDataColumn1.DataType = typeof(System.DateTime);
-            ultraDataColumn2.DataType = typeof(int);
+            ultraDataColumn2.DataType = typeof(double);
             this.varDataSource.Band.Columns.AddRange(new object[] {
             ultraDataColumn1,
             ultraDataColumn2});
@@ -245,12 +245,12 @@
             this.ChartVariable.Tooltips.HighlightFillColor = System.Drawing.Color.DimGray;
             this.ChartVariable.Tooltips.HighlightOutlineColor = System.Drawing.Color.DarkGray;
             // 
-            // OrbitaGraficaVariableBool
+            // OrbitaGraficaVariableDouble
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ChartVariable);
-            this.Name = "OrbitaGraficaVariableBool";
+            this.Name = "OrbitaGraficaVariableDouble";
             this.Size = new System.Drawing.Size(776, 131);
             ((System.ComponentModel.ISupportInitialize)(this.varDataSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ChartVariable)).EndInit();

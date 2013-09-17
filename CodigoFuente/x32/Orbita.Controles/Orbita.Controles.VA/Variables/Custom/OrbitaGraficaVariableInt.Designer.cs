@@ -1,6 +1,6 @@
 ﻿namespace Orbita.Controles.VA
 {
-    partial class OrbitaGraficaVariableBool
+    partial class OrbitaGraficaVariableInt
     {
         /// <summary> 
         /// Required designer variable.
@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             Infragistics.Win.UltraWinDataSource.UltraDataColumn ultraDataColumn1 = new Infragistics.Win.UltraWinDataSource.UltraDataColumn("Fecha");
             Infragistics.Win.UltraWinDataSource.UltraDataColumn ultraDataColumn2 = new Infragistics.Win.UltraWinDataSource.UltraDataColumn("Valor");
-            Infragistics.UltraChart.Resources.Appearance.PaintElement paintElement1 = new Infragistics.UltraChart.Resources.Appearance.PaintElement();
             Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries numericTimeSeries1 = new Infragistics.UltraChart.Resources.Appearance.NumericTimeSeries();
             Infragistics.UltraChart.Resources.Appearance.GradientEffect gradientEffect1 = new Infragistics.UltraChart.Resources.Appearance.GradientEffect();
             Infragistics.UltraChart.Resources.Appearance.LineChartAppearance lineChartAppearance1 = new Infragistics.UltraChart.Resources.Appearance.LineChartAppearance();
@@ -50,17 +49,14 @@
             ultraDataColumn2});
             this.varDataSource.Band.Key = "Valor";
             // 
-//			'UltraChart' properties's serialization: Since 'ChartType' changes the way axes look,
-//			'ChartType' must be persisted ahead of any Axes change made in design time.
-//		
+            //			'UltraChart' properties's serialization: Since 'ChartType' changes the way axes look,
+            //			'ChartType' must be persisted ahead of any Axes change made in design time.
+            //		
             this.ChartVariable.ChartType = Infragistics.UltraChart.Shared.Styles.ChartType.StepLineChart;
             // 
             // ChartVariable
             // 
             this.ChartVariable.Axis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(220)))));
-            paintElement1.ElementType = Infragistics.UltraChart.Shared.Styles.PaintElementType.None;
-            paintElement1.Fill = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(220)))));
-            this.ChartVariable.Axis.PE = paintElement1;
             this.ChartVariable.Axis.X.Extent = 59;
             this.ChartVariable.Axis.X.Labels.Font = new System.Drawing.Font("Verdana", 7F);
             this.ChartVariable.Axis.X.Labels.FontColor = System.Drawing.Color.DimGray;

@@ -251,7 +251,11 @@ namespace Orbita.VA.Comun
                     this.MomentoAnteriorCaptura = momentoCapturaActual;
 
                     // Se procede al encolamiento de la imagen
-                    OImagen imagenAux = imagen.EscalarImagen(imagen, this.Resolucion.Width, this.Resolucion.Height);
+                    OImagen imagenAux = imagen;
+                    if ((this.Resolucion.Width != imagen.Width) || (this.Resolucion.Height != imagen.Height))
+                    {
+                        imagenAux = imagen.EscalarImagen(imagen, this.Resolucion.Width, this.Resolucion.Height);
+                    }
                     resultado = this.ThreadConsumidor.Encolar(imagenAux);
                 }
             }

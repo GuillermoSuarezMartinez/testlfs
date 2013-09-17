@@ -73,7 +73,7 @@
             this.Codigo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Valor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Descripcion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Habilitado = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MomentoUltimaActualizacion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ImageListLarge = new System.Windows.Forms.ImageList(this.components);
             this.ImageListSmall = new System.Windows.Forms.ImageList(this.components);
             this.ToolbarsManager = new Orbita.Controles.Menu.OrbitaUltraToolbarsManager(this.components);
@@ -139,7 +139,7 @@
             this.Codigo,
             this.Valor,
             this.Descripcion,
-            this.Habilitado});
+            this.MomentoUltimaActualizacion});
             this.ToolbarsManager.SetContextMenuUltra(this.ListView, "Acciones");
             this.ListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListView.LargeImageList = this.ImageListLarge;
@@ -167,12 +167,12 @@
             // Descripcion
             // 
             this.Descripcion.Text = "Descripción";
-            this.Descripcion.Width = 450;
+            this.Descripcion.Width = 319;
             // 
-            // Habilitado
+            // MomentoUltimaActualizacion
             // 
-            this.Habilitado.Text = "Habilitado";
-            this.Habilitado.Width = 110;
+            this.MomentoUltimaActualizacion.Text = "Última actualización";
+            this.MomentoUltimaActualizacion.Width = 180;
             // 
             // ImageListLarge
             // 
@@ -393,7 +393,7 @@
         protected System.Windows.Forms.ImageList ImageListSmall;
         protected System.Windows.Forms.ImageList ImageListLarge;
         private System.Windows.Forms.ColumnHeader Valor;
-        private System.Windows.Forms.ColumnHeader Habilitado;
+        private System.Windows.Forms.ColumnHeader MomentoUltimaActualizacion;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }
