@@ -18,7 +18,7 @@ namespace Orbita.VA.Funciones
     /// <summary>
     /// Define el conjunto de módulos del sistema
     /// </summary>
-    internal class OLogsVAFunciones
+    public class OLogsVAFunciones
     {
         #region Atributo(s)
         /// <summary>

@@ -18,7 +18,7 @@ namespace Orbita.VA.MaquinasEstados
     /// <summary>
     /// Define el conjunto de módulos del sistema
     /// </summary>
-    internal static class OLogsVAMaquinasEstados
+    public static class OLogsVAMaquinasEstados
     {
         #region Atributo(s) estático(s)
         /// <summary>

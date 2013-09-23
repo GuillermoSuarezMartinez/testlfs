@@ -18,7 +18,7 @@ namespace Orbita.VA.Hardware
     /// <summary>
     /// Define el conjunto de módulos del sistema
     /// </summary>
-    internal class OLogsVAHardware
+    public class OLogsVAHardware
     {
         #region Atributo(s)
         /// <summary>

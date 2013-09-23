@@ -18,7 +18,7 @@ using Orbita.Utiles;
 
 namespace Orbita.VA.Comun
 {
-    internal static class OLogsVAComun
+    public static class OLogsVAComun
     {
         #region Atributo(s) estático(s)
         /// <summary>
