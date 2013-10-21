@@ -9,6 +9,9 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
+using System;
+
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -16,33 +19,19 @@ namespace Orbita.Trazabilidad
     /// </summary>
     public class TimerBackup
     {
-        #region Atributos privados
-        /// <summary>
-        /// System.TimeSpan que representa el período tiempo de retraso antes de que
-        /// se llame al método de devolución de llamada que se especificó cuando se creó
-        /// System.Threading.Timer.
-        /// </summary>
-        System.TimeSpan hora;
-        /// <summary>
-        /// Período de tiempo entre invocaciones del método de llamada especificado en
-        /// el momento de la construcción de System.Threading.Timer.
-        /// </summary>
-        System.TimeSpan periodo;
-        #endregion
-
         #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TimerBackup.
         /// </summary>
         public TimerBackup()
-            : this(new System.TimeSpan(23, 0, 0), new System.TimeSpan(1, 0, 0, 0)) { }
+            : this(new TimeSpan(23, 0, 0), new TimeSpan(1, 0, 0, 0)) { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TimerBackup.
         /// </summary>
         /// <param name="hora">System.TimeSpan que representa el período tiempo de retraso antes de que se
         /// llame al método de devolución de llamada que se especificó cuando se creó System.Threading.Timer.</param>
-        public TimerBackup(System.TimeSpan hora)
-            : this(hora, new System.TimeSpan(1, 0, 0, 0)) { }
+        public TimerBackup(TimeSpan hora)
+            : this(hora, new TimeSpan(1, 0, 0, 0)) { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TimerBackup.
         /// </summary>
@@ -50,10 +39,10 @@ namespace Orbita.Trazabilidad
         /// llame al método de devolución de llamada que se especificó cuando se creó System.Threading.Timer.</param>
         /// <param name="periodo">Período de tiempo entre invocaciones del método de llamada especificado en
         /// el momento de la construcción de System.Threading.Timer.</param>
-        public TimerBackup(System.TimeSpan hora, System.TimeSpan periodo)
+        public TimerBackup(TimeSpan hora, TimeSpan periodo)
         {
-            this.hora = hora;
-            this.periodo = periodo;
+            Hora = hora;
+            Periodo = periodo;
         }
         #endregion
 
@@ -62,20 +51,12 @@ namespace Orbita.Trazabilidad
         /// System.TimeSpan que representa el período tiempo de retraso antes de que se llame al método 
         /// de devolución de llamada que se especificó cuando se creó System.Threading.Timer.
         /// </summary>
-        public System.TimeSpan Hora
-        {
-            get { return this.hora; }
-            set { this.hora = value; }
-        }
+        public TimeSpan Hora { get; set; }
         /// <summary>
         /// Período de tiempo entre invocaciones del método de llamada especificado en el momento de la
         /// construcción de System.Threading.Timer.
         /// </summary>
-        public System.TimeSpan Periodo
-        {
-            get { return this.periodo; }
-            set { this.periodo = value; }
-        }
+        public TimeSpan Periodo { get; set; }
         #endregion
     }
 }

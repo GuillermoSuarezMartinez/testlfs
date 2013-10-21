@@ -9,6 +9,10 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
+using System;
+using System.Threading;
+
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -16,41 +20,15 @@ namespace Orbita.Trazabilidad
     /// </summary>
     public class TimerLogger
     {
-        #region Atributos privados
-        /// <summary>
-        /// Proporciona un mecanismo para ejecutar métodos en intervalos especificados.
-        /// </summary>
-        System.Threading.Timer timer;
-        /// <summary>
-        /// Representa el método que controla las llamadas de un System.Threading.Timer.
-        /// </summary>
-        System.Threading.TimerCallback callBack;
-        #endregion
-
-        #region Constructores
-        /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TimerLogger.
-        /// </summary>
-        public TimerLogger() { }
-        #endregion
-
         #region Propiedades
         /// <summary>
         /// Proporciona un mecanismo para ejecutar métodos en intervalos especificados.
         /// </summary>
-        public System.Threading.Timer Timer
-        {
-            get { return this.timer; }
-            set { this.timer = value; }
-        }
+        public Timer Timer { get; set; }
         /// <summary>
         /// Representa el método que controla las llamadas de un System.Threading.Timer.
         /// </summary>
-        public System.Threading.TimerCallback CallBack
-        {
-            get { return this.callBack; }
-            set { this.callBack = value; }
-        }
+        public TimerCallback CallBack { get; set; }
         #endregion
 
         #region Métodos públicos
@@ -62,9 +40,9 @@ namespace Orbita.Trazabilidad
         /// System.Threading.Timer.</param>
         /// <param name="periodo">Período de tiempo entre invocaciones del método de llamada especificado en
         /// el momento de la construcción de System.Threading.Timer.</param>
-        public void Change(System.TimeSpan hora, System.TimeSpan periodo)
+        public void Change(TimeSpan hora, TimeSpan periodo)
         {
-            this.timer.Change(Add(hora), periodo);
+            Timer.Change(Add(hora), periodo);
         }
         #endregion
 
@@ -76,9 +54,8 @@ namespace Orbita.Trazabilidad
         /// se llame al método de devolución de llamada que se especificó cuando se creó
         /// System.Threading.Timer.</param>
         /// <returns>TimeSpan.</returns>
-        static System.TimeSpan Add(System.TimeSpan hora)
+        private static TimeSpan Add(TimeSpan hora)
         {
-            System.TimeSpan resultado = System.TimeSpan.MinValue;
             // La función Change de Timer se lee: ...en prosa: 
             // ejecutate dentro de (tiempo) y luego cada (tiempo).
 
@@ -86,23 +63,10 @@ namespace Orbita.Trazabilidad
             // actual, el tiempo que falta para ejecutarse.
 
             // Primero definir la fecha actual con la hora de ejecución.
-            System.DateTime fechaHora = System.DateTime.Now;
+            DateTime fechaHora = DateTime.Now;
             // Concatenar a la fecha la hora de ejecución.
-            System.DateTime fechaHoraEjecucion = new System.DateTime(fechaHora.Year, fechaHora.Month, fechaHora.Day, hora.Hours, hora.Minutes, hora.Seconds);
-            if (fechaHoraEjecucion > fechaHora)
-            {
-                // Si la fecha de ejecución calculada es posterior a la actual.
-                // Hacer la resta de ambas y el resultado es el tiempo que falta
-                // para ejecutarse.
-                resultado = fechaHoraEjecucion.Subtract(fechaHora);
-            }
-            else
-            {
-                // Si la fecha de ejecución calculada es negativa.
-                // Se debe hacer una adición a la fecha hasta que
-                // esta sea positiva.
-                resultado = fechaHoraEjecucion.AddDays(1).Subtract(fechaHora);
-            }
+            var fechaHoraEjecucion = new DateTime(fechaHora.Year, fechaHora.Month, fechaHora.Day, hora.Hours, hora.Minutes, hora.Seconds);
+            TimeSpan resultado = fechaHoraEjecucion > fechaHora ? fechaHoraEjecucion.Subtract(fechaHora) : fechaHoraEjecucion.AddDays(1).Subtract(fechaHora);
             return resultado;
         }
         #endregion

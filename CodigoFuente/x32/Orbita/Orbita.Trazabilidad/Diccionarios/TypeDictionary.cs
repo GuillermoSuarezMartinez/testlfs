@@ -9,6 +9,10 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
+using System;
+using System.Linq;
+
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -16,13 +20,6 @@ namespace Orbita.Trazabilidad
     /// </summary>
     internal class TypeDictionary : System.Collections.DictionaryBase
     {
-        #region Constructor
-        /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TypeDictionary.
-        /// </summary>
-        public TypeDictionary() { }
-        #endregion
-
         #region Propiedades
         /// <summary>
         /// Gets or sets the Type associated with the given string
@@ -30,10 +27,10 @@ namespace Orbita.Trazabilidad
         /// <param name="key">
         /// The string whose value to get or set.
         /// </param>
-        public virtual System.Type this[string key]
+        public virtual Type this[string key]
         {
-            get { return (System.Type)this.Dictionary[key]; }
-            set { this.Dictionary[key] = value; }
+            get { return (Type)Dictionary[key]; }
+            set { Dictionary[key] = value; }
         }
         #endregion
 
@@ -47,9 +44,9 @@ namespace Orbita.Trazabilidad
         /// <param name="value">
         /// The Type value of the element to add.
         /// </param>
-        public virtual void Add(string key, System.Type value)
+        public virtual void Add(string key, Type value)
         {
-            this.Dictionary.Add(key, value);
+            Dictionary.Add(key, value);
         }
         /// <summary>
         /// Determines whether this TypeDictionary contains a specific key.
@@ -63,7 +60,7 @@ namespace Orbita.Trazabilidad
         /// </returns>
         public virtual bool Contains(string key)
         {
-            return this.Dictionary.Contains(key);
+            return Dictionary.Contains(key);
         }
         /// <summary>
         /// Determines whether this TypeDictionary contains a specific value.
@@ -75,14 +72,9 @@ namespace Orbita.Trazabilidad
         /// true if this TypeDictionary contains an element with the specified value;
         /// otherwise, false.
         /// </returns>
-        public virtual bool ContainsValue(System.Type value)
+        public virtual bool ContainsValue(Type value)
         {
-            foreach (System.Type item in this.Dictionary.Values)
-            {
-                if (item == value)
-                    return true;
-            }
-            return false;
+            return Dictionary.Values.Cast<Type>().Any(item => item == value);
         }
         /// <summary>
         /// Removes the element with the specified key from this TypeDictionary.
@@ -92,21 +84,21 @@ namespace Orbita.Trazabilidad
         /// </param>
         public virtual void Remove(string key)
         {
-            this.Dictionary.Remove(key);
+            Dictionary.Remove(key);
         }
         /// <summary>
         /// Gets a collection containing the keys in this TypeDictionary.
         /// </summary>
         public virtual System.Collections.ICollection Keys
         {
-            get { return this.Dictionary.Keys; }
+            get { return Dictionary.Keys; }
         }
         /// <summary>
         /// Gets a collection containing the values in this TypeDictionary.
         /// </summary>
         public virtual System.Collections.ICollection Values
         {
-            get { return this.Dictionary.Values; }
+            get { return Dictionary.Values; }
         }
         #endregion
     }

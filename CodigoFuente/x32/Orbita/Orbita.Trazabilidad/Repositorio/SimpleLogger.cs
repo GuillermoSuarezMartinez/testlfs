@@ -20,7 +20,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Interface de logger.
         /// </summary>
-        ILogger logger;
+        private readonly ILogger _logger;
         #endregion
 
         #region Constructores
@@ -34,7 +34,7 @@ namespace Orbita.Trazabilidad
         /// <param name="logger">Interface de logger.</param>
         public SimpleLogger(ILogger logger)
         {
-            this.logger = logger;
+            _logger = logger;
         }
         #endregion
 
@@ -44,7 +44,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         public ILogger Logger
         {
-            get { return this.logger; }
+            get { return _logger; }
         }
         #endregion
     }

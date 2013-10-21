@@ -9,21 +9,18 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Orbita.Trazabilidad
 {
     /// <summary>
     /// Wrapper Logger.
     /// </summary>
-    [Target("Wrapper", ESWrapper = true)]
+    [Target("Wrapper", EsWrapper = true)]
     public class WrapperLogger : BaseLogger
     {
-        #region Atributos privados
-        /// <summary>
-        /// Colección de loggers.
-        /// </summary>
-        System.Collections.Generic.List<ILogger> loggers;
-        #endregion
-
         #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.WrapperLogger.
@@ -49,7 +46,7 @@ namespace Orbita.Trazabilidad
             : base(identificador, nivelLog)
         {
             // Crear la colección de loggers.
-            this.loggers = new System.Collections.Generic.List<ILogger>(loggers);
+            Loggers = new List<ILogger>(loggers);
         }
         #endregion
 
@@ -57,10 +54,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Colección de loggers.
         /// </summary>
-        public System.Collections.Generic.List<ILogger> Loggers
-        {
-            get { return this.loggers; }
-        }
+        public List<ILogger> Loggers { get; private set; }
         #endregion
 
         #region Métodos públicos
@@ -71,17 +65,12 @@ namespace Orbita.Trazabilidad
         public override void Log(ItemLog item)
         {
             // Validar el parámetro 'item' antes de utilizarlo.
-            if (item != null)
+            if (item == null) return;
+            // Recorrer la colección de loggers.
+            foreach (BaseLogger logger in Loggers.Cast<BaseLogger>().Where(logger => item.NivelLog >= logger.NivelLog))
             {
-                // Recorrer la colección de loggers.
-                foreach (BaseLogger logger in this.loggers)
-                {
-                    if (item.NivelLog >= logger.NivelLog)
-                    {
-                        // Registrar cada item de la colección.
-                        logger.Log(item);
-                    }
-                }
+                // Registrar cada item de la colección.
+                logger.Log(item);
             }
         }
         /// <summary>
@@ -92,17 +81,12 @@ namespace Orbita.Trazabilidad
         public override void Log(ItemLog item, object[] args)
         {
             // Validar el parámetro 'item' antes de utilizarlo.
-            if (item != null)
+            if (item == null) return;
+            // Recorrer la colección de loggers.
+            foreach (BaseLogger logger in Loggers.Cast<BaseLogger>().Where(logger => item.NivelLog >= logger.NivelLog))
             {
-                // Recorrer la colección de loggers.
-                foreach (BaseLogger logger in this.loggers)
-                {
-                    if (item.NivelLog >= logger.NivelLog)
-                    {
-                        // Registrar cada item de la colección.
-                        logger.Log(item, args);
-                    }
-                }
+                // Registrar cada item de la colección.
+                logger.Log(item, args);
             }
         }
         #endregion

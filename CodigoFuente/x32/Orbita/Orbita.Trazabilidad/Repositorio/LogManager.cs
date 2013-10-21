@@ -25,7 +25,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Repositorio de loggers.
         /// </summary>
-        static System.Collections.Hashtable Repositorio = new System.Collections.Hashtable();
+        private static readonly System.Collections.Hashtable Repositorio = new System.Collections.Hashtable();
         #endregion
 
         #region Métodos públicos estáticos
@@ -35,7 +35,7 @@ namespace Orbita.Trazabilidad
         /// <param name="fichero">Fichero Xml de configuración.</param>
         public static void ConfiguracionLogger(string fichero)
         {
-            DictionaryLogger loggers = new ConfiguracionXmlLogger(fichero).loggers;
+            DictionaryLogger loggers = new ConfiguracionXmlLogger(fichero).Loggers;
             foreach (ILogger logger in loggers.Values)
             {
                 SetLogger(logger);
@@ -51,7 +51,9 @@ namespace Orbita.Trazabilidad
             ILogger logger = null;
             if (Repositorio.Contains(identificador))
             {
-                logger = (Repositorio[identificador] as SimpleLogger).Logger;
+                var simpleLogger = Repositorio[identificador] as SimpleLogger;
+                if (simpleLogger != null)
+                    logger = simpleLogger.Logger;
             }
             return logger;
         }
@@ -61,7 +63,7 @@ namespace Orbita.Trazabilidad
         /// <returns></returns>
         public static System.Collections.Generic.Dictionary<string, ILogger> GetLoggers()
         {
-            return Repositorio.Cast<System.Collections.DictionaryEntry>().ToDictionary(kvp => (string)kvp.Key, kvp => (ILogger)((SimpleLogger)kvp.Value).Logger);
+            return Repositorio.Cast<System.Collections.DictionaryEntry>().ToDictionary(kvp => (string)kvp.Key, kvp => ((SimpleLogger)kvp.Value).Logger);
         }
         /// <summary>
         /// Colección de loggers.
@@ -70,7 +72,7 @@ namespace Orbita.Trazabilidad
         public static System.Collections.Generic.Dictionary<string, ILogger> GetLoggers<TLogger>()
             where TLogger : ILogger
         {
-            return (System.Collections.Generic.Dictionary<string, ILogger>)GetLoggers().Where(kvp => kvp.Value is TLogger).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            return GetLoggers().Where(kvp => kvp.Value is TLogger).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
         /// <summary>
         /// Asignar logger al repositorio.
@@ -78,13 +80,11 @@ namespace Orbita.Trazabilidad
         /// <param name="logger">Interface de logger.</param>
         public static void SetLogger(ILogger logger)
         {
-            if (logger != null)
+            if (logger == null) return;
+            string clave = logger.Identificador ?? Logger.Debug;
+            if (!Repositorio.Contains(clave))
             {
-                string clave = logger.Identificador ?? Orbita.Trazabilidad.Logger.Debug;
-                if (!Repositorio.Contains(clave))
-                {
-                    Repositorio.Add(clave, new SimpleLogger(logger));
-                }
+                Repositorio.Add(clave, new SimpleLogger(logger));
             }
         }
         /// <summary>
@@ -97,14 +97,17 @@ namespace Orbita.Trazabilidad
             bool res = Repositorio.Contains(identificador);
             if (res)
             {
-                ILogger logger = (Repositorio[identificador] as SimpleLogger).Logger;
-                if (logger.GetType() == typeof(DebugLogger))
+                var simpleLogger = Repositorio[identificador] as SimpleLogger;
+                if (simpleLogger != null)
                 {
-                    // Detener el proceso de backup del objeto System.Threading.Timer.
-                    (logger as DebugLogger).TimerLogger.Timer.Dispose();
+                    ILogger logger = simpleLogger.Logger;
+                    if (logger is DebugLogger)
+                    {
+                        // Detener el proceso de backup del objeto System.Threading.Timer.
+                        (logger as DebugLogger).TimerLogger.Timer.Dispose();
+                    }
                 }
                 Repositorio.Remove(identificador);
-
             }
             return res;
         }
@@ -437,7 +440,7 @@ namespace Orbita.Trazabilidad
         /// <returns>ILogger.</returns>
         public static ILogger SetRemotingLogger(string identificador, NivelLog nivelLog)
         {
-            return SetRemotingLogger(identificador, nivelLog, Orbita.Trazabilidad.Logger.Alias);
+            return SetRemotingLogger(identificador, nivelLog, Logger.Alias);
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.RemotingLogger.
@@ -448,7 +451,7 @@ namespace Orbita.Trazabilidad
         /// <returns>ILogger.</returns>
         public static ILogger SetRemotingLogger(string identificador, int puerto)
         {
-            return SetRemotingLogger(identificador, Orbita.Trazabilidad.Logger.Alias, puerto);
+            return SetRemotingLogger(identificador, Logger.Alias, puerto);
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.RemotingLogger.
@@ -460,7 +463,7 @@ namespace Orbita.Trazabilidad
         /// <returns>ILogger.</returns>
         public static ILogger SetRemotingLogger(string identificador, NivelLog nivelLog, int puerto)
         {
-            return SetRemotingLogger(identificador, nivelLog, Orbita.Trazabilidad.Logger.Alias, puerto);
+            return SetRemotingLogger(identificador, nivelLog, Logger.Alias, puerto);
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.RemotingLogger.
@@ -485,7 +488,7 @@ namespace Orbita.Trazabilidad
         /// <returns>ILogger.</returns>
         public static ILogger SetRemotingLogger(string identificador, NivelLog nivelLog, int puerto, string maquina)
         {
-            return SetRemotingLogger(identificador, nivelLog, Orbita.Trazabilidad.Logger.Alias, puerto, maquina);
+            return SetRemotingLogger(identificador, nivelLog, Logger.Alias, puerto, maquina);
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.RemotingLogger.
@@ -508,7 +511,7 @@ namespace Orbita.Trazabilidad
         /// <returns>ILogger.</returns>
         public static ILogger SetRemotingLogger(string identificador, NivelLog nivelLog, string alias)
         {
-            return SetRemotingLogger(identificador, nivelLog, alias, Orbita.Trazabilidad.Logger.Puerto);
+            return SetRemotingLogger(identificador, nivelLog, alias, Logger.Puerto);
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.RemotingLogger.
@@ -588,7 +591,7 @@ namespace Orbita.Trazabilidad
         /// <returns>ILogger.</returns>
         public static ILogger SetWrapperLogger(string identificador, NivelLog nivelLog)
         {
-            return SetWrapperLogger(identificador, nivelLog, Orbita.Trazabilidad.Logger.Puerto);
+            return SetWrapperLogger(identificador, nivelLog, Logger.Puerto);
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.WrapperLogger.
@@ -612,9 +615,9 @@ namespace Orbita.Trazabilidad
         public static ILogger SetWrapperLogger(string identificador, NivelLog nivelLog, int puerto)
         {
             // Construir el debuglogger.
-            ILogger debugLogger = new DebugLogger(Orbita.Trazabilidad.Logger.Debug, nivelLog);
+            ILogger debugLogger = new DebugLogger(Logger.Debug, nivelLog);
             // Construir el remotinglogger.
-            ILogger remotingLogger = new RemotingLogger(Orbita.Trazabilidad.Logger.Remoting, nivelLog, puerto);
+            ILogger remotingLogger = new RemotingLogger(Logger.Remoting, nivelLog, puerto);
             // Retornar el logger.
             return SetWrapperLogger(identificador, nivelLog, debugLogger, remotingLogger);
         }

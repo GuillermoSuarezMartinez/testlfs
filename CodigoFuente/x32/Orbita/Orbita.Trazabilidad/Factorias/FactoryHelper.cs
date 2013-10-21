@@ -17,7 +17,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Sin parámetros.
         /// </summary>
-        static object[] EmptyParams = new object[0];
+        private static readonly object[] EmptyParams = new object[0];
         #endregion
 
         #region Constructor
@@ -32,11 +32,7 @@ namespace Orbita.Trazabilidad
         {
             System.Reflection.ConstructorInfo constructor = tipo.GetConstructor(System.Reflection.BindingFlags.Public |
                 System.Reflection.BindingFlags.Instance, null, System.Type.EmptyTypes, null);
-            if (constructor != null)
-            {
-                return constructor.Invoke(EmptyParams);
-            }
-            return constructor;
+            return constructor != null ? constructor.Invoke(EmptyParams) : null;
         }
         #endregion
     }

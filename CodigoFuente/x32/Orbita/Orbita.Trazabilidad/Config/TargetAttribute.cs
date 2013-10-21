@@ -17,17 +17,6 @@ namespace Orbita.Trazabilidad
     [System.AttributeUsage(System.AttributeTargets.Class)]
     public sealed class TargetAttribute : System.Attribute
     {
-        #region Atributos privados
-        /// <summary>
-        /// The name of the logging target.
-        /// </summary>
-        string nombre;
-        /// <summary>
-        /// Marks the target as 'wrapper' target (used to generate the target summary documentation page).
-        /// </summary>
-        bool esWrapper = false;
-        #endregion
-
         #region Constructor
         /// <summary>
         /// Creates a new instance of the TargetAttribute class and sets the name.
@@ -35,7 +24,7 @@ namespace Orbita.Trazabilidad
         /// <param name="nombre"></param>
         public TargetAttribute(string nombre)
         {
-            this.nombre = nombre;
+            Nombre = nombre;
         }
         #endregion
 
@@ -43,18 +32,11 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// The name of the logging target.
         /// </summary>
-        public string Nombre
-        {
-            get { return this.nombre; }
-        }
+        public string Nombre { get; private set; }
         /// <summary>
         /// Marks the target as 'wrapper' target (used to generate the target summary documentation page).
         /// </summary>
-        public bool ESWrapper
-        {
-            get { return this.esWrapper; }
-            set { this.esWrapper = value; }
-        }
+        public bool EsWrapper { get; set; }
         #endregion
     }
 }

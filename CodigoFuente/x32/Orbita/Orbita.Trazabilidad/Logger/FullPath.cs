@@ -20,7 +20,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Ruta de almacenamiento de ficheros.
         /// </summary>
-        string path;
+        private string _path;
         #endregion
 
         #region Constructores
@@ -34,8 +34,7 @@ namespace Orbita.Trazabilidad
         /// <param name="path">Ruta de almacenamiento de ficheros.</param>
         public FullPath(string path)
         {
-            //this.Path = path;
-            this.path = path;
+            _path = path;
         }
         #endregion
 
@@ -45,13 +44,13 @@ namespace Orbita.Trazabilidad
         /// </summary>
         public string Path
         {
-            get { return this.path; }
+            get { return _path; }
             set
             {
-                this.path = value;
-                if (!this.Existe())
+                _path = value;
+                if (!Existe())
                 {
-                    this.Crear();
+                    Crear();
                 }
             }
         }
@@ -64,14 +63,14 @@ namespace Orbita.Trazabilidad
         /// <returns>True/False.</returns>
         public bool Existe()
         {
-            return System.IO.Directory.Exists(this.path);
+            return System.IO.Directory.Exists(_path);
         }
         /// <summary>
         /// Crear el directorio en la ruta del objeto.
         /// </summary>
         public void Crear()
         {
-            System.IO.Directory.CreateDirectory(this.path);
+            System.IO.Directory.CreateDirectory(_path);
         }
         #endregion
     }

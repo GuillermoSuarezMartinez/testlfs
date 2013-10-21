@@ -9,30 +9,21 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
+using System;
+
 namespace Orbita.Trazabilidad
 {
     /// <summary>
     /// Contiene datos de eventos relativos a escritura en logger.
     /// </summary>
-    public class LoggerEventArgs : System.EventArgs
+    public class LoggerEventArgs : EventArgs
     {
-        #region Atributos privados
-        /// <summary>
-        /// Item de entrada.
-        /// </summary>
-        ItemLog item;
-        /// <summary>
-        /// Excepción.
-        /// </summary>
-        System.Exception excepcion;
-        #endregion
-
         #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.LoggerEventArgs.
         /// </summary>
-        public LoggerEventArgs()
-            : base() { }
+        public LoggerEventArgs() { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.LoggerEventArgs.
         /// </summary>
@@ -40,17 +31,17 @@ namespace Orbita.Trazabilidad
         public LoggerEventArgs(ItemLog item)
             : this()
         {
-            this.item = item;
+            Item = item;
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.LoggerEventArgs.
         /// </summary>
         /// <param name="item">Item de entrada.</param>
         /// <param name="excepcion">Excepción.</param>
-        public LoggerEventArgs(ItemLog item, System.Exception excepcion)
+        public LoggerEventArgs(ItemLog item, Exception excepcion)
             : this(item)
         {
-            this.excepcion = excepcion;
+            Excepcion = excepcion;
         }
         #endregion
 
@@ -58,19 +49,11 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Item de entrada.
         /// </summary>
-        public ItemLog Item
-        {
-            get { return this.item; }
-            set { this.item = value; }
-        }
+        public ItemLog Item { get; set; }
         /// <summary>
         /// Excepción.
         /// </summary>
-        public System.Exception Excepcion
-        {
-            get { return this.excepcion; }
-            set { this.excepcion = value; }
-        }
+        public Exception Excepcion { get; set; }
         #endregion
     }
 }

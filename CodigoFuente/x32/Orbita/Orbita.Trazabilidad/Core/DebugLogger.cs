@@ -19,27 +19,15 @@ namespace Orbita.Trazabilidad
     {
         #region Atributos privados
         /// <summary>
-        /// Ruta de almacenamiento de ficheros de backup de logger.
-        /// </summary>
-        PathBackup pathBackup;
-        /// <summary>
-        /// Tiempo de inicio y periodo de ejecución de backups de logger.
-        /// </summary>
-        TimerLogger timerLogger;
-        /// <summary>
         /// Ruta de almacenamiento de ficheros de error de logger.
         /// </summary>
-        PathLogger pathError;
-        /// <summary>
-        /// Párametro de tamaño máximo de comparación de backups de logger.
-        /// </summary>
-        long sizeBackup;
+        private PathLogger _pathError;
         /// <summary>
         /// Escucha las notificaciones de cambio del sistema de archivos y provoca eventos
         /// cuando cambia un directorio o un archivo de un directorio. Útil para backups
         /// de logger por tamaño.
         /// </summary>
-        System.IO.FileSystemWatcher watcher;
+        private System.IO.FileSystemWatcher _watcher;
         #endregion
 
         #region Delegados públicos
@@ -272,9 +260,9 @@ namespace Orbita.Trazabilidad
         public DebugLogger(string identificador, NivelLog nivelLog, PathLogger pathLogger, TimerBackup timerBackup, PathBackup pathBackup)
             : base(identificador, nivelLog, pathLogger)
         {
-            this.SetPathLogger(pathLogger);
-            this.SetPathBackup(pathBackup);
-            this.SetTimerBackup(timerBackup);
+            SetPathLogger(pathLogger);
+            SetPathBackup(pathBackup);
+            SetTimerBackup(timerBackup);
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.DebugLogger.
@@ -288,7 +276,7 @@ namespace Orbita.Trazabilidad
         public DebugLogger(string identificador, NivelLog nivelLog, PathLogger pathLogger, long sizeBackup, PathBackup pathBackup)
             : this(identificador, nivelLog, pathLogger, null, pathBackup)
         {
-            this.SetFileSystemWatcher(sizeBackup);
+            SetFileSystemWatcher(sizeBackup);
         }
         #endregion
 
@@ -301,7 +289,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         public void Dispose()
         {
-            this.watcher.Dispose();
+            _watcher.Dispose();
         }
         #endregion
 
@@ -311,69 +299,56 @@ namespace Orbita.Trazabilidad
         /// </summary>
         public override PathLogger PathLogger
         {
-            get { return this.path; }
-            set { this.path = value; }
+            get { return Path; }
+            set { Path = value; }
         }
         /// <summary>
         /// Ruta de almacenamiento del fichero de backup de logger.
         /// </summary>
-        public PathBackup PathBackup
-        {
-            get { return this.pathBackup; }
-            set { this.pathBackup = value; }
-        }
+        public PathBackup PathBackup { get; set; }
         /// <summary>
         /// Ruta de almacenamiento del fichero de error de logger.
         /// </summary>
         public PathLogger PathError
         {
-            get { return this.pathError; }
+            get { return _pathError; }
             set
             {
-                if (value != null)
-                {
-                    this.pathError = new PathLogger(value.Path, string.Concat(value.Fichero, "-", Orbita.Trazabilidad.Fichero.Error), value.Extension);
-                    this.listener = new System.Diagnostics.TextWriterTraceListener(this.pathError.ToString());
-                }
+                if (value == null) return;
+                _pathError = new PathLogger(value.Path, string.Concat(value.Fichero, "-", Trazabilidad.Fichero.Error), value.Extension);
+                Listener = new System.Diagnostics.TextWriterTraceListener(_pathError.ToString());
             }
         }
         /// <summary>
         /// Tiempo de inicio y periodo de ejecución de backups de logger. Propiedad de solo lectura.
         /// </summary>
-        public TimerLogger TimerLogger
-        {
-            get { return this.timerLogger; }
-        }
+        public TimerLogger TimerLogger { get; private set; }
         /// <summary>
         /// Tamaño máximo de logger.
         /// </summary>
-        public long SizeBackup
-        {
-            get { return this.sizeBackup; }
-            set { this.sizeBackup = value; }
-        }
+        public long SizeBackup { get; set; }
         /// <summary>
         /// Separador para fichero logger.
         /// </summary>
         public override string Separador
         {
-            get { return this.separador; }
-            set { this.separador = value; }
+            get { return separador; }
+            set { separador = value; }
         }
         /// <summary>
         /// Permitir incluir retornos de carro en los mensajes de logger. Por defecto, false.
         /// </summary>
         public override bool RetornoCarro
         {
-            get { return this.retornoDeCarro; }
-            set { this.retornoDeCarro = value; }
+            get { return RetornoDeCarro; }
+            set { RetornoDeCarro = value; }
         }
         /// <summary>
         /// Ruta completa de almacenamiento del fichero de logger.
         /// </summary>
         public override string Fichero
         {
-            get { return this.path.ToString(); }
+            get { return Path.ToString(); }
         }
         #endregion
 
@@ -381,7 +356,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Nombre del fichero del backup de logger.
         /// </summary>
-        string FicheroBackup
+        private string FicheroBackup
         {
             get
             {
@@ -389,12 +364,12 @@ namespace Orbita.Trazabilidad
                 System.DateTime fecha = System.DateTime.Now;
                 // Crear el nuevo objeto de path de backup logger completo.
                 // Asignar el path (pathlogger), nombre del fichero destino y extensión.
-                PathLogger pathBackupFull = new PathLogger(this.PathBackup.Path, string.Format(System.Globalization.CultureInfo.CurrentCulture, @"{0}-{1}-{2}", this.PathLogger.Fichero, fecha.ToString(Orbita.Trazabilidad.Formato.AñoMesDia, System.Globalization.CultureInfo.CurrentCulture), fecha.ToString(Orbita.Trazabilidad.Formato.HoraMinutoSegundoCentesima, System.Globalization.CultureInfo.CurrentCulture)), this.PathLogger.Extension);
+                var pathBackupFull = new PathLogger(PathBackup.Path, string.Format(System.Globalization.CultureInfo.CurrentCulture, @"{0}-{1}-{2}", PathLogger.Fichero, fecha.ToString(Formato.AñoMesDia, System.Globalization.CultureInfo.CurrentCulture), fecha.ToString(Formato.HoraMinutoSegundoCentesima, System.Globalization.CultureInfo.CurrentCulture)), PathLogger.Extension);
                 // Formato del subpath de backup.
-                string formato = this.PathBackup.Mascara;
+                string formato = PathBackup.Mascara;
                 if (!string.IsNullOrEmpty(formato))
                 {
-                    pathBackupFull.Path = string.Format(System.Globalization.CultureInfo.CurrentCulture, @"{0}\{1}", this.PathBackup.Path, fecha.ToString(formato, System.Globalization.CultureInfo.CurrentCulture));
+                    pathBackupFull.Path = string.Format(System.Globalization.CultureInfo.CurrentCulture, @"{0}\{1}", PathBackup.Path, fecha.ToString(formato, System.Globalization.CultureInfo.CurrentCulture));
                 }
                 return pathBackupFull.ToString();
             }
@@ -407,42 +382,40 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="estado">Estado de la Callback.</param>
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes")]
-        void ProcesoBackup(object estado)
+        private void ProcesoBackup(object estado)
         {
             try
             {
                 lock (Bloqueo)
                 {
                     // Si existe el fichero origen (por defecto, debug.log).
-                    if (this.PathLogger.ExisteFichero())
+                    if (!PathLogger.ExisteFichero()) return;
+                    // Establecer tamaño del buffer.
+                    const int bufferSize = 1024 * 1024;
+                    using (var origen = new System.IO.FileStream(Fichero, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+                    using (var destino = new System.IO.FileStream(FicheroBackup, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.Write))
                     {
-                        // Establecer tamaño del buffer.
-                        int bufferSize = 1024 * 1024;
-                        using (System.IO.FileStream origen = new System.IO.FileStream(this.Fichero, System.IO.FileMode.Open, System.IO.FileAccess.Read))
-                        using (System.IO.FileStream destino = new System.IO.FileStream(this.FicheroBackup, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.Write))
+                        // Establecer la longitud de la secuencia.
+                        destino.SetLength(origen.Length);
+                        int bytesRead;
+                        var bytes = new byte[bufferSize];
+                        // Leer los bytes de la secuencia y escribir los datos en un búfer dado.
+                        while ((bytesRead = origen.Read(bytes, 0, bufferSize)) > 0)
                         {
-                            // Establecer la longitud de la secuencia.
-                            destino.SetLength(origen.Length);
-                            int bytesRead = -1;
-                            byte[] bytes = new byte[bufferSize];
-                            // Leer los bytes de la secuencia y escribir los datos en un búfer dado.
-                            while ((bytesRead = origen.Read(bytes, 0, bufferSize)) > 0)
-                            {
-                                // Escribir lo bloques de esta secuencia mediante el uso de datos de un búfer.
-                                destino.Write(bytes, 0, bytesRead);
-                            }
+                            // Escribir lo bloques de esta secuencia mediante el uso de datos de un búfer.
+                            destino.Write(bytes, 0, bytesRead);
                         }
-                        // Eliminar el fichero origen (por defecto, debug.log).
-                        if (!this.PathLogger.BorrarFichero())
-                        {
-                            throw new System.Exception(string.Format(System.Globalization.CultureInfo.CurrentCulture, "No se ha podido eliminar el archivo {0}", this.Fichero));
-                        }
-                        // En C# debemos comprobar que el evento no sea null.
-                        if (this.OnDespuesCrearBackup != null)
-                        {
-                            // El evento se lanza como cualquier delegado.
-                            this.OnDespuesCrearBackup(this, System.EventArgs.Empty);
-                        }
+                    }
+                    // Eliminar el fichero origen (por defecto, debug.log).
+                    if (!PathLogger.BorrarFichero())
+                    {
+                        throw new System.Exception(string.Format(System.Globalization.CultureInfo.CurrentCulture, "No se ha podido eliminar el archivo {0}", Fichero));
+                    }
+                    // En C# debemos comprobar que el evento no sea null.
+                    if (OnDespuesCrearBackup != null)
+                    {
+                        // El evento se lanza como cualquier delegado.
+                        OnDespuesCrearBackup(this, System.EventArgs.Empty);
                     }
                 }
             }
@@ -463,7 +436,7 @@ namespace Orbita.Trazabilidad
             if (pathLogger != null)
             {
                 // Componer y asignar el listeners de trazas generadas en excepciones de logger.
-                this.PathError = pathLogger;
+                PathError = pathLogger;
             }
         }
         /// <summary>
@@ -475,7 +448,7 @@ namespace Orbita.Trazabilidad
             if (path != null)
             {
                 // Asignar path de backup de logger.
-                this.pathBackup = path;
+                PathBackup = path;
             }
         }
         /// <summary>
@@ -484,15 +457,12 @@ namespace Orbita.Trazabilidad
         /// <param name="timerBackup">Objeto timer backup.</param>
         public void SetTimerBackup(TimerBackup timerBackup)
         {
-            if (timerBackup != null)
-            {
-                // Asignar el timer adecuado de copias backup, en tiempo y periodo.
-                // Crear el objeto público, para permitir desde fuera destruir el timer.
-                this.timerLogger = new TimerLogger();
-                this.timerLogger.CallBack = new System.Threading.TimerCallback(ProcesoBackup);
-                this.timerLogger.Timer = new System.Threading.Timer(this.timerLogger.CallBack);
-                this.timerLogger.Change(timerBackup.Hora, timerBackup.Periodo);
-            }
+            if (timerBackup == null) return;
+            // Asignar el timer adecuado de copias backup, en tiempo y periodo.
+            // Crear el objeto público, para permitir desde fuera destruir el timer.
+            TimerLogger = new TimerLogger { CallBack = ProcesoBackup };
+            TimerLogger.Timer = new System.Threading.Timer(TimerLogger.CallBack);
+            TimerLogger.Change(timerBackup.Hora, timerBackup.Periodo);
         }
         /// <summary>
         /// Asignar el objeto System.IO.FileSystemWatcher.
@@ -502,20 +472,22 @@ namespace Orbita.Trazabilidad
         public void SetFileSystemWatcher(long size)
         {
             // Tamaño máximo de logger hasta hacer backup.
-            this.sizeBackup = size;
+            SizeBackup = size;
             // Crear un vigilante de archivos del sistema.
-            this.watcher = new System.IO.FileSystemWatcher();
+            _watcher = new System.IO.FileSystemWatcher
+                {
+                    Path = System.IO.Path.GetFullPath(PathLogger.Path),
+                    Filter = "*." + PathLogger.Extension,
+                    NotifyFilter = System.IO.NotifyFilters.Size,
+                    IncludeSubdirectories = false
+                };
             // Asignar la ruta que se quiere monitorizar.
-            this.watcher.Path = System.IO.Path.GetFullPath(this.PathLogger.Path);
-            this.watcher.Filter = "*." + this.PathLogger.Extension;
-            this.watcher.NotifyFilter = System.IO.NotifyFilters.Size;
             // No incluir subdirectorios en la ruta de monitorización.
-            this.watcher.IncludeSubdirectories = false;
             // Asignar el evento de cambio.
-            this.watcher.Changed += new System.IO.FileSystemEventHandler(Watcher_Changed);
+            _watcher.Changed += Watcher_Changed;
             //
             // Comenzar la exploración de tamaño de logger.
-            this.watcher.EnableRaisingEvents = true;
+            _watcher.EnableRaisingEvents = true;
         }
         #endregion
 
@@ -525,7 +497,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void Watcher_Changed(object sender, System.IO.FileSystemEventArgs e)
+        private void Watcher_Changed(object sender, System.IO.FileSystemEventArgs e)
         {
             try
             {
@@ -534,18 +506,18 @@ namespace Orbita.Trazabilidad
                 {
                     backup = false;
                     // Si existe el fichero origen (por defecto, debug.log).
-                    System.IO.FileInfo logger = new System.IO.FileInfo(e.FullPath);
+                    var logger = new System.IO.FileInfo(e.FullPath);
                     if (logger.Exists)
                     {
                         // Si el tamaño del fichero en bytes es igual o superior al establecido
                         // procesar el backup correspondiente.
-                        backup = logger.Length.CompareTo(this.sizeBackup) >= 0;
+                        backup = logger.Length.CompareTo(SizeBackup) >= 0;
                     }
                 }
                 // Control de backup fuera del bloqueo.
                 if (backup)
                 {
-                    this.ProcesoBackup(null);
+                    ProcesoBackup(null);
                 }
             }
             catch (System.Exception ex)

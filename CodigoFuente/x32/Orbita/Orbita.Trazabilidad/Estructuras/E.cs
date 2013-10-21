@@ -50,7 +50,7 @@ namespace Orbita.Trazabilidad
         /// <param name="cadena">Cadena de comparación.</param>
         /// <returns>La igualdad de la cadena de comparación con el tipo.</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", Justification = "E interesante para estructuras del lenguaje.")]
-        public static bool operator ==(Orbita.Trazabilidad.E e, string cadena)
+        public static bool operator ==(E e, string cadena)
         {
             return e.Equals(cadena);
         }
@@ -61,7 +61,7 @@ namespace Orbita.Trazabilidad
         /// <param name="cadena">Cadena de comparación.</param>
         /// <returns>La desigualdad de la cadena de comparación con el tipo.</returns>
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", Justification = "E interesante para estructuras del lenguaje.")]
-        public static bool operator !=(Orbita.Trazabilidad.E e, string cadena)
+        public static bool operator !=(E e, string cadena)
         {
             return !e.Equals(cadena);
         }

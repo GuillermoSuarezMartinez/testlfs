@@ -9,17 +9,14 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
+using System.Linq;
+using System.Reflection;
+
 namespace Orbita.Trazabilidad
 {
-    internal sealed class PropertyHelper
+    internal static class PropertyHelper
     {
-        #region Constructor
-        /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.PropertyHelper.
-        /// </summary>
-        PropertyHelper() { }
-        #endregion
-
         #region Métodos públicos estáticos
         public static string ExpandVariables(string input)
         {
@@ -29,12 +26,11 @@ namespace Orbita.Trazabilidad
         {
             try
             {
-                System.Reflection.PropertyInfo propInfo = GetPropertyInfo(o, name);
+                PropertyInfo propInfo = GetPropertyInfo(o, name);
                 if (propInfo == null)
                 {
                     throw new System.NotSupportedException("Parámetro " + name + " no soportado en " + o.GetType().Name);
                 }
-
                 object newValue = null;
                 if (propInfo.PropertyType.IsEnum)
                 {
@@ -63,33 +59,20 @@ namespace Orbita.Trazabilidad
         #endregion
 
         #region Métodos privados estáticos
-        static object GetEnumValue(System.Type enumType, string value)
+        private static object GetEnumValue(System.Type enumType, string value)
         {
             if (enumType.IsDefined(typeof(System.FlagsAttribute), false))
             {
-                ulong union = 0;
-                foreach (string v in value.Split(','))
-                {
-                    System.Reflection.FieldInfo enumField = enumType.GetField(v.Trim(), System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.FlattenHierarchy | System.Reflection.BindingFlags.Public);
-                    union |= System.Convert.ToUInt64(enumField.GetValue(null), System.Globalization.CultureInfo.InvariantCulture);
-                }
+                ulong union = value.Split(',').Select(v => enumType.GetField(v.Trim(), BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public)).Aggregate<FieldInfo, ulong>(0, (current, enumField) => current | System.Convert.ToUInt64(enumField.GetValue(null), System.Globalization.CultureInfo.InvariantCulture));
                 object retval = System.Convert.ChangeType(union, System.Enum.GetUnderlyingType(enumType), System.Globalization.CultureInfo.InvariantCulture);
                 return retval;
             }
-            else
-            {
-                System.Reflection.FieldInfo enumField = enumType.GetField(value, System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.FlattenHierarchy | System.Reflection.BindingFlags.Public);
-                return enumField.GetValue(null);
-            }
+            var enumField2 = enumType.GetField(value, BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.FlattenHierarchy | BindingFlags.Public);
+            return enumField2.GetValue(null);
         }
-        static System.Reflection.PropertyInfo GetPropertyInfo(object o, string propiedad)
+        private static PropertyInfo GetPropertyInfo(object o, string propiedad)
         {
-            System.Reflection.PropertyInfo propInfo = o.GetType().GetProperty(propiedad, System.Reflection.BindingFlags.IgnoreCase | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-            if (propInfo != null)
-            {
-                return propInfo;
-            }
-            return null;
+            return o.GetType().GetProperty(propiedad, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
         }
         #endregion
     }

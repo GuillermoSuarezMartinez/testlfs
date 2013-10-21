@@ -16,40 +16,33 @@ namespace Orbita.Trazabilidad
     /// </summary>
     public class PathBackup : FullPath
     {
-        #region Atributos privados
-        /// <summary>
-        /// Subruta de almacenamiento de ficheros de backup de logger.
-        /// </summary>
-        Orbita.Trazabilidad.Mascara subPath;
-        #endregion
-
         #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.PathBackup.
         /// </summary>
         public PathBackup()
-            : this(string.Format(System.Globalization.CultureInfo.CurrentCulture, @"{0}\{1}", System.Windows.Forms.Application.StartupPath, Orbita.Trazabilidad.Ruta.Backup)) { }
+            : this(string.Format(System.Globalization.CultureInfo.CurrentCulture, @"{0}\{1}", System.Windows.Forms.Application.StartupPath, Ruta.Backup)) { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.PathBackup.
         /// </summary>
         /// <param name="path">Ruta de almacenamiento de ficheros de backup de logger.</param>
         public PathBackup(string path)
-            : this(path, Orbita.Trazabilidad.Mascara.AñoMes) { }
+            : this(path, Trazabilidad.Mascara.AñoMes) { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.PathBackup.
         /// </summary>
         /// <param name="subPath">Subruta de almacenamiento de ficheros de backup de logger.</param>
-        public PathBackup(Orbita.Trazabilidad.Mascara subPath)
-            : this(string.Format(System.Globalization.CultureInfo.CurrentCulture, @"{0}\{1}", System.Windows.Forms.Application.StartupPath, Orbita.Trazabilidad.Ruta.Backup), subPath) { }
+        public PathBackup(Mascara subPath)
+            : this(string.Format(System.Globalization.CultureInfo.CurrentCulture, @"{0}\{1}", System.Windows.Forms.Application.StartupPath, Ruta.Backup), subPath) { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.PathBackup.
         /// </summary>
         /// <param name="path">Ruta de almacenamiento de ficheros de backup de logger.</param>
         /// <param name="subPath">Subruta de almacenamiento de ficheros de backup de logger.</param>
-        public PathBackup(string path, Orbita.Trazabilidad.Mascara subPath)
+        public PathBackup(string path, Mascara subPath)
             : base(path)
         {
-            this.subPath = subPath;
+            SubPath = subPath;
         }
         #endregion
 
@@ -57,11 +50,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Subruta de almacenamiento de ficheros de backup de logger.
         /// </summary>
-        public Orbita.Trazabilidad.Mascara SubPath
-        {
-            get { return this.subPath; }
-            set { this.subPath = value; }
-        }
+        public Mascara SubPath { get; set; }
         /// <summary>
         /// Subruta string de almacenamiento de ficheros de backup de logger. Propiedad de solo lectura.
         /// </summary>
@@ -69,19 +58,18 @@ namespace Orbita.Trazabilidad
         {
             get
             {
-                switch (this.subPath)
+                switch (SubPath)
                 {
-                    case Orbita.Trazabilidad.Mascara.Año:
-                        return Orbita.Trazabilidad.Formato.Año;
-                    case Orbita.Trazabilidad.Mascara.Mes:
-                        return Orbita.Trazabilidad.Formato.Mes;
-                    case Orbita.Trazabilidad.Mascara.MesDia:
-                        return Orbita.Trazabilidad.Formato.MesDia;
-                    case Orbita.Trazabilidad.Mascara.AñoMes:
-                        return Orbita.Trazabilidad.Formato.AñoMes;
-                    case Orbita.Trazabilidad.Mascara.AñoMesDia:
-                        return Orbita.Trazabilidad.Formato.AñoMesDia;
-                    case Orbita.Trazabilidad.Mascara.None:
+                    case Trazabilidad.Mascara.Año:
+                        return Formato.Año;
+                    case Trazabilidad.Mascara.Mes:
+                        return Formato.Mes;
+                    case Trazabilidad.Mascara.MesDia:
+                        return Formato.MesDia;
+                    case Trazabilidad.Mascara.AñoMes:
+                        return Formato.AñoMes;
+                    case Trazabilidad.Mascara.AñoMesDia:
+                        return Formato.AñoMesDia;
                     default:
                         return null;
                 }

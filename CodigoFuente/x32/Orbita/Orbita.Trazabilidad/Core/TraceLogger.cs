@@ -9,6 +9,9 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
+using System.Linq;
+
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -20,7 +23,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Ruta de almacenamiento de ficheros de logger.
         /// </summary>
-        protected PathLogger path;
+        protected PathLogger Path;
         /// <summary>
         /// Separador de columnas de ficheros de logger.
         /// </summary>
@@ -28,16 +31,16 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Permitir incluir retornos de carro en los mensajes de logger. Por defecto, false.
         /// </summary>
-        protected bool retornoDeCarro;
+        protected bool RetornoDeCarro;
         /// <summary>
         /// Dirige los resultados del seguimiento o la depuración a un objeto System.IO.TextWriter
         /// o a un objeto de la clase System.IO.Stream como un archivo System.IO.FileStream.
         /// </summary>
-        protected System.Diagnostics.TextWriterTraceListener listener;
+        protected System.Diagnostics.TextWriterTraceListener Listener;
         /// <summary>
         /// Guarda relativa al evento cíclico que sucede si se traza sobre el evento elevado de logger.
         /// </summary>
-        bool eventoCiclico = true;
+        private bool _eventoCiclico = true;
         #endregion
 
         #region Atributos protegidos estáticos
@@ -87,13 +90,13 @@ namespace Orbita.Trazabilidad
             : base(identificador, nivelLog)
         {
             // Path de logger.
-            this.path = path;
+            Path = path;
             // Por defecto, no vamos a almacenar retornos de carro.
-            this.retornoDeCarro = false;
+            RetornoDeCarro = false;
             // Separador de mensajes.
-            this.separador = Orbita.Trazabilidad.Logger.Separador;
+            separador = Logger.Separador;
             // Asignación del método delegado dinámico de traza de nivel.
-            this.TrazarNivel = new NivelSID(Nivel);
+            TrazarNivel = Nivel;
         }
         #endregion
 
@@ -142,14 +145,14 @@ namespace Orbita.Trazabilidad
             try
             {
                 // Crear la cadena que se va a escribir en el log.
-                string cadena = Formatear(item);
+                var cadena = Formatear(item);
                 // Escribir en disco la cadena de texto.
-                this.Escribir(cadena, item);
+                Escribir(cadena, item);
             }
             catch (System.Exception ex)
             {
                 // Escribir error en disco.
-                this.Escribir(ex);
+                Escribir(ex);
             }
         }
         /// <summary>
@@ -168,18 +171,15 @@ namespace Orbita.Trazabilidad
                 if (args != null)
                 {
                     // Concatenar los argumentos adicionales al registro.
-                    for (int i = 0; i < args.Length; i++)
-                    {
-                        cadena += string.Concat(this.Separador, Formatear(args[i]));
-                    }
+                    cadena = args.Aggregate(cadena, (current, t) => current + string.Concat(Separador, Formatear(t)));
                 }
                 // Escribir en disco la cadena de texto.
-                this.Escribir(cadena, item);
+                Escribir(cadena, item);
             }
             catch (System.Exception ex)
             {
                 // Escribir error en disco.
-                this.Escribir(ex);
+                Escribir(ex);
             }
         }
         #endregion
@@ -190,7 +190,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="item">Item de entrada.</param>
         /// <returns>Nivel de log.</returns>
-        string Nivel(ItemLog item)
+        private static string Nivel(ItemLog item)
         {
             return item.SNivelLog;
         }
@@ -201,14 +201,10 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="cadena">Cadena de entrada.</param>
         /// <returns>Cadena de entrada formateada.</returns>
-        string Formatear(object cadena)
+        private string Formatear(object cadena)
         {
             object res = cadena ?? string.Empty;
-            if (this.retornoDeCarro)
-            {
-                return res.ToString().Replace(this.Separador, "?");
-            }
-            return res.ToString().Replace(System.Environment.NewLine, string.Empty).Replace(this.Separador, "?");
+            return RetornoDeCarro ? res.ToString().Replace(Separador, "?") : res.ToString().Replace(System.Environment.NewLine, string.Empty).Replace(Separador, "?");
         }
         /// <summary>
         /// Método que formatea la cadena de entrada. Eliminando los  saltos de
@@ -217,29 +213,25 @@ namespace Orbita.Trazabilidad
         /// </summary>
         /// <param name="cadena">Cadena de entrada.</param>
         /// <returns>Cadena de entrada formateada.</returns>
-        string Formatear(string cadena)
+        private string Formatear(string cadena)
         {
-            if (this.retornoDeCarro)
-            {
-                return cadena.Replace(this.Separador, "?");
-            }
-            return cadena.Replace(System.Environment.NewLine, string.Empty).Replace(this.Separador, "?");
+            return RetornoDeCarro ? cadena.Replace(Separador, "?") : cadena.Replace(System.Environment.NewLine, string.Empty).Replace(Separador, "?");
         }
         /// <summary>
         /// Método que crea la cadena de entrada al logger.
         /// </summary>
         /// <param name="item">Item de entrada.</param>
         /// <returns>Cadena de entrada formateada.</returns>
-        string Formatear(ItemLog item)
+        private string Formatear(ItemLog item)
         {
-            return string.Format(System.Globalization.CultureInfo.CurrentCulture, "{0}  {1} {2} {3}", item.SFecha, this.TrazarNivel(item), this.Separador, this.Formatear(item.Mensaje));
+            return string.Format(System.Globalization.CultureInfo.CurrentCulture, "{0}  {1} {2} {3}", item.SFecha, TrazarNivel(item), Separador, Formatear(item.Mensaje));
         }
         /// <summary>
         /// Escribir en disco la cadena de texto.
         /// </summary>
         /// <param name="cadena">Cadena de texto.</param>
         /// <param name="item">Item de entrada.</param>
-        void Escribir(string cadena, ItemLog item)
+        private void Escribir(string cadena, ItemLog item)
         {
             // Utilizar bloqueo...static volatile object Bloqueo = new object();
             lock (Bloqueo)
@@ -249,8 +241,8 @@ namespace Orbita.Trazabilidad
                 try
                 {
                     // Abrir el Fichero=Nombre del fichero, en modo escritura con lectura compartida y modo de creacion.
-                    fs = new System.IO.FileStream(this.Fichero, System.IO.FileMode.Append, System.IO.FileAccess.Write, System.IO.FileShare.Read);
-                    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(fs))
+                    fs = new System.IO.FileStream(Fichero, System.IO.FileMode.Append, System.IO.FileAccess.Write, System.IO.FileShare.Read);
+                    using (var sw = new System.IO.StreamWriter(fs))
                     {
                         // Obtiene un valor que indica si la secuencia actual admite escritura.
                         while (!fs.CanWrite) { }
@@ -269,20 +261,20 @@ namespace Orbita.Trazabilidad
                     }
                     try
                     {
-                        if (this.eventoCiclico)
+                        if (_eventoCiclico)
                         {
-                            this.eventoCiclico = false;
+                            _eventoCiclico = false;
                             // Argumentos relativos al evento de escritura.
-                            LoggerEventArgs e = new LoggerEventArgs(item);
+                            var e = new LoggerEventArgs(item);
                             // El evento se lanza como cualquier delegado.
-                            this.OnDespuesEscribirLogger(this, e);
+                            OnDespuesEscribirLogger(this, e);
                         }
                     }
                     finally
                     {
-                        if (!this.eventoCiclico)
+                        if (!_eventoCiclico)
                         {
-                            this.eventoCiclico = true;
+                            _eventoCiclico = true;
                         }
                     }
                 }
@@ -298,30 +290,27 @@ namespace Orbita.Trazabilidad
         protected void Escribir(System.Exception ex)
         {
             // Comprobar la existencia del directorio.
-            if (!this.PathLogger.Existe())
+            if (!PathLogger.Existe())
             {
                 // ..sino existe crearlo.
-                this.path.Crear();
+                Path.Crear();
             }
-            if (ex != null)
+            if (ex == null) return;
+            using (var item = new ItemLog(NivelLog.Fatal, ex))
             {
-                string cadena = string.Empty;
-                using (ItemLog item = new ItemLog(NivelLog.Fatal, ex))
-                {
-                    // Formatear la salida.
-                    cadena = Formatear(item);
-                    // Escribir la salida en un fichero.
-                    this.listener.WriteLine(cadena);
-                    // Cierra System.Diagnostics.TextWriterTraceListener.Writer para que ya no se
-                    // reciba ningún resultado del seguimiento o la depuración.
-                    this.listener.Close();
-                    // Vacía el búfer de resultados de la propiedad System.Diagnostics.TextWriterTraceListener.Writer.
-                    this.listener.Flush();
-                    // Argumentos relativos al evento de escritura.
-                    LoggerEventArgs e = new LoggerEventArgs(item, ex);
-                    // El evento se lanza como cualquier delegado.
-                    this.OnErrorLogger(this, e);
-                }
+                // Formatear la salida.
+                var cadena = Formatear(item);
+                // Escribir la salida en un fichero.
+                Listener.WriteLine(cadena);
+                // Cierra System.Diagnostics.TextWriterTraceListener.Writer para que ya no se
+                // reciba ningún resultado del seguimiento o la depuración.
+                Listener.Close();
+                // Vacía el búfer de resultados de la propiedad System.Diagnostics.TextWriterTraceListener.Writer.
+                Listener.Flush();
+                // Argumentos relativos al evento de escritura.
+                var e = new LoggerEventArgs(item, ex);
+                // El evento se lanza como cualquier delegado.
+                OnErrorLogger(this, e);
             }
         }
         #endregion

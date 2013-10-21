@@ -67,7 +67,7 @@ namespace Orbita.Trazabilidad
         /// <param name="logger">Logger de tipo contenedor.</param>
         /// <param name="cadena">Cadena de comparación.</param>
         /// <returns>La igualdad de la cadena de comparación con el tipo.</returns>
-        public static bool operator ==(Orbita.Trazabilidad.Logger logger, string cadena)
+        public static bool operator ==(Logger logger, string cadena)
         {
             return logger.Equals(cadena);
         }
@@ -77,7 +77,7 @@ namespace Orbita.Trazabilidad
         /// <param name="logger">Logger de tipo contenedor.</param>
         /// <param name="cadena">Cadena de comparación.</param>
         /// <returns>La desigualdad de la cadena de comparación con el tipo.</returns>
-        public static bool operator !=(Orbita.Trazabilidad.Logger logger, string cadena)
+        public static bool operator !=(Logger logger, string cadena)
         {
             return !logger.Equals(cadena);
         }

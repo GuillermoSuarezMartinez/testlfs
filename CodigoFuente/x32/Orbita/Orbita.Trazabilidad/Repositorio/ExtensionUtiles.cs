@@ -20,7 +20,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Colección de ensamblados.
         /// </summary>
-        static System.Collections.ArrayList Ensamblados = Inicializar();
+        private static System.Collections.ArrayList _ensamblados = Inicializar();
         #endregion
 
         #region Métodos públicos
@@ -30,7 +30,7 @@ namespace Orbita.Trazabilidad
         /// <returns>Contiene todos los ensamblados que han sido cargados en Orbita.Trazabilidad.</returns>
         public static System.Collections.ArrayList GetEnsamblados
         {
-            get { return Ensamblados; }
+            get { return _ensamblados; }
         }
         #endregion
 
@@ -42,9 +42,8 @@ namespace Orbita.Trazabilidad
         static System.Collections.ArrayList Inicializar()
         {
             // Añade los defectos de logger.
-            Ensamblados = new System.Collections.ArrayList();
-            Ensamblados.Add(typeof(Orbita.Trazabilidad.LogManager).Assembly);
-            return Ensamblados;
+            _ensamblados = new System.Collections.ArrayList { typeof(LogManager).Assembly };
+            return _ensamblados;
         }
         #endregion
     }

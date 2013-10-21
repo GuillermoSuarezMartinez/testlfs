@@ -16,36 +16,25 @@ namespace Orbita.Trazabilidad
     /// </summary>
     public class PathLogger : FullPath
     {
-        #region Atributos privados
-        /// <summary>
-        /// Nombre del fichero de logger.
-        /// </summary>
-        string fichero;
-        /// <summary>
-        /// Extensión del fichero de logger.
-        /// </summary>
-        string extension;
-        #endregion
-
         #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.PathLogger.
         /// </summary>
         public PathLogger()
-            : this(string.Format(System.Globalization.CultureInfo.CurrentCulture, @"{0}\{1}", System.Windows.Forms.Application.StartupPath, Orbita.Trazabilidad.Ruta.Debug)) { }
+            : this(string.Format(System.Globalization.CultureInfo.CurrentCulture, @"{0}\{1}", System.Windows.Forms.Application.StartupPath, Ruta.Debug)) { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.PathLogger.
         /// </summary>
         /// <param name="path">Ruta de almacenamiento de ficheros de logger.</param>
         public PathLogger(string path)
-            : this(path, Orbita.Trazabilidad.Fichero.Debug) { }
+            : this(path, Trazabilidad.Fichero.Debug) { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.PathLogger.
         /// </summary>
         /// <param name="path">Ruta de almacenamiento de ficheros de logger.</param>
         /// <param name="fichero">Nombre del fichero de logger.</param>
         public PathLogger(string path, string fichero)
-            : this(path, fichero, Orbita.Trazabilidad.Extension.Log) { }
+            : this(path, fichero, Trazabilidad.Extension.Log) { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.PathLogger.
         /// </summary>
@@ -55,8 +44,8 @@ namespace Orbita.Trazabilidad
         public PathLogger(string path, string fichero, string extension)
             : base(path)
         {
-            this.fichero = fichero;
-            this.extension = extension;
+            Fichero = fichero;
+            Extension = extension;
         }
         #endregion
 
@@ -64,19 +53,11 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Nombre del fichero de logger.
         /// </summary>
-        public string Fichero
-        {
-            get { return this.fichero; }
-            set { this.fichero = value; }
-        }
+        public string Fichero { get; set; }
         /// <summary>
         /// Extensión del fichero de logger.
         /// </summary>
-        public string Extension
-        {
-            get { return this.extension; }
-            set { this.extension = value; }
-        }
+        public string Extension { get; set; }
         #endregion
 
         #region Métodos públicos
@@ -86,7 +67,7 @@ namespace Orbita.Trazabilidad
         /// <returns>string.</returns>
         public override string ToString()
         {
-            return string.Format(System.Globalization.CultureInfo.CurrentCulture, @"{0}\{1}.{2}", this.Path, this.Fichero, this.Extension);
+            return string.Format(System.Globalization.CultureInfo.CurrentCulture, @"{0}\{1}.{2}", Path, Fichero, Extension);
         }
         /// <summary>
         /// Comprobar la existencia del fichero.
@@ -94,7 +75,7 @@ namespace Orbita.Trazabilidad
         /// <returns>True/False.</returns>
         public bool ExisteFichero()
         {
-            return System.IO.File.Exists(this.ToString());
+            return System.IO.File.Exists(ToString());
         }
         /// <summary>
         /// Borrar fichero.
@@ -102,7 +83,7 @@ namespace Orbita.Trazabilidad
         /// <returns>True/False.</returns>
         public bool BorrarFichero()
         {
-            string archivo = this.ToString();
+            string archivo = ToString();
             if (System.IO.File.Exists(archivo))
             {
                 // Elimina el archivo especificado. Si el archivo no existe, no produce una excepción.

@@ -47,7 +47,7 @@ namespace Orbita.Trazabilidad
         /// <param name="extension">Extension de tipo contenedor.</param>
         /// <param name="cadena">Cadena de comparación.</param>
         /// <returns>La igualdad de la cadena de comparación con el tipo.</returns>
-        public static bool operator ==(Orbita.Trazabilidad.Extension extension, string cadena)
+        public static bool operator ==(Extension extension, string cadena)
         {
             return extension.Equals(cadena);
         }
@@ -57,7 +57,7 @@ namespace Orbita.Trazabilidad
         /// <param name="extension">Extension de tipo contenedor.</param>
         /// <param name="cadena">Cadena de comparación.</param>
         /// <returns>La desigualdad de la cadena de comparación con el tipo.</returns>
-        public static bool operator !=(Orbita.Trazabilidad.Extension extension, string cadena)
+        public static bool operator !=(Extension extension, string cadena)
         {
             return !extension.Equals(cadena);
         }

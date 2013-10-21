@@ -20,15 +20,14 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
         /// </summary>
-        object[] args;
+        private object[] _args;
         #endregion
 
         #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.LoggerEventArgs.
         /// </summary>
-        public LoggerArgsEventArgs()
-            : base() { }
+        public LoggerArgsEventArgs() { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.LoggerEventArgs.
         /// </summary>
@@ -51,14 +50,14 @@ namespace Orbita.Trazabilidad
         /// <returns>Colección de object.</returns>
         public object[] GetArgumentos()
         {
-            return this.args;
+            return _args;
         }
         /// <summary>
         /// Asignar argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
         /// </summary>
         public void SetArgumentos(object[] argumentos)
         {
-            this.args = argumentos;
+            _args = argumentos;
         }
         #endregion
     }

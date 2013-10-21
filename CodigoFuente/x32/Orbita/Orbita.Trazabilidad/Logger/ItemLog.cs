@@ -9,6 +9,9 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
+using System;
+
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -19,39 +22,27 @@ namespace Orbita.Trazabilidad
     {
         #region Atributos privados
         /// <summary>
-        /// El nivel de registro. Por defecto <c>NivelLog.Debug</c>.
-        /// </summary>
-        NivelLog nivelLog;
-        /// <summary>
-        /// Dia y hora de entrada en el registro. Si no  explicitamente esta propiedad ofrece la marca de tiempo de la creación del objeto.
-        /// </summary>
-        System.DateTime fecha;
-        /// <summary>
-        /// Cuerpo del mensaje. Por defecto <c>string.Empty</c>.
-        /// </summary>
-        string mensaje;
-        /// <summary>
         /// Identificador de secuencia. Por defecto <c>null</c>.
         /// </summary>
-        int? identificador;
+        private int? _identificador;
         /// <summary>
         /// Argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
         /// </summary>
-        object[] args;
+        private object[] _args;
         #endregion
 
         #region Atributos privados estáticos
         /// <summary>
         /// Identificador de secuencia global.
         /// </summary>
-        static int identificadorGlobal = 0;
+        private static int _identificadorGlobal;
         #endregion
 
         #region Atributos públicos estáticos
         /// <summary>
         /// Fecha del primer evento creado de logger.
         /// </summary>
-        public static readonly System.DateTime FechaCero = System.DateTime.Now;
+        public static readonly DateTime FechaCero = DateTime.Now;
         #endregion
 
         #region Constructores
@@ -67,9 +58,9 @@ namespace Orbita.Trazabilidad
         /// <param name="nivelLog">El nivel de registro.</param>
         public ItemLog(NivelLog nivelLog)
         {
-            this.nivelLog = nivelLog;
-            this.fecha = System.DateTime.Now;
-            this.identificador = System.Threading.Interlocked.Increment(ref identificadorGlobal);
+            NivelLog = nivelLog;
+            Fecha = System.DateTime.Now;
+            _identificador = System.Threading.Interlocked.Increment(ref _identificadorGlobal);
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.ItemLog.
@@ -79,18 +70,18 @@ namespace Orbita.Trazabilidad
         public ItemLog(NivelLog nivelLog, string mensaje)
             : this(nivelLog)
         {
-            this.mensaje = mensaje;
+            Mensaje = mensaje;
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.ItemLog.
         /// </summary>
         /// <param name="nivelLog">El nivel de registro.</param>
         /// <param name="excepcion">Excepción.</param>
-        public ItemLog(NivelLog nivelLog, System.Exception excepcion)
+        public ItemLog(NivelLog nivelLog, Exception excepcion)
             : this(nivelLog)
         {
             // Convertir la excepción a .ToString(), ya que, pasar por remoting la excepción produce errores.
-            this.mensaje = string.Format(System.Globalization.CultureInfo.CurrentCulture, "[{0}] {1}", Orbita.Trazabilidad.Estado.Excepcion, excepcion.ToString());
+            Mensaje = string.Format(System.Globalization.CultureInfo.CurrentCulture, "[{0}] {1}", Orbita.Trazabilidad.Estado.Excepcion, excepcion.ToString());
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.ItemLog.
@@ -98,12 +89,12 @@ namespace Orbita.Trazabilidad
         /// <param name="nivelLog">El nivel de registro.</param>
         /// <param name="excepcion">Excepción.</param>
         /// <param name="mensaje">Cuerpo del mensaje.</param>
-        public ItemLog(NivelLog nivelLog, System.Exception excepcion, string mensaje)
+        public ItemLog(NivelLog nivelLog, Exception excepcion, string mensaje)
             : this(nivelLog)
         {
-            this.mensaje = mensaje;
+            Mensaje = mensaje;
             // Convertir la excepción a string, ya que, pasar por remoting la excepción produce errores.
-            this.mensaje += string.Format(System.Globalization.CultureInfo.CurrentCulture, " [{0}] {1}", Orbita.Trazabilidad.Estado.Excepcion, excepcion.ToString());
+            Mensaje += string.Format(System.Globalization.CultureInfo.CurrentCulture, " [{0}] {1}", Orbita.Trazabilidad.Estado.Excepcion, excepcion.ToString());
         }
         #endregion
 
@@ -111,7 +102,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Indica si ya se llamo al método Dispose. (default = false)
         /// </summary>
-        bool disposed = false;
+        bool _disposed;
         /// <summary>
         /// Implementa IDisposable.
         /// No  hacer  este  método  virtual.
@@ -123,7 +114,7 @@ namespace Orbita.Trazabilidad
             Dispose(true);
             // Este objeto será limpiado por el método Dispose.
             // Llama al método del recolector de basura, GC.SuppressFinalize.
-            System.GC.SuppressFinalize(this);
+            GC.SuppressFinalize(this);
         }
         /// <summary>
         /// Método  sobrecargado de  Dispose que será  el que
@@ -135,17 +126,17 @@ namespace Orbita.Trazabilidad
         protected virtual void Dispose(bool disposing)
         {
             // Preguntar si Dispose ya fue llamado.
-            if (!this.disposed)
+            if (!_disposed)
             {
                 // Finalizar correctamente los recursos no manejados.
-                this.nivelLog = NivelLog.Debug;
-                this.mensaje = null;
-                this.identificador = null;
-                this.args = null;
+                NivelLog = NivelLog.Debug;
+                Mensaje = null;
+                _identificador = null;
+                _args = null;
                 // Marcar como desechada ó desechandose,
                 // de forma que no se puede ejecutar el
                 // código dos veces.
-                disposed = true;
+                _disposed = true;
             }
         }
         /// <summary>
@@ -163,50 +154,38 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// El nivel de registro. Por defecto <c>NivelLog.Debug</c>.
         /// </summary>
-        public NivelLog NivelLog
-        {
-            get { return this.nivelLog; }
-            set { this.nivelLog = value; }
-        }
+        public NivelLog NivelLog { get; set; }
         /// <summary>
         /// Nivel de registro formateado.
         /// </summary>
         public string SNivelLog
         {
-            get { return this.nivelLog.ToString().PadRight(5).ToUpper(System.Globalization.CultureInfo.CurrentCulture); }
+            get { return NivelLog.ToString().PadRight(5).ToUpper(System.Globalization.CultureInfo.CurrentCulture); }
         }
         /// <summary>
         /// Dia y hora de entrada en el registro. Si no  explicitamente
         /// esta propiedad ofrece la marca de tiempo de la creación del
         /// objeto.
         /// </summary>
-        public System.DateTime Fecha
-        {
-            get { return this.fecha; }
-            set { this.fecha = value; }
-        }
+        public DateTime Fecha { get; set; }
         /// <summary>
         /// Fecha formateada en formato 'yyyy-MM-dd HH:mm:ss.fff'.
         /// </summary>
         public string SFecha
         {
-            get { return this.fecha.ToString(Orbita.Trazabilidad.Formato.FechaLarga, System.Globalization.CultureInfo.CurrentCulture); }
+            get { return Fecha.ToString(Formato.FechaLarga, System.Globalization.CultureInfo.CurrentCulture); }
         }
         /// <summary>
         /// El cuerpo del mensaje. Por defecto <c>string.Empty</c>.
         /// </summary>
-        public string Mensaje
-        {
-            get { return this.mensaje; }
-            set { this.mensaje = value; }
-        }
+        public string Mensaje { get; set; }
         /// <summary>
         /// Identificador de evento. Por defecto <c>null</c>.
         /// </summary>
         public int? Identificador
         {
-            get { return this.identificador; }
-            set { this.identificador = value; }
+            get { return _identificador; }
+            set { _identificador = value; }
         }
         #endregion
 
@@ -217,14 +196,14 @@ namespace Orbita.Trazabilidad
         /// <returns>Colección de object.</returns>
         public object[] GetArgumentos()
         {
-            return this.args;
+            return _args;
         }
         /// <summary>
         /// Asignar argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
         /// </summary>
         public void SetArgumentos(object[] argumentos)
         {
-            this.args = argumentos;
+            _args = argumentos;
         }
         #endregion
     }

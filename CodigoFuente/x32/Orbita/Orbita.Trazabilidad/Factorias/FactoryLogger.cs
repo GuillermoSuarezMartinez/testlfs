@@ -20,7 +20,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Colección de loggers.
         /// </summary>
-        static TypeDictionary loggers = AddDefaultTargets();
+        private static TypeDictionary _loggers = AddDefaultTargets();
         #endregion
 
         #region Métodos públicos estáticos
@@ -29,7 +29,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         public static void Clear()
         {
-            loggers.Clear();
+            _loggers.Clear();
         }
         /// <summary>
         /// Removes all targets and reloads them from NLog assembly and default extension assemblies.
@@ -48,18 +48,13 @@ namespace Orbita.Trazabilidad
         /// <param name="prefijo">The prefix to be prepended to target names.</param>
         public static void AddTargetsFromAssembly(System.Reflection.Assembly ensamblado, string prefijo)
         {
-            if (ensamblado != null)
+            if (ensamblado == null) return;
+            foreach (System.Type tipo in ensamblado.GetTypes())
             {
-                foreach (System.Type tipo in ensamblado.GetTypes())
+                var atributos = (TargetAttribute[])tipo.GetCustomAttributes(typeof(TargetAttribute), false);
+                foreach (TargetAttribute atributo in atributos)
                 {
-                    TargetAttribute[] atributos = (TargetAttribute[])tipo.GetCustomAttributes(typeof(TargetAttribute), false);
-                    if (atributos != null)
-                    {
-                        foreach (TargetAttribute atributo in atributos)
-                        {
-                            AddTarget(prefijo + atributo.Nombre, tipo);
-                        }
-                    }
+                    AddTarget(prefijo + atributo.Nombre, tipo);
                 }
             }
         }
@@ -77,7 +72,7 @@ namespace Orbita.Trazabilidad
             if (!string.IsNullOrEmpty(targetName))
             {
                 string hashKey = targetName;
-                loggers[hashKey] = targetType;
+                _loggers[hashKey] = targetType;
             }
         }
         /// <summary>
@@ -89,10 +84,10 @@ namespace Orbita.Trazabilidad
         {
             if (!string.IsNullOrEmpty(tipo))
             {
-                System.Type t = loggers[tipo];
+                System.Type t = _loggers[tipo];
                 if (t != null)
                 {
-                    ILogger logger = FactoryHelper.CreateInstance(t) as ILogger;
+                    var logger = FactoryHelper.CreateInstance(t) as ILogger;
                     if (logger != null)
                     {
                         return logger;
@@ -106,7 +101,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         public static System.Collections.ICollection TargetTypes
         {
-            get { return loggers.Values; }
+            get { return _loggers.Values; }
         }
         #endregion
 
@@ -114,14 +109,14 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Adds default targets from the Orbita.Trazabilidad.dll assembly.
         /// </summary>
-        static TypeDictionary AddDefaultTargets()
+        private static TypeDictionary AddDefaultTargets()
         {
-            loggers = new TypeDictionary();
+            _loggers = new TypeDictionary();
             foreach (System.Reflection.Assembly ensamblado in ExtensionUtiles.GetEnsamblados)
             {
                 AddTargetsFromAssembly(ensamblado, "");
             }
-            return loggers;
+            return _loggers;
         }
         #endregion
     }

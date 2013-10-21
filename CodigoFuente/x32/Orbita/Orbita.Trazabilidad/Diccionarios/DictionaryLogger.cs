@@ -9,6 +9,9 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
+using System.Linq;
+
 namespace Orbita.Trazabilidad
 {
     /// <summary>
@@ -16,13 +19,6 @@ namespace Orbita.Trazabilidad
     /// </summary>
     internal class DictionaryLogger : System.Collections.DictionaryBase
     {
-        #region Constructor
-        /// <summary>
-        /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.DictionaryLogger.
-        /// </summary>
-        public DictionaryLogger() { }
-        #endregion
-
         #region Propiedades
         /// <summary>
         /// Gets or sets the Target associated with the given string.
@@ -32,8 +28,8 @@ namespace Orbita.Trazabilidad
         /// </param>
         public virtual ILogger this[string key]
         {
-            get { return (ILogger)this.Dictionary[key]; }
-            set { this.Dictionary[key] = value; }
+            get { return (ILogger)Dictionary[key]; }
+            set { Dictionary[key] = value; }
         }
         #endregion
 
@@ -49,7 +45,7 @@ namespace Orbita.Trazabilidad
         /// </param>
         public virtual void Add(string key, ILogger value)
         {
-            this.Dictionary.Add(key, value);
+            Dictionary.Add(key, value);
         }
         /// <summary>
         /// Determines whether this DictionaryLogger contains a specific key.
@@ -63,7 +59,7 @@ namespace Orbita.Trazabilidad
         /// </returns>
         public virtual bool Contains(string key)
         {
-            return this.Dictionary.Contains(key);
+            return Dictionary.Contains(key);
         }
         /// <summary>
         /// Determines whether this DictionaryLogger contains a specific value.
@@ -77,14 +73,7 @@ namespace Orbita.Trazabilidad
         /// </returns>
         public virtual bool ContainsValue(ILogger value)
         {
-            foreach (ILogger item in this.Dictionary.Values)
-            {
-                if (item.Equals(value))
-                {
-                    return true;
-                }
-            }
-            return false;
+            return Dictionary.Values.Cast<ILogger>().Contains(value);
         }
         /// <summary>
         /// Removes the element with the specified key from this TargetDictionary.
@@ -94,21 +83,21 @@ namespace Orbita.Trazabilidad
         /// </param>
         public virtual void Remove(string key)
         {
-            this.Dictionary.Remove(key);
+            Dictionary.Remove(key);
         }
         /// <summary>
         /// Gets a collection containing the keys in this TargetDictionary.
         /// </summary>
         public virtual System.Collections.ICollection Keys
         {
-            get { return this.Dictionary.Keys; }
+            get { return Dictionary.Keys; }
         }
         /// <summary>
         /// Gets a collection containing the values in this TargetDictionary.
         /// </summary>
         public virtual System.Collections.ICollection Values
         {
-            get { return this.Dictionary.Values; }
+            get { return Dictionary.Values; }
         }
         #endregion
     }

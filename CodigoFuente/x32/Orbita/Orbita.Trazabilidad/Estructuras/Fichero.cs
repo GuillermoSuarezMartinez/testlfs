@@ -52,7 +52,7 @@ namespace Orbita.Trazabilidad
         /// <param name="fichero">Fichero de tipo contenedor.</param>
         /// <param name="cadena">Cadena de comparación.</param>
         /// <returns>La igualdad de la cadena de comparación con el tipo.</returns>
-        public static bool operator ==(Orbita.Trazabilidad.Fichero fichero, string cadena)
+        public static bool operator ==(Fichero fichero, string cadena)
         {
             return fichero.Equals(cadena);
         }
@@ -62,7 +62,7 @@ namespace Orbita.Trazabilidad
         /// <param name="fichero">Fichero de tipo contenedor.</param>
         /// <param name="cadena">Cadena de comparación.</param>
         /// <returns>La desigualdad de la cadena de comparación con el tipo.</returns>
-        public static bool operator !=(Orbita.Trazabilidad.Fichero fichero, string cadena)
+        public static bool operator !=(Fichero fichero, string cadena)
         {
             return !fichero.Equals(cadena);
         }

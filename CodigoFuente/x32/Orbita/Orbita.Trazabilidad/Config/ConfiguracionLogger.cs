@@ -20,14 +20,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Colección de loggers.
         /// </summary>
-        internal DictionaryLogger loggers = new DictionaryLogger();
-        #endregion
-
-        #region Constructor
-        /// <summary>
-        /// 
-        /// </summary>
-        public ConfiguracionLogger() { }
+        internal DictionaryLogger Loggers = new DictionaryLogger();
         #endregion
 
         #region Métodos públicos
@@ -40,7 +33,7 @@ namespace Orbita.Trazabilidad
         {
             if (!string.IsNullOrEmpty(nombre))
             {
-                loggers[nombre] = logger;
+                Loggers[nombre] = logger;
             }
         }
         /// <summary>
@@ -50,22 +43,8 @@ namespace Orbita.Trazabilidad
         /// <returns>Found target or <see langword="null" /> when the target is not found.</returns>
         public ILogger FindLoggerByName(string nombre)
         {
-            if (!string.IsNullOrEmpty(nombre))
-            {
-                return loggers[nombre];
-            }
-            return null;
+            return !string.IsNullOrEmpty(nombre) ? Loggers[nombre] : null;
         }
-        #endregion
-
-        #region Métodos internos
-        //internal void FlushAllLoggers()
-        //{
-        //    foreach (ILogger logger in loggers.Values)
-        //    {
-        //        logger.Flush();
-        //    }
-        //}
         #endregion
     }
 }

@@ -20,15 +20,14 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// El elemento que va a ser registrado.
         /// </summary>
-        ItemLog item;
+        private readonly ItemLog _item;
         #endregion
 
         #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.RemotingEventArgs.
         /// </summary>
-        public RemotingEventArgs()
-            : base() { }
+        public RemotingEventArgs() { }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.RemotingEventArgs.
         /// </summary>
@@ -36,7 +35,7 @@ namespace Orbita.Trazabilidad
         public RemotingEventArgs(ItemLog item)
             : this()
         {
-            this.item = item;
+            _item = item;
         }
         #endregion
 
@@ -46,7 +45,7 @@ namespace Orbita.Trazabilidad
         /// </summary>
         public ItemLog ItemLog
         {
-            get { return this.item; }
+            get { return _item; }
         }
         #endregion
     }
