@@ -3,7 +3,6 @@
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
 
@@ -221,8 +220,15 @@ namespace Orbita.Comunicaciones
         /// <param name="e">MensajeEventArgs que contiene los datos del evento.</param>
         private void Mensajero_MensajeRecibido(object sender, MensajeEventArgs e)
         {
+            if (e.Mensaje == null)
+            {
+                return;
+            }
             //  Comprobar si hay un hilo esperando este mensaje en el método EnviarMensajeEsperarRespuesta.
-            if (string.IsNullOrEmpty(e.Mensaje.IdMensajeRespuesta)) return;
+            if (string.IsNullOrEmpty(e.Mensaje.IdMensajeRespuesta))
+            {
+                return;
+            }
             MensajeEnEspera mensajeEnEspera = null;
             lock (_objSincronizacion)
             {
@@ -293,7 +299,7 @@ namespace Orbita.Comunicaciones
                 EventoEspera = new ManualResetEventSlim(false);
                 Estado = EstadoMensajeEnEspera.EsperandoRespuesta;
             }
-            #endregion
+            #endregion Constructor
 
             #region Propiedades públicas
             /// <summary>
@@ -310,7 +316,7 @@ namespace Orbita.Comunicaciones
             /// Estado del mensaje de solicitud.
             /// </summary>
             public EstadoMensajeEnEspera Estado { get; set; }
-            #endregion
+            #endregion Propiedades públicas
         }
         /// <summary>
         /// Esta enumeración se utiliza para almacenar el estado de un mensaje en espera.

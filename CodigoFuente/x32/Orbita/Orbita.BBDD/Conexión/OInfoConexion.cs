@@ -9,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
 namespace Orbita.BBDD
 {
     /// <summary>
@@ -23,33 +24,6 @@ namespace Orbita.BBDD
         protected const int DefaultTimeout = 120;
         #endregion
 
-        #region Atributos privados
-        /// <summary>
-        /// Nombre de la instancia de base de datos.
-        /// </summary>
-        string instancia;
-        /// <summary>
-        /// Nombre de la base de datos.
-        /// </summary>
-        string baseDatos;
-        /// <summary>
-        /// Usuario de autenticación de base de datos.
-        /// </summary>
-        string usuario;
-        /// <summary>
-        /// Password de autenticación de base de datos.
-        /// </summary>
-        string password;
-        /// <summary>
-        /// Timeout de conexión a base de datos.
-        /// </summary>
-        int timeout;
-        /// <summary>
-        /// Puerto de conexión.
-        /// </summary>
-        int port;
-        #endregion
-
         #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase InfoConexion.
@@ -62,7 +36,7 @@ namespace Orbita.BBDD
         /// <param name="timeout">Timeout de conexión.</param>
         public OInfoConexion(int timeout)
         {
-            this.timeout = timeout;
+            this.Timeout = timeout;
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase InfoConexion.
@@ -84,10 +58,10 @@ namespace Orbita.BBDD
         public OInfoConexion(string instancia, string baseDatos, string usuario, string password, int timeout)
             : this(timeout)
         {
-            this.instancia = instancia;
-            this.baseDatos = baseDatos;
-            this.usuario = usuario;
-            this.password = password;
+            this.Instancia = instancia;
+            this.BaseDatos = baseDatos;
+            this.Usuario = usuario;
+            this.Password = password;
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase InfoConexion a través de una cadena de conexion para SQL Server
@@ -96,11 +70,11 @@ namespace Orbita.BBDD
         public OInfoConexion(string cadenaConexion)
         {
             // Hay que procesar la cadena de conexión, extrayendo los datos y almacenándolos.
-            this.instancia = "Nombre de máquina no especificado";
-            this.baseDatos = "Nombre de base de datos no especificado";
-            this.usuario = "Nombre de usuario no especificado";
-            this.password = "Contraseña de usuario no especificada";
-            this.timeout = OInfoConexion.DefaultTimeout;
+            this.Instancia = "Nombre de máquina no especificado";
+            this.BaseDatos = "Nombre de base de datos no especificado";
+            this.Usuario = "Nombre de usuario no especificado";
+            this.Password = "Contraseña de usuario no especificada";
+            this.Timeout = DefaultTimeout;
 
             if (!string.IsNullOrEmpty(cadenaConexion))
             {
@@ -111,31 +85,29 @@ namespace Orbita.BBDD
                     if (parte.Trim().StartsWith("Data Source", System.StringComparison.CurrentCulture))
                     {
                         // Nombre de la máquina.
-                        this.instancia = parte.Replace("Data Source", "").Replace("=", "").Trim();
+                        this.Instancia = parte.Replace("Data Source", "").Replace("=", "").Trim();
                     }
                     if (parte.Trim().StartsWith("Initial Catalog", System.StringComparison.CurrentCulture))
                     {
                         // Nombre de la base de datos.
-                        this.baseDatos = parte.Replace("Initial Catalog", "").Replace("=", "").Trim();
+                        this.BaseDatos = parte.Replace("Initial Catalog", "").Replace("=", "").Trim();
                     }
                     if (parte.Trim().StartsWith("User Id", System.StringComparison.CurrentCulture))
                     {
                         // Nombre de usuario.
-                        this.usuario = parte.Replace("User Id", "").Replace("=", "").Trim();
+                        this.Usuario = parte.Replace("User Id", "").Replace("=", "").Trim();
                     }
                     if (parte.Trim().StartsWith("Password", System.StringComparison.CurrentCulture))
                     {
                         // Contraseña del usuario.
-                        this.password = parte.Replace("Password", "").Replace("=", "").Trim();
+                        this.Password = parte.Replace("Password", "").Replace("=", "").Trim();
                     }
-                    if (parte.Trim().StartsWith("Connect Timeout", System.StringComparison.CurrentCulture))
+                    if (!parte.Trim().StartsWith("Connect Timeout", System.StringComparison.CurrentCulture)) continue;
+                    // Nombre de la máquina.
+                    int to;
+                    if (int.TryParse(parte.Replace("Connect Timeout", "").Replace("=", "").Trim(), out to))
                     {
-                        // Nombre de la máquina.
-                        int to;
-                        if (int.TryParse(parte.Replace("Connect Timeout", "").Replace("=", "").Trim(), out to))
-                        {
-                            this.timeout = to;
-                        }
+                        this.Timeout = to;
                     }
                 }
             }
@@ -146,51 +118,27 @@ namespace Orbita.BBDD
         /// <summary>
         /// Nombre de la instancia de base de datos.
         /// </summary>
-        public string Instancia
-        {
-            get { return this.instancia; }
-            set { this.instancia = value; }
-        }
+        public string Instancia { get; set; }
         /// <summary>
         /// Nombre de la base de datos.
         /// </summary>
-        public string BaseDatos
-        {
-            get { return this.baseDatos; }
-            set { this.baseDatos = value; }
-        }
+        public string BaseDatos { get; set; }
         /// <summary>
         /// Usuario de autenticación de base de datos.
         /// </summary>
-        public string Usuario
-        {
-            get { return this.usuario; }
-            set { this.usuario = value; }
-        }
+        public string Usuario { get; set; }
         /// <summary>
         /// Password de autenticación de base de datos.
         /// </summary>
-        public string Password
-        {
-            get { return this.password; }
-            set { this.password = value; }
-        }
+        public string Password { get; set; }
         /// <summary>
         /// Timeout de conexión en segundos a la base de datos.
         /// </summary>
-        public int Timeout
-        {
-            get { return this.timeout; }
-            set { this.timeout = value; }
-        }
+        public int Timeout { get; set; }
         /// <summary>
         /// Puerto de conexión.
         /// </summary>
-        public int Port
-        {
-            get { return this.port; }
-            set { this.port = value; }
-        }
+        public int Port { get; set; }
         #endregion
     }
 }

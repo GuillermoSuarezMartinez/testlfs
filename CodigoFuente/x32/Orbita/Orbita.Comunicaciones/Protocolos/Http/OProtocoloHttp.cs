@@ -1,13 +1,9 @@
 //***********************************************************************
-// Assembly         : OrbitaComunicaciones
-// Author           : crodriguez
-// Created          : 02-17-2011
 //
-// Last Modified By : crodriguez
-// Last Modified On : 02-22-2011
-// Description      : 
+// Ensamblado         : Orbita.Comunicaciones
+// Autor              : crodriguez
+// Fecha creación     : 01-09-2013
 //
-// Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 
 using System;
@@ -37,27 +33,12 @@ namespace Orbita.Comunicaciones
         /// Respuesta obtenida del servicio Web.
         /// </summary>
         private HttpWebResponse _respuesta;
-        /// <summary>
-        /// Cuerpo de la respuesta.
-        /// </summary>
-        private string _cuerpoRespuesta;
-        /// <summary>
-        /// Tiempo de respuesta.
-        /// </summary>
-        private double _tiempoRespuesta;
+
         /// <summary>
         /// Definición de los carácteres de escape.
         /// </summary>
         private string _caracteresEscapeBody;
-        /// <summary>
-        /// Código de respuesta necesario en la trama.
-        /// </summary>
-        private int _codigoEstado;
-        /// <summary>
-        /// Timeout de espera de 
-        /// respuesta en segundos.
-        /// </summary>
-        private int _timeout;
+
         #endregion Atributos
 
         #region Destructor
@@ -75,7 +56,7 @@ namespace Orbita.Comunicaciones
 
             // Finalizar correctamente los recursos no manejados.
             this._respuesta = null;
-            this._cuerpoRespuesta = null;
+            this.CuerpoRespuesta = null;
             this._caracteresEscapeBody = null;
 
             // Marcar como desechada ó desechandose,
@@ -89,17 +70,11 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Cuerpo de la respuesta.
         /// </summary>
-        public string CuerpoRespuesta
-        {
-            get { return this._cuerpoRespuesta; }
-        }
+        public string CuerpoRespuesta { get; private set; }
         /// <summary>
         /// Tiempo de respuesta.
         /// </summary>
-        public double TiempoRespuesta
-        {
-            get { return this._tiempoRespuesta; }
-        }
+        public double TiempoRespuesta { get; private set; }
         /// <summary>
         /// Carácteres de escape HTML.
         /// </summary>
@@ -107,17 +82,14 @@ namespace Orbita.Comunicaciones
         {
             get
             {
-                this._caracteresEscapeBody = this._cuerpoRespuesta.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("'", "&apos;").Replace("\"", "&quot;");
+                this._caracteresEscapeBody = this.CuerpoRespuesta.Replace("&", "&amp;").Replace("<", "&lt;").Replace(">", "&gt;").Replace("'", "&apos;").Replace("\"", "&quot;");
                 return this._caracteresEscapeBody;
             }
         }
         /// <summary>
         /// Código de estado.
         /// </summary>
-        public int CodigoEstado
-        {
-            get { return this._codigoEstado; }
-        }
+        public int CodigoEstado { get; private set; }
         /// <summary>
         /// Cabeceras.
         /// </summary>
@@ -156,11 +128,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Timeout.
         /// </summary>
-        public int Timeout
-        {
-            get { return this._timeout; }
-            set { this._timeout = value; }
-        }
+        public int Timeout { get; set; }
         #endregion Propiedades
 
         #region Métodos públicos
@@ -180,7 +148,7 @@ namespace Orbita.Comunicaciones
             HttpWebRequest solicitud = (HttpWebRequest)WebRequest.Create(uri);
 
             // Establecer el tiempo máximo de espera de respuesta en milisegundos.
-            solicitud.Timeout = this._timeout * 1000;
+            solicitud.Timeout = this.Timeout * 1000;
 
             // Activar el evento que permite tracear, informando
             // del envio de la solicitud al servicio Web.
@@ -206,7 +174,7 @@ namespace Orbita.Comunicaciones
                 Byte[] buf = new Byte[8192];
                 using (Stream recibeStream = this._respuesta.GetResponseStream())
                 {
-                    int contador = 0;
+                    int contador;
                     do
                     {
                         contador = recibeStream.Read(buf, 0, buf.Length);
@@ -218,16 +186,16 @@ namespace Orbita.Comunicaciones
                     while (contador > 0);
                 }
 
-                this._codigoEstado = (int)(HttpStatusCode)this._respuesta.StatusCode;
-                this._cuerpoRespuesta = cuerpoRespuesta.ToString();
-                this._tiempoRespuesta = (tiempoDeRespuesta.ElapsedMilliseconds / 1000.0);
+                this.CodigoEstado = (int)this._respuesta.StatusCode;
+                this.CuerpoRespuesta = cuerpoRespuesta.ToString();
+                this.TiempoRespuesta = (tiempoDeRespuesta.ElapsedMilliseconds / 1000.0);
             }
             catch (WebException ex)
             {
-                this._codigoEstado = 404;
+                this.CodigoEstado = 404;
                 this._respuesta = (HttpWebResponse)ex.Response;
-                this._cuerpoRespuesta = "EXCEPCION";
-                this._tiempoRespuesta = Math.Abs(solicitud.Timeout / 1000.0);
+                this.CuerpoRespuesta = "EXCEPCION";
+                this.TiempoRespuesta = Math.Abs(solicitud.Timeout / 1000.0);
             }
         }
         #endregion Métodos públicos

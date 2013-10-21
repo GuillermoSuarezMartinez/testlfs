@@ -150,21 +150,12 @@ namespace Orbita.Comunicaciones
         #region Métodos privados
         private static byte[] ConvertirArrayLectura(int valor)
         {
-            byte[] retorno;
-            try
-            {
-                retorno = BitConverter.GetBytes(valor);
-                Array.Resize(ref retorno, 2);
+            byte[] retorno = BitConverter.GetBytes(valor);
+            Array.Resize(ref retorno, 2);
 
-                byte valor1 = retorno[1];
-                retorno[1] = retorno[0];
-                retorno[0] = valor1;
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            byte valor1 = retorno[1];
+            retorno[1] = retorno[0];
+            retorno[0] = valor1;
             return retorno;
         }
         #endregion Métodos privados

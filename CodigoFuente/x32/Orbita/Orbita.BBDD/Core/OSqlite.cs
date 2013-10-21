@@ -9,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -47,13 +48,12 @@ namespace Orbita.BBDD
         public bool TestConexion()
         {
             // Inicializar resultado.
-            bool resultado = false;
+            bool resultado;
             using (SQLiteConnection conexion = new SQLiteConnection(CadenaConexion))
             {
                 // Abrir conexión.
                 conexion.Open(); resultado = (conexion.State == ConnectionState.Open);
             }
-
             return resultado;
         }
         #endregion Test
@@ -83,8 +83,7 @@ namespace Orbita.BBDD
             {
                 conexion = new SQLiteConnection(CadenaConexion);
                 conexion.Open();
-                SQLiteCommand comando = new SQLiteCommand(conexion);
-                comando.CommandText = sql;
+                SQLiteCommand comando = new SQLiteCommand(conexion) { CommandText = sql };
                 SQLiteDataReader reader = comando.ExecuteReader();
                 dt.Load(reader);
                 reader.Close();
@@ -94,20 +93,18 @@ namespace Orbita.BBDD
             {
                 throw new Exception(e.Message);
             }
-            finally 
+            finally
             {
                 if (conexion != null)
                 {
-                    try 
-                    { 
-                        conexion.Dispose(); 
+                    try
+                    {
+                        conexion.Dispose();
                     }
                     catch (Exception) { }
                 }
             }
             return dt;
-
-           
         }
         #endregion SeleccionSql
 
@@ -142,8 +139,7 @@ namespace Orbita.BBDD
         {
             SQLiteConnection conexion = new SQLiteConnection(CadenaConexion);
             conexion.Open();
-            SQLiteCommand comando = new SQLiteCommand(conexion);
-            comando.CommandText = sql;
+            SQLiteCommand comando = new SQLiteCommand(conexion) { CommandText = sql };
             int resultado = comando.ExecuteNonQuery();
             conexion.Close();
             return resultado;

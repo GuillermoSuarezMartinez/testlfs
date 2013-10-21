@@ -9,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
 using System;
 using System.Data.SqlClient;
 namespace Orbita.BBDD
@@ -18,21 +19,6 @@ namespace Orbita.BBDD
     /// </summary>
     public class OConexion : IDisposable
     {
-        #region Atributos privados
-        /// <summary>
-        /// Identificador de transacción.
-        /// </summary>
-        Guid identificador;
-        /// <summary>
-        /// Conexión de base de datos.
-        /// </summary>
-        SqlConnection conexion;
-        /// <summary>
-        /// Transacción de base de datos.
-        /// </summary>
-        SqlTransaction transaccion;
-        #endregion
-
         #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase OConexion.
@@ -41,7 +27,7 @@ namespace Orbita.BBDD
         public OConexion(string infoConexion)
         {
             // Crear la conexión.
-            this.conexion = new SqlConnection(infoConexion);
+            this.Conexion = new SqlConnection(infoConexion);
         }
         #endregion
 
@@ -49,7 +35,7 @@ namespace Orbita.BBDD
         /// <summary>
         /// Indica si ya se llamo al método Dispose. (Default = false)
         /// </summary>
-        bool disposed = false;
+        bool _disposed;
         /// <summary>
         /// Implementa IDisposable.
         /// No  hacer  este  método  virtual.
@@ -75,23 +61,21 @@ namespace Orbita.BBDD
         protected virtual void Dispose(bool disposing)
         {
             // Preguntar si Dispose ya fue llamado.
-            if (!this.disposed)
+            if (this._disposed) return;
+            if (disposing)
             {
-                if (disposing)
-                {
-                    // Llamar a dispose de todos los recursos manejados.
-                    this.conexion.Dispose();
-                    this.transaccion.Dispose();
-                }
-
-                // Finalizar correctamente los recursos no manejados.
-                this.identificador = Guid.Empty;
-
-                // Marcar como desechada ó desechandose,
-                // de forma que no se puede ejecutar el
-                // código dos veces.
-                disposed = true;
+                // Llamar a dispose de todos los recursos manejados.
+                this.Conexion.Dispose();
+                this.Transaccion.Dispose();
             }
+
+            // Finalizar correctamente los recursos no manejados.
+            this.Identificador = Guid.Empty;
+
+            // Marcar como desechada ó desechandose,
+            // de forma que no se puede ejecutar el
+            // código dos veces.
+            _disposed = true;
         }
         /// <summary>
         /// Destructor(es) de clase.
@@ -110,27 +94,15 @@ namespace Orbita.BBDD
         /// <summary>
         /// Identificador de transacción.
         /// </summary>
-        public Guid Identificador
-        {
-            get { return this.identificador; }
-            set { this.identificador = value; }
-        }
+        public Guid Identificador { get; set; }
         /// <summary>
         /// Conexión de base de datos.
         /// </summary>
-        public SqlConnection Conexion
-        {
-            get { return this.conexion; }
-            set { this.conexion = value; }
-        }
+        public SqlConnection Conexion { get; set; }
         /// <summary>
         /// Transacción de base de datos.
         /// </summary>
-        public SqlTransaction Transaccion
-        {
-            get { return this.transaccion; }
-            set { this.transaccion = value; }
-        }
+        public SqlTransaction Transaccion { get; set; }
         #endregion
 
         #region Métodos públicos
@@ -139,28 +111,28 @@ namespace Orbita.BBDD
         /// </summary>
         public string Iniciar()
         {
-            if (this.conexion.State == System.Data.ConnectionState.Closed)
+            if (this.Conexion.State == System.Data.ConnectionState.Closed)
             {
                 // Abrir la conexión.
-                this.conexion.Open();
+                this.Conexion.Open();
                 // Iniciar y asignar la transacción.
-                this.transaccion = this.conexion.BeginTransaction();
+                this.Transaccion = this.Conexion.BeginTransaction();
             }
-            return this.identificador.ToString();
+            return this.Identificador.ToString();
         }
         /// <summary>
         /// Iniciar transacción con un nivel de bloqueo específico.
         /// </summary>
         public string Iniciar(System.Data.IsolationLevel iso)
         {
-            if (this.conexion.State == System.Data.ConnectionState.Closed)
+            if (this.Conexion.State == System.Data.ConnectionState.Closed)
             {
                 // Abrir la conexión.
-                this.conexion.Open();
+                this.Conexion.Open();
                 // Iniciar y asignar la transacción con un nivel de bloque específico.
-                this.transaccion = this.conexion.BeginTransaction(iso);
+                this.Transaccion = this.Conexion.BeginTransaction(iso);
             }
-            return this.identificador.ToString();
+            return this.Identificador.ToString();
         }
         #endregion
     }

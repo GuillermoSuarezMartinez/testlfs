@@ -3,7 +3,6 @@
 // Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Excepciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
 

@@ -35,7 +35,7 @@ namespace Orbita.BBDD
             /// <summary>
             /// Colección estática de conexiones.
             /// </summary>
-            static OConexiones Conexiones = new OConexiones();
+            private static readonly OConexiones Conexiones = new OConexiones();
             #endregion
 
             #region Constructores
@@ -199,9 +199,11 @@ namespace Orbita.BBDD
                         // Asignar procedimiento almacenado a ejecutar.
                         command.CommandText = procedimiento;
                         // Inicializar parámetro de retorno del procedimiento almacenado.
-                        SqlParameter parametroDeRetorno = new SqlParameter("RETURN", SqlDbType.Int);
+                        SqlParameter parametroDeRetorno = new SqlParameter("RETURN", SqlDbType.Int)
+                            {
+                                Direction = ParameterDirection.ReturnValue
+                            };
                         // Establecer dirección de salida del parámetro.
-                        parametroDeRetorno.Direction = ParameterDirection.ReturnValue;
                         // Añadir el parámetro de retorno al SqlCommand.
                         command.Parameters.Add(parametroDeRetorno);
                         // Ejecutar query.
@@ -262,9 +264,11 @@ namespace Orbita.BBDD
                             }
                         }
                         // Inicializar parámetro de retorno del procedimiento almacenado.
-                        SqlParameter parametroDeRetorno = new SqlParameter("RETURN", SqlDbType.Int);
+                        SqlParameter parametroDeRetorno = new SqlParameter("RETURN", SqlDbType.Int)
+                            {
+                                Direction = ParameterDirection.ReturnValue
+                            };
                         // Establecer dirección de salida del parámetro.
-                        parametroDeRetorno.Direction = ParameterDirection.ReturnValue;
                         // Añadir el parámetro de retorno al SqlCommand.
                         command.Parameters.Add(parametroDeRetorno);
                         // Ejecutar query.
@@ -686,9 +690,8 @@ namespace Orbita.BBDD
                 // Establecer el nombre de la tabla del DataSet.
                 dt.TableName = nombreTabla;
                 // Crear el DataSet adecuado en el retorno.
-                resultado = new DataSet();
+                resultado = new DataSet { Locale = CultureInfo.CurrentCulture };
                 // Establecer una configuración regional actual.
-                resultado.Locale = CultureInfo.CurrentCulture;
                 // Agregar el objeto DataTable a la colección.
                 resultado.Tables.Add(dt);
                 return resultado;
@@ -940,9 +943,11 @@ namespace Orbita.BBDD
                     // Asignar procedimiento almacenado a ejecutar.
                     command.CommandText = procedimiento;
                     // Inicializar parámetro de retorno del procedimiento almacenado.
-                    SqlParameter parametroDeRetorno = new SqlParameter("RETURN", SqlDbType.Int);
+                    SqlParameter parametroDeRetorno = new SqlParameter("RETURN", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
                     // Establecer dirección de salida del parámetro.
-                    parametroDeRetorno.Direction = ParameterDirection.ReturnValue;
                     // Añadir el parámetro de retorno al SqlCommand.
                     command.Parameters.Add(parametroDeRetorno);
                     // Ejecutar query.
@@ -1009,9 +1014,11 @@ namespace Orbita.BBDD
                         }
                     }
                     // Inicializar parámetro de retorno del procedimiento almacenado.
-                    SqlParameter parametroDeRetorno = new SqlParameter("RETURN", SqlDbType.Int);
+                    SqlParameter parametroDeRetorno = new SqlParameter("RETURN", SqlDbType.Int)
+                        {
+                            Direction = ParameterDirection.ReturnValue
+                        };
                     // Establecer dirección de salida del parámetro.
-                    parametroDeRetorno.Direction = ParameterDirection.ReturnValue;
                     // Añadir el parámetro de retorno al SqlCommand.
                     command.Parameters.Add(parametroDeRetorno);
                     // Ejecutar query.
@@ -1297,7 +1304,13 @@ namespace Orbita.BBDD
                 // http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlconnection.close.aspx
                 return resultado;
             }
-            finally { if (resultado != null) { resultado = null; } }
+            finally
+            {
+                if (resultado != null)
+                {
+                    resultado = null;
+                }
+            }
         }
         #endregion
 

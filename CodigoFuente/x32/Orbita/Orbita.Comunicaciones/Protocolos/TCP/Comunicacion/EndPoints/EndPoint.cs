@@ -3,7 +3,6 @@
 // Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
 

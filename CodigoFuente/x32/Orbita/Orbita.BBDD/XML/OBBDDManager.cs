@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Linq;
-using System.Text;
 using System.Xml;
 
 namespace Orbita.BBDD
@@ -11,7 +9,7 @@ namespace Orbita.BBDD
         /// <summary>
         /// Colección con las conexiones a las bases de datos
         /// </summary>
-        private static Hashtable coleccionBBDD;
+        private static Hashtable _coleccionBBDD;
         /// <summary>
         /// Devuelve el objeto de conexión a la base de datos
         /// </summary>
@@ -19,8 +17,7 @@ namespace Orbita.BBDD
         /// <returns>Nombre de la conexión definido en el archivo xml</returns>
         public static OCoreBBDD GetBBDD(string nombre)
         {
-            OCoreBBDD BBDD = (OCoreBBDD)coleccionBBDD[nombre];
-
+            OCoreBBDD BBDD = (OCoreBBDD)_coleccionBBDD[nombre];
             return BBDD;
         }
         /// <summary>
@@ -39,15 +36,9 @@ namespace Orbita.BBDD
         /// <param name="element"></param>
         private static void ConfigurarXML(XmlElement element)
         {
-            coleccionBBDD = new Hashtable();
-
-            foreach (XmlNode nodo in element.ChildNodes)
+            _coleccionBBDD = new Hashtable();
+            foreach (XmlElement elementoXml in element.ChildNodes.OfType<XmlElement>())
             {
-                XmlElement elementoXml = nodo as XmlElement;
-                if (elementoXml == null)
-                {
-                    continue;
-                }
                 switch (elementoXml.LocalName)
                 {
                     case "BBDD":
@@ -69,7 +60,6 @@ namespace Orbita.BBDD
             string password = elementoXml.GetAttribute("Password");
             string tipo = elementoXml.GetAttribute("Tipo");
             string mirror = elementoXml.GetAttribute("Mirror");
-
             switch (tipo.ToLower())
             {
                 case "osqlserver":
@@ -77,19 +67,16 @@ namespace Orbita.BBDD
                     {
                         OInfoConexion info = new OInfoConexion(instancia, basedatos, usuario, password);
                         OSqlServer sql = new OSqlServer(info);
-                        coleccionBBDD.Add(nombre, sql);
+                        _coleccionBBDD.Add(nombre, sql);
                     }
                     else
                     {
                         OInfoMirroring info = new OInfoMirroring(instancia, basedatos, usuario, password, 120, mirror);
                         OSqlServer sql = new OSqlServer(info);
-                        coleccionBBDD.Add(nombre, sql);
+                        _coleccionBBDD.Add(nombre, sql);
                     }
                     break;
-                default:
-                    break;
             }
-
         }
     }
 }

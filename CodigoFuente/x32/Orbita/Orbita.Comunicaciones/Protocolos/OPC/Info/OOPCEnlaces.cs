@@ -8,34 +8,15 @@ namespace Orbita.Comunicaciones
     [Serializable]
     public class OOPCEnlaces
     {
-        #region Atributos
-        /// <summary>
-        /// Nombre.
-        /// </summary>
-        private string _nombre;
-        /// <summary>
-        /// Reintento.
-        /// </summary>
-        private int _reintento;
-        #endregion Atributos
-
         #region Propiedades
         /// <summary>
         /// Nombre.
         /// </summary>
-        public string Nombre
-        {
-            get { return _nombre; }
-            set { _nombre = value; }
-        }
+        public string Nombre { get; set; }
         /// <summary>
         /// Reintento.
         /// </summary>
-        public int Reintento
-        {
-            get { return _reintento; }
-            set { _reintento = value; }
-        }
+        public int Reintento { get; set; }
         #endregion Propiedades
 
         #region Métodos públicos
@@ -45,8 +26,8 @@ namespace Orbita.Comunicaciones
         /// <param name="nombre"></param>
         public OOPCEnlaces(string nombre)
         {
-            _nombre = nombre;
-            _reintento = 0;
+            Nombre = nombre;
+            Reintento = 0;
         }
         #endregion Métodos públicos
     }

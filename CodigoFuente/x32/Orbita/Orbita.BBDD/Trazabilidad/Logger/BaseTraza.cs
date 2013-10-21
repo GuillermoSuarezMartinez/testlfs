@@ -19,13 +19,6 @@ namespace Orbita.BBDD.Trazabilidad
     /// </summary>
     public abstract class BaseTraza : ITraza
     {
-        #region Atributos privados
-        /// <summary>
-        /// Identificador de traza.
-        /// </summary>
-        string identificador;
-        #endregion
-
         #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.BaseTraza.
@@ -33,7 +26,7 @@ namespace Orbita.BBDD.Trazabilidad
         /// <param name="identificador">Identificador de traza.</param>
         protected BaseTraza(string identificador)
         {
-            this.identificador = identificador;
+            this.Identificador = identificador;
         }
         #endregion
 
@@ -41,10 +34,7 @@ namespace Orbita.BBDD.Trazabilidad
         /// <summary>
         /// Identificador de traza.
         /// </summary>
-        public string Identificador
-        {
-            get { return this.identificador; }
-        }
+        public string Identificador { get; private set; }
         #endregion
 
         #region Métodos públicos

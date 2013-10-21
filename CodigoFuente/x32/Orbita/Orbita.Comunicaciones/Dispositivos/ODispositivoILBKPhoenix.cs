@@ -17,44 +17,44 @@ namespace Orbita.Comunicaciones
         /// </summary>
         private Queue _qEntradaSalida;
         /// <summary>
-        /// Evento reset de recepción de tramas KeepAlive, 
+        /// Evento reset de recepción de tramas KeepAlive.
         /// Entrada/Salida.
         /// </summary>
-        private OResetManual _eReset;  // 0-KeepAlive; 1-lecturas
+        private OResetManual _eReset;  // 0-KeepAlive; 1-Lecturas.
         /// <summary>
-        /// Colección para la búsqueda de lecturas. La clave es la dupla "dirección-bit"
+        /// Colección para la búsqueda de lecturas. La clave es la dupla "dirección-bit".
         /// </summary>
         private OHashtable _almacenLecturas;
         /// <summary>
-        /// Colección para la búsqueda de escrituras. La clave es la dupla "dirección-bit"
+        /// Colección para la búsqueda de escrituras. La clave es la dupla "dirección-bit".
         /// </summary>
         private OHashtable _almacenEscrituras;
         /// <summary>
-        /// Número de lecturas a realizar
+        /// Número de lecturas a realizar.
         /// </summary>
         private int _numLecturas;
         /// <summary>
-        /// Número de bytes de entradas
+        /// Número de bytes de entradas.
         /// </summary>
         private int _numeroBytesEntradas;
         /// <summary>
-        /// Número de bytes de salidas
+        /// Número de bytes de salidas.
         /// </summary>
         private int _numeroBytesSalidas;
         /// <summary>
-        /// Valor de las lecturas
+        /// Valor de las lecturas.
         /// </summary>
         private byte[] _lecturas;
         /// <summary>
-        /// Valor inicial del registro de lecturas
+        /// Valor inicial del registro de lecturas.
         /// </summary>
         private int _registroInicialEntradas;
         /// <summary>
-        /// Valor inicial del registro de escrituras
+        /// Valor inicial del registro de escrituras.
         /// </summary>
         private int _registroInicialSalidas;
         /// <summary>
-        /// Fecha del ultimo wrapper de error
+        /// Fecha del ultimo wrapper de error.
         /// </summary>
         private DateTime _fechaErrorWrapperWinsock = DateTime.MaxValue;
         /// <summary>
@@ -410,7 +410,7 @@ namespace Orbita.Comunicaciones
         {
             using (OProtocoloTCPPhoenixES phoenixTCP = new OProtocoloTCPPhoenixES(this._registroInicialEntradas, this._numeroBytesEntradas, this._registroInicialSalidas, this._numeroBytesSalidas))
             {
-                lock (Bloqueo)
+                lock (ObjSincronizacion)
                 {
                     byte[] lecturas;
                     if (mensaje[7] == 3)//respuesta para la lectura
@@ -750,7 +750,7 @@ namespace Orbita.Comunicaciones
                 {
                     for (int i = 0; i < recibido.Length; i++)
                     {
-                        ret += "[" + recibido[i].ToString() + "]";
+                        ret += "[" + recibido[i] + "]";
                     }
                 }
                 this.ProcesarMensajeRecibido(recibido);

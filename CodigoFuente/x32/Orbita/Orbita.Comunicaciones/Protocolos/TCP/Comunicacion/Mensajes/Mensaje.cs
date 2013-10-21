@@ -3,11 +3,12 @@
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
 
 using System;
+using System.Globalization;
+using System.Threading;
 
 namespace Orbita.Comunicaciones
 {
@@ -19,7 +20,7 @@ namespace Orbita.Comunicaciones
     public class Mensaje : IMensaje
     {
         #region Atributos
-        //private static long _ultimoIdentificador;
+        private static long _ultimoIdentificador;
         #endregion Atributos
 
         #region Constructores
@@ -28,8 +29,8 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public Mensaje()
         {
-            IdMensaje = Guid.NewGuid().ToString();
-            //IdMensaje = Interlocked.Increment(ref _ultimoIdentificador).ToString();
+            //IdMensaje = Guid.NewGuid().ToString();
+            IdMensaje = Interlocked.Increment(ref _ultimoIdentificador).ToString(CultureInfo.CurrentCulture);
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase Mensaje.

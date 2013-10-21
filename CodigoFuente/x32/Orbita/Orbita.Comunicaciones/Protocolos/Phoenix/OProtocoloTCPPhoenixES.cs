@@ -62,18 +62,8 @@ namespace Orbita.Comunicaciones
         /// <returns>mensaje de respuesta</returns>
         public byte[] KeepAliveEnviar()
         {
-            byte[] ret = null;
             OProtocoloModbusTCP mensaje = new OProtocoloModbusTCP();
-            try
-            {
-                ret = mensaje.configurarMensajeLecturaF3(this._registroInicialEntradas, this._tamanyoEntradas + this._tamanyoSalidas);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return ret;
+            return mensaje.configurarMensajeLecturaF3(this._registroInicialEntradas, this._tamanyoEntradas + this._tamanyoSalidas);
         }
         /// <summary>
         /// Procesa el mensaje KeepAlive del dispositivo.
@@ -83,30 +73,20 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public bool KeepAliveProcesar(byte[] valor, out byte[] lecturas)
         {
-            bool ret = false;
-            lecturas = null;
-            try
-            {
-                byte numResp = valor[8];
-                int registros = numResp / 2;
+            byte numResp = valor[8];
+            int registros = numResp / 2;
 
-                lecturas = new byte[registros];
-                byte[] con = new byte[2];
-                for (int i = 0; i < registros; i++)
-                {
-                    int j = 8 + (2 * i + 1);
-                    con[0] = valor[j];
-                    con[1] = valor[j + 1];
-                    Array.Reverse(con);
-                    lecturas[i] = (byte)BitConverter.ToInt16(con, 0);
-                }
-                ret = true;
-            }
-            catch (Exception ex)
+            lecturas = new byte[registros];
+            byte[] con = new byte[2];
+            for (int i = 0; i < registros; i++)
             {
-                throw ex;
+                int j = 8 + (2 * i + 1);
+                con[0] = valor[j];
+                con[1] = valor[j + 1];
+                Array.Reverse(con);
+                lecturas[i] = (byte)BitConverter.ToInt16(con, 0);
             }
-            return ret;
+            return true;
         }
         /// <summary>
         /// Procesa el mensaje de ES del PLC
@@ -117,28 +97,19 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public bool ESprocesar(byte[] valor, out byte[] entradas, out byte[] salidas)
         {
-            bool ret = false;
             entradas = new byte[this._tamanyoEntradas];
             salidas = new byte[this._tamanyoSalidas];
-            try
+            for (int i = 0; i < this._tamanyoEntradas; i++)
             {
-                for (int i = 0; i < this._tamanyoEntradas; i++)
-                {
-                    entradas[i] = valor[i];
-                }
-                int j = 0;
-                for (int i = this._tamanyoEntradas; i < (this._tamanyoEntradas + this._tamanyoSalidas); i++)
-                {
-                    salidas[j] = valor[i];
-                    j++;
-                }
-                ret = true;
+                entradas[i] = valor[i];
             }
-            catch (Exception ex)
+            int j = 0;
+            for (int i = this._tamanyoEntradas; i < (this._tamanyoEntradas + this._tamanyoSalidas); i++)
             {
-                throw ex;
+                salidas[j] = valor[i];
+                j++;
             }
-            return ret;
+            return true;
         }
         /// <summary>
         /// Prepara el mensaje KeepAlive de respuesta.
@@ -146,17 +117,8 @@ namespace Orbita.Comunicaciones
         /// <returns>mensaje de respuesta</returns>
         public byte[] SalidasEnviar(byte[] salidas)
         {
-            byte[] ret = null;
             OProtocoloModbusTCP mensaje = new OProtocoloModbusTCP();
-            try
-            {
-                ret = mensaje.configurarMensajeEscrituraF16(this._registroInicialSalidas, salidas);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return ret;
+            return mensaje.configurarMensajeEscrituraF16(this._registroInicialSalidas, salidas);
         }
         /// <summary>
         /// Limpia objetos de memoria
@@ -167,7 +129,6 @@ namespace Orbita.Comunicaciones
             // Preguntar si Dispose ya fue llamado.
             if (!this.Disposed)
             {
-
                 // Marcar como desechada ó desechandose,
                 // de forma que no se puede ejecutar el
                 // código dos veces.

@@ -3,7 +3,6 @@
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
 
@@ -380,7 +379,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Elevar el evento MensajeEnviadoLectura.
         /// </summary>
-        /// <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+        /// <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
         /// <param name="mensaje">Mensaje enviado.</param>
         protected virtual void OnMensajeEnviadoLectura(object sender, IMensaje mensaje)
         {
@@ -393,7 +392,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Elevar el evento MensajeEnviadoLecturaDatos.
         /// </summary>
-        /// <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+        /// <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
         /// <param name="mensaje">Mensaje enviado.</param>
         protected virtual void OnMensajeEnviadoLecturaDatos(object sender, IMensaje mensaje)
         {
@@ -406,7 +405,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Elevar el evento MensajeEnviadoLecturaAlarmasActivas.
         /// </summary>
-        /// <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+        /// <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
         /// <param name="mensaje">Mensaje enviado.</param>
         protected virtual void OnMensajeEnviadoLecturaAlarmasActivas(object sender, IMensaje mensaje)
         {
@@ -419,7 +418,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Elevar el evento MensajeEnviadoLecturaDispositivos.
         /// </summary>
-        /// <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+        /// <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
         /// <param name="mensaje">Mensaje enviado.</param>
         protected virtual void OnMensajeEnviadoLecturaDispositivos(object sender, IMensaje mensaje)
         {
@@ -432,7 +431,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Elevar el evento MensajeEnviadoEscritura.
         /// </summary>
-        /// <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+        /// <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
         /// <param name="mensaje">Mensaje enviado.</param>
         protected virtual void OnMensajeEnviadoEscritura(object sender, IMensaje mensaje)
         {
@@ -448,7 +447,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Elevar el evento MensajeRecibidoCambioDato.
         /// </summary>
-        /// <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+        /// <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
         /// <param name="mensaje">Mensaje recibido.</param>
         protected virtual void OnMensajeRecibidoCambioDato(object sender, IMensaje mensaje)
         {
@@ -461,7 +460,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Elevar el evento MensajeRecibidoAlarma.
         /// </summary>
-        /// <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+        /// <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
         /// <param name="mensaje">Mensaje recibido.</param>
         protected virtual void OnMensajeRecibidoAlarma(object sender, IMensaje mensaje)
         {
@@ -474,7 +473,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Elevar el evento MensajeRecibidoComunicaciones.
         /// </summary>
-        /// <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+        /// <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
         /// <param name="mensaje">Mensaje recibido.</param>
         protected virtual void OnMensajeRecibidoComunicaciones(object sender, IMensaje mensaje)
         {
@@ -487,7 +486,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Elevar el evento MensajeRecibidoLectura.
         /// </summary>
-        /// <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+        /// <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
         /// <param name="mensaje">Mensaje recibido.</param>
         protected virtual void OnMensajeRecibidoLectura(object sender, IMensaje mensaje)
         {
@@ -500,7 +499,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Elevar el evento MensajeRecibidoLecturaDatos.
         /// </summary>
-        /// <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+        /// <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
         /// <param name="mensaje">Mensaje recibido.</param>
         protected virtual void OnMensajeRecibidoLecturaDatos(object sender, IMensaje mensaje)
         {
@@ -513,7 +512,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Elevar el evento MensajeRecibidoLecturaAlarmasActivas.
         /// </summary>
-        /// <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+        /// <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
         /// <param name="mensaje">Mensaje recibido.</param>
         protected virtual void OnMensajeRecibidoLecturaAlarmasActivas(object sender, IMensaje mensaje)
         {
@@ -526,7 +525,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Elevar el evento MensajeRecibidoLecturaDispositivos.
         /// </summary>
-        /// <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+        /// <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
         /// <param name="mensaje">Mensaje recibido.</param>
         protected virtual void OnMensajeRecibidoLecturaDispositivos(object sender, IMensaje mensaje)
         {
@@ -539,7 +538,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Elevar el evento MensajeRecibidoEscritura.
         /// </summary>
-        /// <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+        /// <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
         /// <param name="mensaje">Mensaje recibido.</param>
         protected virtual void OnMensajeRecibidoEscritura(object sender, IMensaje mensaje)
         {

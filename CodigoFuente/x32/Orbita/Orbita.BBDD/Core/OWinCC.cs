@@ -9,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
 using System;
 using System.Collections;
 using System.Data;
@@ -166,7 +167,6 @@ namespace Orbita.BBDD
             {
                 // Creamos la conexión sql para la consulta.
                 OSqlServer oSqlServer = new OSqlServer(new OInfoConexion(this.Instancia, this.BaseDatos, this.Usuario, this.InfoConexion.Password));
-
                 string sql =
                     "SELECT	ARCHIVE.ValueID Id,  " +
                     "	LTRIM(RTRIM(ARCHIVE.ValueName)) Nombre,  " +
@@ -292,7 +292,7 @@ namespace Orbita.BBDD
                             object[] nuevaFila = { dr["ValueID"], ((DateTime)dr["Timestamp"]).ToLocalTime(), dr["RealValue"], dr["Quality"], dr["Flags"] };
                             ds.Tables[varID].Rows.Add(nuevaFila);
                         }
-                        catch (Exception) { /* No insertamos ningun valor si es erróneo. */ }
+                        catch { /* No insertamos ningun valor si es erróneo. */ }
                     }
                 }
             }
@@ -436,7 +436,10 @@ namespace Orbita.BBDD
                 }
                 return dt;
             }
-            finally { if (dt != null) { dt.Dispose(); } }
+            finally
+            {
+                dt.Dispose();
+            }
         }
         #endregion
 
@@ -462,7 +465,10 @@ namespace Orbita.BBDD
                 }
                 return dt;
             }
-            finally { if (dt != null) { dt.Dispose(); } }
+            finally
+            {
+                dt.Dispose();
+            }
         }
         #endregion
 

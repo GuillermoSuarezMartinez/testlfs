@@ -3,12 +3,12 @@
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
 
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor;
 using Orbita.Comunicaciones.Protocolos.Tcp.Threading;
@@ -21,6 +21,13 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OcsClienteConectable : IOcsClienteConectable
     {
+        #region Eventos
+        /// <summary>
+        /// Este evento se produce cuando se produce en algunos de los eventos de solicitud.
+        /// </summary>
+        public event EventHandler<ErrorEventArgs> Error;
+        #endregion Eventos
+
         #region Atributos
         /// <summary>
         /// Colección de mensajes producidos por el cliente a petición de lecturas de variables.
@@ -153,22 +160,26 @@ namespace Orbita.Comunicaciones
         /// <param name="mensaje">Mensaje de tipo solicitud de lectura.</param>
         protected virtual void OnLecturas(object sender, IMensaje mensaje)
         {
-            var mensajeLectura = OcsMensajeFactory.ObtenerMensajeLectura(mensaje);
-
-            object[] valores;
-            using (var dispositivo = (ODispositivo) Dispositivos[mensajeLectura.Dispositivo])
+            try
             {
-                valores = dispositivo.Leer(mensajeLectura.Variables, mensajeLectura.Demanda);
+                var mensajeLectura = OcsMensajeFactory.ObtenerMensajeLectura(mensaje);
+
+                var dispositivo = (ODispositivo)Dispositivos[mensajeLectura.Dispositivo];
+                var valores = dispositivo.Leer(mensajeLectura.Variables, mensajeLectura.Demanda);
+
+                //  Crear mensaje de respuesta de lectura.
+                var mensajeRespuesta = OcsMensajeFactory.CrearMensajeLectura(mensajeLectura.Dispositivo, mensajeLectura.Variables, valores, mensaje.IdMensaje);
+
+                //  Contiene una referencia al objeto que provocó el evento.
+                var cliente = (IServidorCliente)sender;
+
+                //  Enviar mensaje de lectura.
+                cliente.EnviarMensaje(mensajeRespuesta);
             }
-
-            //  Crear mensaje de respuesta de lectura.
-            var mensajeRespuesta = OcsMensajeFactory.CrearMensajeLectura(mensajeLectura.Dispositivo, mensajeLectura.Variables, valores, mensaje.IdMensaje);
-
-            //  Contiene una referencia al objeto que provocó el evento.
-            var cliente = (IServidorCliente)sender;
-
-            //  Enviar mensaje de lectura.
-            cliente.EnviarMensaje(mensajeRespuesta);
+            catch (Exception ex)
+            {
+                OnError(ex);
+            }
         }
         /// <summary>
         /// Evento producido por el manejador MensajeRecibido para mensajes de tipo OcsMensajeLecturaDatos.
@@ -177,22 +188,26 @@ namespace Orbita.Comunicaciones
         /// <param name="mensaje">Mensaje de tipo solicitud de datos.</param>
         protected virtual void OnDatos(object sender, IMensaje mensaje)
         {
-            var mensajeDatos = OcsMensajeFactory.ObtenerMensajeDatos(mensaje);
-
-            OHashtable valores;
-            using (var dispositivo = (ODispositivo) Dispositivos[mensajeDatos.Dispositivo])
+            try
             {
-                valores = dispositivo.GetDatos();
+                var mensajeDatos = OcsMensajeFactory.ObtenerMensajeDatos(mensaje);
+
+                var dispositivo = (ODispositivo)Dispositivos[mensajeDatos.Dispositivo];
+                var valores = dispositivo.GetDatos();
+
+                //  Crear mensaje de respuesta de datos.
+                var mensajeRespuesta = OcsMensajeFactory.CrearMensajeDatos(mensajeDatos.Dispositivo, valores, mensaje.IdMensaje);
+
+                //  Contiene una referencia al objeto que provocó el evento.
+                var cliente = (IServidorCliente)sender;
+
+                //  Enviar mensaje de datos.
+                cliente.EnviarMensaje(mensajeRespuesta);
             }
-
-            //  Crear mensaje de respuesta de datos.
-            var mensajeRespuesta = OcsMensajeFactory.CrearMensajeDatos(mensajeDatos.Dispositivo, valores, mensaje.IdMensaje);
-
-            //  Contiene una referencia al objeto que provocó el evento.
-            var cliente = (IServidorCliente)sender;
-
-            //  Enviar mensaje de datos.
-            cliente.EnviarMensaje(mensajeRespuesta);
+            catch (Exception ex)
+            {
+                OnError(ex);
+            }
         }
         /// <summary>
         /// Evento producido por el manejador MensajeRecibido para mensajes de tipo OcsMensajeLecturaAlarmasActivas.
@@ -201,22 +216,26 @@ namespace Orbita.Comunicaciones
         /// <param name="mensaje">Mensaje de tipo solicitud de alarmas activas.</param>
         protected virtual void OnAlarmasActivas(object sender, IMensaje mensaje)
         {
-            var mensajeAlarmasActivas = OcsMensajeFactory.ObtenerMensajeAlarmasActivas(mensaje);
-
-            ArrayList valores;
-            using (var dispositivo = (ODispositivo) Dispositivos[mensajeAlarmasActivas.Dispositivo])
+            try
             {
-                valores = dispositivo.GetAlarmasActivas();
+                var mensajeAlarmasActivas = OcsMensajeFactory.ObtenerMensajeAlarmasActivas(mensaje);
+
+                var dispositivo = (ODispositivo)Dispositivos[mensajeAlarmasActivas.Dispositivo];
+                var valores = dispositivo.GetAlarmasActivas();
+
+                //  Crear mensaje de respuesta de alarmas activas.
+                var mensajeRespuesta = OcsMensajeFactory.CrearMensajeAlarmasActivas(mensajeAlarmasActivas.Dispositivo, valores, mensaje.IdMensaje);
+
+                //  Contiene una referencia al objeto que provocó el evento.
+                var cliente = (IServidorCliente)sender;
+
+                //  Enviar mensaje de alarmas activas.
+                cliente.EnviarMensaje(mensajeRespuesta);
             }
-
-            //  Crear mensaje de respuesta de alarmas activas.
-            var mensajeRespuesta = OcsMensajeFactory.CrearMensajeAlarmasActivas(mensajeAlarmasActivas.Dispositivo, valores, mensaje.IdMensaje);
-
-            //  Contiene una referencia al objeto que provocó el evento.
-            var cliente = (IServidorCliente)sender;
-
-            //  Enviar mensaje de alarmas activas.
-            cliente.EnviarMensaje(mensajeRespuesta);
+            catch (Exception ex)
+            {
+                OnError(ex);
+            }
         }
         /// <summary>
         /// Evento producido por el manejador MensajeRecibido para mensajes de tipo OcsMensajeLecturaDispositivos.
@@ -225,21 +244,28 @@ namespace Orbita.Comunicaciones
         /// <param name="mensaje">Mensaje de tipo solicitud de alarmas activas.</param>
         protected virtual void OnDispositivos(object sender, IMensaje mensaje)
         {
-            //  Obtener los dispositivos de la colección.
-            var dispositivos = new List<int>();
-            dispositivos.AddRange(Dispositivos.Keys.Cast<int>());
+            try
+            {
+                //  Obtener los dispositivos de la colección.
+                var dispositivos = new List<int>();
+                dispositivos.AddRange(Dispositivos.Keys.Cast<int>());
 
-            //  Copiar los elementos obtenidos en una nueva matriz.
-            var valores = dispositivos.ToArray();
+                //  Copiar los elementos obtenidos en una nueva matriz.
+                var valores = dispositivos.ToArray();
 
-            //  Crear mensaje de respuesta de alarmas activas.
-            var mensajeRespuesta = OcsMensajeFactory.CrearMensajeDispositivos(valores, mensaje.IdMensaje);
+                //  Crear mensaje de respuesta de alarmas activas.
+                var mensajeRespuesta = OcsMensajeFactory.CrearMensajeDispositivos(valores, mensaje.IdMensaje);
 
-            //  Contiene una referencia al objeto que provocó el evento.
-            var cliente = (IServidorCliente)sender;
+                //  Contiene una referencia al objeto que provocó el evento.
+                var cliente = (IServidorCliente)sender;
 
-            //  Enviar mensaje de alarmas activas.
-            cliente.EnviarMensaje(mensajeRespuesta);
+                //  Enviar mensaje de alarmas activas.
+                cliente.EnviarMensaje(mensajeRespuesta);
+            }
+            catch (Exception ex)
+            {
+                OnError(ex);
+            }
         }
         /// <summary>
         /// Evento producido por el manejador MensajeRecibido para mensajes de tipo OcsMensajeEscritura.
@@ -248,23 +274,42 @@ namespace Orbita.Comunicaciones
         /// <param name="mensaje">Mensaje de tipo solicitud de escritura.</param>
         protected virtual void OnEscrituras(object sender, IMensaje mensaje)
         {
-            var mensajeEscritura = (OcsMensajeEscritura)mensaje;
-
-            //  Crear mensaje de escritura.
-            var mensajeRespuesta = OcsMensajeFactory.CrearMensajeEscritura(mensaje.IdMensaje);
-
-            //  Escribir en el dispositivo y obtener la respuesta que se enviará.
-            using (var dispositivo = (ODispositivo) Dispositivos[mensajeEscritura.Dispositivo])
+            try
             {
+                //  Contiene una referencia al objeto que provocó el evento.
+                var cliente = (IServidorCliente)sender;
+                var mensajeEscritura = (OcsMensajeEscritura)mensaje;
+
+                //  Crear mensaje de escritura.
+                var mensajeRespuesta = OcsMensajeFactory.CrearMensajeEscritura(mensaje.IdMensaje);
+
+                //  Escribir en el dispositivo y obtener la respuesta que se enviará.
+                var dispositivo = (ODispositivo)Dispositivos[mensajeEscritura.Dispositivo];
                 mensajeRespuesta.Respuesta = dispositivo.Escribir(mensajeEscritura.Variables, mensajeEscritura.Valores, mensajeEscritura.Canal);
+
+                //  Enviar mensaje de respuesta de escritura.
+                cliente.EnviarMensaje(mensajeRespuesta);
             }
-
-            //  Contiene una referencia al objeto que provocó el evento.
-            var cliente = (IServidorCliente)sender;
-
-            //  Enviar mensaje de respuesta de escritura.
-            cliente.EnviarMensaje(mensajeRespuesta);
+            catch (Exception ex)
+            {
+                OnError(ex);
+            }
         }
         #endregion Métodos protegidos virtuales
+
+        #region Métodos protegidos de eventos elevados
+        /// <summary>
+        /// Elevar el evento Error.
+        /// </summary>
+        /// <param name="ex">Representa los errores que se producen durante la ejecución de una aplicación.</param>
+        protected virtual void OnError(Exception ex)
+        {
+            var handler = Error;
+            if (handler != null)
+            {
+                handler(this, new ErrorEventArgs(ex));
+            }
+        }
+        #endregion Métodos protegidos de eventos elevados
     }
 }

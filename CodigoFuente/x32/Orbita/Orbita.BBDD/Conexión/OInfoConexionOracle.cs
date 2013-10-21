@@ -9,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
 namespace Orbita.BBDD
 {
     /// <summary>
@@ -21,10 +22,6 @@ namespace Orbita.BBDD
         /// Puerto de conexión por defecto
         /// </summary>
         protected const int DefaultPort = 1521;
-        /// <summary>
-        /// Número de puerto al que se conectará.
-        /// </summary>
-        protected int puerto;
         #endregion
 
         #region Constructores
@@ -32,9 +29,8 @@ namespace Orbita.BBDD
         /// Inicializar una nueva instancia de la clase InfoConexion.
         /// </summary>
         public OInfoConexionOracle()
-            : base()
         {
-            this.puerto = DefaultPort;
+            this.Puerto = DefaultPort;
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase InfoConexion.
@@ -43,7 +39,7 @@ namespace Orbita.BBDD
         public OInfoConexionOracle(int timeout)
             : base(timeout)
         {
-            this.puerto = DefaultPort;
+            this.Puerto = DefaultPort;
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase InfoConexion.
@@ -55,7 +51,7 @@ namespace Orbita.BBDD
         public OInfoConexionOracle(string instancia, string baseDatos, string usuario, string password)
             : base(instancia, baseDatos, usuario, password)
         {
-            this.puerto = DefaultPort;
+            this.Puerto = DefaultPort;
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase InfoConexion.
@@ -68,7 +64,7 @@ namespace Orbita.BBDD
         public OInfoConexionOracle(string instancia, int puerto, string baseDatos, string usuario, string password)
             : base(instancia, baseDatos, usuario, password)
         {
-            this.puerto = puerto;
+            this.Puerto = puerto;
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase InfoConexion.
@@ -81,7 +77,7 @@ namespace Orbita.BBDD
         public OInfoConexionOracle(string instancia, string baseDatos, string usuario, string password, int timeout)
             : base(instancia, baseDatos, usuario, password, timeout)
         {
-            this.puerto = DefaultPort;
+            this.Puerto = DefaultPort;
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase InfoConexion.
@@ -95,7 +91,7 @@ namespace Orbita.BBDD
         public OInfoConexionOracle(string instancia, int puerto, string baseDatos, string usuario, string password, int timeout)
             : base(instancia, baseDatos, usuario, password, timeout)
         {
-            this.puerto = puerto;
+            this.Puerto = puerto;
         }
         #endregion
 
@@ -103,11 +99,7 @@ namespace Orbita.BBDD
         /// <summary>
         /// Número de puerto al que se conectará.
         /// </summary>
-        public int Puerto
-        {
-            get { return this.puerto; }
-            set { this.puerto = value; }
-        }
+        public int Puerto { get; set; }
         #endregion
     }
 }

@@ -3,7 +3,6 @@
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
 
@@ -30,7 +29,7 @@ namespace Orbita.Comunicaciones
         /// <param name="variables">Colección de variables.</param>
         /// <param name="demanda">Indica si la lectura se realiza bajo demanda al dispositivo.</param>
         protected OcsMensajeLecturaBase(int dispositivo, string[] variables, bool demanda)
-            : base (dispositivo, variables)
+            : base(dispositivo, variables)
         {
             Demanda = demanda;
         }
@@ -42,7 +41,7 @@ namespace Orbita.Comunicaciones
         /// <param name="valores">Colección de valores.</param>
         /// <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
         protected OcsMensajeLecturaBase(int dispositivo, string[] variables, object[] valores, string idMensajeRespuesta)
-            : base(dispositivo, variables, valores, idMensajeRespuesta)  { }
+            : base(dispositivo, variables, valores, idMensajeRespuesta) { }
         #endregion Constructores
 
         #region Propiedades públicas

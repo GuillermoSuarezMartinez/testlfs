@@ -9,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
 using System.Collections;
 using Orbita.Trazabilidad;
 namespace Orbita.BBDD.Trazabilidad

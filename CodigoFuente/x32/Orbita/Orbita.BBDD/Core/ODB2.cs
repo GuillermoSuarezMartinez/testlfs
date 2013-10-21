@@ -47,7 +47,7 @@ namespace Orbita.BBDD
         public bool TestConexion()
         {
             // Inicializar resultado.
-            bool resultado = false;
+            bool resultado;
             using (DB2Connection conexion = new DB2Connection(this.CadenaConexion))
             {
                 // Abrir conexión.

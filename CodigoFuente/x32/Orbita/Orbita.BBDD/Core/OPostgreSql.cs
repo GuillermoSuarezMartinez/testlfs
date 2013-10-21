@@ -9,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -46,7 +47,7 @@ namespace Orbita.BBDD
         public bool TestConexion()
         {
             // Inicializar resultado.
-            bool resultado = false;
+            bool resultado;
             using (NpgsqlConnection conexion = new NpgsqlConnection(this.CadenaConexion))
             {
                 // Abrir conexión.
@@ -93,9 +94,8 @@ namespace Orbita.BBDD
                     using (NpgsqlDataReader reader = command.ExecuteReader())
                     {
                         // Asignar resultados al DataTable.
-                        resultado = new DataTable();
+                        resultado = new DataTable { Locale = CultureInfo.CurrentCulture };
                         // Establecer una configuración regional actual.
-                        resultado.Locale = CultureInfo.CurrentCulture;
                         // Cargar el resultado del reader.
                         resultado.Load(reader);
                     }
@@ -105,7 +105,13 @@ namespace Orbita.BBDD
                 // http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqlconnection.close.aspx
                 return resultado;
             }
-            finally { if (resultado != null) { resultado.Dispose(); } }
+            finally
+            {
+                if (resultado != null)
+                {
+                    resultado.Dispose();
+                }
+            }
         }
         #endregion SeleccionSql
 

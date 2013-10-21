@@ -3,17 +3,16 @@
 // Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
 
 using System;
+using System.IO;
 using Orbita.Comunicaciones.Protocolos.Tcp.Colecciones;
 using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales;
 using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints;
 using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener;
 using Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas;
-using System.IO;
 
 namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
 {
@@ -252,6 +251,10 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor
                 handler(this, new ServidorClienteEventArgs(cliente));
             }
         }
+        /// <summary>
+        /// Elevar el evento ErrorConexion.
+        /// </summary>
+        /// <param name="ex">Representa los errores que se producen durante la ejecución de una aplicación.</param>
         protected virtual void OnErrorConexion(Exception ex)
         {
             var handler = ErrorConexion;

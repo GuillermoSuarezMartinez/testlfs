@@ -25,6 +25,10 @@ namespace Orbita.Trazabilidad
         /// Identificador de logger.
         /// </summary>
         string Identificador { get; set; }
+        /// <summary>
+        /// Nivel de log.
+        /// </summary>
+        NivelLog NivelLog { get; }
         #endregion
 
         #region Eventos

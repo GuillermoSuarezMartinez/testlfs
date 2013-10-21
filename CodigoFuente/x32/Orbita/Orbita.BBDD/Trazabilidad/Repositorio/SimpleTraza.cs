@@ -16,13 +16,6 @@ namespace Orbita.BBDD.Trazabilidad
     /// </summary>
     class SimpleTraza
     {
-        #region Atributos privados
-        /// <summary>
-        /// Interface de traza.
-        /// </summary>
-        ITraza traza;
-        #endregion
-
         #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase Orbita.Trazabilidad.SimpleTraza.
@@ -34,7 +27,7 @@ namespace Orbita.BBDD.Trazabilidad
         /// <param name="traza">Interface de traza.</param>
         public SimpleTraza(ITraza traza)
         {
-            this.traza = traza;
+            this.Traza = traza;
         }
         #endregion
 
@@ -42,10 +35,7 @@ namespace Orbita.BBDD.Trazabilidad
         /// <summary>
         /// Interface de traza.
         /// </summary>
-        public ITraza Traza
-        {
-            get { return this.traza; }
-        }
+        public ITraza Traza { get; private set; }
         #endregion
     }
 }

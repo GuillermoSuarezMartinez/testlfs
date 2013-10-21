@@ -3,7 +3,6 @@
 // Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
 
@@ -134,7 +133,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Canales
 
                     totalBytesEnviados += bytesEnviados;
                 }
-
                 FechaUltimoMensajeEnviado = DateTime.Now;
                 OnMensajeEnviado(mensaje);
             }

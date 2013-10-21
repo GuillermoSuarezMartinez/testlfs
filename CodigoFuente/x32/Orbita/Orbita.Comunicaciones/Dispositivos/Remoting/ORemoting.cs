@@ -53,7 +53,6 @@ namespace Orbita.Comunicaciones
 
             // Crear el documento Xml.
             XmlDocument doc = new XmlDocument();
-
             doc.LoadXml(string.Format(CultureInfo.CurrentCulture,
                 @"<?xml version='1.0' encoding='utf-8' ?>" +
                  "<configuration>" +
@@ -98,7 +97,7 @@ namespace Orbita.Comunicaciones
             switch (servidor)
             {
                 case 1:
-                    server = (IOCommRemoting1)ORemoting.GetObject(typeof(IOCommRemoting1));
+                    server = (IOCommRemoting1)GetObject(typeof(IOCommRemoting1));
                     break;
                 case 2:
                     server = (IOCommRemoting2)GetObject(typeof(IOCommRemoting2));
@@ -193,7 +192,7 @@ namespace Orbita.Comunicaciones
             }
             else
             {
-                url = "tcp://localhost:" + puerto.ToString() + "/Orbita.Comunicaciones.soap";
+                url = "tcp://localhost:" + puerto + "/Orbita.Comunicaciones.soap";
             }
 
             string directorio = string.Concat(Application.StartupPath, Config);
@@ -201,7 +200,6 @@ namespace Orbita.Comunicaciones
 
             if (regChannels.Length == 0)
             {
-
                 // Control en la creación del directorio de salida.
                 if (!Directory.Exists(directorio))
                 {

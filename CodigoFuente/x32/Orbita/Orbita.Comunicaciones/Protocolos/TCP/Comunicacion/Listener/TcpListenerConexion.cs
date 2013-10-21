@@ -3,7 +3,6 @@
 // Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
 
@@ -99,7 +98,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener
             OnNoEscuchando();
         }
         /// <summary>
-        /// Proceso de entrada del thread.
+        /// Proceso de entrada del hilo (thread).
         /// Este método es utilizado por el hilo (thread) para escuchar peticiones de conexiones entrantes.
         /// </summary>
         private void ProcesoEscucha()
@@ -118,7 +117,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener
                 {
                     if (!ReConexion) return;
 
-                    //  Desconectar, esperar un tiempo y volver a conectar según la activación del Flag.
+                    //  Desconectar, esperar un tiempo y volver a conectar según la activación del flag.
                     NoEscuchar();
                     Thread.Sleep(500);
                     try

@@ -3,7 +3,6 @@
 // Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializacion
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
 
@@ -257,8 +256,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
             return ((buffer[0] << 24) |
                     (buffer[1] << 16) |
                     (buffer[2] << 8) |
-                    (buffer[3])
-                   );
+                    (buffer[3]));
         }
         /// <summary>
         /// Leer una matriz de bytes con la longitud especificada.
@@ -291,17 +289,17 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
         protected sealed class DeserializationAppDomainBinder : SerializationBinder
         {
             /// <summary>
-            /// 
+            /// BindToType.
             /// </summary>
-            /// <param name="assemblyName"></param>
-            /// <param name="typeName"></param>
+            /// <param name="ensamblado">Nombre del ensamblado.</param>
+            /// <param name="tipo">Tipo de ensamblado.</param>
             /// <returns></returns>
-            public override Type BindToType(string assemblyName, string typeName)
+            public override Type BindToType(string ensamblado, string tipo)
             {
-                var toAssemblyName = assemblyName.Split(',')[0];
+                var toAssemblyName = ensamblado.Split(',')[0];
                 return (from assembly in AppDomain.CurrentDomain.GetAssemblies()
                         where assembly.FullName.Split(',')[0] == toAssemblyName
-                        select assembly.GetType(typeName)).FirstOrDefault();
+                        select assembly.GetType(tipo)).FirstOrDefault();
             }
         }
         #endregion Clase DeserializationAppDomainBinder

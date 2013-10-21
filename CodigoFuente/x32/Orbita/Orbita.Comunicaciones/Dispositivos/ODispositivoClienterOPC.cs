@@ -8,6 +8,7 @@ using System.Threading;
 using OpcRcw.Comn;
 using OpcRcw.Da;
 using Orbita.Utiles;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -31,7 +32,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Colección de hilos.
         /// </summary>
-        private static OHilos Hilos;
+        private static OHilos _hilos;
         /// <summary>
         /// Atributo de sincronización en las
         /// lecturas y escrituras asíncronas.
@@ -45,7 +46,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Enlaces
         /// </summary>
-        private readonly Hashtable oEnlaces;
+        private readonly Hashtable _enlaces;
 
         #region OPC
         /// <summary>
@@ -128,7 +129,7 @@ namespace Orbita.Comunicaciones
 
             this._oEventargs = new OEventArgs();
             this._oOPCComms = new OEstadoComms[info.Enlaces.Length];
-            this.oEnlaces = new Hashtable();
+            this._enlaces = new Hashtable();
 
             for (int i = 0; i < info.Enlaces.Length; i++)
             {
@@ -139,13 +140,13 @@ namespace Orbita.Comunicaciones
                         Id = this.Identificador
                     };
                 OOPCEnlaces enlace = new OOPCEnlaces(this._oOPCComms[i].Enlace);
-                this.oEnlaces.Add(enlace.Nombre, enlace);
+                this._enlaces.Add(enlace.Nombre, enlace);
             }
             // Atributos de sincronización de lecturas y escrituras.
             this._sincronizacion = new OResetManual(3);
 
             // Asignación de la colección estática de hilos.
-            Hilos = hilos;
+            _hilos = hilos;
         }
         #endregion Constructor
 
@@ -387,7 +388,7 @@ namespace Orbita.Comunicaciones
         public override void Dispose(bool disposing)
         {
             this._tags.Dispose();
-            Hilos.Destruir();
+            _hilos.Destruir();
         }
         #endregion Métodos públicos
 
@@ -768,7 +769,7 @@ namespace Orbita.Comunicaciones
         {
             // Crear el objeto Hilo e iniciarlo. El parámetro iniciar indica
             // a la colección que una vez añadido el hilo se iniciado.
-            Hilos.Add(new ThreadStart(ProcesarHiloVida), true);
+            _hilos.Add(new ThreadStart(ProcesarHiloVida), true);
         }
         /// <summary>
         /// Inicialización del hilo de vida.
@@ -778,7 +779,7 @@ namespace Orbita.Comunicaciones
         {
             // Crear el objeto Hilo e iniciarlo. El parámetro iniciar indica
             // a la colección que una vez añadido el hilo se iniciado.
-            Hilos.Add(new ThreadStart(ProcesarHiloEstado), true);
+            _hilos.Add(new ThreadStart(ProcesarHiloEstado), true);
         }
         /// <summary>
         /// Proceso del hilo de vida.
@@ -820,7 +821,7 @@ namespace Orbita.Comunicaciones
                     // conocido correcto y se asignará el valor obtenido.
                     // Inicializar contador de variables.
                     OEstadoComms oopcComs = null;
-                    foreach (OOPCEnlaces enlace in oEnlaces.Values)
+                    foreach (OOPCEnlaces enlace in _enlaces.Values)
                     {
                         bool error = false;
                         OOPCEnlaces enlace1 = enlace;
@@ -1092,9 +1093,9 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="wQuality">Calidad.</param>
         /// <returns></returns>
-        private static String GetQuality(long wQuality)
+        private static string GetQuality(long wQuality)
         {
-            String strQuality = "";
+            string strQuality = "";
             switch (wQuality)
             {
                 case Qualities.OPC_QUALITY_GOOD:

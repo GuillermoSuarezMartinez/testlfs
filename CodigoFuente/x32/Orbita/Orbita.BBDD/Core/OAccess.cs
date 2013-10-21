@@ -9,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -32,18 +33,22 @@ namespace Orbita.BBDD
             /// Indefinida.
             /// </summary>
             Nonde = 0,
+
             /// <summary>
             /// Select.
             /// </summary>
             ConsultaDESeleccion = 1,
+
             /// <summary>
             /// Insert.
             /// </summary>
             ConsultaDEInsercion = 2,
+
             /// <summary>
             /// Update.
             /// </summary>
             ConsultaDEActualizacion = 3,
+
             /// <summary>
             /// Delete.
             /// </summary>
@@ -55,76 +60,30 @@ namespace Orbita.BBDD
         public class OInfoConexion
         {
             #region Atributos privados
-            /// <summary>
-            /// Nombre de la ruta de base de datos.
-            /// </summary>
-            string ruta;
-            /// <summary>
-            /// Nombre del grupo de trabajo.
-            /// </summary>
-            string grupoTrabajo;
-            /// <summary>
-            /// Usuario de autenticación de base de datos.
-            /// </summary>
-            string usuario;
-            /// <summary>
-            /// Password de autenticación de usuario.
-            /// </summary>
-            string passwordUsuario;
-            /// <summary>
-            /// Password de autenticación de base de datos.
-            /// </summary>
-            string passwordBBDD;
-            #endregion
 
-            #region Constructores
-            /// <summary>
-            /// Inicializar una nueva instancia de la clase InfoConexion.
-            /// </summary>
-            public OInfoConexion() { }
             #endregion
 
             #region Propiedades
             /// <summary>
             /// Nombre de la ruta de base de datos.
             /// </summary>
-            public string Ruta
-            {
-                get { return this.ruta; }
-                set { this.ruta = value; }
-            }
+            public string Ruta { get; set; }
             /// <summary>
             /// Nombre del grupo de trabajo.
             /// </summary>
-            public string GrupoTrabajo
-            {
-                get { return this.grupoTrabajo; }
-                set { this.grupoTrabajo = value; }
-            }
+            public string GrupoTrabajo { get; set; }
             /// <summary>
             /// Usuario de autenticación de base de datos.
             /// </summary>
-            public string Usuario
-            {
-                get { return this.usuario; }
-                set { this.usuario = value; }
-            }
+            public string Usuario { get; set; }
             /// <summary>
             /// Password de autenticación de usuario.
             /// </summary>
-            public string PasswordUsuario
-            {
-                get { return this.passwordUsuario; }
-                set { this.passwordUsuario = value; }
-            }
+            public string PasswordUsuario { get; set; }
             /// <summary>
             /// Password de autenticación de base de datos.
             /// </summary>
-            public string PasswordBbdd
-            {
-                get { return this.passwordBBDD; }
-                set { this.passwordBBDD = value; }
-            }
+            public string PasswordBbdd { get; set; }
             #endregion
         }
         /// <summary>
@@ -132,29 +91,6 @@ namespace Orbita.BBDD
         /// </summary>
         public class ComandoSql
         {
-            #region Atributos privados
-            /// <summary>
-            /// T-SQL.
-            /// </summary>
-            string sentenciaSQL;
-            /// <summary>
-            /// Parámetros de entrada de la sentencia.
-            /// </summary>
-            ParametrosSql parametros;
-            /// <summary>
-            /// Excepción.
-            /// </summary>
-            Exception excepcion;
-            /// <summary>
-            /// Resultado de la query.
-            /// </summary>
-            int resultado;
-            /// <summary>
-            /// Tipo de consulta definida en el enumerado.
-            /// </summary>
-            TipoConsulta tipoConsulta;
-            #endregion
-
             #region Constructores
             /// <summary>
             /// Inicializar una nueva instancia de la clase ComandoSQL.
@@ -171,43 +107,23 @@ namespace Orbita.BBDD
             /// <summary>
             /// T-SQL.
             /// </summary>
-            public string SentenciaSql
-            {
-                get { return this.sentenciaSQL; }
-                set { this.sentenciaSQL = value; }
-            }
+            public string SentenciaSql { get; set; }
             /// <summary>
             /// Parámetros de entrada de la sentencia.
             /// </summary>
-            public ParametrosSql Parameters
-            {
-                get { return this.parametros; }
-                set { this.parametros = value; }
-            }
+            public ParametrosSql Parameters { get; set; }
             /// <summary>
             /// Excepción.
             /// </summary>
-            public Exception Excepcion
-            {
-                get { return this.excepcion; }
-                set { this.excepcion = value; }
-            }
+            public Exception Excepcion { get; set; }
             /// <summary>
             /// Resultado de la query.
             /// </summary>
-            public int Resultado
-            {
-                get { return this.resultado; }
-                set { this.resultado = value; }
-            }
+            public int Resultado { get; set; }
             /// <summary>
             /// Tipo de consulta definida en el enumerado.
             /// </summary>
-            public TipoConsulta TipoConsulta
-            {
-                get { return this.tipoConsulta; }
-                set { this.tipoConsulta = value; }
-            }
+            public TipoConsulta TipoConsulta { get; set; }
             #endregion
         }
         /// <summary>
@@ -247,7 +163,7 @@ namespace Orbita.BBDD
         /// <summary>
         /// Contiene la información de conexión a la base de datos Access.
         /// </summary>
-        readonly OAccess.OInfoConexion infoConexion;
+        private readonly OInfoConexion _infoConexion;
         #endregion
 
         #region Contructores
@@ -256,9 +172,9 @@ namespace Orbita.BBDD
         /// Proveedor OLEDB.4.0.
         /// </summary>
         /// <param name="infoConexion">Información de la conexión actual.</param>
-        public OAccess(OAccess.OInfoConexion infoConexion)
+        public OAccess(OInfoConexion infoConexion)
         {
-            this.infoConexion = infoConexion;
+            this._infoConexion = infoConexion;
         }
         #endregion
 
@@ -271,8 +187,8 @@ namespace Orbita.BBDD
             get
             {
                 return string.Format(CultureInfo.CurrentCulture, @"Provider=Microsoft.Jet.OLEDB.4.0; Data Source={0}; Jet OLEDB:System Database={1}; 
-                    User ID={2}; Password={3}; Jet OLEDB:Database Password={4}", this.infoConexion.Ruta, this.infoConexion.GrupoTrabajo,
-                        this.infoConexion.Usuario, this.infoConexion.PasswordUsuario, this.infoConexion.PasswordBbdd);
+                    User ID={2}; Password={3}; Jet OLEDB:Database Password={4}", this._infoConexion.Ruta, this._infoConexion.GrupoTrabajo,
+                        this._infoConexion.Usuario, this._infoConexion.PasswordUsuario, this._infoConexion.PasswordBbdd);
             }
         }
         #endregion
@@ -374,9 +290,6 @@ namespace Orbita.BBDD
                                         break;
                                     case "System.Double":
                                         dr[nombreColumna] = aReader.GetDouble(posicion);
-                                        break;
-                                    case "System.Byte[]":
-                                    default:
                                         break;
                                 }
                             }

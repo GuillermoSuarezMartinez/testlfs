@@ -16,22 +16,14 @@ namespace Orbita.BBDD
     /// </summary>
     public class OInfoMirroring : OInfoConexion
     {
-        #region Atributos privados
-        /// <summary>
-        /// Nombre del servidor en mirror.
-        /// </summary>
-        string mirror;
-        #endregion
-
         #region Constructores
         /// <summary>
         /// Inicializar una nueva instancia de la clase InfoMirroring.
         /// </summary>
         /// <param name="mirror">Nombre del servidor en mirror.</param>
         public OInfoMirroring(string mirror)
-            : base()
         {
-            this.mirror = mirror;
+            this.Mirror = mirror;
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase InfoMirroring.
@@ -41,7 +33,7 @@ namespace Orbita.BBDD
         public OInfoMirroring(int timeout, string mirror)
             : base(timeout)
         {
-            this.mirror = mirror;
+            this.Mirror = mirror;
         }
         /// <summary>
         /// Inicializar una nueva instancia de la clase InfoMirroring.
@@ -55,7 +47,7 @@ namespace Orbita.BBDD
         public OInfoMirroring(string servidor, string baseDatos, string usuario, string password, int timeout, string mirror)
             : base(servidor, baseDatos, usuario, password, timeout)
         {
-            this.mirror = mirror;
+            this.Mirror = mirror;
         }
         #endregion
 
@@ -63,11 +55,7 @@ namespace Orbita.BBDD
         /// <summary>
         /// Nombre del servidor en mirror.
         /// </summary>
-        public string Mirror
-        {
-            get { return this.mirror; }
-            set { this.mirror = value; }
-        }
+        public string Mirror { get; set; }
         #endregion
     }
 }

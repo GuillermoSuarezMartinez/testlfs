@@ -3,7 +3,6 @@
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
 
@@ -46,14 +45,15 @@ namespace Orbita.Comunicaciones
         /// Valor predeterminado: 60000 ms (1 minuto).</param>
         public IOcsMensajeLectura Leer(int dispositivo, string[] variables, bool demanda, int timeoutMs = 60000)
         {
-            IMensaje mensajeRespuesta;
+            IMensaje respuesta;
             using (var mensajero = new OcsMensajeroPeticionRespuesta<ICliente>(Cliente))
             {
-                mensajero.TimeoutMs = timeoutMs;
                 var mensaje = OcsMensajeFactory.CrearMensajeLectura(dispositivo, variables, demanda);
-                mensajeRespuesta = mensajero.EnviarMensajeEsperarRespuesta(mensaje, timeoutMs);
+                mensajero.TimeoutMs = timeoutMs;
+                respuesta = mensajero.EnviarMensajeEsperarRespuesta(mensaje, timeoutMs);
             }
-            return (IOcsMensajeLectura)mensajeRespuesta;
+            if (respuesta != null) return (IOcsMensajeLectura)respuesta;
+            return null;
         }
         /// <summary>
         /// Leer la colección de datos del dispositivo especificado.
@@ -63,14 +63,15 @@ namespace Orbita.Comunicaciones
         /// Valor predeterminado: 60000 ms (1 minuto).</param>
         public IOcsMensajeLecturaDatos LeerDatos(int dispositivo, int timeoutMs = 60000)
         {
-            IMensaje mensajeRespuesta;
+            IMensaje respuesta;
             using (var mensajero = new OcsMensajeroPeticionRespuesta<ICliente>(Cliente))
             {
-                mensajero.TimeoutMs = timeoutMs;
                 var mensaje = OcsMensajeFactory.CrearMensajeDatos(dispositivo);
-                mensajeRespuesta = mensajero.EnviarMensajeEsperarRespuesta(mensaje, timeoutMs);
+                mensajero.TimeoutMs = timeoutMs;
+                respuesta = mensajero.EnviarMensajeEsperarRespuesta(mensaje, timeoutMs);
             }
-            return (IOcsMensajeLecturaDatos)mensajeRespuesta;
+            if (respuesta != null) return (IOcsMensajeLecturaDatos)respuesta;
+            return null;
         }
         /// <summary>
         /// Leer la colección de alarmas activas del dispositivo especificado.
@@ -80,14 +81,15 @@ namespace Orbita.Comunicaciones
         /// Valor predeterminado: 60000 ms (1 minuto).</param>
         public IOcsMensajeLecturaAlarmasActivas LeerAlarmasActivas(int dispositivo, int timeoutMs = 60000)
         {
-            IMensaje mensajeRespuesta;
+            IMensaje respuesta;
             using (var mensajero = new OcsMensajeroPeticionRespuesta<ICliente>(Cliente))
             {
-                mensajero.TimeoutMs = timeoutMs;
                 var mensaje = OcsMensajeFactory.CrearMensajeAlarmasActivas(dispositivo);
-                mensajeRespuesta = mensajero.EnviarMensajeEsperarRespuesta(mensaje, timeoutMs);
+                mensajero.TimeoutMs = timeoutMs;
+                respuesta = mensajero.EnviarMensajeEsperarRespuesta(mensaje, timeoutMs);
             }
-            return (IOcsMensajeLecturaAlarmasActivas)mensajeRespuesta;
+            if (respuesta != null) return (IOcsMensajeLecturaAlarmasActivas)respuesta;
+            return null;
         }
         /// <summary>
         /// Leer la colección de dispositivos.
@@ -96,14 +98,15 @@ namespace Orbita.Comunicaciones
         /// Valor predeterminado: 60000 ms (1 minuto).</param>
         public IOcsMensajeLecturaDispositivos LeerDispositivos(int timeoutMs = 60000)
         {
-            IMensaje mensajeRespuesta;
+            IMensaje respuesta;
             using (var mensajero = new OcsMensajeroPeticionRespuesta<ICliente>(Cliente))
             {
-                mensajero.TimeoutMs = timeoutMs;
                 var mensaje = OcsMensajeFactory.CrearMensajeDispositivos();
-                mensajeRespuesta = mensajero.EnviarMensajeEsperarRespuesta(mensaje, timeoutMs);
+                mensajero.TimeoutMs = timeoutMs;
+                respuesta = mensajero.EnviarMensajeEsperarRespuesta(mensaje, timeoutMs);
             }
-            return (IOcsMensajeLecturaDispositivos)mensajeRespuesta;
+            if (respuesta != null) return (IOcsMensajeLecturaDispositivos)respuesta;
+            return null;
         }
         /// <summary>
         /// Escribir el valor indicado de las variables en el dispositivo asociado indicando el canal.
@@ -116,14 +119,15 @@ namespace Orbita.Comunicaciones
         /// Valor predeterminado: 60000 ms (1 minuto).</param>
         public IOcsMensajeEscritura Escribir(int dispositivo, string[] variables, object[] valores, string canal, int timeoutMs = 60000)
         {
-            IMensaje mensajeRespuesta;
+            IMensaje respuesta;
             using (var mensajero = new OcsMensajeroPeticionRespuesta<ICliente>(Cliente))
             {
-                mensajero.TimeoutMs = timeoutMs;
                 var mensaje = OcsMensajeFactory.CrearMensajeEscritura(dispositivo, variables, valores, canal);
-                mensajeRespuesta = mensajero.EnviarMensajeEsperarRespuesta(mensaje, timeoutMs);
+                mensajero.TimeoutMs = timeoutMs;
+                respuesta = mensajero.EnviarMensajeEsperarRespuesta(mensaje, timeoutMs);
             }
-            return (IOcsMensajeEscritura)mensajeRespuesta;
+            if (respuesta != null) return (IOcsMensajeEscritura)respuesta;
+            return null;
         }
         #endregion Métodos públicos
 

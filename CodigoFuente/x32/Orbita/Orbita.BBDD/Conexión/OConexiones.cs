@@ -9,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
 using System;
 using System.Collections;
 namespace Orbita.BBDD
@@ -22,7 +23,7 @@ namespace Orbita.BBDD
         /// <summary>
         /// Colección de OConexiones.
         /// </summary>
-        Hashtable conexiones;
+        private readonly Hashtable _conexiones;
         #endregion
 
         #region Constructores
@@ -32,7 +33,7 @@ namespace Orbita.BBDD
         public OConexiones()
         {
             // Crear la colección 'Hashtable'.
-            this.conexiones = new Hashtable();
+            this._conexiones = new Hashtable();
         }
         #endregion
 
@@ -47,14 +48,13 @@ namespace Orbita.BBDD
             get
             {
                 // Bloquear esta propiedad por si se usan Threads (17/Jul/10).
-                lock (this.conexiones)
+                lock (this._conexiones)
                 {
                     // Crear una nueva conexión.
-                    OConexion conexion = new OConexion(info);
+                    OConexion conexion = new OConexion(info) { Identificador = Guid.NewGuid() };
                     // Asignar identificador de transacción.
-                    conexion.Identificador = System.Guid.NewGuid();
                     // Añadir a la colección.
-                    this.conexiones.Add(conexion.Identificador, conexion);
+                    this._conexiones.Add(conexion.Identificador, conexion);
                     return conexion;
                 }
             }
@@ -69,12 +69,12 @@ namespace Orbita.BBDD
             get
             {
                 // Bloquear esta propiedad por si se usan Threads (17/Jul/10).
-                lock (this.conexiones)
+                lock (this._conexiones)
                 {
                     OConexion resultado = null;
-                    if (this.conexiones.ContainsKey(identificador))
+                    if (this._conexiones.ContainsKey(identificador))
                     {
-                        resultado = (OConexion)this.conexiones[identificador];
+                        resultado = (OConexion)this._conexiones[identificador];
                     }
                     return resultado;
                 }

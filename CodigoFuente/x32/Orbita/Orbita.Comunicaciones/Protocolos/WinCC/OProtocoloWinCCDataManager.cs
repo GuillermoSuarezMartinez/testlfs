@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -418,55 +419,54 @@ namespace Orbita.Comunicaciones
         // Converts Object to VARIANT 
         private bool ObjectToVariant(Object obj, ref VARIANT var)
         {
-            if (obj.GetType() == typeof(Boolean))
+            if (obj is bool)
             {
                 var.vt = VT_BOOL;
                 var.BooleanVal = (Int16)(((Boolean)obj) ? 1 : 0);
             }
-            else if (obj.GetType() == typeof(SByte))
+            else if (obj is sbyte)
             {
                 var.vt = VT_I1;
                 var.cVal = (SByte)obj;
             }
-            else if (obj.GetType() == typeof(Byte))
+            else if (obj is byte)
             {
                 var.vt = VT_UI1;
                 var.bVal = (Byte)obj;
             }
-            else if (obj.GetType() == typeof(Int16))
+            else if (obj is short)
             {
                 var.vt = VT_I2;
                 var.iVal = (Int16)obj;
             }
-            else if (obj.GetType() == typeof(UInt16))
+            else if (obj is ushort)
             {
                 var.vt = VT_UI2;
                 var.uiVal = (UInt16)obj;
             }
-            else if (obj.GetType() == typeof(Int32))
+            else if (obj is int)
             {
                 var.vt = VT_I4;
                 var.intVal = (Int32)obj;
             }
-            else if (obj.GetType() == typeof(UInt32))
+            else if (obj is uint)
             {
                 var.vt = VT_UI4;
                 var.uintVal = (UInt32)obj;
             }
-            else if (obj.GetType() == typeof(Single))
+            else if (obj is float)
             {
                 var.vt = VT_R4;
                 var.fltVal = (Single)obj;
             }
-            else if (obj.GetType() == typeof(Double))
+            else if (obj is double)
             {
                 var.vt = VT_R8;
                 var.dblVal = (Double)obj;
             }
-            else if (obj.GetType() == typeof(String))
+            else if (obj is string)
             {
                 var.vt = VT_BSTR;
-                // muss eigentlich irgendwann wieder freigegeben werden...
                 var.bstrVal = Marshal.StringToBSTR((String)obj);
             }
             else

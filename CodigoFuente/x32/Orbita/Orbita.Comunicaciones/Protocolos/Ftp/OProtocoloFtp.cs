@@ -1,13 +1,9 @@
 //***********************************************************************
-// Assembly         : OrbitaComunicaciones
-// Author           : crodriguez
-// Created          : 02-17-2011
 //
-// Last Modified By : crodriguez
-// Last Modified On : 02-18-2011
-// Description      : 
+// Ensamblado         : Orbita.Comunicaciones
+// Autor              : crodriguez
+// Fecha creación     : 01-09-2013
 //
-// Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 
 using System;
@@ -129,7 +125,6 @@ namespace Orbita.Comunicaciones
 
                     // Obtener la ruta destino que se va a retornar.
                     string rutaDestino = ficheroEndisco[identificador, directorio];
-
                     using (FileStream destino = new FileStream(rutaDestino, FileMode.Create))
                     {
                         while (contador > 0)

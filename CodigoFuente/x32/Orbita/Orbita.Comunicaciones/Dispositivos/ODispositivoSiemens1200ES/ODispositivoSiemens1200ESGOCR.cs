@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using Orbita.Utiles;
 
@@ -12,8 +11,8 @@ namespace Orbita.Comunicaciones
     public class ODispositivoSiemens1200ESGOCR : ODispositivoSiemens1200ES
     {
         #region Constantes
-        private const int BytesEntradaOCR = 8;
-        private const int ByteSalidasOCR = 4;
+        private const int NumeroBytesEntradaOCR = 8;
+        private const int NumeroByteSalidasOCR = 4;
         private const int RegistroInicialEntradasOCR = 0;
         private const int RegistroInicialSalidasOCR = 0;
         #endregion Constantes
@@ -29,29 +28,29 @@ namespace Orbita.Comunicaciones
             : base(tags, hilos, dispositivo) { }
         #endregion Constructor
 
-        #region Métodos privados
-
-        #region Comunes
+        #region Métodos protegidos
         /// <summary>
         /// Establece el valor inicial de los objetos.
         /// </summary>
-        protected override void IniciarObjetos()
+        protected override void Inicializar()
         {
-            base.IniciarObjetos();
-            this.ProtocoloHiloVida = new OProtocoloTCPSiemensGateOCR();
-            this.ProtocoloEscritura = new OProtocoloTCPSiemensGateOCR();
-            this.ProtocoloProcesoMensaje = new OProtocoloTCPSiemensGateOCR();
-            this.ProtocoloProcesoHilo = new OProtocoloTCPSiemensGateOCR();
+            base.Inicializar();
 
-            this.NumLecturas = BytesEntradaOCR + ByteSalidasOCR;
-            this.NumeroBytesEntradas = BytesEntradaOCR;
-            this.NumeroBytesSalidas = ByteSalidasOCR;
-            this.RegistroInicialEntradas = RegistroInicialEntradasOCR;
-            this.RegistroInicialSalidas = RegistroInicialSalidasOCR;
+            ProtocoloHiloVida = new OProtocoloTCPSiemensGateOCR();
+            ProtocoloEscritura = new OProtocoloTCPSiemensGateOCR();
+            ProtocoloProcesoMensaje = new OProtocoloTCPSiemensGateOCR();
+            ProtocoloProcesoHilo = new OProtocoloTCPSiemensGateOCR();
 
-            this.Entradas = new byte[this.NumeroBytesEntradas];
-            this.Salidas = new byte[this.NumeroBytesSalidas];
-            this._lecturas = new byte[NumLecturas];
+            NumeroLecturas = NumeroBytesEntradaOCR + NumeroByteSalidasOCR;
+            NumeroBytesEntradas = NumeroBytesEntradaOCR;
+            NumeroBytesSalidas = NumeroByteSalidasOCR;
+            RegistroInicialEntradas = RegistroInicialEntradasOCR;
+            RegistroInicialSalidas = RegistroInicialSalidasOCR;
+
+            Entradas = new byte[NumeroBytesEntradas];
+            Salidas = new byte[NumeroBytesSalidas];
+
+            BytesLecturas = new byte[NumeroLecturas];
         }
         /// <summary>
         /// Procesa los mensajes recibidos en el evento Winsock_DataArrival.
@@ -59,112 +58,106 @@ namespace Orbita.Comunicaciones
         /// <param name="mensaje"></param>
         protected override void ProcesarMensajeRecibido(byte[] mensaje)
         {
-            try
+            lock (this)
             {
-                var bmensaje = new byte[13];
-                Array.Copy(mensaje, 1, bmensaje, 0, 13);
-                string smensaje = Encoding.ASCII.GetString(bmensaje);
-                lock (this)
+                try
                 {
                     using (ProtocoloProcesoMensaje)
                     {
-                        if (!smensaje.Contains("OCRDATA")) return;
+                        if (!ProtocoloProcesoMensaje.Deserializar(mensaje).Contains("OCRDATA")) return;
 
-                        // Respuesta para la lectura.
-                        byte[] lecturas;
-                        if (mensaje[15] == 0)
+                        byte[] bytesLecturas;
+                        if (mensaje[15] == 0) // Respuesta para la lectura.
                         {
-                            if (ProtocoloProcesoMensaje.KeepAliveProcesar(mensaje, out lecturas))
+                            if (ProtocoloProcesoMensaje.KeepAliveProcesar(mensaje, out bytesLecturas))
                             {
-                                bool iguales = this._lecturas.SequenceEqual(lecturas);
-                                if (!iguales)
+                                if (!BytesLecturas.SequenceEqual(bytesLecturas))
                                 {
-                                    this.EsEncolar(lecturas);
+                                    Encolar(bytesLecturas);
                                 }
-                                this._lecturas = lecturas;
-                                // Despertar el hilo en la línea: this._eReset.Dormir de ProcesarHiloKeepAlive.                        
-                                this.Reset.Despertar(0);
+                                BytesLecturas = bytesLecturas;
+                                Reset.Despertar(0); // Despertar el hilo en la línea: this._eReset.Dormir de ProcesarHiloKeepAlive.
                             }
                         }
                         else // Respuesta para la escritura.
                         {
-                            if (ProtocoloProcesoMensaje.SalidasProcesar(mensaje, this.IdMensaje, out lecturas))
+                            if (ProtocoloProcesoMensaje.SalidasProcesar(mensaje, IdMensaje, out bytesLecturas))
                             {
-                                bool iguales = this._lecturas.SequenceEqual(lecturas);
-                                if (!iguales)
+                                if (!BytesLecturas.SequenceEqual(bytesLecturas))
                                 {
-                                    this.EsEncolar(lecturas);
+                                    Encolar(bytesLecturas);
                                 }
-                                this._lecturas = lecturas;
+                                BytesLecturas = bytesLecturas;
                             }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Wrapper.Error("ODispositivoSiemens1200ESGOCR [ProcesarMensajeRecibido]: " + ex);
+                catch (Exception ex)
+                {
+                    Wrapper.Error("ODispositivoSiemens1200ESGOCR [ProcesarMensajeRecibido]: " + ex);
+                }
             }
         }
-        #endregion Comunes
-
-        #region ES
         /// <summary>
         /// Hilo de proceso de ES
         /// </summary>
-        protected override void EsProcesarHilo()
+        protected override void ProcesarHilo()
         {
             while (true)
             {
-                byte[] mensaje = this.EsDesencolar();
+                byte[] mensaje = Desencolar();
                 if (mensaje != null)
                 {
                     try
                     {
-                        var entradas = new byte[BytesEntradaOCR];
-                        var salidas = new byte[ByteSalidasOCR];
-                        Array.Copy(mensaje, 0, entradas, 0, BytesEntradaOCR);
-                        Array.Copy(mensaje, BytesEntradaOCR, salidas, 0, ByteSalidasOCR);
-                        this.EsProcesar(entradas, salidas);
+                        var entradas = new byte[NumeroBytesEntradaOCR];
+                        var salidas = new byte[NumeroByteSalidasOCR];
+                        Array.Copy(mensaje, 0, entradas, 0, NumeroBytesEntradaOCR);
+                        Array.Copy(mensaje, NumeroBytesEntradaOCR, salidas, 0, NumeroByteSalidasOCR);
+
+                        // Procesar los bytes de entradas y salidas para actualizar los valores de las variables.
+                        ProcesarEntradasSalidas(entradas, salidas);
                     }
                     catch (Exception ex)
                     {
-                        Wrapper.Fatal("ODispositivoSiemens1200ESGOCR [EsProcesarHilo]: " + ex);
+                        Wrapper.Fatal("ODispositivoSiemens1200ESGOCR [ProcesarHilo]: " + ex);
                     }
                     Thread.Sleep(1);
                 }
                 else
                 {
-                    this.Reset.Dormir(1);
+                    Reset.Dormir(1);
                 }
             }
         }
+        #endregion Métodos protegidos
+
+        #region Métodos privados
         /// <summary>
         /// Procesa los bytes de entradas y salidas para actualizar los valores de las variables.
         /// </summary>
-        /// <param name="entradas">byte de entradas recibido</param>
-        /// <param name="salidas">byte de salidas recibido</param>
-        private void EsProcesar(byte[] entradas, byte[] salidas)
+        /// <param name="entradas">Byte de entradas recibido.</param>
+        /// <param name="salidas">Byte de salidas recibido.</param>
+        private void ProcesarEntradasSalidas(byte[] entradas, byte[] salidas)
         {
-            lock (this.Bloqueo)
+            lock (ObjSincronizacion)
             {
                 try
                 {
                     for (int i = 0; i < entradas.Length; i++)
                     {
-                        this.EsActualizarVariablesEntradas(entradas[i], i + this.RegistroInicialEntradas);
-                        if (i < ByteSalidasOCR)
+                        ActualizarEntradas(entradas[i], i + RegistroInicialEntradas);
+                        if (i < NumeroByteSalidasOCR)
                         {
-                            this.EsActualizarVariablesSalidas(salidas[i], i + this.RegistroInicialSalidas);
+                            ActualizarSalidas(salidas[i], i + RegistroInicialSalidas);
                         }
-
                     }
-                    this.Entradas = entradas;
-                    this.Salidas = salidas;
+                    Entradas = entradas;
+                    Salidas = salidas;
                 }
                 catch (Exception ex)
                 {
-                    Wrapper.Fatal("ODispositivoSiemens1200ESGOCR [EsProcesar]: " + ex);
+                    Wrapper.Fatal("ODispositivoSiemens1200ESGOCR [Procesar]: " + ex);
                     throw;
                 }
             }
@@ -174,17 +167,9 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="valor">valor del byte</param>
         /// <param name="posicion">posición del byte</param>
-        private void EsActualizarVariablesEntradas(byte valor, int posicion)
+        private void ActualizarEntradas(byte valor, int posicion)
         {
             var e = new OEventArgs();
-            try
-            {
-                this.OnCambioDatoEntradas(new OEventArgs { Id = posicion, Argumento = valor });
-            }
-            catch
-            {
-                // Empty.
-            }
             try
             {
                 string key;
@@ -194,7 +179,7 @@ namespace Orbita.Comunicaciones
                     for (int i = 0; i < 8; i++)
                     {
                         key = string.Format("{0}-{1}", posicion, i);
-                        infodato = (OInfoDato)this.AlmacenLecturas[key];
+                        infodato = (OInfoDato)AlmacenLecturas[key];
 
                         // Comprobar el valor nuevo. 
                         if (infodato == null) continue;
@@ -207,30 +192,35 @@ namespace Orbita.Comunicaciones
                         if (resultado == Convert.ToInt32(infodato.Valor)) continue;
                         infodato.Valor = resultado;
                         e.Argumento = infodato;
-                        this.OnCambioDato(e);
 
-                        if (this.Tags.GetAlarmas(infodato.Identificador) == null) continue;
+                        // Elevar el evento OnCambioDato.
+                        OnCambioDato(e);
+
+                        if (Tags.GetAlarmas(infodato.Identificador) == null) continue;
                         if (Convert.ToInt32(infodato.Valor) == 1)
                         {
                             if (!AlarmasActivas.Contains(infodato.Texto))
                             {
-                                this.AlarmasActivas.Add(infodato.Texto);
+                                AlarmasActivas.Add(infodato.Texto);
                             }
                         }
                         else
                         {
                             if (AlarmasActivas.Contains(infodato.Texto))
                             {
-                                this.AlarmasActivas.Remove(infodato.Texto);
+                                AlarmasActivas.Remove(infodato.Texto);
                             }
                         }
-                        this.OnAlarma(e);
+
+                        // Elevar el evento OnAlarma.
+                        OnAlarma(e);
                     }
                 }
                 else
                 {
                     key = string.Format("{0}-0", posicion);
-                    infodato = (OInfoDato)this.AlmacenLecturas[key];
+                    infodato = (OInfoDato)AlmacenLecturas[key];
+
                     // Comprobar el valor nuevo.
                     if (infodato != null)
                     {
@@ -238,14 +228,16 @@ namespace Orbita.Comunicaciones
                         {
                             infodato.Valor = valor;
                             e.Argumento = infodato;
-                            this.OnCambioDato(e);
+
+                            // Elevar el evento OnCambioDato.
+                            OnCambioDato(e);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Wrapper.Error("ODispositivoSiemens1200ESGOCR [EsActualizarVariablesEntradas]: " + ex);
+                Wrapper.Error("ODispositivoSiemens1200ESGOCR [ActualizarVariablesEntradas]: " + ex);
             }
         }
         /// <summary>
@@ -253,24 +245,15 @@ namespace Orbita.Comunicaciones
         /// </summary>
         /// <param name="valor">valor del byte</param>
         /// <param name="posicion">posición del byte</param>
-        private void EsActualizarVariablesSalidas(byte valor, int posicion)
+        private void ActualizarSalidas(byte valor, int posicion)
         {
             var e = new OEventArgs();
             try
             {
-                this.OnCambioDatoSalidas(new OEventArgs { Id = posicion, Argumento = valor });
-            }
-            catch
-            {
-                // Empty.
-            }
-
-            for (int i = 0; i < 8; i++)
-            {
-                try
+                for (int i = 0; i < 8; i++)
                 {
                     string key = string.Format("{0}-{1}", posicion, i);
-                    var infodato = (OInfoDato)this.AlmacenEscrituras[key];
+                    var infodato = (OInfoDato)AlmacenEscrituras[key];
 
                     // Comprobar el valor nuevo. 
                     if (infodato == null) continue;
@@ -283,34 +266,35 @@ namespace Orbita.Comunicaciones
                     if (resultado == Convert.ToInt32(infodato.Valor)) continue;
                     infodato.Valor = resultado;
                     e.Argumento = infodato;
-                    this.OnCambioDato(e);
 
-                    if (this.Tags.GetAlarmas(infodato.Identificador) == null) continue;
+                    // Elevar el evento OnCambioDato.
+                    OnCambioDato(e);
+
+                    if (Tags.GetAlarmas(infodato.Identificador) == null) continue;
                     if (Convert.ToInt32(infodato.Valor) == 1)
                     {
                         if (!AlarmasActivas.Contains(infodato.Texto))
                         {
-                            this.AlarmasActivas.Add(infodato.Texto);
+                            AlarmasActivas.Add(infodato.Texto);
                         }
                     }
                     else
                     {
                         if (AlarmasActivas.Contains(infodato.Texto))
                         {
-                            this.AlarmasActivas.Remove(infodato.Texto);
+                            AlarmasActivas.Remove(infodato.Texto);
                         }
                     }
 
-                    this.OnAlarma(e);
-                }
-                catch (Exception ex)
-                {
-                    Wrapper.Error("ODispositivoSiemens1200ESGOCR [EsActualizarVariablesSalidas]: " + ex);
+                    // Elevar el evento OnAlarma.
+                    OnAlarma(e);
                 }
             }
+            catch (Exception ex)
+            {
+                Wrapper.Error("ODispositivoSiemens1200ESGOCR [ActualizarVariablesSalidas]: " + ex);
+            }
         }
-        #endregion ES
-
         #endregion Métodos privados
     }
 }

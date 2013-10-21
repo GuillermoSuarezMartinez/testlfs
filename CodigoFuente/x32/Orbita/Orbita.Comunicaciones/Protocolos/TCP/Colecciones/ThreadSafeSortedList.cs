@@ -3,9 +3,9 @@
 // Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Colecciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
+
 using System.Collections.Generic;
 using System.Threading;
 
@@ -179,7 +179,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Colecciones
             {
                 if (Elementos.Count == 0) return default(TV);
                 var key = Elementos.Keys[0];
-                 return Elementos.ContainsKey(key) ? Elementos[key] : default(TV);
+                return Elementos.ContainsKey(key) ? Elementos[key] : default(TV);
             }
             finally
             {

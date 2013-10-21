@@ -13,7 +13,7 @@ namespace Orbita.Comunicaciones
         public bool Disposed = false;
         #endregion
 
-        #region Dispose
+        #region Miembros de IDisposable
         /// <summary>
         /// Implementa IDisposable.
         /// No  hacer  este  método  virtual.
@@ -49,6 +49,6 @@ namespace Orbita.Comunicaciones
             // de legibilidad y mantenimiento.
             Dispose(false);
         }
-        #endregion
+        #endregion Miembros de IDisposable
     }
 }

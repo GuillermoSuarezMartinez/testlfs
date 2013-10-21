@@ -22,11 +22,10 @@ namespace Orbita.BBDD.Trazabilidad
         /// <summary>
         /// Repositorio de trazas.
         /// </summary>
-        static Hashtable Repositorio = new Hashtable();
+        private static readonly Hashtable Repositorio = new Hashtable();
         #endregion
 
         #region Métodos públicos
-
         /// <summary>
         /// Obtener la traza por nombre.
         /// </summary>

@@ -16,19 +16,22 @@ namespace Orbita.Comunicaciones
         public enum _LeapIndicator
         {
             /// <summary>
-            /// 0 - No warning
+            /// 0 - No warning.
             /// </summary>
             NoWarning,
+
             /// <summary>
-            /// 1 - Last minute has 61 seconds
+            /// 1 - Last minute has 61 seconds.
             /// </summary>
             LastMinute61,
+
             /// <summary>
-            /// 2 - Last minute has 59 seconds
+            /// 2 - Last minute has 59 seconds.
             /// </summary>
             LastMinute59,
+
             /// <summary>
-            /// 3 - Alarm condition (clock not synchronized)
+            /// 3 - Alarm condition (clock not synchronized).
             /// </summary>
             Alarm
         }
@@ -38,27 +41,32 @@ namespace Orbita.Comunicaciones
         public enum _Mode
         {
             /// <summary>
-            /// 1 - Symmetric active
+            /// 1 - Symmetric active.
             /// </summary>
             SymmetricActive,
+
             /// <summary>
-            /// 2 - Symmetric pasive
+            /// 2 - Symmetric pasive.
             /// </summary>
             SymmetricPassive,
+
             /// <summary>
-            /// 3 - Client
+            /// 3 - Client.
             /// </summary>
             Client,
+
             /// <summary>
-            /// 4 - Server
+            /// 4 - Server.
             /// </summary>
             Server,
+
             /// <summary>
-            /// 5 - Broadcast
+            /// 5 - Broadcast.
             /// </summary>
             Broadcast,
+
             /// <summary>
-            /// 0, 6, 7 - Reserved
+            /// 0, 6, 7 - Reserved.
             /// </summary>
             Unknown
         }
@@ -68,25 +76,28 @@ namespace Orbita.Comunicaciones
         public enum _Stratum
         {
             /// <summary>
-            /// 0 - unspecified or unavailable
+            /// 0 - unspecified or unavailable.
             /// </summary>
             Unspecified,
+
             /// <summary>
-            /// 1 - primary reference (e.g. radio-clock)
+            /// 1 - primary reference (e.g. radio-clock).
             /// </summary>
             PrimaryReference,
+
             /// <summary>
-            /// 2-15 - secondary reference (via NTP or SNTP)
+            /// 2-15 - secondary reference (via NTP or SNTP).
             /// </summary>
             SecondaryReference,
+
             /// <summary>
-            /// 16-255 - reserved
+            /// 16-255 - reserved.
             /// </summary>
             Reserved
         }
 
         /// <summary>
-        /// Limpia objetos de memoria
+        /// Limpia objetos de memoria.
         /// </summary>
         /// <param name="disposing"></param>
         public override void Dispose(bool disposing)
@@ -94,7 +105,6 @@ namespace Orbita.Comunicaciones
             // Preguntar si Dispose ya fue llamado.
             if (!this.Disposed)
             {
-
                 // Marcar como desechada ó desechandose,
                 // de forma que no se puede ejecutar el
                 // código dos veces.
@@ -202,18 +212,21 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public class OProtocoloNTPClient : Protocolo
         {
+            #region Atributos
             // NTP Data Structure Length
             private const byte NTPDataLength = 48;
             // NTP Data Structure (as described in RFC 2030)
-            byte[] NTPData = new byte[NTPDataLength];
+            private byte[] NTPData = new byte[NTPDataLength];
             // Offset constants for timestamps in the data structure
             private const byte offReferenceID = 12;
             private const byte offReferenceTimestamp = 16;
             private const byte offOriginateTimestamp = 24;
             private const byte offReceiveTimestamp = 32;
             private const byte offTransmitTimestamp = 40;
+            #endregion
+
             /// <summary>
-            /// Leap Indicator
+            /// Leap Indicator.
             /// </summary>
             public _LeapIndicator LeapIndicator
             {
@@ -233,7 +246,7 @@ namespace Orbita.Comunicaciones
                 }
             }
             /// <summary>
-            /// Version Number
+            /// Version Number.
             /// </summary>
             public byte VersionNumber
             {
@@ -245,7 +258,7 @@ namespace Orbita.Comunicaciones
                 }
             }
             /// <summary>
-            /// Mode
+            /// Mode.
             /// </summary>
             public _Mode Mode
             {
@@ -274,7 +287,7 @@ namespace Orbita.Comunicaciones
                 }
             }
             /// <summary>
-            /// Stratum
+            /// Stratum.
             /// </summary>
             public _Stratum Stratum
             {
@@ -291,7 +304,7 @@ namespace Orbita.Comunicaciones
                 }
             }
             /// <summary>
-            /// Poll Interval
+            /// Poll Interval.
             /// </summary>
             public uint PollInterval
             {
@@ -301,7 +314,7 @@ namespace Orbita.Comunicaciones
                 }
             }
             /// <summary>
-            /// Precision (in milliseconds)
+            /// Precision (in milliseconds).
             /// </summary>
             public double Precision
             {
@@ -311,7 +324,7 @@ namespace Orbita.Comunicaciones
                 }
             }
             /// <summary>
-            /// Root Delay (in milliseconds)
+            /// Root Delay (in milliseconds).
             /// </summary>
             public double RootDelay
             {
@@ -323,7 +336,7 @@ namespace Orbita.Comunicaciones
                 }
             }
             /// <summary>
-            /// Root Dispersion (in milliseconds)
+            /// Root Dispersion (in milliseconds).
             /// </summary>
             public double RootDispersion
             {
@@ -335,7 +348,7 @@ namespace Orbita.Comunicaciones
                 }
             }
             /// <summary>
-            /// Reference Identifier
+            /// Reference Identifier.
             /// </summary>
             public string ReferenceID
             {
@@ -387,7 +400,7 @@ namespace Orbita.Comunicaciones
                 }
             }
             /// <summary>
-            /// Reference Timestamp
+            /// Reference Timestamp.
             /// </summary>
             public DateTime ReferenceTimestamp
             {
@@ -400,7 +413,7 @@ namespace Orbita.Comunicaciones
                 }
             }
             /// <summary>
-            /// Originate Timestamp
+            /// Originate Timestamp.
             /// </summary>
             public DateTime OriginateTimestamp
             {
@@ -410,7 +423,7 @@ namespace Orbita.Comunicaciones
                 }
             }
             /// <summary>
-            /// Receive Timestamp
+            /// Receive Timestamp.
             /// </summary>
             public DateTime ReceiveTimestamp
             {
@@ -423,7 +436,7 @@ namespace Orbita.Comunicaciones
                 }
             }
             /// <summary>
-            /// Transmit Timestamp
+            /// Transmit Timestamp.
             /// </summary>
             public DateTime TransmitTimestamp
             {
@@ -440,11 +453,11 @@ namespace Orbita.Comunicaciones
                 }
             }
             /// <summary>
-            /// Reception Timestamp
+            /// Reception Timestamp.
             /// </summary>
             public DateTime ReceptionTimestamp;
             /// <summary>
-            /// Round trip delay (in milliseconds)
+            /// Round trip delay (in milliseconds).
             /// </summary>
             public int RoundTripDelay
             {
@@ -455,7 +468,7 @@ namespace Orbita.Comunicaciones
                 }
             }
             /// <summary>
-            /// Local clock offset (in milliseconds)
+            /// Local clock offset (in milliseconds).
             /// </summary>
             public int LocalClockOffset
             {
@@ -465,10 +478,10 @@ namespace Orbita.Comunicaciones
                     return (int)(span.TotalMilliseconds / 2);
                 }
             }
-            // Compute date, given the number of milliseconds since January 1, 1900
+            // Compute date, given the number of milliseconds since January 1, 1900.
             private DateTime ComputeDate(ulong milliseconds)
             {
-                TimeSpan span = TimeSpan.FromMilliseconds((double)milliseconds);
+                TimeSpan span = TimeSpan.FromMilliseconds(milliseconds);
                 DateTime time = new DateTime(1900, 1, 1);
                 time += span;
                 return time;
@@ -513,7 +526,7 @@ namespace Orbita.Comunicaciones
                     temp = temp / 256;
                 }
             }
-            // Initialize the NTPClient data
+            // Initialize the NTPClient data.
             private void Initialize()
             {
                 // Set version number to 4 and Mode to 3 (client)
@@ -527,7 +540,7 @@ namespace Orbita.Comunicaciones
                 TransmitTimestamp = DateTime.Now;
             }
             /// <summary>
-            /// Cliente NTP
+            /// Cliente NTP.
             /// </summary>
             /// <param name="host">IP o dirección del servidor NTP</param>
             public OProtocoloNTPClient(string host)
@@ -535,7 +548,7 @@ namespace Orbita.Comunicaciones
                 TimeServer = host;
             }
             /// <summary>
-            /// Connect to the time server and update system time
+            /// Connect to the time server and update system time.
             /// </summary>
             /// <param name="UpdateSystemTime">variable para la actualización de la hora local del equipo</param>
             /// <param name="usarUTC">actualiza a hora UTC</param>
@@ -543,15 +556,15 @@ namespace Orbita.Comunicaciones
             {
                 try
                 {
-                    // Resolve server address
+                    // Resolve server address.
                     IPHostEntry hostadd = Dns.GetHostEntry(TimeServer);
                     IPEndPoint EPhost = new IPEndPoint(hostadd.AddressList[0], 123);
 
-                    //Connect the time server
+                    //Connect the time server.
                     UdpClient TimeSocket = new UdpClient();
                     TimeSocket.Connect(EPhost);
 
-                    // Initialize data structure
+                    // Initialize data structure.
                     Initialize();
                     TimeSocket.Send(NTPData, NTPData.Length);
                     NTPData = TimeSocket.Receive(ref EPhost);
@@ -566,14 +579,14 @@ namespace Orbita.Comunicaciones
                     throw new Exception(e.Message);
                 }
 
-                // Update system time
+                // Update system time.
                 if (UpdateSystemTime)
                 {
                     SetTime(usarUTC);
                 }
             }
             /// <summary>
-            /// Check if the response from server is valid
+            /// Check if the response from server is valid.
             /// </summary>
             /// <returns></returns>
             public bool IsResponseValid()
@@ -582,10 +595,7 @@ namespace Orbita.Comunicaciones
                 {
                     return false;
                 }
-                else
-                {
-                    return true;
-                }
+                return true;
             }
             /// <summary>
             /// Converts the object to string
@@ -659,7 +669,6 @@ namespace Orbita.Comunicaciones
 
                 return str;
             }
-
             /// <summary>
             /// Limpia objetos de memoria
             /// </summary>
@@ -676,7 +685,6 @@ namespace Orbita.Comunicaciones
                     Disposed = true;
                 }
             }
-
             // SYSTEMTIME structure used by SetSystemTime
             [StructLayoutAttribute(LayoutKind.Sequential)]
             private struct SYSTEMTIME
@@ -697,9 +705,7 @@ namespace Orbita.Comunicaciones
             private void SetTime(bool usarUTC)
             {
                 SYSTEMTIME st;
-
                 DateTime trts = TransmitTimestamp;
-
                 if (usarUTC)
                 {
                     trts = trts.ToUniversalTime();

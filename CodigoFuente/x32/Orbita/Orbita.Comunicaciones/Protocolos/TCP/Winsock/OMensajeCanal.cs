@@ -7,36 +7,36 @@
     {
         #region Constructor
         /// <summary>
-        /// Constructor de clase
+        /// Constructor de clase.
         /// </summary>
         /// <param name="listener"></param>
         /// <param name="canal"></param>
         /// <param name="mensaje"></param>
         public OMensajeCanalTCP(string listener, string canal, string mensaje)
         {
-            this.Listener = listener;
-            this.Canal = canal;
-            this.Mensaje = mensaje;
+            Listener = listener;
+            Canal = canal;
+            Mensaje = mensaje;
         }
         #endregion
 
         #region Propiedades
         /// <summary>
-        /// nombre del listener
+        /// Nombre del listener.
         /// </summary>
         public string Listener { get; set; }
         /// <summary>
-        /// nombre del canal
+        /// Nombre del canal.
         /// </summary>
         public string Canal { get; set; }
         /// <summary>
-        /// mensaje
+        /// Mensaje.
         /// </summary>
         public string Mensaje { get; set; }
         /// <summary>
-        /// datos del mensaje
+        /// Datos del mensaje.
         /// </summary>
         public object Data { get; set; }
-        #endregion
+        #endregion Propiedades
     }
 }

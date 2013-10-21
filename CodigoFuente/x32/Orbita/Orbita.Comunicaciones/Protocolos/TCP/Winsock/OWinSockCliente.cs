@@ -12,11 +12,11 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// objeto para establecer el canal TCP
         /// </summary>
-        private OWinsockBase _winsock;
+        private readonly OWinsockBase _winsock;
         /// <summary>
         /// Log de la aplicación
         /// </summary>
-        private ILogger log;
+        private readonly ILogger log;
         /// <summary>
         /// evento para la recepción de datos en el canal
         /// </summary>
@@ -36,15 +36,8 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// nombre del canal
         /// </summary>
-        private string _nombre;
-        /// <summary>
-        /// Nombre del listener
-        /// </summary>
-        private string _listener;
-        /// <summary>
-        /// Estado del canal
-        /// </summary>
-        private WinsockStates _estado;
+        private readonly string _nombre;
+
         #endregion
 
         #region Constructor
@@ -56,11 +49,11 @@ namespace Orbita.Comunicaciones
         /// <param name="log"></param>
         public OWinSockCliente(string listener, string nombre, ILogger log)
         {
-            this._estado = WinsockStates.Closed;
+            this.Estado = WinsockStates.Closed;
             this._nombre = nombre;
-            this._listener = listener;
+            this.Listener = listener;
             this.log = log;
-            this._winsock = new OWinsockBase {LegacySupport = true};
+            this._winsock = new OWinsockBase { LegacySupport = true };
 
             this._winsock.DataArrival += _winsock_DataArrival;
             this._winsock.StateChanged += _winsock_StateChanged;
@@ -73,20 +66,12 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// nombre del listener
         /// </summary>
-        public string Listener
-        {
-            get { return _listener; }
-            set { _listener = value; }
-        }
+        public string Listener { get; set; }
         /// <summary>
         /// Estado del canal
         /// </summary>
-        public WinsockStates Estado
-        {
-            get { return _estado; }
-            set { _estado = value; }
-        }
-        #endregion
+        public WinsockStates Estado { get; set; }
+        #endregion Propiedades
 
         #region Métodos públicos
         /// <summary>
@@ -130,14 +115,14 @@ namespace Orbita.Comunicaciones
         {
             try
             {
-                String data = "";   // data es la variable donde guardaremos el mensaje recibido
-                Object dat = (object)data;  // dat es una variable tipo objeto
+                string data = "";   // data es la variable donde guardaremos el mensaje recibido
+                object dat = (object)data;  // dat es una variable tipo objeto
                 // el metodo Get de winsock solo devuelve datos de tipo objeto.
 
                 dat = _winsock.Get<object>();
 
                 string ret = "";
-                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._listener, this._nombre, ret);
+                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this.Listener, this._nombre, ret);
                 mensaje.Data = dat;
                 OEventArgs ev = new OEventArgs(mensaje);
                 this.ODataArrival(ev);
@@ -146,7 +131,7 @@ namespace Orbita.Comunicaciones
             catch (Exception ex)
             {
                 string error = "Data Arrival Error: " + ex;
-                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._listener, this._nombre, error);
+                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this.Listener, this._nombre, error);
                 OEventArgs ev = new OEventArgs(mensaje);
                 this.ODataArrival(ev);
                 log.Error(this._nombre + " " + error);
@@ -162,8 +147,8 @@ namespace Orbita.Comunicaciones
             try
             {
                 string estado = "State Changed Cliente. Cambia de " + e.Old_State.ToString() + " a " + e.New_State.ToString();
-                this._estado = e.New_State;
-                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._listener, this._nombre, estado);
+                this.Estado = e.New_State;
+                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this.Listener, this._nombre, estado);
                 OEventArgs ev = new OEventArgs(mensaje);
                 this.OStateChanged(ev);
                 log.Debug(this._nombre + " " + estado);
@@ -171,7 +156,7 @@ namespace Orbita.Comunicaciones
             catch (Exception ex)
             {
                 string error = "State Changed Cliente Error: " + ex;
-                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._listener, this._nombre, error);
+                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this.Listener, this._nombre, error);
                 OEventArgs ev = new OEventArgs(mensaje);
                 this.OStateChanged(ev);
                 log.Error(this._nombre + " " + error);
@@ -187,7 +172,7 @@ namespace Orbita.Comunicaciones
             try
             {
                 string error = "Error Received Cliente: " + e.Message;
-                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._listener, this._nombre, error);
+                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this.Listener, this._nombre, error);
                 OEventArgs ev = new OEventArgs(mensaje);
                 this.OErrorReceived(ev);
                 log.Error(this._nombre + " " + error);
@@ -195,7 +180,7 @@ namespace Orbita.Comunicaciones
             catch (Exception ex)
             {
                 string error = "Error Received Cliente: " + ex;
-                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._listener, this._nombre, error);
+                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this.Listener, this._nombre, error);
                 OEventArgs ev = new OEventArgs(mensaje);
                 this.OErrorReceived(ev);
                 log.Error(this._nombre + " " + error);
@@ -220,7 +205,7 @@ namespace Orbita.Comunicaciones
                     }
                 }
                 enviado = "Send Complete: " + enviado;
-                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._listener, this._nombre, enviado);
+                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this.Listener, this._nombre, enviado);
                 mensaje.Data = e.DataSent;
                 OEventArgs ev = new OEventArgs(mensaje);
                 this.OSendComplete(ev);
@@ -229,7 +214,7 @@ namespace Orbita.Comunicaciones
             catch (Exception ex)
             {
                 string error = "Send Complete Error: " + ex;
-                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._listener, this._nombre, error);
+                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this.Listener, this._nombre, error);
                 OEventArgs ev = new OEventArgs(mensaje);
                 this.OSendComplete(ev);
                 log.Error(this._nombre + " " + error);

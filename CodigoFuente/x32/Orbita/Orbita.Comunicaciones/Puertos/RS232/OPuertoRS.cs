@@ -12,24 +12,27 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OPuertoRS : OPuertoComunicaciones
     {
-        #region Atributos
+        #region Eventos
         /// <summary>
-        /// PuertoRS232.
+        /// Evento para la recepción de datos
         /// </summary>
-        private SerialPort _puertoRs232;
-        /// <summary>
-        /// Buffer de recepción de datos
-        /// </summary>
-        public Queue BufferDatosRecibidos;
+        public event OManejadorEventoSerie OrbitaRX;
+        #endregion Eventos
+
+        #region Delegados
         /// <summary>
         /// Manejador para la recepción de datos
         /// </summary>
         /// <param name="e"></param>
         public delegate void OManejadorEventoSerie(OEventArgs e);
+        #endregion Delegados
+
+        #region Atributos
+
         /// <summary>
-        /// Evento para la recepción de datos
+        /// Buffer de recepción de datos
         /// </summary>
-        public event OManejadorEventoSerie OrbitaRX;
+        public Queue BufferDatosRecibidos;
         #endregion Atributos
 
         #region Constructores
@@ -75,41 +78,45 @@ namespace Orbita.Comunicaciones
 
         #region Propiedades
         /// <summary>
-        /// Indica si el puerto serie RS232  está abierto
+        /// PuertoRS232.
+        /// </summary>
+        public SerialPort PuertoRs232 { get; set; }
+        /// <summary>
+        /// Indica si el puerto serie RS232  está abierto.
         /// </summary>
         public bool EstaAbierto
         {
-            get { return this._puertoRs232.IsOpen; }
+            get { return this.PuertoRs232.IsOpen; }
+            set { throw new NotImplementedException(); }
         }
         #endregion Propiedades
 
         #region Métodos privados
         /// <summary>
-        /// Inicia todos los componentes de este puerto de comunicaciones, a excepción del inicio del puerto serie, ya que se hace desde la clase padre al configurar el puerto
+        /// Iniciar todos los componentes de este puerto de comunicaciones, a excepción del inicio del puerto serie, ya que se hace desde la clase padre al configurar el puerto.
         /// </summary>
         private void IniciarComponentes()
         {
             this.BufferDatosRecibidos = new Queue();
-
-            if (this._puertoRs232 != null)
+            if (this.PuertoRs232 != null)
             {
-                if (this._puertoRs232.IsOpen)
+                if (this.PuertoRs232.IsOpen)
                 {
-                    this._puertoRs232.Close();
+                    this.PuertoRs232.Close();
                 }
-                this._puertoRs232.Dispose();
-                this._puertoRs232 = null;
+                this.PuertoRs232.Dispose();
+                this.PuertoRs232 = null;
             }
-            this._puertoRs232 = new SerialPort();
-            this._puertoRs232.DataReceived += PuertoRS232_DataReceived;
+            this.PuertoRs232 = new SerialPort();
+            this.PuertoRs232.DataReceived += PuertoRS232_DataReceived;
             this.ConfigurarPuerto(this.ConfiguracionPuerto);
         }
         /// <summary>
-        /// Establece una equivaencia unidireccional entre el tipo Paridades y el tipo Parity
+        /// Establecer una equivalencia unidireccional entre el tipo Paridades y el tipo Parity.
         /// </summary>
         /// <param name="paridad">Paridad a convertir</param>
         /// <returns>Paridad convertida</returns>
-        private Parity ConvertirParidad(OParidades paridad)
+        private static Parity ConvertirParidad(OParidades paridad)
         {
             Parity convParidad = Parity.None;
             switch (paridad)
@@ -133,7 +140,7 @@ namespace Orbita.Comunicaciones
             return convParidad;
         }
         /// <summary>
-        /// Establece una equivaencia unidireccional entre el tipo BitsStop y el tipo StopBits
+        /// Establecer una equivalencia unidireccional entre el tipo BitsStop y el tipo StopBits.
         /// </summary>
         /// <param name="bitsStop">Bits de parada a convertir</param>
         /// <returns>Bits de parada convertidos</returns>
@@ -155,7 +162,7 @@ namespace Orbita.Comunicaciones
             return convBitsStop;
         }
         /// <summary>
-        /// Establece una equivaencia unidireccional entre el tipo HandShakes y el tipo Handshake
+        /// Establecer una equivalencia unidireccional entre el tipo HandShakes y el tipo Handshake.
         /// </summary>
         /// <param name="handshake">Control de flujo a convertir</param>
         /// <returns>Control de flujo convertidos</returns>
@@ -179,83 +186,83 @@ namespace Orbita.Comunicaciones
 
         #region Métodos públicos sobreescritos
         /// <summary>
-        /// Crea y configura el puerto serie RS232
+        /// Crear y configurar el puerto serie RS232.
         /// </summary>
-        /// <param name="configuracionPuerto">Configuración del puerto RS232 a establecer</param>
+        /// <param name="configuracionPuerto">Configuración del puerto RS232 a establecer.</param>
         public override void ConfigurarPuerto(OConfiguracionPuerto configuracionPuerto)
         {
             this.ConfiguracionPuerto = configuracionPuerto;
-            if (this._puertoRs232 != null)
+            if (this.PuertoRs232 != null)
             {
-                if (this._puertoRs232.IsOpen)
+                if (this.PuertoRs232.IsOpen)
                 {
-                    this._puertoRs232.Close();
+                    this.PuertoRs232.Close();
                 }
             }
             OConfiguracionPuertoRS configRS232 = (OConfiguracionPuertoRS)configuracionPuerto;
-            this._puertoRs232.PortName = "COM" + configRS232.NumeroPuerto.ToString();
-            this._puertoRs232.BaudRate = configRS232.Velocidad;
-            this._puertoRs232.DataBits = configRS232.BitsDatos;
-            this._puertoRs232.Parity = this.ConvertirParidad(configRS232.Paridad);
-            this._puertoRs232.StopBits = this.ConvertirBitsStop(configRS232.BitsStop);
-            this._puertoRs232.Handshake = this.ConvertirHandshake(configRS232.Handshake);
+            var puertoRs232 = this.PuertoRs232;
+            if (puertoRs232 == null) return;
+            puertoRs232.PortName = "COM" + configRS232.NumeroPuerto;
+            puertoRs232.BaudRate = configRS232.Velocidad;
+            puertoRs232.DataBits = configRS232.BitsDatos;
+            puertoRs232.Parity = ConvertirParidad(configRS232.Paridad);
+            puertoRs232.StopBits = this.ConvertirBitsStop(configRS232.BitsStop);
+            puertoRs232.Handshake = this.ConvertirHandshake(configRS232.Handshake);
         }
         /// <summary>
-        /// Abre el puerto serie RS232
+        /// Abrir el puerto serie RS232.
         /// </summary>
         public override void Abrir()
         {
-            if (this._puertoRs232 != null)
+            if (this.PuertoRs232 != null)
             {
-                if (this._puertoRs232.IsOpen)
+                if (this.PuertoRs232.IsOpen)
                 {
                     return;
                 }
-
-                this._puertoRs232.Open();
+                this.PuertoRs232.Open();
             }
         }
         /// <summary>
-        /// Cierra el puerto serie RS232
+        /// Cerrar el puerto serie RS232.
         /// </summary>
         public override void Cerrar()
         {
-            if (this._puertoRs232 != null)
+            if (this.PuertoRs232 != null)
             {
-                if (this._puertoRs232.IsOpen)
+                if (this.PuertoRs232.IsOpen)
                 {
-                    this._puertoRs232.Close();
+                    this.PuertoRs232.Close();
                     Thread.Sleep(200);
                 }
             }
         }
         /// <summary>
-        /// Envía por el puerto serie RS232 el vector de bytes tramaTx
+        /// Enviar por el puerto serie RS232 el vector de bytes TramaTx.
         /// </summary>
-        /// <param name="tramaTx">Vector de bytes a enviar por el puerto serie RS232</param>
+        /// <param name="tramaTx">Vector de bytes a enviar por el puerto serie RS232.</param>
         public override void Enviar(byte[] tramaTx)
         {
-            if (this._puertoRs232 != null)
+            if (this.PuertoRs232 != null)
             {
-                if (this._puertoRs232.IsOpen)
+                if (this.PuertoRs232.IsOpen)
                 {
                     if (tramaTx.Length > 0)
                     {
-                        this._puertoRs232.Write(tramaTx, 0, tramaTx.Length);
+                        this.PuertoRs232.Write(tramaTx, 0, tramaTx.Length);
                     }
                 }
             }
         }
         /// <summary>
-        /// Copia en el vector de bytes tramaRx la información recibida por el puerto de comunicaciones
+        /// Copia en el vector de bytes tramaRx la información recibida por el puerto de comunicaciones.
         /// </summary>
-        /// <returns>Vector de bytes donde que contendrá la información recibida hasta el momento</returns>
+        /// <returns>Vector de bytes donde que contendrá la información recibida hasta el momento.</returns>
         public override byte[] RecibirBytes()
         {
             lock (this)
             {
                 byte[] tramaRx;
-
                 if (this.BufferDatosRecibidos.Count == 0)
                 {
                     tramaRx = null;
@@ -275,9 +282,9 @@ namespace Orbita.Comunicaciones
             }
         }
         /// <summary>
-        /// Devuleve el número de bytes recibidos hasta el momento
+        /// Devuleve el número de bytes recibidos hasta el momento.
         /// </summary>
-        /// <returns>El número de bytes recibidos hasta el momento</returns>
+        /// <returns>El número de bytes recibidos hasta el momento.</returns>
         public override int BytesRecibidos()
         {
             lock (this)
@@ -286,7 +293,7 @@ namespace Orbita.Comunicaciones
             }
         }
         /// <summary>
-        /// Resetea el buffer de recepcion de datos. Realmente resetea la variable que lleva la posición del último byte recibido, por lo que los datos permanencen en el buffer hasta que son sobreescritos.
+        /// Resetear el buffer de recepcion de datos. Realmente resetea la variable que lleva la posición del último byte recibido, por lo que los datos permanencen en el buffer hasta que son sobreescritos.
         /// </summary>
         public override void ResetBuffer()
         {
@@ -297,10 +304,10 @@ namespace Orbita.Comunicaciones
             }
         }
         /// <summary>
-        /// Busca un carácter en el buffer de recepcion de datos
+        /// Buscar un carácter en el buffer de recepcion de datos.
         /// </summary>
-        /// <param name="caracter">Carácter a buscar</param>
-        /// <returns>True encuentra el valor buscado; false en caso contrario</returns>
+        /// <param name="caracter">Carácter a buscar.</param>
+        /// <returns>True encuentra el valor buscado; false en caso contrario.</returns>
         public override bool BuscarCaracter(byte caracter)
         {
             lock (this)
@@ -309,20 +316,18 @@ namespace Orbita.Comunicaciones
             }
         }
         /// <summary>
-        /// Elimina los recursos que está utilizando
+        /// Eliminar los recursos que está utilizando.
         /// </summary>
         public override void Dispose()
         {
-            if (this._puertoRs232 != null)
-            {
-                this.Cerrar();
-                this._puertoRs232.DataReceived -= new SerialDataReceivedEventHandler(PuertoRS232_DataReceived);
-                this._puertoRs232.Dispose();
-                this._puertoRs232 = null;
-                this.BufferDatosRecibidos.Clear();
-                this.BufferDatosRecibidos.TrimToSize();
-                this.BufferDatosRecibidos = null;
-            }
+            if (this.PuertoRs232 == null) return;
+            this.Cerrar();
+            this.PuertoRs232.DataReceived -= PuertoRS232_DataReceived;
+            this.PuertoRs232.Dispose();
+            this.PuertoRs232 = null;
+            this.BufferDatosRecibidos.Clear();
+            this.BufferDatosRecibidos.TrimToSize();
+            this.BufferDatosRecibidos = null;
         }
         /// <summary>
         /// Lista los puertos COM RS-232 disponbles en el sistema en un DataTable con 3 columnas:
@@ -337,18 +342,17 @@ namespace Orbita.Comunicaciones
         public override DataTable ObtenerPuertosDisponibles()
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add("Identificador", typeof(System.Int32));
-            dt.Columns.Add("Nombre", typeof(System.String));
-            dt.Columns.Add("NumeroCOM", typeof(System.String));
-            DataRow dr;
+            dt.Columns.Add("Identificador", typeof(Int32));
+            dt.Columns.Add("Nombre", typeof(String));
+            dt.Columns.Add("NumeroCOM", typeof(String));
             string[] puertos = SerialPort.GetPortNames();
 
             for (int i = 0; i < puertos.Length; i++)
             {
-                dr = dt.NewRow();
+                DataRow dr = dt.NewRow();
                 dr["Identificador"] = i;
-                dr["Nombre"] = puertos[i].ToString();
-                dr["NumeroCOM"] = puertos[i].ToString().Substring(3);
+                dr["Nombre"] = puertos[i];
+                dr["NumeroCOM"] = puertos[i].Substring(3);
                 dt.Rows.Add(dr);
             }
             return dt;
@@ -367,21 +371,18 @@ namespace Orbita.Comunicaciones
             {
                 lock (this)
                 {
-                    int numeroBytes = this._puertoRs232.BytesToRead;
-
-                    if (numeroBytes > 0)
+                    int numeroBytes = this.PuertoRs232.BytesToRead;
+                    if (numeroBytes <= 0) return;
+                    byte[] vb = new byte[numeroBytes];
+                    this.PuertoRs232.Read(vb, 0, numeroBytes);
+                    foreach (byte b in vb)
                     {
-                        byte[] vb = new byte[numeroBytes];
-                        this._puertoRs232.Read(vb, 0, numeroBytes);
-                        foreach (byte b in vb)
-                        {
-                            this.BufferDatosRecibidos.Enqueue(b);
-                        }
+                        this.BufferDatosRecibidos.Enqueue(b);
+                    }
 
-                        if (vb != null && vb.Length > 0)
-                        {
-                            this.OnCambioDato(new OEventArgs(System.Text.ASCIIEncoding.ASCII.GetString(vb)));
-                        }
+                    if (vb.Length > 0)
+                    {
+                        this.OnCambioDato(new OEventArgs(System.Text.Encoding.ASCII.GetString(vb)));
                     }
                 }
             }
@@ -400,13 +401,11 @@ namespace Orbita.Comunicaciones
             // de carrera, si el último suscriptor desuscribe inmediatamente
             // después de la comprobación nula y antes de que el  evento  se
             // produce.
-            OManejadorEventoSerie handler = OrbitaRX;
+            var handler = OrbitaRX;
             if (handler != null)
             {
                 handler(e);
             }
-
-            handler = null;
         }
         #endregion Manejadores de eventos
     }

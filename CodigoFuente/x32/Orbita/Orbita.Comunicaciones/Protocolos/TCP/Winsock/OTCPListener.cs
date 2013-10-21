@@ -8,19 +8,7 @@ namespace Orbita.Comunicaciones
 {
     public class OTCPListener
     {
-        #region Atributos
-        /// <summary>
-        /// Objeto para establecer el canal Tcp principal.
-        /// </summary>
-        private OWinsockBase _winsockListener;
-        /// <summary>
-        /// Log de la aplicación.
-        /// </summary>
-        private readonly ILogger _log;
-        /// <summary>
-        /// Pool de clientes.
-        /// </summary>
-        private Hashtable _poolCliente;
+        #region Eventos
         /// <summary>
         /// Evento Listener para petición de conexión.
         /// </summary>
@@ -49,18 +37,17 @@ namespace Orbita.Comunicaciones
         /// Evento Cliente Listener para cambio de estado.
         /// </summary>
         public event OManejadorEventoComm WskClientStateChanged;
+        #endregion
+
+        #region Atributos
         /// <summary>
-        /// Puerto Tcp.
+        /// Objeto para establecer el canal Tcp principal.
         /// </summary>
-        private int _puerto;
+        private OWinsockBase _winsockListener;
         /// <summary>
-        /// Nombre del canal.
+        /// Log de la aplicación.
         /// </summary>
-        private string _nombre;
-        /// <summary>
-        /// Estado del listener.
-        /// </summary>
-        private WinsockStates _estadoListener;
+        private readonly ILogger _log;
         #endregion
 
         #region Constructor
@@ -70,112 +57,131 @@ namespace Orbita.Comunicaciones
         public OTCPListener(ILogger log, int puerto, string nombre)
         {
             _log = log;
-            this._puerto = puerto;
-            this._nombre = nombre;
+            this.Puerto = puerto;
+            this.Nombre = nombre;
             this.Inicializar();
         }
         #endregion
 
-        #region Metodos
+        #region Propiedades
+        /// <summary>
+        /// Colección de canales.
+        /// </summary>
+        public Hashtable PoolCliente { get; set; }
+        /// <summary>
+        /// Puerto TCP.
+        /// </summary>
+        public int Puerto { get; set; }
+        /// <summary>
+        /// Nombre del canal.
+        /// </summary>
+        public string Nombre { get; set; }
+        /// <summary>
+        /// Estado del listener.
+        /// </summary>
+        public WinsockStates EstadoListener { get; set; }
+        #endregion
 
+        #region Metodos
         /// <summary>
         /// Inicializa las variables de la comunicación Tcp.
         /// </summary>
         private void Inicializar()
         {
-            this._estadoListener = WinsockStates.Closed;
-            this._poolCliente = new Hashtable();
-            this._winsockListener = new OWinsockBase();
-            this._winsockListener.LegacySupport = true;
+            this.EstadoListener = WinsockStates.Closed;
+            this.PoolCliente = new Hashtable();
+            this._winsockListener = new OWinsockBase { LegacySupport = true };
 
-            this._winsockListener.ConnectionRequest += this._wskListener_ConnectionRequest;
-            this._winsockListener.StateChanged += this._wskListener_StateChanged;
-            this._winsockListener.ErrorReceived += this._wskListener_ErrorReceived;
+            this._winsockListener.ConnectionRequest += this.WskListener_ConnectionRequest;
+            this._winsockListener.StateChanged += this.WskListener_StateChanged;
+            this._winsockListener.ErrorReceived += this.wskListener_ErrorReceived;
 
-            this._winsockListener.LocalPort = this._puerto;
+            this._winsockListener.LocalPort = this.Puerto;
             this._winsockListener.Listen();
         }
-        public WinsockStates GetEstadoCanal(string ip)
+        /// <summary>
+        /// Obtener el estado del canal.
+        /// </summary>
+        /// <param name="direccionIp"></param>
+        /// <returns></returns>
+        public WinsockStates GetEstadoCanal(string direccionIp)
         {
             WinsockStates retorno = WinsockStates.Closed;
-            if (this._poolCliente.Contains(ip))
+            if (this.PoolCliente.Contains(direccionIp))
             {
-                OWinSockCliente wks = (OWinSockCliente)this._poolCliente[ip];
+                OWinSockCliente wks = (OWinSockCliente)this.PoolCliente[direccionIp];
                 retorno = wks.Estado;
             }
-
             return retorno;
         }
         #endregion
 
-        #region Eventos
+        #region Manejadores de eventos
         /// <summary>
         /// Indica que el objeto winsock principal ha cambiado de estado. Trazabilidad del canal.
         /// </summary>
         /// <param name="sender">Objeto que lanza el evento</param>
         /// <param name="e">Argumentos del evento</param>
-        private void _wskListener_StateChanged(object sender, WinsockStateChangedEventArgs e)
+        private void WskListener_StateChanged(object sender, WinsockStateChangedEventArgs e)
         {
             try
             {
-                string estado = "State Changed: Cambia de " + e.Old_State.ToString() + " a " + e.New_State.ToString();
-                this._estadoListener = e.New_State;
-                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._nombre, "", estado);
+                string estado = "State Changed: Cambia de " + e.Old_State + " a " + e.New_State;
+                this.EstadoListener = e.New_State;
+                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this.Nombre, "", estado);
                 OEventArgs ev = new OEventArgs(mensaje);
                 if (WskStateChanged != null)
                 {
                     this.WskStateChanged(ev);
                 }
-                _log.Debug(this._nombre + " " + estado);
+                _log.Debug(this.Nombre + " " + estado);
             }
             catch (Exception ex)
             {
                 string error = "State Changed Error: " + ex;
-                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._nombre, "", error);
+                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this.Nombre, "", error);
                 OEventArgs ev = new OEventArgs(mensaje);
                 if (WskStateChanged != null)
                 {
                     this.WskStateChanged(ev);
                 }
-                _log.Error(this._nombre + " " + error);
+                _log.Error(this.Nombre + " " + error);
             }
         }
         /// <summary>
-        /// Indica que se ha conectado un cliente al canal principal
+        /// Indica que se ha conectado un cliente al canal principal.
         /// </summary>
         /// <param name="sender">Objeto que lanza el evento</param>
         /// <param name="e">Argumentos del evento</param>
-        private void _wskListener_ConnectionRequest(object sender, WinsockConnectionRequestEventArgs e)
+        private void WskListener_ConnectionRequest(object sender, WinsockConnectionRequestEventArgs e)
         {
             try
             {
                 if (e.ClientIP == "bad IP")
                 {
                     const string error = "Connection Request Bad IP";
-                    OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._nombre, "", error);
+                    OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this.Nombre, "", error);
                     OEventArgs ev = new OEventArgs(mensaje);
                     this.WskConnectionRequest(ev);
-                    _log.Error(this._nombre + " " + error);
+                    _log.Error(this.Nombre + " " + error);
                     e.Cancel = true;
                 }
 
                 string ip = e.ClientIP;
                 OWinSockCliente winsockCliente = null;
 
-                if (!this._poolCliente.ContainsKey(ip))
+                if (!this.PoolCliente.ContainsKey(ip))
                 {
-                    winsockCliente = new OWinSockCliente(this._nombre, ip + ":" + this._puerto, _log);
-
-                    winsockCliente.ODataArrival += new OManejadorEventoComm(_winsockCliente_ODataArrival);
-                    winsockCliente.OErrorReceived += new OManejadorEventoComm(_winsockCliente_OErrorReceived);
-                    winsockCliente.OSendComplete += new OManejadorEventoComm(_winsockCliente_OSendComplete);
-                    winsockCliente.OStateChanged += new OManejadorEventoComm(_winsockCliente_OStateChanged);
-
-                    this._poolCliente.Add(ip, winsockCliente);
+                    winsockCliente = new OWinSockCliente(this.Nombre, ip + ":" + this.Puerto, _log);
+                    winsockCliente.ODataArrival += _winsockCliente_ODataArrival;
+                    winsockCliente.OErrorReceived += _winsockCliente_OErrorReceived;
+                    winsockCliente.OSendComplete += _winsockCliente_OSendComplete;
+                    winsockCliente.OStateChanged += _winsockCliente_OStateChanged;
+                    this.PoolCliente.Add(ip, winsockCliente);
                 }
                 else
                 {
-                    foreach (DictionaryEntry item in this._poolCliente)
+                    foreach (DictionaryEntry item in this.PoolCliente)
                     {
                         if (item.Key.ToString() == ip)
                         {
@@ -186,150 +192,114 @@ namespace Orbita.Comunicaciones
 
                 if (!winsockCliente.AceptarConexion(e.Client))
                 {
-                    string error = this._nombre + " Connection Request no se pudo establecer la conexión con la IP " + ip;
-                    OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._nombre, "", error);
+                    string error = this.Nombre + " Connection Request no se pudo establecer la conexión con la IP " + ip;
+                    OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this.Nombre, "", error);
                     OEventArgs ev = new OEventArgs(mensaje);
                     if (this.WskConnectionRequest != null)
                     {
                         this.WskConnectionRequest(ev);
                     }
-                    _log.Error(this._nombre + " " + error);
+                    _log.Error(this.Nombre + " " + error);
                 }
                 else
                 {
-                    string conexion = this._nombre + " Connection Request " + e.ClientIP.ToString() + " EndPoint " + e.Client.RemoteEndPoint.ToString();
-                    OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._nombre, "", conexion);
+                    string conexion = this.Nombre + " Connection Request " + e.ClientIP.ToString() + " EndPoint " + e.Client.RemoteEndPoint.ToString();
+                    OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this.Nombre, "", conexion);
                     OEventArgs ev = new OEventArgs(mensaje);
                     if (this.WskConnectionRequest != null)
                     {
                         this.WskConnectionRequest(ev);
                     }
-                    _log.Debug(this._nombre + " " + conexion);
+                    _log.Debug(this.Nombre + " " + conexion);
                 }
             }
             catch (Exception ex)
             {
                 string error = "Connection Request Error: " + ex;
-                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._nombre, "", error);
+                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this.Nombre, "", error);
                 OEventArgs ev = new OEventArgs(mensaje);
                 if (this.WskConnectionRequest != null)
                 {
                     this.WskConnectionRequest(ev);
                 }
-                _log.Error(this._nombre + " " + error);
+                _log.Error(this.Nombre + " " + error);
             }
         }
         /// <summary>
-        /// Evento de errores en la comunicación TCP
+        /// Evento de errores en la comunicación TCP.
         /// </summary>
         /// <param name="sender">Objeto que lanza el evento</param>
         /// <param name="e">Argumentos del evento</param>
-        private void _wskListener_ErrorReceived(object sender, WinsockErrorReceivedEventArgs e)
+        private void wskListener_ErrorReceived(object sender, WinsockErrorReceivedEventArgs e)
         {
             try
             {
                 string error = "Error Received: " + e.Message;
-                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._nombre, "", error);
+                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this.Nombre, "", error);
                 OEventArgs ev = new OEventArgs(mensaje);
                 if (this.WskErrorReceived != null)
                 {
                     this.WskErrorReceived(ev);
                 }
-                _log.Error(this._nombre + " " + error);
+                _log.Error(this.Nombre + " " + error);
             }
             catch (Exception ex)
             {
                 string error = "Error Received: " + ex;
-                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this._nombre, "", error);
+                OMensajeCanalTCP mensaje = new OMensajeCanalTCP(this.Nombre, "", error);
                 OEventArgs ev = new OEventArgs(mensaje);
                 this.WskErrorReceived(ev);
-                _log.Error(this._nombre + " " + error);
+                _log.Error(this.Nombre + " " + error);
             }
         }
 
         #region Eventos Cliente
         /// <summary>
-        /// Cambio de estado en el canal TCP
+        /// Cambio de estado en el canal TCP.
         /// </summary>
         /// <param name="e">Argumento del objeto cliente</param>
-        void _winsockCliente_OStateChanged(Orbita.Utiles.OEventArgs e)
+        private void _winsockCliente_OStateChanged(OEventArgs e)
         {
             if (this.WskClientStateChanged != null)
             {
                 this.WskClientStateChanged(e);
             }
-
         }
         /// <summary>
-        /// Envío de datos en el canal TCP
+        /// Envío de datos en el canal TCP.
         /// </summary>
         /// <param name="e">Argumento del objeto cliente</param>
-        void _winsockCliente_OSendComplete(Orbita.Utiles.OEventArgs e)
+        private void _winsockCliente_OSendComplete(OEventArgs e)
         {
             if (this.WskClientSendComplete != null)
             {
                 this.WskClientSendComplete(e);
             }
-
         }
         /// <summary>
-        /// Error en el canal TCP
+        /// Error en el canal TCP.
         /// </summary>
         /// <param name="e">Argumento del objeto cliente</param>
-        void _winsockCliente_OErrorReceived(Orbita.Utiles.OEventArgs e)
+        private void _winsockCliente_OErrorReceived(OEventArgs e)
         {
             if (this.WskClientSendComplete != null)
             {
                 this.WskClientErrorReceived(e);
             }
-
         }
         /// <summary>
-        /// Datos de recepción en el canal TCP
+        /// Datos de recepción en el canal TCP.
         /// </summary>
         /// <param name="e">Argumento del objeto cliente</param>
-        void _winsockCliente_ODataArrival(Orbita.Utiles.OEventArgs e)
+        private void _winsockCliente_ODataArrival(OEventArgs e)
         {
             if (this.WskClientSendComplete != null)
             {
                 this.WskClientDataArrival(e);
             }
-
         }
         #endregion
 
-        #endregion
-
-        #region Propiedades
-        /// <summary>
-        /// Colección de canales
-        /// </summary>
-        public Hashtable PoolCliente
-        {
-            get { return _poolCliente; }
-            set { _poolCliente = value; }
-        }
-        /// <summary>
-        /// Puerto TCP
-        /// </summary>
-        public int Puerto
-        {
-            get { return _puerto; }
-            set { _puerto = value; }
-        }
-        /// <summary>
-        /// Nombre del canal
-        /// </summary>
-        public string Nombre
-        {
-            get { return _nombre; }
-            set { _nombre = value; }
-        }
-        public WinsockStates EstadoListener
-        {
-            get { return _estadoListener; }
-            set { _estadoListener = value; }
-        }
         #endregion
     }
 }

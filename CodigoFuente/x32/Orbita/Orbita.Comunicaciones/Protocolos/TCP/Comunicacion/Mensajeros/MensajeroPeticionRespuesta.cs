@@ -3,7 +3,6 @@
 // Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
 
@@ -38,7 +37,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
 
         #region Atributos
         /// <summary>
-        /// Valor predeterminado del timeout.
+        /// Valor predeterminado del Timeout en milisegundos.
         /// </summary>
         private const int TimeoutMsPredeterminado = 60000;
         /// <summary>
@@ -181,7 +180,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros
         /// El eventoMensajeRecibido no se lanza para mensajes de respuesta.
         /// </remarks>
         /// <param name="mensaje">Mensaje a enviar.</param>
-        /// <param name="timeoutMs">Duración del timeout en milisegundos.</param>
+        /// <param name="timeoutMs">Duración del Timeout en milisegundos.</param>
         /// <returns>Mensaje de respuesta.</returns>
         /// <exception cref="TimeoutException">Throws TimeoutException si no se ha podido recibir el mensaje de respuesta en tiempo.</exception>
         /// <exception cref="ExcepcionComunicacion">Throws ExcepcionComunicacion si la comunicación falla antes del mensaje de respuesta.</exception>

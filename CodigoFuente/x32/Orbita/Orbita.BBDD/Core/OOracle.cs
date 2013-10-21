@@ -9,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
 using System;
 using System.Collections;
 using System.Data;
@@ -406,7 +407,10 @@ namespace Orbita.BBDD
                 }
                 finally
                 {
-                    transaccion.Dispose();
+                    if (transaccion != null)
+                    {
+                        transaccion.Dispose();
+                    }
                 }
             }
             return resultado;

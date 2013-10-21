@@ -9,6 +9,7 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
 using System.Collections.Generic;
 using System.Globalization;
 using System.Net;
@@ -248,7 +249,7 @@ namespace Orbita.Trazabilidad
         /// <param name="puerto">Puerto.</param>
         /// <param name="maquina">Máquina.</param>
         [EnvironmentPermissionAttribute(SecurityAction.LinkDemand, Unrestricted = true)]
-        void SetTcpClientChannel(string alias, int puerto, string maquina)
+        private void SetTcpClientChannel(string alias, int puerto, string maquina)
         {
             // Crear la cadena URL de conexión.
             string url = string.Format(CultureInfo.CurrentCulture, @"tcp://{0}:{1}/{2}", maquina, puerto, alias);
@@ -270,7 +271,7 @@ namespace Orbita.Trazabilidad
         /// <summary>
         /// Añade a la colección de remoting el item (mensaje).
         /// </summary>
-        void Procesar()
+        private void Procesar()
         {
             while (true)
             {

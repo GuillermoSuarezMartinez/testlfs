@@ -3,7 +3,6 @@
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
 using System;
@@ -52,7 +51,7 @@ namespace Orbita.Comunicaciones
 
         #region Alarma
         /// <summary>
-        /// 
+        /// Crea un mensaje de tipo alarma que contiene información del objeto OInfoDato.
         /// </summary>
         /// <param name="infoDato">Información del dato que será transmitido.</param>
         /// <returns></returns>
@@ -61,7 +60,7 @@ namespace Orbita.Comunicaciones
             return new OcsMensajeAlarma(infoDato);
         }
         /// <summary>
-        /// 
+        /// Crea un mensaje de tipo alarma que contiene información del objeto OInfoDato.
         /// </summary>
         /// <param name="infoDato">Información del dato que será transmitido.</param>
         /// <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
@@ -71,7 +70,7 @@ namespace Orbita.Comunicaciones
             return new OcsMensajeAlarma(infoDato, idMensajeRespuesta);
         }
         /// <summary>
-        /// 
+        /// Obtiene un mensaje de tipo alarma que contiene información del objeto OInfoDato.
         /// </summary>
         /// <param name="mensaje"></param>
         /// <returns></returns>
@@ -83,7 +82,7 @@ namespace Orbita.Comunicaciones
 
         #region Comunicaciones
         /// <summary>
-        /// 
+        /// Crea un mensaje de tipo comunicaciones que contiene información del objeto OEstadoComms.
         /// </summary>
         /// <param name="infoComm"></param>
         /// <returns></returns>
@@ -92,7 +91,7 @@ namespace Orbita.Comunicaciones
             return new OcsMensajeComunicaciones(infoComm);
         }
         /// <summary>
-        /// 
+        /// Crea un mensaje de tipo comunicaciones que contiene información del objeto OEstadoComms.
         /// </summary>
         /// <param name="infoComm"></param>
         /// <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
@@ -102,7 +101,7 @@ namespace Orbita.Comunicaciones
             return new OcsMensajeComunicaciones(infoComm, idMensajeRespuesta);
         }
         /// <summary>
-        /// 
+        /// Obtiene un mensaje de tipo comunicaciones que contiene información del objeto OEstadoComms.
         /// </summary>
         /// <param name="mensaje">Representa un mensaje que se envía y recibe por el servidor y el cliente.</param>
         /// <returns></returns>
@@ -114,7 +113,7 @@ namespace Orbita.Comunicaciones
 
         #region Lecturas
         /// <summary>
-        /// 
+        /// Crea un mensaje de tipo lectura que contiene información del objeto OEstadoComms.
         /// </summary>
         /// <param name="dispositivo">Dispositivo de conexión.</param>
         /// <param name="variables">Colección de variables.</param>
@@ -125,7 +124,7 @@ namespace Orbita.Comunicaciones
             return new OcsMensajeLectura(dispositivo, variables, demanda);
         }
         /// <summary>
-        /// 
+        /// Crea un mensaje de tipo lectura que contiene información del objeto OEstadoComms.
         /// </summary>
         /// <param name="dispositivo">Dispositivo de conexión.</param>
         /// <param name="variables">Colección de variables.</param>
@@ -137,7 +136,7 @@ namespace Orbita.Comunicaciones
             return new OcsMensajeLectura(dispositivo, variables, valores, idMensajeRespuesta);
         }
         /// <summary>
-        /// 
+        /// Obtiene un mensaje de tipo lectura que contiene información del objeto OEstadoComms.
         /// </summary>
         /// <param name="mensaje">Representa un mensaje que se envía y recibe por el servidor y el cliente.</param>
         /// <returns></returns>
@@ -149,7 +148,7 @@ namespace Orbita.Comunicaciones
 
         #region Datos
         /// <summary>
-        /// 
+        /// Crea un mensaje de tipo datos que contiene información del objeto dispositivo.
         /// </summary>
         /// <param name="dispositivo">Dispositivo de conexión.</param>
         /// <returns></returns>
@@ -158,7 +157,7 @@ namespace Orbita.Comunicaciones
             return new OcsMensajeLecturaDatos(dispositivo);
         }
         /// <summary>
-        /// 
+        /// Crea un mensaje de tipo datos que contiene información del objeto dispositivo.
         /// </summary>
         /// <param name="dispositivo">Dispositivo de conexión.</param>
         /// <param name="datos">Colección de datos.</param>
@@ -169,7 +168,7 @@ namespace Orbita.Comunicaciones
             return new OcsMensajeLecturaDatos(dispositivo, datos, idMensajeRespuesta);
         }
         /// <summary>
-        /// 
+        /// Obtiene un mensaje de tipo datos que contiene información del objeto dispositivo.
         /// </summary>
         /// <param name="mensaje">Representa un mensaje que se envía y recibe por el servidor y el cliente.</param>
         /// <returns></returns>
@@ -181,7 +180,7 @@ namespace Orbita.Comunicaciones
 
         #region Alarmas activas
         /// <summary>
-        /// 
+        /// Crea un mensaje de tipo alarmas activas que contiene información del objeto dispositivo.
         /// </summary>
         /// <param name="dispositivo">Dispositivo de conexión.</param>
         /// <returns></returns>
@@ -190,7 +189,7 @@ namespace Orbita.Comunicaciones
             return new OcsMensajeLecturaAlarmasActivas(dispositivo);
         }
         /// <summary>
-        /// 
+        /// Crea un mensaje de tipo alarmas activas que contiene información del objeto dispositivo.
         /// </summary>
         /// <param name="dispositivo">Dispositivo de conexión.</param>
         /// <param name="datos">Colección de datos.</param>
@@ -201,7 +200,7 @@ namespace Orbita.Comunicaciones
             return new OcsMensajeLecturaAlarmasActivas(dispositivo, datos, idMensajeRespuesta);
         }
         /// <summary>
-        /// 
+        /// Obtiene un mensaje de tipo alarmas activas que contiene información del objeto dispositivo.
         /// </summary>
         /// <param name="mensaje">Representa un mensaje que se envía y recibe por el servidor y el cliente.</param>
         /// <returns></returns>
@@ -213,7 +212,7 @@ namespace Orbita.Comunicaciones
 
         #region Dispositivos
         /// <summary>
-        /// 
+        /// Crea un mensaje de tipo dispositivo que contiene información del objeto dispositivo.
         /// </summary>
         /// <returns></returns>
         public static IOcsMensajeLecturaDispositivos CrearMensajeDispositivos()
@@ -221,7 +220,7 @@ namespace Orbita.Comunicaciones
             return new OcsMensajeLecturaDispositivos();
         }
         /// <summary>
-        /// 
+        /// Crea un mensaje de tipo dispositivo que contiene información del objeto dispositivo.
         /// </summary>
         /// <param name="dispositivos">Colección de dispositivos.</param>
         /// <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
@@ -231,7 +230,7 @@ namespace Orbita.Comunicaciones
             return new OcsMensajeLecturaDispositivos(dispositivos, idMensajeRespuesta);
         }
         /// <summary>
-        /// 
+        /// Obtiene un mensaje de tipo dispositivo que contiene información del objeto dispositivo.
         /// </summary>
         /// <param name="mensaje">Representa un mensaje que se envía y recibe por el servidor y el cliente.</param>
         /// <returns></returns>
@@ -243,7 +242,7 @@ namespace Orbita.Comunicaciones
 
         #region Escrituras
         /// <summary>
-        /// 
+        /// Crea un mensaje de tipo escritura que contiene información del objeto dispositivo.
         /// </summary>
         /// <param name="dispositivo">Dispositivo de conexión.</param>
         /// <param name="variables">Colección de variables.</param>
@@ -255,7 +254,7 @@ namespace Orbita.Comunicaciones
             return new OcsMensajeEscritura(dispositivo, variables, valores, canal);
         }
         /// <summary>
-        /// 
+        /// Crea un mensaje de tipo escritura que contiene información del objeto dispositivo.
         /// </summary>
         /// <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
         /// <returns></returns>
@@ -264,7 +263,7 @@ namespace Orbita.Comunicaciones
             return new OcsMensajeEscritura(idMensajeRespuesta);
         }
         /// <summary>
-        /// 
+        /// Obtiene un mensaje de tipo escritura que contiene información del objeto dispositivo.
         /// </summary>
         /// <param name="mensaje">Representa un mensaje que se envía y recibe por el servidor y el cliente.</param>
         /// <returns></returns>
@@ -277,9 +276,9 @@ namespace Orbita.Comunicaciones
 
         #region Errores lectura/escritura
         /// <summary>
-        /// 
+        /// Crea un mensaje de tipo error que contiene información del objeto error.
         /// </summary>
-        /// <param name="error"></param>
+        /// <param name="error">Representa los errores que se producen durante la ejecución de una aplicación.</param>
         /// <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
         /// <returns></returns>
         public static IOcsMensajeErrorBase CrearMensajeError(string error, string idMensajeRespuesta)
@@ -287,9 +286,9 @@ namespace Orbita.Comunicaciones
             return new OcsMensajeError(error, idMensajeRespuesta);
         }
         /// <summary>
-        /// 
+        /// Crea un mensaje de tipo error que contiene información del objeto error.
         /// </summary>
-        /// <param name="error"></param>
+        /// <param name="error">Representa los errores que se producen durante la ejecución de una aplicación.</param>
         /// <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
         /// <returns></returns>
         public static IOcsMensajeErrorBase CrearMensajeError(Exception error, string idMensajeRespuesta)
@@ -297,7 +296,7 @@ namespace Orbita.Comunicaciones
             return new OcsMensajeError(error, idMensajeRespuesta);
         }
         /// <summary>
-        /// 
+        /// Obtiene un mensaje de tipo error que contiene información del objeto error.
         /// </summary>
         /// <param name="mensaje">Representa un mensaje que se envía y recibe por el servidor y el cliente.</param>
         /// <returns></returns>

@@ -12,7 +12,7 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Objeto para comunicar con WinCC.
         /// </summary>
-        private OProtocoloWinCCDataManager _oDataManager = null;
+        private OProtocoloWinCCDataManager _oDataManager;
         /// <summary>
         /// Tipo de variable para escribir.
         /// </summary>
@@ -61,15 +61,13 @@ namespace Orbita.Comunicaciones
         public override void Dispose(bool disposing)
         {
             // Check to see if Dispose has already been called. 
-            if (!this.Disposed)
-            {
-                // If disposing equals true, dispose all managed 
-                // and unmanaged resources. 
-                if (disposing) { }
-                // Note disposing has been done.
-                _oDataManager = null;
-                Disposed = true;
-            }
+            if (this.Disposed) return;
+            // If disposing equals true, dispose all managed 
+            // and unmanaged resources. 
+            if (disposing) { }
+            // Note disposing has been done.
+            _oDataManager = null;
+            Disposed = true;
         }
         /// <summary>
         /// Leer las variables de WinCC. El método de lectura es variable a variable.
@@ -85,7 +83,7 @@ namespace Orbita.Comunicaciones
             {
                 for (int i = 0; i < retorno.Length; i++)
                 {
-                    object valor = null;
+                    object valor;
                     if (this.Leer(variables[i], out  valor))
                     {
                         retorno[i] = valor;
@@ -136,9 +134,9 @@ namespace Orbita.Comunicaciones
         {
             bool retorno = false;
             valor = null;
-            UInt32 calidad = 0;
             try
             {
+                UInt32 calidad;
                 retorno = _oDataManager.GetVarValue(variable, out valor, out calidad);
             }
             catch (Exception ex)

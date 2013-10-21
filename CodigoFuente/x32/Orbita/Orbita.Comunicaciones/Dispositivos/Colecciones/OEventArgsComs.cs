@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -18,7 +19,7 @@ namespace Orbita.Comunicaciones
         /// <param name="idMensaje">Identificador de mensaje.</param>
         public OEventArgsComs(int idMensaje)
         {
-            this.Id = idMensaje;
+            Id = idMensaje;
         }
         #endregion Constructores
 

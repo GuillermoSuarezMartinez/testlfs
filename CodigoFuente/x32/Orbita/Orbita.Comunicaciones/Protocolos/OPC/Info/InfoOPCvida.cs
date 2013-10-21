@@ -1,14 +1,11 @@
 ﻿//***********************************************************************
-// Assembly         : OrbitaComunicaciones
-// Author           : crodriguez
-// Created          : 03-11-2011
 //
-// Last Modified By : crodriguez
-// Last Modified On : 03-14-2011
-// Description      : 
+// Ensamblado         : Orbita.Comunicaciones
+// Autor              : crodriguez
+// Fecha creación     : 01-09-2013
 //
-// Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
+
 namespace Orbita.Comunicaciones
 {
     /// <summary>
@@ -16,17 +13,6 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public class OInfoOPCvida
     {
-        #region Atributos
-        /// <summary>
-        /// Identificador de variables.
-        /// </summary>
-        private int[] _variables;
-        /// <summary>
-        /// Valor de las variables.
-        /// </summary>
-        private string[] _valores;
-        #endregion Atributos
-
         #region Constructor
         /// <summary>
         /// Inicializar una nueva instancia de la clase InfoVida.
@@ -35,8 +21,8 @@ namespace Orbita.Comunicaciones
         /// <param name="enlaces">Descripción del enlace.</param>
         public OInfoOPCvida(int contador, string[] enlaces)
         {
-            _variables = new int[contador];
-            _valores = new string[contador];
+            Variables = new int[contador];
+            Valores = new string[contador];
             Enlaces = enlaces;
         }
         #endregion Constructor
@@ -49,19 +35,11 @@ namespace Orbita.Comunicaciones
         /// <summary>
         /// Colección de variables.
         /// </summary>
-        public int[] Variables
-        {
-            get { return _variables; }
-            set { _variables = value; }
-        }
+        public int[] Variables { get; set; }
         /// <summary>
         /// Colección de valores.
         /// </summary>
-        public string[] Valores
-        {
-            get { return _valores; }
-            set { _valores = value; }
-        }
+        public string[] Valores { get; set; }
         #endregion Propiedades
 
         #region Métodos públicos
@@ -71,7 +49,7 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public int[] GetVariables()
         {
-            return _variables;
+            return Variables;
         }
         /// <summary>
         /// Obtener el elemento i-esimo de la
@@ -82,7 +60,7 @@ namespace Orbita.Comunicaciones
         /// <returns>El objeto de la colección.</returns>
         public object GetVariables(int indice)
         {
-            return _variables[indice];
+            return Variables[indice];
         }
         /// <summary>
         /// Asignar la colección de variables.
@@ -91,7 +69,7 @@ namespace Orbita.Comunicaciones
         /// <param name="variable">Variable a almacenar.</param>
         public void SetVariables(int indice, int variable)
         {
-            _variables[indice] = variable;
+            Variables[indice] = variable;
         }
         /// <summary>
         /// Obtener la colección de valores.
@@ -99,14 +77,14 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public string[] GetValores()
         {
-            return _valores;
+            return Valores;
         }
         /// <summary>
         /// Asignar la colección de valores.
         /// </summary>
         public void SetValores(string[] valores)
         {
-            _valores = valores;
+            Valores = valores;
         }
         #endregion Métodos públicos
     }

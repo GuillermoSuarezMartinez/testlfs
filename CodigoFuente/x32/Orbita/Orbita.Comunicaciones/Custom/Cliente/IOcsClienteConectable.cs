@@ -3,9 +3,11 @@
 // Ensamblado         : Orbita.Comunicaciones
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
+
+using System;
+using System.IO;
 
 namespace Orbita.Comunicaciones
 {
@@ -14,6 +16,10 @@ namespace Orbita.Comunicaciones
     /// </summary>
     public interface IOcsClienteConectable
     {
+        /// <summary>
+        /// Este evento se produce cuando se produce en algunos de los eventos de solicitud.
+        /// </summary>
+        event EventHandler<ErrorEventArgs> Error;
         /// <summary>
         /// Iniciar los mensajeros.
         /// </summary>

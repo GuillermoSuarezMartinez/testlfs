@@ -17,10 +17,10 @@ namespace Orbita.Comunicaciones
         /// </summary>
         private Queue _qEntradaSalida;
         /// <summary>
-        /// Evento reset de recepción de tramas KeepAlive, 
+        /// Evento reset de recepción de tramas KeepAlive.
         /// Entrada/Salida.
         /// </summary>
-        private OResetManual _eReset;  // 0-KeepAlive; 1-lecturas; 2-escrituras.
+        private OResetManual _eReset;  // 0-KeepAlive; 1-Lecturas; 2-Escrituras.
         /// <summary>
         /// Colección para la búsqueda de lecturas. La clave es la dupla "dirección-bit"
         /// </summary>
@@ -30,21 +30,21 @@ namespace Orbita.Comunicaciones
         /// </summary>
         private int _numLecturas;
         /// <summary>
-        /// Número de bytes de entradas
+        /// Número de bytes de entradas.
         /// </summary>
         private int _numeroBytesEntradas;
         /// <summary>
-        /// Número de bytes de salidas
+        /// Número de bytes de salidas.
         /// </summary>
         private int _numeroBytesSalidas;
         /// <summary>
-        /// Valor de las lecturas
+        /// Valor de las lecturas.
         /// </summary>
         private byte[] _lecturas;
         /// <summary>
-        /// Valor de las lecturas
+        /// Valor de las lecturas.
         /// </summary>
-        private byte[] LecturasContinuas;
+        private byte[] _lecturasContinuas;
         /// <summary>
         /// Valor inicial del registro de escrituras
         /// </summary>
@@ -67,7 +67,7 @@ namespace Orbita.Comunicaciones
 
             try
             {
-                Hilos.Add(new ThreadStart(EsProcesarHilo), true);
+                Hilos.Add(EsProcesarHilo, true);
             }
             catch (Exception ex)
             {
@@ -367,7 +367,7 @@ namespace Orbita.Comunicaciones
             }
 
             this._lecturas = new byte[_numLecturas];
-            this.LecturasContinuas = new byte[_numLecturas];
+            this._lecturasContinuas = new byte[_numLecturas];
 
             #region Configuración entradas y salidas
 
@@ -409,7 +409,6 @@ namespace Orbita.Comunicaciones
                         break;
                 }
             }
-
             #endregion
         }
         /// <summary>
@@ -422,7 +421,6 @@ namespace Orbita.Comunicaciones
         private static byte ProcesarByte(byte valor, int bit, int valorBit)
         {
             byte ret = 0;
-
             if (valorBit == 1)
             {
                 ret = (byte)((valor) | (byte)(Math.Pow(2, bit)));
@@ -431,7 +429,6 @@ namespace Orbita.Comunicaciones
             {
                 ret = (byte)(valor & ~(byte)(Math.Pow(2, bit)));
             }
-
             return ret;
         }
         #endregion Comunes
@@ -513,17 +510,17 @@ namespace Orbita.Comunicaciones
             {
                 for (int i = 0; i < mensaje.Length; i++)
                 {
-                    if (mensaje[i] != this.LecturasContinuas[i])
+                    if (mensaje[i] != this._lecturasContinuas[i])
                     {
                         this.EsActualizarVariables(mensaje[i], i);
-                        this.LecturasContinuas[i] = mensaje[i];
+                        this._lecturasContinuas[i] = mensaje[i];
                     }
                 }
             }
             catch (Exception ex)
             {
                 Wrapper.Fatal("Error al procesar las ES en el dispositivo de ES MCC en ESProcesar. " + ex);
-                throw ex;
+                throw;
             }
         }
         /// <summary>

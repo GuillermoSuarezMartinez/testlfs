@@ -26,16 +26,8 @@ namespace Orbita.BBDD
         /// clase  InfoConexion  a  través del objeto
         /// de base de datos que se cree en cada caso.
         /// </summary>
-        OInfoConexion infoConexion;
-        /// <summary>
-        /// Información correspondiente a la cadena
-        /// de conexión de la base de datos.
-        /// </summary>
-        string cadenaConexion;
-        /// <summary>
-        /// Timeout de ejecución de sentencias T-SQL.
-        /// </summary>
-        int timeout;
+        private readonly OInfoConexion _infoConexion;
+
         #endregion
 
         #region Constructores privados
@@ -45,7 +37,7 @@ namespace Orbita.BBDD
         OCoreBBDD()
         {
             // Establecer el timeout por defecto en 120s.
-            this.timeout = 120;
+            this.Timeout = 120;
         }
         #endregion
 
@@ -57,7 +49,7 @@ namespace Orbita.BBDD
         protected OCoreBBDD(OInfoConexion infoConexion)
             : this()
         {
-            this.infoConexion = infoConexion;
+            this._infoConexion = infoConexion;
         }
         #endregion
 
@@ -71,44 +63,36 @@ namespace Orbita.BBDD
         /// </summary>
         protected OInfoConexion InfoConexion
         {
-            get { return this.infoConexion; }
+            get { return this._infoConexion; }
         }
         /// <summary>
         /// Información correspondiente a la cadena de conexión de la base de datos.
         /// </summary>
-        protected string CadenaConexion
-        {
-            get { return this.cadenaConexion; }
-            set { this.cadenaConexion = value; }
-        }
+        protected string CadenaConexion { get; set; }
         /// <summary>
         /// Timeout de ejecución de sentencias T-SQL. (En segundos).
         /// </summary>
-        protected int Timeout
-        {
-            get { return this.timeout; }
-            set { this.timeout = value; }
-        }
+        protected int Timeout { get; set; }
         /// <summary>
         /// Nombre de la instancia de base de datos.
         /// </summary>
         public string Instancia
         {
-            get { return this.infoConexion.Instancia; }
+            get { return this._infoConexion.Instancia; }
         }
         /// <summary>
         /// Nombre de la base de datos.
         /// </summary>
         public string BaseDatos
         {
-            get { return this.infoConexion.BaseDatos; }
+            get { return this._infoConexion.BaseDatos; }
         }
         /// <summary>
         /// Usuario de autenticación de base de datos.
         /// </summary>
         public string Usuario
         {
-            get { return this.infoConexion.Usuario; }
+            get { return this._infoConexion.Usuario; }
         }
         #endregion
     }

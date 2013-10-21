@@ -78,26 +78,31 @@ namespace Orbita.Comunicaciones
         /// </summary>
         [OAtributoEnumerado("110 bds")]
         bds110 = 110,
+
         /// <summary>
         /// 300 baudios
         /// </summary>
         [OAtributoEnumerado("300 bds")]
         bds300 = 300,
+
         /// <summary>
         /// 1200 baudios
         /// </summary>
         [OAtributoEnumerado("1200 bds")]
         bds1200 = 1200,
+
         /// <summary>
         /// 2400 baudios
         /// </summary>
         [OAtributoEnumerado("2400 bds")]
         bds2400 = 2400,
+
         /// <summary>
         /// 4800 baudios
         /// </summary>
         [OAtributoEnumerado("4800 bds")]
         bds4800 = 4800,
+
         /// <summary>
         /// 9600 baudios
         /// </summary>
@@ -108,31 +113,37 @@ namespace Orbita.Comunicaciones
         /// </summary>
         [OAtributoEnumerado("19200 bds")]
         bds19200 = 19200,
+
         /// <summary>
         /// 38400 baudios
         /// </summary>
         [OAtributoEnumerado("38400 bds")]
         bds38400 = 38400,
+
         /// <summary>
         /// 57600 baudios
         /// </summary>
         [OAtributoEnumerado("57600 bds")]
         bds57600 = 57600,
+
         /// <summary>
         /// 115200 baudios
         /// </summary>
         [OAtributoEnumerado("115200 bds")]
         bds115200 = 115200,
+
         /// <summary>
         /// 230400 baudios
         /// </summary>
         [OAtributoEnumerado("230400 bds")]
         bds230400 = 230400,
+
         /// <summary>
         /// 460800 baudios
         /// </summary>
         [OAtributoEnumerado("460800 bds")]
         bds460800 = 460800,
+
         /// <summary>
         /// 921600 baudios
         /// </summary>
@@ -149,16 +160,19 @@ namespace Orbita.Comunicaciones
         /// </summary>
         [OAtributoEnumerado("5 bits")]
         b5 = 5,
+
         /// <summary>
         /// 6 bits
         /// </summary>
         [OAtributoEnumerado("6 bits")]
         b6 = 6,
+
         /// <summary>
         /// 7 bits
         /// </summary>
         [OAtributoEnumerado("7 bits")]
         b7 = 7,
+
         /// <summary>
         /// 8 bits
         /// </summary>
@@ -175,21 +189,25 @@ namespace Orbita.Comunicaciones
         /// </summary>
         [OAtributoEnumerado("Ninguna")]
         Ninguna,
+
         /// <summary>
         /// Par
         /// </summary>
         [OAtributoEnumerado("Par")]
         Par,
+
         /// <summary>
         /// Impar
         /// </summary>
         [OAtributoEnumerado("Impar")]
         Impar,
+
         /// <summary>
         /// Marca
         /// </summary>
         [OAtributoEnumerado("Marca")]
         Marca,
+
         /// <summary>
         /// Espacio
         /// </summary>
@@ -206,11 +224,13 @@ namespace Orbita.Comunicaciones
         /// </summary>
         [OAtributoEnumerado("Uno")]
         Uno,
+
         /// <summary>
         /// Uno y medio
         /// </summary>
         [OAtributoEnumerado("Uno y medio")]
         UnoYMedio,
+
         /// <summary>
         /// Dos
         /// </summary>
@@ -227,16 +247,19 @@ namespace Orbita.Comunicaciones
         /// </summary>
         [OAtributoEnumerado("Ninguno")]
         Ninguno,
+
         /// <summary>
         /// Ninguno
         /// </summary>
         [OAtributoEnumerado("XonXoff")]
         XonXoff,
+
         /// <summary>
         /// CtsRts
         /// </summary>
         [OAtributoEnumerado("CtsRts")]
         CtsRts,
+
         /// <summary>
         /// DsrDtr
         /// </summary>

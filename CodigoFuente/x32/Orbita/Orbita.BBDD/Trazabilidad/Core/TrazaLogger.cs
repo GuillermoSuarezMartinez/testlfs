@@ -9,11 +9,9 @@
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
-using System;
+
 using System.Collections;
 using System.Data.SqlClient;
-using System.Globalization;
-using Orbita.BBDD;
 using Orbita.Trazabilidad;
 namespace Orbita.BBDD.Trazabilidad
 {
@@ -28,11 +26,11 @@ namespace Orbita.BBDD.Trazabilidad
         /// La inclusión del atributo es necesaria para poder obtener las propiedades de  la
         /// clase OInfoConexion a través del objeto de base de datos que se cree en cada caso.
         /// </summary>
-        OInfoConexion infoConexion;
+        private OInfoConexion _infoConexion;
         /// <summary>
         /// Logger de trazas correctas.
         /// </summary>
-        ILogger logger;
+        private readonly ILogger _logger;
         #endregion
 
         #region Constructores
@@ -102,8 +100,8 @@ namespace Orbita.BBDD.Trazabilidad
         public TrazaLogger(string identificador, OInfoConexion oInfoConexion, ILogger logger)
             : this(identificador)
         {
-            this.infoConexion = oInfoConexion;
-            this.logger = logger;
+            this._infoConexion = oInfoConexion;
+            this._logger = logger;
         }
         #endregion
 
@@ -113,8 +111,8 @@ namespace Orbita.BBDD.Trazabilidad
         /// </summary>
         public OInfoConexion OInfoConexion
         {
-            get { return this.infoConexion; }
-            set { this.infoConexion = value; }
+            get { return this._infoConexion; }
+            set { this._infoConexion = value; }
         }
         #endregion
 
@@ -124,14 +122,14 @@ namespace Orbita.BBDD.Trazabilidad
         /// </summary>
         OSqlServer BD
         {
-            get { return new OSqlServer(this.infoConexion); }
+            get { return new OSqlServer(this._infoConexion); }
         }
         /// <summary>
         /// Logger de control de excepciones.
         /// </summary>
         ILogger Logger
         {
-            get { return this.logger; }
+            get { return this._logger; }
         }
         #endregion
 
@@ -162,7 +160,7 @@ namespace Orbita.BBDD.Trazabilidad
             }
             catch (SqlException ex)
             {
-                if (this.logger != null)
+                if (this._logger != null)
                 {
                     if (item.Argumentos != null)
                     {

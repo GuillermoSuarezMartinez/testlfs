@@ -44,7 +44,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         protected new byte[] Salidas;
         /// <summary>
-        /// Tiempo que tarda en logar un error de comunicación.
+        /// Tiempo que tarda en trazar un error de comunicación.
         /// </summary>
         public int LogErrorComunicacionSg = 60;
         #endregion Atributos
@@ -59,18 +59,20 @@ namespace Orbita.Comunicaciones
             try
             {
                 // Asignación de las colecciones de datos, lecturas y alarmas.
-                this.Tags = tags;
-                this.ConfigDispositivo = tags.Config;
-                this.Eventargs = new OEventArgs();
+                Tags = tags;
+                ConfigDispositivo = tags.Config;
+                Eventargs = new OEventArgs();
 
-                //Actualizando las variables de dispositivo
-                this.Identificador = dispositivo.Identificador;
-                this.Nombre = dispositivo.Nombre;
-                this.Tipo = dispositivo.Tipo;
-                this.Direccion = dispositivo.Direccion;
-                this.Local = dispositivo.Local;
-                this.Puerto = dispositivo.Puerto;
-                this.Protocolo = dispositivo.Protocolo;
+                // Actualizando las variables de dispositivo.
+                Identificador = dispositivo.Identificador;
+                Nombre = dispositivo.Nombre;
+                Tipo = dispositivo.Tipo;
+                Direccion = dispositivo.Direccion;
+                Local = dispositivo.Local;
+                Puerto = dispositivo.Puerto;
+                Protocolo = dispositivo.Protocolo;
+
+                // Asignar colección de hilos.
                 Hilos = hilos;
             }
             catch (Exception ex)
@@ -87,28 +89,28 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public OHashtable Datos
         {
-            get { return this.Tags.GetDatos(); }
+            get { return Tags.GetDatos(); }
         }
         /// <summary>
         /// Colección de lecturas.
         /// </summary>
         public OHashtable Lecturas
         {
-            get { return this.Tags.GetLecturas(); }
+            get { return Tags.GetLecturas(); }
         }
         /// <summary>
         /// Colección de alarmas.
         /// </summary>
         public OHashtable Alarmas
         {
-            get { return this.Tags.GetAlarmas(); }
+            get { return Tags.GetAlarmas(); }
         }
         /// <summary>
         /// Colección de alarmas activas.
         /// </summary>
         public ArrayList AlarmasActivas
         {
-            get { return this.Tags.GetAlarmasActivas(); }
+            get { return Tags.GetAlarmasActivas(); }
         }
         #endregion Propiedades
 
@@ -118,7 +120,7 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public override void Iniciar()
         {
-            this.IniciarHiloVida();
+            IniciarHiloVida();
         }
         /// <summary>
         /// Devuelva las alarmas activas del sistema.
@@ -126,7 +128,7 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public override ArrayList GetAlarmasActivas()
         {
-            return this.Tags.GetAlarmasActivas();
+            return Tags.GetAlarmasActivas();
         }
         /// <summary>
         /// Devuelve los datos del dipositivo y su valor.
@@ -134,7 +136,7 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public override OHashtable GetDatos()
         {
-            return this.Tags.GetDatos();
+            return Tags.GetDatos();
         }
         /// <summary>
         /// Devuelve las lectuas del dipositivo y su valor.
@@ -142,7 +144,7 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public override OHashtable GetLecturas()
         {
-            return this.Tags.GetLecturas();
+            return Tags.GetLecturas();
         }
         /// <summary>
         /// Devuelve las alarmas del dipositivo y su valor.
@@ -150,7 +152,7 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public override OHashtable GetAlarmas()
         {
-            return this.Tags.GetAlarmas();
+            return Tags.GetAlarmas();
         }
         /// <summary>
         /// Proceso del hilo de vida.
@@ -162,7 +164,7 @@ namespace Orbita.Comunicaciones
         /// <param name="disposing"></param>
         public override void Dispose(bool disposing)
         {
-            this.Tags.Dispose();
+            Tags.Dispose();
             Hilos.Destruir();
         }
         /// <summary>
@@ -174,7 +176,7 @@ namespace Orbita.Comunicaciones
         /// <returns></returns>
         public override bool Escribir(string[] variables, object[] valores, string canal)
         {
-            return this.Escribir(variables, valores);
+            return Escribir(variables, valores);
         }
         #endregion Métodos públicos
 

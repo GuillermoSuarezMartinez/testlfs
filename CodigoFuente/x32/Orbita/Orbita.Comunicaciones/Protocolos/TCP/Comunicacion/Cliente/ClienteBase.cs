@@ -3,7 +3,6 @@
 // Ensamblado         : Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
 // Autor              : crodriguez
 // Fecha creación     : 01-09-2013
-// Descripción        : ...
 //
 //***********************************************************************
 
@@ -66,12 +65,12 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
         /// </summary>
         protected ClienteBase()
         {
-            _timerPing = new Timer(30000);
-            _timerPing.Elapsed += PingTimer_Elapsed;
+            //_timerPing = new Timer(30000);
+            //_timerPing.Elapsed += PingTimer_Elapsed;
             TimeoutConexionMs = TimeoutConexionMsPredeterminado;
             Telegrama = TelegramaManager.GetTelegramaPredeterminado();
         }
-        #endregion
+        #endregion Constructor protegido
 
         #region Propiedades públicas
         /// <summary>
@@ -196,7 +195,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
         /// </summary>
         /// <returns>Canal de comunicación.</returns>
         protected abstract ICanalComunicacion CrearCanalComunicacion();
-        #endregion
+        #endregion Métodos protegidos abstractos
 
         #region Métodos privados
         /// <summary>
@@ -228,7 +227,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
         /// <param name="e">EventArgs que contiene los datos del evento.</param>
         private void CanalComunicacion_Desconectado(object sender, EventArgs e)
         {
-            _timerPing.Parar();
+            //_timerPing.Parar();
             OnDesconectado();
         }
         /// <summary>
@@ -256,7 +255,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
                 //  Empty.
             }
         }
-        #endregion
+        #endregion Métodos privados
 
         #region Métodos protegidos de eventos elevados
         /// <summary>
@@ -305,6 +304,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Cliente
                 handler(this, new MensajeEventArgs(mensaje));
             }
         }
-        #endregion
+        #endregion Métodos protegidos de eventos elevados
     }
 }
