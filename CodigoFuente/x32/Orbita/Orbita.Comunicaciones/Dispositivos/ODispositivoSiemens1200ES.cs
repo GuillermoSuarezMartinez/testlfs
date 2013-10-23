@@ -204,7 +204,7 @@ namespace Orbita.Comunicaciones
                                     if (_colaEscrituras.Count > 0)
                                     {
                                         var de = ((DispositivoEscrituras)_colaEscrituras.Dequeue());
-                                        if (Wrapper.NivelLog <= NivelLog.Debug)
+                                        if (Wrapper.NivelLog <= NivelLog.Info)
                                         {
                                             string traza = "";
                                             for (int i = 0; i < de.Variables.Length; i++)
@@ -515,11 +515,14 @@ namespace Orbita.Comunicaciones
 
                 ProcesarMensajeRecibido(bytesRecibidos);
 
-                if (bytesRecibidos != null)
+                if (Wrapper.NivelLog <= NivelLog.Debug)
                 {
-                    resultado = bytesRecibidos.Aggregate(resultado, (current, t) => current + ("[" + t + "]"));
+                    if (bytesRecibidos != null)
+                    {
+                        resultado = bytesRecibidos.Aggregate(resultado, (current, t) => current + ("[" + t + "]"));
+                    }
+                    Wrapper.Debug("ODispositivoSiemens1200ES [Winsock_DataArrival]: " + resultado);
                 }
-                Wrapper.Debug("ODispositivoSiemens1200ES [Winsock_DataArrival]: " + resultado);
             }
             catch (Exception ex)
             {
@@ -537,11 +540,14 @@ namespace Orbita.Comunicaciones
             try
             {
                 string enviado = "";
-                if (e.DataSent != null)
+                if (Wrapper.NivelLog <= NivelLog.Debug)
                 {
-                    enviado = e.DataSent.Aggregate(enviado, (current, t) => current + ("[" + t + "]"));
+                    if (e.DataSent != null)
+                    {
+                        enviado = e.DataSent.Aggregate(enviado, (current, t) => current + ("[" + t + "]"));
+                    }
+                    Wrapper.Debug("ODispositivoSiemens1200ES [Winsock_SendComplete]: " + enviado);
                 }
-                Wrapper.Debug("ODispositivoSiemens1200ES [Winsock_SendComplete]: " + enviado);
             }
             catch (Exception ex)
             {
