@@ -141,7 +141,7 @@
     <Compile Include="Dispositivos\ODispositivoES.cs" />
     <Compile Include="Dispositivos\ODispositivoILBKPhoenix.cs" />
     <Compile Include="Dispositivos\ODispositivoMCUSB.cs" />
-    <Compile Include="Dispositivos\ODispositivoSiemens1200ES.cs" />
+    <Compile Include="Dispositivos\ODispositivoSiemens1200ES\ODispositivoSiemens1200ES.cs" />
     <Compile Include="Dispositivos\ODispositivoSiemens1200ES\ODispositivoSiemens1200ESGLPR.cs" />
     <Compile Include="Dispositivos\ODispositivoSiemens1200ES\ODispositivoSiemens1200ESGOCR.cs" />
     <Compile Include="Dispositivos\ODispositivoSiemens1200ES\ODispositivoSiemens1200ESGOSL.cs" />
