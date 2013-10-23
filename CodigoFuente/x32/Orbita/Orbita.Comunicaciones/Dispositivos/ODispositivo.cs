@@ -3,7 +3,7 @@ using System.Collections;
 using Orbita.Trazabilidad;
 using Orbita.Utiles;
 
-namespace Orbita.Comunicaciones.GateSuite
+namespace Orbita.Comunicaciones
 {
     /// <summary>
     /// Dispositivo.
