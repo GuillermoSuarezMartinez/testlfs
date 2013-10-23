@@ -4012,6 +4012,18 @@
             </summary>
             <param name="ordenCambioVisor"></param>
         </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorBase.OnImageMouseClick(Orbita.Controles.VA.EventImageMouseHandlerArgs)">
+            <summary>
+            Evento que indica el clic en el visor (devolviendo la información de X e Y de la imagen)
+            </summary>
+            <param name="e">Información sobre la posición del cursor sobre la imagen</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorBase.OnImageMouseMove(Orbita.Controles.VA.EventImageMouseHandlerArgs)">
+            <summary>
+            Evento que indica el movimiento del cursor sobre el visor (devolviendo la información de X e Y de la imagen)
+            </summary>
+            <param name="e">Información sobre la posición del cursor sobre la imagen</param>
+        </member>
         <member name="M:Orbita.Controles.VA.OrbitaVisorBase.Visualizar(Orbita.VA.Comun.OImagen)">
             <summary>
             Visualiza una imagen en el display
@@ -4286,6 +4298,16 @@
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
+        </member>
+        <member name="E:Orbita.Controles.VA.OrbitaVisorBase.ImageMouseClick">
+            <summary>
+            Evento que indica el clic en el visor (devolviendo la información de X e Y de la imagen)
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.VA.OrbitaVisorBase.ImageMouseMove">
+            <summary>
+            Evento que indica el movimiento del cursor sobre el visor (devolviendo la información de X e Y de la imagen)
+            </summary>
         </member>
         <member name="F:Orbita.Controles.VA.OrbitaVisorVPro.components">
             <summary> 
@@ -5980,6 +6002,35 @@
             <param name="codEstado">Código del estado visual</param>
             <param name="posicion">Posición del estado visual</param>
         </member>
+        <member name="T:Orbita.Controles.VA.ImageMouseHandler">
+            <summary>
+            Delegado que indica el cambio de estado de visualización de la ventana (maximizado o normal)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.Controles.VA.EventImageMouseHandlerArgs">
+            <summary>
+            Parametros de retorno del evento de cambio de maximizado o restaurado de la ventana
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.EventImageMouseHandlerArgs.CodCamara">
+            <summary>
+            Código de la cámara
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.EventImageMouseHandlerArgs.Location">
+            <summary>
+            Posición del cursor en la imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.EventImageMouseHandlerArgs.#ctor(System.String,System.Drawing.PointF)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codEstado">Código del visor</param>
+            <param name="posicion">Posición del cursor en la imagen</param>
+        </member>
         <member name="T:Orbita.Controles.VA.FrmUserPsw">
             <summary>
             Formulario de entrada de usuario y contraseña
@@ -6484,7 +6535,17 @@
             Texto escrito
             </summary>
         </member>
-        <member name="M:Orbita.Controles.VA.FrmInputBox.#ctor(System.String,System.String,System.String,Orbita.Utiles.IObjetoBase)">
+        <member name="F:Orbita.Controles.VA.FrmInputBox.PosicionesEnteras">
+            <summary>
+            Posiciones enteras del editor numérico
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmInputBox.PosicionesDecimales">
+            <summary>
+            Posiciones enteras del editor numérico
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmInputBox.#ctor(System.String,System.String,System.String,Orbita.Utiles.IObjetoBase,System.Int32,System.Int32)">
             <summary>
             Constructor de la clase
             </summary>
@@ -7328,6 +7389,55 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="T:Orbita.Controles.VA.OrbitaGraficaVariableInt">
+            <summary>
+            Control para la monitorización en el tiempo de variables de tipo bool
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaGraficaVariableInt.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaGraficaVariableInt.Inicializar(System.String)">
+            <summary>
+            Método que inicializa las propiedades internas
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaGraficaVariableInt.IniciarEjecucion">
+            <summary>
+            Inicia la monitorización en el tiempo de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaGraficaVariableInt.PararEjecucion">
+            <summary>
+            Para la monitorización en el tiempo de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaGraficaVariableInt.TimerRefresco_Tick(System.Object,System.EventArgs)">
+            <summary>
+            Evento de refresco
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaGraficaVariableInt.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaGraficaVariableInt.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaGraficaVariableInt.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:Orbita.Controles.VA.FrmDisplays">
             <summary>
             Formulario de agrupación de displays
@@ -7471,6 +7581,55 @@
         <member name="P:Orbita.Controles.VA.FrmDisplays.ControlCamara">
             <summary>
             Indica que los visores tienen control sobre la adquisición de imágenes de la cámara
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.VA.OrbitaGraficaVariableDouble">
+            <summary>
+            Control para la monitorización en el tiempo de variables de tipo bool
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaGraficaVariableDouble.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaGraficaVariableDouble.Inicializar(System.String)">
+            <summary>
+            Método que inicializa las propiedades internas
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaGraficaVariableDouble.IniciarEjecucion">
+            <summary>
+            Inicia la monitorización en el tiempo de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaGraficaVariableDouble.PararEjecucion">
+            <summary>
+            Para la monitorización en el tiempo de la variable
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaGraficaVariableDouble.TimerRefresco_Tick(System.Object,System.EventArgs)">
+            <summary>
+            Evento de refresco
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaGraficaVariableDouble.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaGraficaVariableDouble.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaGraficaVariableDouble.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
             </summary>
         </member>
         <member name="T:Orbita.Controles.VA.OLogsControlesVA">
@@ -8533,7 +8692,7 @@
             Clase estática para la imputación de datos de texto
             </summary>
         </member>
-        <member name="M:Orbita.Controles.VA.InputIntegerBox.ShowModal(System.String,System.String,System.String,System.Int32@,System.Int32,System.Int32)">
+        <member name="M:Orbita.Controles.VA.InputIntegerBox.ShowModal(System.String,System.String,System.String,System.Int32@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Imputación de número por parte del usuario
             </summary>
@@ -8542,7 +8701,7 @@
             <param name="valor">Valor por defecto</param>
             <returns>Verdadero si el usuario ha aceptado la imputación</returns>
         </member>
-        <member name="M:Orbita.Controles.VA.InputIntegerBox.Show(System.String,System.String,System.String,System.Int32,Orbita.Controles.VA.EventHandlerInput,System.Int32,System.Int32)">
+        <member name="M:Orbita.Controles.VA.InputIntegerBox.Show(System.String,System.String,System.String,System.Int32,Orbita.Controles.VA.EventHandlerInput,System.Int32,System.Int32,System.Int32)">
             <summary>
             Imputación de número por parte del usuario
             </summary>
@@ -8556,7 +8715,7 @@
             Clase estática para la imputación de datos de texto
             </summary>
         </member>
-        <member name="M:Orbita.Controles.VA.InputDoubleBox.ShowModal(System.String,System.String,System.String,System.Double@,System.Double,System.Double)">
+        <member name="M:Orbita.Controles.VA.InputDoubleBox.ShowModal(System.String,System.String,System.String,System.Double@,System.Int32,System.Int32,System.Double,System.Double)">
             <summary>
             Imputación de número por parte del usuario
             </summary>
@@ -8565,7 +8724,7 @@
             <param name="valor">Valor por defecto</param>
             <returns>Verdadero si el usuario ha aceptado la imputación</returns>
         </member>
-        <member name="M:Orbita.Controles.VA.InputDoubleBox.Show(System.String,System.String,System.String,System.Double,Orbita.Controles.VA.EventHandlerInput,System.Double,System.Double)">
+        <member name="M:Orbita.Controles.VA.InputDoubleBox.Show(System.String,System.String,System.String,System.Double,Orbita.Controles.VA.EventHandlerInput,System.Int32,System.Int32,System.Double,System.Double)">
             <summary>
             Imputación de número por parte del usuario
             </summary>

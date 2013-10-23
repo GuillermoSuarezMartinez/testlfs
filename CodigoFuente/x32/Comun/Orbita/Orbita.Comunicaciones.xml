@@ -306,7 +306,7 @@
             Logger de la clase.
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivo.Bloqueo">
+        <member name="F:Orbita.Comunicaciones.ODispositivo.ObjSincronizacion">
             <summary>
             Objeto para bloquear las escrituras.
             </summary>
@@ -326,28 +326,21 @@
             Inicializar una nueva instancia de la clase ODispositivo.
             </summary>
         </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivo.Dispose(System.Boolean)">
+            <summary>
+            Limpia la memoria.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivo.Dispose">
+            <summary>
+            Llama al método para limpiar todos los objetos de memoria
+            </summary>
+        </member>
         <member name="M:Orbita.Comunicaciones.ODispositivo.Finalize">
             <summary>
             Destructor del objeto.
             </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivo.OnCambioDato(Orbita.Utiles.OEventArgs)">
-            <summary>
-            El evento invoca el método que puede ser sobreescrito en la clase derivada.
-            </summary>
-            <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivo.OnAlarma(Orbita.Utiles.OEventArgs)">
-            <summary>
-            El evento invoca el método que puede ser sobreescrito en la clase derivada.
-            </summary>
-            <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivo.OnComm(Orbita.Utiles.OEventArgs)">
-            <summary>
-            El evento invoca el método que puede ser sobreescrito en la clase derivada.
-            </summary>
-            <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivo.Iniciar">
             <summary>
@@ -376,7 +369,7 @@
             Método de lectura de un dispositivo.
             </summary>
             <param name="variables">Colección de variables.</param>
-            <param name="demanda">establece si la lectura se realiza al instante</param>
+            <param name="demanda">Establece si la lectura se realiza al instante.</param>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivo.GetAlarmasActivas">
@@ -403,16 +396,23 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivo.Dispose(System.Boolean)">
+        <member name="M:Orbita.Comunicaciones.ODispositivo.OnCambioDato(Orbita.Utiles.OEventArgs)">
             <summary>
-            Limpia la memoria.
+            El evento invoca el método que puede ser sobreescrito en la clase derivada.
             </summary>
-            <param name="disposing"></param>
+            <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
         </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivo.Dispose">
+        <member name="M:Orbita.Comunicaciones.ODispositivo.OnAlarma(Orbita.Utiles.OEventArgs)">
             <summary>
-            Llama al método para limpiar todos los objetos de memoria
+            El evento invoca el método que puede ser sobreescrito en la clase derivada.
             </summary>
+            <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivo.OnComm(Orbita.Utiles.OEventArgs)">
+            <summary>
+            El evento invoca el método que puede ser sobreescrito en la clase derivada.
+            </summary>
+            <param name="e">Argumento que puede ser utilizado en el manejador de evento.</param>
         </member>
         <member name="E:Orbita.Comunicaciones.ODispositivo.OrbitaCambioDato">
             <summary>
@@ -645,9 +645,9 @@
             </summary>
             <param name="disposing"></param>
         </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoTCP.InicHiloVida">
+        <member name="M:Orbita.Comunicaciones.ODispositivoTCP.InicializarHiloVida">
             <summary>
-            Inicia hilo de vida.
+            Inicializar hilo de vida.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.ODispositivoTCP.ProcesarHiloVida">
@@ -668,6 +668,61 @@
         <member name="T:Orbita.Comunicaciones.TiposVariables">
             <summary>
             Tipos de variables.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.TiposVariables.X">
+            <summary>
+            Variable de tipo Bit.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.TiposVariables.REAL">
+            <summary>
+            Variable de tipo Real.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.TiposVariables.INT">
+            <summary>
+            Variable de tipo Int32.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.TiposVariables.DINT">
+            <summary>
+            Variable de tipo Int64.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.TiposVariables.W">
+            <summary>
+            Variable de tipo Word.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.TiposVariables.DWORD">
+            <summary>
+            Variable de tipo Doble Word.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.TiposVariables.CHAR">
+            <summary>
+            Variable de tipo Char.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.TiposVariables.STRING">
+            <summary>
+            Variable de tipo String.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.TiposVariables.B">
+            <summary>
+            Variable de tipo Byte.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.TiposVariables.DT">
+            <summary>
+            Variable de tipo Dt.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.TiposVariables.OBJECT">
+            <summary>
+            Variable de tipo Object.
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.OProtocoloWinCCDataManager">
@@ -881,423 +936,6 @@
             <param name="infoDato">Información del dato que será transmitido.</param>
             <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
         </member>
-        <member name="T:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOSO">
-            <summary>
-            Dispositivo Siemens 1200 OSO.
-            </summary>
-        </member>
-        <member name="T:Orbita.Comunicaciones.ODispositivoSiemens1200ES">
-            <summary>
-            Dispositivo entradas salidas Siemens1200
-            </summary>
-        </member>
-        <member name="T:Orbita.Comunicaciones.ODispositivoES">
-            <summary>
-            Clase base para los dispositivos de ES
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoES.Tags">
-            <summary>
-            Atributo que indica las  colecciones de tags de datos, lecturas y alarmas.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoES.Hilos">
-            <summary>
-            Colección de hilos.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoES.ConfigDispositivo">
-            <summary>
-            Datos de configuración del canal.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoES.Eventargs">
-            <summary>
-            Argumentos para generar los eventos.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoES.Winsock">
-            <summary>
-            Objeto para establecer el canal Tcp.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoES.ReConexionSg">
-            <summary>
-            Segundos para la reconexión con el dispositivo.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoES.Entradas">
-            <summary>
-            Valor devuelto para las entradas.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoES.Salidas">
-            <summary>
-            Byte de escrituras.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoES.LogErrorComunicacionSg">
-            <summary>
-            Tiempo que tarda en logar un error de comunicación.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoES.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
-            <summary>
-            Inicializar una nueva instancia de la clase ODispositivoES.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoES.Iniciar">
-            <summary>
-            Inicializar grupos, punteros e items.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoES.GetAlarmasActivas">
-            <summary>
-            Devuelva las alarmas activas del sistema.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoES.GetDatos">
-            <summary>
-            Devuelve los datos del dipositivo y su valor.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoES.GetLecturas">
-            <summary>
-            Devuelve las lectuas del dipositivo y su valor.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoES.GetAlarmas">
-            <summary>
-            Devuelve las alarmas del dipositivo y su valor.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoES.ProcesarHiloVida">
-            <summary>
-            Proceso del hilo de vida.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoES.Dispose(System.Boolean)">
-            <summary>
-            Limpia los objetos en memoria.
-            </summary>
-            <param name="disposing"></param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoES.Escribir(System.String[],System.Object[],System.String)">
-            <summary>
-            Escribir el valor de los identificadores de variables de la colección.
-            </summary>
-            <param name="variables">Colección de variables.</param>
-            <param name="valores">Colección de valores.</param>
-            <param name="canal"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoES.IniciarHiloVida">
-            <summary>
-            Inicia hilo de vida.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.ODispositivoES.Datos">
-            <summary>
-            Colección de datos.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.ODispositivoES.Lecturas">
-            <summary>
-            Colección de lecturas.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.ODispositivoES.Alarmas">
-            <summary>
-            Colección de alarmas.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.ODispositivoES.AlarmasActivas">
-            <summary>
-            Colección de alarmas activas.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES.QEntradaSalida">
-            <summary>
-            Cola de recepción de tramas de datos.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES.Reset">
-            <summary>
-            Evento reset de recepción de tramas KeepAlive.
-            Entrada/Salida.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES.AlmacenLecturas">
-            <summary>
-            Colección para la búsqueda de lecturas. La clave es la dupla "dirección-bit".
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES.AlmacenEscrituras">
-            <summary>
-            Colección para la búsqueda de escrituras. La clave es la dupla "dirección-bit".
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES.NumLecturas">
-            <summary>
-            Número de lecturas a realizar.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES.NumeroBytesEntradas">
-            <summary>
-            Número de bytes de entradas.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES.NumeroBytesSalidas">
-            <summary>
-            Número de bytes de salidas.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES._lecturas">
-            <summary>
-            Valor de las lecturas.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES.RegistroInicialEntradas">
-            <summary>
-            Valor inicial del registro de lecturas.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES.RegistroInicialSalidas">
-            <summary>
-            Valor inicial del registro de escrituras.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES.ProtocoloHiloVida">
-            <summary>
-            Protocolo comunicación usado para el hilo vida.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES.ProtocoloEscritura">
-            <summary>
-            Protocolo comunicación usado para la escritura.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES.ProtocoloProcesoMensaje">
-            <summary>
-            Protocolo comunicación usado para el proceso del mensaje.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES.ProtocoloProcesoHilo">
-            <summary>
-            Protocolo de comunicación usado para el proceso del hilo.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES._fechaErrorWrapperWinsock">
-            <summary>
-            Fecha del ultimo wrapper de error.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES._idMensaje">
-            <summary>
-            Identificador del mensaje a enviar para la escritura.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoSiemens1200ES._qEscrituras">
-            <summary>
-            Cola de recepción de tramas de datos.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
-            <summary>
-            Inicializar una nueva instancia de la clase ODispositivoSiemens1200ES.
-            </summary>
-            <param name="tags">Colección de tags.</param>
-            <param name="hilos">Colección de hilos.</param>
-            <param name="dispositivo">Dispositivo de conexión.</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.ProcesarHiloVida">
-            <summary>
-            Procesa las lecturas del dispositivo.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.Leer(System.String[],System.Boolean)">
-            <summary>
-            Leer el valor de las descripciones de variables de la colección
-            a partir del valor de la colección de datos DB actualiza  en el
-            proceso del hilo vida.
-            </summary>
-            <param name="variables">Colección de variables.</param>
-            <param name="demanda">Indica si la lectura se ejecuta sobre el dispositivo</param>
-            <returns>Colección de resultados.</returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.Escribir(System.String[],System.Object[])">
-            <summary>
-            Escribir el valor de los identificadores de variables de la colección.
-            </summary>
-            <param name="variables">Colección de variables.</param>
-            <param name="valores">Colección de valores.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.OnCambioDatoEntradas(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Cambio de dato de las entradas
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.OnCambioDatoSalidas(Orbita.Utiles.OEventArgs)">
-            <summary>
-            Cambio de dato de las salidas
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.CrearParametrosConexionTcp">
-            <summary>
-            Publica los eventos de socket
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.Conectar">
-            <summary>
-            Conecta con el dispositivo TCP
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.IniciarObjetos">
-            <summary>
-            Establece el valor inicial de los objetos
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.ProcesarMensajeRecibido(System.Byte[])">
-            <summary>
-            Procesa los mensajes recibidos en el data arrival.
-            </summary>
-            <param name="mensaje"></param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.ProcesarByte(System.Byte,System.Int32,System.Int32)">
-            <summary>
-            Procesa los bits poniendo a 1 o 0 el bit correspondiente.
-            </summary>
-            <param name="valor"></param>
-            <param name="bit"></param>
-            <param name="valorBit"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.ProcesarEscritura(System.String[],System.Object[])">
-            <summary>
-            Calcula el valor de las salidas para enviar al dispositivo
-            </summary>
-            <param name="variables">Colección de variables.</param>
-            <param name="valores"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.EsEncolar(System.Byte[])">
-            <summary>
-            Método que encola trama GateData.
-            </summary>
-            <param name="trama"></param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.EsDesencolar">
-            <summary>
-            Método que desencola trama GateData.
-            </summary>
-            <returns>Objeto GateData</returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.EsProcesarHilo">
-            <summary>
-            Hilo de proceso de ES
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.Enviar(System.Object)">
-            <summary>
-            Enviar datos al dispositivo
-            </summary>
-            <param name="data"></param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.Winsock_DataArrival(System.Object,Orbita.Winsock.WinsockDataArrivalEventArgs)">
-            <summary>
-            Evento de recepción de datos
-            </summary>
-            <param name="sender">Objeto que lanza el evento</param>
-            <param name="e">Argumentos del evento</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.Winsock_SendComplete(System.Object,Orbita.Winsock.WinsockSendEventArgs)">
-            <summary>
-            Indica que el objeto winsock ha enviado toda la información
-            </summary>
-            <param name="sender">Objeto que lanza el evento</param>
-            <param name="e">Argumentos del evento</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.Winsock_StateChanged(System.Object,Orbita.Winsock.WinsockStateChangedEventArgs)">
-            <summary>
-            Indica que el objeto winsock ha cambiado de estado. Trazabilidad del canal.
-            </summary>
-            <param name="sender">Objeto que lanza el evento</param>
-            <param name="e">Argumentos del evento</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ES.Winsock_ErrorReceived(System.Object,Orbita.Winsock.WinsockErrorReceivedEventArgs)">
-            <summary>
-            Evento de errores en la comunicación TCP
-            </summary>
-            <param name="sender">Objeto que lanza el evento</param>
-            <param name="e">Argumentos del evento</param>
-        </member>
-        <member name="E:Orbita.Comunicaciones.ODispositivoSiemens1200ES.OrbitaCambioDatoEntradas">
-            <summary>
-            Evento de cambio de dato entradas
-            </summary>
-        </member>
-        <member name="E:Orbita.Comunicaciones.ODispositivoSiemens1200ES.OrbitaCambioDatoSalidas">
-            <summary>
-            Evento de cambio de dato salidas
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.ODispositivoSiemens1200ES.IdMensaje">
-            <summary>
-            Identificador del mensaje.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOSO.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
-            <summary>
-            Inicializar una nueva instancia de la clase ODispositivoSiemens1200ESGOSO.
-            </summary>
-            <param name="tags">Colección de tags.</param>
-            <param name="hilos">Colección de hilos.</param>
-            <param name="dispositivo">Dispositivo de conexión.</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOSO.IniciarObjetos">
-            <summary>
-            Establece el valor inicial de los objetos.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOSO.ProcesarMensajeRecibido(System.Byte[])">
-            <summary>
-            Procesa los mensajes recibidos en el evento Winsock_DataArrival.
-            </summary>
-            <param name="mensaje">Colección de bytes que forman el mensaje.</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOSO.EsProcesarHilo">
-            <summary>
-            Hilo de proceso de ES.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOSO.EsProcesar(System.Byte[],System.Byte[])">
-            <summary>
-            Procesa los bytes de entradas y salidas para actualizar los valores de las variables.
-            </summary>
-            <param name="entradas">Byte de entradas recibido.</param>
-            <param name="salidas">Byte de salidas recibido.</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOSO.EsActualizarVariablesEntradas(System.Byte,System.Int32)">
-            <summary>
-            Actualiza los valores de las entradas y genera los eventos de cambio de dato y alarma
-            </summary>
-            <param name="valor">valor del byte</param>
-            <param name="posicion">posición del byte</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOSO.EsActualizarVariablesSalidas(System.Byte,System.Int32)">
-            <summary>
-            Actualiza los valores de las salidas y genera los eventos de cambio de dato y alarma
-            </summary>
-            <param name="valor">valor del byte</param>
-            <param name="posicion">posición del byte</param>
-        </member>
         <member name="T:Orbita.Comunicaciones.OcsMensajeComunicacionesEventArgs">
             <summary>
             Almacena el mensaje que será utilizado por el evento de suscripción.
@@ -1337,7 +975,7 @@
         </member>
         <member name="M:Orbita.Comunicaciones.OMensajeCanalTCP.#ctor(System.String,System.String,System.String)">
             <summary>
-            Constructor de clase
+            Constructor de clase.
             </summary>
             <param name="listener"></param>
             <param name="canal"></param>
@@ -1345,22 +983,22 @@
         </member>
         <member name="P:Orbita.Comunicaciones.OMensajeCanalTCP.Listener">
             <summary>
-            nombre del listener
+            Nombre del listener.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OMensajeCanalTCP.Canal">
             <summary>
-            nombre del canal
+            Nombre del canal.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OMensajeCanalTCP.Mensaje">
             <summary>
-            mensaje
+            Mensaje.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OMensajeCanalTCP.Data">
             <summary>
-            datos del mensaje
+            Datos del mensaje.
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor.ServidorCliente">
@@ -1783,16 +1421,6 @@
             Clase para la generación de eventos de bit de vida
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OInfoOPCvida._variables">
-            <summary>
-            Identificador de variables.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OInfoOPCvida._valores">
-            <summary>
-            Valor de las variables.
-            </summary>
-        </member>
         <member name="M:Orbita.Comunicaciones.OInfoOPCvida.#ctor(System.Int32,System.String[])">
             <summary>
             Inicializar una nueva instancia de la clase InfoVida.
@@ -1858,26 +1486,6 @@
             Log de la aplicación.
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OTCPListener._poolCliente">
-            <summary>
-            Pool de clientes.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OTCPListener._puerto">
-            <summary>
-            Puerto Tcp.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OTCPListener._nombre">
-            <summary>
-            Nombre del canal.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OTCPListener._estadoListener">
-            <summary>
-            Estado del listener.
-            </summary>
-        </member>
         <member name="M:Orbita.Comunicaciones.OTCPListener.#ctor(Orbita.Trazabilidad.ILogger,System.Int32,System.String)">
             <summary>
             Constructor del formulario.
@@ -1888,48 +1496,55 @@
             Inicializa las variables de la comunicación Tcp.
             </summary>
         </member>
-        <member name="M:Orbita.Comunicaciones.OTCPListener._wskListener_StateChanged(System.Object,Orbita.Winsock.WinsockStateChangedEventArgs)">
+        <member name="M:Orbita.Comunicaciones.OTCPListener.GetEstadoCanal(System.String)">
+            <summary>
+            Obtener el estado del canal.
+            </summary>
+            <param name="direccionIp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OTCPListener.WskListener_StateChanged(System.Object,Orbita.Winsock.WinsockStateChangedEventArgs)">
             <summary>
             Indica que el objeto winsock principal ha cambiado de estado. Trazabilidad del canal.
             </summary>
             <param name="sender">Objeto que lanza el evento</param>
             <param name="e">Argumentos del evento</param>
         </member>
-        <member name="M:Orbita.Comunicaciones.OTCPListener._wskListener_ConnectionRequest(System.Object,Orbita.Winsock.WinsockConnectionRequestEventArgs)">
+        <member name="M:Orbita.Comunicaciones.OTCPListener.WskListener_ConnectionRequest(System.Object,Orbita.Winsock.WinsockConnectionRequestEventArgs)">
             <summary>
-            Indica que se ha conectado un cliente al canal principal
+            Indica que se ha conectado un cliente al canal principal.
             </summary>
             <param name="sender">Objeto que lanza el evento</param>
             <param name="e">Argumentos del evento</param>
         </member>
-        <member name="M:Orbita.Comunicaciones.OTCPListener._wskListener_ErrorReceived(System.Object,Orbita.Winsock.WinsockErrorReceivedEventArgs)">
+        <member name="M:Orbita.Comunicaciones.OTCPListener.wskListener_ErrorReceived(System.Object,Orbita.Winsock.WinsockErrorReceivedEventArgs)">
             <summary>
-            Evento de errores en la comunicación TCP
+            Evento de errores en la comunicación TCP.
             </summary>
             <param name="sender">Objeto que lanza el evento</param>
             <param name="e">Argumentos del evento</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OTCPListener._winsockCliente_OStateChanged(Orbita.Utiles.OEventArgs)">
             <summary>
-            Cambio de estado en el canal TCP
+            Cambio de estado en el canal TCP.
             </summary>
             <param name="e">Argumento del objeto cliente</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OTCPListener._winsockCliente_OSendComplete(Orbita.Utiles.OEventArgs)">
             <summary>
-            Envío de datos en el canal TCP
+            Envío de datos en el canal TCP.
             </summary>
             <param name="e">Argumento del objeto cliente</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OTCPListener._winsockCliente_OErrorReceived(Orbita.Utiles.OEventArgs)">
             <summary>
-            Error en el canal TCP
+            Error en el canal TCP.
             </summary>
             <param name="e">Argumento del objeto cliente</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OTCPListener._winsockCliente_ODataArrival(Orbita.Utiles.OEventArgs)">
             <summary>
-            Datos de recepción en el canal TCP
+            Datos de recepción en el canal TCP.
             </summary>
             <param name="e">Argumento del objeto cliente</param>
         </member>
@@ -1970,17 +1585,22 @@
         </member>
         <member name="P:Orbita.Comunicaciones.OTCPListener.PoolCliente">
             <summary>
-            Colección de canales
+            Colección de canales.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OTCPListener.Puerto">
             <summary>
-            Puerto TCP
+            Puerto TCP.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OTCPListener.Nombre">
             <summary>
-            Nombre del canal
+            Nombre del canal.
+            </summary>
+        </member>
+        <member name="P:Orbita.Comunicaciones.OTCPListener.EstadoListener">
+            <summary>
+            Estado del listener.
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.ITelegramaFactory">
@@ -2305,56 +1925,6 @@
             Indica si la lectura se realiza bajo demanda al dispositivo.
             </summary>
         </member>
-        <member name="T:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOSL">
-            <summary>
-            Dispositivo Siemens 1200 OSL.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOSL.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
-            <summary>
-            Inicializar una nueva instancia de la clase ODispositivoSiemens1200ESGOSL.
-            </summary>
-            <param name="tags">Colección de tags.</param>
-            <param name="hilos">Colección de hilos.</param>
-            <param name="dispositivo">Dispositivo de conexión.</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOSL.IniciarObjetos">
-            <summary>
-            Establece el valor inicial de los objetos
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOSL.ProcesarMensajeRecibido(System.Byte[])">
-            <summary>
-            Procesa los mensajes recibidos en el evento Winsock_DataArrival.
-            </summary>
-            <param name="mensaje"></param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOSL.EsProcesarHilo">
-            <summary>
-            Hilo de proceso de ES
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOSL.EsProcesar(System.Byte[],System.Byte[])">
-            <summary>
-            Procesa los bytes de entradas y salidas para actualizar los valores de las variables
-            </summary>
-            <param name="entradas">byte de entradas recibido</param>
-            <param name="salidas">byte de salidas recibido</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOSL.EsActualizarVariablesEntradas(System.Byte,System.Int32)">
-            <summary>
-            Actualiza los valores de las entradas y genera los eventos de cambio de dato y alarma
-            </summary>
-            <param name="valor">valor del byte</param>
-            <param name="posicion">posición del byte</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOSL.EsActualizarVariablesSalidas(System.Byte,System.Int32)">
-            <summary>
-            Actualiza los valores de las salidas y genera los eventos de cambio de dato y alarma
-            </summary>
-            <param name="valor">valor del byte</param>
-            <param name="posicion">posición del byte</param>
-        </member>
         <member name="T:Orbita.Comunicaciones.IOcsClienteConectable">
             <summary>
             Esta clase proporciona la funcionalidad básica para el cliente conectado al listener.
@@ -2368,6 +1938,11 @@
         <member name="M:Orbita.Comunicaciones.IOcsClienteConectable.Terminar">
             <summary>
             Terminar los mensajeros.
+            </summary>
+        </member>
+        <member name="E:Orbita.Comunicaciones.IOcsClienteConectable.Error">
+            <summary>
+            Este evento se produce cuando se produce en algunos de los eventos de solicitud.
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.OInformacionPuerto">
@@ -2550,138 +2125,8 @@
         </member>
         <member name="M:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Listener.TcpListenerConexion.ProcesoEscucha">
             <summary>
-            Proceso de entrada del thread.
+            Proceso de entrada del hilo (thread).
             Este método es utilizado por el hilo (thread) para escuchar peticiones de conexiones entrantes.
-            </summary>
-        </member>
-        <member name="T:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS">
-            <summary>
-            Protocolo para GATEOS
-            </summary>
-        </member>
-        <member name="T:Orbita.Comunicaciones.OProtocoloTCPSiemens">
-            <summary>
-            Protocolo para los dispositivos Tcp de Siemens.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemens.KeepAliveProcesar(System.Byte[],System.Byte[]@)">
-            <summary>
-            Procesa el mensaje KeepAlive del PLC.
-            </summary>
-            <param name="valor">Valor recibido por el PLC.</param>
-            <param name="lecturas">Lecturas recibida por el PLC.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemens.KeepAliveEnviar">
-            <summary>
-            Prepara el mensaje KeepAlive de respuesta.
-            </summary>
-            <returns>mensaje de respuesta.</returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemens.SalidasProcesar(System.Byte[],System.Byte,System.Byte[]@)">
-            <summary>
-            Escritura de salidas.
-            </summary>
-            <param name="valor">Valor a procesar.</param>
-            <param name="id">Identificador del mensaje.</param>
-            <param name="lecturas"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemens.SalidasEnviar(System.Byte[],System.Byte)">
-            <summary>
-            Escritura de salidas.
-            </summary>
-            <param name="salidas">Salidas a procesar.</param>
-            <param name="idMensaje">Identificador del mensaje.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemens.Dispose(System.Boolean)">
-            <summary>
-            Limpia objetos de memoria.
-            </summary>
-            <param name="disposing"></param>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS.FinTramaKeepAliveEnvio">
-            <summary>
-            Fin de la trama de keepAlive envio.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS.FinTramaKeepAliveRecepcion">
-            <summary>
-            Fin de la trama de keepAlive recepción.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS.TamanyoMensaje">
-            <summary>
-            Tamaño máximo de trama.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS.KeepAliveEnviar">
-            <summary>
-            KeepAlive de envío al PLC.
-            </summary>
-            <returns>Mensaje de envío.</returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS.KeepAliveProcesar(System.Byte[],System.Byte[]@)">
-            <summary>
-            Mensaje de KeepAlive recibido del PLC.
-            </summary>
-            <param name="valor">Valor recibido por el PLC.</param>
-            <param name="lecturas">Lecturas del PLC.</param>
-            <returns></returns >
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS.SalidasEnviar(System.Byte[],System.Byte)">
-            <summary>
-            Escritura de salidas.
-            </summary>
-            <param name="salidas">Salidas a escribir.</param>
-            <param name="idMensaje">Identificador del mensaje.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS.SalidasProcesar(System.Byte[],System.Byte,System.Byte[]@)">
-            <summary>
-            Escritura de salidas.
-            </summary>
-            <param name="valor">Valor a procesar.</param>
-            <param name="id">Identificador del mensaje.</param>
-            <param name="lecturas"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS.CalculoBCC(System.Byte[])">
-            <summary>
-            Cálculo BCC.
-            </summary>
-            <param name="dato">Bytes para cálculo.</param>
-            <returns>BCC.</returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS.Dispose(System.Boolean)">
-            <summary>
-            Destrucción del objeto.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS.STX">
-            <summary>
-            Byte inicio trama.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS.CR">
-            <summary>
-            Byte retorno de carro.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS.Separador">
-            <summary>
-            Byte separador del mensaje.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS.OSLData">
-            <summary>
-            Identificador del mensaje ocr data.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPROS.OSLDataResult">
-            <summary>
-            Identificador del mensaje ocr data result.
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.IOcsMensajeComunicaciones">
@@ -2766,16 +2211,6 @@
         <member name="F:Orbita.Comunicaciones.OWinSockCliente._nombre">
             <summary>
             nombre del canal
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OWinSockCliente._listener">
-            <summary>
-            Nombre del listener
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OWinSockCliente._estado">
-            <summary>
-            Estado del canal
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OWinSockCliente.#ctor(System.String,System.String,Orbita.Trazabilidad.ILogger)">
@@ -2905,94 +2340,6 @@
             Obtener el estado actual de la comunicación.
             </summary>
         </member>
-        <member name="T:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic">
-            <summary>
-            Protocolo para la comunicación con gateTraffic
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic.FinTramaKeepAliveEnvio">
-            <summary>
-            Fin de la trama de keepAlive envio.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic.FinTramaKeepAliveRecepcion">
-            <summary>
-            Fin de la trama de keepAlive recepción.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic.TamanyoMensaje">
-            <summary>
-            Tamaño máximo de trama.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic.KeepAliveEnviar">
-            <summary>
-            Mensaje KeepAlive de envío al PLC.
-            </summary>
-            <returns>mensaje de respuesta</returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic.KeepAliveProcesar(System.Byte[],System.Byte[]@)">
-            <summary>
-            Mensaje KeepAlive recibido del PLC.
-            </summary>
-            <param name="valor">valor recibido por el PLC</param>
-            <param name="lecturas">lecturas leídas en el PLC</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic.SalidasEnviar(System.Byte[],System.Byte)">
-            <summary>
-            Mensaje para escritura de salidas.
-            </summary>
-            <param name="salidas">salidas a procesar</param>
-            <param name="idMensaje">identificador del mensaje</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic.SalidasProcesar(System.Byte[],System.Byte,System.Byte[]@)">
-            <summary>
-            Mensaje de recepción de escritura de salidas.
-            </summary>
-            <param name="valor">Valor a preprocesar.</param>
-            <param name="id">Identificador del mensaje.</param>
-            <param name="lecturas"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic.CalculoBCC(System.Byte[])">
-            <summary>
-            Cálculo BCC.
-            </summary>
-            <param name="dato">Bytes para cálculo.</param>
-            <returns>BCC.</returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic.Dispose(System.Boolean)">
-            <summary>
-            Destrucción del objeto.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic.STX">
-            <summary>
-            Byte inicio trama.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic.CR">
-            <summary>
-            Byte retorno de carro.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic.Separador">
-            <summary>
-            Byte separador del mensaje.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic.TRAData">
-            <summary>
-            Identificador del mensaje ocr data.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateTraffic.TRADataResult">
-            <summary>
-            Identificador del mensaje ocr data result.
-            </summary>
-        </member>
         <member name="T:Orbita.Comunicaciones.OProtocoloModbusTCP">
             <summary>
             Protocolo de comunicación para modbus TCP
@@ -3095,6 +2442,135 @@
             Dispositivo entradas salidas ILBKPhoenix
             </summary>
         </member>
+        <member name="T:Orbita.Comunicaciones.ODispositivoES">
+            <summary>
+            Clase base para los dispositivos de ES
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoES.Tags">
+            <summary>
+            Atributo que indica las  colecciones de tags de datos, lecturas y alarmas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoES.Hilos">
+            <summary>
+            Colección de hilos.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoES.ConfigDispositivo">
+            <summary>
+            Datos de configuración del canal.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoES.Eventargs">
+            <summary>
+            Argumentos para generar los eventos.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoES.Winsock">
+            <summary>
+            Objeto para establecer el canal Tcp.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoES.ReConexionSg">
+            <summary>
+            Segundos para la reconexión con el dispositivo.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoES.Entradas">
+            <summary>
+            Valor devuelto para las entradas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoES.Salidas">
+            <summary>
+            Byte de escrituras.
+            </summary>
+        </member>
+        <member name="F:Orbita.Comunicaciones.ODispositivoES.LogErrorComunicacionSg">
+            <summary>
+            Tiempo que tarda en trazar un error de comunicación.
+            </summary>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoES.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
+            <summary>
+            Inicializar una nueva instancia de la clase ODispositivoES.
+            </summary>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoES.Iniciar">
+            <summary>
+            Inicializar grupos, punteros e items.
+            </summary>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoES.GetAlarmasActivas">
+            <summary>
+            Devuelva las alarmas activas del sistema.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoES.GetDatos">
+            <summary>
+            Devuelve los datos del dipositivo y su valor.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoES.GetLecturas">
+            <summary>
+            Devuelve las lectuas del dipositivo y su valor.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoES.GetAlarmas">
+            <summary>
+            Devuelve las alarmas del dipositivo y su valor.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoES.ProcesarHiloVida">
+            <summary>
+            Proceso del hilo de vida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoES.Dispose(System.Boolean)">
+            <summary>
+            Limpia los objetos en memoria.
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoES.Escribir(System.String[],System.Object[],System.String)">
+            <summary>
+            Escribir el valor de los identificadores de variables de la colección.
+            </summary>
+            <param name="variables">Colección de variables.</param>
+            <param name="valores">Colección de valores.</param>
+            <param name="canal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Comunicaciones.ODispositivoES.IniciarHiloVida">
+            <summary>
+            Inicia hilo de vida.
+            </summary>
+        </member>
+        <member name="P:Orbita.Comunicaciones.ODispositivoES.Datos">
+            <summary>
+            Colección de datos.
+            </summary>
+        </member>
+        <member name="P:Orbita.Comunicaciones.ODispositivoES.Lecturas">
+            <summary>
+            Colección de lecturas.
+            </summary>
+        </member>
+        <member name="P:Orbita.Comunicaciones.ODispositivoES.Alarmas">
+            <summary>
+            Colección de alarmas.
+            </summary>
+        </member>
+        <member name="P:Orbita.Comunicaciones.ODispositivoES.AlarmasActivas">
+            <summary>
+            Colección de alarmas activas.
+            </summary>
+        </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoILBKPhoenix._qEntradaSalida">
             <summary>
             Cola de recepción de tramas de datos.
@@ -3102,53 +2578,53 @@
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoILBKPhoenix._eReset">
             <summary>
-            Evento reset de recepción de tramas KeepAlive, 
+            Evento reset de recepción de tramas KeepAlive.
             Entrada/Salida.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoILBKPhoenix._almacenLecturas">
             <summary>
-            Colección para la búsqueda de lecturas. La clave es la dupla "dirección-bit"
+            Colección para la búsqueda de lecturas. La clave es la dupla "dirección-bit".
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoILBKPhoenix._almacenEscrituras">
             <summary>
-            Colección para la búsqueda de escrituras. La clave es la dupla "dirección-bit"
+            Colección para la búsqueda de escrituras. La clave es la dupla "dirección-bit".
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoILBKPhoenix._numLecturas">
             <summary>
-            Número de lecturas a realizar
+            Número de lecturas a realizar.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoILBKPhoenix._numeroBytesEntradas">
             <summary>
-            Número de bytes de entradas
+            Número de bytes de entradas.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoILBKPhoenix._numeroBytesSalidas">
             <summary>
-            Número de bytes de salidas
+            Número de bytes de salidas.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoILBKPhoenix._lecturas">
             <summary>
-            Valor de las lecturas
+            Valor de las lecturas.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoILBKPhoenix._registroInicialEntradas">
             <summary>
-            Valor inicial del registro de lecturas
+            Valor inicial del registro de lecturas.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoILBKPhoenix._registroInicialSalidas">
             <summary>
-            Valor inicial del registro de escrituras
+            Valor inicial del registro de escrituras.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoILBKPhoenix._fechaErrorWrapperWinsock">
             <summary>
-            Fecha del ultimo wrapper de error
+            Fecha del ultimo wrapper de error.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoILBKPhoenix._qEscrituras">
@@ -3921,94 +3397,6 @@
             </summary>
             <returns>Canal de comunicación preparado para comunicar.</returns>
         </member>
-        <member name="T:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR">
-            <summary>
-            Protocolo para GATE LPR de Siemens.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR.FinTramaKeepAliveEnvio">
-            <summary>
-            Fin de la trama de keepAlive envio.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR.FinTramaKeepAliveRecepcion">
-            <summary>
-            Fin de la trama de keepAlive recepción.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR.TamanyoMensaje">
-            <summary>
-            Tamaño máximo de trama.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR.KeepAliveEnviar">
-            <summary>
-            KeepAlive de envío al PLC.
-            </summary>
-            <returns>Mensaje de envío.</returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR.KeepAliveProcesar(System.Byte[],System.Byte[]@)">
-            <summary>
-            KeepAlive de recepción del PLC.
-            </summary>
-            <param name="valor">Valor recibido por el PLC.</param>
-            <param name="lecturas">Lecturas leídas en el PLC.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR.SalidasEnviar(System.Byte[],System.Byte)">
-            <summary>
-            Escritura de salidas.
-            </summary>
-            <param name="salidas">Salidas a procesar.</param>
-            <param name="idMensaje">Identificador del mensaje.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR.SalidasProcesar(System.Byte[],System.Byte,System.Byte[]@)">
-            <summary>
-            Escritura de salidas.
-            </summary>
-            <param name="valor">Valor a preprocesar.</param>
-            <param name="id">Identificador del mensaje.</param>
-            <param name="lecturas">Lecturas leídas en el PLC.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR.CalculoBCC(System.Byte[])">
-            <summary>
-            Calculo BCC.
-            </summary>
-            <param name="dato">Bytes para cálculo.</param>
-            <returns>BCC.</returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR.Dispose(System.Boolean)">
-            <summary>
-            Destrucción del objeto.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR.STX">
-            <summary>
-            Byte inicio trama.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR.CR">
-            <summary>
-            Byte retorno de carro.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR.Separador">
-            <summary>
-            Byte separador del mensaje.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR.LPRData">
-            <summary>
-            Identificador del mensaje LPR data.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateLPR.LPRDataResult">
-            <summary>
-            Identificador del mensaje LPR data result.
-            </summary>
-        </member>
         <member name="T:Orbita.Comunicaciones.OcsMensajeEscritura">
             <summary>
             Este mensaje se utiliza para enviar/recibir un array de bytes como mensaje de datos.
@@ -4277,94 +3665,6 @@
             Esta propiedad se debe definir antes de la primera comunicación.
             </summary>
         </member>
-        <member name="T:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR">
-            <summary>
-            Protocolo para GATE OCR
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR.FinTramaKeepAliveEnvio">
-            <summary>
-            Fin de la trama de keepAlive envio.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR.FinTramaKeepAliveRecepcion">
-            <summary>
-            Fin de la trama de keepAlive recepción.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR.TamanyoMensaje">
-            <summary>
-            Tamaño máximo de trama.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR.KeepAliveEnviar">
-            <summary>
-            Mensaje de KeepAlive que se envía al PLC.
-            </summary>
-            <returns>mensaje de respuesta</returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR.KeepAliveProcesar(System.Byte[],System.Byte[]@)">
-            <summary>
-            Mensaje de KeepAlive que se recibe del PLC.
-            </summary>
-            <param name="valor">valor recibido por el PLC</param>
-            <param name="lecturas">lecturas leídas en el PLC</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR.SalidasEnviar(System.Byte[],System.Byte)">
-            <summary>
-            Escritura de salidas
-            </summary>
-            <param name="salidas">salidas a procesar</param>
-            <param name="idMensaje">identificador del mensaje</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR.SalidasProcesar(System.Byte[],System.Byte,System.Byte[]@)">
-            <summary>
-            Escritura de salidas
-            </summary>
-            <param name="valor">valor a preocesar</param>
-            <param name="id">identificador del mensaje</param>
-            <param name="lecturas"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR.CalculoBCC(System.Byte[])">
-            <summary>
-            Cálculo BCC.
-            </summary>
-            <param name="dato">Bytes para cálculo.</param>
-            <returns>BCC.</returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR.Dispose(System.Boolean)">
-            <summary>
-            Destrucción del objeto.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR.STX">
-            <summary>
-            Byte inicio trama.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR.CR">
-            <summary>
-            Byte retorno de carro.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR.Separador">
-            <summary>
-            Byte separador del mensaje.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR.OCRData">
-            <summary>
-            Identificador del mensaje ocr data.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCR.OCRDataResult">
-            <summary>
-            Identificador del mensaje ocr data result.
-            </summary>
-        </member>
         <member name="T:Orbita.Comunicaciones.OcsClienteConectable">
             <summary>
             Esta clase proporciona la funcionalidad básica para el cliente conectado al listener.
@@ -4457,6 +3757,17 @@
             </summary>
             <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
             <param name="mensaje">Mensaje de tipo solicitud de escritura.</param>
+        </member>
+        <member name="M:Orbita.Comunicaciones.OcsClienteConectable.OnError(System.Exception)">
+            <summary>
+            Elevar el evento Error.
+            </summary>
+            <param name="ex">Representa los errores que se producen durante la ejecución de una aplicación.</param>
+        </member>
+        <member name="E:Orbita.Comunicaciones.OcsClienteConectable.Error">
+            <summary>
+            Este evento se produce cuando se produce en algunos de los eventos de solicitud.
+            </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OcsClienteConectable.Dispositivos">
             <summary>
@@ -4574,30 +3885,9 @@
             Respuesta obtenida del servicio Web.
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloHttp._cuerpoRespuesta">
-            <summary>
-            Cuerpo de la respuesta.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloHttp._tiempoRespuesta">
-            <summary>
-            Tiempo de respuesta.
-            </summary>
-        </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloHttp._caracteresEscapeBody">
             <summary>
             Definición de los carácteres de escape.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloHttp._codigoEstado">
-            <summary>
-            Código de respuesta necesario en la trama.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloHttp._timeout">
-            <summary>
-            Timeout de espera de 
-            respuesta en segundos.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OProtocoloHttp.Dispose(System.Boolean)">
@@ -4816,6 +4106,12 @@
             </summary>
             <param name="cliente">Cliente desconectado.</param>
         </member>
+        <member name="M:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor.ServidorBase.OnErrorConexion(System.Exception)">
+            <summary>
+            Elevar el evento ErrorConexion.
+            </summary>
+            <param name="ex">Representa los errores que se producen durante la ejecución de una aplicación.</param>
+        </member>
         <member name="E:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor.ServidorBase.Conectado">
             <summary>
             Este evento se produce cuando se establece la escucha de conexiones entrantes con éxito.
@@ -4929,56 +4225,6 @@
             <summary>
              Obtener el endpoint de la aplicación remota.
             </summary>
-        </member>
-        <member name="T:Orbita.Comunicaciones.ODispositivoSiemens1200ESGTRA">
-            <summary>
-            Dispositivo Siemens 1200 Traffic.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGTRA.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
-            <summary>
-            Inicializar una nueva instancia de la clase ODispositivoSiemens1200ESGTRA.
-            </summary>
-            <param name="tags">Colección de tags.</param>
-            <param name="hilos">Colección de hilos.</param>
-            <param name="dispositivo">Dispositivo de conexión.</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGTRA.IniciarObjetos">
-            <summary>
-            Establece el valor inicial de los objetos
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGTRA.ProcesarMensajeRecibido(System.Byte[])">
-            <summary>
-            Procesa los mensajes recibidos en el evento Winsock_DataArrival.
-            </summary>
-            <param name="mensaje"></param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGTRA.EsProcesarHilo">
-            <summary>
-            Hilo de proceso de ES.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGTRA.EsProcesar(System.Byte[],System.Byte[])">
-            <summary>
-            Procesa los bytes de entradas y salidas para actualizar los valores de las variables.
-            </summary>
-            <param name="entradas">Byte de entradas recibido.</param>
-            <param name="salidas">Byte de salidas recibido.</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGTRA.EsActualizarVariablesEntradas(System.Byte,System.Int32)">
-            <summary>
-            Actualiza los valores de las entradas y genera los eventos de cambio de dato y alarma.
-            </summary>
-            <param name="valor">Valor del byte.</param>
-            <param name="posicion">Posición del byte.</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGTRA.EsActualizarVariablesSalidas(System.Byte,System.Int32)">
-            <summary>
-            Actualiza los valores de las salidas y genera los eventos de cambio de dato y alarma.
-            </summary>
-            <param name="valor">Valor del byte.</param>
-            <param name="posicion">Posición del byte.</param>
         </member>
         <member name="T:Orbita.Comunicaciones.OEstadoComms">
             <summary>
@@ -5285,91 +4531,91 @@
             <summary>
             Elevar el evento MensajeEnviadoLectura.
             </summary>
-            <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+            <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
             <param name="mensaje">Mensaje enviado.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsCliente.OnMensajeEnviadoLecturaDatos(System.Object,Orbita.Comunicaciones.IMensaje)">
             <summary>
             Elevar el evento MensajeEnviadoLecturaDatos.
             </summary>
-            <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+            <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
             <param name="mensaje">Mensaje enviado.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsCliente.OnMensajeEnviadoLecturaAlarmasActivas(System.Object,Orbita.Comunicaciones.IMensaje)">
             <summary>
             Elevar el evento MensajeEnviadoLecturaAlarmasActivas.
             </summary>
-            <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+            <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
             <param name="mensaje">Mensaje enviado.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsCliente.OnMensajeEnviadoLecturaDispositivos(System.Object,Orbita.Comunicaciones.IMensaje)">
             <summary>
             Elevar el evento MensajeEnviadoLecturaDispositivos.
             </summary>
-            <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+            <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
             <param name="mensaje">Mensaje enviado.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsCliente.OnMensajeEnviadoEscritura(System.Object,Orbita.Comunicaciones.IMensaje)">
             <summary>
             Elevar el evento MensajeEnviadoEscritura.
             </summary>
-            <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+            <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
             <param name="mensaje">Mensaje enviado.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsCliente.OnMensajeRecibidoCambioDato(System.Object,Orbita.Comunicaciones.IMensaje)">
             <summary>
             Elevar el evento MensajeRecibidoCambioDato.
             </summary>
-            <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+            <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
             <param name="mensaje">Mensaje recibido.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsCliente.OnMensajeRecibidoAlarma(System.Object,Orbita.Comunicaciones.IMensaje)">
             <summary>
             Elevar el evento MensajeRecibidoAlarma.
             </summary>
-            <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+            <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
             <param name="mensaje">Mensaje recibido.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsCliente.OnMensajeRecibidoComunicaciones(System.Object,Orbita.Comunicaciones.IMensaje)">
             <summary>
             Elevar el evento MensajeRecibidoComunicaciones.
             </summary>
-            <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+            <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
             <param name="mensaje">Mensaje recibido.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsCliente.OnMensajeRecibidoLectura(System.Object,Orbita.Comunicaciones.IMensaje)">
             <summary>
             Elevar el evento MensajeRecibidoLectura.
             </summary>
-            <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+            <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
             <param name="mensaje">Mensaje recibido.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsCliente.OnMensajeRecibidoLecturaDatos(System.Object,Orbita.Comunicaciones.IMensaje)">
             <summary>
             Elevar el evento MensajeRecibidoLecturaDatos.
             </summary>
-            <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+            <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
             <param name="mensaje">Mensaje recibido.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsCliente.OnMensajeRecibidoLecturaAlarmasActivas(System.Object,Orbita.Comunicaciones.IMensaje)">
             <summary>
             Elevar el evento MensajeRecibidoLecturaAlarmasActivas.
             </summary>
-            <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+            <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
             <param name="mensaje">Mensaje recibido.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsCliente.OnMensajeRecibidoLecturaDispositivos(System.Object,Orbita.Comunicaciones.IMensaje)">
             <summary>
             Elevar el evento MensajeRecibidoLecturaDispositivos.
             </summary>
-            <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+            <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
             <param name="mensaje">Mensaje recibido.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsCliente.OnMensajeRecibidoEscritura(System.Object,Orbita.Comunicaciones.IMensaje)">
             <summary>
             Elevar el evento MensajeRecibidoEscritura.
             </summary>
-            <param name="sender">>Contiene una referencia al objeto que provocó el evento.</param>
+            <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
             <param name="mensaje">Mensaje recibido.</param>
         </member>
         <member name="E:Orbita.Comunicaciones.OcsCliente.Conectado">
@@ -5524,6 +4770,11 @@
             <param name="sender">Contiene una referencia al objeto que provocó el evento.</param>
             <param name="e">MensajeEventArgs que contiene los datos del evento.</param>
         </member>
+        <member name="T:Orbita.Comunicaciones.DispositivoEscrituras">
+            <summary>
+            Dispositivo de escrituras.
+            </summary>
+        </member>
         <member name="M:Orbita.Comunicaciones.DispositivoEscrituras.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase DispositivoEscrituras.
@@ -5561,7 +4812,7 @@
             Local para inglés.
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoClienteOPC.Hilos">
+        <member name="F:Orbita.Comunicaciones.ODispositivoClienteOPC._hilos">
             <summary>
             Colección de hilos.
             </summary>
@@ -5578,7 +4829,7 @@
             de tags de datos, lecturas y alarmas.
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoClienteOPC.oEnlaces">
+        <member name="F:Orbita.Comunicaciones.ODispositivoClienteOPC._enlaces">
             <summary>
             Enlaces
             </summary>
@@ -5842,7 +5093,7 @@
         </member>
         <member name="M:Orbita.Comunicaciones.OProtocoloNTP.Dispose(System.Boolean)">
             <summary>
-            Limpia objetos de memoria
+            Limpia objetos de memoria.
             </summary>
             <param name="disposing"></param>
         </member>
@@ -5853,22 +5104,22 @@
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloNTP._LeapIndicator.NoWarning">
             <summary>
-            0 - No warning
+            0 - No warning.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloNTP._LeapIndicator.LastMinute61">
             <summary>
-            1 - Last minute has 61 seconds
+            1 - Last minute has 61 seconds.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloNTP._LeapIndicator.LastMinute59">
             <summary>
-            2 - Last minute has 59 seconds
+            2 - Last minute has 59 seconds.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloNTP._LeapIndicator.Alarm">
             <summary>
-            3 - Alarm condition (clock not synchronized)
+            3 - Alarm condition (clock not synchronized).
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.OProtocoloNTP._Mode">
@@ -5878,32 +5129,32 @@
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Mode.SymmetricActive">
             <summary>
-            1 - Symmetric active
+            1 - Symmetric active.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Mode.SymmetricPassive">
             <summary>
-            2 - Symmetric pasive
+            2 - Symmetric pasive.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Mode.Client">
             <summary>
-            3 - Client
+            3 - Client.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Mode.Server">
             <summary>
-            4 - Server
+            4 - Server.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Mode.Broadcast">
             <summary>
-            5 - Broadcast
+            5 - Broadcast.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Mode.Unknown">
             <summary>
-            0, 6, 7 - Reserved
+            0, 6, 7 - Reserved.
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.OProtocoloNTP._Stratum">
@@ -5913,22 +5164,22 @@
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Stratum.Unspecified">
             <summary>
-            0 - unspecified or unavailable
+            0 - unspecified or unavailable.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Stratum.PrimaryReference">
             <summary>
-            1 - primary reference (e.g. radio-clock)
+            1 - primary reference (e.g. radio-clock).
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Stratum.SecondaryReference">
             <summary>
-            2-15 - secondary reference (via NTP or SNTP)
+            2-15 - secondary reference (via NTP or SNTP).
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloNTP._Stratum.Reserved">
             <summary>
-            16-255 - reserved
+            16-255 - reserved.
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient">
@@ -6033,25 +5284,25 @@
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.ReceptionTimestamp">
             <summary>
-            Reception Timestamp
+            Reception Timestamp.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.#ctor(System.String)">
             <summary>
-            Cliente NTP
+            Cliente NTP.
             </summary>
             <param name="host">IP o dirección del servidor NTP</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.Connect(System.Boolean,System.Boolean)">
             <summary>
-            Connect to the time server and update system time
+            Connect to the time server and update system time.
             </summary>
             <param name="UpdateSystemTime">variable para la actualización de la hora local del equipo</param>
             <param name="usarUTC">actualiza a hora UTC</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.IsResponseValid">
             <summary>
-            Check if the response from server is valid
+            Check if the response from server is valid.
             </summary>
             <returns></returns>
         </member>
@@ -6069,77 +5320,77 @@
         </member>
         <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.LeapIndicator">
             <summary>
-            Leap Indicator
+            Leap Indicator.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.VersionNumber">
             <summary>
-            Version Number
+            Version Number.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.Mode">
             <summary>
-            Mode
+            Mode.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.Stratum">
             <summary>
-            Stratum
+            Stratum.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.PollInterval">
             <summary>
-            Poll Interval
+            Poll Interval.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.Precision">
             <summary>
-            Precision (in milliseconds)
+            Precision (in milliseconds).
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.RootDelay">
             <summary>
-            Root Delay (in milliseconds)
+            Root Delay (in milliseconds).
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.RootDispersion">
             <summary>
-            Root Dispersion (in milliseconds)
+            Root Dispersion (in milliseconds).
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.ReferenceID">
             <summary>
-            Reference Identifier
+            Reference Identifier.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.ReferenceTimestamp">
             <summary>
-            Reference Timestamp
+            Reference Timestamp.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.OriginateTimestamp">
             <summary>
-            Originate Timestamp
+            Originate Timestamp.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.ReceiveTimestamp">
             <summary>
-            Receive Timestamp
+            Receive Timestamp.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.TransmitTimestamp">
             <summary>
-            Transmit Timestamp
+            Transmit Timestamp.
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.RoundTripDelay">
             <summary>
-            Round trip delay (in milliseconds)
+            Round trip delay (in milliseconds).
             </summary>
         </member>
         <member name="P:Orbita.Comunicaciones.OProtocoloNTP.OProtocoloNTPClient.LocalClockOffset">
             <summary>
-            Local clock offset (in milliseconds)
+            Local clock offset (in milliseconds).
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializacion.Serializacion">
@@ -6296,10 +5547,10 @@
         </member>
         <member name="M:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializacion.Serializacion.DeserializationAppDomainBinder.BindToType(System.String,System.String)">
             <summary>
-            
+            BindToType.
             </summary>
-            <param name="assemblyName"></param>
-            <param name="typeName"></param>
+            <param name="ensamblado">Nombre del ensamblado.</param>
+            <param name="tipo">Tipo de ensamblado.</param>
             <returns></returns>
         </member>
         <member name="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Servidor.ServidorClienteEventArgs">
@@ -6518,11 +5769,6 @@
             Obtiene la configuración del puerto de comunicaciones.
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OPuertoRS._puertoRs232">
-            <summary>
-            PuertoRS232.
-            </summary>
-        </member>
         <member name="F:Orbita.Comunicaciones.OPuertoRS.BufferDatosRecibidos">
             <summary>
             Buffer de recepción de datos
@@ -6556,79 +5802,79 @@
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoRS.IniciarComponentes">
             <summary>
-            Inicia todos los componentes de este puerto de comunicaciones, a excepción del inicio del puerto serie, ya que se hace desde la clase padre al configurar el puerto
+            Iniciar todos los componentes de este puerto de comunicaciones, a excepción del inicio del puerto serie, ya que se hace desde la clase padre al configurar el puerto.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoRS.ConvertirParidad(Orbita.Comunicaciones.OParidades)">
             <summary>
-            Establece una equivaencia unidireccional entre el tipo Paridades y el tipo Parity
+            Establecer una equivalencia unidireccional entre el tipo Paridades y el tipo Parity.
             </summary>
             <param name="paridad">Paridad a convertir</param>
             <returns>Paridad convertida</returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoRS.ConvertirBitsStop(Orbita.Comunicaciones.OBitsStop)">
             <summary>
-            Establece una equivaencia unidireccional entre el tipo BitsStop y el tipo StopBits
+            Establecer una equivalencia unidireccional entre el tipo BitsStop y el tipo StopBits.
             </summary>
             <param name="bitsStop">Bits de parada a convertir</param>
             <returns>Bits de parada convertidos</returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoRS.ConvertirHandshake(Orbita.Comunicaciones.OHandShakes)">
             <summary>
-            Establece una equivaencia unidireccional entre el tipo HandShakes y el tipo Handshake
+            Establecer una equivalencia unidireccional entre el tipo HandShakes y el tipo Handshake.
             </summary>
             <param name="handshake">Control de flujo a convertir</param>
             <returns>Control de flujo convertidos</returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoRS.ConfigurarPuerto(Orbita.Comunicaciones.OConfiguracionPuerto)">
             <summary>
-            Crea y configura el puerto serie RS232
+            Crear y configurar el puerto serie RS232.
             </summary>
-            <param name="configuracionPuerto">Configuración del puerto RS232 a establecer</param>
+            <param name="configuracionPuerto">Configuración del puerto RS232 a establecer.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoRS.Abrir">
             <summary>
-            Abre el puerto serie RS232
+            Abrir el puerto serie RS232.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoRS.Cerrar">
             <summary>
-            Cierra el puerto serie RS232
+            Cerrar el puerto serie RS232.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoRS.Enviar(System.Byte[])">
             <summary>
-            Envía por el puerto serie RS232 el vector de bytes tramaTx
+            Enviar por el puerto serie RS232 el vector de bytes TramaTx.
             </summary>
-            <param name="tramaTx">Vector de bytes a enviar por el puerto serie RS232</param>
+            <param name="tramaTx">Vector de bytes a enviar por el puerto serie RS232.</param>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoRS.RecibirBytes">
             <summary>
-            Copia en el vector de bytes tramaRx la información recibida por el puerto de comunicaciones
+            Copia en el vector de bytes tramaRx la información recibida por el puerto de comunicaciones.
             </summary>
-            <returns>Vector de bytes donde que contendrá la información recibida hasta el momento</returns>
+            <returns>Vector de bytes donde que contendrá la información recibida hasta el momento.</returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoRS.BytesRecibidos">
             <summary>
-            Devuleve el número de bytes recibidos hasta el momento
+            Devuleve el número de bytes recibidos hasta el momento.
             </summary>
-            <returns>El número de bytes recibidos hasta el momento</returns>
+            <returns>El número de bytes recibidos hasta el momento.</returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoRS.ResetBuffer">
             <summary>
-            Resetea el buffer de recepcion de datos. Realmente resetea la variable que lleva la posición del último byte recibido, por lo que los datos permanencen en el buffer hasta que son sobreescritos.
+            Resetear el buffer de recepcion de datos. Realmente resetea la variable que lleva la posición del último byte recibido, por lo que los datos permanencen en el buffer hasta que son sobreescritos.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoRS.BuscarCaracter(System.Byte)">
             <summary>
-            Busca un carácter en el buffer de recepcion de datos
+            Buscar un carácter en el buffer de recepcion de datos.
             </summary>
-            <param name="caracter">Carácter a buscar</param>
-            <returns>True encuentra el valor buscado; false en caso contrario</returns>
+            <param name="caracter">Carácter a buscar.</param>
+            <returns>True encuentra el valor buscado; false en caso contrario.</returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoRS.Dispose">
             <summary>
-            Elimina los recursos que está utilizando
+            Eliminar los recursos que está utilizando.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OPuertoRS.ObtenerPuertosDisponibles">
@@ -6661,9 +5907,14 @@
             Evento para la recepción de datos
             </summary>
         </member>
+        <member name="P:Orbita.Comunicaciones.OPuertoRS.PuertoRs232">
+            <summary>
+            PuertoRS232.
+            </summary>
+        </member>
         <member name="P:Orbita.Comunicaciones.OPuertoRS.EstaAbierto">
             <summary>
-            Indica si el puerto serie RS232  está abierto
+            Indica si el puerto serie RS232  está abierto.
             </summary>
         </member>
         <member name="T:Orbita.Comunicaciones.OPuertoRS.OManejadorEventoSerie">
@@ -6880,31 +6131,31 @@
             Colecciones de tags.
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OTags._htDatos">
+        <member name="F:Orbita.Comunicaciones.OTags._datos">
             <summary>
             Colección de tags de datos.
             Key = Identificador numérico de la variable.
             Object = InfoDato.
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OTags._htDB">
+        <member name="F:Orbita.Comunicaciones.OTags._db">
             <summary>
             Colección de tags DB.
             Key = Texto de la variable.
             Object = InfoDato.
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OTags._htLecturas">
+        <member name="F:Orbita.Comunicaciones.OTags._lecturas">
             <summary>
             Colección de tags de lecturas.
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OTags._htAlarmas">
+        <member name="F:Orbita.Comunicaciones.OTags._alarmas">
             <summary>
             Colección de tags de alarmas.
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.OTags._alAlarmasActivas">
+        <member name="F:Orbita.Comunicaciones.OTags._alarmasActivas">
             <summary>
             Colección de alarmas activas.
             </summary>
@@ -6923,8 +6174,7 @@
             <summary>
             Implementa IDisposable.
             No  hacer  este  método  virtual.
-            Una clase derivada no debería ser
-            capaz de  reemplazar este método.
+            Una clase derivada no debería ser capaz de  reemplazar este método.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OTags.Dispose(System.Boolean)">
@@ -7082,16 +6332,6 @@
         <member name="T:Orbita.Comunicaciones.OOPCEnlaces">
             <summary>
             oOPCEnlaces.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OOPCEnlaces._nombre">
-            <summary>
-            Nombre.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OOPCEnlaces._reintento">
-            <summary>
-            Reintento.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OOPCEnlaces.#ctor(System.String)">
@@ -7482,14 +6722,14 @@
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.CrearMensajeAlarma(Orbita.Comunicaciones.OInfoDato)">
             <summary>
-            
+            Crea un mensaje de tipo alarma que contiene información del objeto OInfoDato.
             </summary>
             <param name="infoDato">Información del dato que será transmitido.</param>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.CrearMensajeAlarma(Orbita.Comunicaciones.OInfoDato,System.String)">
             <summary>
-            
+            Crea un mensaje de tipo alarma que contiene información del objeto OInfoDato.
             </summary>
             <param name="infoDato">Información del dato que será transmitido.</param>
             <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
@@ -7497,21 +6737,21 @@
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.ObtenerMensajeAlarma(Orbita.Comunicaciones.IMensaje)">
             <summary>
-            
+            Obtiene un mensaje de tipo alarma que contiene información del objeto OInfoDato.
             </summary>
             <param name="mensaje"></param>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.CrearMensajeComunicaciones(Orbita.Comunicaciones.OEstadoComms)">
             <summary>
-            
+            Crea un mensaje de tipo comunicaciones que contiene información del objeto OEstadoComms.
             </summary>
             <param name="infoComm"></param>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.CrearMensajeComunicaciones(Orbita.Comunicaciones.OEstadoComms,System.String)">
             <summary>
-            
+            Crea un mensaje de tipo comunicaciones que contiene información del objeto OEstadoComms.
             </summary>
             <param name="infoComm"></param>
             <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
@@ -7519,14 +6759,14 @@
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.ObtenerMensajeComunicaciones(Orbita.Comunicaciones.IMensaje)">
             <summary>
-            
+            Obtiene un mensaje de tipo comunicaciones que contiene información del objeto OEstadoComms.
             </summary>
             <param name="mensaje">Representa un mensaje que se envía y recibe por el servidor y el cliente.</param>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.CrearMensajeLectura(System.Int32,System.String[],System.Boolean)">
             <summary>
-            
+            Crea un mensaje de tipo lectura que contiene información del objeto OEstadoComms.
             </summary>
             <param name="dispositivo">Dispositivo de conexión.</param>
             <param name="variables">Colección de variables.</param>
@@ -7535,7 +6775,7 @@
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.CrearMensajeLectura(System.Int32,System.String[],System.Object[],System.String)">
             <summary>
-            
+            Crea un mensaje de tipo lectura que contiene información del objeto OEstadoComms.
             </summary>
             <param name="dispositivo">Dispositivo de conexión.</param>
             <param name="variables">Colección de variables.</param>
@@ -7545,21 +6785,21 @@
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.ObtenerMensajeLectura(Orbita.Comunicaciones.IMensaje)">
             <summary>
-            
+            Obtiene un mensaje de tipo lectura que contiene información del objeto OEstadoComms.
             </summary>
             <param name="mensaje">Representa un mensaje que se envía y recibe por el servidor y el cliente.</param>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.CrearMensajeDatos(System.Int32)">
             <summary>
-            
+            Crea un mensaje de tipo datos que contiene información del objeto dispositivo.
             </summary>
             <param name="dispositivo">Dispositivo de conexión.</param>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.CrearMensajeDatos(System.Int32,Orbita.Utiles.OHashtable,System.String)">
             <summary>
-            
+            Crea un mensaje de tipo datos que contiene información del objeto dispositivo.
             </summary>
             <param name="dispositivo">Dispositivo de conexión.</param>
             <param name="datos">Colección de datos.</param>
@@ -7568,21 +6808,21 @@
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.ObtenerMensajeDatos(Orbita.Comunicaciones.IMensaje)">
             <summary>
-            
+            Obtiene un mensaje de tipo datos que contiene información del objeto dispositivo.
             </summary>
             <param name="mensaje">Representa un mensaje que se envía y recibe por el servidor y el cliente.</param>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.CrearMensajeAlarmasActivas(System.Int32)">
             <summary>
-            
+            Crea un mensaje de tipo alarmas activas que contiene información del objeto dispositivo.
             </summary>
             <param name="dispositivo">Dispositivo de conexión.</param>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.CrearMensajeAlarmasActivas(System.Int32,System.Collections.ArrayList,System.String)">
             <summary>
-            
+            Crea un mensaje de tipo alarmas activas que contiene información del objeto dispositivo.
             </summary>
             <param name="dispositivo">Dispositivo de conexión.</param>
             <param name="datos">Colección de datos.</param>
@@ -7591,20 +6831,20 @@
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.ObtenerMensajeAlarmasActivas(Orbita.Comunicaciones.IMensaje)">
             <summary>
-            
+            Obtiene un mensaje de tipo alarmas activas que contiene información del objeto dispositivo.
             </summary>
             <param name="mensaje">Representa un mensaje que se envía y recibe por el servidor y el cliente.</param>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.CrearMensajeDispositivos">
             <summary>
-            
+            Crea un mensaje de tipo dispositivo que contiene información del objeto dispositivo.
             </summary>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.CrearMensajeDispositivos(System.Int32[],System.String)">
             <summary>
-            
+            Crea un mensaje de tipo dispositivo que contiene información del objeto dispositivo.
             </summary>
             <param name="dispositivos">Colección de dispositivos.</param>
             <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
@@ -7612,14 +6852,14 @@
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.ObtenerMensajeDispositivos(Orbita.Comunicaciones.IMensaje)">
             <summary>
-            
+            Obtiene un mensaje de tipo dispositivo que contiene información del objeto dispositivo.
             </summary>
             <param name="mensaje">Representa un mensaje que se envía y recibe por el servidor y el cliente.</param>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.CrearMensajeEscritura(System.Int32,System.String[],System.Object[],System.String)">
             <summary>
-            
+            Crea un mensaje de tipo escritura que contiene información del objeto dispositivo.
             </summary>
             <param name="dispositivo">Dispositivo de conexión.</param>
             <param name="variables">Colección de variables.</param>
@@ -7629,37 +6869,37 @@
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.CrearMensajeEscritura(System.String)">
             <summary>
-            
+            Crea un mensaje de tipo escritura que contiene información del objeto dispositivo.
             </summary>
             <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.ObtenerMensajeEscritura(Orbita.Comunicaciones.IMensaje)">
             <summary>
-            
+            Obtiene un mensaje de tipo escritura que contiene información del objeto dispositivo.
             </summary>
             <param name="mensaje">Representa un mensaje que se envía y recibe por el servidor y el cliente.</param>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.CrearMensajeError(System.String,System.String)">
             <summary>
-            
+            Crea un mensaje de tipo error que contiene información del objeto error.
             </summary>
-            <param name="error"></param>
+            <param name="error">Representa los errores que se producen durante la ejecución de una aplicación.</param>
             <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.CrearMensajeError(System.Exception,System.String)">
             <summary>
-            
+            Crea un mensaje de tipo error que contiene información del objeto error.
             </summary>
-            <param name="error"></param>
+            <param name="error">Representa los errores que se producen durante la ejecución de una aplicación.</param>
             <param name="idMensajeRespuesta">Identificador del mensaje de respuesta.</param>
             <returns></returns>
         </member>
         <member name="M:Orbita.Comunicaciones.OcsMensajeFactory.ObtenerMensajeError(Orbita.Comunicaciones.IMensaje)">
             <summary>
-            
+            Obtiene un mensaje de tipo error que contiene información del objeto error.
             </summary>
             <param name="mensaje">Representa un mensaje que se envía y recibe por el servidor y el cliente.</param>
             <returns></returns>
@@ -7682,7 +6922,7 @@
         </member>
         <member name="F:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros.MensajeroPeticionRespuesta`1.TimeoutMsPredeterminado">
             <summary>
-            Valor predeterminado del timeout.
+            Valor predeterminado del Timeout en milisegundos.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Mensajeros.MensajeroPeticionRespuesta`1._mensajesEnEspera">
@@ -7760,7 +7000,7 @@
             El eventoMensajeRecibido no se lanza para mensajes de respuesta.
             </remarks>
             <param name="mensaje">Mensaje a enviar.</param>
-            <param name="timeoutMs">Duración del timeout en milisegundos.</param>
+            <param name="timeoutMs">Duración del Timeout en milisegundos.</param>
             <returns>Mensaje de respuesta.</returns>
             <exception cref="T:System.TimeoutException">Throws TimeoutException si no se ha podido recibir el mensaje de respuesta en tiempo.</exception>
             <exception cref="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Excepciones.ExcepcionComunicacion">Throws ExcepcionComunicacion si la comunicación falla antes del mensaje de respuesta.</exception>
@@ -7979,94 +7219,6 @@
             Desconectado.
             </summary>
         </member>
-        <member name="T:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS">
-            <summary>
-            Protocolo para GATEOS
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS.FinTramaKeepAliveEnvio">
-            <summary>
-            Fin de la trama de keepAlive envio.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS.FinTramaKeepAliveRecepcion">
-            <summary>
-            Fin de la trama de keepAlive recepción.
-            </summary>
-        </member>
-        <member name="F:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS.TamanyoMensaje">
-            <summary>
-            Tamaño máximo de trama.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS.KeepAliveEnviar">
-            <summary>
-            Mensaje de envío KeepAlive al PLC.
-            </summary>
-            <returns>Mensaje de respuesta.</returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS.KeepAliveProcesar(System.Byte[],System.Byte[]@)">
-            <summary>
-            Mensaje KeepAlive de respuesta del PLC.
-            </summary>
-            <param name="valor">Valor recibido por el PLC.</param>
-            <param name="lecturas">Lecturas del PLC.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS.SalidasEnviar(System.Byte[],System.Byte)">
-            <summary>
-            Escritura de salidas.
-            </summary>
-            <param name="salidas">Salidas a escribir.</param>
-            <param name="idMensaje">Identificador del mensaje.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS.SalidasProcesar(System.Byte[],System.Byte,System.Byte[]@)">
-            <summary>
-            Escritura de salidas.
-            </summary>
-            <param name="valor">Valor a procesar.</param>
-            <param name="id">Identificador del mensaje.</param>
-            <param name="lecturas"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS.CalculoBCC(System.Byte[])">
-            <summary>
-            Cálculo BCC.
-            </summary>
-            <param name="dato">Bytes para cálculo.</param>
-            <returns>BCC.</returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS.Dispose(System.Boolean)">
-            <summary>
-            Destrucción del objeto
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS.STX">
-            <summary>
-            Byte inicio trama.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS.CR">
-            <summary>
-            Byte retorno de carro.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS.Separador">
-            <summary>
-            Byte separador del mensaje.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS.OSData">
-            <summary>
-            Identificador del mensaje ocr data.
-            </summary>
-        </member>
-        <member name="P:Orbita.Comunicaciones.OProtocoloTCPSiemensGateOCROS.OSDataResult">
-            <summary>
-            Identificador del mensaje ocr data result.
-            </summary>
-        </member>
         <member name="T:Orbita.Comunicaciones.ODispositivoMCUSB">
             <summary>
             Dispositivo de ES de MCC
@@ -8079,7 +7231,7 @@
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoMCUSB._eReset">
             <summary>
-            Evento reset de recepción de tramas KeepAlive, 
+            Evento reset de recepción de tramas KeepAlive.
             Entrada/Salida.
             </summary>
         </member>
@@ -8095,22 +7247,22 @@
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoMCUSB._numeroBytesEntradas">
             <summary>
-            Número de bytes de entradas
+            Número de bytes de entradas.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoMCUSB._numeroBytesSalidas">
             <summary>
-            Número de bytes de salidas
+            Número de bytes de salidas.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoMCUSB._lecturas">
             <summary>
-            Valor de las lecturas
+            Valor de las lecturas.
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.ODispositivoMCUSB.LecturasContinuas">
+        <member name="F:Orbita.Comunicaciones.ODispositivoMCUSB._lecturasContinuas">
             <summary>
-            Valor de las lecturas
+            Valor de las lecturas.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.ODispositivoMCUSB._registroInicialSalidas">
@@ -8491,56 +7643,6 @@
             Canal de comunicación que será suscrito por este evento.
             </summary>
         </member>
-        <member name="T:Orbita.Comunicaciones.ODispositivoSiemens1200ESGLPR">
-            <summary>
-            Dispositivo Siemens 1200 LPR.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGLPR.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
-            <summary>
-            Inicializar una nueva instancia de la clase ODispositivoSiemens1200ESGLPR.
-            </summary>
-            <param name="tags">Colección de tags.</param>
-            <param name="hilos">Colección de hilos.</param>
-            <param name="dispositivo">Dispositivo de conexión.</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGLPR.IniciarObjetos">
-            <summary>
-            Establecer el valor inicial de los objetos.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGLPR.ProcesarMensajeRecibido(System.Byte[])">
-            <summary>
-            Procesa los mensajes recibidos en el evento Winsock_DataArrival.
-            </summary>
-            <param name="mensaje"></param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGLPR.EsProcesarHilo">
-            <summary>
-            Hilo de proceso de ES.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGLPR.EsProcesar(System.Byte[],System.Byte[])">
-            <summary>
-            Procesa los bytes de entradas y salidas para actualizar los valores de las variables.
-            </summary>
-            <param name="entradas">Byte de entradas recibido.</param>
-            <param name="salidas">Byte de salidas recibido.</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGLPR.EsActualizarVariablesEntradas(System.Byte,System.Int32)">
-            <summary>
-            Actualiza los valores de las entradas y genera los eventos de cambio de dato y alarma.
-            </summary>
-            <param name="valor">Valor del byte.</param>
-            <param name="posicion">Posición del byte.</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGLPR.EsActualizarVariablesSalidas(System.Byte,System.Int32)">
-            <summary>
-            Actualiza los valores de las salidas y genera los eventos de cambio de dato y alarma.
-            </summary>
-            <param name="valor">Valor del byte.</param>
-            <param name="posicion">Posición del byte.</param>
-        </member>
         <member name="T:Orbita.Comunicaciones.Protocolos.Tcp.Threading.ProcesadorElementosSecuencialesT2`2">
             <summary>
             Esta clase se utiliza para procesar elementos de forma secuencial en procesos multihilo (multithread).
@@ -8650,56 +7752,6 @@
             </summary>
             <param name="direccionEndpoint">Dirección endpoint del servidor a conectarse.</param>
             <returns>Cliente Tcp.</returns>
-        </member>
-        <member name="T:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOCR">
-            <summary>
-            Dispositivo Siemens 1200 OCR.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOCR.#ctor(Orbita.Comunicaciones.OTags,Orbita.Utiles.OHilos,Orbita.Comunicaciones.ODispositivo)">
-            <summary>
-            Inicializar una nueva instancia de la clase ODispositivoSiemens1200ESGOCR.
-            </summary>
-            <param name="tags">Colección de tags.</param>
-            <param name="hilos">Colección de hilos.</param>
-            <param name="dispositivo">Dispositivo de conexión.</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOCR.IniciarObjetos">
-            <summary>
-            Establece el valor inicial de los objetos.
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOCR.ProcesarMensajeRecibido(System.Byte[])">
-            <summary>
-            Procesa los mensajes recibidos en el evento Winsock_DataArrival.
-            </summary>
-            <param name="mensaje"></param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOCR.EsProcesarHilo">
-            <summary>
-            Hilo de proceso de ES
-            </summary>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOCR.EsProcesar(System.Byte[],System.Byte[])">
-            <summary>
-            Procesa los bytes de entradas y salidas para actualizar los valores de las variables.
-            </summary>
-            <param name="entradas">byte de entradas recibido</param>
-            <param name="salidas">byte de salidas recibido</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOCR.EsActualizarVariablesEntradas(System.Byte,System.Int32)">
-            <summary>
-            Actualiza los valores de las entradas y genera los eventos de cambio de dato y alarma
-            </summary>
-            <param name="valor">valor del byte</param>
-            <param name="posicion">posición del byte</param>
-        </member>
-        <member name="M:Orbita.Comunicaciones.ODispositivoSiemens1200ESGOCR.EsActualizarVariablesSalidas(System.Byte,System.Int32)">
-            <summary>
-            Actualiza los valores de las salidas y genera los eventos de cambio de dato y alarma
-            </summary>
-            <param name="valor">valor del byte</param>
-            <param name="posicion">posición del byte</param>
         </member>
         <member name="T:Orbita.Comunicaciones.OcsMensajeLecturaAlarmasActivasEventArgs">
             <summary>

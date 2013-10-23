@@ -11,24 +11,13 @@
             como clase base de otras clases.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.OCoreBBDD.infoConexion">
+        <member name="F:Orbita.BBDD.OCoreBBDD._infoConexion">
             <summary>
             Información de la conexión.
             La inclusión  del  atributo es  necesaria
             para poder obtener las  propiedades de la
             clase  InfoConexion  a  través del objeto
             de base de datos que se cree en cada caso.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OCoreBBDD.cadenaConexion">
-            <summary>
-            Información correspondiente a la cadena
-            de conexión de la base de datos.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OCoreBBDD.timeout">
-            <summary>
-            Timeout de ejecución de sentencias T-SQL.
             </summary>
         </member>
         <member name="M:Orbita.BBDD.OCoreBBDD.#ctor">
@@ -136,11 +125,6 @@
             Identificador de traza.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.Trazabilidad.BaseTraza.identificador">
-            <summary>
-            Identificador de traza.
-            </summary>
-        </member>
         <member name="M:Orbita.BBDD.Trazabilidad.BaseTraza.#ctor(System.String)">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Trazabilidad.BaseTraza.
@@ -220,7 +204,7 @@
             Identificador de traza.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.OBBDDManager.coleccionBBDD">
+        <member name="F:Orbita.BBDD.OBBDDManager._coleccionBBDD">
             <summary>
             Colección con las conexiones a las bases de datos
             </summary>
@@ -255,27 +239,27 @@
             Item Traza.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.ItemTraza.nivelTraza">
+        <member name="F:Orbita.Trazabilidad.ItemTraza._nivelTraza">
             <summary>
             El nivel de registro de traza.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.ItemTraza.fecha">
+        <member name="F:Orbita.Trazabilidad.ItemTraza._fecha">
             <summary>
             Dia y hora de entrada en el registro. Si no  explicitamente esta propiedad ofrece la marca de tiempo de la creación del objeto.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.ItemTraza.procedimiento">
+        <member name="F:Orbita.Trazabilidad.ItemTraza._procedimiento">
             <summary>
             El procedimiento almacenado. Por defecto, <c>string.Empty</c>.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.ItemTraza.identificador">
+        <member name="F:Orbita.Trazabilidad.ItemTraza._identificador">
             <summary>
             Identificador de evento. Por defecto, <c>null</c>.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.ItemTraza.args">
+        <member name="F:Orbita.Trazabilidad.ItemTraza._args">
             <summary>
             Argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
             </summary>
@@ -380,36 +364,6 @@
             Timeout por defecto en segundos.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.OInfoConexion.instancia">
-            <summary>
-            Nombre de la instancia de base de datos.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OInfoConexion.baseDatos">
-            <summary>
-            Nombre de la base de datos.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OInfoConexion.usuario">
-            <summary>
-            Usuario de autenticación de base de datos.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OInfoConexion.password">
-            <summary>
-            Password de autenticación de base de datos.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OInfoConexion.timeout">
-            <summary>
-            Timeout de conexión a base de datos.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OInfoConexion.port">
-            <summary>
-            Puerto de conexión.
-            </summary>
-        </member>
         <member name="M:Orbita.BBDD.OInfoConexion.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase InfoConexion.
@@ -474,11 +428,6 @@
         <member name="P:Orbita.BBDD.OInfoConexion.Port">
             <summary>
             Puerto de conexión.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OInfoMirroring.mirror">
-            <summary>
-            Nombre del servidor en mirror.
             </summary>
         </member>
         <member name="M:Orbita.BBDD.OInfoMirroring.#ctor(System.String)">
@@ -572,14 +521,14 @@
             Traza Logger.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.Trazabilidad.TrazaLogger.infoConexion">
+        <member name="F:Orbita.BBDD.Trazabilidad.TrazaLogger._infoConexion">
             <summary>
             Información de la conexión.
             La inclusión del atributo es necesaria para poder obtener las propiedades de  la
             clase OInfoConexion a través del objeto de base de datos que se cree en cada caso.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.Trazabilidad.TrazaLogger.logger">
+        <member name="F:Orbita.BBDD.Trazabilidad.TrazaLogger._logger">
             <summary>
             Logger de trazas correctas.
             </summary>
@@ -935,7 +884,7 @@
             Colección de OConexion.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.OConexiones.conexiones">
+        <member name="F:Orbita.BBDD.OConexiones._conexiones">
             <summary>
             Colección de OConexiones.
             </summary>
@@ -1032,7 +981,7 @@
             Clase tipo para instanciar objetos de base de datos OAccess.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.OAccess.infoConexion">
+        <member name="F:Orbita.BBDD.OAccess._infoConexion">
             <summary>
             Contiene la información de conexión a la base de datos Access.
             </summary>
@@ -1117,36 +1066,6 @@
             Información de la conexión para Access.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.OAccess.OInfoConexion.ruta">
-            <summary>
-            Nombre de la ruta de base de datos.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OAccess.OInfoConexion.grupoTrabajo">
-            <summary>
-            Nombre del grupo de trabajo.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OAccess.OInfoConexion.usuario">
-            <summary>
-            Usuario de autenticación de base de datos.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OAccess.OInfoConexion.passwordUsuario">
-            <summary>
-            Password de autenticación de usuario.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OAccess.OInfoConexion.passwordBBDD">
-            <summary>
-            Password de autenticación de base de datos.
-            </summary>
-        </member>
-        <member name="M:Orbita.BBDD.OAccess.OInfoConexion.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase InfoConexion.
-            </summary>
-        </member>
         <member name="P:Orbita.BBDD.OAccess.OInfoConexion.Ruta">
             <summary>
             Nombre de la ruta de base de datos.
@@ -1175,31 +1094,6 @@
         <member name="T:Orbita.BBDD.OAccess.ComandoSql">
             <summary>
             Contiene la información necesaria para realizar un comando NonQuery en Access.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OAccess.ComandoSql.sentenciaSQL">
-            <summary>
-            T-SQL.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OAccess.ComandoSql.parametros">
-            <summary>
-            Parámetros de entrada de la sentencia.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OAccess.ComandoSql.excepcion">
-            <summary>
-            Excepción.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OAccess.ComandoSql.resultado">
-            <summary>
-            Resultado de la query.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OAccess.ComandoSql.tipoConsulta">
-            <summary>
-            Tipo de consulta definida en el enumerado.
             </summary>
         </member>
         <member name="M:Orbita.BBDD.OAccess.ComandoSql.#ctor(System.String,Orbita.BBDD.OAccess.ParametrosSql,Orbita.BBDD.OAccess.TipoConsulta)">
@@ -1248,28 +1142,13 @@
             Clase que almacena los datos necesarios útiles para el uso concatenado de transacciones.
             </summary>
         </member>
-        <member name="F:Orbita.BBDD.OConexion.identificador">
-            <summary>
-            Identificador de transacción.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OConexion.conexion">
-            <summary>
-            Conexión de base de datos.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OConexion.transaccion">
-            <summary>
-            Transacción de base de datos.
-            </summary>
-        </member>
         <member name="M:Orbita.BBDD.OConexion.#ctor(System.String)">
             <summary>
             Inicializar una nueva instancia de la clase OConexion.
             </summary>
             <param name="infoConexion">Información de la conexión.</param>
         </member>
-        <member name="F:Orbita.BBDD.OConexion.disposed">
+        <member name="F:Orbita.BBDD.OConexion._disposed">
             <summary>
             Indica si ya se llamo al método Dispose. (Default = false)
             </summary>
@@ -1327,11 +1206,6 @@
         <member name="T:Orbita.BBDD.Trazabilidad.SimpleTraza">
             <summary>
             Simple Traza.
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.Trazabilidad.SimpleTraza.traza">
-            <summary>
-            Interface de traza.
             </summary>
         </member>
         <member name="M:Orbita.BBDD.Trazabilidad.SimpleTraza.#ctor">
@@ -2174,11 +2048,6 @@
         <member name="F:Orbita.BBDD.OInfoConexionOracle.DefaultPort">
             <summary>
             Puerto de conexión por defecto
-            </summary>
-        </member>
-        <member name="F:Orbita.BBDD.OInfoConexionOracle.puerto">
-            <summary>
-            Número de puerto al que se conectará.
             </summary>
         </member>
         <member name="M:Orbita.BBDD.OInfoConexionOracle.#ctor">

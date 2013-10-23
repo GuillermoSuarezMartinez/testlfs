@@ -489,7 +489,7 @@
             Full Path.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.FullPath.path">
+        <member name="F:Orbita.Trazabilidad.FullPath._path">
             <summary>
             Ruta de almacenamiento de ficheros.
             </summary>
@@ -519,11 +519,6 @@
         <member name="P:Orbita.Trazabilidad.FullPath.Path">
             <summary>
             Ruta de almacenamiento de ficheros.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.PathBackup.subPath">
-            <summary>
-            Subruta de almacenamiento de ficheros de backup de logger.
             </summary>
         </member>
         <member name="M:Orbita.Trazabilidad.PathBackup.#ctor">
@@ -582,39 +577,39 @@
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Debug(System.Object)">
             <summary>
-            Registra un objeto arbitrario con el <see cref="F:Orbita.Trazabilidad.NivelLog.Debug"/>. 
+            Registra un objeto arbitrario con el <see cref="!:NivelLog.Debug"/>. 
             </summary>
             <param name="objeto">El objeto mensaje a registrar, el cual será convertido en un string durante el registro.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Debug(System.String)">
             <summary>
-            Registra un mensaje de depuración (<see cref="F:Orbita.Trazabilidad.NivelLog.Debug"/>).
+            Registra un mensaje de depuración (<see cref="!:NivelLog.Debug"/>).
             </summary>
             <param name="mensaje">El mensaje a registrar.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Debug(System.String,System.Object[])">
             <summary>
-            Registra un mensaje formateado en string con el nivel <see cref="F:Orbita.Trazabilidad.NivelLog.Debug"/>. 
+            Registra un mensaje formateado en string con el nivel <see cref="!:NivelLog.Debug"/>. 
             </summary>
             <param name="mensaje">Una cadena con mensaje que contiene marcadores de posición.</param>
             <param name="args">Un <see cref="T:System.Object"/> array que contiene cero o mas objetos.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Debug(System.Exception)">
             <summary>
-            Registra una excepción con el <see cref="F:Orbita.Trazabilidad.NivelLog.Debug"/>.
+            Registra una excepción con el <see cref="!:NivelLog.Debug"/>.
             </summary>
             <param name="excepcion">La excepción a registrar.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Debug(System.Exception,System.String)">
             <summary>
-            Registra una excepción y un mensaje adicional con el <see cref="F:Orbita.Trazabilidad.NivelLog.Debug"/>.
+            Registra una excepción y un mensaje adicional con el <see cref="!:NivelLog.Debug"/>.
             </summary>
             <param name="excepcion"> La excepción a registrar.</param>
             <param name="mensaje">Información adicional con respecto a la excepción a registrar.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Debug(System.Exception,System.String,System.Object[])">
             <summary>
-            Registra un mensaje formateado en string con el nivel <see cref="F:Orbita.Trazabilidad.NivelLog.Debug"/>. 
+            Registra un mensaje formateado en string con el nivel <see cref="!:NivelLog.Debug"/>. 
             </summary>
             <param name="excepcion">La excepción a registrar. </param>
             <param name="mensaje">Una cadena con mensaje que contiene marcadores de posición.</param>
@@ -622,39 +617,39 @@
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Info(System.Object)">
             <summary>
-            Registra un objeto arbitrario con el <see cref="F:Orbita.Trazabilidad.NivelLog.Info"/>. 
+            Registra un objeto arbitrario con el <see cref="!:NivelLog.Info"/>. 
             </summary>
             <param name="objeto">El objeto mensaje a registrar, el cual será convertido en un string durante el registro.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Info(System.String)">
             <summary>
-            Registra un mensaje de información (<see cref="F:Orbita.Trazabilidad.NivelLog.Info"/>).
+            Registra un mensaje de información (<see cref="!:NivelLog.Info"/>).
             </summary>
             <param name="mensaje">El mensaje a registrar.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Info(System.String,System.Object[])">
             <summary>
-            Registra un mensaje formateado en string con el nivel <see cref="F:Orbita.Trazabilidad.NivelLog.Info"/>. 
+            Registra un mensaje formateado en string con el nivel <see cref="!:NivelLog.Info"/>. 
             </summary>
             <param name="mensaje">Una cadena con mensaje que contiene marcadores de posición.</param>
             <param name="args">Un <see cref="T:System.Object"/> array que contiene cero o mas objetos.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Info(System.Exception)">
             <summary>
-            Registra una excepción con el <see cref="F:Orbita.Trazabilidad.NivelLog.Info"/>.
+            Registra una excepción con el <see cref="!:NivelLog.Info"/>.
             </summary>
             <param name="excepcion">La excepción a registrar.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Info(System.Exception,System.String)">
             <summary>
-            Registra una excepción y un mensaje adicional con el <see cref="F:Orbita.Trazabilidad.NivelLog.Info"/>.
+            Registra una excepción y un mensaje adicional con el <see cref="!:NivelLog.Info"/>.
             </summary>
             <param name="excepcion"> La excepción a registrar.</param>
             <param name="mensaje">Información adicional con respecto a la excepción a registrar.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Info(System.Exception,System.String,System.Object[])">
             <summary>
-            Registra un mensaje formateado en string con el nivel <see cref="F:Orbita.Trazabilidad.NivelLog.Info"/>. 
+            Registra un mensaje formateado en string con el nivel <see cref="!:NivelLog.Info"/>. 
             </summary>
             <param name="excepcion">La excepción a registrar.</param>
             <param name="mensaje">Una cadena con mensaje que contiene marcadores de posición.</param>
@@ -662,39 +657,39 @@
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Warn(System.Object)">
             <summary>
-            Registra un objeto arbitrario con el <see cref="F:Orbita.Trazabilidad.NivelLog.Warn"/>. 
+            Registra un objeto arbitrario con el <see cref="!:NivelLog.Warn"/>. 
             </summary>
             <param name="objeto">El objeto mensaje a registrar, el cual será convertido en un string durante el registro.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Warn(System.String)">
             <summary>
-            Registra un mensaje Warn (<see cref="F:Orbita.Trazabilidad.NivelLog.Warn"/>).
+            Registra un mensaje Warn (<see cref="!:NivelLog.Warn"/>).
             </summary>
             <param name="mensaje">El mensaje a registrar.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Warn(System.String,System.Object[])">
             <summary>
-            Registra un mensaje formateado en string con el nivel <see cref="F:Orbita.Trazabilidad.NivelLog.Warn"/>. 
+            Registra un mensaje formateado en string con el nivel <see cref="!:NivelLog.Warn"/>. 
             </summary>
             <param name="mensaje">Una cadena con mensaje que contiene marcadores de posición.</param>
             <param name="args">Un <see cref="T:System.Object"/> array que contiene cero o mas objetos.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Warn(System.Exception)">
             <summary>
-            Registra una excepción con el <see cref="F:Orbita.Trazabilidad.NivelLog.Warn"/>.
+            Registra una excepción con el <see cref="!:NivelLog.Warn"/>.
             </summary>
             <param name="excepcion">La excepción a registrar.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Warn(System.Exception,System.String)">
             <summary>
-            Registra una excepción y un mensaje adicional con el <see cref="F:Orbita.Trazabilidad.NivelLog.Warn"/>.
+            Registra una excepción y un mensaje adicional con el <see cref="!:NivelLog.Warn"/>.
             </summary>
             <param name="excepcion"> La excepción a registrar.</param>
             <param name="mensaje">Información adicional con respecto a la excepción a registrar.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Warn(System.Exception,System.String,System.Object[])">
             <summary>
-            Registra un mensaje formateado en string con el nivel <see cref="F:Orbita.Trazabilidad.NivelLog.Warn"/>. 
+            Registra un mensaje formateado en string con el nivel <see cref="!:NivelLog.Warn"/>. 
             </summary>
             <param name="excepcion">La excepción a registrar. </param>
             <param name="mensaje">Una cadena con mensaje que contiene marcadores de posición.</param>
@@ -702,39 +697,39 @@
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Error(System.Object)">
             <summary>
-            Registra un objeto arbitrario con el <see cref="F:Orbita.Trazabilidad.NivelLog.Error"/>. 
+            Registra un objeto arbitrario con el <see cref="!:NivelLog.Error"/>. 
             </summary>
             <param name="objeto">El objeto mensaje a registrar, el cual será convertido en un string durante el registro.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Error(System.String)">
             <summary>
-            Registra un mensaje de error (<see cref="F:Orbita.Trazabilidad.NivelLog.Error"/>).
+            Registra un mensaje de error (<see cref="!:NivelLog.Error"/>).
             </summary>
             <param name="mensaje">El mensaje a registrar.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Error(System.String,System.Object[])">
             <summary>
-            Registra un mensaje formateado en string con el nivel <see cref="F:Orbita.Trazabilidad.NivelLog.Error"/>. 
+            Registra un mensaje formateado en string con el nivel <see cref="!:NivelLog.Error"/>. 
             </summary>
             <param name="mensaje">Una cadena con mensaje que contiene marcadores de posición.</param>
             <param name="args">Un <see cref="T:System.Object"/> array que contiene cero o mas objetos.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Error(System.Exception)">
             <summary>
-            Registra una excepción con el <see cref="F:Orbita.Trazabilidad.NivelLog.Error"/>.
+            Registra una excepción con el <see cref="!:NivelLog.Error"/>.
             </summary>
             <param name="excepcion">La excepción a registrar.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Error(System.Exception,System.String)">
             <summary>
-            Registra una excepción y un mensaje adicional con el <see cref="F:Orbita.Trazabilidad.NivelLog.Error"/>.
+            Registra una excepción y un mensaje adicional con el <see cref="!:NivelLog.Error"/>.
             </summary>
             <param name="excepcion"> La excepción a registrar.</param>
             <param name="mensaje">Información adicional con respecto a la excepción a registrar.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Error(System.Exception,System.String,System.Object[])">
             <summary>
-            Registra un mensaje formateado en string con el nivel <see cref="F:Orbita.Trazabilidad.NivelLog.Error"/>. 
+            Registra un mensaje formateado en string con el nivel <see cref="!:NivelLog.Error"/>. 
             </summary>
             <param name="excepcion">La excepción a registrar.</param>
             <param name="mensaje">Una cadena con mensaje que contiene marcadores de posición.</param>
@@ -742,39 +737,39 @@
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Fatal(System.Object)">
             <summary>
-            Registra un objeto arbitrario con el <see cref="F:Orbita.Trazabilidad.NivelLog.Fatal"/>. 
+            Registra un objeto arbitrario con el <see cref="!:NivelLog.Fatal"/>. 
             </summary>
             <param name="objeto">El objeto mensaje a registrar, el cual será convertido en un string durante el registro.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Fatal(System.String)">
             <summary>
-            Registra un mensaje de error fatal (<see cref="F:Orbita.Trazabilidad.NivelLog.Fatal"/>).
+            Registra un mensaje de error fatal (<see cref="!:NivelLog.Fatal"/>).
             </summary>
             <param name="mensaje">El mensaje a registrar.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Fatal(System.String,System.Object[])">
             <summary>
-            Registra un mensaje formateado en string con el nivel <see cref="F:Orbita.Trazabilidad.NivelLog.Fatal"/>. 
+            Registra un mensaje formateado en string con el nivel <see cref="!:NivelLog.Fatal"/>. 
             </summary>
             <param name="mensaje">Una cadena con mensaje que contiene marcadores de posición.</param>
             <param name="args">Un <see cref="T:System.Object"/> array que contiene cero o mas objetos.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Fatal(System.Exception)">
             <summary>
-            Registra una excepción con el <see cref="F:Orbita.Trazabilidad.NivelLog.Fatal"/>.
+            Registra una excepción con el <see cref="!:NivelLog.Fatal"/>.
             </summary>
             <param name="excepcion">La excepción a registrar.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Fatal(System.Exception,System.String)">
             <summary>
-            Registra una excepción y un mensaje adicional con el <see cref="F:Orbita.Trazabilidad.NivelLog.Fatal"/>.
+            Registra una excepción y un mensaje adicional con el <see cref="!:NivelLog.Fatal"/>.
             </summary>
             <param name="excepcion"> La excepción a registrar.</param>
             <param name="mensaje">Información adicional con respecto a la excepción a registrar.</param>
         </member>
         <member name="M:Orbita.Trazabilidad.ILogger.Fatal(System.Exception,System.String,System.Object[])">
             <summary>
-            Registra un mensaje formateado en string con el nivel <see cref="F:Orbita.Trazabilidad.NivelLog.Fatal"/>. 
+            Registra un mensaje formateado en string con el nivel <see cref="!:NivelLog.Fatal"/>. 
             </summary>
             <param name="excepcion">La excepción a registrar.</param>
             <param name="mensaje">Una cadena con mensaje que contiene marcadores de posición.</param>
@@ -798,6 +793,11 @@
             Identificador de logger.
             </summary>
         </member>
+        <member name="P:Orbita.Trazabilidad.ILogger.NivelLog">
+            <summary>
+            Nivel de log.
+            </summary>
+        </member>
         <member name="E:Orbita.Trazabilidad.ILogger.AntesEscribirLogger">
             <summary>
             Evento que se ejecuta antes de escribir en el fichero de logger.
@@ -813,25 +813,10 @@
             Evento que se ejecuta tras producirse un error en la escritura en el fichero de logger.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.BaseLogger.identificador">
-            <summary>
-            Identificador de logger.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.BaseLogger.nivelLog">
-            <summary>
-            Nivel de logger.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.BaseLogger.sid">
+        <member name="F:Orbita.Trazabilidad.BaseLogger._sid">
             <summary>
             Identificador alfanumérico de logger.
             Trazable en la trama. Útil si varios logger escriben en el mismo fichero.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.BaseLogger.trazarNivel">
-            <summary>
-            Atributo asociada al delegado de traza de nivel y SID.
             </summary>
         </member>
         <member name="M:Orbita.Trazabilidad.BaseLogger.#ctor">
@@ -1098,7 +1083,7 @@
             <param name="mensaje">Mensaje de logger.</param>
             <param name="args">Argumentos de inclusión.</param>
         </member>
-        <member name="M:Orbita.Trazabilidad.BaseLogger.ESNivelLogEnabled(Orbita.Trazabilidad.NivelLog)">
+        <member name="M:Orbita.Trazabilidad.BaseLogger.EsNivelLogEnabled(Orbita.Trazabilidad.NivelLog)">
             <summary>
             Método escalable de inclusión de logger.
             </summary>
@@ -1158,7 +1143,7 @@
             Nivel de logger.
             </summary>
         </member>
-        <member name="P:Orbita.Trazabilidad.BaseLogger.SID">
+        <member name="P:Orbita.Trazabilidad.BaseLogger.Sid">
             <summary>
             Identificador alfanumérico de logger.
             </summary>
@@ -1175,7 +1160,7 @@
             <param name="item">Item de entrada.</param>
             <returns>Cadena de nivel formateada.</returns>
         </member>
-        <member name="F:Orbita.Trazabilidad.TraceLogger.path">
+        <member name="F:Orbita.Trazabilidad.TraceLogger.Path">
             <summary>
             Ruta de almacenamiento de ficheros de logger.
             </summary>
@@ -1185,18 +1170,18 @@
             Separador de columnas de ficheros de logger.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.TraceLogger.retornoDeCarro">
+        <member name="F:Orbita.Trazabilidad.TraceLogger.RetornoDeCarro">
             <summary>
             Permitir incluir retornos de carro en los mensajes de logger. Por defecto, false.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.TraceLogger.listener">
+        <member name="F:Orbita.Trazabilidad.TraceLogger.Listener">
             <summary>
             Dirige los resultados del seguimiento o la depuración a un objeto System.IO.TextWriter
             o a un objeto de la clase System.IO.Stream como un archivo System.IO.FileStream.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.TraceLogger.eventoCiclico">
+        <member name="F:Orbita.Trazabilidad.TraceLogger._eventoCiclico">
             <summary>
             Guarda relativa al evento cíclico que sucede si se traza sobre el evento elevado de logger.
             </summary>
@@ -1321,27 +1306,12 @@
             Permitir incluir retornos de carro en los mensajes de logger. Por defecto, false.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.DebugLogger.pathBackup">
-            <summary>
-            Ruta de almacenamiento de ficheros de backup de logger.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.DebugLogger.timerLogger">
-            <summary>
-            Tiempo de inicio y periodo de ejecución de backups de logger.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.DebugLogger.pathError">
+        <member name="F:Orbita.Trazabilidad.DebugLogger._pathError">
             <summary>
             Ruta de almacenamiento de ficheros de error de logger.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.DebugLogger.sizeBackup">
-            <summary>
-            Párametro de tamaño máximo de comparación de backups de logger.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.DebugLogger.watcher">
+        <member name="F:Orbita.Trazabilidad.DebugLogger._watcher">
             <summary>
             Escucha las notificaciones de cambio del sistema de archivos y provoca eventos
             cuando cambia un directorio o un archivo de un directorio. Útil para backups
@@ -1672,7 +1642,7 @@
             Extensiones útiles.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.ExtensionUtiles.Ensamblados">
+        <member name="F:Orbita.Trazabilidad.ExtensionUtiles._ensamblados">
             <summary>
             Colección de ensamblados.
             </summary>
@@ -1692,11 +1662,6 @@
         <member name="T:Orbita.Trazabilidad.DictionaryLogger">
             <summary>
             A dictionary with keys of type string and values of type Logger.
-            </summary>
-        </member>
-        <member name="M:Orbita.Trazabilidad.DictionaryLogger.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.DictionaryLogger.
             </summary>
         </member>
         <member name="M:Orbita.Trazabilidad.DictionaryLogger.Add(System.String,Orbita.Trazabilidad.ILogger)">
@@ -1810,7 +1775,7 @@
             Simple Logger.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.SimpleLogger.logger">
+        <member name="F:Orbita.Trazabilidad.SimpleLogger._logger">
             <summary>
             Interface de logger.
             </summary>
@@ -1836,7 +1801,7 @@
             A factory of logging targets. Creates new targets based on their names.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.FactoryLogger.loggers">
+        <member name="F:Orbita.Trazabilidad.FactoryLogger._loggers">
             <summary>
             Colección de loggers.
             </summary>
@@ -1949,32 +1914,17 @@
             Representa un evento de logger.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.ItemLog.nivelLog">
-            <summary>
-            El nivel de registro. Por defecto <c>NivelLog.Debug</c>.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.ItemLog.fecha">
-            <summary>
-            Dia y hora de entrada en el registro. Si no  explicitamente esta propiedad ofrece la marca de tiempo de la creación del objeto.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.ItemLog.mensaje">
-            <summary>
-            Cuerpo del mensaje. Por defecto <c>string.Empty</c>.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.ItemLog.identificador">
+        <member name="F:Orbita.Trazabilidad.ItemLog._identificador">
             <summary>
             Identificador de secuencia. Por defecto <c>null</c>.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.ItemLog.args">
+        <member name="F:Orbita.Trazabilidad.ItemLog._args">
             <summary>
             Argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.ItemLog.identificadorGlobal">
+        <member name="F:Orbita.Trazabilidad.ItemLog._identificadorGlobal">
             <summary>
             Identificador de secuencia global.
             </summary>
@@ -2018,7 +1968,7 @@
             <param name="excepcion">Excepción.</param>
             <param name="mensaje">Cuerpo del mensaje.</param>
         </member>
-        <member name="F:Orbita.Trazabilidad.ItemLog.disposed">
+        <member name="F:Orbita.Trazabilidad.ItemLog._disposed">
             <summary>
             Indica si ya se llamo al método Dispose. (default = false)
             </summary>
@@ -2093,34 +2043,19 @@
             Remoting Logger.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.RemotingLogger.hilo">
+        <member name="F:Orbita.Trazabilidad.RemotingLogger._hilo">
             <summary>
             Crea y controla un subproceso, establece su prioridad y obtiene su estado.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.RemotingLogger.cliente">
+        <member name="F:Orbita.Trazabilidad.RemotingLogger._cliente">
             <summary>
             Cliente remoting.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.RemotingLogger.lista">
+        <member name="F:Orbita.Trazabilidad.RemotingLogger._lista">
             <summary>
             Colección de items.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.RemotingLogger.alias">
-            <summary>
-            Alias del canal de conexión.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.RemotingLogger.maquina">
-            <summary>
-            Máquina del canal de conexión.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.RemotingLogger.puerto">
-            <summary>
-            Puerto del canal de conexión.
             </summary>
         </member>
         <member name="M:Orbita.Trazabilidad.RemotingLogger.#ctor">
@@ -2291,16 +2226,6 @@
             Path Logger.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.PathLogger.fichero">
-            <summary>
-            Nombre del fichero de logger.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.PathLogger.extension">
-            <summary>
-            Extensión del fichero de logger.
-            </summary>
-        </member>
         <member name="M:Orbita.Trazabilidad.PathLogger.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Trazabilidad.PathLogger.
@@ -2404,14 +2329,9 @@
             Mantiene la configuración del registro y proporciona una API sencilla.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.ConfiguracionLogger.loggers">
+        <member name="F:Orbita.Trazabilidad.ConfiguracionLogger.Loggers">
             <summary>
             Colección de loggers.
-            </summary>
-        </member>
-        <member name="M:Orbita.Trazabilidad.ConfiguracionLogger.#ctor">
-            <summary>
-            
             </summary>
         </member>
         <member name="M:Orbita.Trazabilidad.ConfiguracionLogger.AddLogger(System.String,Orbita.Trazabilidad.ILogger)">
@@ -2428,7 +2348,7 @@
             <param name="nombre">The name of the target to be found.</param>
             <returns>Found target or <see langword="null" /> when the target is not found.</returns>
         </member>
-        <member name="F:Orbita.Trazabilidad.ConfiguracionXmlLogger.ficherosVisitados">
+        <member name="F:Orbita.Trazabilidad.ConfiguracionXmlLogger._ficherosVisitados">
             <summary>
             Colección de ficheros de configuración.
             </summary>
@@ -2452,13 +2372,13 @@
             </summary>
             <param name="elemento">Elemento Xml.</param>
         </member>
-        <member name="M:Orbita.Trazabilidad.ConfiguracionXmlLogger.ConfigurarLoggersDesdeElementoXml(System.Xml.XmlElement)">
+        <member name="M:Orbita.Trazabilidad.ConfiguracionXmlLogger.ConfigurarLoggersDesdeElementoXml(System.Xml.XmlNode)">
             <summary>
             Configurar desde elemento dado.
             </summary>
             <param name="elemento">Elemento Xml.</param>
         </member>
-        <member name="M:Orbita.Trazabilidad.ConfiguracionXmlLogger.ConfigurarLoggersDesdeElementoXml(Orbita.Trazabilidad.ILogger,System.Xml.XmlElement)">
+        <member name="M:Orbita.Trazabilidad.ConfiguracionXmlLogger.ConfigurarLoggersDesdeElementoXml(Orbita.Trazabilidad.ILogger,System.Xml.XmlNode)">
             <summary>
             Configurar desde elemento dado.
             </summary>
@@ -2470,7 +2390,7 @@
             Contiene datos de eventos relativos a escritura en remoting.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.RemotingEventArgs.item">
+        <member name="F:Orbita.Trazabilidad.RemotingEventArgs._item">
             <summary>
             El elemento que va a ser registrado.
             </summary>
@@ -2751,19 +2671,6 @@
             Timer Backup.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.TimerBackup.hora">
-            <summary>
-            System.TimeSpan que representa el período tiempo de retraso antes de que
-            se llame al método de devolución de llamada que se especificó cuando se creó
-            System.Threading.Timer.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.TimerBackup.periodo">
-            <summary>
-            Período de tiempo entre invocaciones del método de llamada especificado en
-            el momento de la construcción de System.Threading.Timer.
-            </summary>
-        </member>
         <member name="M:Orbita.Trazabilidad.TimerBackup.#ctor">
             <summary>
             Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TimerBackup.
@@ -2797,19 +2704,9 @@
             construcción de System.Threading.Timer.
             </summary>
         </member>
-        <member name="M:Orbita.Trazabilidad.PropertyHelper.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.PropertyHelper.
-            </summary>
-        </member>
         <member name="T:Orbita.Trazabilidad.WrapperLogger">
             <summary>
             Wrapper Logger.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.WrapperLogger.loggers">
-            <summary>
-            Colección de loggers.
             </summary>
         </member>
         <member name="M:Orbita.Trazabilidad.WrapperLogger.#ctor">
@@ -2935,11 +2832,6 @@
             A dictionary with keys of type string and values of type Type.
             </summary>
         </member>
-        <member name="M:Orbita.Trazabilidad.TypeDictionary.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TypeDictionary.
-            </summary>
-        </member>
         <member name="M:Orbita.Trazabilidad.TypeDictionary.Add(System.String,System.Type)">
             <summary>
             Adds an element with the specified key and value to this TypeDictionary.
@@ -3006,16 +2898,6 @@
             Marks class as a logging target and assigns a name to it.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.TargetAttribute.nombre">
-            <summary>
-            The name of the logging target.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.TargetAttribute.esWrapper">
-            <summary>
-            Marks the target as 'wrapper' target (used to generate the target summary documentation page).
-            </summary>
-        </member>
         <member name="M:Orbita.Trazabilidad.TargetAttribute.#ctor(System.String)">
             <summary>
             Creates a new instance of the TargetAttribute class and sets the name.
@@ -3027,7 +2909,7 @@
             The name of the logging target.
             </summary>
         </member>
-        <member name="P:Orbita.Trazabilidad.TargetAttribute.ESWrapper">
+        <member name="P:Orbita.Trazabilidad.TargetAttribute.EsWrapper">
             <summary>
             Marks the target as 'wrapper' target (used to generate the target summary documentation page).
             </summary>
@@ -3035,16 +2917,6 @@
         <member name="T:Orbita.Trazabilidad.LoggerEventArgs">
             <summary>
             Contiene datos de eventos relativos a escritura en logger.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.LoggerEventArgs.item">
-            <summary>
-            Item de entrada.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.LoggerEventArgs.excepcion">
-            <summary>
-            Excepción.
             </summary>
         </member>
         <member name="M:Orbita.Trazabilidad.LoggerEventArgs.#ctor">
@@ -3080,7 +2952,7 @@
             Contiene datos de eventos relativos a escritura en logger más argumentos.
             </summary>
         </member>
-        <member name="F:Orbita.Trazabilidad.LoggerArgsEventArgs.args">
+        <member name="F:Orbita.Trazabilidad.LoggerArgsEventArgs._args">
             <summary>
             Argumentos adicionales que puede contener el item, además del mensaje propiamente dicho.
             </summary>
@@ -3117,21 +2989,6 @@
         <member name="T:Orbita.Trazabilidad.TimerLogger">
             <summary>
             Timer Logger.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.TimerLogger.timer">
-            <summary>
-            Proporciona un mecanismo para ejecutar métodos en intervalos especificados.
-            </summary>
-        </member>
-        <member name="F:Orbita.Trazabilidad.TimerLogger.callBack">
-            <summary>
-            Representa el método que controla las llamadas de un System.Threading.Timer.
-            </summary>
-        </member>
-        <member name="M:Orbita.Trazabilidad.TimerLogger.#ctor">
-            <summary>
-            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.TimerLogger.
             </summary>
         </member>
         <member name="M:Orbita.Trazabilidad.TimerLogger.Change(System.TimeSpan,System.TimeSpan)">

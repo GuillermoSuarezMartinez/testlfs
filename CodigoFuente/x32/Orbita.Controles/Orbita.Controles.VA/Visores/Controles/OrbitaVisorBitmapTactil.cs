@@ -1314,7 +1314,16 @@ namespace Orbita.Controles.VA
             {
                 if (this.ImagenActual is OImagenBitmap)
                 {
+					// Actualización de la posición actual
                     this._CurrentCursorPosition = this.VisorImagenes.GetCurrentPosition(e.Location);
+
+                    // Evento estandar de click
+                    this.OnMouseMove(e);
+
+                    // Evento de imagen click
+                    EventImageMouseHandlerArgs imageMouseHandlerArgs = new EventImageMouseHandlerArgs(this.Codigo, this._CurrentCursorPosition);
+                    this.OnImageMouseMove(imageMouseHandlerArgs);
+
                     this.TimerUpdateCursorPosition.Start();
                 }
             }
@@ -1335,7 +1344,15 @@ namespace Orbita.Controles.VA
             {
                 if (this.ImagenActual is OImagenBitmap)
                 {
+                    // Actualización de la posición actual
+                    this._CurrentCursorPosition = this.VisorImagenes.GetCurrentPosition(e.Location);
+
+                    // Evento estandar de click
                     this.OnMouseClick(e);
+
+                    // Evento de imagen click
+                    EventImageMouseHandlerArgs imageMouseHandlerArgs = new EventImageMouseHandlerArgs(this.Codigo, this._CurrentCursorPosition);
+                    this.OnImageMouseClick(imageMouseHandlerArgs);
                 }
             }
             catch (Exception exception)

@@ -535,6 +535,30 @@ namespace Orbita.Controles.VA
                 this.OnVisorDispositivoCambiado(this, new EventDeviceViewerChangedArgs(this._Codigo, ordenCambioVisor));
             }
         }
+
+        /// <summary>
+        /// Evento que indica el clic en el visor (devolviendo la información de X e Y de la imagen)
+        /// </summary>
+        /// <param name="e">Información sobre la posición del cursor sobre la imagen</param>
+        protected void OnImageMouseClick(EventImageMouseHandlerArgs e)
+        {
+            if (this.ImageMouseClick != null)
+            {
+                this.ImageMouseClick(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Evento que indica el movimiento del cursor sobre el visor (devolviendo la información de X e Y de la imagen)
+        /// </summary>
+        /// <param name="e">Información sobre la posición del cursor sobre la imagen</param>
+        protected void OnImageMouseMove(EventImageMouseHandlerArgs e)
+        {
+            if (this.ImageMouseMove != null)
+            {
+                this.ImageMouseMove(this, e);
+            }
+        }
         #endregion
 
         #region Método(s) público(s)
@@ -916,6 +940,20 @@ namespace Orbita.Controles.VA
         [Category("Orbita")]
         [Description("Se dispara cuando el usuario desea ver más información sobre el dispositivo origen de la imagen.")]
         public event VisorClicBoton OnInfoDemandada;
+
+        /// <summary>
+        /// Evento que indica el clic en el visor (devolviendo la información de X e Y de la imagen)
+        /// </summary>
+        [Category("Orbita")]
+        [Description("Se dispara al hacer clic sobre el visor. Retorna iformación XY de la imagen.")]
+        public event ImageMouseHandler ImageMouseClick;
+
+        /// <summary>
+        /// Evento que indica el movimiento del cursor sobre el visor (devolviendo la información de X e Y de la imagen)
+        /// </summary>
+        [Category("Orbita")]
+        [Description("Se dispara al mover el cursor sobre el visor. Retorna iformación XY de la imagen.")]
+        public event ImageMouseHandler ImageMouseMove;
         #endregion
     }
 
@@ -1033,6 +1071,43 @@ namespace Orbita.Controles.VA
         public EventVisorClickButtonArgs(string codCamara)
         {
             this.CodCamara = codCamara;
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Delegado que indica el cambio de estado de visualización de la ventana (maximizado o normal)
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    public delegate void ImageMouseHandler(object sender, EventImageMouseHandlerArgs e);
+
+    /// <summary>
+    /// Parametros de retorno del evento de cambio de maximizado o restaurado de la ventana
+    /// </summary>
+    public class EventImageMouseHandlerArgs : EventArgs
+    {
+        #region Atributo(s)
+        /// <summary>
+        /// Código de la cámara
+        /// </summary>
+        public string CodCamara;
+        /// <summary>
+        /// Posición del cursor en la imagen
+        /// </summary>
+        public PointF Location;
+        #endregion
+
+        #region Constructor
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        /// <param name="codEstado">Código del visor</param>
+        /// <param name="posicion">Posición del cursor en la imagen</param>
+        public EventImageMouseHandlerArgs(string codCamara, PointF location)
+        {
+            this.CodCamara = codCamara;
+            this.Location = location;
         }
         #endregion
     }
