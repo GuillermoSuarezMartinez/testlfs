@@ -2,7 +2,7 @@
     <MainAssemblyFileName>..\Orbita.Framework.PluginManager.dll</MainAssemblyFileName>
     <Configuration Name="Release">
         <ApplicationName />
-        <Destination DestinationFileName="..\..\..\..\..\..\..\Orbita\General\Dlls\x32\Orbita\Orbita.FrameworkPluginManager.dll" />
+        <Destination DestinationFileName="..\..\..\..\..\..\..\Orbita\General\Dlls\x32\Orbita\Orbita.Framework.PluginManager.dll" />
         <Assemblies>
             <Assembly AssemblyName="MySql.Data, Culture=neutral, PublicKeyToken=c5687fc88969c44d">
                 <Merging />
@@ -456,6 +456,9 @@
                 <Merging />
             </Assembly>
             <Assembly AssemblyName="ReachFramework, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Data.DataSetExtensions, Culture=neutral, PublicKeyToken=b77a5c561934e089">
                 <Merging />
             </Assembly>
         </Assemblies>
