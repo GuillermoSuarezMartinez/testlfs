@@ -65,20 +65,24 @@ namespace Orbita.Utiles
         /// <param name="codigo">Código identificador del cronómetro</param>
         /// <param name="nombre">Nombre del cronómetro</param>
         /// <param name="descripcion">Texto descriptivo del cronómetro</param>
-        public static void NuevoCronometro(string codigo, string nombre, string descripcion)
+        public static OCronometro NuevoCronometro(string codigo, string nombre, string descripcion)
         {
+            OCronometro resultado = null;
+
             // Si el cronómetro no existe se crea
             if (!ExisteCronometro(codigo))
             {
                 // Creación del nuevo cronómetro
-                OCronometro cronometro = new OCronometro(codigo, nombre, descripcion);
+                resultado = new OCronometro(codigo, nombre, descripcion);
 
                 // Añadimos a la lista de máquinas de estado
                 if (ListaCronometros != null)
                 {
-                    ListaCronometros.Add(cronometro);
+                    ListaCronometros.Add(resultado);
                 }
             }
+
+            return resultado;
         }
 
         /// <summary>

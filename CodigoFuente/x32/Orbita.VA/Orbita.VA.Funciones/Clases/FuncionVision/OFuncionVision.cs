@@ -3,9 +3,9 @@
 // Author           : aibañez
 // Created          : 06-09-2012
 //
-// Last Modified By : 
-// Last Modified On : 
-// Description      : 
+// Last Modified By : 26-11-2013
+// Last Modified On : aibañez
+// Description      : Añadida propiedad de cronómetro
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
@@ -485,6 +485,11 @@ namespace Orbita.VA.Funciones
         /// Claves de la función de visión
         /// </summary>
         public OClaves Claves;
+
+        /// <summary>
+        /// Cronómetro de la duración de las ejecuciones
+        /// </summary>
+        public OCronometro Cronometro;
         #endregion
 
         #region Propiedad(es)
@@ -683,7 +688,7 @@ namespace Orbita.VA.Funciones
                 }
 
                 // Creación del cronómetro
-                OCronometrosManager.NuevoCronometro(this._Codigo, "Ejecución función " + this.Nombre, "Ejecución de la función de visión " + this.Nombre);
+                this.Cronometro = OCronometrosManager.NuevoCronometro(this._Codigo, "Ejecución función " + this.Nombre, "Ejecución de la función de visión " + this.Nombre);
             }
         }
 
