@@ -189,6 +189,12 @@
       <DependentUpon>FrmMonitorizacionTiempos.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogos\Componentes\ONotifyIcon.cs" />
+    <Compile Include="Dialogos\Custom\OrbitaSplash.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dialogos\Custom\OrbitaSplash.Designer.cs">
+      <DependentUpon>OrbitaSplash.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogos\Formularios\FrmInputBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,10 +220,10 @@
       <DependentUpon>FrmUserPsw.cs</DependentUpon>
     </Compile>
     <Compile Include="Escritorios\Clases\OEscritorios.cs" />
-    <Compile Include="FuncionesVision\FrmCorreccionDistorsionOpenCV.cs">
+    <Compile Include="FuncionesVision\Formularios\FrmCorreccionDistorsionOpenCV.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FuncionesVision\FrmCorreccionDistorsionOpenCV.Designer.cs">
+    <Compile Include="FuncionesVision\Formularios\FrmCorreccionDistorsionOpenCV.Designer.cs">
       <DependentUpon>FrmCorreccionDistorsionOpenCV.cs</DependentUpon>
     </Compile>
     <Compile Include="Hardware\Formularios\FrmGestionCamaraAxis.cs">
@@ -232,7 +238,20 @@
     <Compile Include="Hardware\Formularios\FrmMonitorizacionIO.Designer.cs">
       <DependentUpon>FrmMonitorizacionIO.cs</DependentUpon>
     </Compile>
-    <Compile Include="Logs\OExtensionLogs.cs" />
+    <Compile Include="Logs\Clases\LogViewer.cs" />
+    <Compile Include="Logs\Clases\OExtensionLogs.cs" />
+    <Compile Include="Logs\Custom\CtrlLogViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Logs\Custom\CtrlLogViewer.designer.cs">
+      <DependentUpon>CtrlLogViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logs\Custom\OrbitaLogItemViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Logs\Custom\OrbitaLogItemViewer.designer.cs">
+      <DependentUpon>OrbitaLogItemViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="MaquinasEstados\Custom\CtrlMonitorizacionMaquinaEstadosTactil.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -411,6 +430,9 @@
     <EmbeddedResource Include="Cronometros\Formularios\FrmMonitorizacionTiempos.resx">
       <DependentUpon>FrmMonitorizacionTiempos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogos\Custom\OrbitaSplash.resx">
+      <DependentUpon>OrbitaSplash.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogos\Formularios\FrmInputBox.resx">
       <DependentUpon>FrmInputBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -424,7 +446,7 @@
     <EmbeddedResource Include="Dialogos\Formularios\FrmUserPsw.resx">
       <DependentUpon>FrmUserPsw.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FuncionesVision\FrmCorreccionDistorsionOpenCV.resx">
+    <EmbeddedResource Include="FuncionesVision\Formularios\FrmCorreccionDistorsionOpenCV.resx">
       <DependentUpon>FrmCorreccionDistorsionOpenCV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hardware\Formularios\FrmGestionCamaraAxis.resx">
@@ -433,6 +455,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Hardware\Formularios\FrmMonitorizacionIO.resx">
       <DependentUpon>FrmMonitorizacionIO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logs\Custom\CtrlLogViewer.resx">
+      <DependentUpon>CtrlLogViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Logs\Custom\OrbitaLogItemViewer.resx">
+      <DependentUpon>OrbitaLogItemViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MaquinasEstados\Custom\CtrlMonitorizacionMaquinaEstadosTactil.resx">
       <DependentUpon>CtrlMonitorizacionMaquinaEstadosTactil.cs</DependentUpon>
@@ -547,9 +575,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imgDesktop48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\imgError64.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imgFloppy16.png" />
@@ -1016,6 +1041,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ImgEstados24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgError64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgWarning64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgBorrar24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgLog24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgInfoError64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

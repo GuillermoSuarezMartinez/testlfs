@@ -214,6 +214,13 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ImgBorrar24 {
+            get {
+                object obj = ResourceManager.GetObject("ImgBorrar24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap ImgCamara24 {
             get {
                 object obj = ResourceManager.GetObject("ImgCamara24", resourceCulture);
@@ -277,9 +284,9 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap imgError64 {
+        internal static System.Drawing.Bitmap ImgError64 {
             get {
-                object obj = ResourceManager.GetObject("imgError64", resourceCulture);
+                object obj = ResourceManager.GetObject("ImgError64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -424,6 +431,13 @@ namespace Orbita.Controles.VA.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ImgInfoError64 {
+            get {
+                object obj = ResourceManager.GetObject("ImgInfoError64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap ImgInputText32 {
             get {
                 object obj = ResourceManager.GetObject("ImgInputText32", resourceCulture);
@@ -434,6 +448,13 @@ namespace Orbita.Controles.VA.Properties {
         internal static System.Drawing.Bitmap ImgInputText64 {
             get {
                 object obj = ResourceManager.GetObject("ImgInputText64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ImgLog24 {
+            get {
+                object obj = ResourceManager.GetObject("ImgLog24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -798,6 +819,13 @@ namespace Orbita.Controles.VA.Properties {
         internal static System.Drawing.Bitmap ImgWarning24 {
             get {
                 object obj = ResourceManager.GetObject("ImgWarning24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ImgWarning64 {
+            get {
+                object obj = ResourceManager.GetObject("ImgWarning64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

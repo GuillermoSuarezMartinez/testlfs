@@ -289,7 +289,7 @@ namespace Orbita.Controles.VA
             // 
             // PictureBox
             // 
-            this.PictureBox.Image = global::Orbita.Controles.VA.Properties.Resources.imgError64;
+            this.PictureBox.Image = global::Orbita.Controles.VA.Properties.Resources.ImgInfoError64;
             this.PictureBox.Location = new System.Drawing.Point(16, 16);
             this.PictureBox.Name = "PictureBox";
             this.PictureBox.Size = new System.Drawing.Size(64, 64);

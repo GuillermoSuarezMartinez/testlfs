@@ -204,12 +204,12 @@
             Informa de la integración de la funcionalidad de máquinas de estados dentro del sistema
             </summary>
         </member>
-        <member name="M:Orbita.VA.Comun.OSistemaManager.Constructor(Orbita.VA.Comun.OSistema,System.Boolean,System.Boolean,System.Windows.Forms.Form)">
+        <member name="M:Orbita.VA.Comun.OSistemaManager.Constructor(Orbita.VA.Comun.OSistema,System.Boolean,System.Boolean,System.Windows.Forms.Form,System.String[])">
             <summary>
             Constructor de los campos estáticos de la clase
             </summary>
         </member>
-        <member name="M:Orbita.VA.Comun.OSistemaManager.IniciarAplicacion(Orbita.VA.Comun.ModoInicio,System.String[])">
+        <member name="M:Orbita.VA.Comun.OSistemaManager.IniciarAplicacion(Orbita.VA.Comun.ModoInicio)">
             <summary>
             Inicia el sistema de inspección en tiempo real
             </summary>

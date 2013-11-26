@@ -4176,6 +4176,12 @@
             Aplica el valor de memoria a la cámara
             </summary>
         </member>
+        <member name="M:Orbita.VA.Hardware.IPylonCamFeature.ObtenerRestricciones">
+            <summary>
+            Comprobación del rango de valores válidos
+            </summary>
+            <param name="pylonDeviceHandle"></param>
+        </member>
         <member name="F:Orbita.VA.Hardware.OPylonGigEStringFeature.PylonDeviceHandle">
             <summary>
             Clase cognex para el acceso a los parámetros de la cámara
@@ -4206,7 +4212,12 @@
             Nombre de la columna
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OPylonGigEStringFeature.#ctor(System.String,System.Int32,System.Boolean,System.Boolean,System.String,System.Int32,System.Boolean,System.String)">
+        <member name="F:Orbita.VA.Hardware.OPylonGigEStringFeature.ObtencionRestriccionAutomatica">
+            <summary>
+            Consulta las restricciones de valores a la cámara de forma automática
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OPylonGigEStringFeature.#ctor(System.String,System.Int32,System.Boolean,System.Boolean,System.String,System.Int32,System.Boolean,System.String,System.Boolean)">
             <summary>
             Constructor de la clase
             </summary>
@@ -4217,7 +4228,7 @@
             </summary>
             <param name="pylonDeviceHandle"></param>
         </member>
-        <member name="M:Orbita.VA.Hardware.OPylonGigEStringFeature.Validar">
+        <member name="M:Orbita.VA.Hardware.OPylonGigEStringFeature.ObtenerRestricciones">
             <summary>
             Inicialización del objeto
             </summary>
@@ -4274,7 +4285,12 @@
             Nombre de la columna
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OPylonGigEEnumFeature.#ctor(System.String,System.String[],System.String,System.Int32,System.Boolean,System.String)">
+        <member name="F:Orbita.VA.Hardware.OPylonGigEEnumFeature.ObtencionRestriccionAutomatica">
+            <summary>
+            Consulta las restricciones de valores a la cámara de forma automática
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OPylonGigEEnumFeature.#ctor(System.String,System.String[],System.String,System.Int32,System.Boolean,System.String,System.Boolean)">
             <summary>
             Constructor de la clase
             </summary>
@@ -4285,7 +4301,7 @@
             </summary>
             <param name="pylonDeviceHandle"></param>
         </member>
-        <member name="M:Orbita.VA.Hardware.OPylonGigEEnumFeature.Validar">
+        <member name="M:Orbita.VA.Hardware.OPylonGigEEnumFeature.ObtenerRestricciones">
             <summary>
             Inicialización del objeto
             </summary>
@@ -4342,7 +4358,12 @@
             Nombre de la columna
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OPylonGigEIntFeature.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.String)">
+        <member name="F:Orbita.VA.Hardware.OPylonGigEIntFeature.ObtencionRestriccionAutomatica">
+            <summary>
+            Consulta las restricciones de valores a la cámara de forma automática
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OPylonGigEIntFeature.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.String,System.Boolean)">
             <summary>
             Constructor de la clase
             </summary>
@@ -4353,7 +4374,7 @@
             </summary>
             <param name="pylonDeviceHandle"></param>
         </member>
-        <member name="M:Orbita.VA.Hardware.OPylonGigEIntFeature.Validar">
+        <member name="M:Orbita.VA.Hardware.OPylonGigEIntFeature.ObtenerRestricciones">
             <summary>
             Inicialización del objeto
             </summary>
@@ -4410,7 +4431,12 @@
             Nombre de la columna
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OPylonGigEDoubleFeature.#ctor(System.String,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.String)">
+        <member name="F:Orbita.VA.Hardware.OPylonGigEDoubleFeature.ObtencionRestriccionAutomatica">
+            <summary>
+            Consulta las restricciones de valores a la cámara de forma automática
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OPylonGigEDoubleFeature.#ctor(System.String,System.Double,System.Double,System.Double,System.Int32,System.Boolean,System.String,System.Boolean)">
             <summary>
             Constructor de la clase
             </summary>
@@ -4421,7 +4447,7 @@
             </summary>
             <param name="pylonDeviceHandle"></param>
         </member>
-        <member name="M:Orbita.VA.Hardware.OPylonGigEDoubleFeature.Validar">
+        <member name="M:Orbita.VA.Hardware.OPylonGigEDoubleFeature.ObtenerRestricciones">
             <summary>
             Inicialización del objeto
             </summary>
@@ -4478,7 +4504,12 @@
             Nombre de la columna
             </summary>
         </member>
-        <member name="M:Orbita.VA.Hardware.OPylonGigEBoolFeature.#ctor(System.String,System.Boolean,System.Int32,System.Boolean,System.String)">
+        <member name="F:Orbita.VA.Hardware.OPylonGigEBoolFeature.ObtencionRestriccionAutomatica">
+            <summary>
+            Consulta las restricciones de valores a la cámara de forma automática
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OPylonGigEBoolFeature.#ctor(System.String,System.Boolean,System.Int32,System.Boolean,System.String,System.Boolean)">
             <summary>
             Constructor de la clase
             </summary>
@@ -4489,7 +4520,7 @@
             </summary>
             <param name="pylonDeviceHandle"></param>
         </member>
-        <member name="M:Orbita.VA.Hardware.OPylonGigEBoolFeature.Validar">
+        <member name="M:Orbita.VA.Hardware.OPylonGigEBoolFeature.ObtenerRestricciones">
             <summary>
             Inicialización del objeto
             </summary>
@@ -4532,6 +4563,12 @@
             </summary>
         </member>
         <member name="M:Orbita.VA.Hardware.OPylonAcquisitionMode.Inicializar(PylonC.NET.PYLON_DEVICE_HANDLE)">
+            <summary>
+            Inicialización del objeto
+            </summary>
+            <param name="pylonDeviceHandle"></param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OPylonAcquisitionMode.ObtenerRestricciones">
             <summary>
             Inicialización del objeto
             </summary>
@@ -4589,6 +4626,12 @@
             </summary>
             <param name="pylonDeviceHandle"></param>
         </member>
+        <member name="M:Orbita.VA.Hardware.OPylonWhiteBalance.ObtenerRestricciones">
+            <summary>
+            Inicialización del objeto
+            </summary>
+            <param name="pylonDeviceHandle"></param>
+        </member>
         <member name="M:Orbita.VA.Hardware.OPylonWhiteBalance.Send(System.Boolean,Orbita.VA.Hardware.ModoAjuste)">
             <summary>
             Aplica el valor de memoria a la cámara
@@ -4636,6 +4679,12 @@
             </summary>
         </member>
         <member name="M:Orbita.VA.Hardware.OPylonAOI.Inicializar(PylonC.NET.PYLON_DEVICE_HANDLE)">
+            <summary>
+            Inicialización del objeto
+            </summary>
+            <param name="pylonDeviceHandle"></param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OPylonAOI.ObtenerRestricciones">
             <summary>
             Inicialización del objeto
             </summary>
@@ -4693,6 +4742,12 @@
             </summary>
         </member>
         <member name="M:Orbita.VA.Hardware.OPylonTransferAdjust.Inicializar(PylonC.NET.PYLON_DEVICE_HANDLE)">
+            <summary>
+            Inicialización del objeto
+            </summary>
+            <param name="pylonDeviceHandle"></param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OPylonTransferAdjust.ObtenerRestricciones">
             <summary>
             Inicialización del objeto
             </summary>

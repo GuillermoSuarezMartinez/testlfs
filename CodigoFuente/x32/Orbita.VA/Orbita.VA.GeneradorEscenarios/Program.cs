@@ -55,8 +55,8 @@ namespace Orbita.VA.GeneradorEscenarios
             }
             {
                 // Inicializar acceso a la base de datos
-                OSistemaManager.Constructor(new OSistemaGeneradorEscenarios(args[1]), false, false);
-                OSistemaManager.IniciarAplicacion(ModoInicio.Normal, args);
+                OSistemaManager.Constructor(new OSistemaGeneradorEscenarios(args[1]), false, false, null, args);
+                OSistemaManager.IniciarAplicacion(ModoInicio.Normal);
 
                 // Generación de la unidad
                 OGeneradorAccesoRapido generador = new OGeneradorAccesoRapido();

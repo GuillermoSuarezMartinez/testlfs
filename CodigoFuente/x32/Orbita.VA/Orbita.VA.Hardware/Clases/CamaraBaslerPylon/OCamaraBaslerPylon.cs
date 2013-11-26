@@ -3,8 +3,8 @@
 // Author           : aibañez
 // Created          : 18-12-2012
 //
-// Last Modified On : 
-// Description      : 
+// Last Modified On : 07/11/2013
+// Description      : Mejorado el modo de actualización de restricciones de los parámetros GigE
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
@@ -1260,21 +1260,21 @@ namespace Orbita.VA.Hardware
             try
             {
                 // Área de interés
-                this.AOIWidth = new OPylonGigEIntFeature("Width", 2, 10000, 2454, timeOutAccesoGigEFeatures, false, "Basler_Pilot_AOI_Width");
-                this.AOIHeight = new OPylonGigEIntFeature("Height", 2, 10000, 2056, timeOutAccesoGigEFeatures, false, "Basler_Pilot_AOI_Height");
-                this.AOIOffsetX = new OPylonGigEIntFeature("OffsetX", 0, 10000, 2454, timeOutAccesoGigEFeatures, false, "Basler_Pilot_AOI_X");
-                this.AOIOffsetY = new OPylonGigEIntFeature("OffsetY", 0, 10000, 2454, timeOutAccesoGigEFeatures, false, "Basler_Pilot_AOI_Y");
+                this.AOIWidth = new OPylonGigEIntFeature("Width", 2, 10000, 2454, timeOutAccesoGigEFeatures, false, "Basler_Pilot_AOI_Width", false);
+                this.AOIHeight = new OPylonGigEIntFeature("Height", 2, 10000, 2056, timeOutAccesoGigEFeatures, false, "Basler_Pilot_AOI_Height", false);
+                this.AOIOffsetX = new OPylonGigEIntFeature("OffsetX", 0, 10000, 2454, timeOutAccesoGigEFeatures, false, "Basler_Pilot_AOI_X", false);
+                this.AOIOffsetY = new OPylonGigEIntFeature("OffsetY", 0, 10000, 2454, timeOutAccesoGigEFeatures, false, "Basler_Pilot_AOI_Y", false);
                 this.AOI = new OPylonAOI("AOI", this.AOIOffsetX, this.AOIOffsetY, this.AOIWidth, this.AOIHeight);
                 // Configuración del Trigger
-                this.TriggerSource = new OPylonGigEEnumFeature("TriggerSource", new string[] { "Line1", "Line2", "Software" }, "Line1", timeOutAccesoGigEFeatures, true, "Basler_Pilot_TriggerSource");
-                this.TriggerMode = new OPylonGigEEnumFeature("TriggerMode", new string[] { "Off", "On" }, "Off", timeOutAccesoGigEFeatures, false, string.Empty);
+                this.TriggerSource = new OPylonGigEEnumFeature("TriggerSource", new string[] { "Line1", "Line2", "Software" }, "Line1", timeOutAccesoGigEFeatures, true, "Basler_Pilot_TriggerSource", true);
+                this.TriggerMode = new OPylonGigEEnumFeature("TriggerMode", new string[] { "Off", "On" }, "Off", timeOutAccesoGigEFeatures, false, string.Empty, true);
                 this.AcquisitionMode = new OPylonAcquisitionMode("AcquisitionMode", ModoAdquisicion.DisparoSoftware, this.TriggerMode, "Basler_Pilot_AcquisitionMode");
-                this.TriggerActivation = new OPylonGigEEnumFeature("TriggerActivation", new string[] { "RisingEdge", "FallingEdge" }, "RisingEdge", timeOutAccesoGigEFeatures, true, "Basler_Pilot_TriggerActivation");
+                this.TriggerActivation = new OPylonGigEEnumFeature("TriggerActivation", new string[] { "RisingEdge", "FallingEdge" }, "RisingEdge", timeOutAccesoGigEFeatures, true, "Basler_Pilot_TriggerActivation", true);
                 // Transferencia
-                this.PacketSize = new OPylonGigEIntFeature("GevSCPSPacketSize", 220, 16404, 1500, timeOutAccesoGigEFeatures, true, "Basler_Pilot_PacketSize");
-                this.InterPacketDelay = new OPylonGigEIntFeature("GevSCPD", 0, 100000000, 0, timeOutAccesoGigEFeatures, false, string.Empty);
-                this.ReserveBandwidth = new OPylonGigEIntFeature("GevSCBWR", 0, 99, 10, timeOutAccesoGigEFeatures, false, string.Empty);
-                this.TimeStampFrequency = new OPylonGigEIntFeature("GevTimestampTickFrequency", 0, int.MaxValue, 0, 125000000, false, string.Empty);
+                this.PacketSize = new OPylonGigEIntFeature("GevSCPSPacketSize", 220, 16404, 1500, timeOutAccesoGigEFeatures, true, "Basler_Pilot_PacketSize", true);
+                this.InterPacketDelay = new OPylonGigEIntFeature("GevSCPD", 0, 100000000, 0, timeOutAccesoGigEFeatures, false, string.Empty, true);
+                this.ReserveBandwidth = new OPylonGigEIntFeature("GevSCBWR", 0, 99, 10, timeOutAccesoGigEFeatures, false, string.Empty, true);
+                this.TimeStampFrequency = new OPylonGigEIntFeature("GevTimestampTickFrequency", 0, int.MaxValue, 0, 125000000, false, string.Empty, true);
                 this.TransferAdjust = new OPylonTransferAdjust("TransferAdjust", 0.001, 1, 1,
                     this.ReserveBandwidth,
                     this.PacketSize,
@@ -1282,27 +1282,27 @@ namespace Orbita.VA.Hardware
                     this.InterPacketDelay,
                     "Basler_Pilot_Bandwidth");
                 // Iluminación
-                this.ExposureTimeAbs = new OPylonGigEDoubleFeature("ExposureTimeAbs", 20, 10000000, 400, timeOutAccesoGigEFeatures, true, "Basler_Pilot_Shutter");
-                this.GainAuto = new OPylonGigEEnumFeature("GainAuto", new string[] { "Off", "Once", "Continuous" }, "Off", timeOutAccesoGigEFeatures, true, "Basler_Pilot_GainAuto");
-                this.GainRaw = new OPylonGigEIntFeature("GainRaw", 0, 1023, 500, timeOutAccesoGigEFeatures, true, "Basler_Pilot_Gain");
-                this.BlackLevelRaw = new OPylonGigEIntFeature("BlackLevelRaw", 0, 1023, 32, timeOutAccesoGigEFeatures, true, "Basler_Pilot_BlackLevel");
-                this.BalanceRatioSelector = new OPylonGigEEnumFeature("BalanceRatioSelector", new string[] { "Red", "Green", "Blue" }, "Red", timeOutAccesoGigEFeatures, false, string.Empty);
-                this.BalanceRatioRaw = new OPylonGigEIntFeature("BalanceRatioRaw", 0, 255, 50, timeOutAccesoGigEFeatures, false, string.Empty);
+                this.ExposureTimeAbs = new OPylonGigEDoubleFeature("ExposureTimeAbs", 20, 10000000, 400, timeOutAccesoGigEFeatures, true, "Basler_Pilot_Shutter", true);
+                this.GainAuto = new OPylonGigEEnumFeature("GainAuto", new string[] { "Off", "Once", "Continuous" }, "Off", timeOutAccesoGigEFeatures, true, "Basler_Pilot_GainAuto", true);
+                this.GainRaw = new OPylonGigEIntFeature("GainRaw", 0, 1023, 500, timeOutAccesoGigEFeatures, true, "Basler_Pilot_Gain", true);
+                this.BlackLevelRaw = new OPylonGigEIntFeature("BlackLevelRaw", 0, 1023, 32, timeOutAccesoGigEFeatures, true, "Basler_Pilot_BlackLevel", true);
+                this.BalanceRatioSelector = new OPylonGigEEnumFeature("BalanceRatioSelector", new string[] { "Red", "Green", "Blue" }, "Red", timeOutAccesoGigEFeatures, false, string.Empty, true);
+                this.BalanceRatioRaw = new OPylonGigEIntFeature("BalanceRatioRaw", 0, 255, 50, timeOutAccesoGigEFeatures, false, string.Empty, true);
                 this.BalanceRatioRed = new OPylonWhiteBalance("WhiteBalanceRed", 0, 255, 50, "Red", this.BalanceRatioRaw, this.BalanceRatioSelector, "Basler_Pilot_WhiteBalanceRed");
                 this.BalanceRatioGreen = new OPylonWhiteBalance("BalanceRatioGreen", 0, 255, 50, "Green", this.BalanceRatioRaw, this.BalanceRatioSelector, "Basler_Pilot_WhiteBalanceGreen");
                 this.BalanceRatioBlue = new OPylonWhiteBalance("BalanceRatioBlue", 0, 255, 50, "Blue", this.BalanceRatioRaw, this.BalanceRatioSelector, "Basler_Pilot_WhiteBalanceBlue");
-                this.GammaEnable = new OPylonGigEBoolFeature("GammaEnable", false, timeOutAccesoGigEFeatures, true, "Basler_Pilot_GammaEnable");
-                this.Gamma = new OPylonGigEDoubleFeature("Gamma", 0, 3.99902, 1, timeOutAccesoGigEFeatures, true, "Basler_Pilot_Gamma");
+                this.GammaEnable = new OPylonGigEBoolFeature("GammaEnable", false, timeOutAccesoGigEFeatures, true, "Basler_Pilot_GammaEnable", true);
+                this.Gamma = new OPylonGigEDoubleFeature("Gamma", 0, 3.99902, 1, timeOutAccesoGigEFeatures, true, "Basler_Pilot_Gamma", true);
                 // Formato
-                this.PixelFormat = new OPylonGigEEnumFeature("PixelFormat", new string[] { "Mono8", "BayerBG8", "YUV422Packed", "YUV422_YUYV_Packed", "BayerBG12Packed", "BayerBG16" }, "Mono8", timeOutAccesoGigEFeatures, true, "Basler_Pilot_TransferFormat");
+                this.PixelFormat = new OPylonGigEEnumFeature("PixelFormat", new string[] { "Mono8", "BayerBG8", "YUV422Packed", "YUV422_YUYV_Packed", "BayerBG12Packed", "BayerBG16" }, "Mono8", timeOutAccesoGigEFeatures, true, "Basler_Pilot_TransferFormat", true);
                 // Entrada / Salida
-                this.LineSelector = new OPylonGigEEnumFeature("LineSelector", new string[] { "Line1", "Line2", "Out1", "Out2", "Out3", "Out4" }, "Line1", 100, false, string.Empty);
-                this.LineSource = new OPylonGigEEnumFeature("LineSource", new string[] { "UserOutput", "ExposureActive", "TimerActive", "TriggerReady", "AcquisitionTriggerReady" }, "UserOutput", timeOutAccesoGigEFeatures, false, string.Empty);
-                this.LineStatusAll = new OPylonGigEIntFeature("LineStatusAll", 0, int.MaxValue, 0, timeOutAccesoGigEFeatures, false, string.Empty);
-                this.UserOutputSelector = new OPylonGigEEnumFeature("UserOutputSelector", new string[] { "UserOutput1", "UserOutput2", "UserOutput3", "UserOutput4" }, "UserOutput1", timeOutAccesoGigEFeatures, false, string.Empty);
-                this.UserOutputValue = new OPylonGigEBoolFeature("UserOutputValue", false, timeOutAccesoGigEFeatures, false, string.Empty);
-                this.LineDebouncerTimeAbs = new OPylonGigEDoubleFeature("LineDebouncerTimeAbs", 0, double.MaxValue, 0, timeOutAccesoGigEFeatures, false, "Basler_Pilot_DebouncerTime");
-                this.TemperatureAbs = new OPylonGigEDoubleFeature("TemperatureAbs", double.MinValue, double.MaxValue, 0, timeOutAccesoGigEFeatures, false, string.Empty);
+                this.LineSelector = new OPylonGigEEnumFeature("LineSelector", new string[] { "Line1", "Line2", "Out1", "Out2", "Out3", "Out4" }, "Line1", 100, false, string.Empty, true);
+                this.LineSource = new OPylonGigEEnumFeature("LineSource", new string[] { "UserOutput", "ExposureActive", "TimerActive", "TriggerReady", "AcquisitionTriggerReady" }, "UserOutput", timeOutAccesoGigEFeatures, false, string.Empty, true);
+                this.LineStatusAll = new OPylonGigEIntFeature("LineStatusAll", 0, int.MaxValue, 0, timeOutAccesoGigEFeatures, false, string.Empty, true);
+                this.UserOutputSelector = new OPylonGigEEnumFeature("UserOutputSelector", new string[] { "UserOutput1", "UserOutput2", "UserOutput3", "UserOutput4" }, "UserOutput1", timeOutAccesoGigEFeatures, false, string.Empty, true);
+                this.UserOutputValue = new OPylonGigEBoolFeature("UserOutputValue", false, timeOutAccesoGigEFeatures, false, string.Empty, true);
+                this.LineDebouncerTimeAbs = new OPylonGigEDoubleFeature("LineDebouncerTimeAbs", 0, double.MaxValue, 0, timeOutAccesoGigEFeatures, false, "Basler_Pilot_DebouncerTime", true);
+                this.TemperatureAbs = new OPylonGigEDoubleFeature("TemperatureAbs", double.MinValue, double.MaxValue, 0, timeOutAccesoGigEFeatures, false, string.Empty, true);
 
                 // Cargamos valores de la base de datos
                 DataTable dt = AppBD.GetCamara(this.CodCamara);
@@ -1446,18 +1446,23 @@ namespace Orbita.VA.Hardware
         /// Nombre de la columna
         /// </summary>
         private string NombreColumna;
+        /// <summary>
+        /// Consulta las restricciones de valores a la cámara de forma automática
+        /// </summary>
+        private bool ObtencionRestriccionAutomatica;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OPylonGigEStringFeature(string codigo, int maxLength, bool admiteVacio, bool limitarLongitud, string defaultValue, int timeOutMilis, bool accesoDirecto, string nombreColumna)
+        public OPylonGigEStringFeature(string codigo, int maxLength, bool admiteVacio, bool limitarLongitud, string defaultValue, int timeOutMilis, bool accesoDirecto, string nombreColumna, bool obtencionRestriccionAutomatica)
             : base(codigo, maxLength, admiteVacio, true, defaultValue, false)
         {
             this.TimeOut = timeOutMilis;
             this.AccesoDirecto = accesoDirecto;
             this.NombreColumna = nombreColumna;
+            this.ObtencionRestriccionAutomatica = obtencionRestriccionAutomatica;
         }
         #endregion
 
@@ -1469,13 +1474,16 @@ namespace Orbita.VA.Hardware
         public void Inicializar(PYLON_DEVICE_HANDLE pylonDeviceHandle)
         {
             this.PylonDeviceHandle = pylonDeviceHandle;
-            this.Validar();
+            if (this.ObtencionRestriccionAutomatica)
+            {
+                this.ObtenerRestricciones();
+            }
         }
         /// <summary>
         /// Inicialización del objeto
         /// </summary>
         /// <param name="pylonDeviceHandle"></param>
-        public void Validar()
+        public void ObtenerRestricciones()
         {
             bool valid = Pylon.DeviceFeatureIsAvailable(this.PylonDeviceHandle, this.Codigo) &&
                          Pylon.DeviceFeatureIsImplemented(this.PylonDeviceHandle, this.Codigo);
@@ -1580,18 +1588,23 @@ namespace Orbita.VA.Hardware
         /// Nombre de la columna
         /// </summary>
         private string NombreColumna;
+        /// <summary>
+        /// Consulta las restricciones de valores a la cámara de forma automática
+        /// </summary>
+        private bool ObtencionRestriccionAutomatica;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OPylonGigEEnumFeature(string codigo, string[] valoresPermitidos, string defaultValue, int timeOutMilis, bool accesoDirecto, string nombreColumna)
+        public OPylonGigEEnumFeature(string codigo, string[] valoresPermitidos, string defaultValue, int timeOutMilis, bool accesoDirecto, string nombreColumna, bool obtencionRestriccionAutomatica)
             : base(codigo, valoresPermitidos, defaultValue, false)
         {
             this.TimeOut = timeOutMilis;
             this.AccesoDirecto = accesoDirecto;
             this.NombreColumna = nombreColumna;
+            this.ObtencionRestriccionAutomatica = obtencionRestriccionAutomatica;
         }
         #endregion
 
@@ -1603,13 +1616,16 @@ namespace Orbita.VA.Hardware
         public void Inicializar(PYLON_DEVICE_HANDLE pylonDeviceHandle)
         {
             this.PylonDeviceHandle = pylonDeviceHandle;
-            this.Validar();
+            if (this.ObtencionRestriccionAutomatica)
+            {
+                this.ObtenerRestricciones();
+            }
         }
         /// <summary>
         /// Inicialización del objeto
         /// </summary>
         /// <param name="pylonDeviceHandle"></param>
-        public void Validar()
+        public void ObtenerRestricciones()
         {
             bool valid = Pylon.DeviceFeatureIsAvailable(this.PylonDeviceHandle, this.Codigo) &&
                          Pylon.DeviceFeatureIsImplemented(this.PylonDeviceHandle, this.Codigo);
@@ -1717,18 +1733,23 @@ namespace Orbita.VA.Hardware
         /// Nombre de la columna
         /// </summary>
         private string NombreColumna;
+        /// <summary>
+        /// Consulta las restricciones de valores a la cámara de forma automática
+        /// </summary>
+        private bool ObtencionRestriccionAutomatica;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OPylonGigEIntFeature(string codigo, int minValue, int maxValue, int defaultValue, int timeOutMilis, bool accesoDirecto, string nombreColumna)
+        public OPylonGigEIntFeature(string codigo, int minValue, int maxValue, int defaultValue, int timeOutMilis, bool accesoDirecto, string nombreColumna, bool obtencionRestriccionAutomatica)
             : base(codigo, minValue, maxValue, defaultValue, false)
         {
             this.TimeOut = timeOutMilis;
             this.AccesoDirecto = accesoDirecto;
             this.NombreColumna = nombreColumna;
+            this.ObtencionRestriccionAutomatica = obtencionRestriccionAutomatica;
         }
         #endregion
 
@@ -1740,13 +1761,16 @@ namespace Orbita.VA.Hardware
         public void Inicializar(PYLON_DEVICE_HANDLE pylonDeviceHandle)
         {
             this.PylonDeviceHandle = pylonDeviceHandle;
-            this.Validar();
+            if (this.ObtencionRestriccionAutomatica)
+            {
+                this.ObtenerRestricciones();
+            }
         }
         /// <summary>
         /// Inicialización del objeto
         /// </summary>
         /// <param name="pylonDeviceHandle"></param>
-        public void Validar()
+        public void ObtenerRestricciones()
         {
             bool valid = Pylon.DeviceFeatureIsAvailable(this.PylonDeviceHandle, this.Codigo) &&
                          Pylon.DeviceFeatureIsImplemented(this.PylonDeviceHandle, this.Codigo);
@@ -1860,18 +1884,23 @@ namespace Orbita.VA.Hardware
         /// Nombre de la columna
         /// </summary>
         private string NombreColumna;
+        /// <summary>
+        /// Consulta las restricciones de valores a la cámara de forma automática
+        /// </summary>
+        private bool ObtencionRestriccionAutomatica;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OPylonGigEDoubleFeature(string codigo, double minValue, double maxValue, double defaultValue, int timeOutMilis, bool accesoDirecto, string nombreColumna)
+        public OPylonGigEDoubleFeature(string codigo, double minValue, double maxValue, double defaultValue, int timeOutMilis, bool accesoDirecto, string nombreColumna, bool obtencionRestriccionAutomatica)
             : base(codigo, minValue, maxValue, defaultValue, false)
         {
             this.TimeOut = timeOutMilis;
             this.AccesoDirecto = accesoDirecto;
             this.NombreColumna = nombreColumna;
+            this.ObtencionRestriccionAutomatica = obtencionRestriccionAutomatica;
         }
         #endregion
 
@@ -1883,13 +1912,16 @@ namespace Orbita.VA.Hardware
         public void Inicializar(PYLON_DEVICE_HANDLE pylonDeviceHandle)
         {
             this.PylonDeviceHandle = pylonDeviceHandle;
-            this.Validar();
+            if (this.ObtencionRestriccionAutomatica)
+            {
+                this.ObtenerRestricciones();
+            }
         }
         /// <summary>
         /// Inicialización del objeto
         /// </summary>
         /// <param name="pylonDeviceHandle"></param>
-        public void Validar()
+        public void ObtenerRestricciones()
         {
             bool valid = Pylon.DeviceFeatureIsAvailable(this.PylonDeviceHandle, this.Codigo) &&
                          Pylon.DeviceFeatureIsImplemented(this.PylonDeviceHandle, this.Codigo);
@@ -2000,18 +2032,23 @@ namespace Orbita.VA.Hardware
         /// Nombre de la columna
         /// </summary>
         private string NombreColumna;
+        /// <summary>
+        /// Consulta las restricciones de valores a la cámara de forma automática
+        /// </summary>
+        private bool ObtencionRestriccionAutomatica;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OPylonGigEBoolFeature(string codigo, bool defaultValue, int timeOutMilis, bool accesoDirecto, string nombreColumna)
+        public OPylonGigEBoolFeature(string codigo, bool defaultValue, int timeOutMilis, bool accesoDirecto, string nombreColumna, bool obtencionRestriccionAutomatica)
             : base(codigo, defaultValue, false)
         {
             this.TimeOut = timeOutMilis;
             this.AccesoDirecto = accesoDirecto;
             this.NombreColumna = nombreColumna;
+            this.ObtencionRestriccionAutomatica = obtencionRestriccionAutomatica;
         }
         #endregion
 
@@ -2023,13 +2060,16 @@ namespace Orbita.VA.Hardware
         public void Inicializar(PYLON_DEVICE_HANDLE pylonDeviceHandle)
         {
             this.PylonDeviceHandle = pylonDeviceHandle;
-            this.Validar();
+            if (this.ObtencionRestriccionAutomatica)
+            {
+                this.ObtenerRestricciones();
+            }
         }
         /// <summary>
         /// Inicialización del objeto
         /// </summary>
         /// <param name="pylonDeviceHandle"></param>
-        public void Validar()
+        public void ObtenerRestricciones()
         {
             bool valid = Pylon.DeviceFeatureIsAvailable(this.PylonDeviceHandle, this.Codigo) &&
                          Pylon.DeviceFeatureIsImplemented(this.PylonDeviceHandle, this.Codigo);
@@ -2144,6 +2184,13 @@ namespace Orbita.VA.Hardware
         {
         }
         /// <summary>
+        /// Inicialización del objeto
+        /// </summary>
+        /// <param name="pylonDeviceHandle"></param>
+        public void ObtenerRestricciones()
+        {
+        }
+        /// <summary>
         /// Aplica el valor de memoria a la cámara
         /// </summary>
         public bool Send(bool force, ModoAjuste modoAjuste)
@@ -2248,6 +2295,13 @@ namespace Orbita.VA.Hardware
         /// </summary>
         /// <param name="pylonDeviceHandle"></param>
         public void Inicializar(PYLON_DEVICE_HANDLE pylonDeviceHandle)
+        {
+        }
+        /// <summary>
+        /// Inicialización del objeto
+        /// </summary>
+        /// <param name="pylonDeviceHandle"></param>
+        public void ObtenerRestricciones()
         {
         }
         /// <summary>
@@ -2361,6 +2415,13 @@ namespace Orbita.VA.Hardware
         {
         }
         /// <summary>
+        /// Inicialización del objeto
+        /// </summary>
+        /// <param name="pylonDeviceHandle"></param>
+        public void ObtenerRestricciones()
+        {
+        }
+        /// <summary>
         /// Aplica el valor de memoria a la cámara
         /// </summary>
         public bool Send(bool force, ModoAjuste modoAjuste)
@@ -2374,16 +2435,22 @@ namespace Orbita.VA.Hardware
                     this.Valor = new Rectangle((int)this.FeatureOffsetX.ValorGenerico, (int)this.FeatureOffsetY.ValorGenerico, (int)this.FeatureWidth.ValorGenerico, (int)this.FeatureHeight.ValorGenerico);
 
                     // Envio de valores mínimos
+                    this.FeatureOffsetX.ObtenerRestricciones();
                     this.FeatureOffsetX.ValorGenerico = 0;
                     this.FeatureOffsetX.Send(true, modoAjuste);
+                    this.FeatureOffsetY.ObtenerRestricciones();
                     this.FeatureOffsetY.ValorGenerico = 0;
                     this.FeatureOffsetY.Send(true, modoAjuste);
 
                     // Envio de parámetros
+                    this.FeatureWidth.ObtenerRestricciones();
                     this.FeatureWidth.Send(true, modoAjuste);
+                    this.FeatureHeight.ObtenerRestricciones();
                     this.FeatureHeight.Send(true, modoAjuste);
+                    this.FeatureOffsetX.ObtenerRestricciones();
                     this.FeatureOffsetX.ValorGenerico = this.Valor.X;
                     this.FeatureOffsetX.Send(true, modoAjuste);
+                    this.FeatureOffsetY.ObtenerRestricciones();
                     this.FeatureOffsetY.ValorGenerico = this.Valor.Y;
                     this.FeatureOffsetY.Send(true, modoAjuste);
 
@@ -2489,6 +2556,13 @@ namespace Orbita.VA.Hardware
         {
         }
         /// <summary>
+        /// Inicialización del objeto
+        /// </summary>
+        /// <param name="pylonDeviceHandle"></param>
+        public void ObtenerRestricciones()
+        {
+        }
+        /// <summary>
         /// When using multiple Camaras, it is possible that the
         /// total data rate of the Camaras will exceed the bandwidth of the 
         /// GigE network.  Acquisition can still be successfully performed
@@ -2581,6 +2655,12 @@ namespace Orbita.VA.Hardware
         /// Aplica el valor de memoria a la cámara
         /// </summary>
         void Inicializar(PYLON_DEVICE_HANDLE pylonDeviceHandle);
+
+        /// <summary>
+        /// Comprobación del rango de valores válidos
+        /// </summary>
+        /// <param name="pylonDeviceHandle"></param>
+        void ObtenerRestricciones();
         #endregion
     }
     #endregion

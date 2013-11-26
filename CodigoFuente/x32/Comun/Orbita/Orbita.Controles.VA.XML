@@ -9630,5 +9630,93 @@
             <param name="sender">Objeto que envía el evento</param>
             <param name="celda">Argumentos del evento</param>
         </member>
+        <member name="T:Orbita.Controles.VA.OrbitaSplash">
+            <summary>
+            Control que se muestra mientras se abre la aplicación
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaSplash.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="parent">Formulario padre</param>
+            <param name="milisegundos">Tiempo de refresco en milisegundos</param>
+            <param name="inicial">Indica si se trata de la visualización inicial o de una recarga de parámetros</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaSplash.RealizarVisualizaciones">
+            <summary>
+            Modifica los labels del formulario
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaSplash.Cerrar">
+            <summary>
+            Cierre del control de splash
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaSplash.FrmSplash_Load(System.Object,System.EventArgs)">
+            <summary>
+            Evento de carga
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaSplash.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaSplash.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaSplash.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaSplash.Mensaje">
+            <summary>
+            Contendrá el mensaje a actualizar en el formulario
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.VA.OSplashManagerTactil">
+            <summary>
+            Clase estática para el acceso al fomrulario de splash
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OSplashManagerTactil.Splash">
+            <summary>
+            Formulario splash
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OSplashManagerTactil.MostrandoSplash">
+            <summary>
+            Indica que el formulario de splash está mostrandose
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OSplashManagerTactil.IniciarSplash">
+            <summary>
+            Inicio del splash en otro hilo de ejecución
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OSplashManagerTactil.Contructor">
+            <summary>
+            Constructor del splash
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OSplashManagerTactil.Destructor">
+            <summary>
+            Destrucción del splash
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OSplashManagerTactil.Mensaje(System.String)">
+            <summary>
+            Visualización de un mensaje en el splash
+            </summary>
+            <param name="mensaje"></param>
+        </member>
     </members>
 </doc>
