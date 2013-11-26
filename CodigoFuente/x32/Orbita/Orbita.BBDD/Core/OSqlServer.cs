@@ -381,6 +381,8 @@ namespace Orbita.BBDD
                         }
                         // Ejecutar query.
                         resultado = command.ExecuteNonQuery();
+                        // Se limpia la colección de parámetros para evitar errores de asignación a varios SqlCommand.
+                        command.Parameters.Clear();
                     }
                 }
                 return resultado;
@@ -662,6 +664,8 @@ namespace Orbita.BBDD
                         resultado.Locale = CultureInfo.CurrentCulture;
                         resultado.TableName = "Orbita";
                     }
+                    // Se limpia la colección de parámetros para evitar errores de asignación a varios SqlCommand.
+                    command.Parameters.Clear();
                 }
                 // La conexión se cierra automáticamente en este punto, es decir,
                 // en el final del bloque using (SqlConnection conexion = new ...).
@@ -802,6 +806,8 @@ namespace Orbita.BBDD
                 command.ExecuteNonQuery();
                 // Asignar resultado del parámetro de retorno.
                 resultado = (int)parametroDeRetorno.Value;
+                // Se limpia la colección de parámetros para evitar errores de asignación a varios SqlCommand.
+                command.Parameters.Clear();
             }
             // La conexión se cierra automáticamente en este punto, es decir,
             // en el final del bloque using (SqlConnection conexion = new ...).
@@ -899,6 +905,8 @@ namespace Orbita.BBDD
                 }
                 // Ejecutar query.
                 resultado = command.ExecuteNonQuery();
+                // Se limpia la colección de parámetros para evitar errores de asignación a varios SqlCommand.
+                command.Parameters.Clear();
             }
             // La conexión se cierra automáticamente en este punto, es decir,
             // en el final del bloque using (SqlConnection conexion = new ...).
@@ -1145,6 +1153,8 @@ namespace Orbita.BBDD
                     resultado = command.ExecuteNonQuery();
                     // Confirmar transacción.
                     transaccion.Commit();
+                    // Se limpia la colección de parámetros para evitar errores de asignación a varios SqlCommand.
+                    command.Parameters.Clear();
                 }
                 catch (SqlException)
                 {

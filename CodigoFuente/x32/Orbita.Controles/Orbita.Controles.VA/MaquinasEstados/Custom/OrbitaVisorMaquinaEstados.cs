@@ -1356,7 +1356,8 @@ namespace Orbita.Controles.VA
         public RoundRectangleShape(Point localizacion, string texto, bool enMovimiento)
         {
             this.Texto = texto;
-            this.Tamaño = new Size(190, 60);
+            //this.Tamaño = new Size(190, 60);
+            this.Tamaño = new Size(120, 40);
             this.Rect = new Rectangle(Convert.ToInt32(localizacion.X - this.Tamaño.Width / 2),
                                Convert.ToInt32(localizacion.Y - this.Tamaño.Height / 2),
                                this.Tamaño.Width,
@@ -1364,8 +1365,8 @@ namespace Orbita.Controles.VA
 
             this.Brush = new LinearGradientBrush(this.Rect, Color.FromArgb(211, 220, 239), Color.FromArgb(255, 255, 255), 0.0);
             this.BrushSombra = new SolidBrush(Color.FromArgb(216, 216, 216));
-            this.ActiveFont = new Font("Arial", 8, FontStyle.Underline);
-            this.InactiveFont = new Font("Arial", 8, FontStyle.Regular);
+            this.ActiveFont = new Font("Arial", 6, FontStyle.Underline);
+            this.InactiveFont = new Font("Arial", 6, FontStyle.Regular);
             this.Pen = new Pen(Color.FromArgb(113, 111, 100));
             this.SelectionPen = new Pen(Color.Black, 3);
             this.SelectionBrush = new SolidBrush(Color.FromArgb(128, 128, 128, 128));
@@ -1502,8 +1503,8 @@ namespace Orbita.Controles.VA
                 rectTexto.X = Convert.ToInt32(this.Rect.X + (this.Rect.Width - tamañoTexto.Width) / 2);
                 rectTexto.Y = Convert.ToInt32(this.Rect.Y + (this.Rect.Height - tamañoTexto.Height) / 2);
                 g.DrawString(this.Texto, this.ActiveFont, Brushes.Black, rectTexto);
-                g.FillEllipse(Brushes.Red, this.Rect.X + 10, rectTexto.Y - 10, 12, 12);
-                g.DrawEllipse(Pens.Black, this.Rect.X + 10, rectTexto.Y - 10, 12, 12);
+                g.FillEllipse(Brushes.Red, this.Rect.X + 6, rectTexto.Y - 6, 8, 8);
+                g.DrawEllipse(Pens.Black, this.Rect.X + 6, rectTexto.Y - 6, 8, 8);
             }
             else
             {
@@ -1618,7 +1619,7 @@ namespace Orbita.Controles.VA
             this.Pen = new Pen(Color.FromArgb(113, 111, 100));
             this.Pen.Width = 1;
 
-            this.Font = new Font("Arial", 8, FontStyle.Regular);
+            this.Font = new Font("Arial", 6, FontStyle.Regular);
 
             this.SelectionPen = new Pen(Color.Black, 3);
             this.SelectionBrush = new SolidBrush(Color.FromArgb(128, 128, 128, 128));
@@ -1775,7 +1776,7 @@ namespace Orbita.Controles.VA
             this.Pen = new Pen(Color.FromArgb(113, 111, 100));
             this.Pen.Width = 1;
 
-            this.Font = new Font("Arial", 8, FontStyle.Regular);
+            this.Font = new Font("Arial", 6, FontStyle.Regular);
 
             this.SelectionPen = new Pen(Color.Black, 3);
             this.SelectionBrush = new SolidBrush(Color.FromArgb(128, 128, 128, 128));

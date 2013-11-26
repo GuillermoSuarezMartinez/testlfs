@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Orbita.Xml;
+using Orbita.Utiles;
 
 namespace Orbita.VA.Comun
 {
@@ -127,7 +128,7 @@ namespace Orbita.VA.Comun
         /// Constructor de la clase
         /// </summary>
         public OResultadoVA()
-            : base()
+            : this(false, DateTime.Now, false, string.Empty, new TimeSpan())
         {
         }
 
@@ -148,6 +149,43 @@ namespace Orbita.VA.Comun
             this.Inspeccionado = inspeccionado;
             this.Excepcion = excepcion;
             this.TiempoProceso = tiempoProceso;
+        }
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        /// <param name="listaPropiedades">Lista de propiedades a añadir</param>
+        public OResultadoVA(Dictionary<string, object> listaPropiedades)
+            : this(false, DateTime.Now, false, string.Empty, new TimeSpan())
+        {
+            this.Propiedades.AddRange(listaPropiedades);
+
+            // Se rellenan los campos
+            object valor;
+            if (this.Propiedades.TryGetValue("OK", out valor))
+            {
+                this.OK = valor.ValidarBooleano();
+            }
+
+            if (this.Propiedades.TryGetValue("Fecha", out valor))
+            {
+                this.Fecha = valor.ValidarFechaHora();
+            }
+
+            if (this.Propiedades.TryGetValue("Inspeccionado", out valor))
+            {
+                this.Inspeccionado = valor.ValidarBooleano();
+            }
+
+            if (this.Propiedades.TryGetValue("Excepcion", out valor))
+            {
+                this.Excepcion = valor.ValidarTexto();
+            }
+
+            if (this.Propiedades.TryGetValue("TiempoProceso", out valor))
+            {
+                this.TiempoProceso = valor.ValidarIntervaloTiempo();
+            }
         }
         #endregion
 
