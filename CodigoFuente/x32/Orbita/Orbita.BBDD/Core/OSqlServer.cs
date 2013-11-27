@@ -379,10 +379,16 @@ namespace Orbita.BBDD
                                 command.Parameters.Add(parametro);
                             }
                         }
-                        // Ejecutar query.
-                        resultado = command.ExecuteNonQuery();
-                        // Se limpia la colección de parámetros para evitar errores de asignación a varios SqlCommand.
-                        command.Parameters.Clear();
+                        try
+                        {
+                            // Ejecutar query.
+                            resultado = command.ExecuteNonQuery();
+                        }
+                        finally
+                        {
+                            // Se limpia la colección de parámetros para evitar errores de asignación a varios SqlCommand.
+                            command.Parameters.Clear();
+                        }
                     }
                 }
                 return resultado;
@@ -647,6 +653,7 @@ namespace Orbita.BBDD
                     command.CommandType = CommandType.StoredProcedure;
                     // Asignar procedimiento almacenado a ejecutar.
                     command.CommandText = procedimiento;
+
                     // Parámetros de entrada al procedimiento almacenado.
                     if (parametros != null)
                     {
@@ -656,16 +663,22 @@ namespace Orbita.BBDD
                             command.Parameters.Add(parametro);
                         }
                     }
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    try
                     {
-                        // Asignar resultados al DataTable.
-                        adapter.Fill(resultado = new DataTable());
-                        // Establecer una configuración regional actual.
-                        resultado.Locale = CultureInfo.CurrentCulture;
-                        resultado.TableName = "Orbita";
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            // Asignar resultados al DataTable.
+                            adapter.Fill(resultado = new DataTable());
+                            // Establecer una configuración regional actual.
+                            resultado.Locale = CultureInfo.CurrentCulture;
+                            resultado.TableName = "Orbita";
+                        }
                     }
-                    // Se limpia la colección de parámetros para evitar errores de asignación a varios SqlCommand.
-                    command.Parameters.Clear();
+                    finally
+                    {
+                        // Se limpia la colección de parámetros para evitar errores de asignación a varios SqlCommand.
+                        command.Parameters.Clear();
+                    }
                 }
                 // La conexión se cierra automáticamente en este punto, es decir,
                 // en el final del bloque using (SqlConnection conexion = new ...).
@@ -802,12 +815,18 @@ namespace Orbita.BBDD
                 parametroDeRetorno.Direction = ParameterDirection.ReturnValue;
                 // Añadir el parámetro de retorno al SqlCommand.
                 command.Parameters.Add(parametroDeRetorno);
-                // Ejecutar query.
-                command.ExecuteNonQuery();
-                // Asignar resultado del parámetro de retorno.
-                resultado = (int)parametroDeRetorno.Value;
-                // Se limpia la colección de parámetros para evitar errores de asignación a varios SqlCommand.
-                command.Parameters.Clear();
+                try
+                {
+                    // Ejecutar query.
+                    command.ExecuteNonQuery();
+                    // Asignar resultado del parámetro de retorno.
+                    resultado = (int)parametroDeRetorno.Value;
+                }
+                finally
+                {
+                    // Se limpia la colección de parámetros para evitar errores de asignación a varios SqlCommand.
+                    command.Parameters.Clear();
+                }
             }
             // La conexión se cierra automáticamente en este punto, es decir,
             // en el final del bloque using (SqlConnection conexion = new ...).
@@ -903,10 +922,16 @@ namespace Orbita.BBDD
                         command.Parameters.Add(parametro);
                     }
                 }
-                // Ejecutar query.
-                resultado = command.ExecuteNonQuery();
-                // Se limpia la colección de parámetros para evitar errores de asignación a varios SqlCommand.
-                command.Parameters.Clear();
+                try
+                {
+                    // Ejecutar query.
+                    resultado = command.ExecuteNonQuery();
+                }
+                finally
+                {
+                    // Se limpia la colección de parámetros para evitar errores de asignación a varios SqlCommand.
+                    command.Parameters.Clear();
+                }
             }
             // La conexión se cierra automáticamente en este punto, es decir,
             // en el final del bloque using (SqlConnection conexion = new ...).
@@ -1149,12 +1174,18 @@ namespace Orbita.BBDD
                             command.Parameters.Add(parametro);
                         }
                     }
-                    // Ejecutar query.
-                    resultado = command.ExecuteNonQuery();
-                    // Confirmar transacción.
-                    transaccion.Commit();
-                    // Se limpia la colección de parámetros para evitar errores de asignación a varios SqlCommand.
-                    command.Parameters.Clear();
+                    try
+                    {
+                        // Ejecutar query.
+                        resultado = command.ExecuteNonQuery();
+                        // Confirmar transacción.
+                        transaccion.Commit();
+                    }
+                    finally
+                    {
+                        // Se limpia la colección de parámetros para evitar errores de asignación a varios SqlCommand.
+                        command.Parameters.Clear();
+                    }
                 }
                 catch (SqlException)
                 {

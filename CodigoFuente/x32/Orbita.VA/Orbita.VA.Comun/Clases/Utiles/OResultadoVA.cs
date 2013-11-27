@@ -26,6 +26,13 @@ namespace Orbita.VA.Comun
     /// </summary>
     public class OResultadoVA : OConvertibleXML
     {
+        #region Atributo(s)
+        /// <summary>
+        /// Subfijo de las propiedades
+        /// </summary>
+        private string Subfijo = string.Empty;
+        #endregion
+
         #region Propiedades
         /// <summary>
         /// Resultado global
@@ -40,7 +47,7 @@ namespace Orbita.VA.Comun
             set
             {
                 this._OK = value;
-                this.Propiedades["OK"] = value;
+                this.ModificarPropiedadSubfijo("OK", value);
             }
         }
 
@@ -57,7 +64,7 @@ namespace Orbita.VA.Comun
             set
             {
                 this._Fecha = value;
-                this.Propiedades["Fecha"] = value;
+                this.ModificarPropiedadSubfijo("Fecha", value);
             }
         }
 
@@ -74,7 +81,7 @@ namespace Orbita.VA.Comun
             set
             {
                 this._Inspeccionado = value;
-                this.Propiedades["Inspeccionado"] = value;
+                this.ModificarPropiedadSubfijo("Inspeccionado", value);
             }
         }
 
@@ -91,7 +98,7 @@ namespace Orbita.VA.Comun
             set
             {
                 this._TiempoProceso = value;
-                this.Propiedades["TiempoProceso"] = value;
+                this.ModificarPropiedadSubfijo("TiempoProceso", value);
             }
         }
 
@@ -127,8 +134,8 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Constructor de la clase
         /// </summary>
-        public OResultadoVA()
-            : this(false, DateTime.Now, false, string.Empty, new TimeSpan())
+        public OResultadoVA(string subfijo = "")
+            : this(false, DateTime.Now, false, string.Empty, new TimeSpan(), subfijo)
         {
         }
 
@@ -140,9 +147,11 @@ namespace Orbita.VA.Comun
         /// <param name="inspeccionado">Indica si se ha podido realizar la inspección o ha habido algun error en el intento</param>
         /// <param name="excepcion">En el caso de no haberse podido realizar la inspección, se informaría en este cammpo del motivo</param>
         /// <param name="rechazado">Debido al resultado negativo se ha prodecido a rechazar el producto/pieza</param>
-        public OResultadoVA(bool ok, DateTime fecha, bool inspeccionado, string excepcion, TimeSpan tiempoProceso)
+        public OResultadoVA(bool ok, DateTime fecha, bool inspeccionado, string excepcion, TimeSpan tiempoProceso, string subfijo = "")
             : base()
         {
+            this.Subfijo = subfijo;
+
             // Se rellenan los campos
             this.OK = ok;
             this.Fecha = fecha;
@@ -155,37 +164,39 @@ namespace Orbita.VA.Comun
         /// Constructor de la clase
         /// </summary>
         /// <param name="listaPropiedades">Lista de propiedades a añadir</param>
-        public OResultadoVA(Dictionary<string, object> listaPropiedades)
+        public OResultadoVA(Dictionary<string, object> listaPropiedades, string subfijo = "")
             : this(false, DateTime.Now, false, string.Empty, new TimeSpan())
         {
-            this.Propiedades.AddRange(listaPropiedades);
+            this.Subfijo = subfijo;
 
             // Se rellenan los campos
             object valor;
-            if (this.Propiedades.TryGetValue("OK", out valor))
+            if (this.LeerPropiedadSubfijo("OK", out valor))
             {
                 this.OK = valor.ValidarBooleano();
             }
 
-            if (this.Propiedades.TryGetValue("Fecha", out valor))
+            if (this.LeerPropiedadSubfijo("Fecha", out valor))
             {
                 this.Fecha = valor.ValidarFechaHora();
             }
 
-            if (this.Propiedades.TryGetValue("Inspeccionado", out valor))
+            if (this.LeerPropiedadSubfijo("Inspeccionado", out valor))
             {
                 this.Inspeccionado = valor.ValidarBooleano();
             }
 
-            if (this.Propiedades.TryGetValue("Excepcion", out valor))
+            if (this.LeerPropiedadSubfijo("Excepcion", out valor))
             {
                 this.Excepcion = valor.ValidarTexto();
             }
 
-            if (this.Propiedades.TryGetValue("TiempoProceso", out valor))
+            if (this.LeerPropiedadSubfijo("TiempoProceso", out valor))
             {
                 this.TiempoProceso = valor.ValidarIntervaloTiempo();
             }
+
+            this.Propiedades.AddRange(listaPropiedades.Select(kvp => new KeyValuePair<string, object>(kvp.Key + subfijo, kvp.Value)));
         }
         #endregion
 
@@ -198,12 +209,32 @@ namespace Orbita.VA.Comun
         /// <param name="inspeccionado">Indica si se ha podido realizar la inspección o ha habido algun error en el intento</param>
         /// <param name="excepcion">En el caso de no haberse podido realizar la inspección, se informaría en este cammpo del motivo</param>
         /// <param name="rechazado">Debido al resultado negativo se ha prodecido a rechazar el producto/pieza</param>
-        public virtual OResultadoVA AñadirNuevoDetalle(bool resultado, DateTime fecha, bool inspeccionado, string excepcion, TimeSpan tiempoProceso)
+        public virtual OResultadoVA AñadirNuevoDetalle(bool resultado, DateTime fecha, bool inspeccionado, string excepcion, TimeSpan tiempoProceso, string subfijo = "")
         {
-            OResultadoVA subResultado = new OResultadoVA(resultado, fecha, inspeccionado, excepcion, tiempoProceso);
+            OResultadoVA subResultado = new OResultadoVA(resultado, fecha, inspeccionado, excepcion, tiempoProceso, subfijo);
             this._Detalles.Add(subResultado);
 
             return subResultado;
+        }
+        #endregion
+
+        #region Método(s) público(s)
+        /// <summary>
+        /// Modifica una propiedad
+        /// </summary>
+        /// <param name="codigoPropiedad"></param>
+        protected void ModificarPropiedadSubfijo(string codigo, object valor)
+        {
+            this.Propiedades[codigo + this.Subfijo] = valor;
+        }
+
+        /// <summary>
+        /// Lee una propiedad
+        /// </summary>
+        /// <param name="codigoPropiedad"></param>
+        protected bool LeerPropiedadSubfijo(string codigo, out object valor)
+        {
+            return this.Propiedades.TryGetValue(codigo + this.Subfijo, out valor);
         }
         #endregion
     }
