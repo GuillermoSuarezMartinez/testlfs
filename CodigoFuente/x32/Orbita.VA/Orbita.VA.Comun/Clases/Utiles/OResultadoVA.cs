@@ -115,7 +115,7 @@ namespace Orbita.VA.Comun
             set
             {
                 this._Excepcion = value;
-                this.Propiedades["Excepcion"] = value;
+                this.ModificarPropiedadSubfijo("Excepcion", value);
             }
         }
         #endregion
@@ -165,9 +165,9 @@ namespace Orbita.VA.Comun
         /// </summary>
         /// <param name="listaPropiedades">Lista de propiedades a añadir</param>
         public OResultadoVA(Dictionary<string, object> listaPropiedades, string subfijo = "")
-            : this(false, DateTime.Now, false, string.Empty, new TimeSpan())
+            : this(false, DateTime.Now, false, string.Empty, new TimeSpan(), subfijo)
         {
-            this.Subfijo = subfijo;
+            this.Propiedades.AddRange(listaPropiedades.Select(kvp => new KeyValuePair<string, object>(kvp.Key + subfijo, kvp.Value)));
 
             // Se rellenan los campos
             object valor;
@@ -195,8 +195,6 @@ namespace Orbita.VA.Comun
             {
                 this.TiempoProceso = valor.ValidarIntervaloTiempo();
             }
-
-            this.Propiedades.AddRange(listaPropiedades.Select(kvp => new KeyValuePair<string, object>(kvp.Key + subfijo, kvp.Value)));
         }
         #endregion
 

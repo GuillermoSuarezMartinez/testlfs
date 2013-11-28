@@ -1,4 +1,15 @@
-﻿using System.Collections;
+﻿//***********************************************************************
+// Assembly         : Orbita.Utiles
+// Author           : crodiguez
+// Created          : 28-11-2013
+//
+// Last Modified By : crodiguez
+// Last Modified On : 28-11-2013
+// Description      : Solucionado bug de timeout de conexión. Ahora existe un parámetro opcional en el XML de configuración
+//
+// Copyright        : (c) Orbita Ingenieria. All rights reserved.
+//***********************************************************************
+using System.Collections;
 using System.Linq;
 using System.Xml;
 
@@ -60,12 +71,26 @@ namespace Orbita.BBDD
             string password = elementoXml.GetAttribute("Password");
             string tipo = elementoXml.GetAttribute("Tipo");
             string mirror = elementoXml.GetAttribute("Mirror");
+            string timeout = string.Empty;
+            if (elementoXml.HasAttribute("Timeout"))
+            {
+                timeout = elementoXml.GetAttribute("Timeout");
+            }
             switch (tipo.ToLower())
             {
                 case "osqlserver":
                     if (mirror.Length == 0)
                     {
-                        OInfoConexion info = new OInfoConexion(instancia, basedatos, usuario, password);
+                        OInfoConexion info;
+                        int timeoutSg;
+                        if (string.IsNullOrEmpty(timeout) || !int.TryParse(timeout, out timeoutSg))
+                        {
+                            info = new OInfoConexion(instancia, basedatos, usuario, password);
+                        }
+                        else
+                        {
+                            info = new OInfoConexion(instancia, basedatos, usuario, password, timeoutSg);
+                        }
                         OSqlServer sql = new OSqlServer(info);
                         _coleccionBBDD.Add(nombre, sql);
                     }
