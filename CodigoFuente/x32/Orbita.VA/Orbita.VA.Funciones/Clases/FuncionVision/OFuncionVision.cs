@@ -1304,7 +1304,6 @@ namespace Orbita.VA.Funciones
                 this._CodVariable = dtParametro.Rows[0]["CodVariable"].ToString();
                 this._EsEntrada = (bool)dtParametro.Rows[0]["EsEntrada"];
                 this._OrigenValorParametro = OEnumerado<OrigenValorParametro>.Validar(dtParametro.Rows[0]["OrigenValorParametro"].ToString(), OrigenValorParametro.ValorPorCodigo);
-                //this._OrigenValorParametro = (OOrigenValorParametro)App.EnumParse(typeof(OOrigenValorParametro), dtParametro.Rows[0]["OrigenValorParametro"].ToString(), OOrigenValorParametro.ValorPorCodigo);
                 this._Tipo = (OEnumTipoDato)OEntero.Validar(dtParametro.Rows[0]["IdTipoParametroFuncionVision"], 0, 99, 0);
 
                 if (this._OrigenValorParametro == OrigenValorParametro.ValorFijo)

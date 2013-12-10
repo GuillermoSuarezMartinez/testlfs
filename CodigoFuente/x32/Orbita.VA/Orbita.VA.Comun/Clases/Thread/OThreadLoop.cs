@@ -14,6 +14,10 @@
 // Last Modified On : 16-11-2012
 // Description      : Cabiados métodos de finalización
 //
+// Last Modified By : aibañez
+// Last Modified On : 29-11-2013
+// Description      : Utilización antes de sincronizar con el thread principal de IsHandleCreated
+//
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
@@ -157,11 +161,18 @@ namespace Orbita.VA.Comun
         {
             try
             {
-                return App.FormularioPrincipal.Invoke(metodo, parametros);
+                if (App.FormularioPrincipal.IsHandleCreated)
+                {
+                    return App.FormularioPrincipal.Invoke(metodo, parametros);
+                }
+                else
+                {
+                    OLogsVAComun.Threads.Warn("Imposible sincronizar con el thrad principal");
+                }
             }
             catch (Exception exception)
             {
-                OLogsVAComun.Threads.Info(exception, "SincronizarConThreadPrincipal");
+                OLogsVAComun.Threads.Warn(exception, "SincronizarConThreadPrincipal");
             }
             return null;
         }

@@ -224,7 +224,7 @@ namespace Orbita.VA.Comun
         {
             bool resultado = false;
 
-            if ((this.Estado == EstadoProductorConsumidor.EnEjecucion) && (imagen is OImagen))
+            if (((this.Estado == EstadoProductorConsumidor.EnEjecucion) || (this.Estado == EstadoProductorConsumidor.Pausado)) && (imagen is OImagen))
             {
                 DateTime momentoCapturaActual = imagen.MomentoCreacion;
                 bool primeraCaptura = this.ThreadConsumidor.Total == 0;
@@ -255,6 +255,10 @@ namespace Orbita.VA.Comun
                     if ((this.Resolucion.Width != imagen.Width) || (this.Resolucion.Height != imagen.Height))
                     {
                         imagenAux = imagen.EscalarImagen(imagen, this.Resolucion.Width, this.Resolucion.Height);
+                    }
+                    else // NUEVO: Se hace un clon de la imagen antes de guardarla en la cola
+                    {
+                        imagenAux = (OImagen)imagen.Clone();
                     }
                     resultado = this.ThreadConsumidor.Encolar(imagenAux);
                 }
@@ -293,13 +297,67 @@ namespace Orbita.VA.Comun
         }
 
         /// <summary>
+        /// Inicia el guardado del video de forma pausada
+        /// </summary>
+        public bool StartPaused()
+        {
+            bool resultado = false;
+
+            try
+            {
+                if ((this.Estado == EstadoProductorConsumidor.Detenido) &&
+                    this.Valido)
+                {
+                    this.AVIWriter.Open(this._Ruta, this.Resolucion.Width, this.Resolucion.Height, this.FrameRate, (VideoCodec)this.Codec, this.BitRate);
+
+                    this.CronometroDuracion.Reset();
+                    this.ThreadConsumidor.StartPaused();
+
+                    resultado = true;
+                }
+            }
+            catch (Exception exception)
+            {
+                OLogsVAComun.Multimedia.Error(exception, "Inicio pausado de la grabación de video: " + this.Codigo);
+            }
+
+            return resultado;
+        }
+
+        /// <summary>
+        /// Reanuda la generación del video
+        /// </summary>
+        public bool Resume()
+        {
+            bool resultado = false;
+
+            try
+            {
+                if ((this.Estado == EstadoProductorConsumidor.Pausado) &&
+                    this.Valido)
+                {
+                    this.CronometroDuracion.Start();
+                    this.ThreadConsumidor.Resume();
+
+                    resultado = true;
+                }
+            }
+            catch (Exception exception)
+            {
+                OLogsVAComun.Multimedia.Error(exception, "Reanudación de la grabación de video: " + this.Codigo);
+            }
+
+            return resultado;
+        }
+
+        /// <summary>
         /// Finaliza el guardado del video
         /// </summary>
         public void Stop()
         {
             try
             {
-                if (this.Estado == EstadoProductorConsumidor.EnEjecucion)
+                if ((this.Estado == EstadoProductorConsumidor.EnEjecucion) || (this.Estado == EstadoProductorConsumidor.Pausado))
                 {
                     this.ThreadConsumidor.Stop();
                 }

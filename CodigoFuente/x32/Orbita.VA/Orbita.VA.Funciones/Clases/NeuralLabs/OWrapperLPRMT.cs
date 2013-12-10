@@ -19,6 +19,7 @@ using System.Text;
 using System.Threading;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
+using System.Text.RegularExpressions;
 
 namespace Orbita.VA.Funciones
 {
@@ -589,6 +590,14 @@ namespace Orbita.VA.Funciones
                                 try
                                 {
                                     matricula = Encoding.UTF7.GetString(res.strResult, i * 10, res.vlNumbersOfCharacters[i]);
+
+                                    // Eliminación de carácteres no alfanuméricos
+                                    if (Regex.IsMatch(matricula, @"\W"))
+                                    {
+                                        matricula = Regex.Replace(matricula, @"\W", "");
+                                    }
+
+
                                     OLogsVAFunciones.LPR.Debug("LPR", string.Format(new CultureInfo("en-US"), "Callback ResultadoLPR (id = {0}) : CODIGO {1}, FIABILIDAD {2}", new object[] { id, matricula, fia}));
                                 }
                                 catch (Exception exception)

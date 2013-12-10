@@ -171,8 +171,17 @@ namespace Orbita.VA.Comun
             {
                 try
                 {
-                    imagenResultado._Image = this.Image.Clone();
+                    // OPCIÓN 1
+                    //imagenResultado._Image = this.Image.Clone();
 
+                    // OPCIÓN 2
+                    //Bitmap b = new Bitmap(this.Width, this.Height);
+                    //Graphics g = Graphics.FromImage((Image)b);
+                    //g.DrawImage(this.Image, 0, 0, this.Width, this.Height);
+                    //g.Dispose();
+                    //g = null;
+                    //imagenResultado.Image = b;
+                    // OPCIÓN 3
                     //// Fase 1: Copia de la imagen a Array de Bytes
                     //OByteArrayImage imagenByteArray = new OByteArrayImage();
                     //imagenByteArray.Serializar(this);
@@ -180,8 +189,8 @@ namespace Orbita.VA.Comun
                     //// Fase 2: Restauración del Array de Bytes a la Imagen
                     //imagenResultado = (OImagenBitmap)imagenByteArray.Desserializar();
 
-                    imagenResultado.Codigo = this.Codigo;
-                    imagenResultado.MomentoCreacion = this.MomentoCreacion;
+                    // OPCIÓN 4
+                    imagenResultado._Image = new Bitmap(this.Image);
                 }
                 catch (Exception exception)
                 {

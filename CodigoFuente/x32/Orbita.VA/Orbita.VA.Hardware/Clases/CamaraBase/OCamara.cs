@@ -891,7 +891,7 @@ namespace Orbita.VA.Hardware
 		/// </summary>
         public bool Recording
         {
-            get { return this.VideoFile.Estado == EstadoProductorConsumidor.EnEjecucion; }
+            get { return (this.VideoFile.Estado == EstadoProductorConsumidor.EnEjecucion) || (this.VideoFile.Estado == EstadoProductorConsumidor.Pausado); }
         }
 		/// <summary>
 		/// Proporciona herramientas para medir la velocidad de adquisición de la cámara
@@ -1814,7 +1814,42 @@ namespace Orbita.VA.Hardware
 
                 resultado = this.StartRECInterno(fichero);
             }
-            //this.Recording = resultado;
+            return resultado;
+        }
+
+        /// <summary>
+        /// Comienza una grabación continua de la cámara en modo pausada
+        /// </summary>
+        /// <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
+        /// <returns></returns>
+        public bool StartRECPaused(string fichero)
+        {
+            bool resultado = false;
+            if (this.Habilitado && (this.EstadoConexion == EstadoConexion.Conectado))
+            {
+                // Información extra
+                OLogsVAHardware.Camaras.Debug(this.Codigo, "REC pausada de la cámara: " + this.Codigo);
+
+                resultado = this.StartRECPausedInterno(fichero);
+            }
+            return resultado;
+        }
+
+        /// <summary>
+        /// Reanuda una grabación continua de la cámara
+        /// </summary>
+        /// <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
+        /// <returns></returns>
+        public bool ResumeREC()
+        {
+            bool resultado = false;
+            if (this.Habilitado && (this.EstadoConexion == EstadoConexion.Conectado))
+            {
+                // Información extra
+                OLogsVAHardware.Camaras.Debug(this.Codigo, "REC reanudada de la cámara: " + this.Codigo);
+
+                resultado = this.ResumeRECInterno();
+            }
             return resultado;
         }
 
@@ -2292,6 +2327,41 @@ namespace Orbita.VA.Hardware
 
             return resultado;
 		}
+
+        /// <summary>
+        /// Comienza una grabacion continua de la cámara de forma pausada
+        /// </summary>
+        /// <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
+        /// <returns></returns>
+        protected virtual bool StartRECPausedInterno(string fichero)
+        {
+            bool resultado = false;
+
+            this.VideoFile.Ruta = fichero;
+            if (this.VideoFile.Valido)
+            {
+                resultado = this.VideoFile.StartPaused();
+            }
+
+            return resultado;
+        }
+
+        /// <summary>
+        /// Comienza una grabacion continua de la cámara de forma pausada
+        /// </summary>
+        /// <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
+        /// <returns></returns>
+        protected virtual bool ResumeRECInterno()
+        {
+            bool resultado = false;
+
+            if (this.Recording)
+            {
+                resultado = this.VideoFile.Resume();
+            }
+
+            return resultado;
+        }
         
 		/// <summary>
 		/// Termina una grabación continua de la cámara

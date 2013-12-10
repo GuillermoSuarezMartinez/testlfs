@@ -19,6 +19,7 @@ using System.Text;
 using System.Threading;
 using Orbita.Utiles;
 using Orbita.VA.Comun;
+using System.Text.RegularExpressions;
 
 namespace Orbita.VA.Funciones
 {
@@ -590,6 +591,13 @@ namespace Orbita.VA.Funciones
                             try
                             {
                                 codigo = Encoding.UTF8.GetString(res.strResult, 0, res.vlNumbersOfCharacters[0]);
+                                
+                                // Eliminación de carácteres no alfanuméricos
+                                if (Regex.IsMatch(codigo, @"\W"))
+                                {
+                                    codigo = Regex.Replace(codigo, @"\W", "");
+                                }
+
                                 OLogsVAFunciones.CCR.Debug("CCR", string.Format(new CultureInfo("en-US"), "Callback ResultadoCCR (id = {0}) : CODIGO {1}, FIABILIDAD {2}", new object[] { id, codigo, fia }));
                             }
                             catch (Exception exception)

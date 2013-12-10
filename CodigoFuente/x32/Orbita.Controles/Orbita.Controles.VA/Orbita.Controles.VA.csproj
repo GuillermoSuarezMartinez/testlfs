@@ -385,6 +385,12 @@
     <Compile Include="Visores\Controles\OrbitaVisorBitmap\Componentes\VisorImagenes.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Visores\Controles\OrbitaVisorVProTactil.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Visores\Controles\OrbitaVisorVProTactil.designer.cs">
+      <DependentUpon>OrbitaVisorVProTactil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visores\Formularios\FrmDetalleCamara.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -532,6 +538,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Visores\Controles\OrbitaVisorVPro.resx">
       <DependentUpon>OrbitaVisorVPro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visores\Controles\OrbitaVisorVProTactil.resx">
+      <DependentUpon>OrbitaVisorVProTactil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visores\Formularios\FrmDetalleCamara.resx">
       <DependentUpon>FrmDetalleCamara.cs</DependentUpon>

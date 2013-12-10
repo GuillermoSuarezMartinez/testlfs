@@ -12,10 +12,10 @@
     <AssemblyName>Orbita.Controles.Comunes</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>%24/Librerias/CodigoFuente/x32/Orbita.Controles/Orbita.Controles.Comunes</SccProjectName>
-    <SccLocalPath>.</SccLocalPath>
-    <SccAuxPath>http://01x0019:8080/tfs/orbitasoftware</SccAuxPath>
-    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">

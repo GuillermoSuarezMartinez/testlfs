@@ -93,9 +93,12 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Constructor de los campos estáticos de la clase
         /// </summary>
-        public static bool Constructor(OSistema sistema, bool instanciaUnica, bool integraMaquinasEstados, Form mainForm = null)
+        public static bool Constructor(OSistema sistema, bool instanciaUnica, bool integraMaquinasEstados, Form mainForm = null, params string[] args)
         {
             _Sistema = sistema;
+
+            // Parámetros de la apliación
+            ListaParametrosEntradaAplicacion = args;
 
             bool resultado = true;
             if (instanciaUnica)
@@ -112,11 +115,8 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Inicia el sistema de inspección en tiempo real
         /// </summary>
-        public static bool IniciarAplicacion(ModoInicio modoInicio, params string[] args)
+        public static bool IniciarAplicacion(ModoInicio modoInicio)
         {
-            // Parámetros de la apliación
-            ListaParametrosEntradaAplicacion = args;
-
             // Modo de inicio
             if (modoInicio == ModoInicio.Defecto)
             {

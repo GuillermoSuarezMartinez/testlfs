@@ -2645,7 +2645,7 @@ namespace Orbita.VA.Comun
     /// Listado de secuencias.
     /// Se supone que al insertar cada uno de los items de la secuencia, estos tienen que estar ordenados cronológicamente
     /// </summary>
-    public class OSecuencia : List<OSecuenciaItemBase>
+    public class OSecuencia : List<OSecuenciaItemBase>, IDisposable
     {
         #region Atributo(s)
         /// <summary>
@@ -2759,8 +2759,19 @@ namespace Orbita.VA.Comun
 
             //this.ThreadEjecucion.OnEjecucion += ThreadRun;
             this.ThreadEjecucion.CrearSuscripcionRun(ThreadRun, true);
+            this.ThreadEjecucion.CrearSuscripcionFin(Dispose, false);
             this.ThreadEjecucion.Start();
         }
+
+        /// <summary>
+        /// Libera la memoria reservada por el objeto
+        /// </summary>
+        public void Dispose()
+        {
+            this.ThreadEjecucion.Dispose();
+            this.ThreadEjecucion = null;
+        }
+
 
         /// <summary>
         /// Finaliza la secuencia

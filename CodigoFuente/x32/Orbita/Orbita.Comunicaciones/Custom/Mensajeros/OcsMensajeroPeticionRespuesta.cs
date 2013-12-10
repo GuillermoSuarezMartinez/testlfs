@@ -127,6 +127,8 @@ namespace Orbita.Comunicaciones
         /// </summary>
         public void Dispose()
         {
+            this.Mensajero.MensajeRecibido -= Mensajero_MensajeRecibido;
+            this.Mensajero.MensajeEnviado -= Mensajero_MensajeEnviado;
             Parar();
         }
         /// <summary>
