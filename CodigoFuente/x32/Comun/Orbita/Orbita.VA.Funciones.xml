@@ -762,6 +762,11 @@
             Claves de la función de visión
             </summary>
         </member>
+        <member name="F:Orbita.VA.Funciones.OFuncionVisionBase.Cronometro">
+            <summary>
+            Cronómetro de la duración de las ejecuciones
+            </summary>
+        </member>
         <member name="F:Orbita.VA.Funciones.OFuncionVisionBase._IdEjecucionActual">
             <summary>
             Id de la ejecucion Actual

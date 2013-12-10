@@ -108,6 +108,16 @@
             Inicia el guardado del video
             </summary>
         </member>
+        <member name="M:Orbita.VA.Comun.OVideoFile.StartPaused">
+            <summary>
+            Inicia el guardado del video de forma pausada
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OVideoFile.Resume">
+            <summary>
+            Reanuda la generación del video
+            </summary>
+        </member>
         <member name="M:Orbita.VA.Comun.OVideoFile.Stop">
             <summary>
             Finaliza el guardado del video
@@ -458,6 +468,12 @@
             <param name="excepcion">En el caso de no haberse podido realizar la inspección, se informaría en este cammpo del motivo</param>
             <param name="rechazado">Debido al resultado negativo se ha prodecido a rechazar el producto/pieza</param>
         </member>
+        <member name="M:Orbita.VA.Comun.OResultadoVA.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="listaPropiedades">Lista de propiedades a añadir</param>
+        </member>
         <member name="M:Orbita.VA.Comun.OResultadoVA.AñadirNuevoDetalle(System.Boolean,System.DateTime,System.Boolean,System.String,System.TimeSpan)">
             <summary>
             Añade un subresultado
@@ -494,6 +510,121 @@
             </summary>
         </member>
         <member name="P:Orbita.VA.Comun.OResultadoVA.Detalles">
+            <summary>
+            Desglose de detalle
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.Comun.OResultadoVAEx">
+            <summary>
+            Clase utilizada como contenedor de los resultados de una inspección de visión artificial.
+            Esta clase tiene la peculiaridad de que es exportable directamente a XML, por lo que es ideal para
+            su almacenamiento en BBDD mediante su envio a un procedimiento almacenado.
+            
+            Los datos que se desean convertir en XML deben programarse siguiendo el ejemplo:
+                    private bool _OK;
+                    public bool OK
+                    {
+                        get { return _OK; }
+                        set
+                        {
+                            this._OK = value;
+                            this.Propiedades["OK"] = value;
+                        }
+                    }
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OResultadoVAEx._Codigo">
+            <summary>
+            Código de la inspección
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OResultadoVAEx._OK">
+            <summary>
+            Resultado global
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OResultadoVAEx._Fecha">
+            <summary>
+            Fecha de análisis
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OResultadoVAEx._Inspeccionado">
+            <summary>
+            Indica si se ha podido realizar la inspección o ha habido algun error en el intento
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OResultadoVAEx._TiempoProceso">
+            <summary>
+            Tiempo  de procesado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OResultadoVAEx._Excepcion">
+            <summary>
+            En el caso de no haberse podido realizar la inspección, se informaría en este cammpo del motivo
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OResultadoVAEx.#ctor(System.String,System.Func{System.String,System.String})">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OResultadoVAEx.#ctor(System.String,System.Boolean,System.DateTime,System.Boolean,System.String,System.TimeSpan,System.Func{System.String,System.String})">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="ok">Resultado global</param>
+            <param name="Fecha">Fecha de análisis</param>
+            <param name="inspeccionado">Indica si se ha podido realizar la inspección o ha habido algun error en el intento</param>
+            <param name="excepcion">En el caso de no haberse podido realizar la inspección, se informaría en este cammpo del motivo</param>
+            <param name="rechazado">Debido al resultado negativo se ha prodecido a rechazar el producto/pieza</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OResultadoVAEx.#ctor(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Func{System.String,System.String})">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="listaPropiedades">Lista de propiedades a añadir</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OResultadoVAEx.AñadirNuevoDetalle(System.String,System.Boolean,System.DateTime,System.Boolean,System.String,System.TimeSpan,System.Func{System.String,System.String})">
+            <summary>
+            Añade un subresultado
+            </summary>
+            <param name="resultado">Resultado global</param>
+            <param name="Fecha">Fecha de análisis</param>
+            <param name="inspeccionado">Indica si se ha podido realizar la inspección o ha habido algun error en el intento</param>
+            <param name="excepcion">En el caso de no haberse podido realizar la inspección, se informaría en este cammpo del motivo</param>
+            <param name="rechazado">Debido al resultado negativo se ha prodecido a rechazar el producto/pieza</param>
+        </member>
+        <member name="P:Orbita.VA.Comun.OResultadoVAEx.Codigo">
+            <summary>
+            Código de la inspección
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OResultadoVAEx.OK">
+            <summary>
+            Resultado global
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OResultadoVAEx.Fecha">
+            <summary>
+            Fecha de análisis
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OResultadoVAEx.Inspeccionado">
+            <summary>
+            Indica si se ha podido realizar la inspección o ha habido algun error en el intento
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OResultadoVAEx.TiempoProceso">
+            <summary>
+            Tiempo  de procesado
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OResultadoVAEx.Excepcion">
+            <summary>
+            En el caso de no haberse podido realizar la inspección, se informaría en este cammpo del motivo
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.Comun.OResultadoVAEx.Detalles">
             <summary>
             Desglose de detalle
             </summary>
@@ -4262,6 +4393,11 @@
         <member name="M:Orbita.VA.Comun.OSecuencia.Start">
             <summary>
             Inicia la secuencia
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.OSecuencia.Dispose">
+            <summary>
+            Libera la memoria reservada por el objeto
             </summary>
         </member>
         <member name="M:Orbita.VA.Comun.OSecuencia.Stop">

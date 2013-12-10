@@ -97,9 +97,158 @@
             Desglose de detalle
             </summary>
         </member>
+        <member name="T:Orbita.Xml.OConvertibleXMLEx">
+            <summary>
+            Clase que incluye funcionalidad de conversión automática a XML compatible para su proceso por un 
+            procedimiento almacenado de base de datos
+            </summary>
+        </member>
+        <member name="F:Orbita.Xml.OConvertibleXMLEx.PropertiesList">
+            <summary>
+            Lista de propiedades internas de la clase
+            </summary>
+        </member>
+        <member name="F:Orbita.Xml.OConvertibleXMLEx.Formateador">
+            <summary>
+            Función formateador de las claves de las propiedades
+            </summary>
+        </member>
+        <member name="F:Orbita.Xml.OConvertibleXMLEx._Propiedades">
+            <summary>
+            Propiedades a almacenar en XML
+            </summary>
+        </member>
+        <member name="F:Orbita.Xml.OConvertibleXMLEx._Detalles">
+            <summary>
+            Desglose de detalle
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXMLEx.#ctor(System.Func{System.String,System.String})">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXMLEx.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object},System.Func{System.String,System.String})">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="listaPropiedades">Lista de propiedades a añadir</param>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXMLEx.op_Addition(Orbita.Xml.OConvertibleXMLEx,Orbita.Xml.OConvertibleXMLEx)">
+            <summary>
+            Operador de adición de propiedades. ¡No de detalles!
+            </summary>
+            <param name="c1"></param>
+            <param name="c2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXMLEx.AñadirNuevoDetalle">
+            <summary>
+            Añade un detalle a la lista de detalles
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXMLEx.GetProperties">
+            <summary>
+            Gets a string value for a particular enum value.
+            </summary>
+            <param name="value">Value.</param>
+            <returns>True if successfull</returns>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXMLEx.SetProperty(System.String,System.Object)">
+            <summary>
+            Gets a string value for a particular enum value.
+            </summary>
+            <param name="value">Value.</param>
+            <returns>True if successfull</returns>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXMLEx.GetPropiedades(Orbita.Xml.ModoGeneracionXML)">
+            <summary>
+            Gets a string value for a particular enum value.
+            </summary>
+            <param name="value">Value.</param>
+            <returns>String Value associated via a <see cref="!:OAtributoEnumeradoAttribute"/> attribute, or null if not found.</returns>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXMLEx.AñadirDetalle(Orbita.Xml.OConvertibleXMLEx)">
+            <summary>
+            Añade un detalle a la lista de detalles
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXMLEx.EliminarDetalle(Orbita.Xml.OConvertibleXMLEx)">
+            <summary>
+            Elimina un detalle a la lista de detalles
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXMLEx.AñadirPropiedad(System.String,System.Object)">
+            <summary>
+            Añade un detalle a la lista de detalles
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXMLEx.EliminarPropiedad(System.String,System.Object)">
+            <summary>
+            Elimina un detalle a la lista de detalles
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXMLEx.RellenarPropiedades(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Rellena el conjunto de propiedades
+            </summary>
+            <param name="propiedades"></param>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXMLEx.ObtenerPropiedades">
+            <summary>
+            Convierte el contenido en un diccionario. Se permite el formateo del texto
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXMLEx.ObtenerPropiedades(System.Func{System.String,System.String})">
+            <summary>
+            Convierte el contenido en un diccionario. Se permite el formateo del texto
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXMLEx.ObtenerPropiedadesDetalles">
+            <summary>
+            Convierte el contenido en un diccionario. Se permite el formateo del texto
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Xml.OConvertibleXMLEx.ToXML(Orbita.Xml.OXml@,System.Boolean,System.Boolean,Orbita.Xml.ModoGeneracionXML,System.String,System.String,System.String,System.String)">
+            <summary>
+            Formatea el contenido para ser almacenado en un XML
+            </summary>
+            <param name="modoGeneracionXML"></param>
+            <param name="nombreDocumento"></param>
+            <param name="nombrePropiedad"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Xml.OConvertibleXMLEx.Propiedades">
+            <summary>
+            Propiedades a almacenar en XML
+            </summary>
+        </member>
+        <member name="P:Orbita.Xml.OConvertibleXMLEx.PropiedadesDetalle">
+            <summary>
+            Resultados propios en serie
+            </summary>
+        </member>
+        <member name="P:Orbita.Xml.OConvertibleXMLEx.Detalles">
+            <summary>
+            Desglose de detalle
+            </summary>
+        </member>
         <member name="T:Orbita.Xml.ModoGeneracionXML">
             <summary>
             Indica la forma de generar el fichero XML a partir de un diccionario
+            </summary>
+        </member>
+        <member name="F:Orbita.Xml.ModoGeneracionXML.XMLIgnore">
+            <summary>
+            Ignorar en el XML
+            </summary>
+        </member>
+        <member name="F:Orbita.Xml.ModoGeneracionXML.XMLDefecto">
+            <summary>
+            Opción por defecto
             </summary>
         </member>
         <member name="F:Orbita.Xml.ModoGeneracionXML.XMLNormal">
@@ -139,6 +288,33 @@
                 </NombreEtiqueta>
               </NombreDocumento>
             </summary>
+        </member>
+        <member name="T:Orbita.Xml.OAtributoConversionXML">
+            <summary>
+            Clases para dotar de atributos a los tipos enumerados.
+            </summary>
+        </member>
+        <member name="F:Orbita.Xml.OAtributoConversionXML._ModoGeneracionXML">
+            <summary>
+            Valor del enumerado.
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OAtributoConversionXML.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase OAtributoEnumerado.
+            </summary>
+        </member>
+        <member name="M:Orbita.Xml.OAtributoConversionXML.#ctor(Orbita.Xml.ModoGeneracionXML,System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase OAtributoEnumerado.
+            </summary>
+            <param name="valor">valor.</param>
+        </member>
+        <member name="P:Orbita.Xml.OAtributoConversionXML.ModoGeneracionXML">
+            <summary>
+            Obtiene el valor.
+            </summary>
+            <value></value>
         </member>
         <member name="T:Orbita.Xml.OXml">
             <summary>
@@ -699,7 +875,21 @@
             <param name="listadoDatos">Listado de datos a almacenar en el XML</param>
             <returns>Objeto de la clase OXml con los datos formateados.</returns>
         </member>
+        <member name="M:Orbita.Xml.OExtensionXML.ToXML(System.Collections.Generic.Dictionary{System.String,System.Object},Orbita.Xml.OXml@,System.Boolean,System.Boolean,Orbita.Xml.ModoGeneracionXML,System.String,System.String,System.String,System.String)">
+            <summary>
+            Formatea el diccionario para ser almacenado en un XML
+            </summary>
+            <param name="listadoDatos">Listado de datos a almacenar en el XML</param>
+            <returns>Objeto de la clase OXml con los datos formateados.</returns>
+        </member>
         <member name="M:Orbita.Xml.OExtensionXML.ToXML(System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.Object}},Orbita.Xml.ModoGeneracionXML,System.String,System.String)">
+            <summary>
+            Formatea el diccionario para ser almacenado en un XML
+            </summary>
+            <param name="listadoDatos">Listado de datos a almacenar en el XML</param>
+            <returns>Objeto de la clase OXml con los datos formateados.</returns>
+        </member>
+        <member name="M:Orbita.Xml.OExtensionXML.ToXML(System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.Object}},Orbita.Xml.OXml@,System.Boolean,System.Boolean,Orbita.Xml.ModoGeneracionXML,System.String,System.String,System.String,System.String)">
             <summary>
             Formatea el diccionario para ser almacenado en un XML
             </summary>
@@ -713,7 +903,21 @@
             <param name="listadoDatos">Listado de datos a almacenar en el XML</param>
             <returns>Objeto de la clase OXml con los datos formateados.</returns>
         </member>
+        <member name="M:Orbita.Xml.OExtensionXML.ToXMLNormal(System.Collections.Generic.Dictionary{System.String,System.Object},Orbita.Xml.OXml@,System.Boolean,System.Boolean,System.String,System.String,System.String,System.String)">
+            <summary>
+            Formatea el diccionario para ser almacenado en un XML
+            </summary>
+            <param name="listadoDatos">Listado de datos a almacenar en el XML</param>
+            <returns>Objeto de la clase OXml con los datos formateados.</returns>
+        </member>
         <member name="M:Orbita.Xml.OExtensionXML.ToXMLNormal(System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.Object}},System.String,System.String)">
+            <summary>
+            Formatea el diccionario para ser almacenado en un XML
+            </summary>
+            <param name="listadoDatos">Listado de datos a almacenar en el XML</param>
+            <returns>Objeto de la clase OXml con los datos formateados.</returns>
+        </member>
+        <member name="M:Orbita.Xml.OExtensionXML.ToXMLNormal(System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.Object}},Orbita.Xml.OXml@,System.Boolean,System.Boolean,System.String,System.String,System.String,System.String)">
             <summary>
             Formatea el diccionario para ser almacenado en un XML
             </summary>
@@ -727,7 +931,21 @@
             <param name="listadoDatos">Listado de datos a almacenar en el XML</param>
             <returns>Objeto de la clase OXml con los datos formateados.</returns>
         </member>
+        <member name="M:Orbita.Xml.OExtensionXML.ToXMLEnseriado(System.Collections.Generic.Dictionary{System.String,System.Object},Orbita.Xml.OXml@,System.Boolean,System.Boolean,System.String,System.String,System.String,System.String)">
+            <summary>
+            Formatea el diccionario para ser almacenado en un XML
+            </summary>
+            <param name="listadoDatos">Listado de datos a almacenar en el XML</param>
+            <returns>Objeto de la clase OXml con los datos formateados.</returns>
+        </member>
         <member name="M:Orbita.Xml.OExtensionXML.ToXMLEnseriado(System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.Object}},System.String,System.String)">
+            <summary>
+            Formatea el diccionario para ser almacenado en un XML
+            </summary>
+            <param name="listadoDatos">Listado de datos a almacenar en el XML</param>
+            <returns>Objeto de la clase OXml con los datos formateados.</returns>
+        </member>
+        <member name="M:Orbita.Xml.OExtensionXML.ToXMLEnseriado(System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.Object}},Orbita.Xml.OXml@,System.Boolean,System.Boolean,System.String,System.String,System.String,System.String)">
             <summary>
             Formatea el diccionario para ser almacenado en un XML
             </summary>

@@ -772,6 +772,47 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV">
+            <summary>
+            Formulario de test de corrección de distorsión
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.BtnProcesar_Click(System.Object,System.EventArgs)">
+            <summary>
+            Evento de procesado de la imagen
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.VisorBitmapOriginal_MouseClick(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Evento de clic con el ratón en la imagen original
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="T:Orbita.Controles.VA.FrmSplash">
             <summary>
             Formulario que se muestra mientras se abre la aplicación
@@ -4587,6 +4628,62 @@
             Muestra el la información de la velocidad de adquisición de la cámara asociada
             </summary>
         </member>
+        <member name="T:Orbita.Controles.VA.CtrlLogViewerTactil">
+            <summary>
+            Control para la visualización de logs
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.CtrlLogViewerTactil.ListaVisoresEventos">
+            <summary>
+            Lista de visores de eventos
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.CtrlLogViewerTactil.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.CtrlLogViewerTactil.CargarDatosComunes">
+            <summary>
+            Carga de datos
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.CtrlLogViewerTactil.Refrescar">
+            <summary>
+            Refresco de logs
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.CtrlLogViewerTactil.TimerRefresco_Tick(System.Object,System.EventArgs)">
+            <summary>
+            Refrescar información
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.CtrlLogViewerTactil.btnClear_Click(System.Object,System.EventArgs)">
+            <summary>
+            Borra los registros actuales
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:Orbita.Controles.VA.CtrlLogViewerTactil.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.CtrlLogViewerTactil.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.CtrlLogViewerTactil.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
         <member name="T:Orbita.Controles.VA.FrmMonitorizacionIO">
             <summary>
             Formulario de monitorización de un módulo de Entradas / Salidas
@@ -5722,46 +5819,61 @@
             Muestra el la información de la velocidad de adquisición de la cámara asociada
             </summary>
         </member>
-        <member name="T:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV">
+        <member name="T:Orbita.Controles.VA.OLogsViewerManager">
             <summary>
-            Formulario de test de corrección de distorsión
+            Manejador del visor de logs
             </summary>
         </member>
-        <member name="F:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.components">
+        <member name="F:Orbita.Controles.VA.OLogsViewerManager.LastLogs">
             <summary>
-            Required designer variable.
+            Items a visualizar
             </summary>
         </member>
-        <member name="M:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.Dispose(System.Boolean)">
+        <member name="F:Orbita.Controles.VA.OLogsViewerManager.MaxCapacity">
             <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
+            Capacidad máxima de los logs
             </summary>
         </member>
-        <member name="M:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.#ctor">
+        <member name="F:Orbita.Controles.VA.OLogsViewerManager.NivelLog">
+            <summary>
+            Nivel mínimo de la traza a guardar
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OLogsViewerManager.Constructor(System.Int32,Orbita.Trazabilidad.NivelLog)">
             <summary>
             Constructor de la clase
             </summary>
         </member>
-        <member name="M:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.BtnProcesar_Click(System.Object,System.EventArgs)">
+        <member name="M:Orbita.Controles.VA.OLogsViewerManager.Inicializar">
             <summary>
-            Evento de procesado de la imagen
+            Inicialización de la clase
             </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
         </member>
-        <member name="M:Orbita.Controles.VA.FrmCorreccionDistorsionOpenCV.VisorBitmapOriginal_MouseClick(System.Object,System.Windows.Forms.MouseEventArgs)">
+        <member name="M:Orbita.Controles.VA.OLogsViewerManager.Destructor">
             <summary>
-            Evento de clic con el ratón en la imagen original
+            Destructor de la clase
             </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OLogsViewerManager.Finalizar">
+            <summary>
+            Descturcot de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OLogsViewerManager.RegistrarLog(Orbita.Trazabilidad.LoggerEventArgs)">
+            <summary>
+            Incluye el log en la lista de últimos logs lanzados
+            </summary>
+            <param name="log"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OLogsViewerManager.Limpiar">
+            <summary>
+            Incluye el log en la lista de últimos logs lanzados
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OLogsViewerManager.HayLogs">
+            <summary>
+            Indica si hay logs guardados
+            </summary>
         </member>
         <member name="T:Orbita.Controles.VA.MensajeError">
             <summary>
@@ -7632,19 +7744,43 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:Orbita.Controles.VA.OLogsControlesVA">
+        <member name="T:Orbita.Controles.VA.OrbitaLogItemViewer">
             <summary>
-            Define el conjunto de módulos del sistema
+            Visor de un registro de evento
             </summary>
         </member>
-        <member name="F:Orbita.Controles.VA.OLogsControlesVA.ControlesVA">
+        <member name="M:Orbita.Controles.VA.OrbitaLogItemViewer.#ctor">
             <summary>
-            Módulo de las funciones de visión
+            Constructor de la clase
             </summary>
         </member>
-        <member name="F:Orbita.Controles.VA.OLogsControlesVA.Escritorios">
+        <member name="M:Orbita.Controles.VA.OrbitaLogItemViewer.MostrarLog(Orbita.Trazabilidad.LoggerEventArgs)">
             <summary>
-            Módulo de los escritorios MDI
+            Visualización de un log
+            </summary>
+            <param name="log"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaLogItemViewer.Ocultar">
+            <summary>
+            Ocultar su información
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaLogItemViewer.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaLogItemViewer.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaLogItemViewer.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
             </summary>
         </member>
         <member name="T:Orbita.Controles.VA.FrmDetalleCamara">
@@ -8656,6 +8792,109 @@
             Establece la posición de un formulario
             </summary>
         </member>
+        <member name="T:Orbita.Controles.VA.OrbitaSplash">
+            <summary>
+            Control que se muestra mientras se abre la aplicación
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaSplash.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaSplash.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaSplash.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaSplash.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="parent">Formulario padre</param>
+            <param name="milisegundos">Tiempo de refresco en milisegundos</param>
+            <param name="inicial">Indica si se trata de la visualización inicial o de una recarga de parámetros</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaSplash.RealizarVisualizaciones">
+            <summary>
+            Modifica los labels del formulario
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaSplash.Cerrar">
+            <summary>
+            Cierre del control de splash
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaSplash.FrmSplash_Load(System.Object,System.EventArgs)">
+            <summary>
+            Evento de carga
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaSplash.Mensaje">
+            <summary>
+            Contendrá el mensaje a actualizar en el formulario
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.VA.OSplashManagerTactil">
+            <summary>
+            Clase estática para el acceso al fomrulario de splash
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OSplashManagerTactil.Splash">
+            <summary>
+            Formulario splash
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OSplashManagerTactil.MostrandoSplash">
+            <summary>
+            Indica que el formulario de splash está mostrandose
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OSplashManagerTactil.IniciarSplash">
+            <summary>
+            Inicio del splash en otro hilo de ejecución
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OSplashManagerTactil.Contructor">
+            <summary>
+            Constructor del splash
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OSplashManagerTactil.Destructor">
+            <summary>
+            Destrucción del splash
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OSplashManagerTactil.Mensaje(System.String)">
+            <summary>
+            Visualización de un mensaje en el splash
+            </summary>
+            <param name="mensaje"></param>
+        </member>
+        <member name="T:Orbita.Controles.VA.OLogsControlesVA">
+            <summary>
+            Define el conjunto de módulos del sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OLogsControlesVA.ControlesVA">
+            <summary>
+            Módulo de las funciones de visión
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OLogsControlesVA.Escritorios">
+            <summary>
+            Módulo de los escritorios MDI
+            </summary>
+        </member>
         <member name="T:Orbita.Controles.VA.ONotificacionManager">
             <summary>
             Clase estática para la gestión de mensajes de notificación en la barra de tareas
@@ -9630,93 +9869,427 @@
             <param name="sender">Objeto que envía el evento</param>
             <param name="celda">Argumentos del evento</param>
         </member>
-        <member name="T:Orbita.Controles.VA.OrbitaSplash">
+        <member name="T:Orbita.Controles.VA.OrbitaVisorVProTactil">
             <summary>
-            Control que se muestra mientras se abre la aplicación
+            Display de Vision Pro
             </summary>
         </member>
-        <member name="M:Orbita.Controles.VA.OrbitaSplash.#ctor">
+        <member name="F:Orbita.Controles.VA.OrbitaVisorVProTactil.CurrentFps">
+            <summary>
+            Indica la velocidad de adquisición actual
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaVisorVProTactil.PreviousSize">
+            <summary>
+            Tamaño previo del control
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaVisorVProTactil._MostrarBtnModoPuntero">
+            <summary>
+            Muestra el botón de modo puntero
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaVisorVProTactil._MostrarBtnModoDeslizar">
+            <summary>
+            Muestra el botón de modo deslizar
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaVisorVProTactil._MostrarBtnModoZoom">
+            <summary>
+            Muestra el botón de modo zoom in
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaVisorVProTactil._MostrarBtnModoZoomFit">
+            <summary>
+            Muestra el botón de modo zoom fit
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaVisorVProTactil._MostrarStatusTamaño">
+            <summary>
+            Muestra el la información de tamaño de la imagen en la barra de estado
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.#ctor">
             <summary>
             Constructor de la clase
             </summary>
-            <param name="parent">Formulario padre</param>
-            <param name="milisegundos">Tiempo de refresco en milisegundos</param>
-            <param name="inicial">Indica si se trata de la visualización inicial o de una recarga de parámetros</param>
         </member>
-        <member name="M:Orbita.Controles.VA.OrbitaSplash.RealizarVisualizaciones">
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.#ctor(System.String,System.String,System.Double,System.Boolean,System.Boolean)">
             <summary>
-            Modifica los labels del formulario
+            Constructor de la clase
+            </summary>
+            <param name="titulo">Titulo a visualizar en el display</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.FormatPoint(System.Drawing.Point)">
+            <summary>
+            Formatea un punto como texto para ser visualizado
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.FormatPointF(System.Drawing.PointF)">
+            <summary>
+            Formatea un punto como texto para ser visualizado
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.FormatSize(System.Drawing.Size)">
+            <summary>
+            Formatea un rectangulo como texto para ser visualizado
+            </summary>
+            <param name="rect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.UpdateViewArea(System.Drawing.Size)">
+            <summary>
+            Visualiza el tamaño de la imagen
+            </summary>
+            <param name="scrollPosition"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.UpdateFps">
+            <summary>
+            Visualiza la selección actual
             </summary>
         </member>
-        <member name="M:Orbita.Controles.VA.OrbitaSplash.Cerrar">
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.ZoomIn">
             <summary>
-            Cierre del control de splash
+            Aumentamos el zoom de la imagen
             </summary>
         </member>
-        <member name="M:Orbita.Controles.VA.OrbitaSplash.FrmSplash_Load(System.Object,System.EventArgs)">
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.ZoomOut">
             <summary>
-            Evento de carga
+            Disminuimos el zoom de la imagen
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.StartLiveDisplay(System.Object,System.Boolean)">
+            <summary>
+            Inicia la visualización en vivo
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.StopLiveDisplay">
+            <summary>
+            Detiene la visualización en vivo
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.Inicializar">
+            <summary>
+            Carga los valores de la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.Finalizar">
+            <summary>
+            Finaliza la cámara
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.CargarImagenDeDisco(System.String)">
+            <summary>
+            Carga una imagen de disco
+            </summary>
+            <param name="ruta">Indica la ruta donde se encuentra la fotografía</param>
+            <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.GuardarImagenADisco(System.String)">
+            <summary>
+            Guarda una imagen en disco
+            </summary>
+            <param name="ruta">Indica la ruta donde se ha de guardar la fotografía</param>
+            <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.CargarGraficoDeDisco(System.String)">
+            <summary>
+            Carga un grafico de disco
+            </summary>
+            <param name="ruta">Indica la ruta donde se encuentra el grafico</param>
+            <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.GuardarGraficoADisco(System.String)">
+            <summary>
+            Guarda un objeto gráfico en disco
+            </summary>
+            <param name="ruta">Indica la ruta donde se ha de guardar el objeto gráfico</param>
+            <returns>Devuelve verdadero si la operación se ha realizado con éxito</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.NuevaImagen">
+            <summary>
+            Devuelve una nueva imagen del tipo adecuado al trabajo con el display
+            </summary>
+            <returns>Imagen del tipo adecuado al trabajo con el display</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.NuevoGrafico">
+            <summary>
+            Devuelve un nuevo gráfico del tipo adecuado al trabajo con el display
+            </summary>
+            <returns>Grafico del tipo adecuado al trabajo con el display</returns>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.VisualizarInterno">
+            <summary>
+            Visualiza una imagen en el display
+            </summary>
+            <param name="imagen">Imagen a visualizar</param>
+            <param name="graficos">Objeto que contiene los gráficos a visualizar (letras, rectas, circulos, etc)</param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.ZoomFit">
+            <summary>
+            La imagen se encaja en pantalla
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.ZoomFull">
+            <summary>
+            La imagen se encaja en pantalla
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.ZoomValue(System.Double)">
+            <summary>
+            Se aplica un factor de escalado
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarMensaje(System.String)">
+            <summary>
+            Muestra un mensaje de información sobre el dispositivo origen
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarFps(System.Double)">
+            <summary>
+            Muestra la velocidad de adquisición de la cámara asociada
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.AccionMaximizarMinimizar(System.Windows.Forms.FormWindowState)">
+            <summary>
+            Maximizamos o restauramos la ventana
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="F:Orbita.Controles.VA.OrbitaSplash.components">
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.CambioModoReproduccionCamara(System.Object,Orbita.VA.Hardware.CambioEstadoReproduccionCamaraEventArgs)">
+            <summary>
+            Método que indica que la cámara ha cambiado su modo de reproducción
+            </summary>
+            <param name="modoReproduccionContinua"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.btnOpen_Click(System.Object,System.EventArgs)">
+            <summary>
+            Carga la imagen actual
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.btnSave_Click(System.Object,System.EventArgs)">
+            <summary>
+            Guarda la imagen actual
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.btnZoomIn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Se aumenta el zoom
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.btnZoomOut_Click(System.Object,System.EventArgs)">
+            <summary>
+            Se disminuye el zoom
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.btnZoomFit_Click(System.Object,System.EventArgs)">
+            <summary>
+            La imagen se encaja en pantalla
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.btnInfo_Click(System.Object,System.EventArgs)">
+            <summary>
+            Mostramos el formulario de información de la cámara
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.btnMaximize_Click(System.Object,System.EventArgs)">
+            <summary>
+            Maximizamos o restauramos la ventana
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.btnNext_Click(System.Object,System.EventArgs)">
+            <summary>
+            Avanzamos al siguiente visor
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.btnPrev_Click(System.Object,System.EventArgs)">
+            <summary>
+            Retrocedemos al visor anterior
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.btnPlayStop_Click(System.Object,System.EventArgs)">
+            <summary>
+            Botón de play/stop
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.btnSnap_Click(System.Object,System.EventArgs)">
+            <summary>
+            Botón de Snap
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.btnPointer_Click(System.Object,System.EventArgs)">
+            <summary>
+            Botón de Puntero
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.btnHand_Click(System.Object,System.EventArgs)">
+            <summary>
+            Botón de Mano
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.VisorImagenes_Resize(System.Object,System.EventArgs)">
+            <summary>
+            Visor cambia de tamaño
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.TimerUpdateViewSize_Tick(System.Object,System.EventArgs)">
+            <summary>
+            Timer encargado de refrescar la información sobre el tamaño de la vista
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.TimerUpdateFps_Tick(System.Object,System.EventArgs)">
+            <summary>
+            Timer encargado de refrescar la información sobre la selección
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.OnCambioEstadoConexionCamara(System.Object,Orbita.VA.Hardware.CambioEstadoConexionCamaraEventArgs)">
+            <summary>
+            Delegado de cambio de estaco de conexión de la cámara
+            </summary>
+            <param name="estadoConexion"></param>
+        </member>
+        <member name="F:Orbita.Controles.VA.OrbitaVisorVProTactil.components">
             <summary> 
-            Variable del diseñador requerida.
+            Required designer variable.
             </summary>
         </member>
-        <member name="M:Orbita.Controles.VA.OrbitaSplash.Dispose(System.Boolean)">
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.Dispose(System.Boolean)">
             <summary> 
-            Limpiar los recursos que se estén utilizando.
+            Clean up any resources being used.
             </summary>
-            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Orbita.Controles.VA.OrbitaSplash.InitializeComponent">
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.InitializeComponent">
             <summary> 
-            Método necesario para admitir el Diseñador. No se puede modificar 
-            el contenido del método con el editor de código.
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="P:Orbita.Controles.VA.OrbitaSplash.Mensaje">
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarBtnModoPuntero">
             <summary>
-            Contendrá el mensaje a actualizar en el formulario
+            Muestra el botón de modo puntero
             </summary>
         </member>
-        <member name="T:Orbita.Controles.VA.OSplashManagerTactil">
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarBtnModoDeslizar">
             <summary>
-            Clase estática para el acceso al fomrulario de splash
+            Muestra el botón de modo deslizar
             </summary>
         </member>
-        <member name="F:Orbita.Controles.VA.OSplashManagerTactil.Splash">
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarBtnModoZoom">
             <summary>
-            Formulario splash
+            Muestra el botón de modo zoom in
             </summary>
         </member>
-        <member name="F:Orbita.Controles.VA.OSplashManagerTactil.MostrandoSplash">
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarBtnModoZoomFit">
             <summary>
-            Indica que el formulario de splash está mostrandose
+            Muestra el botón de modo zoom fit
             </summary>
         </member>
-        <member name="M:Orbita.Controles.VA.OSplashManagerTactil.IniciarSplash">
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarStatusTamaño">
             <summary>
-            Inicio del splash en otro hilo de ejecución
+            Muestra el la información de tamaño de la imagen en la barra de estado
             </summary>
         </member>
-        <member name="M:Orbita.Controles.VA.OSplashManagerTactil.Contructor">
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.ImagenActual">
             <summary>
-            Constructor del splash
+            Propieadad a heredar donde se accede a la imagen
             </summary>
         </member>
-        <member name="M:Orbita.Controles.VA.OSplashManagerTactil.Destructor">
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.GraficoActual">
             <summary>
-            Destrucción del splash
+            Propiedad a heredar donde se accede al gráfico
             </summary>
         </member>
-        <member name="M:Orbita.Controles.VA.OSplashManagerTactil.Mensaje(System.String)">
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarToolStrip">
             <summary>
-            Visualización de un mensaje en el splash
+            Muestra la barra superior de botones
             </summary>
-            <param name="mensaje"></param>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarStatusBar">
+            <summary>
+            Muestra la barra inferior de estado
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarBtnAbrir">
+            <summary>
+            Muestra el botón de abrir fotografía
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarbtnGuardar">
+            <summary>
+            Muestra el botón de guardar fotografía
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarBtnReproduccion">
+            <summary>
+            Muestra el botón de play/stop
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarBtnSnap">
+            <summary>
+            Muestra el botón de snap
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarLblTitulo">
+            <summary>
+            Muestra la etiqueta del título
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarBtnInfo">
+            <summary>
+            Muestra el botón de información del visor
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarBtnMaximinzar">
+            <summary>
+            Muestra el botón de maximizar/minimizar
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarBtnSiguienteAnterior">
+            <summary>
+            Muestra los botones de siguiente/anterior dispositivo
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarStatusMensaje">
+            <summary>
+            Muestra el la información adicional de la imagen visualizada
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.VA.OrbitaVisorVProTactil.MostrarStatusFps">
+            <summary>
+            Muestra el la información de la velocidad de adquisición de la cámara asociada
+            </summary>
         </member>
     </members>
 </doc>

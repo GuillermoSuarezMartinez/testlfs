@@ -369,6 +369,20 @@
             <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
             <returns></returns>
         </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBase.StartRECPaused(System.String)">
+            <summary>
+            Comienza una grabación continua de la cámara en modo pausada
+            </summary>
+            <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBase.ResumeREC">
+            <summary>
+            Reanuda una grabación continua de la cámara
+            </summary>
+            <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
+            <returns></returns>
+        </member>
         <member name="M:Orbita.VA.Hardware.OCamaraBase.StopREC">
             <summary>
             Termina una grabación continua de la cámara
@@ -611,6 +625,20 @@
         <member name="M:Orbita.VA.Hardware.OCamaraBase.StartRECInterno(System.String)">
             <summary>
             Comienza una grabacion continua de la cámara
+            </summary>
+            <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBase.StartRECPausedInterno(System.String)">
+            <summary>
+            Comienza una grabacion continua de la cámara de forma pausada
+            </summary>
+            <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OCamaraBase.ResumeRECInterno">
+            <summary>
+            Comienza una grabacion continua de la cámara de forma pausada
             </summary>
             <param name="fichero">Ruta y nombre del fichero que contendra el video</param>
             <returns></returns>
