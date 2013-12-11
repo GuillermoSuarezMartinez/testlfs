@@ -250,7 +250,10 @@ namespace Orbita.MS
         {
             logger = LogManager.GetLogger("MS");
             Assembly assem = Assembly.GetEntryAssembly();
-            this.nombreAplicacion = assem.Location;
+            if (assem !=null)
+            {
+                this.nombreAplicacion = assem.Location;
+            }            
         }
         #endregion
 
@@ -347,6 +350,29 @@ namespace Orbita.MS
             }
         }
         /// <summary>
+        /// Comprueba si la licencia del producto se encuentra en el equipo
+        /// </summary>
+        /// <param name="producto">Producto que se quiere comprobar</param>
+        /// <returns>True si existe o False si no existe</returns>
+        public bool ComprobarProductoHasp(OProductos producto)
+        {
+            bool retorno = false;
+
+            lock (this)
+            {
+                try
+                {
+                    retorno = this.ComprobarProductoHASPSL(producto);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+
+            return retorno;
+        }
+        /// <summary>
         /// Inicia el hilo de mensajes
         /// </summary>
         private void ComprobarTecnologia()
@@ -376,7 +402,8 @@ namespace Orbita.MS
             if (ComprobarProductoHASPUsb(prodCheck))
             {
                 this.licencia = OLicencias.HASPUsb;
-            } else if (ComprobarProductoHASPSL(prodCheck))
+            }
+            else if (ComprobarProductoHASPSL(prodCheck))
             {
                 this.licencia = OLicencias.HASPSentinel;
             }
@@ -469,15 +496,19 @@ namespace Orbita.MS
 
                     if (!resultado)
                     {
-                        logger.Warn("ComprobarProductoHASPSL. No se encuentra el producto " + producto.ToString());
-                        OEventArgs e = new OEventArgs();
-                        using (oMsgHasp msg = new oMsgHasp())
+                        if (logger != null)
                         {
-                            msg.Estado = "error";
-                            msg.Producto = producto.ToString();
-                            msg.Mensaje = status.ToString();
-                            e.Argumento = msg;
-                            OrbitaMensajeAplicacion(this, e);
+                            logger.Warn("ComprobarProductoHASPSL. No se encuentra el producto " + producto.ToString());
+
+                            OEventArgs e = new OEventArgs();
+                            using (oMsgHasp msg = new oMsgHasp())
+                            {
+                                msg.Estado = "error";
+                                msg.Producto = producto.ToString();
+                                msg.Mensaje = status.ToString();
+                                e.Argumento = msg;
+                                OrbitaMensajeAplicacion(this, e);
+                            }
                         }
                     }
 

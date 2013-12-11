@@ -389,6 +389,28 @@ namespace Orbita.MS
         #endregion
 
         #region Encryption routines
+
+        /// <summary>
+        /// Clave de la librería para encriptar y desencriptar.
+        /// Está puesto como método porque si se pone como atributo o propiedad, a pesar de estar ofuscado, se desemambla y se obtiene su valor.
+        /// Además, si se devuelve directamente el string, también se desensambla y se obtiene su valor
+        /// ¡No se debe modificar nunca!
+        /// </summary>
+        private static string ObtenerContraseñaLibreria()
+        {
+            return "46208#O%r(b-i&t*a=I?n?g!e{n¿i¡e]r}i[a93175"; //Puede ser cualquier cadena. No se debe modificar nunca!
+        }
+        /// <summary>
+        /// Vector de inicio de la librería para encriptar y desencriptar.
+        /// Está puesto como método porque si se pone como atributo o propiedad, a pesar de estar ofuscado, se desemambla y se obtiene su valor.
+        /// Además, si se devuelve directamente el string, también se desensambla y se obtiene su valor
+        /// ¡No se debe modificar nunca!
+        /// </summary>
+        private static string ObtenerVectorInicioLibreria()
+        {
+            return "5@O,r:b72_i,t}a3"; // Debe ser de 16 bytes (carácteres ASCII). No se debe modificar nunca!
+        }
+
         /// <summary>
         /// Encrypts a string value generating a base64-encoded string.
         /// </summary>
@@ -500,6 +522,78 @@ namespace Orbita.MS
             outputFileStream.Close();
         }
 
+        private void EncryptToBytesFile(string fileIni, string fileEnd)
+        {
+            FileStream readFile = new FileStream(fileIni, FileMode.Open, FileAccess.Read);
+            FileStream writeFile = new FileStream(fileEnd, FileMode.OpenOrCreate, FileAccess.Write);
+            writeFile.SetLength(0);
+
+            byte[] storage = new byte[100];
+            long fileWritten = 0;
+            long totlen = readFile.Length;
+            int bytesToWrite;
+
+            //System.IO.MemoryStream memoryStream = new System.IO.MemoryStream();
+            // Let's make cryptographic operations thread-safe.
+            lock (this)
+            {
+                // To perform encryption, we must use the Write mode.
+                CryptoStream cryptoStream = new CryptoStream(
+                                                       writeFile,
+                                                       encryptor,
+                                                        CryptoStreamMode.Write);
+
+
+                while (fileWritten < totlen)
+                {
+                    bytesToWrite = readFile.Read(storage, 0, 100);
+                    cryptoStream.Write(storage, 0, bytesToWrite);
+                    fileWritten = fileWritten + bytesToWrite;
+
+                }
+
+
+                cryptoStream.FlushFinalBlock();
+                cryptoStream.Close();
+            }
+        }
+
+        private void DecryptToBytesFile(string fileIni, string fileEnd)
+        {
+            FileStream readFile = new FileStream(fileIni, FileMode.Open, FileAccess.Read);
+            FileStream writeFile = new FileStream(fileEnd, FileMode.OpenOrCreate, FileAccess.Write);
+            writeFile.SetLength(0);
+
+            byte[] storage = new byte[100];
+            long fileWritten = 0;
+            long totlen = readFile.Length;
+            int bytesToWrite;
+
+            //System.IO.MemoryStream memoryStream = new System.IO.MemoryStream();
+            // Let's make cryptographic operations thread-safe.
+            lock (this)
+            {
+                // To perform encryption, we must use the Write mode.
+                CryptoStream cryptoStream = new CryptoStream(
+                                                       writeFile,
+                                                       decryptor,
+                                                        CryptoStreamMode.Write);
+
+
+                while (fileWritten < totlen)
+                {
+                    bytesToWrite = readFile.Read(storage, 0, 100);
+                    cryptoStream.Write(storage, 0, bytesToWrite);
+                    fileWritten = fileWritten + bytesToWrite;
+
+                }
+
+
+                cryptoStream.FlushFinalBlock();
+                cryptoStream.Close();
+            }
+        }
+
         /// <summary>
         /// Encrypts a string value generating a base64-encoded string.
         /// </summary>
@@ -561,8 +655,8 @@ namespace Orbita.MS
         /// <param name="key"></param>
         public static void EncryptFile(string inputFile, string outputFile, string passPhrase)
         {
-            OEncriptacion enc = new OEncriptacion(passPhrase);
-            enc.EncryptFile(inputFile, outputFile);
+            OEncriptacion enc = new OEncriptacion(ObtenerContraseñaLibreria(),ObtenerVectorInicioLibreria());
+            enc.EncryptToBytesFile(inputFile, outputFile);
         }
         #endregion
 
@@ -778,8 +872,8 @@ namespace Orbita.MS
         /// <param name="passPhrase"></param>
         public static void DecryptFile(string inputFile, string outputFile, string passPhrase)
         {
-            OEncriptacion dec = new OEncriptacion(passPhrase);
-            dec.DecryptFile(inputFile, outputFile);
+            OEncriptacion dec = new OEncriptacion(ObtenerContraseñaLibreria(),ObtenerVectorInicioLibreria());
+            dec.DecryptToBytesFile(inputFile, outputFile);
         }
         /// <summary>
         /// Desencripta el fichero pasado

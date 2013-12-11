@@ -13,7 +13,7 @@ namespace Orbita.MS
         /// Además, si se devuelve directamente el string, también se desensambla y se obtiene su valor
         /// ¡No se debe modificar nunca!
         /// </summary>
-        public static string ObtenerContraseñaLibreria()
+        private static string ObtenerContraseñaLibreria()
         {
             return "46208#O%r(b-i&t*a=I?n?g!e{n¿i¡e]r}i[a93175"; //Puede ser cualquier cadena. No se debe modificar nunca!
         }
@@ -23,7 +23,7 @@ namespace Orbita.MS
         /// Además, si se devuelve directamente el string, también se desensambla y se obtiene su valor
         /// ¡No se debe modificar nunca!
         /// </summary>
-        public static string ObtenerVectorInicioLibreria()
+        private static string ObtenerVectorInicioLibreria()
         {
             return "5@O,r:b72_i,t}a3"; // Debe ser de 16 bytes (carácteres ASCII). No se debe modificar nunca!
         }
