@@ -63,14 +63,6 @@ namespace Orbita.VA.Hardware
         /// </summary>
         private int ContLlamadasSimultaneasAlarma;
         /// <summary>
-        /// Timer de comprobación del estado de la conexión
-        /// </summary>
-        private Timer TimerComprobacionConexion;
-        /// <summary>
-        /// Cronómetro del tiempo sin respuesta
-        /// </summary>
-        private Stopwatch CronometroTiempoSinRespuesta;
-        /// <summary>
         /// Nombre del canal
         /// </summary>
         private string NombreCanal;
@@ -153,14 +145,6 @@ namespace Orbita.VA.Hardware
                 this._NumeroServidor = OEntero.Validar(dtTarjetaIO.Rows[0]["COM_NumeroServidor"], 0, int.MaxValue, 1);
 
                 this.NombreCanal = ORemoting.GetCanal(this._HostServidor, this._PuertoRemoto.ToString());
-
-                // Creación del timer de comprobación de la conexión
-                this.TimerComprobacionConexion = new Timer();
-                this.TimerComprobacionConexion.Interval = (int)this._IntervaloComprabacion.TotalMilliseconds;
-                this.TimerComprobacionConexion.Enabled = false;
-
-                // Creación del cronómetro de tiempo de espera sin respuesta de la cámara
-                this.CronometroTiempoSinRespuesta = new Stopwatch();                
             }
 
             // Cargamos valores de la base de datos buscamos terminales IO
@@ -272,12 +256,12 @@ namespace Orbita.VA.Hardware
                 this.ClienteSincronizado = new OcsClienteSincronizado(this._HostServidor, this._PuertoRemoto, (int)(this._IntervaloComprabacion.TotalMilliseconds));
                 ListaClientesSincronizados.Add(this._NumeroServidor, this.ClienteSincronizado);
 
+                // Suscripción al evento de conexión y desconexión
+                this.ClienteSincronizado.Conectado += new EventHandler(ClienteSincronizado_Conectado);
+                this.ClienteSincronizado.Desconectado += new EventHandler(ClienteSincronizado_Desconectado);
+
                 // Eventwrapper de comunicaciones.
                 this.ConectarEventWrapper();
-
-                // Iniciamos la comprobación de la conectividad con la cámara
-                this.CronometroTiempoSinRespuesta.Start();
-                this.TimerComprobacionConexion.Tick += this.TimerComprobacionConexion_Tick;
 
                 OLogsVAHardware.EntradasSalidas.Info(this.Codigo, "Conectado al servicio");
             }
@@ -291,12 +275,11 @@ namespace Orbita.VA.Hardware
         /// </summary>
         private void Desconectar()
         {
-            this.DesconectarEventWrapper();
+            // Suscripción al evento de conexión y desconexión
+            this.ClienteSincronizado.Conectado -= new EventHandler(ClienteSincronizado_Conectado);
+            this.ClienteSincronizado.Desconectado -= new EventHandler(ClienteSincronizado_Desconectado);
 
-            // Finalizamos la comprobación de la conectividad con la cámara
-            this.TimerComprobacionConexion.Stop();
-            this.TimerComprobacionConexion.Tick -= this.TimerComprobacionConexion_Tick;
-            this.CronometroTiempoSinRespuesta.Stop();
+            this.DesconectarEventWrapper();
 
             OLogsVAHardware.EntradasSalidas.Info(this.Codigo, "Desconectado del Servicio");
         }
@@ -347,12 +330,19 @@ namespace Orbita.VA.Hardware
         }
 
         /// <summary>
-        /// Conectar al servidor vía Remoting.
+        /// Conectar/Desconecta al servidor vía Remoting.
         /// </summary>
         /// <param name="estado">Estado de conexión.</param>
         private void ConectarCanal(bool estado)
         {
-            this.ClienteSincronizado.Conectar();
+            if (estado)
+            {
+                this.ClienteSincronizado.Conectar();
+            }
+            else
+            {
+                this.ClienteSincronizado.Desconectar();
+            }
         }
         #endregion
 
@@ -422,9 +412,6 @@ namespace Orbita.VA.Hardware
                 this.ContLlamadasSimultaneasComm++;
                 if (this.ContLlamadasSimultaneasComm <= NumMaxLlamadasSimultaneas)
                 {
-                    this.CronometroTiempoSinRespuesta.Stop();
-                    this.CronometroTiempoSinRespuesta.Reset();
-                    this.CronometroTiempoSinRespuesta.Start();
                     OLogsVAHardware.EntradasSalidas.Debug("Evento Comm", this.Codigo);
                 }
                 else
@@ -463,32 +450,38 @@ namespace Orbita.VA.Hardware
                 OLogsVAHardware.EntradasSalidas.Error(exception, this.Codigo);
             }
         }
+        #endregion
+
+        #region Evento(s)
         /// <summary>
-        /// Evento del timer de comprobación de la conexión
+        /// Conexión del cliente
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TimerComprobacionConexion_Tick(object sender, EventArgs e)
+        private void ClienteSincronizado_Conectado(object sender, EventArgs e)
         {
-            this.TimerComprobacionConexion.Stop();
             try
             {
-                // TimeOut de conectividad
-                if (this.Habilitado && (this.CronometroTiempoSinRespuesta.Elapsed > this.IntervaloComprabacion))
+                // Se lee el valor de los terminales
+                foreach (OcsTerminalClienteComunicacion terminal in this.ListaTerminales.Values)
                 {
-                    this.CronometroTiempoSinRespuesta.Stop();
-                    this.CronometroTiempoSinRespuesta.Reset();
-                    this.CronometroTiempoSinRespuesta.Start();
-
-                    OLogsVAHardware.EntradasSalidas.Error(this.Codigo, "Reconexión del wrapper de eventos", this.Codigo);
+                    terminal.LeerEntrada();
                 }
             }
             catch (Exception exception)
             {
-                OLogsVAHardware.EntradasSalidas.Error(exception, "Conectividad " + this.Codigo);
+                OLogsVAHardware.EntradasSalidas.Error(exception, this.Codigo);
             }
-            this.TimerComprobacionConexion.Start();
         }
+
+        /// <summary>
+        /// Desconexión del cliente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClienteSincronizado_Desconectado(object sender, EventArgs e)
+        {
+        } 
         #endregion
     }
 
@@ -729,7 +722,7 @@ namespace Orbita.VA.Hardware
                 //this.Servidor = servidor;
                 this.ClienteSincronizado = clienteSincronizado;
                 //Leo de cada terminal su valor y lo actualizo.
-                this.LeerEntrada();
+                //this.LeerEntrada();
             }
             catch (Exception exception)
             {
