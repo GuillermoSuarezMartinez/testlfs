@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7E7DAFD4-3823-46B8-917C-FCEA9431A1A9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Orbita.Controles.Comunicaciones</RootNamespace>
+    <AssemblyName>Orbita.Controles.Comunicaciones</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\Orbita.Controles.Comunicaciones.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <DocumentationFile>bin\Debug\Orbita.Controles.Comunicaciones.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\Orbita.Controles.Comunicaciones.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <DocumentationFile>bin\Release\Orbita.Controles.Comunicaciones.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Framework|x86'">
+    <OutputPath>bin\x86\Framework\</OutputPath>
+    <DocumentationFile>bin\x86\Framework\Orbita.Controles.Comunicaciones.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DocumentationFile>bin\x64\Debug\Orbita.Controles.Comunicaciones.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DocumentationFile>bin\x64\Release\Orbita.Controles.Comunicaciones.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Framework|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Framework\</OutputPath>
+    <DocumentationFile>bin\x64\Framework\Orbita.Controles.Comunicaciones.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Reports\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Shared.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Shared.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.Misc.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.Misc.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinExplorerBar.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinExplorerBar.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinGrid.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinGrid.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinMaskedEdit.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinMaskedEdit.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinStatusBar.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinStatusBar.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinTabbedMdi.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinTabbedMdi.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinTabControl.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinTabControl.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinToolbars.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinToolbars.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.DirectX">
+      <HintPath>..\..\Comun\Comunicaciones\Microsoft.DirectX.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.DirectX.AudioVideoPlayback">
+      <HintPath>..\..\Comun\Comunicaciones\Microsoft.DirectX.AudioVideoPlayback.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Comunicaciones">
+      <HintPath>..\..\Comun\Orbita\Orbita.Comunicaciones.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Trazabilidad">
+      <HintPath>..\..\Comun\Orbita\Orbita.Trazabilidad.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Utiles">
+      <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Winsock">
+      <HintPath>..\..\Comun\Orbita\Orbita.Winsock.dll</HintPath>
+    </Reference>
+    <Reference Include="StarIO">
+      <HintPath>..\..\Comun\Comunicaciones\StarIO.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clases\Argumento.cs" />
+    <Compile Include="Clases\Interfaces\IEscaner.cs" />
+    <Compile Include="Clases\Interfaces\IImpresora.cs" />
+    <Compile Include="Clases\Interfaces\IMonitor.cs" />
+    <Compile Include="Clases\Logger.cs" />
+    <Compile Include="Clases\OBaseEventosCom.cs" />
+    <Compile Include="Custom\Componentes\OrbitaComponenteEscaner_KI.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Custom\Componentes\OrbitaComponenteEscaner_KI.designer.cs">
+      <DependentUpon>OrbitaComponenteEscaner_KI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\Componentes\OrbitaComponenteMonitor_KI.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Custom\Componentes\OrbitaComponenteMonitor_KI.designer.cs">
+      <DependentUpon>OrbitaComponenteMonitor_KI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\Componentes\OrbitaComponenteTup492_KI.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Custom\Componentes\OrbitaComponenteTup492_KI.designer.cs">
+      <DependentUpon>OrbitaComponenteTup492_KI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\Componentes\OrbitaConfiguracionCanal.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Custom\Componentes\OrbitaConfiguracionCanal.designer.cs">
+      <DependentUpon>OrbitaConfiguracionCanal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaClienteTCP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaClienteTCP.Designer.cs">
+      <DependentUpon>OrbitaClienteTCP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaControlBaseEventosCom.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaControlBaseEventosCom.Designer.cs">
+      <DependentUpon>OrbitaControlBaseEventosCom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaEstadoCanal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaEstadoCanal.Designer.cs">
+      <DependentUpon>OrbitaEstadoCanal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaControlVideo_OP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaControlVideo_OP.designer.cs">
+      <DependentUpon>OrbitaControlVideo_OP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaServidorTCP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaServidorTCP.Designer.cs">
+      <DependentUpon>OrbitaServidorTCP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmConfigLogger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmConfigLogger.designer.cs">
+      <DependentUpon>FrmConfigLogger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FrmDetalle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmDetalle.designer.cs">
+      <DependentUpon>FrmDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaClienteComs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaClienteComs.Designer.cs">
+      <DependentUpon>OrbitaClienteComs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaClienteComsOPC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaClienteComsOPC.Designer.cs">
+      <DependentUpon>OrbitaClienteComsOPC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaClienteComsESPhoenixILBK48.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaClienteComsESPhoenixILBK48.Designer.cs">
+      <DependentUpon>OrbitaClienteComsESPhoenixILBK48.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaClienteComsESSiemens.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaClienteComsESSiemens.Designer.cs">
+      <DependentUpon>OrbitaClienteComsESSiemens.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaClienteComsMCUSB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaClienteComsMCUSB.Designer.cs">
+      <DependentUpon>OrbitaClienteComsMCUSB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaClienteRemoting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaClienteRemoting.Designer.cs">
+      <DependentUpon>OrbitaClienteRemoting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaPuertoSerie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaPuertoSerie.Designer.cs">
+      <DependentUpon>OrbitaPuertoSerie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaVisorDiferido.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaVisorDiferido.designer.cs">
+      <DependentUpon>OrbitaVisorDiferido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaVisorTCP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaVisorTCP.designer.cs">
+      <DependentUpon>OrbitaVisorTCP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Custom\OrbitaClienteTCP.resx">
+      <DependentUpon>OrbitaClienteTCP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaControlVideo_OP.resx">
+      <DependentUpon>OrbitaControlVideo_OP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaEstadoCanal.resx">
+      <DependentUpon>OrbitaEstadoCanal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaServidorTCP.resx">
+      <DependentUpon>OrbitaServidorTCP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmConfigLogger.resx">
+      <DependentUpon>FrmConfigLogger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FrmDetalle.resx">
+      <DependentUpon>FrmDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaClienteComs.resx">
+      <DependentUpon>OrbitaClienteComs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaClienteComsOPC.resx">
+      <DependentUpon>OrbitaClienteComsOPC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaClienteComsESPhoenixILBK48.resx">
+      <DependentUpon>OrbitaClienteComsESPhoenixILBK48.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaClienteComsESSiemens.resx">
+      <DependentUpon>OrbitaClienteComsESSiemens.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaClienteComsMCUSB.resx">
+      <DependentUpon>OrbitaClienteComsMCUSB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaClienteRemoting.resx">
+      <DependentUpon>OrbitaClienteRemoting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaPuertoSerie.resx">
+      <DependentUpon>OrbitaPuertoSerie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaVisorDiferido.resx">
+      <DependentUpon>OrbitaVisorDiferido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaVisorTCP.resx">
+      <DependentUpon>OrbitaVisorTCP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Borrar.png" />
+    <Content Include="Resources\eraser2.png" />
+    <Content Include="Resources\error.png" />
+    <Content Include="Resources\EstadoDetenido.png" />
+    <Content Include="Resources\EstadoIniciado.png" />
+    <Content Include="Resources\exit.png" />
+    <None Include="Resources\icn_full_screen.png" />
+    <Content Include="Resources\information.png" />
+    <Content Include="Resources\Iniciar.png" />
+    <None Include="Resources\media_beginning.png" />
+    <None Include="Resources\media_beginning_16x16.png" />
+    <None Include="Resources\media_beginning_24x24.png" />
+    <None Include="Resources\media_end.png" />
+    <None Include="Resources\media_end_16x16.png" />
+    <None Include="Resources\media_end_24x24.png" />
+    <None Include="Resources\media_pause.png" />
+    <None Include="Resources\media_pause_16x16.png" />
+    <None Include="Resources\media_pause_24x24.png" />
+    <Content Include="Resources\media_play_green.png" />
+    <None Include="Resources\media_play_green_16x16.png" />
+    <None Include="Resources\media_play_green_24x24.png" />
+    <None Include="Resources\media_step_back.png" />
+    <None Include="Resources\media_step_back_16x16.png" />
+    <None Include="Resources\media_step_forward.png" />
+    <None Include="Resources\media_step_forward_16_16.png" />
+    <Content Include="Resources\media_stop_red.png" />
+    <None Include="Resources\media_stop_red_16x16.png" />
+    <None Include="Resources\media_stop_red_24x24.png" />
+    <Content Include="Resources\MensajeAdvertencia.png" />
+    <Content Include="Resources\MensajeError.png" />
+    <Content Include="Resources\MensajeFatal.png" />
+    <Content Include="Resources\MensajeInformacion.png" />
+    <Content Include="Resources\MensajeKeepAlive.png" />
+    <None Include="Resources\NoHayImagen.png" />
+    <Content Include="Resources\ok.png" />
+    <Content Include="Resources\Parar.png" />
+    <Content Include="Resources\Salir.png" />
+    <None Include="Resources\Salir_36x36.png" />
+    <Content Include="Resources\sign_stop.png" />
+    <Content Include="Resources\sign_warning.png" />
+    <Content Include="Resources\Tool_Error.png" />
+    <Content Include="Resources\Tool_Fatal.png" />
+    <Content Include="Resources\Tool_Warning.png" />
+    <Content Include="XML\ConfiguracionVisorTCP.xml" />
+    <Content Include="XML\GestionColumnas.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Clases\Configuración\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Orbita.Controles.Comunes\Orbita.Controles.Comunes.csproj">
+      <Project>{D66C367A-47B7-4464-93D6-92794E4A57C8}</Project>
+      <Name>Orbita.Controles.Comunes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Contenedores\Orbita.Controles.Contenedores.csproj">
+      <Project>{B953E685-3E2D-4F93-BB80-805427BBB8A2}</Project>
+      <Name>Orbita.Controles.Contenedores</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Estilos\Orbita.Controles.Estilos.csproj">
+      <Project>{69BCFE99-17D1-4F08-AD49-95C395D247A6}</Project>
+      <Name>Orbita.Controles.Estilos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Grid\Orbita.Controles.Grid.csproj">
+      <Project>{34B632DA-E0C4-4F27-AAFD-AFAD64604BFA}</Project>
+      <Name>Orbita.Controles.Grid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Menu\Orbita.Controles.Menu.csproj">
+      <Project>{3FC7CCF4-13B4-4B2B-95A9-CC178C85C343}</Project>
+      <Name>Orbita.Controles.Menu</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Shared\Orbita.Controles.Shared.csproj">
+      <Project>{D104B7D1-93CB-46AE-8F84-AA68BB3B2C5E}</Project>
+      <Name>Orbita.Controles.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)Orbita.Controles.Comunicaciones.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I
+xcopy "$(TargetDir)Orbita.Controles.Comunicaciones.xml" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

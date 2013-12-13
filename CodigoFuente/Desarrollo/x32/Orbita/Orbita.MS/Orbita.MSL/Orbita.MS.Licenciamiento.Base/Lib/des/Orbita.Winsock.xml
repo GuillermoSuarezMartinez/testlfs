@@ -1,0 +1,1383 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Orbita.Winsock
+</name>
+</assembly>
+<members>
+<member name="F:Orbita.Winsock.Deque.llList">
+	<summary>
+ Stores the list of items within this instance.
+ </summary>
+</member><member name="M:Orbita.Winsock.Deque.#ctor">
+	<summary>
+ Initializes a new instance of the Deque class that is empty and has the default initial capacity.
+ </summary>
+</member><member name="M:Orbita.Winsock.Deque.#ctor(System.Collections.ICollection)">
+	<summary>
+ Initializes a new instance of the Deque class that contains elements copied from the specified collection and has sufficient capacity to accommodate the number of elements copied.
+ </summary>
+	<param name="col">The collection whose elements are copied to the new Deque.</param>
+</member><member name="M:Orbita.Winsock.Deque.CopyTo(System.Array,System.Int32)">
+	<summary>
+ Copies the entire Deque to a compatible one-dimensional array, starting at the specified index of the target array.
+ </summary>
+	<param name="array">The one-dimensional Array that is the destination of the elements copied from Deque. The Array must have zero-based indexing.</param>
+	<param name="index">The zero-based index in array at which copying begins.</param>
+</member><member name="P:Orbita.Winsock.Deque.Count">
+	<summary>
+ Gets the number of elements actually contained in the Deque.
+ </summary>
+	<value>The number of elements actually contained in the Deque.</value>
+</member><member name="P:Orbita.Winsock.Deque.IsSynchronized">
+	<summary>
+ Gets a value indicating whether access to the ICollection is synchronized (thread safe).
+ </summary>
+	<value>true if access to the ICollection is synchronized (thread safe); otherwise, false. In the default implementation of List, this property always returns false.</value>
+</member><member name="P:Orbita.Winsock.Deque.SyncRoot">
+	<summary>
+ Gets an object that can be used to synchronize access to the ICollection.
+ </summary>
+	<value>An object that can be used to synchronize access to the ICollection. In the default implementation of List, this property always returns the current instance.</value>
+</member><member name="M:Orbita.Winsock.Deque.GetEnumerator">
+	<summary>
+ Returns an enumerator that iterates through the Queue.
+ </summary>
+</member><member name="M:Orbita.Winsock.Deque.Clone">
+	<summary>
+ Creates a shallow copy of the Queue.
+ </summary>
+</member><member name="M:Orbita.Winsock.Deque.Clear">
+	<summary>
+ Removes all elements from the Deque.
+ </summary>
+</member><member name="M:Orbita.Winsock.Deque.Contains(System.Object)">
+	<summary>
+ Determines whether an element is in the Deque.
+ </summary>
+	<param name="obj">The object to locate in the Deque. The value can be a null reference (Nothing in Visual Basic) for reference types.</param>
+</member><member name="M:Orbita.Winsock.Deque.Peek``1">
+	<summary>
+ Returns the object at the beginning (top) of the Deque without removing it.
+ </summary>
+	<returns>The object at the beginning (top) of the Deque.</returns>
+</member><member name="M:Orbita.Winsock.Deque.ToArray">
+	<summary>
+ Copies the elements of the Deque to a new array.
+ </summary>
+	<returns>An array containing copies of the elements of the Deque.</returns>
+</member><member name="M:Orbita.Winsock.Deque.ToString">
+	<summary>
+ Returns a String that represents the current Object.
+ </summary>
+	<returns>A String that represents the current Object.</returns>
+</member><member name="M:Orbita.Winsock.Deque.Dequeue``1">
+	<summary>
+ Removes and returns the object at the beginning of the Deque.
+ </summary>
+	<returns>The object that is removed from the beginning of the Deque.</returns>
+	<remarks>Synonymous with Pop().</remarks>
+</member><member name="M:Orbita.Winsock.Deque.Enqueue(System.Object)">
+	<summary>
+ Adds an object to the end of the Deque.
+ </summary>
+	<param name="obj">The object to add to the Deque. The value can be a null reference (Nothing in Visual Basic).</param>
+</member><member name="M:Orbita.Winsock.Deque.Pop``1">
+	<summary>
+ Removes and returns the object at the top of the Deque.
+ </summary>
+	<returns>The Object removed from the top of the Deque.</returns>
+	<remarks>Synonymous with Dequeue().</remarks>
+</member><member name="M:Orbita.Winsock.Deque.Push(System.Object)">
+	<summary>
+ Inserts an object at the top of the Deque.
+ </summary>
+	<param name="obj">The Object to push onto the Deque. The value can be a null reference (Nothing in Visual Basic).</param>
+</member><member name="T:Orbita.Winsock.Deque">
+	<summary>
+ Represents both a last-in, first-out (LIFO) and a first-in, first-out (FIFO) non-generic collection of objects.
+ </summary>
+	<remarks>
+ While the System.Collections.Stack and the System.Collections.Queue
+ have seemingly different ways of operating, they can be combined easily
+ by just manipulating the way in which an item in inserted into the list.
+ 
+ This allows the removal from the list to remain the same, whether you
+ are treating this class like a Stack or a Queue.  The also allows the
+ Peek() method to work for both at the same time.
+ 
+ Helping tidbit - Deque is pronounced like "deck."
+ </remarks>
+</member><member name="M:Orbita.Winsock.ObjectPacker.GetBytes(System.Object)">
+	<summary>
+ Serializes an object to a byte array.
+ </summary>
+	<param name="obj">The object to be serialized.</param>
+</member><member name="M:Orbita.Winsock.ObjectPacker.GetObject(System.Byte[])">
+	<summary>
+ Deserializes an object from a byte array.
+ </summary>
+	<param name="byt">The byte array from which to obtain the object.</param>
+</member><member name="T:Orbita.Winsock.ObjectPacker">
+	<summary>
+ Contains function for serializing/deserializing an object to and from a byte array.
+ </summary>
+</member><member name="M:Orbita.Winsock.OWinsockBase.RaiseEventSafe(System.Delegate,System.Object[]@)">
+	<summary>
+ Triggers an event declared at module level within a class, form, or document in a thread-safe manner.
+ </summary>
+	<param name="ev">The event to be raised.</param>
+	<param name="args">The arguements for the event.</param>
+</member><member name="E:Orbita.Winsock.OWinsockBase.Connected">
+	<summary>
+ Occurs when connection is achieved (client and server).
+ </summary>
+</member><member name="E:Orbita.Winsock.OWinsockBase.ConnectionRequest">
+	<summary>
+ Occurs on the server when a client is attempting to connect.
+ </summary>
+	<remarks>Client registers connected at this point. Server must Accept in order for it to be connected.</remarks>
+</member><member name="E:Orbita.Winsock.OWinsockBase.DataArrival">
+	<summary>
+ Occurs when data arrives on the socket.
+ </summary>
+	<remarks>Raised only after all parts of the data have been collected.</remarks>
+</member><member name="E:Orbita.Winsock.OWinsockBase.Disconnected">
+	<summary>
+ Occurs when disconnected from the remote computer (client and server).
+ </summary>
+</member><member name="E:Orbita.Winsock.OWinsockBase.ErrorReceived">
+	<summary>
+ Occurs when an error is detected in the socket.
+ </summary>
+	<remarks>May also be raised on disconnected (depending on disconnect circumstance).</remarks>
+</member><member name="E:Orbita.Winsock.OWinsockBase.ReceiveProgress">
+	<summary>
+ Occurs while the receive buffer is being filled with data.
+ </summary>
+</member><member name="E:Orbita.Winsock.OWinsockBase.SendComplete">
+	<summary>
+ Occurs when sending of data is completed.
+ </summary>
+</member><member name="E:Orbita.Winsock.OWinsockBase.SendProgress">
+	<summary>
+ Occurs when the send buffer has been sent but not all the data has been sent yet.
+ </summary>
+</member><member name="E:Orbita.Winsock.OWinsockBase.StateChanged">
+	<summary>
+ Occurs when the state of the socket changes.
+ </summary>
+</member><member name="M:Orbita.Winsock.OWinsockBase.OnConnected(Orbita.Winsock.WinsockConnectedEventArgs)">
+	<summary>
+ Raises the Connected event.
+ </summary>
+</member><member name="M:Orbita.Winsock.OWinsockBase.OnConnectionRequest(Orbita.Winsock.WinsockConnectionRequestEventArgs)">
+	<summary>
+ Raises the ConnectionRequest event.
+ </summary>
+</member><member name="M:Orbita.Winsock.OWinsockBase.OnDataArrival(Orbita.Winsock.WinsockDataArrivalEventArgs)">
+	<summary>
+ Raises the DataArrival event.
+ </summary>
+</member><member name="M:Orbita.Winsock.OWinsockBase.OnDisconnected">
+	<summary>
+ Raises the Disconnected event.
+ </summary>
+</member><member name="M:Orbita.Winsock.OWinsockBase.OnErrorReceived(Orbita.Winsock.WinsockErrorReceivedEventArgs)">
+	<summary>
+ Raises the ErrorReceived event.
+ </summary>
+</member><member name="M:Orbita.Winsock.OWinsockBase.OnReceiveProgress(Orbita.Winsock.WinsockReceiveProgressEventArgs)">
+	<summary>
+ Raises the ReceiveProgress event.
+ </summary>
+</member><member name="M:Orbita.Winsock.OWinsockBase.OnSendComplete(Orbita.Winsock.WinsockSendEventArgs)">
+	<summary>
+ Raises the SendComplete event.
+ </summary>
+</member><member name="M:Orbita.Winsock.OWinsockBase.OnSendProgress(Orbita.Winsock.WinsockSendEventArgs)">
+	<summary>
+ Raises the SendProgress event.
+ </summary>
+</member><member name="M:Orbita.Winsock.OWinsockBase.OnStateChanged(Orbita.Winsock.WinsockStateChangedEventArgs)">
+	<summary>
+ Raises the StateChanged event.
+ </summary>
+</member><member name="M:Orbita.Winsock.OWinsockBase.ChangeState(Orbita.Winsock.WinsockStates)">
+	<summary>
+ Encapsulates the OnStateChanged methods so the AsyncSocket
+ doesn't have to build the EventArgs parameter all the time.
+ </summary>
+	<param name="new_state">The new state of the WinsockBase.</param>
+</member><member name="M:Orbita.Winsock.OWinsockBase.ChangeLocalPort(System.Int32)">
+	<summary>
+ When the port is set dynamically by using port 0, the socket can now update the property of the component.
+ </summary>
+	<param name="new_port">The port we are now listening on.</param>
+</member><member name="P:Orbita.Winsock.OWinsockBase.BufferSize">
+	<summary>
+ Gets or sets a value indicating the interal size of the byte buffers.
+ </summary>
+</member><member name="P:Orbita.Winsock.OWinsockBase.HasData">
+	<summary>
+ Gets a value indicating whether the buffer has data for retrieval.
+ </summary>
+</member><member name="P:Orbita.Winsock.OWinsockBase.LegacySupport">
+	<summary>
+ Gets or sets a value indicating if Legacy support should be used or not.
+ </summary>
+	<remarks>Legacy support is to support older winsock style connections.</remarks>
+</member><member name="P:Orbita.Winsock.OWinsockBase.LocalIP">
+	<summary>
+ Gets the local machine's IP address(es).
+ </summary>
+</member><member name="P:Orbita.Winsock.OWinsockBase.LocalPort">
+	<summary>
+ Gets or sets a value indicating the port the see cref="WinsockBase"  control should listen on.
+ </summary>
+	<remarks>Cannot change while listening, connected, or connecting - but can change while closing.</remarks>
+</member><member name="P:Orbita.Winsock.OWinsockBase.MaxPendingConnections">
+	<summary>
+ Gets or sets a value that control the length of the maximum length of the pending connections queue.
+ </summary>
+	<remarks>Cannot change while listening.</remarks>
+</member><member name="P:Orbita.Winsock.OWinsockBase.NetworkStream">
+	<summary>
+ Gets a NetworkStream that this WinsockBase object is based on.
+ </summary>
+</member><member name="P:Orbita.Winsock.OWinsockBase.Protocol">
+	<summary>
+ Gets or sets the winsock protocol to use when communicating with the remote computer.
+ </summary>
+</member><member name="P:Orbita.Winsock.OWinsockBase.RemoteHost">
+	<summary>
+ Gets or sets a value that determines what remote computer to connect to, or is currently connected to.
+ </summary>
+	<remarks>Can only change if closed or listening.</remarks>
+</member><member name="P:Orbita.Winsock.OWinsockBase.RemotePort">
+	<summary>
+ Gets or sets a value that determines which port on the remote computer to connect on, or is currently connected on.
+ </summary>
+	<remarks>Can only change if closed or listening.</remarks>
+</member><member name="P:Orbita.Winsock.OWinsockBase.State">
+	<summary>
+ Gets the state of the see cref="WinsockBase" WinsockBase control.
+ </summary>
+</member><member name="M:Orbita.Winsock.OWinsockBase.Listen">
+	<summary>
+ Places a  see cref="WinsockBase" WinsockBase see   in a listening state.
+ </summary>
+</member><member name="M:Orbita.Winsock.OWinsockBase.Listen(System.Int32)">
+	<summary>
+ Places a  see cref="WinsockBase" WinsockBase see  in a listening state.
+ </summary>
+	<param name="port">The port  see cref="WinsockBase" WinsockBase see  should listen on.</param>
+</member><member name="M:Orbita.Winsock.OWinsockBase.Listen(System.String)">
+	<summary>
+ Places a  see cref="WinsockBase" WinsockBase see  in a listening state.
+ </summary>
+	<param name="ip">The IP address the  see cref="WinsockBase" WinsockBase see  should listen on.  This must be an ip address.</param>
+</member><member name="M:Orbita.Winsock.OWinsockBase.Listen(System.String,System.Int32)">
+	<summary>
+ Places a  see cref="WinsockBase" WinsockBase see  in a listening state.
+ </summary>
+	<param name="ip">The IP address the  see cref="WinsockBase" WinsockBase see  should listen on.</param>
+	<param name="port">The port  see cref="WinsockBase" WinsockBase see  should listen on.</param>
+</member><member name="M:Orbita.Winsock.OWinsockBase.Accept(System.Net.Sockets.Socket)">
+	<summary>
+ Accepts a client connect as valid and begins to monitor it for incoming data.
+ </summary>
+	<param name="client">A <see cref="T:System.Net.Sockets.Socket">System.Net.Sockets.Socket</see> that represents the client being accepted.</param>
+</member><member name="M:Orbita.Winsock.OWinsockBase.AcceptNew(System.Net.Sockets.Socket)">
+	<summary>
+ Creates an new  see cref="WinsockBase" WinsockBase see  and accepts the client connection on it.
+ </summary>
+	<param name="client">A <see cref="T:System.Net.Sockets.Socket">System.Net.Sockets.Socket</see> that represents the client being accepted.</param>
+	<remarks>
+ This was created to be used by the listener, to keep the listener listening while
+ also accepting a connection.
+ </remarks>
+</member><member name="M:Orbita.Winsock.OWinsockBase.Close">
+	<summary>
+ Closes an open  see cref="WinsockBase" WinsockBase see  connection.
+ </summary>
+</member><member name="M:Orbita.Winsock.OWinsockBase.Connect">
+	<summary>
+ Establishes a connection to a remote host.
+ </summary>
+</member><member name="M:Orbita.Winsock.OWinsockBase.Connect(System.String,System.Int32)">
+	<summary>
+ Establishes a connection to a remote host.
+ </summary>
+	<param name="remoteHostOrIP">A <see cref="T:System.String">System.String</see> containing the Hostname or IP address of the remote host.</param>
+	<param name="remote_port">A value indicating the port on the remote host to connect to.</param>
+</member><member name="M:Orbita.Winsock.OWinsockBase.Send(System.Object)">
+	<summary>
+ Sends an object to a connected socket on a remote computer.
+ </summary>
+	<param name="data">The object to send.</param>
+	<remarks>
+ The object is first serialized using a BinaryFormatter - unless
+ it is already a byte array, in which case it just sends the byte array.
+ </remarks>
+</member><member name="M:Orbita.Winsock.OWinsockBase.SendFile(System.String)">
+	<summary>
+ Sends a file to a connected socket on a remote computer.
+ </summary>
+	<param name="filename">The full path to the file you want to send.</param>
+	<remarks>
+ Creates a special file object to send, so the receiving end knows what to do with it.
+ </remarks>
+</member><member name="M:Orbita.Winsock.OWinsockBase.Get">
+	<summary>
+ Gets the next object from the buffer, removing it from the buffer.
+ </summary>
+	<returns>
+ A Deserialized object or if it can't be deserialized the byte array.
+ </returns>
+</member><member name="M:Orbita.Winsock.OWinsockBase.Get``1">
+	<summary>
+ Gets the next object from the buffer as the supplied type, removing it from the buffer.
+ </summary>
+	<typeparam name="dataType">The System.Type you wish to have the data returned as.</typeparam>
+	<returns>
+ A Deserialized object converted to the data type you wish.
+ </returns>
+	<remarks>
+ This function was added to make it easier for Option Strict users.
+ It allows for easier conversion instead of the user using CType, DirectCast, or the like.
+ Can throw an error if you specify the wrong type.
+ </remarks>
+</member><member name="M:Orbita.Winsock.OWinsockBase.Peek">
+	<summary>
+ Gets the next object from the buffer, leaving it ing the buffer.
+ </summary>
+	<returns>
+ A Deserialized object or if it can't be deserialized the byte array.
+ </returns>
+</member><member name="M:Orbita.Winsock.OWinsockBase.Peek``1">
+	<summary>
+ Gets the next object from the buffer as the supplied type, leaving it in the buffer.
+ </summary>
+	<typeparam name="dataType">The System.Type you wish to have the data returned as.</typeparam>
+	<returns>
+ A Deserialized object converted to the data type you wish.
+ </returns>
+	<remarks>
+ This function was added to make it easier for Option Strict users.
+ It allows for easier conversion instead of the user using CType, DirectCast, or the like.
+ Can throw an error if you specify the wrong type.
+ </remarks>
+</member><member name="M:Orbita.Winsock.WinsockFileData.#ctor">
+	<summary>
+ Initializes a new instance of the WinsockFileData class.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockFileData.FileName">
+	<summary>
+ Gets or sets the name of the file.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockFileData.FileData">
+	<summary>
+ Gets or sets the contents of the file.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockFileData.SaveFile(System.String,System.Boolean)">
+	<summary>
+ Saves the file to the specified path.
+ </summary>
+	<param name="save_path">The full path of the file to save to.</param>
+	<param name="append">Whether you want to append the data to the end of an existing file or not.</param>
+</member><member name="M:Orbita.Winsock.WinsockFileData.ReadFile(System.String)">
+	<summary>
+ Reads a file into the WinsockFileData class.
+ </summary>
+	<param name="file_path">The full path of the file you want to read.</param>
+</member><member name="T:Orbita.Winsock.WinsockFileData">
+	<summary>
+ A class that wraps a file allowing you to serialize it for transport.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockDesigner.#ctor">
+	<summary>
+ Creates a new instance of the WinsockDesigner class.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:Orbita.Winsock.WinsockDesigner.Initialize(System.ComponentModel.IComponent)">
+	<summary>
+ Initializes this instance of the WinsockDesigner class.
+ </summary>
+	<param name="component">The base component of the designer.</param>
+</member><member name="P:Orbita.Winsock.WinsockDesigner.Verbs">
+	<summary>
+ Gets the Verb collection.
+ </summary>
+	<remarks>
+ The Verb collection is used to display links at the
+ bottom of the description in the Properties pane.
+ </remarks>
+</member><member name="P:Orbita.Winsock.WinsockDesigner.ActionLists">
+	<summary>
+ Gets the Action list collection.
+ </summary>
+	<remarks>
+ The Action list collection is used for the Smart Tag
+ popup to provide easy access to various properties/actions.
+ </remarks>
+</member><member name="T:Orbita.Winsock.WinsockDesigner">
+	<summary>
+ WinsockBase designer class provides designer time support for the WinsockBase component.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockActionList.#ctor(System.ComponentModel.IComponent)">
+	<summary>
+ Initializes a new instance of the WinsockActionList class.
+ </summary>
+	<param name="component">The component used in initialization.</param>
+</member><member name="P:Orbita.Winsock.WinsockActionList.LegacySupport">
+	<summary>
+ Gets or sets a value indicating if Legacy support should be used or not.
+ </summary>
+	<remarks>Legacy support is to support older winsock style connections.</remarks>
+</member><member name="P:Orbita.Winsock.WinsockActionList.Protocol">
+	<summary>
+ Gets or sets the winsock protocol to use when communicating with the remote computer.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockActionList.GetSortedActionItems">
+	<summary>
+ Builds and retrieves the Action list itself.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockActionList.GetPropertyByName(System.String)">
+	<summary>
+ Gets the property information by the given name.
+ </summary>
+	<param name="propName">The name of the property to get.</param>
+</member><member name="M:Orbita.Winsock.WinsockActionList.ShowAbout">
+	<summary>
+ Shows the about box.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockActionList.LaunchWebSite">
+	<summary>
+ Launches the author's website.
+ </summary>
+</member><member name="T:Orbita.Winsock.WinsockActionList">
+	<summary>
+ Provides the action list for the WinsockBase component during design time.
+ </summary>
+</member><member name="P:Orbita.Winsock.AsyncSocket.RemoteIP">
+	<summary>
+ Gets a value containing the remote IP address.
+ </summary>
+</member><member name="P:Orbita.Winsock.AsyncSocket.RemotePort">
+	<summary>
+ Gets a value containing the remote port number.
+ </summary>
+</member><member name="P:Orbita.Winsock.AsyncSocket.LocalPort">
+	<summary>
+ Gets a value containing the local port number.
+ </summary>
+</member><member name="M:Orbita.Winsock.AsyncSocket.Accept(System.Net.Sockets.Socket)">
+	<summary>
+ Accepts an incoming connection and starts the data listener.
+ </summary>
+	<param name="client">The client to accept.</param>
+</member><member name="M:Orbita.Winsock.AsyncSocket.Close">
+	<summary>
+ Closes the socket if its already open or listening.
+ </summary>
+</member><member name="M:Orbita.Winsock.AsyncSocket.Listen(System.Int32,System.Int32)">
+	<summary>
+ Starts Listening for incoming connections.  For UDP sockets it starts listening for incoming data.
+ </summary>
+	<param name="port">The port to start listening on.</param>
+	<param name="max_pending">The maximum length of the pending connections queue.</param>
+</member><member name="M:Orbita.Winsock.AsyncSocket.Listen(System.Int32,System.Int32,System.Net.IPAddress)">
+	<summary>
+ Starts Listening for incoming connections on the specified IP address.  For UDP sockets it starts listening for incoming data.
+ </summary>
+	<param name="port">The port to start listening on.</param>
+	<param name="max_pending">The maximum length of the pending connections queue.</param>
+	<param name="ip">The IP address on which to listen.</param>
+</member><member name="M:Orbita.Winsock.AsyncSocket.PeekData">
+	<summary>
+ Gets the first object in the buffer without removing it.
+ </summary>
+</member><member name="M:Orbita.Winsock.AsyncSocket.GetData">
+	<summary>
+ Gets and removes the first object in the buffer.
+ </summary>
+</member><member name="M:Orbita.Winsock.AsyncSocket.Connect(System.String,System.Int32)">
+	<summary>
+ Attemps to connect to a remote computer.
+ </summary>
+	<param name="remoteHostOrIp">The remote host or IP address of the remote computer.</param>
+	<param name="remote_port">The port number on which to connect to the remote computer.</param>
+</member><member name="M:Orbita.Winsock.AsyncSocket.Connect(System.Net.IPAddress,System.Int32)">
+	<summary>
+ Attempts to connect to a remote computer.
+ </summary>
+	<param name="remIP">The IP address of the remote computer.</param>
+	<param name="port">The port number on which to connect to the remote computer.</param>
+</member><member name="M:Orbita.Winsock.AsyncSocket.Send(System.Byte[])">
+	<summary>
+ Sends data to the remote computer.
+ </summary>
+	<param name="byt">The byte array of data to send.</param>
+</member><member name="M:Orbita.Winsock.AsyncSocket.ListenCallback(System.IAsyncResult)">
+	<summary>
+ The callback for the listener - only used for a TCP listener.
+ </summary>
+	<remarks>This routine starts again when finished making it loop to continuously receive connections.</remarks>
+</member><member name="M:Orbita.Winsock.AsyncSocket.ReceiveCallbackUDP(System.IAsyncResult)">
+	<summary>
+ The callback method for the Receive method (UDP only) - used when there is incoming data.
+ </summary>
+</member><member name="M:Orbita.Winsock.AsyncSocket.ConnectCallback(System.IAsyncResult)">
+	<summary>
+ The callback for the Connect method - used on the client to start looking for data.
+ </summary>
+</member><member name="M:Orbita.Winsock.AsyncSocket.ReceiveCallback(System.IAsyncResult)">
+	<summary>
+ The callback method for the Receive method (TCP only) - used when there is incoming data.
+ </summary>
+</member><member name="M:Orbita.Winsock.AsyncSocket.SendCallback(System.IAsyncResult)">
+	<summary>
+ The callback method for the Send method (TCP only) - loops if not all the data was sent.
+ </summary>
+</member><member name="M:Orbita.Winsock.AsyncSocket.SendToCallback(System.IAsyncResult)">
+	<summary>
+ The callback method for the Send method (UDP only) - loops if not all the data was sent.
+ </summary>
+</member><member name="M:Orbita.Winsock.AsyncSocket.DoConnectCallback(System.IAsyncResult)">
+	<summary>
+ The callback method for resolving the address given - starts the socket on connecting.
+ </summary>
+</member><member name="M:Orbita.Winsock.AsyncSocket.ProcessIncoming(System.Byte[],System.Int32,System.String,System.Int32)">
+	<summary>
+ Processes raw data that was received from the socket and places it into the appropriate buffer.
+ </summary>
+	<param name="byt">The raw byte buffer containing the data received from the socket.</param>
+	<param name="iSize">The size of the data received from the socket (reported from the EndReceive).</param>
+	<param name="source_ip">The IP address the data came from, used for event raising.</param>
+	<param name="source_port">The Port the data arrived on, used for event raising.</param>
+</member><member name="M:Orbita.Winsock.AsyncSocket.ResizeArray(System.Byte[]@,System.Int32)">
+	<summary>
+ Resizes an array to the desired length - preserving the data at the begining of the array.
+ </summary>
+	<param name="byt">The array to be resized.</param>
+	<param name="iSize">The size to resize the array to.</param>
+</member><member name="M:Orbita.Winsock.AsyncSocket.Receive">
+	<summary>
+ Starts listening for incoming packets on the socket.
+ </summary>
+	<remarks>The is private because, the user should never have to call this.</remarks>
+</member><member name="M:Orbita.Winsock.AsyncSocket.DoSend">
+	<summary>
+ Starts the sending of an object in the send buffer.
+ </summary>
+</member><member name="P:Orbita.Winsock.AsyncSocket.PacketHeader.HasDelimiter">
+	<summary>
+ A Boolean value to determine if the class has found a delimiter yet.
+ </summary>
+</member><member name="P:Orbita.Winsock.AsyncSocket.PacketHeader.HasSize">
+	<summary>
+ A Boolean value to determine if the class has found the size or not.
+ </summary>
+</member><member name="P:Orbita.Winsock.AsyncSocket.PacketHeader.Completed">
+	<summary>
+ A Boolean value to determine if the header processing has been completed or not.
+ </summary>
+	<remarks>Based on HasDelimiter and HasSize</remarks>
+</member><member name="P:Orbita.Winsock.AsyncSocket.PacketHeader.Size">
+	<summary>
+ The determined Size that was contained within the header.
+ </summary>
+</member><member name="P:Orbita.Winsock.AsyncSocket.PacketHeader.Delimiter">
+	<summary>
+ The delimiter found within the header (typically the first byte).
+ </summary>
+</member><member name="M:Orbita.Winsock.AsyncSocket.PacketHeader.ProcessHeader(System.Byte[]@,Orbita.Winsock.ByteBufferCol@)">
+	<summary>
+ Processes a received byte array for possible header information to decode the length of the data received.
+ </summary>
+	<param name="byt">The byte array to process.</param>
+	<param name="_buff">A temporary byte buffer to stored data in.</param>
+	<remarks>The parameters must be passed ByRef to allow the other routines to work with the exact same data (and modified data).</remarks>
+</member><member name="M:Orbita.Winsock.AsyncSocket.PacketHeader.Reset">
+	<summary>
+ Resets the packet processor for another run.
+ </summary>
+</member><member name="M:Orbita.Winsock.AsyncSocket.PacketHeader.AddHeader(System.Byte[]@)">
+	<summary>
+ Adds a packet header to the byte array given.
+ </summary>
+	<param name="byt">The byte array to prepend with a packet header.</param>
+</member><member name="M:Orbita.Winsock.AsyncSocket.PacketHeader.FreeByte(System.Byte[])">
+	<summary>
+ Determines which byte value was not used in the byte array.
+ </summary>
+	<param name="byt">The byte array to check.</param>
+</member><member name="M:Orbita.Winsock.AsyncSocket.PacketHeader.EncloseByte(System.Byte,System.Byte[])">
+	<summary>
+ Encloses a byte array with another byte.
+ </summary>
+	<param name="byt">A byte to enclose around a byte array.</param>
+	<param name="bytArr">The byte array that needs a byte enclosed around it.</param>
+</member><member name="M:Orbita.Winsock.AsyncSocket.PacketHeader.AppendByte(System.Byte[],System.Byte[])">
+	<summary>
+ Combines two byte arrays.
+ </summary>
+</member><member name="T:Orbita.Winsock.AsyncSocket.PacketHeader">
+	<summary>
+ A class that decodes and stores the packet header information.
+ </summary>
+</member><member name="F:Orbita.Winsock.AsyncSocket.UdpReceiveState.SendingSocket">
+	<summary>
+ The incoming socket information - allows UDP to determine the sender.
+ </summary>
+</member><member name="F:Orbita.Winsock.AsyncSocket.UdpReceiveState.ReceivingEndpoint">
+	<summary>
+ The EndPoint on which the data was received (server side).
+ </summary>
+</member><member name="T:Orbita.Winsock.AsyncSocket.UdpReceiveState">
+	<summary>
+ A class that allows a state to be transfered from the calling method to the asyncrounous callback method.
+ This class is used for receiving data via UDP.
+ </summary>
+</member><member name="M:Orbita.Winsock.AsyncSocket.SendQueueData.#ctor(System.Net.IPEndPoint,System.Byte[])">
+	<summary>
+ Initializes a new instance of the SendQueueData class.
+ </summary>
+	<param name="ip">An IPEndPoint containing the IP address that you will be sending to.</param>
+	<param name="byt">The data that needs to be sent.</param>
+</member><member name="P:Orbita.Winsock.AsyncSocket.SendQueueData.IPAddress">
+	<summary>
+ The IPEndPoint that contains the IP address information needed to send the data.
+ </summary>
+</member><member name="P:Orbita.Winsock.AsyncSocket.SendQueueData.Data">
+	<summary>
+ The data that needs to be sent.
+ </summary>
+</member><member name="T:Orbita.Winsock.AsyncSocket.SendQueueData">
+	<summary>
+ A class that helps store data waiting to be sent in the SendQueue
+ </summary>
+	<remarks>
+ This class was borne out of necessity - not for TCP, but for UDP.
+ I realized that if you are sending large data chunks out via UDP
+ to different remote addresses, you could end up sending data to
+ the wrong remote host.  This class allows the component to recognize
+ that it needs to send to a different remote host.
+ </remarks>
+</member><member name="F:Orbita.Winsock.AsyncSocket.SendState.Length">
+	<summary>
+ The total length of the original byte array to be sent. (Includes packet header)
+ </summary>
+</member><member name="F:Orbita.Winsock.AsyncSocket.SendState.ErrCode">
+	<summary>
+ The error code as reported by the socket - used during the callback method.
+ </summary>
+</member><member name="F:Orbita.Winsock.AsyncSocket.SendState.StartIndex">
+	<summary>
+ The index at which to start sending - usefull when sending packets larger than the buffer size.
+ </summary>
+</member><member name="F:Orbita.Winsock.AsyncSocket.SendState.SendLength">
+	<summary>
+ The number of bytes to send during this time - usefull when sending packets larger than the buffer size.
+ </summary>
+</member><member name="F:Orbita.Winsock.AsyncSocket.SendState.TotalSent">
+	<summary>
+ The total number of bytes actually transmitted.
+ </summary>
+</member><member name="F:Orbita.Winsock.AsyncSocket.SendState.SendingSocket">
+	<summary>
+ The socket that is doing the sending - used for UDP statistic information during the callback method.
+ </summary>
+</member><member name="F:Orbita.Winsock.AsyncSocket.SendState.SendToAddress">
+	<summary>
+ The IP address of the computer you are sending to - used for UDP statistic information during the callback method.
+ </summary>
+</member><member name="F:Orbita.Winsock.AsyncSocket.SendState.Data">
+	<summary>
+ Array que contiene el mensaje de envio.
+ </summary>
+	<remarks></remarks>
+</member><member name="M:Orbita.Winsock.AsyncSocket.SendState.Build(System.Int32,System.Net.Sockets.Socket@,System.Int32,System.Byte[])">
+	<summary>
+ Builds and returns an instance of the SendState class.
+ </summary>
+	<param name="bytUpperBound">The UpperBound of the byte array that will be sent.</param>
+	<param name="sock">The socket to assign to the SendState.</param>
+	<param name="buffer_size">The socket's buffer size.</param>
+</member><member name="M:Orbita.Winsock.AsyncSocket.SendState.Build(System.Int32,System.Net.Sockets.Socket@,System.Int32)">
+	<summary>
+ Builds and returns an instance of the SendState class.
+ </summary>
+	<param name="bytUpperBound">The UpperBound of the byte array that will be sent.</param>
+	<param name="sock">The socket to assign to the SendState.</param>
+	<param name="buffer_size">The socket's buffer size.</param>
+</member><member name="P:Orbita.Winsock.AsyncSocket.SendState.SendCompleted">
+	<summary>
+ Returns a boolean indicating whether the object being sent has completed or not.
+ </summary>
+</member><member name="T:Orbita.Winsock.AsyncSocket.SendState">
+	<summary>
+ A class that allows a state to be transfered from the calling method to the asyncrounous callback method.
+ This class is used when sending data.
+ </summary>
+</member><member name="T:Orbita.Winsock.AsyncSocket">
+	<summary>
+ A class that encapsulates all the raw functions of the System.Net.Sockets.Socket
+ </summary>
+</member><member name="M:Orbita.Winsock.ByteBufferCol.Add(System.Byte)">
+	<summary>
+ Adds a byte to the byte buffer.
+ </summary>
+	<param name="byt">The byte to add to the buffer.</param>
+</member><member name="M:Orbita.Winsock.ByteBufferCol.Add(System.Byte[])">
+	<summary>
+ Adds a byte array to the byte buffer.
+ </summary>
+	<param name="byt">The byte array to add to the buffer.</param>
+	<remarks>Adds all the bytes in the array individually - not the array itself.</remarks>
+</member><member name="M:Orbita.Winsock.ByteBufferCol.Combine">
+	<summary>
+ Combines all the bytes in the buffer into one byte array.
+ </summary>
+</member><member name="T:Orbita.Winsock.ByteBufferCol">
+	<summary>
+ A special collection class to act as a byte buffer.
+ </summary>
+</member><member name="F:Orbita.Winsock.WinsockProtocol.Tcp">
+	<summary>
+ Transmission Control Protocol - a connection oriented protocol.
+ </summary>
+</member><member name="F:Orbita.Winsock.WinsockProtocol.Udp">
+	<summary>
+ User Datagram Protocol - a connection-less protocol.
+ </summary>
+</member><member name="T:Orbita.Winsock.WinsockProtocol">
+	<summary>
+ Enumeration containing the various supported network protocols.
+ </summary>
+</member><member name="F:Orbita.Winsock.WinsockStates.Closed">
+	<summary>
+ The WinsockBase is closed.
+ </summary>
+</member><member name="F:Orbita.Winsock.WinsockStates.Listening">
+	<summary>
+ The WinsockBase is listening (TCP for connections, UDP for data).
+ </summary>
+</member><member name="F:Orbita.Winsock.WinsockStates.ResolvingHost">
+	<summary>
+ The WinsockBase is attempting the resolve the remote host.
+ </summary>
+</member><member name="F:Orbita.Winsock.WinsockStates.HostResolved">
+	<summary>
+ The remote host has been resolved to IP address.
+ </summary>
+</member><member name="F:Orbita.Winsock.WinsockStates.Connecting">
+	<summary>
+ The WinsockBase is attempting to connect to the remote host.
+ </summary>
+</member><member name="F:Orbita.Winsock.WinsockStates.Connected">
+	<summary>
+ The WinsockBase is connected to a remote source (client or server).
+ </summary>
+</member><member name="F:Orbita.Winsock.WinsockStates.Closing">
+	<summary>
+ The WinsockBase is attempting to close the connection.
+ </summary>
+</member><member name="T:Orbita.Winsock.WinsockStates">
+	<summary>
+ Enumeration containing the various WinsockBase states.
+ </summary>
+</member><member name="M:Orbita.Winsock.SharedMethods.RaiseError(Orbita.Winsock.IWinsock@,System.String)">
+	<summary>
+ Raises an error on the parent WinsockBase object.
+ </summary>
+	<param name="iParent">The parent WinsockBase object to raise the error on.</param>
+	<param name="msg">A String containing a message describing the error being raised.</param>
+</member><member name="M:Orbita.Winsock.SharedMethods.RaiseError(Orbita.Winsock.IWinsock@,System.String,System.String)">
+	<summary>
+ Raises an error on the parent WinsockBase object.
+ </summary>
+	<param name="iParent">The parent WinsockBase object to raise the error on.</param>
+	<param name="msg">A String containing a message describing the error being raised.</param>
+	<param name="details">A String containing extra details describing the error being raised.</param>
+</member><member name="M:Orbita.Winsock.SharedMethods.RaiseError(Orbita.Winsock.IWinsock@,System.String,System.String,System.Net.Sockets.SocketError)">
+	<summary>
+ Raises an error on the parent WinsockBase object.
+ </summary>
+	<param name="iParent">The parent WinsockBase object to raise the error on.</param>
+	<param name="msg">A String containing a message describing the error being raised.</param>
+	<param name="details">A String containing extra details describing the error being raised.</param>
+	<param name="errCode">A value containing the socket's error code.</param>
+</member><member name="M:Orbita.Winsock.SharedMethods.ShrinkArray``1(``0[]@,System.Int32)">
+	<summary>
+ Removes items from the beginning of an array.
+ </summary>
+</member><member name="T:Orbita.Winsock.SharedMethods">
+	<summary>
+ This call contains shared methods that any class can use.
+ </summary>
+</member><member name="P:My.Resources.Resources.ResourceManager">
+	<summary>
+  Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
+</summary>
+</member><member name="P:My.Resources.Resources.Culture">
+	<summary>
+  Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
+  búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
+</summary>
+</member><member name="T:My.Resources.Resources">
+	<summary>
+  Clase de recurso con establecimiento inflexible de tipos, para buscar cadenas traducidas, etc.
+</summary>
+</member><member name="M:Orbita.Winsock.WinsockErrorReceivedEventArgs.#ctor(System.String)">
+	<summary>
+ Initializes a new instance of the WinsockErrorEventArgs class.
+ </summary>
+	<param name="error_message">A String containing the error message.</param>
+</member><member name="M:Orbita.Winsock.WinsockErrorReceivedEventArgs.#ctor(System.String,System.String)">
+	<summary>
+ Initializes a new instance of the WinsockErrorEventArgs class.
+ </summary>
+	<param name="error_message">A String containing the error message.</param>
+	<param name="function_name">A String containing the name of the function that produced the error.</param>
+</member><member name="M:Orbita.Winsock.WinsockErrorReceivedEventArgs.#ctor(System.String,System.String,System.String)">
+	<summary>
+ Initializes a new instance of the WinsockErrorEventArgs class.
+ </summary>
+	<param name="error_message">A String containing the error message.</param>
+	<param name="function_name">A String containing the name of the function that produced the error.</param>
+	<param name="extra_details">A String containing extra details for the error message.</param>
+</member><member name="M:Orbita.Winsock.WinsockErrorReceivedEventArgs.#ctor(System.String,System.String,System.String,System.Net.Sockets.SocketError)">
+	<summary>
+ Initializes a new instance of the WinsockErrorEventArgs class.
+ </summary>
+	<param name="error_message">A String containing the error message.</param>
+	<param name="function_name">A String containing the name of the function that produced the error.</param>
+	<param name="extra_details">A String containing extra details for the error message.</param>
+	<param name="error_code">A value containing the socket's ErrorCode.</param>
+</member><member name="P:Orbita.Winsock.WinsockErrorReceivedEventArgs.Message">
+	<summary>
+ Gets a value containing the error message.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockErrorReceivedEventArgs.Function">
+	<summary>
+ Gets a value containing the name of the function that produced the error.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockErrorReceivedEventArgs.ErrorCode">
+	<summary>
+ Gets a value indicating the error code returned by the socket.
+ </summary>
+	<remarks>If it wasn't returned by the socket, it defaults to success.</remarks>
+</member><member name="P:Orbita.Winsock.WinsockErrorReceivedEventArgs.Details">
+	<summary>
+ Gets a value containing more details than the typical error message.
+ </summary>
+</member><member name="T:Orbita.Winsock.WinsockErrorReceivedEventArgs">
+	<summary>
+ Provides data for the WinsockBase.ErrorReceived event.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockConnectionRequestEventArgs.#ctor(System.Net.Sockets.Socket)">
+	<summary>
+ Initializes a new instance of the WinsockClientReceivedEventArgs class.
+ </summary>
+	<param name="new_client">A Socket object containing the new client that needs to be accepted.</param>
+</member><member name="P:Orbita.Winsock.WinsockConnectionRequestEventArgs.Client">
+	<summary>
+ Gets a value containing the client information.
+ </summary>
+	<remarks>Used in accepting the client.</remarks>
+</member><member name="P:Orbita.Winsock.WinsockConnectionRequestEventArgs.ClientIP">
+	<summary>
+ Gets a value containing the incoming clients IP address.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockConnectionRequestEventArgs.Cancel">
+	<summary>
+ Gets or sets a value indicating whether the incoming client request should be cancelled.
+ </summary>
+</member><member name="T:Orbita.Winsock.WinsockConnectionRequestEventArgs">
+	<summary>
+ Provides data for the WinsockBase.ConnectionRequest event.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockStateChangedEventArgs.#ctor(Orbita.Winsock.WinsockStates,Orbita.Winsock.WinsockStates)">
+	<summary>
+ Initializes a new instance of the WinsockStateChangingEventArgs class.
+ </summary>
+	<param name="oldState">The old state of the WinsockBase control.</param>
+	<param name="newState">The state the WinsockBase control is changing to.</param>
+</member><member name="P:Orbita.Winsock.WinsockStateChangedEventArgs.Old_State">
+	<summary>
+ Gets a value indicating the previous state of the WinsockBase control.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockStateChangedEventArgs.New_State">
+	<summary>
+ Gets a value indicating the new state of the WinsockBase control.
+ </summary>
+</member><member name="T:Orbita.Winsock.WinsockStateChangedEventArgs">
+	<summary>
+ Provides data for the WinsockBase.StateChanged event.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockDataArrivalEventArgs.#ctor(System.Int32,System.String,System.Int32)">
+	<summary>
+ Initializes a new instance of the WinsockDataArrivalEventArgs class.
+ </summary>
+	<param name="bytes_total">The number of bytes that were received.</param>
+	<param name="source_ip">The source address of the bytes.</param>
+	<param name="source_port">The source port of the bytes.</param>
+</member><member name="P:Orbita.Winsock.WinsockDataArrivalEventArgs.TotalBytes">
+	<summary>
+ Gets a value indicating the number of bytes received.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockDataArrivalEventArgs.SourceIP">
+	<summary>
+ Gets a value indicating the data's originating address.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockDataArrivalEventArgs.SourcePort">
+	<summary>
+ Gets a value indicating the data's originating port.
+ </summary>
+</member><member name="T:Orbita.Winsock.WinsockDataArrivalEventArgs">
+	<summary>
+ Provides data for the WinsockBase.DataArrival event.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockConnectedEventArgs.#ctor(System.String,System.Int32)">
+	<summary>
+ Initializes a new instance of the WinsockConnectedEventArgs class.
+ </summary>
+	<param name="source_ip">The source address of the connection.</param>
+	<param name="source_port">The source port of the connection.</param>
+</member><member name="P:Orbita.Winsock.WinsockConnectedEventArgs.SourceIP">
+	<summary>
+ Gets a value indicating the remote address of the connection.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockConnectedEventArgs.SourcePort">
+	<summary>
+ Gets a value indicating the remote port of the connection.
+ </summary>
+</member><member name="T:Orbita.Winsock.WinsockConnectedEventArgs">
+	<summary>
+ Provides data for the WinsockBase.Connected event.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockSendEventArgs.#ctor(System.String,System.Int32,System.Int32)">
+	<summary>
+ Initializes a new instance of the WinsockSendEventArgs class.
+ </summary>
+	<param name="dest_ip">The destination of the bytes sent.</param>
+	<param name="bytes_sent">The total number of bytes sent.</param>
+	<param name="bytes_total">The total number of bytes that were supposed to be sent.</param>
+</member><member name="M:Orbita.Winsock.WinsockSendEventArgs.#ctor(System.String,System.Int32,System.Int32,System.Byte[])">
+	<summary>
+ Initializes a new instance of the WinsockSendEventArgs class.
+ </summary>
+	<param name="dest_ip">The destination of the bytes sent.</param>
+	<param name="bytes_sent">The total number of bytes sent.</param>
+	<param name="bytes_total">The total number of bytes that were supposed to be sent.</param>
+	<param name="data_sent">The total data of bytes that were supposed to be sent.</param>
+</member><member name="P:Orbita.Winsock.WinsockSendEventArgs.DestinationIP">
+	<summary>
+ Gets a value indicating the destination of the bytes sent.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockSendEventArgs.BytesSent">
+	<summary>
+ Gets a value indicating the number of bytes sent.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockSendEventArgs.BytesTotal">
+	<summary>
+ Gets a value indicating the total number of bytes that should have been sent.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockSendEventArgs.DataSent">
+	<summary>
+ Gets a value indicating the data to sent.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockSendEventArgs.SentPercent">
+	<summary>
+ Gets a value indicating the percentage (0-100) of bytes that where sent.
+ </summary>
+</member><member name="T:Orbita.Winsock.WinsockSendEventArgs">
+	<summary>
+ Provides data for the WinsockBase.SendComplete event.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockCollectionCountChangedEventArgs.#ctor(System.Int32,System.Int32)">
+	<summary>
+ Initializes a new instance of the WinsockCollectionCountChangedEventArgs class.
+ </summary>
+	<param name="old_count">The old number of items in the collection.</param>
+	<param name="new_count">The new number of items in the collection.</param>
+</member><member name="P:Orbita.Winsock.WinsockCollectionCountChangedEventArgs.OldCount">
+	<summary>
+ Gets a value indicating the previous number of items in the collection.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockCollectionCountChangedEventArgs.NewCount">
+	<summary>
+ Gets a value indicating the current number of items in the collection.
+ </summary>
+</member><member name="T:Orbita.Winsock.WinsockCollectionCountChangedEventArgs">
+	<summary>
+ Provides data for the WinsockCollection.CountChanged event.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockReceiveProgressEventArgs.#ctor(System.String,System.Int32,System.Int32)">
+	<summary>
+ Initializes a new instance of the WinsockReceiveProgressEventArgs class.
+ </summary>
+	<param name="source_ip">The source ip of the bytes received.</param>
+	<param name="bytes_received">The total number of bytes received.</param>
+	<param name="bytes_total">The total number of bytes that were supposed to be received.</param>
+</member><member name="P:Orbita.Winsock.WinsockReceiveProgressEventArgs.SourceIP">
+	<summary>
+ Gets a value indicating the source of the bytes sent.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockReceiveProgressEventArgs.BytesReceived">
+	<summary>
+ Gets a value indicating the number of bytes received.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockReceiveProgressEventArgs.BytesTotal">
+	<summary>
+ Gets a value indicating the total number of bytes that should be received.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockReceiveProgressEventArgs.ReceivedPercent">
+	<summary>
+ Gets a value indicating the percentage (0-100) of bytes that where received.
+ </summary>
+</member><member name="T:Orbita.Winsock.WinsockReceiveProgressEventArgs">
+	<summary>
+ Provides data for the WinsockBase.ReceiveProgress event.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockCollection.#ctor(System.Boolean,System.Boolean)">
+	<summary>
+ Initializes a new instance of the WinsockCollection class.
+ </summary>
+	<param name="auto_remove">
+ Determines if the collection should automatically remove the
+ connection when the Disconnected event is fired.
+ </param>
+	<param name="legacy_support">
+ Enables LegacySupport for connections accepted using the
+ collections Accept method.
+ </param>
+</member><member name="M:Orbita.Winsock.WinsockCollection.OnClearComplete">
+	<summary>
+ Run when the base class's list is finished clearing.
+ Triggers clearing of the keys and values - closing
+ all connections.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockCollection.OnInsertComplete(System.Int32,System.Object)">
+	<summary>
+ Causes the CountChanged event to be triggered when an item is added to the collection.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockCollection.OnRemoveComplete(System.Int32,System.Object)">
+	<summary>
+ Causes the CountChanged event to be triggered when an item is removed from the collection.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockCollection.ClearAllValues">
+	<summary>
+ Run during the Clearing of the collection.
+ The method actually clears the values safely
+ so as not to cause exceptions.  Triggered via
+ the last Disconnected event.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockCollection.getGID(System.Int32)">
+	<summary>
+ Attemps to retrieve the GUID of the item at the index specified.
+ </summary>
+	<param name="index">The zero-based index of the GUID you are attempting to find.</param>
+</member><member name="M:Orbita.Winsock.WinsockCollection.getGID(System.Object)">
+	<summary>
+ Attempts to retrieve the GUID of the item using the Key given to the item.
+ </summary>
+	<param name="key">The key whose GUID you are looking for.</param>
+</member><member name="M:Orbita.Winsock.WinsockCollection.RemoveGID(System.Guid)">
+	<summary>
+ Removes the given GUID and it's ties from the collections.
+ </summary>
+	<param name="gid">The GUID to remove.</param>
+</member><member name="M:Orbita.Winsock.WinsockCollection.Add(System.Guid,System.Object,Orbita.Winsock.OWinsockBase)">
+	<summary>
+ Adds a winsock value to the collection.
+ </summary>
+	<param name="gid">The GUID of the object.</param>
+	<param name="key">The Key of the object (may be nothing).</param>
+	<param name="value">The WinsockBase that is to be added to the collection.</param>
+	<remarks>Attaches handlers to each WinsockBase event so the collection can act as a proxy.</remarks>
+</member><member name="M:Orbita.Winsock.WinsockCollection.RemovalThread">
+	<summary>
+ Method to remove an object automatically - threaded to avoid problems.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockCollection.findGID(Orbita.Winsock.OWinsockBase)">
+	<summary>
+ Retrieves the GUID assigned to the specified WinsockBase object in the collection.
+ </summary>
+	<param name="value">The WinsockBase object to find the GUID of.</param>
+</member><member name="M:Orbita.Winsock.WinsockCollection.findKey(Orbita.Winsock.OWinsockBase)">
+	<summary>
+ Retrieves the Key assigned to the specified WinsockBase object in the collection.
+ </summary>
+	<param name="value">The WinsockBase object to find the Key of.</param>
+	<returns>The key object that was assigned to the WinsockBase - may be Nothing.</returns>
+</member><member name="M:Orbita.Winsock.WinsockCollection.ContainsKey(System.Object)">
+	<summary>
+ Determines if the collection contains the key specified.
+ </summary>
+	<param name="key">The key to search the collection for.</param>
+</member><member name="M:Orbita.Winsock.WinsockCollection.ContainsValue(Orbita.Winsock.OWinsockBase)">
+	<summary>
+ Determines if the collection contains the specified value.
+ </summary>
+	<param name="value">The value to search the collection for.</param>
+</member><member name="M:Orbita.Winsock.WinsockCollection.Remove(System.Int32)">
+	<summary>
+ Removes the value at the specified index.  Use this instead of RemoveAt.
+ </summary>
+	<param name="index">The zero-based index of the item you wish to remove.</param>
+</member><member name="M:Orbita.Winsock.WinsockCollection.Remove(System.Object)">
+	<summary>
+ Removes the value with the specified key.
+ </summary>
+	<param name="key">The key of the value you wish to remove.</param>
+</member><member name="M:Orbita.Winsock.WinsockCollection.Remove(System.Guid)">
+	<summary>
+ Removes the value with the specified Guid.
+ </summary>
+	<param name="gid">The Guid of the value you wish to remove.</param>
+</member><member name="M:Orbita.Winsock.WinsockCollection.Add(Orbita.Winsock.OWinsockBase)">
+	<summary>
+ Adds a value to the collection.
+ </summary>
+	<param name="value">The WinsockBase object to add to the collection.</param>
+	<returns>Returns the GUID assigned to the element.</returns>
+</member><member name="M:Orbita.Winsock.WinsockCollection.Add(Orbita.Winsock.OWinsockBase,System.Object)">
+	<summary>
+ Adds a value to the collection.
+ </summary>
+	<param name="value">The WinsockBase object to add to the collection.</param>
+	<param name="key">The Key of the element to add.</param>
+	<returns>Returns the GUID assigned to the element.</returns>
+</member><member name="M:Orbita.Winsock.WinsockCollection.Accept(System.Net.Sockets.Socket)">
+	<summary>
+ Accepts an incoming connection and adds it to the collection.
+ </summary>
+	<param name="client">The client to accept.</param>
+	<returns>Returns the GUID assigned to the element.</returns>
+</member><member name="M:Orbita.Winsock.WinsockCollection.Accept(System.Net.Sockets.Socket,System.Object)">
+	<summary>
+ Accepts an incoming connection and adds it to the collection.
+ </summary>
+	<param name="client">The client to accept.</param>
+	<param name="key">The Key of the element to add.</param>
+	<returns>Returns the GUID assigned to the element.</returns>
+</member><member name="M:Orbita.Winsock.WinsockCollection.Connect(System.String,System.Int32)">
+	<summary>
+ Connects to a remote host and adds it to the collection.
+ </summary>
+	<param name="remoteHostOrIP">A <see cref="T:System.String"/> containing the Hostname or IP address of the remote host.</param>
+	<param name="remotePort">A value indicating the port on the remote host to connect to.</param>
+	<returns>Return the GUID assigned to the element.</returns>
+</member><member name="M:Orbita.Winsock.WinsockCollection.Connect(System.String,System.Int32,System.Object)">
+	<summary>
+ Connects to a remote host and adds it to the collection.
+ </summary>
+	<param name="remoteHostOrIP">A <see cref="T:System.String"/> containing the Hostname or IP address of the remote host.</param>
+	<param name="remotePort">A value indicating the port on the remote host to connect to.</param>
+	<param name="key">The Key of the element to add.</param>
+	<returns>Return the GUID assigned to the element.</returns>
+</member><member name="M:Orbita.Winsock.WinsockCollection.GetRemoteIPs">
+	<summary>
+ Gets an Array of all the remote IP addresses of each connection in this collection.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockCollection.Keys">
+	<summary>
+ Gets a Collection containing all the keys in this collection.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockCollection.Values">
+	<summary>
+ Gets a Collection containing all the values in this collection.
+ </summary>
+</member><member name="P:Orbita.Winsock.WinsockCollection.Item(System.Int32)">
+	<summary>
+ Gets or sets the WinsockBase at the specified index.
+ </summary>
+	<param name="index">A zero-based index of the WinsockBase to get or set.</param>
+</member><member name="P:Orbita.Winsock.WinsockCollection.Item(System.Object)">
+	<summary>
+ Gets or sets the WinsockBase associated with the specified key.
+ </summary>
+	<param name="key">The key whose value to get or set.</param>
+</member><member name="P:Orbita.Winsock.WinsockCollection.Item(System.Guid)">
+	<summary>
+ Gets or sets the WinsockBase associated with the specified GUID.
+ </summary>
+	<param name="gid">The GUID whose value to get or set.</param>
+</member><member name="E:Orbita.Winsock.WinsockCollection.Connected">
+	<summary>
+ Occurs when connection is achieved (client and server).
+ </summary>
+</member><member name="E:Orbita.Winsock.WinsockCollection.ConnectionRequest">
+	<summary>
+ Occurs on the server when a client is attempting to connect.
+ </summary>
+	<remarks>Client registers connected at this point. Server must Accept in order for it to be connected.</remarks>
+</member><member name="E:Orbita.Winsock.WinsockCollection.CountChanged">
+	<summary>
+ Occurs when the number of items in the collection has changed.
+ </summary>
+</member><member name="E:Orbita.Winsock.WinsockCollection.DataArrival">
+	<summary>
+ Occurs when data arrives on the socket.
+ </summary>
+	<remarks>Raised only after all parts of the data have been collected.</remarks>
+</member><member name="E:Orbita.Winsock.WinsockCollection.Disconnected">
+	<summary>
+ Occurs when disconnected from the remote computer (client and server).
+ </summary>
+</member><member name="E:Orbita.Winsock.WinsockCollection.ErrorReceived">
+	<summary>
+ Occurs when an error is detected in the socket.
+ </summary>
+	<remarks>May also be raised on disconnected (depending on disconnect circumstance).</remarks>
+</member><member name="E:Orbita.Winsock.WinsockCollection.SendComplete">
+	<summary>
+ Occurs when sending of data is completed.
+ </summary>
+</member><member name="E:Orbita.Winsock.WinsockCollection.SendProgress">
+	<summary>
+ Occurs when the send buffer has been sent but not all the data has been sent yet.
+ </summary>
+</member><member name="E:Orbita.Winsock.WinsockCollection.StateChanged">
+	<summary>
+ Occurs when the state of the socket changes.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockCollection.RaiseEventSafe(System.Delegate,System.Object[]@)">
+	<summary>
+ Triggers an event declared at module level within a class, form, or document in a thread-safe manner.
+ </summary>
+	<param name="ev">The event to be raised.</param>
+	<param name="args">The arguements for the event.</param>
+</member><member name="M:Orbita.Winsock.WinsockCollection.OnConnected(System.Object,Orbita.Winsock.WinsockConnectedEventArgs)">
+	<summary>
+ Raises the Connected event.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockCollection.OnConnectionRequest(System.Object,Orbita.Winsock.WinsockConnectionRequestEventArgs)">
+	<summary>
+ Raises the ConnectionRequest event, and closes the socket if the ConnectionRequest was rejected.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockCollection.OnDataArrival(System.Object,Orbita.Winsock.WinsockDataArrivalEventArgs)">
+	<summary>
+ Raises the DataArrival event.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockCollection.OnDisconnected(System.Object,System.EventArgs)">
+	<summary>
+ Raises the Disconnected Event.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockCollection.OnErrorReceived(System.Object,Orbita.Winsock.WinsockErrorReceivedEventArgs)">
+	<summary>
+ Raises the ErrorReceived event.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockCollection.OnSendComplete(System.Object,Orbita.Winsock.WinsockSendEventArgs)">
+	<summary>
+ Raises the SendComplete event.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockCollection.OnSendProgress(System.Object,Orbita.Winsock.WinsockSendEventArgs)">
+	<summary>
+ Raises the SendProgress event.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockCollection.OnStateChanged(System.Object,Orbita.Winsock.WinsockStateChangedEventArgs)">
+	<summary>
+ Raises the StateChanged event.
+ </summary>
+</member><member name="M:Orbita.Winsock.WinsockCollection.OnCountChanged(System.Int32,System.Int32)">
+	<summary>
+ Raises the count changed event.
+ </summary>
+</member><member name="T:Orbita.Winsock.WinsockCollection">
+	<summary>
+ A collection of WinsockBase objects.
+ </summary>
+</member><member name="E:Orbita.Winsock.IWinsock.Connected">
+	<summary>
+ Occurs when connection is achieved (client and server).
+ </summary>
+</member><member name="E:Orbita.Winsock.IWinsock.ConnectionRequest">
+	<summary>
+ Occurs on the server when a client is attempting to connect.
+ </summary>
+	<remarks>Client registers connected at this point. Server must Accept in order for it to be connected.</remarks>
+</member><member name="E:Orbita.Winsock.IWinsock.DataArrival">
+	<summary>
+ Occurs when data arrives on the socket.
+ </summary>
+	<remarks>Raised only after all parts of the data have been collected.</remarks>
+</member><member name="E:Orbita.Winsock.IWinsock.Disconnected">
+	<summary>
+ Occurs when disconnected from the remote computer (client and server).
+ </summary>
+</member><member name="E:Orbita.Winsock.IWinsock.ErrorReceived">
+	<summary>
+ Occurs when an error is detected in the socket.
+ </summary>
+	<remarks>May also be raised on disconnected (depending on disconnect circumstance).</remarks>
+</member><member name="E:Orbita.Winsock.IWinsock.ReceiveProgress">
+	<summary>
+ Occurs while the receive buffer is being filled with data.
+ </summary>
+</member><member name="E:Orbita.Winsock.IWinsock.SendComplete">
+	<summary>
+ Occurs when sending of data is completed.
+ </summary>
+</member><member name="E:Orbita.Winsock.IWinsock.SendProgress">
+	<summary>
+ Occurs when the send buffer has been sent but not all the data has been sent yet.
+ </summary>
+</member><member name="E:Orbita.Winsock.IWinsock.StateChanged">
+	<summary>
+ Occurs when the state of the socket changes.
+ </summary>
+</member><member name="M:Orbita.Winsock.IWinsock.OnConnected(Orbita.Winsock.WinsockConnectedEventArgs)">
+	<summary>
+ Raises the Connected event.
+ </summary>
+</member><member name="M:Orbita.Winsock.IWinsock.OnConnectionRequest(Orbita.Winsock.WinsockConnectionRequestEventArgs)">
+	<summary>
+ Raises the ConnectionRequest event.
+ </summary>
+</member><member name="M:Orbita.Winsock.IWinsock.OnDataArrival(Orbita.Winsock.WinsockDataArrivalEventArgs)">
+	<summary>
+ Raises the DataArrival event.
+ </summary>
+</member><member name="M:Orbita.Winsock.IWinsock.OnDisconnected">
+	<summary>
+ Raises the Disconnected event.
+ </summary>
+</member><member name="M:Orbita.Winsock.IWinsock.OnErrorReceived(Orbita.Winsock.WinsockErrorReceivedEventArgs)">
+	<summary>
+ Raises the ErrorReceived event.
+ </summary>
+</member><member name="M:Orbita.Winsock.IWinsock.OnReceiveProgress(Orbita.Winsock.WinsockReceiveProgressEventArgs)">
+	<summary>
+ Raises the ReceiveProgress event.
+ </summary>
+</member><member name="M:Orbita.Winsock.IWinsock.OnSendComplete(Orbita.Winsock.WinsockSendEventArgs)">
+	<summary>
+ Raises the SendComplete event.
+ </summary>
+</member><member name="M:Orbita.Winsock.IWinsock.OnSendProgress(Orbita.Winsock.WinsockSendEventArgs)">
+	<summary>
+ Raises the SendProgress event.
+ </summary>
+</member><member name="P:Orbita.Winsock.IWinsock.State">
+	<summary>
+ Gets the state of the  see cref="WinsockBase" WinsockBase see  control.
+ </summary>
+</member><member name="M:Orbita.Winsock.IWinsock.ChangeState(Orbita.Winsock.WinsockStates)">
+	<summary>
+ Encapsulates the OnStateChanged methods so the AsyncSocket
+ doesn't have to build the EventArgs parameter all the time.
+ </summary>
+	<param name="new_state">The new state of the WinsockBase.</param>
+</member><member name="M:Orbita.Winsock.IWinsock.ChangeLocalPort(System.Int32)">
+	<summary>
+ When the port is set dynamically by using port 0, the socket can now update the property of the component.
+ </summary>
+	<param name="new_port">The port we are now listening on.</param>
+</member>
+</members>
+</doc>

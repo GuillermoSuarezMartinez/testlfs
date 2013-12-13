@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Tipos de datos contemplados-->
+<!-- 1 es string-->
+<!-- 2 es int-->
+<!-- 3 es decimal(9,2)-->
+<!-- 4 es datetime-->
+<!-- 5 es bool-->
+<Columnas>
+  <trazas>
+    <arg name="0">
+      <idArgumento>0</idArgumento>
+      <nombre>Carril</nombre>
+      <mostrarEnGrid>true</mostrarEnGrid>
+      <ancho>160</ancho>
+      <tipoDato>1</tipoDato>
+    </arg>
+    <arg name="1">
+      <idArgumento>1</idArgumento>
+      <nombre>Origen</nombre>
+      <mostrarEnGrid>true</mostrarEnGrid>
+      <ancho>54</ancho>
+      <tipoDato>1</tipoDato>
+    </arg>
+    <arg name="2">
+      <idArgumento>2</idArgumento>
+      <nombre>Destino</nombre>
+      <mostrarEnGrid>true</mostrarEnGrid>
+      <ancho>54</ancho>
+      <tipoDato>1</tipoDato>
+    </arg>
+    <arg name="3">
+      <idArgumento>3</idArgumento>
+      <nombre>Accion</nombre>
+      <mostrarEnGrid>true</mostrarEnGrid>
+      <ancho>70</ancho>
+      <tipoDato>1</tipoDato>
+    </arg>
+  </trazas>
+
+  <backup>
+    <arg name="0">
+      <idArgumento>1</idArgumento>
+      <nombre>Carril</nombre>
+      <mostrarEnGrid>true</mostrarEnGrid>
+      <ancho>160</ancho>
+      <tipoDato>1</tipoDato>
+    </arg>
+    <arg name="1">
+      <idArgumento>7</idArgumento>
+      <nombre>Origen</nombre>
+      <mostrarEnGrid>true</mostrarEnGrid>
+      <ancho>54</ancho>
+      <tipoDato>1</tipoDato>
+    </arg>
+    <arg name="2">
+      <idArgumento>4</idArgumento>
+      <nombre>Destino</nombre>
+      <mostrarEnGrid>true</mostrarEnGrid>
+      <ancho>54</ancho>
+      <tipoDato>1</tipoDato>
+    </arg>
+    <arg name="3">
+      <idArgumento>2</idArgumento>
+      <nombre>Accion</nombre>
+      <mostrarEnGrid>true</mostrarEnGrid>
+      <ancho>70</ancho>
+      <tipoDato>1</tipoDato>
+    </arg>
+    <arg name="4">
+      <idArgumento>3</idArgumento>
+      <nombre>OrigenExec</nombre>
+      <mostrarEnGrid>true</mostrarEnGrid>
+      <ancho>160</ancho>
+      <tipoDato>1</tipoDato>
+    </arg>
+  </backup>
+</Columnas>

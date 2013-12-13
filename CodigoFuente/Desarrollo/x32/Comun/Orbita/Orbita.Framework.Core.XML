@@ -1,0 +1,418 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orbita.Framework.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Orbita.Framework.Core.WaitWindowGUI">
+            <summary>
+            El diálogo muestra una instancia WaitWindow.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Core.WaitWindowGUI.#ctor(Orbita.Framework.Core.WaitWindow)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Framework.Core.WaitWindowGUI.
+            </summary>
+            <param name="parent"></param>
+        </member>
+        <member name="F:Orbita.Framework.Core.WaitWindowGUI.components">
+            <summary>
+            Designer variable used to keep track of non-visual components.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Core.WaitWindowGUI.Dispose(System.Boolean)">
+            <summary>
+            Disposes resources used by the form.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Framework.Core.WaitWindowGUI.InitializeComponent">
+            <summary>
+            This method is required for Windows Forms designer support.
+            Do not change the method contents inside the source code editor. The Forms designer might
+            not be able to load this method if it was changed manually.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.Core.OIContainerForm">
+            <summary>
+            Clase propia asociada a la clase base.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.Core.OIContainerForm.autenticación">
+            <summary>
+            Indica si se quiere mostrar el formulario de autenticación.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.Core.OIContainerForm.idioma">
+            <summary>
+            Enumerado correspondiente al idioma seleccionado.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Core.OIContainerForm.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Framework.Core.OIContainerForm.
+            </summary>
+            <param name="control">Control contenedor de plugins.</param>
+        </member>
+        <member name="M:Orbita.Framework.Core.OIContainerForm.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Framework.Core.OIContainerForm.ResetAutenticación">
+            <summary>
+            Resetear tipo de autenticación con el valor predeterminado.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Core.OIContainerForm.ResetIdioma">
+            <summary>
+            Resetear selector de idioma con el valor predeterminado.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Core.OIContainerForm.ShouldSerializeAutenticación">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Framework.Core.OIContainerForm.ShouldSerializeIdioma">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Framework.Core.OIContainerForm.Autenticación">
+            <summary>
+            Indica si se quiere mostrar el formulario de autenticación.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.Core.OIContainerForm.Idioma">
+            <summary>
+            Enumerado correspodiente al idioma seleccionado.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.Core.Configuracion">
+            <summary>
+            Indica la persistencia de acuerdo al idioma seleccionado.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.Core.IConfiguracion">
+            <summary>
+            Clase abstracta que indica la persistencia con los plugins de carga en base a los métodos que se consideren.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Core.IConfiguracion.InicializarEntorno(System.Object,System.EventArgs)">
+            <summary>
+            Obtener la configuración principal del Framework relativa a estilo de borde, visualización de menú, etc.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Framework.Core.IConfiguracion.GetControlesPlugin(Orbita.Framework.Core.SelectorIdioma)">
+            <summary>
+            Obtener la colección de controles desde un origen que se refieren al idioma seleccionado.
+            </summary>
+            <param name="idioma">Enumerado de idioma que determina el rango de controles al que hacen referencia.</param>
+            <returns>Colección de controles que se refieren al idioma seleccionado.</returns>
+        </member>
+        <member name="M:Orbita.Framework.Core.IConfiguracion.GetConfiguracionCanal">
+            <summary>
+            Obtener la configuración de canales de comunicación.
+            </summary>
+            <returns>Colección de canales de comunicación.</returns>
+        </member>
+        <member name="M:Orbita.Framework.Core.Configuracion.InicializarEntorno(System.Object,System.EventArgs)">
+            <summary>
+            Obtener la configuración principal del Framework relativa a estilo de borde, visualización de menú, etc., así como
+            las propiedades que integra la propiedad OI.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Framework.Core.Configuracion.GetControlesPlugin(Orbita.Framework.Core.SelectorIdioma)">
+            <summary>
+            Obtener la colección de controles desde un origen que se refieren al idioma seleccionado.
+            </summary>
+            <param name="idioma">Enumerado de idioma que determina el rango de controles al que hacen referencia.</param>
+            <returns>Colección de controles que se refieren al idioma seleccionado.</returns>
+        </member>
+        <member name="M:Orbita.Framework.Core.Configuracion.GetConfiguracionCanal">
+            <summary>
+            Obtener la configuración de canales de comunicación para posteriormente iniciarlos.
+            </summary>
+            <returns>Colección de canales de comunicación.</returns>
+        </member>
+        <member name="P:Orbita.Framework.Core.Configuracion.Usuario">
+            <summary>
+            Usuario validado.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.Core.ControlInfo">
+            <summary>
+            Información del control de usuario incluido en el plugin.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.Core.ControlInfo.valor">
+            <summary>
+            Valor del control.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.Core.ControlInfo.tipo">
+            <summary>
+            Tipo de control { tooltip, text, message }.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Core.ControlInfo.Equals(System.Object)">
+            <summary>
+            Sobreescritura del método Equals.
+            </summary>
+            <param name="obj">Objeto de comparación.</param>
+            <returns>Si la instancia y el objeto son iguales.</returns>
+        </member>
+        <member name="M:Orbita.Framework.Core.ControlInfo.GetHashCode">
+            <summary>
+            Sobreescritura del método GetHashCode.
+            </summary>
+            <returns>El código Hash de esta instancia.</returns>
+        </member>
+        <member name="M:Orbita.Framework.Core.ControlInfo.op_Equality(Orbita.Framework.Core.ControlInfo,System.String)">
+            <summary>
+            Operador de igualdad.
+            </summary>
+            <param name="info">Información del control.</param>
+            <param name="cadena">Cadena de comparación.</param>
+            <returns>La igualdad de la cadena de comparación con el tipo.</returns>
+        </member>
+        <member name="M:Orbita.Framework.Core.ControlInfo.op_Inequality(Orbita.Framework.Core.ControlInfo,System.String)">
+            <summary>
+            Operador de desigualdad.
+            </summary>
+            <param name="info">Información del control.</param>
+            <param name="cadena">Cadena de comparación.</param>
+            <returns>La desigualdad de la cadena de comparación con el tipo.</returns>
+        </member>
+        <member name="P:Orbita.Framework.Core.ControlInfo.Valor">
+            <summary>
+            Valor del control.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.Core.ControlInfo.Tipo">
+            <summary>
+            Tipo de control { tooltip, text, message }.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.Core.Properties.Resources">
+            <summary>
+              Clase de recurso con establecimiento inflexible de tipos, para buscar cadenas traducidas, etc.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.Core.Properties.Resources.ResourceManager">
+            <summary>
+              Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.Core.Properties.Resources.Culture">
+            <summary>
+              Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
+              búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.Core.Properties.Resources.MensajeEspera">
+            <summary>
+              Busca una cadena traducida similar a Espere por favor ....
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.Core.WaitWindowEventArgs">
+            <summary>
+            Proporciona datos para los eventos WaitWindow.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.Core.WaitWindowEventArgs.ventanaEspera">
+            <summary>
+            Acceso a los métodos de la clase Orbita.Framework.Core.WaitWindow.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.Core.WaitWindowEventArgs.args">
+            <summary>
+            Colección de argumentos.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.Core.WaitWindowEventArgs.resultado">
+            <summary>
+            Resultado del método de ejecución.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Core.WaitWindowEventArgs.#ctor(Orbita.Framework.Core.WaitWindow,System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Framework.Core.WaitWindowEventArgs.
+            </summary>
+            <param name="GUI">Instancia Orbita.Framework.Core.WaitWindow asociada.</param>
+            <param name="args">Lista de argumentos.</param>
+        </member>
+        <member name="P:Orbita.Framework.Core.WaitWindowEventArgs.Window">
+            <summary>
+            Acceso a los métodos de la clase Orbita.Framework.Core.WaitWindow.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.Core.WaitWindowEventArgs.Argumentos">
+            <summary>
+            Colección de argumentos.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.Core.WaitWindowEventArgs.Resultado">
+            <summary>
+            Resultado del método de ejecución.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.Core.ConfiguracionHelper">
+            <summary>
+            Asistente de configuración.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.Core.ConfiguracionHelper.Configuracion">
+            <summary>
+            Propiedad de configuración.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.Core.ContainerForm">
+            <summary>
+            Clase base contenedor de formularios.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Core.ContainerForm.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Framework.Core.ContainerForm.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Core.ContainerForm.InitializeAttributes">
+            <summary>
+            Inicializar atributos.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Core.ContainerForm.InitializeProperties">
+            <summary>
+            Inicializar propiedades.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.Core.ContainerForm.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Core.ContainerForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Framework.Core.ContainerForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.Core.ContainerForm.OI">
+            <summary>
+            Propiedad de definición de Órbita Ingeniería.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.Core.ConfiguracionEntorno">
+            <summary>
+            Configuración general del entorno de trabajo.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.Core.ConfiguracionEntorno.DefectoNumeroMaximoFormulariosAbiertos">
+            <summary>
+            Número máximo de formularios abiertos.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.Core.ConfiguracionEntorno.DefectoAutenticación">
+            <summary>
+            Mostrar formulario de autenticación.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.Core.ConfiguracionEntorno.DefectoIdioma">
+            <summary>
+            Selector del idioma de cada uno de los controles.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.Core.SelectorIdioma">
+            <summary>
+            Deteminado el idioma que se quiere utilizar en la carga de controles.
+            </summary>
+        </member>
+        <member name="T:Orbita.Framework.Core.WaitWindow">
+            <summary>
+            Mostrar una ventana que indica al usuario una espera a un proceso que se está ejecutando.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.Core.WaitWindow.GUI">
+            <summary>
+            Acceso a la interfaz gráfica de usuario GUI.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Core.WaitWindow.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Framework.Core.WaitWindow.
+            </summary>
+        </member>
+        <member name="F:Orbita.Framework.Core.WaitWindow.disposed">
+            <summary>
+            Indica si ya se llamo al método Dispose. (Default = false)
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Core.WaitWindow.Dispose">
+            <summary>
+            Implementa IDisposable. No  hacer  este  método  virtual.
+            Una clase derivada no debería ser capaz de  reemplazar este método.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Core.WaitWindow.Dispose(System.Boolean)">
+            <summary>
+            Método  sobrecargado de  Dispose que será  el que libera los recursos. Controla que solo se ejecute
+            dicha lógica una  vez y evita que el GC tenga que llamar al destructor de clase.
+            </summary>
+            <param name="disposing">Indica si llama al método Dispose.</param>
+        </member>
+        <member name="M:Orbita.Framework.Core.WaitWindow.Finalize">
+            <summary>
+            Destructor(es) de clase.
+            En caso de que se nos olvide “desechar” la clase, el GC llamará al destructor, que tambén ejecuta 
+            la lógica anterior para liberar los recursos.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Core.WaitWindow.Mostrar(System.EventHandler{Orbita.Framework.Core.WaitWindowEventArgs})">
+            <summary>
+            Mostrar una ventana de espera con el texto "Por favor espere ..." mientras se ejecuta el método aprobado.
+            </summary>
+            <param name="workerMethod">Puntero a el método para ejecutar mientras se muestra la ventana de espera.</param>
+            <returns>Argumento de resultado del método de trabajo.</returns>
+        </member>
+        <member name="M:Orbita.Framework.Core.WaitWindow.Mostrar(System.EventHandler{Orbita.Framework.Core.WaitWindowEventArgs},System.String)">
+            <summary>
+            Mostrar una ventana de espera con el texto especificado mientras se ejecuta el método aprobado.
+            </summary>
+            <param name="workerMethod">Puntero a el método para ejecutar mientras se muestra la ventana de espera.</param>
+            <param name="mensaje">Texto que se mostrará.</param>
+            <returns>Argumento de resultado del método de trabajo.</returns>
+        </member>
+        <member name="M:Orbita.Framework.Core.WaitWindow.Mostrar(System.EventHandler{Orbita.Framework.Core.WaitWindowEventArgs},System.String,System.Object[])">
+            <summary>
+            Mostrar una ventana de espera con el texto especificado al ejecutar el método pasado.
+            </summary>
+            <param name="workerMethod">Puntero a el método para ejecutar mientras se muestra la ventana de espera.</param>
+            <param name="mensaje">Texto que se mostrará.</param>
+            <param name="args">Argumentos a pasar al método de trabajo.</param>
+            <returns>Argumento de resultado del método de trabajo.</returns>
+        </member>
+        <member name="M:Orbita.Framework.Core.WaitWindow.Cancelar">
+            <summary>
+            Cancelar el trabajo y sale de las ventanas de espera inmediatamente.
+            </summary>
+        </member>
+        <member name="P:Orbita.Framework.Core.WaitWindow.Mensaje">
+            <summary>
+            Actualizar el mensaje que aparece en la ventana de espera.
+            </summary>
+        </member>
+    </members>
+</doc>
