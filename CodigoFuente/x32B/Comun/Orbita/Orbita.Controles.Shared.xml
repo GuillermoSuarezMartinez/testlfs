@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orbita.Controles.Shared</name>
+    </assembly>
+    <members>
+        <member name="T:Orbita.Controles.Shared.OrbitaUserControl">
+            <summary>
+            Proporciona un control vacío que se puede usar para crear otros controles.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Shared.OrbitaUserControl.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Shared.OrbitaUserControl.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Shared.OrbitaUserControl.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Shared.OrbitaUserControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Shared.OrbitaUserControl.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Shared.OrbitaToolTip">
+            <summary>
+            OrbitaTooltip
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Shared.OrbitaToolTip.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Shared.OrbitaToolTip.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Shared.OrbitaToolTip.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Shared.OrbitaToolTip.
+            </summary>
+            <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
+            que contienen cero o más componentes de forma lógica.</param>
+        </member>
+        <member name="F:Orbita.Controles.Shared.OrbitaToolTip.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Shared.OrbitaToolTip.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Shared.OrbitaToolTip.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Shared.OToolTip.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Comunes.OToolTip.
+            </summary>
+            <param name="control">Control Orbita asociado a la clase actual.</param>
+        </member>
+        <member name="M:Orbita.Controles.Shared.OToolTip.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Shared.OrbitaToolTip.ControlNuevaDefinicion.#ctor(Orbita.Controles.Shared.OrbitaToolTip)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Shared.OrbitaToolTip.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
+    </members>
+</doc>

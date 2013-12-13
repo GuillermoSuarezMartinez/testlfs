@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orbita.Controles.Editor</name>
+    </assembly>
+    <members>
+        <member name="T:Orbita.Controles.Editor.OrbitaRichTextBox">
+            <summary>
+            Orbita.Controles.OrbitaRichTextBox.
+            Represents a standard <see cref="T:System.Windows.Forms.RichTextBox"/> with some minor added functionality.
+            </summary>
+            <remarks>
+            AdvRichTextBox provides methods to maintain performance
+            while it is being updated. Additional formatting features
+            have also been added.
+            </remarks>
+        </member>
+        <member name="M:Orbita.Controles.Editor.OrbitaRichTextBox.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.OrbitaRichTextBox.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Editor.OrbitaRichTextBox.BeginUpdate">
+            <summary>
+            Maintains performance while updating.
+            </summary>
+            <remarks>
+            <para>
+            It is recommended to call this method before doing
+            any major updates that you do not wish the user to
+            see. Remember to call EndUpdate when you are finished
+            with the update. Nested calls are supported.
+            </para>
+            <para>
+            Calling this method will prevent redrawing. It will
+            also setup the event mask of the underlying richedit
+            control so that no events are sent.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Orbita.Controles.Editor.OrbitaRichTextBox.EndUpdate">
+            <summary>
+            Resumes drawing and event handling.
+            </summary>
+            <remarks>
+            This method should be called every time a call is made
+            made to BeginUpdate. It resets the event mask to it's
+            original value and enables redrawing of the control.
+            </remarks>
+        </member>
+        <member name="M:Orbita.Controles.Editor.OrbitaRichTextBox.OnHandleCreated(System.EventArgs)">
+            <summary>
+            This member overrides <see cref="T:System.Windows.Forms.Control"/>.OnHandleCreated.
+            </summary>
+            <param name="e">System.EventArgs es la clase base para las clases que contienen datos de eventos.</param>
+        </member>
+        <member name="F:Orbita.Controles.Editor.OrbitaRichTextBox.components">
+            <summary> 
+            Proporciona funcionalidad para contenedores. Los contenedores son objetos que contienen cero o más componentes de forma lógica.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Editor.OrbitaRichTextBox.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Editor.OrbitaRichTextBox.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Editor.OrbitaRichTextBox.SelectionAlignment">
+            <summary>
+            Gets or sets the alignment to apply to the current selection or insertion point.
+            </summary>
+            <remarks>
+            Replaces the SelectionAlignment from <see cref="T:System.Windows.Forms.RichTextBox"/>.
+            </remarks>
+        </member>
+        <member name="F:Orbita.Controles.Editor.UC.OrbitaRichTextBoxPlus.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Editor.UC.OrbitaRichTextBoxPlus.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Editor.UC.OrbitaRichTextBoxPlus.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Editor.OrbitaRichTextBoxPro.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Editor.OrbitaRichTextBoxPro.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Editor.OrbitaRichTextBoxPro.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Editor.TextAlign.None">
+            <summary>
+            None.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Editor.TextAlign.Left">
+            <summary>
+            The text is aligned to the left.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Editor.TextAlign.Right">
+            <summary>
+            The text is aligned to the right.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Editor.TextAlign.Center">
+            <summary>
+            The text is aligned in the center.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Editor.TextAlign.Justify">
+            <summary>
+            The text is justified.
+            </summary>
+        </member>
+    </members>
+</doc>
