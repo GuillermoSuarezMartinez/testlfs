@@ -51,6 +51,16 @@
             Si está por debajo del FrameRate especificado la imagen se desprecia
             </summary>
         </member>
+        <member name="F:Orbita.VA.Comun.OVideoFile.LockAvi">
+            <summary>
+            Bloqueo de la escritura del video
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OVideoFile.CrearVideo">
+            <summary>
+            Indica al thread de codificación de video que se ha de crear un nuevo archivo
+            </summary>
+        </member>
         <member name="F:Orbita.VA.Comun.OVideoFile._Codigo">
             <summary>
             Código identificativo de la clase.

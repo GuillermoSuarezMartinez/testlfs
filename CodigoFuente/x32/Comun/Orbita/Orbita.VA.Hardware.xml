@@ -4959,6 +4959,11 @@
             Cliente del servidor de comunicaciones
             </summary>
         </member>
+        <member name="F:Orbita.VA.Hardware.OTipoTarjetaIO.SSCC">
+            <summary>
+            Cliente del servidor de comunicaciones versión 2
+            </summary>
+        </member>
         <member name="T:Orbita.VA.Hardware.OTipoTerminalIO">
             <summary>
             Enumerado que identifica a los tipos de terminales de IO
@@ -5073,16 +5078,6 @@
             Informa del número de llamadas simultáneas al evento de alarma
             </summary>
         </member>
-        <member name="F:Orbita.VA.Hardware.OcsClienteComunicacion.TimerComprobacionConexion">
-            <summary>
-            Timer de comprobación del estado de la conexión
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Hardware.OcsClienteComunicacion.CronometroTiempoSinRespuesta">
-            <summary>
-            Cronómetro del tiempo sin respuesta
-            </summary>
-        </member>
         <member name="F:Orbita.VA.Hardware.OcsClienteComunicacion.NombreCanal">
             <summary>
             Nombre del canal
@@ -5146,7 +5141,7 @@
         </member>
         <member name="M:Orbita.VA.Hardware.OcsClienteComunicacion.ConectarCanal(System.Boolean)">
             <summary>
-            Conectar al servidor vía Remoting.
+            Conectar/Desconecta al servidor vía Remoting.
             </summary>
             <param name="estado">Estado de conexión.</param>
         </member>
@@ -5168,9 +5163,16 @@
             </summary>
             <param name="e"></param>
         </member>
-        <member name="M:Orbita.VA.Hardware.OcsClienteComunicacion.TimerComprobacionConexion_Tick(System.Object,System.EventArgs)">
+        <member name="M:Orbita.VA.Hardware.OcsClienteComunicacion.ClienteSincronizado_Conectado(System.Object,System.EventArgs)">
             <summary>
-            Evento del timer de comprobación de la conexión
+            Conexión del cliente
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.VA.Hardware.OcsClienteComunicacion.ClienteSincronizado_Desconectado(System.Object,System.EventArgs)">
+            <summary>
+            Desconexión del cliente
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
