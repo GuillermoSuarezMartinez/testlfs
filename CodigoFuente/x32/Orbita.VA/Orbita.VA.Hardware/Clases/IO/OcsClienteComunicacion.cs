@@ -2,8 +2,13 @@
 // Assembly         : Orbita.VA.Hardware
 // Author           : fhernandez
 // Created          : 06-09-2013
-//
 // Description      : Adaptado a la versión nueva del servidor de comunicaciones.
+//
+//
+// Last Modified By : aibañez
+// Last Modified On : 13-12-2013
+// Description      : Adaptado a la versión nueva del servidor de comunicaciones.
+//                    Lectura de entradas tras desconexión del servidor de comunicaciones
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
@@ -722,7 +727,7 @@ namespace Orbita.VA.Hardware
                 //this.Servidor = servidor;
                 this.ClienteSincronizado = clienteSincronizado;
                 //Leo de cada terminal su valor y lo actualizo.
-                //this.LeerEntrada();
+                this.LeerEntrada();
             }
             catch (Exception exception)
             {
@@ -745,7 +750,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                if ((this.TipoTerminalIO == OTipoTerminalIO.SalidaDigital) || (this.TipoTerminalIO == OTipoTerminalIO.EntradaSalidaDigital) || (this.TipoTerminalIO == OTipoTerminalIO.SalidaComando))
+                if (((this.TipoTerminalIO == OTipoTerminalIO.SalidaDigital) || (this.TipoTerminalIO == OTipoTerminalIO.EntradaSalidaDigital) || (this.TipoTerminalIO == OTipoTerminalIO.SalidaComando)) && (this.ClienteSincronizado != null))
                 {
                     if (remitente != this.Codigo) // Si el remitente no es el propio terminal !
                     {
@@ -787,7 +792,7 @@ namespace Orbita.VA.Hardware
         {
             try
             {
-                if ((this.TipoTerminalIO == OTipoTerminalIO.EntradaDigital) || (this.TipoTerminalIO == OTipoTerminalIO.EntradaSalidaDigital))
+                if (((this.TipoTerminalIO == OTipoTerminalIO.EntradaDigital) || (this.TipoTerminalIO == OTipoTerminalIO.EntradaSalidaDigital)) && (this.ClienteSincronizado != null))
                 {
                     // Lectura del servidor de comunicaciones
                     try

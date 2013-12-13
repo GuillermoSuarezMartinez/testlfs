@@ -3,9 +3,9 @@
 // Author           : aibañez
 // Created          : 03-02-2012
 //
-// Last Modified By : 
-// Last Modified On : 
-// Description      : 
+// Last Modified By : aibañez
+// Last Modified On : 13-12-2013
+// Description      : Solucionada excepción al abrir el fichero de video con multihilo
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
@@ -51,6 +51,16 @@ namespace Orbita.VA.Comun
         /// Si está por debajo del FrameRate especificado la imagen se desprecia
         /// </summary>
         private DateTime MomentoAnteriorCaptura;
+
+        /// <summary>
+        /// Bloqueo de la escritura del video
+        /// </summary>
+        private static object LockAvi = new object();
+
+        /// <summary>
+        /// Indica al thread de codificación de video que se ha de crear un nuevo archivo
+        /// </summary>
+        private bool CrearVideo = false;
         #endregion
 
         #region Propiedad(es)
@@ -279,7 +289,7 @@ namespace Orbita.VA.Comun
                 if ((this.Estado == EstadoProductorConsumidor.Detenido) &&
                     this.Valido)
                 {
-                    this.AVIWriter.Open(this._Ruta, this.Resolucion.Width, this.Resolucion.Height, this.FrameRate, (VideoCodec)this.Codec, this.BitRate);
+                    this.CrearVideo = true;
 
                     this.CronometroDuracion.Reset();
                     this.CronometroDuracion.Start();
@@ -308,7 +318,7 @@ namespace Orbita.VA.Comun
                 if ((this.Estado == EstadoProductorConsumidor.Detenido) &&
                     this.Valido)
                 {
-                    this.AVIWriter.Open(this._Ruta, this.Resolucion.Width, this.Resolucion.Height, this.FrameRate, (VideoCodec)this.Codec, this.BitRate);
+                    this.CrearVideo = true;
 
                     this.CronometroDuracion.Reset();
                     this.ThreadConsumidor.StartPaused();
@@ -377,15 +387,50 @@ namespace Orbita.VA.Comun
         {
             try
             {
+                if (this.CrearVideo)
+                {
+                    this.CrearVideo = false;
+                    lock (LockAvi)
+                    {
+                        if (this.AVIWriter != null)
+                        {
+                            if (this.AVIWriter.IsOpen)
+                            {
+                                this.AVIWriter.Close();
+                            }
+                            this.AVIWriter.Dispose();
+                            this.AVIWriter = null;
+                        }
+                        this.AVIWriter = new VideoFileWriter();
+
+                        this.AVIWriter.Open(this._Ruta, this.Resolucion.Width, this.Resolucion.Height, this.FrameRate, (VideoCodec)this.Codec, this.BitRate);
+                        if (!this.AVIWriter.IsOpen)
+                        {
+                            OLogsVAComun.Multimedia.Warn("Imposible crear el archivo de video");
+                        }
+                    }
+                }
+
+
                 // Diferencia de tiempo entre la primera captura y la actual
                 TimeSpan difTiempo = valor.MomentoCreacion - this.MomentoPrimeraCaptura;
 
                 // Adición del nuevo frame
-                this.AVIWriter.WriteVideoFrame(valor.ConvertToBitmap(), difTiempo);
+                lock (LockAvi)
+                {
+                    if (this.AVIWriter.IsOpen)
+                    {
+                        this.AVIWriter.WriteVideoFrame(valor.ConvertToBitmap(), difTiempo);
+                    }
+                    else
+                    {
+                        OLogsVAComun.Multimedia.Warn("Se ha intentado añadir un frame a un fichero de video no abierto");
+                    }
+                } 
             }
             catch (Exception exception)
             {
-                OLogsVAComun.Multimedia.Info(exception, "Añadir Frame al video: " + this.Codigo);
+                OLogsVAComun.Multimedia.Warn(exception, "Añadir Frame al video: " + this.Codigo);
             }
         }
 
@@ -411,7 +456,17 @@ namespace Orbita.VA.Comun
         {
             try
             {
-                this.AVIWriter.Close();
+                lock (LockAvi)
+                {
+                    if (this.AVIWriter.IsOpen)
+                    {
+                        this.AVIWriter.Close();
+                        if (this.AVIWriter.IsOpen)
+                        {
+                            OLogsVAComun.Multimedia.Warn("Archivo de video no cerrado");
+                        }
+                    }
+                }
                 this.ThreadConsumidor.Clear();
                 this.CronometroDuracion.Stop();
             }

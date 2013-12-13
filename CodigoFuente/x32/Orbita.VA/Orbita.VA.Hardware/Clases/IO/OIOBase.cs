@@ -3,9 +3,9 @@
 // Author           : aibañez
 // Created          : 06-09-2012
 //
-// Last Modified By : 
-// Last Modified On : 
-// Description      : 
+// Last Modified By : aibañez
+// Last Modified On : 13-12-2013
+// Description      : Añadido tipo de módulo de E/S SSCC
 //
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
@@ -782,7 +782,12 @@ namespace Orbita.VA.Hardware
         /// <summary>
         /// Cliente del servidor de comunicaciones
         /// </summary>
+        [Obsolete]
         ClienteComunicaciones = 3,
+        /// <summary>
+        /// Cliente del servidor de comunicaciones versión 2
+        /// </summary>
+        SSCC = 4
     }
 
     /// <summary>
