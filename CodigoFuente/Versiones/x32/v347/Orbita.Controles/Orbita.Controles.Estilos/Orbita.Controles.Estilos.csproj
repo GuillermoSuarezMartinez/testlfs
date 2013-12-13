@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{69BCFE99-17D1-4F08-AD49-95C395D247A6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Orbita.Controles.Estilos</RootNamespace>
+    <AssemblyName>Orbita.Controles.Estilos</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisLogFile>bin\Debug\Orbita.Controles.Estilos.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <DocumentationFile>bin\Debug\Orbita.Controles.Estilos.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\Orbita.Controles.Estilos.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <DocumentationFile>bin\Release\Orbita.Controles.Estilos.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Framework|x86'">
+    <OutputPath>bin\x86\Framework\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clases\Comunes.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\1.isl" />
+    <EmbeddedResource Include="Resources\3.isl" />
+    <EmbeddedResource Include="Resources\Aero.isl" />
+    <EmbeddedResource Include="Resources\AppStyle.isl" />
+    <EmbeddedResource Include="Resources\BlackStyleSet.isl" />
+    <EmbeddedResource Include="Resources\Claymation.isl" />
+    <EmbeddedResource Include="Resources\Exported Resources.isl" />
+    <EmbeddedResource Include="Resources\FlatNature.isl" />
+    <EmbeddedResource Include="Resources\IG.isl" />
+    <EmbeddedResource Include="Resources\LucidDream.isl" />
+    <EmbeddedResource Include="Resources\ModClay.isl" />
+    <EmbeddedResource Include="Resources\Nautilus.isl" />
+    <EmbeddedResource Include="Resources\NoirModerne.isl" />
+    <EmbeddedResource Include="Resources\None.isl" />
+    <EmbeddedResource Include="Resources\Ocean_blue3_pill.isl" />
+    <EmbeddedResource Include="Resources\Office2010Black.isl" />
+    <EmbeddedResource Include="Resources\Office2010Blue.isl" />
+    <EmbeddedResource Include="Resources\Office2010Blue2.isl" />
+    <EmbeddedResource Include="Resources\Office2010Silver.isl" />
+    <EmbeddedResource Include="Resources\Orbita.isl" />
+    <EmbeddedResource Include="Resources\Orbita1.isl" />
+    <EmbeddedResource Include="Resources\Orbita2.isl" />
+    <EmbeddedResource Include="Resources\Orbita3.isl" />
+    <EmbeddedResource Include="Resources\Orbita4.isl" />
+    <EmbeddedResource Include="Resources\Orbita5.isl" />
+    <EmbeddedResource Include="Resources\Orbita6.isl" />
+    <EmbeddedResource Include="Resources\Orbita7.isl" />
+    <EmbeddedResource Include="Resources\RubberBlack.isl" />
+    <EmbeddedResource Include="Resources\Template_Cherry.isl" />
+    <EmbeddedResource Include="Resources\Template_Glassy.isl" />
+    <EmbeddedResource Include="Resources\Template_GrapeTomato.isl" />
+    <EmbeddedResource Include="Resources\Template_LucidDream.isl" />
+    <EmbeddedResource Include="Resources\Template_Nautilus.isl" />
+    <EmbeddedResource Include="Resources\Template_Office2007.isl" />
+    <EmbeddedResource Include="Resources\TheBlues.isl" />
+    <EmbeddedResource Include="Resources\Trendy.isl" />
+    <EmbeddedResource Include="Resources\VS2008.isl" />
+    <EmbeddedResource Include="Resources\VS2010.isl" />
+    <EmbeddedResource Include="Resources\VS20100.isl" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)Orbita.Controles.Estilos.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I
+xcopy "$(TargetDir)Orbita.Controles.Estilos.xml" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
