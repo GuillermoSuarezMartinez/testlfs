@@ -12,6 +12,10 @@
 // Last Modified On : 16-11-2012
 // Description      : Modificados métodos constructores y destructores para heredar de LargeObject
 //
+// Last Modified By : 16-12-2013 
+// Last Modified On : aibañez
+// Description      : Posibilidad de especificar el formato de guardado de la imagen
+//
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;

@@ -11,6 +11,10 @@
 // Last Modified On : aibañez
 // Description      : Añadidas instrucciones en la finalización del thread
 //
+// Last Modified By : 16-12-2013 
+// Last Modified On : aibañez
+// Description      : Posibilidad de especificar el formato de guardado de la imagen
+//
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
