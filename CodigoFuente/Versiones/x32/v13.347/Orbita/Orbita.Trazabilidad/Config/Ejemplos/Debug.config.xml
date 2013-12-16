@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--Configuración de logger-->
+<otrazabilidad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <loggers>
+    <!--nombre = nombre del logger, necesario para hacer referencia al mismo desde la API-->
+    <!--nivel = nivel de logger-->
+    <!--niveles = debug/info/warn/error/fatal, por defecto debug sin referencia-->
+    <!--nivel = nivel de logger, por defecto debug-->
+    <!--niveles = debug/info/warn/error/fatal-->
+    <logger nombre="odebug" xsi:type="Debug" nivel="debug" />
+  </loggers>
+  <!--Solo para defectos-->
+  <propiedades>
+    <path logger="odebug" />
+    <backup logger="odebug" />
+    <timer logger="odebug" />
+  </propiedades>
+</otrazabilidad>

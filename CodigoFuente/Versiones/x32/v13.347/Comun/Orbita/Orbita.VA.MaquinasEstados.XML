@@ -1,0 +1,1036 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orbita.VA.MaquinasEstados</name>
+    </assembly>
+    <members>
+        <member name="T:Orbita.VA.MaquinasEstados.OEscenario">
+            <summary>
+            Escenario Base.
+            Permite la utilización de escenarios.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEscenario.Codigo">
+            <summary>
+            Código del escenario
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEscenario.Claves">
+            <summary>
+            Claves del escenario
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEscenario.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigo"></param>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEscenario.Inicializar">
+            <summary>
+            Inicializa la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEscenario.Finalizar">
+            <summary>
+            Finaliza la clase
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados">
+            <summary>
+            Define el conjunto de módulos del sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados.MaquinasEstados">
+            <summary>
+            Módulo de las máquinas de estado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados.Valido">
+            <summary>
+            Indica que la creación de los logs ha sido válida
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados.Constructor">
+            <summary>
+            Constructror de los logs
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados.ValidarLog(System.String,Orbita.Trazabilidad.ILogger)">
+            <summary>
+            Validación del log
+            </summary>
+            <param name="identificador"></param>
+            <param name="log"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.MaquinasEstados.AppBD">
+            <summary>
+            Clase estática que contiene llamadas a los procedimiento almacenados en la base de datos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetMaquinasEstados">
+            <summary>
+            Consulta todas las máquinas de estados existentes en el sistema
+            </summary>
+            <returns>DataTable con los códigos de las máquinas de estado existentes en el sistema</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetMaquinaEstados(System.String)">
+            <summary>
+            Consulta una máquina de estados
+            </summary>
+            <returns>DataTable con la información de las máquinas de estados</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetInstanciasMaquinasEstados">
+            <summary>
+            Consulta todas las máquinas de estados existentes en el sistema
+            </summary>
+            <returns>DataTable con los códigos de las máquinas de estado existentes en el sistema</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetInstanciaMaquinaEstados(System.String)">
+            <summary>
+            Consulta una máquina de estados
+            </summary>
+            <returns>DataTable con la información de las máquinas de estados</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetInstanciasEstados(System.String)">
+            <summary>
+            Consulta todos los estados pertenecientes a determinada máquina de estados
+            </summary>
+            <returns>DataTable con los códigos de los estados pertenecientes a determinada máquina de estados</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetInstanciasTransiciones(System.String)">
+            <summary>
+            Consulta todos las transiciones pertenecientes a determinada máquina de estados
+            </summary>
+            <returns>DataTable con los códigos de las transiciones pertenecientes a determinada máquina de estados</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetEstados(System.String)">
+            <summary>
+            Consulta todos los estados pertenecientes a determinada máquina de estados
+            </summary>
+            <returns>DataTable con los códigos de los estados pertenecientes a determinada máquina de estados</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetTransiciones(System.String)">
+            <summary>
+            Consulta todos las transiciones pertenecientes a determinada máquina de estados
+            </summary>
+            <returns>DataTable con los códigos de las transiciones pertenecientes a determinada máquina de estados</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetInstanciaEstado(System.String,System.String)">
+            <summary>
+            Consulta un determinado estado
+            </summary>
+            <returns>DataTable con la información de un determinado estado</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetInstanciaTransicion(System.String,System.String)">
+            <summary>
+            Consulta un determinada transicion
+            </summary>
+            <returns>DataTable con la información de una determinada transicion</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetEstado(System.String,System.String)">
+            <summary>
+            Consulta todos los estados pertenecientes a determinada máquina de estados
+            </summary>
+            <returns>DataTable con los códigos de los estados pertenecientes a determinada máquina de estados</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetTransicion(System.String,System.String)">
+            <summary>
+            Consulta un determinada transicion
+            </summary>
+            <returns>DataTable con la información de una determinada transicion</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetVariablesTransicion(System.String,System.String)">
+            <summary>
+            Consulta las variables de un determinada transicion
+            </summary>
+            <returns>DataTable con la información de una determinada transicion</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.AppBD.GetClavesDeEscenario(System.String)">
+            <summary>
+            Consulta las claves de una determinada escenario
+            </summary>
+            <param name="codEscenario"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.MaquinasEstados.OMaquinasEstadosManager">
+            <summary>
+            Clase de acceso estático que contiene la lista de máquina de estados
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinasEstadosManager.ListaMaquinasEstados">
+            <summary>
+            Lista de máquinas de estado funcionando en el sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinasEstadosManager.Constructor">
+            <summary>
+            Construye los objetos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinasEstadosManager.Destructor">
+            <summary>
+            Construye los objetos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinasEstadosManager.Inicializar">
+            <summary>
+            Carga las propiedades de la base de datos
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinasEstadosManager.Finalizar">
+            <summary>
+            Espera a la finalización de las máquinas de estados
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinasEstadosManager.IniciarEjecucion">
+            <summary>
+            Inicia la ejecución de todas las máquinas de estados
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinasEstadosManager.PararEjecucion">
+            <summary>
+            Finaliza la ejecución de todas las máquinas de estados
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinasEstadosManager.CrearSuscripcionMensajes(System.String,Orbita.VA.MaquinasEstados.MensajeMaquinaEstadosLanzado)">
+            <summary>
+            Creamos la suscripción para los mensajes de la máquina de estados
+            </summary>
+            <param name="codigo">Código de la máquina de estados</param>
+            <param name="funcionProcesadoMensajes">Función que manejara el evento</param>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinasEstadosManager.EliminarSuscripcionMensajes(System.String,Orbita.VA.MaquinasEstados.MensajeMaquinaEstadosLanzado)">
+            <summary>
+            Eliminamos la suscripción para los mensajes de la máquina de estados
+            </summary>
+            <param name="codigo">Código de la máquina de estados</param>
+            <param name="funcionProcesadoMensajes">Función que manejara el evento</param>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinasEstadosManager.CrearSuscripcionCambioEstado(System.String,Orbita.VA.MaquinasEstados.EstadoCambiado)">
+            <summary>
+            Creamos la suscripción para recibir un evento cuando se produzca un cambio de estados
+            </summary>
+            <param name="codigo">Código de la máquina de estados</param>
+            <param name="funcionProcesadoMensajes">Función que manejara el evento</param>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinasEstadosManager.EliminarSuscripcionCambioEstado(System.String,Orbita.VA.MaquinasEstados.EstadoCambiado)">
+            <summary>
+            Eliminamos la suscripción para recibir un evento cuando se produzca un cambio de estados
+            </summary>
+            <param name="codigo">Código de la máquina de estados</param>
+            <param name="funcionProcesadoMensajes">Función que manejara el evento</param>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinasEstadosManager.GetEstadoActual(System.String)">
+            <summary>
+            Devuelve el código del estado actual de la máquina de estados
+            </summary>
+            <param name="codigo">Código de la máquina de estados</param>
+            <returns>Código del estado actual</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinasEstadosManager.GetMaquinaEstados(System.String)">
+            <summary>
+            Devuelve la máquina de estados con el código correspondiente
+            </summary>
+            <param name="codigo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase">
+            <summary>
+            Clase base de todas las máquinas de estados
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.ListaEstados">
+            <summary>
+            Listado del conjunto de estados de la máquina de estados
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.ListaTransiciones">
+            <summary>
+            Listado del conjunto de transiciones de la máquina de estados
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.ListaTransicionesSimples">
+            <summary>
+            Listado del conjunto de transiciones no universales de la máquina de estados
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.ListaTransicionesUniversales">
+            <summary>
+            Listado del conjunto de transiciones de la máquina de estados de tipo universal (se ejecutan independiemente del estado actual)
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.EstadoActual">
+            <summary>
+            Estado actual de la máquina de estados
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.EstadoInicial">
+            <summary>
+            Estado incial de la máquina de estados
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.TimerEjecucion">
+            <summary>
+            Timer de refresco de la máquina de estados
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.VariableEstadoActual">
+            <summary>
+            Variable que informa del estado actual de la aplicación
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.CodEscenario">
+            <summary>
+            Código del escenario utilizada
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase._Codigo">
+            <summary>
+            Código del estado. Texto que lo identifica inequívocamente.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase._CodMaquinaEstados">
+            <summary>
+            Código del estado. Texto que lo identifica inequívocamente.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase._Nombre">
+            <summary>
+            Nombre del estado. Texto descriptivo de la funcionalidad del estado.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase._Descripcion">
+            <summary>
+            Texto explicativo de la funcionalidad del estado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase._Habilitado">
+            <summary>
+            Habilita o deshabilita el funcionamiento
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase._MaquinaEstadosSimulacion">
+            <summary>
+            Máquina de estados destinada a la simulación del sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase._Cadencia">
+            <summary>
+            Tiempo entre comprobaciones de condiciones
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase._Valido">
+            <summary>
+            Almacena la validez de la máquina de estados
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase._ForzarColectorBasura">
+            <summary>
+            Habilita a la maquina de estados para llamar al colector de basura automáticamente al inicio de cada ciclo
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase._Escenario">
+            <summary>
+            Escenario de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.PrepararEjecucion">
+            <summary>
+            Prepara los estadeos y las transiciones para su ejecución
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.EjecutarNuevoEstado(Orbita.VA.MaquinasEstados.OEstadoBase)">
+            <summary>
+            Cambia el estado actual de la máquina de estados y realiza su ejecución
+            </summary>
+            <param name="siguienteEstado">Nuevo estado actual</param>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.LanzarMensaje(Orbita.VA.MaquinasEstados.TipoMensajeMaquinaEstados,System.String,System.DateTime)">
+            <summary>
+            Enviamos el mensaje a los suscriptores
+            </summary>
+            <param name="tipoMensajeMaquinaEstados">Enumerado del tipo de mensaje que la máquina de estados envía a la monitorización</param>
+            <param name="p"></param>
+            <param name="momentoCambioEstado"></param>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.LanzarCambioEstado(System.String,System.DateTime)">
+            <summary>
+            Enviamos el cambio de estado a los suscriptores
+            </summary>
+            <param name="tipoMensajeMaquinaEstados">Enumerado del tipo de mensaje que la máquina de estados envía a la monitorización</param>
+            <param name="p"></param>
+            <param name="momentoCambioEstado"></param>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.CrearSuscripcionVariables(Orbita.VA.MaquinasEstados.OEstadoBase)">
+            <summary>
+            Creamos la suscripcion a las variables necesarias en las transiciones
+            </summary>
+            <param name="estado">Estado del cuyas transiciones de salidas queremos elminar la suscripción a variables</param>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.EliminarSuscripcionVariables(Orbita.VA.MaquinasEstados.OEstadoBase)">
+            <summary>
+            Eliminamos la suscripcion a las variables necesarias en las transiciones
+            </summary>
+            <param name="estado">Estado del cuyas transiciones de salidas queremos elminar la suscripción a variables</param>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.Validar(System.String@)">
+            <summary>
+            Se valida que la máquina de estados cumple ciertas restricciones para su correcta ejecución
+            </summary>
+            <returns>Verdadero si la máquina de estados es válida</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.BuscaEstadoInicial">
+            <summary>
+            Devuelve el estado inicial de la máquina de estados
+            </summary>
+            <returns>Estado inicial</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.BuscaTransicionesSalientes(Orbita.VA.MaquinasEstados.OEstadoBase)">
+            <summary>
+            Busca las transiciones de entrada a un estado
+            </summary>
+            <param name="estado">Estado del cual se buscan las transiciones de salida</param>
+            <returns>Lista de transiciones de salida</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.BuscaTransicionesEntrantes(Orbita.VA.MaquinasEstados.OEstadoBase)">
+            <summary>
+            Busca las transiciones de salida de un estado
+            </summary>
+            <param name="estado">Estado del cual se buscan las transiciones de salida</param>
+            <returns>Lista de transiciones de salida</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.BuscaEstado(System.String)">
+            <summary>
+            Busca un estado en la lista de estados
+            </summary>
+            <param name="codigoEstado">Tipo de estado a buscar</param>
+            <returns>Estado</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.EjecutarTransiciones">
+            <summary>
+            Ejecuta la comprobación de transiciones
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.IniciarEjecucion">
+            <summary>
+            Inicio de la máquina de estados
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.PararEjecucion">
+            <summary>
+            Parada de la máquina de estados
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.GetEstadoActual">
+            <summary>
+            Devuelve el código del estado actual de la máquina de estados
+            </summary>
+            <param name="codigo">Código de la máquina de estados</param>
+            <returns>Código del estado actual</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.GetEstado(System.String)">
+            <summary>
+            Devuelve el estado con el código buscado
+            </summary>
+            <param name="codigo">Código del estado</param>
+            <returns>Estado buscado</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.GetTransicion(System.String)">
+            <summary>
+            Devuelve la transición con el código buscado
+            </summary>
+            <param name="codigo">Código de la transición</param>
+            <returns>Transición buscada</returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.Inicializar">
+            <summary>
+            Método donde se rellenará toda la información de la máquina de estados
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.Finalizar">
+            <summary>
+            Método donde se finaliza la máquina de estados
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.Mensaje(Orbita.VA.MaquinasEstados.TipoMensajeMaquinaEstados,System.String,System.DateTime)">
+            <summary>
+            Método a heredar para procesar los mensajes producidos por la máquina de estados
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.CrearEscenario">
+            <summary>
+            Creación del escenario
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.EventoTimerEjecucion(System.Object,System.EventArgs)">
+            <summary>
+            Evento del timer de ejecución
+            </summary>
+            <param name="source"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.OnMensajeMaquinaEstados">
+            <summary>
+            Delegado que indica de la llegada de un mensaje de la máquina de estados para visualizarse en la monitorización
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.OnEstadoCambiado">
+            <summary>
+            Delegado que indica el cambio de estado
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.Codigo">
+            <summary>
+            Código del estado. Texto que lo identifica inequívocamente.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.CodMaquinaEstados">
+            <summary>
+            Código del estado. Texto que lo identifica inequívocamente.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.Nombre">
+            <summary>
+            Nombre del estado. Texto descriptivo de la funcionalidad del estado.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.Descripcion">
+            <summary>
+            Texto explicativo de la funcionalidad del estado
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.Habilitado">
+            <summary>
+            Habilita o deshabilita el funcionamiento
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.MaquinaEstadosSimulacion">
+            <summary>
+            Máquina de estados destinada a la simulación del sistema
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.Cadencia">
+            <summary>
+            Tiempo entre comprobaciones de condiciones
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.Valido">
+            <summary>
+            Almacena la validez de la máquina de estados
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.ForzarColectorBasura">
+            <summary>
+            Habilita a la maquina de estados para llamar al colector de basura automáticamente al inicio de cada ciclo
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OMaquinaEstadosBase.Escenario">
+            <summary>
+            Escenario de la clase
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.MaquinasEstados.OEstadoBase">
+            <summary>
+            Clase base de todos los tipos de estados
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase.ListaTransicionesEntrantes">
+            <summary>
+            Listado del conjunto de transiciones entrantes
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase.ListaTransicionesSalientes">
+            <summary>
+            Listado del conjunto de transiciones salientes
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase.CodCronometroAsociadoActivacion">
+            <summary>
+            Código del crónometro asociado a la cuenta del tiempo de activación del estado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase.CodCronometroAsociadoEjecucionEntrada">
+            <summary>
+            Código del crónometro asociado a la cuenta del tiempo de ejecución del estado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase.CodCronometroAsociadoEjecucionSalida">
+            <summary>
+            Código del crónometro asociado a la cuenta del tiempo de ejecución de la salida del estado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase.TipoEstado">
+            <summary>
+            Tipo de Estado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._Codigo">
+            <summary>
+            Código del estado. Texto que lo identifica inequívocamente.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._CodigoInstanciaMaquinaEstados">
+            <summary>
+            Código de la máquina de estados. Texto que lo identifica inequívocamente.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._Nombre">
+            <summary>
+            Nombre del estado. Texto descriptivo de la funcionalidad del estado.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._Descripcion">
+            <summary>
+            Texto explicativo de la funcionalidad del estado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._Habilitado">
+            <summary>
+            Habilita o deshabilita el funcionamiento
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._Monitorizado">
+            <summary>
+            Informa a la monitorización
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._EsEstadoInicial">
+            <summary>
+            Indica si el estado es el inicial de la máquina de estados
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._TimeOut">
+            <summary>
+            Tiempo máximo que puede durar el estado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._EnEjecucionAlEntrar">
+            <summary>
+            Indica si el estado actual está en ejecución de la entrada
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._EnEjecucionAlSalir">
+            <summary>
+            Indica si el estado actual está en ejecución de la salida
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoBase._Escenario">
+            <summary>
+            Maquina de estados
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEstadoBase.#ctor(System.String,System.String,Orbita.VA.MaquinasEstados.OEscenario)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigoInstanciaMaquinaEstados">Código de la máquina de estados</param>
+            <param name="codigo">Código del estado</param>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEstadoBase.Inicializar">
+            <summary>
+            Método donde se rellenará toda la información del estado
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEstadoBase.Finalizar">
+            <summary>
+            Método donde se espera la finalización
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEstadoBase.IniciarEjecucion">
+            <summary>
+            Método que se ejecuta al iniciarse del estado
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEstadoBase.FinalizarEjecucion">
+            <summary>
+            Método que se ha de heredar para realizar las acciones asociadas al estado
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEstadoBase.EjecucionAlEntrar">
+            <summary>
+            Método que se ha de heredar para realizar las acciones asociadas a la entrada al estado
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEstadoBase.EjecucionAlSalir">
+            <summary>
+            Método que se ha de heredar para realizar las acciones asociadas a la salida del estado
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.Codigo">
+            <summary>
+            Código del estado. Texto que lo identifica inequívocamente.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.CodigoInstanciaMaquinaEstados">
+            <summary>
+            Código de la máquina de estados. Texto que lo identifica inequívocamente.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.Nombre">
+            <summary>
+            Nombre del estado. Texto descriptivo de la funcionalidad del estado.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.Descripcion">
+            <summary>
+            Texto explicativo de la funcionalidad del estado
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.Habilitado">
+            <summary>
+            Habilita o deshabilita el funcionamiento
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.Monitorizado">
+            <summary>
+            Informa a la monitorización
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.EsEstadoInicial">
+            <summary>
+            Indica si el estado es el inicial de la máquina de estados
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.TimeOut">
+            <summary>
+            Tiempo máximo que puede durar el estado
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.EnEjecucionAlEntrar">
+            <summary>
+            Indica si el estado actual está en ejecución de la entrada
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.EnEjecucionAlSalir">
+            <summary>
+            Indica si el estado actual está en ejecución de la salida
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.DuracionActivacion">
+            <summary>
+            Duración de la activación del estado
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OEstadoBase.Escenario">
+            <summary>
+            Maquina de estados
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.MaquinasEstados.OEstadoAsincrono">
+            <summary>
+            Clase base de todos los tipos de estados
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEstadoAsincrono.ThreadEjecucion">
+            <summary>
+            Trabajo en segundo plano
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEstadoAsincrono.#ctor(System.String,System.String,Orbita.VA.MaquinasEstados.OEscenario)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigoMaquinaEstados">Código de la máquina de estados</param>
+            <param name="codigo">Código del estado</param>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEstadoAsincrono.EjecucionEnThread(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Ejecución del estado a través de otro hilo de ejecución distinto al de la aplicación principal
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEstadoAsincrono.FinEjecucionThread(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            Final de la ejecución del estado
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEstadoAsincrono.IniciarEjecucion">
+            <summary>
+            Método que se ejecuta al iniciarse del estado
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEstadoAsincrono.Finalizar">
+            <summary>
+            Método donde se espera la finalización
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.MaquinasEstados.OTransicionBase">
+            <summary>
+            Clase base de todas las transiciones entre estados
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OTransicionBase.CodCronometro">
+            <summary>
+            Código del crónometro asociado a la cuenta del tiempo de ejecución de la transición
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OTransicionBase.TipoTransicion">
+            <summary>
+            Tipo de Transición
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OTransicionBase._Codigo">
+            <summary>
+            Código de la transición. Texto que lo identifica inequívocamente.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OTransicionBase._CodigoInstanciaMaquinaEstados">
+            <summary>
+            Código de la máquina de estados. Texto que lo identifica inequívocamente.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OTransicionBase._Nombre">
+            <summary>
+            Nombre de la transición. Texto descriptivo de la funcionalidad del estado.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OTransicionBase._ExplicacionCondicionEsperada">
+            <summary>
+            Texto explicativo del condiciones esperadas
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OTransicionBase._Habilitado">
+            <summary>
+            Habilita o deshabilita el funcionamiento
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OTransicionBase._Monitorizado">
+            <summary>
+            Informa a la monitorización
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OTransicionBase.CodigoEstadoOrigen">
+            <summary>
+            Tipo del estado origen de la transición
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OTransicionBase._EstadoOrigen">
+            <summary>
+            Estado origen de la transición
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OTransicionBase.CodigoEstadoDestino">
+            <summary>
+            Tipo del estado destino de la transición
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OTransicionBase._EstadoDestino">
+            <summary>
+            Estado destino de la transición
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OTransicionBase._VariablesUtilizadas">
+            <summary>
+            Lista de códigos de variables utilizadas en la condición de transición
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OTransicionBase._Escenario">
+            <summary>
+            Maquina de estados
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OTransicionBase.#ctor(System.String,System.String,Orbita.VA.MaquinasEstados.OEscenario)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigoInstanciaMaquinaEstados">Código de la máquina de estados</param>
+            <param name="codigo">Código de la transición</param>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OTransicionBase.IniciarComprobacionCondiciones">
+            <summary>
+            Ejecuta la comprobación de condiciones
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OTransicionBase.Inicializar">
+            <summary>
+            Método donde se rellenará toda la información del estado
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OTransicionBase.Finalizar">
+            <summary>
+            Método donde se espera la finalización
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OTransicionBase.ComprobarCondiciones">
+            <summary>
+            Método que se ha de heredar para comprobar si se cumple la transición
+            </summary>
+            <returns>Verdadero si se ha cumplido las condiciones de transición</returns>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OTransicionBase.Codigo">
+            <summary>
+            Código de la transición. Texto que lo identifica inequívocamente.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OTransicionBase.CodigoInstanciaMaquinaEstados">
+            <summary>
+            Código de la máquina de estados. Texto que lo identifica inequívocamente.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OTransicionBase.Nombre">
+            <summary>
+            Nombre de la transición. Texto descriptivo de la funcionalidad del estado.
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OTransicionBase.ExplicacionCondicionEsperada">
+            <summary>
+            Texto explicativo del condiciones esperadas
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OTransicionBase.Habilitado">
+            <summary>
+            Habilita o deshabilita el funcionamiento
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OTransicionBase.Monitorizado">
+            <summary>
+            Informa a la monitorización
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OTransicionBase.EstadoOrigen">
+            <summary>
+            Estado origen de la transición
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OTransicionBase.EstadoDestino">
+            <summary>
+            Estado destino de la transición
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OTransicionBase.VariablesUtilizadas">
+            <summary>
+            Lista de códigos devariables utilizadas en la condición de transición
+            </summary>
+        </member>
+        <member name="P:Orbita.VA.MaquinasEstados.OTransicionBase.Escenario">
+            <summary>
+            Maquina de estados
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.MaquinasEstados.OTransicionUniversal">
+            <summary>
+            Clase base de todas las transiciones de tipo universal.
+            Se ejecutan independientemente del estado actual de la base de datos.
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OTransicionUniversal.#ctor(System.String,System.String,Orbita.VA.MaquinasEstados.OEscenario)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigoMaquinaEstados">Código de la máquina de estados</param>
+            <param name="codigo">Código de la transición</param>
+        </member>
+        <member name="T:Orbita.VA.MaquinasEstados.TipoEstado">
+            <summary>
+            Tipo de estado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.TipoEstado.EstadoSimple">
+            <summary>
+            Estado simple
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.TipoEstado.EstadoAsincrono">
+            <summary>
+            Estado que se ejecuta en thread
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.MaquinasEstados.TipoTransicion">
+            <summary>
+            Tipo de transición
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.TipoTransicion.TransicionSimple">
+            <summary>
+            Transicion simple
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.TipoTransicion.TransicionUniversal">
+            <summary>
+            Transicion que se ejecuta siempre, independientemente del estado actual
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.MaquinasEstados.EstadoCambiado">
+            <summary>
+            Delegado que indica de la llegada de un mensaje de la máquina de estados para visualizarse en la monitorización
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.VA.MaquinasEstados.EventStateChanged">
+            <summary>
+            Parametros de retorno del evento que indica de la llegada de un mensaje de la máquina de estados para visualizarse en la monitorización
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.EventStateChanged.CodEstado">
+            <summary>
+            Tipo de mensaje
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.EventStateChanged.Momento">
+            <summary>
+            Momento en el que se ha producido el mensaje
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.EventStateChanged.#ctor(System.String,System.DateTime)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="tipo">Tipo de mensaje</param>
+            <param name="informacion">Texto de la información a visualizar</param>
+            <param name="hora">Momento en el que se ha producido el mensaje</param>
+        </member>
+        <member name="T:Orbita.VA.MaquinasEstados.MensajeMaquinaEstadosLanzado">
+            <summary>
+            Delegado que indica de la llegada de un mensaje de la máquina de estados para visualizarse en la monitorización
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Orbita.VA.MaquinasEstados.EventMessageRaised">
+            <summary>
+            Parametros de retorno del evento que indica de la llegada de un mensaje de la máquina de estados para visualizarse en la monitorización
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.EventMessageRaised.Tipo">
+            <summary>
+            Tipo de mensaje
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.EventMessageRaised.Informacion">
+            <summary>
+            Texto de la información a visualizar
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.EventMessageRaised.Momento">
+            <summary>
+            Momento en el que se ha producido el mensaje
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.EventMessageRaised.#ctor(Orbita.VA.MaquinasEstados.TipoMensajeMaquinaEstados,System.String,System.DateTime)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="tipo">Tipo de mensaje</param>
+            <param name="informacion">Texto de la información a visualizar</param>
+            <param name="hora">Momento en el que se ha producido el mensaje</param>
+        </member>
+        <member name="T:Orbita.VA.MaquinasEstados.TipoMensajeMaquinaEstados">
+            <summary>
+            Enumerado del tipo de mensaje que la máquina de estados envía a la monitorización
+            </summary>
+        </member>
+    </members>
+</doc>

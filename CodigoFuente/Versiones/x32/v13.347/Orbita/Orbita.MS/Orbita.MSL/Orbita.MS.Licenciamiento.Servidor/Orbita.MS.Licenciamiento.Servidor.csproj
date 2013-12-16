@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F3715FDE-723A-4F7B-A965-36BAA751D442}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Orbita.MS</RootNamespace>
+    <AssemblyName>Orbita.MS.Licenciamiento.Servidor</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="hasp_net_windows, Version=6.3.1.27104, Culture=neutral, PublicKeyToken=56120be447701319, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Orbita.MS.Licenciamiento.HASPUtiles\bin\Debug\hasp_net_windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Comunicaciones">
+      <HintPath>..\Librerias\Orbita.Comunicaciones.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Trazabilidad">
+      <HintPath>..\Librerias\Orbita.Trazabilidad.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Utiles">
+      <HintPath>..\Librerias\Orbita.Utiles.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Winsock">
+      <HintPath>..\Librerias\Orbita.Winsock.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clases\Comunicaciones\OListenerServidor.cs" />
+    <Compile Include="Clases\Comunicaciones\OTCListenerBase.cs" />
+    <Compile Include="Clases\Licencias\FrmPruebas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clases\Licencias\FrmPruebas.Designer.cs">
+      <DependentUpon>FrmPruebas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Licencias\ODetectarDispositivos.cs" />
+    <Compile Include="Clases\Licencias\OGestorDispositivos.cs" />
+    <Compile Include="Clases\Servicio\OGestorLicenciasServicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clases\Servicio\OGestorLicenciasServicio.Designer.cs">
+      <DependentUpon>OGestorLicenciasServicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\Sistemas\Impersonalizacion.cs" />
+    <Compile Include="Clases\Sistemas\OperacionesCierre.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Clases\Licencias\FrmPruebas.resx">
+      <DependentUpon>FrmPruebas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clases\Servicio\OGestorLicenciasServicio.resx">
+      <DependentUpon>OGestorLicenciasServicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Orbita.MS.Licenciamiento.Base\Orbita.MS.Licenciamiento.Base.csproj">
+      <Project>{912E9F06-D32C-4D52-BBE3-3E6F2BFFE3AE}</Project>
+      <Name>Orbita.MS.Licenciamiento.Base</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Log.config.xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

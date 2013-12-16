@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<otrazabilidad xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <loggers>
+    <!--nombre = nombre del logger, necesario para hacer referencia al mismo desde la API-->
+    
+    <!--nivel = nivel de logger-->
+    <!--sid = identificador de línea (opcional)-->
+    <!--niveles = debug/info/warn/error/fatal, por defecto debug sin referencia-->
+    <!--nivel = nivel de logger, por defecto debug-->
+    <!--niveles = debug/info/warn/error/fatal-->
+    <logger nombre="owrapper" xsi:type="Wrapper">
+      <logger nombre="owrapperdebug" xsi:type="Debug" sid="[KIOS]" />
+      <logger nombre="owrapperremoting" xsi:type="Remoting" />
+    </logger>
+  </loggers>
+  <!--Si se va a utilizar las propiedades por defecto debemos configurar la propiedad vacía-->
+  <propiedades>
+    <!--Referencia a la propiedad de path usando los defectos-->
+    <!--ruta = <propia ruta del ejecutable o servicio>-->
+    <!--fichero = debug-->
+    <!--extension = log-->
+    <path logger="owrapperdebug" />
+    <!--Referencia a la propiedad backup usando los defectos-->
+    <!--ruta = <propia ruta del ejecutable o servicio>\blog-->
+    <!--subruta = Año/Mes/MesDia/AñoMes/AñoMesDia-->
+    <!--bytes = número máximo de bytes que alcanza el fichero de logger hasta realizar el backup-->
+    <backup logger="owrapperdebug" />
+    <!--Referencia a la propiedad timer backup usando los defectos-->
+    <!--hora = hora de inicio de backup-->
+    <!--periodo = periodo de ejecución de backup-->
+    <timer logger="owrapperdebug" />
+    <!--Referencia a la propiedad remoting usando los defectos-->
+    <!--maquina = nombre de la máquina del canal de conexión-->
+    <!--puerto = puerto de comunicación del canal de conexión-->
+    <!--alias = alias del canal de conexión-->
+    <remoting logger="owrapperremoting" />
+  </propiedades>
+</otrazabilidad>

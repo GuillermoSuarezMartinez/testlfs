@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B953E685-3E2D-4F93-BB80-805427BBB8A2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Orbita.Controles.Contenedores</RootNamespace>
+    <AssemblyName>Orbita.Controles.Contenedores</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisLogFile>bin\Debug\Orbita.Controles.Contenedores.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <DocumentationFile>bin\Debug\Orbita.Controles.Contenedores.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\Orbita.Controles.Contenedores.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <DocumentationFile>bin\Release\Orbita.Controles.Contenedores.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Framework|x86'">
+    <OutputPath>bin\x86\Framework\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Infragistics2.Shared.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Shared.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.Misc.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.Misc.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinTabbedMdi.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinTabbedMdi.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinTabControl.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinTabControl.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clases\Configuración\OConfiguracion.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OMdiContainerForm.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OForm.cs" />
+    <Compile Include="Clases\Propiedades y métodos\ODialog.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OTableLayoutPanel.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUltraGroupBox.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUltraTabbedMdiManager.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUltraTabControl.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OSplitContainer.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OPanel.cs" />
+    <Compile Include="Custom\OrbitaMdiContainerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaMdiContainerForm.Designer.cs">
+      <DependentUpon>OrbitaMdiContainerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaDialog.Designer.cs">
+      <DependentUpon>OrbitaDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaForm.Designer.cs">
+      <DependentUpon>OrbitaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraGroupBox.Designer.cs">
+      <DependentUpon>OrbitaUltraGroupBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaPanel.Designer.cs">
+      <DependentUpon>OrbitaPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaSplitContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaSplitContainer.Designer.cs">
+      <DependentUpon>OrbitaSplitContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraTabbedMdiManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraTabbedMdiManager.Designer.cs">
+      <DependentUpon>OrbitaUltraTabbedMdiManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraTabControl.Designer.cs">
+      <DependentUpon>OrbitaUltraTabControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaTableLayoutPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaTableLayoutPanel.Designer.cs">
+      <DependentUpon>OrbitaTableLayoutPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Custom\OrbitaMdiContainerForm.resx">
+      <DependentUpon>OrbitaMdiContainerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaDialog.resx">
+      <DependentUpon>OrbitaDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaForm.resx">
+      <DependentUpon>OrbitaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orbita.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fondo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Orbita.Controles.Shared\Orbita.Controles.Shared.csproj">
+      <Project>{D104B7D1-93CB-46AE-8F84-AA68BB3B2C5E}</Project>
+      <Name>Orbita.Controles.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)Orbita.Controles.Contenedores.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I
+xcopy "$(TargetDir)Orbita.Controles.Contenedores.xml" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
