@@ -181,16 +181,16 @@ namespace Orbita.VA.Comun
                     //g.Dispose();
                     //g = null;
                     //imagenResultado.Image = b;
-                    // OPCIÓN 3
-                    //// Fase 1: Copia de la imagen a Array de Bytes
-                    //OByteArrayImage imagenByteArray = new OByteArrayImage();
-                    //imagenByteArray.Serializar(this);
 
-                    //// Fase 2: Restauración del Array de Bytes a la Imagen
-                    //imagenResultado = (OImagenBitmap)imagenByteArray.Desserializar();
+                    // OPCIÓN 3
+                    // Fase 1: Copia de la imagen a Array de Bytes
+                    OByteArrayImage imagenByteArray = new OByteArrayImage();
+                    imagenByteArray.Serializar(this, TipoSerializacionImagen.Dato);
+                    // Fase 2: Restauración del Array de Bytes a la Imagen
+                    imagenResultado = (OImagenBitmap)imagenByteArray.Desserializar();
 
                     // OPCIÓN 4
-                    imagenResultado._Image = new Bitmap(this.Image);
+                    //imagenResultado._Image = new Bitmap(this.Image);
                 }
                 catch (Exception exception)
                 {
@@ -219,6 +219,23 @@ namespace Orbita.VA.Comun
             if (base.Guardar(ruta))
             {
                 this.Image.Save(ruta);
+
+                return File.Exists(ruta);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Método a implementar en las clases hijas para guardar la imagen en un fichero de disco
+        /// </summary>
+        /// <param name="ruta">Ruta donde se ha de guardar la imagen</param>
+        /// <param name="formato">Formato del archivo a guardar</param>
+        /// <returns>Verdadero si la ruta donde se ha de guardar el fichero es válida</returns>
+        public override bool Guardar(string ruta, ImageFormat formato)
+        {
+            if (base.Guardar(ruta))
+            {
+                this.Image.Save(ruta, formato);
 
                 return File.Exists(ruta);
             }
@@ -296,8 +313,8 @@ namespace Orbita.VA.Comun
                 try
                 {
                     MemoryStream stream = new MemoryStream();
-                    //this.Image.Save(stream, this.Image.RawFormat); // Nuevo
-                    this.Image.Save(stream, ImageFormat.Bmp); // Nuevo
+                    this.Image.Save(stream, this.Image.RawFormat); // Nuevo
+                    //this.Image.Save(stream, ImageFormat.Bmp);
                     resultado = stream.ToArray();
                 }
                 catch
