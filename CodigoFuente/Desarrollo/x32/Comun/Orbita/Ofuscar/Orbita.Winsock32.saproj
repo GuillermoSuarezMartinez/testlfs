@@ -2,7 +2,7 @@
     <MainAssemblyFileName>..\Orbita.Winsock.dll</MainAssemblyFileName>
     <Configuration Name="Release">
         <ApplicationName />
-        <Destination DestinationFileName="..\..\..\..\..\..\..\Orbita\General\Dlls\Desarrollo\x32\Orbita\Orbita.Winsock.dll" />
+        <Destination DestinationFileName="..\..\..\..\..\..\..\..\Orbita\General\Dlls\Desarrollo\x32\Orbita\Orbita.Winsock.dll" />
         <Assemblies>
             <Assembly AssemblyName="Orbita.Winsock, Culture=neutral, PublicKeyToken=null">
                 <Merging>

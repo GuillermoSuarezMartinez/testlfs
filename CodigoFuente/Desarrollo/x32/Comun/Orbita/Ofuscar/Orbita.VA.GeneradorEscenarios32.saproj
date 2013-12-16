@@ -2,7 +2,7 @@
     <MainAssemblyFileName>..\Orbita.VA.GeneradorEscenarios.exe</MainAssemblyFileName>
     <Configuration Name="Release">
         <ApplicationName />
-        <Destination DestinationFileName="..\..\..\..\..\..\..\Orbita\General\Dlls\Desarrollo\x32\Orbita\Orbita.VA.GeneradorEscenarios.exe" />
+        <Destination DestinationFileName="..\..\..\..\..\..\..\..\Orbita\General\Dlls\Desarrollo\x32\Orbita\Orbita.VA.GeneradorEscenarios.exe" />
         <Assemblies>
             <Assembly AssemblyName="Orbita.BBDD, Culture=neutral, PublicKeyToken=null">
                 <Merging />

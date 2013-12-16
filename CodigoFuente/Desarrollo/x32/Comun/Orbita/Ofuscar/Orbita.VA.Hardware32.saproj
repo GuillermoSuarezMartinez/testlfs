@@ -2,7 +2,7 @@
     <MainAssemblyFileName>..\Orbita.VA.Hardware.dll</MainAssemblyFileName>
     <Configuration Name="Release">
         <ApplicationName />
-        <Destination DestinationFileName="..\..\..\..\..\..\..\Orbita\General\Dlls\Desarrollo\x32\Orbita\Orbita.VA.Hardware.dll" />
+        <Destination DestinationFileName="..\..\..\..\..\..\..\..\Orbita\General\Dlls\Desarrollo\x32\Orbita\Orbita.VA.Hardware.dll" />
         <Assemblies>
             <Assembly AssemblyName="Orbita.BBDD, Culture=neutral, PublicKeyToken=null">
                 <Merging />

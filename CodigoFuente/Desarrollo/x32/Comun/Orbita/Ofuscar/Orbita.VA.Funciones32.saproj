@@ -2,7 +2,7 @@
     <MainAssemblyFileName>..\Orbita.VA.Funciones.dll</MainAssemblyFileName>
     <Configuration Name="Release">
         <ApplicationName />
-        <Destination DestinationFileName="..\..\..\..\..\..\..\Orbita\General\Dlls\Desarrollo\x32\Orbita\Orbita.VA.Funciones.dll" />
+        <Destination DestinationFileName="..\..\..\..\..\..\..\..\Orbita\General\Dlls\Desarrollo\x32\Orbita\Orbita.VA.Funciones.dll" />
         <Assemblies>
             <Assembly AssemblyName="Orbita.VA.Funciones, Culture=neutral, PublicKeyToken=null">
                 <Merging>

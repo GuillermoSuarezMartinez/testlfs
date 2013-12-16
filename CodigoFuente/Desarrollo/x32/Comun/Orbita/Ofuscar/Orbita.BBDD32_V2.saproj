@@ -2,7 +2,7 @@
     <MainAssemblyFileName>..\Orbita.BBDD.dll</MainAssemblyFileName>
     <Configuration Name="Release">
         <ApplicationName />
-        <Destination DestinationFileName="..\..\..\..\..\..\..\Orbita\General\Dlls\Desarrollo\x32\Orbita\Orbita.BBDD.dll" />
+        <Destination DestinationFileName="..\..\..\..\..\..\..\..\Orbita\General\Dlls\Desarrollo\x32\Orbita\Orbita.BBDD.dll" />
         <Assemblies>
             <Assembly AssemblyName="MySql.Data, Culture=neutral, PublicKeyToken=c5687fc88969c44d">
                 <Merging Merge="1">

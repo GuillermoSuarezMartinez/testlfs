@@ -118,7 +118,7 @@
 :end
 
 @echo checkout..............................................
-cd C:\TFS\Orbita\General\Dlls\x32\Orbita
+cd C:\TFS\Orbita\General\Dlls\Desarrollo\x32\Orbita
 tf checkout ./ /recursive *
 @echo checkin................................................
 tf checkin ./ /recursive /noprompt *

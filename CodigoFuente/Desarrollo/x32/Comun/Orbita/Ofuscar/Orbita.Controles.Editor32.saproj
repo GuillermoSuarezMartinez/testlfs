@@ -2,7 +2,7 @@
     <MainAssemblyFileName>..\Orbita.Controles.Editor.dll</MainAssemblyFileName>
     <Configuration Name="Release">
         <ApplicationName />
-        <Destination DestinationFileName="..\..\..\..\..\..\..\Orbita\General\Dlls\Desarrollo\x32\Orbita\Orbita.Controles.Editor.dll" />
+        <Destination DestinationFileName="..\..\..\..\..\..\..\..\Orbita\General\Dlls\Desarrollo\x32\Orbita\Orbita.Controles.Editor.dll" />
         <Assemblies>
             <Assembly AssemblyName="Orbita.BBDD, Culture=neutral, PublicKeyToken=null">
                 <Merging />

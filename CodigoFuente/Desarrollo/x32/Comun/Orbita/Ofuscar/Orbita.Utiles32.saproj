@@ -2,7 +2,7 @@
     <MainAssemblyFileName>..\Orbita.Utiles.dll</MainAssemblyFileName>
     <Configuration Name="Release">
         <ApplicationName />
-        <Destination DestinationFileName="..\..\..\..\..\..\..\Orbita\General\Dlls\Desarrollo\x32\Orbita\Orbita.Utiles.dll" />
+        <Destination DestinationFileName="..\..\..\..\..\..\..\..\Orbita\General\Dlls\Desarrollo\x32\Orbita\Orbita.Utiles.dll" />
         <Assemblies>
             <Assembly AssemblyName="Orbita.Trazabilidad, Culture=neutral, PublicKeyToken=null">
                 <Merging />
