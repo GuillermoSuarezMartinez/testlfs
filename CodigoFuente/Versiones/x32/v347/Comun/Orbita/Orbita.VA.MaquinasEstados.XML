@@ -4,6 +4,67 @@
         <name>Orbita.VA.MaquinasEstados</name>
     </assembly>
     <members>
+        <member name="T:Orbita.VA.MaquinasEstados.OEscenario">
+            <summary>
+            Escenario Base.
+            Permite la utilización de escenarios.
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEscenario.Codigo">
+            <summary>
+            Código del escenario
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OEscenario.Claves">
+            <summary>
+            Claves del escenario
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEscenario.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigo"></param>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEscenario.Inicializar">
+            <summary>
+            Inicializa la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OEscenario.Finalizar">
+            <summary>
+            Finaliza la clase
+            </summary>
+        </member>
+        <member name="T:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados">
+            <summary>
+            Define el conjunto de módulos del sistema
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados.MaquinasEstados">
+            <summary>
+            Módulo de las máquinas de estado
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados.Valido">
+            <summary>
+            Indica que la creación de los logs ha sido válida
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados.Constructor">
+            <summary>
+            Constructror de los logs
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados.ValidarLog(System.String,Orbita.Trazabilidad.ILogger)">
+            <summary>
+            Validación del log
+            </summary>
+            <param name="identificador"></param>
+            <param name="log"></param>
+            <returns></returns>
+        </member>
         <member name="T:Orbita.VA.MaquinasEstados.AppBD">
             <summary>
             Clase estática que contiene llamadas a los procedimiento almacenados en la base de datos
@@ -970,67 +1031,6 @@
             <summary>
             Enumerado del tipo de mensaje que la máquina de estados envía a la monitorización
             </summary>
-        </member>
-        <member name="T:Orbita.VA.MaquinasEstados.OEscenario">
-            <summary>
-            Escenario Base.
-            Permite la utilización de escenarios.
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.MaquinasEstados.OEscenario.Codigo">
-            <summary>
-            Código del escenario
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.MaquinasEstados.OEscenario.Claves">
-            <summary>
-            Claves del escenario
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.MaquinasEstados.OEscenario.#ctor(System.String)">
-            <summary>
-            Constructor de la clase
-            </summary>
-            <param name="codigo"></param>
-        </member>
-        <member name="M:Orbita.VA.MaquinasEstados.OEscenario.Inicializar">
-            <summary>
-            Inicializa la clase
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.MaquinasEstados.OEscenario.Finalizar">
-            <summary>
-            Finaliza la clase
-            </summary>
-        </member>
-        <member name="T:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados">
-            <summary>
-            Define el conjunto de módulos del sistema
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados.MaquinasEstados">
-            <summary>
-            Módulo de las máquinas de estado
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados.Valido">
-            <summary>
-            Indica que la creación de los logs ha sido válida
-            </summary>
-        </member>
-        <member name="M:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados.Constructor">
-            <summary>
-            Constructror de los logs
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.VA.MaquinasEstados.OLogsVAMaquinasEstados.ValidarLog(System.String,Orbita.Trazabilidad.ILogger)">
-            <summary>
-            Validación del log
-            </summary>
-            <param name="identificador"></param>
-            <param name="log"></param>
-            <returns></returns>
         </member>
     </members>
 </doc>
