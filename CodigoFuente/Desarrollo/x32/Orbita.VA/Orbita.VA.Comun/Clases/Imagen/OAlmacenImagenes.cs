@@ -16,6 +16,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Drawing.Imaging;
+using Orbita.Utiles;
 
 namespace Orbita.VA.Comun
 {
@@ -103,7 +105,7 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Campo donde se guarda la cola de imágenes a guardar
         /// </summary>
-        private Queue<KeyValuePair<string, OImagen>> ColaImagenes;
+        private Queue<OTriplet<string, OImagen, ImageFormat>> ColaImagenes;
 
         /// <summary>
         /// Campo donde se guarda la cola de gráficos a guardar
@@ -123,7 +125,7 @@ namespace Orbita.VA.Comun
         /// </summary>
         public AlmacenImagenes()
         {
-            this.ColaImagenes = new Queue<KeyValuePair<string, OImagen>>();
+            this.ColaImagenes = new Queue<OTriplet<string, OImagen, ImageFormat>>();
             this.ColaGraficos = new Queue<KeyValuePair<string, OGrafico>>();
             this.Thread = new OThreadLoop("AlmacenObjetosVisuales", 50, ThreadPriority.Lowest);
             //this.Thread.OnEjecucion = Ejecutar;
@@ -138,16 +140,17 @@ namespace Orbita.VA.Comun
             {
                 if (this.ColaImagenes.Count > 0)
                 {
-                    KeyValuePair<string, OImagen> pareja = new KeyValuePair<string, OImagen>();
+                    OTriplet<string, OImagen, ImageFormat> trio = new OTriplet<string, OImagen, ImageFormat>();
 
                     lock (this.ColaImagenes)
                     {
-                        pareja = this.ColaImagenes.Dequeue();
+                        trio = this.ColaImagenes.Dequeue();
                     }
-                    OImagen imagen = pareja.Value;
-                    string ruta = pareja.Key;
+                    string ruta = trio.First;
+                    OImagen imagen = trio.Second;
+                    ImageFormat formato = trio.Third;
 
-                    imagen.Guardar(ruta);
+                    imagen.Guardar(ruta, formato);
                     OLogsVAComun.AlmacenInformacion.Info("Thread Guardado", "Se procede a guardar la imagen (" + this.ColaImagenes.Count.ToString() + " elementos en la cola)");
                 }
 
@@ -220,20 +223,20 @@ namespace Orbita.VA.Comun
         /// </summary>
         /// <param name="ruta">Ruta donde se ha de guardar la imagen</param>
         /// <param name="imagen">Imagen a guardar</param>
-        public void GuardarImagen(string ruta, OImagen imagen)
+        public void GuardarImagen(string ruta, OImagen imagen, ImageFormat formato = null)
         {
             // Se clona la imagen
             OImagen imagenClonada = (OImagen)imagen.Clone();
 
             // Se crea la pareja de ruta + imagen
-            KeyValuePair<string, OImagen> pareja = new KeyValuePair<string, OImagen>(ruta, imagenClonada);
+            OTriplet<string, OImagen, ImageFormat> trio = new OTriplet<string, OImagen, ImageFormat>(ruta, imagenClonada, formato);
 
             // Se añade a la cola de imagenes a guardar
             lock (this.ColaImagenes)
             {
                 if (this.ColaImagenes.Count < MaxCapacidadCola) // Si hay más de 50 no añadimos el elemento a guardar
                 {
-                    this.ColaImagenes.Enqueue(pareja);
+                    this.ColaImagenes.Enqueue(trio);
                     OLogsVAComun.AlmacenInformacion.Info("Guardado", "Se apila la imagen en la cola de guardado (" + this.ColaImagenes.Count.ToString() + " elementos en la cola)");
                 }
                 else

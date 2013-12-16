@@ -209,8 +209,9 @@ namespace Orbita.VA.Comun
         /// Método a implementar en las clases hijas para guardar la imagen en un fichero de disco
         /// </summary>
         /// <param name="ruta">Ruta donde se ha de guardar la imagen</param>
+        /// <param name="formato">Formato del archivo a guardar</param>
         /// <returns>Verdadero si la ruta donde se ha de guardar el fichero es válida</returns>
-        public override bool Guardar(string ruta)
+        public override bool Guardar(string ruta, ImageFormat formato = null)
         {
             try
             {

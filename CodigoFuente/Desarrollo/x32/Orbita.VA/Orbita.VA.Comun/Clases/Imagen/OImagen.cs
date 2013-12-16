@@ -201,26 +201,9 @@ namespace Orbita.VA.Comun
         /// Método a implementar en las clases hijas para guardar la imagen en un fichero de disco
         /// </summary>
         /// <param name="ruta">Ruta donde se ha de guardar la imagen</param>
-        /// <returns>Verdadero si la ruta donde se ha de guardar el fichero es válida</returns>
-        public virtual bool Guardar(string ruta)
-        {
-            if (this.EsValida())
-            {
-                if (OFicheros.CreacionDirectorio(System.IO.Path.GetDirectoryName(ruta)))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Método a implementar en las clases hijas para guardar la imagen en un fichero de disco
-        /// </summary>
-        /// <param name="ruta">Ruta donde se ha de guardar la imagen</param>
         /// <param name="formato">Formato del archivo a guardar</param>
         /// <returns>Verdadero si la ruta donde se ha de guardar el fichero es válida</returns>
-        public virtual bool Guardar(string ruta, ImageFormat formato)
+        public virtual bool Guardar(string ruta, ImageFormat formato = null)
         {
             if (this.EsValida())
             {
