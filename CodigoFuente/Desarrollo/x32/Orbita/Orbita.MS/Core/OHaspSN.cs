@@ -114,7 +114,11 @@ namespace Orbita.MS
             /// <summary>
             /// GateVIEWER
             /// </summary>
-            GateVIEWER = 13
+            GateVIEWER = 13,
+            /// <summary>
+            /// Protección base para proyectos de visión
+            /// </summary>
+            VisionGenerico = 14
         }
         /// <summary>
         /// Tecnologías para licencia sw
