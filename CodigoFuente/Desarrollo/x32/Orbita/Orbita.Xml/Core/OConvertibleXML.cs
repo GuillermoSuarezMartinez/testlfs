@@ -620,14 +620,18 @@ namespace Orbita.Xml
             get { return this._ModoGeneracionXML; }
         }
 
+        /// <summary>
+        /// Código identificativo del atributo
+        /// </summary>
         private string _Codigo;
-
+        /// <summary>
+        /// Código identificativo del atributo
+        /// </summary>
         public string Codigo
         {
             get { return _Codigo; }
             set { _Codigo = value; }
         }
-
         #endregion
 
         #region Constructores
