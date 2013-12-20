@@ -19,6 +19,7 @@
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
+using System.Text;
 using System.Globalization;
 using System.IO;
 using System.Xml;

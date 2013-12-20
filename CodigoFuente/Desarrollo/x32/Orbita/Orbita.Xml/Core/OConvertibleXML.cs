@@ -418,6 +418,45 @@ namespace Orbita.Xml
         }
 
         /// <summary>
+        /// Obtiene una propiedad
+        /// </summary>
+        public bool ObtenerPropiedad(string clave, out object valor)
+        {
+            bool resultado = false;
+            valor = null;
+
+            // Consultamos las propiedades de lista
+            foreach (KeyValuePair<string, object> pair in this.Propiedades)
+            {
+                if (clave == pair.Key)
+                {
+                    valor = pair.Value;
+                    resultado = true;
+                    break;
+                }
+            }
+
+            // Consultamos las propiedades intrinsecas
+            if (!resultado)
+            {
+                foreach (KeyValuePair<string, OTriplet<ModoGeneracionXML, Type, PropertyInfo>> keyValue in this.PropertiesList)
+                {
+                    if (keyValue.Value.First != ModoGeneracionXML.XMLIgnore)
+                    {
+                        if (clave == keyValue.Key)
+                        {
+                            valor = keyValue.Value.Third.GetValue(this, null);
+                            resultado = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            return resultado;
+        }
+
+
+        /// <summary>
         /// Rellena el conjunto de propiedades
         /// </summary>
         /// <param name="propiedades"></param>
