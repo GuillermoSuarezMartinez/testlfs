@@ -34,6 +34,15 @@ namespace Orbita.Comunicaciones
             _oDataManager = new OProtocoloWinCCDataManager();
             _oDataManager.Connect();
         }
+        /// <summary>
+        /// Constructor de clase
+        /// </summary>
+        /// <param name="logger">Log de la clase</param>
+        public ODispositivoWinCC()
+        {
+            _oDataManager = new OProtocoloWinCCDataManager();
+            _oDataManager.Connect();
+        }
         #endregion Constructor
 
         #region Destructor
@@ -141,7 +150,11 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                this._logger.Fatal("Error al leer: ", ex);
+                if (this._logger!=null)
+                {
+                    this._logger.Fatal("Error al leer: ", ex);
+                }
+                
             }
             return retorno;
         }
@@ -162,7 +175,10 @@ namespace Orbita.Comunicaciones
             }
             catch (Exception ex)
             {
-                this._logger.Fatal("Error al escribir: ", ex);
+                if (this._logger != null)
+                {
+                    this._logger.Fatal("Error al escribir: ", ex);
+                }
             }
             return retorno;
         }
