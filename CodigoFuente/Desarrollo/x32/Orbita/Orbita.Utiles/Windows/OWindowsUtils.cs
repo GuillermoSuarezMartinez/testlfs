@@ -71,15 +71,24 @@ namespace Orbita.Utiles
         /// <summary>
         /// memcpy - copy a block of memery
         /// </summary>
-        /// <param name="dst"></param>
-        /// <param name="src"></param>
-        /// <param name="count"></param>
+        /// <param name="dst">Puntero destino</param>
+        /// <param name="src">Puntero origen</param>
+        /// <param name="count">Tamaño en bytes de la copia</param>
         /// <returns></returns>
         [DllImport("ntdll.dll")]
         public static extern int memcpy(
             int dst,
             int src,
             int count);
+
+        /// <summary>
+        /// Copia de memoria
+        /// </summary>
+        /// <param name="dest">Puntero destino</param>
+        /// <param name="src">Puntero origen</param>
+        /// <param name="count">Tamaño en bytes de la copia</param>
+        [DllImport("kernel32.dll", EntryPoint = "CopyMemory", SetLastError = false)]
+        public static extern void CopyMemory(IntPtr dest, IntPtr src, uint count);
         #endregion
 
         #region Métodos de red
