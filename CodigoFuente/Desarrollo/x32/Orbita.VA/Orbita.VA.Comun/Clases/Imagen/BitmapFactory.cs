@@ -163,6 +163,11 @@ namespace Orbita.VA.Comun
             }   
         }
 
+        /// <summary>
+        /// Converte el bitmap a un array de bytes
+        /// </summary>
+        /// <param name="bitmap"></param>
+        /// <param name="buffer"></param>
         public static void ExtractBufferArray(Bitmap bitmap, out byte[] buffer)
         {
             /* Lock the bitmap's bits. */
@@ -188,6 +193,25 @@ namespace Orbita.VA.Comun
             }
             /* Unlock the bits. */
             bitmap.UnlockBits(bmpData);
+        }
+
+        /// <summary>
+        /// Establece una paleta monocromo para imágenes de color indexado
+        /// </summary>
+        /// <param name="bmp"></param>
+        /// <returns></returns>
+        public static ColorPalette SetGrayScalePalette(Bitmap bmp)
+        {
+            ColorPalette monoPalette = bmp.Palette;
+
+            Color[] entries = monoPalette.Entries;
+
+            for (int i = 0; i < 256; i++)
+            {
+                entries[i] = Color.FromArgb(i, i, i);
+            }
+
+            return monoPalette;
         }
     }
 }
