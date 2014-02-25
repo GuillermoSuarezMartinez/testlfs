@@ -1339,6 +1339,12 @@ namespace Orbita.VA.Funciones
                         case OEnumTipoDato.Decimal:
                             this._Valor = ODecimal.Validar(dtParametro.Rows[0]["ValorDecimal"], double.MinValue, double.MaxValue, 0);
                             break;
+                        case OEnumTipoDato.Tupla:
+                            if (dtParametro.Columns.Contains("ValorTupla") && dtParametro.Columns.Contains("CodValorTupla") && dtParametro.Columns.Contains("SignificadoTupla"))
+                            {
+                                this._Valor = new OTupla(dtParametro.Rows[0]["SignificadoTupla"].ToString(), dtParametro.Rows[0]["CodValorTupla"].ToString(), dtParametro.Rows[0]["ValorTupla"].ToString());
+                            }
+                            break;
                     }
                 }
             }
