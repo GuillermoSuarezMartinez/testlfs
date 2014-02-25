@@ -2604,9 +2604,25 @@ namespace Orbita.Utiles
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
         /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static double ValidarDecimal(this object valor, out EnumEstadoRobusto validacion, double min, double max, IFormatProvider cultureInfo, double defecto)
+        {
+            return ODecimal.Validar(valor, out validacion, min, max, cultureInfo, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         public static double ValidarDecimal(this object valor, double min, double max, double defecto)
         {
             return ODecimal.Validar(valor, min, max, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static double ValidarDecimal(this object valor, double min, double max, IFormatProvider cultureInfo, double defecto)
+        {
+            return ODecimal.Validar(valor, min, max, cultureInfo, defecto);
         }
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
@@ -2624,6 +2640,15 @@ namespace Orbita.Utiles
         public static EnumEstadoRobusto ValidarDecimal(this object valor, string codigo, double min, double max, double defecto, bool lanzarExcepcionSiValorNoValido)
         {
             return ODecimal.Validar(valor, codigo, min, max, defecto, lanzarExcepcionSiValorNoValido);
+        }
+        /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="value">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        public static EnumEstadoRobusto ValidarDecimal(this object valor, string codigo, double min, double max, IFormatProvider cultureInfo, double defecto, bool lanzarExcepcionSiValorNoValido)
+        {
+            return ODecimal.Validar(valor, codigo, min, max, cultureInfo, defecto, lanzarExcepcionSiValorNoValido);
         }
         /// <summary>
         /// Indica si el objeto pasado es de tipo decimal
@@ -3234,6 +3259,10 @@ namespace Orbita.Utiles
         /// Valor máximo
         /// </summary>
         public DateTime MaxValor;
+        /// <summary>
+        /// Formato cultural de las fechas
+        /// </summary>
+        public IFormatProvider Formato;
         #endregion
 
         #region Constructor
@@ -3241,10 +3270,19 @@ namespace Orbita.Utiles
         /// Constructor de la clase
         /// </summary>
         public OFechaHora(string codigo, DateTime minValor, DateTime maxValor, DateTime valorDefecto, bool lanzarExcepcionSiValorNoValido)
+            : this(codigo, minValor, maxValor, CultureInfo.CurrentCulture, valorDefecto, lanzarExcepcionSiValorNoValido)
+        {
+        }
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public OFechaHora(string codigo, DateTime minValor, DateTime maxValor, IFormatProvider cultureInfo, DateTime valorDefecto, bool lanzarExcepcionSiValorNoValido)
             : base(codigo, valorDefecto, lanzarExcepcionSiValorNoValido)
         {
             this.MinValor = minValor;
             this.MaxValor = maxValor;
+            this.Formato = cultureInfo;
         }
         #endregion
 
@@ -3279,7 +3317,7 @@ namespace Orbita.Utiles
                 if (valor is string)
                 {
                     string strValue = (string)valor;
-                    bool ok = DateTime.TryParse(strValue, out auxValor);
+                    bool ok = DateTime.TryParse(strValue, this.Formato, DateTimeStyles.None, out auxValor);
                     if (ok)
                     {
                         validacion = EnumEstadoFechaHoraRobusta.ResultadoCorrecto;
@@ -3343,12 +3381,32 @@ namespace Orbita.Utiles
             return robusto.Valor;
         }
         /// <summary>
+        /// Evalúa si el parámetro es booleano
+        /// </summary>
+        public static DateTime Validar(object valor, out EnumEstadoRobusto validacion, DateTime min, DateTime max, IFormatProvider cultureInfo, DateTime defecto)
+        {
+            OFechaHora robusto = new OFechaHora(string.Empty, min, max, cultureInfo, defecto, false);
+            robusto.ValorGenerico = valor;
+            validacion = robusto.Estado;
+            return robusto.Valor;
+        }
+        /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
         /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         public static DateTime Validar(object valor, DateTime min, DateTime max, DateTime defecto)
         {
             OFechaHora robusto = new OFechaHora(string.Empty, min, max, defecto, false);
+            robusto.ValorGenerico = valor;
+            return robusto.Valor;
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static DateTime Validar(object valor, DateTime min, DateTime max, IFormatProvider cultureInfo, DateTime defecto)
+        {
+            OFechaHora robusto = new OFechaHora(string.Empty, min, max, cultureInfo, defecto, false);
             robusto.ValorGenerico = valor;
             return robusto.Valor;
         }
@@ -3366,9 +3424,27 @@ namespace Orbita.Utiles
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
         /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static DateTime Validar(object valor, IFormatProvider cultureInfo, DateTime defecto)
+        {
+            OFechaHora robusto = new OFechaHora(string.Empty, DateTime.MinValue, DateTime.MaxValue, cultureInfo, defecto, false);
+            robusto.ValorGenerico = valor;
+            return robusto.Valor;
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         public static DateTime Validar(object valor)
         {
             return Validar(valor, default(DateTime));
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static DateTime Validar(object valor, IFormatProvider cultureInfo)
+        {
+            return Validar(valor, cultureInfo, default(DateTime));
         }
         /// <summary>
         /// Comprueba que el valor del objeto es correcto
@@ -3378,6 +3454,18 @@ namespace Orbita.Utiles
         public static EnumEstadoRobusto Validar(object valor, string codigo, DateTime min, DateTime max, DateTime defecto, bool lanzarExcepcionSiValorNoValido)
         {
             OFechaHora robusto = new OFechaHora(codigo, min, max, defecto, lanzarExcepcionSiValorNoValido);
+            robusto.ValorGenerico = valor;
+            valor = robusto.Valor;
+            return robusto.Estado;
+        }
+        /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="valor">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        public static EnumEstadoRobusto Validar(object valor, string codigo, DateTime min, DateTime max, IFormatProvider cultureInfo, DateTime defecto, bool lanzarExcepcionSiValorNoValido)
+        {
+            OFechaHora robusto = new OFechaHora(codigo, min, max, cultureInfo, defecto, lanzarExcepcionSiValorNoValido);
             robusto.ValorGenerico = valor;
             valor = robusto.Valor;
             return robusto.Estado;
@@ -3547,12 +3635,27 @@ namespace Orbita.Utiles
             return OFechaHora.Validar(valor, out validacion, min, max, defecto);
         }
         /// <summary>
+        /// Evalúa si el parámetro es booleano
+        /// </summary>
+        public static DateTime ValidarFechaHora(this object valor, out EnumEstadoRobusto validacion, DateTime min, DateTime max, IFormatProvider cultureInfo, DateTime defecto)
+        {
+            return OFechaHora.Validar(valor, out validacion, min, max, cultureInfo, defecto);
+        }
+        /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
         /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         public static DateTime ValidarFechaHora(this object valor, DateTime min, DateTime max, DateTime defecto)
         {
             return OFechaHora.Validar(valor, min, max, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static DateTime ValidarFechaHora(this object valor, DateTime min, DateTime max, IFormatProvider cultureInfo, DateTime defecto)
+        {
+            return OFechaHora.Validar(valor, min, max, cultureInfo, defecto);
         }
         /// <summary>
         /// Evalúa si el parámetro está dentro del rango determinado
@@ -3566,9 +3669,25 @@ namespace Orbita.Utiles
         /// Evalúa si el parámetro está dentro del rango determinado
         /// </summary>
         /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static DateTime ValidarFechaHora(this object valor, IFormatProvider cultureInfo, DateTime defecto)
+        {
+            return OFechaHora.Validar(valor, cultureInfo, defecto);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         public static DateTime ValidarFechaHora(this object valor)
         {
             return OFechaHora.Validar(valor);
+        }
+        /// <summary>
+        /// Evalúa si el parámetro está dentro del rango determinado
+        /// </summary>
+        /// <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        public static DateTime ValidarFechaHora(this object valor, IFormatProvider cultureInfo)
+        {
+            return OFechaHora.Validar(valor, cultureInfo);
         }
         /// <summary>
         /// Comprueba que el valor del objeto es correcto
@@ -3578,6 +3697,15 @@ namespace Orbita.Utiles
         public static EnumEstadoRobusto ValidarFechaHora(this object valor, string codigo, DateTime min, DateTime max, DateTime defecto, bool lanzarExcepcionSiValorNoValido)
         {
             return OFechaHora.Validar(valor, codigo, min, max, defecto, lanzarExcepcionSiValorNoValido);
+        }
+        /// <summary>
+        /// Comprueba que el valor del objeto es correcto
+        /// </summary>
+        /// <param name="valor">Valor del objeto a comprobar</param>
+        /// <returns>Verdadero si el valor es correcto</returns>
+        public static EnumEstadoRobusto ValidarFechaHora(this object valor, string codigo, DateTime min, DateTime max, IFormatProvider cultureInfo, DateTime defecto, bool lanzarExcepcionSiValorNoValido)
+        {
+            return OFechaHora.Validar(valor, codigo, min, max, cultureInfo, defecto, lanzarExcepcionSiValorNoValido);
         }
         /// <summary>
         /// Devuelve una cadena de texto identificativa del día actual (utilizada para indexar ficheros)

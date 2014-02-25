@@ -96,6 +96,7 @@
     <Compile Include="Enumerados\OStringEnumerado.cs" />
     <Compile Include="Enumerados\OAtributoEnumerado.cs" />
     <Compile Include="Estructuras\OCronometros.cs" />
+    <Compile Include="Estructuras\OTupla.cs" />
     <Compile Include="Estructuras\OFichero.cs" />
     <Compile Include="Estructuras\OReglaNomenclatura.cs" />
     <Compile Include="Estructuras\OSingleton.cs" />

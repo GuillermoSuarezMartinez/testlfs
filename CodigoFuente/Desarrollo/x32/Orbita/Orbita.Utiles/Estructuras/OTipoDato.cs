@@ -53,6 +53,9 @@ namespace Orbita.Utiles
                 case OEnumTipoDato.Fecha:
                     resultado = DateTime.Now;
                     break;
+                case OEnumTipoDato.Tupla:
+                    resultado = new OTupla();
+                    break;
             }
 
             return resultado;
@@ -100,5 +103,9 @@ namespace Orbita.Utiles
 		/// Tipo Evento
 		/// </summary>
 		Flag = 8,
+        /// <summary>
+        /// Tipo de dato copuesto
+        /// </summary>
+        Tupla = 9
 	}
 }
