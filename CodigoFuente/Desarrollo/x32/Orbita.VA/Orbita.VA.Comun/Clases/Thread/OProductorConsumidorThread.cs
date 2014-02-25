@@ -398,6 +398,7 @@ namespace Orbita.VA.Comun
         {
             this.Stop();
             this.Thread.Stop();
+            this.Thread.Dispose(); // NUEVO
             this.Thread = null;
             this.OnEjecucionConsumidor = null;
             this.OnEjecucionProductor = null;

@@ -16,12 +16,19 @@
 // Last Modified On : aibañez
 // Description      : Posibilidad de especificar el formato de guardado de la imagen
 //
+// Last Modified By : 12-02-2014
+// Last Modified On : aibañez
+// Description      : Modificado el método clone para ralizarlo mediante AForge.
+//                    Modificado el método de guardar para tener en cuenta el formato original del bitmap
+//
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using AForge.Imaging;
+using Orbita.Utiles;
 
 namespace Orbita.VA.Comun
 {
@@ -186,15 +193,18 @@ namespace Orbita.VA.Comun
                     //g = null;
                     //imagenResultado.Image = b;
 
-                    // OPCIÓN 3
-                    // Fase 1: Copia de la imagen a Array de Bytes
-                    OByteArrayImage imagenByteArray = new OByteArrayImage();
-                    imagenByteArray.Serializar(this, TipoSerializacionImagen.Dato);
-                    // Fase 2: Restauración del Array de Bytes a la Imagen
-                    imagenResultado = (OImagenBitmap)imagenByteArray.Desserializar();
+                    // OPCIÓN 3 (PROBADA Y VÁLIDA)
+                    //// Fase 1: Copia de la imagen a Array de Bytes
+                    //OByteArrayImage imagenByteArray = new OByteArrayImage();
+                    //imagenByteArray.Serializar(this, TipoSerializacionImagen.Dato);
+                    //// Fase 2: Restauración del Array de Bytes a la Imagen
+                    //imagenResultado = (OImagenBitmap)imagenByteArray.Desserializar();                    
 
                     // OPCIÓN 4
                     //imagenResultado._Image = new Bitmap(this.Image);
+
+                    //OPCIÓN 5
+                    imagenResultado.Image = AForge.Imaging.Image.Clone(this.Image);
                 }
                 catch (Exception exception)
                 {
@@ -225,7 +235,7 @@ namespace Orbita.VA.Comun
             {
                 if (formato == null)
                 {
-                    this.Image.Save(ruta);
+                    this.Image.Save(ruta, this.Image.RawFormat);
                 }
                 else
                 {
@@ -285,14 +295,14 @@ namespace Orbita.VA.Comun
             
             OImagen reducida = new OImagenBitmap(this.Codigo);
             reducida.MomentoCreacion = this.MomentoCreacion;
-            Graphics g = Graphics.FromImage((Image)b);
+            Graphics g = Graphics.FromImage((System.Drawing.Image)b);
 
-            g.DrawImage((Image)img.Image, 0, 0, ancho, alto);
+            g.DrawImage((System.Drawing.Image)img.Image, 0, 0, ancho, alto);
             g.Dispose();
             g = null;
 
-            reducida.Image = (Image)b;
-            Image prueba = (Image)b;
+            reducida.Image = (System.Drawing.Image)b;
+            System.Drawing.Image prueba = (System.Drawing.Image)b;
             return reducida;
         }
 

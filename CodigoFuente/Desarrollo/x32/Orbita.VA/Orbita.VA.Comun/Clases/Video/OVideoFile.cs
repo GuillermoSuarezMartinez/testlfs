@@ -193,7 +193,14 @@ namespace Orbita.VA.Comun
         /// </summary>
         public EstadoProductorConsumidor Estado
         {
-            get { return this.ThreadConsumidor.Estado; }
+            get 
+            {
+                if (this.ThreadConsumidor != null)
+                {
+                    return this.ThreadConsumidor.Estado; 
+        }
+                return EstadoProductorConsumidor.Detenido;
+            }
         }
         #endregion
 
@@ -408,6 +415,10 @@ namespace Orbita.VA.Comun
                         {
                             OLogsVAComun.Multimedia.Warn("Imposible crear el archivo de video");
                         }
+                        else
+                        {
+                            OLogsVAComun.Multimedia.Warn("Archivo de video creado");
+                        }
                     }
                 }
 
@@ -420,7 +431,8 @@ namespace Orbita.VA.Comun
                 {
                     if (this.AVIWriter.IsOpen)
                     {
-                        this.AVIWriter.WriteVideoFrame(valor.ConvertToBitmap(), difTiempo);
+                        Bitmap bmp = valor.ConvertToBitmap();
+                        this.AVIWriter.WriteVideoFrame(bmp, difTiempo);
                     }
                     else
                     {
@@ -464,6 +476,10 @@ namespace Orbita.VA.Comun
                         if (this.AVIWriter.IsOpen)
                         {
                             OLogsVAComun.Multimedia.Warn("Archivo de video no cerrado");
+                        }
+                        else
+                        {
+                            OLogsVAComun.Multimedia.Info("Archivo de video cerrado");
                         }
                     }
                 }

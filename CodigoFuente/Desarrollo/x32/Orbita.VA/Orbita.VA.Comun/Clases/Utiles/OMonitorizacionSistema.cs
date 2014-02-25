@@ -8,6 +8,11 @@
 // Description      : Nuevo tipo de Monitorización: MonitorizacionObjetosMemoria
 //                     Se controla las clases LargeObects existentes en el sistema
 //
+// Last Modified By : aibañez
+// Last Modified On : 12-02-2014
+// Description      : Nuevo tipo de Monitorización: MonitorizacionThreads
+//                     Se controla las clases OThreadLoop existentes en el sitema
+//
 // Copyright        : (c) Orbita Ingenieria. All rights reserved.
 //***********************************************************************
 using System;
@@ -89,6 +94,12 @@ namespace Orbita.VA.Comun
                     break;
                 case TipoMonitorizacion.MonitorizacionConexiones:
                     monitorizacion = new MonitorizacionConexiones();
+                    break;
+                case TipoMonitorizacion.MonitorizacionObjetosMemoria:
+                    monitorizacion = new MonitorizacionObjetosMemoria();
+                    break;
+                case TipoMonitorizacion.MonitorizacionThreads:
+                    monitorizacion = new MonitorizacionThreads();
                     break;
             }
 
@@ -615,7 +626,50 @@ namespace Orbita.VA.Comun
         {
             List<string> resultado = new List<string>();
             resultado.Add(string.Format("Número de objetos residentes en memoria: {0}", OGestionMemoriaManager.Count));
-            resultado.AddRange(OGestionMemoriaManager.Resumen("Objeto residente en memoria. Código Hash: {0}, Tipo: {1}, Código: {2}"));
+            resultado.AddRange(OGestionMemoriaManager.Resumen("Objeto residente en memoria. Código Hash: {0}, Tipo: {1}, Código: {2}, Momento Creacion: {3}"));
+            return resultado;
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Monitorización de los objetos en memoria
+    /// </summary>
+    internal class MonitorizacionThreads : OMonitorizacionSistemaBase
+    {
+        #region Constructor
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        public MonitorizacionThreads()
+        {
+        }
+        #endregion
+
+        #region Método(s) público(s)
+        /// <summary>
+        /// Inicialización de la monitorización del sistema
+        /// </summary>
+        public override void Inicializar()
+        {
+            this.SiguienteMonitorizacion();
+        }
+
+        /// <summary>
+        /// Ejecución de la monitorización del sistema
+        /// </summary>
+        public override void SiguienteMonitorizacion()
+        {
+        }
+
+        /// <summary>
+        /// Resumen de la monitorización
+        /// </summary>
+        public override List<string> Resumen()
+        {
+            List<string> resultado = new List<string>();
+            resultado.Add(string.Format("Número de thread en ejecución: {0}", OThreadManager.Count));
+            resultado.AddRange(OThreadManager.Resumen("Thread en ejecución. Código Hash: {0}, Tipo: {1}, Código: {2}, Estado: {3}"));
             return resultado;
         }
         #endregion
@@ -645,7 +699,11 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Monitorización de los objetos en memoria
         /// </summary>
-        MonitorizacionObjetosMemoria = 6
+        MonitorizacionObjetosMemoria = 6,
+        /// <summary>
+        /// Monitorización de los Threads en ejecución
+        /// </summary>
+        MonitorizacionThreads = 7
     }
 
     /// <summary>

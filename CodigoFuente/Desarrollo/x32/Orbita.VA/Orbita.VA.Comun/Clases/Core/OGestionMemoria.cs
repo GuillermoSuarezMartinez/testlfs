@@ -24,7 +24,7 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Diccionario de objetos grandes. Clave: Código Hash del objeto. Valor: Triplete de Tipo y código inerno
         /// </summary>
-        private static Dictionary<int, OPair<Type, string>> ListaObjetos;
+        private static Dictionary<int, OTriplet<Type, string, DateTime>> ListaObjetos;
 
         /// <summary>
         /// Objeto de bloqueo. Utilizado para el bloqueo multihilo
@@ -86,7 +86,7 @@ namespace Orbita.VA.Comun
         /// </summary>
 		public static void Constructor()
         {
-            ListaObjetos = new Dictionary<int, OPair<Type, string>>();
+            ListaObjetos = new Dictionary<int, OTriplet<Type, string,DateTime>>();
             BlockObject = new object();
             MomentoUltimaRecoleccionBasura = DateTime.Now;
         }
@@ -121,17 +121,17 @@ namespace Orbita.VA.Comun
         /// <summary>
         /// Consulta la información de la lista
         /// </summary>
-        public static Dictionary<int, OPair<Type, string>> GetListaObjetos()
+        public static Dictionary<int, OTriplet<Type, string, DateTime>> GetListaObjetos()
         {
-            Dictionary<int, OPair<Type, string>> resultado = new Dictionary<int, OPair<Type, string>>();
+            Dictionary<int, OTriplet<Type, string, DateTime>> resultado = new Dictionary<int, OTriplet<Type, string, DateTime>>();
 
             if (ListaObjetos != null)
             {
                 lock (BlockObject)
                 {
-                    foreach (KeyValuePair<int, OPair<Type, string>> keyValuePair in ListaObjetos)
+                    foreach (KeyValuePair<int, OTriplet<Type, string, DateTime>> keyValuePair in ListaObjetos)
                     {
-                        resultado.Add(keyValuePair.Key, new OPair<Type, string>(keyValuePair.Value.First, keyValuePair.Value.Second));
+                        resultado.Add(keyValuePair.Key, new OTriplet<Type, string, DateTime>(keyValuePair.Value.First, keyValuePair.Value.Second, keyValuePair.Value.Third));
                     }
                 }
             }
@@ -150,9 +150,9 @@ namespace Orbita.VA.Comun
             {
                 lock (BlockObject)
                 {
-                    foreach (KeyValuePair<int, OPair<Type, string>> keyValuePair in ListaObjetos)
+                    foreach (KeyValuePair<int, OTriplet<Type, string, DateTime>> keyValuePair in ListaObjetos)
                     {
-                        string registro = string.Format(textoFormateado, keyValuePair.Key, keyValuePair.Value.First, keyValuePair.Value.Second);
+                        string registro = string.Format(textoFormateado, keyValuePair.Key, keyValuePair.Value.First, keyValuePair.Value.Second, keyValuePair.Value.Third);
                         resultado.Add(registro);
                     }
                 }
@@ -172,7 +172,7 @@ namespace Orbita.VA.Comun
                 List<string> listaResumen = Resumen(textoFormateado);
                 foreach (string textoResumen in listaResumen)
                 {
-                    OLogsVAComun.GestionMemoria.Info("LargeObjectsRuntime", textoResumen);
+                    OLogsVAComun.GestionMemoria.Info("LargeObjectsManager", textoResumen);
                 }
             }
         }
@@ -187,8 +187,7 @@ namespace Orbita.VA.Comun
 	        {
                 lock (BlockObject)
                 {
-                    //ListaObjetos.Add(baseObject.GetHashCode(), new OPair<Type, string>(baseObject.GetType(), baseObject.Codigo));
-                    ListaObjetos[baseObject.GetHashCode()] = new OPair<Type, string>(baseObject.GetType(), baseObject.Codigo); // Para evitar colisiones en las claves
+                    ListaObjetos[baseObject.GetHashCode()] = new OTriplet<Type, string, DateTime>(baseObject.GetType(), baseObject.Codigo, baseObject.MomentoCreacion); // Para evitar colisiones en las claves
                 }
 	        }
         }
@@ -275,6 +274,19 @@ namespace Orbita.VA.Comun
             get { return _Codigo; }
             set { _Codigo = value; }
         }
+
+        /// <summary>
+        /// Informa del momento de la creación de la imagen
+        /// </summary>
+        private DateTime _MomentoCreacion;
+        /// <summary>
+        /// Informa del momento de la creación de la imagen
+        /// </summary>
+        public DateTime MomentoCreacion
+        {
+            get { return _MomentoCreacion; }
+            set { _MomentoCreacion = value; }
+        }
         #endregion
 
         #region Constructor(es)
@@ -285,6 +297,18 @@ namespace Orbita.VA.Comun
         public OLargeObjectBase(string codigo)
         {
             this.Codigo = codigo;
+            this.MomentoCreacion = DateTime.Now;
+            OGestionMemoriaManager.Add(this);
+        }
+
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
+        /// <param name="codigo"></param>
+        public OLargeObjectBase(string codigo, DateTime momentoCreacion)
+        {
+            this.Codigo = codigo;
+            this.MomentoCreacion = momentoCreacion;
             OGestionMemoriaManager.Add(this);
         } 
         #endregion

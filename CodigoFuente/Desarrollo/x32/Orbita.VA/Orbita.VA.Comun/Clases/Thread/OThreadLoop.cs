@@ -38,8 +38,36 @@ namespace Orbita.VA.Comun
         /// Listado de los threads de tipo loop del sistema
         /// </summary>
         public static List<OThreadLoop> ListaThreadsLoop;
-        // Identificador del thread principal
+
+        /// <summary>
+        /// Identificador del thread principal
+        /// </summary>
         private static int MainThreadId;
+
+        /// <summary>
+        /// Objeto de bloqueo. Utilizado para el bloqueo multihilo
+        /// </summary>
+        private static object BlockObject = new object();
+        #endregion
+
+        #region Propiedad(es)
+        /// </summary>
+        /// <returns></returns>
+        public static int Count
+        {
+            get
+            {
+                int resultado = 0;
+                if (ListaThreadsLoop != null)
+                {
+                    lock (BlockObject)
+                    {
+                        resultado = ListaThreadsLoop.Count;
+                    }
+                }
+                return resultado;
+            }
+        }
         #endregion
 
         #region Método(s) público(s)
@@ -72,9 +100,15 @@ namespace Orbita.VA.Comun
         /// </summary>
         public static void Finalizar()
         {
-            foreach (OThreadLoop thread in ListaThreadsLoop)
+            if (ListaThreadsLoop != null)
             {
-                thread.Stop();
+                lock (BlockObject)
+                {
+                    foreach (OThreadLoop thread in ListaThreadsLoop)
+                    {
+                        thread.Stop();
+                    }
+                }
             }
         }
 
@@ -86,15 +120,22 @@ namespace Orbita.VA.Comun
         public static bool EsperarSemaforo()
         {
             bool resultado = false;
-            OThreadLoop thread = ListaThreadsLoop.Find(delegate(OThreadLoop t)
+            OThreadLoop thread = null;
+            if (ListaThreadsLoop != null)
+            {
+                lock (BlockObject)
                 {
-                    bool result = false;
-                    if (t.ThreadEjecucion != null)
-                    {
-                        result = t.ThreadEjecucion.Thread.Equals(Thread.CurrentThread);
-                    }
-                    return result;
-                });
+                    thread = ListaThreadsLoop.Find(delegate(OThreadLoop t)
+                        {
+                            bool result = false;
+                            if (t.ThreadEjecucion != null)
+                            {
+                                result = t.ThreadEjecucion.Thread.Equals(Thread.CurrentThread);
+                            }
+                            return result;
+                        });
+                }
+            }
             if (thread != null)
             {
                 resultado = thread.Wait();
@@ -113,10 +154,16 @@ namespace Orbita.VA.Comun
         {
             bool resultado = false;
 
-            OThreadLoop thread = ListaThreadsLoop.Find(delegate(OThreadLoop t) { return string.Equals(t.Codigo, codigo, StringComparison.CurrentCultureIgnoreCase); });
-            if (thread != null)
+            if (ListaThreadsLoop != null)
             {
-                resultado = thread.Pause();
+                lock (BlockObject)
+                {
+                    OThreadLoop thread = ListaThreadsLoop.Find(delegate(OThreadLoop t) { return string.Equals(t.Codigo, codigo, StringComparison.CurrentCultureIgnoreCase); });
+                    if (thread != null)
+                    {
+                        resultado = thread.Pause();
+                    }
+                }
             }
 
             return resultado;
@@ -132,10 +179,16 @@ namespace Orbita.VA.Comun
         {
             bool resultado = false;
 
-            OThreadLoop thread = ListaThreadsLoop.Find(delegate(OThreadLoop t) { return string.Equals(t.Codigo, codigo, StringComparison.CurrentCultureIgnoreCase); });
-            if (thread != null)
+            if (ListaThreadsLoop != null)
             {
-                resultado = thread.Resume();
+                lock (BlockObject)
+                {
+                    OThreadLoop thread = ListaThreadsLoop.Find(delegate(OThreadLoop t) { return string.Equals(t.Codigo, codigo, StringComparison.CurrentCultureIgnoreCase); });
+                    if (thread != null)
+                    {
+                        resultado = thread.Resume();
+                    }
+                }
             }
 
             return resultado;
@@ -261,12 +314,42 @@ namespace Orbita.VA.Comun
         }
 
         /// <summary>
-        /// Devuelve el número total de threads en ejecución
+        /// Devuelve el estado de la lista de threads
         /// </summary>
-        /// <returns></returns>
-        public static int Count()
+        /// <param name="textoFormateado">Texto válido para utilizar en la función string.Format.
+        /// Debe contener {0}, {1}, {2} para ser válido</param>
+        public static List<string> Resumen(string textoFormateado)
         {
-            return ListaThreadsLoop.Count;
+            List<string> resultado = new List<string>();
+            if (ListaThreadsLoop != null)
+            {
+                lock (BlockObject)
+                {
+                    foreach (OThreadLoop thread in ListaThreadsLoop)
+                    {
+                        string registro = string.Format(textoFormateado, thread.GetHashCode(), thread.GetType(), thread.Codigo, thread.Estado);
+                        resultado.Add(registro);
+                    }
+                }
+            }
+            return resultado;
+        }
+
+        /// <summary>
+        /// Registra en el log el estado de la lista de objetos
+        /// </summary>
+        /// <param name="textoFormateado">Texto válido para utilizar en la función string.Format.
+        /// Debe contener {0}, {1}, {2} para ser válido</param>
+        public static void RegistraEnLog(string textoFormateado)
+        {
+            if (ListaThreadsLoop != null)
+            {
+                List<string> listaResumen = Resumen(textoFormateado);
+                foreach (string textoResumen in listaResumen)
+                {
+                    OLogsVAComun.GestionMemoria.Info("OThreadManager", textoResumen);
+                }
+            }
         }
         #endregion
 
@@ -280,7 +363,10 @@ namespace Orbita.VA.Comun
             // Añadimos a la lista
             if (ListaThreadsLoop != null)
             {
-                ListaThreadsLoop.Add(threadOrbita);
+                lock (BlockObject)
+                {
+                    ListaThreadsLoop.Add(threadOrbita);
+                }
             }
         }
 
@@ -293,7 +379,10 @@ namespace Orbita.VA.Comun
             // Añadimos a la lista
             if (ListaThreadsLoop != null)
             {
-                ListaThreadsLoop.Remove(threadOrbita);
+                lock (BlockObject)
+                {
+                    ListaThreadsLoop.Remove(threadOrbita);
+                }
             }
         }
         #endregion
@@ -400,6 +489,7 @@ namespace Orbita.VA.Comun
             this.Priority = threadPriority;
             this.FinSuspensionEvent = new ManualResetEvent(false);
 
+            this.CrearThread();
             this.CrearSuscripcionRun(this.Ejecucion, true); // Delegado único
             this.CrearSuscripcionFin(this.FinEjecucion, true); // Delegado múltiple
         }
@@ -469,8 +559,9 @@ namespace Orbita.VA.Comun
             if ((this.Estado == EstadoThread.ThreadInitial) || (this.Estado == EstadoThread.ThreadEnded))
             {
                 this.FlagFinalizacion = false;
-                this.CrearThread();
                 this.Estado = EstadoThread.ThreadRunning;
+
+                this.ThreadEjecucion = new OHilo(this.EjecucionInterna, this.Codigo, this.Priority, true, false);
                 this.ThreadEjecucion.Iniciar();
             }
         }
@@ -482,9 +573,10 @@ namespace Orbita.VA.Comun
             if ((this.Estado == EstadoThread.ThreadInitial) || (this.Estado == EstadoThread.ThreadEnded))
             {
                 this.FlagFinalizacion = false;
-                this.CrearThread();
+                //this.CrearThread();
                 this.Estado = EstadoThread.ThreadRunning;
                 this.Pause();
+                this.ThreadEjecucion = new OHilo(this.EjecucionInterna, this.Codigo, this.Priority, true, false);
                 this.ThreadEjecucion.Iniciar();
             }
         }
@@ -506,6 +598,7 @@ namespace Orbita.VA.Comun
                     }
 
                     this.Estado = EstadoThread.ThreadEnded;
+                    this.ThreadEjecucion = null;
                 }
                 catch (Exception exception)
                 {
@@ -597,16 +690,16 @@ namespace Orbita.VA.Comun
         /// </summary>
         public void Dispose()
         {
-            this.Stop();
-            this.DestruirThread();
+            //this.Stop();
+            //this.DestruirThread();
         }
         /// <summary>
         /// Elimina la memoria asignada por el objeto.
         /// </summary>
         public void Dispose(int milisecondsTimeout)
         {
-            this.Stop(milisecondsTimeout);
-            this.DestruirThread();
+            //this.Stop(milisecondsTimeout);
+            //this.DestruirThread();
         }
         /// <summary>
         /// Cambia la prioridad al thread
@@ -649,7 +742,7 @@ namespace Orbita.VA.Comun
         {
             this.Estado = EstadoThread.ThreadInitial;
 
-            this.ThreadEjecucion = new OHilo(this.EjecucionInterna, this.Codigo, this.Priority, true, false);
+            //this.ThreadEjecucion = new OHilo(this.EjecucionInterna, this.Codigo, this.Priority, true, false);
             OThreadManager.NuevoThread(this);
         }
 
@@ -661,7 +754,7 @@ namespace Orbita.VA.Comun
             //this.OnEjecucion = null; // Delegado único
             //this.OnFinEjecucion -= FinEjecucion;
 
-            this.ThreadEjecucion = null;
+            //this.ThreadEjecucion = null;
             OThreadManager.EliminarThread(this);
         }
 

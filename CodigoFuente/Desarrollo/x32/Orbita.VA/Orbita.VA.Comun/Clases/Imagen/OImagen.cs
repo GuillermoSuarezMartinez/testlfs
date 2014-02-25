@@ -83,19 +83,6 @@ namespace Orbita.VA.Comun
         }
 
         /// <summary>
-        /// Informa del momento de la creación de la imagen
-        /// </summary>
-        private DateTime _MomentoCreacion;
-        /// <summary>
-        /// Informa del momento de la creación de la imagen
-        /// </summary>
-        public DateTime MomentoCreacion
-        {
-            get { return _MomentoCreacion; }
-            set { _MomentoCreacion = value; }
-        }
-
-        /// <summary>
         /// Profundidad en bytes de cada píxel
         /// </summary>
         public virtual int Profundidad
