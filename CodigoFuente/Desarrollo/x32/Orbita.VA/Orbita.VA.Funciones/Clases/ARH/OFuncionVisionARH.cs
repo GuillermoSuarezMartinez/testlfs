@@ -342,6 +342,8 @@ namespace Orbita.VA.Funciones
         {
             try
             {
+                this.TipoFuncionVision = TipoFuncionVision.ARH;
+
                 // Demanda del uso de OCR
                 OARHManager.DemandaUso();
 

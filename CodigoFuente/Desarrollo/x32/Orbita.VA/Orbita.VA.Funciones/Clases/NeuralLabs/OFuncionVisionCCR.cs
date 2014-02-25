@@ -383,6 +383,8 @@ namespace Orbita.VA.Funciones
         {
             try
             {
+                this.TipoFuncionVision = TipoFuncionVision.CCR;
+
                 // Demanda del uso de CCR
                 OCCRManager.DemandaUso();
 

@@ -659,6 +659,8 @@ namespace Orbita.VA.Funciones
         {
             try
             {
+                this.TipoFuncionVision = TipoFuncionVision.LPR;
+
                 // Demanda del uso de LPR
                 OLPRManager.DemandaUso();
 

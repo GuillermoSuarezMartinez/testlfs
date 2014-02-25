@@ -653,8 +653,7 @@ namespace Orbita.VA.Funciones
                 this._Descripcion = dtFuncionVision.Rows[0]["DescFuncionVision"].ToString();
                 this._RutaFichero = dtFuncionVision.Rows[0]["RutaFichero"].ToString();
 
-                int intTipoFuncion = OEntero.Validar(dtFuncionVision.Rows[0]["IdTipoFuncionVision"], 1, 3, 1);
-                this._TipoFuncionVision = (TipoFuncionVision)intTipoFuncion;
+                this._TipoFuncionVision = OEnumerado<TipoFuncionVision>.Validar(dtFuncionVision.Rows[0]["IdTipoFuncionVision"], Funciones.TipoFuncionVision.Orbita);
 
                 this._TipoEjecucionFuncionVision = OEnumerado<TipoEjecucionFuncionVision>.Validar(dtFuncionVision.Rows[0]["TipoEjecucion"].ToString(), TipoEjecucionFuncionVision.EjecucionSincrona);
                 //this._TipoEjecucionFuncionVision = (OTipoEjecucionFuncionVision)App.EnumParse(typeof(OTipoEjecucionFuncionVision), dtFuncionVision.Rows[0]["TipoEjecucion"].ToString(), OTipoEjecucionFuncionVision.EjecucionSincrona);
@@ -1358,21 +1357,29 @@ namespace Orbita.VA.Funciones
     public enum TipoFuncionVision
     {
         /// <summary>
-        /// Función propia
+        /// Función propia (AForge, Emgu)
         /// </summary>
-        Orbita = 1,
+        Orbita = 0,
         /// <summary>
         /// Función de las librerías VisionPro de Cognex
         /// </summary>
-        VisionPro = 2,
+        VisionPro = 1,
         /// <summary>
-        /// Función de las librerías de reconocimiento de la matricula de los contenedores
+        /// Función de las librerías de reconocimiento de la matricula de los contenedores mediante las liberías de Neural Labs
         /// </summary>
-        CCR = 3,
+        CCR = 2,
         /// <summary>
-        /// Función de las librerías de lectura de matrículas de vehículos
+        /// Función de las librerías de lectura de matrículas de vehículos mediante las liberías de Neural Labs
         /// </summary>
-        LPR = 4
+        LPR = 3,
+        /// <summary>
+        /// Función de las librerías de reconocimiento de la matricula de los contenedores mediante las librerías de Hungary
+        /// </summary>
+        ARH = 4,
+        /// <summary>
+        /// Función de las librerías Halcon de MVTec
+        /// </summary>
+        HDev = 5
     }
 
     /// <summary>
