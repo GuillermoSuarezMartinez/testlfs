@@ -34,11 +34,11 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
         /// <summary>
         /// Máxima longitud del mensaje.
         /// </summary>
-        private const int MaximaLongitudMensaje = 128 * 1024 * 1024; // 128 Megabytes.
+        protected const int MaximaLongitudMensaje = 128 * 1024 * 1024; // 128 Megabytes.
         /// <summary>
         /// Este MemoryStream se utiliza para recoger los bytes recibidos en la construcción de mensajes.
         /// </summary>
-        private MemoryStream _bytesRecibidosMemoryStream;
+        protected MemoryStream BytesRecibidosMemoryStream;
         #endregion Atributos
 
         #region Constructor
@@ -47,7 +47,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
         /// </summary>
         public Serializacion()
         {
-            _bytesRecibidosMemoryStream = new MemoryStream();
+            BytesRecibidosMemoryStream = new MemoryStream();
         }
         #endregion Constructor
 
@@ -94,7 +94,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
         public IEnumerable<IMensaje> CrearMensajes(byte[] bytesRecibidos)
         {
             //  Escribe todos los bytes recibidos en _recepcionBytes.
-            _bytesRecibidosMemoryStream.Write(bytesRecibidos, 0, bytesRecibidos.Length);
+            BytesRecibidosMemoryStream.Write(bytesRecibidos, 0, bytesRecibidos.Length);
 
             //  Crear una colección de mensajes (List).
             var mensajes = new List<IMensaje>();
@@ -111,9 +111,9 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
         /// </summary>
         public void Resetear()
         {
-            if (_bytesRecibidosMemoryStream.Length > 0)
+            if (BytesRecibidosMemoryStream.Length > 0)
             {
-                _bytesRecibidosMemoryStream = new MemoryStream();
+                BytesRecibidosMemoryStream = new MemoryStream();
             }
         }
         #endregion Implementación de ITelegrama
@@ -165,9 +165,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
                 return (IMensaje)binaryFormatter.Deserialize(memoryStreamDeserializado);
             }
         }
-        #endregion Métodos protegidos
-
-        #region Métodos privados
         /// <summary>
         /// Este método intenta leer un mensaje y agregarlo a la colección de mensajes. 
         /// </summary>
@@ -176,20 +173,20 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
         /// Devuelve un valor booleano que indica si hay una necesidad de volver a llamar a este método.
         /// </returns>
         /// <exception cref="ExcepcionComunicacion">Throws ExcepcionComunicacion si el mensaje es más grande que la máxima longitud permitida.</exception>
-        private bool LeerMensaje(ICollection<IMensaje> mensajes)
+        protected virtual bool LeerMensaje(ICollection<IMensaje> mensajes)
         {
             //  Posicionarse en el comienzo del stream.
-            _bytesRecibidosMemoryStream.Position = 0;
+            BytesRecibidosMemoryStream.Position = 0;
 
             //  Si el stream tiene menos de 4 bytes, significa que ni siquiera podemos leer la longitud del mensaje
             //  Por lo tanto, devolver false. Esperar más bytes de la aplicación remota.
-            if (_bytesRecibidosMemoryStream.Length < 4)
+            if (BytesRecibidosMemoryStream.Length < 4)
             {
                 return false;
             }
 
             //  Leer longitud del mensaje.
-            var longitudMensaje = LeerInt32(_bytesRecibidosMemoryStream);
+            var longitudMensaje = LeerInt32(BytesRecibidosMemoryStream);
             if (longitudMensaje > MaximaLongitudMensaje)
             {
                 throw new ExcepcionComunicacion("El mensaje es demasiado grande (" + longitudMensaje + " bytes). La longitud máxima permitida es " + MaximaLongitudMensaje + " bytes.");
@@ -198,40 +195,65 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
             if (longitudMensaje == 0)
             {
                 //  Si no hay más bytes, devolver inmediatamente.
-                if (_bytesRecibidosMemoryStream.Length == 4)
+                if (BytesRecibidosMemoryStream.Length == 4)
                 {
-                    _bytesRecibidosMemoryStream = new MemoryStream(); //  Borrar el stream.
+                    BytesRecibidosMemoryStream = new MemoryStream(); //  Borrar el stream.
                     return false;
                 }
 
                 //  Crear un nuevo MemoryStream(), excepto los primeros 4 bytes.
-                var bytes = _bytesRecibidosMemoryStream.ToArray();
-                _bytesRecibidosMemoryStream = new MemoryStream();
-                _bytesRecibidosMemoryStream.Write(bytes, 4, bytes.Length - 4);
+                var bytes = BytesRecibidosMemoryStream.ToArray();
+                BytesRecibidosMemoryStream = new MemoryStream();
+                BytesRecibidosMemoryStream.Write(bytes, 4, bytes.Length - 4);
                 return true;
             }
 
             //  Si todos los bytes del mensaje no se ha recibido aún, volver a esperar más bytes.
-            if (_bytesRecibidosMemoryStream.Length < (4 + longitudMensaje))
+            if (BytesRecibidosMemoryStream.Length < (4 + longitudMensaje))
             {
-                _bytesRecibidosMemoryStream.Position = _bytesRecibidosMemoryStream.Length;
+                BytesRecibidosMemoryStream.Position = BytesRecibidosMemoryStream.Length;
                 return false;
             }
 
             //  Leer bytes del mensaje serializado y deserializarlo.
-            var mensajeSerializado = LeerArrayBytes(_bytesRecibidosMemoryStream, longitudMensaje);
+            var mensajeSerializado = LeerArrayBytes(BytesRecibidosMemoryStream, longitudMensaje);
             mensajes.Add(DeserializarMensaje(mensajeSerializado));
 
             //  Leer el resto de bytes y almacenarlos en un array.
-            var bytesRestantes = LeerArrayBytes(_bytesRecibidosMemoryStream, (int)(_bytesRecibidosMemoryStream.Length - (4 + longitudMensaje)));
+            var bytesRestantes = LeerArrayBytes(BytesRecibidosMemoryStream, (int)(BytesRecibidosMemoryStream.Length - (4 + longitudMensaje)));
 
             //  Recrear _bytesRecibidos y escribir los bytes restantes.
-            _bytesRecibidosMemoryStream = new MemoryStream();
-            _bytesRecibidosMemoryStream.Write(bytesRestantes, 0, bytesRestantes.Length);
+            BytesRecibidosMemoryStream = new MemoryStream();
+            BytesRecibidosMemoryStream.Write(bytesRestantes, 0, bytesRestantes.Length);
 
             //  Devolver true y volver a llamar a este método para intentar leer el siguiente mensaje.
             return (bytesRestantes.Length > 4);
         }
+        /// <summary>
+        /// Leer una matriz de bytes con la longitud especificada.
+        /// </summary>
+        /// <param name="stream">Stream para leer.</param>
+        /// <param name="longitud">Longitud de la matriz de bytes para leer.</param>
+        /// <returns>Matriz de bytes leida.</returns>
+        /// <exception cref="EndOfStreamException">Throws EndOfStreamException si no se puede leer del stream.</exception>
+        protected static byte[] LeerArrayBytes(Stream stream, int longitud)
+        {
+            var buffer = new byte[longitud];
+            var totalBytesLeidos = 0;
+            while (totalBytesLeidos < longitud)
+            {
+                var leidos = stream.Read(buffer, totalBytesLeidos, longitud - totalBytesLeidos);
+                if (leidos <= 0)
+                {
+                    throw new EndOfStreamException("Stream cerrado, no es posible leer.");
+                }
+                totalBytesLeidos += leidos;
+            }
+            return buffer;
+        }
+        #endregion Métodos protegidos
+
+        #region Métodos privados
         /// <summary>
         /// Escribir un valor entero a una matriz de bytes desde un índice inicial.
         /// </summary>
@@ -257,28 +279,6 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
                     (buffer[1] << 16) |
                     (buffer[2] << 8) |
                     (buffer[3]));
-        }
-        /// <summary>
-        /// Leer una matriz de bytes con la longitud especificada.
-        /// </summary>
-        /// <param name="stream">Stream para leer.</param>
-        /// <param name="longitud">Longitud de la matriz de bytes para leer.</param>
-        /// <returns>Matriz de bytes leida.</returns>
-        /// <exception cref="EndOfStreamException">Throws EndOfStreamException si no se puede leer del stream.</exception>
-        private static byte[] LeerArrayBytes(Stream stream, int longitud)
-        {
-            var buffer = new byte[longitud];
-            var totalBytesLeidos = 0;
-            while (totalBytesLeidos < longitud)
-            {
-                var leidos = stream.Read(buffer, totalBytesLeidos, longitud - totalBytesLeidos);
-                if (leidos <= 0)
-                {
-                    throw new EndOfStreamException("Stream cerrado, no es posible leer.");
-                }
-                totalBytesLeidos += leidos;
-            }
-            return buffer;
         }
         #endregion Métodos privados
 
