@@ -11,13 +11,14 @@
 //***********************************************************************
 using System.Data;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace Orbita.Controles.Comunes
 {
     /// <summary>
     /// Teclado numérico en pantalla
     /// </summary>
-    public partial class OrbitaTecladoNumerico : UserControl
+    public partial class OrbitaTecladoNumerico : UserControl, ITeclado
     {
         #region Eventos
         /// <summary>
@@ -133,6 +134,57 @@ namespace Orbita.Controles.Comunes
         {
             get { return _ClaveDesplegable; }
             set { _ClaveDesplegable = value; }
+        }
+
+        /// <summary>
+        /// Fuente del textbox
+        /// </summary>
+        [System.ComponentModel.Browsable(true)]
+        [System.ComponentModel.Category("Orbita")]
+        [System.ComponentModel.Description("Fuente del textbox")]
+        public Font FuenteTexto
+        {
+            get { return this.txtResultado.Font; }
+            set
+            {
+                this.txtResultado.Font = value;
+                this.GridView.Font = value;
+            }
+        }
+
+        /// <summary>
+        /// Imagen de la cámara desconectada
+        /// </summary>
+        private Bitmap _ImagenTecla = global::Orbita.Controles.Comunes.Properties.Resources.ImgComputerKey90;
+        /// <summary>
+        /// Imagen de la cámara desconectada
+        /// </summary>
+        [System.ComponentModel.Browsable(true),
+        System.ComponentModel.Category("Orbita"),
+        System.ComponentModel.Description("Imagen de fondo de cada tecla")]
+        public Bitmap ImagenTecla
+        {
+            get { return _ImagenTecla; }
+            set
+            {
+                _ImagenTecla = value;
+
+                // Rellenado del fondo de cada tecla
+                btnRetrocede.Image = this.ImagenTecla;
+                BtnDropDown.Image = this.ImagenTecla;
+                BtnEsc.Image = this.ImagenTecla;
+                btnIntro.Image = this.ImagenTecla;
+                btn0.Image = this.ImagenTecla;
+                btn1.Image = this.ImagenTecla;
+                btn2.Image = this.ImagenTecla;
+                btn3.Image = this.ImagenTecla;
+                btn4.Image = this.ImagenTecla;
+                btn5.Image = this.ImagenTecla;
+                btn6.Image = this.ImagenTecla;
+                btn7.Image = this.ImagenTecla;
+                btn8.Image = this.ImagenTecla;
+                btn9.Image = this.ImagenTecla;
+            }
         }
         #endregion
 

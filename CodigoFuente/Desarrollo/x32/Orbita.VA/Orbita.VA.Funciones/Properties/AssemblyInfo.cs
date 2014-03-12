@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Órbita Ingeniería")]
 [assembly: AssemblyProduct("Orbita.VA.Funciones")]
-[assembly: AssemblyCopyright("Copyright © Órbita Ingeniería 2013")]
+[assembly: AssemblyCopyright("Copyright © Órbita Ingeniería 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -30,5 +30,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("13.343.79.1")]
-[assembly: AssemblyFileVersion("13.343.79.1")]
+[assembly: AssemblyVersion("14.56.79.1")]
+[assembly: AssemblyFileVersion("14.56.79.1")]

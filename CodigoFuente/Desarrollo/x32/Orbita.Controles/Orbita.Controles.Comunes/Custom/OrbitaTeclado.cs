@@ -19,7 +19,7 @@ namespace Orbita.Controles.Comunes
     /// <summary>
     /// Teclado en pantalla
     /// </summary>
-    public partial class OrbitaTeclado : UserControl
+    public partial class OrbitaTeclado : UserControl, ITeclado
     {
         #region Eventos
         /// <summary>
@@ -450,6 +450,105 @@ namespace Orbita.Controles.Comunes
         }
         #endregion
     }
+
+    /// <summary>
+    /// Interfaz para todos los teclados de pantalla
+    /// </summary>
+    public interface ITeclado
+    {
+        #region Propiedad(es)
+        /// <summary>
+        /// Resultado de la introducción de texto
+        /// </summary>
+        string Resultado
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Indica que se ha de visualizar el editor
+        /// </summary>
+        bool VisualizarEditor
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// Indica que se ha de visualizar la tecla de intro
+        /// </summary>
+        bool VisualizarIntro
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// Indica que se ha de visualizar la tecla de escape
+        /// </summary>
+        bool VisualizarEsc
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// Indica que se ha de visualizar la tecla de retroceso
+        /// </summary>
+        bool VisualizarRet
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// Indica que se ha de visualizar la tecla del desplegable
+        /// </summary>
+        bool VisualizarDropDown
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// Lista de seleccion
+        /// </summary>
+        DataTable ListaDesplegable
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// Clave de la lista de seleccion
+        /// </summary>
+        string ClaveDesplegable
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Fuente del textbox
+        /// </summary>
+        Font FuenteTexto
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// Imagen de la cámara desconectada
+        /// </summary>
+        Bitmap ImagenTecla
+        {
+            get;
+            set;
+        } 
+        #endregion
+
+        #region Métodos públicos
+        /// <summary>
+        /// Método para rellenar la lista desplegable de los carins
+        /// </summary>
+        void RellenarDesplegable();
+        #endregion
+    }
+
     /// <summary>
     /// Evento de devolución de texto
     /// </summary>

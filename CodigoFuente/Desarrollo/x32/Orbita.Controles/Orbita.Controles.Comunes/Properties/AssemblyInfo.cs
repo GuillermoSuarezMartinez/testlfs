@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Órbita Ingeniería")]
 [assembly: AssemblyProduct("Orbita.Controles.Comunes")]
-[assembly: AssemblyCopyright("Copyright © Orbita Ingenieria 2013")]
+[assembly: AssemblyCopyright("Copyright © Orbita Ingenieria 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliantAttribute(false)]
@@ -35,5 +35,5 @@ using System.Runtime.InteropServices;
 // Puede especificar todos los valores o establecer como predeterminados los números de versión de compilación y de revisión 
 // mediante el asterisco ('*'), como se muestra a continuación:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("14.31.79.1")]
-[assembly: AssemblyFileVersion("14.31.79.1")]
+[assembly: AssemblyVersion("14.66.79.1")]
+[assembly: AssemblyFileVersion("14.66.79.1")]
