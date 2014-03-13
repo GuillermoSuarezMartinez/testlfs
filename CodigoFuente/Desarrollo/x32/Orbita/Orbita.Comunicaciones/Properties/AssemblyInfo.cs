@@ -9,12 +9,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Orbita.Comunicaciones")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Librería de comunicaciones")]
+[assembly: AssemblyDescription("Biblioteca de comunicaciones")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Órbita Ingenieria")]
+[assembly: AssemblyCompany("Órbita Ingeniería")]
 [assembly: AssemblyProduct("Orbita.Comunicaciones")]
-[assembly: AssemblyCopyright("Copyright © Orbita Ingenieria 2013")]
+[assembly: AssemblyCopyright("Copyright © Órbita Ingeniería 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -28,5 +28,5 @@ using System.Runtime.InteropServices;
 //      Programador.
 //      Versión del día.
 //
-[assembly: AssemblyVersion("14.59.59.1")]
-[assembly: AssemblyFileVersion("14.59.59.1")]
+[assembly: AssemblyVersion("14.72.79.1")]
+[assembly: AssemblyFileVersion("14.72.79.1")]

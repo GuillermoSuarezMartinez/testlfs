@@ -394,8 +394,16 @@ namespace Orbita.Comunicaciones
             this._numLecturas = listEntradas.Count + listSalidas.Count;//Para el ILBKPhoenix48 tiene 2 lecturas
             this._numeroBytesEntradas = listEntradas.Count;//Para el ILBKPhoenix48 tiene 1 byte para entradas
             this._numeroBytesSalidas = listSalidas.Count;//Para el ILBKPhoenix48 tiene 1 byte para salidas
-            this._registroInicialEntradas = Convert.ToInt32(listEntradas[0]);//Para el ILBKPhoenix48 es el 8000 
-            this._registroInicialSalidas = Convert.ToInt32(listSalidas[0]);//Para el ILBKPhoenix48 es el 8001   
+            this._registroInicialSalidas = 0;
+            if (listSalidas.Count > 0) // Si hay salidas
+            {
+                this._registroInicialSalidas = Convert.ToInt32(listSalidas[0]);//Para el ILBKPhoenix48 es el 8001 
+            }
+            this._registroInicialEntradas = _registroInicialSalidas;
+            if (listEntradas.Count > 0) // Si hay entradas
+            {
+            	this._registroInicialEntradas = Convert.ToInt32(listEntradas[0]);//Para el ILBKPhoenix48 es el 8000 
+            }
 
             this.Entradas = new byte[this._numeroBytesEntradas];
             this.Salidas = new byte[this._numeroBytesSalidas];
@@ -490,7 +498,7 @@ namespace Orbita.Comunicaciones
 
             for (int i = 0; i < _numeroBytesSalidas; i++)
             {
-                salidalocal[i] = this._lecturas[i + 1];
+                salidalocal[i] = this._lecturas[i + this._numeroBytesEntradas];
             }
             for (int i = 0; i < variables.Length; i++)
             {
@@ -603,6 +611,9 @@ namespace Orbita.Comunicaciones
                     {
                         this.EsActualizarVariablesEntradas(entradas[i], i + this._registroInicialEntradas);
                     }
+                }
+                for (int i = 0; i < Salidas.Length; i++)
+                {
                     if (salidas[i] != this.Salidas[i])
                     {
                         this.EsActualizarVariablesSalidas(salidas[i], i + this._registroInicialSalidas);
