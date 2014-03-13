@@ -20,9 +20,9 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints
         #region Métodos públicos
         /// <summary>
         /// Crear endPoint de un string.
-        /// La dirección debe tener el formato: protocolo://dirección
-        /// Ejemplo: tcp://10.37.2.30:8000 uno de los extremos Tcp con
-        /// dirección IP 10.37.2.30 y puerto 8000.
+        /// La dirección debe tener el formato: protocolo://dirección.
+        /// Ejemplo: tcp://10.37.2.30:8000, uno de los extremos Tcp con
+        /// dirección IP 10.37.2.30, y puerto 8000.
         /// </summary>
         /// <param name="direccionEndPoint">Dirección endpoint.</param>
         /// <returns>Endpoint.</returns>

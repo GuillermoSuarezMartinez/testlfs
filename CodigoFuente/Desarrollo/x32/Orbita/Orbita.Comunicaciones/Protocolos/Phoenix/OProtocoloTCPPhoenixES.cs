@@ -8,26 +8,26 @@ namespace Orbita.Comunicaciones
     {
         #region Atributos
         /// <summary>
-        /// Valor inicial del registro de lecturas
+        /// Valor inicial del registro de lecturas.
         /// </summary>
         private readonly int _registroInicialEntradas;
         /// <summary>
-        /// Valor inicial del registro de escrituras
+        /// Valor inicial del registro de escrituras.
         /// </summary>
         private readonly int _registroInicialSalidas;
         /// <summary>
-        /// Número de lecturas a realizar
+        /// Número de lecturas a realizar.
         /// </summary>
         private readonly int _tamanyoEntradas;
         /// <summary>
-        /// Número de escrituras a realizar
+        /// Número de escrituras a realizar.
         /// </summary>
         private readonly int _tamanyoSalidas;
         #endregion Atributos
 
         #region Constructor
         /// <summary>
-        /// Constructor para el protocolo phoenix
+        /// Constructor para el protocolo Phoenix.
         /// </summary>
         /// <param name="regIniEntradas"></param>
         /// <param name="byteEntradas"></param>
