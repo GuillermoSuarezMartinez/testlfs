@@ -58,7 +58,7 @@ namespace Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializa
         /// </summary>
         /// <param name="mensaje">Mensaje que será serializado.</param>
         /// <exception cref="ExcepcionComunicacion">Throws ExcepcionComunicacion si el mensaje es más grande que la máxima longitud permitida.</exception>
-        public byte[] GetBytes(IMensaje mensaje)
+        public virtual byte[] GetBytes(IMensaje mensaje)
         {
             //  Serializar el mensaje a una matriz de bytes.
             var mensajeSerializado = SerializarMensaje(mensaje);
