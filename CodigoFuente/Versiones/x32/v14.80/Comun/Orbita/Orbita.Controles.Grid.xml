@@ -1,0 +1,2248 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orbita.Controles.Grid</name>
+    </assembly>
+    <members>
+        <member name="M:Orbita.Controles.Grid.OrbitaUltraGrid.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OrbitaUltraGrid.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OrbitaUltraGrid.InitializeResourceStrings">
+            <summary>
+            Inicializar recursos alfabéticos.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OrbitaUltraGrid.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OrbitaUltraGrid.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OrbitaUltraGrid.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OControlBase.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OControlBase.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OControlBase.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OControlBase.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OControlBase.ShouldSerializeApariencia">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OControlBase.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OUltraGrid.filas">
+            <summary>
+            Configuración de filas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OUltraGrid.cabecera">
+            <summary>
+            Configuración de cabecera.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OUltraGrid.celdas">
+            <summary>
+            Configuración de celdas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OUltraGrid.columnas">
+            <summary>
+            Configuración de columnas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OUltraGrid.filtros">
+            <summary>
+            Configuración de filtros.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OUltraGrid.sumario">
+            <summary>
+            Sumario de columnas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OUltraGrid.editable">
+            <summary>
+            Indica la característica editable del control.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OUltraGrid.ocultarAgrupadorFilas">
+            <summary>
+            Determina la posibilidad de ocultar el componente del control agrupador de filas (GroupByBox).
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OUltraGrid.cancelarTeclaReturn">
+            <summary>
+            Determina la posibilidad de cancelar la pulsación de la tecla Return.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OUltraGrid.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OUltraGrid.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.ShouldSerializeEditable">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.ShouldSerializeOcultarAgrupadorFilas">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.ShouldSerializeCancelarTeclaReturn">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.ShouldSerializeModoActualizacion">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.ShouldSerializeMostrarTitulo">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.ShouldSerializeActivarPrimeraFilaAlFormatear">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.ShouldSerializeFormateado">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGrid.ShouldSerializeDataSource">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OrbitaUltraGrid.ControlNuevaDefinicion.#ctor(Orbita.Controles.Grid.OrbitaUltraGrid)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OrbitaUltraGrid.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFiltros.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFiltros.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFiltros.ShouldSerializeMostrar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFiltros.ShouldSerializeTipo">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Orbita.Controles.Grid.FrmListadoPlantillasBase.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmListadoPlantillasBase.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmListadoPlantillasBase.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmListadoPlantillasBase.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmListadoPlantillasBase.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.FrmListadoPlantillasBase.Cabecera">
+            <summary>
+            Etiqueta cabecera de tipo Orbita.Controles.Comunes.OrbitaUltraLabel.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.FrmListadoPlantillasBase.Lista">
+            <summary>
+            Control lista de tipo Orbita.Controles.Comunes.OrbitaListView.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.FrmListadoPlantillasBase.SinElementos">
+            <summary>
+            Etiqueta sin elementos de tipo Orbita.Controles.Comunes.OrbitaUltraLabel.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.FrmListadoPlantillasPublicas.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmListadoPlantillasPublicas.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmListadoPlantillasPublicas.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmListadoPlantillasPublicas.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmListadoPlantillasPublicas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmListadoPlantillasPublicas.#ctor(System.Collections.Generic.Dictionary{System.String,Orbita.Controles.Grid.OPlantilla},System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmListadoPlantillasPublicas.
+            </summary>
+            <param name="plantillas">Colección de plantillas.</param>
+            <param name="error">Si error, no existen plantillas a mostrar.</param>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AlineacionVertical.Arriba">
+            <summary>
+            Alineación vertical superior.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AlineacionVertical.Medio">
+            <summary>
+            Alineación vertical media.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AlineacionVertical.Abajo">
+            <summary>
+            Alineación vertical inferior.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OrbitaUltraGridToolBar.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OrbitaUltraGridToolBar.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OrbitaUltraGridToolBar.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OrbitaUltraGridToolBar.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OrbitaUltraGridToolBar.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.#ctor(Orbita.Controles.Grid.OrbitaUltraGridToolBar)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OUltraGridToolBar.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolGestionar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolVer">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolModificar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolAñadir">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolEliminar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolLimpiarFiltros">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolEditar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolExportar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolImprimir">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolEstilo">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolRefrescar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OUltraGridToolBar.ShouldSerializeMostrarToolCiclico">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OrbitaUltraGridToolBar.ControlNuevaDefinicion.#ctor(Orbita.Controles.Grid.OrbitaUltraGridToolBar)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OrbitaUltraGridToolBar.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnasBloqueadas.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnasBloqueadas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFilasSeleccionadas.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilasSeleccionadas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFilasSeleccionadas.ShouldSerializeConfirmarBorrado">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Orbita.Controles.Grid.FrmBuscar.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmBuscar.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmBuscar.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.Posicion.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.Posicion.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.Posicion.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.Posicion.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.Posicion.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.ONoFocusRectDrawFilter.GetPhasesToFilter(Infragistics.Win.UIElementDrawParams@)">
+            <summary>
+            This method is passed a UIElementDrawParams structure and returns a bit-flag enumeration called DrawPhase.
+            The passed in structure exposes a property that returns the element to be rendered as well as properties
+            and methods to support rendering operations like Graphics, BackBrush, DrawBorders etc. The returned
+            DrawPhase bit-flags specify which phase(s) of the drawing operation to filter for this element
+            (the DrawElement method below will be called for each bit returned).
+            The DrawPhase enumeration allows you to filter the drawing before or after each drawing operation of
+            an element (e.g. theme, backcolor, image background, borders, foreground, image and/or child elements).
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.ONoFocusRectDrawFilter.DrawElement(Infragistics.Win.DrawPhase,Infragistics.Win.UIElementDrawParams@)">
+            <summary>
+            This method is passed the same UIElementDrawParams structure as GetPhasesToFilter() and a bit flag indicating
+            which single draw phase is being performed. The method returns a boolean. If false is returned then the default
+            drawing for that phase will be performed. If true is returned for a 'Before' phase then the default drawing
+            for that phase will be skipped. Note: returning true for the BeforeDrawElement phase will cause all the other
+            phases to be skipped (even if bits for those phases were returned by the call to GetPhasesToFilter).
+            Also, if themes are active, returning true for the BeforeDrawTheme phase will skip all phases up to but not
+            including the BeforeDrawChildElements phase. The BeforeDrawFocus phase is only called if the control has focus
+            (or the forceDrawAsFocused parameter was set to true on the call to the Draw method) and the element's virtual
+            DrawsFocusRect property returns true.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OConfiguracion.Persistencia">
+            <summary>
+            Establecer la persistencia entre el control y las aplicaciones externas.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OConfiguracion.OrbPersistencia">
+            <summary>
+            Establecer la persistencia entre el control y las aplicaciones externas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OToolClickEventArgs.fila">
+            <summary>
+            Fila seleccionada.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OToolClickEventArgs.#ctor(Infragistics.Win.UltraWinToolbars.ToolBase,Infragistics.Win.UltraWinToolbars.ListToolItem)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OToolClickEventArgs.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OToolClickEventArgs.Fila">
+            <summary>
+            Fila seleccionada.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OPropiedadEventArgs.nombre">
+            <summary>
+            Nombre de la propiedad.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OPropiedadEventArgs.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OPropiedadEventArgs.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OPropiedadEventArgs.#ctor(System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OPropiedadEventArgs.
+            </summary>
+            <param name="cadena">Nombre de la propiedad.</param>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OPropiedadEventArgs.Nombre">
+            <summary>
+            Nombre de la propiedad.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OPropertyExtendedChangedEventArgs.valor">
+            <summary>
+            Valor de la propiedad.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OPropertyExtendedChangedEventArgs.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OPropiedadEventArgs.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OPropertyExtendedChangedEventArgs.#ctor(System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OPropiedadEventArgs.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OPropertyExtendedChangedEventArgs.#ctor(System.String,System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Combo.OPropiedadEventArgs.
+            </summary>
+            <param name="nombre">Nombre de la propiedad.</param>
+            <param name="valor">Empty.</param>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OPropertyExtendedChangedEventArgs.Valor">
+            <summary>
+            Nombre de la propiedad.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.ORowEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridRow)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.ORowEventArgs.
+            </summary>
+            <param name="fila"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.ORowEventArgs.#ctor(Infragistics.Win.UltraWinGrid.UltraGridRow,Infragistics.Win.UltraWinGrid.UltraGridRow)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.ORowEventArgs.
+            </summary>
+            <param name="fila">Empty.</param>
+            <param name="anterior">Empty.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnas.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnas.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnas.ShouldSerializePermitirOrdenar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnas.ShouldSerializeEstilo">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnas.ShouldSerializeTipoSeleccion">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnas.ShouldSerializeVisibles">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnas.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="T:Orbita.Controles.Grid.FrmPersonalizar">
+            <summary>
+            Orbita.Controles.Personalizar.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.FrmPersonalizar.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmPersonalizar.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmPersonalizar.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.FrmPersonalizar.grid">
+            <summary>
+            Grid referencia.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.FrmPersonalizar.columnas">
+            <summary>
+            Columnas del grid.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmPersonalizar.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmPersonalizar.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmPersonalizar.chbEntornoFilasVacias_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Mostrar filas vacías estilo Excel.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmPersonalizar.chbFilasAutoajuste_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Autoajustar filas al contenido.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmPersonalizar.chbFilasSelector_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Selector de filas que permite multiselección.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmPersonalizar.chbFilasFijas_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Indicador de filas fijas.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmPersonalizar.cboColumnasAutoajustar_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Autoajuste de columna.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmPersonalizar.chbColumnasFijas_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Indicador de columnas fijas.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmPersonalizar.chbColumnasSumarios_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Sumario de columna.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmPersonalizar.chbColumnasFiltros_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Filtros en la cabecera.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmPersonalizar.cboColumnasOperadores_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Operadores de filtro.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:Orbita.Controles.Grid.FrmPersonalizar.Grid">
+            <summary>
+            Grid referencia.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OTimerEventArgs.intervalo">
+            <summary>
+            Intervalo de tiempo.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OTimerEventArgs.#ctor(System.Int32)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OTimerEventArgs.
+            </summary>
+            <param name="intervalo"></param>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OTimerEventArgs.Intervalo">
+            <summary>
+            Intervalo de tiempo.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEventHandler.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEventHandler.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AutoAjustarEstilo.ExtenderUltimaColumna">
+            <summary>
+            Extender la última columna.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AutoAjustarEstilo.RedimensionarTodasLasColumnas">
+            <summary>
+            Redimensionar todas las columnas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AutoAjustarEstilo.SinAutoajusteColumnas">
+            <summary>
+            No establecer autoajuste de columnas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFilasAlternas.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilasAlternas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFilasNuevas.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilasNuevas.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Grid.FrmListadoPlantillas">
+            <summary>
+            Colección de plantillas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.FrmListadoPlantillas.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmListadoPlantillas.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmListadoPlantillas.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmListadoPlantillas.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmListadoPlantillas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmListadoPlantillas.#ctor(System.Collections.Generic.Dictionary{System.String,Orbita.Controles.Grid.OPlantilla},System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmListadoPlantillas.
+            </summary>
+            <param name="plantillas">Colección de plantillas.</param>
+            <param name="error">Si error, no existen plantillas a mostrar.</param>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OToolClickCollectionEventArgs.filas">
+            <summary>
+            Colección de filas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OToolClickCollectionEventArgs.#ctor(Infragistics.Win.UltraWinToolbars.ToolBase,Infragistics.Win.UltraWinToolbars.ListToolItem)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OToolClickCollectionEventArgs.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OToolClickCollectionEventArgs.Filas">
+            <summary>
+            Colección de filas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OPlantilla.identificador">
+            <summary>
+            Identificador.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OPlantilla.control">
+            <summary>
+            this.Control.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OPlantilla.nombre">
+            <summary>
+            Nombre.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OPlantilla.descripcion">
+            <summary>
+            Descripción.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OPlantilla.estructura">
+            <summary>
+            Estructura.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OPlantilla.usuario">
+            <summary>
+            Usuario.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OPlantilla.activo">
+            <summary>
+            Activo.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OPlantilla.primero">
+            <summary>
+            Primero.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OPlantilla.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OPlantilla.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OPlantilla.GetEstructura">
+            <summary>
+            Estructura.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OPlantilla.SetEstructura(System.Byte[])">
+            <summary>
+            Estructura.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OPlantilla.Identificador">
+            <summary>
+            Identificador.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OPlantilla.Clave">
+            <summary>
+            Clave.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OPlantilla.Control">
+            <summary>
+            this.Control.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OPlantilla.Nombre">
+            <summary>
+            Nombre.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OPlantilla.Descripcion">
+            <summary>
+            Descripción.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OPlantilla.Usuario">
+            <summary>
+            Usuario.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OPlantilla.Activo">
+            <summary>
+            Activo.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OPlantilla.Primero">
+            <summary>
+            Primero.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OCeldasActivas.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OCeldasActivas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OMascara.nombre">
+            <summary>
+            Expresión de máscara.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OMascara.prompt">
+            <summary>
+            Caracter de separación.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OMascara.maximo">
+            <summary>
+            Valor máximo del campo.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OMascara.minimo">
+            <summary>
+            Valor mínimo del campo.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OMascara.#ctor(System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OMascara.
+            </summary>
+            <param name="nombre">Expresión de máscara</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OMascara.#ctor(System.String,System.Char)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OMascara.
+            </summary>
+            <param name="nombre">Expresión de máscara.</param>
+            <param name="prompt">Caracter de separación.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OMascara.#ctor(System.String,System.Object,System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OMascara.
+            </summary>
+            <param name="nombre">Expresión de máscara.</param>
+            <param name="maximo">Valor máximo del campo.</param>
+            <param name="minimo">Valor mínimo del campo.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OMascara.#ctor(System.String,System.Char,System.Object,System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OMascara.
+            </summary>
+            <param name="nombre">Expresión de máscara.</param>
+            <param name="prompt">Caracter de separación.</param>
+            <param name="maximo">Valor máximo del campo.</param>
+            <param name="minimo">Valor mínimo del campo.</param>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OMascara.Nombre">
+            <summary>
+            Expresión de máscara.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OMascara.Prompt">
+            <summary>
+            Caracter de separación.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OMascara.Maximo">
+            <summary>
+            Valor máximo del campo.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OMascara.Minimo">
+            <summary>
+            Valor mínimo del campo.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OCeldasAgrupadas.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OCeldasAgrupadas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OCeldasAgrupadas.ShouldSerializeEstilo">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OColumnaSumario.mascara">
+            <summary>
+            Máscara de sumario.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OColumnaSumario.operacion">
+            <summary>
+            Operación a aplicar.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnaSumario.#ctor(System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaSumario.
+            </summary>
+            <param name="mascara">Máscara de sumario.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnaSumario.#ctor(System.String,Infragistics.Win.UltraWinGrid.SummaryType)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaSumario.
+            </summary>
+            <param name="mascara">Máscara de sumario.</param>
+            <param name="operacion">Operación a aplicar.</param>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OColumnaSumario.Mascara">
+            <summary>
+            Máscara de sumario.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OColumnaSumario.Operacion">
+            <summary>
+            Operación a aplicar.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Grid.OPersistencia">
+            <summary>
+            Clase necesaria para establecer la persistencia entre el control OrbitaGridPro y las aplicaciones que usen el control.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OPersistencia.SetPlantilla(System.Int32)">
+            <summary>
+            Método abstracto que permite eliminar las plantillas seleccionadas.
+            </summary>
+            <param name="identificador"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OPersistencia.SetPlantilla(System.Object,System.String,System.String,System.Boolean)">
+            <summary>
+            Método abstracto que permite almacener el estado actual del control.
+            </summary>
+            <param name="sender"></param>
+            <param name="nombre"></param>
+            <param name="descripcion"></param>
+            <param name="publico"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OPersistencia.SetPlantilla(System.Object,System.Object)">
+            <summary>
+            Actualizar el estado de plantilla activa/inactiva.
+            </summary>
+            <param name="sender"></param>
+            <param name="clave"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OPersistencia.SetPlantilla(System.Object,System.String,System.Boolean)">
+            <summary>
+            Actualizar el estado de plantilla activa/inactiva.
+            </summary>
+            <param name="sender"></param>
+            <param name="nombre"></param>
+            <param name="activo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OPersistencia.GetPlantilla(System.Object,Orbita.Controles.Grid.OPlantilla)">
+            <summary>
+            GetPlantilla.
+            </summary>
+            <param name="sender"></param>
+            <param name="plantilla"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OPersistencia.GetPlantilla(System.Object,System.String)">
+            <summary>
+            Método abstracto que permite cargar la plantilla activa.
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OPersistencia.GetPlantillas(System.Object)">
+            <summary>
+            GetPlantillas.
+            </summary>
+            <param name="sender"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OPersistencia.GetPlantillas(System.Object,System.Boolean)">
+            <summary>
+            Método abstracto que permite cargar todas las plantillas almacenadas.
+            </summary>
+            <param name="sender"></param>
+            <param name="publico"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OFilas.activas">
+            <summary>
+            Filas activas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OFilas.alternas">
+            <summary>
+            Filas alternas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OFilas.nuevas">
+            <summary>
+            Filas nuevas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OFilas.seleccionadas">
+            <summary>
+            Filas seleccionadas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFilas.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFilas.ShouldSerializeMostrarIndicador">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFilas.ShouldSerializeMultiseleccion">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFilas.ShouldSerializeConfirmarBorrado">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFilas.ShouldSerializeAlto">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFilas.ShouldSerializePermitirBorrar">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.Controles.Grid.OFilas.TipoSeleccionFila">
+            <summary>
+            Delegado útil para que el manejador de evento eliminar ejecute el método de clase adecuado.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OAparienciaBase.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ResetColorBorde">
+            <summary>
+            Resetear color de borde.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ResetColorFondo">
+            <summary>
+            Resetear color de fondo.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ResetColorTexto">
+            <summary>
+            Resetear color de texto.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ResetEstiloBorde">
+            <summary>
+            Resetear estilo de borde.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ResetAlineacionTextoHorizontal">
+            <summary>
+            Resetear alineación de texto horizontal.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ResetAlineacionTextoVertical">
+            <summary>
+            Resetear alineación de texto vertical.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ResetAdornoTexto">
+            <summary>
+            Resetear adorno de texto.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ShouldSerializeColorBorde">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ShouldSerializeColorFondo">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ShouldSerializeColorTexto">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ShouldSerializeEstiloBorde">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ShouldSerializeAlineacionTextoHorizontal">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ShouldSerializeAlineacionTextoVertical">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OAparienciaBase.ShouldSerializeAdornoTexto">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaBase.ColorBorde">
+            <summary>
+            Determina el color de borde.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaBase.ColorFondo">
+            <summary>
+            Determina el color de fondo.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaBase.ColorTexto">
+            <summary>
+            Determina el color de texto.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaBase.EstiloBorde">
+            <summary>
+            Determina el estilo de borde.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaBase.AlineacionTextoHorizontal">
+            <summary>
+            Determina la alineación horizontal del texto.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaBase.AlineacionTextoVertical">
+            <summary>
+            Determina la alineación vertical del texto.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaBase.AdornoTexto">
+            <summary>
+            Especifica como se reprensentará el texto cuando no hay suficiente espacio para mostrar la cadena completa.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OApariencia.apariencia">
+            <summary>
+            Apariencia.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OApariencia.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OApariencia.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OApariencia.Reset">
+            <summary>
+            Resetear color de borde, color de fondo, color de texto, estilo de borde, alineación de texto horizontal,
+            alineación de texto vertical y adorno de texto.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Grid.OApariencia.PropertyChanging">
+            <summary>
+            Cambiando la propiedad.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Grid.OApariencia.PropertyChanged">
+            <summary>
+            Cambio la propiedad.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Grid.Alineacion">
+            <summary>
+            Alineación de texto.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.Alineacion.None">
+            <summary>
+            Alineación por defecto. Sin alineación.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.Alineacion.Centrado">
+            <summary>
+            Alineación de texto centrada.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.Alineacion.Izquierda">
+            <summary>
+            Alineación de texto izquierda.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.Alineacion.Derecha">
+            <summary>
+            Alineación de texto derecha.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.TipoFiltro.Cabecera">
+            <summary>
+            Opción de filtro en la cabecera.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.TipoFiltro.Fila">
+            <summary>
+            Opción de filtro por fila.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AreaSumario.Ninguna">
+            <summary>
+            Área sin sumario.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AreaSumario.Arriba">
+            <summary>
+            Área de sumario en la parte superior como primera fila ocultable con scroll.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AreaSumario.ArribaFijo">
+            <summary>
+            Área de sumario en la parte superior como primera fila fijo.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AreaSumario.Abajo">
+            <summary>
+            Área de sumario en la parte inferior como última fila ocultable con scroll.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AreaSumario.AbajoFijo">
+            <summary>
+            Área de sumario en la parte inferior como última fila fija.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OCabecera.estilo">
+            <summary>
+            Estilo de cabecera.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OCabecera.multilinea">
+            <summary>
+            Estilo multilínea de la cabecera.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OCabecera.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OCabecera.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OCabecera.ShouldSerializeEstilo">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OCabecera.ShouldSerializeMultilinea">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:Orbita.Controles.Grid.OCabecera.PropertyChanging">
+            <summary>
+            Propiedad cambiando.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Grid.OCabecera.PropertyChanged">
+            <summary>
+            Propiedad cambio.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OEstiloColumna.campo">
+            <summary>
+            Nombre del campo en base de datos.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OEstiloColumna.nombre">
+            <summary>
+            Texto del header del campo.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OEstiloColumna.estilo">
+            <summary>
+            Estilo de la columna.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OEstiloColumna.alinear">
+            <summary>
+            Alineación del campo (celdas).
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OEstiloColumna.ancho">
+            <summary>
+            Ancho de la columna.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OEstiloColumna.mascara">
+            <summary>
+            Máscara aplicada.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OEstiloColumna.sumario">
+            <summary>
+            Sumario de columna.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OEstiloColumna.bloqueado">
+            <summary>
+            Columna no accesible en edición.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,System.Int32)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="ancho">Ancho de la columna</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,System.Int32)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="ancho">Ancho de la columna</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="mascara">Máscara aplicada</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,System.Int32)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="mascara">Máscara aplicada</param>
+            <param name="ancho">Ancho de la columna</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.Alineacion)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="alinear">Alineación del campo (celdas)</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.Alineacion,System.Int32)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="ancho">Ancho de la columna</param>
+            <param name="alinear">Alineación del campo (celdas)</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="alinear">Alineación del campo (celdas)</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,System.Int32)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="alinear">Alineación del campo (celdas)</param>
+            <param name="ancho">Ancho de la columna</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="alinear">Alineación del campo (celdas)</param> 
+            <param name="mascara">Máscara aplicada</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,System.Int32)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="alinear">Alineación del campo (celdas)</param>
+            <param name="mascara">Máscara aplicada</param>
+            <param name="ancho">Ancho de la columna</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,Orbita.Controles.Grid.OColumnaSumario)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="mascara">Máscara aplicada</param>
+            <param name="sumario">Sumario de columna</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,System.Int32,Orbita.Controles.Grid.OColumnaSumario)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="mascara">Máscara aplicada</param>
+            <param name="ancho">Ancho de la columna</param>
+            <param name="sumario">Sumario de columna</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,Orbita.Controles.Grid.OColumnaSumario)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="alinear">Alineación del campo (celdas)</param> 
+            <param name="mascara">Máscara aplicada</param>
+            <param name="sumario">Sumario de columna</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,Orbita.Controles.Grid.OColumnaSumario,System.Int32)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="alinear">Alineación del campo (celdas)</param>
+            <param name="mascara">Máscara aplicada</param>
+            <param name="ancho">Ancho de la columna</param>
+            <param name="sumario">Sumario de columna</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="bloqueado">Columna no accesible en edición</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="ancho">Ancho de la columna</param>
+            <param name="bloqueado">Columna no accesible en edición</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="bloqueado">Columna no accesible en edición</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,System.Int32,System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="ancho">Ancho de la columna</param>
+            <param name="bloqueado">Columna no accesible en edición</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="mascara">Máscara aplicada</param>
+            <param name="bloqueado">Columna no accesible en edición</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,System.Int32,System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="mascara">Máscara aplicada</param>
+            <param name="ancho">Ancho de la columna</param>
+            <param name="bloqueado">Columna no accesible en edición</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.Alineacion,System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="alinear">Alineación del campo (celdas)</param>
+            <param name="bloqueado">Columna no accesible en edición</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.Alineacion,System.Int32,System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="ancho">Ancho de la columna</param>
+            <param name="alinear">Alineación del campo (celdas)</param>
+            <param name="bloqueado">Columna no accesible en edición</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="alinear">Alineación del campo (celdas)</param>
+            <param name="bloqueado">Columna no accesible en edición</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,System.Int32,System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="alinear">Alineación del campo (celdas)</param>
+            <param name="ancho">Ancho de la columna</param>
+            <param name="bloqueado">Columna no accesible en edición</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="alinear">Alineación del campo (celdas)</param> 
+            <param name="mascara">Máscara aplicada</param>
+            <param name="bloqueado">Columna no accesible en edición</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,System.Int32,System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="alinear">Alineación del campo (celdas)</param>
+            <param name="mascara">Máscara aplicada</param>
+            <param name="ancho">Ancho de la columna</param>
+            <param name="bloqueado">Columna no accesible en edición</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,Orbita.Controles.Grid.OColumnaSumario,System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="mascara">Máscara aplicada</param>
+            <param name="sumario">Sumario de columna</param>
+            <param name="bloqueado">Columna no accesible en edición</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,System.Int32,Orbita.Controles.Grid.OColumnaSumario,System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="mascara">Máscara aplicada</param>
+            <param name="ancho">Ancho de la columna</param>
+            <param name="sumario">Sumario de columna</param>
+            <param name="bloqueado">Columna no accesible en edición</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,Orbita.Controles.Grid.OColumnaSumario,System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="alinear">Alineación del campo (celdas)</param> 
+            <param name="mascara">Máscara aplicada</param>
+            <param name="sumario">Sumario de columna</param>
+            <param name="bloqueado">Columna no accesible en edición</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstiloColumna.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,Orbita.Controles.Grid.OColumnaSumario,System.Int32,System.Boolean)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OEstiloColumna.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="alinear">Alineación del campo (celdas)</param>
+            <param name="mascara">Máscara aplicada</param>
+            <param name="ancho">Ancho de la columna</param>
+            <param name="sumario">Sumario de columna</param>
+            <param name="bloqueado">Columna no accesible en edición</param>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OEstiloColumna.Campo">
+            <summary>
+            Nombre del campo en base de datos.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OEstiloColumna.Nombre">
+            <summary>
+            Texto de la cabecera del campo.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OEstiloColumna.Estilo">
+            <summary>
+            Estilo de la columna.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OEstiloColumna.Alinear">
+            <summary>
+            Alineación del campo (celdas).
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OEstiloColumna.Ancho">
+            <summary>
+            Ancho de la columna.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OEstiloColumna.Mascara">
+            <summary>
+            Máscara aplicada. \n
+            #  Digito \n
+            n  Numero \n
+            .  Separador decimal \n
+            ,  Separador de miles \n
+            :  Separador de hora \n
+            /  Separador de fecha \n
+            hh,mm,ss,tt  Fecha"
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OEstiloColumna.Sumario">
+            <summary>
+            Indica el sumario de la columna
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OEstiloColumna.Bloqueado">
+            <summary>
+            Indica si la columna es accesible
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OAparienciaDatos.colorBorde">
+            <summary>
+            Color de borde.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OAparienciaDatos.colorFondo">
+            <summary>
+            Color de fondo.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OAparienciaDatos.colorTexto">
+            <summary>
+            Color de texto.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OAparienciaDatos.estiloBorde">
+            <summary>
+            Estilo de borde.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OAparienciaDatos.alineacionTextoHorizontal">
+            <summary>
+            Alineación de texto horizontal.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OAparienciaDatos.alineacionTextoVertical">
+            <summary>
+            Alineación de texto vertical.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OAparienciaDatos.adornoTexto">
+            <summary>
+            Adorno de texto.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaDatos.ColorBorde">
+            <summary>
+            Color de borde.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaDatos.ColorFondo">
+            <summary>
+            Color de fondo.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaDatos.ColorTexto">
+            <summary>
+            Color de texto.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaDatos.EstiloBorde">
+            <summary>
+            Estilo de borde.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaDatos.AlineacionTextoHorizontal">
+            <summary>
+            Alineación de texto horizontal.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaDatos.AlineacionTextoVertical">
+            <summary>
+            Alineación de texto vertical.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OAparienciaDatos.AdornoTexto">
+            <summary>
+            Adorno de texto.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OCeldas.activas">
+            <summary>
+            Celdas activas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OCeldas.agrupadas">
+            <summary>
+            Celdas agrupadas.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OCeldas.tipoSeleccion">
+            <summary>
+            Tipo de selección.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OCeldas.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OCeldas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OCeldas.ShouldSerializeTipoSeleccion">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OCeldas.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="E:Orbita.Controles.Grid.OCeldas.PropertyChanging">
+            <summary>
+            Propiedad cambiando.
+            </summary>
+        </member>
+        <member name="E:Orbita.Controles.Grid.OCeldas.PropertyChanged">
+            <summary>
+            Propiedad cambio.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmGuardarArchivo.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmGuardarArchivo.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmGuardarArchivo.#ctor(System.String,System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.FrmGuardarArchivo.
+            </summary>
+            <param name="nombre">Nombre.</param>
+            <param name="descripcion">Descripción.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmGuardarArchivo.txtNombre_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            TextChanged.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmGuardarArchivo.chbCrearNuevaPlantilla_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            CheckedChanged.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:Orbita.Controles.Grid.FrmGuardarArchivo.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmGuardarArchivo.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.FrmGuardarArchivo.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.FrmGuardarArchivo.Nombre">
+            <summary>
+            Nombre.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.FrmGuardarArchivo.Descripcion">
+            <summary>
+            Descripción.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.FrmGuardarArchivo.Nueva">
+            <summary>
+            Nueva.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OGetStyleLibrary.styleLibraryPath">
+            <summary>
+            Path to the Style Library folder installed by the install.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnaCalculada.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,System.String,System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaCalculada.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos.</param>
+            <param name="nombre">Texto del header del campo.</param>
+            <param name="estilo">Estilo de la columna.</param>
+            <param name="mascara">Máscara aplicada.</param>
+            <param name="tipo">Tipo de campo.</param>
+            <param name="formula">Expresión que genera el cálculo.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnaCalculada.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,System.Int32,System.String,System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaCalculada.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="alinear">Alineación del campo (celdas)</param> 
+            <param name="mascara">Máscara aplicada</param>
+            <param name="ancho">Ancho de la columna</param>
+            <param name="tipo">Tipo de campo</param>
+            <param name="formula">Expresión que genera el cálculo</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnaCalculada.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.OMascara,Orbita.Controles.Grid.OColumnaSumario,System.String,System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaCalculada.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="mascara">Máscara aplicada</param>
+            <param name="sumario">Sumario de columna</param>
+            <param name="tipo">Tipo de campo</param>
+            <param name="formula">Expresión que genera el cálculo</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnaCalculada.#ctor(System.String,System.String,Orbita.Controles.Grid.EstiloColumna,Orbita.Controles.Grid.Alineacion,Orbita.Controles.Grid.OMascara,Orbita.Controles.Grid.OColumnaSumario,System.Int32,System.String,System.String)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaCalculada.
+            </summary>
+            <param name="campo">Nombre del campo en base de datos</param>
+            <param name="nombre">Texto del header del campo</param>
+            <param name="estilo">Estilo de la columna</param>
+            <param name="alinear">Alineación del campo (celdas)</param> 
+            <param name="mascara">Máscara aplicada</param>
+            <param name="sumario">Sumario de columna</param>
+            <param name="ancho">Ancho de la columna</param>
+            <param name="tipo">Tipo de campo</param>
+            <param name="formula">Expresión que genera el cálculo</param>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OColumnaCalculada.disposed">
+            <summary>
+            Indica si ya se llamo al método Dispose. (Default = false)
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnaCalculada.Dispose">
+            <summary>
+            Implementa IDisposable.
+            No  hacer  este  método  virtual.
+            Una clase derivada no debería ser
+            capaz de  reemplazar este método.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnaCalculada.Dispose(System.Boolean)">
+            <summary>
+            Método  sobrecargado de  Dispose que será  el que
+            libera los recursos. Controla que solo se ejecute
+            dicha lógica una  vez y evita que el GC tenga que
+            llamar al destructor de clase.
+            </summary>
+            <param name="disposing">Indica si llama al método Dispose.</param>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnaCalculada.Finalize">
+            <summary>
+            Destructor(es) de clase.
+            En caso de que se nos olvide “desechar” la clase,
+            el GC llamará al destructor, que tambén ejecuta 
+            la lógica anterior para liberar los recursos.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Grid.OColumnaCalculada.Calculada">
+            <summary>
+            Hace referencia a la columna.
+            </summary>
+        </member>
+        <member name="T:Orbita.Controles.Grid.AlineacionHorizontal">
+            <summary>
+            Alineación horizontal.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AlineacionHorizontal.Izquierda">
+            <summary>
+            Alineación horizontal izquierda.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AlineacionHorizontal.Centro">
+            <summary>
+            Alineación horizontal centrada.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.AlineacionHorizontal.Derecha">
+            <summary>
+            Alineación horizontal derecha.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OSumario.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OSumario.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OSumario.ShouldSerializePosicion">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OSumario.ShouldSerializeMostrarRecuentoFilas">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OSumario.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OProvider.GetDrawingColor(System.String)">
+            <summary>
+            Obtener el System.Drawing.Color a partir de un valor de color de tipo String. 
+            </summary>
+            <param name="color">Color de tipo string.</param>
+            <returns>Color traducido en el tipo System.Drawing.Color.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.MascaraPorcentaje">
+            <summary>
+            Obtiene la máscara predefinida de tipo porcentaje.
+            </summary>
+            <returns>La máscara predefinida de tipo porcentaje.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.MascaraPorcentajeLimitado">
+            <summary>
+            Obtiene la máscara predefinida de tipo porcentaje, con el valor limitado entre 0  % y 99,99 %.
+            </summary>
+            <returns>La máscara predefinida de tipo porcentaje, con el valor limitado entre 0  % y 99,99 %.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.MascaraPorcentajePermiteNegativo">
+            <summary>
+            Obtiene la máscara predefinida de tipo porcentaje.
+            </summary>
+            <returns>La máscara predefinida de tipo porcentaje incluyendo negativos.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.MascaraPorcentajeLimitadoPermiteNegativo">
+            <summary>
+            Obtiene la máscara predefinida de tipo porcentaje, con el valor limitado entre -99,99  % y 99,99 %.
+            </summary>
+            <returns>La máscara predefinida de tipo porcentaje, con el valor limitado entre -99,99  % y 99,99 %.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.MascaraEnteraPositiva(System.Int32)">
+            <summary>
+            Obtiene la máscara predefinida de tantas cifras enteras positivas como se indiquen en el argumento.
+            </summary>
+            <param name="cifras">Numero de cifras que tendrá esta máscara (se utilizará para acotar el valor en número de cifras y valor máximo y para mostrar los puntos de millar).</param>
+            <returns>La máscara predefinida de tantas cifras enteras positivas como se indiquen en el argumento.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.MascaraDecimalPositiva(System.Int32)">
+            <summary>
+            Obtiene la máscara predefinida de tantas cifras enteras positivas como se indiquen en el argumento, seguidas de dos cifras decimales.
+            </summary>
+            <param name="cifrasEnteras">Numero de cifras enteras que tendrá esta máscara (se utilizará para acotar el valor en número de cifras y valor máximo y para mostrar los puntos de millar); habrá dos cifras decimales.</param>
+            <returns>La máscara predefinida de tantas cifras enteras positivas como se indiquen en el argumento.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.MascaraDecimalPositiva(System.Int32,System.Int32)">
+            <summary>
+            Devuelve una mascara con el número de cifras enteras y decimales deseadas.
+            <param name="cifrasEnteras">Número de cifras enteras deseadas (se utilizará para acotar el valor en número de cifras y valor máximo y para mostrar los puntos de millar).</param>
+            <param name="cifrasDecimales">Número de cifras decimales deseadas.</param>
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.MascaraEntera(System.Int32)">
+            <summary>
+            Obtiene la máscara predefinida de tantas cifras enteras positivas como se indiquen en el argumento.
+            </summary>
+            <param name="cifras">Numero de cifras que tendrá esta máscara (se utilizará para acotar el valor en número de cifras y valor máximo y para mostrar los puntos de millar).</param>
+            <returns>La máscara predefinida de tantas cifras enteras positivas como se indiquen en el argumento.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.MascaraDecimal(System.Int32)">
+            <summary>
+            Obtiene la máscara predefinida de tantas cifras enteras positivas como se indiquen en el argumento, seguidas de dos cifras decimales.
+            </summary>
+            <param name="cifrasEnteras">Numero de cifras enteras que tendrá esta máscara (se utilizará para acotar el valor en número de cifras y valor máximo y para mostrar los puntos de millar); habrá dos cifras decimales.</param>
+            <returns>La máscara predefinida de tantas cifras enteras positivas como se indiquen en el argumento.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.MascaraDecimal(System.Int32,System.Int32)">
+            <summary>
+            Devuelve una mascara con el número de cifras enteras y decimales deseadas.
+            <param name="cifrasEnteras">Número de cifras enteras deseadas (se utilizará para acotar el valor en número de cifras y valor máximo y para mostrar los puntos de millar).</param>
+            <param name="cifrasDecimales">Número de cifras decimales deseadas.</param>
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.MascaraMoneda">
+            <summary>
+            Obtiene la máscara predefinida de tipo moneda.
+            </summary>
+            <returns>La máscara predefinida de tipo moneda.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.MascaraJornadas">
+            <summary>
+            Obtiene la máscara predefinida para las jornadas.
+            </summary>
+            <returns>La máscara predefinida para las jornadas.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.MascaraHoras">
+            <summary>
+            Obtiene la máscara predefinida para las horas.
+            </summary>
+            <returns>La máscara predefinida para las horas.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.MascaraTelefono">
+            <summary>
+            Obtiene la máscara predefinida de teléfono.
+            </summary>
+            <returns>La máscara predefinida de teléfono.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.SumarioEntero">
+            <summary>
+            Obtiene el sumario predefinido de tipo entero.
+            </summary>
+            <returns>El sumario predefinido de tipo entero.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.SumarioMoneda">
+            <summary>
+            Obtiene el sumario predefinido de tipo moneda.
+            </summary>
+            <returns>El sumario predefinido de tipo moneda.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.SumarioJornadas">
+            <summary>
+            Obtiene el sumario predefinido de jornadas.
+            </summary>
+            <returns>El sumario predefinido de jornadas.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.SumarioHoras">
+            <summary>
+            Obtiene el sumario predefinido de horas.
+            </summary>
+            <returns>El sumario predefinido de horas.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OEstilo.FormatExcepcionGeneral">
+            <summary>
+            Obtiene la línea a mostrar en las excepciones.
+            </summary>
+            <returns>Un String predefinido de excepción.</returns>
+        </member>
+        <member name="T:Orbita.Controles.Grid.OCollectionEventHandler">
+            <summary>
+            A dictionary with keys of type string and values of type Target.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OCollectionEventHandler.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Trazabilidad.OCollectionEventHandler.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFilasActivas.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OFilas.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OFilasActivas.ShouldSerializeConfirmarBorrado">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Orbita.Controles.Grid.Configuracion">
+            <summary>
+            Orbita.Controles.Grid.Configuracion.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OColumnaInfo.posicion">
+            <summary>
+            Posición.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OColumnaInfo.identificador">
+            <summary>
+            Identificador.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OColumnaInfo.nombre">
+            <summary>
+            Nombre.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OColumnaInfo.banda">
+            <summary>
+            Banda.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Grid.OColumnaInfo.visible">
+            <summary>
+            Visibilidad.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Grid.OColumnaInfo.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Grid.OColumnaInfo.
+            </summary>
+        </member>
+    </members>
+</doc>
