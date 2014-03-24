@@ -45,7 +45,7 @@ namespace Orbita.Controles.Comunes
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)]
         protected void ResetApariencia()
         {
-            this.apariencia.Reset();
+            //this.apariencia.Reset();
         }
         /// <summary>
         /// El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
