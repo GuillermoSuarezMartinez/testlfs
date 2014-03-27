@@ -13,6 +13,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using Orbita.Utiles;
 
 namespace Orbita.VA.Comun
 {
@@ -212,6 +213,42 @@ namespace Orbita.VA.Comun
             }
 
             return monoPalette;
+        }
+
+        /// <summary>
+        /// Copia bruta de datos de píxeles de imágen. Tiene en cuenta el stride de la fila.
+        /// </summary>
+        /// <param name="ptrOrigen">Puntero a los datos de la imagen origen</param>
+        /// <param name="ptrDestino">Puntero a los datos de la imagen destino</param>
+        /// <param name="strideOrigen">Tamaño en bytes de la fila origen. (No tiene porqué coincidir con la dimensión X de la imagen)</param>
+        /// <param name="strideDestino">Tamaño en bytes de la fila destino. (No tiene porqué coincidir con la dimensión X de la imagen)</param>
+        /// <param name="numFilas">Dimensión Y de la imagen</param>
+        /// <returns></returns>
+        public static bool CopyImageStride(IntPtr ptrOrigen, IntPtr ptrDestino, int strideOrigen, int strideDestino, int numFilas)
+        {
+            bool resultado = false;
+            try
+            {
+                if (strideOrigen != strideDestino)
+                {
+                    uint strideUtil = (uint)Math.Min(strideOrigen, strideDestino);
+                    for (int i = 0; i < numFilas; i++)
+                    {
+                        IntPtr ptrOrigen2 = IntPtr.Add(ptrOrigen, i * strideOrigen);
+                        IntPtr ptrDest2 = IntPtr.Add(ptrDestino, i * strideDestino);
+                        OWindowsUtils.CopyMemory(ptrDest2, ptrOrigen2, strideUtil);
+                    }
+                    resultado = true;
+                }
+                else
+                {
+                    uint strideUtil = (uint)(strideOrigen * numFilas);
+                    OWindowsUtils.CopyMemory(ptrDestino, ptrOrigen, strideUtil);
+                    resultado = true;
+                }
+            }
+            catch { }
+            return resultado;
         }
     }
 }
