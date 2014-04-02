@@ -968,7 +968,7 @@
         </member>
         <member name="F:Orbita.VA.Funciones.TipoFuncionVision.Orbita">
             <summary>
-            Función propia
+            Función propia (AForge, Emgu)
             </summary>
         </member>
         <member name="F:Orbita.VA.Funciones.TipoFuncionVision.VisionPro">
@@ -978,12 +978,22 @@
         </member>
         <member name="F:Orbita.VA.Funciones.TipoFuncionVision.CCR">
             <summary>
-            Función de las librerías de reconocimiento de la matricula de los contenedores
+            Función de las librerías de reconocimiento de la matricula de los contenedores mediante las liberías de Neural Labs
             </summary>
         </member>
         <member name="F:Orbita.VA.Funciones.TipoFuncionVision.LPR">
             <summary>
-            Función de las librerías de lectura de matrículas de vehículos
+            Función de las librerías de lectura de matrículas de vehículos mediante las liberías de Neural Labs
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.TipoFuncionVision.ARH">
+            <summary>
+            Función de las librerías de reconocimiento de la matricula de los contenedores mediante las librerías de Hungary
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Funciones.TipoFuncionVision.HDev">
+            <summary>
+            Función de las librerías Halcon de MVTec
             </summary>
         </member>
         <member name="T:Orbita.VA.Funciones.TipoEjecucionFuncionVision">

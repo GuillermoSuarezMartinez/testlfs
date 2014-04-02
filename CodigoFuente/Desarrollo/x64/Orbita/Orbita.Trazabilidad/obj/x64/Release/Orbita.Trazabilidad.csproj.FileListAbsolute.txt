@@ -1,0 +1,9 @@
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Trazabilidad\bin\x64\Release\Orbita.Trazabilidad.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Trazabilidad\bin\x64\Release\Orbita.Trazabilidad.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Trazabilidad\bin\x64\Release\Orbita.Trazabilidad.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Trazabilidad\bin\Release\Orbita.Trazabilidad.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Trazabilidad\bin\Release\Orbita.Trazabilidad.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Trazabilidad\bin\Release\Orbita.Trazabilidad.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Trazabilidad\obj\x64\Release\ResolveAssemblyReference.cache
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Trazabilidad\obj\x64\Release\Orbita.Trazabilidad.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Trazabilidad\obj\x64\Release\Orbita.Trazabilidad.pdb

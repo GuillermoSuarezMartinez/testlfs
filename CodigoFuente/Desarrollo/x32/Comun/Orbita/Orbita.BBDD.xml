@@ -642,81 +642,59 @@
             </summary>
             <param name="infoConexion">Información de la conexión actual.</param>
         </member>
-        <member name="M:Orbita.BBDD.OWinCC.LeerTagLogging(System.Object,System.DateTime)">
+        <member name="M:Orbita.BBDD.OWinCC.LeerTagLogging(System.Collections.Generic.IEnumerable{System.String},System.DateTime,System.Nullable{System.DateTime},System.Int32,Orbita.BBDD.OWinCC.AgregationType)">
             <summary>
-            Obtener registros de TagLogging.
+            Leer los registros contenidos en TagLogging como resultado de los parámetros solicitados.
             </summary>
-            <param name="identificador">Identificador de Tagname
-            en TagLogging.</param>
-            <param name="fechaInicial">Fecha inicial.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Orbita.BBDD.OWinCC.LeerTagLogging(System.Object,System.DateTime,System.Int32,Orbita.BBDD.OWinCC.AgregationType)">
-            <summary>
-            Obtener registros de TagLogging.
-            </summary>
-            <param name="identificador">Identificador de Tagname
-            en TagLogging</param>
-            <param name="fechaInicial">Fecha inicial.</param>
+            <param name="variables">Colección de identificadores de variables de TagLogging.</param>
+            <param name="fechaInicial">Fecha inicial en formato GMT.</param>.
+            <param name="fechaFinal">Fecha final en formato GMT.</param>
             <param name="tiempo">Tiempo de paso.</param>
             <param name="agregado">Tipo de agregado para interpolación.</param>
+            <returns>Una tabla de datos (DataTable) con el resultado de la consulta solicitada.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OWinCC.LeerTagLogging(System.String,System.String[],System.DateTime,System.Nullable{System.DateTime},System.Int32,Orbita.BBDD.OWinCC.AgregationType)">
+            <summary>
+            Leer los registros contenidos en TagLogging como resultado de los parámetros solicitados.
+            </summary>
+            <param name="nombreTabla">Nombre de System.Data.DataTable.</param>
+            <param name="variables">Colección de identificadores de variables de TagLogging.</param>
+            <param name="fechaInicial">Fecha inicial en formato GMT.</param>
+            <param name="fechaFinal">Fecha final en formato GMT.</param>
+            <param name="tiempo">Tiempo de paso.</param>
+            <param name="agregado">Tipo de agregado para interpolación.</param>
+            <returns>Cada tabla es una variable. El nombre de la tabla es el ID de la variable.</returns>
+        </member>
+        <member name="M:Orbita.BBDD.OWinCC.LeerAlarmLogging(System.Collections.Generic.IEnumerable{System.String},System.DateTime,System.Nullable{System.DateTime})">
+            <summary>
+            Leer los registros contenidos en AlarmLogging como resultado de los parámetros de fecha solicitados.
+            </summary>
+            <param name="variables">Identificador de variables.</param>
+            <param name="fechaInicial">Fecha inicial en formato GMT.</param>
+            <param name="fechaFinal">Fecha final en formato GMT.</param>
             <returns></returns>
         </member>
-        <member name="M:Orbita.BBDD.OWinCC.LeerTagLogging(System.Collections.ArrayList,System.DateTime,System.DateTime)">
+        <member name="M:Orbita.BBDD.OWinCC.LeerAlarmLogging(System.String,System.String[],System.DateTime,System.Nullable{System.DateTime})">
             <summary>
-            Recupera los datos de las variables que le pasamos como parámetro en un intervalo de tiempo.
+            Leer los registros contenidos en AlarmLogging como resultado de los parámetros de fecha solicitados.
             </summary>
-            <param name="variables">Array con los ID's de las variables</param>
-            <param name="fechaInicial">Fecha de inicio</param>
-            <param name="fechaFinal">Fecha de fin</param>
-            <returns>Cada tabla es una variable. El nombre de la tabla es el ID de la variable</returns>
-        </member>
-        <member name="M:Orbita.BBDD.OWinCC.LeerTagLogging(System.Collections.ArrayList,System.DateTime,System.DateTime,System.Int32,Orbita.BBDD.OWinCC.AgregationType)">
-            <summary>
-            Recupera los datos de las variables que le pasamos como parámetro en un intervalo de tiempo. Agregamos por tiempo.
-            </summary>
-            <param name="variables">Array con los ID's de las variables</param>
-            <param name="fechaInicial">Fecha de inicio</param>
-            <param name="fechaFinal">Fecha de fin</param>
-            <param name="timeStep">Intervalo de captura</param>
-            <param name="agregacion">Tipo de agregado</param>
-            <returns>Cada tabla es una variable. El nombre de la tabla es el ID de la variable</returns>
-        </member>
-        <member name="M:Orbita.BBDD.OWinCC.LeerAlarmLogging(System.Object,System.DateTime)">
-            <summary>
-            Obtener registros de AlarmLogging.
-            </summary>
-            <param name="identificador">Identificador de tagname.</param>
-            <param name="fechaInicial">Fecha inicial.</param>
+            <param name="nombreTabla"></param>
+            <param name="variables">Identificador de variables.</param>
+            <param name="fechaInicial">Fecha inicial en formato GMT.</param>
+            <param name="fechaFinal">Fecha final en formato GMT.</param>
             <returns></returns>
         </member>
-        <member name="M:Orbita.BBDD.OWinCC.LeerTagLogging(System.String)">
+        <member name="M:Orbita.BBDD.OWinCC.LeerAlarmLogging(System.DateTime,System.Nullable{System.DateTime})">
             <summary>
-            Obtener registros de TagLogging.
+            Leer los registros contenidos en AlarmLogging como resultado de los parámetros de fecha solicitados.
             </summary>
-            <param name="sql">Consulta SQL.</param>
-            <returns>Registros de resultados.</returns>
-        </member>
-        <member name="M:Orbita.BBDD.OWinCC.LeerAlarmlogging(System.String)">
-            <summary>
-            Obtener registros de AlarmLogging.
-            </summary>
-            <param name="sql">Consulta SQL.</param>
-            <returns>Registros de resultados.</returns>
-        </member>
-        <member name="M:Orbita.BBDD.OWinCC.LeerTagLogging">
-            <summary>
-            Crear las columnas TagLogging.
-            </summary>
-        </member>
-        <member name="M:Orbita.BBDD.OWinCC.LeerAlarmLogging">
-            <summary>
-            Crear las columnas AlarmLogging.
-            </summary>
+            <param name="fechaInicial">Fecha inicial en formato GMT.</param>
+            <param name="fechaFinal">Fecha final en formato GMT.</param>
+            <returns></returns>
         </member>
         <member name="P:Orbita.BBDD.OWinCC.TablaTagLogging">
             <summary>
-            Tabla con los Tags de WinCC
+            Tabla con los Tags de WinCC.
             </summary>
             <returns></returns>
         </member>

@@ -1,0 +1,13 @@
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.MS\bin\Release\Orbita.MS.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.MS\bin\Release\Orbita.MS.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.MS\bin\Release\Orbita.MS.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.MS\bin\Release\hasp_net_windows.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.MS\bin\Release\Orbita.Trazabilidad.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.MS\bin\Release\Orbita.Utiles.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.MS\bin\Release\Orbita.Trazabilidad.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.MS\bin\Release\Orbita.Trazabilidad.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.MS\bin\Release\Orbita.Utiles.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.MS\bin\Release\Orbita.Utiles.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.MS\obj\x64\Release\ResolveAssemblyReference.cache
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.MS\obj\x64\Release\Orbita.MS.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.MS\obj\x64\Release\Orbita.MS.pdb

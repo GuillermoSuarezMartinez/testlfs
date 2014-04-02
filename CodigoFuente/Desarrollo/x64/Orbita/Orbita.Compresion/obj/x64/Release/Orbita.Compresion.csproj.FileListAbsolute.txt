@@ -1,0 +1,9 @@
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Compresion\bin\Release\Orbita.Compresion.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Compresion\bin\Release\Orbita.Compresion.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Compresion\bin\Release\Orbita.Compresion.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Compresion\bin\Release\Orbita.Utiles.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Compresion\bin\Release\Orbita.Utiles.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Compresion\bin\Release\Orbita.Utiles.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Compresion\obj\x64\Release\ResolveAssemblyReference.cache
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Compresion\obj\x64\Release\Orbita.Compresion.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Compresion\obj\x64\Release\Orbita.Compresion.pdb

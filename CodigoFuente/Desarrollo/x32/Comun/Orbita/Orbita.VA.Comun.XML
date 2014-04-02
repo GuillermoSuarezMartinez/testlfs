@@ -44,6 +44,31 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Orbita.VA.Comun.BitmapFactory.ExtractBufferArray(System.Drawing.Bitmap,System.Byte[]@)">
+            <summary>
+            Converte el bitmap a un array de bytes
+            </summary>
+            <param name="bitmap"></param>
+            <param name="buffer"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.BitmapFactory.SetGrayScalePalette(System.Drawing.Bitmap)">
+            <summary>
+            Establece una paleta monocromo para imágenes de color indexado
+            </summary>
+            <param name="bmp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.VA.Comun.BitmapFactory.CopyImageStride(System.IntPtr,System.IntPtr,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Copia bruta de datos de píxeles de imágen. Tiene en cuenta el stride de la fila.
+            </summary>
+            <param name="ptrOrigen">Puntero a los datos de la imagen origen</param>
+            <param name="ptrDestino">Puntero a los datos de la imagen destino</param>
+            <param name="strideOrigen">Tamaño en bytes de la fila origen. (No tiene porqué coincidir con la dimensión X de la imagen)</param>
+            <param name="strideDestino">Tamaño en bytes de la fila destino. (No tiene porqué coincidir con la dimensión X de la imagen)</param>
+            <param name="numFilas">Dimensión Y de la imagen</param>
+            <returns></returns>
+        </member>
         <member name="F:Orbita.VA.Comun.OLogsVAComun.Comun">
             <summary>
             Módulo de funciones comunes del sistema. 
@@ -706,6 +731,16 @@
             Listado de los threads de tipo loop del sistema
             </summary>
         </member>
+        <member name="F:Orbita.VA.Comun.OThreadManager.MainThreadId">
+            <summary>
+            Identificador del thread principal
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.OThreadManager.BlockObject">
+            <summary>
+            Objeto de bloqueo. Utilizado para el bloqueo multihilo
+            </summary>
+        </member>
         <member name="M:Orbita.VA.Comun.OThreadManager.Constructor">
             <summary>
             Constructor de los campos de la clase
@@ -795,11 +830,19 @@
             <param name="timeOut">Tiempo máximo de la espera en milisegundos</param>
             <returns>Verdadero si el valor a cambiado a verdadero antes de que finalizase el TimeOut</returns>
         </member>
-        <member name="M:Orbita.VA.Comun.OThreadManager.Count">
+        <member name="M:Orbita.VA.Comun.OThreadManager.Resumen(System.String)">
             <summary>
-            Devuelve el número total de threads en ejecución
+            Devuelve el estado de la lista de threads
             </summary>
-            <returns></returns>
+            <param name="textoFormateado">Texto válido para utilizar en la función string.Format.
+            Debe contener {0}, {1}, {2} para ser válido</param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OThreadManager.RegistraEnLog(System.String)">
+            <summary>
+            Registra en el log el estado de la lista de objetos
+            </summary>
+            <param name="textoFormateado">Texto válido para utilizar en la función string.Format.
+            Debe contener {0}, {1}, {2} para ser válido</param>
         </member>
         <member name="M:Orbita.VA.Comun.OThreadManager.NuevoThread(Orbita.VA.Comun.OThreadLoop)">
             <summary>
@@ -813,6 +856,7 @@
             </summary>
             <param name="threadOrbita">Thread a eliminar</param>
         </member>
+        <!-- El comentario XML con formato incorrecto se omite para el miembro "P:Orbita.VA.Comun.OThreadManager.Count" -->
         <member name="T:Orbita.VA.Comun.OThreadManager.DelegadoEspera">
             <summary>
             Delegado de la espera
@@ -1244,7 +1288,18 @@
             Texto identificativo del objeto
             </summary>
         </member>
+        <member name="F:Orbita.VA.Comun.OLargeObjectBase._MomentoCreacion">
+            <summary>
+            Informa del momento de la creación de la imagen
+            </summary>
+        </member>
         <member name="M:Orbita.VA.Comun.OLargeObjectBase.#ctor(System.String)">
+            <summary>
+            Constructor de la clase
+            </summary>
+            <param name="codigo"></param>
+        </member>
+        <member name="M:Orbita.VA.Comun.OLargeObjectBase.#ctor(System.String,System.DateTime)">
             <summary>
             Constructor de la clase
             </summary>
@@ -1293,6 +1348,11 @@
             Texto identificativo del objeto
             </summary>
         </member>
+        <member name="P:Orbita.VA.Comun.OLargeObjectBase.MomentoCreacion">
+            <summary>
+            Informa del momento de la creación de la imagen
+            </summary>
+        </member>
         <member name="F:Orbita.VA.Comun.OImagen._Image">
             <summary>
             Campo donde se guarda la imagen
@@ -1301,11 +1361,6 @@
         <member name="F:Orbita.VA.Comun.OImagen._TipoImagen">
             <summary>
             Tipo de imagen que almacena
-            </summary>
-        </member>
-        <member name="F:Orbita.VA.Comun.OImagen._MomentoCreacion">
-            <summary>
-            Informa del momento de la creación de la imagen
             </summary>
         </member>
         <member name="M:Orbita.VA.Comun.OImagen.#ctor">
@@ -1484,11 +1539,6 @@
         <member name="P:Orbita.VA.Comun.OImagen.Height">
             <summary>
             Tamaño en Y de la imagen
-            </summary>
-        </member>
-        <member name="P:Orbita.VA.Comun.OImagen.MomentoCreacion">
-            <summary>
-            Informa del momento de la creación de la imagen
             </summary>
         </member>
         <member name="P:Orbita.VA.Comun.OImagen.Profundidad">
@@ -2316,6 +2366,31 @@
             Resumen de la monitorización
             </summary>
         </member>
+        <member name="T:Orbita.VA.Comun.MonitorizacionThreads">
+            <summary>
+            Monitorización de los objetos en memoria
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionThreads.#ctor">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionThreads.Inicializar">
+            <summary>
+            Inicialización de la monitorización del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionThreads.SiguienteMonitorizacion">
+            <summary>
+            Ejecución de la monitorización del sistema
+            </summary>
+        </member>
+        <member name="M:Orbita.VA.Comun.MonitorizacionThreads.Resumen">
+            <summary>
+            Resumen de la monitorización
+            </summary>
+        </member>
         <member name="T:Orbita.VA.Comun.TipoMonitorizacion">
             <summary>
             Enumerado que describe el tiepo de monitorización
@@ -2344,6 +2419,11 @@
         <member name="F:Orbita.VA.Comun.TipoMonitorizacion.MonitorizacionObjetosMemoria">
             <summary>
             Monitorización de los objetos en memoria
+            </summary>
+        </member>
+        <member name="F:Orbita.VA.Comun.TipoMonitorizacion.MonitorizacionThreads">
+            <summary>
+            Monitorización de los Threads en ejecución
             </summary>
         </member>
         <member name="T:Orbita.VA.Comun.ConnectionsInfo">

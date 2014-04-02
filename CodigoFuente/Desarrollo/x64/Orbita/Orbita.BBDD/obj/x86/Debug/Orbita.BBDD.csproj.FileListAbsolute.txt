@@ -1,0 +1,17 @@
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\bin\Debug\Orbita.BBDD.XML
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\bin\Debug\Orbita.BBDD.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\bin\Debug\Orbita.BBDD.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\bin\Debug\OrbitaBBDD.dll.CodeAnalysisLog.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\bin\Debug\Orbita.BBDD.dll.lastcodeanalysissucceeded
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\bin\Debug\IBM.Data.DB2.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\bin\Debug\MySql.Data.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\bin\Debug\Npgsql.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\bin\Debug\Oracle.DataAccess.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\bin\Debug\Orbita.Trazabilidad.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\bin\Debug\IBM.Data.U2.Ucinet.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\bin\Debug\Mono.Security.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\bin\Debug\Orbita.Trazabilidad.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\bin\Debug\Orbita.Trazabilidad.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\obj\x86\Debug\Orbita.BBDD.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.BBDD\obj\x86\Debug\Orbita.BBDD.pdb

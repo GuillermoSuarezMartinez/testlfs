@@ -1218,6 +1218,66 @@
             Teclado numérico en pantalla
             </summary>
         </member>
+        <member name="T:Orbita.Controles.Comunes.ITeclado">
+            <summary>
+            Interfaz para todos los teclados de pantalla
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Comunes.ITeclado.RellenarDesplegable">
+            <summary>
+            Método para rellenar la lista desplegable de los carins
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.ITeclado.Resultado">
+            <summary>
+            Resultado de la introducción de texto
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.ITeclado.VisualizarEditor">
+            <summary>
+            Indica que se ha de visualizar el editor
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.ITeclado.VisualizarIntro">
+            <summary>
+            Indica que se ha de visualizar la tecla de intro
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.ITeclado.VisualizarEsc">
+            <summary>
+            Indica que se ha de visualizar la tecla de escape
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.ITeclado.VisualizarRet">
+            <summary>
+            Indica que se ha de visualizar la tecla de retroceso
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.ITeclado.VisualizarDropDown">
+            <summary>
+            Indica que se ha de visualizar la tecla del desplegable
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.ITeclado.ListaDesplegable">
+            <summary>
+            Lista de seleccion
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.ITeclado.ClaveDesplegable">
+            <summary>
+            Clave de la lista de seleccion
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.ITeclado.FuenteTexto">
+            <summary>
+            Fuente del textbox
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.ITeclado.ImagenTecla">
+            <summary>
+            Imagen de la cámara desconectada
+            </summary>
+        </member>
         <member name="F:Orbita.Controles.Comunes.OrbitaTecladoNumerico._ListaDesplegable">
             <summary>
             Lista de seleccion
@@ -1226,6 +1286,11 @@
         <member name="F:Orbita.Controles.Comunes.OrbitaTecladoNumerico._ClaveDesplegable">
             <summary>
             Clave de la lista de seleccion
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Comunes.OrbitaTecladoNumerico._ImagenTecla">
+            <summary>
+            Imagen de la cámara desconectada
             </summary>
         </member>
         <member name="M:Orbita.Controles.Comunes.OrbitaTecladoNumerico.#ctor">
@@ -1371,6 +1436,16 @@
         <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.ClaveDesplegable">
             <summary>
             Clave de la lista de seleccion
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.FuenteTexto">
+            <summary>
+            Fuente del textbox
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Comunes.OrbitaTecladoNumerico.ImagenTecla">
+            <summary>
+            Imagen de la cámara desconectada
             </summary>
         </member>
         <member name="F:Orbita.Controles.Comunes.OPropiedadEventArgs.nombre">

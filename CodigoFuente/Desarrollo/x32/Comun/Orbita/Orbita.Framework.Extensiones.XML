@@ -4,19 +4,6 @@
         <name>Orbita.Framework.Extensiones</name>
     </assembly>
     <members>
-        <member name="F:Orbita.Framework.Extensiones.ExtendedString.Bloqueo">
-            <summary>
-            Atributo estático volátil de bloqueo.
-            </summary>
-        </member>
-        <member name="M:Orbita.Framework.Extensiones.ExtendedString.XmlDeserialize``1(System.String)">
-            <summary>
-            Desearializar el XML por el especifico System.String.
-            </summary>
-            <typeparam name="T">Tipo de objeto a deserializar.</typeparam>
-            <param name="s">System.String contenido en el XML.</param>
-            <returns>System.Object deserializado.</returns>
-        </member>
         <member name="F:Orbita.Framework.Extensiones.ExtendedFile.Bloqueo">
             <summary>
             Atributo estático volátil de bloqueo.
@@ -73,6 +60,19 @@
             <param name="item">Item.</param>
             <param name="fileName">Fichero donde escribir.</param>
             <returns>Verdadero si todo ha ido bien, falso en caso contrario.</returns>
+        </member>
+        <member name="F:Orbita.Framework.Extensiones.ExtendedString.Bloqueo">
+            <summary>
+            Atributo estático volátil de bloqueo.
+            </summary>
+        </member>
+        <member name="M:Orbita.Framework.Extensiones.ExtendedString.XmlDeserialize``1(System.String)">
+            <summary>
+            Desearializar el XML por el especifico System.String.
+            </summary>
+            <typeparam name="T">Tipo de objeto a deserializar.</typeparam>
+            <param name="s">System.String contenido en el XML.</param>
+            <returns>System.Object deserializado.</returns>
         </member>
     </members>
 </doc>

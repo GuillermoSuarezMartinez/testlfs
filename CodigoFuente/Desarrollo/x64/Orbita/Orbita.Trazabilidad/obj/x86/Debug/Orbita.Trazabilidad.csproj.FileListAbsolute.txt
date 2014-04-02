@@ -1,0 +1,8 @@
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Trazabilidad\bin\Debug\Orbita.Trazabilidad.XML
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Trazabilidad\bin\Debug\Orbita.Trazabilidad.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Trazabilidad\bin\Debug\Orbita.Trazabilidad.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Trazabilidad\bin\Debug\OrbitaTrazabilidad.dll.CodeAnalysisLog.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Trazabilidad\bin\Debug\Orbita.Trazabilidad.dll.lastcodeanalysissucceeded
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Trazabilidad\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Trazabilidad\obj\x86\Debug\Orbita.Trazabilidad.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Trazabilidad\obj\x86\Debug\Orbita.Trazabilidad.pdb

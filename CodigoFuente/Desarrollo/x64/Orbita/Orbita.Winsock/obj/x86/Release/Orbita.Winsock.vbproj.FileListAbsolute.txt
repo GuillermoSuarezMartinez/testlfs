@@ -1,0 +1,11 @@
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Winsock\bin\Release\Orbita.Winsock.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Winsock\bin\Release\Orbita.Winsock.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Winsock\bin\Release\Orbita.Winsock.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Winsock\obj\x86\Release\ResolveAssemblyReference.cache
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Winsock\obj\x86\Release\frmAbout.resources
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Winsock\obj\x86\Release\Resources.resources
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Winsock\obj\x86\Release\GenerateResource.read.1.tlog
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Winsock\obj\x86\Release\GenerateResource.write.1.tlog
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Winsock\obj\x86\Release\Orbita.Winsock.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Winsock\obj\x86\Release\Orbita.Winsock.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Winsock\obj\x86\Release\Orbita.Winsock.pdb

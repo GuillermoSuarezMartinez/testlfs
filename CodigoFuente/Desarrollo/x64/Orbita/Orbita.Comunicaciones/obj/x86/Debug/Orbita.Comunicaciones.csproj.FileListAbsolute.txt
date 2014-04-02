@@ -1,0 +1,17 @@
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\bin\Debug\Orbita.Comunicaciones.XML
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\bin\Debug\Orbita.Comunicaciones.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\bin\Debug\Orbita.Comunicaciones.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\bin\Debug\MccDaq.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\bin\Debug\opcrcw.da.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\bin\Debug\Orbita.Trazabilidad.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\bin\Debug\Orbita.Utiles.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\bin\Debug\Orbita.Winsock.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\bin\Debug\Orbita.Trazabilidad.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\bin\Debug\Orbita.Trazabilidad.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\bin\Debug\Orbita.Utiles.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\bin\Debug\Orbita.Utiles.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\bin\Debug\Orbita.Winsock.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\bin\Debug\Orbita.Winsock.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\obj\x86\Debug\Orbita.Comunicaciones.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x32\Orbita\Orbita.Comunicaciones\obj\x86\Debug\Orbita.Comunicaciones.pdb

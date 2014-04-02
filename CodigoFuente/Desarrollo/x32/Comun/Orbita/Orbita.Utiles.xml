@@ -423,6 +423,123 @@
             <param name="directorio">Directorio origen.</param> 
             <returns>Ruta destino del stream.</returns>
         </member>
+        <member name="T:Orbita.Utiles.OTupla">
+            <summary>
+            Dato compuesto que posibilita el acceso a sus registros mediante su código o de forma indexada.
+            También permite la conversión a y desde cadenas de texto. Idóneo para almacenar información en bases de dato o ficheros de texto.
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OTupla.ListaValores">
+            <summary>
+            Lista de valores contenidos en la tupla
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OTupla.Separador">
+            <summary>
+            Caracter separador. Por defecto ';'
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OTupla._Significado">
+            <summary>
+            Descripción del contenido de la tupla
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OTupla.#ctor(System.Char)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OTupla.#ctor(System.String,System.String,System.Char)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OTupla.#ctor(System.String,System.String,System.String,System.Char)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OTupla.ConvertirCodigoValorAString(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
+            <summary>
+            Conversión a string de la pareja codigo-valor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OTupla.ConvertirCodigoAString(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
+            <summary>
+            Conversión a string de un codigo
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OTupla.ConvertirValorAString(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
+            <summary>
+            Conversión a string de un valor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OTupla.ConvertirCodigoValorDeString(System.String)">
+            <summary>
+            Conversión desde string una pareja codigo-valor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OTupla.ConvertirValorDeString(System.String)">
+            <summary>
+            Conversión desde string un valor
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OTupla.Add(System.String,System.Object)">
+            <summary>
+            Añade un valor a la tupla
+            </summary>
+            <param name="key">clave</param>
+            <param name="value">valor</param>
+        </member>
+        <member name="M:Orbita.Utiles.OTupla.ToString">
+            <summary>
+            Conversión a string
+            </summary>
+            <returns>Cadena de la tupla convertida a string</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OTupla.ToCodigoString">
+            <summary>
+            Conversión a string de los códigos
+            </summary>
+            <returns>Cadena de los códigos convertidos a string</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OTupla.ToValorString">
+            <summary>
+            Conversión a string de los valores
+            </summary>
+            <returns>Cadena de los valores convertidos a string</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OTupla.GetEnumerator">
+            <summary>
+            Devuelve un enumerador que recorre en iteración una colección.
+            </summary>
+            <returns>Objeto System.Collections.IEnumerator que se puede utilizar para recorrer
+            en iteración la colección.</returns>
+        </member>
+        <member name="P:Orbita.Utiles.OTupla.Significado">
+            <summary>
+            Descripción del contenido de la tupla
+            </summary>
+        </member>
+        <member name="P:Orbita.Utiles.OTupla.Item(System.Int32)">
+            <summary>
+            Acceso a valores por índice
+            </summary>
+            <param name="index">Índice del parámetro</param>
+            <returns></returns>
+        </member>
+        <member name="P:Orbita.Utiles.OTupla.Item(System.String)">
+            <summary>
+            Acceso a valores por código
+            </summary>
+            <param name="codigo">Código del parámetro</param>
+            <returns></returns>
+        </member>
         <member name="T:Orbita.Utiles.OEnumeradoHeredable">
             <summary>
             Clase utilizada para permitir la herencia de enumerados
@@ -2096,7 +2213,19 @@
             </summary>
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
+        <member name="M:Orbita.Utiles.ODecimalExtension.ValidarDecimal(System.Object,Orbita.Utiles.EnumEstadoRobusto@,System.Double,System.Double,System.IFormatProvider,System.Double)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
         <member name="M:Orbita.Utiles.ODecimalExtension.ValidarDecimal(System.Object,System.Double,System.Double,System.Double)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.ODecimalExtension.ValidarDecimal(System.Object,System.Double,System.Double,System.IFormatProvider,System.Double)">
             <summary>
             Evalúa si el parámetro está dentro del rango determinado
             </summary>
@@ -2109,6 +2238,13 @@
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
         <member name="M:Orbita.Utiles.ODecimalExtension.ValidarDecimal(System.Object,System.String,System.Double,System.Double,System.Double,System.Boolean)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="value">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
+        </member>
+        <member name="M:Orbita.Utiles.ODecimalExtension.ValidarDecimal(System.Object,System.String,System.Double,System.Double,System.IFormatProvider,System.Double,System.Boolean)">
             <summary>
             Comprueba que el valor del objeto es correcto
             </summary>
@@ -2422,7 +2558,17 @@
             Valor máximo
             </summary>
         </member>
+        <member name="F:Orbita.Utiles.OFechaHora.Formato">
+            <summary>
+            Formato cultural de las fechas
+            </summary>
+        </member>
         <member name="M:Orbita.Utiles.OFechaHora.#ctor(System.String,System.DateTime,System.DateTime,System.DateTime,System.Boolean)">
+            <summary>
+            Constructor de la clase
+            </summary>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHora.#ctor(System.String,System.DateTime,System.DateTime,System.IFormatProvider,System.DateTime,System.Boolean)">
             <summary>
             Constructor de la clase
             </summary>
@@ -2444,7 +2590,18 @@
             Evalúa si el parámetro es booleano
             </summary>
         </member>
+        <member name="M:Orbita.Utiles.OFechaHora.Validar(System.Object,Orbita.Utiles.EnumEstadoRobusto@,System.DateTime,System.DateTime,System.IFormatProvider,System.DateTime)">
+            <summary>
+            Evalúa si el parámetro es booleano
+            </summary>
+        </member>
         <member name="M:Orbita.Utiles.OFechaHora.Validar(System.Object,System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHora.Validar(System.Object,System.DateTime,System.DateTime,System.IFormatProvider,System.DateTime)">
             <summary>
             Evalúa si el parámetro está dentro del rango determinado
             </summary>
@@ -2456,13 +2613,32 @@
             </summary>
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
+        <member name="M:Orbita.Utiles.OFechaHora.Validar(System.Object,System.IFormatProvider,System.DateTime)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
         <member name="M:Orbita.Utiles.OFechaHora.Validar(System.Object)">
             <summary>
             Evalúa si el parámetro está dentro del rango determinado
             </summary>
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
+        <member name="M:Orbita.Utiles.OFechaHora.Validar(System.Object,System.IFormatProvider)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
         <member name="M:Orbita.Utiles.OFechaHora.Validar(System.Object,System.String,System.DateTime,System.DateTime,System.DateTime,System.Boolean)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="valor">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHora.Validar(System.Object,System.String,System.DateTime,System.DateTime,System.IFormatProvider,System.DateTime,System.Boolean)">
             <summary>
             Comprueba que el valor del objeto es correcto
             </summary>
@@ -2531,7 +2707,18 @@
             Evalúa si el parámetro es booleano
             </summary>
         </member>
+        <member name="M:Orbita.Utiles.OFechaHoraExtension.ValidarFechaHora(System.Object,Orbita.Utiles.EnumEstadoRobusto@,System.DateTime,System.DateTime,System.IFormatProvider,System.DateTime)">
+            <summary>
+            Evalúa si el parámetro es booleano
+            </summary>
+        </member>
         <member name="M:Orbita.Utiles.OFechaHoraExtension.ValidarFechaHora(System.Object,System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHoraExtension.ValidarFechaHora(System.Object,System.DateTime,System.DateTime,System.IFormatProvider,System.DateTime)">
             <summary>
             Evalúa si el parámetro está dentro del rango determinado
             </summary>
@@ -2543,13 +2730,32 @@
             </summary>
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
+        <member name="M:Orbita.Utiles.OFechaHoraExtension.ValidarFechaHora(System.Object,System.IFormatProvider,System.DateTime)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
         <member name="M:Orbita.Utiles.OFechaHoraExtension.ValidarFechaHora(System.Object)">
             <summary>
             Evalúa si el parámetro está dentro del rango determinado
             </summary>
             <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
         </member>
+        <member name="M:Orbita.Utiles.OFechaHoraExtension.ValidarFechaHora(System.Object,System.IFormatProvider)">
+            <summary>
+            Evalúa si el parámetro está dentro del rango determinado
+            </summary>
+            <returns>Devuelve verdadero si el parámetro está dentro del rango determinado</returns>
+        </member>
         <member name="M:Orbita.Utiles.OFechaHoraExtension.ValidarFechaHora(System.Object,System.String,System.DateTime,System.DateTime,System.DateTime,System.Boolean)">
+            <summary>
+            Comprueba que el valor del objeto es correcto
+            </summary>
+            <param name="valor">Valor del objeto a comprobar</param>
+            <returns>Verdadero si el valor es correcto</returns>
+        </member>
+        <member name="M:Orbita.Utiles.OFechaHoraExtension.ValidarFechaHora(System.Object,System.String,System.DateTime,System.DateTime,System.IFormatProvider,System.DateTime,System.Boolean)">
             <summary>
             Comprueba que el valor del objeto es correcto
             </summary>
@@ -2900,6 +3106,15 @@
             <param name="separador">Caracter separador de cada uno de los valores de la colección</param>
             <returns>Cadena de texto con todos los valores de la colección separados por el carácter separador</returns>
         </member>
+        <member name="M:Orbita.Utiles.OExtensionesColecciones.Colection2String``1(System.Collections.Generic.ICollection{``0},System.Char,Orbita.Utiles.OExtensionesColecciones.ConvertToString{``0})">
+            <summary>
+            Convierte una colección en una cadena de texto
+            </summary>
+            <typeparam name="T">Tipo que se desea convertir</typeparam>
+            <param name="coleccion">Colección que se desea convertir en texto</param>
+            <param name="separador">Caracter separador de cada uno de los valores de la colección</param>
+            <returns>Cadena de texto con todos los valores de la colección separados por el carácter separador</returns>
+        </member>
         <member name="M:Orbita.Utiles.OExtensionesColecciones.String2Collection``1(System.String,System.Char,Orbita.Utiles.OExtensionesColecciones.ConvertFromString{``0})">
             <summary>
             Convierte una cadena de texto en una colección
@@ -2909,13 +3124,21 @@
             <param name="separador">Caracter separador de cada uno de los valores de la colección</param>
             <returns>Objeto de tipo colección con todos los valores que contiene el texto separados por el carácter separador</returns>
         </member>
+        <member name="T:Orbita.Utiles.OExtensionesColecciones.ConvertToString`1">
+            <summary>
+            Delegado para la conversión de cualquier tipo al tipo string
+            </summary>
+            <typeparam name="T">Tipo que se desea devolver</typeparam>
+            <param name="value">Valor a convertir</param>
+            <returns>Cadena de texto convertida</returns>
+        </member>
         <member name="T:Orbita.Utiles.OExtensionesColecciones.ConvertFromString`1">
             <summary>
             Delegado para la conversión del tipo string a cualquier tipo
             </summary>
             <typeparam name="T">Tipo que se desea devolver</typeparam>
-            <param name="text"></param>
-            <returns></returns>
+            <param name="text">Cadena de texto a convertir</param>
+            <returns>Valor resultante de la conversión</returns>
         </member>
         <member name="T:Orbita.Utiles.OTimer">
             <summary>
@@ -3063,10 +3286,18 @@
             <summary>
             memcpy - copy a block of memery
             </summary>
-            <param name="dst"></param>
-            <param name="src"></param>
-            <param name="count"></param>
+            <param name="dst">Puntero destino</param>
+            <param name="src">Puntero origen</param>
+            <param name="count">Tamaño en bytes de la copia</param>
             <returns></returns>
+        </member>
+        <member name="M:Orbita.Utiles.OWindowsUtils.CopyMemory(System.IntPtr,System.IntPtr,System.UInt32)">
+            <summary>
+            Copia de memoria
+            </summary>
+            <param name="dest">Puntero destino</param>
+            <param name="src">Puntero origen</param>
+            <param name="count">Tamaño en bytes de la copia</param>
         </member>
         <member name="M:Orbita.Utiles.OWindowsUtils.GetTcpTable(System.IntPtr,System.Int32@,System.Boolean)">
             <summary>
@@ -4536,6 +4767,11 @@
         <member name="F:Orbita.Utiles.OEnumTipoDato.Flag">
             <summary>
             Tipo Evento
+            </summary>
+        </member>
+        <member name="F:Orbita.Utiles.OEnumTipoDato.Tupla">
+            <summary>
+            Tipo de dato copuesto
             </summary>
         </member>
     </members>

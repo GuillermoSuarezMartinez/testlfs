@@ -806,6 +806,16 @@ namespace Orbita.Controles.VA
         {
             // Implementado en heredados
         }
+
+        /// <summary>
+        /// Obtiene el manejador del display para que las librerías de visión puedan acceder directamente a él
+        /// </summary>
+        /// <returns></returns>
+        public virtual object ObtenerManejador()
+        {
+            // Implementado en heredados
+            return null;
+        }
         #endregion
 
         #region Evento(s)

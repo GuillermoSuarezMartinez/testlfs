@@ -1,0 +1,9 @@
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Xml\bin\Release\Orbita.Xml.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Xml\bin\Release\Orbita.Xml.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Xml\bin\Release\Orbita.Xml.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Xml\bin\Release\Orbita.Utiles.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Xml\bin\Release\Orbita.Utiles.pdb
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Xml\bin\Release\Orbita.Utiles.xml
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Xml\obj\x64\Release\ResolveAssemblyReference.cache
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Xml\obj\x64\Release\Orbita.Xml.dll
+C:\TFS\OrbitaSoftware\Librerias\CodigoFuente\x64\Orbita\Orbita.Xml\obj\x64\Release\Orbita.Xml.pdb

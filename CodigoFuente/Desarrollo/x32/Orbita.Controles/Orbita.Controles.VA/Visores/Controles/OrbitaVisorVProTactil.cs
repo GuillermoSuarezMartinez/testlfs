@@ -689,6 +689,15 @@ namespace Orbita.Controles.VA
         {
             this.btnPlayStop.Image = e.ModoReproduccionContinua ? Properties.Resources.ImgStop24Blanco : Properties.Resources.ImgPlay24Blanco;
         }
+        
+        /// <summary>
+        /// Obtiene el manejador del display para que las librerías de visión puedan acceder directamente a él
+        /// </summary>
+        /// <returns></returns>
+        public override object ObtenerManejador()
+        {
+            return this.Display;
+        }   
         #endregion
 
         #region Eventos

@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<OBBDD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <BBDD nombre="basedatosComs" Instancia="01x0030" BaseDatos="COMS" Usuario="desarrollo" Password="orbita" Mirror="" Tipo="OSqlServer"/>
-    <BBDD nombre="basedatosVA" Instancia="01x0031" BaseDatos="VA" Usuario="desarrollo" Password="orbita" Mirror="" Tipo="OSqlServer" />
-</OBBDD>

@@ -3619,27 +3619,27 @@
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloTCPPhoenixES._registroInicialEntradas">
             <summary>
-            Valor inicial del registro de lecturas
+            Valor inicial del registro de lecturas.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloTCPPhoenixES._registroInicialSalidas">
             <summary>
-            Valor inicial del registro de escrituras
+            Valor inicial del registro de escrituras.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloTCPPhoenixES._tamanyoEntradas">
             <summary>
-            Número de lecturas a realizar
+            Número de lecturas a realizar.
             </summary>
         </member>
         <member name="F:Orbita.Comunicaciones.OProtocoloTCPPhoenixES._tamanyoSalidas">
             <summary>
-            Número de escrituras a realizar
+            Número de escrituras a realizar.
             </summary>
         </member>
         <member name="M:Orbita.Comunicaciones.OProtocoloTCPPhoenixES.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Constructor para el protocolo phoenix
+            Constructor para el protocolo Phoenix.
             </summary>
             <param name="regIniEntradas"></param>
             <param name="byteEntradas"></param>
@@ -5171,9 +5171,9 @@
         <member name="M:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.EndPoints.EndPoint.CrearEndPoint(System.String)">
             <summary>
             Crear endPoint de un string.
-            La dirección debe tener el formato: protocolo://dirección
-            Ejemplo: tcp://10.37.2.30:8000 uno de los extremos Tcp con
-            dirección IP 10.37.2.30 y puerto 8000.
+            La dirección debe tener el formato: protocolo://dirección.
+            Ejemplo: tcp://10.37.2.30:8000, uno de los extremos Tcp con
+            dirección IP 10.37.2.30, y puerto 8000.
             </summary>
             <param name="direccionEndPoint">Dirección endpoint.</param>
             <returns>Endpoint.</returns>
@@ -6078,7 +6078,7 @@
             Máxima longitud del mensaje.
             </summary>
         </member>
-        <member name="F:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializacion.Serializacion._bytesRecibidosMemoryStream">
+        <member name="F:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializacion.Serializacion.BytesRecibidosMemoryStream">
             <summary>
             Este MemoryStream se utiliza para recoger los bytes recibidos en la construcción de mensajes.
             </summary>
@@ -6150,6 +6150,15 @@
             </returns>
             <exception cref="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Excepciones.ExcepcionComunicacion">Throws ExcepcionComunicacion si el mensaje es más grande que la máxima longitud permitida.</exception>
         </member>
+        <member name="M:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializacion.Serializacion.LeerArrayBytes(System.IO.Stream,System.Int32)">
+            <summary>
+            Leer una matriz de bytes con la longitud especificada.
+            </summary>
+            <param name="stream">Stream para leer.</param>
+            <param name="longitud">Longitud de la matriz de bytes para leer.</param>
+            <returns>Matriz de bytes leida.</returns>
+            <exception cref="T:System.IO.EndOfStreamException">Throws EndOfStreamException si no se puede leer del stream.</exception>
+        </member>
         <member name="M:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializacion.Serializacion.EscribirInt32(System.Byte[],System.Int32,System.Int32)">
             <summary>
             Escribir un valor entero a una matriz de bytes desde un índice inicial.
@@ -6163,15 +6172,6 @@
             Deserializar y devolver un entero serializado.
             </summary>
             <returns>Integer deserializado.</returns>
-        </member>
-        <member name="M:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializacion.Serializacion.LeerArrayBytes(System.IO.Stream,System.Int32)">
-            <summary>
-            Leer una matriz de bytes con la longitud especificada.
-            </summary>
-            <param name="stream">Stream para leer.</param>
-            <param name="longitud">Longitud de la matriz de bytes para leer.</param>
-            <returns>Matriz de bytes leida.</returns>
-            <exception cref="T:System.IO.EndOfStreamException">Throws EndOfStreamException si no se puede leer del stream.</exception>
         </member>
         <member name="T:Orbita.Comunicaciones.Protocolos.Tcp.Comunicacion.Telegramas.Serializacion.Serializacion.DeserializationAppDomainBinder">
             <summary>

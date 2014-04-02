@@ -4142,6 +4142,12 @@
             </summary>
             <param name="modoReproduccionContinua"></param>
         </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorBase.ObtenerManejador">
+            <summary>
+            Obtiene el manejador del display para que las librerías de visión puedan acceder directamente a él
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Orbita.Controles.VA.OrbitaVisorBase.OnTimerVisualizacionUltimaImagen(System.Object,System.EventArgs)">
             <summary>
             Evento del timer de visualización de la última imágen
@@ -4982,6 +4988,12 @@
             </summary>
             <param name="modoReproduccionContinua"></param>
         </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.ObtenerManejador">
+            <summary>
+            Obtiene el manejador del display para que las librerías de visión puedan acceder directamente a él
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Orbita.Controles.VA.OrbitaVisorVProTactil.btnOpen_Click(System.Object,System.EventArgs)">
             <summary>
             Carga la imagen actual
@@ -5754,6 +5766,12 @@
             </summary>
             <param name="modoReproduccionContinua"></param>
         </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorBitmapTactil.ObtenerManejador">
+            <summary>
+            Obtiene el manejador del display para que las librerías de visión puedan acceder directamente a él
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Orbita.Controles.VA.OrbitaVisorBitmapTactil.CtrlDisplayBitmap_Load(System.Object,System.EventArgs)">
             <summary>
             Carga del control
@@ -6448,6 +6466,12 @@
             </summary>
             <param name="modoReproduccionContinua"></param>
         </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorVPro.ObtenerManejador">
+            <summary>
+            Obtiene el manejador del display para que las librerías de visión puedan acceder directamente a él
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Orbita.Controles.VA.OrbitaVisorVPro.btnOpen_Click(System.Object,System.EventArgs)">
             <summary>
             Carga la imagen actual
@@ -6829,6 +6853,12 @@
             Método que indica que la cámara ha cambiado su modo de reproducción
             </summary>
             <param name="modoReproduccionContinua"></param>
+        </member>
+        <member name="M:Orbita.Controles.VA.OrbitaVisorBitmap.ObtenerManejador">
+            <summary>
+            Obtiene el manejador del display para que las librerías de visión puedan acceder directamente a él
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Orbita.Controles.VA.OrbitaVisorBitmap.CtrlDisplayBitmap_Load(System.Object,System.EventArgs)">
             <summary>
