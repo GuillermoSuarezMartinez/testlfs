@@ -1,0 +1,410 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orbita.Controles.Contenedores</name>
+    </assembly>
+    <members>
+        <member name="F:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OTableLayoutPanel.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OTableLayoutPanel.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OTableLayoutPanel.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaTableLayoutPanel)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaTableLayoutPanel.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaForm.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaForm.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Contenedores.OrbitaForm.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Contenedores.OForm.numeroMaximoFormulariosAbiertos">
+            <summary>
+            Número máximo de formularios abiertos.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OForm.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OForm.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OForm.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaForm.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaForm)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaForm.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaMdiParentForm.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OMdiContainerForm.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OMdiContainerForm.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OMdiContainerForm.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OMdiContainerForm.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OMdiContainerForm.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OMdiContainerForm.ShouldSerializeNumeroMaximoFormulariosAbiertos">
+            <summary>
+            El método ShouldSerializePropertyName comprueba si una propiedad ha cambiado respecto a su valor predeterminado.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaMdiContainerForm.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaMdiContainerForm)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaMdiContainerForm.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
+        <member name="F:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.Dispose(System.Boolean)">
+            <summary>
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar 
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.
+            </summary>
+            <param name="contenedor">Proporciona funcionalidad para contenedores. Los contenedores son objetos
+            que contienen cero o más componentes de forma lógica.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.InitializeResourceStrings">
+            <summary>
+            Inicializar recursos alfabéticos.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OUltraTabbedMdiManager.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OUltraTabbedMdiManager.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OUltraTabbedMdiManager.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraTabbedMdiManager.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabControl.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraTabControl.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Contenedores.OrbitaUltraTabControl.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabControl.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabControl.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OUltraTabControl.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OUltraTabControl.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OUltraTabControl.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraTabControl.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaUltraTabControl)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraTabControl.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaPanel.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaPanel.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Contenedores.OrbitaPanel.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaPanel.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaPanel.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OPanel.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OPanel.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OPanel.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaPanel.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaPanel)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaPanel.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.ODialog.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.ODialog.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.ODialog.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaSplitContainer.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaSplitContainer.
+            </summary>
+        </member>
+        <member name="F:Orbita.Controles.Contenedores.OrbitaSplitContainer.components">
+            <summary> 
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaSplitContainer.Dispose(System.Boolean)">
+            <summary> 
+            Limpiar los recursos que se estén utilizando.
+            </summary>
+            <param name="disposing">true si los recursos administrados se deben eliminar; false en caso contrario, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaSplitContainer.InitializeComponent">
+            <summary> 
+            Método necesario para admitir el Diseñador. No se puede modificar
+            el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OSplitContainer.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OSplitContainer.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OSplitContainer.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaSplitContainer.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaSplitContainer)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaSplitContainer.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
+        <member name="T:Orbita.Controles.Contenedores.Properties.Resources">
+            <summary>
+              Clase de recurso con establecimiento inflexible de tipos, para buscar cadenas traducidas, etc.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Contenedores.Properties.Resources.ResourceManager">
+            <summary>
+              Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
+            </summary>
+        </member>
+        <member name="P:Orbita.Controles.Contenedores.Properties.Resources.Culture">
+            <summary>
+              Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
+              búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OUltraGroupBox.#ctor(System.Object)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OUltraGroupBox.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OUltraGroupBox.ToString">
+            <summary>
+            Invalida el método ToString() para devolver una cadena que representa la instancia de objeto.
+            </summary>
+            <returns>El nombre de tipo completo del objeto.</returns>
+        </member>
+        <member name="F:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraGroupBox.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaUltraGroupBox.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaUltraGroupBox)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaUltraGroupBox.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
+        <member name="F:Orbita.Controles.Contenedores.OrbitaDialog.components">
+            <summary>
+            Variable del diseñador requerida.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaDialog.InitializeComponent">
+            <summary>
+            Método necesario para admitir el Diseñador. No se puede modificar el contenido del método con el editor de código.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaDialog.#ctor">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaDialog.
+            </summary>
+        </member>
+        <member name="M:Orbita.Controles.Contenedores.OrbitaDialog.ControlNuevaDefinicion.#ctor(Orbita.Controles.Contenedores.OrbitaDialog)">
+            <summary>
+            Inicializar una nueva instancia de la clase Orbita.Controles.Contenedores.OrbitaDialog.ControlNuevaDefinicion.
+            </summary>
+            <param name="sender">Representa un control para mostrar una lista de elementos.</param>
+        </member>
+    </members>
+</doc>

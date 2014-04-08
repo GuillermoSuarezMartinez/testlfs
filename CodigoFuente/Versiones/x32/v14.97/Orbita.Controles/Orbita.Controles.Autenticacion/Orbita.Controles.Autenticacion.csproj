@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{298D55EA-3C54-4D2F-9CF9-DA76531931EC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Orbita.Controles.Autenticacion</RootNamespace>
+    <AssemblyName>Orbita.Controles.Autenticacion</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>bin\Debug\Orbita.Controles.Autenticacion.XML</DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>bin\Release\Orbita.Controles.Autenticacion.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Framework|x86'">
+    <OutputPath>bin\x86\Framework\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Orbita.BBDD">
+      <HintPath>..\..\Comun\Orbita\Orbita.BBDD.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.MS">
+      <HintPath>..\..\Comun\Orbita\Orbita.MS.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Utiles">
+      <HintPath>..\..\Comun\Orbita\Orbita.Utiles.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clases\App.cs" />
+    <Compile Include="Clases\AppBD.cs" />
+    <Compile Include="Clases\MensajesAutenticacion.cs" />
+    <Compile Include="Clases\EstadoAutenticacionNOK.cs" />
+    <Compile Include="Clases\EstadoAutenticacionOK.cs" />
+    <Compile Include="Enumerados\ResultadoAutenticacion.cs" />
+    <Compile Include="Enumerados\TipoAutenticacion.cs" />
+    <Compile Include="EventArgs\AutenticacionResultEventArgs.cs" />
+    <Compile Include="Formularios\FrmAutenticacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FrmAutenticacion.Designer.cs">
+      <DependentUpon>FrmAutenticacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clases\EstadoAutenticacion.cs" />
+    <Compile Include="Core\OLogonActiveDirectory.cs" />
+    <Compile Include="Core\OLogonBBDD.cs" />
+    <Compile Include="Core\OLogon.cs" />
+    <Compile Include="Core\OLogonOpenLDAP.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Formularios\FrmAutenticacion.resx">
+      <DependentUpon>FrmAutenticacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)Orbita.Controles.Autenticacion.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I
+xcopy "$(TargetDir)Orbita.Controles.Autenticacion.xml" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

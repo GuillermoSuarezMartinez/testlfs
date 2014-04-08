@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D66C367A-47B7-4464-93D6-92794E4A57C8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Orbita.Controles.Comunes</RootNamespace>
+    <AssemblyName>Orbita.Controles.Comunes</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisLogFile>bin\Debug\Orbita.Controles.Comunes.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <DocumentationFile>bin\Debug\Orbita.Controles.Comunes.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\Orbita.Controles.Comunes.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;c:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <DocumentationFile>bin\Release\Orbita.Controles.Comunes.XML</DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Framework|x86'">
+    <OutputPath>bin\x86\Framework\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Infragistics2.Shared.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Shared.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.Misc.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.Misc.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinDock.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinDock.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinEditors.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinEditors.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinMaskedEdit.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinMaskedEdit.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinStatusBar.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.UltraWinStatusBar.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinTabbedMdi.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics2.Win.UltraWinTabControl.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics2.Win.v11.2, Version=11.2.20112.2050, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Comun\Controles\Infragistics\V11-2\Infragistics2.Win.v11.2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clases\Base\OAparienciaBase.cs" />
+    <Compile Include="Clases\Base\OControlBase.cs" />
+    <Compile Include="Clases\Configuración\Configuracion.cs" />
+    <Compile Include="Clases\EventArgs\OPropertyChangedEventArgs.cs" />
+    <Compile Include="Clases\ExpandableObjectConverter\OAparienciaConverter.cs" />
+    <Compile Include="Clases\OColumnHeaderCollection.cs" />
+    <Compile Include="Clases\OColumnHeader.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Clases\OrbitaClaseAplicacionUnica.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OListView.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUltraMaskedEdit.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUltraDockManager.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OTextBox.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUltraSplitter.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUltraCheckEditor.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUltraOptionSet.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUltraDateTimeEditor.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUltraStatusBar.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OTreeView.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OTimer.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OPictureBox.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUltraNumericEditor.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUltraButton.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OListBox.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OApariencia.cs" />
+    <Compile Include="Clases\Propiedades y métodos\OUltraLabel.cs" />
+    <Compile Include="Custom\OrbitaTactilListButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaTactilListButton.designer.cs">
+      <DependentUpon>OrbitaTactilListButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaTactilButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaTactilButton.designer.cs">
+      <DependentUpon>OrbitaTactilButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaTecladoNumerico.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaTecladoNumerico.designer.cs">
+      <DependentUpon>OrbitaTecladoNumerico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaBarraProgreso.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaBarraProgreso.Designer.cs">
+      <DependentUpon>OrbitaBarraProgreso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaTeclado.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaTeclado.designer.cs">
+      <DependentUpon>OrbitaTeclado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaUltraDateTimeEditorAboveFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaUltraDateTimeEditorAboveFilter.Designer.cs">
+      <DependentUpon>OrbitaUltraDateTimeEditorAboveFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaUltraDateTimeEditorWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaUltraDateTimeEditorWithFilter.designer.cs">
+      <DependentUpon>OrbitaUltraDateTimeEditorWithFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\OrbitaUltraNumericEditorWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Custom\OrbitaUltraNumericEditorWithFilter.designer.cs">
+      <DependentUpon>OrbitaUltraNumericEditorWithFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Enumerados\AdornoTexto.cs" />
+    <Compile Include="Enumerados\AlineacionHorizontal.cs" />
+    <Compile Include="Enumerados\AlineacionVertical.cs" />
+    <Compile Include="Enumerados\EstiloBorde.cs" />
+    <Compile Include="Enumerados\EstiloBoton.cs" />
+    <Compile Include="Enumerados\TipoBoton.cs" />
+    <Compile Include="Estructuras\OAparienciaDatos.cs" />
+    <Compile Include="UC\OrbitaUltraButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraButton.Designer.cs">
+      <DependentUpon>OrbitaUltraButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraNumericEditor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraNumericEditor.Designer.cs">
+      <DependentUpon>OrbitaUltraNumericEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraStatusBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraStatusBar.Designer.cs">
+      <DependentUpon>OrbitaUltraStatusBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraCheckEditor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraCheckEditor.Designer.cs">
+      <DependentUpon>OrbitaUltraCheckEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraDateTimeEditor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraDateTimeEditor.Designer.cs">
+      <DependentUpon>OrbitaUltraDateTimeEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraDockManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraDockManager.Designer.cs">
+      <DependentUpon>OrbitaUltraDockManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraLabel.Designer.cs">
+      <DependentUpon>OrbitaUltraLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaListBox.Designer.cs">
+      <DependentUpon>OrbitaListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaListView.Designer.cs">
+      <DependentUpon>OrbitaListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraMaskedEdit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraMaskedEdit.Designer.cs">
+      <DependentUpon>OrbitaUltraMaskedEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaPictureBox.Designer.cs">
+      <DependentUpon>OrbitaPictureBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraOptionSet.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraOptionSet.Designer.cs">
+      <DependentUpon>OrbitaUltraOptionSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraSplitter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaUltraSplitter.Designer.cs">
+      <DependentUpon>OrbitaUltraSplitter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaTextBox.Designer.cs">
+      <DependentUpon>OrbitaTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaTimer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaTimer.Designer.cs">
+      <DependentUpon>OrbitaTimer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UC\OrbitaTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UC\OrbitaTreeView.Designer.cs">
+      <DependentUpon>OrbitaTreeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Custom\OrbitaTactilListButton.resx">
+      <DependentUpon>OrbitaTactilListButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaTactilButton.resx">
+      <DependentUpon>OrbitaTactilButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaTecladoNumerico.resx">
+      <DependentUpon>OrbitaTecladoNumerico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaBarraProgreso.resx">
+      <DependentUpon>OrbitaBarraProgreso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaTeclado.resx">
+      <DependentUpon>OrbitaTeclado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaUltraDateTimeEditorAboveFilter.resx">
+      <DependentUpon>OrbitaUltraDateTimeEditorAboveFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaUltraDateTimeEditorWithFilter.resx">
+      <DependentUpon>OrbitaUltraDateTimeEditorWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Custom\OrbitaUltraNumericEditorWithFilter.resx">
+      <DependentUpon>OrbitaUltraNumericEditorWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnAceptarEstandar24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnCerrarEstandar24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnDescartarEstandar24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnGuardarEstandar24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Orbita.Controles.Contenedores\Orbita.Controles.Contenedores.csproj">
+      <Project>{B953E685-3E2D-4F93-BB80-805427BBB8A2}</Project>
+      <Name>Orbita.Controles.Contenedores</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Orbita.Controles.Shared\Orbita.Controles.Shared.csproj">
+      <Project>{D104B7D1-93CB-46AE-8F84-AA68BB3B2C5E}</Project>
+      <Name>Orbita.Controles.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgComputerKey90.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgEjemplo24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgFondoBotonTactil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgSeparador250.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgSeparador640.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ImgSeparador1355.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)Orbita.Controles.Comunes.dll" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I
+xcopy "$(TargetDir)Orbita.Controles.Comunes.xml" "$(ProjectDir)\..\..\Comun\Orbita" /R /Y /I</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

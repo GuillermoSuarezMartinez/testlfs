@@ -1,0 +1,18 @@
+﻿Ayuda de Línea de comandos:
+Parámetro 1: Espacio de nombres (namespace).
+   Ejemplo: "OrbitaVAPersonalizacion "
+Parámetro 1: Ruta completa del fichero xml de configuración.
+   Ejemplo: "C:\Orbita\ProyectoVision\.....\ConfiguracionOrbita.VA.xml"
+Parámetro 2: Nombre del fichero cs a generar.
+   Ejemplo: "C:\Orbita\ProyectoVision\.....\OrbitaVAPersonalizacion.cs"
+Parámetro 3: Si se escribe Vars indica que se han de incluir las variables
+   utilizadas por la máquina de estados
+Parámetro 4: Si se escribe Hard indica que se han de incluir el hardware
+   utilizado por la máquina de estados
+
+Ejemplos -------
+    LPR
+OrbitaVAPersonalizacion "C:\PROYECTOS\Astra Sistemas\Sistemas\LPR\Codigo Fuente\OrbitaVA_LPR\Bin\ConfiguracionOrbitaVA.xml" "C:\PROYECTOS\Astra Sistemas\Sistemas\LPR\Codigo Fuente\OrbitaVA_LPR\OrbitaVAPersonalizacion\Clases\StateMachinePersonalizacion.cs" Vars Hard
+
+	ORQUESTADOR
+OrbitaOrquestador "C:\PROYECTOS\Astra Sistemas\Sistemas\Orquestador\Codigo Fuente\OrbitaOrquestador\Bin\ConfiguracionOrbitaOrquestador.xml" "C:\PROYECTOS\Astra Sistemas\Sistemas\Orquestador\Codigo Fuente\OrbitaOrquestador\OrbitaOrquestador\Clases\StateMachinePersonalizacion.cs"  Vars NoHard

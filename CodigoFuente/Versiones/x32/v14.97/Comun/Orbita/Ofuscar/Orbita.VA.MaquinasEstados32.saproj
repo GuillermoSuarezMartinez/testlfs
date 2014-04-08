@@ -1,0 +1,580 @@
+<SmartAssemblyProject ProjectId="{b55a28e7-2c90-41ab-b012-f6975f7e6bd8}" Version="2.0">
+    <MainAssemblyFileName>..\Orbita.VA.MaquinasEstados.dll</MainAssemblyFileName>
+    <Configuration Name="Release">
+        <ApplicationName />
+        <Destination DestinationFileName="..\..\..\..\..\..\..\..\Orbita\General\Dlls\Desarrollo\x32\Orbita\Orbita.VA.MaquinasEstados.dll" />
+        <Assemblies>
+            <Assembly AssemblyName="Orbita.BBDD, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="MySql.Data, Culture=neutral, PublicKeyToken=c5687fc88969c44d">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="IBM.Data.DB2, Culture=neutral, PublicKeyToken=7c307b91aa13d208">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="IBM.Data.U2.Ucinet, Culture=neutral, PublicKeyToken=8934f56ec52178f6">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Npgsql, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Mono.Security, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Oracle.DataAccess, Culture=neutral, PublicKeyToken=89b483f429c47342">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Trazabilidad, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <MemberRefsProxy />
+                    <Pruning />
+                    <Obfuscation Obfuscate="1">
+                        <Exclusion />
+                    </Obfuscation>
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="3" />
+                </Merging>
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Comunicaciones, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Utiles, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="hasp_net_windows, Culture=neutral, PublicKeyToken=56120be447701319">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Winsock, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="MccDaq, Culture=neutral, PublicKeyToken=a37eefcf5c6ca10a">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="OpcRcw.Da, Culture=neutral, PublicKeyToken=9a40e993cbface53">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Controles.Comunicaciones, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <ResourcesCompression />
+                    <MemberRefsProxy />
+                    <Pruning />
+                    <Obfuscation Obfuscate="1">
+                        <Exclusion />
+                    </Obfuscation>
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="3" />
+                    <ResourcesPruning />
+                </Merging>
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Controles.Comunes, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Controles.Shared, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <ResourcesCompression Compress="1" />
+                    <MemberRefsProxy Proxy="0" />
+                    <Pruning />
+                    <Obfuscation Obfuscate="1">
+                        <Exclusion />
+                    </Obfuscation>
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="3" />
+                </Merging>
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinTabControl.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinTabbedMdi.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.Misc.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinDock.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinMaskedEdit.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinStatusBar.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinEditors.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Shared.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Controles.Contenedores, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <ResourcesCompression />
+                    <MemberRefsProxy />
+                    <Pruning />
+                    <Obfuscation Obfuscate="1">
+                        <Exclusion />
+                    </Obfuscation>
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="3" />
+                </Merging>
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Controles.Menu, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <ResourcesCompression />
+                    <MemberRefsProxy />
+                    <Pruning />
+                    <Obfuscation Obfuscate="1">
+                        <Exclusion />
+                    </Obfuscation>
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="3" />
+                </Merging>
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinExplorerBar.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinToolbars.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Controles.Editor, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <ResourcesCompression />
+                    <MemberRefsProxy />
+                    <Pruning />
+                    <Obfuscation Obfuscate="1">
+                        <Exclusion />
+                    </Obfuscation>
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="3" />
+                </Merging>
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Controles.Estilos, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <ResourcesCompression />
+                    <MemberRefsProxy />
+                    <Pruning />
+                    <Obfuscation Obfuscate="1">
+                        <Exclusion />
+                    </Obfuscation>
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="3" />
+                </Merging>
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Controles.Grid, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <ResourcesCompression />
+                    <MemberRefsProxy />
+                    <Pruning />
+                    <Obfuscation Obfuscate="1">
+                        <Exclusion />
+                    </Obfuscation>
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="3" />
+                </Merging>
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinGanttView.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinGrid.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinSchedule.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Controles.Gantt, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <ResourcesCompression />
+                    <MemberRefsProxy />
+                    <Pruning />
+                    <Obfuscation Obfuscate="1">
+                        <Exclusion />
+                    </Obfuscation>
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="3" />
+                </Merging>
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Controles.VA, Culture=neutral, PublicKeyToken=null">
+                <Embedding />
+                <Merging>
+                    <ResourcesCompression Compress="1" />
+                    <MemberRefsProxy Proxy="0" />
+                    <Pruning />
+                    <Obfuscation />
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="4" />
+                </Merging>
+            </Assembly>
+            <Assembly AssemblyName="Mono.Security, Culture=neutral, PublicKeyToken=002400000480000094000000060200000024000052534131000400000100010079159977d2d03a8e6bea7a2e74e8d1afcc93e8851974952bb480a12c9134474d04062447c37e0e68c080536fcf3c3fbe2ff9c979ce998475e506e8ce82dd5b0f350dc10e93bf2eeecf874b24770c5081dbea7447fddafa277b22de47d6ffea449674a4f9fccf84d15069089380284dbdd35f46cdff12a1bd78e4ef0065d016df">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="hasp_net_windows_x64, Culture=neutral, PublicKeyToken=e1285fbb5e846047">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinDataSource.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinChart.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.VA.MaquinasEstados, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <ResourcesCompression />
+                    <MemberRefsProxy />
+                    <Pruning />
+                    <Obfuscation />
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="4" />
+                </Merging>
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.VA.Comun, Culture=neutral, PublicKeyToken=null">
+                <Embedding />
+                <Merging>
+                    <ResourcesCompression />
+                    <MemberRefsProxy />
+                    <Pruning />
+                    <Obfuscation />
+                    <ControlFlow Obfuscate="1" ObfuscationLevel="4" />
+                </Merging>
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinPrintPreviewDialog.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Win.UltraWinGrid.ExcelExport.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Infragistics2.Documents.Excel.v11.2, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.VA.Hardware, Culture=neutral, PublicKeyToken=null">
+                <Embedding />
+                <Merging>
+                    <ResourcesCompression />
+                    <MemberRefsProxy />
+                    <Pruning />
+                    <Obfuscation />
+                    <ControlFlow />
+                </Merging>
+            </Assembly>
+            <Assembly AssemblyName="PylonC.NET, Culture=neutral, PublicKeyToken=a77e8471c5919d5a">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Controles.Combo, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="AForge.Video.FFMPEG, Culture=neutral, PublicKeyToken=03563089b1be05dd" HintPath="..\..\VA\AForge\AForge.Video.FFMPEG.dll">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="AForge.Video, Culture=neutral, PublicKeyToken=cbfb6e07d173c401">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="AForge, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.Core, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.ImageFile, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.FGGigE, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.Display.Controls, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.Interop.DisplayCtlWidgets, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.Interop.DisplayCtl, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.Interop.Core, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.Controls, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.Interop.ToolEditFrameEvents, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.Interop.AcqFifoCtl, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.Interop.DataAnalysisCtl, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.Interop.FitCircleCtl, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.Interop.SynthModelCtl, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.Interop.FitLineCtl, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.Interop.ImageMaskCtl, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.Interop.FitEllipseCtl, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.Interop.ToolRegionCtl, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.Interop.ShapeEditCtl, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Embedding />
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.ImageProcessing, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="QWhale.Editor, Culture=neutral, PublicKeyToken=da632fd1713dff10" NotAvailable="1">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="QWhale.Syntax.Parsers, Culture=neutral, PublicKeyToken=da632fd1713dff10" NotAvailable="1">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="QWhale.Syntax, Culture=neutral, PublicKeyToken=da632fd1713dff10" NotAvailable="1">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="mscorlib, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Drawing, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Configuration, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Xml, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Data.SqlXml, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Security, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Accessibility, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Runtime.Serialization.Formatters.Soap, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Deployment, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.Vsa, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Data, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.VisualC, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Transactions, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.EnterpriseServices, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.DirectoryServices, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Runtime.Remoting, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Web, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.Build.Framework, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Xaml, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Runtime.Caching, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Web.ApplicationServices, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Core, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Numerics, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Web.Services, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Design, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Drawing.Design, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Data.OracleClient, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Web.RegularExpressions, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.Build.Utilities.v4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.DirectoryServices.Protocols, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.Build.Tasks.v4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.ServiceProcess, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Configuration.Install, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Runtime.Serialization, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="SMDiagnostics, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Runtime.DurableInstancing, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Xml.Linq, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="System.Management, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.JScript, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="stdole, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Microsoft.VisualBasic, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="PoweredBySmartAssembly, Culture=neutral, PublicKeyToken=7f465a1c156d4d57">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="SmartAssembly.AssemblyResolver, Culture=neutral, PublicKeyToken=7f465a1c156d4d57">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="SmartAssembly.Zip, Culture=neutral, PublicKeyToken=7f465a1c156d4d57">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="SmartAssembly.ResourceResolver, Culture=neutral, PublicKeyToken=7f465a1c156d4d57">
+                <Merging />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.VA.Funciones, Culture=neutral, PublicKeyToken=null">
+                <Merging>
+                    <ResourcesCompression />
+                    <MemberRefsProxy />
+                    <Pruning />
+                    <Obfuscation />
+                    <ControlFlow />
+                </Merging>
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="CIDARMTWrapper, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="VPARMTWrapper, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Cognex.VisionPro.ToolGroup, Culture=neutral, PublicKeyToken=ef0f902af9dee505">
+                <Merging />
+                <Embedding />
+            </Assembly>
+            <Assembly AssemblyName="Orbita.Xml, Culture=neutral, PublicKeyToken=null">
+                <Merging />
+                <Embedding />
+            </Assembly>
+        </Assemblies>
+        <Options>
+            <Obfuscation FieldsNameMangling="3" NameMangling="3" />
+            <ExceptionReporting Template="res:{SmartExceptions}.1033.dll" />
+            <StrongNameSigning />
+            <OtherProtections AddMetadataStream="1" SuppressIldasm="1" />
+            <StringsEncoding />
+            <OtherOptimizations />
+            <Debugging />
+            <FeatureUsageReporting Template="res:SmartUsageWithUIConsentFirstRun1033.dll" />
+        </Options>
+    </Configuration>
+</SmartAssemblyProject>

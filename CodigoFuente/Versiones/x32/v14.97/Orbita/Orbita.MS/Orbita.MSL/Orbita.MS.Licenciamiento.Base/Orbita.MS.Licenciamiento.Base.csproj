@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{912E9F06-D32C-4D52-BBE3-3E6F2BFFE3AE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Orbita.MS</RootNamespace>
+    <AssemblyName>Orbita.MS.GL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="hasp_net_windows, Version=4.0.1.12423, Culture=neutral, PublicKeyToken=56120be447701319">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\hasp_net_windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.MS, Version=13.73.5.1, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\Orbita.MS.ServidorLicencias\Lib\Orbita.MS.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Trazabilidad, Version=13.7.5.1, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\Orbita.Trazabilidad.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Utiles">
+      <HintPath>..\Orbita.MS.ServidorLicencias\Lib\Orbita.Utiles.dll</HintPath>
+    </Reference>
+    <Reference Include="Orbita.Xml">
+      <HintPath>Lib\Orbita.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clases\Comunicaciones\OGestionXML.cs" />
+    <Compile Include="Clases\Comunicaciones\OMensajeXML.cs" />
+    <Compile Include="Clases\Comunicaciones\OMensajeXMLOperacion.cs" />
+    <Compile Include="Clases\Comunicaciones\OObjetoXMLMensaje.cs" />
+    <Compile Include="Clases\Comunicaciones\OGestorProtocolo.cs" />
+    <Compile Include="Clases\Licencias\OGestorLicencias.cs" />
+    <Compile Include="Clases\Licencias\OLicenciaCaracteristica.cs" />
+    <Compile Include="Clases\Licencias\OLicenciaElemento.cs" />
+    <Compile Include="Clases\Licencias\OLicenciaHaspSL.cs" />
+    <Compile Include="Clases\Licencias\OLicenciaHASPXMLCaracteristicas.cs" />
+    <Compile Include="Clases\Licencias\OLicenciaHASPXMLCaracteristicasInfo.cs" />
+    <Compile Include="Clases\Licencias\OLicenciaHASPXMLLicencias.cs" />
+    <Compile Include="Clases\Licencias\OLicenciaHASPXMLProducto.cs" />
+    <Compile Include="Clases\Licencias\OLicenciaHaspHL4.cs" />
+    <Compile Include="Clases\Licencias\OLicenciaHaspHLPro.cs" />
+    <Compile Include="Clases\Licencias\OLicenciaParserXMLHASP.cs" />
+    <Compile Include="Clases\Licencias\OLicenciaProducto.cs" />
+    <Compile Include="Clases\Licencias\OProductoDetalle.cs" />
+    <Compile Include="Clases\Sistema\OAplicacion.cs" />
+    <Compile Include="Clases\Sistema\OEstadoProceso.cs" />
+    <Compile Include="Clases\Sistema\OGestionSistema.cs" />
+    <Compile Include="Clases\Licencias\OLicenciaHaspBase.cs" />
+    <Compile Include="Clases\Licencias\OLicenciaUSB.cs" />
+    <Compile Include="Clases\Licencias\OHaspSN.cs" />
+    <Compile Include="Clases\Licencias\OLicenciaBase.cs" />
+    <Compile Include="Clases\Comunicaciones\OMsgHasp.cs" />
+    <Compile Include="Clases\Sistema\OProcesoAplicacion.cs" />
+    <Compile Include="Enumerados\Trazabilidad\OGestionTrazabilidad.cs" />
+    <Compile Include="Enumerados\OProductos.cs" />
+    <Compile Include="Enumerados\ONivel.cs" />
+    <Compile Include="Enumerados\OTipoLicencia.cs" />
+    <Compile Include="Enumerados\OTipoLicenciaSW.cs" />
+    <Compile Include="Clases\Comunicaciones\OEstadoComunicacionCliente.cs" />
+    <Compile Include="Clases\Licencias\OEstadoLicencia.cs" />
+    <Compile Include="Excepciones\OExcepcionLicenciaHASP.cs" />
+    <Compile Include="Excepciones\OExcepcionLicenciaPeriodoGraciaExcedido.cs" />
+    <Compile Include="Excepciones\OExcepcionLicenciaNoDisponible.cs" />
+    <Compile Include="Excepciones\OExcepcionLicenciaUso.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Log.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Lib\hasp_net_windows.dll" />
+    <Content Include="Lib\Log.config.xml" />
+    <Content Include="Lib\Orbita.MS.dll" />
+    <Content Include="Lib\Orbita.Trazabilidad.dll" />
+    <Content Include="Lib\OrbitaUtiles.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
